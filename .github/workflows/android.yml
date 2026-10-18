@@ -21,7 +21,9 @@ jobs:
       - name: Generate the Android project
         run: echo "ANDROID_HOME=$ANDROID_HOME" && cd apps/android && npm install --no-audit --no-fund && node generate.mjs
       - name: Test APK (debug-signed)
-        run: cd apps/android/project && chmod +x gradlew && ./gradlew --no-daemon assembleDebug
+        run: |
+          cd apps/android/project && chmod +x gradlew
+          ./gradlew --no-daemon assembleDebug > ../gradle.log 2>&1 || { tail -40 ../gradle.log; echo "::error title=gradle::$(grep -A25 'What went wrong' ../gradle.log | head -30 | sed ':a;N;$!ba;s/%/%25/g;s/\n/%0A/g')"; exit 1; }
       - uses: actions/upload-artifact@v4
         with: {name: scriptures-test-apk, path: apps/android/project/app/build/outputs/apk/debug/*.apk}
       - name: Signed bundle for Google Play
