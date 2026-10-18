@@ -49,15 +49,28 @@ async def main():
         rows = await ev("document.querySelectorAll('#libList [data-node]').length")
         check('library lists the genres under them', rows == sum(len(t['children']) for t in shelf), rows)
 
+        # one header on the library, a work and the reader: back, A−/A+, हिं·En·शब्द, search, menu
+        for v in ('library', 'home', 'reader'):
+            parts = await ev(f"(() => {{ const b = document.querySelector('#{v} .bar'); return b ? ['.szm', '.szp', '.lyr.layers', '.hsearch', '.hmenu'].map(c => !!b.querySelector(c)) : []; }})()")
+            check(f'{v}: the same header (A−/A+, हिं·En·शब्द, search, menu)', parts and all(parts), parts)
+        # the library's way back is the breadcrumb row in its header; inside a work, “‹ Library” goes to the library
+        await ev("libPath=[LIB[0].id]; show('library')"); await pg.wait_for_timeout(300)
+        crumbs = await ev("document.querySelector('#library .bar #libCrumbs').innerText")
+        check('library: breadcrumbs sit in the header', 'Library' in crumbs or 'पुस्तकालय' in crumbs, crumbs)
+        await ev("libPath=[]; renderLibrary()")
+        await ev("libPath=[]; show('library')"); await pg.wait_for_timeout(300)
+        lang0 = await ev("LANG()")
+        await (await pg.query_selector('#library .lyr.layers [data-l=e]')).click(); await pg.wait_for_timeout(400)
+        check('language can be changed from the library', await ev("LANG()") != lang0, lang0)
+        await (await pg.query_selector('#library .lyr.layers [data-l=e]')).click(); await pg.wait_for_timeout(300)
         # library search finds a work by its English or Hindi name
         for leaf, trail in list(leaves(shelf))[:3]:
             await ev("libPath=[]; show('library')"); await pg.wait_for_timeout(200)
-            if await ev("document.querySelector('#libSearch').hidden"): await (await pg.query_selector('#libSearchBtn')).click()
+            await (await pg.query_selector('#libSearchBtn')).click(); await pg.wait_for_timeout(200)
             q = leaf['title']['en'].split()[-1][:5]
-            await pg.fill('#libQ', q); await pg.wait_for_timeout(300)
-            found = await ev("Array.from(document.querySelectorAll('#libList .ti')).map(x => x.textContent)")
+            await pg.fill('#q', q); await pg.wait_for_timeout(500)
+            found = await ev("Array.from(document.querySelectorAll('#sRes .snip')).map(x => x.textContent)")
             check(f'library search “{q}” finds {leaf["work"]}', leaf['title']['hi'] in found or leaf['title']['en'] in found, found[:4])
-            await pg.fill('#libQ', ''); await (await pg.query_selector('#libSearchBtn')).click(); await pg.wait_for_timeout(200)
         await shot('library-search')
 
         for leaf, trail in leaves(shelf):
@@ -107,7 +120,9 @@ async def main():
                 await ev(f"setTime({j}, 1, AUT[0].find(x => x[0] === {j})[1] + 0.5); setTime({j}, 2, AUT[0].find(x => x[0] === {j})[1] + 3)")
                 ent = await ev(f"AUT[0].find(x => x[0] === {j})")
                 check(f'{tag}: a start and an end set by ear apply at once', ent[2] is not None and abs(ent[2] - ent[1] - 3) < 0.05, ent)
-                check(f'{tag}: the timing buttons show in the player', await ev("getComputedStyle(document.querySelector('.ptime')).display") == 'flex')
+                await ev(f"openReader('k', {j})"); await pg.wait_for_timeout(800)
+                check(f'{tag}: every verse shows its own timing buttons', await ev("document.querySelectorAll('#rBody .verse .tmark [data-a=tstart]').length") == await ev("document.querySelectorAll('#rBody .verse').length"))
+                await ev("show('home')"); await pg.wait_for_timeout(300)
                 await ev("delete S.timing.fix[tkey()]; save()")
             await ev("S.timing.on = false; applyTiming()"); await ev("loadSources()"); await pg.wait_for_timeout(400)
             # continue and play sit on one line
@@ -178,7 +193,7 @@ async def main():
             # search for a word of the first verse
             word = await ev("cleanWord((IT[0].v[0].split(/\\s+/).find(x => cleanWord(x).length > 2)) || '')")
             if word:
-                await ev("show('search')"); await pg.fill('#q', word); await pg.wait_for_timeout(1200); await shot(f'{tag}-search')
+                await ev("openSearch('text')"); await pg.fill('#q', word); await pg.wait_for_timeout(1200); await shot(f'{tag}-search')
                 hits = await ev("document.querySelectorAll('#sRes .res').length")
                 check(f'{tag}: search finds a word of its first verse', hits > 0, f'{word}: {hits}')
                 if hits:

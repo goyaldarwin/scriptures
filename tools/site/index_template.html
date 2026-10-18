@@ -98,8 +98,8 @@ html,body{overflow-x:clip}
 .vtext p{margin:0;position:relative}
 .vtext{padding:0 30px;overflow-wrap:anywhere}
 .vtext.vedic{font-family:'Vedic','NSDev',serif}
-.ptime{display:none;gap:6px;margin-top:6px}body.timing .ptime{display:flex}.ptime button{flex:1;border:1px solid var(--rule);border-radius:10px;padding:7px 4px;font-size:13px;background:var(--surface);color:var(--ink,inherit);white-space:nowrap}.ptime button:active{background:var(--indigo-soft)}
 .btn[disabled]{opacity:.45;pointer-events:none}
+.tmark{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px;margin:8px 0 2px}.tmark button{border:1px solid var(--saffron);color:var(--saffron);border-radius:10px;padding:6px 10px;font-size:13.5px;font-weight:700;background:var(--bg)}.tmark button:active{background:color-mix(in srgb,var(--saffron) 18%,transparent)}.tinfo{width:100%;text-align:center;font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}.tinfo .test{color:var(--saffron)}.tsteps{padding-left:20px;line-height:1.55}.tsteps li{margin:3px 0}
 body.timing .verse.tocheck{box-shadow:inset 3px 0 0 var(--saffron)}.tcheck{margin:10px 0}.tcheck summary{cursor:pointer;font-size:15px}.tlist{display:flex;flex-direction:column;max-height:50vh;overflow:auto;margin-top:6px}.tlist button{text-align:left;padding:9px 4px;border-bottom:1px solid var(--rule);font-size:15px}
 .tbox{margin-top:14px;padding-top:12px;border-top:1px solid var(--rule)}.tctl{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:6px}.tctl b{min-width:64px;text-align:center;font-variant-numeric:tabular-nums}   /* a long Sanskrit compound may break rather than run off a phone screen */
 .half{display:inline-block}
@@ -256,6 +256,12 @@ input[type=checkbox],input[type=radio],input[type=range]{accent-color:var(--indi
 
 .libbtn{display:inline-flex;align-items:center;gap:4px;color:var(--indigo);font-size:15px;padding:6px 4px}
 .toprow{display:flex;align-items:center;gap:2px;margin-top:10px;min-height:44px}.toprow .grow,.bar .grow{flex:1}
+.bar .hback.off{visibility:hidden}
+.bar .wrap{gap:4px}
+@media (max-width:400px){.bar .sz button{padding:0 8px}.bar .lyr button{padding:0 5px}.bar .ib{width:36px}.bar .libbtn{font-size:14px;padding:6px 2px}}
+.crumbrow{display:flex;gap:2px;align-items:center;overflow-x:auto;white-space:nowrap;padding:0 16px 8px;max-width:720px;margin:0 auto;font-size:14.5px;scrollbar-width:none}.crumbrow:empty{display:none}.crumbrow::-webkit-scrollbar{display:none}.crumbrow button{color:var(--indigo);padding:2px 2px}.crumbrow .sep{color:var(--muted)}.crumbrow .cur{color:var(--ink,inherit);font-weight:700}
+.zoomable{zoom:var(--ui-zoom,1)}
+.bar .ib svg{stroke:var(--indigo)}
 .toprow .ib svg{stroke:var(--indigo)}
 .libsearch{margin:0 0 10px}.libsearch input{width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:11px 14px;border:1px solid var(--rule);border-radius:12px;background:var(--surface);color:var(--ink)}
 .sz{display:flex;border:1px solid var(--rule);border-radius:999px;overflow:hidden}.sz button{padding:0 11px;min-height:32px;font-weight:700;color:var(--indigo);font-size:15px}.sz button+button{border-left:1px solid var(--rule);font-size:19px}.sz sup{font-size:.6em}
@@ -310,10 +316,14 @@ body.playing #rBody{padding-bottom:240px}
 
 <!-- LIBRARY -->
 <section id="library" class="view on">
- <div class="wrap">
-  <div class="toprow"><span class="grow"></span><button class="ib" id="libSearchBtn" aria-label="खोजें"><svg><use href="#i-search"/></svg></button></div>
-  <div class="hero"><p class="crumbs" id="libCrumbs"></p><h1 id="libTitle" data-en="Library">पुस्तकालय</h1></div>
-  <div class="libsearch" id="libSearch" hidden><input id="libQ" type="search" placeholder="ग्रन्थ, रचयिता या विषय खोजें" data-en-ph="Search works, authors or shelves" autocomplete="off"></div>
+ <div class="bar"><div class="wrap">
+  <div class="sz"><button class="szm" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div><span class="grow"></span>
+  <div class="lyr layers"><button data-l="h">हिं</button><button data-l="e" class="lat">En</button><button data-l="w">शब्द</button></div>
+  <button class="ib hsearch" id="libSearchBtn" aria-label="खोजें"><svg><use href="#i-search"/></svg></button>
+  <button class="ib hmenu" id="libMenu" aria-label="मेनू"><svg><use href="#i-menu"/></svg></button>
+ </div><nav class="crumbrow" id="libCrumbs"></nav></div>
+ <div class="wrap zoomable">
+  <div class="hero"><h1 id="libTitle" data-en="Library">पुस्तकालय</h1></div>
   <ul class="list" id="libList"></ul>
   <div style="height:40px"></div>
  </div>
@@ -321,8 +331,14 @@ body.playing #rBody{padding-bottom:240px}
 
 <!-- HOME (one work) -->
 <section id="home" class="view">
- <div class="wrap">
-  <div class="toprow"><button class="libbtn" id="hLib"><svg><use href="#i-back"/></svg><span data-en="Library">पुस्तकालय</span></button><span class="grow"></span><button class="ib" data-go="search" aria-label="खोजें"><svg><use href="#i-search"/></svg></button><button class="ib" id="hMenu" aria-label="मेनू"><svg><use href="#i-menu"/></svg></button></div>
+ <div class="bar"><div class="wrap">
+  <button class="libbtn hback" id="hLib"><svg><use href="#i-back"/></svg><span data-en="Library">पुस्तकालय</span></button>
+  <div class="sz"><button class="szm" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div><span class="grow"></span>
+  <div class="lyr layers"><button data-l="h">हिं</button><button data-l="e" class="lat">En</button><button data-l="w">शब्द</button></div>
+  <button class="ib hsearch" id="hSearch" aria-label="खोजें"><svg><use href="#i-search"/></svg></button>
+  <button class="ib hmenu" id="hMenu" aria-label="मेनू"><svg><use href="#i-menu"/></svg></button>
+ </div></div>
+ <div class="wrap zoomable">
   <div class="hero"><h1 id="hTitle"></h1><p id="hSub"></p><div class="heroacts"><span id="contCard"></span><button class="btn playall" id="hPlayAll" hidden><svg><use href="#i-play"/></svg><span data-en="Play all">सम्पूर्ण पाठ सुनें</span></button></div></div>
   <div class="seg" id="orgSeg"></div>
   <ul class="list" id="orgList"></ul>
@@ -333,13 +349,13 @@ body.playing #rBody{padding-bottom:240px}
 <!-- READER -->
 <section id="reader" class="view">
  <div class="bar"><div class="wrap">
-  <button class="ib" id="rBack" aria-label="वापस"><svg><use href="#i-back"/></svg></button>
-  <div class="sz"><button id="rSmaller" aria-label="छोटा अक्षर">A<sup>−</sup></button><button id="rBigger" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div><span class="grow"></span>
+  <button class="ib hback" id="rBack" aria-label="वापस"><svg><use href="#i-back"/></svg></button>
+  <div class="sz"><button class="szm" id="rSmaller" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" id="rBigger" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div><span class="grow"></span>
   <span class="timer" id="timerPill"></span>
   <button class="pill" id="rRecite" hidden style="padding:6px 10px;font-size:13px"><span data-en="Recitation mode">पाठ मोड</span> ✕</button>
-  <div class="lyr" id="rLayers"><button data-l="h">हिं</button><button data-l="e" class="lat">En</button><button data-l="w">शब्द</button></div>
-  <button class="ib" id="rSearch" aria-label="खोजें" hidden><svg><use href="#i-search"/></svg></button>
-  <button class="ib" id="rMore" aria-label="और"><svg><use href="#i-more"/></svg></button>
+  <div class="lyr layers" id="rLayers"><button data-l="h">हिं</button><button data-l="e" class="lat">En</button><button data-l="w">शब्द</button></div>
+  <button class="ib hsearch" id="rSearch" aria-label="खोजें"><svg><use href="#i-search"/></svg></button>
+  <button class="ib hmenu" id="rMore" aria-label="मेनू"><svg><use href="#i-menu"/></svg></button>
  </div></div>
  <div class="wrap" id="rBody"></div>
  <div class="navbar"><div class="wrap">
@@ -357,7 +373,6 @@ body.playing #rBody{padding-bottom:240px}
     <button class="ib" id="pNext" aria-label="next verse"><svg><use href="#i-next"/></svg></button>
     <button class="ib" id="pClose" aria-label="stop"><svg><use href="#i-x"/></svg></button>
    </div>
-   <div class="ptime"><button id="pThis">⏱ <span data-en="Start">शुरू</span></button><button id="pEnd">⏹ <span data-en="End">अंत</span></button><button id="pNextNow">⏭ <span data-en="Next">अगला</span></button></div>
   </div>
 </div></div>
 <!-- SEARCH -->

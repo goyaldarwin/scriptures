@@ -92,9 +92,10 @@ function toast(msg){ const t = $('#toast'); t.textContent = msg; t.classList.add
 function applyLang(){ const en = LANG() === 'en'; document.documentElement.lang = en ? 'en' : 'hi';
   $$('[data-en]').forEach(el => { if (el.dataset.hi == null) el.dataset.hi = el.innerHTML; el.innerHTML = en ? el.dataset.en : el.dataset.hi; });
   $$('[data-en-ph]').forEach(el => { if (el.dataset.hiPh == null) el.dataset.hiPh = el.placeholder; el.placeholder = en ? el.dataset.enPh : el.dataset.hiPh; }); }
-function applyTheme(){ const r = document.documentElement; if (S.settings.theme === 'auto') r.removeAttribute('data-theme'); else r.setAttribute('data-theme', S.settings.theme); r.style.setProperty('--verse-size', S.settings.size + 'px'); r.style.setProperty('--mean-size', Math.round(S.settings.size * 0.78 * 10) / 10 + 'px'); }
+function applyTheme(){ const r = document.documentElement; if (S.settings.theme === 'auto') r.removeAttribute('data-theme'); else r.setAttribute('data-theme', S.settings.theme); r.style.setProperty('--verse-size', S.settings.size + 'px'); r.style.setProperty('--mean-size', Math.round(S.settings.size * 0.78 * 10) / 10 + 'px'); r.style.setProperty('--ui-zoom', (1 + (S.settings.size - 21) * 0.025).toFixed(3)); }   // A−/A+ also scale the library and work pages
 const viewStack = ['library'];
-function show(id, push = true){ $$('.view').forEach(v => v.classList.toggle('on', v.id === id)); if (push){ viewStack.push(id); history.pushState({v: id}, ''); } if (id !== 'reader') window.scrollTo(0, 0); onView(id); }
+function show(id, push = true){ if (id !== 'search' && typeof SCOPE !== 'undefined' && SCOPE === 'lib') SCOPE = 'text';   // leaving the search page: the next search is a text search unless opened from the library
+  $$('.view').forEach(v => v.classList.toggle('on', v.id === id)); if (push){ viewStack.push(id); history.pushState({v: id}, ''); } if (id !== 'reader') window.scrollTo(0, 0); onView(id); }
 function back(){ history.back(); }
 window.addEventListener('popstate', () => { closeSheet(); if (viewStack.length > 1) viewStack.pop(); const id = viewStack[viewStack.length - 1] || 'library'; show(id, false); if (id === 'reader') reopenReader(); });
 function onView(id){ if (id === 'library') renderLibrary(); if (id === 'home') renderHome(); if (id === 'bookmarks') renderBookmarks(); if (id === 'settings') renderSettings(); if (id === 'vidhi') renderVidhi(); wake(id === 'reader'); if (id === 'search') setTimeout(() => $('#q').focus(), 50); }
@@ -257,6 +258,7 @@ function verseHTML(i){
     const top = y === 0 ? '<button class="vb vbm' + (bm ? ' bm-on' : '') + '" data-a="bm" aria-label="bookmark"><svg><use href="#i-bm"/></svg></button>' : '';
     const tail = last ? (hasAu(i) ? '<button class="vb vplay" data-a="play" aria-label="play"><svg><use href="#i-play"/></svg></button>' : '') + '<span class="vend"><button class="vb" data-a="menu" aria-label="more"><svg><use href="#i-more"/></svg></button></span>' : '';
     return '<p' + (vv.v.length === 1 ? ' class="one"' : '') + '>' + lead + top + w + tail + '</p>'; }).join('') + '</div>';
+  if (S.timing.on && SRC.au) h += markBar(i);
   if (S.settings.tr && it.t && it.t.length) h += '<div class="tr">' + it.t.map(l => '<div>' + l.split(/(?<=,)\s+/).map(x => '<span class="half">' + esc(x).replace(/\s*॥\s*([^॥]*?)\s*॥/g, ' <span class="dd">॥$1॥</span>') + '</span>').join(' ') + '</div>').join('') + '</div>';
   if (layerOn('h')){ const m = mean('hi', i); if (m) h += '<div class="layer h">' + esc(m.x).replace(/\s*(।।[^।]*।।)\s*$/, '<span style="white-space:nowrap"> $1</span>') + (m.edited ? '<span class="tag">' + T('संशोधित', 'edited') + '</span>' : '') + (m.f ? '<div class="fn">' + m.f.map(esc).join('<br>') + '</div>' : '') + '</div>'; }
   if (layerOn('w')) h += '<div class="layer wl">' + wbHTML(vv.v, langOf(i)) + '</div>';
@@ -362,13 +364,14 @@ function sectionSheet(){
 }
 $('#rMid').onclick = sectionSheet;
 $('#rBack').onclick = back;
-$$('#rLayers button').forEach(b => b.onclick = () => { const l = b.dataset.l; S.settings.layers[l] = !S.settings.layers[l]; save(); if (l === 'e') applyLang(); syncLayers(); refreshReader(); });
-function syncLayers(){ $$('#rLayers button').forEach(b => b.classList.toggle('on', layerOn(b.dataset.l))); }
+// the same हिं · En · शब्द switch in every header (library, work, reader): one setting, shown and changed anywhere
+$$('.lyr.layers button').forEach(b => b.onclick = () => { const l = b.dataset.l; S.settings.layers[l] = !S.settings.layers[l]; save(); if (l === 'e') applyLang(); syncLayers();
+  const v = viewStack[viewStack.length - 1]; if (v === 'reader') refreshReader(); else if (l === 'e') onView(v); });
+function syncLayers(){ $$('.lyr.layers button').forEach(b => b.classList.toggle('on', layerOn(b.dataset.l))); }
 function applyRecite(){ document.body.classList.toggle('recite', !!S.settings.recite); $('#rRecite').hidden = !S.settings.recite; }
 function toggleRecite(){ S.settings.recite = !S.settings.recite; save(); applyRecite(); toast(S.settings.recite ? T('पाठ मोड: केवल मूल पाठ', 'Recitation mode: verses only') : T('अर्थ फिर दिखेंगे', 'Meanings shown again')); }
 $('#rRecite').onclick = toggleRecite;
 $('#rMore').onclick = () => { openSheet('<div class="menu">' +
-  '<button data-m="search"><svg><use href="#i-search"/></svg>' + LB.search() + '</button>' +
   '<button data-m="sec"><svg><use href="#i-jump"/></svg>' + LB.sections() + '</button>' +
   '<button data-m="bm"><svg><use href="#i-bm"/></svg>' + LB.bm() + '</button>' +
   '<button data-m="timer"><svg><use href="#i-clock"/></svg>' + LB.timer() + (S.timer ? ' · ' + timerText() + (S.timer.run ? T(' (रोकें)', ' (pause)') : T(' (चलाएँ)', ' (resume)')) : T(' (शुरू करें)', ' (start)')) + '</button>' +
@@ -381,7 +384,7 @@ $('#rMore').onclick = () => { openSheet('<div class="menu">' +
 $('#sheetBody').addEventListener('click', ev => {
   const b = ev.target.closest('[data-m]'); if (!b) return;
   const m = b.dataset.m; closeSheet();
-  if (m === 'search') show('search'); if (m === 'sec') sectionSheet(); if (m === 'timer') timerToggle(); if (m === 'treset') timerReset();
+  if (m === 'search') openSearch('text'); if (m === 'sec') sectionSheet(); if (m === 'timer') timerToggle(); if (m === 'treset') timerReset();
   if (m === 'font') fontSheet(); if (m === 'bm') show('bookmarks'); if (m === 'set') show('settings');
 });
 function setSize(d){
@@ -389,7 +392,7 @@ function setSize(d){
   if ($('#reader').classList.contains('on') && i != null) scrollToItem(i);
   toast(LB.size() + ' ' + DEV(S.settings.size));
 }
-$('#rSmaller').onclick = () => setSize(-2); $('#rBigger').onclick = () => setSize(2);
+$$('.szm').forEach(b => b.onclick = () => setSize(-2)); $$('.szp').forEach(b => b.onclick = () => setSize(2));
 function fontSheet(){
   openSheet('<h2>' + LB.size() + '</h2><input type="range" id="fs" min="16" max="34" step="1" value="' + S.settings.size + '" style="border:0;padding:0"><p class="vtext" id="fsDemo" style="font-size:' + S.settings.size + 'px">' + esc(IT[0] ? IT[0].v[0].slice(0, 28) : '') + '</p>');
   $('#fs').oninput = () => { S.settings.size = +$('#fs').value; $('#fsDemo').style.fontSize = S.settings.size + 'px'; applyTheme(); save(); };
@@ -401,6 +404,11 @@ $('#rBody').addEventListener('click', ev => {
   if (a){
     const act = a.dataset.a;
     if (act === 'play') playFrom(i, i);   // ▶ beside a verse plays that verse; “Listen from here” keeps going
+    else if (act === 'tstart' || act === 'tend'){
+      if (!PL.on || !ytOK){ toast(T('पहले ऑडियो चलाएँ — फिर जिस पदको सुन रहे हैं उसीके बटन दबाएँ', 'Start the audio first, then tap the buttons of the verse you are hearing')); return; }
+      setTime(i, act === 'tstart' ? 1 : 2, nowAt()); rerenderItem(i);
+    }
+    else if (act === 'tplay') playFrom(i, i);
     else if (act === 'bm'){ const me = ME(), k = KEY(IT[i].id); const had = !!me.bm[k]; if (had) delete me.bm[k]; else me.bm[k] = Date.now(); save(); rerenderItem(i); toast(!had ? T('बुकमार्क जोड़ा', 'Bookmarked') : T('बुकमार्क हटाया', 'Bookmark removed')); }
     else if (act === 'enote') noteSheet(i, +a.dataset.k);
     else if (act === 'menu') itemMenu(i);
@@ -460,6 +468,14 @@ function editSheet(i){
 let AUT = [], ytVid = '', ytOK = false, ytInfo = {t: 0, st: -1, d: 0}, ytWait = null;
 let PL = {on: false, t: -1, end: null, cur: -1, hold: 0};
 function tkey(){ return W.id + ':' + SRC.au.meta.id; }
+// timing review: under every verse, the verse's own buttons. You mark the verse you are looking at, never a guess:
+// "Starts now" when you hear its first word, "Ends now" when it is over (a refrain or music follows), ▶ to hear it.
+function markBar(i){
+  const x = SRC.au.at[IT[i].id], mine = myStarts()[IT[i].id], est = toCheck(i);
+  const when = x ? T('शुरू ', 'Start ') + fmtT(x[1]) + (x[2] != null ? T(' · अंत ', ' · end ') + fmtT(x[2]) : '') : T('ऑडियोमें समय नहीं', 'No time in the recording');
+  return '<div class="tmark"><button data-a="tstart">⏱ ' + T('अभी शुरू', 'Starts now') + '</button><button data-a="tend">⏹ ' + T('अभी समाप्त', 'Ends now') + '</button>' + (x ? '<button data-a="tplay" aria-label="play">▶</button>' : '') +
+    '<span class="tinfo">' + when + (mine ? ' · <b>' + T('आपका', 'yours') + '</b>' : est ? ' · <b class="test">' + T('अनुमान', 'estimated') + '</b>' : '') + '</span></div>';
+}
 function toCheck(i){ return !!(S.timing.on && SRC.au && SRC.au.checkSet && SRC.au.checkSet.has(IT[i].id) && !myStarts()[IT[i].id]); }   // a start that is only estimated: to be checked by ear
 function myStarts(){ return (SRC.au && S.timing.fix[tkey()]) || {}; }
 function buildAudio(){
@@ -568,16 +584,13 @@ function setTime(i, k, sec){
   const v = [cur[0], cur[1], cur[2] == null ? null : cur[2]]; v[k] = sec == null ? null : Math.round(sec * 10) / 10;
   if (k === 2 && v[2] != null && v[2] <= v[1]){ toast(T('अंत शुरुआतके बाद होना चाहिये', 'The end must come after the start')); return; }
   if (k === 1 && v[2] != null && v[2] <= v[1]) v[2] = null;
-  fx[id] = v; save(); buildAudio();
+  fx[id] = v; save(); buildAudio(); if (document.getElementById('v' + i)) rerenderItem(i);
   if (PL.on){ PL.cur = -1; setCur(curAt(ytInfo.t)); }
   toast((k === 1 ? T('शुरुआत: ', 'Starts at ') : T('अंत: ', 'Ends at ')) + (sec == null ? '—' : fmtT(sec)));
 }
 function setStart(i, sec){ setTime(i, 1, sec); }
 function clearStart(i){ const fx = S.timing.fix[tkey()] || {}; delete fx[IT[i].id]; if (!Object.keys(fx).length) delete S.timing.fix[tkey()]; save(); buildAudio(); }
 function fmtT(sec){ const m = Math.floor(sec / 60), s = sec - m * 60; return m + ':' + (s < 10 ? '0' : '') + s.toFixed(1); }
-$('#pThis').onclick = () => { if (PL.cur >= 0) setStart(PL.cur, nowAt()); };
-$('#pEnd').onclick = () => { if (PL.cur >= 0) setTime(PL.cur, 2, nowAt()); };
-$('#pNextNow').onclick = () => { const nx = PL.cur + 1; if (PL.cur >= 0 && nx < IT.length) setStart(nx, nowAt()); };   // the next verse of the text, even one the recording had no time for
 function applyTiming(){ document.body.classList.toggle('timing', !!S.timing.on); }
 $('#pPrev').onclick = () => stepVerse(-1);
 $('#pNext').onclick = () => stepVerse(1);
@@ -589,8 +602,9 @@ let libPath = [];
 function libNode(){ let n = {children: LIB}; for (const id of libPath){ const c = (n.children || []).find(x => x.id === id); if (!c) { libPath = []; return {children: LIB}; } n = c; } return n; }
 function renderLibrary(){
   const node = libNode(), kids = node.children || [];
+  // the way back up, in the header: Library › Hinduism › Vedas › … (the shelf you are on is the last, not a link)
   let crumbs = '<button data-lp="-1">' + LB.lib() + '</button>'; let n = {children: LIB};
-  libPath.forEach((id, k) => { n = n.children.find(x => x.id === id); crumbs += ' › <button data-lp="' + k + '">' + esc(TT(n.title)) + '</button>'; });
+  libPath.forEach((id, k) => { n = n.children.find(x => x.id === id); crumbs += '<span class="sep">›</span>' + (k === libPath.length - 1 ? '<span class="cur">' + esc(TT(n.title)) + '</span>' : '<button data-lp="' + k + '">' + esc(TT(n.title)) + '</button>'); });
   $('#libCrumbs').innerHTML = libPath.length ? crumbs : '';
   $('#libTitle').textContent = libPath.length ? TT(node.title) : LB.lib();
   // two levels per screen: a shelf inside this one is shown as a heading with its own items under it
@@ -600,7 +614,7 @@ function renderLibrary(){
     const ids = b.dataset.node.split('/'); let n = node, c = null; ids.forEach(id => { c = (n.children || []).find(x => x.id === id); n = c; });
     if (c.work) openWork(c.work); else { libPath.push(...ids); renderLibrary(); window.scrollTo(0, 0); }
   });
-  $$('#libCrumbs [data-lp]').forEach(b => b.onclick = () => { libPath = libPath.slice(0, +b.dataset.lp + 1); renderLibrary(); });
+  $$('#libCrumbs [data-lp]').forEach(b => b.onclick = () => { libPath = libPath.slice(0, +b.dataset.lp + 1); renderLibrary(); window.scrollTo(0, 0); });
 }
 /* library search: finds works and shelves by title, author, edition, description or id, in either script */
 const normQ = x => (x || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[\u093c]/g, '').normalize('NFC');
@@ -611,12 +625,23 @@ function libSearch(q){
     if (hay.includes(nq)) out.push({n, trail});
     if (n.children) walk(n.children, trail.concat([n]));
   }); })(LIB, []);
-  $('#libList').innerHTML = out.length ? out.map((r, k) => '<li><button class="it" data-hit="' + k + '"><span class="grow"><span class="ti">' + esc(TT(r.n.title)) + '</span><br><span class="ds">' + esc(r.trail.map(x => TT(x.title)).join(' › ') || TT(r.n.desc || r.n.by) || '') + '</span></span><span class="chev">›</span></button></li>').join('')
-    : '<li class="small muted" style="border:0;padding:14px 2px">' + T('कुछ नहीं मिला', 'Nothing found') + '</li>';
-  $$('#libList [data-hit]').forEach(b => b.onclick = () => { const r = out[+b.dataset.hit]; if (r.n.work) openWork(r.n.work); else { libPath = r.trail.map(x => x.id).concat([r.n.id]); $('#libQ').value = ''; $('#libSearch').hidden = true; renderLibrary(); } });
+  $('#sRes').innerHTML = out.length ? out.map((r, k) => '<button class="res" data-hit="' + k + '"><div class="where">' + esc(r.trail.map(x => TT(x.title)).join(' › ') || TT(r.n.desc || r.n.by) || '') + '</div><div class="snip" style="font-weight:700">' + esc(TT(r.n.title)) + '</div></button>').join('')
+    : '<div class="empty">' + T('कुछ नहीं मिला', 'Nothing found') + '</div>';
+  $$('#sRes [data-hit]').forEach(b => b.onclick = () => { const r = out[+b.dataset.hit]; if (r.n.work) openWork(r.n.work); else { libPath = r.trail.map(x => x.id).concat([r.n.id]); show('library'); } });
 }
-$('#libSearchBtn').onclick = () => { const box = $('#libSearch'); box.hidden = !box.hidden; if (!box.hidden) $('#libQ').focus(); else { $('#libQ').value = ''; renderLibrary(); } };
-$('#libQ').addEventListener('input', () => { const q = $('#libQ').value; if (q.trim()) libSearch(q); else renderLibrary(); });
+// one search page for the whole app: opened from the library it finds works and shelves; from a work, its verses
+let SCOPE = 'text';
+function openSearch(scope){
+  SCOPE = scope; const lib = scope === 'lib';
+  $('#q').value = ''; $('#scope').hidden = lib;
+  $('#q').placeholder = lib ? T('ग्रन्थ, रचयिता या विषय खोजें', 'Search works, authors or shelves') : T('शब्द, अर्थ या English में खोजें', 'Search a word, meaning or English');
+  $('#sRes').innerHTML = '<div class="empty">' + (lib ? T('ग्रन्थका नाम, रचयिता या विषय लिखें।', 'Type the name of a work, an author or a shelf.') : T('चौपाई, दोहे या अर्थका कोई भी शब्द लिखें।', 'Type any word from a verse, its meaning or the English translation.')) + '</div>';
+  show('search');
+}
+$('#libSearchBtn').onclick = () => openSearch('lib');
+$('#hSearch').onclick = () => openSearch('text');
+$('#rSearch').onclick = () => openSearch('text');
+$('#libMenu').onclick = () => { openSheet('<div class="menu"><button data-go="settings"><svg><use href="#i-set"/></svg>' + LB.set() + '</button></div>'); $$('#sheetBody [data-go]').forEach(b => b.onclick = () => { closeSheet(); show(b.dataset.go); }); };
 function workPath(id){ let r = null; (function walk(n){ (n || []).forEach(c => { if (c.work === id) r = c.path; else walk(c.children); }); })(LIB); return r || id; }
 async function openWork(id, noShow){
   $('#loading').hidden = false;
@@ -687,6 +712,7 @@ $$('#scope .chip').forEach(c => c.onclick = () => { const s = c.dataset.s; if (s
 let sT; $('#q').addEventListener('input', () => { clearTimeout(sT); sT = setTimeout(runSearch, 250); });
 function snip(text, q, latin){ const src = text; const low = latin ? normL(src) : normD(src); const nq = latin ? normL(q) : normD(q); let p = low.indexOf(nq); if (p < 0) return esc(src.slice(0, 160)) + (src.length > 160 ? '…' : ''); let a = Math.max(0, p - 60), b = Math.min(src.length, p + nq.length + 80); if (a > 0){ const sp = src.indexOf(' ', a); if (sp > -1 && sp < p) a = sp + 1; } const s = src.slice(a, b); const pp = (latin ? normL(s) : normD(s)).indexOf(nq); let out; if (pp >= 0 && (latin ? normL(s) : normD(s)).length === s.length) out = esc(s.slice(0, pp)) + '<mark>' + esc(s.slice(pp, pp + nq.length)) + '</mark>' + esc(s.slice(pp + nq.length)); else out = esc(s); return (a > 0 ? '…' : '') + out + (b < src.length ? '…' : ''); }
 function runSearch(){
+  if (SCOPE === 'lib'){ const q = $('#q').value; if (q.trim()) libSearch(q); else openSearch('lib'); return; }
   const q = $('#q').value.trim(), box = $('#sRes');
   if (q.length < 2){ box.innerHTML = '<div class="empty">' + T('कम-से-कम दो अक्षर लिखें।', 'Type at least two letters.') + '</div>'; return; }
   if (!IDX || IDX.w !== W.id + (SRC.hi || {}).id + (SRC.en || {}).id) buildIdx();
@@ -755,7 +781,7 @@ function renderSettings(){
 function pendingStarts(){ if (!SRC.au) return {}; const fx = myStarts(), sent = S.timing.sent[tkey()] || {}, out = {}; for (const id in fx) if (JSON.stringify(sent[id]) !== JSON.stringify(fx[id])) out[id] = fx[id]; return out; }
 function timingHTML(){
   if (!W) return '';
-  let h = '<h2>' + T('ऑडियोका समय', 'Audio timing') + '</h2><p class="small muted">' + T('रिकॉर्डिंग सुनते हुए हर पदकी शुरुआत ठीक करें। चालू होनेपर प्लेयरमें तीन बटन आते हैं: “शुरू” (जो पद चमक रहा है वह अभी शुरू हुआ), “अंत” (वह अभी समाप्त हुआ — आगे टेक, कीर्तन या संगीत है) और “अगला” (अगला पद अभी शुरू हुआ)। हर पदके ⋮ मेनूमें उसकी शुरुआत और अंत ±0.5 सेकंड बदल सकते हैं और केवल वही पद सुन सकते हैं। जाँच बाकी वाली रिकॉर्डिंग भी यहाँ सुनी जा सकती है।', 'Correct where each verse starts while you listen. When this is on, the player shows ⏱ buttons: “Start” (the highlighted verse starts now), “End” (it ends now: a refrain or music follows) and “Next” (the next verse starts now). Each verse’s ⋮ menu lets you move its start and end by ±0.5 s and play just that verse. Recordings still to be checked can be played here too.') + '</p>' + sw('stm', T('ऑडियोका समय ठीक करें', 'Adjust audio timing'), '', S.timing.on);
+  let h = '<h2>' + T('ऑडियोका समय', 'Audio timing') + '</h2><p class="small muted">' + T('जहाँ पद और आवाज़ मेल न खाएँ, वहाँ ठीक करनेके लिये।', 'For fixing places where the lit verse and the voice do not match.') + '</p><ol class="small tsteps"><li>' + T('यह स्विच चालू करें। हर पदके नीचे बटन आ जाएँगे: ⏱ अभी शुरू · ⏹ अभी समाप्त · ▶, और उस पदका अभीका समय।', 'Turn this switch on. Every verse gets buttons under it: ⏱ Starts now · ⏹ Ends now · ▶, and its current time.') + '</li><li>' + T('ऑडियो चलाएँ और पाठ देखते रहें।', 'Play the audio and follow the text.') + '</li><li>' + T('जिस पदका पहला शब्द सुनाई दे, उसी पदका “⏱ अभी शुरू” दबाएँ — चमकता पद गलत हो तब भी, उसे छोड़कर सही पदतक स्क्रॉल करें।', 'When you hear a verse’s first word, tap “⏱ Starts now” on that verse — even if the lit verse is a different one; just scroll to the verse being sung.') + '</li><li>' + T('पदके बाद टेक, कीर्तन या संगीत हो तो उसका “⏹ अभी समाप्त” दबाएँ (वैकल्पिक)।', 'If a refrain, kīrtan or music follows a verse, tap its “⏹ Ends now” (optional).') + '</li><li>' + T('▶ से वह पद सुनकर जाँचें; ⋮ मेनूमें ±0.5 सेकंड और “पहले जैसा” है।', 'Check with ▶; the ⋮ menu has ±0.5 s and Undo.') + '</li><li>' + T('अंतमें “लाइब्रेरीमें भेजें” दबाएँ।', 'Finally tap “Send to the library”.') + '</li></ol>' + sw('stm', T('ऑडियोका समय ठीक करें', 'Adjust audio timing'), '', S.timing.on);
   if (S.timing.on && SRC.au){
     const n = Object.keys(myStarts()).length, p = Object.keys(pendingStarts()).length;
     h += '<p class="small">' + esc(TT(SRC.au.meta.title)) + ': ' + DEV(n) + T(' पद आपने ठीक किये', ' verses set by you') + (p ? ' · ' + DEV(p) + T(' भेजने बाकी', ' not sent yet') : '') + '</p>' +
