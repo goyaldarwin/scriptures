@@ -589,7 +589,7 @@ function renderHome(){
   const pa = $('#hPlayAll'), fa = firstAu(0, IT.length - 1); pa.hidden = fa == null; pa.onclick = () => playRange('k', 0, IT.length - 1);
   const L = WS().last;
   // one short button: continue where you left off (the reader shows where you are)
-  $('#contCard').innerHTML = L && IT[L.i] ? '<button class="btn ghost cont" id="cGo">' + T('जहाँ छोड़ा था, वहींसे पढ़ें', 'Continue where you left off') + ' ›</button>' : '';
+  $('#contCard').innerHTML = L && IT[L.i] ? '<button class="btn ghost cont" id="cGo">' + T('आगे पढ़ें', 'Continue') + ' ›</button>' : '';
   if ($('#cGo')) $('#cGo').onclick = () => openReader(L.org, L.i);
   const org = homeOrg();
   $('#orgSeg').innerHTML = '<button data-org="k">' + esc(TT(W.parts.name)) + '</button>' + PLANS.map(p => '<button data-org="' + p.id + '">' + esc(TT(p.name)) + '</button>').join('');
@@ -603,9 +603,14 @@ function renderHome(){
   }
   else if (org === 'k') PARTS.forEach(p => { const tps = TOPICS.filter(t => IT[t.i].p === p.k).length; h += '<li class="rowp">' + play('k', p.a, p.b) + '<button class="it" data-open="' + p.a + '"><span class="no">' + DEV(p.k + 1) + '</span><span class="grow"><span class="ti">' + esc(KNAME(p.k)) + '</span><br><span class="ds">' + DEV(tps) + T(' प्रसंग', ' sections') + '</span></span><span class="chev">›</span></button></li>'; });
   else { const P = PLAN[org]; const dn = Object.keys(DONE(ME(), org)).length; h += '<li class="small muted" style="padding:6px 2px;border:0">' + DEV(dn) + ' / ' + DEV(P.n) + T(' विश्राम पूर्ण · विश्रामके अन्तमें “विश्राम पूर्ण करें” दबाएँ', ' vishrams completed · tap “Mark vishram complete” at the end of each') + '</li>';
-    for (let n = 1; n <= P.n; n++){ const [a, b] = dayRange(org, n), d = DONE(ME(), org)[n]; h += '<li class="rowp">' + play(org, a, b) + '<button class="it" data-open="' + a + '"><span class="no' + (d ? ' done' : '') + '">' + (d ? '✓' : DEV(n)) + '</span><span class="grow"><span class="ti">' + VN(n) + '</span><br><span class="ds">' + rangeDesc(a, b) + '</span></span><span class="chev">›</span></button></li>'; } }
+    // pages read before the first day and after the reading (pūrvāṅga / uttarāṅga), when the plan names them
+    const page = (pg, when) => { const t = pg === 'aarti' ? T('श्रीरामायणजीकी आरती', 'Śrī Rāmāyaṇajī kī Āratī') : T('पारायण-विधि', 'Pārāyaṇa vidhi'); return '<li class="rowp"><button class="it" data-page="' + pg + '"><span class="no pg"><svg><use href="#i-lamp"/></svg></span><span class="grow"><span class="ti">' + t + '</span><br><span class="ds">' + when + '</span></span><span class="chev">›</span></button></li>'; };
+    (P.before || []).forEach(pg => h += page(pg, T('पाठसे पहले', 'Before the reading')));
+    for (let n = 1; n <= P.n; n++){ const [a, b] = dayRange(org, n), d = DONE(ME(), org)[n]; h += '<li class="rowp">' + play(org, a, b) + '<button class="it" data-open="' + a + '"><span class="no' + (d ? ' done' : '') + '">' + (d ? '✓' : DEV(n)) + '</span><span class="grow"><span class="ti">' + VN(n) + '</span><br><span class="ds">' + rangeDesc(a, b) + '</span></span><span class="chev">›</span></button></li>'; }
+    (P.after || []).forEach(pg => h += page(pg, T('पाठके बाद', 'After the reading'))); }
   $('#orgList').innerHTML = h;
   $$('#orgList [data-open]').forEach(b => b.onclick = () => openReader(org, +b.dataset.open));
+  $$('#orgList [data-page]').forEach(b => b.onclick = () => { vidTab = b.dataset.page === 'aarti' ? 'aarti' : 'v'; show('vidhi'); });
   $$('#orgList [data-pa]').forEach(b => b.onclick = ev => { ev.stopPropagation(); playRange(b.dataset.po, +b.dataset.pa, +b.dataset.pb); });
 }
 $('#hLib').onclick = () => show('library');

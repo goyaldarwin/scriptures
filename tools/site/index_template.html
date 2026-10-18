@@ -156,7 +156,8 @@ body.playing #rBody{padding-bottom:150px}
 .vbm{position:absolute;right:-25px;top:0;height:calc(var(--verse-size) * 1.6)}
 .vtext p.one{padding:calc(var(--verse-size) * .8) 0}
 .rowp{position:relative}
-.heroacts{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:14px}.heroacts:empty{display:none}.btn.cont{font-size:14.5px}.playall svg{width:16px;height:16px;fill:currentColor;stroke:none}
+.heroacts{display:flex;flex-wrap:nowrap;justify-content:center;gap:8px;margin-top:14px}.heroacts .btn{white-space:nowrap;min-width:0;padding-left:16px;padding-right:16px}
+.no.pg{background:transparent;border:1px solid var(--rule)}.no.pg svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8}.heroacts:empty{display:none}.btn.cont{font-size:14.5px}.playall svg{width:16px;height:16px;fill:currentColor;stroke:none}
 .list .lhead{font-size:13px;font-weight:700;color:var(--saffron);letter-spacing:.02em;padding:18px 2px 4px;border:0}
 .ytno{width:200px;height:200px;display:flex;flex-direction:column;justify-content:center;gap:10px;padding:10px;box-sizing:border-box;font-size:13px;text-align:center;background:var(--card,#fff);border:1px solid var(--line,#ddd);border-radius:12px}.ytno .btn{display:block;padding:9px 8px;border-radius:10px;background:var(--accent,#2b3990);color:#fff;text-decoration:none;font-size:13px}
 .rowp .lplay ~ .it .grow{padding-right:46px}
@@ -307,7 +308,7 @@ body.playing #rBody{padding-bottom:240px}
 <section id="home" class="view">
  <div class="wrap">
   <div class="toprow"><button class="libbtn" id="hLib"><svg><use href="#i-back"/></svg><span data-en="Library">पुस्तकालय</span></button><span class="grow"></span><button class="ib" data-go="search" aria-label="खोजें"><svg><use href="#i-search"/></svg></button><button class="ib" id="hMenu" aria-label="मेनू"><svg><use href="#i-menu"/></svg></button></div>
-  <div class="hero"><h1 id="hTitle"></h1><p id="hSub"></p><div class="heroacts"><span id="contCard"></span><button class="btn playall" id="hPlayAll" hidden><svg><use href="#i-play"/></svg><span data-en="Play the complete work">सम्पूर्ण पाठ सुनें</span></button></div></div>
+  <div class="hero"><h1 id="hTitle"></h1><p id="hSub"></p><div class="heroacts"><span id="contCard"></span><button class="btn playall" id="hPlayAll" hidden><svg><use href="#i-play"/></svg><span data-en="Play all">सम्पूर्ण पाठ सुनें</span></button></div></div>
   <div class="seg" id="orgSeg"></div>
   <ul class="list" id="orgList"></ul>
   <div style="height:40px"></div>

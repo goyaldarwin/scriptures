@@ -58,7 +58,7 @@ The work node itself:
 | `parts` | the top division: `{"name": {"hi":"काण्ड","en":"Kāṇḍa"}, "list": [{"hi":…,"en":…}, …]}` |
 | `items` | every verse, in reading order (below) |
 | `topics` | section headings: `[{"id": <first item id>, "hi": …, "en": …}]` |
-| `plans` | reading plans: `[{"id":"M","name":…,"long":…,"unit":…,"n":30,"end":[<last item id of each day>]}]` |
+| `plans` | reading plans: `[{"id":"M","name":…,"long":…,"unit":…,"before":["vidhi"],"after":["aarti"],"n":30,"end":[<last item id of each day>]}]`. `before` / `after` (optional; the pūrvāṅga and uttarāṅga) name pages listed before the first day and after the last: `vidhi` (the procedure in `vidhi.hi/en`) and `aarti` (`vidhi.aarti`). `build.py` refuses a page the work lacks. |
 | `types` | optional: the work's own verse types, `{"viniyoga": {"name": {hi,en}, "short": {hi,en}}}`. `name` is the full label (headers, search, ranges), `short` the tag at the left of the verse's first line. They add to or replace the built-in Mānas types (`cau`, `do`, `so`, `cha`, `shloka`) while the work is open. |
 | `vidhi`, `vg` | optional: recitation procedure (pārāyaṇa vidhi) and its word meanings |
 | `glossary` | **generated**: `true` when the work has its own `glossary.json` (§5) |
