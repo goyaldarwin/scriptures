@@ -11,16 +11,15 @@ on:
       release: {description: 'Also build the signed Play Store bundle (.aab)', type: boolean, default: false}
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04   # has the Android SDK ($ANDROID_HOME)
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: {node-version: 20}
-      - uses: actions/setup-java@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with: {node-version: 22}
+      - uses: actions/setup-java@v5
         with: {distribution: temurin, java-version: 17}
-      - uses: android-actions/setup-android@v3
       - name: Generate the Android project
-        run: cd apps/android && npm install --no-audit --no-fund && node generate.mjs
+        run: echo "ANDROID_HOME=$ANDROID_HOME" && cd apps/android && npm install --no-audit --no-fund && node generate.mjs
       - name: Test APK (debug-signed)
         run: cd apps/android/project && chmod +x gradlew && ./gradlew --no-daemon assembleDebug
       - uses: actions/upload-artifact@v4
