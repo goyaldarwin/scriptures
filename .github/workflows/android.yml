@@ -1,0 +1,42 @@
+# Builds the Android app (a Trusted Web Activity around the website) from apps/app.json.
+# Run it from the Actions tab (or: gh api -X POST repos/goyaldarwin/scriptures/actions/workflows/android.yml/dispatches -f ref=main).
+#  - always: a test APK (debug-signed) to install on a phone and try;
+#  - with release: true: the signed .aab for Google Play. That needs apps/app.json's packageId filled in and the
+#    repository secrets ANDROID_KEYSTORE_B64, ANDROID_KEYSTORE_PASSWORD, ANDROID_KEY_PASSWORD (see docs/APPS.md).
+# Content never needs a new build: the app shows the website, so new works and fixes reach everyone at once.
+name: android
+on:
+  workflow_dispatch:
+    inputs:
+      release: {description: 'Also build the signed Play Store bundle (.aab)', type: boolean, default: false}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - uses: actions/setup-java@v4
+        with: {distribution: temurin, java-version: 17}
+      - uses: android-actions/setup-android@v3
+      - name: Generate the Android project
+        run: cd apps/android && npm install --no-audit --no-fund && node generate.mjs
+      - name: Test APK (debug-signed)
+        run: cd apps/android/project && chmod +x gradlew && ./gradlew --no-daemon assembleDebug
+      - uses: actions/upload-artifact@v4
+        with: {name: scriptures-test-apk, path: apps/android/project/app/build/outputs/apk/debug/*.apk}
+      - name: Signed bundle for Google Play
+        if: ${{ inputs.release }}
+        env:
+          KS: ${{ secrets.ANDROID_KEYSTORE_B64 }}
+          KS_PASS: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          KEY_PASS: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          grep -q '"packageId": "CHANGE' apps/app.json && { echo "Fill in packageId in apps/app.json first (it can never change after the first upload)"; exit 1; }
+          [ -n "$KS" ] || { echo "The ANDROID_KEYSTORE_* secrets are missing (docs/APPS.md)"; exit 1; }
+          echo "$KS" | base64 -d > apps/android/upload.keystore
+          cd apps/android/project && ./gradlew --no-daemon bundleRelease
+          jarsigner -keystore ../upload.keystore -storepass "$KS_PASS" -keypass "$KEY_PASS" app/build/outputs/bundle/release/app-release.aab upload
+      - uses: actions/upload-artifact@v4
+        if: ${{ inputs.release }}
+        with: {name: scriptures-play-bundle, path: apps/android/project/app/build/outputs/bundle/release/*.aab}

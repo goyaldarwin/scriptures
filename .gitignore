@@ -8,3 +8,7 @@ tools/ramcharitmanas/audio/model/
 *.pdf
 *.lock
 *.aligning
+tools/store/out/
+apps/android/project/
+apps/android/node_modules/
+apps/android/*.keystore

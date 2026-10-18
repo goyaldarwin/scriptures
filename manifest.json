@@ -1,15 +1,87 @@
 {
+ "id": "./",
  "name": "शास्त्र · Scriptures",
  "short_name": "Scriptures",
+ "description": "Read and listen to the scriptures: Rāmacaritamānasa, Sundarakāṇḍa, Śrī Rudram and more, with Hindi and English meanings and word-by-word meanings.",
+ "lang": "hi",
  "start_url": "./",
+ "scope": "./",
  "display": "standalone",
+ "orientation": "portrait",
  "background_color": "#F6F6F2",
  "theme_color": "#2B3A8C",
+ "categories": [
+  "books",
+  "education",
+  "lifestyle"
+ ],
  "icons": [
+  {
+   "src": "app/icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src": "app/icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png"
+  },
+  {
+   "src": "app/maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  },
   {
    "src": "app/icon.svg",
    "sizes": "any",
    "type": "image/svg+xml"
+  }
+ ],
+ "shortcuts": [
+  {
+   "name": "Śrī Rāmacaritamānasa",
+   "short_name": "Śrī Rāmacari",
+   "url": "./?w=manas",
+   "icons": [
+    {
+     "src": "app/icon-192.png",
+     "sizes": "192x192"
+    }
+   ]
+  },
+  {
+   "name": "Sundarakāṇḍa",
+   "short_name": "Sundarakāṇḍa",
+   "url": "./?w=sundarkand",
+   "icons": [
+    {
+     "src": "app/icon-192.png",
+     "sizes": "192x192"
+    }
+   ]
+  },
+  {
+   "name": "Śrī Rāma Rakṣā Stotram",
+   "short_name": "Śrī Rāma Rak",
+   "url": "./?w=ramraksha",
+   "icons": [
+    {
+     "src": "app/icon-192.png",
+     "sizes": "192x192"
+    }
+   ]
+  },
+  {
+   "name": "Dhūpa Āratī",
+   "short_name": "Dhūpa Āratī",
+   "url": "./?w=shirdi-sai-dhoop-aarti",
+   "icons": [
+    {
+     "src": "app/icon-192.png",
+     "sizes": "192x192"
+    }
+   ]
   }
  ]
 }

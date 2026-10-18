@@ -27,6 +27,7 @@ async def main():
         pg = await (await b.new_context(viewport={'width': 390, 'height': 844})).new_page()
         errs = []; pg.on('pageerror', lambda e: errs.append(str(e)))
         await pg.goto(url); await pg.wait_for_timeout(2500)
+        await pg.evaluate("typeof closeTour === 'function' && closeTour()")
         ok = True
         for wid in ids:
             await pg.evaluate(f"openWork({json.dumps(wid)})"); await pg.wait_for_timeout(1500)

@@ -57,12 +57,26 @@ open(os.path.join(APPD, 'app.js'), 'w').write(app)
 import hashlib
 hv = lambda name: hashlib.sha1(open(os.path.join(APPD, name), 'rb').read()).hexdigest()[:10]
 VJS, VCSS, VF = 'app/app.js?v=' + hv('app.js'), 'app/style.css?v=' + hv('style.css'), 'app/fonts.css?v=' + hv('fonts.css')
-head = '<link rel="manifest" href="manifest.json"><link rel="icon" href="app/icon.svg"><link rel="stylesheet" href="' + VF + '"><link rel="stylesheet" href="' + VCSS + '">\n'
+head = '<link rel="manifest" href="manifest.json"><link rel="icon" href="app/icon.svg"><link rel="apple-touch-icon" href="app/apple-touch-icon.png"><link rel="stylesheet" href="' + VF + '"><link rel="stylesheet" href="' + VCSS + '">\n'
 html = tpl.replace(m.group(0), head).replace('/*BUNDLE*/\n', '').replace('<script>\n/*APP*/\n</script>', '<script src="' + VJS + '"></script>')
 open(os.path.join(SITE, 'index.html'), 'w').write(html)
-json.dump({'name': 'शास्त्र · Scriptures', 'short_name': 'Scriptures', 'start_url': './', 'display': 'standalone', 'background_color': '#F6F6F2', 'theme_color': '#2B3A8C', 'icons': [{'src': 'app/icon.svg', 'sizes': 'any', 'type': 'image/svg+xml'}]}, open(os.path.join(SITE, 'manifest.json'), 'w'), ensure_ascii=False, indent=1)
+# installable app (web, Android, iPhone): PNG icons made by tools/store/make_icons.py; one shortcut per work (?w=<work id>)
+ICONS = os.path.join(ROOT, 'tools', 'store', 'icons')
+for n in ('icon-192.png', 'icon-512.png', 'maskable-512.png', 'apple-touch-icon.png'): shutil.copy(os.path.join(ICONS, n), os.path.join(APPD, n))
+_works = []
+def _walk(ns):
+    for n in ns:
+        if 'work' in n: _works.append(n)
+        else: _walk(n.get('children', []))
+_walk(json.load(open(os.path.join(SITE, 'library', 'index.json'))))
+json.dump({'id': './', 'name': 'शास्त्र · Scriptures', 'short_name': 'Scriptures', 'description': 'Read and listen to the scriptures: Rāmacaritamānasa, Sundarakāṇḍa, Śrī Rudram and more, with Hindi and English meanings and word-by-word meanings.',
+           'lang': 'hi', 'start_url': './', 'scope': './', 'display': 'standalone', 'orientation': 'portrait', 'background_color': '#F6F6F2', 'theme_color': '#2B3A8C', 'categories': ['books', 'education', 'lifestyle'],
+           'icons': [{'src': 'app/icon-192.png', 'sizes': '192x192', 'type': 'image/png'}, {'src': 'app/icon-512.png', 'sizes': '512x512', 'type': 'image/png'},
+                     {'src': 'app/maskable-512.png', 'sizes': '512x512', 'type': 'image/png', 'purpose': 'maskable'}, {'src': 'app/icon.svg', 'sizes': 'any', 'type': 'image/svg+xml'}],
+           'shortcuts': [{'name': w['title']['en'], 'short_name': w['title']['en'][:12], 'url': './?w=' + w['work'], 'icons': [{'src': 'app/icon-192.png', 'sizes': '192x192'}]} for w in _works[:4]]},
+          open(os.path.join(SITE, 'manifest.json'), 'w'), ensure_ascii=False, indent=1)
 open(os.path.join(APPD, 'icon.svg'), 'w').write('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#2B3A8C"/><text x="32" y="44" text-anchor="middle" font-size="34" fill="#F2A653" font-family="serif">ॐ</text></svg>')
-files = ['./', 'index.html', 'manifest.json', 'app/icon.svg', VJS, VCSS, VF] + ['app/fonts/' + os.path.basename(p[1]) for p in FONTS]
+files = ['./', 'index.html', 'manifest.json', 'app/icon.svg', 'app/icon-192.png', 'app/icon-512.png', 'app/apple-touch-icon.png', VJS, VCSS, VF] + ['app/fonts/' + os.path.basename(p[1]) for p in FONTS]
 ver = hashlib.sha1((VJS + VCSS + VF).encode()).hexdigest()[:10]
 open(os.path.join(SITE, 'sw.js'), 'w').write("""const V='s-%s';const CORE=%s;
 self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(CORE)));self.skipWaiting();});
@@ -71,6 +85,7 @@ self.addEventListener('fetch',e=>{const u=new URL(e.request.url);if(u.origin!==l
  e.respondWith(fetch(e.request, {cache: 'no-cache'}).then(r=>{const c=r.clone();caches.open(V).then(x=>x.put(e.request,c));return r;}).catch(()=>caches.match(e.request)));});
 """ % (ver, json.dumps(files)))
 open(os.path.join(SITE, '.nojekyll'), 'w').write('')
+shutil.copy(os.path.join(ROOT, 'tools', 'site', 'privacy.html'), os.path.join(SITE, 'privacy.html'))   # the privacy policy the app stores link to
 # ---------- single-file bundle ----------
 LIBD = os.path.join(SITE, 'library')
 bundle = {'files': {}}
