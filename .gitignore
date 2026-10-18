@@ -7,3 +7,4 @@ tools/ramcharitmanas/audio/model/
 *.webm
 *.pdf
 *.lock
+*.aligning
