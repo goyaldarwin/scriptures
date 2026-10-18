@@ -29,6 +29,11 @@ from library import prepare, LibraryError
 try: WORKS = prepare(os.path.join(ROOT, 'library'))
 except LibraryError as e: sys.exit('LIBRARY PROBLEM: ' + str(e))
 print('works', WORKS)
+# keep shared files one entry per line (tools/jsonio.py) so parallel branches merge cleanly
+sys.path.insert(0, os.path.dirname(HERE)); import jsonio
+for f in glob.glob(os.path.join(ROOT, 'library', 'glossary', '*.json')):
+    if os.path.basename(f) != 'languages.json': jsonio.dump_glossary(f, json.load(open(f)))
+jsonio.dump_shelf(os.path.join(ROOT, 'library', 'index.json'), json.load(open(os.path.join(ROOT, 'library', 'index.json'))))
 # the app must at least parse: a syntax error would leave every reader with a blank page
 import subprocess
 r = subprocess.run(['node', '--check', os.path.join(HERE, 'app.js')], capture_output=True, text=True)

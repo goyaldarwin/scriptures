@@ -4,29 +4,45 @@ Step-by-step procedures are in `docs/HOW-TO.md`. This page defines the files.
 
 All scriptures live under `library/` as JSON. The website reads only these files, so a new work needs no change to the app code if it follows this format. Every visible label carries both languages: `{"hi": "…", "en": "…"}`.
 
-## 1. The shelf: `library/index.json`
+## 1. The shelf: `library/index.json` — a REST-like hierarchy
 
-A tree of any depth. A node with `children` is a shelf (an author, a collection, a branch). A node with `work` is a book you can open.
+Every work has an address, read from the general to the specific like a REST path:
 
-```json
-[
-  {"id": "tulsidas", "title": {"hi": "गोस्वामी तुलसीदास", "en": "Gosvāmī Tulasīdāsa"}, "desc": {…},
-   "children": [
-     {"id": "ramcharitmanas", "work": "manas", "path": "tulsidas/ramcharitmanas",
-      "title": {…}, "by": {…}, "edition": {…}, "desc": {…}}
-   ]},
-  {"id": "ved", "title": {"hi": "वेद", "en": "Vedas"}, "children": [
-     {"id": "samaveda", "title": {…}, "children": [
-        {"id": "upanishad", "title": {…}, "children": [
-           {"id": "kena", "work": "kena", "path": "ved/samaveda/upanishad/kena", "title": {…}}
-        ]}
-     ]}
-  ]}
-]
+```
+<tradition> / <genre> / <group> [/ <group> …] / <work>
 ```
 
-- `work` is the work's permanent id. Bookmarks, notes and progress are stored under it, so never rename it.
-- `path` is the folder under `library/` that holds the work. It mirrors the shelf.
+| Level | What it is | Ids in use or planned |
+|---|---|---|
+| tradition | the faith | `hindu` (हिन्दू धर्म), later `sikh` (सिख धर्म), `jain`, `bauddh` … |
+| genre | the kind of text, as a reader looks for it | Hindu: `granth` (epics, scriptures), `stotra`, `aarti`, `chalisa`, `bhajan`, `veda`, `purana` … · Sikh: `gurbani` … |
+| group(s) | whatever groups works naturally inside that genre (one or more levels) | `granth`: the author (`tulsidas`, `valmiki`, `vyasa`) · `stotra`, `aarti`, `chalisa`: the deity or saint (`rama`, `hanuman`, `shiva`, `shirdi-sai`) · `veda`: the Veda, then its division (`samaveda/upanishad`) · `gurbani`: the Guru (`guru-nanak-dev`) |
+| work | the text you open | `ramcharitmanas`, `ramraksha`, `dhoop-aarti`, `kena`, `japji-sahib` |
+
+Examples:
+
+```
+hindu/granth/tulsidas/ramcharitmanas
+hindu/stotra/rama/ramraksha
+hindu/aarti/shirdi-sai/dhoop-aarti
+hindu/veda/samaveda/upanishad/kena          (planned)
+sikh/gurbani/guru-nanak-dev/japji-sahib     (planned)
+```
+
+Rules (`tools/site/build.py` checks them):
+- **The path is the chain of ids.** A work's `path` must be exactly the ids of the shelves above it, followed by its own id, and the files live in `library/<path>/`. The library screen shows two levels at a time: a shelf's sub-shelves as headings, with their contents listed under them.
+- **At least three levels** (tradition / genre / work). Add a group level when the genre will hold works of more than one author or deity, which is almost always.
+- **Ids** are lowercase ASCII with hyphens, in common romanised spelling without diacritics (`ramraksha`, `shirdi-sai`, `hanuman-chalisa`). Titles carry the proper Devanagari and diacritics.
+- **Before adding a level, reuse an existing one.** Look at `index.json` first: a new Hanumān stotra goes under `hindu/stotra/hanuman/`, not a new `hanumaan/`. A new genre or tradition is a deliberate decision; say so in the pull request.
+- **Every shelf has a bilingual `title`**, plus an optional `desc` (one line, shown under it).
+
+The work node itself:
+```json
+{"id": "ramcharitmanas", "work": "manas", "path": "hindu/granth/tulsidas/ramcharitmanas",
+ "title": {…}, "by": {…}, "edition": {…}, "desc": {…}}
+```
+- `work` is the work's **permanent id**. Readers' bookmarks, notes, progress and choices are stored under it, so it never changes, even if the work moves on the shelf. It must be unique across the library. For a new work, use the same value as its shelf `id` unless that is already taken. The tools folder is `tools/works/<work id>/`.
+- Moving a work to another shelf is safe: change `path`, move the folder, and nothing readers saved is lost.
 
 ## 2. A work: `library/<path>/work.json`
 
@@ -40,6 +56,8 @@ A tree of any depth. A node with `children` is a shelf (an author, a collection,
 | `topics` | section headings: `[{"id": <first item id>, "hi": …, "en": …}]` |
 | `plans` | reading plans: `[{"id":"M","name":…,"long":…,"unit":…,"n":30,"end":[<last item id of each day>]}]` |
 | `vidhi`, `vg` | optional: recitation procedure (pārāyaṇa vidhi) and its word meanings |
+| `types` | optional: the work's own verse types, `{"pad": {"name": {hi,en}, "short": {hi,en}}}`. `name` labels sections and positions; `short` is the small tag at the top left of the verse (a plain label, not tappable). They add to or replace the built-in Mānas types (cau, do, so, cha, shloka) while the work is open. |
+| `glossary` | **generated**: `true` when the work has its own `glossary.json` (§5) |
 | `sources` | **generated by `tools/site/build.py`**, never edited: the meaning and audio sources found in the work's `meanings/` and `audio/` folders, `{"hi":[…], "en":[…], "au":[…]}`. |
 
 An item: `{"id": "bal.86.cau4", "p": 0, "s": "86", "y": "cau", "n": "4", "v": [lines in Devanagari], "t": [transliteration lines]}`
@@ -59,6 +77,11 @@ An item: `{"id": "bal.86.cau4", "p": 0, "s": "86", "y": "cau", "n": "4", "v": [l
 - `order` (optional): the lowest is the default for new readers. Without it, sources sort by id.
 - `m` maps item ids to `[meaning, footnotes]`. The footnotes list is optional. A source may cover only some verses.
 
+**Where meanings come from (the owner's rule):**
+1. **Copy the meanings from the sources the owner gives** (a book, a web page, a video's on-screen text), faithfully. Fix only plain typos and broken text layers, and list the fixes in the work's notes.
+2. **Only where no given source has a meaning for a verse, write our own**, one per verse, from the word meanings and the context. Keep it in a separate source named `<lang>-scriptures` (title "… — शास्त्र / Scriptures"), so readers can tell it apart.
+3. Name every source after its publisher, translator or channel, and record its edition and permission status in the root `README.md` → "Sources and permissions".
+
 ## 4. An audio source: `library/<path>/audio/<id>.json`
 
 ```json
@@ -69,7 +92,8 @@ An item: `{"id": "bal.86.cau4", "p": 0, "s": "86", "y": "cau", "n": "4", "v": [l
 - `id` = the file name: the reciter's name, lowercase with hyphens.
 - `title` is what readers see while it plays. The player never shows the YouTube video's own title; it shows the reading (kāṇḍa or plan day), the verse and this title.
 - `tracks` are YouTube videos in reading order. `at` maps each item to `[track index, start second]`.
-- This file is generated by `tools/audio/make_timings.py`. Do not edit it by hand. Its inputs live in `tools/works/<work>/audio/<id>/`.
+- This file is generated by `tools/audio/make_timings.py`. Do not edit it by hand. Its inputs live in `tools/works/<work>/audio/<id>/`: `source.json`, `recordings.json`, `transcripts/`, and optionally `fixes.json` plus `fixes.md`.
+- `fixes.json` = `{video id: {item id: seconds}}`: hand-checked starts for lines the speech recogniser missed. They win over the automatic match. Put the evidence for each fix (the transcript segment, or what is heard) in `fixes.md`.
 
 ## 5. Word meanings: `library/glossary/`
 
@@ -113,4 +137,5 @@ The word sheet shows which language's meaning it is showing.
 - The verse text (`work.json`) never contains meanings, and a source never contains verse text.
 - Every verse has a language, and every language has an entry in `languages.json`. A new language means a new dictionary file; never mix languages in one dictionary.
 - Every label shown to readers is bilingual: `{"hi", "en"}`.
-- Generated files (`index.html`, `app/`, `work.json` → `sources`, `audio/*.json`) are rebuilt, never edited.
+- Generated files (`index.html`, `app/`, `work.json` → `sources`/`glossary`, `audio/*.json`) are rebuilt, never edited.
+- Files that many works add to are written **one entry per line, sorted** (`tools/jsonio.py`): `glossary/<lang>.json` and `index.json`. `build.py` re-writes them in that form, so two branches that add different words usually merge without conflict. If two branches add words that sort next to each other, git asks; keep both lines.
