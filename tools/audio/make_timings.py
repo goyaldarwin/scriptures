@@ -3,7 +3,7 @@
 Usage:  python3 tools/audio/make_timings.py tools/works/<work>/audio/<source-id>
 
 The source folder holds:
-  source.json      {"id", "work": "<library path>", "type": "youtube", "title": {"hi", "en"}, "order"?, "draft"?: "<why it is not published yet>", "align"?: "anchors", "fill"?: n, "anchor_min"?: 0.45}
+  source.json      {"id", "work": "<library path>", "type": "youtube", "title": {"hi", "en"}, "order"?, "draft"?: "<why it is not published yet>", "align"?: "anchors", "fill"?: n, "anchor_min"?: 0.45, "estimate"?: true}
   recordings.json  [{"yt": video id, "file": original file name, "dur": seconds, "order": n}]
   transcripts/     <video id>.jsonl from transcribe.py (+ .done when finished)
   fixes.json       optional hand-checked verse starts {video id: {item id: seconds}}, with the evidence in fixes.md
@@ -42,6 +42,15 @@ ONLY = [x for x in os.environ.get('ONLY', '').split(',') if x]
 tracks, at, heard = [], {}, set()   # heard: verses whose start was found in the recording (matched, or checked by hand)
 for r in REC:
     v = r['yt']; p = os.path.join(TR, v + '.jsonl')
+    if not os.path.exists(p + '.done') and meta.get('estimate'):
+        # source.json "estimate": true and no transcript: spread the verses over the recording by their length, as a
+        # starting point for the owner to mark by ear (Settings › Audio timing); every start is listed to be checked
+        a0 = ID[r['from']] if r.get('from') else 0; a1 = ID[r['to']] if r.get('to') else len(IT) - 1
+        t0, t1 = float(r.get('lead', 0)), r['dur'] * 0.98; tot = sum(L(x) for x in range(a0, a1 + 1)); acc = 0; ti = len(tracks)
+        tracks.append({'yt': v, 'dur': r['dur'], 'first': IT[a0]['id'], 'last': IT[a1]['id']})
+        for x in range(a0, a1 + 1): at.setdefault(IT[x]['id'], [ti, round(t0 + (t1 - t0) * acc / tot, 1)]); acc += L(x)
+        for iid, t in FIX.get(v, {}).items(): at[iid] = [ti, round(max(0, t - 0.4), 2)]; heard.add(iid)
+        print(v, 'estimated by length:', a1 - a0 + 1, 'verses'); continue
     if not os.path.exists(p + '.done'): continue
     if ONLY and v not in ONLY: continue
     cache = os.path.join(TR, v + '.align.json')

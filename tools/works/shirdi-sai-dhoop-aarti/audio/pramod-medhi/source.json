@@ -4,9 +4,11 @@
  "type": "youtube",
  "lang": "mr",
  "title": {
-  "hi": "प्रमोद मेधी",
-  "en": "Pramod Medhi"
+  "hi": "प्रमोद मेधी (साई आशीर्वाद, यहाँ नहीं चलता)",
+  "en": "Pramod Medhi (Sai Aashirwad, does not play here)"
  },
  "window": 6,
- "align": "anchors"
+ "align": "anchors",
+ "draft": "YouTube does not allow this upload (QKf_JPbN6Lw) to be played inside other sites; replaced by pramod-medhi-times (2026-10-18). Kept for its checked timings.",
+ "order": 2
 }
