@@ -732,7 +732,7 @@ function renderVidhi(){
   });
   $('#vidBody').innerHTML = h;
 }
-$('#vidBody').addEventListener('click', ev => { const w = ev.target.closest('.w'); if (w){ w.classList.add('sel'); wordSheet(w.dataset.w || w.textContent, vidTab === 'v' ? W.vg : null, W.lang); } });
+$('#vidBody').addEventListener('click', ev => { const w = ev.target.closest('.w'); if (w){ w.classList.add('sel'); wordSheet(w.dataset.w || w.textContent, vidTab === 'v' ? W.vg : vidTab === 'visarjan' ? W.vidhi.visarjan.g : null, W.lang); } });
 
 /* ---------------- boot ---------------- */
 (async function boot(){

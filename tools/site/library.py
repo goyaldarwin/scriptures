@@ -62,6 +62,9 @@ def check_work(lib, leaf, LANGS):
         pages = ({'vidhi'} if (w.get('vidhi') or {}).get('hi') else set()) | ({'aarti'} if (w.get('vidhi') or {}).get('aarti') else set()) | ({'visarjan'} if (w.get('vidhi') or {}).get('visarjan') else set())
         vs = (w.get('vidhi') or {}).get('visarjan')
         if vs: _need(_bi(vs.get('title')) and _bi(vs.get('when')) and all(len(x.get('v', [])) >= 1 and x.get('hi') and x.get('en') for x in vs.get('verses', [])) and vs.get('verses'), f"{name}: vidhi.visarjan needs title, when and verses [{{v, hi, en}}]")
+        if vs:   # every word of the visarjan has its own meaning in context (vidhi.visarjan.g)
+            ws = {x for v in vs['verses'] for l in v['v'] for x in re.findall(r'[\u0900-\u0963\u0971-\u097f]+', l)}
+            _need(not (ws - set(vs.get('g') or {})), f"{name}: vidhi.visarjan.g lacks {sorted(ws - set(vs.get('g') or {}))[:8]}")
         for k in ('before', 'after'):
             _need(all(x in pages for x in p.get(k, [])), f"{name}: plan {p['id']} {k} {p.get(k)} names a page the work lacks (has {sorted(pages)})")
     # sources
