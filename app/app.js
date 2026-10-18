@@ -36,6 +36,9 @@ if (!S.timing.sent) S.timing.sent = {};
 // marks loaded from a helper's file and not yet checked by you: "<work>:<source>" → {item id: helper's name}. They are
 // heard and shown like yours, but go to the library only after you tap ✓ under the verse.
 if (!S.timing.from) S.timing.from = {};
+// Audio timing is a tool for the person checking timings, never left on by chance: it turns itself off when the site is
+// opened 12 hours after it was last used, and it never travels in a saved file
+if (S.timing.on && Date.now() - (S.timing.used || 0) > 12 * 3600e3) S.timing.on = false;
 function migrate(){
   if ((S.v || 1) < 2) migrate2();
   if (S.v < 3){ // v2 → v3: a reader's own word meanings are filed by language (“awa:राम”); earlier ones were all Awadhi
@@ -57,7 +60,7 @@ function migrate2(){
 }
 migrate();
 let CLOUD = null, cloudT = null, cloudBusy = false, cloudAgain = false;
-function save(){ S.ts = Date.now(); if (canStore){ try { localStorage.setItem(LS, JSON.stringify(S)); } catch (e) { canStore = false; } } if (CLOUD){ clearTimeout(cloudT); cloudT = setTimeout(cloudPush, 1500); } }
+function save(){ S.ts = Date.now(); if (S.timing && S.timing.on) S.timing.used = S.ts; if (canStore){ try { localStorage.setItem(LS, JSON.stringify(S)); } catch (e) { canStore = false; } } if (CLOUD){ clearTimeout(cloudT); cloudT = setTimeout(cloudPush, 1500); } }
 async function cloudPush(){ if (!CLOUD) return; if (cloudBusy){ cloudAgain = true; return; } cloudBusy = true; try { await CLOUD.set({s: JSON.stringify(S), ts: S.ts || Date.now()}); } catch (e) { if (e && e.code === 'unavailable') setTimeout(cloudPush, 3000 + Math.random() * 2000); } cloudBusy = false; if (cloudAgain){ cloudAgain = false; cloudPush(); } }
 async function cloudInit(){
   try {
@@ -107,7 +110,7 @@ $$('[data-go]').forEach(b => b.onclick = () => show(b.dataset.go));
 function openSheet(html){ $('#sheetBody').innerHTML = html; $('#sheet').classList.add('on'); $('#scrim').classList.add('on'); $('#sheet').scrollTop = 0; }
 function closeSheet(){ $('#sheet').classList.remove('on'); $('#scrim').classList.remove('on'); $$('.w.sel').forEach(w => w.classList.remove('sel')); }
 $('#scrim').onclick = () => closeSheet();
-function sw(id, label, sub, on){ return '<label class="sw"><span>' + label + (sub ? '<small>' + sub + '</small>' : '') + '</span><span class="tg"><input type="checkbox" id="' + id + '"' + (on ? ' checked' : '') + '><span></span></span></label>'; }
+function sw(id, label, sub, on, icon){ return '<label class="sw">' + (icon ? '<svg class="swic"><use href="#i-' + icon + '"/></svg>' : '') + '<span' + (icon ? ' style="flex:1"' : '') + '>' + label + (sub ? '<small>' + sub + '</small>' : '') + '</span><span class="tg"><input type="checkbox" id="' + id + '"' + (on ? ' checked' : '') + '><span></span></span></label>'; }
 
 /* ---------------- wake lock & timer ---------------- */
 let wl = null;
@@ -380,7 +383,7 @@ $('#rMore').onclick = () => { openSheet('<div class="menu">' +
   '<button data-m="timer"><svg><use href="#i-clock"/></svg>' + LB.timer() + (S.timer ? ' · ' + timerText() + (S.timer.run ? T(' (रोकें)', ' (pause)') : T(' (चलाएँ)', ' (resume)')) : T(' (शुरू करें)', ' (start)')) + '</button>' +
   (S.timer ? '<button data-m="treset"><svg><use href="#i-clock"/></svg>' + LB.timer() + T(' — शून्य करें', ' — reset') + '</button>' : '') +
   '<button data-m="set"><svg><use href="#i-set"/></svg>' + LB.set() + '</button></div>' +
-  '<div class="menusw">' + sw('mtr', LB.tr(), LB.trSub(), S.settings.tr) + sw('mrc', LB.rc(), LB.rcSub(), S.settings.recite) + '</div>');
+  '<div class="menusw">' + sw('mrc', LB.rc(), LB.rcSub(), S.settings.recite, 'recite') + sw('mtr', LB.tr(), LB.trSub(), S.settings.tr, 'text') + '</div>');
   $('#mtr').onchange = e => { S.settings.tr = e.target.checked; save(); refreshReader(); };
   $('#mrc').onchange = e => { if (!!S.settings.recite !== e.target.checked) toggleRecite(); };
 };
@@ -763,7 +766,7 @@ function renderHome(){
 }
 $('#hLib').onclick = () => show('library');
 $('#hMenu').onclick = () => {
-  openSheet('<div class="menu"><button data-go="bookmarks"><svg><use href="#i-bm"/></svg>' + LB.bm() + '</button>' + (W && W.vidhi ? '<button data-go="vidhi"><svg><use href="#i-lamp"/></svg>' + T('पारायण-विधि', 'Pārāyaṇa vidhi') + '</button>' : '') + '<button data-go="settings"><svg><use href="#i-set"/></svg>' + LB.set() + '</button></div>');
+  openSheet('<div class="menu"><button data-go="bookmarks"><svg><use href="#i-bm"/></svg>' + LB.bm() + '</button>' + '<button data-go="settings"><svg><use href="#i-set"/></svg>' + LB.set() + '</button></div>');
   $$('#sheetBody [data-go]').forEach(b => b.onclick = () => { closeSheet(); show(b.dataset.go); });
 };
 
@@ -937,7 +940,7 @@ function sendStarts(){
 }
 function todayStr(){ const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
 async function exportFile(){
-  const fname = 'scriptures-my-file-' + todayStr() + '.json', text = JSON.stringify(Object.assign({kind: 'manas-personal', exported: new Date().toISOString()}, S), null, 1);
+  const fname = 'scriptures-my-file-' + todayStr() + '.json', text = JSON.stringify(Object.assign({kind: 'manas-personal', exported: new Date().toISOString()}, S, {timing: Object.assign({}, S.timing, {on: false})}), null, 1);
   try { if (window.claude && window.claude.use){ const dl = await window.claude.use('downloads'); if (dl){ try { const r = await dl.save({filename: fname, data: text}); if (r && r.status === 'saved') toast(T('फ़ाइल सेव हुई', 'File saved')); } catch (e) {} return; } } } catch (e) {}
   const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([text], {type: 'application/json'})); a.download = fname; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1500); toast(T('फ़ाइल डाउनलोडमें सेव हुई', 'File saved to Downloads'));
 }
@@ -949,7 +952,7 @@ $('#fileIn').onchange = async e => {
   const tmp = S; S = X; migrate(); X = S; S = tmp;
   openSheet('<h2>' + T('फ़ाइल खोलें', 'Open a file') + '</h2><p>' + T('इस फ़ाइलमें: ', 'This file has: ') + '<b>' + X.profiles.map(p => esc(p.name)).join(', ') + '</b></p><div class="menu"><button id="imAdd">' + T('इन्हें इस फ़ोनमें जोड़ें', 'Add them to this phone') + '<br><small class="muted">' + T('यहाँकी आपकी चीज़ें भी रहेंगी', 'Your existing data stays') + '</small></button><button id="imRep">' + T('इस फ़ोनका सब कुछ इस फ़ाइलसे बदलें', 'Replace everything on this phone') + '<br><small class="muted">' + T('सेटिंग्स और प्रगति भी फ़ाइल जैसी हो जाएँगी', 'Settings and progress also come from the file') + '</small></button></div>');
   $('#imAdd').onclick = () => { X.profiles.forEach(p => { const ex = S.profiles.find(q => q.id === p.id); if (ex) Object.assign(ex, p); else S.profiles.push(p); if (!S.show.includes(p.id)) S.show.push(p.id); }); save(); closeSheet(); toast(T('फ़ाइल जोड़ी गई', 'File added')); renderSettings(); };
-  $('#imRep').onclick = () => askYes(T('इस फ़ोनका वर्तमान डेटा फ़ाइलके डेटासे बदल जाएगा।', 'Data on this phone will be replaced by the file.'), T('हाँ, बदलें', 'Yes, replace'), () => { S = Object.assign(defaults(), X); delete S.kind; delete S.exported; save(); applyTheme(); closeSheet(); toast(T('फ़ाइल खोली गई', 'File opened')); renderSettings(); });
+  $('#imRep').onclick = () => askYes(T('इस फ़ोनका वर्तमान डेटा फ़ाइलके डेटासे बदल जाएगा।', 'Data on this phone will be replaced by the file.'), T('हाँ, बदलें', 'Yes, replace'), () => { const on = !!S.timing.on; S = Object.assign(defaults(), X); delete S.kind; delete S.exported; if (S.timing) S.timing.on = on; save(); applyTheme(); closeSheet(); toast(T('फ़ाइल खोली गई', 'File opened')); renderSettings(); });
 };
 function askText(title, val, cb){ openSheet('<h2>' + esc(title) + '</h2><input id="askT" value="' + esc(val) + '"><div class="acts"><button class="btn" id="askOk">' + T('ठीक है', 'OK') + '</button><button class="btn ghost" id="askNo">' + T('रहने दें', 'Cancel') + '</button></div>'); setTimeout(() => $('#askT').focus(), 250); $('#askOk').onclick = () => { const v = $('#askT').value.trim(); closeSheet(); if (v) cb(v); }; $('#askNo').onclick = () => closeSheet(); }
 function askYes(msg, yes, cb){ openSheet('<p style="font-size:17px">' + msg + '</p><div class="acts"><button class="btn" id="askOk">' + esc(yes) + '</button><button class="btn ghost" id="askNo">' + T('रहने दें', 'Cancel') + '</button></div>'); $('#askOk').onclick = () => { closeSheet(); cb(); }; $('#askNo').onclick = () => closeSheet(); }

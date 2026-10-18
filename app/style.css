@@ -110,7 +110,7 @@ body.timing .verse.tocheck{box-shadow:inset 3px 0 0 var(--saffron)}.tcheck{margi
 .vb svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linejoin:round}
 .vb.bm-on{color:var(--saffron);opacity:1}
 .vb.bm-on svg{fill:var(--saffron)}
-.menusw{margin-top:2px}
+.menusw{margin-top:2px}.swic{width:20px;height:20px;stroke:var(--indigo);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none;margin-left:2px}
 .chips{display:flex;align-items:center;gap:6px;margin-top:6px}
 .chip{border:1px solid var(--rule);border-radius:20px;padding:1px 11px;font-size:13px;color:var(--muted);min-height:30px}
 .chip.on{background:var(--indigo-soft);border-color:var(--indigo);color:var(--indigo);font-weight:700}

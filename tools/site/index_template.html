@@ -119,7 +119,7 @@ body.timing .verse.tocheck{box-shadow:inset 3px 0 0 var(--saffron)}.tcheck{margi
 .vb svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linejoin:round}
 .vb.bm-on{color:var(--saffron);opacity:1}
 .vb.bm-on svg{fill:var(--saffron)}
-.menusw{margin-top:2px}
+.menusw{margin-top:2px}.swic{width:20px;height:20px;stroke:var(--indigo);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none;margin-left:2px}
 .chips{display:flex;align-items:center;gap:6px;margin-top:6px}
 .chip{border:1px solid var(--rule);border-radius:20px;padding:1px 11px;font-size:13px;color:var(--muted);min-height:30px}
 .chip.on{background:var(--indigo-soft);border-color:var(--indigo);color:var(--indigo);font-weight:700}
@@ -311,6 +311,7 @@ body.playing #rBody{padding-bottom:240px}
  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></symbol>
  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
  <symbol id="i-jump" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+ <symbol id="i-recite" viewBox="0 0 24 24"><path d="M12 6.5C10 5 7 4.5 3.5 5v13c3.5-.5 6.5 0 8.5 1.5 2-1.5 5-2 8.5-1.5V5C17 4.5 14 5 12 6.5z"/><path d="M12 6.5v13"/></symbol>
  <symbol id="i-text" viewBox="0 0 24 24"><path d="M4 7V5h16v2M12 5v14M9 19h6"/></symbol>
 </svg>
 
@@ -333,7 +334,8 @@ body.playing #rBody{padding-bottom:240px}
 <section id="home" class="view">
  <div class="bar"><div class="wrap">
   <button class="libbtn hback" id="hLib"><svg><use href="#i-back"/></svg><span data-en="Library">पुस्तकालय</span></button>
-  <div class="sz"><button class="szm" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div><span class="grow"></span>
+  <span class="grow"></span>
+  <div class="sz"><button class="szm" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div>
   <div class="lyr layers"><button data-l="h">हिं</button><button data-l="e" class="lat">En</button><button data-l="w">शब्द</button></div>
   <button class="ib hsearch" id="hSearch" aria-label="खोजें"><svg><use href="#i-search"/></svg></button>
   <button class="ib hmenu" id="hMenu" aria-label="मेनू"><svg><use href="#i-menu"/></svg></button>
@@ -350,9 +352,10 @@ body.playing #rBody{padding-bottom:240px}
 <section id="reader" class="view">
  <div class="bar"><div class="wrap">
   <button class="ib hback" id="rBack" aria-label="वापस"><svg><use href="#i-back"/></svg></button>
-  <div class="sz"><button class="szm" id="rSmaller" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" id="rBigger" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div><span class="grow"></span>
+  <span class="grow"></span>
   <span class="timer" id="timerPill"></span>
   <button class="pill" id="rRecite" hidden style="padding:6px 10px;font-size:13px"><span data-en="Recitation mode">पाठ मोड</span> ✕</button>
+  <div class="sz"><button class="szm" id="rSmaller" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" id="rBigger" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div>
   <div class="lyr layers" id="rLayers"><button data-l="h">हिं</button><button data-l="e" class="lat">En</button><button data-l="w">शब्द</button></div>
   <button class="ib hsearch" id="rSearch" aria-label="खोजें"><svg><use href="#i-search"/></svg></button>
   <button class="ib hmenu" id="rMore" aria-label="मेनू"><svg><use href="#i-menu"/></svg></button>

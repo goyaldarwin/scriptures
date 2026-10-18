@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#2B3A8C">
 <title>शास्त्र · Scriptures</title>
-<link rel="manifest" href="manifest.json"><link rel="icon" href="app/icon.svg"><link rel="stylesheet" href="app/fonts.css?v=6ce0da9346"><link rel="stylesheet" href="app/style.css?v=bff5cd0e0d">
+<link rel="manifest" href="manifest.json"><link rel="icon" href="app/icon.svg"><link rel="stylesheet" href="app/fonts.css?v=6ce0da9346"><link rel="stylesheet" href="app/style.css?v=833736f0c3">
 
 </head>
 <body>
@@ -29,6 +29,7 @@
  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></symbol>
  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
  <symbol id="i-jump" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+ <symbol id="i-recite" viewBox="0 0 24 24"><path d="M12 6.5C10 5 7 4.5 3.5 5v13c3.5-.5 6.5 0 8.5 1.5 2-1.5 5-2 8.5-1.5V5C17 4.5 14 5 12 6.5z"/><path d="M12 6.5v13"/></symbol>
  <symbol id="i-text" viewBox="0 0 24 24"><path d="M4 7V5h16v2M12 5v14M9 19h6"/></symbol>
 </svg>
 
@@ -51,7 +52,8 @@
 <section id="home" class="view">
  <div class="bar"><div class="wrap">
   <button class="libbtn hback" id="hLib"><svg><use href="#i-back"/></svg><span data-en="Library">पुस्तकालय</span></button>
-  <div class="sz"><button class="szm" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div><span class="grow"></span>
+  <span class="grow"></span>
+  <div class="sz"><button class="szm" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div>
   <div class="lyr layers"><button data-l="h">हिं</button><button data-l="e" class="lat">En</button><button data-l="w">शब्द</button></div>
   <button class="ib hsearch" id="hSearch" aria-label="खोजें"><svg><use href="#i-search"/></svg></button>
   <button class="ib hmenu" id="hMenu" aria-label="मेनू"><svg><use href="#i-menu"/></svg></button>
@@ -68,9 +70,10 @@
 <section id="reader" class="view">
  <div class="bar"><div class="wrap">
   <button class="ib hback" id="rBack" aria-label="वापस"><svg><use href="#i-back"/></svg></button>
-  <div class="sz"><button class="szm" id="rSmaller" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" id="rBigger" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div><span class="grow"></span>
+  <span class="grow"></span>
   <span class="timer" id="timerPill"></span>
   <button class="pill" id="rRecite" hidden style="padding:6px 10px;font-size:13px"><span data-en="Recitation mode">पाठ मोड</span> ✕</button>
+  <div class="sz"><button class="szm" id="rSmaller" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" id="rBigger" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div>
   <div class="lyr layers" id="rLayers"><button data-l="h">हिं</button><button data-l="e" class="lat">En</button><button data-l="w">शब्द</button></div>
   <button class="ib hsearch" id="rSearch" aria-label="खोजें"><svg><use href="#i-search"/></svg></button>
   <button class="ib hmenu" id="rMore" aria-label="मेनू"><svg><use href="#i-menu"/></svg></button>
@@ -134,6 +137,6 @@
 <div class="toast" id="toast"></div>
 <input type="file" id="fileIn" accept="application/json,.json" style="display:none">
 
-<script src="app/app.js?v=4ebdd7f236"></script>
+<script src="app/app.js?v=52efc5c4d5"></script>
 </body>
 </html>
