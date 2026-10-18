@@ -1,0 +1,25 @@
+# Every pull request and every push to main: the library must pass its checks, the committed website must be
+# exactly what the build makes from it, and every work must open in a real browser without script errors.
+name: check
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q pymupdf playwright && python -m playwright install --with-deps chromium
+      - name: library checks + build
+        run: python tools/site/build.py
+      - name: the committed website matches the build
+        run: |
+          git status --porcelain -- index.html app sw.js manifest.json library > /tmp/diff.txt
+          if [ -s /tmp/diff.txt ]; then echo "These generated files differ from what the build makes — run tools/site/build.py and commit:"; cat /tmp/diff.txt; git diff --stat; exit 1; fi
+      - name: smoke test (every work opens in a browser)
+        run: python tools/site/smoke_test.py
