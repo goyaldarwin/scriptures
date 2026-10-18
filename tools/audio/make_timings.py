@@ -3,7 +3,7 @@
 Usage:  python3 tools/audio/make_timings.py tools/works/<work>/audio/<source-id>
 
 The source folder holds:
-  source.json      {"id", "work": "<library path>", "type": "youtube", "title": {"hi", "en"}, "order"?, "draft"?: "<why it is not published yet>", "align"?: "anchors"}
+  source.json      {"id", "work": "<library path>", "type": "youtube", "title": {"hi", "en"}, "order"?, "draft"?: "<why it is not published yet>", "align"?: "anchors", "fill"?: n}
   recordings.json  [{"yt": video id, "file": original file name, "dur": seconds, "order": n}]
   transcripts/     <video id>.jsonl from transcribe.py (+ .done when finished)
   fixes.json       optional hand-checked verse starts {video id: {item id: seconds}}, with the evidence in fixes.md
@@ -81,7 +81,7 @@ for r in REC:
         full.append(clean[k])
         if k + 1 < len(clean):
             a, ta = clean[k]; b, tb = clean[k + 1]
-            if a + 1 < b <= a + 8:
+            if a + 1 < b <= a + meta.get('fill', 8):   # source.json "fill": the longest run of unheard verses to place by text length
                 tot = sum(L(x) for x in range(a, b)); acc = L(a)
                 for x in range(a + 1, b): full.append([x, round(ta + (tb - ta) * acc / tot, 2)]); acc += L(x)
     i0, t0 = full[0]; ds = max(s for s in starts if s <= i0)
