@@ -3,7 +3,8 @@
 For each work on the shelf (library/index.json) this:
   1. lists the meaning sources in <work>/meanings/*.json and the audio sources in <work>/audio/*.json
      and writes them into work.json → "sources" (the website reads that list; it cannot scan folders);
-  2. checks that everything refers to things that exist, and stops the build with a clear message if not.
+  2. checks that everything refers to things that exist (sources, plans, topics, verse languages,
+     dictionaries in glossary/, fallbacks), and stops the build with a clear message if not.
 A source's file name must equal its "id". The source with the lowest "order" (then id) is the default.
 """
 import glob, json, os, re
@@ -29,12 +30,19 @@ def leaves(shelf, trail=()):
             _need(isinstance(n.get('children'), list) and n['children'], f"shelf: {n['id']} needs children (a shelf) or work (a book)")
             yield from leaves(n['children'], trail + (n['id'],))
 
-def check_work(lib, leaf):
+def check_work(lib, leaf, LANGS):
     path = leaf.get('path'); wp = os.path.join(lib, path or '', 'work.json')
     _need(path and os.path.exists(wp), f"shelf: {leaf['id']} → path {path!r} has no work.json")
     w = json.load(open(wp)); name = path
     _need(w.get('id') == leaf['work'], f"{name}: work.json id {w.get('id')!r} ≠ shelf work {leaf['work']!r}")
     items = w['items']; ids = [x['id'] for x in items]; ID = set(ids)
+    _need(w.get('lang') in LANGS, f"{name}: work.json lang {w.get('lang')!r} is not in glossary/languages.json")
+    bad = sorted({x['l'] for x in items if 'l' in x} - set(LANGS)); _need(not bad, f"{name}: verse languages {bad} are not in glossary/languages.json")
+    wg = os.path.join(lib, path, 'glossary.json')
+    if os.path.exists(wg):
+        for lg, words in json.load(open(wg)).items():
+            _need(lg in LANGS, f"{name}/glossary.json: unknown language {lg!r}")
+            for k, v in words.items(): _need(isinstance(v, dict) and ('hi' in v or 'en' in v), f"{name}/glossary.json: {lg}:{k} needs hi/en")
     _need(len(ID) == len(ids), f"{name}: item ids are not unique")
     for x in items:
         _need(isinstance(x.get('v'), list) and x['v'], f"{name}: item {x['id']} has no verse lines")
@@ -72,11 +80,19 @@ def check_work(lib, leaf):
     return w['id'], {k: [x['id'] for x in v] for k, v in src.items()}
 
 def prepare(lib):
+    LANGS = json.load(open(os.path.join(lib, 'glossary', 'languages.json')))
+    for code, L in LANGS.items():
+        _need(re.fullmatch(r'[a-z]{2,3}', code), f"languages.json: {code!r} must be an ISO 639 code (2–3 lowercase letters)")
+        _need(_bi(L.get('name')) and isinstance(L.get('script'), str), f"languages.json: {code} needs name {{hi, en}} and script")
+        bad = [f for f in L.get('fallback', []) if f not in LANGS or f == code]; _need(not bad, f"languages.json: {code} has bad fallback {bad}")
+    for f in glob.glob(os.path.join(lib, 'glossary', '*.json')):
+        code = os.path.basename(f)[:-5]
+        if code == 'languages': continue
+        _need(code in LANGS, f"glossary/{code}.json: {code!r} is not in languages.json")
+        for k, v in json.load(open(f)).items(): _need(isinstance(v, dict) and ('hi' in v or 'en' in v), f"glossary/{code}.json: {k!r} needs hi/en")
     shelf = json.load(open(os.path.join(lib, 'index.json')))
     works = {}
     for leaf in leaves(shelf):
         _need(leaf['work'] not in works, f"shelf: work id {leaf['work']!r} is used twice")
-        wid, src = check_work(lib, leaf); works[wid] = src
-    G = json.load(open(os.path.join(lib, 'gloss.json')))
-    for k, v in G.items(): _need(isinstance(v, dict) and ('hi' in v or 'en' in v), f"gloss.json: {k!r} needs hi/en")
+        wid, src = check_work(lib, leaf, LANGS); works[wid] = src
     return works

@@ -15,7 +15,7 @@ index.html, sw.js, manifest.json    the website (GitHub Pages serves the reposit
 app/                                 website code, styles, fonts                              [generated]
 library/                             the scriptures, as data
   index.json                           the shelf: authors / collections / works, any depth
-  gloss.json                           word meanings, shared by every work
+  glossary/                            word meanings, one dictionary per language (sa, awa, …) + languages.json
   tulsidas/ramcharitmanas/
     work.json                          verses + numbers, kāṇḍas, topics, plans, pārāyaṇa vidhi
     meanings/hi-gitapress.json         a Hindi meaning source

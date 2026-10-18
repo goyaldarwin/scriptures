@@ -3,7 +3,8 @@
 Writes   work.json                  the text (verse + number), kāṇḍas, topics, plans, vidhi
          meanings/hi-gitapress.json Hindi meaning source (Gita Press bhāvārtha)
          meanings/en-gitapress.json English meaning source (Gita Press translation)
-Merges   its word meanings into library/gloss.json (adds new words; never overwrites existing ones).
+Merges   its word meanings into library/glossary/sa.json and awa.json by the language of the verses
+         they occur in (adds new words; never overwrites existing ones).
 Does not touch library/index.json (the shelf is edited by hand) or audio/ (see tools/audio).
 Then run tools/site/build.py, which registers the sources and checks everything.
 """
@@ -22,16 +23,28 @@ def dump(path, obj):
     json.dump(obj, open(path, 'w'), ensure_ascii=False, separators=(',', ':'))
     return os.path.getsize(path)
 
+# ---- language of each verse ----
+# The Mānas is in Awadhi (awa). Its Sanskrit (sa) passages: every śloka, Atri's stuti
+# (Araṇya 4, "namāmi bhakta vatsalaṁ"), Sutīkṣṇa's stuti (Araṇya 11, "śyāma tāmarasa dāma śarīraṁ")
+# and the Rudrāṣṭaka (Uttara 108, "namāmīśamīśāna"). The other stutis (e.g. Laṅkā 111, Uttara 14)
+# are Sanskritised Awadhi in Awadhi spelling, so they stay awa; awa falls back to sa for tatsama words.
+import re
+def verse_lang(x):
+    if x['y'] == 'shloka' or x['id'].startswith('aranya.4.cha') or re.fullmatch(r'aranya\.11\.cau[2-8]|uttar\.108\.cau[1-8]', x['id']): return 'sa'
+    return 'awa'
+
 # ---- the text: verse + number only (transliteration belongs to the text) ----
 items = []
 for x in IT:
     o = {'id': x['id'], 'p': x['k'], 's': x['s'], 'y': x['y'], 'n': x['n'], 'v': x['v']}
     if x.get('t'): o['t'] = x['t']
+    if verse_lang(x) != 'awa': o['l'] = verse_lang(x)
     items.append(o)
 ids = [x['id'] for x in IT]
 plans = {k: {'n': len(v), 'end': [ids[v[str(n)]] for n in range(1, len(v) + 1)]} for k, v in d['P'].items()}
 work = {
     'id': 'manas',
+    'lang': 'awa',
     'title': {'hi': 'श्रीरामचरितमानस', 'en': 'Śrī Rāmacaritamānasa'},
     'by': {'hi': 'गोस्वामी तुलसीदास', 'en': 'Gosvāmī Tulasīdāsa'},
     'edition': {'hi': 'गीताप्रेस, गोरखपुर', 'en': 'Gita Press, Gorakhpur'},
@@ -67,9 +80,20 @@ for x in IT:
     en[x['id']] = e
 sizes['en'] = dump(WP + '/meanings/en-gitapress.json', {'id': 'en-gitapress', 'lang': 'en', 'order': 1, 'title': {'hi': 'गीताप्रेस — अंग्रेज़ी अनुवाद', 'en': 'Gita Press — English translation'}, 'm': en})
 
-# ---- shared word meanings: add new words, keep existing ones ----
-gp = os.path.join(OUT, 'gloss.json')
-G = json.load(open(gp)) if os.path.exists(gp) else {}
-new = {k: v for k, v in d['gloss'].items() if k not in G}
-G.update(new); sizes['gloss'] = dump('gloss.json', G)
-print({k: round(v / 1e6, 2) for k, v in sizes.items()}, 'MB;', len(new), 'new words')
+# ---- word meanings, filed by the language of the verses each word occurs in ----
+# A word found in both Sanskrit and Awadhi verses goes into both dictionaries (its sense may differ).
+# Words reached only through suffix rules (not written as such in any verse) belong to Awadhi.
+PUNCT = re.compile(r"[।॥|,.;:!?\-—‘’“”'\"()\[\]०-९0-9]")
+seen = {}
+for x in items:
+    for l in x['v']:
+        for t in l.split():
+            t = PUNCT.sub('', t)
+            if t: seen.setdefault(t, set()).add(x.get('l', 'awa'))
+added = {}
+for lang in ('sa', 'awa'):
+    rel = 'glossary/' + lang + '.json'; gp = os.path.join(OUT, rel)
+    G = json.load(open(gp)) if os.path.exists(gp) else {}
+    new = {k: v for k, v in d['gloss'].items() if k not in G and lang in seen.get(k, {'awa'})}
+    G.update(new); added[lang] = len(new); sizes['gloss-' + lang] = dump(rel, dict(sorted(G.items())))
+print({k: round(v / 1e6, 2) for k, v in sizes.items()}, 'MB; new words', added)

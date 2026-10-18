@@ -34,15 +34,22 @@ If `build.py` prints `LIBRARY PROBLEM: …`, fix what it names. It never builds 
 ## Add a new work (Ram Raksha Stotram, an Upanishad, Japji Sahib …)
 
 1. Place it on the shelf: edit `library/index.json` and add shelves as deep as needed (e.g. Ved › Sāmaveda › Upaniṣad › Kena), ending in `{"id", "work", "path", "title", "by", "edition", "desc"}`. The `path` mirrors the shelf, e.g. `ved/samaveda/upanishad/kena`.
-2. Create `tools/works/<work>/` with the extraction scripts (from PDFs or other sources) and an `export.py` that writes `library/<path>/work.json` (`docs/LIBRARY.md` §2), its meaning sources (§3), and new words into `gloss.json` (§5). Use `tools/works/ramcharitmanas/` as the model.
+2. Create `tools/works/<work>/` with the extraction scripts (from PDFs or other sources) and an `export.py` that writes `library/<path>/work.json` (`docs/LIBRARY.md` §2) with each verse's language, its meaning sources (§3), and new words into `glossary/<lang>.json` (§5). A new language needs its own entry first (below). Use `tools/works/ramcharitmanas/` as the model.
 3. Choose the natural divisions for `parts`, the `topics`, and any `plans` (e.g. daily pāṭha). Ask the owner which plans they want.
 4. Add audio as above if there is a recording.
 5. Build and test the shelf screen, the work's home, the reader, search, and bookmarks.
 
+## Add a new language (for a work in Marathi, Gurmukhi, Braj …)
+1. Add it to `library/glossary/languages.json`: ISO 639 code, bilingual name, script, fallback chain (e.g. Braj → Sanskrit), suffix rules and stems. Leave `suffixes` empty until you know the language's inflections; a wrong rule gives wrong roots.
+2. Create `library/glossary/<code>.json` with the words of the work's verses (`docs/LIBRARY.md` §5). Write meanings for that language; do not copy Hindi or Awadhi senses because a spelling matches.
+3. Set the work's `lang`, and give `l` to any verses in another language. For example, a Gurmukhi Japji Sahib uses `pa`, its Sanskrit-derived words can fall back to `sa`, and a Marathi āratī uses `mr`.
+4. If the script is not Devanagari, check that the fonts cover it (`tools/fonts`, `tools/site/build.py`), and that `align.py` has a `key()` for it before aligning audio.
+5. Build: the check refuses unknown languages, dictionaries without an entry in `languages.json`, and fallbacks to languages that don't exist.
+
 ## Fix a word or meaning in the Rāmacaritamānasa
 - Verse text: add the fix to `tools/works/ramcharitmanas/book/text_fixes.json`, then run `(cd tools/works/ramcharitmanas/book && python3 make_appdata.py) && python3 tools/works/ramcharitmanas/export.py`.
 - A Gita Press meaning: the same files and steps (see `tools/works/ramcharitmanas/book/README.md`).
-- A word meaning: edit `library/gloss.json` directly.
+- A word meaning: edit `library/glossary/<lang>.json` directly, in the language of the verse (`sa` for the ślokas and Sanskrit stutis, otherwise `awa`).
 
 ## Change the app
 Edit `tools/site/app.js` (behaviour) or `tools/site/index_template.html` (layout and styles), then build and test. Check the playbook's list of past bugs.

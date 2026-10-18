@@ -6,8 +6,10 @@ The source folder holds:
   source.json      {"id", "work": "<library path>", "type": "youtube", "title": {"hi", "en"}, "order"?}
   recordings.json  [{"yt": video id, "file": original file name, "dur": seconds, "order": n}]
   transcripts/     <video id>.jsonl from transcribe.py (+ .done when finished)
-Only finished transcripts are used. Results are cached per recording in transcripts/<video id>.times.json
-(item id → seconds); delete a cache file to realign that recording.
+Only finished transcripts are used. The alignment is cached per recording in transcripts/<video id>.align.json:
+one row per transcript segment, [start, end, [[item id, characters of that half-line], …]]. Delete it to realign.
+A segment that covers several half-lines is shared among them by length, so a verse that begins in the
+middle of a long breath gets the time it begins, not the time the breath begins.
 """
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.dirname(os.path.dirname(HERE))
@@ -32,13 +34,17 @@ tracks, at = [], {}
 for r in REC:
     v = r['yt']; p = os.path.join(TR, v + '.jsonl')
     if not os.path.exists(p + '.done'): continue
-    cache = os.path.join(TR, v + '.times.json')
-    if os.path.exists(cache): first = {ID[k]: t for k, t in json.load(open(cache)).items()}
-    else:
+    cache = os.path.join(TR, v + '.align.json')
+    if not os.path.exists(cache):
         S = A.load(p); r0 = A.locate(S); R, pairs = A.align(S, r0)
-        first = {}
-        for si, rj in pairs: first.setdefault(R[rj][0], S[si]['s'])
-        json.dump({IT[i]['id']: t for i, t in first.items()}, open(cache, 'w'), ensure_ascii=False)
+        rows = {}
+        for si, rj in pairs: rows.setdefault(si, []).append([IT[R[rj][0]]['id'], len(R[rj][2])])
+        json.dump([[S[si]['s'], S[si]['e'], rows[si]] for si in sorted(rows)], open(cache, 'w'), ensure_ascii=False)
+    first = {}
+    for s0, e0, parts in json.load(open(cache)):
+        tot = sum(n for _, n in parts) or 1; acc = 0
+        for iid, n in parts:
+            first.setdefault(ID[iid], s0 + (e0 - s0) * acc / tot); acc += n
     items = sorted((i, round(max(0, t - 0.4), 2)) for i, t in first.items())
     clean, last = [], -1                       # drop matches that go backwards in time
     for i, t in items:

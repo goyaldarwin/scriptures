@@ -22,4 +22,4 @@ PDFs (not in the repository): `HINDI_PDF=…/Hindi.pdf ENGLISH_PDF=…/English.p
 
 Text corrections go in `text_fixes.json`. Then run `python3 make_appdata.py` here and `python3 ../export.py`. Do not hand-edit `app_data.json`.
 
-`gloss_final.json` was the starting point of `library/gloss.json`. Correct word meanings in `library/gloss.json` now.
+`gloss_final.json` was the starting point of `library/glossary/`. Correct word meanings in `library/glossary/<lang>.json` now.

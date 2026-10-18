@@ -2,7 +2,7 @@
 /* =====================================================================
    Scripture reader — library of works; each work = text (verse + number)
    with selectable sources for Hindi meaning, English meaning and audio.
-   Word meanings (glossary) are fixed and shared.
+   Word meanings come from one dictionary per language (library/glossary), chosen by the verse's language.
    ===================================================================== */
 const $ = s => document.querySelector(s);
 const $$ = s => Array.from(document.querySelectorAll(s));
@@ -20,7 +20,7 @@ async function getJSON(path){
   if (BUNDLE){ const v = BUNDLE.files[path]; if (v) return v; throw new Error('missing ' + path); }
   const r = await fetch('library/' + path + '.json', {cache: 'no-cache'}); if (!r.ok) throw new Error(path); return r.json();
 }
-let LIB = [], G = {}, W = null, IT = [], ID = {}, SRC = {hi: null, en: null, au: null};
+let LIB = [], LANGS = {}, GL = {}, WG = {}, W = null, IT = [], ID = {}, SRC = {hi: null, en: null, au: null};
 
 /* ---------------- personal store ---------------- */
 const LS = 'manas.personal.v1';
@@ -31,7 +31,13 @@ let S;
 try { S = JSON.parse(localStorage.getItem(LS)); } catch (e) { canStore = false; }
 if (!S || !S.profiles) S = defaults();
 function migrate(){
-  if ((S.v || 1) >= 2) return;
+  if ((S.v || 1) < 2) migrate2();
+  if (S.v < 3){ // v2 → v3: a reader's own word meanings are filed by language (“awa:राम”); earlier ones were all Awadhi
+    S.profiles.forEach(p => { const n = {}; for (const k in p.gloss || {}) n[k.includes(':') ? k : 'awa:' + k] = p.gloss[k]; p.gloss = n; });
+    S.v = 3;
+  }
+}
+function migrate2(){
   // v1 → v2: keys gain the work id, per-work positions and plan progress
   const pre = 'manas:';
   S.profiles.forEach(p => {
@@ -107,16 +113,30 @@ function timerReset(){ S.timer = null; save(); tickTimer(); }
 setInterval(tickTimer, 1000);
 $('#timerPill').onclick = timerToggle;
 
-/* ---------------- glossary (fixed, shared) ---------------- */
+/* ---------------- word meanings: one dictionary per language (library/glossary/<lang>.json) ----------------
+   A word is looked up in the language of the verse it is in, then in that language's fallbacks
+   (languages.json). A work may refine a sense in <work>/glossary.json; a reader's own meaning wins. */
 const PUNCT = /[।॥|,.;:!?\-—‘’“”'"()\[\]०-९0-9]/g;
 function cleanWord(w){ return w.replace(PUNCT, '').normalize('NFC'); }
-const SUFF = ['न्हि', 'न्ह', 'हिं', 'हुँ', 'हूँ', 'हि', 'ें', 'ों', 'नि', 'उँ', 'ऊ', 'उ', 'ु', 'ू', 'ि', 'ी', 'ा', 'े', 'ै', 'ौ'];
-function lookup(w){
-  w = cleanWord(w); if (!w) return null;
-  for (const p of SHOWN()) if (p.gloss[w]) return Object.assign({w, mine: p.name}, G[w] || {}, p.gloss[w]);
-  if (G[w]) return Object.assign({w}, G[w]);
-  for (const s of SUFF){ if (w.length > s.length + 1 && w.endsWith(s)){ const b = w.slice(0, -s.length); for (const c of [b, b + 'ा', b + 'ी', b + 'ु']) if (G[c]) return Object.assign({w, possible: c}, G[c]); } }
-  return {w, none: true};
+function langOf(i){ return (i != null && IT[i] && IT[i].l) || W.lang; }
+function langChain(lang){ return [lang].concat((LANGS[lang] || {}).fallback || []); }
+async function loadGlossaries(){
+  if (!Object.keys(LANGS).length) LANGS = await getJSON('glossary/languages');
+  const need = new Set(); [W.lang].concat(IT.map(x => x.l).filter(Boolean)).forEach(l => langChain(l).forEach(c => need.add(c)));
+  await Promise.all([...need].filter(c => !GL[c]).map(async c => { try { GL[c] = await getJSON('glossary/' + c); } catch (e) { GL[c] = {}; } }));
+  try { WG = await getJSON(W.path + '/glossary'); } catch (e) { WG = {}; }
+}
+function dictEntry(lang, w){ return (WG[lang] && WG[lang][w]) || (GL[lang] && GL[lang][w]) || null; }
+function lookup(w, lang){
+  w = cleanWord(w); if (!w) return null; lang = lang || W.lang;
+  const chain = langChain(lang);
+  for (const c of chain){
+    for (const p of SHOWN()) if (p.gloss[c + ':' + w]) return Object.assign({w, lang: c, mine: p.name}, dictEntry(c, w) || {}, p.gloss[c + ':' + w]);
+    const e = dictEntry(c, w); if (e) return Object.assign({w, lang: c}, e);
+  }
+  for (const c of chain){ const L = LANGS[c] || {};
+    for (const sfx of L.suffixes || []){ if (w.length > sfx.length + 1 && w.endsWith(sfx)){ const b = w.slice(0, -sfx.length); for (const st of L.stems || ['']){ const e = dictEntry(c, b + st); if (e) return Object.assign({w, lang: c, possible: b + st}, e); } } } }
+  return {w, lang, none: true};
 }
 function wordsHTML(line){
   line = line.replace(/\s+(।।|।|॥)/g, ' $1');
@@ -124,24 +144,25 @@ function wordsHTML(line){
   return halves.map(hf => '<span class="half">' + hf.split(/( +)/).map(tok => { if (/^ +$/.test(tok) || !cleanWord(tok)) return esc(tok); const m = tok.match(/^(.*?)( .*)?$/); return '<span class="w">' + esc(m[1]) + '</span>' + esc(m[2] || ''); }).join('') + '</span>').join(' ');
 }
 function wordList(lines){ const seen = new Set(), out = []; lines.forEach(l => l.split(/\s+/).forEach(t => { const w = cleanWord(t); if (w && !seen.has(w)){ seen.add(w); out.push(w); } })); return out; }
-function wbHTML(lines){
-  return '<div class="wb">' + wordList(lines).map(w => { const g = lookup(w); if (!g || g.none) return ''; const m = esc(g.hi || '') + (g.en ? ' <span class="en">· ' + esc(g.en) + '</span>' : '') + (g.possible ? ' <span class="q">(' + esc(g.possible) + ')</span>' : ''); return '<span class="ww w" data-w="' + esc(w) + '">' + esc(w) + '</span><span class="wm">' + m + '</span>'; }).join('') + '</div>';
+function wbHTML(lines, lang){
+  return '<div class="wb">' + wordList(lines).map(w => { const g = lookup(w, lang); if (!g || g.none) return ''; const m = esc(g.hi || '') + (g.en ? ' <span class="en">· ' + esc(g.en) + '</span>' : '') + (g.possible ? ' <span class="q">(' + esc(g.possible) + ')</span>' : ''); return '<span class="ww w" data-w="' + esc(w) + '">' + esc(w) + '</span><span class="wm">' + m + '</span>'; }).join('') + '</div>';
 }
-function wordSheet(raw, alt){
-  const w = cleanWord(raw); const g = (alt && alt[w]) || lookup(raw);
+function wordSheet(raw, alt, lang){
+  const w = cleanWord(raw); const g = (alt && alt[w]) || lookup(raw, lang);
   let h = '<h2>' + esc(w) + '</h2>';
+  if (g && !g.none && g.lang && LANGS[g.lang]) h += '<p class="small muted">' + esc(TT(LANGS[g.lang].name)) + '</p>';
   if (g && !g.none){
     if (g.possible) h += '<p class="small muted">' + T('मूल शब्द: ', 'Root: ') + '<b>' + esc(g.possible) + '</b></p>';
     h += '<dl class="kv">' + (g.r && g.r !== w ? '<dt>' + T('मूल', 'Root') + '</dt><dd>' + esc(g.r) + '</dd>' : '') + '<dt>' + T('हिंदी', 'Hindi') + '</dt><dd>' + esc(g.hi || '—') + '</dd><dt>English</dt><dd class="lat">' + esc(g.en || '—') + '</dd>' + (g.g ? '<dt>' + T('व्याकरण', 'Grammar') + '</dt><dd>' + esc(g.g) + '</dd>' : '') + (g.p && g.p.length ? '<dt>' + T('शब्द-खण्ड', 'Parts') + '</dt><dd>' + g.p.map(x => '<b>' + esc(x[0]) + '</b> (' + esc(x[1]) + ')').join(' + ') + '</dd>' : '') + '</dl>';
   }
   h += '<div class="acts"><button class="btn small ghost" id="gEdit">' + (g && !g.none ? T('अर्थ बदलें / जोड़ें', 'Edit meaning') : T('अर्थ जोड़ें', 'Add meaning')) + '</button></div>';
-  openSheet(h); $('#gEdit').onclick = () => glossEdit(w);
+  openSheet(h); $('#gEdit').onclick = () => glossEdit(w, lang || W.lang);
 }
-function glossEdit(w){
-  const me = ME(), cur = me.gloss[w] || {}, base = G[w] || {};
-  openSheet('<h2>' + T('शब्दार्थ: ', 'Meaning: ') + esc(w) + '</h2><div class="field"><label>' + LB.h() + '</label><input id="gh" value="' + esc(cur.hi || base.hi || '') + '"></div><div class="field"><label>' + LB.e() + '</label><input id="ge" class="lat" value="' + esc(cur.en || base.en || '') + '"></div><p class="small muted">' + T('यह आपकी फ़ाइलमें “' + esc(me.name) + '” के नामसे सेव होगा।', 'Saved in your file as “' + esc(me.name) + '”.') + '</p><div class="acts"><button class="btn" id="gSave">' + T('सेव करें', 'Save') + '</button>' + (me.gloss[w] ? '<button class="btn ghost" id="gDel">' + T('मेरा अर्थ हटाएँ', 'Remove my meaning') + '</button>' : '') + '</div>');
-  $('#gSave').onclick = () => { me.gloss[w] = {hi: $('#gh').value.trim(), en: $('#ge').value.trim()}; save(); closeSheet(); toast(T('शब्दार्थ सेव हुआ', 'Meaning saved')); refreshReader(); };
-  if ($('#gDel')) $('#gDel').onclick = () => { delete me.gloss[w]; save(); closeSheet(); refreshReader(); };
+function glossEdit(w, lang){
+  const me = ME(), key = lang + ':' + w, cur = me.gloss[key] || {}, base = dictEntry(lang, w) || {};
+  openSheet('<h2>' + T('शब्दार्थ: ', 'Meaning: ') + esc(w) + '</h2><div class="field"><label>' + LB.h() + '</label><input id="gh" value="' + esc(cur.hi || base.hi || '') + '"></div><div class="field"><label>' + LB.e() + '</label><input id="ge" class="lat" value="' + esc(cur.en || base.en || '') + '"></div><p class="small muted">' + T('यह आपकी फ़ाइलमें “' + esc(me.name) + '” के नामसे सेव होगा।', 'Saved in your file as “' + esc(me.name) + '”.') + '</p><div class="acts"><button class="btn" id="gSave">' + T('सेव करें', 'Save') + '</button>' + (me.gloss[key] ? '<button class="btn ghost" id="gDel">' + T('मेरा अर्थ हटाएँ', 'Remove my meaning') + '</button>' : '') + '</div>');
+  $('#gSave').onclick = () => { me.gloss[key] = {hi: $('#gh').value.trim(), en: $('#ge').value.trim()}; save(); closeSheet(); toast(T('शब्दार्थ सेव हुआ', 'Meaning saved')); refreshReader(); };
+  if ($('#gDel')) $('#gDel').onclick = () => { delete me.gloss[key]; save(); closeSheet(); refreshReader(); };
 }
 
 /* ---------------- work structure ---------------- */
@@ -221,7 +242,7 @@ function verseHTML(i){
     return '<p>' + lead + w + tail + '</p>'; }).join('') + '</div>';
   if (S.settings.tr && it.t && it.t.length) h += '<div class="tr">' + it.t.map(l => '<div>' + l.split(/(?<=,)\s+/).map(x => '<span class="half">' + esc(x).replace(/\s*॥\s*([^॥]*?)\s*॥/g, ' <span class="dd">॥$1॥</span>') + '</span>').join(' ') + '</div>').join('') + '</div>';
   if (layerOn('h')){ const m = mean('hi', i); if (m) h += '<div class="layer h">' + esc(m.x).replace(/\s*(।।[^।]*।।)\s*$/, '<span style="white-space:nowrap"> $1</span>') + (m.edited ? '<span class="tag">' + T('संशोधित', 'edited') + '</span>' : '') + (m.f ? '<div class="fn">' + m.f.map(esc).join('<br>') + '</div>' : '') + '</div>'; }
-  if (layerOn('w')) h += '<div class="layer wl">' + wbHTML(vv.v) + '</div>';
+  if (layerOn('w')) h += '<div class="layer wl">' + wbHTML(vv.v, langOf(i)) + '</div>';
   if (layerOn('e')){ const m = mean('en', i); if (m) h += '<div class="layer e">' + esc(m.x) + (m.edited ? '<span class="tag">edited</span>' : '') + (m.f ? '<div class="fn">' + m.f.map(esc).join('<br>') + '</div>' : '') + '</div>'; }
   for (const p of SHOWN()) (p.notes[KEY(id)] || []).forEach((n, k) => { h += '<div class="note"><div class="who">' + esc(p.name) + ' · ' + new Date(n.ts).toLocaleDateString(LANG() === 'en' ? 'en-IN' : 'hi-IN') + (p.id === me.id ? '<button data-a="enote" data-k="' + k + '">' + T('बदलें', 'Edit') + '</button>' : '') + '</div>' + esc(n.t).replace(/\n/g, '<br>') + '</div>'; });
   return h + '</div>';
@@ -368,7 +389,7 @@ $('#rBody').addEventListener('click', ev => {
     else if (act === 'done'){ const o = a.dataset.o, n = +a.dataset.n, d = DONE(ME(), o); if (d[n]) delete d[n]; else d[n] = Date.now(); save(); const box = a.closest('.pause'); const tmp = document.createElement('div'); tmp.innerHTML = pauseHTML(+a.dataset.i); const nb = Array.from(tmp.children).find(x => x.dataset.pause === o + n); if (box && nb) box.replaceWith(nb); if (d[n]) toast(VN(n) + T(' पूर्ण — जय श्रीराम', ' complete — Jai Shri Ram')); }
     return;
   }
-  const w = ev.target.closest('.w'); if (w){ w.classList.add('sel'); wordSheet(w.dataset.w || w.textContent); }
+  const w = ev.target.closest('.w'); if (w){ w.classList.add('sel'); const vb = w.closest('.verse'); wordSheet(w.dataset.w || w.textContent, null, vb ? langOf(+vb.dataset.i) : W.lang); }
 });
 function noteSheet(i, k){
   const me = ME(), key = KEY(IT[i].id), arr = me.notes[key] || [], cur = k != null ? arr[k] : null;
@@ -496,7 +517,7 @@ function workPath(id){ let r = null; (function walk(n){ (n || []).forEach(c => {
 async function openWork(id, noShow){
   $('#loading').hidden = false;
   try {
-    if (!W || W.id !== id){ const path = workPath(id); W = await getJSON(path + '/work'); W.path = path; buildWork(); await loadSources(); }
+    if (!W || W.id !== id){ const path = workPath(id); W = await getJSON(path + '/work'); W.path = path; buildWork(); await Promise.all([loadSources(), loadGlossaries()]); }
     S.work = id; save();
   } catch (e) { toast(T('यह ग्रन्थ नहीं खुल सका', 'Could not open this text')); $('#loading').hidden = true; return; }
   $('#loading').hidden = true;
@@ -637,14 +658,14 @@ function renderVidhi(){
   });
   $('#vidBody').innerHTML = h;
 }
-$('#vidBody').addEventListener('click', ev => { const w = ev.target.closest('.w'); if (w){ w.classList.add('sel'); wordSheet(w.dataset.w || w.textContent, vidTab === 'v' ? W.vg : null); } });
+$('#vidBody').addEventListener('click', ev => { const w = ev.target.closest('.w'); if (w){ w.classList.add('sel'); wordSheet(w.dataset.w || w.textContent, vidTab === 'v' ? W.vg : null, W.lang); } });
 
 /* ---------------- boot ---------------- */
 (async function boot(){
   if (!S.settings.lightDefault){ if (S.settings.theme === 'auto') S.settings.theme = 'light'; S.settings.lightDefault = 1; save(); }
   applyTheme(); applyLang(); applyRecite(); syncLayers(); tickTimer();
   history.replaceState({v: 'library'}, '');
-  try { [LIB, G] = await Promise.all([getJSON('index'), getJSON('gloss')]); } catch (e) { $('#loading').textContent = T('डेटा नहीं खुल सका। इंटरनेट जाँचें।', 'Could not load the data. Check the internet connection.'); return; }
+  try { LIB = await getJSON('index'); } catch (e) { $('#loading').textContent = T('डेटा नहीं खुल सका। इंटरनेट जाँचें।', 'Could not load the data. Check the internet connection.'); return; }
   const leafs = []; (function walk(n){ (n || []).forEach(c => c.work ? leafs.push(c.work) : walk(c.children)); })(LIB);
   const start = S.work && leafs.includes(S.work) ? S.work : (leafs.length === 1 ? leafs[0] : null);
   if (start){ await openWork(start, true); viewStack.push('home'); history.pushState({v: 'home'}, ''); show('home', false); }

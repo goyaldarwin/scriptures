@@ -197,7 +197,7 @@ Then expect from me, in order:
 - **Library of works, any depth.** Everything the owner studies goes into one library: e.g. *Gosvāmī Tulasīdāsa › Śrī Rāmacaritamānasa* (2 levels) or *Veda › Sāmaveda › Upaniṣad › (name) › text* (4 levels). The library screen walks this tree with breadcrumbs. Every work then gets the **same experience**: natural divisions (kāṇḍa, adhyāya…), reading plans (pārāyaṇa), bookmarks, notes, progress, search, audio, sources.
 - **The verse + its number is the core entity.** Hindi meaning, English meaning and audio are **attributes from selectable sources** (Settings › Sources). Today: Gita Press Hindi, Gita Press English, Pt. Kamlesh Upadhyay audio; tomorrow more. Changing a source must make the whole app (reader, search, follow-along audio) use it.
 - **Word meanings (glossary/roots) are fixed** and shared — they never change with the source.
-- **Data layout (website):** `data/library.json` (tree), `data/gloss.json`, `data/<work>/work.json` (text, divisions, topics, plans, vidhi), `data/<work>/src/<source-id>.json` (one file per meaning or audio source).
+- **Data layout (website):** see `docs/LIBRARY.md`. In short: `library/index.json` (the shelf), `library/glossary/<lang>.json` (dictionaries by language), `library/<path>/work.json` (text, divisions, topics, plans, vidhi), and `library/<path>/meanings|audio/<id>.json` (one file per source).
 
 ### Audio — hands-free pāṭh
 - Audio comes **from YouTube** (video id is in the recording's file name as `[videoId]`); the app stores only timings per verse.
@@ -250,3 +250,8 @@ Then expect from me, in order:
 - Adding a meaning source or a reciter is a documented procedure (`docs/HOW-TO.md`), not ad-hoc work.
 - **Never show a recording's own title** (uploaded file names, YouTube titles). The player shows the app's own words: the verse ("Bāla-kāṇḍa · Śloka 1") and the reading being played ("30-day · Vishram 1"), followed by the reciter's name.
 - Only touch the repositories the owner has created for this; never read other repositories.
+
+### Preferences and lessons (Oct 17, 2026): languages and audio
+- **Word meanings must respect the verse's language.** One work can mix languages: the Mānas is Awadhi with Sanskrit ślokas and stutis. Future works bring Marathi (Sai dhūp āratī), Gurmukhi (Japji Sahib), Braj and more. So there is one dictionary per language, each verse carries its language, and lookups follow a declared fallback chain (`docs/LIBRARY.md` §5). The same spelling can mean different things in different languages (या, परे, ते, तौ, करि, हर), so never merge languages into one dictionary.
+- **A recitation often runs several half-lines into one breath**, and the speech recogniser returns that as one segment. Giving every verse in the segment the segment's start made a verse begin too early: Bāla 2, "बंदउँ प्रथम महीसुर चरना" began during the previous caupāī. Fix: share the segment among its half-lines by length, and allow up to four half-lines per segment. The alignment rows are cached so timing rules can change without realigning.
+- The owner tests audio by checking that each verse starts and ends on its own words. Check boundaries inside long breaths, not only the first verse of a day.

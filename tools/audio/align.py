@@ -70,6 +70,9 @@ def align(S, r0, span=None):
             if j>=3:
                 c=dp[i-1,j-3]+(1-sim(sk,R[j-3][2]+R[j-2][2]+R[j-1][2]))*1.0+0.1
                 if c<best: best=c; b=5
+            if j>=4:   # a reciter often runs four half-lines (a whole caupāī) into one breath
+                c=dp[i-1,j-4]+(1-sim(sk,R[j-4][2]+R[j-3][2]+R[j-2][2]+R[j-1][2]))*1.0+0.15
+                if c<best: best=c; b=6
             dp[i,j]=best; bt[i,j]=b
     j=int(dp[n].argmin()); i=n; pairs=[]
     while i>0:
@@ -77,7 +80,7 @@ def align(S, r0, span=None):
         if b==1: i-=1
         elif b==2: j-=1
         else:
-            k={3:1,4:2,5:3}[b]
+            k={3:1,4:2,5:3,6:4}[b]
             for q in range(k): pairs.append((i-1,j-1-q))
             i-=1; j-=k
     pairs.reverse()
