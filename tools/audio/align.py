@@ -25,6 +25,9 @@ def init(items):
             for p in [p for p in re.split(r'(?<=।)\s*(?!।)',l) if p.strip(' ।')]:
                 k=key(p)
                 if k: REF.append((i,p,k))
+def over(sk,cat):
+    # a segment cannot hold much more text than it has: penalise merging half-lines the recogniser did not hear
+    return 3.0*max(0.0,len(cat)/max(1,len(sk))-1.2)
 def sim(a,b):
     if not a or not b: return 0
     return difflib.SequenceMatcher(None,a,b,autojunk=False).ratio()
@@ -65,13 +68,13 @@ def align(S, r0, span=None):
                 c=dp[i-1,j-1]+(1-sim(sk,R[j-1][2]))
                 if c<best: best=c; b=3
             if j>=2:
-                c=dp[i-1,j-2]+(1-sim(sk,R[j-2][2]+R[j-1][2]))*1.0+0.05
+                cat=R[j-2][2]+R[j-1][2]; c=dp[i-1,j-2]+(1-sim(sk,cat))+0.05+over(sk,cat)
                 if c<best: best=c; b=4
             if j>=3:
-                c=dp[i-1,j-3]+(1-sim(sk,R[j-3][2]+R[j-2][2]+R[j-1][2]))*1.0+0.1
+                cat=R[j-3][2]+R[j-2][2]+R[j-1][2]; c=dp[i-1,j-3]+(1-sim(sk,cat))+0.1+over(sk,cat)
                 if c<best: best=c; b=5
             if j>=4:   # a reciter often runs four half-lines (a whole caupāī) into one breath
-                c=dp[i-1,j-4]+(1-sim(sk,R[j-4][2]+R[j-3][2]+R[j-2][2]+R[j-1][2]))*1.0+0.15
+                cat=R[j-4][2]+R[j-3][2]+R[j-2][2]+R[j-1][2]; c=dp[i-1,j-4]+(1-sim(sk,cat))+0.15+over(sk,cat)
                 if c<best: best=c; b=6
             dp[i,j]=best; bt[i,j]=b
     j=int(dp[n].argmin()); i=n; pairs=[]
