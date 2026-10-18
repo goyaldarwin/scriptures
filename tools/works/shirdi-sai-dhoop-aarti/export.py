@@ -1,4 +1,4 @@
-"""Śrī Sāī Bābā (Shirdi) — Dhūpa āratī: text.txt + meanings/ + glossary/ → library/hindu/aarti/shirdi-sai/dhoop-aarti/.
+"""Śrī Sāī Bābā (Shirdi) — Dhūpa āratī: text.txt + meanings/ + glossary/ → library/hinduism/aarti/shirdi-sai/dhoop-aarti/.
 
 Writes   work.json                     the text (verse + number + language), sections as topics, verse types
          meanings/en-shirdisaibabakripa.json   English meaning copied from the shirdisaibabakripa.org printout
@@ -15,7 +15,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'
 
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.dirname(os.path.dirname(os.path.dirname(HERE)))
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(REPO, 'library')
-WP = 'hindu/aarti/shirdi-sai/dhoop-aarti'
+WP = 'hinduism/aarti/shirdi-sai/dhoop-aarti'
 WORK = 'shirdi-sai-dhoop-aarti'
 LANG = 'mr'
 

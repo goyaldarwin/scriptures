@@ -53,7 +53,7 @@ def verse(lines, n=None):
 if __name__ == '__main__' and '--check' in sys.argv:
     import json, os, collections
     R = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '..')
-    w = json.load(open(os.path.join(R, 'library/hindu/granth/tulsidas/ramcharitmanas/work.json')))
+    w = json.load(open(os.path.join(R, 'library/hinduism/granth/tulsidas/ramcharitmanas/work.json')))
     ok = n = 0; bad = collections.Counter(); ex = []
     for x in w['items']:
         if x.get('l') == 'sa' or 't' not in x: continue

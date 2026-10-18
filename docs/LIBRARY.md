@@ -14,7 +14,7 @@ Every work has an address, read from the general to the specific like a REST pat
 
 | Level | What it is | Ids in use or planned |
 |---|---|---|
-| tradition | the faith | `hindu` (हिन्दू धर्म), later `sikh` (सिख धर्म), `jain`, `bauddh` … |
+| tradition | the faith | `hinduism` (हिन्दू धर्म), later `sikhism` (सिख धर्म), `jain`, `bauddh` … |
 | genre | the kind of text, as a reader looks for it | Hindu: `granth` (epics, scriptures), `stotra`, `aarti`, `chalisa`, `bhajan`, `veda`, `purana` … · Sikh: `gurbani` … |
 | group(s) | whatever groups works naturally inside that genre (one or more levels) | `granth`: the author (`tulsidas`, `valmiki`, `vyasa`) · `stotra`, `aarti`, `chalisa`: the deity or saint (`rama`, `hanuman`, `shiva`, `shirdi-sai`) · `veda`: the Veda, then its division (`samaveda/upanishad`) · `gurbani`: the Guru (`guru-nanak-dev`) |
 | work | the text you open | `ramcharitmanas`, `ramraksha`, `dhoop-aarti`, `kena`, `japji-sahib` |
@@ -22,23 +22,23 @@ Every work has an address, read from the general to the specific like a REST pat
 Examples:
 
 ```
-hindu/granth/tulsidas/ramcharitmanas
-hindu/stotra/rama/ramraksha
-hindu/aarti/shirdi-sai/dhoop-aarti
-hindu/veda/samaveda/upanishad/kena          (planned)
-sikh/gurbani/guru-nanak-dev/japji-sahib     (planned)
+hinduism/granth/tulsidas/ramcharitmanas
+hinduism/stotra/rama/ramraksha
+hinduism/aarti/shirdi-sai/dhoop-aarti
+hinduism/veda/samaveda/upanishad/kena          (planned)
+sikhism/gurbani/guru-nanak-dev/japji-sahib     (planned)
 ```
 
 Rules (`tools/site/build.py` checks them):
 - **The path is the chain of ids.** A work's `path` must be exactly the ids of the shelves above it, followed by its own id, and the files live in `library/<path>/`. The library screen shows two levels at a time: a shelf's sub-shelves as headings, with their contents listed under them.
 - **At least three levels** (tradition / genre / work). Add a group level when the genre will hold works of more than one author or deity, which is almost always.
 - **Ids** are lowercase ASCII with hyphens, in common romanised spelling without diacritics (`ramraksha`, `shirdi-sai`, `hanuman-chalisa`). Titles carry the proper Devanagari and diacritics.
-- **Before adding a level, reuse an existing one.** Look at `index.json` first: a new Hanumān stotra goes under `hindu/stotra/hanuman/`, not a new `hanumaan/`. A new genre or tradition is a deliberate decision; say so in the pull request.
+- **Before adding a level, reuse an existing one.** Look at `index.json` first: a new Hanumān stotra goes under `hinduism/stotra/hanuman/`, not a new `hanumaan/`. A new genre or tradition is a deliberate decision; say so in the pull request.
 - **Every shelf has a bilingual `title`**, plus an optional `desc` (one line, shown under it).
 
 The work node itself:
 ```json
-{"id": "ramcharitmanas", "work": "manas", "path": "hindu/granth/tulsidas/ramcharitmanas",
+{"id": "ramcharitmanas", "work": "manas", "path": "hinduism/granth/tulsidas/ramcharitmanas",
  "title": {…}, "by": {…}, "edition": {…}, "desc": {…}}
 ```
 - `work` is the work's **permanent id**. Readers' bookmarks, notes, progress and choices are stored under it, so it never changes, even if the work moves on the shelf. It must be unique across the library. For a new work, use the same value as its shelf `id` unless that is already taken. The tools folder is `tools/works/<work id>/`.

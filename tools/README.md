@@ -18,21 +18,21 @@ tools/
   works/                         one folder per work: how its data was made
     ramcharitmanas/
       book/                        Gita Press PDFs → book/app_data.json (see its README)
-      export.py                    app_data.json → library/hindu/granth/tulsidas/ramcharitmanas/ (text + Gita Press meanings)
+      export.py                    app_data.json → library/hinduism/granth/tulsidas/ramcharitmanas/ (text + Gita Press meanings)
       audio/kamlesh-upadhyay/      source.json, recordings.json, transcripts/
     ramraksha/
       source/                      the video's text (video_text.tsv), the Hindi web page and its cleaned meanings
-      export.py                    source/ → library/hindu/stotra/rama/ramraksha/ (text, English + Hindi meanings, new Sanskrit words)
+      export.py                    source/ → library/hinduism/stotra/rama/ramraksha/ (text, English + Hindi meanings, new Sanskrit words)
       glossary_sa.json             the stotra's word meanings, merged into library/glossary/sa.json
       audio/vande-guru-paramparaam/ source.json, recordings.json, fixes.json + fixes.md, transcripts/
     shirdi-sai-dhoop-aarti/
       text.txt                     the verse text (settled in reconciliation.md)
       meanings/hi.json, en.json    one meaning per verse
       glossary/mr|sa|hi.json       word meanings by language
-      export.py                    → library/hindu/aarti/shirdi-sai/dhoop-aarti/ and library/glossary/
+      export.py                    → library/hinduism/aarti/shirdi-sai/dhoop-aarti/ and library/glossary/
     sundarkand/                  the Sundarakāṇḍa as a work of its own (see its README)
       export.py                    part 1 GENERATED from the Mānas's work.json + Gita Press meanings (same ids, sections,
-                                   text, topics); parts 2–3 (Hanumān Chālīsā, āratī) from text.txt → library/hindu/granth/tulsidas/sundarkand/
+                                   text, topics); parts 2–3 (Hanumān Chālīsā, āratī) from text.txt → library/hinduism/granth/tulsidas/sundarkand/
       check.py                     checks that part 1 is identical to the Mānas's Sundara-kāṇḍa
       text.txt, reconciliation.md  the Chālīsā and āratī text, and how it was settled from the web sources
       translit.py                  their transliteration, in the Mānas's style

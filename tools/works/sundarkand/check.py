@@ -7,7 +7,7 @@ Usage: python3 tools/works/sundarkand/check.py        (exits non-zero on any dif
 import json, os, sys
 REPO = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '..')
 L = lambda rel: json.load(open(os.path.join(REPO, 'library', rel), encoding='utf-8'))
-MP, SP = 'hindu/granth/tulsidas/ramcharitmanas', 'hindu/granth/tulsidas/sundarkand'
+MP, SP = 'hinduism/granth/tulsidas/ramcharitmanas', 'hinduism/granth/tulsidas/sundarkand'
 M, S = L(MP + '/work.json'), L(SP + '/work.json')
 K = next(k for k, p in enumerate(M['parts']['list']) if p['en'].startswith('Sundara'))
 mi = [x for x in M['items'] if x['p'] == K]

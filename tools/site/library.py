@@ -28,7 +28,7 @@ def leaves(shelf, trail=()):
             _need('children' not in n, f"shelf: {n['id']} has both work and children")
             want = '/'.join(trail + (n['id'],))
             _need(n.get('path') == want, f"shelf: {n['id']} path must be {want!r} (the shelf ids above it, then its own id), not {n.get('path')!r}")
-            _need(len(trail) >= 2, f"shelf: {want} is too shallow; a work sits at least at tradition/genre/work (e.g. hindu/stotra/…)")
+            _need(len(trail) >= 2, f"shelf: {want} is too shallow; a work sits at least at tradition/genre/work (e.g. hinduism/stotra/…)")
             yield n
         else:
             _need(isinstance(n.get('children'), list) and n['children'], f"shelf: {n['id']} needs children (a shelf) or work (a book)")

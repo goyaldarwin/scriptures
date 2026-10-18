@@ -1,6 +1,6 @@
 # Shirdi Sāī Bābā — Dhūpa Āratī (evening āratī)
 
-Shelf: हिन्दू धर्म › Āratī › Shirdi Sāī Bābā › Dhūpa Āratī (`library/hindu/aarti/shirdi-sai/dhoop-aarti/`, work id `shirdi-sai-dhoop-aarti`).
+Shelf: हिन्दू धर्म › Āratī › Shirdi Sāī Bābā › Dhūpa Āratī (`library/hinduism/aarti/shirdi-sai/dhoop-aarti/`, work id `shirdi-sai-dhoop-aarti`).
 
 - `text.txt`: the verse text, section by section, with each verse's type and language (`mr` Marathi, `sa` Sanskrit, `hi` Hindi). `reconciliation.md` records how it was settled from the two source printouts.
 - `meanings/en-shirdisaibabakripa.json`: the English meaning copied from the shirdisaibabakripa.org printout (dhoop.pdf), for 62 of the 63 verses (not the closing jayaghoṣa `prarthana.jay2`). It is the default English source (`order: 1`). How its paragraphs were mapped to our verses and every typo fixed are in `reconciliation.md`. A value is the meaning, or `[meaning, [footnotes]]`.

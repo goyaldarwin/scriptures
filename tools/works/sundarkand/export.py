@@ -1,4 +1,4 @@
-"""Sundarakāṇḍa (standalone work) → library/hindu/granth/tulsidas/sundarkand/.
+"""Sundarakāṇḍa (standalone work) → library/hinduism/granth/tulsidas/sundarkand/.
 
 Part 1, the Sundarakāṇḍa, is GENERATED from the Rāmacaritamānasa and never edited here: every item of the Mānas's
 Sundara-kāṇḍa part (same ids, sections `s` = dohā numbers, types, numbers, verse lines, transliteration and
@@ -21,8 +21,8 @@ sys.path.insert(0, os.path.join(HERE, '..', '..')); import jsonio
 sys.path.insert(0, HERE); import translit
 
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(REPO, 'library')
-MANAS = 'hindu/granth/tulsidas/ramcharitmanas'
-WP = 'hindu/granth/tulsidas/sundarkand'
+MANAS = 'hinduism/granth/tulsidas/ramcharitmanas'
+WP = 'hinduism/granth/tulsidas/sundarkand'
 LANG = 'awa'
 
 def load(rel): return json.load(open(os.path.join(OUT, rel), encoding='utf-8'))

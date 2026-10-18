@@ -12,7 +12,7 @@ This repository holds everything about the project: the website, the data, every
 | `goyaldarwin/scriptures` (this one) | public | the website, the library data made from the sources (text, meanings, word meanings, verse timings), every script and intermediate file, and the docs |
 | `goyaldarwin/scriptures-data` | **private, always** | the raw sources that aren't ours to publish: books, printouts, screenshots, recordings, each with a `<file>.meta.json` (see its README) |
 
-Both use the same address for a work, the shelf path the reader sees: `hindu/granth/tulsidas/ramcharitmanas` is `library/hindu/granth/tulsidas/ramcharitmanas/` here and `hindu/granth/tulsidas/ramcharitmanas/` there. Under a work, the private repo groups files as `<kind>/<source-id>/<file>` (`books/gitapress/hindi.pdf`, `audio/kamlesh-upadhyay/…`). The source id is the same one used here for the meaning or audio source made from it. Never copy anything from the private repo into this one except what the build produces from it.
+Both use the same address for a work, the shelf path the reader sees: `hinduism/granth/tulsidas/ramcharitmanas` is `library/hinduism/granth/tulsidas/ramcharitmanas/` here and `hinduism/granth/tulsidas/ramcharitmanas/` there. Under a work, the private repo groups files as `<kind>/<source-id>/<file>` (`books/gitapress/hindi.pdf`, `audio/kamlesh-upadhyay/…`). The source id is the same one used here for the meaning or audio source made from it. Never copy anything from the private repo into this one except what the build produces from it.
 
 ## Working rules for every session
 - **Never push to `main` directly.** `main` is the live website, so every push to it is published.

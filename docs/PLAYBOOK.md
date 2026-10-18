@@ -268,7 +268,7 @@ Then expect from me, in order:
 - **A work can declare its own verse types** (viniyoga, dhyāna, mantra, colophon) in `work.json` → `types` (name + short tag), instead of adding Mānas-only labels to the app.
 
 ### Preferences and lessons (Oct 17, 2026): the Shirdi Dhūpa Āratī
-- Each āratī is its own work (shelf: see the decisions below; the āratī is at `hindu/aarti/shirdi-sai/dhoop-aarti`).
+- Each āratī is its own work (shelf: see the decisions below; the āratī is at `hinduism/aarti/shirdi-sai/dhoop-aarti`).
 - Superseded by the owner's decision below: copy the meanings from the sources the owner gives; write our own (`<lang>-scriptures`) only where none is given.
 - When the owner gives two web printouts, use the one they prefer as the base and the other as a second witness. Correct the base only where it is clearly wrong (a missing space, a wrong word, a sense that doesn't fit, broken Sanskrit). Record every correction in the work's `reconciliation.md`.
 - Use the Devanagari abbreviation sign ॰ (U+0970) for marks like आ॰ / ध्रु॰. A zero (०) turns into "0" in English mode. Write verse numbers compactly (`।।१।।`) so they never wrap away from the line.
@@ -278,7 +278,7 @@ Then expect from me, in order:
 
 ### Decisions (Oct 17, 2026, late): growing the library
 - **Meanings: copy the meanings from the sources the owner gives; write our own only where none is given** (as a separate `<lang>-scriptures` source).
-- **The shelf is a REST-like hierarchy, tradition first**: `<tradition>/<genre>/<group…>/<work>`, e.g. `hindu/granth/tulsidas/ramcharitmanas`, `hindu/stotra/rama/ramraksha`, `hindu/aarti/shirdi-sai/dhoop-aarti`, later `hindu/veda/samaveda/upanishad/kena` and `sikh/gurbani/guru-nanak-dev/japji-sahib`. Think about the whole future library when adding a level; reuse levels. A work's id is permanent, while its place on the shelf can change.
+- **The shelf is a REST-like hierarchy, tradition first**: `<tradition>/<genre>/<group…>/<work>`, e.g. `hinduism/granth/tulsidas/ramcharitmanas`, `hinduism/stotra/rama/ramraksha`, `hinduism/aarti/shirdi-sai/dhoop-aarti`, later `hinduism/veda/samaveda/upanishad/kena` and `sikhism/gurbani/guru-nanak-dev/japji-sahib`. Think about the whole future library when adding a level; reuse levels. A work's id is permanent, while its place on the shelf can change.
 - **This is a long-term project**: prefer structure that scales (shared code first, one-entry-per-line shared files, checks in the build) over quick one-off fixes.
 - Verse icons sit in the four corners of the verse, in the gutter, so they never touch the text: type tag at top left, bookmark at top right, ▶ at bottom left, ⋮ at bottom right. The verse-type tag is a plain label.
 - A single-part work (āratī, stotra) lists its sections straight on its home screen. A work without reading plans shows no plan switch.

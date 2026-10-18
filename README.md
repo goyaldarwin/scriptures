@@ -18,13 +18,13 @@ app/                                 website code, styles, fonts                
 library/                             the scriptures, as data
   index.json                           the shelf: tradition / genre / group… / work (docs/LIBRARY.md §1)
   glossary/                            word meanings, one dictionary per language (sa, awa, …) + languages.json
-  hindu/granth/tulsidas/ramcharitmanas/
+  hinduism/granth/tulsidas/ramcharitmanas/
     work.json                          verses + numbers, kāṇḍas, topics, plans, pārāyaṇa vidhi
     meanings/hi-gitapress.json         a Hindi meaning source
     meanings/en-gitapress.json         an English meaning source
     audio/kamlesh-upadhyay.json        an audio source: YouTube video ids + verse timings     [generated]
-  hindu/stotra/rama/ramraksha/                  Śrī Rāma Rakṣā Stotram: work.json, meanings/, audio/
-  hindu/aarti/shirdi-sai/dhoop-aarti/   the Shirdi Sāī Bābā evening āratī (work.json, meanings/, audio/)
+  hinduism/stotra/rama/ramraksha/                  Śrī Rāma Rakṣā Stotram: work.json, meanings/, audio/
+  hinduism/aarti/shirdi-sai/dhoop-aarti/   the Shirdi Sāī Bābā evening āratī (work.json, meanings/, audio/)
 docs/
   START-HERE.md                      resume the project in a new session
   HOW-TO.md                          add a work, a meaning source or a reciter; fix text; change the app
