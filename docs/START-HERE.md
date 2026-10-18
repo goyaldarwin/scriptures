@@ -4,7 +4,7 @@ This repository holds everything about the project: the website, the data, every
 
 ## Prompt to paste in a new session
 
-> Clone github.com/goyaldarwin/scriptures and read `docs/START-HERE.md`, `docs/PLAYBOOK.md`, `docs/HOW-TO.md` and `docs/LIBRARY.md` before doing anything. Then: **[the task]**. Follow the playbook. Gita Press books are the source of truth. Test at phone size (390×844) with screenshots. Commit and push when done, and tell me in plain words what changed.
+> Clone github.com/goyaldarwin/scriptures and read `docs/START-HERE.md`, `docs/PLAYBOOK.md`, `docs/HOW-TO.md` and `docs/LIBRARY.md` before doing anything. Then: **[the task]**. Follow the playbook. Each work’s source of truth is the source I gave for it (see its README). Test at phone size (390×844) with screenshots. Commit and push when done, and tell me in plain words what changed.
 
 ## Two repositories, one hierarchy
 | Repository | Visibility | What it holds |
@@ -27,7 +27,10 @@ Both use the same address for a work, the shelf path the reader sees: `hinduism/
 
 ## Owner and standards
 - Owner: Darwin Goyal (GitHub `goyaldarwin`).
-- Accuracy first: the Gita Press books are the only source of truth. Fix discrepancies in the data directly, without notes or annotations. Do not mention AI anywhere in the app.
+- **Accuracy comes first, then unambiguity, clarity, consistency and structure.**
+  - Each work's source of truth is the source the owner gave for it: the Gita Press books for the Rāmacaritamānasa, a video's on-screen text, a web page, a PDF. That source is named in the work's README.
+  - Fix discrepancies in the data directly, and record each fix in the work's `reconciliation.md`, not in the app. Do not mention AI anywhere in the app.
+- **Getting a source's text:** the web-fetch tool returns summaries, not whole pages, and most websites are blocked from the shell. For a web page, ask the owner to print it to PDF and add it to `scriptures-data` under `printouts/<site>/`, or to allow the site for the session. Never write a text from memory.
 - `docs/PLAYBOOK.md` records every preference and lesson. Keep adding to it whenever the owner states a new preference or a lesson is learned.
 
 ## How the pieces fit
