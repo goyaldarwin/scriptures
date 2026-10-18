@@ -16,7 +16,7 @@ Every work has an address, read from the general to the specific like a REST pat
 |---|---|---|
 | tradition | the faith | `hinduism` (हिन्दू धर्म), later `sikhism` (सिख धर्म), `jain`, `bauddh` … |
 | genre | the kind of text, as a reader looks for it | Hindu: `granth` (epics, scriptures), `stotra`, `aarti`, `chalisa`, `bhajan`, `veda`, `purana` … · Sikh: `gurbani` … |
-| group(s) | whatever groups works naturally inside that genre (one or more levels) | `granth`: the author (`tulsidas`, `valmiki`, `vyasa`) · `stotra`, `aarti`, `chalisa`: the deity or saint (`rama`, `hanuman`, `shiva`, `shirdi-sai`) · `veda`: the Veda, then its division (`samaveda/upanishad`) · `gurbani`: the Guru (`guru-nanak-dev`) |
+| group(s) | whatever groups works naturally inside that genre (one or more levels) | `granth`: the author (`tulsidas`, `valmiki`, `vyasa`) · `stotra`, `aarti`, `chalisa`: the deity or saint (`rama`, `hanuman`, `shiva`, `shirdi-sai`) · `veda`: the Veda, its śākhā where there are two (`yajurveda/krishna-yajurveda`, `yajurveda/shukla-yajurveda`), then the division `samhita` / `brahmana` / `aranyaka` / `upanishad` · `gurbani`: the Guru (`guru-nanak-dev`) |
 | work | the text you open | `ramcharitmanas`, `ramraksha`, `dhoop-aarti`, `kena`, `japji-sahib` |
 
 Examples:
@@ -25,6 +25,8 @@ Examples:
 hinduism/granth/tulsidas/ramcharitmanas
 hinduism/stotra/rama/ramraksha
 hinduism/aarti/shirdi-sai/dhoop-aarti
+hinduism/veda/yajurveda/krishna-yajurveda/samhita/shri-rudram
+hinduism/veda/yajurveda/shukla-yajurveda/upanishad/isha-upanishad
 hinduism/veda/samaveda/upanishad/kena          (planned)
 sikhism/gurbani/guru-nanak-dev/japji-sahib     (planned)
 ```
