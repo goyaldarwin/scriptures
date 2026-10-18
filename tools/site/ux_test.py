@@ -89,6 +89,18 @@ async def main():
             has_au = await ev("firstAu(0, IT.length - 1) != null")
             pa = await ev("!document.querySelector('#hPlayAll').hidden")
             check(f'{tag}: “play the complete work” only when there is audio', pa == has_au, f'audio={has_au}')
+            # each plan shows the pages it names before its first day and after its last (pūrvāṅga / uttarāṅga)
+            for pid in await ev("PLANS.map(p => p.id)"):
+                await ev(f"WS().org = {json.dumps(pid)}; renderHome()"); await pg.wait_for_timeout(200)
+                got = await ev("[...document.querySelectorAll('#orgList [data-page]')].map(b => b.dataset.page)")
+                want_pg = await ev(f"(PLAN[{json.dumps(pid)}].before || []).concat(PLAN[{json.dumps(pid)}].after || [])")
+                first = await ev("(document.querySelector('#orgList .it') || {}).dataset ? document.querySelector('#orgList .it').dataset.page || 'day' : ''")
+                check(f'{tag}: plan {pid} lists its before/after pages in place', got == want_pg and (first == (want_pg[0] if (await ev(f"(PLAN[{json.dumps(pid)}].before || []).length")) else 'day')), f'{got} first={first}')
+            if await ev("PLANS.length"): await ev("WS().org = 'k'; renderHome()"); await pg.wait_for_timeout(200)
+            # continue and play sit on one line
+            await ev("WS().last = {org: 'k', i: 0}; renderHome()"); await pg.wait_for_timeout(200)
+            tops = await ev("[...document.querySelectorAll('.heroacts .btn:not([hidden])')].map(b => Math.round(b.getBoundingClientRect().top))")
+            check(f'{tag}: continue and play share one line', len(set(tops)) <= 1, tops)
 
             # ---- reader ----
             await (await pg.query_selector('#orgList [data-open]')).click(); await pg.wait_for_timeout(1500); await shot(f'{tag}-reader')

@@ -1,2 +1,12 @@
-{"id": "pramod-medhi", "work": "hinduism/aarti/shirdi-sai/dhoop-aarti", "type": "youtube", "lang": "mr",
- "title": {"hi": "प्रमोद मेधी", "en": "Pramod Medhi"}}
+{
+ "id": "pramod-medhi",
+ "work": "hinduism/aarti/shirdi-sai/dhoop-aarti",
+ "type": "youtube",
+ "lang": "mr",
+ "title": {
+  "hi": "प्रमोद मेधी",
+  "en": "Pramod Medhi"
+ },
+ "draft": "re-transcribing in 20-second windows (the first transcript skipped long passages; only 4 of 63 verses matched)",
+ "window": 20
+}

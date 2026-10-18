@@ -126,6 +126,13 @@ html,body{overflow-x:clip}
 .layer{margin-top:6px;font-size:var(--mean-size);line-height:1.6;font-weight:400}
 .layer.h{}
 .layer.e{font-family:var(--lat);font-size:calc(var(--mean-size) - .5px)}
+/* meanings sit under the centred verse: centred too, using the full width, with evenly balanced lines; a small ॰ separates
+   verse and meaning; when Hindi and English are both shown, English is a quieter grey */
+.verse > .layer.h,.verse > .layer.e{text-align:center;text-wrap:pretty}
+.verse > :not(.layer) + .layer:not(.wl)::before{content:"॰";display:block;text-align:center;color:var(--saffron);font-size:18px;line-height:1;margin:2px 0 6px;font-family:var(--dev)}
+.verse > .layer.h ~ .layer.e{color:var(--muted)}
+/* …but where a verse carries grey commentary (footnotes), the English meaning stays in full ink so it is not mistaken for the commentary */
+.verse:has(.fn) > .layer.h ~ .layer.e{color:inherit}
 .layer .lbl{display:block;font-size:12px;color:var(--muted);font-family:var(--dev);margin-bottom:2px}
 .layer .fn{font-size:13.5px;color:var(--muted);margin-top:6px}
 .wb{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:15px}
@@ -150,13 +157,17 @@ html,body{overflow-x:clip}
 .player .pinfo small{display:block;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pbar{height:3px;background:var(--rule)}.pbar span{display:block;height:3px;width:0;background:var(--saffron)}
 body.playing #rBody{padding-bottom:150px}
-.verse.now{background:color-mix(in srgb,var(--saffron) 8%,transparent);border-radius:12px;box-shadow:0 0 0 8px color-mix(in srgb,var(--saffron) 8%,transparent)}
+/* the verse being recited: a tint that covers exactly the verse's own box (its padding gives the text room), widened sideways
+   only, so its top edge never crosses the previous verse's rule; that rule is hidden while the next verse is lit */
+.verse.now{border-bottom-color:transparent;background:color-mix(in srgb,var(--saffron) 8%,transparent);border-radius:12px;margin-left:-10px;margin-right:-10px;padding-left:10px;padding-right:10px}
+.verse:has(+ .verse.now){border-bottom-color:transparent}
 .vb.vplay{position:absolute;left:-27px;bottom:0;height:calc(var(--verse-size) * 1.6);color:var(--saffron);opacity:1}
 .vb.vplay svg{fill:var(--saffron);stroke:none}
 .vbm{position:absolute;right:-25px;top:0;height:calc(var(--verse-size) * 1.6)}
 .vtext p.one{padding:calc(var(--verse-size) * .8) 0}
 .rowp{position:relative}
-.heroacts{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:14px}.heroacts:empty{display:none}.btn.cont{font-size:14.5px}.playall svg{width:16px;height:16px;fill:currentColor;stroke:none}
+.heroacts{display:flex;flex-wrap:nowrap;justify-content:center;gap:8px;margin-top:14px}.heroacts .btn{white-space:nowrap;min-width:0;padding-left:16px;padding-right:16px}
+.no.pg{background:transparent;border:1px solid var(--rule)}.no.pg svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8}.heroacts:empty{display:none}.btn.cont{font-size:14.5px}.playall svg{width:16px;height:16px;fill:currentColor;stroke:none}
 .list .lhead{font-size:13px;font-weight:700;color:var(--saffron);letter-spacing:.02em;padding:18px 2px 4px;border:0}
 .ytno{width:200px;height:200px;display:flex;flex-direction:column;justify-content:center;gap:10px;padding:10px;box-sizing:border-box;font-size:13px;text-align:center;background:var(--card,#fff);border:1px solid var(--line,#ddd);border-radius:12px}.ytno .btn{display:block;padding:9px 8px;border-radius:10px;background:var(--accent,#2b3990);color:#fff;text-decoration:none;font-size:13px}
 .rowp .lplay ~ .it .grow{padding-right:46px}
@@ -307,7 +318,7 @@ body.playing #rBody{padding-bottom:240px}
 <section id="home" class="view">
  <div class="wrap">
   <div class="toprow"><button class="libbtn" id="hLib"><svg><use href="#i-back"/></svg><span data-en="Library">पुस्तकालय</span></button><span class="grow"></span><button class="ib" data-go="search" aria-label="खोजें"><svg><use href="#i-search"/></svg></button><button class="ib" id="hMenu" aria-label="मेनू"><svg><use href="#i-menu"/></svg></button></div>
-  <div class="hero"><h1 id="hTitle"></h1><p id="hSub"></p><div class="heroacts"><span id="contCard"></span><button class="btn playall" id="hPlayAll" hidden><svg><use href="#i-play"/></svg><span data-en="Play the complete work">सम्पूर्ण पाठ सुनें</span></button></div></div>
+  <div class="hero"><h1 id="hTitle"></h1><p id="hSub"></p><div class="heroacts"><span id="contCard"></span><button class="btn playall" id="hPlayAll" hidden><svg><use href="#i-play"/></svg><span data-en="Play all">सम्पूर्ण पाठ सुनें</span></button></div></div>
   <div class="seg" id="orgSeg"></div>
   <ul class="list" id="orgList"></ul>
   <div style="height:40px"></div>
@@ -373,7 +384,7 @@ body.playing #rBody{padding-bottom:240px}
 <section id="vidhi" class="view vidhi">
  <div class="bar"><div class="wrap"><button class="ib" data-back aria-label="वापस"><svg><use href="#i-back"/></svg></button><div class="bt"><div class="t" data-en="Pārāyaṇa vidhi &amp; Āratī">पारायण-विधि और आरती</div></div><div class="lyr" id="vidLang"><button data-l="h">हिं</button><button data-l="e" class="lat">En</button></div></div></div>
  <div class="wrap">
-  <div class="seg" id="vidSeg"><button data-v="v" class="on" data-en="Pārāyaṇa vidhi">पारायण-विधि</button><button data-v="aarti" data-en="Āratī">आरती</button></div>
+  <div class="seg" id="vidSeg"><button data-v="v" class="on" data-en="Pārāyaṇa vidhi">पारायण-विधि</button><button data-v="aarti" data-en="Āratī">आरती</button><button data-v="visarjan" data-en="Visarjana" hidden>विसर्जन</button></div>
   <div id="vidBody" style="padding-bottom:40px"></div>
  </div>
 </section>
