@@ -6,3 +6,4 @@ tools/ramcharitmanas/audio/model/
 *.m4a
 *.webm
 *.pdf
+*.lock
