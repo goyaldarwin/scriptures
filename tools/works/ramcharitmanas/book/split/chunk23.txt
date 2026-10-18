@@ -1,0 +1,1031 @@
+### GROUP 2110  (6 items)
+ITEM 0 [lanka.103.cau1]
+  TR: sāyaka eka nābhi sara soṣā, apara lage bhuja sira kari roṣā. / lai sira bāhu cale nārācā, sira bhuja hīna ruṁḍa mahi nācā ॥1॥
+  HI: एक बाणने नाभिके अमृतकुण्डको सोख लिया। दूसरे तीस बाण कोप करके उसके सिरों और भुजाओंमें लगे। बाण सिरों और भुजाओंको लेकर चले। सिरों और भुजाओंसे रहित रुण्ड (धड़) पृथ्वीपर नाचने लगा ।।१।।
+ITEM 1 [lanka.103.cau2]
+  TR: dharani dhasai dhara dhāva pracaṁḍā, taba sara hati prabhu kr̥ta dui khaṁḍā. / garjeu marata ghora rava bhārī, kahā̐ rāmu rana hatau̐ pacārī ॥2॥
+  HI: धड़ प्रचण्ड वेगसे दौड़ता है, जिससे धरती धँसने लगी। तब प्रभुने बाण मारकर उसके दो टुकड़े कर दिये। मरते समय रावण बड़े घोर शब्दसे गरजकर बोला—राम कहाँ हैं? मैं ललकारकर उनको युद्धमें मारूँ! ।।२।।
+ITEM 2 [lanka.103.cau3]
+  TR: ḍolī bhūmi girata dasakaṁdhara, chubhita siṁdhu sari diggaja bhūdhara. / dharani pareu dvau khaṁḍa baṛhāī, cāpi bhālu markaṭa samudāī ॥3॥
+  HI: रावणके गिरते ही पृथ्वी हिल गयी। समुद्र, नदियाँ, दिशाओंके हाथी और पर्वत क्षुब्ध हो उठे। रावण धड़के दोनों टुकड़ोंको फैलाकर भालू और वानरोंके समुदायको दबाता हुआ पृथ्वीपर गिर पड़ा ।।३।।
+ITEM 3 [lanka.103.cau4]
+  TR: maṁdodari āge̐ bhuja sīsā, dhari sara cale jahā̐ jagadīsā. / prabise saba niṣaṁga mahu jāī, dekhi suranha duṁdubhī̐ bajāī ॥4॥
+  HI: रावणकी भुजाओं और सिरोंको मन्दोदरीके सामने रखकर राम-बाण वहाँ चले, जहाँ जगदीश्वर श्रीरामजी थे। सब बाण जाकर तरकसमें प्रवेश कर गये। यह देखकर देवताओंने नगाड़े बजाये ।।४।।
+ITEM 4 [lanka.103.cau5]
+  TR: tāsu teja samāna prabhu ānana, haraṣe dekhi saṁbhu caturānana. / jaya jaya dhuni pūrī brahmaṁḍā, jaya raghubīra prabala bhujadaṁḍā ॥5॥
+  HI: रावणका तेज प्रभुके मुखमें समा गया। यह देखकर शिवजी और ब्रह्माजी हर्षित हुए। ब्रह्माण्डभरमें जय-जयकी ध्वनि भर गयी। प्रबल भुजदण्डोंवाले श्रीरघुवीरकी जय हो ।।५।।
+ITEM 5 [lanka.103.cau6]
+  TR: baraṣahiṁ sumana deva muni br̥ṁdā, jaya kr̥pāla jaya jayati mukuṁdā ॥6॥
+  HI: देवता और मुनियोंके समूह फूल बरसाते हैं और कहते हैं—कृपालुकी जय हो, मुकुन्दकी जय हो, जय हो! ।।६।।
+SEG 0: One arrow sucked up the depths of the navel, while the rest struck his ten heads and twenty arms with impetuosity.
+SEG 1: The arrows carried off with them all his heads and arms, while the headless and armless trunk danced on the battle-field.
+SEG 2: The earth sunk under the weight of the trunk as it rushed violently on, till the Lord struck it with His arrow and split it in two.
+SEG 3: While dying he shouted with a loud and terrible roar:
+SEG 4: “Where is Rāma, that I may challenge and slay him in battle?” The earth reeled as the ten- headed monster fell;
+SEG 5: the ocean, the rivers, the elephants guarding the quarters, and the mountains were shaken.
+SEG 6: Expanding the two halves he dropped to the ground, crushing under their weight a host of bears and monkeys.
+SEG 7: After depositing the arms and heads before Mandodarī, the darts returned to the Lord of the universe and all found their way back into the quiver.
+SEG 8: Seeing this, the gods sounded their kettle-drums.
+SEG 9: His soul entered the Lord’s mouth in the form of effulgence.
+SEG 10: Lord Śambhu and the four-faced Brahmā (the Creator) rejoiced to see the spectacle.
+SEG 11: The whole universe resounded with cries of “Victory !
+SEG 12: Victory !!
+SEG 13: Glory to the Hero of Raghu’s line, mighty of arm !!!” Gods and sages rained down flowers, shouting “Glory, glory to the All-merciful !
+SEG 14: Glory to Mukunda (the Bestower of liberation) !!”
+
+### GROUP 2111  (2 items)
+ITEM 0 [lanka.103.cha1]
+  TR: jaya kr̥pā kaṁda mukuṁda dvaṁda harana sarana sukhaprada prabho, / khala dala bidārana parama kārana kārunīka sadā bibho. / sura sumana baraṣahiṁ haraṣa saṁkula bāja duṁdubhi gahagahī, / saṁgrāma aṁgana rāma aṁga anaṁga bahu sobhā lahī ॥1॥
+  HI: हे कृपाके कन्द! हे मोक्षदाता मुकुन्द! हे [राग-द्वेष, हर्ष-शोक, जन्म-मृत्यु आदि] द्वन्द्वोंके हरनेवाले! हे शरणागतको सुख देनेवाले प्रभो! हे दुष्ट-दलको विदीर्ण करनेवाले! हे कारणोंके भी परम कारण! हे सदा करुणा करनेवाले! हे सर्वव्यापक विभो! आपकी जय हो। देवता हर्षमें भरे हुए पुष्प बरसाते हैं, घमाघम नगाड़े बज रहे हैं। रणभूमिमें श्रीरामचन्द्रजीके अङ्गोंने बहुत-से कामदेवोंकी शोभा प्राप्त की ।।१।।
+ITEM 1 [lanka.103.cha2]
+  TR: sira jaṭā mukuṭa prasūna bica bica ati manohara rājahī̐, / janu nīlagiri para taṛita paṭala sameta uḍugana bhrājahī̐ / bhujadaṁḍa sara kodaṁḍa pherata rudhira kana tana ati bane, / janu rāyamunī̐ tamāla para baiṭhī̐ bipula sukha āpane ॥2॥
+  HI: सिरपर जटाओंका मुकुट है, जिसके बीच-बीचमें अत्यन्त मनोहर पुष्प शोभा दे रहे हैं। मानो नीले पर्वतपर बिजलीके समूहसहित नक्षत्र सुशोभित हो रहे हैं। श्रीरामजी अपने भुजदण्डोंसे बाण और धनुष फिरा रहे हैं। शरीरपर रुधिरके कण अत्यन्त सुन्दर लगते हैं। मानो तमालके वृक्षपर बहुत-सी ललमुनियाँ चिड़ियाँ अपने महान् सुखमें मग्न हुई निश्चल बैठी हों ।।२।।
+SEG 0: “Glory to You, O Mukunda (the Bestower of liberation), the fountain of mercy, the dispeller of all fear of pairs of opposites, the delight of those who take refuge in You, the torment of the ranks of the wicked, the Prime Cause, the ever compassionate and omnipresent Ruler of all.” Full of joy, the gods rained down flowers;
+SEG 1: their kettle-drums sounded with a crash.
+SEG 2: On the battle-field Śrī Rāma’s limbs displayed the beauty of a number of Cupids.
+SEG 3: The crown of matted hair on His head, interspersed with most beautiful flowers, gleamed like flashes of lightning on the star-lit peak of a dark mountain.
+SEG 4: As He stood turning His bow and arrow between His arms, specks of blood adorned His person, like a swarm of Raimuni* birds perched on a Tamāla tree absorbed in their delight.
+
+### GROUP 2113  (7 items)
+ITEM 0 [lanka.104.cau1]
+  TR: pati sira dekhata maṁdodarī, muruchita bikala dharani khasi parī. / jubati br̥ṁda rovata uṭhi dhāī̐, tehi uṭhāi rāvana pahiṁ āī̐ ॥1॥
+  HI: पतिके सिर देखते ही मन्दोदरी व्याकुल और मूर्च्छित होकर धरतीपर गिर पड़ी। स्त्रियाँ रोती हुई उठ दौड़ीं और उस (मन्दोदरी) को उठाकर रावणके पास आयीं ।।१।।
+ITEM 1 [lanka.104.cau2]
+  TR: pati gati dekhi te karahiṁ pukārā, chūṭe kaca nahiṁ bapuṣa sa̐bhārā. / ura tāṛanā karahiṁ bidhi nānā, rovata karahiṁ pratāpa bakhānā ॥2॥
+  HI: पतिकी दशा देखकर वे पुकार–पुकारकर रोने लगीं। उनके बाल खुल गये, देहकी सँभाल नहीं रही। वे अनेकों प्रकारसे छाती पीटती हैं और रोती हुई रावणके प्रतापका बखान करती हैं ।।२।।
+ITEM 2 [lanka.104.cau3]
+  TR: tava bala nātha ḍola nita dharanī, teja hīna pāvaka sasi taranī. / seṣa kamaṭha sahi sakahiṁ na bhārā, so tanu bhūmi pareu bhari chārā ॥3॥
+  HI: [वे कहती हैं—] हे नाथ! तुम्हारे बलसे पृथ्वी सदा काँपती रहती थी। अग्नि, चन्द्रमा और सूर्य तुम्हारे सामने तेजहीन थे। शेष और कच्छप भी जिसका भार नहीं सह सकते थे, वही तुम्हारा शरीर आज धूलमें भरा हुआ पृथ्वीपर पड़ा है! ।।३।।
+ITEM 3 [lanka.104.cau4]
+  TR: baruna kubera suresa samīrā, rana sanmukha dhari kāhu̐ na dhīrā. / bhujabala jitehu kāla jama sāī̐, āju parehu anātha kī nāī̐ 4.
+  HI: वरुण, कुबेर, इन्द्र और वायु, इनमेंसे किसीने भी रणमें तुम्हारे सामने धैर्य धारण नहीं किया। हे स्वामी! तुमने अपने भुजबलसे काल और यमराजको भी जीत लिया था। वही तुम आज अनाथकी तरह पड़े हो ।।४।।
+ITEM 4 [lanka.104.cau5]
+  TR: jagata bidita tumhāri prabhutāī, suta parijana bala barani na jāī. / rāma bimukha asa hāla tumhārā, rahā na kou kula rovanihārā ॥5॥
+  HI: तुम्हारी प्रभुता जगत्‌भरमें प्रसिद्ध है। तुम्हारे पुत्रों और कुटुम्बियोंके बलका हाय! वर्णन ही नहीं हो सकता। श्रीरामचन्द्रजीके विमुख होनेसे ही तुम्हारी ऐसी दुर्दशा हुई कि आज कुलमें कोई रोनेवाला भी न रह गया ।।५।।
+ITEM 5 [lanka.104.cau6]
+  TR: tava basa bidhi prapaṁca saba nāthā, sabhaya disipa nita nāvahiṁ māthā. / aba tava sira bhuja jaṁbuka khāhī̐, rāma bimukha yaha anucita nāhī̐ 6.
+  HI: हे नाथ! विधाताकी सारी सृष्टि तुम्हारे वशमें थी। लोकपाल सदा भयभीत होकर तुमको मस्तक नवाते थे। किन्तु हाय! अब तुम्हारे सिर और भुजाओंको गीदड़ खा रहे हैं। रामविमुखके लिये ऐसा होना अनुचित भी नहीं है (अर्थात् उचित ही है) ।।६।।
+ITEM 6 [lanka.104.cau7]
+  TR: kāla bibasa pati kahā na mānā, aga jaga nāthu manuja kari jānā ॥7॥
+  HI: हे पति! कालके पूर्ण वशमें होनेसे तुमने [किसीका] कहना नहीं माना और चराचरके नाथ परमात्माको मनुष्य करके जाना ।।७।।
+SEG 0: The moment Mandodarī (Rāvaṇa’s principal spouse) saw her lord’s heads she fainted in her grief and dropped to the ground.
+SEG 1: His other wives too sprang up and rushed to the spot weeping;
+SEG 2: lifting up and supporting Mandodarī they all arrived where Rāvaṇa’s remains lay.
+SEG 3: Seeing their lord’s condition they set up a shriek;
+SEG 4: their hair flew loose and they became oblivious of their body.
+SEG 5: Wildly beating their bosom and weeping, they recounted his glory.
+SEG 6: “At your might, my Lord, the earth ever shook;
+SEG 7: fire, the moon and the sun stood obscure before your splendour.
+SEG 8: Even Śeṣa (the serpent-god) and the divine Tortoise could not bear the weight of your body, which is now lying on the ground soiled with dust.
+SEG 9: Varuṇa (the god presiding over the waters), Kubera (the god of riches), Indra (the lord of the celestials) and the wind-god—none of these ever had the courage to confront you in battle.
+SEG 10: By the might of your arm, my lord, you conquered Death as well as Yama (the god who punishes evil-doers in the other world);
+SEG 11: yet you lie today like a forlorn creature.
+SEG 12: Your greatness is known all the world over;
+SEG 13: even your sons and kinsmen possessed untold strength.
+SEG 14: Hostility with Rāma has, however, reduced you to such a plight :
+SEG 15: not one of your stock is left to lament over your death.
+SEG 16: The whole of God’s creation, my lord, was under your control;
+SEG 17: the frightened regents of the eight quarters ever bowed their heads to you.
+SEG 18: But now jackals feast on your heads and arms, a fate in no way undeserved by an enemy of Śrī Rāma.
+SEG 19: Doomed to death, my lord, you heeded not my words, and took the Ruler of all animate and inanimate beings for an ordinary mortal.
+
+### GROUP 2116  (4 items)
+ITEM 0 [lanka.105.cau1]
+  TR: maṁdodarī bacana suni kānā, sura muni siddha sabanhi sukha mānā. / aja mahesa nārada sanakādī, je munibara paramārathabādī ॥1॥
+  HI: मन्दोदरीके वचन कानोंसे सुनकर देवता, मुनि और सिद्ध सभीने सुख माना। ब्रह्मा, महादेव, नारद और सनकादि तथा और भी जो परमार्थवादी (परमात्माके तत्त्वको जानने और कहनेवाले) श्रेष्ठ मुनि थे ।।१।।
+ITEM 1 [lanka.105.cau2]
+  TR: bhari locana raghupatihi nihārī, prema magana saba bhae sukhārī. / rudana karata dekhī̐ saba nārī, gayau bibhīṣanu mana dukha bhārī ॥2॥
+  HI: वे सभी श्रीरघुनाथजीको नेत्र भरकर निरखकर प्रेममग्न हो गये और अत्यन्त सुखी हुए। अपने घरकी सब स्त्रियोंको रोती हुई देखकर विभीषणजीके मनमें बड़ा भारी दुःख हुआ और वे उनके पास गये ।।२।।
+ITEM 2 [lanka.105.cau3]
+  TR: baṁdhu dasā biloki dukha kīnhā, taba prabhu anujahi āyasu dīnhā. / lachimana tehi bahu bidhi samujhāyo, bahuri bibhīṣana prabhu pahiṁ āyo ॥3॥
+  HI: उन्होंने भाईकी दशा देखकर दुःख किया। तब प्रभु श्रीरामजीने छोटे भाईको आज्ञा दी [कि जाकर विभीषणको धैर्य बँधाओ]। लक्ष्मणजीने उन्हें बहुत प्रकारसे समझाया तब विभीषण प्रभुके पास लौट आये ।।३।।
+ITEM 3 [lanka.105.cau4]
+  TR: kr̥pādr̥ṣṭi prabhu tāhi bilokā, karahu kriyā parihari saba sokā. / kīnhi kriyā prabhu āyasu mānī, bidhivata desa kāla jiya̐ jānī ॥4॥
+  HI: प्रभुने उनको कृपापूर्ण दृष्टिसे देखा [और कहा—] सब शोक त्यागकर रावणकी अन्त्येष्टि क्रिया करो। प्रभुकी आज्ञा मानकर और हृदयमें देश और कालका विचार करके विभीषणजीने विधिपूर्वक सब क्रिया की ।।४।।
+SEG 0: The gods, sages and Siddhas, all rejoiced to hear Mandodarī’s words.
+SEG 1: Brahmā, the great Lord Śiva, Nārada, Sanaka and his three brothers (Sanandana, Sanātana and Sanatkumāra) and all other great sages who taught the highest truth (the identity of the individual soul with the supreme Spirit) were all overwhelmed with emotion as they feasted their eyes on the Lord of the Raghus, and felt supremely gratified.
+SEG 2: Seeing all the women making lamentation Vibhīṣaṇa approached them with a very heavy heart and was grieved to see his Brother’s condition.
+SEG 3: The Lord thereupon gave an order to His younger brother, Lakṣmaṇa, who consoled him in many ways.
+SEG 4: Then Vibhīṣaṇa returned to his lord, who looked upon him with an eye of compassion and said, “Abandon all sorrow and perform the funeral rites.” In obedience to the Lord’s command he celebrated the obsequies, strictly observing the scriptural ordinance and with due regard to time and place.
+
+### GROUP 2118  (3 items)
+ITEM 0 [lanka.106.cau1-2]
+  TR: āi bibhīṣana puni siru nāyo, kr̥pāsiṁdhu taba anuja bolāyo. / tumha kapīsa aṁgada nala nīlā, jāmavaṁta māruti nayasīlā ॥1॥ / saba mili jāhu bibhīṣana sāthā, sārehu tilaka kaheu raghunāthā. / pitā bacana maiṁ nagara na āvau̐, āpu sarisa kapi anuja paṭhāvau̐ ॥2॥
+  HI: सब क्रिया-कर्म करनेके बाद विभीषणने आकर पुनः सिर नवाया। तब कृपाके समुद्र श्रीरामजीने छोटे भाई लक्ष्मणजीको बुलाया। श्रीरघुनाथजीने कहा कि तुम, वानरराज सुग्रीव, अंगद, नल, नील, जाम्बवान् और मारुति सब नीतिनिपुण लोग मिलकर विभीषणके साथ जाओ और उन्हें राजतिलक कर दो। पिताजीके वचनोंके कारण मैं नगरमें नहीं आ सकता। पर अपने ही समान वानर और छोटे भाईको भेजता हूँ ।।१-२।।
+ITEM 1 [lanka.106.cau3]
+  TR: turata cale kapi suni prabhu bacanā, kīnhī jāi tilaka kī racanā. / sādara siṁhāsana baiṭhārī, tilaka sāri astuti anusārī ॥3॥
+  HI: प्रभुके वचन सुनकर वानर तुरंत चले और उन्होंने जाकर राजतिलककी सारी व्यवस्था की। आदरके साथ विभीषणको सिंहासनपर बैठाकर राजतिलक किया और स्तुति की ।।३।।
+ITEM 2 [lanka.106.cau4]
+  TR: jori pāni sabahī̐ sira nāe, sahita bibhīṣana prabhu pahiṁ āe. / taba raghubīra boli kapi līnhe, kahi priya bacana sukhī saba kīnhe ॥4॥
+  HI: सभीने हाथ जोड़कर उनको सिर नवाये। तदनन्तर विभीषणजीसहित सब प्रभुके पास आये। तब श्रीरघुवीरने वानरोंको बुला लिया और प्रिय वचन कहकर सबको सुखी किया ।।४।।
+SEG 0: (After finishing the obsequies) Vibhīṣaṇa came and bowed his head once more.
+SEG 1: The All-merciful then called His younger brother.
+SEG 2: “Do you and Sugrīva (the lord of the monkeys) as well as Aṅgada, Nala and Nīla with Jāmbavān and Hanumān (the son of the wind-god), sagacious as you are, all of you accompany Vibhīṣaṇa and make arrangements for his coronation,” said the Lord of the Raghus.
+SEG 3: “In deference to my father’s command I may not enter a town, but send the monkeys and my younger brother, who are as good as myself.” On hearing the Lord’s command the monkeys proceeded at once and arriving in the town made preparations for the installation.
+SEG 4: With due reverence they seated him on the throne and applying a sacred mark on his forehead as a token of sovereignty) they glorified him.
+SEG 5: Nay, joining their palms, they all bowed their head to him;
+SEG 6: and then with Vibhīṣaṇa they returned to the Lord.
+SEG 7: The Hero of Raghu’s line next called the monkeys together and gratified them all by addressing kind words to them.
+
+### GROUP 2121  (4 items)
+ITEM 0 [lanka.107.cau1]
+  TR: puni prabhu boli liyau hanumānā, laṁkā jāhu kaheu bhagavānā. / samācāra jānakihi sunāvahu, tāsu kusala lai tumha cali āvahu ॥1॥
+  HI: फिर प्रभुने हनुमान्‌जीको बुला लिया। भगवान्‌ने कहा—तुम लङ्का जाओ। जानकीको सब समाचार सुनाओ और उसका कुशल–समाचार लेकर तुम चले आओ ।।१।।
+ITEM 1 [lanka.107.cau2]
+  TR: taba hanumaṁta nagara mahu̐ āe, suni nisicarī nisācara dhāe. / bahu prakāra tinha pūjā kīnhī, janakasutā dekhāi puni dīnhī ॥2॥
+  HI: तब हनुमान्‌जी नगरमें आये। यह सुनकर राक्षस-राक्षसी [उनके सत्कारके लिये] दौड़े। उन्होंने बहुत प्रकारसे हनुमान्‌जीकी पूजा की और फिर श्रीजानकीजीको दिखला दिया ।।२।।
+ITEM 2 [lanka.107.cau3]
+  TR: dūrihi te pranāma kapi kīnhā, raghupati dūta jānakī̐ cīnhā. / kahahu tāta prabhu kr̥pāniketā, kusala anuja kapi sena sametā ॥3॥
+  HI: हनुमान्‌जीने [सीताजीको] दूरसे ही प्रणाम किया। जानकीजीने पहचान लिया कि यह वही श्रीरघुनाथजीका दूत है [और पूछा—] हे तात! कहो, कृपाके धाम मेरे प्रभु छोटे भाई और वानरोंकी सेनासहित कुशलसे तो हैं? ।।३।।
+ITEM 3 [lanka.107.cau4]
+  TR: saba bidhi kusala kosalādhīsā, mātu samara jītyo dasasīsā. / abicala rāju bibhīṣana pāyo, suni kapi bacana haraṣa ura chāyo ॥4॥
+  HI: [हनुमान्‌जीने कहा—] हे माता! कोसलपति श्रीरामजी सब प्रकारसे सकुशल हैं। उन्होंने संग्राममें दस सिरवाले रावणको जीत लिया है और विभीषणने अचल राज्य प्राप्त किया है। हनुमान्‌जीके वचन सुनकर सीताजीके हृदयमें हर्ष छा गया ।।४।।
+SEG 0: The Lord then called Hanumān.
+SEG 1: “Go to Laṅkā”, said the Almighty, “and telling Janaka’s Daughter all that has happened return with the news of her welfare.” Thereupon Hanumān entered the city and on hearing of his arrival demons and demonesses ran to meet him.
+SEG 2: They did him all kinds of homage and thereafter conducted him into the presence of Janaka’s Daughter.
+SEG 3: Hanumān made obeisance to Her from a respectable distance, and Janaka’s Daughter recognized him as Śrī Rāma’s own messenger.
+SEG 4: “Tell me, dear son, if my gracious lord is doing well with His younger brother and the monkey host.” “All is well with the Lord of Kosala.
+SEG 5: Mother, the ten-headed monster has been conquered in battle, while Vibhīṣaṇa has attained everlasting dominion (that will endure till the end of this Kalpa).” Her heart was filled with joy when She heard the monkey’s words.
+
+### GROUP 2124  (7 items)
+ITEM 0 [lanka.108.cau1]
+  TR: aba soi jatana karahu tumha tātā, dekhau̐ nayana syāma mr̥du gātā. / taba hanumāna rāma pahiṁ jāī, janakasutā kai kusala sunāī ॥1॥
+  HI: हे तात! अब तुम वही उपाय करो जिससे मैं इन नेत्रोंसे प्रभुके कोमल श्याम शरीरके दर्शन करूँ। तब श्रीरामचन्द्रजीके पास जाकर हनुमान्‌जीने जानकीजीका कुशल-समाचार सुनाया ।।१।।
+ITEM 1 [lanka.108.cau2]
+  TR: suni saṁdesu bhānukulabhūṣana, boli lie jubarāja bibhīṣana. / mārutasuta ke saṁga sidhāvahu, sādara janakasutahi lai āvahu ॥2॥
+  HI: सूर्यकुलभूषण श्रीरामजीने सन्देश सुनकर युवराज अंगद और विभीषणको बुला लिया [और कहा—] पवनपुत्र हनुमान्‌के साथ जाओ और जानकीको आदरके साथ ले आओ ।।२।।
+ITEM 2 [lanka.108.cau3]
+  TR: turatahiṁ sakala gae jaha̐ sītā, sevahiṁ saba nisicarī̐ binītā. / begi bibhīṣana tinhahi sikhāyo, tinha bahu bidhi majjana karavāyo ॥3॥
+  HI: वे सब तुरंत ही वहाँ गये जहाँ सीताजी थीं। सब-की-सब राक्षसियाँ नम्रतापूर्वक उनकी सेवा कर रही थीं। विभीषणजीने शीघ्र ही उन लोगोंको समझा दिया। उन्होंने बहुत प्रकारसे सीताजीको स्नान कराया, ।।३।।
+ITEM 3 [lanka.108.cau4]
+  TR: bahu prakāra bhūṣana pahirāe, sibikā rucira sāji puni lyāe. / tā para haraṣi caṛhī baidehī, sumiri rāma sukhadhāma sanehī ॥4॥
+  HI: बहुत प्रकारके गहने पहनाये और फिर वे एक सुन्दर पालकी सजाकर ले आये। सीताजी प्रसन्न होकर सुखके धाम प्रियतम श्रीरामजीका स्मरण करके उसपर हर्षके साथ चढ़ीं ।।४।।
+ITEM 4 [lanka.108.cau5]
+  TR: betapāni racchaka cahu̐ pāsā, cale sakala mana parama hulāsā. / dekhana bhālu kīsa saba āe, racchaka kopi nivārana dhāe ॥5॥
+  HI: चारों ओर हाथोंमें छड़ी लिये रक्षक चले। सबके मनोंमें परम उल्लास (उमंग) है। रीछ- वानर सब दर्शन करनेके लिये आये, तब रक्षक क्रोध करके उनको रोकने दौड़े ।।५।।
+ITEM 5 [lanka.108.cau6]
+  TR: kaha raghubīra kahā mama mānahu, sītahi sakhā payāde̐ ānahu. / dekhahu̐ kapi jananī kī nāī̐, bihasi kahā raghunātha gosāī̐ 6.
+  HI: श्रीरघुवीरने कहा—हे मित्र! मेरा कहना मानो और सीताको पैदल ले आओ, जिससे वानर उसको माताकी तरह देखें। गोसाईं श्रीरामजीने हँसकर ऐसा कहा ।।६।।
+ITEM 6 [lanka.108.cau7]
+  TR: suni prabhu bacana bhālu kapi haraṣe, nabha te suranha sumana bahu baraṣe. / sītā prathama anala mahu̐ rākhī, pragaṭa kīnhi caha aṁtara sākhī ॥7॥
+  HI: प्रभुके वचन सुनकर रीछ-वानर हर्षित हो गये। आकाशसे देवताओंने बहुत-से फूल बरसाये। सीताजी [के असली स्वरूप] को पहले अग्निमें रखा था। अब भीतरके साक्षी भगवान् उनको प्रकट करना चाहते हैं ।।७।।
+SEG 0: “Now, my dear son, devise some means whereby I may behold with my own eyes the tender swarthy limbs of my Lord.” Then Hanumān returned to Śrī Rāma and apprised Him of Sītā’s welfare.
+SEG 1: On hearing Her tidings the Ornament of the solar race called Prince Aṅgada and Vibhīṣaṇa.
+SEG 2: “Both of you accompany the son of the wind-god and respectfully escort Janaka’s Daughter here.” Forthwith all went to the place where Sītā was and found a whole host demonesses waiting on Her in all humility.
+SEG 3: Vibhīṣaṇa gave prompt instructions to the demonesses, who washed Her body in all possible ways.
+SEG 4: They also decked Her with ornaments of every description and then brought a beautiful palanquin duly equipped.
+SEG 5: Videha’s Daughter gladly mounted it with Her thoughts fixed on the all-blissful Rāma, Her loving lord.
+SEG 6: Guards marched on all four sides, staves in hand;
+SEG 7: they were all supremely delighted at heart.
+SEG 8: The bears and monkeys all came to have a look at Her;
+SEG 9: but the guards darted in a fury to keep them back.
+SEG 10: Said the Hero of Raghu’s line, “Follow my advice, Vibhīṣaṇa and bring Sītā on foot.” “Let the monkeys gaze on Her as they would on their own mother,” smilingly added the Almighty Lord of the Raghus.
+SEG 11: The bears and monkeys rejoiced to hear the Lord’s words, while from the heavens the gods rained down flowers in profusion.
+SEG 12: Sītā (it will be remembered) had been previously lodged in fire (vide Araṇyakāṇḍa XXIII.
+SEG 13: 1-2);
+SEG 14: Śrī Rāma (the inner Witness of all) now sought to bring Her back to light.
+
+### GROUP 2126  (4 items)
+ITEM 0 [lanka.109.cau1]
+  TR: prabhu ke bacana sīsa dhari sītā, bolī mana krama bacana punītā. / lachimana hohu dharama ke negī, pāvaka pragaṭa karahu tumha begī ॥1॥
+  HI: प्रभुके वचनोंको सिर चढ़ाकर मन, वचन और कर्मसे पवित्र श्रीसीताजी बोलीं—हे लक्ष्मण! तुम मेरे धर्मके नेगी (धर्माचरणमें सहायक) बनो और तुरंत आग तैयार करो ।।१।।
+ITEM 1 [lanka.109.cau2]
+  TR: suni lachimana sītā kai bānī, biraha bibeka dharama niti sānī. / locana sajala jori kara doū, prabhu sana kachu kahi sakata na oū ॥2॥
+  HI: श्रीसीताजीकी विरह, विवेक, धर्म और नीतिसे सनी हुई वाणी सुनकर लक्ष्मणजीके नेत्रोंमें [विषादके आँसुओंका] जल भर आया। वे दोनों हाथ जोड़े खड़े रहे। वे भी प्रभुसे कुछ कह नहीं सकते ।।२।।
+ITEM 2 [lanka.109.cau3]
+  TR: dekhi rāma rukha lachimana dhāe, pāvaka pragaṭi kāṭha bahu lāe. / pāvaka prabala dekhi baidehī, hr̥daya̐ haraṣa nahiṁ bhaya kachu tehī ॥3॥
+  HI: फिर श्रीरामजीका रुख देखकर लक्ष्मणजी दौड़े और आग तैयार करके बहुत-सी लकड़ी ले आये। अग्निको खूब बढ़ी हुई देखकर जानकीजीके हृदयमें हर्ष हुआ। उन्हें भय कुछ भी नहीं हुआ ।।३।।
+ITEM 3 [lanka.109.cau4]
+  TR: jau̐ mana baca krama mama ura māhī̐, taji raghubīra āna gati nāhī̐. / tau kr̥sānu saba kai gati jānā, mo kahu̐ hou śrīkhaṁḍa samānā ॥4॥
+  HI: [सीताजीने लीलासे कहा—] यदि मन, वचन और कर्मसे मेरे हृदयमें श्रीरघुवीरको छोड़कर दूसरी गति (अन्य किसीका आश्रय) नहीं है, तो अग्निदेव जो सबके मनकी गति जानते हैं, [मेरे भी मनकी गति जानकर] मेरे लिये चन्दनके समान शीतल हो जायँ ।।४।।
+SEG 0: Sītā, however, bowed to the Lord’s command—pure as She was in thought, word and deed—and said, “Lakṣmaṇa, help me as a priest in the performance of this sacred rite and quickly kindle me a fire.” When Lakṣmaṇa heard Sītā’s words, full of anguish caused by separation (from Her Lord) and imbued with critical insight, piety and prudence, tears rushed to his eyes and he joined his palms in prayer;
+SEG 1: but he too could not speak a word to the Lord.
+SEG 2: Reading Śrī Rāma’s tacit approval in His looks, however, Lakṣmaṇa ran and after kindling a fire brought plenty of firewood.
+SEG 3: Videha’s Daughter rejoiced at heart to perceive the blazing fire and did not flinch at all.
+SEG 4: “If in thought, word and deed I have never set my heart on anyone other than the Hero of Raghu’s line, may this fire, which knows the working of all minds, become cool like sandal-paste to me.”
+
+### GROUP 2127  (2 items)
+ITEM 0 [lanka.109.cha1]
+  TR: śrīkhaṁḍa sama pāvaka prabesa kiyo sumiri prabhu maithilī, / jaya kosalesa mahesa baṁdita carana rati ati nirmalī. / pratibiṁba aru laukika kalaṁka pracaṁḍa pāvaka mahu̐ jare, / prabhu carita kāhu̐ na lakhe nabha sura siddha muni dekhahiṁ khare 1
+  HI: प्रभु श्रीरामजीका स्मरण करके और जिनके चरण महादेवजीके द्वारा वन्दित हैं तथा जिनमें सीताजीकी अत्यन्त विशुद्ध प्रीति है, उन कोसलपतिकी जय बोलकर जानकीजीने चन्दनके समान शीतल हुई अग्निमें प्रवेश किया। प्रतिबिम्ब (सीताजीकी छायामूर्ति) और उनका लौकिक कलंक प्रचण्ड अग्निमें जल गये। प्रभुके इन चरित्रोंको किसीने नहीं जाना। देवता, सिद्ध और मुनि सब आकाशमें खड़े देखते हैं ।।१।।
+ITEM 1 [lanka.109.cha2]
+  TR: dhari rūpa pāvaka pāni gahi śrī satya śruti jaga bidita jo, / jimi chīrasāgara iṁdirā rāmahi samarpī āni so. / so rāma bāma bibhāga rājati rucira ati sobhā bhalī, / nava nīla nīraja nikaṭa mānahu̐ kanaka paṁkaja kī kalī ॥2॥
+  HI: तब अग्निने शरीर धारण करके वेदोंमें और जगत्‌में प्रसिद्ध वास्तविक श्री (सीताजी) का हाथ पकड़ उन्हें श्रीरामजीको वैसे ही समर्पित किया जैसे क्षीरसागरने विष्णुभगवान्‌को लक्ष्मी समर्पित की थी। वे सीताजी श्रीरामचन्द्रजीके वाम भागमें विराजित हुईं। उनकी उत्तम शोभा अत्यन्त ही सुन्दर है। मानो नये खिले हुए नीले कमलके पास सोनेके कमलकी कली सुशोभित हो ।।२।।
+SEG 0: With Her thoughts fixed on the Lord, the Princess of Mithilā entered the flames as though they were cool like sandal-paste, crying “Glory to the Lord of Kosala, whose feet are adored by the great Lord Śiva with the purest devotion !” Both Her shadow-form as well as the social stigma (occasioned by Her forced residence at Rāvaṇa’s) were consumed in the blazing fire;
+SEG 1: but no one could know the secret of the Lord’s doings.
+SEG 2: Even the gods, Siddhas and sages stood gazing in the air.
+SEG 3: Fire assumed a bodily form and, taking by the hand the real Śrī (Sītā), celebrated alike in the Vedas and the world, escorted and presented Her to Śrī Rāma even as the Ocean of milk presented Goddess Indirā (Lakṣmī) to Lord Viṣṇu.
+SEG 4: Standing on the left side of Śrī Rāma, She shone resplendent in Her exquisite beauty like the bud of a gold lily beside a fresh blue lotus.
+
+### GROUP 2128  (2 items)
+ITEM 0 [lanka.109.do109क]
+  TR: baraṣahiṁ sumana haraṣi sura bājahiṁ gagana nisāna, / gāvahiṁ kiṁnara surabadhū nācahiṁ caṛhī̐ bimāna.109(A).
+  HI: देवता हर्षित होकर फूल बरसाने लगे। आकाशमें डंके बजने लगे। किन्नर गाने लगे। विमानोंपर चढ़ी अप्सराएँ नाचने लगीं ।।१०९ (क)।।
+ITEM 1 [lanka.109.do109ख]
+  TR: janakasutā sameta prabhu sobhā amita apāra, / dekhi bhālu kapi haraṣe jaya raghupati sukha sāra.109(B).
+  HI: श्रीजानकीजीसहित प्रभु श्रीरामचन्द्रजीकी अपरिमित और अपार शोभा देखकर रीछ- वानर हर्षित हो गये और सुखके सार श्रीरघुनाथजीकी जय बोलने लगे ।।१०९ (ख)।।
+SEG 0: The gods in their delight rained down flowers and kettledrums sounded in the air.
+SEG 1: The Kinnaras sang their melodies and the celestial nymphs danced, all mounted on their aerial cars.
+SEG 2: The beauty of the Lord reunited with Janaka’s Daughter was beyond all measure and bound.
+SEG 3: The bears and monkeys rejoiced at the sight and shouted “Glory to the Lord of the Raghus, the essence of bliss.”
+
+### GROUP 2129  (6 items)
+ITEM 0 [lanka.110.cau1]
+  TR: taba raghupati anusāsana pāī, mātali caleu carana siru nāī. / āe deva sadā svārathī, bacana kahahiṁ janu paramārathī ॥1॥
+  HI: तब श्रीरघुनाथजीकी आज्ञा पाकर इन्द्रका सारथि मातलि चरणोंमें सिर नवाकर [रथ लेकर] चला गया। तदनन्तर सदाके स्वार्थी देवता आये। वे ऐसे वचन कह रहे हैं मानो बड़े परमार्थी हों ।।१।।
+ITEM 1 [lanka.110.cau2]
+  TR: dīna baṁdhu dayāla raghurāyā, deva kīnhi devanha para dāyā. / bisva droha rata yaha khala kāmī, nija agha gayau kumāragagāmī ॥2॥
+  HI: हे दीनबन्धु! हे दयालु रघुराज! हे परमदेव! आपने देवताओंपर बड़ी दया की। विश्वके द्रोहमें तत्पर यह दुष्ट, कामी और कुमार्गपर चलनेवाला रावण अपने ही पापसे नष्ट हो गया ।।२।।
+ITEM 2 [lanka.110.cau3]
+  TR: tumha samarūpa brahma abināsī, sadā ekarasa sahaja udāsī. / akala aguna aja anagha anāmaya, ajita amoghasakti karunāmaya ॥3॥
+  HI: आप समरूप, ब्रह्म, अविनाशी, नित्य, एकरस, स्वभावसे ही उदासीन (शत्रु-मित्र- भावरहित), अखण्ड, निर्गुण (मायिक गुणोंसे रहित), अजन्मा, निष्पाप, निर्विकार, अजेय, अमोघशक्ति (जिनकी शक्ति कभी व्यर्थ नहीं होती) और दयामय हैं ।।३।।
+ITEM 3 [lanka.110.cau4]
+  TR: mīna kamaṭha sūkara naraharī, bāmana parasurāma bapu dharī. / jaba jaba nātha suranha dukhu pāyo, nānā tanu dhari tumhaiṁ nasāyo ॥4॥
+  HI: आपने ही मत्स्य, कच्छप, वाराह, नृसिंह, वामन और परशुरामके शरीर धारण किये। हे नाथ! जब-जब देवताओंने दुःख पाया, तब-तब अनेकों शरीर धारण करके आपने ही उनका दुःख नाश किया ।।४।।
+ITEM 4 [lanka.110.cau5]
+  TR: yaha khala malina sadā suradrohī, kāma lobha mada rata ati kohī. / adhama siromani tava pada pāvā, yaha hamare̐ mana bisamaya āvā ॥5॥
+  HI: यह दुष्ट मलिनहृदय, देवताओंका नित्य शत्रु, काम, लोभ और मदके परायण तथा अत्यन्त क्रोधी था। ऐसे अधमोंके शिरोमणिने भी आपका परमपद पा लिया। इस बातका हमारे मनमें आश्चर्य हुआ ।।५।।
+ITEM 5 [lanka.110.cau6]
+  TR: hama devatā parama adhikārī, svāratha rata prabhu bhagati bisārī. / bhava prabāha̐ saṁtata hama pare, aba prabhu pāhi sarana anusare ॥6॥
+  HI: हम देवता श्रेष्ठ अधिकारी होकर भी स्वार्थपरायण हो आपकी भक्तिको भुलाकर निरन्तर भवसागरके प्रवाह (जन्म-मृत्युके चक्र) में पड़े हैं। अब हे प्रभो! हम आपकी शरणमें आ गये हैं, हमारी रक्षा कीजिये ।।६।।
+SEG 0: Then, with the permission of Śrī Rāma (the Lord of the Raghus);
+SEG 1: Mātali (Indra’s charioteer) left (for his abode in heaven) after bowing his head at the Lord’s feet.
+SEG 2: Now came the gods, ever alive to their own selfish interests, and spoke words as though they were seekers of the highest truth :
+SEG 3: “Friend of the meek, gracious, and divine Lord of the Raghus, you have shown mercy to the gods.
+SEG 4: This sensual wretch, who took delight in doing mischief to the whole world and trod the evil way, has perished through his own sins.
+SEG 5: You are alike to all, the imperishable Brahma, ever unchangeable, impartial by nature, integral, devoid of material properties, unborn, sinless, immutable, invincible, unfailing in power, and full of compassion.
+SEG 6: It was You who assumed the form of a fish, a tortoise;
+SEG 7: a boar, a man-lion and a dwarf as well as that of Paraśurāma.
+SEG 8: Whenever, O Lord, the gods have been in trouble, You have put an end to it by appearing in one form or other.
+SEG 9: This impure wretch, a perpetual enemy of the gods, was given up to lust, greed and vanity, and very passionate too.
+SEG 10: That even this vilest creature attained Your state is a marvel to us.
+SEG 11: We gods are supremely qualified (for the highest state):
+SEG 12: yet, devoted as we are to our own selfish ends, we have forgotten the worship of our lord and are ever involved in the flood of birth and death.
+SEG 13: Now redeem us, O Lord, since we have sought shelter in You.”
+
+### GROUP 2131  (11 items)
+ITEM 0 [lanka.111.cha1]
+  TR: jaya rāma sadā sukhadhāma hare, raghunāyaka sāyaka cāpa dhare. / bhava bārana dārana siṁha prabho, guna sāgara nāgara nātha bibho. 1.
+  HI: हे नित्य सुखधाम और [दुःखोंको हरनेवाले] हरि! हे धनुष-बाण धारण किये हुए रघुनाथजी! आपकी जय हो। हे प्रभो! आप भव (जन्म-मरण) रूपी हाथीको विदीर्ण करनेके लिये सिंहके समान हैं। हे नाथ! हे सर्वव्यापक! आप गुणोंके समुद्र और परम चतुर हैं ।।१।।
+ITEM 1 [lanka.111.cau2]
+  TR: tana kāma aneka anūpa chabī, guna gāvata siddha munīṁdra kabī. / jasu pāvana rāvana nāga mahā, khaganātha jathā kari kopa gahā. 2.
+  HI: आपके शरीरकी अनेकों कामदेवोंके समान, परन्तु अनुपम छवि है। सिद्ध, मुनीश्वर और कवि आपके गुण गाते रहते हैं। आपका यश पवित्र है। आपने रावणरूपी महासर्पको गरुड़की तरह क्रोध करके पकड़ लिया ।।२।।
+ITEM 2 [lanka.111.cau3]
+  TR: jana raṁjana bhaṁjana soka bhayaṁ, gatakrodha sadā prabhu bodhamayaṁ. / avatāra udāra apāra gunaṁ, mahi bhāra bibhaṁjana gyānaghanaṁ. 3.
+  HI: हे प्रभो! आप सेवकोंको आनन्द देनेवाले, शोक और भयका नाश करनेवाले, सदा क्रोधरहित और नित्य ज्ञानस्वरूप हैं। आपका अवतार श्रेष्ठ, अपार दिव्य गुणोंवाला, पृथ्वीका भार उतारनेवाला और ज्ञानका समूह है ।।३।।
+ITEM 3 [lanka.111.cau4]
+  TR: aja byāpakamekamanādi sadā, karunākara rāma namāmi mudā. / raghubaṁsa bibhūṣana dūṣana hā, kr̥ta bhūpa bibhīṣana dīna rahā. 4.
+  HI: [किन्तु अवतार लेनेपर भी] आप नित्य, अजन्मा, व्यापक, एक (अद्वितीय) और अनादि हैं। हे करुणाकी खान श्रीरामजी! मैं आपको बड़े ही हर्षके साथ नमस्कार करता हूँ। हे रघुकुलके आभूषण! हे दूषण राक्षसको मारनेवाले तथा समस्त दोषोंको हरनेवाले! विभीषण दीन था, उसे आपने [लंकाका] राजा बना दिया ।।४।।
+ITEM 4 [lanka.111.cau5]
+  TR: guna gyāna nidhāna amāna ajaṁ, nita rāma namāmi bibhuṁ birajaṁ. / bhujadaṁḍa pracaṁḍa pratāpa balaṁ, khala br̥ṁda nikaṁda mahā kusalaṁ. 5.
+  HI: हे गुण और ज्ञानके भण्डार! हे मानरहित! हे अजन्मा, व्यापक और मायिक विकारोंसे रहित श्रीराम! मैं आपको नित्य नमस्कार करता हूँ। आपके भुजदण्डोंका प्रताप और बल प्रचण्ड है। दुष्टसमूहके नाश करनेमें आप परम निपुण हैं ।।५।।
+ITEM 5 [lanka.111.cau6]
+  TR: binu kārana dīna dayāla hitaṁ, chabi dhāma namāmi ramā sahitaṁ. / bhava tārana kārana kāja paraṁ, mana saṁbhava dāruna doṣa haraṁ. 6.
+  HI: हे बिना ही कारण दीनोंपर दया तथा उनका हित करनेवाले और शोभाके धाम! मैं श्रीजानकीजीसहित आपको नमस्कार करता हूँ। आप भवसागरसे तारनेवाले हैं, कारणरूपा प्रकृति और कार्यरूप जगत् दोनोंसे परे हैं और मनसे उत्पन्न होनेवाले कठिन दोषोंको हरनेवाले हैं ।।६।।
+ITEM 6 [lanka.111.cau7]
+  TR: sara cāpa manohara trona dharaṁ, jalajāruna locana bhūpabaraṁ. / sukha maṁdira suṁdara śrīramanaṁ, mada māra mudhā mamatā samanaṁ. 7.
+  HI: आप मनोहर बाण, धनुष और तरकस धारण करनेवाले हैं। [लाल] कमलके समान रक्तवर्ण आपके नेत्र हैं। आप राजाओंमें श्रेष्ठ, सुखके मन्दिर, सुन्दर, श्री (लक्ष्मीजी) के वल्लभ तथा मद (अहङ्कार), काम और झूठी ममताके नाश करनेवाले हैं ।।७।।
+ITEM 7 [lanka.111.cau8]
+  TR: anavadya akhaṁḍa na gocara go, sabarūpa sadā saba hoi na go. / iti beda badaṁti na daṁtakathā, rabi ātapa bhinnamabhinna jathā. 8.
+  HI: आप अनिन्द्य या दोषरहित हैं, अखण्ड हैं, इन्द्रियोंके विषय नहीं हैं। सदा सर्वरूप होते हुए भी आप वह सब कभी हुए ही नहीं, ऐसा वेद कहते हैं। यह [कोई] दन्तकथा (कोरी कल्पना) नहीं है। जैसे सूर्य और सूर्यका प्रकाश अलग–अलग हैं और अलग नहीं भी हैं, वैसे ही आप भी संसारसे भिन्न तथा अभिन्न दोनों ही हैं ।।८।।
+ITEM 8 [lanka.111.cau9]
+  TR: kr̥takr̥tya bibho saba bānara e, nirakhaṁti tavānana sādara e. / dhiga jīvana deva sarīra hare, tava bhakti binā bhava bhūli pare. 9.
+  HI: हे व्यापक प्रभो! ये सब वानर कृतार्थरूप हैं, जो आदरपूर्वक ये आपका मुख देख रहे हैं। [और] हे हरे! हमारे [अमर] जीवन और देव (दिव्य) शरीरको धिक्कार है, जो हम आपकी भक्तिसे रहित हुए संसारमें (सांसारिक विषयोंमें) भूले पड़े हैं ।।९।।
+ITEM 9 [lanka.111.cau10]
+  TR: aba dīnadayāla dayā kariai, mati mori bibhedakarī hariai. / jehi te biparīta kriyā kariai, dukha so sukha māni sukhī cariai ॥10॥
+  HI: हे दीनदयालु! अब दया कीजिये और मेरी उस विभेद उत्पन्न करनेवाली बुद्धिको हर लीजिये, जिससे मैं विपरीत कर्म करता हूँ और जो दुःख है, उसे सुख मानकर आनन्दसे विचरता हूँ ।।१०।।
+ITEM 10 [lanka.111.cau11]
+  TR: khala khaṁḍana maṁḍana ramya chamā, pada paṁkaja sevita saṁbhu umā. / nr̥pa nāyaka de baradānamidaṁ, caranāṁbuja prema sadā subhadaṁ ॥11॥
+  HI: आप दुष्टोंका खण्डन करनेवाले और पृथ्वीके रमणीय आभूषण हैं। आपके चरणकमल श्रीशिव-पार्वतीद्वारा सेवित हैं। हे राजाओंके महाराज! मुझे यह वरदान दीजिये कि आपके चरणकमलोंमें सदा मेरा कल्याणदायक [अनन्य] प्रेम हो ।।११।।
+SEG 0: “Glory to You, O Rāma, perpetual abode of bliss.
+SEG 1: O Hari (the reliever of suffering), O Chief of the Raghus, bearing a bow and arrows !
+SEG 2: Lord, You are a veritable lion to tear in pieces the elephant of mundane existence, and an ocean of virtues, my clever and omnipresent Master.
+SEG 3: In Your person stands concentrated the incomparable beauty of a myriad Cupids;
+SEG 4: Siddhas, as well as the greatest of sages and bards sing Your praises.
+SEG 5: Your glory is not only sacred, it purifies all;
+SEG 6: in Your wrath You seized Rāvaṇa even as Garuḍa (the king of the birds) might seize a huge serpent.
+SEG 7: Delight of devotees, and dispeller of their grief and fear, You are ever unmoved by passion, and are all- intelligence, my lord.
+SEG 8: Your descent on the mortal plane is beneficent and full of untold virtues:
+SEG 9: You come to relieve Earth’s burdens and Your manifestations on earth are wisdom personified.
+SEG 10: (Though descended on earth,) You are ever unborn, omnipresent, one (without a second) and beginningless.
+SEG 11: I gladly bow to You, O Rāma, fountain of mercy !
+SEG 12: Ornament of Raghu’s race and Slayer of demon Dūṣaṇa (Rāvaṇa’s Cousin), You eradicate the faults of Your devotees and made Vibhīṣaṇa, destitute as he was, the Ruler of Laṅkā.
+SEG 13: Storehouse of virtue and wisdom and beyond all measure, You have no pride in You and are unborn, all pervading and free from the taint of Māyā;
+SEG 14: I constantly adore You, Rāma.
+SEG 15: Terrible is the glory and might of Your arms, which are deft in exterminating the hordes of the impious.
+SEG 16: Compassionate and friendly to the poor without any ostensible reason and a reservoir of beauty, I adore You alongwith Ramā (Sītā).
+SEG 17: Deliverer from the rounds of birth and death, You are beyond both cause (Prakr̥ti) and effect (the phenomenal universe) and eradicate the awful weaknesses of the (devotee’s) mind.
+SEG 18: Armed with a charming bow, arrows, and quiver, You have eyes resembling a red lotus.
+SEG 19: A paragon of kings, home of bliss, Lakṣmī’s lovely Consort, subduer of arrogance, lust and the false sense of mineness, You are free from blemish integral and imperceptible to the senses.
+SEG 20: Though manifest in all forms, You never transmuted Yourself into them all:
+SEG 21: so declare the Vedas;
+SEG 22: it is no mere gossip, as will be clear from the analogy of the sun and the sunshine, which are different and yet identical.
+SEG 23: Blessed are all these monkeys, O ubiquitous Lord, who reverently gaze on Your countenance;
+SEG 24: while accursed, O Hari, is our (so-called) immortal existence and our ethereal bodies in that we lack in devotion to You and are lost in worldly pleasures.
+SEG 25: Now show Your mercy to me, compassionate as You are to the afflicted, and take away my differentiating sense (which makes the world appear as apart from You), which leads me to wrong action and deluded by which I pass my days in merriment, mistaking woe for happiness.
+SEG 26: Destroyer of the wicked and lovely jewel of the earth, Your lotus feet are adored even by Śambhu (Lord Śiva) and Umā (Goddess Pārvatī).
+SEG 27: O King of kings, grant me this boon that I may cherish loving devotion to Your lotus feet, which is a perennial source of blessings.”
+
+### GROUP 2133  (4 items)
+ITEM 0 [lanka.112.cau1]
+  TR: tehi avasara dasaratha taha̐ āe, tanaya biloki nayana jala chāe. / anuja sahita prabhu baṁdana kīnhā, āsirabāda pitā̐ taba dīnhā ॥1॥
+  HI: उसी समय दशरथजी वहाँ आये। पुत्र (श्रीरामजी) को देखकर उनके नेत्रोंमें [प्रेमाश्रुओंका] जल छा गया। छोटे भाई लक्ष्मणजीसहित प्रभुने उनकी वन्दना की और तब पिताने उनको आशीर्वाद दिया ।।१।।
+ITEM 1 [lanka.112.cau2]
+  TR: tāta sakala tava punya prabhāū, jītyo̐ ajaya nisācara rāū. / suni suta bacana prīti ati bāṛhī, nayana salila romāvali ṭhāṛhī ॥2॥
+  HI: [श्रीरामजीने कहा—] हे तात! यह सब आपके पुण्योंका प्रभाव है, जो मैंने अजेय राक्षसराजको जीत लिया। पुत्रके वचन सुनकर उनकी प्रीति अत्यन्त बढ़ गयी। नेत्रोंमें जल छा गया और रोमावली खड़ी हो गयी ।।२।।
+ITEM 2 [lanka.112.cau3]
+  TR: raghupati prathama prema anumānā, citai pitahi dīnheu dr̥ṛha gyānā. / tāte umā moccha nahiṁ pāyo, dasaratha bheda bhagati mana lāyo ॥3॥
+  HI: श्रीरघुनाथजीने पहलेके (जीवित कालके) प्रेमको विचारकर, पिताकी ओर देखकर ही उन्हें अपने स्वरूपका दृढ़ ज्ञान करा दिया। हे उमा! दशरथजीने भेद-भक्तिमें अपना मन लगाया था, इसीसे उन्होंने [कैवल्य] मोक्ष नहीं पाया ।।३।।
+ITEM 3 [lanka.112.cau4]
+  TR: sagunopāsaka moccha na lehī̐, tinha kahu̐ rāma bhagati nija dehī̐. / bāra bāra kari prabhuhi pranāmā, dasaratha haraṣi gae suradhāmā ॥4॥
+  HI: [मायारहित सच्चिदानन्दमय स्वरूपभूत दिव्यगुणयुक्त] सगुणस्वरूपकी उपासना करनेवाले भक्त इस प्रकारका मोक्ष लेते भी नहीं। उनको श्रीरामजी अपनी भक्ति देते हैं। प्रभुको [इष्टबुद्धिसे] बार-बार प्रणाम करके दशरथजी हर्षित होकर देवलोकको चले गये ।।४।।
+SEG 0: That very moment King Daśaratha appeared on the scene (in his celestial form);
+SEG 1: his eyes were flooded with tears as he beheld his son (Śrī Rāma).
+SEG 2: The Lord and His younger brother (Lakṣmaṇa) made obeisance and the father in his turn gave them his blessing.
+SEG 3: “Dear father, it was all due to your religious merit that I conquered the invincible demon king.” Daśaratha was overwhelmed with emotion when he heard his son’s words;
+SEG 4: tears rushed to his eyes again and the hair on his body stood erect.
+SEG 5: The Lord of the Raghus understood that His father bore the same affection for Him as he did before;
+SEG 6: He, therefore, looked at His father and bestowed on him solid wisdom.
+SEG 7: Umā, (continues Lord Śiva,) Daśaratha did not attain final beatitude for this simple reason that he set his heart on Devotion while maintaining his separate identity.
+SEG 8: Worshippers of God in His embodied form spurn final beatitude:
+SEG 9: to them Śrī Rāma vouchsafes devotion to His own person.
+SEG 10: Having prostrated himself before the Lord again and again, Daśaratha joyfully returned to his abode in heaven.
+
+### GROUP 2135  (8 items)
+ITEM 0 [lanka.113.cha1]
+  TR: jaya rāma sobhā dhāma, dāyaka pranata biśrāma. / dhr̥ta trona bara sara cāpa, bhujadaṁḍa prabala pratāpa ॥1॥
+  HI: शोभाके धाम, शरणागतको विश्राम देनेवाले, श्रेष्ठ तरकस, धनुष और बाण धारण किये हुए, प्रबल प्रतापी भुजदण्डोंवाले श्रीरामचन्द्रजीकी जय हो! ।।१।।
+ITEM 1 [lanka.113.cha2]
+  TR: jaya dūṣanāri kharāri, mardana nisācara dhāri. / yaha duṣṭa māreu nātha, bhae deva sakala sanātha ॥2॥
+  HI: हे खर और दूषणके शत्रु और राक्षसोंकी सेनाके मर्दन करनेवाले! आपकी जय हो! हे नाथ! आपने इस दुष्टको मारा, जिससे सब देवता सनाथ (सुरक्षित) हो गये ।।२।।
+ITEM 2 [lanka.113.cha3]
+  TR: jaya harana dharanī bhāra, mahimā udāra apāra. / jaya rāvanāri kr̥pāla, kie jātudhāna bihāla ॥3॥
+  HI: हे भूमिका भार हरनेवाले! हे अपार श्रेष्ठ महिमावाले! आपकी जय हो। हे रावणके शत्रु! हे कृपालु! आपकी जय हो। आपने राक्षसोंको बेहाल (तहस-नहस) कर दिया ।।३।।
+ITEM 3 [lanka.113.cha4]
+  TR: laṁkesa ati bala garba, kie basya sura gaṁdharba. / muni siddha nara khaganāga, haṭhi paṁtha saba ke̐ lāga ॥4॥
+  HI: लंकापति रावणको अपने बलका बहुत घमंड था। उसने देवता और गन्धर्व सभीको अपने वशमें कर लिया था और वह मुनि, सिद्ध, मनुष्य, पक्षी और नाग आदि सभीके हठपूर्वक (हाथ धोकर) पीछे पड़ गया था ।।४।।
+ITEM 4 [lanka.113.cha5]
+  TR: paradroha rata ati duṣṭa, pāyo so phalu pāpiṣṭa. / aba sunahu dīna dayāla, rājīva nayana bisāla ॥5॥
+  HI: वह दूसरोंसे द्रोह करनेमें तत्पर और अत्यन्त दुष्ट था। उस पापीने वैसा ही फल पाया। अब हे दीनोंपर दया करनेवाले! हे कमलके समान विशाल नेत्रोंवाले! सुनिये ।।५।।
+ITEM 5 [lanka.113.cha6]
+  TR: mohi rahā ati abhimāna, nahiṁ kou mohi samāna. / aba dekhi prabhu pada kaṁja, gata māna prada dukha puṁja ॥6॥
+  HI: मुझे अत्यन्त अभिमान था कि मेरे समान कोई नहीं है, पर अब प्रभु (आप) के चरणकमलोंके दर्शन करनेसे दुःख-समूहका देनेवाला मेरा वह अभिमान जाता रहा ।।६।।
+ITEM 6 [lanka.113.cha7]
+  TR: kou brahma nirguna dhyāva, abyakta jehi śruti gāva. / mohi bhāva kosala bhūpa, śrīrāma saguna sarūpa ॥7॥
+  HI: कोई उन निर्गुन ब्रह्मका ध्यान करते हैं जिन्हें वेद अव्यक्त (निराकार) कहते हैं। परन्तु हे रामजी! मुझे तो आपका यह सगुण कोसलराज-स्वरूप ही प्रिय लगता है ।।७।।
+ITEM 7 [lanka.113.cha8]
+  TR: baidehi anuja sameta, mama hr̥daya̐ karahu niketa. / mohi jāniai nija dāsa, de bhakti ramānivāsa ॥8॥
+  HI: श्रीजानकीजी और छोटे भाई लक्ष्मणजीसहित मेरे हृदयमें अपना घर बनाइये। हे रमानिवास! मुझे अपना दास समझिये और अपनी भक्ति दीजिये ।।८।।
+SEG 0: Glory to Śrī Rāma, beauty personified, the bestower of peace on the suppliant, equipped with an excellent bow, arrows and quiver and triumphing in His mighty strength of arm.
+SEG 1: Glory to the Slayer of Dūṣaṇa and Khara and the crusher of the demon hordes!
+SEG 2: Now that You have disposed of this wretch, my lord, all the gods enjoy full security.
+SEG 3: Glory to the Reliever of Earth’s burden, whose greatness is beneficent and unbounded.
+SEG 4: Glory to the All-merciful Slayer of Rāvaṇa, who reduced the demon host to a miserable plight.
+SEG 5: Outrageous was the pride of Rāvaṇa (the lord of Laṅkā), who had subdued even gods and Gandharvas (the celestial musicians).
+SEG 6: Nay, he relentlessly pursued sages, the Siddhas, human beings, birds and Nāgas alike.
+SEG 7: He took delight in injuring others and was most wicked;
+SEG 8: the vile sinner has now reaped the fruit of his misdeeds.
+SEG 9: Now listen, my lord, possessed of eyes as large as the lotus and compassionate to the humble:
+SEG 10: my pride was inordinate;
+SEG 11: I accounted no one as equal to me.
+SEG 12: At the sight of Your lotus feet, however, my pride, which entailed much woe, has taken leave of me.
+SEG 13: Some people meditate on the attributeless Brahma (the Absolute), whom the Vedas declare as unmanifest.
+SEG 14: What attracts my mind, however, is the Supreme embodied as Śrī Rāma, King of Kosala.
+SEG 15: Together with Videha’s Daughter and Your younger brother (Lakṣmaṇa), therefore, pray abide in my heart;
+SEG 16: and recognizing me as Your own servant, bless me with devotion, O Abode of Ramā (Lakṣmī).
+
+### GROUP 2138  (5 items)
+ITEM 0 [lanka.114.cau1]
+  TR: sunu surapati kapi bhālu hamāre, pare bhūmi nisicaranhi je māre. / mama hita lāgi taje inha prānā, sakala jiāu suresa sujānā ॥1॥
+  HI: हे देवराज! सुनो, हमारे वानर-भालू, जिन्हें निशाचरोंने मार डाला है, पृथ्वीपर पड़े हैं। इन्होंने मेरे हितके लिये अपने प्राण त्याग दिये। हे सुजान देवराज! इन सबको जिला दो ।।१।।
+ITEM 1 [lanka.114.cau2]
+  TR: sunu khagesa prabhu kai yaha bānī, ati agādha jānahiṁ muni gyānī. / prabhu saka tribhuana māri jiāī, kevala sakrahi dīnhi baṛāī ॥2॥
+  HI: [काकभुशुण्डिजी कहते हैं—] हे गरुड़! सुनिये, प्रभुके ये वचन अत्यन्त गहन (गूढ़) हैं। ज्ञानी मुनि ही इन्हें जान सकते हैं। प्रभु श्रीरामजी त्रिलोकीको मारकर जिला सकते हैं। यहाँ तो उन्होंने केवल इन्द्रको बड़ाई दी है ।।२।।
+ITEM 2 [lanka.114.cau3]
+  TR: sudhā baraṣi kapi bhālu jiāe, haraṣi uṭhe saba prabhu pahiṁ āe. / sudhābr̥ṣṭi bhai duhu dala ūpara, jie bhālu kapi nahiṁ rajanīcara ॥3॥
+  HI: इन्द्रने अमृत बरसाकर वानर-भालुओंको जिला दिया। सब हर्षित होकर उठे और प्रभुके पास आये। अमृतकी वर्षा दोनों ही दलोंपर हुई। पर रीछ-वानर ही जीवित हुए, राक्षस नहीं ।।३।।
+ITEM 3 [lanka.114.cau4]
+  TR: rāmākāra bhae tinha ke mana, mukta bhae chūṭe bhava baṁdhana. / sura aṁsika saba kapi aru rīchā, jie sakala raghupati kī̐ īchā ॥4॥
+  HI: क्योंकि राक्षसोंके मन तो मरते समय रामाकार हो गये थे। अतः वे मुक्त हो गये, उनके भव- बन्धन छूट गये। किन्तु वानर और भालू तो सब देवांश (भगवान्‌की लीलाके परिकर) थे। इसलिये वे सब श्रीरघुनाथजीकी इच्छासे जीवित हो गये ।।४।।
+ITEM 4 [lanka.114.cau5]
+  TR: rāma sarisa ko dīna hitakārī, kīnhe mukuta nisācara jhārī. / khala mala dhāma kāma rata rāvana, gati pāī jo munibara pāva na ॥5॥
+  HI: श्रीरामचन्द्रजीके समान दीनोंका हित करनेवाला कौन है? जिन्होंने सारे राक्षसोंको मुक्त कर दिया! दुष्ट, पापोंके घर और कामी रावणने भी वह गति पायी जिसे श्रेष्ठ मुनि भी नहीं पाते ।।५।।
+SEG 0: “Listen, King of the gods:
+SEG 1: our monkeys and bears, those that were killed by the demons, are lying on the ground.
+SEG 2: They have laid down their lives in my service:
+SEG 3: therefore, restore them all to life, O wise lord of the celestials.” Listen, O king of the birds:
+SEG 4: (continues Kākabhuśuṇḍi,) these words of the Lord are profoundly mysterious;
+SEG 5: only enlightened sages can apprehend them.
+SEG 6: The Lord Himself can wipe out the inhabitants of the three spheres and bring them back to life;
+SEG 7: He wished only to give Indra honour.
+SEG 8: By a shower of nectar the latter restored the monkeys and bears to life.
+SEG 9: They all arose with delight and betook themselves to the Lord.
+SEG 10: Although the shower of nectar promiscuously fell on the dead of both the armies, it is the bears and monkeys alone that returned to life, but not the demons.
+SEG 11: Their mind was absorbed in the thought of Śrī Rāma when they gave up the ghost;
+SEG 12: that is why they got liberated and were rid of the bonds of mundane existence.
+SEG 13: As for the monkeys and bears, they were all part manifestations of the gods (who are all immortal):
+SEG 14: hence they all came to life by the will of Śrī Rāma (the Lord of the Raghus).
+SEG 15: Is there anyone so kind to the afflicted as Śrī Rāma, who liberated the whole demon host?
+SEG 16: Even the wicked Rāvaṇa, who was a sink of impurities and given up to sensuality, attained to an exalted state which is withheld even from the greatest of sages.
+
+### GROUP 2139  (2 items)
+ITEM 0 [lanka.114.do114क]
+  TR: sumana baraṣi saba sura cale caṛhi caṛhi rucira bimāna, / dekhi suavasara prabhu pahiṁ āyau saṁbhu sujāna.114(A).
+  HI: फूलोंकी वर्षा करके सब देवता सुन्दर विमानोंपर चढ़-चढ़कर चले। तब सुअवसर जानकर सुजान शिवजी प्रभु श्रीरामचन्द्रजीके पास आये— ।।११४ (क)।।
+ITEM 1 [lanka.114.do114ख]
+  TR: parama prīti kara jori juga nalina nayana bhari bāri, / pulakita tana gadagada girā̐ binaya karata tripurāri.114(B).
+  HI: और परम प्रेमसे दोनों हाथ जोड़कर, कमलके समान नेत्रोंमें जल भरकर, पुलकित शरीर और गद्‌गद वाणीसे त्रिपुरारि शिवजी विनती करने लगे— ।।११४ (ख)।।
+SEG 0: After raining down flowers the gods mounted each his own shining aerial car and departed.
+SEG 1: Finding it a welcome opportunity the all-wise Śambhu (Lord Śiva) arrived in the presence of the Lord.
+SEG 2: Most lovingly, with joined palms, His lotus eyes full of tears and the hair on His body standing erect, the Slayer of the demon Tripura made the following supplication with choked voice :—
+
+### GROUP 2140  (4 items)
+ITEM 0 [lanka.115.cha1]
+  TR: māmabhirakṣaya raghukula nāyaka, dhr̥ta bara cāpa rucira kara sāyaka. / moha mahā ghana paṭala prabhaṁjana, saṁsaya bipina anala sura raṁjana ॥1॥
+  HI: हे रघुकुलके स्वामी! सुन्दर हाथोंमें श्रेष्ठ धनुष और सुन्दर बाण धारण किये हुए आप मेरी रक्षा कीजिये। आप महामोहरूपी मेघसमूहके [उड़ानेके] लिये प्रचण्ड पवन हैं, संशयरूपी वनके [भस्म करनेके] लिये अग्नि हैं और देवताओंको आनन्द देनेवाले हैं ।।१।।
+ITEM 1 [lanka.115.cau2]
+  TR: aguna saguna guna maṁdira suṁdara, bhrama tama prabala pratāpa divākara. / kāma krodha mada gaja paṁcānana, basahu niraṁtara jana mana kānana ॥2॥
+  HI: आप निर्गुण, सगुण, दिव्य गुणोंके धाम और परम सुन्दर हैं। भ्रमरूपी अन्धकारके [नाशके] लिये प्रबल प्रतापी सूर्य हैं। काम, क्रोध और मदरूपी हाथियोंके [वधके] लिये सिंहके समान आप इस सेवकके मनरूपी वनमें निरन्तर निवास कीजिये ।।२।।
+ITEM 2 [lanka.115.cau3]
+  TR: biṣaya manoratha puṁja kaṁja bana, prabala tuṣāra udāra pāra mana. / bhava bāridhi maṁdara paramaṁ dara, bāraya tāraya saṁsr̥ti dustara ॥3॥
+  HI: विषयकामनाओंके समूहरूपी कमलवनके [नाशके] लिये आप प्रबल पाला हैं, आप उदार और मनसे परे हैं। भवसागर [को मथने] के लिये आप मन्दराचल पर्वत हैं। आप हमारे परम भयको दूर कीजिये और हमें दुस्तर संसारसागरसे पार कीजिये ।।३।।
+ITEM 3 [lanka.115.cau4-5]
+  TR: syāma gāta rājīva bilocana, dīna baṁdhu pranatārati mocana. / anuja jānakī sahita niraṁtara, basahu rāma nr̥pa mama ura aṁtara ॥4॥ / muni raṁjana mahi maṁḍala maṁḍana, tulasidāsa prabhu trāsa bikhaṁḍana ॥5॥
+  HI: हे श्यामसुन्दर-शरीर! हे कमलनयन! हे दीनबन्धु! हे शरणागतको दुःखसे छुड़ानेवाले! हे राजा रामचन्द्रजी! आप छोटे भाई लक्ष्मण और जानकीजीसहित निरन्तर मेरे हृदयके अंदर निवास कीजिये। आप मुनियोंको आनन्द देनेवाले, पृथ्वीमण्डलके भूषण, तुलसीदासके प्रभु और भयका नाश करनेवाले हैं ।।४-५।।
+SEG 0: “Save me, Chief of Raghu’s line, bearing an excellent bow and shining arrows in Your hands.
+SEG 1: A furious wind to disperse the mass of clouds in the shape of colossal ignorance, a fire to consume the forest of doubts, and delight of the gods, You are both with and without attributes, a shrine of virtues and most lovely to look at;
+SEG 2: nay, You are a burning midday Sun to scatter the darkness of delusion.
+SEG 3: A veritable lion to kill the elephants of lust, anger and pride, pray, constantly abide in the forest of the devotee’s mind.
+SEG 4: A severe frost to blast the lotus bed of sensual desires, You are generous beyond conception.
+SEG 5: Nay, playing the role of Mount Mandara for churning the ocean of mundane existence, kindly stave off my fear (of birth and death) and transport me across the stormy ocean of mundane existence.
+SEG 6: Possessed of a swarthy form with lotus eyes, befriender of the meek, reliever of the suppliant’s agony, take up Your abode in my heart for ever, O King Rāma, with Your younger brother (Lakṣmaṇa) and Janaka’s Daughter, O Delight of the sages, Jewel of the terrestrial globe, lord of Tulasīdāsa and destroyer of fear.
+
+### GROUP 2142  (4 items)
+ITEM 0 [lanka.116.cau1]
+  TR: kari binatī jaba saṁbhu sidhāe, taba prabhu nikaṭa bibhīṣanu āe. / nāi carana siru kaha mr̥du bānī, binaya sunahu prabhu sāra̐gapānī ॥1॥
+  HI: जब शिवजी विनती करके चले गये, तब विभीषणजी प्रभुके पास आये और चरणोंमें सिर नवाकर कोमल वाणीसे बोले—हे शार्ङ्गधनुषके धारण करनेवाले प्रभो! मेरी विनती सुनिये — ।।१।।
+ITEM 1 [lanka.116.cau2]
+  TR: sakula sadala prabhu rāvana māryo, pāvana jasa tribhuvana bistāryo. / dīna malīna hīna mati jātī, mo para kr̥pā kīnhi bahu bhā̐tī ॥2॥
+  HI: आपने कुल और सेनासहित रावणका वध किया, त्रिभुवनमें अपना पवित्र यश फैलाया और मुझ दीन, पापी, बुद्धिहीन और जातिहीनपर बहुत प्रकारसे कृपा की ।।२।।
+ITEM 2 [lanka.116.cau3]
+  TR: aba jana gr̥ha punīta prabhu kīje, majjanu karia samara śrama chīje. / dekhi kosa maṁdira saṁpadā, dehu kr̥pāla kapinha kahu̐ mudā ॥3॥
+  HI: अब हे प्रभु! इस दासके घरको पवित्र कीजिये और वहाँ चलकर स्नान कीजिये, जिससे युद्धकी थकावट दूर हो जाय। हे कृपालु! खजाना, महल और सम्पत्तिका निरीक्षण कर प्रसन्नतापूर्वक वानरोंको दीजिये ।।३।।
+ITEM 3 [lanka.116.cau4]
+  TR: saba bidhi nātha mohi apanāia, puni mohi sahita avadhapura jāia. / sunata bacana mr̥du dīnadayālā, sajala bhae dvau nayana bisālā ॥4॥
+  HI: हे नाथ! मुझे सब प्रकारसे अपना लीजिये और फिर हे प्रभो! मुझे साथ लेकर अयोध्यापुरीको पधारिये। विभीषणजीके कोमल वचन सुनते ही दीनदयालु प्रभुके दोनों विशाल नेत्रोंमें [प्रेमाश्रुओंका] जल भर आया ।।४।।
+SEG 0: When Śambhu (Lord Śiva) had finished His prayer and left, Vibhīṣaṇa then approached the Lord.
+SEG 1: Bowing his head at the latter’s feet, he submitted in gentle terms:
+SEG 2: “Listen to my prayer, O Lord wielding the Śārṅga bow.
+SEG 3: My lord, You have killed Rāvaṇa with all his kinsfolk and army and spread Your sacred renown throughout the three spheres.
+SEG 4: And above all You have shown mercy in every way to me, humble, impure, low- born and mean-minded as I am.
+SEG 5: Now, my lord, consecrate Your servant’s abode (by Your holy presence), bathe Yourself and beguile the exertion of the battle.
+SEG 6: Then inspect the treasury, palaces and wealth and gladly bestow, my gracious lord, whatever You please on the monkeys.
+SEG 7: Pray, accept me as Your own in every way, my lord, and then proceed to Ayodhyā taking me alongwith you”.
+SEG 8: Even as the Lord, who is so compassionate to the meek, heard these polite words, His large eyes filled with tears.
+
+### GROUP 2143  (4 items)
+ITEM 0 [lanka.116.do116क]
+  TR: tora kosa gr̥ha mora saba satya bacana sunu bhrāta, / bharata dasā sumirata mohi nimiṣa kalpa sama jāta.116(A).
+  HI: [श्रीरामजीने कहा—] हे भाई! सुनो, तुम्हारा खजाना और घर सब मेरा ही है, यह बात सच है। पर भरतकी दशा याद करके मुझे एक-एक पल कल्पके समान बीत रहा है ।।११६ (क)।।
+ITEM 1 [lanka.116.do116ख]
+  TR: tāpasa beṣa gāta kr̥sa japata niraṁtara mohi, / dekhau̐ begi so jatanu karu sakhā nihorau̐ tohi.116(B).
+  HI: तपस्वीके वेषमें कृश (दुबले) शरीरसे निरन्तर मेरा नाम जप कर रहे हैं। हे सखा! वही उपाय करो जिससे मैं जल्दी-से-जल्दी उन्हें देख सकूँ। मैं तुमसे निहोरा (अनुरोध) करता हूँ ।।११६ (ख)।।
+ITEM 2 [lanka.116.do116ग]
+  TR: bīte̐ avadhi jāu̐ jau̐ jiata na pāvau̐ bīra, / sumirata anuja prīti prabhu puni puni pulaka sarīra.116(C).
+  HI: यदि अवधि बीत जानेपर जाता हूँ तो भाईको जीता न पाऊँगा। छोटे भाई भरतजीकी प्रीतिका स्मरण करके प्रभुका शरीर बार-बार पुलकित हो रहा है ।।११६ (ग)।।
+ITEM 3 [lanka.116.do116घ]
+  TR: karehu kalpa bhari rāju tumha mohi sumirehu mana māhiṁ, / puni mama dhāma pāihahu jahā̐ saṁta saba jāhiṁ.116(D).
+  HI: [श्रीरामजीने फिर कहा—] हे विभीषण! तुम कल्पभर राज्य करना, मनमें मेरा निरन्तर स्मरण करते रहना। फिर तुम मेरे उस धामको पा जाओगे जहाँ सब संत जाते हैं ।।११६ (घ)।।
+SEG 0: “Listen, brother:
+SEG 1: what you say is quite true:
+SEG 2: your treasury and palaces are all My own.
+SEG 3: But, when I recollect Bharata’s condition, every moment that passes seems an age to Me.
+SEG 4: Clad in the robes of a hermit, with wasted body he constantly repeats My name.
+SEG 5: Therefore, take steps, My friend, I beseech you, that I may soon be able to see him again.
+SEG 6: If, on the other hand, I reach there on the expiry of the term of My exile, I do not expect to find My brother alive.” And even as the Lord recalled His brother’s affection He felt a thrill all over His body again and again.
+SEG 7: “As for yourself, you shall enjoy sovereignty till the end of creation, inwardly thinking of Me all the time;
+SEG 8: and then you shall ascend to My abode, the destination of all holy men.”
+
+### GROUP 2144  (4 items)
+ITEM 0 [lanka.117.cau1]
+  TR: sunata bibhīṣana bacana rāma ke, haraṣi gahe pada kr̥pādhāma ke. / bānara bhālu sakala haraṣāne, gahi prabhu pada guna bimala bakhāne ॥1॥
+  HI: श्रीरामचन्द्रजीके वचन सुनते ही विभीषणजीने हर्षित होकर कृपाके धाम श्रीरामजीके चरण पकड़ लिये। सभी वानर-भालू हर्षित हो गये और प्रभुके चरण पकड़कर उनके निर्मल गुणोंका बखान करने लगे ।।१।।
+ITEM 1 [lanka.117.cau2]
+  TR: bahuri bibhīṣana bhavana sidhāyo, mani gana basana bimāna bharāyo. / lai puṣpaka prabhu āge̐ rākhā, ha̐si kari kr̥pāsiṁdhu taba bhāṣā ॥2॥
+  HI: फिर विभीषणजी महलको गये और उन्होंने मणियोंके समूहों (रत्नों) से और वस्त्रोंसे विमानको भर लिया। फिर उस पुष्पकविमानको लाकर प्रभुके सामने रखा। तब कृपासागर श्रीरामजीने हँसकर कहा— ।।२।।
+ITEM 2 [lanka.117.cau3]
+  TR: caṛhi bimāna sunu sakhā bibhīṣana, gagana jāi baraṣahu paṭa bhūṣana. / nabha para jāi bibhīṣana tabahī, baraṣi die mani aṁbara sabahī ॥3॥
+  HI: हे सखा विभीषण! सुनो, विमानपर चढ़कर, आकाशमें जाकर वस्त्रों और गहनोंको बरसा दो। तब (आज्ञा सुनते) ही विभीषणजीने आकाशमें जाकर सब मणियों और वस्त्रोंको बरसा दिया ।।३।।
+ITEM 3 [lanka.117.cau4]
+  TR: joi joi mana bhāvai soi lehī̐, mani mukha meli ḍāri kapi dehī̐. / ha̐se rāmu śrī anuja sametā, parama kautukī kr̥pā niketā ॥4॥
+  HI: जिसके मनको जो अच्छा लगता है, वह वही ले लेता है। मणियोंको मुँहमें लेकर वानर फिर उन्हें खानेकी चीज न समझकर उगल देते हैं। यह तमाशा देखकर परम विनोदी और कृपाके धाम श्रीरामजी सीताजी और लक्ष्मणजीसहित हँसने लगे ।।४।।
+SEG 0: Delighted to hear Śrī Rāma’s words, Vibhīṣaṇa clasped the feet of the All-merciful.
+SEG 1: The monkeys and bears too all rejoiced and, clasping the Lord’s feet, began to recount His sacred virtues.
+SEG 2: Then Vibhīṣaṇa withdrew to his palace and had his celebrated aerial car loaded with precious stones and articles of dress.
+SEG 3: He then brought the aerial car, Puṣpaka as it was called, and set it before the Lord;
+SEG 4: and the All-merciful thereupon smilingly said, “Listen, my friend, Vibhīṣaṇa;
+SEG 5: step into the aerial car and rising into the air, scramble the clothes and ornaments.” Vibhīṣaṇa immediately rose into the air and dropped down all the jewels and raiment.
+SEG 6: The monkeys picked up whatever each took a fancy to;
+SEG 7: they put precious stones into their mouth (thinking them to be some edible substance) but would throw them away (the moment they realized their mistake).
+SEG 8: Śrī Rāma as well as Śrī (Sītā) and His younger brother (Lakṣmaṇa) felt amused at the sight, exceedingly playful as the All-merciful is.
+
+### GROUP 2145  (2 items)
+ITEM 0 [lanka.117.do117क]
+  TR: muni jehi dhyāna na pāvahiṁ neti neti kaha beda, / kr̥pāsiṁdhu soi kapinha sana karata aneka binoda.117(A).
+  HI: जिनको मुनि ध्यानमें भी नहीं पाते, जिन्हें वेद नेति-नेति कहते हैं, वे ही कृपाके समुद्र श्रीरामजी वानरोंके साथ अनेकों प्रकारके विनोद कर रहे हैं ।।११७ (क)।।
+ITEM 1 [lanka.117.do117ख]
+  TR: umā joga japa dāna tapa nānā makha brata nema, / rāma kr̥pā nahiṁ karahiṁ tasi jasi niṣkevala prema.117(B).
+  HI: [शिवजी कहते हैं—] हे उमा! अनेकों प्रकारके योग, जप, दान, तप, यज्ञ, व्रत और नियम करनेपर भी श्रीरामचन्द्रजी वैसी कृपा नहीं करते जैसी अनन्य प्रेम होनेपर करते हैं ।।११७ (ख)।।
+SEG 0: That Ocean of compassion, whom sages are unable to catch even in meditation and whom the Vedas describe only in negative terms such as “Not that, not that,” amused himself with the monkeys in diverse ways.
+SEG 1: Umā, (continues Lord Śiva,) practice of Yoga (concentration of mind), Japa (muttering of prayers), charity and penance, performance of sacrifices, fasting and other religious observances fail to evoke Śrī Rāma’s compassion to the same degree as unalloyed devotion does.
+
+### GROUP 2146  (5 items)
+ITEM 0 [lanka.118.cau1]
+  TR: bhālu kapinha paṭa bhūṣana pāe, pahiri pahiri raghupati pahiṁ āe. / nānā jinasa dekhi saba kīsā, puni puni ha̐sata kosalādhīsā ॥1॥
+  HI: भालुओं और वानरोंने कपड़े-गहने पाये और उन्हें पहन-पहनकर वे श्रीरघुनाथजीके पास आये। अनेकों जातियोंके वानरोंको देखकर कोसलपति श्रीरामजी बार-बार हँस रहे हैं ।।१।।
+ITEM 1 [lanka.118.cau2]
+  TR: citai sabanhi para kīnhī dāyā, bole mr̥dula bacana raghurāyā. / tumhare̐ bala maiṁ rāvanu māryo, tilaka bibhīṣana kaha̐ puni sāryo ॥2॥
+  HI: श्रीरघुनाथजीने कृपादृष्टिसे देखकर सबपर दया की। फिर वे कोमल वचन बोले—हे भाइयो! तुम्हारे ही बलसे मैंने रावणको मारा और फिर विभीषणका राजतिलक किया ।।२।।
+ITEM 2 [lanka.118.cau3]
+  TR: nija nija gr̥ha aba tumha saba jāhū, sumirehu mohi ḍarapahu jani kāhū. / sunata bacana premākula bānara, jori pāni bole saba sādara ॥3॥
+  HI: अब तुम सब अपने-अपने घर जाओ। मेरा स्मरण करते रहना और किसीसे डरना नहीं। ये वचन सुनते ही सब वानर प्रेममें विह्वल होकर हाथ जोड़कर आदरपूर्वक बोले— ।।३।।
+ITEM 3 [lanka.118.cau4]
+  TR: prabhu joi kahahu tumhahi saba sohā, hamare̐ hota bacana suni mohā. / dīna jāni kapi kie sanāthā, tumha trailoka īsa raghunāthā ॥4॥
+  HI: प्रभो! आप जो कुछ भी कहें, आपको सब सोहता है। पर आपके वचन सुनकर हमको मोह होता है। हे रघुनाथजी! आप तीनों लोकोंके ईश्वर हैं। हम वानरोंको दीन जानकर ही आपने सनाथ (कृतार्थ) किया है ।।४।।
+ITEM 4 [lanka.118.cau5]
+  TR: suni prabhu bacana lāja hama marahī̐, masaka kahū̐ khagapati hita karahī̐. / dekhi rāma rukha bānara rīchā, prema magana nahiṁ gr̥ha kai īchā ॥5॥
+  HI: प्रभुके (ऐसे) वचन सुनकर हम लाजके मारे मरे जा रहे हैं। कहीं मच्छर भी गरुड़का हित कर सकते हैं? श्रीरामजीका रुख देखकर रीछ-वानर प्रेममें मग्न हो गये। उनकी घर जानेकी इच्छा नहीं है ।।५।।
+SEG 0: Having thus secured raiment and jewels, the bears and monkeys adorned their person with the same and appeared before the Lord of the Raghus.
+SEG 1: The Lord of Kosala laughed again and again to see all the monkeys, a motley host indeed.
+SEG 2: The Lord of the Raghus showered His grace on all by casting a look at them, and spoke to them in endearing terms:
+SEG 3: “It was through your might that I succeeded first in killing Rāvaṇa and then in crowning Vibhīṣaṇa.
+SEG 4: Now return all of you to your several homes;
+SEG 5: keep your thought fixed on Me and fear none.” The monkeys were all overcome with affection to hear these words and reverently replied with joined palms:
+SEG 6: O Lord, whatever You say well becomes of You.
+SEG 7: But we get mystified on hearing Your words.
+SEG 8: You are the Sovereign of all the three spheres, O Lord of the Raghus;
+SEG 9: knowing our humble state You took us under Your protection.
+SEG 10: But we are overwhelmed with shame to hear such words from the lips of our Master (Yourself).
+SEG 11: Can a swarm of mosquitoes ever help Garuḍa (the king of the birds)?” The bears and monkeys were overpowered with emotion when they saw what was in the mind of the Lord, (viz., His reluctance to take them to Ayodhyā);
+SEG 12: they had no inclination to return home.
+
+### GROUP 2147  (3 items)
+ITEM 0 [lanka.118.do118क]
+  TR: prabhu prerita kapi bhālu saba rāma rūpa ura rākhi, / haraṣa biṣāda sahita cale binaya bibidha bidhi bhāṣi.118(A).
+  HI: परन्तु प्रभुकी प्रेरणा (आज्ञा) से सब वानर-भालू श्रीरामजीके रूपको हृदयमें रखकर और अनेकों प्रकारसे विनती करके हर्ष और विषादसहित घरको चले ।।११८ (क)।।
+ITEM 1 [lanka.118.do118ख]
+  TR: kapipati nīla rīchapati aṁgada nala hanumāna, / sahita bibhīṣana apara je jūthapa kapi balavāna.118(B).
+  HI: वानरराज सुग्रीव, नील, ऋक्षराज जाम्बवान्, अंगद, नल और हनुमान् तथा विभीषणसहित और जो बलवान् वानर सेनापति हैं, ।।११८ (ख)।।
+ITEM 2 [lanka.118.do118ग]
+  TR: kahi na sakahiṁ kachu prema basa bhari bhari locana bāri, / sanmukha citavahiṁ rāma tana nayana nimeṣa nivāri.118(C).
+  HI: वे कुछ कह नहीं सकते; प्रेमवश नेत्रोंमें जल भर-भरकर, नेत्रोंका पलक मारना छोड़कर (टकटकी लगाये) सम्मुख होकर श्रीरामजीकी ओर देख रहे हैं ।।११८ (ग)।।
+SEG 0: But in obedience to the Lord’s command the monkeys and bears all dispersed with a mixed feeling of joy and sorrow and with many a humble submission, enshrining Śrī Rāma’s image in their heart.
+SEG 1: The monkey-king (Sugrīva), Nīla, Jāmbavān (the lord of the bears), Aṅgada, Nala, Hanumān and all the other mighty generals of the monkey host, together with Vibhīṣaṇa, were too overwhelmed with emotion to utter a word.
+SEG 2: With eyes full of tears they stood facing Śrī Rāma and gazing intently on Him.
+
+### GROUP 2148  (6 items)
+ITEM 0 [lanka.119.cau1]
+  TR: atisaya prīti dekhi raghurāī, līnhe sakala bimāna caṛhāī. / mana mahu̐ bipra carana siru nāyo, uttara disihi bimāna calāyo ॥1॥
+  HI: श्रीरघुनाथजीने उनका अतिशय प्रेम देखकर सबको विमानपर चढ़ा लिया। तदनन्तर मन- ही-मन विप्रचरणोंमें सिर नवाकर उत्तर दिशाकी ओर विमान चलाया ।।१।।
+ITEM 1 [lanka.119.cau2]
+  TR: calata bimāna kolāhala hoī, jaya raghubīra kahai sabu koī. / siṁhāsana ati ucca manohara, śrī sameta prabhu baiṭhe tā para ॥2॥
+  HI: विमानके चलते समय बड़ा शोर हो रहा है। सब कोई श्रीरघुवीरकी जय कह रहे हैं। विमानमें एक अत्यन्त ऊँचा मनोहर सिंहासन है। उसपर सीताजीसहित प्रभु श्रीरामचन्द्रजी विराजमान हो गये ।।२।।
+ITEM 2 [lanka.119.cau3]
+  TR: rājata rāmu sahita bhāminī, meru sr̥ṁga janu ghana dāminī. / rucira bimāna caleu ati ātura, kīnhī sumana br̥ṣṭi haraṣe sura ॥3॥
+  HI: पत्नीसहित श्रीरामजी ऐसे सुशोभित हो रहे हैं मानो सुमेरुके शिखरपर बिजलीसहित श्याम मेघ हो। सुन्दर विमान बड़ी शीघ्रतासे चला। देवता हर्षित हुए और उन्होंने फूलोंकी वर्षा की ।।३।।
+ITEM 3 [lanka.119.cau4]
+  TR: parama sukhada cali tribidha bayārī, sāgara sara sari nirmala bārī. / saguna hohiṁ suṁdara cahu̐ pāsā, mana prasanna nirmala nabha āsā ॥4॥
+  HI: अत्यन्त सुख देनेवाली तीन प्रकारकी (शीतल, मन्द, सुगन्धित) वायु चलने लगी। समुद्र, तालाब और नदियोंका जल निर्मल हो गया। चारों ओर सुन्दर शकुन होने लगे। सबके मन प्रसन्न हैं, आकाश और दिशाएँ निर्मल हैं ।।४।।
+ITEM 4 [lanka.119.cau5]
+  TR: kaha raghubīra dekhu rana sītā, lachimana ihā̐ hatyo idṁrajītā. / hanūmāna aṁgada ke māre, rana mahi pare nisācara bhāre ॥5॥
+  HI: श्रीरघुवीरने कहा—हे सीते! रणभूमि देखो। लक्ष्मणने यहाँ इन्द्रको जीतनेवाले मेघनादको मारा था। हनुमान् और अंगदके मारे हुए ये भारी-भारी निशाचर रणभूमिमें पड़े हैं ।।५।।
+ITEM 5 [lanka.119.cau6]
+  TR: kuṁbhakarana rāvana dvau bhāī, ihā̐ hate sura muni dukhadāī ॥6॥
+  HI: देवताओं और मुनियोंको दुःख देनेवाले कुम्भकर्ण और रावण दोनों भाई यहाँ मारे गये ।।६।।
+SEG 0: Perceiving their excessive love the Lord of the Raghus (mounted the aerial car alongwith Sītā and Lakṣmaṇa and) took them all up into the car.
+SEG 1: He mentally bowed His head at the feet of the Brāhmaṇas and directed the car to move towards the north.
+SEG 2: An uproarious noise burst forth as the car took off, all shouting “Glory to the Hero of Raghu’s line !” The car was provided with a lofty and charming throne;
+SEG 3: the Lord took His seat on it alongwith Śrī (Sītā).
+SEG 4: Accompanied by His Spouse, Śrī Rāma shone forth like a cloud with lightning on a peak of Mount Meru.
+SEG 5: The splendid car moved with all speed on its way, to the joy of the gods, who rained down flowers on it.
+SEG 6: A most delightful cool breeze breathed soft and fragrant;
+SEG 7: the water of the ocean, lakes and streams became transparent and auspicious omens occurred on all sides.
+SEG 8: Nay, everyone felt cheerful at heart;
+SEG 9: the whole expanse of the sky including the four quarters was clear.
+SEG 10: Said the Hero of Raghu’s line:
+SEG 11: “Mark, Sītā:
+SEG 12: it was on this spot that Lakṣmaṇa slew Meghanāda (the Crown Prince of Laṅkā).
+SEG 13: Here lie on the battlefield mighty demons killed by Hanumān and Aṅgada.
+SEG 14: And here fell the two brothers, Kumbhakarṇa and Rāvaṇa, the torment of gods and sages.”
+
+### GROUP 2149  (2 items)
+ITEM 0 [lanka.119.do119क]
+  TR: ihā̐ setu bā̐dhyo̐ aru thāpeu̐ siva sukha dhāma, / sītā sahita kr̥pānidhi saṁbhuhi kīnha pranāma.119(A).
+  HI: मैंने यहाँ पुल बाँधा (बँधवाया) और सुखधाम श्रीशिवजीकी स्थापना की। तदनन्तर कृपानिधान श्रीरामजीने सीताजीसहित श्रीरामेश्वर महादेवको प्रणाम किया ।।११९ (क)।।
+ITEM 1 [lanka.119.do119ख]
+  TR: jaha̐ jaha̐ kr̥pāsiṁdhu bana kīnha bāsa biśrāma, / sakala dekhāe jānakihi kahe sabanhi ke nāma.119(B).
+  HI: वनमें जहाँ-जहाँ करुणासागर श्रीरामचन्द्रजीने निवास और विश्राम किया था, वे सब स्थान प्रभुने जानकीजीको दिखलाये और सबके नाम बतलाये ।।११९ (ख)।।
+SEG 0: “It was here that I had a bridge constructed and also installed a symbol of the blissful Lord Śiva.” So saying, the All-merciful Śrī Rāma and Sītā both made obeisance to Śambhu.
+SEG 1: Every spot in the woods, where the Ocean of compassion had either taken up His abode or rested awhile, was then pointed out by the Lord to Janaka’s Daughter and mentioned by name.
+
+### GROUP 2150  (4 items)
+ITEM 0 [lanka.120.cau1]
+  TR: turata bimāna tahā̐ cali āvā, daṁḍaka bana jaha̐ parama suhāvā. / kuṁbhajādi munināyaka nānā, gae rāmu saba ke̐ asthānā ॥1॥
+  HI: विमान शीघ्र ही वहाँ चला आया जहाँ परम सुन्दर दण्डकवन था, और अगस्त्य आदि बहुत-से मुनिराज रहते थे। श्रीरामजी इन सबके स्थानोंमें गये ।।१।।
+ITEM 1 [lanka.120.cau2]
+  TR: sakala riṣinha sana pāi asīsā, citrakūṭa āe jagadīsā. / taha̐ kari muninha kera saṁtoṣā, calā bimānu tahā̐ te cokhā ॥2॥
+  HI: सम्पूर्ण ऋषियोंसे आशीर्वाद पाकर जगदीश्वर श्रीरामजी चित्रकूट आये। वहाँ मुनियोंको सन्तुष्ट किया। [फिर] विमान वहाँसे आगे तेजीके साथ चला ।।२।।
+ITEM 2 [lanka.120.cau3]
+  TR: bahuri rāma jānakihi dekhāī, jamunā kali mala harani suhāī. / puni dekhī surasarī punītā, rāma kahā pranāma karu sītā ॥3॥
+  HI: फिर श्रीरामजीने जानकीजीको कलियुगके पापोंका हरण करनेवाली सुहावनी यमुनाजीके दर्शन कराये। फिर पवित्र गङ्गाजीके दर्शन किये। श्रीरामजीने कहा—हे सीते! इन्हें प्रणाम करो ।।३।।
+ITEM 3 [lanka.120.cau4-5]
+  TR: tīrathapati puni dekhu prayāgā, nirakhata janma koṭi agha bhāgā. / dekhu parama pāvani puni benī, harani soka hari loka nisenī ॥4॥ / puni dekhu avadhapurī ati pāvani, tribidha tāpa bhava roga nasāvani ॥5॥
+  HI: फिर तीर्थराज प्रयागको देखो, जिसके दर्शनसे ही करोड़ों जन्मोंके पाप भाग जाते हैं। फिर परम पवित्र त्रिवेणीजीके दर्शन करो, जो शोकोंको हरनेवाली और श्रीहरिके परम धाम [पहुँचने] के लिये सीढ़ीके समान है। फिर अत्यन्त पवित्र अयोध्यापुरीके दर्शन करो, जो तीनों प्रकारके तापों और भव (आवागमनरूपी) रोगका नाश करनेवाली है ।।४-५।।
+SEG 0: Forthwith the aerial car reached the most charming Daṇḍaka forest, the abode of many a great sage like Kumbhaja (the jar-born Agastya) and others:
+SEG 1: Śrī Rāma visited the hermitages of all.
+SEG 2: After receiving the blessings of all these sages the Lord of the universe arrived at Citrakūṭa;
+SEG 3: and, having gratified the sages there, the aerial car departed thence with all speed.
+SEG 4: Śrī Rāma next pointed out to Janaka’s Daughter the beautiful Yamunā, that washes away the impurities of the Kali age.
+SEG 5: Thereafter they espied the holy Gaṅgā (the celestial stream) and Śrī Rāma said, “Sītā, make obeisance.
+SEG 6: Now have a look at Prayāga, the king of all sacred places, whose very sight drives away sins committed through a myriad lives.
+SEG 7: Again look at the most holy Triveṇī (the confluence of the Gaṅgā, Yamunā and the subterranean Sarasvatī), the dispeller of grief and a ladder to Śrī Hari’s Abode.
+SEG 8: Now see the most sacred city of Ayodhyā, that relieves the threefold agony and uproots the malady of transmigration.”
+
+### GROUP 2151  (2 items)
+ITEM 0 [lanka.120.do120क]
+  TR: sītā sahita avadha kahu̐ kīnha kr̥pāla pranāma, / sajala nayana tana pulakita puni puni haraṣita rāma.120(A).
+  HI: यों कहकर कृपालु श्रीरामजीने सीताजीसहित अवधपुरीको प्रणाम किया। सजलनेत्र और पुलकितशरीर होकर श्रीरामजी बार-बार हर्षित हो रहे हैं ।।१२० (क)।।
+ITEM 1 [lanka.120.do120ख]
+  TR: puni prabhu āi tribenī̐ haraṣita majjanu kīnha, / kapinha sahita bipranha kahu̐ dāna bibidha bidhi dīnha.120(B).
+  HI: फिर त्रिवेणीमें आकर प्रभुने हर्षित होकर स्नान किया और वानरोंसहित ब्राह्मणोंको अनेकों प्रकारके दान दिये ।।१२० (ख)।।
+SEG 0: The gracious Rāma and Sītā both made obeisance to Ayodhyā.
+SEG 1: Tears rushed to His eyes, every hair on His body stood erect and the Lord felt delighted again and again.
+SEG 2: The Lord then landed at the Triveṇī and with much joy bathed in the confluence.
+SEG 3: He bestowed a variety of gifts on the Brāhmaṇas and the monkeys too joined Him.
+
+### GROUP 2152  (6 items)
+ITEM 0 [lanka.121.cau1]
+  TR: prabhu hanumaṁtahi kahā bujhāī, dhari baṭu rūpa avadhapura jāī. / bharatahi kusala hamāri sunāehu, samācāra lai tumha cali āehu ॥1॥
+  HI: तदनन्तर प्रभुने हनुमान्‌जीको समझाकर कहा—तुम ब्रह्मचारीका रूप धरकर अवधपुरीको जाओ। भरतको हमारी कुशल सुनाना और उनका समाचार लेकर चले आना ।।१।।
+ITEM 1 [lanka.121.cau2]
+  TR: turata pavanasuta gavanata bhayaū, taba prabhu bharadvāja pahiṁ gayaū. / nānā bidhi muni pūjā kīnhī, astuti kari puni āsiṣa dīnhī ॥2॥
+  HI: पवनपुत्र हनुमान्‌जी तुरंत ही चल दिये। तब प्रभु भरद्वाजजीके पास गये। मुनिने [इष्टबुद्धिसे] उनकी अनेकों प्रकारसे पूजा की और स्तुति की और फिर [लीलाकी दृष्टिसे] आशीर्वाद दिया ।।२।।
+ITEM 2 [lanka.121.cau3]
+  TR: muni pada baṁdi jugala kara jorī, caṛhi bimāna prabhu cale bahorī. / ihā̐ niṣāda sunā prabhu āe, nāva nāva kaha̐ loga bolāe ॥3॥
+  HI: दोनों हाथ जोड़कर तथा मुनिके चरणोंकी वन्दना करके प्रभु विमानपर चढ़कर फिर (आगे) चले। यहाँ जब निषादराजने सुना कि प्रभु आ गये, तब उसने ‘नाव कहाँ है? नाव कहाँ है?’ पुकारते हुए लोगोंको बुलाया ।।३।।
+ITEM 3 [lanka.121.cau4]
+  TR: surasari nāghi jāna taba āyo, utareu taṭa prabhu āyasu pāyo. / taba sītā̐ pūjī surasarī, bahu prakāra puni carananhi parī ॥4॥
+  HI: इतनेमें ही विमान गङ्गाजीको लाँघकर [इस पार] आ गया और प्रभुकी आज्ञा पाकर वह किनारेपर उतरा। तब सीताजी बहुत प्रकारसे गङ्गाजीकी पूजा करके फिर उनके चरणोंपर गिरीं ।।४।।
+ITEM 4 [lanka.121.cau5]
+  TR: dīnhi asīsa haraṣi mana gaṁgā, suṁdari tava ahivāta abhaṁgā. / sunata guhā dhāyau premākula, āyau nikaṭa parama sukha saṁkula ॥5॥
+  HI: गङ्गाजीने मनमें हर्षित होकर आशीर्वाद दिया—हे सुन्दरी! तुम्हारा सुहाग अखण्ड हो। भगवान्‌के तटपर उतरनेकी बात सुनते ही निषादराज गुह प्रेममें विह्वल होकर दौड़ा। परम सुखसे परिपूर्ण होकर वह प्रभुके समीप आया, ।।५।।
+ITEM 5 [lanka.121.cau6]
+  TR: prabhuhi sahita biloki baidehī, pareu avani tana sudhi nahiṁ tehī. / prīti parama biloki raghurāī, haraṣi uṭhāi liyo ura lāī ॥6॥
+  HI: और श्रीजानकीजीसहित प्रभुको देखकर वह [आनन्द-समाधिमें मग्न होकर] पृथ्वीपर गिर पड़ा, उसे शरीरकी सुधि न रही। श्रीरघुनाथजीने उसका परम प्रेम देखकर उसे उठाकर हर्षके साथ हृदयसे लगा लिया ।।६।।
+SEG 0: The Lord instructed Hanumān as follows:—“Go ahead of us to the city of Ayodhyā in the guise of a religious student, tell Bharata the news of our welfare and then come back with all the news about him.” The son of the wind-god immediately left and the Lord then called on Bharadvāja.
+SEG 1: The sage offered Him all kinds of worship and after hymning His praises further gave Him his blessing.
+SEG 2: The Lord in His turn adored the sage’s feet with joined palms, mounted the car and went on His journey.
+SEG 3: At this end the Niṣāda chief heard that the Lord had come and exclaiming “The boat, where is the boat ?” summoned his people.
+SEG 4: Meanwhile the aerial car flew across the celestial stream and landed on the bank (adjoining Śr̥ṅgaverapura) in obedience to the Lord’s command.
+SEG 5: Then Sītā offered all kinds of worship to the celestial stream and threw Herself at the feet of the Goddess presiding over the stream.
+SEG 6: In gladness of soul Gaṅgā pronounced Her blessing.
+SEG 7: “May You enjoy a happy married life without a break, O fair lady.” Overwhelmed with love, Guha ran to meet the Lord as soon as he heard of His landing and approached his Master, full of ecstatic joy.
+SEG 8: Perceiving the Lord accompanied by Videha’s Daughter, he fell flat on the ground oblivious of his own existence.
+SEG 9: The Lord of the Raghus felt overjoyed to see his excessive fondness;
+SEG 10: He took and clasped him to His bosom.
+
+### GROUP 2153  (2 items)
+ITEM 0 [lanka.121.cha1]
+  TR: liyo hr̥daya̐ lāi kr̥pā nidhāna sujāna rāya̐ ramāpatī, / baiṭhāri parama samīpa būjhī kusala so kara bīnatī. / aba kusala pada paṁkaja biloki biraṁci saṁkara sebya je, / sukha dhāma pūranakāma rāma namāmi rāma namāmi te ॥1॥
+  HI: सुजानोंके राजा (शिरोमणि), लक्ष्मीकान्त, कृपानिधान भगवान्‌ने उसको हृदयसे लगा लिया और अत्यन्त निकट बैठाकर कुशल पूछी। वह विनती करने लगा—आपके जो चरणकमल ब्रह्माजी और शङ्करजीसे सेवित हैं, उनके दर्शन करके मैं अब सकुशल हूँ। हे सुखधाम! हे पूर्णकाम श्रीरामजी! मैं आपको नमस्कार करता हूँ, नमस्कार करता हूँ ।।१।।
+ITEM 1 [lanka.121.cha2]
+  TR: saba bhā̐ti adhama niṣāda so hari bharata jyo̐ ura lāiyo, / matimaṁda tulasīdāsa so prabhu moha basa bisarāiyo. / yaha rāvanāri caritra pāvana rāma pada ratiprada sadā, / kāmādihara bigyānakara sura siddha muni gāvahiṁ mudā ॥2॥
+  HI: सब प्रकारसे नीच उस निषादको भगवान्‌ने भरतजीकी भाँति हृदयसे लगा लिया। तुलसीदासजी कहते हैं—इस मन्दबुद्धिने (मैंने) मोहवश उस प्रभुको भुला दिया। रावणके शत्रुका यह पवित्र करनेवाला चरित्र सदा ही श्रीरामजीके चरणोंमें प्रीति उत्पन्न करनेवाला है। यह कामादि विकारोंका हरनेवाला और [भगवान्‌के स्वरूपका] विशेष ज्ञान उत्पन्न करनेवाला है। देवता, सिद्ध और मुनि आनन्दित होकर इसे गाते हैं ।।२।।
+SEG 0: The All-merciful Lord of Ramā (Sītā or Lakṣmī), the wisest among the wise, took and clasped him to His bosom and, seating him very close to Him, enquired after his welfare.
+SEG 1: Guha submitted in reply:
+SEG 2: “Now all is well with me;
+SEG 3: for I have beheld Your lotus-feet, worthy of adoration even to Virañci (Brahmā) and Lord Śaṅkara.
+SEG 4: O blissful Rāma, self-sufficient as You are, I simply adore You;
+SEG 5: O Rāma, I adore You.” That Niṣāda, who was low in every respect, Śrī Hari clasped to His bosom as though he were Bharata himself !
+SEG 6: A victim of infatuation, this dull-witted Tulasīdāsa, however, has cast out of his mind even such a benign lord.
+SEG 7: This story of the Slayer of Rāvaṇa, is not only sanctifying but vouchsafes loving and perpetual devotion to Śrī Rāma’s feet.
+SEG 8: Nay, it uproots lust and other evil passions and begets true wisdom and is gladly sung by gods, the Siddhas and sages.
+
+### GROUP 2154  (2 items)
+ITEM 0 [lanka.121.do121क]
+  TR: samara bijaya raghubīra ke carita je sunahiṁ sujāna, / bijaya bibeka bibhūti nita tinhahiṁ dehiṁ bhagavāna.121(A).
+  HI: जो सुजान लोग श्रीरघुवीरकी समरविजयसम्बन्धी लीलाको सुनते हैं, उनको भगवान् नित्य विजय, विवेक और विभूति (ऐश्वर्य) देते हैं ।।१२१ (क)।।
+ITEM 1 [lanka.121.do121ख]
+  TR: yaha kalikāla malāyatana mana kari dekhu bicāra, / śrīraghunātha nāma taji nāhina āna adhāra.122(B).
+  HI: अरे मन! विचार करके देख! यह कलिकाल पापोंका घर है। इसमें श्रीरघुनाथजीके नामको छोड़कर [पापोंसे बचनेके लिये] दूसरा कोई आधार नहीं है ।।१२१ (ख)।।
+SEG 0: The Lord rewards with everlasting victory, wisdom and worldly prosperity those men of good understanding who listen to the stories relating to the victory of Śrī Rāma (the Hero of Raghu’s line) in battle.
+SEG 1: Ponder well and see for yourself, O my mind:
+SEG 2: this age of Kali is the very home of impurities.
+SEG 3: There is nothing to fall back upon in this age, other than the name of the illustrious Lord of the Raghus.
+
+### GROUP 2168  (4 items)
+ITEM 0 [uttar.0.dou1]
+  TR: rahā eka dina avadhi kara ati ārata pura loga, / jaha̐ taha̐ socahiṁ nāri nara kr̥sa tana rāma biyoga.
+  HI: [श्रीरामजीके लौटनेकी] अवधिका एक ही दिन बाकी रह गया, अतएव नगरके लोग बहुत आतुर (अधीर) हो रहे हैं। रामके वियोगमें दुबले हुए स्त्री-पुरुष जहाँ-तहाँ सोच (विचार) कर रहे हैं [कि क्या बात है, श्रीरामजी क्यों नहीं आये]।
+ITEM 1 [uttar.0.dou2]
+  TR: saguna hohiṁ suṁdara sakala mana prasanna saba kera, / prabhu āgavana janāva janu nagara ramya cahu̐ phera.
+  HI: इतनेमें ही सब सुन्दर शकुन होने लगे और सबके मन प्रसन्न हो गये। नगर भी चारों ओरसे रमणीक हो गया। मानो ये सब-के-सब चिह्न प्रभुके [शुभ] आगमनको जना रहे हैं।
+ITEM 2 [uttar.0.dou3]
+  TR: kausalyādi mātu saba mana anaṁda asa hoi, / āyau prabhu śrī anuja juta kahana cahata aba koi.
+  HI: कौसल्या आदि सब माताओंके मनमें ऐसा आनन्द हो रहा है जैसे अभी कोई कहना ही चाहता है कि सीताजी और लक्ष्मणजीसहित प्रभु श्रीरामचन्द्रजी आ गये।
+ITEM 3 [uttar.0.dou4]
+  TR: bharata nayana bhuja dacchina pharakata bārahiṁ bāra, / jāni saguna mana haraṣa ati lāge karana bicāra.
+  HI: भरतजीकी दाहिनी आँख और दाहिनी भुजा बार-बार फड़क रही है। इसे शुभ शकुन जानकर उनके मनमें अत्यन्त हर्ष हुआ और वे विचार करने लगे—
+SEG 0: The term of Śrī Rāma’s exile was to expire only the next day, which made the people of the city extremely anxious.
+SEG 1: Wasted in body through separation from Śrī Rāma, men and women alike were plunged in thought everywhere.
+SEG 2: Meanwhile auspicious omens of all kinds occurred and everyone felt cheerful at heart.
+SEG 3: The city itself brightened up all round, as if to announce the Lord’s advent.
+SEG 4: Kausalyā and the other mothers all felt inwardly happy as if someone was about to tell them that the Lord had come with Sītā and Lakṣmaṇa.
+SEG 5: Bharata’s right eye and arm throbbed again and again.
+SEG 6: Recognizing this to be a lucky omen, he felt overjoyed at heart;
+SEG 7: but the very next moment he became thoughtful again.
+
+### GROUP 2169  (4 items)
+ITEM 0 [uttar.1.cau1]
+  TR: raheu eka dina avadhi adhārā, samujhata mana dukha bhayau apārā. / kārana kavana nātha nahiṁ āyau, jāni kuṭila kidhau̐ mohi bisarāyau ॥1॥
+  HI: प्राणोंकी आधाररूप अवधिका एक ही दिन शेष रह गया। यह सोचते ही भरतजीके मनमें अपार दुःख हुआ। क्या कारण हुआ कि नाथ नहीं आये? प्रभुने कुटिल जानकर मुझे कहीं भुला तो नहीं दिया? ।।१।।
+ITEM 1 [uttar.1.cau2]
+  TR: ahaha dhanya lachimana baṛabhāgī, rāma padārabiṁdu anurāgī. / kapaṭī kuṭila mohi prabhu cīnhā, tāte nātha saṁga nahiṁ līnhā ॥2॥
+  HI: अहा हा! लक्ष्मण बड़े धन्य एवं बड़भागी हैं, जो श्रीरामचन्द्रजीके चरणारविन्दके प्रेमी हैं (अर्थात् उनसे अलग नहीं हुए)। मुझे तो प्रभुने कपटी और कुटिल पहचान लिया, इसीसे नाथने मुझे साथ नहीं लिया! ।।२।।
+ITEM 2 [uttar.1.cau3]
+  TR: jau̐ karanī samujhai prabhu morī, nahiṁ nistāra kalapa sata korī. / jana avaguna prabhu māna na kāū, dīna baṁdhu ati mr̥dula subhāū ॥3॥
+  HI: [बात भी ठीक ही है, क्योंकि] यदि प्रभु मेरी करनीपर ध्यान दें, तो सौ करोड़ (असंख्य) कल्पोंतक भी मेरा निस्तार (छुटकारा) नहीं हो सकता। [परन्तु आशा इतनी ही है कि] प्रभु सेवकका अवगुण कभी नहीं मानते। वे दीनबन्धु हैं और अत्यन्त ही कोमल स्वभावके हैं ।।३।।
+ITEM 3 [uttar.1.cau4]
+  TR: more jiya̐ bharosa dr̥ṛha soī, milihahiṁ rāma saguna subha hoī. / bīte̐ avadhi rahahiṁ jau̐ prānā, adhama kavana jaga mohi samānā ॥4॥
+  HI: अतएव मेरे हृदयमें ऐसा पक्का भरोसा है कि श्रीरामजी अवश्य मिलेंगे, [क्योंकि] मुझे शकुन बड़े शुभ हो रहे हैं। किन्तु अवधि बीत जानेपर यदि मेरे प्राण रह गये तो जगत्‌में मेरे समान नीच कौन होगा? ।।४।।
+SEG 0: The term of Śrī Rāma’s exile, which was the sole hope of his life, was going to expire only a day hence:
+SEG 1: the thought filled Bharata’s mind with untold grief.
+SEG 2: “How is it that the Lord did not turn up?
+SEG 3: Has He cast me out of His mind, knowing me to be crooked?
+SEG 4: Ah !
+SEG 5: How blessed and fortunate is Lakṣmaṇa, who is truly devoted to Śrī Rāma’s lotus-feet.
+SEG 6: The Lord knew me to be false and perverse;
+SEG 7: that is why He refused to take me alongwith Him.
+SEG 8: If the Lord were to consider my doings, there would be no redemption for me even after countless cycles.
+SEG 9: But the Lord never takes into account the faults of His devotees, being a friend of the humble and most tender-hearted.
+SEG 10: I have a firm conviction in my heart that Śrī Rāma will surely meet me;
+SEG 11: for the omens are so propitious.
+SEG 12: But, if I outlive the expiry of the time-limit, no one would be so despicable in this world as I.”
+
+### GROUP 2170  (2 items)
+ITEM 0 [uttar.1.do1क]
+  TR: rāma biraha sāgara maha̐ bharata magana mana hota, / bipra rūpa dhari pavana suta āi gayau janu pota.1(A).
+  HI: श्रीरामजीके विरह-समुद्रमें भरतजीका मन डूब रहा था, उसी समय पवनपुत्र हनुमान्‌जी ब्राह्मणका रूप धरकर इस प्रकार आ गये, मानो [उन्हें डूबनेसे बचानेके लिये] नाव आ गयी हो ।।१ (क)।।
+ITEM 1 [uttar.1.do1ख]
+  TR: baiṭhe dekhi kusāsana jaṭā mukuṭa kr̥sa gāta, / rāma rāma raghupati japata sravata nayana jalajāta.1(B).
+  HI: हनुमान्‌जीने दुर्बलशरीर भरतजीको जटाओंका मुकुट बनाये, राम! राम! रघुपति! जपते और कमलके समान नेत्रोंसे [प्रेमाश्रुओंका] जल बहाते कुशके आसनपर बैठे देखा ।।१ (ख)।।
+SEG 0: While Bharata’s mind was thus sinking in the ocean of separation from Śrī Rāma, the son of the wind-god, disguised as a Brāhmaṇa, came like a bark to his rescue.
+SEG 1: He found Bharata seated on a mat of Kuśa grass, emaciated in body, with a coil of matted hair for a crown and the words, “Rāma, Rāma, Raghupati” on his lips, his lotus eyes streaming with tears.
+
+### GROUP 2171  (8 items)
+ITEM 0 [uttar.2.cau1]
+  TR: dekhata hanūmāna ati haraṣeu, pulaka gāta locana jala baraṣeu. / mana maha̐ bahuta bhā̐ ti sukha mānī, boleu śravana sudhā sama bānī ॥1॥
+  HI: उन्हें देखते ही हनुमान्‌जी अत्यन्त हर्षित हुए। उनका शरीर पुलकित हो गया, नेत्रोंसे [प्रेमाश्रुओंका] जल बरसने लगा। मनमें बहुत प्रकारसे सुख मानकर वे कानोंके लिये अमृतके समान वाणी बोले— ।।१।।
+ITEM 1 [uttar.2.cau2]
+  TR: jāsu biraha̐ socahu dina rātī, raṭahu niraṁtara guna gana pā̐ tī. / raghukula tilaka sujana sukhadātā, āyau kusala deva muni trātā ॥2॥
+  HI: जिनके विरहमें आप दिन-रात सोच करते (घुलते) रहते हैं और जिनके गुण-समूहोंकी पंक्तियोंको आप निरन्तर रटते रहते हैं, वे ही रघुकुलके तिलक, सज्जनोंको सुख देनेवाले और देवताओं तथा मुनियोंके रक्षक श्रीरामजी सकुशल आ गये ।।२।।
+ITEM 2 [uttar.2.cau3]
+  TR: ripu rana jīti sujasa sura gāvata, sītā sahita anuja prabhu āvata. / sunata bacana bisare saba dūkhā, tr̥ṣāvaṁta jimi pāi piyūṣā ॥3॥
+  HI: शत्रुको रणमें जीतकर सीताजी और लक्ष्मणजीसहित प्रभु आ रहे हैं; देवता उनका सुन्दर यश गा रहे हैं। ये वचन सुनते ही [भरतजीको] सारे दुःख भूल गये। जैसे प्यासा आदमी अमृत पाकर प्यासके दुःखको भूल जाय ।।३।।
+ITEM 3 [uttar.2.cau4]
+  TR: ko tumha tāta kahā̐ te āe, mohi parama priya bacana sunāe. / māruta suta maiṁ kapi hanumānā, nāmu mora sunu kr̥pānidhānā ॥4॥
+  HI: [भरतजीने पूछा—] हे तात! तुम कौन हो? और कहाँसे आये हो? [जो] तुमने मुझको [ये] परम प्रिय (अत्यन्त आनन्द देनेवाले) वचन सुनाये। [हनुमान्‌जीने कहा—] हे कृपानिधान! सुनिये, मैं पवनका पुत्र और जातिका वानर हूँ; मेरा नाम हनुमान् है ।।४।।
+ITEM 4 [uttar.2.cau5]
+  TR: dīnabaṁdhu raghupati kara kiṁkara, sunata bharata bhe̐ṭeu uṭhi sādara. / milata prema nahiṁ hr̥daya̐ samātā, nayana sravata jala pulakita gātā ॥5॥
+  HI: मैं दीनोंके बन्धु श्रीरघुनाथजीका दास हूँ। यह सुनते ही भरतजी उठकर आदरपूर्वक हनुमान्‌जीसे गले लगकर मिले। मिलते समय प्रेम हृदयमें नहीं समाता। नेत्रोंसे [आनन्द और प्रेमके आँसुओंका] जल बहने लगा और शरीर पुलकित हो गया ।।५।।
+ITEM 5 [uttar.2.cau6]
+  TR: kapi tava darasa sakala dukha bīte, mile āju mohi rāma pirīte. / bāra bāra būjhī kusalātā, to kahu̐ deu̐ kāha sunu bhrātā ॥6॥
+  HI: [भरतजीने कहा—] हे हनुमान्! तुम्हारे दर्शनसे मेरे समस्त दुःख समाप्त हो गये (दुःखोंका अन्त हो गया)। [तुम्हारे रूपमें] आज मुझे प्यारे रामजी ही मिल गये। भरतजीने बार-बार कुशल पूछी [और कहा—] हे भाई! सुनो, [इस शुभ संवादके बदलेमें] तुम्हें क्या दूँ? ।।६।।
+ITEM 6 [uttar.2.cau7]
+  TR: ehi saṁdesa sarisa jaga māhī̐, kari bicāra dekheu̐ kachu nāhī̐. / nāhina tāta urina maiṁ tohī, aba prabhu carita sunāvahu mohī ॥7॥
+  HI: इस सन्देशके समान (इसके बदलेमें देने लायक पदार्थ) जगत्‌में कुछ भी नहीं है, मैंने यह विचार कर देख लिया है। [इसलिये] हे तात! मैं तुमसे किसी प्रकार भी उऋण नहीं हो सकता। अब मुझे प्रभुका चरित्र (हाल) सुनाओ ।।७।।
+ITEM 7 [uttar.2.cau8]
+  TR: taba hanumaṁta nāi pada māthā, kahe sakala raghupati guna gāthā. / kahu kapi kabahu̐ kr̥pāla gosāī̐, sumirahiṁ mohi dāsa kī nāī̐ 8.
+  HI: तब हनुमान्‌जीने भरतजीके चरणोंमें मस्तक नवाकर श्रीरघुनाथजीकी सारी गुणगाथा कही। [भरतजीने पूछा—] हे हनुमान्! कहो, कृपालु स्वामी श्रीरामचन्द्रजी कभी मुझे अपने दासकी तरह याद भी करते हैं? ।।८।।
+SEG 0: At this sight Hanumān was over-joyed;
+SEG 1: every hair on his body stood erect and his eyes rained copiously.
+SEG 2: He felt gratified at heart in everyway and addressed Bharata in words that were as nectar to his ears:
+SEG 3: “He, in whose absence you sorrow day and night, the catalogue of whose virtues you are incessantly recounting the glory of Raghu’s line, the delight of the virtuous and the deliverer of gods and sages, has safely arrived.
+SEG 4: Having conquered His foe in battle, with the gods to hymn His praises, the Lord is now on His way with Sītā and Lakṣmaṇa.” The moment Bharata heard these words he forgot all his woes, like a thirsty man who has secured nectar.
+SEG 5: “Who are you, my beloved friend, and whence have you come?
+SEG 6: You have told me a most pleasing news.” “ Listen, O fountain of mercy:
+SEG 7: I am the son of the wind-god, a monkey;
+SEG 8: Hanumān is my name.
+SEG 9: I am a humble servant of Śrī Rāma (the Lord of the Raghus), the befriender of the meek.” Hearing this, Bharata rose and reverently embraced him.
+SEG 10: The affection with which he embraced him was too great for his heart to contain;
+SEG 11: his eyes streamed with tears and every hair on his body stood erect.
+SEG 12: “At your very sight, O Hanumān, all my woes have disappeared.
+SEG 13: In you I have embraced today my beloved Rāma Himself.” Again and again he enquired after Śrī Rāma’s health and said, “Listen, brother;
+SEG 14: what shall I give you (in return for this happy news)?
+SEG 15: I have pondered and found that there is nothing in this world to match the news you have brought.
+SEG 16: I am thus unable to repay my debt to you.
+SEG 17: Now, pray, recount to me the doings of my lord.” Then Hanumān bowed his head at Bharata’s feet and narrated all the meritorious deeds of Śrī Rāma (the Lord of the Raghus).
+SEG 18: “Tell me, Hanumān, does my gracious lord ever remember me as one of His servants?”
+
+### GROUP 2175  (5 items)
+ITEM 0 [uttar.3.cau1]
+  TR: haraṣi bharata kosalapura āe, samācāra saba gurahi sunāe. / puni maṁdira maha̐ bāta janāī, āvata nagara kusala raghurāī ॥1॥
+  HI: इधर भरतजी भी हर्षित होकर अयोध्यापुरीमें आये और उन्होंने गुरुजीको सब समाचार सुनाया। फिर राजमहलमें खबर जनायी कि श्रीरघुनाथजी कुशलपूर्वक नगरको आ रहे हैं ।।१।।
+ITEM 1 [uttar.3.cau2]
+  TR: sunata sakala jananī̐ uṭhi dhāī̐, kahi prabhu kusala bharata samujhāī̐ / samācāra purabāsinha pāe, nara aru nāri haraṣi saba dhāe ॥2॥
+  HI: खबर सुनते ही सब माताएँ उठ दौड़ीं। भरतजीने प्रभुकी कुशल कहकर सबको समझाया। नगरनिवासियोंने यह समाचार पाया, तो स्त्री-पुरुष सभी हर्षित होकर दौड़े ।।२।।
+ITEM 2 [uttar.3.cau3]
+  TR: dadhi durbā rocana phala phūlā, nava tulasī dala maṁgala mūlā. / bhari bhari hema thāra bhāminī, gāvata caliṁ siṁdhuragāminī ॥3॥
+  HI: [श्रीरामजीके स्वागतके लिये] दही, दूब, गोरोचन, फल, फूल और मङ्गलके मूल नवीन तुलसीदल आदि वस्तुएँ सोनेके थालोंमें भर-भरकर हथिनीकी-सी चालवाली सौभाग्यवती स्त्रियाँ [उन्हें लेकर] गाती हुई चलीं ।।३।।
+ITEM 3 [uttar.3.cau4]
+  TR: je jaisehiṁ taisehiṁ uṭhi dhāvahiṁ, bāla br̥ddha kaha̐ saṁga na lāvahiṁ. / eka ekanha kaha̐ būjhahiṁ bhāī, tumha dekhe dayāla raghurāī ॥4॥
+  HI: जो जैसे हैं (जहाँ जिस दशामें हैं) वे वैसे ही (वहींसे उसी दशामें) उठ दौड़ते हैं। [देर हो जानेके डरसे] बालकों और बूढ़ोंको कोई साथ नहीं लाते। एक दूसरेसे पूछते हैं—भाई! तुमने दयालु श्रीरघुनाथजीको देखा है? ।।४।।
+ITEM 4 [uttar.3.cau5]
+  TR: avadhapurī prabhu āvata jānī, bhaī sakala sobhā kai khānī. / bahai suhāvana tribidha samīrā, bhai sarajū ati nirmala nīrā ॥5॥
+  HI: प्रभुको आते जानकर अवधपुरी सम्पूर्ण शोभाओंकी खान हो गयी। तीनों प्रकारकी सुन्दर वायु बहने लगी। सरयूजी अति निर्मल जलवाली हो गयीं (अर्थात् सरयूजीका जल अत्यन्त निर्मल हो गया) ।।५।।
+SEG 0: Bharata too returned with joy to Ayodhyā and broke all the news to his preceptor (the sage Vasiṣṭha).
+SEG 1: He then made it known inside the palace that the Lord of the Raghus was approaching Ayodhyā safe and sound.
+SEG 2: On hearing the news all the mothers started up and ran;
+SEG 3: but Bharata eased their mind by personally telling them of the Lord’s welfare.
+SEG 4: When the information reached the citizens, men and women all ran out in their joy (to meet their lord).
+SEG 5: With gold plates containing curds, Dūrvā grass, the sacred yellow pigment known by the name of Gorocana, fruits and flowers and young leaves of the sacred Tulasī (basil) plant, the root of all blessings, ladies sallied forth with the stately gait of an elephant, singing as they went.
+SEG 6: All ran out just as they happened to be and did not take children or old folk with them.
+SEG 7: People asked one another:
+SEG 8: “Brother, did you see the gracious Lord of the Raghus?” Having come to know of the Lord’s advent, the city of Ayodhyā became a mine of all beauty.
+SEG 9: A delightful breeze breathed soft, cool and fragrant.
+SEG 10: The Sarayū rolled down crystal clear water.
+
+### GROUP 2176  (3 items)
+ITEM 0 [uttar.3.do3क]
+  TR: haraṣita gura parijana anuja bhūsura br̥ṁda sameta, / cale bharata mana prema ati sanmukha kr̥pāniketa.3(A).
+  HI: गुरु वसिष्ठजी, कुटुम्बी, छोटे भाई शत्रुघ्न तथा ब्राह्मणोंके समूहके साथ हर्षित होकर भरतजी अत्यन्त प्रेमपूर्ण मनसे कृपाधाम श्रीरामजीके सामने (अर्थात् उनकी अगवानीके लिये) चले ।।३ (क)।।
+ITEM 1 [uttar.3.do3ख]
+  TR: bahutaka caṛhī̐ aṭārinha nirakhahiṁ gagana bimāna, / dekhi madhura sura haraṣita karahiṁ sumaṁgala gāna.3(B).
+  HI: बहुत-सी स्त्रियाँ अटारियोंपर चढ़ीं आकाशमें विमान देख रही हैं और उसे देखकर हर्षित होकर मीठे स्वरसे सुन्दर मङ्गलगीत गा रही हैं ।।३ (ख)।।
+ITEM 2 [uttar.3.do3ग]
+  TR: rākā sasi raghupati pura siṁdhu dekhi haraṣāna, / baṛhyo kolāhala karata janu nāri taraṁga samāna.3(C).
+  HI: श्रीरघुनाथजी पूर्णिमाके चन्द्रमा हैं, तथा अवधपुर समुद्र है, जो उस पूर्णचन्द्रको देखकर हर्षित हो रहा है और शोर करता हुआ बढ़ रहा है [इधर-उधर दौड़ती हुई] स्त्रियाँ उसकी तरङ्गोंके समान लगती हैं ।।३ (ग)।।
+SEG 0: Accompanied by his preceptor (the sage Vasiṣṭha) and kinsmen, his younger brother (Śatrughna) and a host of Brāhmaṇas, with a heart overflowing with affection, Bharata joyfully set forth to receive the All-merciful.
+SEG 1: Many women, who had climbed up their attics, looked above for the aerial car in the sky.
+SEG 2: And the moment they espied it they began in their joy to sing festal songs in melodious strains.
+SEG 3: Just as the sight of the full moon brings joy to the ocean and swells it, the city of Ayodhyā too joyfully rushed with a tumultuous noise to meet the Lord of the Raghus, the women of the city moving to and fro like so many waves.
+
+### GROUP 2177  (4 items)
+ITEM 0 [uttar.4.cau1]
+  TR: ihā̐ bhānukula kamala divākara, kapinha dekhāvata nagara manohara. / sunu kapīsa aṁgada laṁkesā, pāvana purī rucira yaha desā ॥1॥
+  HI: यहाँ (विमानपरसे) सूर्यकुलरूपी कमलके प्रफुल्लित करनेवाले सूर्य श्रीरामजी वानरोंको मनोहर नगर दिखला रहे हैं। [वे कहते हैं—] हे सुग्रीव! हे अंगद! हे लंकापति विभीषण! सुनो। यह पुरी पवित्र है और यह देश सुन्दर है ।।१।।
+ITEM 1 [uttar.4.cau2]
+  TR: jadyapi saba baikuṁṭha bakhānā, beda purāna bidita jagu jānā. / avadhapurī sama priya nahiṁ soū, yaha prasaṁga jānai kou koū ॥2॥
+  HI: यद्यपि सबने वैकुण्ठकी बड़ाई की है—यह वेद-पुराणोंमें प्रसिद्ध है और जगत् जानता है, परन्तु अवधपुरीके समान मुझे वह भी प्रिय नहीं है। यह बात (भेद) कोई-कोई (विरले ही) जानते हैं ।।२।।
+ITEM 2 [uttar.4.cau3]
+  TR: janmabhūmi mama purī suhāvani, uttara disi baha sarajū pāvani. / jā majjana te binahiṁ prayāsā, mama samīpa nara pāvahiṁ bāsā ॥3॥
+  HI: यह सुहावनी पुरी मेरी जन्मभूमि है। इसके उत्तर दिशामें [जीवोंको] पवित्र करनेवाली सरयू नदी बहती है, जिसमें स्नान करनेसे मनुष्य बिना ही परिश्रम मेरे समीप निवास (सामीप्य मुक्ति) पा जाते हैं ।।३।।
+ITEM 3 [uttar.4.cau4]
+  TR: ati priya mohi ihā̐ ke bāsī, mama dhāmadā purī sukha rāsī. / haraṣe saba kapi suni prabhu bānī, dhanya avadha jo rāma bakhānī ॥4॥
+  HI: यहाँके निवासी मुझे बहुत ही प्रिय हैं। यह पुरी सुखकी राशि और मेरे परमधामको देनेवाली है। प्रभुकी वाणी सुनकर सब वानर हर्षित हुए [और कहने लगे कि] जिस अवधकी स्वयं श्रीरामजीने बड़ाई की, वह [अवश्य ही] धन्य है ।।४।।
+SEG 0: At the other end Śrī Rāma, who brought delight to the solar race as the sun to the lotus, was busy showing the charming city to the monkeys.
+SEG 1: “Listen, Sugrīva (lord of the monkeys), Aṅgada and Vibhīṣaṇa (lord of Laṅkā), holy is this city and beautiful this land.
+SEG 2: Although all have extolled Vaikuṇṭha (My divine Abode), which is familiar to the Vedas and the Purāṇas and known throughout the world, it is not so dear to Me as the city of Ayodhyā :
+SEG 3: only some rare soul knows this secret.
+SEG 4: This beautiful city is My birthplace;
+SEG 5: to the north of it flows the holy Sarayū, by bathing in which men secure a home near Me without any difficulty.
+SEG 6: The dwellers here are very dear to Me;
+SEG 7: the city is not only full of bliss itself but bestows a residence in My divine Abode.” The monkeys were all delighted to hear these words of the Lord and said, “Blessed indeed is Ayodhyā, that has evoked praise from Śrī Rāma Himself !”
+
+### GROUP 2178  (2 items)
+ITEM 0 [uttar.4.do4क]
+  TR: āvata dekhi loga saba kr̥pāsiṁdhu bhagavāna, / nagara nikaṭa prabhu prereu utareu bhūmi bimāna.4(A).
+  HI: कृपासागर भगवान् श्रीरामचन्द्रजीने सब लोगोंको आते देखा, तो प्रभुने विमानको नगरके समीप उतरनेकी प्रेरणा की। तब वह पृथ्वीपर उतरा ।।४ (क)।।
+ITEM 1 [uttar.4.do4ख]
+  TR: utari kaheu prabhu puṣpakahi tumha kubera pahiṁ jāhu, / prerita rāma caleu so haraṣu birahu ati tāhu.4(B).
+  HI: विमानसे उतरकर प्रभुने पुष्पकविमानसे कहा कि तुम अब कुबेरके पास जाओ। श्रीरामजीकी प्रेरणासे वह चला; उसे [अपने स्वामीके पास जानेका] हर्ष है और प्रभु श्रीरामचन्द्रजीसे अलग होनेका अत्यन्त दुःख भी ।।४ (ख)।।
+SEG 0: When the All-merciful Lord saw all the people coming out to meet Him, He urged on the aerial car to halt near the city and so it came down to the ground.
+SEG 1: On alighting from the car, the Lord said to the Puṣpaka, “You now return to Kubera.” Thus enjoined by Śrī Rāma, the aerial car, departed, full of joy and deep agony at parting.
+
+### GROUP 2179  (4 items)
+ITEM 0 [uttar.5.cau1]
+  TR: āe bharata saṁga saba logā, kr̥sa tana śrīraghubīra biyogā. / bāmadeva basiṣṭa munināyaka, dekhe prabhu mahi dhari dhanu sāyaka ॥1॥
+  HI: भरतजीके साथ सब लोग आये। श्रीरघुवीरके वियोगसे सबके शरीर दुबले हो रहे हैं। प्रभुने वामदेव, वसिष्ठ आदि मुनिश्रेष्ठोंको देखा, तो उन्होंने धनुष-बाण पृथ्वीपर रखकर— ।।१।।
+ITEM 1 [uttar.5.cau2]
+  TR: dhāi dhare gura carana saroruha, anuja sahita ati pulaka tanoruha. / bhe̐ṭi kusala būjhī munirāyā, hamare̐ kusala tumhārihiṁ dāyā ॥2॥
+  HI: छोटे भाई लक्ष्मणजीसहित दौड़कर गुरुजीके चरणकमल पकड़ लिये; उनके रोम-रोम अत्यन्त पुलकित हो रहे हैं। मुनिराज वसिष्ठजीने [उठाकर] उन्हें गले लगाकर कुशल पूछी। [प्रभुने कहा—] आपहीकी दयामें हमारी कुशल है ।।२।।
+ITEM 2 [uttar.5.cau3]
+  TR: sakala dvijanha mili nāyau māthā, dharma dhuraṁdhara raghukulanāthā. / gahe bharata puni prabhu pada p a ṁkaja, namata jinhahi sura muni saṁkara aja ॥3॥
+  HI: धर्मकी धुरी धारण करनेवाले रघुकुलके स्वामी श्रीरामजीने सब ब्राह्मणोंसे मिलकर उन्हें मस्तक नवाया। फिर भरतजीने प्रभुके वे चरणकमल पकड़े जिन्हें देवता, मुनि, शङ्करजी और ब्रह्माजी [भी] नमस्कार करते हैं ।।३।।
+ITEM 3 [uttar.5.cau4]
+  TR: pare bhūmi nahiṁ uṭhata uṭhāe, bara kari kr̥pāsiṁdhu ura lāe. / syāmala gāta roma bhae ṭhāṛhe, nava rājīva nayana jala bāṛhe ॥4॥
+  HI: भरतजी पृथ्वीपर पड़े हैं, उठाये उठते नहीं। तब कृपासिंधु श्रीरामजीने उन्हें जबर्दस्ती उठाकर हृदयसे लगा लिया। [उनके] साँवले शरीरपर रोएँ खड़े हो गये। नवीन कमलके समान नेत्रोंमें [प्रेमाश्रुओंके] जलकी बाढ़ आ गयी ।।४।।
+SEG 0: Alongwith Bharata came all the other people, emaciated in body because of their separation from the Hero of Raghu’s line.
+SEG 1: When the Lord saw the great sages Vāmadeva, Vasiṣṭha and others, He dropped His bow and arrows on the ground and ran with His brother (Lakṣmaṇa) to clasp His preceptor’s lotus-feet with every hair on their body erect.
+SEG 2: Vasiṣṭha (the chief of the sages) embraced them (in return) and enquired after their welfare.
+SEG 3: Śrī Rāma replied, “It is in your grace alone that our welfare lies.” The Lord of Raghu’s race, the champion of righteousness, now met all the other Brāhmaṇas and bowed His head to them.
+SEG 4: Then Bharata clasped the Lord’s lotus-feet, which are adored by gods and sages, Śaṅkara and Brahmā not excepted.
+SEG 5: He lay prostrate on the ground and would not rise even though being lifted up, till at last the All-merciful forcibly took and pressed him to His bosom.
+SEG 6: Every hair on His swarthy form stood erect and His lotus eyes were flooded with tears.
+
+### GROUP 2180  (2 items)
+ITEM 0 [uttar.5.cha1]
+  TR: rājīva locana sravata jala tana lalita pulakāvali banī, / ati prema hr̥daya̐ lagāi anujahi mile prabhu tribhuana dhanī. / prabhu milata anujahi soha mo pahiṁ jāti nahiṁ upamā kahī, / janu prema aru siṁgāra tanu dhari mile bara suṣamā lahī ॥1॥
+  HI: कमलके समान नेत्रोंसे जल बह रहा है। सुन्दर शरीरमें पुलकावली [अत्यन्त] शोभा दे रही है। त्रिलोकीके स्वामी प्रभु श्रीरामजी छोटे भाई भरतजीको अत्यन्त प्रेमसे हृदयसे लगाकर मिले। भाईसे मिलते समय प्रभु जैसे शोभित हो रहे हैं उसकी उपमा मुझसे कही नहीं जाती। मानो प्रेम और शृंगार शरीर धारण करके मिले और श्रेष्ठ शोभाको प्राप्त हुए ।।१।।
+ITEM 1 [uttar.5.cha2]
+  TR: būjhata kr̥pānidhi kusala bharatahi bacana begi na āvaī, / sunu sivā so sukha bacana mana te bhinna jāna jo pāvaī. / aba kusala kausalanātha ārata jāni jana darasana diyo, / būṛata biraha bārīsa kr̥pānidhāna mohi kara gahi liyo ॥2॥
+  HI: कृपानिधान श्रीरामजी भरतजीसे कुशल पूछते हैं; परन्तु आनन्दवश भरतजीके मुखसे वचन शीघ्र नहीं निकलते। [शिवजीने कहा—] हे पार्वती! सुनो, वह सुख (जो उस समय भरतजीको मिल रहा था) वचन और मनसे परे है; उसे वही जानता है जो उसे पाता है। [भरतजीने कहा—] हे कोसलनाथ! आपने आर्त्त (दुःखी) जानकर दासको दर्शन दिये, इससे अब कुशल है। विरहसमुद्रमें डूबते हुए मुझको कृपानिधानने हाथ पकड़कर बचा लिया! ।।२।।
+SEG 0: His lotus eyes streamed with tears, while bristling hair served to adorn His comely person as Lord Śrī Rāma, the sovereign of the three spheres, clasped Bharata to His bosom with utmost affection.
+SEG 1: I find no parallel by which I may illustrate the beauty of the Lord’s meeting with his younger brother:
+SEG 2: it seemed as though the Erotic sentiment and affection had met together in exquisite bodily form.
+SEG 3: The All-merciful enquired after Bharata’s welfare;
+SEG 4: but words did not readily come to his help.
+SEG 5: Listen, Sivā:
+SEG 6: (continues Lord Śiva,) the bliss (which Bharata enjoyed at the moment) was beyond one’s speech and mind;
+SEG 7: it is known only to those who feel it.
+SEG 8: “All is now well with me, since the All-merciful Lord of Kosala has blessed me with His sight, realizing the distress of His servant, and taken me by the hand just when I was sinking in the ocean of desolation.
+
+### GROUP 2182  (5 items)
+ITEM 0 [uttar.6.cau1]
+  TR: bharatānuja lachimana puni bheṁṭe, dusaha biraha saṁbhava dukha meṭe. / sītā carana bharata siru nāvā, anuja sameta parama sukha pāvā ॥1॥
+  HI: फिर लक्ष्मणजी शत्रुघ्नजीसे गले लगकर मिले और इस प्रकार विरहसे उत्पन्न दुःसह दुःखका नाश किया। फिर भाई शत्रुघ्नजीसहित भरतजीने सीताजीके चरणोंमें सिर नवाया और परम सुख प्राप्त किया ।।१।।
+ITEM 1 [uttar.6.cau2]
+  TR: prabhu biloki haraṣe purabāsī, janita biyoga bipati saba nāsī. / premātura saba loga nihārī, kautuka kīnha kr̥pāla kharārī ॥2॥
+  HI: प्रभुको देखकर अयोध्यावासी सब हर्षित हुए। वियोगसे उत्पन्न सब दुःख नष्ट हो गये। सब लोगोंको प्रेमविह्वल [और मिलनेके लिये अत्यन्त आतुर] देखकर खरके शत्रु कृपालु श्रीरामजीने एक चमत्कार किया ।।२।।
+ITEM 2 [uttar.6.cau3]
+  TR: amita rūpa pragaṭe tehi kālā, jathā joga mile sabahi kr̥pālā. / kr̥pādr̥ṣṭi raghubīra bilokī, kie sakala nara nāri bisokī ॥3॥
+  HI: उसी समय कृपालु श्रीरामजी असंख्य रूपोंमें प्रकट हो गये और सबसे [एक ही साथ] यथायोग्य मिले। श्रीरघुवीरने कृपाकी दृष्टिसे देखकर सब नर-नारियोंको शोकसे रहित कर दिया ।।३।।
+ITEM 3 [uttar.6.cau4]
+  TR: chana mahiṁ sabahi mile bhagavānā, umā marama yaha kāhu̐ na jānā. / ehi bidhi sabahi sukhī kari rāmā, āge̐ cale sīla guna dhāmā ॥4॥
+  HI: भगवान् क्षणमात्रमें सबसे मिल लिये। हे उमा! यह रहस्य किसीने नहीं जाना। इस प्रकार शील और गुणोंके धाम श्रीरामजी सबको सुखी करके आगे बढ़े ।।४।।
+ITEM 4 [uttar.6.cau5]
+  TR: kausalyādi mātu saba dhāī, nirakhi baccha janu dhenu lavāī ॥5॥
+  HI: कौसल्या आदि माताएँ ऐसे दौड़ीं मानो नयी ब्यायी हुई गौएँ अपने बछड़ोंको देखकर दौड़ी हों ।।५।।
+SEG 0: Then Lakṣmaṇa embraced Śatrughna (Bharata’s younger brother)* and thus relieved each other of the terrible agony of separation.
+SEG 1: Bharata and Śatrughna bowed their head at Sītā’s feet and felt supreme delight.
+SEG 2: The citizens were transported with joy at the sight of the Lord.
+SEG 3: All the woes begotten of their separation from the Lord now ended.
+SEG 4: Seeing all the people impatient in thier love to meet the Lord, the All-merciful Slayer of Khara wrought a miracle.
+SEG 5: He forthwith appeared in countless forms and in this way the gracious Lord met everybody in an appropriate manner.
+SEG 6: The Hero of Raghu’s line rid all men and women of their sorrow by casting His benign look on them.
+SEG 7: In a moment the Lord greeted them all;
+SEG 8: Umā, this was a mystery which none could comprehend.
+SEG 9: Having thus gratified all, Śrī Rāma, who was a repository of amiability and goodness, proceeded further.
+SEG 10: Kausalyā and the other mothers all ran out to meet Him, even as a cow that has lately calved would run at the sight of its little one.
+
+### GROUP 2184  (2 items)
+ITEM 0 [uttar.6.do6क]
+  TR: bheṭeu tanaya sumitrā̐ rāma carana rati jāni, / rāmahi milata kaikaī hr̥daya̐ bahuta sakucāni.6(A).
+  HI: सुमित्राजी अपने पुत्र लक्ष्मणजीकी श्रीरामजीके चरणोंमें प्रीति जानकर उनसे मिलीं। श्रीरामजीसे मिलते समय कैकेयीजी हृदयमें बहुत सकुचायीं ।।६ (क)।।
+ITEM 1 [uttar.6.do6ख]
+  TR: lachimana saba mātanha mili haraṣe āsiṣa pāi, / kaikai kaha̐ puni puni mile mana kara chobhu na jāi.6(B).
+  HI: लक्ष्मणजी भी सब माताओंसे मिलकर और आशीर्वाद पाकर हर्षित हुए। वे कैकेयीजीसे बार-बार मिले, परन्तु उनके मनका क्षोभ (रोष) नहीं जाता ।।६ (ख)।।
+SEG 0: Sumitrā embraced her son (Lakṣmaṇa) remembering how devoted he was to Śrī Rāma’s feet.
+SEG 1: As for Kaikeyī, she felt very uncomfortable at heart while embracing Śrī Rāma.
+SEG 2: Lakṣmaṇa too embraced all his mothers and was delighted to receive their blessings.
+SEG 3: But even though he met Kaikeyī again and again, his bitterness of feeling towards her did not leave him.
+
+### GROUP 2185  (4 items)
+ITEM 0 [uttar.7.cau1]
+  TR: sāsunha sabani milī baidehī, carananhi lāgi haraṣu ati tehī. / dehiṁ asīsa būjhi kusalātā, hoi acala tumhāra ahivātā ॥1॥
+  HI: जानकीजी सब सासुओंसे मिलीं और उनके चरणों लगकर उन्हें अत्यन्त हर्ष हुआ। सासुएँ कुशल पूछकर आशिष दे रही हैं कि तुम्हारा सुहाग अचल हो ।।१।।
+ITEM 1 [uttar.7.cau2]
+  TR: saba raghupati mukha kamala bilokahiṁ, maṁgala jāni nayana jala rokahiṁ. / kanaka thāra āratī utārahiṁ, bāra bāra prabhu gāta nihārahiṁ ॥2॥
+  HI: सब माताएँ श्रीरघुनाथजीका कमल-सा मुखड़ा देख रही हैं। [नेत्रोंसे प्रेमके आँसू उमड़े आते हैं, परन्तु] मङ्गलका समय जानकर वे आँसुओंके जलको नेत्रोंमें ही रोक रखती हैं। सोनेके थालसे आरती उतारती हैं और बार-बार प्रभुके श्रीअङ्गोंकी ओर देखती हैं ।।२।।
+ITEM 2 [uttar.7.cau3]
+  TR: nānā bhā̐ti nichāvari karahī̐, paramānaṁda haraṣa ura bharahī̐ / kausalyā puni puni raghubīrahi, citavati kr̥pāsiṁdhu ranadhīrahi ॥3॥
+  HI: अनेकों प्रकारसे निछावरें करती हैं और हृदयमें परमानन्द तथा हर्ष भर रही हैं। कौसल्याजी बार-बार कृपाके समुद्र और रणधीर श्रीरघुवीरको देख रही हैं ।।३।।
+ITEM 3 [uttar.7.cau4]
+  TR: hr̥daya̐ bicārati bārahiṁ bārā, kavana bhā̐ ti laṁkāpati mārā. / ati sukumāra jugala mere bāre, nisicara subhaṭa mahābala bhāre ॥4॥
+  HI: वे बार-बार हृदयमें विचारती हैं कि इन्होंने लंकापति रावणको कैसे मारा? मेरे ये दोनों बच्चे बड़े ही सुकुमार हैं और राक्षस तो बड़े भारी योद्धा और महान् बली थे ।।४।।
+SEG 0: Videha’s Daughter (Sītā) greeted all Her mothers-in-law and was transported with joy as She clasped their feet.
+SEG 1: They enquired after Her welfare and blessed Her :
+SEG 2: “May your married life be happy forever.” All gazed upon the lotus face of Śrī Rāma (the Lord of the Raghus) and, remembering that it was an occasion for rejoicing, checked the tears that rose in their eyes.
+SEG 3: Burning festal lights in gold plates they waved them above Śrī Rāma’s head (in order to ward off evil forces) and again and again contemplated the Lord’s person.
+SEG 4: They scattered every kind of offering about Him (in order to avert an evil eye), their heart full of supreme felicity and jubilation.
+SEG 5: Again and again did Kausalyā gaze upon the Hero of Raghu’s line, who was an ocean of compassion and an irresistible warrior, each time pondering within herself :
+SEG 6: “How can he have killed the lord of Laṅkā?
+SEG 7: Too delicate of body are my two boys, while the demons were great champions of extraordinary might !”
+
+### GROUP 2187  (5 items)
+ITEM 0 [uttar.8.cau1]
+  TR: laṁkāpati kapīsa nala nīlā, jāmavaṁta aṁgada subhasīlā. / hanumadādi saba bānara bīrā, dhare manohara manuja sarīrā ॥1॥
+  HI: लंकापति विभीषण, वानरराज सुग्रीव, नल, नील, जाम्बवान् और अंगद तथा हनुमान्‌जी आदि सभी उत्तम स्वभाववाले वीर वानरोंने मनुष्योंके मनोहर शरीर धारण कर लिये ।।१।।
+ITEM 1 [uttar.8.cau2]
+  TR: bharata saneha sīla brata nemā, sādara saba baranahiṁ ati premā. / dekhi nagarabāsinha kai rītī, sakala sarāhahiṁ prabhu pada prītī ॥2॥
+  HI: वे सब भरतजीके प्रेम, सुन्दर स्वभाव, [त्यागके] व्रत और नियमोंकी अत्यन्त प्रेमसे आदरपूर्वक बड़ाई कर रहे हैं। और नगरनिवासियोंकी [प्रेम, शील और विनयसे पूर्ण] रीति देखकर वे सब प्रभुके चरणोंमें उनके प्रेमकी सराहना कर रहे हैं ।।२।।
+ITEM 2 [uttar.8.cau3]
+  TR: puni raghupati saba sakhā bolāe, muni pada lāgahu sakala sikhāe. / gura basiṣṭa kulapūjya hamāre, inha kī kr̥pā̐ danuja rana māre ॥3॥
+  HI: फिर श्रीरघुनाथजीने सब सखाओंको बुलाया और सबको सिखाया कि मुनिके चरणोंमें लगो। ये गुरु वसिष्ठजी हमारे कुलभरके पूज्य हैं। इन्हींकी कृपासे रणमें राक्षस मारे गये हैं ।।३।।
+ITEM 3 [uttar.8.cau4]
+  TR: e saba sakhā sunahu muni mere, bhae samara sāgara kaha̐ bere. / mama hita lāgi janma inha hāre, bharatahu te mohi adhika piāre ॥4॥
+  HI: [फिर गुरुजीसे कहा—] हे मुनि! सुनिये। ये सब मेरे सखा हैं। ये संग्रामरूपी समुद्रमें मेरे लिये बेड़े (जहाज) के समान हुए। मेरे हितके लिये इन्होंने अपने जन्मतक हार दिये (अपने प्राणोंतकको होम दिया)। ये मुझे भरतसे भी अधिक प्रिय हैं ।।४।।
+ITEM 4 [uttar.8.cau5]
+  TR: suni prabhu bacana magana saba bhae, nimiṣa nimiṣa upajata sukha nae ॥5॥
+  HI: प्रभुके वचन सुनकर सब प्रेम और आनन्दमें मग्न हो गये। इस प्रकार पल-पलमें उन्हें नये- नये सुख उत्पन्न हो रहे हैं ।।५।।
+SEG 0: Vibhīṣaṇa (the king of Laṅkā), Sugrīva (the lord of the monkeys), Nala, Nīla, Jāmbavān, Aṅgada, Hanumān and the other monkey heroes, who were all of a virtuous disposition, had assumed charming human forms.
+SEG 1: With great reverence and love all applauded Bharata’s affection, amiability, austerities and discipline.
+SEG 2: When they saw the citizens’ mode of life, they all extolled their devotion to the Lord’s feet.
+SEG 3: Then the Lord of the Raghus summoned all His comrades and exhorted them :
+SEG 4: “Clasp the feet of My Guru, the sage Vasiṣṭha, who is worthy of adoration to our whole race.
+SEG 5: It was by his grace that all the demons were slain in battle.” “(Turning to the sage) Listen, holy Sir :
+SEG 6: all these My comrades proved as so many barks in taking Me across the ocean of the battle.
+SEG 7: They staked their life in My cause:
+SEG 8: they are dearer to Me even than Bharata.” They were all enraptured to hear the Lord’s word;
+SEG 9: every moment that passed gave birth to some new joy.
+

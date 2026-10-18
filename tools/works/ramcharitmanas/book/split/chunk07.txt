@@ -1,0 +1,981 @@
+### GROUP 691  (4 items)
+ITEM 0 [bal.296.cau1]
+  TR: kahata cale pahire̐ paṭa nānā, haraṣi hane gahagahe nisānā. / samācāra saba loganha pāe, lāge ghara ghara hona badhāe ॥1॥
+  HI: यों कहते हुए वे अनेक प्रकारके सुन्दर वस्त्र पहन-पहनकर चले। आनन्दित होकर नगाड़ेवालोंने बड़े जोरसे नगाड़ोंपर चोट लगायी। सब लोगोंने जब यह समाचार पाया, तब घर-घर बधावे होने लगे ।।१।।
+ITEM 1 [bal.296.cau2]
+  TR: bhuvana cāri dasa bharā uchāhū, janakasutā raghubīra biāhū. / suni subha kathā loga anurāge, maga gr̥ha galī̐ sa̐vārana lāge ॥2॥
+  HI: चौदहों लोकोंमें उत्साह भर गया कि जानकीजी और श्रीरघुनाथजीका विवाह होगा। यह शुभ समाचार पाकर लोग प्रेममग्न हो गये और रास्ते, घर तथा गलियाँ सजाने लगे ।।२।।
+ITEM 2 [bal.296.cau3]
+  TR: jadyapi avadha sadaiva suhāvani, rāma purī maṁgalamaya pāvani. / tadapi prīti kai prīti suhāī, maṁgala racanā racī banāī ॥3॥
+  HI: यद्यपि अयोध्या सदा सुहावनी है, क्योंकि वह श्रीरामजीकी मङ्गलमयी पवित्र पुरी है, तथापि प्रीति-पर-प्रीति होनेसे वह सुन्दर मङ्गलरचनासे सजायी गयी ।।३।।
+ITEM 3 [bal.296.cau4]
+  TR: dhvaja patāka paṭa cāmara cārū, chāvā parama bicitra bajārū. / kanaka kalasa torana mani jālā, harada dūba dadhi acchata mālā ॥4॥
+  HI: ध्वजा, पताका, परदे और सुन्दर चँवरोंसे सारा बाजार बहुत ही अनूठा छाया हुआ है। सोनेके कलश, तोरण, मणियोंकी झालरें, हलदी, दूब, दही, अक्षत और मालाओंसे— ।।४।।
+SEG 0: Thus they shouted as they left, attired in raiment of various kinds;
+SEG 1: there was a jubilant and tempestuous clash of kettledrums.
+SEG 2: When the news spread among all the people, festivities were started in every house.
+SEG 3: All the fourteen spheres were filled with joy at the news of the forthcoming wedding of Janaka’s daughter with the hero of Raghu’s race.
+SEG 4: The citizens were enraptured to hear the glad tidings and began to decorate the streets, houses and lanes.
+SEG 5: Although the city of Ayodhyā is ever charming, being the blessed and sacred abode of Śrī Rāma, it was adorned with beautiful festal decorations because of the love the people bore towards the very embodiment of love.
+SEG 6: Flags and banners, curtains and graceful chowries canopied the bazars in a most marvellous fashion.
+SEG 7: With vases of gold, festal arches, festoons of netted gems, turmeric, blades of Dūrvā grass, curds, unbroken rice and wreaths of flowers—
+
+### GROUP 693  (4 items)
+ITEM 0 [bal.297.cau1]
+  TR: jaha̐ taha̐ jūtha jūtha mili bhāmini, saji nava sapta sakala duti dāmini. / bidhubadanī̐ mr̥ga sāvaka locani, nija sarūpa rati mānu bimocani ॥1॥
+  HI: बिजलीकी-सी कान्तिवाली चन्द्रमुखी, हरिनके बच्चेके-से नेत्रवाली और अपने सुन्दर रूपसे कामदेवकी स्त्री रतिके अभिमानको छुड़ानेवाली सुहागिनी स्त्रियाँ सभी सोलहों शृंगार सजकर, जहाँ-तहाँ झुंड-की-झुंड मिलकर, ।।१।।
+ITEM 1 [bal.297.cau2]
+  TR: gāvahiṁ maṁgala maṁjula bānī̐, suni kala rava kalakaṁṭhi lajānī̐ / bhūpa bhavana kimi jāi bakhānā, bisva bimohana raceu bitānā ॥2॥
+  HI: मनोहर वाणीसे मङ्गलगीत गा रही हैं, जिनके सुन्दर स्वरको सुनकर कोयलें भी लजा जाती हैं। राजमहलका वर्णन कैसे किया जाय, जहाँ विश्वको विमोहित करनेवाला मण्डप बनाया गया है ।।२।।
+ITEM 2 [bal.297.cau3]
+  TR: maṁgala drabya manohara nānā, rājata bājata bipula nisānā. / katahu̐ birida baṁdī uccarahī̐, katahu̐ beda dhuni bhūsura karahī̐ 3.
+  HI: अनेकों प्रकारके मनोहर माङ्गलिक पदार्थ शोभित हो रहे हैं और बहुत-से नगाड़े बज रहे हैं। कहीं भाट विरुदावली (कुलकीर्ति) का उच्चारण कर रहे हैं और कहीं ब्राह्मण वेदध्वनि कर रहे हैं ।।३।।
+ITEM 3 [bal.297.cau4]
+  TR: gāvahiṁ suṁdari maṁgala gītā, lai lai nāmu rāmu aru sītā. / bahuta uchāhu bhavanu ati thorā, mānahu̐ umagi calā cahu orā ॥4॥
+  HI: सुन्दरी स्त्रियाँ श्रीरामजी और श्रीसीताजीका नाम ले-लेकर मङ्गलगीत गा रही हैं। उत्साह बहुत है और महल अत्यन्त ही छोटा है। इससे [उसमें न समाकर] मानो वह उत्साह (आनन्द) चारों ओर उमड़ चला है ।।४।।
+SEG 0: Collected here and there troops of ladies, all brilliant as the lightning, with moon-like face and eyes resembling those of a fawn and beauty enough to rob Love’s consort (Rati) of her pride, and who had practised all the sixteen kinds of female adornment,* sang auspicious strains with voice so melodious that the female cuckoo was put to shame on hearing the sweet sound !
+SEG 1: How is the king’s palace to be described;
+SEG 2: the pavilion set up there would dazzle the whole universe.
+SEG 3: Various articles of good omen and charming in appearance were displayed and a number of kettledrums were sounded.
+SEG 4: Here were panegyrists singing the family glory and here were Brāhmaṇas chanting the Vedas;
+SEG 5: while pretty women carolled festive songs, many times repeating the names of Rāma and Sītā.
+SEG 6: There was an excess of joy all round, while the palace was too small to contain it;
+SEG 7: it seemed, therefore, as if it overflowed on all sides.
+
+### GROUP 695  (4 items)
+ITEM 0 [bal.298.cau1]
+  TR: bhūpa bharata puni lie bolāī, haya gaya syaṁdana sājahu jāī. / calahu begi raghubīra barātā, sunata pulaka pūre dou bhrātā ॥1॥
+  HI: फिर राजाने भरतजीको बुला लिया और कहा कि जाकर घोड़े, हाथी और रथ सजाओ, जल्दी रामचन्द्रजीकी बारातमें चलो। यह सुनते ही दोनों भाई (भरतजी और शत्रुघ्नजी) आनन्दवश पुलकसे भर गये ।।१।।
+ITEM 1 [bal.298.cau2]
+  TR: bharata sakala sāhanī bolāe, āyasu dīnha mudita uṭhi dhāe. / raci ruci jīna turaga tinha sāje, barana barana bara bāji birāje ॥2॥
+  HI: भरतजीने सब साहनी (घुड़सालके अध्यक्ष) बुलाये और उन्हें [घोड़ोंको सजानेकी] आज्ञा दी, वे प्रसन्न होकर उठ दौड़े। उन्होंने रुचिके साथ (यथायोग्य) जीनें कसकर घोड़े सजाये। रंग-रंगके उत्तम घोड़े शोभित हो गये ।।२।।
+ITEM 2 [bal.298.cau3]
+  TR: subhaga sakala suṭhi caṁcala karanī, aya iva jarata dharata paga dharanī. / nānā jāti na jāhiṁ bakhāne, nidari pavanu janu cahata uṛāne ॥3॥
+  HI: सब घोड़े बड़े ही सुन्दर और चञ्चल करनी (चाल) के हैं। वे धरतीपर ऐसे पैर रखते हैं जैसे जलते हुए लोहेपर रखते हों। अनेकों जातिके घोड़े हैं, जिनका वर्णन नहीं हो सकता। [ऐसी तेज चालके हैं] मानो हवाका निरादर करके उड़ना चाहते हैं ।।३।।
+ITEM 3 [bal.298.cau4]
+  TR: tinha saba chayala bhae asavārā, bharata sarisa baya rājakumārā. / saba suṁdara saba bhūṣanadhārī, kara sara cāpa tūna kaṭi bhārī ॥4॥
+  HI: उन सब घोड़ोंपर भरतजीके समान अवस्थावाले सब छैल-छबीले राजकुमार सवार हुए। वे सभी सुन्दर हैं और सब आभूषण धारण किये हुए हैं। उनके हाथोंमें बाण और धनुष हैं तथा कमरमें भारी तरकस बँधे हैं ।।४।।
+SEG 0: The king next called Bharata and said, “Go and prepare the horses, elephants and chariots and start at once in procession for Rāma’s marriage.” The two brothers were thrilled to hear this command.
+SEG 1: Bharata sent for the officers in charge of the stables and issued necessary instructions;
+SEG 2: the latter rose in joy and hastened to execute the orders.
+SEG 3: They equipped the horses with gorgeous saddles;
+SEG 4: gallant steeds of different colours stood there in their majesty.
+SEG 5: They were all beautiful and surpassingly swift-footed;
+SEG 6: they trod the ground as lightly as though it were red-hot iron.
+SEG 7: They belonged to different breeds, which were more than one could tell;
+SEG 8: they would fly in the air, as it were, outstripping the wind itself.
+SEG 9: Gallant princes, who were of the same age as Bharata, mounted them.
+SEG 10: The princes were all handsome and adorned with jewels and had a bow and arrow in their hands and a well-equipped quiver fastened at their side.
+
+### GROUP 697  (4 items)
+ITEM 0 [bal.299.cau1]
+  TR: bā̐dhe̐ birada bīra rana gāṛhe, nikasi bhae pura bāhera ṭhāṛhe. / pherahiṁ catura turaga gati nānā, haraṣahiṁ suni suni panava nisānā ॥1॥
+  HI: शूरताका बाना धारण किये हुए रणधीर वीर सब निकलकर नगरके बाहर आ खड़े हुए। वे चतुर अपने घोड़ोंको तरह-तरहकी चालोंसे फेर रहे हैं और भेरी तथा नगाड़ेकी आवाज सुन- सुनकर प्रसन्न हो रहे हैं ।।१।।
+ITEM 1 [bal.299.cau2]
+  TR: ratha sārathinha bicitra banāe, dhvaja patāka mani bhūṣana lāe. / cava̐ra cāru kiṁkini dhuni karahī̐, bhānu jāna sobhā apaharahī̐ ॥2॥
+  HI: सारथियोंने ध्वजा, पताका, मणि और आभूषणोंको लगाकर रथोंको बहुत विलक्षण बना दिया है। उनमें सुन्दर चँवर लगे हैं और घंटियाँ सुन्दर शब्द कर रही हैं। वे रथ इतने सुन्दर हैं मानो सूर्यके रथकी शोभाको छीने लेते हैं ।।२।।
+ITEM 2 [bal.299.cau3]
+  TR: sāva̐ karana aganita haya hote, te tinha rathanha sārathinha jote. / suṁdara sakala alaṁkr̥ta sohe, jinhahi bilokata muni mana mohe ॥3॥
+  HI: अगणित श्यामकर्ण घोड़े थे। उनको सारथियोंने उन रथोंमें जोत दिया है, जो सभी देखनेमें सुन्दर और गहनोंसे सजाये हुए सुशोभित हैं, और जिन्हें देखकर मुनियोंके मन भी मोहित हो जाते हैं ।।३।।
+ITEM 3 [bal.299.cau4]
+  TR: je jala calahiṁ thalahi kī nāī̐, ṭāpa na būṛa bega adhikāī̐ / astra sastra sabu sāju banāī, rathī sārathinha lie bolāī ॥4॥
+  HI: जो जलपर भी जमीनकी तरह ही चलते हैं। वेगकी अधिकतासे उनकी टाप पानीमें नहीं डूबती। अस्त्र-शस्त्र और सब साज सजाकर सारथियोंने रथियोंको बुला लिया ।।४।।
+SEG 0: The champions, who were all staunch in fight and had taken a vow of chivalry, sallied forth and halted outside the city.
+SEG 1: The clever fellows put their steeds through various paces and rejoiced to hear the clash of tabor and drum.
+SEG 2: The charioteers had made their cars equally gorgeous with flags and banners, gems and ornaments.
+SEG 3: They were also provided with elegant chowries and tinkling bells, and outdid in splendour the chariot of the sun-god.
+SEG 4: The king owned numberless horses with dark ears,* which the charioteers yoked to their chariots.
+SEG 5: They were all beautiful and looked so charming with their ornaments that even sages would be enraptured at the sight.
+SEG 6: They skimmed the surface of water even as dry land and would not sink even hoof-deep;
+SEG 7: so marvellous was their speed.
+SEG 8: Having provided the chariots with missiles and weapons and every other equipment the charioteers called their masters.
+
+### GROUP 699  (4 items)
+ITEM 0 [bal.300.cau1]
+  TR: kalita karibaranhi parī̐ a̐ bārī̐, kahi na jāhiṁ jehi bhā̐ti sa̐vārī̐. / cale matta gaja ghaṁṭa birājī, manahu̐ subhaga sāvana ghana rājī ॥1॥
+  HI: श्रेष्ठ हाथियोंपर सुन्दर अंबारियाँ पड़ी हैं। वे जिस प्रकार सजायी गयी थीं, सो कहा नहीं जा सकता। मतवाले हाथी घंटोंसे सुशोभित होकर (घंटे बजाते हुए) चले, मानो सावनके सुन्दर बादलोंके समूह [गरजते हुए] जा रहे हों ।।१।।
+ITEM 1 [bal.300.cau2]
+  TR: bāhana apara aneka bidhānā, sibikā subhaga sukhāsana jānā. / tinha caṛhi cale biprabara br̥ṁdā, janu tanu dhare̐ sakala śruti chaṁdā ॥2॥
+  HI: सुन्दर पालकियाँ, सुखसे बैठने योग्य तामजान (जो कुर्सीनुमा होते हैं) और रथ आदि और भी अनेकों प्रकारकी सवारियाँ हैं। उनपर श्रेष्ठ ब्राह्मणोंके समूह चढ़कर चले, मानो सब वेदोंके छन्द ही शरीर धारण किये हुए हों ।।२।।
+ITEM 2 [bal.300.cau3]
+  TR: māgadha sūta baṁdi gunagāyaka, cale jāna caṛhi jo jehi lāyaka. / besara ū̐ ṭa br̥ṣabha bahu jātī, cale bastu bhari aganita bhā̐tī ॥3॥
+  HI: मागध, सूत, भाट और गुण गानेवाले सब, जो जिस योग्य थे, वैसी सवारीपर चढ़कर चले। बहुत जातियोंके खच्चर, ऊँट और बैल असंख्यों प्रकारकी वस्तुएँ लाद-लादकर चले ।।३।।
+ITEM 3 [bal.300.cau4]
+  TR: koṭinha kā̐vari cale kahārā, bibidha bastu ko baranai pārā. / cale sakala sevaka samudāī, nija nija sāju samāju banāī ॥4॥
+  HI: कहार करोड़ों काँवरें लेकर चले। उनमें अनेकों प्रकारकी इतनी वस्तुएँ थीं कि जिनका वर्णन कौन कर सकता है। सब सेवकोंके समूह अपना-अपना साज-समाज बनाकर चले ।।४।।
+SEG 0: On magnificent elephants were mounted splendid seats with canopies wrought in a manner beyond all description.
+SEG 1: Elephants in rut, adorned with clanging bells, headed like beautiful (rumbling) clouds in the rainy month of Śrāvaṇa (roughly corresponding to August).
+SEG 2: There were various kinds of other vehicles, such as charming palanquins, sedans etc., on which rode companies of noble Brāhmaṇas, incarnations, as it were, of all the hymns of the Vedas.
+SEG 3: Genealogists, bards, panegyrists and rhapsodists too rode on vehicles appropriate to their respective rank;
+SEG 4: while mules, camels and oxen of various breeds carried on their backs commodities of innumerable kinds.
+SEG 5: Millions of porters marched with burdens slung across their shoulders;
+SEG 6: who could enumerate the varieties of goods they carried?
+SEG 7: Crowds of servants also proceeded on the journey equipping themselves in their own way and forming batches of their own.
+
+### GROUP 701  (4 items)
+ITEM 0 [bal.301.cau1]
+  TR: garajahiṁ gaja ghaṁṭā dhuni ghorā, ratha rava bāji hiṁsa cahu orā. / nidari ghanahi ghurmmarahiṁ nisānā, nija parāi kachu sunia na kānā ॥1॥
+  HI: हाथी गरज रहे हैं, उनके घंटोंकी भीषण ध्वनि हो रही है। चारों ओर रथोंकी घरघराहट और घोड़ोंकी हिनहिनाहट हो रही है। बादलोंका निरादर करते हुए नगाड़े घोर शब्द कर रहे हैं। किसीको अपनी-परायी कोई बात कानोंसे सुनायी नहीं देती ।।१।।
+ITEM 1 [bal.301.cau2]
+  TR: mahā bhīra bhūpati ke dvāre̐, raja hoi jāi paṣāna pabāre̐. / caṛhī aṭārinha dekhahiṁ nārī̐, lie̐ āratī maṁgala thārī̐ 2.
+  HI: राजा दशरथके दरवाजेपर इतनी भारी भीड़ हो रही है कि वहाँ पत्थर फेंका जाय तो वह भी पिसकर धूल हो जाय। अटारियोंपर चढ़ी स्त्रियाँ मङ्गल-थालोंमें आरती लिये देख रही हैं ।।२।।
+ITEM 2 [bal.301.cau3]
+  TR: gāvahiṁ gīta manohara nānā, ati ānaṁdu na jāi bakhānā. / taba sumaṁtra dui syaṁdana sājī, jote rabi haya niṁdaka bājī ॥3॥
+  HI: और नाना प्रकारके मनोहर गीत गा रही हैं। उनके अत्यन्त आनन्दका बखान नहीं हो सकता। तब सुमन्त्रजीने दो रथ सजाकर उनमें सूर्यके घोड़ोंको भी मात करनेवाले घोड़े जोते ।।३।।
+ITEM 3 [bal.301.cau4]
+  TR: dou ratha rucira bhūpa pahiṁ āne, nahiṁ sārada pahiṁ jāhiṁ bakhāne. / rāja samāju eka ratha sājā, dūsara teja puṁja ati bhrājā ॥4॥
+  HI: दोनों सुन्दर रथ वे राजा दशरथके पास ले आये, जिनकी सुन्दरताका वर्णन सरस्वतीसे भी नहीं हो सकता। एक रथपर राजसी सामान सजाया गया। और दूसरा जो तेजका पुंज और अत्यन्त ही शोभायमान था, ।।४।।
+SEG 0: The elephants trumpeted and their bells clanged with a terrific din;
+SEG 1: on all sides there was a creaking of wheels and a neighing of horses.
+SEG 2: The clash of kettledrums would drown the peal of thunder;
+SEG 3: no one could hear one’s own words, much less of others.
+SEG 4: At the entrance of the king’s palace, there was such an enormous crowd that a stone thrown there would be trodden into dust.
+SEG 5: Women viewed the sight from house-tops, carrying festal lights in salvers used on auspicious occasions, and carolled melodious strains of various kinds in an ecstasy of joy beyond description.
+SEG 6: Then Sumantra (King Daśaratha’s own charioteer and trusted counsellor) got ready a pair of chariots and yoked them with steeds that would outrun even the horses of the sun-god, and brought them in all their splendour before the king;
+SEG 7: their beauty was more than goddess Śāradā could describe.
+SEG 8: One of them was equipped with the royal paraphernalia while the other was a mass of splendour and shone brightly.
+
+### GROUP 703  (4 items)
+ITEM 0 [bal.302.cau1]
+  TR: sahita basiṣṭha soha nr̥pa kaise̐, sura gura saṁga puraṁdara jaise̐. / kari kula rīti beda bidhi rāū, dekhi sabahi saba bhā̐ti banāū ॥1॥
+  HI: वसिष्ठजीके साथ [जाते हुए] राजा दशरथजी कैसे शोभित हो रहे हैं, जैसे देवगुरु बृहस्पतिजीके साथ इन्द्र हों। वेदकी विधिसे और कुलकी रीतिके अनुसार सब कार्य करके तथा सबको सब प्रकारसे सजे देखकर, ।।१।।
+ITEM 1 [bal.302.cau2]
+  TR: sumiri rāmu gura āyasu pāī, cale mahīpati saṁkha bajāī. / haraṣe bibudha biloki barātā, baraṣahiṁ sumana sumaṁgala dātā ॥2॥
+  HI: श्रीरामचन्द्रजीका स्मरण करके, गुरुकी आज्ञा पाकर पृथ्वीपति दशरथजी शंख बजाकर चले। बारात देखकर देवता हर्षित हुए और सुन्दर मङ्गलदायक फूलोंकी वर्षा करने लगे ।।२।।
+ITEM 2 [bal.302.cau3]
+  TR: bhayau kolāhala haya gaya gāje, byoma barāta bājane bāje. / sura nara nāri sumaṁgala gāī̐, sarasa rāga bājahiṁ sahanāī̐ ॥3॥
+  HI: बड़ा शोर मच गया, घोड़े और हाथी गरजने लगे। आकाशमें और बारातमें [दोनों जगह] बाजे बजने लगे। देवाङ्गनाएँ और मनुष्योंकी स्त्रियाँ सुन्दर मङ्गलगान करने लगीं और रसीले रागसे शहनाइयाँ बजने लगीं ।।३।।
+ITEM 3 [bal.302.cau4]
+  TR: ghaṁṭa ghaṁṭi dhuni barani na jāhī̐, sarava karahiṁ pāika phaharāhī̐ / karahiṁ bidūṣaka kautuka nānā, hāsa kusala kala gāna sujānā ॥4॥
+  HI: घंटे-घंटियोंकी ध्वनिका वर्णन नहीं हो सकता। पैदल चलनेवाले सेवकगण अथवा पट्टेबाज कसरतके खेल कर रहे हैं और फहरा रहे हैं (आकाशमें ऊँचे उछलते हुए जा रहे हैं)। हँसी करनेमें निपुण और सुन्दर गानेमें चतुर विदूषक (मसखरे) तरह-तरहके तमाशे कर रहे हैं ।।४।।
+SEG 0: In the company of Vasiṣṭha the king shone forth as Indra (the lord of celestials) by the side of his preceptor (Br̥haspati).
+SEG 1: After performing all the rites sanctioned by family usage or prescribed by the Vedas and seeing everyone fully equipped for the journey, he sallied forth to the blast of the conch-shell after receiving the permission of his preceptor and with his thoughts fixed on Śrī Rāma.
+SEG 2: The immortals rejoiced to see the marriage procession and rained down flowers full of auspicious blessings.
+SEG 3: There was a confused din of horses neighing, elephants trumpeting and music playing both in the heavens and in the procession.
+SEG 4: Human and celestial dames alike sang festal melodies, while clarionets played in sweet accord.
+SEG 5: There was an indescribable clamour of bells, both large and small.
+SEG 6: The footmen leaped and danced, displaying exercises of various kinds.
+SEG 7: Jesters, proficient in pleasantry and expert in singing melodious songs, practised all kinds of buffoonery.
+
+### GROUP 705  (4 items)
+ITEM 0 [bal.303.cau1]
+  TR: banai na baranata banī barātā, hohiṁ saguna suṁdara subhadātā. / cārā cāṣu bāma disi leī, manahu̐ sakala maṁgala kahi deī ॥1॥
+  HI: बारात ऐसी बनी है कि उसका वर्णन करते नहीं बनता। सुन्दर शुभदायक शकुन हो रहे हैं। नीलकंठ पक्षी बायीं ओर चारा ले रहा है, मानो सम्पूर्ण मङ्गलोंकी सूचना दे रहा हो ।।१।।
+ITEM 1 [bal.303.cau2]
+  TR: dāhina kāga sukheta suhāvā, nakula darasu saba kāhū̐ pāvā. / sānukūla baha tribidha bayārī, saghaṭa sabāla āva bara nārī ॥2॥
+  HI: दाहिनी ओर कौआ सुन्दर खेतमें शोभा पा रहा है। नेवलेका दर्शन भी सब किसीने पाया। तीनों प्रकारकी (शीतल, मन्द, सुगन्धित) हवा अनुकूल दिशामें चल रही है। श्रेष्ठ (सुहागिनी) स्त्रियाँ भरे हुए घड़े और गोदमें बालक लिये आ रही हैं ।।२।।
+ITEM 2 [bal.303.cau3]
+  TR: lovā phiri phiri darasu dekhāvā, surabhī sanamukha sisuhi piāvā. / mr̥gamālā phiri dāhini āī, maṁgala gana janu dīnhi dekhāī ॥3॥
+  HI: लोमड़ी फिर-फिरकर (बार-बार) दिखायी दे जाती है। गायें सामने खड़ी बछड़ोंको दूध पिलाती हैं। हरिनोंकी टोली [बायीं ओरसे] घूमकर दाहिनी ओरको आयी, मानो सभी मङ्गलोंका समूह दिखायी दिया ।।३।।
+ITEM 3 [bal.303.cau4]
+  TR: chemakarī kaha chema biseṣī, syāmā bāma sutaru para dekhī. / sanamukha āyau dadhi aru mīnā, kara pustaka dui bipra prabīnā ॥4॥
+  HI: क्षेमकरी (सफेद सिरवाली चील) विशेष रूपसे क्षेम (कल्याण) कह रही है। श्यामा बायीं ओर सुन्दर पेड़पर दिखायी पड़ी। दही, मछली और दो विद्वान् ब्राह्मण हाथमें पुस्तक लिये हुए सामने आये ।।४।।
+SEG 0: The splendour of the marriage procession was more than one could describe.
+SEG 1: Fair and auspicious omens occurred.
+SEG 2: The blue-necked jay picked up food on the left and announced as it were all good fortune.
+SEG 3: On a fair field in the right appeared a cow, and a mongoose was seen by all.
+SEG 4: A soft, cool and fragrant breeze was blowing in a favourable direction;
+SEG 5: a blessed (unwidowed) woman appeared with a pitcher and a child in her arms.
+SEG 6: A fox turned round and showed himself again and again and a cow suckled its calf in front of the procession;
+SEG 7: a herd of deer came round to the right, as if good omens appeared in visible form.
+SEG 8: A Brahmani-kite promised great blessings;
+SEG 9: and a Śyāmā bird was observed on an auspicious tree to the left.
+SEG 10: A man bearing curds and fish and two learned Brāhmaṇas each with a book in his hand came from the opposite direction.
+
+### GROUP 707  (4 items)
+ITEM 0 [bal.304.cau1]
+  TR: maṁgala saguna sugama saba tāke̐, saguna brahma suṁdara suta jāke̐. / rāma sarisa baru dulahini sītā, samadhī dasarathu janaku punītā ॥1॥
+  HI: स्वयं सगुण ब्रह्म जिसके सुन्दर पुत्र हैं, उसके लिये सब मङ्गल शकुन सुलभ हैं। जहाँ श्रीरामचन्द्रजी-सरीखे दूल्हा और सीताजी-जैसी दुलहिन हैं तथा दशरथजी और जनकजी- जैसे पवित्र समधी हैं, ।।१।।
+ITEM 1 [bal.304.cau2]
+  TR: suni asa byāhu saguna saba nāce, aba kīnhe biraṁci hama sā̐ce. / ehi bidhi kīnha barāta payānā, haya gaya gājahiṁ hane nisānā ॥2॥
+  HI: ऐसा ब्याह सुनकर मानो सभी शकुन नाच उठे [और कहने लगे—] अब ब्रह्माजीने हमको सच्चा कर दिया। इस तरह बारातने प्रस्थान किया। घोड़े, हाथी गरज रहे हैं और नगाड़ोंपर चोट लग रही है ।।२।।
+ITEM 2 [bal.304.cau3]
+  TR: āvata jāni bhānukula ketū, saritanhi janaka ba̐dhāe setū. / bīca bīca bara bāsa banāe, surapura sarisa saṁpadā chāe ॥3॥
+  HI: सूर्यवंशके पताकास्वरूप दशरथजीको आते हुए जानकर जनकजीने नदियोंपर पुल बँधवा दिये। बीच-बीचमें ठहरनेके लिये सुन्दर घर (पड़ाव) बनवा दिये, जिनमें देवलोकके समान सम्पदा छायी है, ।।३।।
+ITEM 3 [bal.304.cau4]
+  TR: asana sayana bara basana suhāe, pāvahiṁ saba nija nija mana bhāe. / nita nūtana sukha lakhi anukūle, sakala barātinha maṁdira bhūle ॥4॥
+  HI: और जहाँ बारातके सब लोग अपने-अपने मनकी पसंदके अनुसार सुहावने उत्तम भोजन, बिस्तर और वस्त्र पाते हैं। मनके अनुकूल नित्य नये सुखोंको देखकर सभी बरातियोंको अपने घर भूल गये ।।४।।
+SEG 0: Auspicious omens easily occur to him who has God with form as his own son.
+SEG 1: In the marriage which was going to take place, the bridegroom was no other than Śrī Rāma and Sītā Herself was the bride;
+SEG 2: while the pious Daśaratha and Janaka were the parents of the bridegroom and the bride respectively;
+SEG 3: hearing of this marriage all good omens danced and said, “It is now that the Creator has justified us.” In this way the procession set forth amidst the neighing of horses, the trumpeting of elephants and the clash of kettledrums.
+SEG 4: Learning that the chief of the solar race, King Daśaratha, was already on the way, King Janaka had the rivers bridged, and got beautiful rest-houses erected at different stages, which vied in magnificence with the city of immortals (Amarāvatī), and in which members of the bridegroom’s party were supplied with excellent food, beds and clothing each according to his own taste.
+SEG 5: Finding ever new pleasures agreeable to themselves all the members of the bridegroom’s party forgot their own home.
+
+### GROUP 710  (4 items)
+ITEM 0 [bal.305.cau1]
+  TR: kanaka kalasa bhari kopara thārā, bhājana lalita aneka prakārā. / bhare sudhāsama saba pakavāne, nānā bhā̐ ti na jāhiṁ bakhane ॥1॥
+  HI: [दूध, शर्बत, ठंढाई, जल आदिसे] भरकर सोनेके कलश तथा जिनका वर्णन नहीं हो सकता ऐसे अमृतके समान भाँति-भाँतिके सब पकवानोंसे भरे हुए परात, थाल आदि अनेक प्रकारके सुन्दर बर्तन, ।।१।।
+ITEM 1 [bal.305.cau2]
+  TR: phala aneka bara bastu suhāī̐, haraṣi bheṁṭa hita bhūpa paṭhāī̐ / bhūṣana basana mahāmani nānā, khaga mr̥ga haya gaya bahubidhi jānā ॥2॥
+  HI: उत्तम फल तथा और भी अनेकों सुन्दर वस्तुएँ राजाने हर्षित होकर भेंटके लिये भेजीं। गहने, कपड़े, नाना प्रकारकी मूल्यवान् मणियाँ (रत्न), पक्षी, पशु, घोड़े, हाथी और बहुत तरहकी सवारियाँ, ।।२।।
+ITEM 2 [bal.305.cau3]
+  TR: maṁgala saguna sugaṁdha suhae, bahuta bhā̐ti mahipāla paṭhāe. / dadhi ciurā upahāra apārā, bhari bhari kā̐vari cale kahārā ॥3॥
+  HI: तथा बहुत प्रकारके सुगन्धित एवं सुहावने मङ्गल-द्रव्य और सगुनके पदार्थ राजाने भेजे। दही, चिउड़ा और अगणित उपहारकी चीजें काँवरोंमें भर-भरकर कहार चले ।।३।।
+ITEM 3 [bal.305.cau4]
+  TR: agavānanha jaba dīkhi barātā, ura ānaṁdu pulaka bhara gātā. / dekhi banāva sahita agavānā, mudita barātinha hane nisānā ॥4॥
+  HI: अगवानी करनेवालोंको जब बारात दिखायी दी, तब उनके हृदयमें आनन्द छा गया और शरीर रोमाञ्चसे भर गया। अगवानोंको सज-धजके साथ देखकर बरातियोंने प्रसन्न होकर नगाड़े बजाये ।।४।।
+SEG 0: Jars of gold full of sweet and cold drinks and trays and salvers and beautiful dishes of various kinds laden with confections of indescribable variety and delicious as ambrosia, with luscious fruit and many other delightful articles were sent as an offering by King Janaka in his joy.
+SEG 1: The king also sent ornaments, wearing apparel, valuable gems of every variety, birds, antelopes, horses, elephants, vehicles of every description, charming aromatic substances of an auspicious nature and various articles of good omen;
+SEG 2: and a train of porters marched with their loads of curds, parched rice and presents of endless variety slung across their shoulders.
+SEG 3: When the deputation saw the bridegroom’s party, their mind was filled with rapture and a thrill ran through their frame.
+SEG 4: Seeing the deputation equipped in everyway the members of the bridegroom’s party had their drums beaten in great joy.
+
+### GROUP 712  (4 items)
+ITEM 0 [bal.306.cau1]
+  TR: baraṣi sumana sura suṁdari gāvahiṁ, mudita deva duṁdubhī̐ bajāvahiṁ. / bastu sakala rākhī̐ nr̥pa āge̐, binaya kīnhi tinha ati anurāge̐ ॥1॥
+  HI: देवसुन्दरियाँ फूल बरसाकर गीत गा रही हैं, और देवता आनन्दित होकर नगाड़े बजा रहे हैं। [अगवानीमें आये हुए] उन लोगोंने सब चीजें दशरथजीके आगे रख दीं और अत्यन्त प्रेमसे विनती की ।।१।।
+ITEM 1 [bal.306.cau2]
+  TR: prema sameta rāya̐ sabu līnhā, bhai bakasīsa jācakanhi dīnhā. / kari pūjā mānyatā baṛāī, janavāse kahu̐ cale lavāī ॥2॥
+  HI: राजा दशरथजीने प्रेमसहित सब वस्तुएँ ले लीं, फिर उनकी बख्शीशें होने लगीं और वे याचकोंको दे दी गयीं। तदनन्तर पूजा, आदर-सत्कार और बड़ाई करके अगवान लोग उनको जनवासेकी ओर लिवा ले चले ।।२।।
+ITEM 2 [bal.306.cau3]
+  TR: basana bicitra pā̐vaṛe parahī̐, dekhi dhanadu dhana madu pariharahī̐ / ati suṁdara dīnheu janavāsā, jaha̐ saba kahu̐ saba bhā̐ti supāsā ॥3॥
+  HI: विलक्षण वस्त्रोंके पाँवड़े पड़ रहे हैं, जिन्हें देखकर कुबेर भी अपने धनका अभिमान छोड़ देते हैं। बड़ा सुन्दर जनवासा दिया गया, जहाँ सबको सब प्रकारका सुभीता था ।।३।।
+ITEM 3 [bal.306.cau4]
+  TR: jānī siya̐ barāta pura āī, kachu nija mahimā pragaṭi janāī. / hr̥daya̐ sumiri saba siddhi bolāī̐, bhūpa pahunaī karana paṭhāī̐ 4.
+  HI: सीताजीने बारात जनकपुरमें आयी जानकर अपनी कुछ महिमा प्रकट करके दिखलायी। हृदयमें स्मरणकर सब सिद्धियोंको बुलाया और उन्हें राजा दशरथजीकी मेहमानी करनेके लिये भेजा ।।४।।
+SEG 0: Celestial damsels rained down flowers and sang, while the glad gods sounded kettledrums.
+SEG 1: The members of the deputation placed all the offerings before King Daśaratha and supplicated him with an affectionate address.
+SEG 2: The king lovingly accepted everything and distributed the offerings as presents among his own people, or bestowed them as alms on the beggars.
+SEG 3: After due homage, reverence and courtesy the deputation conducted the bridegroom’s party to the lodgings set apart for them.
+SEG 4: Gorgeous cloths were spread as carpets for the royal guests to tread upon, on seeing which Kubera (the god of wealth) was no longer proud of his wealth.
+SEG 5: Magnificent were the quarters assigned to the bridegroom’s party, which provided every kind of comfort for each guest.
+SEG 6: When Sītā learnt that the bridegroom’s party had arrived in the city, She manifested Her glory to a certain extent.
+SEG 7: By Her very thought She summoned all the Siddhis (miraculous powers personified) and despatched them to wait upon the king and his party.
+
+### GROUP 714  (4 items)
+ITEM 0 [bal.307.cau1]
+  TR: nija nija bāsa biloki barātī, sura sukha sakala sulabha saba bhā̐ tī. / bibhava bheda kachu kou na jānā, sakala janaka kara karahiṁ bakhānā ॥1॥
+  HI: बरातियोंने अपने-अपने ठहरनेके स्थान देखे तो वहाँ देवताओंके सब सुखोंको सब प्रकारसे सुलभ पाया। इस ऐश्वर्यका कुछ भी भेद कोई जान न सका। सब जनकजीकी बड़ाई कर रहे हैं ।।१।।
+ITEM 1 [bal.307.cau2]
+  TR: siya mahimā raghunāyaka jānī, haraṣe hr̥daya̐ hetu pahicānī. / pitu āgamanu sunata dou bhāī, hr̥daya̐ na ati ānaṁdu amāī ॥2॥
+  HI: श्रीरघुनाथजी यह सब सीताजीकी महिमा जानकर और उनका प्रेम पहचानकर हृदयमें हर्षित हुए। पिता दशरथजीके आनेका समाचार सुनकर दोनों भाइयोंके हृदयमें महान् आनन्द समाता न था ।।२।।
+ITEM 2 [bal.307.cau3]
+  TR: sakucanha kahi na sakata guru pāhī̐, pitu darasana lālacu mana māhī̐ / bisvāmitra binaya baṛi dekhī, upajā ura saṁtoṣu biseṣī ॥3॥
+  HI: संकोचवश वे गुरु विश्वामित्रजीसे कह नहीं सकते थे; परन्तु मनमें पिताजीके दर्शनोंकी लालसा थी। विश्वामित्रजीने उनकी बड़ी नम्रता देखी, तो उनके हृदयमें बहुत सन्तोष उत्पन्न हुआ ।।३।।
+ITEM 3 [bal.307.cau4]
+  TR: haraṣi baṁdhu dou hr̥daya̐ lagāe, pulaka aṁga aṁbaka jala chāe. / cale jahā̐ dasarathu janavāse, manahu̐ sarobara takeu piāse ॥4॥
+  HI: प्रसन्न होकर उन्होंने दोनों भाइयोंको हृदयसे लगा लिया। उनका शरीर पुलकित हो गया और नेत्रोंमें (प्रेमाश्रुओंका) जल भर आया। वे उस जनवासेको चले, जहाँ दशरथजी थे। मानो सरोवर प्यासेकी ओर लक्ष्य करके चला हो ।।४।।
+SEG 0: Each member of the bridegroom’s party found in his own apartment all the enjoyments of heaven ready at hand in everyway.
+SEG 1: No one, however, had an inkling of the mystery behind this untold splendour;
+SEG 2: everyone sang Janaka’s praises.
+SEG 3: Rāma alone recognized Sītā’s influence and was glad at heart to discern Her love.
+SEG 4: When the two brothers heard of their father’s arrival, they could not contain themselves for joy, but were too modest to speak to their Guru, though their heart longed to see their sire.
+SEG 5: Viśvāmitra felt much gratified at heart to perceive this great humility.
+SEG 6: In his joy he pressed the two brothers to his bosom;
+SEG 7: a thrill ran through his limbs, while tears rushed to his eyes.
+SEG 8: They proceeded to the guests’ apartments, where King Daśaratha was, as though a lake sought to visit a thirsty soul.
+
+### GROUP 716  (4 items)
+ITEM 0 [bal.308.cau1]
+  TR: munihi daṁḍavata kīnha mahīsā, bāra bāra pada raja dhari sīsā. / kausika rāu lie ura lāī, kahi asīsa pūchī kusalāī ॥1॥
+  HI: पृथ्वीपति दशरथजीने मुनिकी चरणधूलिको बारंबार सिरपर चढ़ाकर उनको दण्डवत् प्रणाम किया। विश्वामित्रजीने राजाको उठाकर हृदयसे लगा लिया और आशीर्वाद देकर कुशल पूछी ।।१।।
+ITEM 1 [bal.308.cau2]
+  TR: puni daṁḍavata karata dou bhāī, dekhi nr̥pati ura sukhu na samāī. / suta hiya̐ lāi dusaha dukha meṭe, mr̥taka sarīra prāna janu bheṁṭe ॥2॥
+  HI: फिर दोनों भाइयोंको दण्डवत् प्रणाम करते देखकर राजाके हृदयमें सुख समाया नहीं। पुत्रोंको [उठाकर] हृदयसे लगाकर उन्होंने अपने [वियोगजनित] दुःसह दुःखको मिटाया। मानो मृतक शरीरको प्राण मिल गये हों ।।२।।
+ITEM 2 [bal.308.cau3]
+  TR: puni basiṣṭha pada sira tinha nāe, prema mudita munibara ura lāe. / bipra br̥ṁda baṁde duhu̐ bhāī̐, manabhāvatī asīse̐ pāī̐ ॥3॥
+  HI: फिर उन्होंने वसिष्ठजीके चरणोंमें सिर नवाया। मुनिश्रेष्ठने प्रेमके आनन्दमें उन्हें हृदयसे लगा लिया। दोनों भाइयोंने सब ब्राह्मणोंकी वन्दना की और मनभाये आशीर्वाद पाये ।।३।।
+ITEM 3 [bal.308.cau4]
+  TR: bharata sahānuja kīnha pranāmā, lie uṭhāi lāi ura rāmā. / haraṣe lakhana dekhi dou bhrātā, mile prema paripūrita gātā ॥4॥
+  HI: भरतजीने छोटे भाई शत्रुघ्नसहित श्रीरामचन्द्रजीको प्रणाम किया। श्रीरामजीने उन्हें उठाकर हृदयसे लगा लिया। लक्ष्मणजी दोनों भाइयोंको देखकर हर्षित हुए और प्रेमसे परिपूर्ण हुए शरीरसे उनसे मिले ।।४।।
+SEG 0: The king prostrated himself before the sage, placing the dust of the latter’s feet on his head again and again.
+SEG 1: Kauśika pressed the king to his bosom, blessed him and inquired after his welfare.
+SEG 2: When King Daśaratha saw the two brothers prostrating themselves, he could not contain himself for joy.
+SEG 3: Pressing the boys to his bosom he allayed the unbearable pangs of separation and looked like a dead body restored to life.
+SEG 4: Rāma and Lakṣmaṇa then bowed their head at Vasiṣṭha’s feet and the great sage embraced them in the ecstasy of love.
+SEG 5: The two brothers next saluted all the Brāhmaṇas and in turn received their welcome blessings.
+SEG 6: Bharata and his younger half-brother (Śatrughna) greeted Rāma, who lifted them and embraced them.
+SEG 7: Lakṣmaṇa rejoiced to see the two brothers (Bharata and Śatrughna) and as he embraced them his limbs were throbbing with emotion.
+
+### GROUP 718  (4 items)
+ITEM 0 [bal.309.cau1]
+  TR: rāmahi dekhi barāta juṛānī, prīti ki rīti na jāti bakhānī. / nr̥pa samīpa sohahiṁ suta cārī, janu dhana dharamādika tanudhārī ॥1॥
+  HI: श्रीरामचन्द्रजीको देखकर बारात शीतल हुई (रामके वियोगमें सबके हृदयमें जो आग जल रही थी, वह शान्त हो गयी)। प्रीतिकी रीतिका बखान नहीं हो सकता। राजाके पास चारों पुत्र ऐसी शोभा पा रहे हैं मानो अर्थ, धर्म, काम और मोक्ष शरीर धारण किये हुए हों ।।१।।
+ITEM 1 [bal.309.cau2]
+  TR: sutanha sameta dasarathahi dekhī, mudita nagara nara nāri biseṣī. / sumana barisi sura hanahiṁ nisānā, nākanaṭī̐ nācahiṁ kari gānā ॥2॥
+  HI: पुत्रोंसहित दशरथजीको देखकर नगरके स्त्री-पुरुष बहुत ही प्रसन्न हो रहे हैं। [आकाशमें] देवता फूलोंकी वर्षा करके नगाड़े बजा रहे हैं और अप्सराएँ गा-गाकर नाच रही हैं ।।२।।
+ITEM 2 [bal.309.cau3]
+  TR: satānaṁda aru bipra saciva gana, māgadha sūta biduṣa baṁdījana. / sahita barāta rāu sanamānā, āyasu māgi phire agavānā ॥3॥
+  HI: अगवानीमें आये हुए शतानन्दजी, अन्य ब्राह्मण, मन्त्रीगण, मागध, सूत, विद्वान् और भाटोंने बारातसहित राजा दशरथजीका आदर-सत्कार किया। फिर आज्ञा लेकर वे वापस लौटे ।।३।।
+ITEM 3 [bal.309.cau4]
+  TR: prathama barāta lagana te̐ āī, tāte̐ pura pramodu adhikāī. / brahmānaṁdu loga saba lahahī̐, baṛhahu̐ divasa nisi bidhi sana kahahī̐ 4.
+  HI: बारात लग्नके दिनसे पहले आ गयी है, इससे जनकपुरमें अधिक आनन्द छा रहा है। सब लोग ब्रह्मानन्द प्राप्त कर रहे हैं और विधातासे मनाकर कहते हैं कि दिन-रात बढ़ जायँ (बड़े हो जायँ) ।।४।।
+SEG 0: The sight of Śrī Rāma was so soothing to the guests;
+SEG 1: the ways of love are beyond description.
+SEG 2: Beside the king his four sons looked like incarnations as it were of the four ends of human endeavour, viz., riches, religious merit etc.
+SEG 3: The people of the city were delighted beyond measure to see King Daśaratha with his sons.
+SEG 4: The gods rained down flowers and beat their drums;
+SEG 5: the nymphs of heaven danced and sang.
+SEG 6: Śatānanda (King Janaka’s family preceptor) and the other Brāhmaṇas and ministers of State, as well as the genealogists, minstrels, jesters and rhapsodists, who formed the deputation, paid due honour to the king and his party and returned with their permission.
+SEG 7: The bridegroom’s party had arrived earlier than the day fixed for the wedding:
+SEG 8: there was great rejoicing in the city on this account.
+SEG 9: Everyone enjoyed transcendent bliss and prayed to the Creator that the days and nights might be lengthened.
+
+### GROUP 720  (4 items)
+ITEM 0 [bal.310.cau1]
+  TR: janaka sukr̥ta mūrati baidehī, dasaratha sukr̥ta rāmu dhare̐ dehī. / inha sama kāhu̐ na siva avarādhe, kāhu̐ na inha samāna bhala lādhe ॥1॥
+  HI: जनकजीके सुकृत (पुण्य) की मूर्ति जानकीजी हैं और दशरथजीके सुकृत देह धारण किये हुए श्रीरामजी हैं। इन [दोनों राजाओं] के समान किसीने शिवजीकी आराधना नहीं की; और न इनके समान किसीने फल ही पाये ।।१।।
+ITEM 1 [bal.310.cau2]
+  TR: inha sama kou na bhayau jaga māhī̐, hai nahiṁ katahū̐ honeu nāhī̐. / hama saba sakala sukr̥ta kai rāsī, bhae jaga janami janakapura bāsī ॥2॥
+  HI: इनके समान जगत्‌में न कोई हुआ, न कहीं है, न होनेका ही है। हम सब भी सम्पूर्ण पुण्योंकी राशि हैं, जो जगत्‌में जन्म लेकर जनकपुरके निवासी हुए, ।।२।।
+ITEM 2 [bal.310.cau3]
+  TR: jinha jānakī rāma chabi dekhī, ko sukr̥tī hama sarisa biseṣī. / puni dekhaba raghubīra biāhū, leba bhalī bidhi locana lāhū ॥3॥
+  HI: और जिन्होंने जानकीजी और श्रीरामचन्द्रजीकी छबि देखी है। हमारे-सरीखा विशेष पुण्यात्मा कौन होगा! और अब हम श्रीरघुनाथजीका विवाह देखेंगे और भलीभाँति नेत्रोंका लाभ लेंगे ।।३।।
+ITEM 3 [bal.310.cau4]
+  TR: kahahiṁ parasapara kokilabayanī̐, ehi biāha̐ baṛa lābhu sunayanī̐. / baṛe̐ bhāga bidhi bāta banāī, nayana atithi hoihahiṁ dou bhāī ॥4॥
+  HI: कोयलके समान मधुर बोलनेवाली स्त्रियाँ आपसमें कहती हैं कि हे सुन्दर नेत्रोंवाली! इस विवाहमें बड़ा लाभ है। बड़े भाग्यसे विधाताने सब बात बना दी है, ये दोनों भाई हमारे नेत्रोंके अतिथि हुआ करेंगे ।।४।।
+SEG 0: “Vaidehī (Sītā) is the incarnation of Janaka’s merit, and Rāma is Daśaratha’s virtue personified.
+SEG 1: No one has worshipped Śiva with such devotion as these two kings, nor has anyone obtained such a reward as they have.
+SEG 2: No one has equalled them in this world, nor is there anyone to equal them anywhere nor shall be.
+SEG 3: We are all storehouses of all kinds of merits in that we have been born in this world as residents of Janaka’s capital.
+SEG 4: Who is so highly blessed as we, who have beheld the beauty of Jānakī (Sītā) and Rāma?
+SEG 5: And we will witness Śrī Rāma’s wedding and shall thereby richly reap the benefit of our eyes.” Damsels with voice as sweet as the notes of the cuckoo whispered to one another, “O bright-eyed friends, we shall gain much by this union.
+SEG 6: By our great good-luck Providence has ordained things well:
+SEG 7: the two brothers shall often delight our eyes.”
+
+### GROUP 722  (4 items)
+ITEM 0 [bal.311.cau1]
+  TR: bibidha bhā̐ti hoihi pahunāī, priya na kāhi asa sāsura māī. / taba taba rāma lakhanahi nihārī, hoihahiṁ saba pura loga sukhārī ॥1॥
+  HI: तब उनकी अनेकों प्रकारसे पहुनाई होगी। सखी! ऐसी ससुराल किसे प्यारी न होगी! तब- तब हम सब नगरनिवासी श्रीराम-लक्ष्मणको देख-देखकर सुखी होंगे ।।१।।
+ITEM 1 [bal.311.cau2]
+  TR: sakhi jasa rāma lakhana kara joṭā, taisei bhūpa saṁga dui ḍhoṭā. / syāma gaura saba aṁga suhāe, te saba kahahiṁ dekhi je āe ॥2॥
+  HI: हे सखी! जैसा श्रीराम-लक्ष्मणका जोड़ा है, वैसे ही दो कुमार राजाके साथ और भी हैं। वे भी एक श्याम और दूसरे गौर वर्णके हैं। उनके भी सब अङ्ग बहुत सुन्दर हैं। जो लोग उन्हें देख आये हैं, वे सब यही कहते हैं ।।२।।
+ITEM 2 [bal.311.cau3]
+  TR: kahā eka maiṁ āju nihāre, janu biraṁci nija hātha sa̐vāre. / bharatu rāmahī kī anuhārī, sahasā lakhi na sakahiṁ nara nārī ॥3॥
+  HI: एकने कहा—मैंने आज ही उन्हें देखा है; इतने सुन्दर हैं, मानो ब्रह्माजीने उन्हें अपने हाथों सँवारा है। भरत तो श्रीरामचन्द्रजीकी ही शकल-सूरतके हैं। स्त्री-पुरुष उन्हें सहसा पहचान नहीं सकते ।।३।।
+ITEM 3 [bal.311.cau4]
+  TR: lakhanu satrusūdanu ekarūpā, nakha sikha te saba aṁga anūpā. / mana bhāvahiṁ mukha barani na jāhī̐, upamā kahu̐ tribhuvana kou nāhī̐ ॥4॥
+  HI: लक्ष्मण और शत्रुघ्न दोनोंका एक रूप है। दोनोंके नखसे शिखातक सभी अङ्ग अनुपम हैं। मनको बड़े अच्छे लगते हैं, पर मुखसे उनका वर्णन नहीं हो सकता। उनकी उपमाके योग्य तीनों लोकोंमें कोई नहीं है ।।४।।
+SEG 0: “There will be hospitality of every kind;
+SEG 1: who, dear one, would not love to stay at such a father-in-law’s.
+SEG 2: On each such occasion all the people of the city will be happy to behold Śrī Rāma and Lakṣmaṇa.
+SEG 3: King Daśaratha, my friends, has brought with him two other lads exactly resembling the pair of Rāma and Lakṣmaṇa.
+SEG 4: One dark, the other fair, but both charming of every limb:
+SEG 5: so declare all those who have seen them.” Said another, “I saw them today:
+SEG 6: it appeared to me as though the Creator had fashioned them with his own hands.
+SEG 7: Bharata is an exact copy of Rāma;
+SEG 8: no man or woman could distinguish them at first sight.
+SEG 9: Lakṣmaṇa and Śatrusūdana (Śatrughna) are indistinguishable from each other, peerless in every limb from head to foot.
+SEG 10: The four brothers attract the mind but cannot be described in words;
+SEG 11: for they have no match in all the three worlds.”
+
+### GROUP 725  (4 items)
+ITEM 0 [bal.312.cau1]
+  TR: ehi bidhi sakala manoratha karahī̐, āna̐da umagi umagi ura bharahī̐. / je nr̥pa sīya svayaṁbara āe, dekhi baṁdhu saba tinha sukha pāe ॥1॥
+  HI: इस प्रकार सब मनोरथ कर रही हैं और हृदयको उमँग-उमँगकर (उत्साहपूर्वक) आनन्दसे भर रही हैं। सीताजीके स्वयंवरमें जो राजा आये थे, उन्होंने भी चारों भाइयोंको देखकर सुख पाया ।।१।।
+ITEM 1 [bal.312.cau2]
+  TR: kahata rāma jasu bisada bisālā, nija nija bhavana gae mahipālā. / gae bīti kachu dina ehi bhā̐ tī, pramudita purajana sakala barātī ॥2॥
+  HI: श्रीरामचन्द्रजीका निर्मल और महान् यश कहते हुए राजा लोग अपने-अपने घर गये। इस प्रकार कुछ दिन बीत गये। जनकपुरनिवासी और बराती सभी बड़े आनन्दित हैं ।।२।।
+ITEM 2 [bal.312.cau3]
+  TR: maṁgala mūla lagana dinu āvā, hima ritu agahanu māsu suhāvā. / graha tithi nakhatu jogu bara bārū, lagana sodhi bidhi kīnha bicārū ॥3॥
+  HI: मङ्गलोंका मूल लग्नका दिन आ गया। हेमन्त-ऋतु और सुहावना अगहनका महीना था। ग्रह, तिथि, नक्षत्र, योग और वार श्रेष्ठ थे। लग्न (मुहूर्त) शोधकर ब्रह्माजीने उसपर विचार किया, ।।३।।
+ITEM 3 [bal.312.cau4]
+  TR: paṭhai dīnhi nārada sana soī, ganī janaka ke ganakanha joī. / sunī sakala loganha yaha bātā, kahahiṁ jotiṣī āhiṁ bidhātā ॥4॥
+  HI: और उस (लग्नपत्रिका) को नारदजीके हाथ [जनकजीके यहाँ] भेज दिया। जनकजीके ज्योतिषियोंने भी वही गणना कर रखी थी। जब सब लोगोंने यह बात सुनी तब वे कहने लगे —यहाँके ज्योतिषी भी ब्रह्मा ही हैं ।।४।।
+SEG 0: In this way they all prayed and a flood of joy inundated their heart.
+SEG 1: The princes who had come as Sītā’s suitors rejoiced to see the four brothers and returned each to his own home extolling Śrī Rāma’s widespread and spotless fame.
+SEG 2: Thus a few days elapsed to the delight alike of the citizens and all the members of the bridegroom’s party.
+SEG 3: At length the blessed day of wedding arrived;
+SEG 4: it was the delightful month of Mārgaśīrṣa and the beginning of the cold season.
+SEG 5: Having carefully examined and determined the propitious nature of the planets, date, asterism, the conjunction of the stars, the day of the week and the hour of the wedding the Creator despatched the note concerning the hour of the wedding through Nārada;
+SEG 6: it was just the same that Janaka’s astrologers had already determined.
+SEG 7: When all the people heard of this, they observed, “The astrologers of this place are so many creators as it were.”
+
+### GROUP 727  (4 items)
+ITEM 0 [bal.313.cau1]
+  TR: uparohitahi kaheu naranāhā, aba bilaṁba kara kāranu kāhā. / satānaṁda taba saciva bolāe, maṁgala sakala sāji saba lyāe ॥1॥
+  HI: तब राजा जनकने पुरोहित शतानन्दजीसे कहा कि अब देरका क्या कारण है। तब शतानन्दजीने मन्त्रियोंको बुलाया। वे सब मङ्गलका सामान सजाकर ले आये ।।१।।
+ITEM 1 [bal.313.cau2]
+  TR: saṁkha nisāna panava bahu bāje, maṁgala kalasa saguna subha sāje. / subhaga suāsini gāvahiṁ gītā, karahiṁ beda dhuni bipra punītā ॥2॥
+  HI: शङ्ख, नगाड़े, ढोल और बहुत-से बाजे बजने लगे तथा मङ्गल-कलश और शुभ शकुनकी वस्तुएँ (दधि, दूर्वा आदि) सजायी गयीं। सुन्दर सुहागिन स्त्रियाँ गीत गा रही हैं और पवित्र ब्राह्मण वेदकी ध्वनि कर रहे हैं ।।२।।
+ITEM 2 [bal.313.cau3]
+  TR: lena cale sādara ehi bhā̐tī, gae jahā̐ janavāsa barātī. / kosalapati kara dekhi samājū, ati laghu lāga tinhahi surarājū ॥3॥
+  HI: सब लोग इस प्रकार आदरपूर्वक बारातको लेने चले और जहाँ बरातियोंका जनवासा था, वहाँ गये। अवधपति दशरथजीका समाज (वैभव) देखकर उनको देवराज इन्द्र भी बहुत ही तुच्छ लगने लगे ।।३।।
+ITEM 3 [bal.313.cau4]
+  TR: bhayau samau aba dhāria pāū, yaha suni parā nisānahiṁ ghāū. / gurahi pūchi kari kula bidhi rājā, cale saṁga muni sādhu samājā ॥4॥
+  HI: [उन्होंने जाकर विनती की—] समय हो गया, अब पधारिये। यह सुनते ही नगाड़ोंपर चोट पड़ी। गुरु वसिष्ठजीसे पूछकर और कुलकी सब रीतियोंको करके राजा दशरथजी मुनियों और साधुओंके समाजको साथ लेकर चले ।।४।।
+SEG 0: The king asked the family priest (Śatānanda), “What is the cause of delay now?” Śatānanda then summoned the ministers, who came equipped with all auspicious articles.
+SEG 1: A number of conches, drums and tabors sounded.
+SEG 2: Festal vases and articles of good omen (such as curds, turmeric and blades of Dūrvā grass) were displayed.
+SEG 3: Graceful women (whose husbands were alive) sang songs, and holy Brāhmaṇas murmured Vedic texts.
+SEG 4: In this manner they proceeded to invite the bridegroom’s party with due honour and called at the latter’s lodgings.
+SEG 5: When they witnessed King Daśaratha’s glory, Indra (the lord of celestials) looked very small to them.
+SEG 6: “The hour has come;
+SEG 7: be good enough to start now,” they submitted.
+SEG 8: At this the drums gave a thundering beat.
+SEG 9: After consulting his preceptor and going through the family rites King Daśaratha sallied forth with a host of sages and holy men.
+
+### GROUP 729  (4 items)
+ITEM 0 [bal.314.cau1]
+  TR: suranha sumaṁgala avasaru jānā, baraṣahiṁ sumana bajāi nisānā. / siva brahmādika bibudha barūthā, caṛhe bimānanhi nānā jūthā ॥1॥
+  HI: देवगण सुन्दर मङ्गलका अवसर जानकर, नगाड़े बजा-बजाकर फूल बरसाते हैं। शिवजी, ब्रह्माजी आदि देववृन्द यूथ (टोलियाँ) बना-बनाकर विमानोंपर जा चढ़े ।।१।।
+ITEM 1 [bal.314.cau2]
+  TR: prema pulaka tana hr̥daya̐ uchāhū, cale bilokana rāma biāhū. / dekhi janakapuru sura anurāge, nija nija loka sabahiṁ laghu lāge ॥2॥
+  HI: और प्रेमसे पुलकित-शरीर हो तथा हृदयमें उत्साह भरकर श्रीरामचन्द्रजीका विवाह देखने चले। जनकपुरको देखकर देवता इतने अनुरक्त हो गये कि उन सबको अपने-अपने लोक बहुत तुच्छ लगने लगे ।।२।।
+ITEM 2 [bal.314.cau3]
+  TR: citavahiṁ cakita bicitra bitānā, racanā sakala alaukika nānā. / nagara nāri nara rūpa nidhānā, sughara sudharama susīla sujānā ॥3॥
+  HI: विचित्र मण्डपको तथा नाना प्रकारकी सब अलौकिक रचनाओंको वे चकित होकर देख रहे हैं। नगरके स्त्री-पुरुष रूपके भण्डार, सुघड़, श्रेष्ठ धर्मात्मा, सुशील और सुजान हैं ।।३।।
+ITEM 3 [bal.314.cau4]
+  TR: tinhahi dekhi saba sura suranārī̐, bhae nakhata janu bidhu ujiārī̐ / bidhihi bhayau ācaraju biseṣī, nija karanī kachu katahu̐ na dekhī ॥4॥
+  HI: उन्हें देखकर सब देवता और देवाङ्गनाएँ ऐसे प्रभाहीन हो गये जैसे चन्द्रमाके उजियालेमें तारागण फीके पड़ जाते हैं। ब्रह्माजीको विशेष आश्चर्य हुआ; क्योंकि वहाँ उन्होंने अपनी कोई करनी (रचना) तो कहीं देखी ही नहीं ।।४।।
+SEG 0: The gods perceived that it was a fit occasion for happy rejoicings;
+SEG 1: hence they rained down flowers and beat their drums.
+SEG 2: Śiva, Brahmā and hosts of other gods mounted aerial cars in several groups.
+SEG 3: Their frames thrilling over with emotion and their hearts overflowing with joy they proceeded to witness Śrī Rāma’s wedding.
+SEG 4: The gods felt so enraptured to see Janaka’s capital that their own realms appeared to them as of small account.
+SEG 5: They gazed with amazement at the wonderful pavilion and all the different works of art which were of a transcendental character.
+SEG 6: The people of the city, both men and women, were so many mines of beauty, well-formed, pious, amiable and wise.
+SEG 7: In their presence all the gods and goddesses appeared like stars in a moonlit night.
+SEG 8: The Creator (Brahmā) was astounded above all;
+SEG 9: for nowhere did he find his own handiwork.
+
+### GROUP 731  (4 items)
+ITEM 0 [bal.315.cau1]
+  TR: jinha kara nāmu leta jaga māhī̐, sakala amaṁgala mūla nasāhī̐ / karatala hohiṁ padāratha cārī, tei siya rāmu kaheu kāmārī ॥1॥
+  HI: जिनका नाम लेते ही जगत्‌में सारे अमङ्गलोंकी जड़ कट जाती है और चारों पदार्थ (अर्थ, धर्म, काम, मोक्ष) मुट्‌ठीमें आ जाते हैं, ये वही [जगत्‌के माता-पिता] श्रीसीतारामजी हैं; कामके शत्रु शिवजीने ऐसा कहा ।।१।।
+ITEM 1 [bal.315.cau2]
+  TR: ehi bidhi saṁbhu suranha samujhāvā, puni āge̐ bara basaha calāvā. / devanha dekhe dasarathu jātā, mahāmoda mana pulakita gātā ॥2॥
+  HI: इस प्रकार शिवजीने देवताओंको समझाया और फिर अपने श्रेष्ठ बैल नन्दीश्वरको आगे बढ़ाया। देवताओंने देखा कि दशरथजी मनमें बड़े ही प्रसन्न और शरीरसे पुलकित हुए चले जा रहे हैं ।।२।।
+ITEM 2 [bal.315.cau3]
+  TR: sādhu samāja saṁga mahidevā, janu tanu dhare̐ karahiṁ sukha sevā. / sohata sātha subhaga suta cārī, janu apabaraga sakala tanudhārī ॥3॥
+  HI: उनके साथ [परम हर्षयुक्त] साधुओं और ब्राह्मणोंकी मण्डली ऐसी शोभा दे रही है, मानो समस्त सुख शरीर धारण करके उनकी सेवा कर रहे हों। चारों सुन्दर पुत्र साथमें ऐसे सुशोभित हैं, मानो सम्पूर्ण मोक्ष (सालोक्य, सामीप्य, सारूप्य, सायुज्य) शरीर धारण किये हुए हों ।।३।।
+ITEM 3 [bal.315.cau4]
+  TR: marakata kanaka barana bara jorī, dekhi suranha bhai prīti na thorī. / puni rāmahi biloki hiya̐ haraṣe, nr̥pahi sarāhi sumana tinha baraṣe ॥4॥
+  HI: मरकतमणि और सुवर्णके रंगकी सुन्दर जोड़ियोंको देखकर देवताओंको कम प्रीति नहीं हुई (अर्थात् बहुत ही प्रीति हुई)। फिर श्रीरामचन्द्रजीको देखकर वे हृदयमें (अत्यन्त) हर्षित हुए और राजाकी सराहना करके उन्होंने फूल बरसाये ।।४।।
+SEG 0: "At the very mention of whose name all evil is uprooted and the four ends of human existence are brought within one's grasp, such are Sītā and Rāma," said the Destroyer of Cupid, Śaṅkara.
+SEG 1: In this way Śambhu admonished the divinities, and then spurred on His noble bull.
+SEG 2: The gods beheld Daśaratha marching (to Janaka's palace) with his heart full of rapture and the hair on his body standing erect.
+SEG 3: The assemblage of holy men and Brāhmaṇas accompanying the king appeared like joys incarnate ministering to him.
+SEG 4: By his side shone forth the four handsome princes, incarnations as it were of the four types of final beatitude.* The gods were greatly inspired with love to see two lovely pairs, one possessing the hue of emeralds and the other of golden hue.
+SEG 5: They were particularly delighted at heart to see Rāma;
+SEG 6: and extolling the king they rained down flowers on him.
+
+### GROUP 733  (4 items)
+ITEM 0 [bal.316.cau1]
+  TR: keki kaṁṭha duti syāmala aṁgā, taṛita biniṁdaka basana suraṁgā. / byāha bibhūṣana bibidha banāe, maṁgala saba saba bhā̐ ti suhāe ॥1॥
+  HI: रामजीका मोरके कण्ठकी-सी कान्तिवाला [हरिताभ] श्याम शरीर है । बिजलीका अत्यन्त निरादर करनेवाले प्रकाशमय सुन्दर [पीत] रंगके वस्त्र हैं। सब मङ्गलरूप और सब प्रकारसे सुन्दर भाँति-भाँतिके विवाहके आभूषण शरीरपर सजाये हुए हैं ।।१।।
+ITEM 1 [bal.316.cau2]
+  TR: sarada bimala bidhu badanu suhāvana, nayana navala rājīva lajāvana. / sakala alaukika suṁdaratāī, kahi na jāi manahī̐ mana bhāī ॥2॥
+  HI: उनका सुन्दर मुख शरत्पूर्णिमाके निर्मल चन्द्रमाके समान और [मनोहर] नेत्र नवीन कमलको लजानेवाले हैं। सारी सुन्दरता अलौकिक है। (मायाकी बनी नहीं है, दिव्य सच्चिदानन्दमयी है) वह कही नहीं जा सकती, मन-ही-मन बहुत प्रिय लगती है ।।२।।
+ITEM 2 [bal.316.cau3]
+  TR: baṁdhu manohara sohahiṁ saṁgā, jāta nacāvata capala turaṁgā. / rājakua̐ra bara bāji dekhāvahiṁ, baṁsa prasaṁsaka birida sunāvahiṁ ॥3॥
+  HI: साथमें मनोहर भाई शोभित हैं, जो चञ्चल घोड़ोंको नचाते हुए चले जा रहे हैं। राजकुमार श्रेष्ठ घोड़ोंको (उनकी चालको) दिखला रहे हैं और वंशकी प्रशंसा करनेवाले (मागध-भाट) विरुदावली सुना रहे हैं ।।३।।
+ITEM 3 [bal.316.cau4]
+  TR: jehi turaṁga para rāmu birāje, gati biloki khaganāyaku lāje. / kahi na jāi saba bhā̐ ti suhāvā, bāji beṣu janu kāma banāvā ॥4॥
+  HI: जिस घोड़ेपर श्रीरामजी विराजमान हैं, उसकी [तेज] चाल देखकर गरुड़ भी लजा जाते हैं। उसका वर्णन नहीं हो सकता, वह सब प्रकारसे सुन्दर है। मानो कामदेवने ही घोड़ेका वेष धारण कर लिया हो ।।४।।
+SEG 0: His swarthy form possessed the glow of a peacock's neck, while His bright yellow raiment outshone the lightning.
+SEG 1: Wedding ornaments of every kind, all auspicious and graceful in everyway, adorned His person.
+SEG 2: His countenance was as delightful as the moon in a cloudless autumnal night;
+SEG 3: while His eyes put to shame a blooming pair of lotuses.
+SEG 4: The elegance of His form was transcendent in all its details;
+SEG 5: though captivating the soul, it defied description.
+SEG 6: Beside Him shone forth His lovely brothers, who rode curveting their restive steed.
+SEG 7: The other princes too displayed the pace of their horses and the family bards recited the glories of their line.
+SEG 8: Even the king of birds, Garuḍa, blushed for shame to note the speed of the steed that Rāma bestrode;
+SEG 9: it was charming beyond description in everyway;
+SEG 10: it seemed as though Cupid himself had taken the form of horse.
+
+### GROUP 736  (4 items)
+ITEM 0 [bal.317.cau1]
+  TR: jehiṁ bara bāji rāmu asavārā, tehi sāradau na baranai pārā. / saṁkaru rāma rūpa anurāge, nayana paṁcadasa ati priya lāge ॥1॥
+  HI: जिस श्रेष्ठ घोड़ेपर श्रीरामचन्द्रजी सवार हैं, उसका वर्णन सरस्वतीजी भी नहीं कर सकतीं। शङ्करजी श्रीरामचन्द्रजीके रूपमें ऐसे अनुरक्त हुए कि उन्हें अपने पंद्रह नेत्र इस समय बहुत ही प्यारे लगने लगे ।।१।।
+ITEM 1 [bal.317.cau2]
+  TR: hari hita sahita rāmu jaba johe, ramā sameta ramāpati mohe. / nirakhi rāma chabi bidhi haraṣāne, āṭhai nayana jāni pachitāne ॥2॥
+  HI: भगवान् विष्णुने जब प्रेमसहित श्रीरामको देखा, तब वे [रमणीयताकी मूर्ति] श्रीलक्ष्मीजीके पति श्रीलक्ष्मीजीसहित मोहित हो गये। श्रीरामचन्द्रजीकी शोभा देखकर ब्रह्माजी बड़े प्रसन्न हुए, पर अपने आठ ही नेत्र जानकर पछताने लगे ।।२।।
+ITEM 2 [bal.317.cau3]
+  TR: sura senapa ura bahuta uchāhū, bidhi te ḍevaṛha locana lāhū. / rāmahi citava suresa sujānā, gautama srāpu parama hita mānā ॥3॥
+  HI: देवताओंके सेनापति स्वामिकार्तिकके हृदयमें बड़ा उत्साह है, क्योंकि वे ब्रह्माजीसे ड्योढ़े अर्थात् बारह नेत्रोंसे रामदर्शनका सुन्दर लाभ उठा रहे हैं। सुजान इन्द्र [अपने हजार नेत्रोंसे] श्रीरामचन्द्रजीको देख रहे हैं और गौतमजीके शापको अपने लिये परम हितकर मान रहे हैं ।।३।।
+ITEM 3 [bal.317.cau4]
+  TR: deva sakala surapatihi sihāhī̐, āju puraṁdara sama kou nāhī̐ / mudita devagana rāmahi dekhī, nr̥pasamāja duhu̐ haraṣu biseṣī ॥4॥
+  HI: सभी देवता देवराज इन्द्रसे ईर्ष्या कर रहे हैं [और कह रहे हैं] कि आज इन्द्रके समान भाग्यवान् दूसरा कोई नहीं है। श्रीरामचन्द्रजीको देखकर देवगण प्रसन्न हैं और दोनों राजाओंके समाजमें विशेष हर्ष छा रहा है ।।४।।
+SEG 0: Even Śāradā is unable to describe the noble steed on which Śrī Rāma rode.
+SEG 1: Śaṅkara (who has five faces, with three eyes each) was enamoured of Śrī Rāma's beauty and congratulated himself on His possessing as many as fifteen eyes.
+SEG 2: When Śrī Hari (Viṣṇu) fondly gazed on Rāma, both Ramā and Her lord were equally enchanted.
+SEG 3: (The four-faced) Brahmā too was delighted to behold Śrī Rāma's beauty;
+SEG 4: but he felt sorry to think that he had only eight eyes.
+SEG 5: The generalissimo of the heavenly host (the six-faced Kārtikeya) exulted over the fact of his possessing half as many eyes again as Brahmā.
+SEG 6: When the wise lord of celestials gazed on Śrī Rāma (with his thousand eyes), he thought Gautama's curse as the greatest blessing.
+SEG 7: All the gods envied Indra and observed, "No one can vie with Purandara (Indra) today." The whole host of heavenly beings rejoiced to behold Śrī Rāma and there was joy beyond measure in the court of both the monarchs.
+
+### GROUP 739  (4 items)
+ITEM 0 [bal.318.cau1]
+  TR: bidhubadanī̐ saba saba mr̥galocani, saba nija tana chabi rati madu mocani. / pahire̐ barana barana bara cīrā, sakala bibhūṣana saje̐ sarīrā ॥1॥
+  HI: सभी स्त्रियाँ चन्द्रमुखी (चन्द्रमाके समान मुखवाली) और सभी मृगलोचनी (हरिणकी-सी आँखोंवाली) हैं और सभी अपने शरीरकी शोभासे रतिके गर्वको छुड़ानेवाली हैं। रंग-रंगकी सुन्दर साड़ियाँ पहने हैं और शरीरपर सब आभूषण सजे हुए हैं ।।१।।
+ITEM 1 [bal.318.cau2]
+  TR: sakala sumaṁgala aṁga banāe̐, karahiṁ gāna kalakaṁṭhi lajāe̐. / kaṁkana kiṁkini nūpura bājahiṁ, cāli biloki kāma gaja lājahiṁ ॥2॥
+  HI: समस्त अङ्गोंको सुन्दर मङ्गल पदार्थोंसे सजाये हुए वे कोयलको भी लजाती हुई [मधुर स्वरसे] गान कर रही हैं। कंगन, करधनी और नूपुर बज रहे हैं। स्त्रियोंकी चाल देखकर कामदेवके हाथी भी लजा जाते हैं ।।२।।
+ITEM 2 [bal.318.cau3]
+  TR: bājahiṁ bājane bibidha prakārā, nabha aru nagara sumaṁgalacārā. / sacī sāradā ramā bhavānī, je suratiya suci sahaja sayānī ॥3॥
+  HI: अनेक प्रकारके बाजे बज रहे हैं, आकाश और नगर दोनों स्थानोंमें सुन्दर मङ्गलाचार हो रहे हैं। शची (इन्द्राणी), सरस्वती, लक्ष्मी, पार्वती और जो स्वभावसे ही पवित्र और सयानी देवाङ्गनाएँ थीं, ।।३।।
+ITEM 3 [bal.318.cau4]
+  TR: kapaṭa nāri bara beṣa banāī, milī̐ sakala ranivāsahiṁ jāī. / karahiṁ gāna kala maṁgala bānī̐, haraṣa bibasa saba kāhu̐ na jānī̐ 4.
+  HI: वे सब कपटसे सुन्दर स्त्रीका वेष बनाकर रनिवासमें जा मिलीं और मनोहर वाणीसे मङ्गलगान करने लगीं। सब कोई हर्षके विशेष वश थे, अतः किसीने उन्हें पहचाना नहीं ।।४।।
+SEG 0: They all had moon-like faces, and eyes like those of a gazelle;
+SEG 1: by the elegance of their form they robbed Rati (Love's consort) of all self-conceit.
+SEG 2: Attired in costly garments of various colours they had adorned their person with all kinds of ornaments.
+SEG 3: They had further beautified all their limbs with auspicious materials, and sang melodies that put to shame even a female cuckoo.
+SEG 4: Bracelets, small bells round their waistband as well as anklets made a jingling sound as they moved and even Love's elephants blushed for shame to see their gait.
+SEG 5: All kinds of music played and there were rejoicing both in the heavens and in the city.
+SEG 6: Śacī (Indra's consort), Śāradā, Ramā, Bhavānī and other goddesses, who were pure-hearted and clever by nature, assumed the disguise of lovely women and joined the royal gynaeceum.
+SEG 7: They sang festal songs in a melodious voice;
+SEG 8: and as everyone was overcome with joy no one could recognize them.
+
+### GROUP 742  (4 items)
+ITEM 0 [bal.319.cau1]
+  TR: nayana nīru haṭi maṁgala jānī, parichani karahiṁ mudita mana rānī. / beda bihita aru kula ācārū, kīnha bhalī bidhi saba byavahārū ॥1॥
+  HI: मङ्गल-अवसर जानकर नेत्रोंके जलको रोके हुए रानी प्रसन्न मनसे परछन कर रही हैं। वेदोंमें कहे हुए तथा कुलाचारके अनुसार सभी व्यवहार रानीने भलीभाँति किये ।।१।।
+ITEM 1 [bal.319.cau2]
+  TR: paṁca sabada dhuni maṁgala gānā, paṭa pā̐vaṛe parahiṁ bidhi nānā. / kari āratī araghu tinha dīnhā, rāma gamanu maṁḍapa taba kīnhā ॥2॥
+  HI: पञ्चशब्द (तन्त्री, ताल, झाँझ, नगारा और तुरही—इन पाँच प्रकारके बाजोंके शब्द), पञ्चध्वनि (वेदध्वनि, वन्दिध्वनि, जयध्वनि, शङ्खध्वनि और हुलूध्वनि) और मङ्गलगान हो रहे हैं। नाना प्रकारके वस्त्रोंके पाँवड़े पड़ रहे हैं। उन्होंने (रानीने) आरती करके अर्घ्य दिया, तब श्रीरामजीने मण्डपमें गमन किया ।।२।।
+ITEM 2 [bal.319.cau3]
+  TR: dasarathu sahita samāja birāje, bibhava biloki lokapati lāje. / samaya̐ samaya̐ sura baraṣahiṁ phūlā, sāṁti paṛhahiṁ mahisura anukūlā ॥3॥
+  HI: दशरथजी अपनी मण्डलीसहित विराजमान हुए। उनके वैभवको देखकर लोकपाल भी लजा गये। समय-समयपर देवता फूल बरसाते हैं और भूदेव ब्राह्मण समयानुकूल शान्ति-पाठ करते हैं ।।३।।
+ITEM 3 [bal.319.cau4]
+  TR: nabha aru nagara kolāhala hoī, āpani para kachu sunai na koī. / ehi bidhi rāmu maṁḍapahiṁ āe, araghu dei āsana baiṭhāe ॥4॥
+  HI: आकाश और नगरमें शोर मच रहा है। अपनी-परायी कोई कुछ भी नहीं सुनता। इस प्रकार श्रीरामचन्द्रजी मण्डपमें आये और अर्घ्य देकर आसनपर बैठाये गये ।।४।।
+SEG 0: Restraining her tears out of regard for the auspicious occasion, Queen Sunayanā performed the ceremony of waving lights with a gladdened heart, and duly completed all the rites prescribed by the Vedas as well as by family usage.
+SEG 1: The five kinds of music* were being played, accompanied by five varieties of other sounds– and festal songs;
+SEG 2: carpets of different sorts were spread on the way.
+SEG 3: After waving lights the queen offered water to Śrī Rāma for washing His hands with and the latter then proceeded to the pavilion.
+SEG 4: Daśaratha shone in all his glory with his followers;
+SEG 5: his magnificence put to shame the guardians of the different worlds.
+SEG 6: From time to time the gods rained down flowers;
+SEG 7: and the Brāhmaṇas recited propitiatory texts appropriate to the occasion.
+SEG 8: There was such a great uproar in the heavens as well as in the city that no one could hear one's own words, much less of others.
+SEG 9: In this way Śrī Rāma entered the pavilion;
+SEG 10: after offering Him water to wash His hands with, He was conducted to His seat.
+
+### GROUP 745  (4 items)
+ITEM 0 [bal.320.cau1]
+  TR: mile janaku dasarathu ati prītī̐, kari baidika laukika saba rītī̐. / milata mahā dou rāja birāje, upamā khoji khoji kabi lāje ॥1॥
+  HI: वैदिक और लौकिक सब रीतियाँ करके जनकजी और दशरथजी बड़े प्रेमसे मिले। दोनों महाराज मिलते हुए बड़े ही शोभित हुए, कवि उनके लिये उपमा खोज-खोजकर लजा गये ।।१।।
+ITEM 1 [bal.320.cau2]
+  TR: lahī na katahu̐ hāri hiya̐ mānī, inha sama ei upamā ura ānī. / sāmadha dekhi deva anurāge, sumana baraṣi jasu gāvana lāge ॥2॥
+  HI: जब कहीं भी उपमा नहीं मिली, तब हृदयमें हार मानकर उन्होंने मनमें यही उपमा निश्चित की कि इनके समान ये ही हैं। समधियोंका मिलाप या परस्पर सम्बन्ध देखकर देवता अनुरक्त हो गये और फूल बरसाकर उनका यश गाने लगे ।।२।।
+ITEM 2 [bal.320.cau3]
+  TR: jagu biraṁci upajāvā jaba te̐, dekhe sune byāha bahu taba te̐. / sakala bhā̐ ti sama sāju samājū, sama samadhī dekhe hama ājū ॥3॥
+  HI: [वे कहने लगे—] जबसे ब्रह्माजीने जगत्‌को उत्पन्न किया, तबसे हमने बहुत विवाह देखे- सुने; परन्तु सब प्रकारसे समान साज-समाज और बराबरीके (पूर्ण समतायुक्त) समधी तो आज ही देखे ।।३।।
+ITEM 3 [bal.320.cau4]
+  TR: deva girā suni suṁdara sā̐ cī, prīti alaukika duhu disi mācī. / deta pā̐ vaṛe araghu suhāe, sādara janaku maṁḍapahiṁ lyāe ॥4॥
+  HI: देवताओंकी सुन्दर सत्यवाणी सुनकर दोनों ओर अलौकिक प्रीति छा गयी। सुन्दर पाँवड़े और अर्घ्य देते हुए जनकजी दशरथजीको आदरपूर्वक मण्डपमें ले आये ।।४।।
+SEG 0: Having observed every custom that derived its authority from the Vedas or from popular tradition the two kings Janaka and Daśaratha, embraced each other with great love.
+SEG 1: The two monarchs while embracing each other presented a glorious spectacle;
+SEG 2: poets made repeated efforts to find a suitable analogy but felt abashed at their failure.
+SEG 3: Finding no comparison anywhere, they felt baffled and concluded that the pair could be likened to themselves alone.
+SEG 4: The gods were enraptured to see the tie of love between the two kings united by marriage alliance;
+SEG 5: raining down flowers they began to sing the glories of both. "Ever since Brahmā created the world, we have witnessed and heard of many a marriage;
+SEG 6: but it is only today that we have seen the pomp and grandeur on both sides so well-balanced in every respect and the fathers of the bride and the bridegroom so well-matched." Hearing the above voice from heaven, which was so charming yet so true, there was a flood of transcendent love on both sides.
+SEG 7: Unrolling beautiful carpets on the way and offering water to wash his hands with, Janaka himself conducted Daśaratha to the pavilion with all honour.
+
+### GROUP 748  (4 items)
+ITEM 0 [bal.321.cau1]
+  TR: bahuri kīnhi kosalapati pūjā, jāni īsa sama bhāu na dūjā. / kīnhi jori kara binaya baṛāī, kahi nija bhāgya bibhava bahutāī ॥1॥
+  HI: फिर उन्होंने कोसलाधीश राजा दशरथजीकी पूजा उन्हें ईश (महादेवजी) के समान जानकर की, कोई दूसरा भाव न था। तदनन्तर [उनके सम्बन्धसे] अपने भाग्य और वैभवके विस्तारकी सराहना करके हाथ जोड़कर विनती और बड़ाई की ।।१।।
+ITEM 1 [bal.321.cau2]
+  TR: pūje bhūpati sakala barātī, samadhī sama sādara saba bhā̐tī. / āsana ucita die saba kāhū, kahau̐ kāha mukha eka uchāhū ॥2॥
+  HI: राजा जनकजीने सब बरातियोंका समधी दशरथजीके समान ही सब प्रकारसे आदरपूर्वक पूजन किया और सब किसीको उचित आसन दिये। मैं एक मुखसे उस उत्साहका क्या वर्णन करूँ ।।२।।
+ITEM 2 [bal.321.cau3]
+  TR: sakala barāta janaka sanamānī, dāna māna binatī bara bānī. / bidhi hari haru disipati dinarāū, je jānahiṁ raghubīra prabhāū ॥3॥
+  HI: राजा जनकने दान, मान-सम्मान, विनय और उत्तम वाणीसे सारी बारातका सम्मान किया। ब्रह्मा, विष्णु शिव, दिक्पाल और सूर्य जो श्रीरघुनाथजीका प्रभाव जानते हैं, ।।३।।
+ITEM 3 [bal.321.cau4]
+  TR: kapaṭa bipra bara beṣa banāe̐, kautuka dekhahiṁ ati sacu pāe̐. / pūje janaka deva sama jāne̐, die suāsana binu pahicāne̐ ॥4॥
+  HI: वे कपटसे ब्राह्मणोंका सुन्दर वेष बनाये बहुत ही सुख पाते हुए सब लीला देख रहे थे। जनकजीने उनको देवताओंके समान जानकर उनका पूजन किया और बिना पहचाने भी उन्हें सुन्दर आसन दिये ।।४।।
+SEG 0: Again he paid divine honours to the King of Ayodhyā, taking him to be the peer of Śiva and none other;
+SEG 1: and mentioning how his fortune and rank had been enhanced through relation with King Daśaratha, he made humble supplication to the latter and extolled him with joined palms.
+SEG 2: King Janaka worshipped all the members of the bridegroom's party with the same honour in every respect as he had paid to the bridegroom's father, and assigned appropriate seats to them all.
+SEG 3: How am I to describe with my one tongue the warmth of his feeling?
+SEG 4: Janaka honoured the whole bridegroom's party with gifts, polite behaviour, supplication and sweet words.
+SEG 5: Brahmā, Hari, Hara, the guardians of the eight quarters of the world* and the sun-god, all of whom had knowledge of Śrī Rāma's glory, disguised themselves as noble Brāhmaṇas and witnessed the spectacle with great delight.
+SEG 6: Janaka worshipped them as on a par with gods and, though he recognized them not, assigned them exalted seats.
+
+### GROUP 751  (4 items)
+ITEM 0 [bal.322.cau1]
+  TR: samau biloki basiṣṭha bolāe, sādara satānaṁdu suni āe. / begi kua̐ri aba ānahu jāī, cale mudita muni āyasu pāī ॥1॥
+  HI: समय देखकर वसिष्ठजीने शतानन्दजीको आदरपूर्वक बुलाया। वे सुनकर आदरके साथ आये। वसिष्ठजीने कहा—अब जाकर राजकुमारीको शीघ्र ले आइये। मुनिकी आज्ञा पाकर वे प्रसन्न होकर चले ।।१।।
+ITEM 1 [bal.322.cau2]
+  TR: rānī suni uparohita bānī, pramudita sakhinha sameta sayānī. / bipra badhū kulabr̥ddha bolāī̐, kari kula rīti sumaṁgala gāī̐ ॥2॥
+  HI: बुद्धिमती रानी पुरोहितकी वाणी सुनकर सखियोंसमेत बड़ी प्रसन्न हुईं। ब्राह्मणोंकी स्त्रियों और कुलकी बूढ़ी स्त्रियोंको बुलाकर उन्होंने कुलरीति करके सुन्दर मङ्गलगीत गाये ।।२।।
+ITEM 2 [bal.322.cau3]
+  TR: nāri beṣa je sura bara bāmā, sakala subhāya̐ suṁdarī syāmā. / tinhahi dekhi sukhu pāvahiṁ nārī̐, binu pahicāni prānahu te pyārī̐ 3.
+  HI: श्रेष्ठ देवाङ्गनाएँ, जो सुन्दर मनुष्य-स्त्रियोंके वेषमें हैं, सभी स्वभावसे ही सुन्दरी और श्यामा (सोलह वर्षकी अवस्थावाली) हैं। उनको देखकर रनिवासकी स्त्रियाँ सुख पाती हैं और बिना पहचानके ही वे सबको प्राणोंसे भी प्यारी हो रही हैं ।।३।।
+ITEM 3 [bal.322.cau4]
+  TR: bāra bāra sanamānahiṁ rānī, umā ramā sārada sama jānī. / sīya sa̐vāri samāju banāī, mudita maṁḍapahiṁ calī̐ lavāī ॥4॥
+  HI: उन्हें पार्वती, लक्ष्मी और सरस्वतीके समान जानकर रानी बार-बार उनका सम्मान करती हैं। [रनिवासकी स्त्रियाँ और सखियाँ] सीताजीका शृंगार करके, मण्डली बनाकर, प्रसन्न होकर उन्हें मण्डपमें लिवा चलीं ।।४।।
+SEG 0: Perceiving that the time of wedding had arrived, Vasiṣṭha sent for Śatānanda with all the honour due to him, and on hearing the call the latter came with all reverence. "Kiindly go and bring the bride quickly now." Receiving the sage's order he gladly left.
+SEG 1: The wise queen with her associates was highly pleased to hear the priest's message;
+SEG 2: she sent for a few Brāhmaṇa ladies and the elder ladies of the family, who performed the family rites and sang charming festal songs.
+SEG 3: The consorts of the principal gods, who were disguised as mortal women, were all naturally lovely and in the prime of their youth.
+SEG 4: The ladies of Janaka's household were delighted to see them and, even though none recognized them, the ladies held them dearer than their life.
+SEG 5: The queen honoured them again and again treating them on a par with Umā, Ramā and Śāradā.
+SEG 6: After adorning Sītā and forming a circle about Her they joyously conducted Her to the pavilion.
+
+### GROUP 754  (4 items)
+ITEM 0 [bal.323.cau1]
+  TR: siya suṁdaratā barani na jāī, laghu mati bahuta manoharatāī. / āvata dīkhi barātinha sītā, rūpa rāsi saba bhā̐ti punītā ॥1॥
+  HI: सीताजीकी सुन्दरताका वर्णन नहीं हो सकता, क्योंकि बुद्धि बहुत छोटी है और मनोहरता बहुत बड़ी है। रूपकी राशि और सब प्रकारसे पवित्र सीताजीको बरातियोंने आते देखा ।।१।।
+ITEM 1 [bal.323.cau2]
+  TR: sabahi manahiṁ mana kie pranāmā, dekhi rāma bhae pūranakāmā. / haraṣe dasaratha sutanha sametā, kahi na jāi ura āna̐du jetā ॥2॥
+  HI: सभीने उन्हें मन-ही-मन प्रणाम किया। श्रीरामचन्द्रजीको देखकर तो सभी पूर्णकाम (कृतकृत्य) हो गये। राजा दशरथजी पुत्रोंसहित हर्षित हुए। उनके हृदयमें जितना आनन्द था, वह कहा नहीं जा सकता ।।२।।
+ITEM 2 [bal.323.cau3]
+  TR: sura pranāmu kari barisahiṁ phūlā, muni asīsa dhuni maṁgala mūlā. / gāna nisāna kolāhalu bhārī, prema pramoda magana nara nārī ॥3॥
+  HI: देवता प्रणाम करके फूल बरसा रहे हैं। मङ्गलोंकी मूल मुनियोंके आशीर्वादोंकी ध्वनि हो रही है। गानों और नगाड़ोंके शब्दसे बड़ा शोर मच रहा है। सभी नर-नारी प्रेम और आनन्दमें मग्न हैं ।।३।।
+ITEM 3 [bal.323.cau4]
+  TR: ehi bidhi sīya maṁḍapahiṁ āī, pramudita sāṁti paṛhahiṁ munirāī. / tehi avasara kara bidhi byavahārū, duhu̐ kulagura saba kīnha acārū ॥4॥
+  HI: इस प्रकार सीताजी मण्डपमें आयीं। मुनिराज बहुत ही आनन्दित होकर शान्तिपाठ पढ़ रहे हैं। उस अवसरकी सब रीति, व्यवहार और कुलाचार दोनों कुलगुरुओंने किये ।।४।।
+SEG 0: Sītā's elegant form baffles all description:
+SEG 1: so poor is my wit and so surpassing Her charm.
+SEG 2: When the members of the bridegroom's party saw Sītā approach, a veritable storehouse of beauty and spotless in everyway, all greeted Her from the core of their heart.
+SEG 3: At the sight of Jānakī Rāma had His heart's desire fulfilled.
+SEG 4: King Daśaratha with all his other sons was filled with delight;
+SEG 5: the joy of their heart could not be expressed.
+SEG 6: The gods made obeisance and rained down flowers;
+SEG 7: while the sages uttered their benedictions, which were the source of all blessings.
+SEG 8: The songs that the ladies sang, combined with the sound of kettledrums, produced a loud symphony;
+SEG 9: men and women both were lost in love and rejoicing.
+SEG 10: In this manner Sītā entered the pavilion, while great sages recited propitiatory texts in great joy.
+SEG 11: The two family preceptors (Vasiṣṭha and Śatānanda) performed all the religious rites and ceremonies and observed the family customs.
+
+### GROUP 755  (2 items)
+ITEM 0 [bal.323.cha1]
+  TR: ācāru kari gura gauri ganapati mudita bipra pujāvahī̐, / sura pragaṭi pūjā lehiṁ dehiṁ asīsa ati sukhu pāvahī̐ / madhuparka maṁgala drabya jo jehi samaya muni mana mahu̐ cahaiṁ, / bhare kanaka kopara kalasa so taba liehiṁ paricāraka rahaiṁ ॥1॥
+  HI: कुलाचार करके गुरुजी प्रसन्न होकर गौरीजी, गणेशजी और ब्राह्मणोंकी पूजा करा रहे हैं [अथवा ब्राह्मणोंके द्वारा गौरी और गणेशकी पूजा करवा रहे हैं]। देवता प्रकट होकर पूजा ग्रहण करते हैं, आशीर्वाद देते हैं और अत्यन्त सुख पा रहे हैं। मधुपर्क आदि जिस किसी भी माङ्गलिक पदार्थकी मुनि जिस समय भी मनमें चाहमात्र करते हैं, सेवकगण उसी समय सोनेकी परातोंमें और कलशोंमें भरकर उन पदार्थोंको लिये तैयार रहते हैं ।।१।।
+ITEM 1 [bal.323.cha2]
+  TR: kula rīti prīti sameta rabi kahi deta sabu sādara kiyo, / ehi bhā̐ti deva pujāi sītahi subhaga siṁghāsanu diyo. / siya rāma avalokani parasapara premu kāhu na lakhi parai, / mana buddhi bara bānī agocara pragaṭa kabi kaise̐ karai ॥2॥
+  HI: स्वयं सूर्यदेव प्रेमसहित अपने कुलकी सब रीतियाँ बता देते हैं और वे सब आदरपूर्वक की जा रही हैं। इस प्रकार देवताओंकी पूजा कराके मुनियोंने सीताजीको सुंदर सिंहासन दिया। श्रीसीताजी और श्रीरामजीका आपसमें एक-दूसरेको देखना तथा उनका परस्परका प्रेम किसीको लख नहीं पड़ रहा है। जो बात श्रेष्ठ मन, बुद्धि और वाणीसे भी परे है, उसे कवि क्योंकर प्रकट करे? ।।२।।
+SEG 0: Having observed the family customs the Gurus (Vasiṣṭha and Śatānanda) in great joy directed the Brāhmaṇas to worship Goddess Gaurī and Her son Gaṇeśa;
+SEG 1: the gods accepted the homage in visible form and gave their blessing with great delight.
+SEG 2: Whatever auspicious article such as a mixture of honey* etc., the sages mentally sought at any particular moment, attendants stood ever ready with gold trays and pitchers full of that substance.
+SEG 3: The sun-god himself lovingly pointed out the family usages, which were all scrupulously observed.
+SEG 4: Having thus caused Sītā to worship the gods, the sages assigned Her a beautiful throne.
+SEG 5: The mutual love with which Sītā and Rāma regarded each other could not be perceived by anyone.
+SEG 6: It was beyond the reach of the best mind, intellect and speech;
+SEG 7: how then, could the poet express it?
+
+### GROUP 757  (4 items)
+ITEM 0 [bal.324.cau1]
+  TR: janaka pāṭamahiṣī jaga jānī, sīya mātu kimi jāi bakhānī. / sujasu sukr̥ta sukha suṁdaratāī, saba sameṭi bidhi racī banāī ॥1॥
+  HI: जनकजीकी जगद्विख्यात पटरानी और सीताजीकी माताका बखान तो हो ही कैसे सकता है। सुयश, सुकृत (पुण्य), सुख और सुन्दरता सबको बटोरकर विधाताने उन्हें सँवारकर तैयार किया है ।।१।।
+ITEM 1 [bal.324.cau2]
+  TR: samau jāni munibaranha bolāī̐, sunata suāsini sādara lyāī̐ / janaka bāma disi soha sunayanā, himagiri saṁga banī janu mayanā ॥2॥
+  HI: समय जानकर श्रेष्ठ मुनियोंने उनको बुलवाया। यह सुनते ही सुहागिनी स्त्रियाँ उन्हें आदरपूर्वक ले आयीं। सुनयनाजी (जनकजीकी पटरानी) जनकजीकी बायीं ओर ऐसी सोह रही हैं, मानो हिमाचलके साथ मैनाजी शोभित हों ।।२।।
+ITEM 2 [bal.324.cau3]
+  TR: kanaka kalasa mani kopara rūre, suci sugaṁdha maṁgala jala pūre. / nija kara mudita rāya̐ aru rānī, dhare rāma ke āge̐ ānī ॥3॥
+  HI: पवित्र, सुगन्धित और मङ्गल जलसे भरे सोनेके कलश और मणियोंकी सुन्दर परातें राजा और रानीने आनन्दित होकर अपने हाथोंसे लाकर श्रीरामचन्द्रजीके आगे रखीं ।।३।।
+ITEM 3 [bal.324.cau4]
+  TR: paṛhahiṁ beda muni maṁgala bānī, gagana sumana jhari avasaru jānī. / baru biloki daṁpati anurāge, pāya punīta pakhārana lāge ॥4॥
+  HI: मुनि मङ्गलवाणीसे वेद पढ़ रहे हैं। सुअवसर जानकर आकाशसे फूलोंकी झड़ी लग गयी है। दूलहको देखकर राजा-रानी प्रेममग्न हो गये और उनके पवित्र चरणोंको पखारने लगे ।।४।।
+SEG 0: What words can describe the world-renowned queen-consort of Janaka and Sītā's mother?
+SEG 1: The Creator had exhausted in fashioning her all the bright glory, virtue, joy and beauty.
+SEG 2: Perceiving the appropriate time, the great sages sent for her;
+SEG 3: and in response to their call married women whose hasbands were alive brought her with due honour.
+SEG 4: Queen Sunayanā shone forth to Janaka's left even as Menā beside Himavān (the mountain-king).
+SEG 5: The king and queen joyfully brought and placed with their own hands gold vases and beautiful trays of jewels filled with holy, scented and auspicious water before Śrī Rāma.
+SEG 6: The sages recited the Veda in joyous tones and at the proper time flowers rained down from the heavens.
+SEG 7: The royal couple were enraptured to behold the Bridegroom and began to wash His holy feet.
+
+### GROUP 758  (4 items)
+ITEM 0 [bal.324.cha1]
+  TR: lāge pakhārana pāya paṁkaja prema tana pulakāvalī, / nabha nagara gāna nisāna jaya dhuni umagi janu cahu̐ disi calī. / je pada saroja manoja ari ura sara sadaiva birājahī̐, / je sakr̥ta sumirata bimalatā mana sakala kali mala bhājahī̐ 1.
+  HI: वे श्रीरामजीके चरणकमलोंको पखारने लगे, प्रेमसे उनके शरीरमें पुलकावली छा रही है। आकाश और नगरमें होनेवाली गान, नगाड़े और जय-जयकारकी ध्वनि मानो चारों दिशाओंमें उमड़ चली। जो चरणकमल कामदेवके शत्रु श्रीशिवजीके हृदयरूपी सरोवरमें सदा ही विराजते हैं, जिनका एक बार भी स्मरण करनेसे मनमें निर्मलता आ जाती है और कलियुगके सारे पाप भाग जाते हैं, ।।१।।
+ITEM 1 [bal.324.cha2]
+  TR: je parasi munibanitā lahī gati rahī jo pātakamaī, / makaraṁdu jinha ko saṁbhu sira sucitā avadhi sura baranaī. / kari madhupa mana muni jogijana je sei abhimata gati lahaiṁ, / te pada pakhārata bhāgyabhājanu janaku jaya jaya saba kahaiṁ ॥2॥
+  HI: जिनका स्पर्श पाकर गौतम मुनिकी स्त्री अहल्याने, जो पापमयी थी, परमगति पायी, जिन चरणकमलोंका मकरन्दरस (गङ्गाजी) शिवजीके मस्तकपर विराजमान है, जिसको देवता पवित्रताकी सीमा बताते हैं; मुनि और योगीजन अपने मनको भौंरा बनाकर जिन चरणकमलोंका सेवन करके मनोवाञ्छित गति प्राप्त करते हैं; उन्हीं चरणोंको भाग्यके पात्र (बड़भागी) जनकजी धो रहे हैं; यह देखकर सब जय-जयकार कर रहे हैं ।।२।।
+ITEM 2 [bal.324.cha3]
+  TR: bara kua̐ri karatala jori sākhocāru dou kulagura karaiṁ, / bhayo pānigahanu biloki bidhi sura manuja muni āna̐da bharaiṁ. / sukhamūla dūlahu dekhi daṁpati pulaka tana hulasyo hiyo, / kari loka beda bidhānu kanyādānu nr̥pabhūṣana kiyo ॥3॥
+  HI: दोनों कुलोंके गुरु वर और कन्याकी हथेलियोंको मिलाकर शाखोच्चार करने लगे। पाणिग्रहण हुआ देखकर ब्रह्मादि देवता, मनुष्य और मुनि आनन्दमें भर गये। सुखके मूल दूलहको देखकर राजा-रानीका शरीर पुलकित हो गया और हृदय आनन्दसे उमँग उठा। राजाओंके अलङ्कारस्वरूप महाराज जनकजीने लोक और वेदकी रीतिको करके कन्यादान किया ।।३।।
+ITEM 3 [bal.324.cha4]
+  TR: himavaṁta jimi girijā mahesahi harihi śrī sāgara daī, / timi janaka rāmahi siya samarapī bisva kala kīrati naī. / kyo̐ karai binaya bidehu kiyo bidehu mūrati sāva̐rī̐, / kari homu bidhivata gā̐ṭhi jorī hona lāgī̐ bhāva̐rī̐ 4.
+  HI: जैसे हिमवान्‌ने शिवजीको पार्वतीजी और सागरने भगवान् विष्णुको लक्ष्मीजी दी थीं, वैसे ही जनकजीने श्रीरामचन्द्रजीको सीताजी समर्पित कीं, जिससे विश्वमें सुन्दर नवीन कीर्ति छा गयी। विदेह (जनकजी) कैसे विनती करें! उस साँवली मूर्तिने तो उन्हें सचमुच विदेह (देहकी सुध-बुधसे रहित) ही कर दिया। विधिपूर्वक हवन करके गठजोड़ी की गयी और भाँवरें होने लगीं ।।४।।
+SEG 0: They began to love Śrī Rāma's lotus-feet;
+SEG 1: their whole frame was thrilled with emotion.
+SEG 2: The sounds of singing and kettledrums and shouts of victory in the heavens as well as in the city overflowed as it were in all direction.
+SEG 3: The lotus-feet that ever sparkle in the lake of Śiva's bosom, by thinking of which even for once the mind gets purified and all the impurities of the Kali age are driven away, by whose touch the sage Gautama's wife, who was full of sin, attained salvation, whose nectar in the form of the river Gaṅgā adorns Śambhu’s head and is declared by the gods as the holiest of the holy, and by resorting to which with their bee-like minds sages and mystics attain the goal of their liking, it is those very feet that the most lucky Janaka washed amidst shouts of victory from all corners.
+SEG 4: Joining the palms of the Bride and the Bridegroom, both the family priests recited the genealogy of the two families;
+SEG 5: and perceiving that the Bridegroom had accepted the Bride's hand, Brahmā and the other divinities as well as men and sages were filled with delight.
+SEG 6: As the king and queen gazed on the Bridegroom, who was the very fountain of joy, the hair on their body stood erect, while their heart was filled with rapture.
+SEG 7: And having gone through all the rites sanctioned either by the Vedas or by family usage, the glorious King Janaka gave his Daughter to the Bridegroom.
+SEG 8: As Himavān gave away Girijā to the great Lord Śiva, and the deity presiding over seas bestowed Śrī on Hari, so did Janaka give Sītā to Rāma and thereby earned fair renown of an unprecedented character.
+SEG 9: King Videha (Janaka) was unable to make any supplication, since that Prince (Śrī Rāma) of swarthy complexion had justified his name (Videha) by making him forget everything about his body.
+SEG 10: When oblations had been offered to the sacred fire with due rite, the ends of garments of the Bride and the Bridegroom were tied together (as a token of their indissoluble union) and the couple began to circumambulate the fire (in order to show that the two had been united in the presence of the fire-god as a witness).
+
+### GROUP 760  (5 items)
+ITEM 0 [bal.325.cau1]
+  TR: kua̐ru kua̐ri kala bhāva̐ri dehī̐, nayana lābhu saba sādara lehī̐ / jāi na barani manohara jorī, jo upamā kachu kahau̐ so thorī ॥1॥
+  HI: वर और कन्या सुन्दर भाँवरें दे रहे हैं। सब लोग आदरपूर्वक [उन्हें देखकर] नेत्रोंका परम लाभ ले रहे हैं। मनोहर जोड़ीका वर्णन नहीं हो सकता, जो कुछ उपमा कहूँ वही थोड़ी होगी ।।१।।
+ITEM 1 [bal.325.cau2]
+  TR: rāma sīya suṁdara pratichāhī̐, jagamagāta mani khaṁbhana māhī̐ / manahu̐ madana rati dhari bahu rūpā, dekhata rāma biāhu anūpā ॥2॥
+  HI: श्रीरामजी और श्रीसीताजीकी सुन्दर परछाहीं मणियोंके खम्भोंमें जगमगा रही हैं, मानो कामदेव और रति बहुत-से रूप धारण करके श्रीरामजीके अनुपम विवाहको देख रहे हैं ।।२।।
+ITEM 2 [bal.325.cau3]
+  TR: darasa lālasā sakuca na thorī, pragaṭata durata bahori bahorī. / bhae magana saba dekhanihāre, janaka samāna apāna bisāre ॥3॥
+  HI: उन्हें (कामदेव और रतिको) दर्शनकी लालसा और संकोच दोनों ही कम नहीं हैं (अर्थात् बहुत हैं); इसीलिये वे मानो बार-बार प्रकट होते और छिपते हैं। सब देखनेवाले आनन्दमग्न हो गये और जनकजीकी भाँति सभी अपनी सुध भूल गये ।।३।।
+ITEM 3 [bal.325.cau4]
+  TR: pramudita muninha bhā̐varī̐ pherī̐, negasahita saba rīti niberī̐. / rāma sīya sira seṁdura dehī̐, sobhā kahi na jāti bidhi kehī̐ ॥4॥
+  HI: मुनियोंने आनन्दपूर्वक भाँवरें फिरायीं और नेगसहित सब रीतियोंको पूरा किया। श्रीरामचन्द्रजी सीताजीके सिरमें सिंदूर दे रहे हैं; यह शोभा किसी प्रकार भी कही नहीं जाती ।।४।।
+ITEM 4 [bal.325.cau5]
+  TR: aruna parāga jalaju bhari nīke̐, sasihi bhūṣa ahi lobha amī ke̐. / bahuri basiṣṭha dīnhi anusāsana, baru dulahini baiṭhe eka āsana ॥5॥
+  HI: मानो कमलको लाल परागसे अच्छी तरह भरकर अमृतके लोभसे साँप चन्द्रमाको भूषित कर रहा है। [यहाँ श्रीरामके हाथको कमलकी, सेंदुरको परागकी, श्रीरामकी श्याम भुजाको साँपकी और सीताजीके मुखको चन्द्रमाकी उपमा दी गयी है] फिर वसिष्ठजीने आज्ञा दी, तब दूलह और दुलहिन एक आसनपर बैठे ।।५।।
+SEG 0: The Bride and Bridegroom performed the circumambulation with charming paces;
+SEG 1: while all present feasted their admiring gaze on the spectacle.
+SEG 2: The lovely couple was beyond description;
+SEG 3: whatever comparison might be suggested would fall short of the reality.
+SEG 4: Lovely images of Rāma and Sītā were reflected on the pillars of jewels and shone as if Love and his consort, Rati, witnessed Śrī Rāma's matchless wedding appearing in numerous forms.
+SEG 5: Their curiosity and bashfulness were equally great;
+SEG 6: that is why they revealed themselves and went out of sight again and again.
+SEG 7: All the spectators were enraptured;
+SEG 8: like Janaka they forgot all about themselves.
+SEG 9: Joyously the sages bade the Bride and Bridegroom pace round the fire and accomplished all the rites including the ceremonial gifts, Śrī Rāma applied the vermilion to Sītā's forehead, a sight the charm of which was altogether beyond description.
+SEG 10: It seemed as if with a lotus surcharged with reddish pollen a serpent thirsting for nectar decorated the moon.
+SEG 11: Then Vasiṣṭha gave the direction and the Bride and Bridegroom sat together on the same seat.
+
+### GROUP 761  (4 items)
+ITEM 0 [bal.325.cha1]
+  TR: baiṭhe barāsana rāmu jānaki mudita mana dasarathu bhae, / tanu pulaka puni puni dekhi apane̐ sukr̥ta surataru phala nae. / bhari bhuvana rahā uchāhu rāma bibāhu bhā sabahī̐ kahā, / kehi bhā̐ti barani sirāta rasanā eka yahu maṁgalu mahā ॥1॥
+  HI: श्रीरामजी और जानकीजी श्रेष्ठ आसनपर बैठे; उन्हें देखकर दशरथजी मनमें बहुत आनन्दित हुए। अपने सुकृतरूपी कल्पवृक्षमें नये फल [आये] देखकर उनका शरीर बार-बार पुलकित हो रहा है। चौदहों भुवनोंमें उत्साह भर गया; सबने कहा कि श्रीरामचन्द्रजीका विवाह हो गया। जीभ एक है और यह मङ्गल महान् है; फिर भला, वह वर्णन करके किस प्रकार समाप्त किया जा सकता है! ।।१।।
+ITEM 1 [bal.325.cha2]
+  TR: taba janaka pāi basiṣṭha āyasu byāha sāja sa̐vāri kai, / māṁḍavī śrutakīrati uramilā kua̐ri laī̐ ha̐kāri kai. / kusaketu kanyā prathama jo guna sīla sukha sobhāmaī, / saba rīti prīti sameta kari so byāhi nr̥pa bharatahi daī ॥2॥
+  HI: तब वसिष्ठजीकी आज्ञा पाकर जनकजीने विवाहका सामान सजाकर माण्डवीजी, श्रुतकीर्तिजी और उर्मिलाजी—इन तीनों राजकुमारियोंको बुला लिया। कुशध्वजकी बड़ी कन्या माण्डवीजीको, जो गुण, शील, सुख और शोभाकी रूप ही थीं, राजा जनकने प्रेमपूर्वक सब रीतियाँ करके भरतजीको ब्याह दिया ।।२।।
+ITEM 2 [bal.325.cha3]
+  TR: jānakī laghu bhaginī sakala suṁdari siromani jāni kai, / so tanaya dīnhī byāhi lakhanahi sakala bidhi sanamāni kai. / jehi nāmu śrutakīrati sulocani sumukhi saba guna āgarī, / so daī ripusūdanahi bhūpati rūpa sīla ujāgarī ॥3॥
+  HI: जानकीजीकी छोटी बहिन उर्मिलाजीको सब सुन्दरियोंमें शिरोमणि जानकर उस कन्याको सब प्रकारसे सम्मान करके, लक्ष्मणजीको ब्याह दिया; और जिनका नाम श्रुतकीर्ति है और जो सुन्दर नेत्रोंवाली, सुन्दर मुखवाली, सब गुणोंकी खान और रूप तथा शीलमें उजागर हैं, उनको राजाने शत्रुघ्नको ब्याह दिया ।।३।।
+ITEM 3 [bal.325.cha4]
+  TR: anurūpa bara dulahini paraspara lakhi sakuca hiya̐ haraṣahī̐, / saba mudita suṁdaratā sarāhahiṁ sumana sura gana baraṣahī̐ / suṁdarī̐ suṁdara baranha saha saba eka maṁḍapa rājahī̐, / janu jīva ura cāriu avasthā bibhuna sahita birājahī̐ 4.
+  HI: दूलह और दुलहिनें परस्पर अपने-अपने अनुरूप जोड़ीको देखकर सकुचते हुए हृदयमें हर्षित हो रही हैं। सब लोग प्रसन्न होकर उनकी सुन्दरताकी सराहना करते हैं और देवगण फूल बरसा रहे हैं। सब सुन्दरी दुलहिनें सुन्दर दुल्होंके साथ एक ही मण्डपमें ऐसी शोभा पा रही हैं, मानो जीवके हृदयमें चारों अवस्थाएँ (जाग्रत्, स्वप्न, सुषुप्ति और तुरीय) अपने चारों स्वामियों (विश्व, तैजस, प्राज्ञ और ब्रह्म) सहित विराजमान हों ।।४।।
+SEG 0: Śrī Rāma and Princess Jānakī sat together on a costly seat and King Daśaratha was glad of heart to see them.
+SEG 1: Joy thrilled along his veins again and again as he perceived the wish-yielding tree of his meritorious deeds bear new fruits.
+SEG 2: There was rejoicing all over the universe;
+SEG 3: everyone proclaimed that Śrī Rāma's wedding had been accomplished.
+SEG 4: With one tongue how could anyone describe in full the joy which knew no bounds?
+SEG 5: Then, receiving Vasiṣṭha's order, Janaka sent for the other three princesses, Māṇḍavī, Śrutakīrti and Urmilā, each clad in a bride's attire.
+SEG 6: The eldest daughter of his younger brother Kuśaketu, who was an embodiment of goodness, virtue, joy and beauty, he gave in marriage to Bharata after performing every rite with love.
+SEG 7: Jānakī's younger sister (Urmilā), whom he knew to be the crest-jewel of charming girls, Janaka gave in marriage to Lakṣmaṇa with all honour.
+SEG 8: Finally the bright-eyed and fair-faced princess Śrutakīrti, who was a mine of all virtues and was well-known for her beauty and amiability, the king gave to Ripusūdana.
+SEG 9: When each pair of bride and bridegroom saw that they were well- matched with each others*, they felt shy, but rejoiced in their heart of hearts;
+SEG 10: everyone joyfully applauded the beauty of each pair, while the gods rained down flowers.
+SEG 11: All the lovely brides with their handsome bridegrooms shone forth in the same pavilion as though the four states of consciousness (viz., waking, dream, sound sleep and absorption into Brahma) with the phase of the soul presiding over each gleamed all at once of the heart of an individual.
+
+### GROUP 763  (4 items)
+ITEM 0 [bal.326.cau1]
+  TR: jasi raghubīra byāha bidhi baranī, sakala kua̐ra byāhe tehiṁ karanī. / kahi na jāi kachu dāija bhūrī, rahā kanaka mani maṁḍapu pūrī ॥1॥
+  HI: श्रीरामचन्द्रजीके विवाहकी जैसी विधि वर्णन की गयी, उसी रीतिसे सब राजकुमार विवाहे गये। दहेजकी अधिकता कुछ कही नहीं जाती; सारा मंडप सोने और मणियोंसे भर गया ।।१।।
+ITEM 1 [bal.326.cau2]
+  TR: kaṁbala basana bicitra paṭore, bhā̐ti bhā̐ti bahu mola na thore. / gaja ratha turaga dāsa aru dāsī, dhenu alaṁkr̥ta kāmaduhā sī ॥2॥
+  HI: बहुत-से कम्बल, वस्त्र और भाँति-भाँतिके विचित्र रेशमी कपड़े, जो थोड़ी कीमतके न थे (अर्थात् बहुमूल्य थे) तथा हाथी, रथ, घोड़े, दास-दासियाँ और गहनोंसे सजी हुई कामधेनु- सरीखी गायें— ।।२।।
+ITEM 2 [bal.326.cau3]
+  TR: bastu aneka karia kimi lekhā, kahi na jāi jānahiṁ jinha dekhā. / lokapāla avaloki sihāne, līnha avadhapati sabu sukhu māne ॥3॥
+  HI: [आदि] अनेकों वस्तुएँ हैं, जिनकी गिनती कैसे की जाय। उनका वर्णन नहीं किया जा सकता, जिन्होंने देखा है वही जानते हैं। उन्हें देखकर लोकपाल भी सिहा गये। अवधराज दशरथजीने सुख मानकर प्रसन्नचित्तसे सब कुछ ग्रहण किया ।।३।।
+ITEM 3 [bal.326.cau4]
+  TR: dīnha jācakanhi jo jehi bhāvā, ubarā so janavāsehiṁ āvā. / taba kara jori janaku mr̥du bānī, bole saba barāta sanamānī ॥4॥
+  HI: उन्होंने वह दहेजका सामान याचकोंको, जो जिसे अच्छा लगा, दे दिया। जो बच रहा, वह जनवासेमें चला आया। तब जनकजी हाथ जोड़कर सारी बारातका सम्मान करते हुए कोमल वाणीसे बोले ।।४।।
+SEG 0: All the other princes were married according to the same rites as have been described in the case of Śrī Rāma’s marriage.
+SEG 1: The richness of the dowry was beyond description;
+SEG 2: the whole pavilion was packed with gold and jewels.
+SEG 3: There were a number of shawls, linen and silk of various colours and designs and of immense value, elephants, chariots, horses, men-servants and maid-servants and cows adorned with ornaments and vying with the cow of plenty and many other things which were more than one could count and defied description.
+SEG 4: They alone who saw the dowry could have some idea of it;
+SEG 5: even the guardians of the different realms regarded it with envy.
+SEG 6: The king of Ayodhyā gladly accepted it all and gave to the beggars whatever they liked;
+SEG 7: only that which was left was taken to the lodgings of the bridegroom's party.
+SEG 8: Then with joined palms Janaka honoured the whole bridegroom's party and spoke in gentle tones.
+
+### GROUP 764  (4 items)
+ITEM 0 [bal.326.cha1]
+  TR: sanamāni sakala barāta ādara dāna binaya baṛāi kai, / pramudita mahā muni br̥ṁda baṁde pūji prema laṛāi kai. / siru nāi deva manāi saba sana kahata kara saṁpuṭa kie̐, / sura sādhu cāhata bhāu siṁdhu ki toṣa jala aṁjali die̐ ॥1॥
+  HI: आदर, दान, विनय और बड़ाईके द्वारा सारी बारातका सम्मान कर राजा जनकने महान् आनन्दके साथ प्रेमपूर्वक लड़ाकर (लाड़ करके) मुनियोंके समूहकी पूजा एवं वन्दना की। सिर नवाकर, देवताओंको मनाकर, राजा हाथ जोड़कर सबसे कहने लगे कि देवता और साधु तो भाव ही चाहते हैं (वे प्रेमसे ही प्रसन्न हो जाते हैं, उन पूर्णकाम महानुभावोंको कोई कुछ देकर कैसे सन्तुष्ट कर सकता है); क्या एक अञ्जलि जल देनेसे कहीं समुद्र सन्तुष्ट हो सकता है ।।१।।
+ITEM 1 [bal.326.cha2]
+  TR: kara jori janaku bahori baṁdhu sameta kosalarāya so̐, / bole manohara bayana sāni saneha sīla subhāya so̐. / saṁbaṁdha rājana rāvare̐ hama baṛe aba saba bidhi bhae, / ehi rāja sāja sameta sevaka jānibe binu gatha lae ॥2॥
+  HI: फिर जनकजी भाईसहित हाथ जोड़कर कोसलाधीश दशरथजीसे स्नेह, शील और सुन्दर प्रेममें सानकर मनोहर वचन बोले—हे राजन्! आपके साथ सम्बन्ध हो जानेसे अब हम सब प्रकारसे बड़े हो गये। इस राज-पाटसहित हम दोनोंको आप बिना दामके लिये हुए सेवक ही समझियेगा ।।२।।
+ITEM 2 [bal.326.cha3]
+  TR: e dārikā paricārikā kari pālibī̐ karunā naī, / aparādhu chamibo boli paṭhae bahuta hau̐ ḍhīṭyo kaī. / puni bhānukulabhūṣana sakala sanamāna nidhi samadhī kie, / kahi jāti nahiṁ binatī paraspara prema paripūrana hie ॥3॥
+  HI: इन लड़कियोंको टहलनी मानकर, नयी-नयी दया करके पालन कीजियेगा। मैंने बड़ी ढिठाई की कि आपको यहाँ बुला भेजा, अपराध क्षमा कीजियेगा। फिर सूर्यकुलके भूषण दशरथजीने समधी जनकजीको सम्पूर्ण सम्मानका निधि कर दिया (इतना सम्मान किया कि वे सम्मानके भण्डार ही हो गये)। उनकी परस्परकी विनय कही नहीं जाती, दोनोंके हृदय प्रेमसे परिपूर्ण हैं ।।३।।
+ITEM 3 [bal.326.cha4]
+  TR: br̥ṁdārakā gana sumana barisahiṁ rāu janavāsehi cale, / duṁdubhī jaya dhuni beda dhuni nabha nagara kautūhala bhale / taba sakhī̐ maṁgala gāna karata munīsa āyasu pāi kai, / dūlaha dulahininha sahita suṁdari calī̐ kohabara lyāi kai ॥4॥
+  HI: देवतागण फूल बरसा रहे हैं; राजा जनवासेको चले। नगाड़ेकी ध्वनि, जयध्वनि और वेदकी ध्वनि हो रही है; आकाश और नगर दोनोंमें खूब कौतूहल हो रहा है (आनन्द छा रहा है), तब मुनीश्वरकी आज्ञा पाकर सुन्दरी सखियाँ मङ्गलगान करती हुई दुलहिनोंसहित दूल्होंको लिवाकर कोहबरको चलीं ।।४।।
+SEG 0: Having honoured the whole bridegroom's party with courtesy, gifts, supplication and compliments, King Janaka joyfully paid his homage to and greeted the great sages after bestowing his loving attention on them.
+SEG 1: Bowing his head and invoking the gods he addressed them all with joined palms, "Gods and holy men seek one's love alone;
+SEG 2: can the ocean be propitiated by offering as much water as can be held within one's palms?" Again, with joined palms Janaka and his younger brother (Kuśaketu) submitted to the King of Kosala in winning words full of affection, courtesy and sincerity, "By our connection with you, O king, we have now been exalted in every respect;
+SEG 3: alongwith this kingdom and all that we possess pray look upon us both as your slaves purchased without any consideration.
+SEG 4: Taking these girls as your hand-maidens foster them with your unremitting kindness.
+SEG 5: Pardon me my offence;
+SEG 6: it was too presumptuous on my part to have called you here." The ornament of the solar race, King Daśaratha, in his turn flooded the bride's father with all kinds of honour.
+SEG 7: The courtesy they showed to each other was past all telling;
+SEG 8: for their hearts overflowed with love.
+SEG 9: Hosts of gods rained down flowers and King Daśaratha proceeded to the palace where he and his party had been lodged amidst the crash of kettledrums, shouts of victory and the chanting of Vedic texts.
+SEG 10: There was much rejoicing both in the heavens and in the city.
+SEG 11: Then, receiving orders from the chief of sages, Vasiṣṭha, the lovely companions of the brides conducted them alongwith the bridegrooms to the apartment where the guardian deities of the family had been installed for worship during the wedding days.
+
+### GROUP 767  (5 items)
+ITEM 0 [bal.327.cau1]
+  TR: syāma sarīru subhāya̐ suhāvana, sobhā koṭi manoja lajāvana. / jāvaka juta pada kamala suhāe, muni mana madhupa rahata jinha chāe ॥1॥
+  HI: श्रीरामचन्द्रजीका साँवला शरीर स्वभावसे ही सुन्दर है। उसकी शोभा करोड़ों कामदेवोंको लजानेवाली है। महावरसे युक्त चरणकमल बड़े सुहावने लगते हैं, जिनपर मुनियोंके मनरूपी भौंरे सदा छाये रहते हैं ।।१।।
+ITEM 1 [bal.327.cau2]
+  TR: pīta punīta manohara dhotī, harati bāla rabi dāmini jotī. / kala kiṁkini kaṭi sūtra manohara, bāhu bisāla bibhūṣana suṁdara ॥2॥
+  HI: पवित्र और मनोहर पीली धोती प्रातःकालके सूर्य और बिजलीकी ज्योतिको हरे लेती है। कमरमें सुन्दर किंकिणी और कटिसूत्र हैं। विशाल भुजाओंमें सुन्दर आभूषण सुशोभित हैं ।।२।।
+ITEM 2 [bal.327.cau3]
+  TR: pīta janeu mahāchabi deī, kara mudrikā cori citu leī. / sohata byāha sāja saba sāje, ura āyata urabhūṣana rāje ॥3॥
+  HI: पीला जनेऊ महान् शोभा दे रहा है। हाथकी अँगूठी चित्तको चुरा लेती है। ब्याहके सब साज सजे हुए वे शोभा पा रहे हैं। चौड़ी छातीपर हृदयपर पहननेके सुन्दर आभूषण सुशोभित हैं ।।३।।
+ITEM 3 [bal.327.cau4]
+  TR: piara uparanā kākhāsotī, duhu̐ ā̐ caranhi lage mani motī. / nayana kamala kala kuṁḍala kānā, badanu sakala sauṁdarja nidhānā ॥4॥
+  HI: पीला दुपट्टा काँखासोती (जनेऊकी तरह) शोभित है, जिसके दोनों छोरोंपर मणि और मोती लगे हैं। कमलके समान सुन्दर नेत्र हैं, कानोंमें सुन्दर कुण्डल हैं और मुख तो सारी सुन्दरताका खजाना ही है ।।४।।
+ITEM 4 [bal.327.cau5]
+  TR: suṁdara bhr̥kuṭi manohara nāsā, bhāla tilaku ruciratā nivāsā. / sohata mauru manohara māthe, maṁgalamaya mukutā mani gāthe ॥5॥
+  HI: सुन्दर भौंहें और मनोहर नासिका है। ललाटपर तिलक तो सुन्दरताका घर ही है। जिसमें मङ्गलमय मोती और मणि गुँथे हुए हैं, ऐसा मनोहर मौर माथेपर सोह रहा है ।।५।।
+SEG 0: Rāma's swarthy form was naturally graceful;
+SEG 1: His beauty put to shame millions of Cupids.
+SEG 2: Dyed with red lac, His lotus-feet, which ever attracted the bee-like minds of sages, looked most lovely.
+SEG 3: His sacred and charming yellow loin-cloth outshone the rising sun as well as the lightning.
+SEG 4: The girdle round His waist together with the sweet-sounding small bells was soul-enchanting;
+SEG 5: His long arms were adorned with beautiful ornaments.
+SEG 6: The yellow sacred thread greatly enhanced His charm;
+SEG 7: while the ring on His finger would ravish all hearts.
+SEG 8: Beautified with all sorts of wedding adornments He looked most charming;
+SEG 9: His broad chest was adorned with appropriate ornaments.
+SEG 10: He had a yellow scarf with fringes of pearls and gems slung partly under His right armpit and partly across His left shoulder.
+SEG 11: He had a pair of lotus-like eyes and beautiful pendants dangling from the lobes of his ears;
+SEG 12: while His countenance was a storehouse of all comeliness.
+SEG 13: He had lovely eyebrows and a charming nose;
+SEG 14: while the sacred mark on His forehead was an abode of loveliness.
+SEG 15: And His head was adorned with a beautiful wedding crown which had auspicious pearls and gems strung together and woven into it.
+
+### GROUP 768  (4 items)
+ITEM 0 [bal.327.cha1]
+  TR: gāthe mahāmani maura maṁjula aṁga saba cita corahī̐, / pura nāri sura suṁdarī̐ barahi biloki saba tina torahī̐ / mani basana bhūṣana vāri ārati karahiṁ maṁgala gāvahī̐, / sura sumana barisahiṁ sūta māgadha baṁdi sujasu sunāvahī̐ 1.
+  HI: सुन्दर मौरमें बहुमूल्य मणियाँ गुँथी हुई हैं, सभी अङ्ग चित्तको चुराये लेते हैं। सब नगरकी स्त्रियाँ और देवसुन्दरियाँ दूलहको देखकर तिनका तोड़ रही हैं (उनकी बलैयाँ ले रही हैं) और मणि, वस्त्र तथा आभूषण निछावर करके आरती उतार रही और मङ्गलगान कर रही हैं। देवता फूल बरसा रहे हैं और सूत, मागध तथा भाट सुयश सुना रहे हैं ।।१।।
+ITEM 1 [bal.327.cha2]
+  TR: kohabarahiṁ āne kua̐ra kua̐ri suāsininha sukha pāi kai, / ati prīti laukika rīti lāgī̐ karana maṁgala gāi kai. / lahakauri gauri sikhāva rāmahi sīya sana sārada kahaiṁ, / ranivāsu hāsa bilāsa rasa basa janma ko phalu saba lahaiṁ ॥2॥
+  HI: सुहागिनी स्त्रियाँ सुख पाकर कुँअर और कुमारियोंको कोहबर (कुलदेवताके स्थान) में लायीं और अत्यन्त प्रेमसे मङ्गलगीत गा-गाकर लौकिक रीति करने लगीं। पार्वतीजी श्रीरामचन्द्रजीको लहकौर (वर-वधूका परस्पर ग्रास देना) सिखाती हैं और सरस्वतीजी सीताजीको सिखाती हैं। रनिवास हास-विलासके आनन्दमें मग्न है, [श्रीरामजी और सीताजीको देख-देखकर] सभी जन्मका परम फल प्राप्त कर रही हैं ।।२।।
+ITEM 2 [bal.327.cha3]
+  TR: nija pāni mani mahu̐ dekhiati mūrati surūpanidhāna kī, / cālati na bhujaballī bilokani biraha bhaya basa jānakī. / kautuka binoda pramodu premu na jāi kahi jānahiṁ alī̐, / bara kua̐ri suṁdara sakala sakhī̐ lavāi janavāsehi calī̐ 3.
+  HI: अपने हाथकी मणियोंमें सुन्दर रूपके भण्डार श्रीरामचन्द्रजीकी परछाहीं दीख रही है। यह देखकर जानकीजी दर्शनमें वियोग होनेके भयसे बाहुरूपी लताको और दृष्टिको हिलाती- डुलाती नहीं हैं। उस समयके हँसी-खेल और विनोदका आनन्द और प्रेम कहा नहीं जा सकता, उसे सखियाँ ही जानती हैं। तदनन्तर वर-कन्याओंको सब सुन्दर सखियाँ जनवासेको लिवा चलीं ।।३।।
+ITEM 3 [bal.327.cha4]
+  TR: tehi samaya sunia asīsa jaha̐ taha̐ nagara nabha āna̐du mahā, / ciru jiahu̐ jorī̐ cāru cāryo mudita mana sabahī̐ kahā. / jogīṁdra siddha munīsa deva biloki prabhu duṁdubhi hanī, / cale haraṣi baraṣi prasūna nija nija loka jaya jaya jaya bhanī ॥4॥
+  HI: उस समय नगर और आकाशमें जहाँ सुनिये, वहीं आशीर्वादकी ध्वनि सुनायी दे रही है और महान् आनन्द छाया है। सभीने प्रसन्न मनसे कहा कि सुन्दर चारों जोड़ियाँ चिरंजीवी हों। योगिराज, सिद्ध, मुनीश्वर और देवताओंने प्रभु श्रीरामचन्द्रजीको देखकर दुन्दुभी बजायी और हर्षित होकर फूलोंकी वर्षा करते हुए तथा ‘जय हो, जय हो, जय हो’ कहते हुए वे अपने- अपने लोकको चले ।।४।।
+SEG 0: Precious gems had been strung together and woven into the lovely wedding crown and each of His limbs ravished the heart.
+SEG 1: At the sight of the bridegroom (Śrī Rāma) the women of the city as well as pretty celestial ladies all tore blades of grass (in order to avert the evil eye).
+SEG 2: After scattering about Him gems, raiment and ornaments they waved lights around Him and sang festal songs.
+SEG 3: The gods rained down flowers;
+SEG 4: while bards, panegyrists and rhapsodists uttered His praises.
+SEG 5: Married women, whose husbands were alive, happily brought the brides and bridegrooms to the apartment reserved for the tutelary deities, and with festal songs they most lovingly began to perform customary rites.
+SEG 6: Goddess Gaurī Herself taught Rāma how to offer a morsel of food to Sītā;
+SEG 7: while Śāradā urged Sītā to do likewise with Rāma.
+SEG 8: The whole gynaeceum was absorbed in the delight of merry-making;
+SEG 9: everyone enjoyed the fruit of her birth.
+SEG 10: In the gems on Her hand Jānakī saw the reflection of Śrī Rāma, the repository of beauty;
+SEG 11: hence She dared not move Her arm or eyes for fear of losing sight of Him.
+SEG 12: The rapture and love that characterized the gaiety and mirth of the occasion surpassed all telling;
+SEG 13: Sītā's companions alone knew them.
+SEG 14: They escorted all the four charming couples to the palace assigned to King Daśaratha and his party.
+SEG 15: At that moment blessings might be heard on all sides and there was great exultation in the city as well as in the heavens.
+SEG 16: Everyone exclaimed with a delighted heart, "Long live the four lovely couples!" Great Yogīs, Siddhas, eminent sages and divinities sounded their kettledrums on beholding the Lord;
+SEG 17: and raining down flowers and crying "Victory, victory, victory" they gladly returned, each to his own realm.
+
+### GROUP 770  (4 items)
+ITEM 0 [bal.328.cau1]
+  TR: puni jevanāra bhaī bahu bhā̐tī, paṭhae janaka bolāi barātī. / parata pā̐vaṛe basana anūpā, sutanha sameta gavana kiyo bhūpā ॥1॥
+  HI: फिर बहुत प्रकारकी रसोई बनी। जनकजीने बरातियोंको बुला भेजा। राजा दशरथजीने पुत्रोंसहित गमन किया। अनुपम वस्त्रोंके पाँवड़े पड़ते जाते हैं ।।१।।
+ITEM 1 [bal.328.cau2]
+  TR: sādara saba ke pāya pakhāre, jathājogu pīṛhanha baiṭhāre. / dhoe janaka avadhapati caranā, sīlu sanehu jāi nahiṁ baranā ॥2॥
+  HI: आदरके साथ सबके चरण धोये और सबको यथायोग्य पीढ़ोंपर बैठाया। तब जनकजीने अवधपति दशरथजीके चरण धोये। उनका शील और स्नेह वर्णन नहीं किया जा सकता ।।२।।
+ITEM 2 [bal.328.cau3]
+  TR: bahuri rāma pada paṁkaja dhoe, je hara hr̥daya kamala mahu̐ goe. / tīniu bhāi rāma sama jānī, dhoe carana janaka nija pānī ॥3॥
+  HI: फिर श्रीरामचन्द्रजीके चरणकमलोंको धोया, जो श्रीशिवजीके हृदय-कमलमें छिपे रहते हैं। तीनों भाइयोंको श्रीरामचन्द्रजीके ही समान जानकर जनकजीने उनके भी चरण अपने हाथोंसे धोये ।।३।।
+ITEM 3 [bal.328.cau4]
+  TR: āsana ucita sabahi nr̥pa dīnhe, boli sūpakārī saba līnhe. / sādara lage parana panavāre, kanaka kīla mani pāna sa̐vāre ॥4॥
+  HI: राजा जनकजीने सभीको उचित आसन दिये और सब परसनेवालोंको बुला लिया। आदरके साथ पत्तलें पड़ने लगीं, जो मणियोंके पत्तोंसे सोनेकी कील लगाकर बनायी गयी थीं ।।४।।
+SEG 0: Then there was a banquet with a rich variety of dishes, to which Janaka invited all the members of the bridegroom's party.
+SEG 1: Carpets of incomparable beauty were spread on the way as King Daśaratha sallied forth with his sons.
+SEG 2: The feet of all were reverently washed and then they were seated on wooden seats according to their rank.
+SEG 3: Janaka laved the feet of Daśaratha, King of Ayodhyā;
+SEG 4: his courtesy and affection were past telling.
+SEG 5: He then bathed Śrī Rāma's lotus-feet, that are enshrined in the lotus-like heart of Śiva.
+SEG 6: Similarly he washed with his own hands the feet of the other three brothers also, treating them on a par with Śrī Rāma.
+SEG 7: King Janaka assigned an appropriarte seat to each guest and sent for all the cooks (for service).
+SEG 8: Leaves joined together so as to serve for plates were set before the guests with due reverence—leaves which were made of precious stones and had been joined with gold pins.
+
+### GROUP 772  (4 items)
+ITEM 0 [bal.329.cau1]
+  TR: paṁca kavala kari jevana lāge, gāri gāna suni ati anurāge. / bhā̐ti aneka pare pakavāne, sudhā sarisa nahiṁ jāhiṁ bakhāne ॥1॥
+  HI: सब लोग पंचकौर करके (अर्थात् ‘प्राणाय स्वाहा, अपानाय स्वाहा, व्यानाय स्वाहा, उदानाय स्वाहा और समानाय स्वाहा’ इन मन्त्रोंका उच्चारण करते हुए पहले पाँच ग्रास लेकर) भोजन करने लगे। गालीका गाना सुनकर वे अत्यन्त प्रेममग्न हो गये। अनेकों तरहके अमृतके समान (स्वादिष्ट) पकवान परसे गये, जिनका बखान नहीं हो सकता ।।१।।
+ITEM 1 [bal.329.cau2]
+  TR: parusana lage suāra sujānā, biṁjana bibidha nāma ko jānā. / cāri bhā̐ti bhojana bidhi gāī, eka eka bidhi barani na jāī ॥2॥
+  HI: चतुर रसोइये नाना प्रकारके व्यञ्जन परसने लगे, उनका नाम कौन जानता है। चार प्रकारके (चर्व्य, चोष्य, लेह्य, पेय अर्थात् चबाकर, चूसकर, चाटकर और पीकर खानेयोग्य) भोजनकी विधि कही गयी है, उनमेंसे एक-एक विधिके इतने पदार्थ बने थे कि जिनका वर्णन नहीं किया जा सकता ।।२।।
+ITEM 2 [bal.329.cau3]
+  TR: charasa rucira biṁjana bahu jātī, eka eka rasa aganita bhā̐tī. / jeva̐ ta dehiṁ madhura dhuni gārī, lai lai nāma puruṣa aru nārī ॥3॥
+  HI: छहों रसोंके बहुत तरहके सुन्दर (स्वादिष्ट) व्यञ्जन हैं। एक-एक रसके अनगिनती प्रकारके बने हैं। भोजन करते समय पुरुष और स्त्रियोंके नाम ले-लेकर स्त्रियाँ मधुर ध्वनिसे गाली दे रही हैं (गाली गा रही हैं) ।।३।।
+ITEM 3 [bal.329.cau4]
+  TR: samaya suhāvani gāri birājā, ha̐sata rāu suni sahita samājā. / ehi bidhi sabahī̐ bhojanu kīnhā, ādara sahita ācamanu dīnhā ॥4॥
+  HI: समयकी सुहावनी गाली शोभित हो रही है। उसे सुनकर समाजसहित राजा दशरथजी हँस रहे हैं। इस रीतिसे सभीने भोजन किया और तब सबको आदरसहित आचमन (हाथ-मुँह धोनेके लिये जल) दिया गया ।।४।।
+SEG 0: Taking the five initial morsels as an oblation for the five vital airs the guests commenced dining, and were enraptured to hear songs full of raillery.
+SEG 1: Confections of various kinds, sweets as ambrosia and more delicious than one could describe, were served to them.
+SEG 2: Expert cooks then began to serve a variety of seasoned articles which were too numerous to be named.
+SEG 3: Of the four categories of food mentioned in the scriptures (viz., 1. that which can be directly swallowed, 2. that which must be masticated before it can be gulped, 3. that which can be licked with the tongue and 4. that which can be sucked) each comprised an indescribable variety of dishes.
+SEG 4: Similarly there were seasoned dishes of various kinds, having six different flavours, each flavour being exhibited in numberless varieties.
+SEG 5: As the dinner was in progress, women railed in melodious strains at men and women both, mentioning each by name.
+SEG 6: Even raillery at an opportune time is agreeable and welcome;
+SEG 7: King Daśaratha and his whole party felt amused to hear it.
+SEG 8: In this way the whole party dined and in the end they were all reverently supplied with water to rinse their mouth with.
+
+### GROUP 774  (4 items)
+ITEM 0 [bal.330.cau1]
+  TR: nita nūtana maṁgala pura māhī̐, nimiṣa sarisa dina jāmini jāhī̐. / baṛe bhora bhūpatimani jāge, jācaka guna gana gāvana lāge ॥1॥
+  HI: जनकपुरमें नित्य नये मङ्गल हो रहे हैं। दिन और रात पलके समान बीत जाते हैं। बड़े सबेरे राजाओंके मुकुटमणि दशरथजी जागे। याचक उनके गुणसमूहका गान करने लगे ।।१।।
+ITEM 1 [bal.330.cau2]
+  TR: dekhi kua̐ ra bara badhunha sametā, kimi kahi jāta modu mana jetā. / prātakriyā kari ge guru pāhī̐, mahāpramodu premu mana māhī̐ 2.
+  HI: चारों कुमारोंको सुन्दर वधुओंसहित देखकर उनके मनमें जितना आनन्द है, वह किस प्रकार कहा जा सकता है? वे प्रातःक्रिया करके गुरु वसिष्ठजीके पास गये। उनके मनमें महान् आनन्द और प्रेम भरा है ।।२।।
+ITEM 2 [bal.330.cau3]
+  TR: kari pranāmu pūjā kara jorī, bole girā amia̐ janu borī. / tumharī kr̥pā̐ sunahu munirājā, bhayau̐ āju maiṁ pūranakājā ॥3॥
+  HI: राजा प्रणाम और पूजन करके, फिर हाथ जोड़कर मानो अमृतमें डुबोयी हुई वाणी बोले— हे मुनिराज! सुनिये, आपकी कृपासे आज मैं पूर्णकाम हो गया ।।३।।
+ITEM 3 [bal.330.cau4]
+  TR: aba saba bipra bolāi gosāī̐, dehu dhenu saba bhā̐ ti banāī̐. / suni gura kari mahipāla baṛāī, puni paṭhae muni br̥ṁda bolāī ॥4॥
+  HI: हे स्वामिन्! अब सब ब्राह्मणोंको बुलाकर उनको सब तरह [गहनों-कपड़ों] से सजी हुई गायें दीजिये। यह सुनकर गुरुजीने राजाकी बड़ाई करके फिर मुनिगणोंको बुलवा भेजा ।।४।।
+SEG 0: Everyday there was a new festival in the city;
+SEG 1: days and nights passed like a moment.
+SEG 2: The jewel of king, Daśaratha, woke up at a very early hour;
+SEG 3: and mendicants began to sing his praises.
+SEG 4: As he gazed upon the princes with their beautiful brides, the rapture of his soul was beyond all telling.
+SEG 5: Having finished his morning routine he called on his Guru with a heart full of exultation and love.
+SEG 6: Making obeisance to him and paying him his homage the king with joined palms addressed him in a voice steeped as it were in nectar, "Listen, O chief of sages:
+SEG 7: by your grace I have realized all my ambitions today.
+SEG 8: Now summoning all the Brāhmaṇas, O holy sir, present them with cows adorned in everyway." On hearing these words the preceptor applauded the king and then sent for the troops of sages.
+
+### GROUP 776  (4 items)
+ITEM 0 [bal.331.cau1]
+  TR: daṁḍa pranāma sabahi nr̥pa kīnhe, pūji saprema barāsana dīnhe. / cāri laccha bara dhenu magāī̐, kāmasurabhi sama sīla suhāī̐ 1.
+  HI: राजाने सबको दण्डवत् प्रणाम किया और प्रेमसहित पूजन करके उन्हें उत्तम आसन दिये। चार लाख उत्तम गायें मँगवायीं, जो कामधेनुके समान अच्छे स्वभाववाली और सुहावनी थीं ।।१।।
+ITEM 1 [bal.331.cau2]
+  TR: saba bidhi sakala alaṁkr̥ta kīnhī̐, mudita mahipa mahidevanha dīnhī̐ / karata binaya bahu bidhi naranāhū, laheu̐ āju jaga jīvana lāhū ॥2॥
+  HI: उन सबको सब प्रकारसे [गहनों-कपड़ोंसे] सजाकर राजाने प्रसन्न होकर भूदेव ब्राह्मणोंको दिया। राजा बहुत तरहसे विनती कर रहे हैं कि जगत्‌में मैंने आज ही जीनेका लाभ पाया ।।२।।
+ITEM 2 [bal.331.cau3]
+  TR: pāi asīsa mahīsu anaṁdā, lie boli puni jācaka br̥ṁdā. / kanaka basana mani haya gaya syaṁdana, die būjhi ruci rabikulanaṁdana ॥3॥
+  HI: [ब्राह्मणोंसे] आशीर्वाद पाकर राजा आनन्दित हुए। फिर याचकोंके समूहोंको बुलवा लिया और सबको उनकी रुचि पूछकर सोना, वस्त्र, मणि, घोड़ा, हाथी और रथ (जिसने जो चाहा सो) सूर्यकुलको आनन्दित करनेवाले दशरथजीने दिये ।।३।।
+ITEM 3 [bal.331.cau4]
+  TR: cale paṛhata gāvata guna gāthā, jaya jaya jaya dinakara kula nāthā. / ehi bidhi rāma biāha uchāhū, sakai na barani sahasa mukha jāhū ॥4॥
+  HI: वे सब गुणानुवाद गाते और ‘सूर्यकुलके स्वामीकी जय हो, जय हो, जय हो’ कहते हुए चले। इस प्रकार श्रीरामचन्द्रजीके विवाहका उत्सव हुआ। जिन्हें सहस्र मुख हैं वे शेषजी भी उसका वर्णन नहीं कर सकते ।।४।।
+SEG 0: The king threw himself upon the ground before them all and worshipping them with love offered them seats of honour.
+SEG 1: Next he sent for four lakhs of cows, all as gentle and beautiful as the cow of plenty;
+SEG 2: and adorning them all in every possible way he gladly bestowed them upon the Brāhmaṇas.
+SEG 3: The king supplicated them in many ways and said, "It is only today that I have attained the fruit of my existence." The delight of the solar race was glad to receive their blessings and then sent for beggars and bestowed on them, according to their liking, gold, wearing apparel, jewels, horses, elephants and chariots.
+SEG 4: Singing the king's praises and saying, "Glory, glory, all glory to the lord of the solar race!" they all went away.
+SEG 5: In this way the rejoicing in connection with Śrī Rāma's wedding was more than the thousand-mouthed serpent-king could not tell.
+
+### GROUP 778  (4 items)
+ITEM 0 [bal.332.cau1]
+  TR: janaka sanehu sīlu karatūtī, nr̥pu saba bhā̐ti sarāha bibhūtī. / dina uṭhi bidā avadhapati māgā, rākhahiṁ janaku sahita anurāgā ॥1॥
+  HI: राजा दशरथजी जनकजीके स्नेह, शील, करनी और ऐश्वर्यकी सब प्रकारसे सराहना करते हैं। प्रतिदिन [सबेरे] उठकर अयोध्यानरेश विदा माँगते हैं। पर जनकजी उन्हें प्रेमसे रख लेते हैं ।।१।।
+ITEM 1 [bal.332.cau2]
+  TR: nita nūtana ādaru adhikāī, dina prati sahasa bhā̐ti pahunāī. / nita nava nagara anaṁda uchāhū, dasaratha gavanu sohāi na kāhū ॥2॥
+  HI: आदर नित्य नया बढ़ता जाता है। प्रतिदिन हजारों प्रकारसे मेहमानी होती है। नगरमें नित्य नया आनन्द और उत्साह रहता है, दशरथजीका जाना किसीको नहीं सुहाता ।।२।।
+ITEM 2 [bal.332.cau3]
+  TR: bahuta divasa bīte ehi bhā̐tī, janu saneha raju ba̐dhe barātī. / kausika satānaṁda taba jāī, kahā bideha nr̥pahi samujhāī ॥3॥
+  HI: इस प्रकार बहुत दिन बीत गये, मानो बराती स्नेहकी रस्सीसे बँध गये हैं। तब विश्वामित्रजी और शतानन्दजीने जाकर राजा जनकको समझाकर कहा— ।।३।।
+ITEM 3 [bal.332.cau4]
+  TR: aba dasaratha kaha̐ āyasu dehū, jadyapi chāṛi na sakahu sanehū. / bhalehiṁ nātha kahi saciva bolāe, kahi jaya jīva sīsa tinha nāe ॥4॥
+  HI: यद्यपि आप स्नेह [वश उन्हें] नहीं छोड़ सकते, तो भी अब दशरथजीको आज्ञा दीजिये। ‘हे नाथ! बहुत अच्छा’ कहकर जनकजीने मन्त्रियोंको बुलवाया। वे आये और ‘जय जीव’ कहकर उन्होंने मस्तक नवाया ।।४।।
+SEG 0: King Daśaratha extolled in everyway Janaka's affection, amiability, affluence and doings.
+SEG 1: Every morning the King of Ayodhyā asked leave to return home;
+SEG 2: but each time Janaka would lovingly detain him.
+SEG 3: The royal guest received greater and enhanced attentions from day to day and was entertained in a thousand ways each day.
+SEG 4: The city witnessed a new rejoicing and festivity everyday;
+SEG 5: no one liked Daśaratha's departure.
+SEG 6: In this way a number of days passed, as though members of the bridegrooms' party were tied by cords of love.
+SEG 7: The sages Kauśika and Śatānanda then called on King Videha and advised him saying, "Now you must let Deśaratha go, even though you may not be able to part with him out of love." “Very well, my lord", replied the king, and sent for his ministers, who came and bowed their heads saying, "May you be victorious, may you live long!"
+

@@ -1,0 +1,122 @@
+[
+ {
+  "n": 144,
+  "id": "sundar.0.shloka1",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 145,
+  "id": "sundar.1.cau1",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 146,
+  "id": "sundar.3.cau3",
+  "confidence": "medium",
+  "note": "Demoness killed in 1st half of 3.cau3; Lanka shore described from its 2nd half (English heading at 3.cha1)"
+ },
+ {
+  "n": 147,
+  "id": "sundar.5.cau4",
+  "confidence": "medium",
+  "note": "Vibhishana's house seen in 2nd half of 5.cau4; English heading at 5.do5"
+ },
+ {
+  "n": 148,
+  "id": "sundar.8.cau3",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 149,
+  "id": "sundar.11.cau1",
+  "confidence": "high",
+  "note": "Hindi topic covers both Trijata's dream and Sita-Trijata dialogue (English splits them)"
+ },
+ {
+  "n": 150,
+  "id": "sundar.12.so12",
+  "confidence": "medium",
+  "note": "Hanuman drops the ring in 12.so12; English heading at 13.cau1"
+ },
+ {
+  "n": 151,
+  "id": "sundar.17.cau4",
+  "confidence": "medium",
+  "note": "Hanuman asks leave to eat fruit in 17.cau4; Sita permits in 17.do17 (English heading); not among candidates (topic list n vs English TOC page is offset here; chosen from full verse list)"
+ },
+ {
+  "n": 152,
+  "id": "sundar.20.do20",
+  "confidence": "high",
+  "note": "not among candidates (topic list n vs English TOC page is offset here; chosen from full verse list)"
+ },
+ {
+  "n": 153,
+  "id": "sundar.24.do24",
+  "confidence": "medium",
+  "note": "Ravana orders tail to be set on fire in 24.do24; actual burning from 25.do25 (English heading); not among candidates (topic list n vs English TOC page is offset here; chosen from full verse list)"
+ },
+ {
+  "n": 154,
+  "id": "sundar.26.do26",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 155,
+  "id": "sundar.28.cau1",
+  "confidence": "medium",
+  "note": "Hanuman takes leave in 27.do27 (English heading); leaps back across the sea in 28.cau1"
+ },
+ {
+  "n": 156,
+  "id": "sundar.34.cau3",
+  "confidence": "medium",
+  "note": "Rama summons Sugriva to march in 2nd half of 34.cau3; English heading at 34.do34; not among candidates (topic list n vs English TOC page is offset here; chosen from full verse list)"
+ },
+ {
+  "n": 157,
+  "id": "sundar.36.cau1",
+  "confidence": "high",
+  "note": "not among candidates (topic list n vs English TOC page is offset here; chosen from full verse list)"
+ },
+ {
+  "n": 158,
+  "id": "sundar.37.cau4",
+  "confidence": "medium",
+  "note": "Ravana holds court in 37.cau4; Vibhishana arrives in 38.cau1 (English heading)"
+ },
+ {
+  "n": 159,
+  "id": "sundar.41.cau5",
+  "confidence": "medium",
+  "note": "Vibhishana departs with ministers in 41.cau5; English heading at 41.do41; not among candidates (topic list n vs English TOC page is offset here; chosen from full verse list)"
+ },
+ {
+  "n": 160,
+  "id": "sundar.50.cau2",
+  "confidence": "medium",
+  "note": "50.cau1 is comment on Vibhishana's grace; question of crossing the sea starts 50.cau2-3; not among candidates (topic list n vs English TOC page is offset here; chosen from full verse list)"
+ },
+ {
+  "n": 161,
+  "id": "sundar.53.cau2",
+  "confidence": "medium",
+  "note": "Spies reach Ravana in 2nd half of 53.cau1; Ravana questions in 53.cau2; Shuka's counsel from 54.cau1 (English heading); not among candidates (topic list n vs English TOC page is offset here; chosen from full verse list)"
+ },
+ {
+  "n": 162,
+  "id": "sundar.57.do57",
+  "confidence": "high",
+  "note": "not among candidates (topic list n vs English TOC page is offset here; chosen from full verse list)"
+ },
+ {
+  "n": 163,
+  "id": "sundar.60.do60",
+  "confidence": "medium",
+  "note": "2nd half of 60.cha1 already starts the phala-shruti; doha chosen as in English edition; not among candidates (topic list n vs English TOC page is offset here; chosen from full verse list)"
+ }
+]

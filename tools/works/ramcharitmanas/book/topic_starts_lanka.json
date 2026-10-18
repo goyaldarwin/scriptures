@@ -1,0 +1,224 @@
+[
+ {
+  "n": 164,
+  "id": "lanka.0.shloka1",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 165,
+  "id": "lanka.0.sou1",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 166,
+  "id": "lanka.4.cau1",
+  "confidence": "medium",
+  "note": "Bridge completed, army sets out; no heading found on reference site for 3.do3-5.cau5; chosen by content"
+ },
+ {
+  "n": 167,
+  "id": "lanka.5.do5",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 168,
+  "id": "lanka.11.cau1",
+  "confidence": "medium",
+  "note": "\"इहाँ सुबेल सैल रघुबीरा\" opens Suvela scene; not confirmed by reference site"
+ },
+ {
+  "n": 169,
+  "id": "lanka.12.do12ख",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 170,
+  "id": "lanka.14.cau3",
+  "confidence": "high",
+  "note": "Confirmed by reference site (heading mid-section, after Ravana dismisses court)"
+ },
+ {
+  "n": 171,
+  "id": "lanka.17.cau1",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 172,
+  "id": "lanka.35.do35ख",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 173,
+  "id": "lanka.38.cau2",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 174,
+  "id": "lanka.39.do39",
+  "confidence": "high",
+  "note": "Confirmed start; NOTE lanka.39.do39 is not in this topic's candidate list (nearest candidate lanka.39.cau5)"
+ },
+ {
+  "n": 175,
+  "id": "lanka.47.do47",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 176,
+  "id": "lanka.49.do49",
+  "confidence": "medium",
+  "note": "Meghanada sallies out; alternatives 49.cau5 (siege resumes) or 49.cha1"
+ },
+ {
+  "n": 177,
+  "id": "lanka.55.cau4",
+  "confidence": "medium",
+  "note": "Jambavan sends Hanuman for Sushena; alt 55.cau3 (Hanuman brings Lakshmana back)"
+ },
+ {
+  "n": 178,
+  "id": "lanka.58.do58",
+  "confidence": "medium",
+  "note": "Bharata shoots Hanuman; alt 58.cau4 (Hanuman lifts mountain, flies over Avadh)"
+ },
+ {
+  "n": 179,
+  "id": "lanka.61.cau1",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 180,
+  "id": "lanka.62.cau3",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 181,
+  "id": "lanka.65.cau1",
+  "confidence": "medium",
+  "note": "Vibhishana returns and monkeys attack Kumbhakarna; alt 64.cau1 (Kumbhakarna sets out)"
+ },
+ {
+  "n": 182,
+  "id": "lanka.72.do72",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 183,
+  "id": "lanka.75.cau1",
+  "confidence": "medium",
+  "note": "Meghanada resolves on sacrifice; alt 75.cau2 (Vibhishana advises destroying it)"
+ },
+ {
+  "n": 184,
+  "id": "lanka.78.cau2",
+  "confidence": "medium",
+  "note": "Next morning Ravana musters for battle; alt 77.do77/78.cau4"
+ },
+ {
+  "n": 185,
+  "id": "lanka.82.do82",
+  "confidence": "medium",
+  "note": "Lakshmana goes forth against Ravana; alt 81.do81/82.cau1"
+ },
+ {
+  "n": 186,
+  "id": "lanka.84.cha1",
+  "confidence": "medium",
+  "note": "Lakshmana fells Ravana (swoon); alt 84.do84 (sacrifice begins)"
+ },
+ {
+  "n": 187,
+  "id": "lanka.89.cau1",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 188,
+  "id": "lanka.93.do93",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 189,
+  "id": "lanka.95.cau1",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 190,
+  "id": "lanka.97.cau2",
+  "confidence": "medium",
+  "note": "After illusion is dispelled (97.cau1) fighting resumes; alt 97.cau3/97.cha1"
+ },
+ {
+  "n": 191,
+  "id": "lanka.99.cau1",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 192,
+  "id": "lanka.101.do101ख",
+  "confidence": "medium",
+  "note": "101.do101क closes previous section; alt 100.cau4 (Ravana wakes at midnight) or 101.cha1_2"
+ },
+ {
+  "n": 193,
+  "id": "lanka.104.cau1",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 194,
+  "id": "lanka.106.cau1-2",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 195,
+  "id": "lanka.107.cau1",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 196,
+  "id": "lanka.110.cau1",
+  "confidence": "medium",
+  "note": "Gods arrive to praise after fire-ordeal; alt 109.do109क"
+ },
+ {
+  "n": 197,
+  "id": "lanka.116.cau1",
+  "confidence": "medium",
+  "note": "Vibhishana approaches after Shiva leaves; alt 114.do114क (Shiva arrives)"
+ },
+ {
+  "n": 198,
+  "id": "lanka.117.cau2",
+  "confidence": "medium",
+  "note": "Vibhishana loads the aerial car with gems/clothes; alt 117.cau1"
+ },
+ {
+  "n": 199,
+  "id": "lanka.118.do118क",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 200,
+  "id": "lanka.121.do121क",
+  "confidence": "high",
+  "note": ""
+ }
+]

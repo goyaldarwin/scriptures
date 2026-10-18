@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2B3A8C">
+<title>शास्त्र · Scriptures</title>
+<link rel="manifest" href="manifest.json"><link rel="icon" href="app/icon.svg"><link rel="stylesheet" href="app/fonts.css"><link rel="stylesheet" href="app/style.css">
+
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+ <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" stroke="none"/></symbol>
+ <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14" stroke-width="3"/></symbol>
+ <symbol id="i-prev" viewBox="0 0 24 24"><path d="M7 5v14M18 6l-8 6 8 6z" fill="currentColor"/></symbol>
+ <symbol id="i-next" viewBox="0 0 24 24"><path d="M17 5v14M6 6l8 6-8 6z" fill="currentColor"/></symbol>
+ <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+ <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+ <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></symbol>
+ <symbol id="i-more" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="12" cy="19" r="1.2"/></symbol>
+ <symbol id="i-bm" viewBox="0 0 24 24"><path d="M7 4h10v16l-5-3.5L7 20z"/></symbol>
+ <symbol id="i-note" viewBox="0 0 24 24"><path d="M5 4h14v12l-4 4H5z"/><path d="M15 20v-4h4"/><path d="M8.5 9h7M8.5 12.5h5"/></symbol>
+ <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+ <symbol id="i-set" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></symbol>
+ <symbol id="i-cal" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></symbol>
+ <symbol id="i-lamp" viewBox="0 0 24 24"><path d="M12 3c2 3 3 4.5 3 6.5a3 3 0 0 1-6 0C9 7.5 10 6 12 3z"/><path d="M5 15h14l-2 5H7z"/></symbol>
+ <symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z"/></symbol>
+ <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></symbol>
+ <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+ <symbol id="i-jump" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+ <symbol id="i-text" viewBox="0 0 24 24"><path d="M4 7V5h16v2M12 5v14M9 19h6"/></symbol>
+</svg>
+
+<!-- LIBRARY -->
+<section id="library" class="view on">
+ <div class="wrap">
+  <div class="hero"><p class="crumbs" id="libCrumbs"></p><h1 id="libTitle" data-en="Library">पुस्तकालय</h1></div>
+  <ul class="list" id="libList"></ul>
+  <div style="height:40px"></div>
+ </div>
+</section>
+
+<!-- HOME (one work) -->
+<section id="home" class="view">
+ <div class="wrap">
+  <button class="libbtn" id="hLib"><svg><use href="#i-back"/></svg><span data-en="Library">पुस्तकालय</span></button>
+  <div class="hero"><h1 id="hTitle"></h1><p id="hSub"></p></div>
+  <div id="contCard"></div>
+  <div class="quick">
+   <button data-go="search"><svg><use href="#i-search"/></svg><span data-en="Search">खोजें</span></button>
+   <button data-go="bookmarks"><svg><use href="#i-bm"/></svg><span data-en="Bookmarks &amp; notes">बुकमार्क और टिप्पणियाँ</span></button>
+   <button data-go="vidhi" id="qVidhi"><svg><use href="#i-lamp"/></svg><span data-en="Pārāyaṇa vidhi">पारायण-विधि</span></button>
+   <button data-go="settings"><svg><use href="#i-set"/></svg><span data-en="Settings">सेटिंग्स</span></button>
+  </div>
+  <div class="seg" id="orgSeg"></div>
+  <ul class="list" id="orgList"></ul>
+  <div style="height:40px"></div>
+ </div>
+</section>
+
+<!-- READER -->
+<section id="reader" class="view">
+ <div class="bar"><div class="wrap">
+  <button class="ib" id="rBack" aria-label="वापस"><svg><use href="#i-back"/></svg></button>
+  <div class="bt"><div class="k" id="rKand"></div><div class="t" id="rTopic"></div></div>
+  <span class="timer" id="timerPill"></span>
+  <button class="pill" id="rRecite" hidden style="padding:6px 10px;font-size:13px"><span data-en="Recitation mode">पाठ मोड</span> ✕</button>
+  <div class="lyr" id="rLayers"><button data-l="h">हिं</button><button data-l="e" class="lat">En</button><button data-l="w">शब्द</button></div>
+  <button class="ib" id="rSearch" aria-label="खोजें" hidden><svg><use href="#i-search"/></svg></button>
+  <button class="ib" id="rMore" aria-label="और"><svg><use href="#i-more"/></svg></button>
+ </div></div>
+ <div class="wrap" id="rBody"></div>
+ <div class="navbar"><div class="wrap">
+  <button class="mid" id="rMid"></button>
+ </div></div>
+</section>
+
+<div id="player" class="player" hidden><div class="pbar"><span id="pProg"></span></div><div class="wrap pwrap">
+  <div class="ytw"><div id="ytBox"></div></div>
+  <div class="pside">
+   <button class="pinfo" id="pInfo"><b id="pVerse"></b><small id="pTrack" class="lat"></small></button>
+   <div class="pctl">
+    <button class="ib" id="pPrev" aria-label="previous verse"><svg><use href="#i-prev"/></svg></button>
+    <button class="ib pmain" id="pPlay" aria-label="play/pause"><svg><use href="#i-pause"/></svg></button>
+    <button class="ib" id="pNext" aria-label="next verse"><svg><use href="#i-next"/></svg></button>
+    <button class="ib" id="pClose" aria-label="stop"><svg><use href="#i-x"/></svg></button>
+   </div>
+  </div>
+</div></div>
+<!-- SEARCH -->
+<section id="search" class="view">
+ <div class="bar"><div class="wrap">
+  <button class="ib" data-back aria-label="वापस"><svg><use href="#i-back"/></svg></button>
+  <input id="q" type="search" placeholder="शब्द, अर्थ या English में खोजें" data-en-ph="Search a word, meaning or English" autocomplete="off" style="flex:1">
+ </div></div>
+ <div class="wrap">
+  <div class="scope" id="scope">
+   <button class="chip on" data-s="v" data-en="Verses">मूल पाठ</button><button class="chip on" data-s="h" data-en="Hindi meaning">हिंदी अर्थ</button><button class="chip on" data-s="e" data-en="English meaning">अंग्रेज़ी अर्थ</button><button class="chip on" data-s="n" data-en="My notes">मेरी टिप्पणियाँ</button>
+  </div>
+  <div id="sRes"><div class="empty" data-en="Type any word from a verse, its meaning or the English translation.">चौपाई, दोहे या अर्थका कोई भी शब्द लिखें।</div></div>
+ </div>
+</section>
+
+<!-- BOOKMARKS -->
+<section id="bookmarks" class="view">
+ <div class="bar"><div class="wrap"><button class="ib" data-back aria-label="वापस"><svg><use href="#i-back"/></svg></button><div class="bt"><div class="t" data-en="Bookmarks &amp; notes">बुकमार्क और टिप्पणियाँ</div></div></div></div>
+ <div class="wrap" id="bmBody"></div>
+</section>
+
+<!-- SETTINGS -->
+<section id="settings" class="view page">
+ <div class="bar"><div class="wrap"><button class="ib" data-back aria-label="वापस"><svg><use href="#i-back"/></svg></button><div class="bt"><div class="t" data-en="Settings">सेटिंग्स</div></div></div></div>
+ <div class="wrap" id="setBody"></div>
+</section>
+
+<!-- VIDHI -->
+<section id="vidhi" class="view vidhi">
+ <div class="bar"><div class="wrap"><button class="ib" data-back aria-label="वापस"><svg><use href="#i-back"/></svg></button><div class="bt"><div class="t" data-en="Pārāyaṇa vidhi &amp; Āratī">पारायण-विधि और आरती</div></div><div class="lyr" id="vidLang"><button data-l="h">हिं</button><button data-l="e" class="lat">En</button></div></div></div>
+ <div class="wrap">
+  <div class="seg" id="vidSeg"><button data-v="v" class="on" data-en="Pārāyaṇa vidhi">पारायण-विधि</button><button data-v="aarti" data-en="Āratī">आरती</button></div>
+  <div id="vidBody" style="padding-bottom:40px"></div>
+ </div>
+</section>
+
+<div class="loading" id="loading">॥ श्रीराम ॥</div>
+<div class="scrim" id="scrim"></div>
+<div class="sheet" id="sheet"><div class="grab"></div><div class="wrap" id="sheetBody"></div></div>
+<div class="toast" id="toast"></div>
+<input type="file" id="fileIn" accept="application/json,.json" style="display:none">
+
+<script src="app/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+"""Register sources and check the library before every build (called by build.py).
+
+For each work on the shelf (library/index.json) this:
+  1. lists the meaning sources in <work>/meanings/*.json and the audio sources in <work>/audio/*.json
+     and writes them into work.json → "sources" (the website reads that list; it cannot scan folders);
+  2. checks that everything refers to things that exist, and stops the build with a clear message if not.
+A source's file name must equal its "id". The source with the lowest "order" (then id) is the default.
+"""
+import glob, json, os, re
+
+class LibraryError(Exception): pass
+
+def _need(ok, msg):
+    if not ok: raise LibraryError(msg)
+
+def _bi(x):  # bilingual label
+    return isinstance(x, dict) and isinstance(x.get('hi'), str) and isinstance(x.get('en'), str)
+
+def leaves(shelf, trail=()):
+    seen = set()
+    for n in shelf:
+        _need(isinstance(n.get('id'), str) and re.fullmatch(r'[a-z0-9-]+', n['id']), f"shelf: bad id {n.get('id')!r} under {'/'.join(trail) or 'top'} (use lowercase letters, digits, -)")
+        _need(n['id'] not in seen, f"shelf: id {n['id']!r} appears twice under {'/'.join(trail) or 'top'}")
+        seen.add(n['id']); _need(_bi(n.get('title')), f"shelf: {n['id']} needs title {{hi, en}}")
+        if 'work' in n:
+            _need('children' not in n, f"shelf: {n['id']} has both work and children")
+            yield n
+        else:
+            _need(isinstance(n.get('children'), list) and n['children'], f"shelf: {n['id']} needs children (a shelf) or work (a book)")
+            yield from leaves(n['children'], trail + (n['id'],))
+
+def check_work(lib, leaf):
+    path = leaf.get('path'); wp = os.path.join(lib, path or '', 'work.json')
+    _need(path and os.path.exists(wp), f"shelf: {leaf['id']} → path {path!r} has no work.json")
+    w = json.load(open(wp)); name = path
+    _need(w.get('id') == leaf['work'], f"{name}: work.json id {w.get('id')!r} ≠ shelf work {leaf['work']!r}")
+    items = w['items']; ids = [x['id'] for x in items]; ID = set(ids)
+    _need(len(ID) == len(ids), f"{name}: item ids are not unique")
+    for x in items:
+        _need(isinstance(x.get('v'), list) and x['v'], f"{name}: item {x['id']} has no verse lines")
+        _need(0 <= x['p'] < len(w['parts']['list']), f"{name}: item {x['id']} part {x['p']} out of range")
+    for t in w.get('topics', []): _need(t['id'] in ID and _bi({'hi': t['hi'], 'en': t['en']}), f"{name}: topic {t} is invalid")
+    for p in w.get('plans', []):
+        _need(len(p['end']) == p['n'], f"{name}: plan {p['id']} has {len(p['end'])} ends for {p['n']} days")
+        pos = [ids.index(e) if e in ID else -1 for e in p['end']]
+        _need(min(pos) >= 0 and pos == sorted(pos), f"{name}: plan {p['id']} ends are missing or out of order")
+    # sources
+    src = {'hi': [], 'en': [], 'au': []}
+    for f in sorted(glob.glob(os.path.join(lib, path, 'meanings', '*.json'))):
+        s = json.load(open(f)); sid = os.path.basename(f)[:-5]; where = f"{name}/meanings/{sid}.json"
+        _need(s.get('id') == sid, f"{where}: id {s.get('id')!r} must equal the file name")
+        _need(s.get('lang') in ('hi', 'en'), f"{where}: lang must be hi or en")
+        _need(_bi(s.get('title')), f"{where}: needs title {{hi, en}}")
+        bad = [k for k in s['m'] if k not in ID]; _need(not bad, f"{where}: {len(bad)} unknown item ids, e.g. {bad[:3]}")
+        for k, e in s['m'].items(): _need(isinstance(e, list) and e and isinstance(e[0], str), f"{where}: {k} must be [text, footnotes?]")
+        src[s['lang']].append({'id': sid, 'file': 'meanings/' + sid, 'title': s['title'], 'order': s.get('order', 100)})
+    for f in sorted(glob.glob(os.path.join(lib, path, 'audio', '*.json'))):
+        s = json.load(open(f)); sid = os.path.basename(f)[:-5]; where = f"{name}/audio/{sid}.json"
+        _need(s.get('id') == sid, f"{where}: id {s.get('id')!r} must equal the file name")
+        _need(s.get('type') == 'youtube', f"{where}: type must be youtube")
+        _need(_bi(s.get('title')), f"{where}: needs title {{hi, en}}")
+        T = s['tracks']
+        for t in T: _need(re.fullmatch(r'[\w-]{11}', t['yt']) and t['first'] in ID and t['last'] in ID and t['dur'] > 0, f"{where}: bad track {t}")
+        for k, (ti, sec) in s['at'].items(): _need(k in ID and 0 <= ti < len(T) and 0 <= sec <= T[ti]['dur'], f"{where}: bad timing {k}: {[ti, sec]}")
+        src['au'].append({'id': sid, 'file': 'audio/' + sid, 'title': s['title'], 'order': s.get('order', 100)})
+    for k in src:
+        src[k].sort(key=lambda x: (x['order'], x['id']))
+        for x in src[k]: del x['order']
+    if w.get('sources') != src:
+        w['sources'] = src
+        json.dump(w, open(wp, 'w'), ensure_ascii=False, separators=(',', ':'))
+    return w['id'], {k: [x['id'] for x in v] for k, v in src.items()}
+
+def prepare(lib):
+    shelf = json.load(open(os.path.join(lib, 'index.json')))
+    works = {}
+    for leaf in leaves(shelf):
+        _need(leaf['work'] not in works, f"shelf: work id {leaf['work']!r} is used twice")
+        wid, src = check_work(lib, leaf); works[wid] = src
+    G = json.load(open(os.path.join(lib, 'gloss.json')))
+    for k, v in G.items(): _need(isinstance(v, dict) and ('hi' in v or 'en' in v), f"gloss.json: {k!r} needs hi/en")
+    return works

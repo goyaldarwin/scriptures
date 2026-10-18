@@ -1,0 +1,8 @@
+dist/
+__pycache__/
+*.pyc
+tools/ramcharitmanas/audio/recordings/
+tools/ramcharitmanas/audio/model/
+*.m4a
+*.webm
+*.pdf

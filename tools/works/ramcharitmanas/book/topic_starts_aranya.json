@@ -1,0 +1,110 @@
+[
+ {
+  "n": 112,
+  "id": "aranya.0.shloka1",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 113,
+  "id": "aranya.1.cau1",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 114,
+  "id": "aranya.3.cau1",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 115,
+  "id": "aranya.5.cau1",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 116,
+  "id": "aranya.7.cau1",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 117,
+  "id": "aranya.9.cau3",
+  "confidence": "medium",
+  "note": "Heap of bones / demons devoured sages leads to the vow (9.do9); English edition heading falls at 9.do9"
+ },
+ {
+  "n": 118,
+  "id": "aranya.10.cau1",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 119,
+  "id": "aranya.14.cau1",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 120,
+  "id": "aranya.17.cau2",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 121,
+  "id": "aranya.21.cau3",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 122,
+  "id": "aranya.24.cau3",
+  "confidence": "medium",
+  "note": "Maya-Sita part ends mid-verse; Ravana goes to Marica in 2nd half of 24.cau3 (English heading at 24.do24)"
+ },
+ {
+  "n": 123,
+  "id": "aranya.28.cau1",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 124,
+  "id": "aranya.29.cau4",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 125,
+  "id": "aranya.30.cau1",
+  "confidence": "high",
+  "note": ""
+ },
+ {
+  "n": 126,
+  "id": "aranya.33.cau2",
+  "confidence": "medium",
+  "note": "33.cau1-2a still comment on Jatayu; search resumes in 2nd half of 33.cau2, Kabandha met in 33.cau3"
+ },
+ {
+  "n": 127,
+  "id": "aranya.34.cau3",
+  "confidence": "medium",
+  "note": "Kabandha released in 1st half of 34.cau3; Rama reaches Shabari in 2nd half"
+ },
+ {
+  "n": 128,
+  "id": "aranya.41.cau3",
+  "confidence": "medium",
+  "note": "41.cau1-2 (bath at Pampa, gods visit) could also open this topic; Narada appears in 41.cau3"
+ },
+ {
+  "n": 129,
+  "id": "aranya.45.cau1",
+  "confidence": "medium",
+  "note": "Narada asks about marks of saints in 45.cau2b-45.cau3; 45.cau1 chosen as block start (matches English p707); not among candidates (topic list n vs English TOC page is offset here; chosen from full verse list)"
+ }
+]
