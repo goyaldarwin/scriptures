@@ -1,0 +1,54 @@
+# Audio starts (and ends) set by ear in the app arrive as GitHub issues titled "Timing: <work path> / <source>" (Settings › Audio
+# timing › Send to the library). Only the owner's issues are applied: the starts go into the source's owner.json, the
+# timings are re-made, the site is rebuilt and checked, and the result is pushed to main; the issue is then closed
+# with a summary (or left open with the error).
+name: timing
+on:
+  issues:
+    types: [opened]
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: timing
+  cancel-in-progress: false
+jobs:
+  apply:
+    if: startsWith(github.event.issue.title, 'Timing:') && github.event.issue.user.login == github.repository_owner
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q numpy pymupdf
+      - name: apply the starts
+        id: apply
+        env:
+          BODY: ${{ github.event.issue.body }}
+        run: |
+          printf '%s' "$BODY" > /tmp/body.txt
+          python3 tools/audio/apply_owner_timing.py /tmp/body.txt | tee /tmp/out.txt
+      - name: build and check
+        run: |
+          python3 tools/site/build.py
+      - name: push
+        run: |
+          git config user.name "timing workflow"; git config user.email "actions@users.noreply.github.com"
+          git add -A && git commit -q -m "Audio starts set by ear (issue #${{ github.event.issue.number }})" || exit 0
+          for i in 1 2 3 4 5; do git pull -q --rebase origin main && git push -q origin HEAD:main && exit 0; sleep 10; done; exit 1
+      - name: close the issue
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          { echo "Applied and published:"; echo; echo '```'; tail -n 5 /tmp/out.txt; echo '```'; } > /tmp/c.md
+          gh issue comment ${{ github.event.issue.number }} -F /tmp/c.md -R ${{ github.repository }}
+          gh issue close ${{ github.event.issue.number }} -R ${{ github.repository }}
+      - name: report a problem
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          { echo "Could not apply these starts:"; echo; echo '```'; tail -n 20 /tmp/out.txt 2>/dev/null; echo '```'; } > /tmp/c.md
+          gh issue comment ${{ github.event.issue.number }} -F /tmp/c.md -R ${{ github.repository }}

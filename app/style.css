@@ -88,7 +88,11 @@ html,body{overflow-x:clip}
 .vtext{font-weight:700;font-size:var(--verse-size);line-height:1.6;text-align:center}
 .vtext p{margin:0;position:relative}
 .vtext{padding:0 30px;overflow-wrap:anywhere}
-.vtext.vedic{font-family:'Vedic','NSDev',serif}   /* a long Sanskrit compound may break rather than run off a phone screen */
+.vtext.vedic{font-family:'Vedic','NSDev',serif}
+.ptime{display:none;gap:6px;margin-top:6px}body.timing .ptime{display:flex}.ptime button{flex:1;border:1px solid var(--rule);border-radius:10px;padding:7px 4px;font-size:13px;background:var(--surface);color:var(--ink,inherit);white-space:nowrap}.ptime button:active{background:var(--indigo-soft)}
+.btn[disabled]{opacity:.45;pointer-events:none}
+body.timing .verse.tocheck{box-shadow:inset 3px 0 0 var(--saffron)}.tcheck{margin:10px 0}.tcheck summary{cursor:pointer;font-size:15px}.tlist{display:flex;flex-direction:column;max-height:50vh;overflow:auto;margin-top:6px}.tlist button{text-align:left;padding:9px 4px;border-bottom:1px solid var(--rule);font-size:15px}
+.tbox{margin-top:14px;padding-top:12px;border-top:1px solid var(--rule)}.tctl{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:6px}.tctl b{min-width:64px;text-align:center;font-variant-numeric:tabular-nums}   /* a long Sanskrit compound may break rather than run off a phone screen */
 .half{display:inline-block}
 .w{border-radius:4px;cursor:pointer}
 .w:active,.w.sel{background:var(--saffron-soft)}

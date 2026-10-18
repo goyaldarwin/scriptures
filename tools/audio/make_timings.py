@@ -34,9 +34,12 @@ L = lambda i: max(8, len(''.join(IT[i]['v'])))   # text length, used to spread t
 # fixes.json (optional): {video id: {item id: seconds}} — when the verse's first word is heard, checked by ear or in the transcript,
 # for lines the speech recogniser missed. Write the evidence beside each fix in fixes.md.
 FP = os.path.join(SRC, 'fixes.json'); FIX = json.load(open(FP)) if os.path.exists(FP) else {}
+# owner.json (optional): {video id: {item id: seconds or [start, end]}} — starts (and ends) the owner set by ear in the app's timing mode (sent through
+# a GitHub issue and written by tools/audio/apply_owner_timing.py). They are used exactly as given and win over everything.
+OP = os.path.join(SRC, 'owner.json'); OWN = json.load(open(OP)) if os.path.exists(OP) else {}
 # ONLY=<ids>: just make the alignment caches of those recordings (run several in parallel), then run once without it
 ONLY = [x for x in os.environ.get('ONLY', '').split(',') if x]
-tracks, at = [], {}
+tracks, at, heard = [], {}, set()   # heard: verses whose start was found in the recording (matched, or checked by hand)
 for r in REC:
     v = r['yt']; p = os.path.join(TR, v + '.jsonl')
     if not os.path.exists(p + '.done'): continue
@@ -58,7 +61,7 @@ for r in REC:
                 while k > 0 and R[k - 1][0] == R[rj][0]: k -= 1
                 rows.setdefault(si, []).append([IT[R[rj][0]]['id'], len(R[rj][2]), round(rate * sum(len(R[q][2]) for q in range(k, rj)), 2)])
         else:
-            R, pairs = A.align(S, r0)
+            R, pairs = A.align(S, r0, split=bool(meta.get('split')))
             rows = {}
             for si, rj in pairs: rows.setdefault(si, []).append([IT[R[rj][0]]['id'], len(R[rj][2])])
         json.dump([[S[si]['s'], S[si]['e'], rows[si]] for si in sorted(rows)], open(cache, 'w'), ensure_ascii=False)
@@ -92,20 +95,25 @@ for r in REC:
         full = pre[::-1] + full
     ti = len(tracks)
     tracks.append({'yt': v, 'dur': r['dur'], 'first': IT[full[0][0]]['id'], 'last': IT[full[-1][0]]['id']})
+    heard |= {IT[i]['id'] for i, _ in clean}
     for i, t in full: at.setdefault(IT[i]['id'], [ti, t])
     print(v, len(full), tracks[-1]['first'], '→', tracks[-1]['last'])
 
 if ONLY: sys.exit(0)
-# a source marked "draft" in source.json (its timings are not good enough yet) is not published: the reader gets no audio
-# rather than audio that covers a few verses or starts in the wrong place. Remove "draft" once the timings are checked.
-if meta.get('draft'):
-    print('draft source: covers', sum(len(t) for t in [at]), 'of', len(IT), 'verses; not published (' + meta['draft'] + ')')
-    stale = os.path.join(REPO, 'library', meta['work'], 'audio', meta['id'] + '.json')
-    if os.path.exists(stale): os.remove(stale)
-    sys.exit(0)
+for ti, tr in enumerate(tracks):
+    for iid, t in OWN.get(tr['yt'], {}).items():   # seconds, or [start, end] when the owner also set where the verse ends
+        if iid in ID: at[iid] = [ti, round(float(t[0]), 2), round(float(t[1]), 2)] if isinstance(t, list) else [ti, round(float(t), 2)]
+# a source marked "draft" in source.json (its timings are not good enough yet) is written with "draft": the app plays it only
+# for someone reviewing timings (Settings › Audio timing), so readers never get audio that starts in the wrong place.
+# Remove "draft" once the timings are checked.
 out = os.path.join(REPO, 'library', meta['work'], 'audio', meta['id'] + '.json')
 os.makedirs(os.path.dirname(out), exist_ok=True)
-doc = {k: meta[k] for k in ('id', 'type', 'title', 'order') if k in meta}
+doc = {k: meta[k] for k in ('id', 'type', 'title', 'order', 'draft') if k in meta}
+# "check": verses whose start is only estimated (placed by text length between heard ones), or, for a draft, every verse
+# not yet checked by hand; the app lists them for review in Settings › Audio timing. Starts set by the owner never count.
+byhand = set(k for v in FIX.values() for k in v) | set(k for v in OWN.values() for k in v)
+check = [x['id'] for x in IT if x['id'] in at and x['id'] not in byhand and (meta.get('draft') or x['id'] not in heard)]
 doc.update(tracks=tracks, at=at)
+if check: doc['check'] = check
 json.dump(doc, open(out, 'w'), ensure_ascii=False, separators=(',', ':'))
-print('verses with audio', len(at), 'of', len(IT), '→', os.path.relpath(out, REPO))
+print('verses with audio', len(at), 'of', len(IT), '→', os.path.relpath(out, REPO), '(draft)' if meta.get('draft') else '')

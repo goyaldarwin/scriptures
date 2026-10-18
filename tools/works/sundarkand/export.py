@@ -1,5 +1,7 @@
 """Sundarakāṇḍa (standalone work) → library/hinduism/granth/tulsidas/sundarkand/.
 
+Part 0 is the lead-in recited before the Sundarakāṇḍa: the close of the Kiṣkindhā-kāṇḍa from dohā 29 (Jāmbavān reminds
+Hanumān of his strength), as Pt. Ashwin Kumar Pathak recites it. Like part 1 it is taken from the Mānas unchanged.
 Part 1, the Sundarakāṇḍa, is GENERATED from the Rāmacaritamānasa and never edited here: every item of the Mānas's
 Sundara-kāṇḍa part (same ids, sections `s` = dohā numbers, types, numbers, verse lines, transliteration and
 language `l`), its topics, and its Gita Press Hindi and English meanings (same source ids and titles). So a correction
@@ -36,13 +38,20 @@ assert M['lang'] == LANG
 K = next(k for k, p in enumerate(M['parts']['list']) if p['en'].startswith('Sundara'))
 sk = [x for x in M['items'] if x['p'] == K]
 assert sk and sk[0]['id'].startswith('sundar.') and len(sk) == sum(1 for x in M['items'] if x['id'].startswith('sundar.'))
-items = [dict(x, p=0) for x in sk]                     # identical apart from the part index
-sk_ids = {x['id'] for x in sk}
+LEAD_FROM = 'kishkindha.29.do29'                       # part 0: the end of the Kiṣkindhā-kāṇḍa, from this verse
+mids = [x['id'] for x in M['items']]; a = mids.index(LEAD_FROM); b = mids.index(sk[0]['id'])
+lead = M['items'][a:b]
+assert lead and all(x['p'] == M['items'][a]['p'] for x in lead) and M['items'][a]['p'] == K - 1, 'the lead-in must be the end of the Kiṣkindhā-kāṇḍa'
+items = [dict(x, p=0) for x in lead] + [dict(x, p=1) for x in sk]   # identical apart from the part index
+sk_ids = {x['id'] for x in lead + sk}
 topics = [t for t in M['topics'] if t['id'] in sk_ids]
+if lead[0]['id'] not in {t['id'] for t in topics}:     # the lead-in starts inside a Mānas topic: it opens with that topic's name
+    cover = [t for t in M['topics'] if mids.index(t['id']) <= a][-1]
+    topics.insert(0, dict(cover, id=lead[0]['id']))
 
 # ---- parts 2 and 3: text.txt ----
-PARTS = {'chalisa': (1, {'hi': 'श्रीहनुमानचालीसा', 'en': 'Śrī Hanumān Chālīsā'}),
-         'aarti': (2, {'hi': 'आरती', 'en': 'Āratī'})}
+PARTS = {'chalisa': (2, {'hi': 'श्रीहनुमानचालीसा', 'en': 'Śrī Hanumān Chālīsā'}),
+         'aarti': (3, {'hi': 'आरती', 'en': 'Āratī'})}
 TYPES = {   # verse types the app doesn't know; cau and do are the Mānas's own
     'tek': {'name': {'hi': 'टेक', 'en': 'Refrain (ṭeka)'}, 'short': {'hi': 'टेक', 'en': 'Ref.'}},
     'pad': {'name': {'hi': 'पद', 'en': 'Stanza'}, 'short': {'hi': 'पद', 'en': 'St.'}},
@@ -81,7 +90,7 @@ work = {
     'edition': {'hi': 'श्रीरामचरितमानस, गीताप्रेस', 'en': 'Śrī Rāmacaritamānasa, Gita Press'},
     'colophon': {'hi': '।। सियावर रामचन्द्रकी जय ।। पवनसुत हनुमानकी जय ।।', 'en': '।। Glory to Śrī Rāma ।। Glory to Hanumān, son of the Wind ।।'},
     'parts': {'name': {'hi': 'भाग', 'en': 'Part'},
-              'list': [{'hi': 'सुन्दरकाण्ड', 'en': 'Sundarakāṇḍa'}] + [v[1] for v in sorted(PARTS.values(), key=lambda v: v[0])]},
+              'list': [{'hi': 'किष्किन्धाकाण्ड (अन्तिम अंश)', 'en': 'Kiṣkindhā-kāṇḍa (closing verses)'}, {'hi': 'सुन्दरकाण्ड', 'en': 'Sundarakāṇḍa'}] + [v[1] for v in sorted(PARTS.values(), key=lambda v: v[0])]},
     'types': TYPES,
     'items': items,
     'topics': topics,
@@ -92,13 +101,13 @@ dump(WP + '/work.json', work)
 
 # ---- check: the Sundarakāṇḍa is exactly the Mānas's ----
 W2 = load(WP + '/work.json')
-for a, b in zip(sk, W2['items'][:len(sk)]):
-    assert {k: v for k, v in a.items() if k != 'p'} == {k: v for k, v in b.items() if k != 'p'}, a['id']
+for a_, b_ in zip(lead + sk, W2['items'][:len(lead) + len(sk)]):
+    assert {k: v for k, v in a_.items() if k != 'p'} == {k: v for k, v in b_.items() if k != 'p'}, a_['id']
 
 # ---- meanings: Gita Press (the Mānas's, Sundarakāṇḍa only) ----
 for sid in ('hi-gitapress', 'en-gitapress'):
     S = load(f'{MANAS}/meanings/{sid}.json')
-    m = {x['id']: S['m'][x['id']] for x in sk if x['id'] in S['m']}
+    m = {x['id']: S['m'][x['id']] for x in lead + sk if x['id'] in S['m']}
     dump(f'{WP}/meanings/{sid}.json', {**{k: v for k, v in S.items() if k != 'm'}, 'm': m})
     print(f"{sid}: {sum(1 for x in sk if x['id'] in S['m'])} of {len(sk)} Sundarakāṇḍa verses")
 

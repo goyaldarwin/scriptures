@@ -30,6 +30,9 @@ function defaults(){ const p = newProfile('मेरा'); return {v: 2, setting
 let S;
 try { S = JSON.parse(localStorage.getItem(LS)); } catch (e) { canStore = false; }
 if (!S || !S.profiles) S = defaults();
+// timing review (Settings › Audio timing): on/off, and the starts set by ear, by "<work>:<audio source>" → {item id: [track, seconds]}
+if (!S.timing) S.timing = {on: false, fix: {}, sent: {}};
+if (!S.timing.sent) S.timing.sent = {};
 function migrate(){
   if ((S.v || 1) < 2) migrate2();
   if (S.v < 3){ // v2 → v3: a reader's own word meanings are filed by language (“awa:राम”); earlier ones were all Awadhi
@@ -207,7 +210,8 @@ function spanLabel(a, b){
 function rangeDesc(a, b){ const ka = KNAME(IT[a].p), kb = KNAME(IT[b].p); if (ka === kb) return esc(ka + ': ' + spanLabel(a, b)); let h = '', p = IT[a].p; while (p <= IT[b].p){ const x = Math.max(a, PARTS[p].a), y = Math.min(b, PARTS[p].b); h += (h ? '<br>' : '') + esc(KNAME(p) + ': ' + spanLabel(x, y)); p++; } return h; }
 
 /* ---------------- sources: meanings and audio ---------------- */
-function srcChoice(kind){ const list = (W.sources || {})[kind] || []; const sel = ((S.src[W.id] || {})[kind]); if (sel === 'off') return null; return (list.find(s => s.id === sel) || list[0] || null); }
+function srcList(kind){ return ((W.sources || {})[kind] || []).filter(s => !s.draft || S.timing.on); }   // a draft recording is heard only while reviewing timings
+function srcChoice(kind){ const list = srcList(kind); const sel = ((S.src[W.id] || {})[kind]); if (sel === 'off') return null; return (list.find(s => s.id === sel) || list[0] || null); }
 async function loadSources(){
   for (const kind of ['hi', 'en', 'au']){ const c = srcChoice(kind); SRC[kind] = null; if (c){ try { SRC[kind] = Object.assign({meta: c}, await getJSON(W.path + '/' + c.file)); } catch (e) {} } }
   // the other meaning sources of a kind fill in verses the chosen one doesn't cover (e.g. a stotra appended to a kāṇḍa)
@@ -242,7 +246,7 @@ function verseHTML(i){
   const it = IT[i], id = it.id, me = ME(), vv = verseOf(i);
   const bm = SHOWN().some(p => p.bm[KEY(id)]);
   const sh = VSHORT[it.y];
-  let h = '<div class="verse" id="v' + i + '" data-i="' + i + '"><div class="vtext' + (VEDIC.test(vv.v.join('')) ? ' vedic' : '') + '">' + vv.v.map((l, y) => {
+  let h = '<div class="verse' + (toCheck(i) ? ' tocheck' : '') + '" id="v' + i + '" data-i="' + i + '"><div class="vtext' + (VEDIC.test(vv.v.join('')) ? ' vedic' : '') + '">' + vv.v.map((l, y) => {
     const last = y === vv.v.length - 1;
     let ln = last && it.y === 'cau' && it.n && /।।\s*$/.test(l) ? l.replace(/\s*।।\s*$/, ' ।।' + String(it.n).replace(/\d/g, d => DIG[d]) + '।।') : l;
     if (LANG() === 'en') ln = ln.replace(/[०-९]/g, d => DIG.indexOf(d)).replace(/[੦-੯]/g, d => d.charCodeAt(0) - 0x0A66);
@@ -415,6 +419,23 @@ function noteSheet(i, k){
 function itemMenu(i){
   const id = IT[i].id, edited = verseOf(i).edited || ['hi', 'en'].some(k => { const m = mean(k, i); return m && m.edited; });
   openSheet('<p class="small muted">' + esc(itemLabel(i)) + '</p><div class="menu">' + (hasAu(i) ? '<button data-x="play"><svg><use href="#i-play"/></svg>' + T('यहाँसे सुनें', 'Listen from here') + '</button>' : '') + '<button data-x="copy"><svg><use href="#i-copy"/></svg>' + T('मूल पाठ और अर्थ कॉपी करें', 'Copy verse and meaning') + '</button><button data-x="note"><svg><use href="#i-note"/></svg>' + T('टिप्पणी लिखें', 'Write a note') + '</button><button data-x="edit"><svg><use href="#i-edit"/></svg>' + T('पाठ या अर्थमें सुधार करें', 'Correct the text or meaning') + '</button>' + (edited ? '<button data-x="revert"><svg><use href="#i-edit"/></svg>' + T('मेरा सुधार हटाएँ (पुस्तकका पाठ लौटाएँ)', 'Remove my correction (restore book text)') + '</button>' : '') + '</div>');
+  if (S.timing.on && hasAu(i)){   // timing review: this verse's start, nudge it, hear it, undo
+    const mine = !!myStarts()[id];
+    const row = (k, label) => '<div class="small muted" style="margin-top:8px">' + label + '</div><div class="tctl"><button class="btn ghost small" data-t="' + k + ':-0.5">−0.5 s</button><b id="tS' + k + '">—</b><button class="btn ghost small" data-t="' + k + ':0.5">+0.5 s</button>' + (k === 2 ? '<button class="btn ghost small" data-t="2:none">' + T('अगले पद तक', 'Until next') + '</button>' : '') + '</div>';
+    $('#sheetBody').insertAdjacentHTML('beforeend', '<div class="tbox"><div class="small muted"><b>' + T('ऑडियोका समय', 'Audio timing') + '</b>' + (mine ? T(' · आपका सेट किया हुआ', ' · set by you') : '') + '</div>' + row(1, T('शुरुआत', 'Start')) + row(2, T('अंत (खाली = अगला पद शुरू होनेतक)', 'End (empty = until the next verse starts)')) + '<div class="tctl" style="margin-top:10px"><button class="btn small" data-t="play">▶ ' + T('यही पद सुनें', 'Play this verse') + '</button>' + (mine ? '<button class="btn ghost small" data-t="undo">' + T('पहले जैसा', 'Undo') + '</button>' : '') + '</div></div>');
+    const show = () => { const x = SRC.au.at[id]; $('#tS1').textContent = fmtT(x[1]); $('#tS2').textContent = x[2] != null ? fmtT(x[2]) : '—'; };
+    show();
+    $$('#sheetBody [data-t]').forEach(b => b.onclick = () => {
+      const t = b.dataset.t;
+      if (t === 'play'){ closeSheet(); playFrom(i, i); return; }
+      if (t === 'undo'){ clearStart(i); closeSheet(); toast(T('पहले जैसा', 'Restored')); return; }
+      const [k, d] = t.split(':'), x = SRC.au.at[id];
+      if (d === 'none') setTime(i, 2, null);
+      else if (k === '1') setTime(i, 1, Math.max(0, x[1] + +d));
+      else { const base = x[2] != null ? x[2] : (() => { const a = AUT[x[0]], n = a.findIndex(y => y[0] === i); return n >= 0 && n + 1 < a.length ? a[n + 1][1] : x[1] + 5; })(); setTime(i, 2, Math.max(x[1] + 0.5, base + +d)); }
+      show();
+    });
+  }
   $$('#sheetBody [data-x]').forEach(b => b.onclick = () => {
     const x = b.dataset.x; closeSheet();
     if (x === 'play') playFrom(i, null);
@@ -438,7 +459,20 @@ function editSheet(i){
 /* ---------------- audio from YouTube: hands-free recitation ---------------- */
 let AUT = [], ytVid = '', ytOK = false, ytInfo = {t: 0, st: -1, d: 0}, ytWait = null;
 let PL = {on: false, t: -1, end: null, cur: -1, hold: 0};
-function buildAudio(){ AUT = []; const A = SRC.au; if (!A) return; A.tracks.forEach(t => { t.fi = ID[t.first]; t.li = ID[t.last]; }); AUT = A.tracks.map(() => []); for (const id in A.at){ const i = ID[id]; if (i == null) continue; const [t, s] = A.at[id]; AUT[t].push([i, s]); } AUT.forEach(a => a.sort((x, y) => x[1] - y[1])); }
+function tkey(){ return W.id + ':' + SRC.au.meta.id; }
+function toCheck(i){ return !!(S.timing.on && SRC.au && SRC.au.checkSet && SRC.au.checkSet.has(IT[i].id) && !myStarts()[IT[i].id]); }   // a start that is only estimated: to be checked by ear
+function myStarts(){ return (SRC.au && S.timing.fix[tkey()]) || {}; }
+function buildAudio(){
+  AUT = []; const A = SRC.au; if (!A) return;
+  if (!A.at0) A.at0 = A.at;
+  if (!A.checkSet) A.checkSet = new Set(A.check || []);                       // the published starts; A.at = those plus the starts set by ear on this phone
+  A.at = Object.assign({}, A.at0, myStarts());
+  A.tracks.forEach(t => { t.fi = ID[t.first]; t.li = ID[t.last]; }); AUT = A.tracks.map(() => []);
+  for (const id in A.at){ const i = ID[id]; if (i == null) continue; const [t, s, e] = A.at[id]; AUT[t].push([i, s, e == null ? null : e]); }
+  // keep the order of the text: a start set by ear may pass the old start of the next verses; those then follow just after it
+  const mine = myStarts();
+  AUT.forEach(a => { a.sort((x, y) => x[0] - y[0]); for (let k = 1; k < a.length; k++) if (a[k][1] <= a[k - 1][1] && !mine[IT[a[k][0]].id]) a[k] = [a[k][0], a[k - 1][1] + 0.3, a[k][2]]; a.sort((x, y) => x[1] - y[1]); });
+}
 function hasAu(i){ return !!(SRC.au && SRC.au.at[IT[i].id]); }
 function firstAu(a, b){ for (let i = a; i <= b; i++) if (hasAu(i)) return i; return null; }
 /* YouTube embed driven by postMessage (no external script needed) */
@@ -467,7 +501,7 @@ window.addEventListener('message', e => {
   if (!d) return;
   if (d.event === 'onReady' || d.event === 'initialDelivery' || d.event === 'infoDelivery'){ if (!ytOK){ ytOK = true; if (PL.on) $('#pTrack').textContent = playingName(); } }
   const info = d.info || {};
-  if (typeof info.currentTime === 'number') ytInfo.t = info.currentTime;
+  if (typeof info.currentTime === 'number'){ ytInfo.t = info.currentTime; ytInfo.at = performance.now(); }
   if (typeof info.duration === 'number' && info.duration) ytInfo.d = info.duration;
   if (typeof info.playerState === 'number'){ ytInfo.st = info.playerState; syncPlayer(); if (info.playerState === 0) onEnded(); }
   if (d.event === 'onStateChange' && typeof d.info === 'number'){ ytInfo.st = d.info; syncPlayer(); if (d.info === 0) onEnded(); }
@@ -491,12 +525,14 @@ function onEnded(){
   if (nx != null){ if (nx > tr.li + 1) toast(T('आगेके अंशकी रिकॉर्डिंग नहीं है — अगली रिकॉर्डिंगसे जारी', 'No recording for the next part — continuing with the next one')); playFrom(nx, PL.end); return; }
   stopAudio();
 }
+function endOf(i){ const x = SRC.au && SRC.au.at[IT[i].id]; return x && x[2] != null ? x[2] : null; }   // a verse's end, when one is set (otherwise it runs until the next verse starts)
 function curAt(time){ const a = AUT[PL.t]; let lo = 0, hi = a.length - 1, r = a[0][0]; while (lo <= hi){ const m = (lo + hi) >> 1; if (a[m][1] <= time){ r = a[m][0]; lo = m + 1; } else hi = m - 1; } return r; }
 setInterval(() => {
   if (!PL.on || !ytOK) return;
   const time = ytInfo.t; const i = curAt(time);
-  if (PL.end != null && i > PL.end){ stopAudio(); toast(T('पाठ पूर्ण — जय श्रीराम', 'Recitation complete — Jai Shri Ram')); return; }
-  setCur(i); const d = ytInfo.d || SRC.au.tracks[PL.t].dur; $('#pProg').style.width = (100 * time / d) + '%';
+  const e = endOf(i);
+  if (PL.end != null && (i > PL.end || (i === PL.end && e != null && time >= e))){ stopAudio(); toast(T('पाठ पूर्ण — जय श्रीराम', 'Recitation complete — Jai Shri Ram')); return; }
+  setCur(i);   // a verse's end matters only where playing stops (one verse, or the last verse of a reading): never skipped, never unlit const d = ytInfo.d || SRC.au.tracks[PL.t].dur; $('#pProg').style.width = (100 * time / d) + '%';
 }, 300);
 /* place the verse being recited in the space between the top bar and the player:
    centred if it fits, otherwise with its first line just below the top bar (never hidden under it) */
@@ -523,6 +559,26 @@ function syncPlayer(){ $('#pPlay').innerHTML = '<svg><use href="#i-' + (playing(
 $('#pPlay').onclick = () => { if (playing()) ytPost('pauseVideo'); else ytPost('playVideo'); setTimeout(syncPlayer, 400); };
 $('#pClose').onclick = stopAudio;
 function stepVerse(d){ const a = AUT[PL.t]; const k = a.findIndex(x => x[0] === PL.cur); const n = k + d; if (k >= 0 && n >= 0 && n < a.length){ ytPost('seekTo', [a[n][1], true]); ytInfo.t = a[n][1]; PL.hold = 0; } }
+/* timing review: set a verse's start by ear. The player reports its time a few times a second, so the moment of the tap is
+   worked out from the last report; 0.3 s is taken off for the time it takes to hear the word and tap. */
+function nowAt(){ return Math.max(0, ytInfo.t + (playing() && ytInfo.at ? (performance.now() - ytInfo.at) / 1000 : 0) - 0.3); }
+// k = 1: the verse's start; k = 2: its end (null = it runs until the next verse starts)
+function setTime(i, k, sec){
+  const id = IT[i].id, fx = S.timing.fix[tkey()] = S.timing.fix[tkey()] || {}, cur = SRC.au.at[id] || [PL.on ? PL.t : 0, 0, null];
+  const v = [cur[0], cur[1], cur[2] == null ? null : cur[2]]; v[k] = sec == null ? null : Math.round(sec * 10) / 10;
+  if (k === 2 && v[2] != null && v[2] <= v[1]){ toast(T('अंत शुरुआतके बाद होना चाहिये', 'The end must come after the start')); return; }
+  if (k === 1 && v[2] != null && v[2] <= v[1]) v[2] = null;
+  fx[id] = v; save(); buildAudio();
+  if (PL.on){ PL.cur = -1; setCur(curAt(ytInfo.t)); }
+  toast((k === 1 ? T('शुरुआत: ', 'Starts at ') : T('अंत: ', 'Ends at ')) + (sec == null ? '—' : fmtT(sec)));
+}
+function setStart(i, sec){ setTime(i, 1, sec); }
+function clearStart(i){ const fx = S.timing.fix[tkey()] || {}; delete fx[IT[i].id]; if (!Object.keys(fx).length) delete S.timing.fix[tkey()]; save(); buildAudio(); }
+function fmtT(sec){ const m = Math.floor(sec / 60), s = sec - m * 60; return m + ':' + (s < 10 ? '0' : '') + s.toFixed(1); }
+$('#pThis').onclick = () => { if (PL.cur >= 0) setStart(PL.cur, nowAt()); };
+$('#pEnd').onclick = () => { if (PL.cur >= 0) setTime(PL.cur, 2, nowAt()); };
+$('#pNextNow').onclick = () => { const nx = PL.cur + 1; if (PL.cur >= 0 && nx < IT.length) setStart(nx, nowAt()); };   // the next verse of the text, even one the recording had no time for
+function applyTiming(){ document.body.classList.toggle('timing', !!S.timing.on); }
 $('#pPrev').onclick = () => stepVerse(-1);
 $('#pNext').onclick = () => stepVerse(1);
 $('#pInfo').onclick = () => { if (PL.cur < 0) return; if (!$('#reader').classList.contains('on')) openReader(R.org, PL.cur); PL.hold = 0; const c = PL.cur; PL.cur = -1; setCur(c); };
@@ -665,11 +721,12 @@ function renderBookmarks(){
 /* ---------------- settings ---------------- */
 function renderSettings(){
   const st = S.settings, srcs = (W && W.sources) || {}, cur = S.src[W ? W.id : ''] || {};
-  const pick = (kind, label, off) => { const list = srcs[kind] || []; if (!list.length) return ''; const sel = cur[kind] || list[0].id; return '<div class="field"><label>' + label + '</label><select data-src="' + kind + '">' + list.map(s => '<option value="' + s.id + '"' + (sel === s.id ? ' selected' : '') + '>' + esc(TT(s.title)) + '</option>').join('') + (off ? '<option value="off"' + (sel === 'off' ? ' selected' : '') + '>' + T('बंद', 'Off') + '</option>' : '') + '</select></div>'; };
+  const pick = (kind, label, off) => { const list = W ? srcList(kind) : []; if (!list.length) return ''; const sel = cur[kind] || list[0].id; return '<div class="field"><label>' + label + '</label><select data-src="' + kind + '">' + list.map(s => '<option value="' + s.id + '"' + (sel === s.id ? ' selected' : '') + '>' + esc(TT(s.title)) + (s.draft ? T(' (जाँच बाकी)', ' (to be checked)') : '') + '</option>').join('') + (off ? '<option value="off"' + (sel === 'off' ? ' selected' : '') + '>' + T('बंद', 'Off') + '</option>' : '') + '</select></div>'; };
   let h = '<h2>' + T('पढ़ते समय दिखाएँ', 'Show while reading') + '</h2><p class="small muted">' + T('ये वही हैं जो पढ़नेके पन्नेपर ऊपर “हिं · En · शब्द” और ⋮ मेनूमें हैं। ऐप उसी भाषामें दिखता है: अंग्रेज़ी अर्थ चालू हो तो English, नहीं तो हिंदी।', 'These are the same as “हिं · En · शब्द” at the top of the reading page and the switches in its ⋮ menu. The app follows your choice of language: English if English meaning is on, otherwise Hindi.') + '</p>' +
     sw('sh', LB.h() + ' (हिं)', '', st.layers.h) + sw('se', LB.e() + ' (En)', '', st.layers.e) + sw('sw', LB.w() + ' (शब्द)', T('हर शब्दका हिंदी और English अर्थ', 'Hindi and English meaning of each word'), st.layers.w) +
     sw('str', LB.tr(), LB.trSub(), st.tr) + sw('src', LB.rc(), LB.rcSub(), st.recite) +
     (W ? '<h2>' + LB.src() + ' · ' + esc(TT(W.title)) + '</h2><p class="small muted">' + T('मूल पाठ वही रहता है; अर्थ और ऑडियो किस स्रोतसे आएँ, यहाँ चुनें। शब्दार्थ सब स्रोतोंके लिये एक ही है।', 'The verses stay the same; choose where the meanings and the audio come from. Word meanings are the same for every source.') + '</p>' + pick('hi', LB.h()) + pick('en', LB.e()) + pick('au', LB.au(), true) : '') +
+    timingHTML() +
     '<h2>' + T('पढ़नेकी सुविधा', 'Reading comfort') + '</h2>' + sw('swk', LB.wake(), '', st.wake) +
     '<div class="field"><label>' + LB.size() + '</label><input type="range" id="ssz" min="16" max="34" value="' + st.size + '" style="border:0;padding:0"></div>' +
     '<div class="field"><label>' + LB.theme() + '</label><select id="sth"><option value="light">' + T('दिन (हल्का)', 'Light') + '</option><option value="dark">' + T('रात (गहरा)', 'Dark') + '</option><option value="auto">' + T('फ़ोनके अनुसार', 'Same as phone') + '</option></select></div>' +
@@ -680,6 +737,7 @@ function renderSettings(){
     '<div class="acts" style="margin-top:12px"><button class="btn ghost small" id="addp">' + T('+ नया व्यक्ति', '+ Add reader') + '</button></div><div style="height:50px"></div>';
   $('#setBody').innerHTML = h; $('#sth').value = st.theme;
   const bind = (id, f) => $('#' + id).onchange = e => { f(e.target.checked); save(); };
+  bindTiming();
   bind('sh', v => st.layers.h = v); bind('se', v => { st.layers.e = v; applyLang(); renderSettings(); }); bind('sw', v => st.layers.w = v); bind('str', v => st.tr = v); bind('src', v => { if (!!st.recite !== v) toggleRecite(); }); bind('swk', v => st.wake = v);
   $$('[data-src]').forEach(s => s.onchange = async () => { const c = S.src[W.id] = S.src[W.id] || {}; c[s.dataset.src] = s.value; save(); if (s.dataset.src === 'au') stopAudio(); await loadSources(); IDX = null; toast(T('स्रोत बदला', 'Source changed')); });
   $('#ssz').oninput = e => { st.size = +e.target.value; applyTheme(); save(); };
@@ -690,6 +748,46 @@ function renderSettings(){
   $$('[data-ren]').forEach(b => b.onclick = () => { const p = S.profiles.find(x => x.id === b.dataset.ren); askText(T('नाम बदलें', 'Rename'), p.name, n => { p.name = n; save(); renderSettings(); }); });
   $$('[data-del]').forEach(b => b.onclick = () => { const p = S.profiles.find(x => x.id === b.dataset.del); askYes('“' + esc(p.name) + T('” की सारी टिप्पणियाँ, बुकमार्क और प्रगति हट जाएगी।', '”: all notes, bookmarks and progress will be deleted.'), T('हाँ, हटाएँ', 'Yes, delete'), () => { S.profiles = S.profiles.filter(x => x !== p); S.show = S.show.filter(x => x !== p.id); if (S.active === p.id) S.active = S.profiles[0].id; save(); renderSettings(); }); });
   $('#addp').onclick = () => askText(T('नये व्यक्तिका नाम', 'New reader’s name'), '', n => { const p = newProfile(n); S.profiles.push(p); S.show.push(p.id); S.active = p.id; save(); renderSettings(); });
+}
+/* timing review: Settings › Audio timing. While it is on, a ⏱ row appears in the player and each verse's ⋮ menu shows its start;
+   recordings still being checked (drafts) can be played. Starts set by ear go to the library through a GitHub issue, which
+   the workflow .github/workflows/timing.yml applies (tools/audio/apply_owner_timing.py). */
+function pendingStarts(){ if (!SRC.au) return {}; const fx = myStarts(), sent = S.timing.sent[tkey()] || {}, out = {}; for (const id in fx) if (JSON.stringify(sent[id]) !== JSON.stringify(fx[id])) out[id] = fx[id]; return out; }
+function timingHTML(){
+  if (!W) return '';
+  let h = '<h2>' + T('ऑडियोका समय', 'Audio timing') + '</h2><p class="small muted">' + T('रिकॉर्डिंग सुनते हुए हर पदकी शुरुआत ठीक करें। चालू होनेपर प्लेयरमें तीन बटन आते हैं: “शुरू” (जो पद चमक रहा है वह अभी शुरू हुआ), “अंत” (वह अभी समाप्त हुआ — आगे टेक, कीर्तन या संगीत है) और “अगला” (अगला पद अभी शुरू हुआ)। हर पदके ⋮ मेनूमें उसकी शुरुआत और अंत ±0.5 सेकंड बदल सकते हैं और केवल वही पद सुन सकते हैं। जाँच बाकी वाली रिकॉर्डिंग भी यहाँ सुनी जा सकती है।', 'Correct where each verse starts while you listen. When this is on, the player shows ⏱ buttons: “Start” (the highlighted verse starts now), “End” (it ends now: a refrain or music follows) and “Next” (the next verse starts now). Each verse’s ⋮ menu lets you move its start and end by ±0.5 s and play just that verse. Recordings still to be checked can be played here too.') + '</p>' + sw('stm', T('ऑडियोका समय ठीक करें', 'Adjust audio timing'), '', S.timing.on);
+  if (S.timing.on && SRC.au){
+    const n = Object.keys(myStarts()).length, p = Object.keys(pendingStarts()).length;
+    h += '<p class="small">' + esc(TT(SRC.au.meta.title)) + ': ' + DEV(n) + T(' पद आपने ठीक किये', ' verses set by you') + (p ? ' · ' + DEV(p) + T(' भेजने बाकी', ' not sent yet') : '') + '</p>' +
+      (SRC.au.meta.draft ? sw('stp', T('यह रिकॉर्डिंग जाँच ली — सबके लिये चालू करें', 'This recording is checked: publish it for everyone'), T('भेजनेके साथ जाएगा', 'Goes with the next send'), !!(S.timing.publish || {})[tkey()]) : '') +
+      checkList() +
+      '<div class="acts"><button class="btn" id="tSend"' + (p || (S.timing.publish || {})[tkey()] ? '' : ' disabled') + '>' + T('लाइब्रेरीमें भेजें (GitHub)', 'Send to the library (GitHub)') + '</button>' + (n ? '<button class="btn ghost" id="tClear">' + T('मेरे समय हटाएँ', 'Clear my starts') + '</button>' : '') + '</div>';
+  }
+  return h;
+}
+function checkList(){
+  const ids = [...SRC.au.checkSet].filter(id => ID[id] != null && !myStarts()[id]).sort((a, b) => ID[a] - ID[b]); if (!ids.length) return '<p class="small muted">' + T('जाँचने लायक कोई पद नहीं बचा।', 'Nothing left to check.') + '</p>';
+  return '<details class="tcheck"><summary>' + T('जाँचने हैं: ', 'To check: ') + DEV(ids.length) + T(' पद — इनकी शुरुआत अनुमानसे रखी गयी है', ' verses — their starts are estimated') + '</summary><div class="tlist">' + ids.slice(0, 400).map(id => '<button data-go-i="' + ID[id] + '">' + esc(itemLabel(ID[id])) + ' <span class="muted">' + fmtT(SRC.au.at[id][1]) + '</span></button>').join('') + '</div></details>';
+}
+function bindTiming(){
+  $$('[data-go-i]').forEach(b => b.onclick = () => openReader('k', +b.dataset.goI, true));
+  if (!$('#stm')) return;
+  $('#stm').onchange = async e => { S.timing.on = e.target.checked; save(); applyTiming(); stopAudio(); await loadSources(); renderSettings(); };
+  if ($('#stp')) $('#stp').onchange = e => { S.timing.publish = S.timing.publish || {}; if (e.target.checked) S.timing.publish[tkey()] = true; else delete S.timing.publish[tkey()]; save(); renderSettings(); };
+  if ($('#tClear')) $('#tClear').onclick = () => askYes(T('इस रिकॉर्डिंगके आपके सेट किये सारे समय हट जाएँगे।', 'All starts you set for this recording will be removed.'), T('हाँ, हटाएँ', 'Yes, remove'), () => { delete S.timing.fix[tkey()]; delete S.timing.sent[tkey()]; save(); buildAudio(); renderSettings(); });
+  if ($('#tSend')) $('#tSend').onclick = sendStarts;
+}
+function sendStarts(){
+  const pend = pendingStarts(), ids = Object.keys(pend).sort((a, b) => ID[a] - ID[b]), part = ids.slice(0, 150), starts = {};
+  part.forEach(id => { const [t, sec, end] = pend[id], yt = SRC.au.tracks[t].yt; (starts[yt] = starts[yt] || {})[id] = end != null ? [sec, end] : sec; });
+  const pub = !!(S.timing.publish || {})[tkey()], doc = {path: W.path, source: SRC.au.meta.id, starts}; if (pub) doc.publish = true;
+  const title = 'Timing: ' + W.path + ' / ' + SRC.au.meta.id;
+  const body = T('ऐपसे भेजे गये ऑडियो-समय (कानसे जाँचे हुए)। इसे वैसे ही सबमिट करें; वर्कफ़्लो इन्हें लाइब्रेरीमें जोड़ देगा।', 'Audio starts set by ear in the app. Submit as it is; a workflow adds them to the library.') + '\n\n```json\n' + JSON.stringify(doc) + '\n```\n';
+  const url = 'https://github.com/goyaldarwin/scriptures/issues/new?title=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(body);
+  window.open(url, '_blank', 'noopener');
+  const sent = S.timing.sent[tkey()] = S.timing.sent[tkey()] || {}; part.forEach(id => sent[id] = pend[id]); if (pub) delete S.timing.publish[tkey()]; save();
+  toast(ids.length > part.length ? T('पहले १५० भेजे — बाकी अगली बार', 'First 150 sent — send again for the rest') : T('GitHub पर “Submit” दबाएँ', 'Tap “Submit” on GitHub'));
+  setTimeout(renderSettings, 400);
 }
 function todayStr(){ const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
 async function exportFile(){
@@ -738,7 +836,7 @@ $('#vidBody').addEventListener('click', ev => { const w = ev.target.closest('.w'
 /* ---------------- boot ---------------- */
 (async function boot(){
   if (!S.settings.lightDefault){ if (S.settings.theme === 'auto') S.settings.theme = 'light'; S.settings.lightDefault = 1; save(); }
-  applyTheme(); applyLang(); applyRecite(); syncLayers(); tickTimer();
+  applyTheme(); applyLang(); applyRecite(); syncLayers(); tickTimer(); applyTiming();
   history.replaceState({v: 'library'}, '');
   try { LIB = await getJSON('index'); } catch (e) { $('#loading').textContent = T('डेटा नहीं खुल सका। इंटरनेट जाँचें।', 'Could not load the data. Check the internet connection.'); return; }
   const leafs = []; (function walk(n){ (n || []).forEach(c => c.work ? leafs.push(c.work) : walk(c.children)); })(LIB);

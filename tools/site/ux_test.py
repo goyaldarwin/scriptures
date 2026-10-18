@@ -97,6 +97,19 @@ async def main():
                 first = await ev("(document.querySelector('#orgList .it') || {}).dataset ? document.querySelector('#orgList .it').dataset.page || 'day' : ''")
                 check(f'{tag}: plan {pid} lists its before/after pages in place', got == want_pg and (first == (want_pg[0] if (await ev(f"(PLAN[{json.dumps(pid)}].before || []).length")) else 'day')), f'{got} first={first}')
             if await ev("PLANS.length"): await ev("WS().org = 'k'; renderHome()"); await pg.wait_for_timeout(200)
+            # timing review: drafts only with Settings › Audio timing on; a start and an end set by ear take effect at once
+            drafts = await ev("(W.sources.au || []).filter(s => s.draft).map(s => s.id)")
+            if drafts:
+                check(f'{tag}: a draft recording is not played to readers', (await ev("SRC.au ? SRC.au.meta.id : null")) not in drafts)
+            await ev("S.timing.on = true; applyTiming()"); await ev("loadSources()"); await pg.wait_for_timeout(600)
+            if await ev("!!SRC.au"):
+                j = await ev("AUT[0][1] ? AUT[0][1][0] : AUT[0][0][0]")
+                await ev(f"setTime({j}, 1, AUT[0].find(x => x[0] === {j})[1] + 0.5); setTime({j}, 2, AUT[0].find(x => x[0] === {j})[1] + 3)")
+                ent = await ev(f"AUT[0].find(x => x[0] === {j})")
+                check(f'{tag}: a start and an end set by ear apply at once', ent[2] is not None and abs(ent[2] - ent[1] - 3) < 0.05, ent)
+                check(f'{tag}: the timing buttons show in the player', await ev("getComputedStyle(document.querySelector('.ptime')).display") == 'flex')
+                await ev("delete S.timing.fix[tkey()]; save()")
+            await ev("S.timing.on = false; applyTiming()"); await ev("loadSources()"); await pg.wait_for_timeout(400)
             # continue and play sit on one line
             await ev("WS().last = {org: 'k', i: 0}; renderHome()"); await pg.wait_for_timeout(200)
             tops = await ev("[...document.querySelectorAll('.heroacts .btn:not([hidden])')].map(b => Math.round(b.getBoundingClientRect().top))")
@@ -127,7 +140,7 @@ async def main():
             before = await ev("document.querySelectorAll('#reader .pg').length")
             for _ in range(6): await ev("window.scrollTo(0, document.body.scrollHeight)"); await pg.wait_for_timeout(400)
             after = await ev("document.querySelectorAll('#reader .pg').length")
-            more = await ev("R.pt < PAGES.length - 1 || R.b < IT.length - 1")
+            more = await ev("(() => { const v = [...document.querySelectorAll('#reader .verse')]; return v.length && +v[v.length - 1].dataset.i < R.b; })()")   # verses left in this part (the reader shows one part at a time)
             check(f'{tag}: scrolling down keeps loading the text', after > before or not more, f'{before}→{after}')
             # section picker
             await ev("sectionSheet()"); await pg.wait_for_timeout(400); await shot(f'{tag}-sections')

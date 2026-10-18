@@ -53,7 +53,9 @@ def locate(S):
             r,_=c.most_common(1)[0]; votes[(r-n*1)//50]+=1
     b,_=votes.most_common(1)[0]
     return max(0,b*50-200)
-def align(S, r0, span=None):
+def align(S, r0, span=None, split=False):
+    # split=True (source.json "split": true) also lets one long half-line span two or three short segments; off by default so
+    # recordings already timed keep exactly the alignment they were published with
     span=span or int(len(S)*1.6)+400
     R=REF[r0:r0+span]; n,m=len(S),len(R)
     SK=[key(s['t']) for s in S]
@@ -82,16 +84,16 @@ def align(S, r0, span=None):
                 cat=R[j-4][2]+R[j-3][2]+R[j-2][2]+R[j-1][2]; c=dp[i-1,j-4]+(1-sim(sk,cat))+0.15+over(sk,cat)
                 if c<best: best=c; b=6
             # one long half-line heard across two or three short segments (Vedic chant: the recogniser cuts mid-line)
-            if j>=1 and i>=2:
+            if split and j>=1 and i>=2:
                 cs=SK[i-2]+sk; c=dp[i-2,j-1]+(1-sim(cs,R[j-1][2]))+0.05+over(R[j-1][2],cs)
                 if c<best: best=c; b=7
-            if j>=1 and i>=3:
+            if split and j>=1 and i>=3:
                 cs=SK[i-3]+SK[i-2]+sk; c=dp[i-3,j-1]+(1-sim(cs,R[j-1][2]))+0.1+over(R[j-1][2],cs)
                 if c<best: best=c; b=8
             dp[i,j]=best; bt[i,j]=b
     j=int(dp[n].argmin()); i=n; pairs=[]
     while i>0:
-        b=bt[i,j]
+        b=int(bt[i,j])   # a plain int: numpy int8 arithmetic would overflow on long recordings
         if b==1: i-=1
         elif b==2: j-=1
         elif b in (7,8):
