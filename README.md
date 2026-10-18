@@ -14,7 +14,7 @@ A personal, ad-free library for studying scriptures. Each work has the same read
 index.html, sw.js, manifest.json    the website (GitHub Pages serves the repository root)   [generated]
 app/                                 website code, styles, fonts                              [generated]
 library/                             the scriptures, as data
-  index.json                           the shelf: authors / collections / works, any depth
+  index.json                           the shelf: tradition / genre / group… / work (docs/LIBRARY.md §1)
   glossary/                            word meanings, one dictionary per language (sa, awa, …) + languages.json
   hindu/granth/tulsidas/ramcharitmanas/
     work.json                          verses + numbers, kāṇḍas, topics, plans, pārāyaṇa vidhi
