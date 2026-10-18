@@ -34,6 +34,10 @@ tools/                               everything that makes the data and the webs
   site/  audio/  fonts/  works/ramcharitmanas/  works/ramraksha/  works/shirdi-sai-dhoop-aarti/
 ```
 
+## Raw sources
+
+Books, printouts, screenshots and recordings live in the private repository `goyaldarwin/scriptures-data`, at the same path as each work (see `docs/START-HERE.md`).
+
 ## Sources and permissions
 
 The verse text of the Rāmacaritamānasa is in the public domain. The Hindi bhāvārtha (Hanumānprasād Poddār) and the English translation are © Gita Press, Gorakhpur, and are included here for personal study while permission from Gita Press is requested. Audio plays from the published YouTube recordings of Pt. Kamlesh Upadhyay "Haripuri"; no audio is stored in this repository.

@@ -1,23 +1,24 @@
 """Transcribe the recordings of an audio source with Whisper (speech → text with times).
 
-Usage:  AUDIO_DIR=<folder with the audio files> WHISPER_MODEL=<model folder> \
+Usage:  DATA_DIR=<clone of goyaldarwin/scriptures-data> WHISPER_MODEL=<model folder> \
+        (or AUDIO_DIR=<folder with the original files named as in recordings.json "file">)
         python3 tools/audio/transcribe.py tools/works/<work>/audio/<source-id> [WORKER WORKERS]
 Run several workers in parallel by giving each its number: `… 0 2` and `… 1 2`. Each recording is claimed
 with transcripts/<id>.lock, so workers never transcribe the same recording; delete a lock left by a stopped worker.
-Recordings come from recordings.json ("file" names inside AUDIO_DIR). Output: transcripts/<video id>.jsonl,
+Recordings come from recordings.json: "data" is the file in scriptures-data (used with DATA_DIR), "file" the original download name (used with AUDIO_DIR). Output: transcripts/<video id>.jsonl,
 plus .done when finished. A stopped run resumes from its last 10-minute chunk.
 Model: Whisper small in CTranslate2 int8 format (e.g. Systran/faster-whisper-small).
 """
 import sys,json,os,subprocess,time,numpy as np
 from faster_whisper import WhisperModel
 SRC=os.path.abspath(sys.argv[1]); TR=os.path.join(SRC,'transcripts'); os.makedirs(TR,exist_ok=True)
-AUD=os.environ['AUDIO_DIR']; LANG=json.load(open(os.path.join(SRC,'source.json'))).get('lang','hi')
+DATA=os.environ.get('DATA_DIR'); AUD=os.environ.get('AUDIO_DIR',''); LANG=json.load(open(os.path.join(SRC,'source.json'))).get('lang','hi')
 W,K=(int(sys.argv[2]),int(sys.argv[3])) if len(sys.argv)>3 else (0,1)
 m=WhisperModel(os.environ['WHISPER_MODEL'],device='cpu',compute_type='int8',cpu_threads=1)
 REC=sorted(json.load(open(os.path.join(SRC,'recordings.json'))),key=lambda r:r['order'])
 todo=[r for r in REC if not os.path.exists(os.path.join(TR,r['yt']+'.jsonl.done'))]
 todo=todo[W::K]+[r for k,r in enumerate(todo) if k%K!=W]   # own share first, then help with the rest
-files=[(r['yt'],os.path.join(AUD,r['file'])) for r in todo]
+files=[(r['yt'],os.path.join(DATA,r['data']) if DATA and r.get('data') else os.path.join(AUD,r['file'])) for r in todo]
 def claim(vid):
     # one worker per recording: a lock file created atomically; a stale lock (dead worker) can be deleted by hand
     try: os.close(os.open(os.path.join(TR,vid+'.lock'),os.O_CREAT|os.O_EXCL|os.O_WRONLY)); return True

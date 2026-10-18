@@ -44,6 +44,8 @@ The work node itself:
 - `work` is the work's **permanent id**. Readers' bookmarks, notes, progress and choices are stored under it, so it never changes, even if the work moves on the shelf. It must be unique across the library. For a new work, use the same value as its shelf `id` unless that is already taken. The tools folder is `tools/works/<work id>/`.
 - Moving a work to another shelf is safe: change `path`, move the folder, and nothing readers saved is lost.
 
+**The private sources** (books, printouts, recordings) of a work are in `goyaldarwin/scriptures-data` at the same `<path>`, under `<kind>/<source-id>/`, with metadata per file.
+
 ## 2. A work: `library/<path>/work.json`
 
 | Field | Meaning |

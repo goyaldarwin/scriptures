@@ -6,6 +6,14 @@ This repository holds everything about the project: the website, the data, every
 
 > Clone github.com/goyaldarwin/scriptures and read `docs/START-HERE.md`, `docs/PLAYBOOK.md`, `docs/HOW-TO.md` and `docs/LIBRARY.md` before doing anything. Then: **[the task]**. Follow the playbook. Gita Press books are the source of truth. Test at phone size (390×844) with screenshots. Commit and push when done, and tell me in plain words what changed.
 
+## Two repositories, one hierarchy
+| Repository | Visibility | What it holds |
+|---|---|---|
+| `goyaldarwin/scriptures` (this one) | public | the website, the library data made from the sources (text, meanings, word meanings, verse timings), every script and intermediate file, and the docs |
+| `goyaldarwin/scriptures-data` | **private, always** | the raw sources that aren't ours to publish: books, printouts, screenshots, recordings, each with a `<file>.meta.json` (see its README) |
+
+Both use the same address for a work, the shelf path the reader sees: `hindu/granth/tulsidas/ramcharitmanas` is `library/hindu/granth/tulsidas/ramcharitmanas/` here and `hindu/granth/tulsidas/ramcharitmanas/` there. Under a work, the private repo groups files as `<kind>/<source-id>/<file>` (`books/gitapress/hindi.pdf`, `audio/kamlesh-upadhyay/…`). The source id is the same one used here for the meaning or audio source made from it. Never copy anything from the private repo into this one except what the build produces from it.
+
 ## Working rules for every session
 - **Never push to `main` directly.** `main` is the live website, so every push to it is published.
   - Create a branch (`work/<short-name>`, e.g. `work/sai-aarti`), commit there, push the branch, and open a pull request.
