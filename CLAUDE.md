@@ -2,7 +2,7 @@
 
 Live site: https://goyaldarwin.github.io/scriptures/ (published from `main`). Owner: Darwin Goyal (`goyaldarwin`).
 
-**Read first:** `docs/START-HERE.md` (repos, rules, status), `docs/PLAYBOOK.md` (every preference and lesson), `docs/HOW-TO.md` (procedures), `docs/LIBRARY.md` (data format).
+**Read first:** `docs/START-HERE.md` (repos, rules, status), `docs/PLAYBOOK.md` (every preference and lesson), `docs/HOW-TO.md` (procedures), `docs/LIBRARY.md` (data format), `docs/APPS.md` (the store apps).
 
 Non-negotiables:
 - Accuracy above all, then unambiguity, clarity, consistency, structure. Never write a scripture text from memory; texts come from the owner's sources (or web sources the owner allows), with every choice in the work's `reconciliation.md`.
