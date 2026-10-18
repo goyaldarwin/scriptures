@@ -43,7 +43,11 @@ for r in REC:
     if ONLY and v not in ONLY: continue
     cache = os.path.join(TR, v + '.align.json')
     if not os.path.exists(cache):
-        S = A.load(p); r0 = A.locate(S); R, pairs = A.align(S, r0)
+        S = A.load(p)
+        # recordings.json may say where a recording starts ("from": item id); otherwise it is located by matching words,
+        # which can fail on texts whose lines repeat a lot (the Rudram's "namo … namaḥ")
+        r0 = next(k for k, ref in enumerate(A.REF) if ref[0] == ID[r['from']]) if r.get('from') else A.locate(S)
+        R, pairs = A.align(S, r0)
         rows = {}
         for si, rj in pairs: rows.setdefault(si, []).append([IT[R[rj][0]]['id'], len(R[rj][2])])
         json.dump([[S[si]['s'], S[si]['e'], rows[si]] for si in sorted(rows)], open(cache, 'w'), ensure_ascii=False)
