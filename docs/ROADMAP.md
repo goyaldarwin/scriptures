@@ -26,7 +26,7 @@ The owner's priorities, in order: **accuracy**, then unambiguity, clarity, consi
    - every public `recordings.json` → `data` exists.
 2. **Make each audio source's state visible.** Add a table per recording (transcribed / timed / verses covered / hand fixes), generated into `docs/AUDIO-STATUS.md`, so "what's left?" is answered by a file, not by memory.
 3. **Run the whole audio chain with one command.** A single command per source: transcribe in the cloud, wait, sync, time, build, open a pull request.
-4. **Review the dictionaries.** Some shared senses are context-specific (e.g. तिन "blade of grass" vs "their" in the Chālīsā).
+4. **Review the dictionaries** (in progress, 2026-10-18: every entry of sa, mr and awa is being reviewed for meaning, root, grammar and parts; corrections are applied after checking). Some shared senses are context-specific (e.g. तिन "blade of grass" vs "their" in the Chālīsā).
    - List words whose dictionary sense was written for one work but appears in another.
    - Review them per language.
    - Move work-specific senses into that work's `glossary.json`.
