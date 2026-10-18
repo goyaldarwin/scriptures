@@ -31,7 +31,7 @@ for p in work.get('plans', []):
 starts = sorted(starts)
 L = lambda i: max(8, len(''.join(IT[i]['v'])))   # text length, used to spread time over unmatched verses
 
-# fixes.json (optional): {video id: {item id: seconds}} — starts checked by ear or against the transcript,
+# fixes.json (optional): {video id: {item id: seconds}} — when the verse's first word is heard, checked by ear or in the transcript,
 # for lines the speech recogniser missed. Write the evidence beside each fix in fixes.md.
 FP = os.path.join(SRC, 'fixes.json'); FIX = json.load(open(FP)) if os.path.exists(FP) else {}
 tracks, at = [], {}
@@ -50,7 +50,7 @@ for r in REC:
         for iid, n in parts:
             first.setdefault(ID[iid], s0 + (e0 - s0) * acc / tot); acc += n
     items = {i: round(max(0, t - 0.4), 2) for i, t in first.items()}
-    for iid, t in FIX.get(v, {}).items(): items[ID[iid]] = t      # hand-checked starts win (fixes.json)
+    for iid, t in FIX.get(v, {}).items(): items[ID[iid]] = round(max(0, t - 0.4), 2)   # hand-checked starts win (fixes.json), with the same small lead
     items = sorted(items.items())
     clean, last = [], -1                       # drop matches that go backwards in time
     for i, t in items:
