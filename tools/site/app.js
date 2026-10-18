@@ -574,9 +574,17 @@ async function openWork(id, noShow){
 
 /* ---------------- work home ---------------- */
 function homeOrg(){ return WS().org || 'k'; }
+// the work's title must fit the screen on one word per line even with the phone's text zoom: shrink it until it does
+function fitTitle() {
+  const h = $('#hTitle'); h.style.fontSize = ''; h.style.overflowWrap = 'normal';
+  let fs = parseFloat(getComputedStyle(h).fontSize);
+  while (h.scrollWidth > h.clientWidth + 1 && fs > 18) { fs -= 2; h.style.fontSize = fs + 'px'; }
+  h.style.overflowWrap = '';
+}
+addEventListener('resize', () => { if ($('#hTitle') && $('#hTitle').offsetParent) fitTitle(); });
 function renderHome(){
   if (!W) return;
-  $('#hTitle').textContent = TT(W.title); $('#hSub').textContent = TT(W.by) + ' · ' + TT(W.edition);
+  $('#hTitle').textContent = TT(W.title); fitTitle(); $('#hSub').textContent = TT(W.by) + ' · ' + TT(W.edition);
   // ▶ the whole work, start to end, across every part and recording
   const pa = $('#hPlayAll'), fa = firstAu(0, IT.length - 1); pa.hidden = fa == null; pa.onclick = () => playRange('k', 0, IT.length - 1);
   const L = WS().last;

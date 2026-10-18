@@ -288,5 +288,6 @@ Then expect from me, in order:
   - **Library:** a search icon at the top. It searches the shelf (works, authors, shelves, in either script), not the texts.
   - **Work home:** one top row: ‹ Library on the left; Search and ☰ on the right.
   - **Continue:** one short button, "जहाँ छोड़ा था, वहींसे पढ़ें", beside "सम्पूर्ण पाठ सुनें"; it does not say where (the reader shows that). ☰ holds bookmarks and notes, settings, and the pārāyaṇa vidhi where a work has one. There is no grid of tiles.
+  - **Nothing may be wider than the screen**, even with the phone's text zoom: the work title shrinks to fit (fitTitle), the page clips sideways overflow, and the ☰ sheet scrolls with room below its last row for a browser toolbar.
   - **Reader:** where you are is shown only in the bottom bar (range, then kāṇḍa or day · topic). The top bar holds A− / A+ text size (keeping your place), the हिं/En/शब्द layers, and ⋮.
   - A meaning filled in from a work's second source carries no visible label.
