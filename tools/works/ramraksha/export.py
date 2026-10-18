@@ -59,7 +59,7 @@ types = {
     'viniyoga': {'name': {'hi': 'विनियोग', 'en': 'Viniyoga'}, 'short': {'hi': 'विनि॰', 'en': 'Vin.'}},
     'dhyana':   {'name': {'hi': 'ध्यान', 'en': 'Dhyāna'}, 'short': {'hi': 'ध्या॰', 'en': 'Dhy.'}},
     'shloka':   {'name': {'hi': 'श्लोक', 'en': 'Śloka'}, 'short': {'hi': 'श्लो॰', 'en': 'Śl.'}},
-    'iti':      {'name': {'hi': 'पुष्पिका', 'en': 'Colophon'}, 'short': {'hi': 'इति', 'en': 'Iti'}},
+    'iti':      {'name': {'hi': 'समापन (पुष्पिका)', 'en': 'Closing words (iti)'}, 'short': {'hi': 'इति', 'en': 'Iti'}},
 }
 work = {
     'id': 'ramraksha',
