@@ -7,7 +7,7 @@ Shelf: Āratī › Shirdi Sāī Bābā › Dhūpa Āratī (`library/aarti/shirdi
 - `glossary/mr.json`, `sa.json`, `hi.json`: word meanings, filed by the language of the verse the word is in. The exporter adds new words to `library/glossary/<lang>.json`; it never overwrites a word that is already there.
 - `export.py`: run it, then `python3 tools/site/build.py`. It stops if a verse lacks a meaning or a word lacks a meaning in its language (Marathi and Hindi fall back to Sanskrit).
 
-The work has one part (Dhūpa Āratī). Its pages are the sections (āratī, abhaṅga, namana …), and each section is also a topic. Verse types are declared in `work.json` → `types` (dhruvapada, pada, abhaṅga, śloka, mantra, jayaghoṣa).
+The work has one part (Dhūpa Āratī). Its pages are the sections (āratī, abhaṅga, namana … the Guru-prasāda-yācanā-daśaka between the Mahimna stotra and the Puṣpāñjali), and each section is also a topic. Verse types are declared in `work.json` → `types` (dhruvapada, pada, abhaṅga, śloka, mantra, jayaghoṣa).
 
 Item ids look like `aarti.pad3` or `mahimna.shloka9` (section, type, number). They are permanent.
 

@@ -9,6 +9,7 @@ Two printouts the owner supplied (Oct 2026) are the sources. They are web pages,
 - dhoop2 wins.
 - dhoop.pdf wins only where dhoop2 has a clear error: a missing space, a misspelt or wrong word, a word whose sense doesn't fit the verse, or broken Sanskrit grammar.
 - Spelling variants stay as dhoop2 prints them (dropped anusvāra as in दासा / विसावा, रुप, मुगट, अंतरि, लोकापरी, खरा ग्रास).
+- In the Guru-prasāda-yācanā-daśaka (added Oct 2026 at the owner's request) dhoop2's spellings also stay where dhoop.pdf differs only in vowel length or anusvāra: चतूर (dhoop.pdf चतुर), श्वशूर, कवी, जीवजंतु, पंचतत्वे, म्हणूनी, हसो, उल्हासो (dhoop.pdf उल्हसो), चित्ती, कुणाचिही, पदी, उपरि, and साई / साइ as printed in each stanza.
 
 ## Places where dhoop2 was corrected
 
@@ -34,8 +35,14 @@ Two printouts the owner supplied (Oct 2026) are the sources. They are web pages,
 | Aisā yeī bā 5 | परीध्यान; पूर्णा नंद सूखे; हरीगुण | परि ध्यान; पूर्णानंद सुखे; हरिगुण | dhoop.pdf |
 | Mahimna stotra | many misspellings, e.g. भवध्वांत…मर्तांडमिड्य, मुनीर्ध्यानग्म्यम्, भवांभोधीमग्नादिर्तानां, कल्लो संभवंतं, निंबवृक्ष्यस, तस्यधिमुले, अनेकाश्रुतातर्क्यलीला, सतां:विश्रम…, अजनम्माद्यमेकं…, उपसनादैवत…, पाद्युमे भुड्डो | the stotra in correct Sanskrit, agreeing with dhoop.pdf word for word except where dhoop.pdf's own text layer is broken | dhoop2's Sanskrit is unreliable here |
 | Mahimna 11 | कृपातपात्रं | कृपातपत्रं | "umbrella of grace" (the verse goes on to its shade) |
+| Guru-prasāda-yācanā-daśaka 2 | पुसो ।। (end of line 1); मा मजवरी, कधीही | पुसो । ; मा, मजवरी कधीही | `।।` belongs only at the half-stanza; misplaced comma (dhoop.pdf and every other stanza) |
+| Daśaka 3 | वृदही | वृद्धही | "even the old" (dhoop.pdf) |
+| Daśaka 4, 8 | न दतगुरु | न दत्तगुरु | missing त्त, as in every other stanza |
+| Daśaka 4 | ।४ ।।। | ।।४।। | stray marks |
+| Daśaka 7 | यशिणीही | यक्षिणीही | misprint (dhoop.pdf यक्षिणीही) |
+| Daśaka 9 | रुसो,दृढ | रुसो, दृढ | missing space |
+| Daśaka 10 | हदयीं | हृदयीं | missing ृ (dhoop.pdf) |
 | Puṣpāñjali | साप्राज्यमं भौज्यमं, एकराळीती, कामप्रेबिश्वेदेवा, महाराजा नमः | साम्राज्यं भौज्यं, एकराळिति, कामप्रेर्विश्वेदेवाः, महाराजाय नमः | dhoop.pdf; दधातु kept (both sources) |
 
 ## Left out
 - The repeat of the dhruvapada printed after Āratī stanza 7. It is the refrain again, and the "आ०" at the end of each stanza already marks every repeat.
-- **Śrī Guru-prasāda-yācanā-daśaka** ("रुसो मम प्रियांबिका…", B. V. Dev). It comes between the Mahimna stotra and the Puṣpāñjali. It is not included because its date of composition could not be confirmed; add it once the owner confirms it is out of copyright.
