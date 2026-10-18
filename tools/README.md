@@ -52,6 +52,14 @@ tools/
       glossary_sa.json             word meanings, merged into library/glossary/sa.json
       export.py                    → library/hinduism/veda/yajurveda/shukla-yajurveda/upanishad/isha-upanishad/
       audio/smvedroad/             source.json, recordings.json, fixes.json/md (timed)
+      audio/smvedroad/             source.json, recordings.json (not timed yet)
+    sukhmani-sahib/
+      extract.py                   the owner's PDF → source/lines.json (legacy Gurmukhi, transliteration, English per printed line)
+      gurmukhi.py                  legacy ASCII Gurmukhi font encoding (GurbaniAkhar) → Unicode Gurmukhi
+      check.py                     checks every converted line (transliteration skeletons; optional external witnesses)
+      structure.py                 printed lines → items (24 Ashtapadis: salok, pauris, rahao)
+      meanings/hi.json, glossary/pa.json   Hindi meaning per item and Gurmukhi word meanings, written for this library
+      export.py                    → library/sikhism/gurbani/guru-arjan-dev/sukhmani-sahib/ and library/glossary/pa.json
 ```
 
 ## Rebuild everything (Rāmacaritamānasa)

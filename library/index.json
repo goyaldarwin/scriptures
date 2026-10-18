@@ -269,5 +269,65 @@
     ]
    }
   ]
+ },
+ {
+  "id": "sikhism",
+  "title": {
+   "hi": "सिख धर्म",
+   "en": "Sikhism"
+  },
+  "desc": {
+   "hi": "ਸਿੱਖ ਧਰਮ",
+   "en": "ਸਿੱਖ ਧਰਮ"
+  },
+  "children": [
+   {
+    "id": "gurbani",
+    "title": {
+     "hi": "गुरबाणी",
+     "en": "Gurbāṇī"
+    },
+    "desc": {
+     "hi": "गुरुओंकी वाणी",
+     "en": "The Gurus' hymns"
+    },
+    "children": [
+     {
+      "id": "guru-arjan-dev",
+      "title": {
+       "hi": "गुरु अर्जन देव जी",
+       "en": "Guru Arjan Dev Ji"
+      },
+      "desc": {
+       "hi": "ਗੁਰੂ ਅਰਜਨ ਦੇਵ ਜੀ · पाँचवें गुरु",
+       "en": "ਗੁਰੂ ਅਰਜਨ ਦੇਵ ਜੀ · the fifth Guru"
+      },
+      "children": [
+       {
+        "id": "sukhmani-sahib",
+        "work": "sukhmani-sahib",
+        "path": "sikhism/gurbani/guru-arjan-dev/sukhmani-sahib",
+        "title": {
+         "hi": "सुखमनी साहिब",
+         "en": "Sukhmani Sahib"
+        },
+        "by": {
+         "hi": "गुरु अर्जन देव जी",
+         "en": "Guru Arjan Dev Ji"
+        },
+        "edition": {
+         "hi": "श्री गुरु ग्रन्थ साहिब, अंग २६२–२९६",
+         "en": "Sri Guru Granth Sahib, Ang 262–296"
+        },
+        "desc": {
+         "hi": "ਸੁਖਮਨੀ ਸਾਹਿਬ · २४ अष्टपदियाँ",
+         "en": "ਸੁਖਮਨੀ ਸਾਹਿਬ · 24 Ashtapadis"
+        }
+       }
+      ]
+     }
+    ]
+   }
+  ]
  }
 ]

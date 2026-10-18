@@ -75,3 +75,23 @@
 {"k": "यक्ष्वामहे", "why": "Glossed as present 'we worship' with no g. The form looks like an s-aorist subjunctive/imperative-type Vedic form ('let us worship'); grammar not settled", "lang": "sa"}
 {"k": "भीममुपहन्तुमुग्रम्", "why": "RV 2.33.11 has उपहत्नुम् (agent noun 'striker'); this text's उपहन्तुम् looks like an infinitive. The gloss treats it as an agent. Check the TS reading", "lang": "sa"}
 {"k": "मनुरायजे", "why": "TS reads आयेजे (perfect of आ+यज्); the text's आयजे may be a typo. Meaning 'won by worship' is fine", "lang": "sa"}
+{"k": "ਕਰਣ", "why": "a11.salok 'ਕਰਣ ਕਾਰਣ': Darpan glosses ਕਰਣ as ਜਗਤ/ਸ੍ਰਿਸ਼ਟੀ (creation), ਕਰਣ ਕਾਰਣ = the cause of creation; entry has 'करनेवाला/doer' (popular reading). Check Darpan before changing", "lang": "pa"}
+{"k": "ਗਨੀ", "why": "a14.p3 'ਸੇ ਧਨਵੰਤ ਗਨੀ ਸੰਸਾਰ': may be Persian ਗਨੀ (ghani, rich) rather than 'counted' (Sant Singh: 'wealthy and prosperous'); site Hindi has 'गिने जाते हैं'. Possibly needs a second sense", "lang": "pa"}
+{"k": "ਕਹਾਵਤ", "why": "a21.p7 'ਪਾਪੁ ਪੁੰਨੁ ਤਹ ਭਈ ਕਹਾਵਤ': feminine ਭਈ suggests ਕਹਾਵਤ is a fem. noun (talk/mention) rather than a present participle; g may be wrong", "lang": "pa"}
+{"k": "ਉਪਰਜਾ", "why": "root 'ਉਪਾਰਜਣਾ' looks coined; Darpan relates ਉਪਰਜਾ to Skt उपार्जन (produced); a Sanskrit root (उप+अर्ज्) may be better", "lang": "pa"}
+{"k": "ਤ੍ਰਿਸਟੈ", "why": "a13.p7 'ਸੰਤ ਕੈ ਦੋਖਿ ਨ ਤ੍ਰਿਸਟੈ ਕੋਇ': both site translations say 'is satisfied', but the form may derive from Skt तिष्ठ- (stands, holds firm) as some teekas gloss it; no root given. Verify against Darpan", "lang": "pa"}
+{"k": "ਪਰਾਨੈ", "why": "root ਪਰਾਨਣਾ is not a standard dictionary verb; sense 'recognizes, considers' (Darpan: ਪਛਾਣਦਾ ਹੈ) is right but the root needs checking", "lang": "pa"}
+{"k": "ਪਰਾਤਾ", "why": "ਉਨ ਜਨ ਚਰਨ ਪਰਾਤਾ: may be 'has fallen (at the feet)' (past) rather than present 'पड़ता है'", "lang": "pa"}
+{"k": "ਪਾਸਾਰੀ", "why": "Darpan may read ਪਾਸਾਰੀ as 'the one who spreads the show' rather than noun 'display'", "lang": "pa"}
+{"k": "ਪੁਨੀ", "why": "root ਪੁੱਜਣਾ is doubtful: ਪੁਨੀ (ਇਛ ਪੁਨੀ 'wish fulfilled') is usually derived from पूर्ण (ਪੁੰਨਾ/ਪੁੰਨੀ = completed), not ਪੁੱਜਣਾ 'to reach'", "lang": "pa"}
+{"k": "ਪਿਆਸਾ", "why": "ਪ੍ਰਭ ਦਰਸ ਪਿਆਸਾ may be adjective 'thirsty (for)' rather than noun 'thirst'; g says स्त्री॰ though form is -ਾ", "lang": "pa"}
+{"k": "ਫੈਲੁ", "why": "ਹਉਮੈ ਬਿਖੁ ਫੈਲੁ: Darpan/Mahan Kosh may read ਫੈਲੁ as noun 'spread, ostentation' (or Persian fe'l 'deed'); entry gives adjective 'फैला हुआ' / 'all-consuming'", "lang": "pa"}
+{"k": "ਬਿਖੋਟਿ", "why": "ਏਕ ਬਸਤੁ ਕਾਰਨਿ ਬਿਖੋਟਿ ਗਵਾਵੈ: hi 'विश्वास (खोकर)' mixes the verb ਗਵਾਵੈ into the gloss; Darpan reads ਬਿਖੋਟਿ roughly as 'by breach of faith / dishonesty'; needs a teeka check", "lang": "pa"}
+{"k": "ਬੂਡਤ", "why": "root ਡੁੱਬਣਾ is the modern synonym; the Gurbani verb is ਬੂਡਣਾ/ਬੂਡਨਾ (Hindi बूड़ना); keep the glossary convention in mind before changing", "lang": "pa"}
+{"k": "ਬਿਬੇਕੈ", "why": "ਜਨ ਕੈ ਬਿਰਤਿ ਬਿਬੇਕੈ: hi 'विवेककी, विवेकपूर्ण' (genitive/adjective) vs g संज्ञा; case of -ੈ here needs a teeka check", "lang": "pa"}
+{"k": "ਮੁਖੀ", "why": "ਬੋਲਹਿ ਹਰਿ ਮੁਖੀ: whether ਮੁਖੀ = 'chief, Supreme' (as entry) or 'with the mouth / turned towards' needs a teeka check", "lang": "pa"}
+{"k": "ਲਹੇ", "why": "root ਲਹਿਣਾ (modern 'to come down/off') vs Gurbani ਲਹਣਾ 'to obtain' (< लभ्): same spelling in the glossary would mislead; consider a distinct root", "lang": "pa"}
+{"k": "ਲਹੈ", "why": "root ਲਹਿਣਾ: the 'obtain' verb is Gurbani ਲਹਣਾ (< लभ्), distinct from modern ਲਹਿਣਾ 'come down'", "lang": "pa"}
+{"k": "ਲਹੰਤੇ", "why": "root ਲਹਿਣਾ: the 'obtain/find' verb is Gurbani ਲਹਣਾ (< लभ्), distinct from modern ਲਹਿਣਾ 'come down'", "lang": "pa"}
+{"k": "ਵਰਸਾਵੈ", "why": "ਜਿਸੁ ਧਨ ਤੇ ਸਭੁ ਕੋ ਵਰਸਾਵੈ: hi mixes 'लाभ उठाता है' with 'बरसाता है' (rains); Darpan sense is 'is blessed/benefits'; 'बरसाता' likely wrong", "lang": "pa"}
+{"k": "ਸੋਖ", "why": "ਜੈਸੇ ਸੂਰੁ ਸਰਬ ਕਉ ਸੋਖ: g 'संज्ञा' / hi 'सोखना' (infinitive) — here it functions verbally ('dries up / warms all'); grammar label needs a teeka check", "lang": "pa"}

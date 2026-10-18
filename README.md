@@ -11,6 +11,8 @@ A personal, ad-free library for studying scriptures. Each work has the same read
 | Āratī › Shirdi Sāī Bābā | Dhūpa Āratī (evening āratī): Marathi, Sanskrit, Hindi | Shirdi tradition |
 | Veda › Yajurveda › Kṛṣṇa Yajurveda › Saṃhitā | Śrī Rudram: Namakam and Chamakam, 11 + 11 anuvākas, with svaras | shlokam.org (printout) |
 
+| Sikhism › Gurbāṇī › Guru Arjan Dev Ji | Sukhmani Sahib: 24 Ashtapadis, Gurmukhi | Sri Guru Granth Sahib, Ang 262–296 |
+
 ## What's where
 
 ```
@@ -27,6 +29,8 @@ library/                             the scriptures, as data
   hinduism/stotra/rama/ramraksha/                  Śrī Rāma Rakṣā Stotram: work.json, meanings/, audio/
   hinduism/aarti/shirdi-sai/dhoop-aarti/   the Shirdi Sāī Bābā evening āratī (work.json, meanings/, audio/)
   hinduism/veda/yajurveda/krishna-yajurveda/samhita/shri-rudram/   Śrī Rudram (work.json, meanings/, glossary.json)
+
+  sikhism/gurbani/guru-arjan-dev/sukhmani-sahib/   Sukhmani Sahib (work.json, meanings/)
 docs/
   START-HERE.md                      resume the project in a new session
   HOW-TO.md                          add a work, a meaning source or a reciter; fix text; change the app
@@ -35,6 +39,8 @@ docs/
   ROADMAP.md                         what keeps the library sustainable, and what to build next
 tools/                               everything that makes the data and the website (see tools/README.md)
   site/  audio/  fonts/  works/ramcharitmanas/  works/ramraksha/  works/shirdi-sai-dhoop-aarti/  works/shri-rudram/
+
+  site/  audio/  fonts/  works/ramcharitmanas/  works/ramraksha/  works/shirdi-sai-dhoop-aarti/  works/sukhmani-sahib/
 ```
 
 ## Raw sources
@@ -54,3 +60,7 @@ The Shirdi Dhūpa Āratī: the verse text (Mādhava Aḍakara, Dāsagaṇu, Sain
 The Sundarakāṇḍa (standalone work): its text and its Gita Press Hindi and English meanings are generated from the Rāmacaritamānasa above (same text, same permission status). The Śrī Hanumān Chālīsā (Tulasīdāsa) and the āratī "आरती कीजै हनुमान लला की" are traditional texts in the public domain; their wording was settled from bhaktibharat.com, Kavita Kosh and Bharatkosh (see `tools/works/sundarkand/reconciliation.md`). Their Hindi and English meanings and word meanings were written for this library. Audio will play from the published YouTube recording of Pt. Ashwin Kumar Pathak (not timed yet).
 
 The text of the Īśāvāsya Upaniṣad (Śukla Yajurveda, Kāṇva Saṃhitā 40) is in the public domain. It follows the owner's printout of shlokam.org (“Isha Upanishad”, https://shlokam.org/text/isha-upanishad.htm), checked against the standard Kāṇva text with sanskritdocuments.org as a second witness; every correction is in `tools/works/isha-upanishad/reconciliation.md`. The Hindi and English meanings and the word meanings were written for this library; nothing is copied from shlokam.org's translation or commentary. Audio plays from the SMVedroad YouTube recording `mzczDkOtk0k`, timed.
+
+The text of the Īśāvāsya Upaniṣad (Śukla Yajurveda, Kāṇva Saṃhitā 40) is in the public domain. It follows the owner's printout of shlokam.org (“Isha Upanishad”, https://shlokam.org/text/isha-upanishad.htm), checked against the standard Kāṇva text with sanskritdocuments.org as a second witness; every correction is in `tools/works/isha-upanishad/reconciliation.md`. The Hindi and English meanings and the word meanings were written for this library; nothing is copied from shlokam.org's translation or commentary. Audio plays from the SMVedroad YouTube recording `mzczDkOtk0k` (once timed).
+
+Sukhmani Sahib (Guru Arjan Dev Ji, Sri Guru Granth Sahib, Ang 262–296): the Gurbani is in the public domain. The text, its transliteration and the English translation come from the owner's PDF “Sukhmani Sahib with phonetic transliteration & English translation, Gurmukhi” (K. Thind, 2003); its Gurmukhi, typed in a legacy font encoding, was converted to Unicode and checked as described in `tools/works/sukhmani-sahib/reconciliation.md`. The English translation is © its translator, Dr. Sant Singh Khalsa, and is included for personal study; permission has not been requested. The Hindi meaning and the Gurmukhi word meanings were written for this library, because the PDF has none.
