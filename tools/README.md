@@ -37,6 +37,12 @@ tools/
       glossary/g*.json, work_sa.json  word meanings (→ library/glossary/sa.json) and this work's own senses
       export.py                    → library/hinduism/veda/yajurveda/krishna-yajurveda/samhita/shri-rudram/
       audio/shlokam/               source.json, recordings.json (transcripts come from the cloud)
+    isha-upanishad/
+      text.json                    the text (from the shlokam.org printout; settled in reconciliation.md), check.py verifies it
+      meanings/hi.json, en.json    one meaning per mantra, written for this library
+      glossary_sa.json             word meanings, merged into library/glossary/sa.json
+      export.py                    → library/hinduism/veda/yajurveda/shukla-yajurveda/upanishad/isha-upanishad/
+      audio/smvedroad/             source.json, recordings.json, fixes.json/md (timed)
 ```
 
 ## Rebuild everything (Rāmacaritamānasa)

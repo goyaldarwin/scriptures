@@ -3,7 +3,7 @@
 Usage:  python3 tools/audio/make_timings.py tools/works/<work>/audio/<source-id>
 
 The source folder holds:
-  source.json      {"id", "work": "<library path>", "type": "youtube", "title": {"hi", "en"}, "order"?}
+  source.json      {"id", "work": "<library path>", "type": "youtube", "title": {"hi", "en"}, "order"?, "draft"?: "<why it is not published yet>"}
   recordings.json  [{"yt": video id, "file": original file name, "dur": seconds, "order": n}]
   transcripts/     <video id>.jsonl from transcribe.py (+ .done when finished)
   fixes.json       optional hand-checked verse starts {video id: {item id: seconds}}, with the evidence in fixes.md
@@ -79,6 +79,13 @@ for r in REC:
     print(v, len(full), tracks[-1]['first'], '→', tracks[-1]['last'])
 
 if ONLY: sys.exit(0)
+# a source marked "draft" in source.json (its timings are not good enough yet) is not published: the reader gets no audio
+# rather than audio that covers a few verses or starts in the wrong place. Remove "draft" once the timings are checked.
+if meta.get('draft'):
+    print('draft source: covers', sum(len(t) for t in [at]), 'of', len(IT), 'verses; not published (' + meta['draft'] + ')')
+    stale = os.path.join(REPO, 'library', meta['work'], 'audio', meta['id'] + '.json')
+    if os.path.exists(stale): os.remove(stale)
+    sys.exit(0)
 out = os.path.join(REPO, 'library', meta['work'], 'audio', meta['id'] + '.json')
 os.makedirs(os.path.dirname(out), exist_ok=True)
 doc = {k: meta[k] for k in ('id', 'type', 'title', 'order') if k in meta}

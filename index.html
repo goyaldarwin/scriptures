@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#2B3A8C">
 <title>शास्त्र · Scriptures</title>
-<link rel="manifest" href="manifest.json"><link rel="icon" href="app/icon.svg"><link rel="stylesheet" href="app/fonts.css?v=8cce0d7c71"><link rel="stylesheet" href="app/style.css?v=378f13ef01">
+<link rel="manifest" href="manifest.json"><link rel="icon" href="app/icon.svg"><link rel="stylesheet" href="app/fonts.css?v=8cce0d7c71"><link rel="stylesheet" href="app/style.css?v=5d2363e866">
 
 </head>
 <body>
@@ -47,7 +47,7 @@
 <section id="home" class="view">
  <div class="wrap">
   <div class="toprow"><button class="libbtn" id="hLib"><svg><use href="#i-back"/></svg><span data-en="Library">पुस्तकालय</span></button><span class="grow"></span><button class="ib" data-go="search" aria-label="खोजें"><svg><use href="#i-search"/></svg></button><button class="ib" id="hMenu" aria-label="मेनू"><svg><use href="#i-menu"/></svg></button></div>
-  <div class="hero"><h1 id="hTitle"></h1><p id="hSub"></p><div class="heroacts"><span id="contCard"></span><button class="btn playall" id="hPlayAll" hidden><svg><use href="#i-play"/></svg><span data-en="Play the complete work">सम्पूर्ण पाठ सुनें</span></button></div></div>
+  <div class="hero"><h1 id="hTitle"></h1><p id="hSub"></p><div class="heroacts"><span id="contCard"></span><button class="btn playall" id="hPlayAll" hidden><svg><use href="#i-play"/></svg><span data-en="Play all">सम्पूर्ण पाठ सुनें</span></button></div></div>
   <div class="seg" id="orgSeg"></div>
   <ul class="list" id="orgList"></ul>
   <div style="height:40px"></div>
@@ -113,7 +113,7 @@
 <section id="vidhi" class="view vidhi">
  <div class="bar"><div class="wrap"><button class="ib" data-back aria-label="वापस"><svg><use href="#i-back"/></svg></button><div class="bt"><div class="t" data-en="Pārāyaṇa vidhi &amp; Āratī">पारायण-विधि और आरती</div></div><div class="lyr" id="vidLang"><button data-l="h">हिं</button><button data-l="e" class="lat">En</button></div></div></div>
  <div class="wrap">
-  <div class="seg" id="vidSeg"><button data-v="v" class="on" data-en="Pārāyaṇa vidhi">पारायण-विधि</button><button data-v="aarti" data-en="Āratī">आरती</button></div>
+  <div class="seg" id="vidSeg"><button data-v="v" class="on" data-en="Pārāyaṇa vidhi">पारायण-विधि</button><button data-v="aarti" data-en="Āratī">आरती</button><button data-v="visarjan" data-en="Visarjana" hidden>विसर्जन</button></div>
   <div id="vidBody" style="padding-bottom:40px"></div>
  </div>
 </section>
@@ -124,6 +124,6 @@
 <div class="toast" id="toast"></div>
 <input type="file" id="fileIn" accept="application/json,.json" style="display:none">
 
-<script src="app/app.js?v=0f0c6d301d"></script>
+<script src="app/app.js?v=f9dffe66fe"></script>
 </body>
 </html>
