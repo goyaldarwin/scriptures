@@ -154,6 +154,15 @@ async def main():
                     await ev(f"setTime({vi}, 1, {s0}); setTime({vi}, 2, {s2} + 5)")
                     nxt = await ev(f"[1, 2, 3].map(d => AUT[0][{g} + d][1])")
                     check(f'{tag}: guessed starts after your end follow it, in order', nxt[0] >= s2 + 5 - 0.05 and nxt[0] < nxt[1] < nxt[2], [s2 + 5, nxt])
+                    # the light waits for you: it stays on the verse you marked while the next start is only a guess
+                    await ev("S.timing.fix[tkey()] = {}; save(); buildAudio()")
+                    va, sa = await ev(f"[AUT[0][{g}][0], AUT[0][{g}][1]]"); vb, sb = await ev(f"[AUT[0][{g} + 1][0], AUT[0][{g} + 1][1]]")
+                    await ev(f"PL.on = true; PL.t = 0; PL.end = null; ytOK = true; ytInfo.t = {sa} + 0.2; setTime({va}, 1, {sa})")
+                    await ev(f"ytInfo.t = {sb} + 1; tick()")
+                    held = await ev("PL.cur")
+                    await ev(f"setTime({vb}, 1, {sb} + 0.8)")
+                    check(f'{tag}: the light waits on your verse past a guessed start, and moves when you mark the next', held == va and await ev("PL.cur") == vb, [held, va, await ev("PL.cur"), vb])
+                    await ev("PL.on = false; ytOK = false")
                     await ev("delete S.timing.fix[tkey()]; save(); buildAudio()")
                 # a helper's file: saved from the marks, opened by the owner as marks "from <helper>" that are not sent until checked
                 await ev("S.timing.fix[tkey()] = {}; S.timing.from = {}; save(); buildAudio()")

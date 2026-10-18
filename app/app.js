@@ -593,15 +593,23 @@ function onEnded(){
 function endOf(i){ const x = SRC.au && SRC.au.at[IT[i].id]; return x && x[2] != null ? x[2] : null; }   // a verse's end, when one is set (otherwise it runs until the next verse starts)
 function curAt(time){ const a = AUT[PL.t]; let lo = 0, hi = a.length - 1, r = a[0][0]; while (lo <= hi){ const m = (lo + hi) >> 1; if (a[m][1] <= time){ r = a[m][0]; lo = m + 1; } else hi = m - 1; } return r; }
 // every 300 ms while playing: light the verse being recited, stop at the end of what was asked, move the progress bar
-function tick(){
-  if (!PL.on || !ytOK) return;
+function tick(anchor){
+  if (!PL.on || !ytOK) return; if (typeof anchor !== 'number') anchor = PL.cur;
   const time = ytInfo.t; const i = curAt(time);
   const e = endOf(i);
   if (PL.end != null && (i > PL.end || (i === PL.end && e != null && time >= e))){ stopAudio(); toast(PL.whole ? T('पाठ पूर्ण', 'Recitation complete') : PL.endMsg || T('पूर्ण', 'Finished')); return; }
   // a verse's end matters only where playing stops (one verse, or the last verse of a reading): never skipped. While timings
   // are being reviewed, a verse that has ended hands the light to the next one at once, so its start can be marked.
   let show = i;
-  if (S.timing.on && e != null && time >= e){ const a = AUT[PL.t], k = a.findIndex(x => x[0] === i); if (k >= 0 && k + 1 < a.length) show = a[k + 1][0]; }
+  if (S.timing.on){
+    // the light waits for you: it never moves on to a verse whose start is only a guess. It stays on the verse you are on
+    // until you mark the next one ("Starts now"), or that verse's set end passes; verses with checked times are followed.
+    const a = AUT[PL.t], at = id => a.findIndex(x => x[0] === id); let k = at(i); const c = at(anchor);
+    if (c >= 0 && k > c){ while (k > c && toCheck(a[k][0])) k--; show = a[k][0]; }
+    else if (c > 0 && k === c - 1 && endOf(a[k][0]) != null && time >= endOf(a[k][0])) show = anchor;   // moved on by an end: stay
+    const m = at(show), e2 = endOf(show);
+    if (e2 != null && time >= e2 && m >= 0 && m + 1 < a.length) show = a[m + 1][0];   // an end set by you hands the light on at once
+  }
   setCur(show);
   const d = ytInfo.d || SRC.au.tracks[PL.t].dur; $('#pProg').style.width = (100 * time / d) + '%';
 }
@@ -630,7 +638,7 @@ function syncPlayer(){ $('#pPlay').innerHTML = '<svg><use href="#i-' + (playing(
 ['touchstart', 'wheel'].forEach(e => window.addEventListener(e, ev => { if (PL.on && !ev.target.closest('#player')) PL.hold = Date.now() + 8000; }, {passive: true}));
 $('#pPlay').onclick = () => { if (playing()) ytPost('pauseVideo'); else ytPost('playVideo'); setTimeout(syncPlayer, 400); };
 $('#pClose').onclick = stopAudio;
-function stepVerse(d){ const a = AUT[PL.t]; const k = a.findIndex(x => x[0] === PL.cur); const n = k + d; if (k >= 0 && n >= 0 && n < a.length){ ytPost('seekTo', [a[n][1], true]); ytInfo.t = a[n][1]; PL.hold = 0; } }
+function stepVerse(d){ const a = AUT[PL.t]; const k = a.findIndex(x => x[0] === PL.cur); const n = k + d; if (k >= 0 && n >= 0 && n < a.length){ ytPost('seekTo', [a[n][1], true]); ytInfo.t = a[n][1]; PL.hold = 0; PL.cur = -1; tick(); } }
 /* timing review: set a verse's start by ear. The player reports its time a few times a second, so the moment of the tap is
    worked out from the last report; 0.3 s is taken off for the time it takes to hear the word and tap. */
 function nowAt(){ return Math.max(0, ytInfo.t + (playing() && ytInfo.at ? (performance.now() - ytInfo.at) / 1000 : 0) - 0.3); }
@@ -643,7 +651,7 @@ function setTime(i, k, sec){
   const was = {}; $$('#rBody .verse').forEach(el => { const j = +el.dataset.i; was[j] = JSON.stringify(SRC.au.at[IT[j].id]); });
   fx[id] = v; unfrom(id); save(); buildAudio();
   Object.keys(was).forEach(j => { j = +j; if (j === i || was[j] !== JSON.stringify(SRC.au.at[IT[j].id])) rerenderItem(j); });   // every verse on screen whose time moved
-  if (PL.on){ PL.cur = -1; PL.hold = 0; tick(); }   // the light moves at once (after an end: to the next verse)
+  if (PL.on){ PL.cur = -1; PL.hold = 0; tick(i); }   // the light moves at once, from this verse (after an end: to the next verse)
   toast((k === 1 ? T('शुरुआत: ', 'Starts at ') : T('अंत: ', 'Ends at ')) + (sec == null ? '—' : fmtT(sec)));
 }
 function setStart(i, sec){ setTime(i, 1, sec); }
