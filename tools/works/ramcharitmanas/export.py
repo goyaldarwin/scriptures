@@ -52,8 +52,8 @@ work = {
     'colophon': {'hi': '।। इति श्रीरामचरितमानस समाप्त ।। सियावर रामचन्द्रकी जय', 'en': '।। इति श्रीरामचरितमानस समाप्त ।। Glory to Śrī Rāma'},
     'parts': {'name': {'hi': 'काण्ड', 'en': 'Kāṇḍa'}, 'list': d['kands']},
     'plans': [
-        {'id': 'M', 'name': {'hi': 'मासपारायण', 'en': '30-day'}, 'long': {'hi': 'मासपारायण (३० दिन)', 'en': 'Māsa-pārāyaṇa (30 days)'}, 'unit': {'hi': 'विश्राम', 'en': 'Vishram'}, **plans['M']},
-        {'id': 'N', 'name': {'hi': 'नवाह्नपारायण', 'en': '9-day'}, 'long': {'hi': 'नवाह्नपारायण (९ दिन)', 'en': 'Navāhna-pārāyaṇa (9 days)'}, 'unit': {'hi': 'विश्राम', 'en': 'Vishram'}, **plans['N']},
+        {'id': 'M', 'name': {'hi': 'मासपारायण', 'en': '30-day'}, 'long': {'hi': 'मासपारायण (३० दिन)', 'en': 'Māsa-pārāyaṇa (30 days)'}, 'unit': {'hi': 'विश्राम', 'en': 'Vishram'}, 'before': ['vidhi'], 'after': ['aarti'], **plans['M']},
+        {'id': 'N', 'name': {'hi': 'नवाह्नपारायण', 'en': '9-day'}, 'long': {'hi': 'नवाह्नपारायण (९ दिन)', 'en': 'Navāhna-pārāyaṇa (9 days)'}, 'unit': {'hi': 'विश्राम', 'en': 'Vishram'}, 'before': ['vidhi'], 'after': ['aarti'], **plans['N']},
     ],
     'items': items,
     'topics': [{'id': ids[t['i']], 'hi': t['hi'], 'en': t.get('en') or t['hi']} for t in d['topics']],
