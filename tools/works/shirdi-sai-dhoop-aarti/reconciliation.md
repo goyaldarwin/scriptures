@@ -46,3 +46,21 @@ Two printouts the owner supplied (Oct 2026) are the sources. They are web pages,
 
 ## Left out
 - The repeat of the dhruvapada printed after Āratī stanza 7. It is the refrain again, and the "आ०" at the end of each stanza already marks every repeat.
+
+# English meaning (`meanings/en-shirdisaibabakripa.json`)
+
+Copied from dhoop.pdf (shirdisaibabakripa.org), the English paragraph printed in red after each stanza (the green word-by-word glosses are not used). Its Latin text layer is sound; page-edge lines that the printout repeats half-cut at the top of the next page were dropped, and every page break was checked against the page images.
+
+## How its paragraphs map to our verses
+- Āratī: the printout gives one paragraph for each pair of stanzas (dhruvapada + 1, 2 + 3, 4 + 5, 6 + 7). Each is split at the sentence boundary between the two stanzas, without changing a word.
+- Śirḍī mājhe: one paragraph for abhaṅga 1 + 2 and one for 3 + 4, split at "Vitthal, / Our pure devotion" and "baba. / DasGanu says". The comma ending abhaṅga 1 became a full stop.
+- Mahimna 9, Daśaka 1–10, Puṣpāñjali mantras 1–4, Prārthanā: the printout gives a paragraph per line or half-stanza; they are joined in order into one meaning per verse.
+- Nāmasmaraṇa: the red note printed before the mantra ("This is also known as the 'Maha Mantra' …") is kept as the verse's footnote.
+- **Not covered:** the closing jayaghoṣa after the Prārthanā (`prarthana.jay2`); the printout has no English for it ("OM TAT SAT" there renders a line that is not in our text). Readers see it in "English meaning — Scriptures" (`en-scriptures`, order 2).
+- Puṣpāñjali 1 begins "Hari Om." because the printout's verse begins हरि ॐ; our verse (dhoop2) has only ॐ. Kept as printed.
+
+## Fixes to its text (typos and extraction breaks only)
+- A space added after full stops and commas run into the next word ("sport.On", "Vitthal,Our", "anything .Let", "Janaki(Sita)", "Hari ...Lord"), and a full stop added where a paragraph or verse ends without one.
+- Capitals: the pronoun "i" → "I"; a sentence start after a full stop ("people.but" → "people. But", "now make" → "Now make"); "thursday", "shirdi", "kali age", "baba" → Thursday, Shirdi, Kali age, Baba; "But Let not", ", Let my friend" → "But let not", ", let my friend".
+- Spelling: emrace → embrace, trully → truly, thier → their, perfom → perform, confering → conferring, blissfull → blissful, joyfull → joyful (twice), fulfiling → fulfilling, mediatation → meditation, opluence → opulence, receipient → recipient, Whosover → Whosoever, obesiances → obeisances (twice), fullfillment → fulfillment, sourthern → southern, principle → principal (name of Vishnu), it's → its (three times), "this eyes" → "these eyes", Kalpa-Vrisha → Kalpa-Vriksha (as in Mahimna 4), Mohaniraj → Mohiniraj (as in the printout's own heading).
+- Nāmasmaraṇa: a stray "oh! hari," before "Oh Hari Rama" (a repeat of the first word's gloss) was dropped, and the line break between the two lines became a comma.
