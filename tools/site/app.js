@@ -117,7 +117,8 @@ $('#timerPill').onclick = timerToggle;
    A word is looked up in the language of the verse it is in, then in that language's fallbacks
    (languages.json). A work may refine a sense in <work>/glossary.json; a reader's own meaning wins. */
 const PUNCT = /[।॥|,.;:!?\-—‘’“”'"()\[\]०-९੦-੯0-9]/g;   // Devanagari and Gurmukhi digits are verse numbers, not words
-function cleanWord(w){ return w.replace(PUNCT, '').normalize('NFC'); }
+const SVARA = /[\u0951-\u0954\u1CD0-\u1CFF\uA8E0-\uA8F1]/g;   // Vedic accent marks: shown in the text, ignored when looking a word up
+function cleanWord(w){ return w.replace(PUNCT, '').replace(SVARA, '').normalize('NFC'); }
 function langOf(i){ return (i != null && IT[i] && IT[i].l) || W.lang; }
 function langChain(lang){ return [lang].concat((LANGS[lang] || {}).fallback || []); }
 async function loadGlossaries(){
