@@ -39,18 +39,22 @@ open(os.path.join(APPD, 'fonts.css'), 'w').write(css)
 m = re.search(r'<style>\n/\*FONTS\*/\n(.*?)</style>', tpl, re.S)
 open(os.path.join(APPD, 'style.css'), 'w').write(m.group(1))
 open(os.path.join(APPD, 'app.js'), 'w').write(app)
-head = '<link rel="manifest" href="manifest.json"><link rel="icon" href="app/icon.svg"><link rel="stylesheet" href="app/fonts.css"><link rel="stylesheet" href="app/style.css">\n'
-html = tpl.replace(m.group(0), head).replace('/*BUNDLE*/\n', '').replace('<script>\n/*APP*/\n</script>', '<script src="app/app.js"></script>')
+# version every asset by its content, so a page never runs a cached app.js from an older release
+import hashlib
+hv = lambda name: hashlib.sha1(open(os.path.join(APPD, name), 'rb').read()).hexdigest()[:10]
+VJS, VCSS, VF = 'app/app.js?v=' + hv('app.js'), 'app/style.css?v=' + hv('style.css'), 'app/fonts.css?v=' + hv('fonts.css')
+head = '<link rel="manifest" href="manifest.json"><link rel="icon" href="app/icon.svg"><link rel="stylesheet" href="' + VF + '"><link rel="stylesheet" href="' + VCSS + '">\n'
+html = tpl.replace(m.group(0), head).replace('/*BUNDLE*/\n', '').replace('<script>\n/*APP*/\n</script>', '<script src="' + VJS + '"></script>')
 open(os.path.join(SITE, 'index.html'), 'w').write(html)
 json.dump({'name': 'शास्त्र · Scriptures', 'short_name': 'Scriptures', 'start_url': './', 'display': 'standalone', 'background_color': '#F6F6F2', 'theme_color': '#2B3A8C', 'icons': [{'src': 'app/icon.svg', 'sizes': 'any', 'type': 'image/svg+xml'}]}, open(os.path.join(SITE, 'manifest.json'), 'w'), ensure_ascii=False, indent=1)
 open(os.path.join(APPD, 'icon.svg'), 'w').write('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#2B3A8C"/><text x="32" y="44" text-anchor="middle" font-size="34" fill="#F2A653" font-family="serif">ॐ</text></svg>')
-files = ['./', 'index.html', 'manifest.json', 'app/icon.svg', 'app/app.js', 'app/style.css', 'app/fonts.css'] + ['app/fonts/' + os.path.basename(p[1]) for p in FONTS]
-ver = str(int(os.path.getmtime(os.path.join(HERE, 'app.js'))))
+files = ['./', 'index.html', 'manifest.json', 'app/icon.svg', VJS, VCSS, VF] + ['app/fonts/' + os.path.basename(p[1]) for p in FONTS]
+ver = hashlib.sha1((VJS + VCSS + VF).encode()).hexdigest()[:10]
 open(os.path.join(SITE, 'sw.js'), 'w').write("""const V='s-%s';const CORE=%s;
 self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(CORE)));self.skipWaiting();});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==V).map(k=>caches.delete(k)))));self.clients.claim();});
 self.addEventListener('fetch',e=>{const u=new URL(e.request.url);if(u.origin!==location.origin)return;
- e.respondWith(fetch(e.request).then(r=>{const c=r.clone();caches.open(V).then(x=>x.put(e.request,c));return r;}).catch(()=>caches.match(e.request)));});
+ e.respondWith(fetch(e.request, {cache: 'no-cache'}).then(r=>{const c=r.clone();caches.open(V).then(x=>x.put(e.request,c));return r;}).catch(()=>caches.match(e.request)));});
 """ % (ver, json.dumps(files)))
 open(os.path.join(SITE, '.nojekyll'), 'w').write('')
 # ---------- single-file bundle ----------
