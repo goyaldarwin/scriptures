@@ -141,7 +141,7 @@ function lookup(w, lang){
 }
 function wordsHTML(line){
   line = line.replace(/\s+(।।|।|॥)/g, ' $1');
-  const halves = line.split(/(?<=[।॥])\s+(?=[^\s।॥०-९੦-੯(])/);
+  const halves = line.split(/(?<=[।॥])\s+(?=[^\s।॥०-९੦-੯(])/).reduce((a, h) => { if (a.length && /^[।॥\s]+$/.test(a[a.length - 1])) a[a.length - 1] += ' ' + h; else a.push(h); return a; }, []);
   return halves.map(hf => '<span class="half">' + hf.split(/( +)/).map(tok => { if (/^ +$/.test(tok) || !cleanWord(tok)) return esc(tok); const m = tok.match(/^(.*?)( .*)?$/); return '<span class="w">' + esc(m[1]) + '</span>' + esc(m[2] || ''); }).join('') + '</span>').join(' ');
 }
 function wordList(lines){ const seen = new Set(), out = []; lines.forEach(l => l.split(/\s+/).forEach(t => { const w = cleanWord(t); if (w && !seen.has(w)){ seen.add(w); out.push(w); } })); return out; }
@@ -254,9 +254,9 @@ function verseHTML(i){
     const tail = last ? (hasAu(i) ? '<button class="vb vplay" data-a="play" aria-label="play"><svg><use href="#i-play"/></svg></button>' : '') + '<span class="vend"><button class="vb" data-a="menu" aria-label="more"><svg><use href="#i-more"/></svg></button></span>' : '';
     return '<p' + (vv.v.length === 1 ? ' class="one"' : '') + '>' + lead + top + w + tail + '</p>'; }).join('') + '</div>';
   if (S.settings.tr && it.t && it.t.length) h += '<div class="tr">' + it.t.map(l => '<div>' + l.split(/(?<=,)\s+/).map(x => '<span class="half">' + esc(x).replace(/\s*॥\s*([^॥]*?)\s*॥/g, ' <span class="dd">॥$1॥</span>') + '</span>').join(' ') + '</div>').join('') + '</div>';
-  if (layerOn('h')){ const m = mean('hi', i); if (m) h += '<div class="layer h">' + esc(m.x).replace(/\s*(।।[^।]*।।)\s*$/, '<span style="white-space:nowrap"> $1</span>') + (m.edited ? '<span class="tag">' + T('संशोधित', 'edited') + '</span>' : '') + (m.from ? '<span class="tag">' + esc(m.from) + '</span>' : '') + (m.f ? '<div class="fn">' + m.f.map(esc).join('<br>') + '</div>' : '') + '</div>'; }
+  if (layerOn('h')){ const m = mean('hi', i); if (m) h += '<div class="layer h">' + esc(m.x).replace(/\s*(।।[^।]*।।)\s*$/, '<span style="white-space:nowrap"> $1</span>') + (m.edited ? '<span class="tag">' + T('संशोधित', 'edited') + '</span>' : '') + (m.f ? '<div class="fn">' + m.f.map(esc).join('<br>') + '</div>' : '') + '</div>'; }
   if (layerOn('w')) h += '<div class="layer wl">' + wbHTML(vv.v, langOf(i)) + '</div>';
-  if (layerOn('e')){ const m = mean('en', i); if (m) h += '<div class="layer e">' + esc(m.x) + (m.edited ? '<span class="tag">edited</span>' : '') + (m.from ? '<span class="tag">' + esc(m.from) + '</span>' : '') + (m.f ? '<div class="fn">' + m.f.map(esc).join('<br>') + '</div>' : '') + '</div>'; }
+  if (layerOn('e')){ const m = mean('en', i); if (m) h += '<div class="layer e">' + esc(m.x) + (m.edited ? '<span class="tag">edited</span>' : '') + (m.f ? '<div class="fn">' + m.f.map(esc).join('<br>') + '</div>' : '') + '</div>'; }
   for (const p of SHOWN()) (p.notes[KEY(id)] || []).forEach((n, k) => { h += '<div class="note"><div class="who">' + esc(p.name) + ' · ' + new Date(n.ts).toLocaleDateString(LANG() === 'en' ? 'en-IN' : 'hi-IN') + (p.id === me.id ? '<button data-a="enote" data-k="' + k + '">' + T('बदलें', 'Edit') + '</button>' : '') + '</div>' + esc(n.t).replace(/\n/g, '<br>') + '</div>'; });
   return h + '</div>';
 }
@@ -313,11 +313,8 @@ function topVisibleItem(){
 function curSection(i){ const t = topicOf(i); return t && t.i <= R.b && t.end >= R.a ? t : null; }
 function updateHeader(){
   if (!IT.length) return; const i = topVisibleItem(), t = topicOf(i);
-  $('#rTopic').textContent = t ? TNAME(t) : KNAME(IT[i].p);
-  let k = KNAME(IT[i].p) + ' · ' + posLabel(i); if (R.org !== 'k') k = VN(R.n) + ' · ' + k;
-  $('#rKand').textContent = k;
-  const s = curSection(i);
-  $('#rMid').innerHTML = '<span class="ml">' + (s ? spanLabel(Math.max(s.i, R.a), Math.min(s.end, R.b)) : spanLabel(R.a, R.b)) + ' ▾</span><small>' + esc(s ? TNAME(s) : (R.org === 'k' ? KNAME(R.n) : VN(R.n))) + '</small>';
+  const s = curSection(i), where = R.org === 'k' ? (PARTS.length > 1 ? KNAME(R.n) : '') : VN(R.n), topic = s ? TNAME(s) : '';
+  $('#rMid').innerHTML = '<span class="ml">' + (s ? spanLabel(Math.max(s.i, R.a), Math.min(s.end, R.b)) : spanLabel(R.a, R.b)) + ' ▾</span><small>' + esc([where, topic].filter(Boolean).join(' · ') || TT(W.title)) + '</small>';
 }
 let scT;
 window.addEventListener('scroll', () => { if (!$('#reader').classList.contains('on')) return; ensure(); clearTimeout(scT); scT = setTimeout(() => { updateHeader(); savePos(); }, 200); }, {passive: true});
@@ -372,7 +369,6 @@ $('#rMore').onclick = () => { openSheet('<div class="menu">' +
   '<button data-m="bm"><svg><use href="#i-bm"/></svg>' + LB.bm() + '</button>' +
   '<button data-m="timer"><svg><use href="#i-clock"/></svg>' + LB.timer() + (S.timer ? ' · ' + timerText() + (S.timer.run ? T(' (रोकें)', ' (pause)') : T(' (चलाएँ)', ' (resume)')) : T(' (शुरू करें)', ' (start)')) + '</button>' +
   (S.timer ? '<button data-m="treset"><svg><use href="#i-clock"/></svg>' + LB.timer() + T(' — शून्य करें', ' — reset') + '</button>' : '') +
-  '<button data-m="font"><svg><use href="#i-text"/></svg>' + LB.size() + '</button>' +
   '<button data-m="set"><svg><use href="#i-set"/></svg>' + LB.set() + '</button></div>' +
   '<div class="menusw">' + sw('mtr', LB.tr(), LB.trSub(), S.settings.tr) + sw('mrc', LB.rc(), LB.rcSub(), S.settings.recite) + '</div>');
   $('#mtr').onchange = e => { S.settings.tr = e.target.checked; save(); refreshReader(); };
@@ -384,6 +380,12 @@ $('#sheetBody').addEventListener('click', ev => {
   if (m === 'search') show('search'); if (m === 'sec') sectionSheet(); if (m === 'timer') timerToggle(); if (m === 'treset') timerReset();
   if (m === 'font') fontSheet(); if (m === 'bm') show('bookmarks'); if (m === 'set') show('settings');
 });
+function setSize(d){
+  const i = topVisibleItem(); S.settings.size = Math.max(16, Math.min(34, S.settings.size + d)); applyTheme(); save();
+  if ($('#reader').classList.contains('on') && i != null) scrollToItem(i);
+  toast(LB.size() + ' ' + DEV(S.settings.size));
+}
+$('#rSmaller').onclick = () => setSize(-2); $('#rBigger').onclick = () => setSize(2);
 function fontSheet(){
   openSheet('<h2>' + LB.size() + '</h2><input type="range" id="fs" min="16" max="34" step="1" value="' + S.settings.size + '" style="border:0;padding:0"><p class="vtext" id="fsDemo" style="font-size:' + S.settings.size + 'px">' + esc(IT[0] ? IT[0].v[0].slice(0, 28) : '') + '</p>');
   $('#fs').oninput = () => { S.settings.size = +$('#fs').value; $('#fsDemo').style.fontSize = S.settings.size + 'px'; applyTheme(); save(); };
@@ -544,6 +546,21 @@ function renderLibrary(){
   });
   $$('#libCrumbs [data-lp]').forEach(b => b.onclick = () => { libPath = libPath.slice(0, +b.dataset.lp + 1); renderLibrary(); });
 }
+/* library search: finds works and shelves by title, author, edition, description or id, in either script */
+const normQ = x => (x || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[\u093c]/g, '').normalize('NFC');
+function libSearch(q){
+  const nq = normQ(q.trim()), out = [];
+  (function walk(nodes, trail){ (nodes || []).forEach(n => {
+    const hay = normQ([n.id, n.path, n.work, ...['title', 'by', 'edition', 'desc'].map(k => n[k] ? (n[k].hi || '') + ' ' + (n[k].en || '') : '')].join(' '));
+    if (hay.includes(nq)) out.push({n, trail});
+    if (n.children) walk(n.children, trail.concat([n]));
+  }); })(LIB, []);
+  $('#libList').innerHTML = out.length ? out.map((r, k) => '<li><button class="it" data-hit="' + k + '"><span class="grow"><span class="ti">' + esc(TT(r.n.title)) + '</span><br><span class="ds">' + esc(r.trail.map(x => TT(x.title)).join(' › ') || TT(r.n.desc || r.n.by) || '') + '</span></span><span class="chev">›</span></button></li>').join('')
+    : '<li class="small muted" style="border:0;padding:14px 2px">' + T('कुछ नहीं मिला', 'Nothing found') + '</li>';
+  $$('#libList [data-hit]').forEach(b => b.onclick = () => { const r = out[+b.dataset.hit]; if (r.n.work) openWork(r.n.work); else { libPath = r.trail.map(x => x.id).concat([r.n.id]); $('#libQ').value = ''; $('#libSearch').hidden = true; renderLibrary(); } });
+}
+$('#libSearchBtn').onclick = () => { const box = $('#libSearch'); box.hidden = !box.hidden; if (!box.hidden) $('#libQ').focus(); else { $('#libQ').value = ''; renderLibrary(); } };
+$('#libQ').addEventListener('input', () => { const q = $('#libQ').value; if (q.trim()) libSearch(q); else renderLibrary(); });
 function workPath(id){ let r = null; (function walk(n){ (n || []).forEach(c => { if (c.work === id) r = c.path; else walk(c.children); }); })(LIB); return r || id; }
 async function openWork(id, noShow){
   $('#loading').hidden = false;
@@ -560,7 +577,6 @@ function homeOrg(){ return WS().org || 'k'; }
 function renderHome(){
   if (!W) return;
   $('#hTitle').textContent = TT(W.title); $('#hSub').textContent = TT(W.by) + ' · ' + TT(W.edition);
-  $('#qVidhi').hidden = !W.vidhi;
   // ▶ the whole work, start to end, across every part and recording
   const pa = $('#hPlayAll'), fa = firstAu(0, IT.length - 1); pa.hidden = fa == null; pa.onclick = () => playRange('k', 0, IT.length - 1);
   const L = WS().last;
@@ -584,6 +600,10 @@ function renderHome(){
   $$('#orgList [data-pa]').forEach(b => b.onclick = ev => { ev.stopPropagation(); playRange(b.dataset.po, +b.dataset.pa, +b.dataset.pb); });
 }
 $('#hLib').onclick = () => show('library');
+$('#hMenu').onclick = () => {
+  openSheet('<div class="menu"><button data-go="bookmarks"><svg><use href="#i-bm"/></svg>' + LB.bm() + '</button>' + (W && W.vidhi ? '<button data-go="vidhi"><svg><use href="#i-lamp"/></svg>' + T('पारायण-विधि', 'Pārāyaṇa vidhi') + '</button>' : '') + '<button data-go="settings"><svg><use href="#i-set"/></svg>' + LB.set() + '</button></div>');
+  $$('#sheetBody [data-go]').forEach(b => b.onclick = () => { closeSheet(); show(b.dataset.go); });
+};
 
 /* ---------------- search ---------------- */
 let IDX = null;

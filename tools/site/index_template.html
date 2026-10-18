@@ -237,7 +237,11 @@ input[type=checkbox],input[type=radio],input[type=range]{accent-color:var(--indi
 .toast.on{opacity:1}
 .pill{display:inline-block;font-size:12px;padding:1px 8px;border-radius:10px;background:var(--indigo-soft);color:var(--indigo)}
 
-.libbtn{display:inline-flex;align-items:center;gap:4px;margin-top:12px;color:var(--indigo);font-size:15px;padding:6px 4px}
+.libbtn{display:inline-flex;align-items:center;gap:4px;color:var(--indigo);font-size:15px;padding:6px 4px}
+.toprow{display:flex;align-items:center;gap:2px;margin-top:10px;min-height:44px}.toprow .grow,.bar .grow{flex:1}
+.toprow .ib svg{stroke:var(--indigo)}
+.libsearch{margin:0 0 10px}.libsearch input{width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:11px 14px;border:1px solid var(--rule);border-radius:12px;background:var(--surface);color:var(--ink)}
+.sz{display:flex;border:1px solid var(--rule);border-radius:999px;overflow:hidden}.sz button{padding:0 11px;min-height:32px;font-weight:700;color:var(--indigo);font-size:15px}.sz button+button{border-left:1px solid var(--rule);font-size:19px}.sz sup{font-size:.6em}
 .libbtn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
 .crumbs{font-size:14px;color:var(--muted);margin:0 0 6px}.crumbs button{color:var(--indigo)}
 .loading{position:fixed;inset:0;z-index:70;background:var(--bg);display:grid;place-items:center;color:var(--saffron);font-size:22px}
@@ -271,6 +275,7 @@ body.playing #rBody{padding-bottom:240px}
  <symbol id="i-next" viewBox="0 0 24 24"><path d="M17 5v14M6 6l8 6-8 6z" fill="currentColor"/></symbol>
  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
  <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+ <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></symbol>
  <symbol id="i-more" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="12" cy="19" r="1.2"/></symbol>
  <symbol id="i-bm" viewBox="0 0 24 24"><path d="M7 4h10v16l-5-3.5L7 20z"/></symbol>
@@ -289,7 +294,9 @@ body.playing #rBody{padding-bottom:240px}
 <!-- LIBRARY -->
 <section id="library" class="view on">
  <div class="wrap">
+  <div class="toprow"><span class="grow"></span><button class="ib" id="libSearchBtn" aria-label="खोजें"><svg><use href="#i-search"/></svg></button></div>
   <div class="hero"><p class="crumbs" id="libCrumbs"></p><h1 id="libTitle" data-en="Library">पुस्तकालय</h1></div>
+  <div class="libsearch" id="libSearch" hidden><input id="libQ" type="search" placeholder="ग्रन्थ, रचयिता या विषय खोजें" data-en-ph="Search works, authors or shelves" autocomplete="off"></div>
   <ul class="list" id="libList"></ul>
   <div style="height:40px"></div>
  </div>
@@ -298,15 +305,9 @@ body.playing #rBody{padding-bottom:240px}
 <!-- HOME (one work) -->
 <section id="home" class="view">
  <div class="wrap">
-  <button class="libbtn" id="hLib"><svg><use href="#i-back"/></svg><span data-en="Library">पुस्तकालय</span></button>
+  <div class="toprow"><button class="libbtn" id="hLib"><svg><use href="#i-back"/></svg><span data-en="Library">पुस्तकालय</span></button><span class="grow"></span><button class="ib" data-go="search" aria-label="खोजें"><svg><use href="#i-search"/></svg></button><button class="ib" id="hMenu" aria-label="मेनू"><svg><use href="#i-menu"/></svg></button></div>
   <div class="hero"><h1 id="hTitle"></h1><p id="hSub"></p><button class="btn playall" id="hPlayAll" hidden><svg><use href="#i-play"/></svg><span data-en="Play the complete work">सम्पूर्ण पाठ सुनें</span></button></div>
   <div id="contCard"></div>
-  <div class="quick">
-   <button data-go="search"><svg><use href="#i-search"/></svg><span data-en="Search">खोजें</span></button>
-   <button data-go="bookmarks"><svg><use href="#i-bm"/></svg><span data-en="Bookmarks &amp; notes">बुकमार्क और टिप्पणियाँ</span></button>
-   <button data-go="vidhi" id="qVidhi"><svg><use href="#i-lamp"/></svg><span data-en="Pārāyaṇa vidhi">पारायण-विधि</span></button>
-   <button data-go="settings"><svg><use href="#i-set"/></svg><span data-en="Settings">सेटिंग्स</span></button>
-  </div>
   <div class="seg" id="orgSeg"></div>
   <ul class="list" id="orgList"></ul>
   <div style="height:40px"></div>
@@ -317,7 +318,7 @@ body.playing #rBody{padding-bottom:240px}
 <section id="reader" class="view">
  <div class="bar"><div class="wrap">
   <button class="ib" id="rBack" aria-label="वापस"><svg><use href="#i-back"/></svg></button>
-  <div class="bt"><div class="k" id="rKand"></div><div class="t" id="rTopic"></div></div>
+  <div class="sz"><button id="rSmaller" aria-label="छोटा अक्षर">A<sup>−</sup></button><button id="rBigger" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div><span class="grow"></span>
   <span class="timer" id="timerPill"></span>
   <button class="pill" id="rRecite" hidden style="padding:6px 10px;font-size:13px"><span data-en="Recitation mode">पाठ मोड</span> ✕</button>
   <div class="lyr" id="rLayers"><button data-l="h">हिं</button><button data-l="e" class="lat">En</button><button data-l="w">शब्द</button></div>

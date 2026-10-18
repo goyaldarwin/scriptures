@@ -49,6 +49,17 @@ async def main():
         rows = await ev("document.querySelectorAll('#libList [data-node]').length")
         check('library lists the genres under them', rows == sum(len(t['children']) for t in shelf), rows)
 
+        # library search finds a work by its English or Hindi name
+        for leaf, trail in list(leaves(shelf))[:3]:
+            await ev("libPath=[]; show('library')"); await pg.wait_for_timeout(200)
+            if await ev("document.querySelector('#libSearch').hidden"): await (await pg.query_selector('#libSearchBtn')).click()
+            q = leaf['title']['en'].split()[-1][:5]
+            await pg.fill('#libQ', q); await pg.wait_for_timeout(300)
+            found = await ev("Array.from(document.querySelectorAll('#libList .ti')).map(x => x.textContent)")
+            check(f'library search “{q}” finds {leaf["work"]}', leaf['title']['hi'] in found or leaf['title']['en'] in found, found[:4])
+            await pg.fill('#libQ', ''); await (await pg.query_selector('#libSearchBtn')).click(); await pg.wait_for_timeout(200)
+        await shot('library-search')
+
         for leaf, trail in leaves(shelf):
             wid = leaf['work']; tag = wid
             # walk the shelf exactly as a reader would: tap down the path, two levels at a time
@@ -83,8 +94,14 @@ async def main():
             await (await pg.query_selector('#orgList [data-open]')).click(); await pg.wait_for_timeout(1500); await shot(f'{tag}-reader')
             nv = await ev("document.querySelectorAll('#reader .verse').length")
             check(f'{tag}: reader opens with verses', nv > 0, nv)
-            hdr = await ev("[document.querySelector('#rKand').textContent, document.querySelector('#rTopic').textContent]")
-            check(f'{tag}: reader header names where you are', all(x.strip() for x in hdr), hdr)
+            hdr = await ev("document.querySelector('#rMid').innerText")
+            check(f'{tag}: the bottom bar names where you are', len(hdr.strip()) > 2, hdr.replace('\n', ' / '))
+            # text size: A+ and A− change it and keep the reader at the same verse
+            at = await ev("topVisibleItem()"); sz = await ev("S.settings.size")
+            await (await pg.query_selector('#rBigger')).click(); await pg.wait_for_timeout(500)
+            sz2 = await ev("S.settings.size"); at2 = await ev("topVisibleItem()")
+            await (await pg.query_selector('#rSmaller')).click(); await pg.wait_for_timeout(500)
+            check(f'{tag}: A+ / A− change the text size and keep your place', sz2 == sz + 2 and await ev("S.settings.size") == sz and abs(at2 - at) <= 1, f'{sz}→{sz2}, verse {at}→{at2}')
             # icons never overlap the verse text
             overlap = await ev("""(() => { let bad = 0; document.querySelectorAll('#reader .vtext p').forEach(p => {
                 const r = p.getBoundingClientRect(), pad = 0;
@@ -144,9 +161,15 @@ async def main():
                     check(f'{tag}: a search result opens the reader', await ev("document.querySelector('#reader').classList.contains('on')"))
             # English interface
             await ev("S.settings.layers.e = true; S.settings.layers.h = false; applyLang(); refreshReader()"); await pg.wait_for_timeout(500)
-            en_hdr = await ev("document.querySelector('#rKand').textContent")
+            en_hdr = await ev("document.querySelector('#rMid').innerText")
             check(f'{tag}: English interface works in the reader', bool(en_hdr.strip()), en_hdr)
             await ev("S.settings.layers.h = true; S.settings.layers.e = false; applyLang()")
+            # the work menu (☰) leads to bookmarks and settings
+            await ev("show('home')"); await pg.wait_for_timeout(300)
+            await (await pg.query_selector('#hMenu')).click(); await pg.wait_for_timeout(300)
+            items = await ev("Array.from(document.querySelectorAll('#sheetBody [data-go]')).map(b => b.dataset.go)")
+            check(f'{tag}: ☰ holds bookmarks and settings', 'bookmarks' in items and 'settings' in items, items)
+            await ev("closeSheet()")
             # back goes home
             await ev("show('home')"); await pg.wait_for_timeout(300)
             check(f'{tag}: back to the work home', await ev("document.querySelector('#home').classList.contains('on')"))

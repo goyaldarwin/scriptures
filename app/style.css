@@ -228,7 +228,11 @@ input[type=checkbox],input[type=radio],input[type=range]{accent-color:var(--indi
 .toast.on{opacity:1}
 .pill{display:inline-block;font-size:12px;padding:1px 8px;border-radius:10px;background:var(--indigo-soft);color:var(--indigo)}
 
-.libbtn{display:inline-flex;align-items:center;gap:4px;margin-top:12px;color:var(--indigo);font-size:15px;padding:6px 4px}
+.libbtn{display:inline-flex;align-items:center;gap:4px;color:var(--indigo);font-size:15px;padding:6px 4px}
+.toprow{display:flex;align-items:center;gap:2px;margin-top:10px;min-height:44px}.toprow .grow,.bar .grow{flex:1}
+.toprow .ib svg{stroke:var(--indigo)}
+.libsearch{margin:0 0 10px}.libsearch input{width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:11px 14px;border:1px solid var(--rule);border-radius:12px;background:var(--surface);color:var(--ink)}
+.sz{display:flex;border:1px solid var(--rule);border-radius:999px;overflow:hidden}.sz button{padding:0 11px;min-height:32px;font-weight:700;color:var(--indigo);font-size:15px}.sz button+button{border-left:1px solid var(--rule);font-size:19px}.sz sup{font-size:.6em}
 .libbtn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
 .crumbs{font-size:14px;color:var(--muted);margin:0 0 6px}.crumbs button{color:var(--indigo)}
 .loading{position:fixed;inset:0;z-index:70;background:var(--bg);display:grid;place-items:center;color:var(--saffron);font-size:22px}
