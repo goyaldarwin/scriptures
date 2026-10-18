@@ -20,3 +20,6 @@ Reading the verse ids in a recording's first/last printout is the quickest check
 
 ## Status: Pt. Kamlesh Upadhyay "Haripuri" (Rāmacaritamānasa, Māsa-pārāyaṇa)
 Timed: days 1–10 and 15–17. To do: 11–14 and 18–30. There is no recording for day 26 in `recordings.json`.
+
+## Status: Vande Guru Paramparaam (Śrī Rāma Rakṣā Stotram)
+One video (`ZIDdE4SZAuw`), all 42 verses timed. Transcribed with `tools/works/ramraksha/audio/transcribe_onnx.py` (Hugging Face was unreachable); eight verse starts that speech recognition missed are corrected by `tools/works/ramraksha/audio/fix_align.py` before `make_timings.py`.

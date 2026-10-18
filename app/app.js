@@ -242,7 +242,8 @@ function verseHTML(i){
     if (LANG() === 'en') ln = ln.replace(/[०-९]/g, d => DIG.indexOf(d));
     const w = wordsHTML(ln).replace(/।।\s*([0-9०-९][^\s।<]*)\s*।।/, '<span style="white-space:nowrap">।।$1।।</span>');
     const lead = y === 0 && sh ? '<span class="vt">' + T(sh[0], sh[1]) + '</span>' : '';
-    const tail = last ? '<span class="vend"><button class="vb' + (bm ? ' bm-on' : '') + '" data-a="bm" aria-label="bookmark"><svg><use href="#i-bm"/></svg></button><button class="vb" data-a="menu" aria-label="more"><svg><use href="#i-more"/></svg></button></span>' + (hasAu(i) ? '<button class="vb vplay" data-a="play" aria-label="play"><svg><use href="#i-play"/></svg></button>' : '') : '';
+    const pb = hasAu(i) ? '<button class="vb vplay' + (y === 0 ? ' in' : '') + '" data-a="play" aria-label="play"><svg><use href="#i-play"/></svg></button>' : '';   // a one-line verse: ▶ joins the right-hand group, clear of the type label
+    const tail = last ? '<span class="vend">' + (y === 0 ? pb : '') + '<button class="vb' + (bm ? ' bm-on' : '') + '" data-a="bm" aria-label="bookmark"><svg><use href="#i-bm"/></svg></button><button class="vb" data-a="menu" aria-label="more"><svg><use href="#i-more"/></svg></button></span>' + (y === 0 ? '' : pb) : '';
     return '<p>' + lead + w + tail + '</p>'; }).join('') + '</div>';
   if (S.settings.tr && it.t && it.t.length) h += '<div class="tr">' + it.t.map(l => '<div>' + l.split(/(?<=,)\s+/).map(x => '<span class="half">' + esc(x).replace(/\s*॥\s*([^॥]*?)\s*॥/g, ' <span class="dd">॥$1॥</span>') + '</span>').join(' ') + '</div>').join('') + '</div>';
   if (layerOn('h')){ const m = mean('hi', i); if (m) h += '<div class="layer h">' + esc(m.x).replace(/\s*(।।[^।]*।।)\s*$/, '<span style="white-space:nowrap"> $1</span>') + (m.edited ? '<span class="tag">' + T('संशोधित', 'edited') + '</span>' : '') + (m.f ? '<div class="fn">' + m.f.map(esc).join('<br>') + '</div>' : '') + '</div>'; }

@@ -24,6 +24,7 @@ tools/
       export.py                    source/ → library/stotra/ramraksha/ (text, English + Hindi meanings, new Sanskrit words)
       glossary_sa.json             the stotra's word meanings, merged into library/glossary/sa.json
       audio/transcribe_onnx.py     Whisper small (ONNX, from GitHub) → transcript, when Hugging Face is unreachable
+      audio/fix_align.py           hand-checked verse starts applied to the cached alignment
       audio/vande-guru-paramparaam/ source.json, recordings.json, transcripts/
 ```
 
