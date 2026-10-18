@@ -51,12 +51,17 @@ async def main():
 
         # one header on the library, a work and the reader: back, A−/A+, हिं·En·शब्द, search, menu
         for v in ('library', 'home', 'reader'):
-            parts = await ev(f"(() => {{ const b = document.querySelector('#{v} .bar'); return b ? ['.szm', '.szp', '.lyr.layers', '.hsearch', '.hmenu'].map(c => !!b.querySelector(c)) : []; }})()")
-            check(f'{v}: the same header (A−/A+, हिं·En·शब्द, search, menu)', parts and all(parts), parts)
+            need = ['.lyr.layers', '.hsearch', '.hmenu'] + ([] if v == 'library' else ['.szm', '.szp'])   # the library's left side is its breadcrumbs
+            parts = await ev(f"(() => {{ const b = document.querySelector('#{v} .bar'); return b ? {need!r}.map(c => !!b.querySelector(c)) : []; }})()")
+            check(f'{v}: the same header (हिं·En·शब्द, search, menu; A−/A+ on a work and the reader)', parts and all(parts), parts)
+        hgt = await ev("document.querySelector('#library .bar').getBoundingClientRect().height")
+        check('library: the header is one row, even inside a shelf', hgt < 70, hgt)
         # the library's way back is the breadcrumb row in its header; inside a work, “‹ Library” goes to the library
         await ev("libPath=[LIB[0].id]; show('library')"); await pg.wait_for_timeout(300)
         crumbs = await ev("document.querySelector('#library .bar #libCrumbs').innerText")
         check('library: breadcrumbs sit in the header', 'Library' in crumbs or 'पुस्तकालय' in crumbs, crumbs)
+        hgt = await ev("document.querySelector('#library .bar').getBoundingClientRect().height")
+        check('library: inside a shelf the header is still one row', hgt < 70, hgt)
         await ev("libPath=[]; renderLibrary()")
         await ev("libPath=[]; show('library')"); await pg.wait_for_timeout(300)
         lang0 = await ev("LANG()")

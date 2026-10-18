@@ -605,7 +605,17 @@ function renderLibrary(){
   // the way back up, in the header: Library › Hinduism › Vedas › … (the shelf you are on is the last, not a link)
   let crumbs = '<button data-lp="-1">' + LB.lib() + '</button>'; let n = {children: LIB};
   libPath.forEach((id, k) => { n = n.children.find(x => x.id === id); crumbs += '<span class="sep">›</span>' + (k === libPath.length - 1 ? '<span class="cur">' + esc(TT(n.title)) + '</span>' : '<button data-lp="' + k + '">' + esc(TT(n.title)) + '</button>'); });
-  $('#libCrumbs').innerHTML = libPath.length ? crumbs : '';
+  const cr = $('#libCrumbs'); cr.innerHTML = libPath.length ? crumbs : '';
+  // too long for the header: shorten to Library › … › parent › this shelf, then Library › … › this shelf, then … › this shelf;
+  // “…” lists every level
+  if (libPath.length > 1 && cr.scrollWidth > cr.clientWidth + 1){
+    const names = []; let m = {children: LIB}; libPath.forEach(id => { m = m.children.find(x => x.id === id); names.push(TT(m.title)); });
+    const L = libPath.length, lib = '<button data-lp="-1">' + LB.lib() + '</button><span class="sep">›</span>', more = '<button class="crMore">…</button><span class="sep">›</span>', cur = '<span class="cur">' + esc(names[L - 1]) + '</span>';
+    const par = L > 1 ? '<button data-lp="' + (L - 2) + '">' + esc(names[L - 2]) + '</button><span class="sep">›</span>' : '';
+    for (const v of [lib + (L > 2 ? more : '') + par + cur, lib + more + cur, more + cur]){ cr.innerHTML = v; if (cr.scrollWidth <= cr.clientWidth + 1) break; }
+    $$('#libCrumbs .crMore').forEach(b => b.onclick = () => { openSheet('<div class="menu"><button data-lpj="-1">' + LB.lib() + '</button>' + names.slice(0, -1).map((nm, j) => '<button data-lpj="' + j + '">' + '&nbsp;'.repeat((j + 1) * 3) + esc(nm) + '</button>').join('') + '</div>'); $$('#sheetBody [data-lpj]').forEach(x => x.onclick = () => { closeSheet(); libPath = libPath.slice(0, +x.dataset.lpj + 1); renderLibrary(); window.scrollTo(0, 0); }); });
+  }
+  cr.scrollLeft = 1e5;   // if it still does not fit, the end (the shelf you are on) shows
   $('#libTitle').textContent = libPath.length ? TT(node.title) : LB.lib();
   // two levels per screen: a shelf inside this one is shown as a heading with its own items under it
   const row = (c, key) => '<li><button class="it" data-node="' + esc(key) + '"><span class="grow"><span class="ti">' + esc(TT(c.title)) + '</span><br><span class="ds">' + esc(TT(c.desc || c.by) || '') + '</span></span><span class="chev">›</span></button></li>';

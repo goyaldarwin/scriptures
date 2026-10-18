@@ -250,7 +250,7 @@ input[type=checkbox],input[type=radio],input[type=range]{accent-color:var(--indi
 .bar .hback.off{visibility:hidden}
 .bar .wrap{gap:4px}
 @media (max-width:400px){.bar .sz button{padding:0 8px}.bar .lyr button{padding:0 5px}.bar .ib{width:36px}.bar .libbtn{font-size:14px;padding:6px 2px}}
-.crumbrow{display:flex;gap:2px;align-items:center;overflow-x:auto;white-space:nowrap;padding:0 16px 8px;max-width:720px;margin:0 auto;font-size:14.5px;scrollbar-width:none}.crumbrow:empty{display:none}.crumbrow::-webkit-scrollbar{display:none}.crumbrow button{color:var(--indigo);padding:2px 2px}.crumbrow .sep{color:var(--muted)}.crumbrow .cur{color:var(--ink,inherit);font-weight:700}
+.crumbrow{flex:1;min-width:0;display:flex;gap:2px;align-items:center;overflow-x:auto;white-space:nowrap;font-size:14.5px;scrollbar-width:none}.crumbrow::-webkit-scrollbar{display:none}.crumbrow button{color:var(--indigo);padding:2px 2px}.crumbrow .sep{color:var(--muted)}.crumbrow .cur{color:var(--ink,inherit);font-weight:700}
 .zoomable{zoom:var(--ui-zoom,1)}
 .bar .ib svg{stroke:var(--indigo)}
 .toprow .ib svg{stroke:var(--indigo)}
