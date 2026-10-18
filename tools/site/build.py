@@ -29,6 +29,10 @@ from library import prepare, LibraryError
 try: WORKS = prepare(os.path.join(ROOT, 'library'))
 except LibraryError as e: sys.exit('LIBRARY PROBLEM: ' + str(e))
 print('works', WORKS)
+# the app must at least parse: a syntax error would leave every reader with a blank page
+import subprocess
+r = subprocess.run(['node', '--check', os.path.join(HERE, 'app.js')], capture_output=True, text=True)
+if r.returncode: sys.exit('APP PROBLEM: tools/site/app.js does not parse\n' + r.stderr)
 # ---------- website ----------
 if os.path.isdir(os.path.join(SITE, 'app')): shutil.rmtree(os.path.join(SITE, 'app'))
 APPD = os.path.join(SITE, 'app'); os.makedirs(os.path.join(APPD, 'fonts'), exist_ok=True)
