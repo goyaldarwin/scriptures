@@ -31,6 +31,12 @@ tools/
       meanings/hi.json, en.json    one meaning per verse
       glossary/mr|sa|hi.json       word meanings by language
       export.py                    → library/hinduism/aarti/shirdi-sai/dhoop-aarti/ and library/glossary/
+    shri-rudram/
+      source/                      the shlokam.org printouts (PDF) → *_raw.json (extract.py) → ../text.json (settle.py; reconciliation.md)
+      meanings/namakam|chamakam.json  our English and Hindi meaning per mantra
+      glossary/g*.json, work_sa.json  word meanings (→ library/glossary/sa.json) and this work's own senses
+      export.py                    → library/hinduism/veda/yajurveda/krishna-yajurveda/samhita/shri-rudram/
+      audio/shlokam/               source.json, recordings.json (transcripts come from the cloud)
 ```
 
 ## Rebuild everything (Rāmacaritamānasa)
