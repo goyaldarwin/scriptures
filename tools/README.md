@@ -30,6 +30,13 @@ tools/
       meanings/hi.json, en.json    one meaning per verse
       glossary/mr|sa|hi.json       word meanings by language
       export.py                    → library/hinduism/aarti/shirdi-sai/dhoop-aarti/ and library/glossary/
+    sukhmani-sahib/
+      extract.py                   the owner's PDF → source/lines.json (legacy Gurmukhi, transliteration, English per printed line)
+      gurmukhi.py                  legacy ASCII Gurmukhi font encoding (GurbaniAkhar) → Unicode Gurmukhi
+      check.py                     checks every converted line (transliteration skeletons; optional external witnesses)
+      structure.py                 printed lines → items (24 Ashtapadis: salok, pauris, rahao)
+      meanings/hi.json, glossary/pa.json   Hindi meaning per item and Gurmukhi word meanings, written for this library
+      export.py                    → library/sikhism/gurbani/guru-arjan-dev/sukhmani-sahib/ and library/glossary/pa.json
 ```
 
 ## Rebuild everything (Rāmacaritamānasa)

@@ -9,6 +9,7 @@ A personal, ad-free library for studying scriptures. Each work has the same read
 | Gosvāmī Tulasīdāsa | Śrī Rāmacaritamānasa: 7 kāṇḍas, 30-day and 9-day pārāyaṇa | Gita Press, Gorakhpur |
 | Stotras | Śrī Rāma Rakṣā Stotram (Budha Kauśika): viniyoga, dhyāna, 38 ślokas | Vande Guru Paramparaam (video) |
 | Āratī › Shirdi Sāī Bābā | Dhūpa Āratī (evening āratī): Marathi, Sanskrit, Hindi | Shirdi tradition |
+| Sikhism › Gurbāṇī › Guru Arjan Dev Ji | Sukhmani Sahib: 24 Ashtapadis, Gurmukhi | Sri Guru Granth Sahib, Ang 262–296 |
 
 ## What's where
 
@@ -25,13 +26,14 @@ library/                             the scriptures, as data
     audio/kamlesh-upadhyay.json        an audio source: YouTube video ids + verse timings     [generated]
   hinduism/stotra/rama/ramraksha/                  Śrī Rāma Rakṣā Stotram: work.json, meanings/, audio/
   hinduism/aarti/shirdi-sai/dhoop-aarti/   the Shirdi Sāī Bābā evening āratī (work.json, meanings/, audio/)
+  sikhism/gurbani/guru-arjan-dev/sukhmani-sahib/   Sukhmani Sahib (work.json, meanings/)
 docs/
   START-HERE.md                      resume the project in a new session
   HOW-TO.md                          add a work, a meaning source or a reciter; fix text; change the app
   LIBRARY.md                         the data format and its rules
   PLAYBOOK.md                        the owner's preferences, decisions and lessons
 tools/                               everything that makes the data and the website (see tools/README.md)
-  site/  audio/  fonts/  works/ramcharitmanas/  works/ramraksha/  works/shirdi-sai-dhoop-aarti/
+  site/  audio/  fonts/  works/ramcharitmanas/  works/ramraksha/  works/shirdi-sai-dhoop-aarti/  works/sukhmani-sahib/
 ```
 
 ## Raw sources
@@ -45,3 +47,5 @@ The verse text of the Rāmacaritamānasa is in the public domain. The Hindi bhā
 The text of the Śrī Rāma Rakṣā Stotram is in the public domain. Its text, transliteration and English meaning follow the on-screen text of the Vande Guru Paramparaam video “Sri Rama Raksha Stotram” (YouTube `ZIDdE4SZAuw`, Kuldeep M. Pai); the Hindi meaning is from the web page “श्री राम रक्षा स्तोत्र हिंदी में अर्थ सहित” on स्तुति चालीसा संग्रह (Shiv, 12 April 2020). Both meanings are included for personal study; permission from their publishers has not been requested. Audio plays from the same YouTube video.
 
 The Shirdi Dhūpa Āratī: the verse text (Mādhava Aḍakara, Dāsagaṇu, Saint Nāmadeva, Mohinīrāja, Upāsanī Mahārāja, B. V. Deva, Vedic and traditional prayers) was settled by comparing two web printouts supplied by the owner (missionkuldevi.in and shirdisaibabakripa.org); see `tools/works/shirdi-sai-dhoop-aarti/reconciliation.md`. The default English meaning is copied from the shirdisaibabakripa.org printout (“Shirdi Sai Baba Evening (Dhoop) Arati”, by Manisha Rautela Bisht; the site states a Creative Commons Attribution-Noncommercial-No Derivative Works 2.5 licence) for every verse it translates, with only typos fixed; it is included for personal study, and permission has not been requested. The Hindi meaning, a second English meaning covering every verse, and the word meanings were written for this library, because neither printout has them. The Śrī Guru-prasāda-yācanā-daśaka (B. V. Deva) is included at the owner's request.
+
+Sukhmani Sahib (Guru Arjan Dev Ji, Sri Guru Granth Sahib, Ang 262–296): the Gurbani is in the public domain. The text, its transliteration and the English translation come from the owner's PDF “Sukhmani Sahib with phonetic transliteration & English translation, Gurmukhi” (K. Thind, 2003); its Gurmukhi, typed in a legacy font encoding, was converted to Unicode and checked as described in `tools/works/sukhmani-sahib/reconciliation.md`. The English translation is © its translator, Dr. Sant Singh Khalsa, and is included for personal study; permission has not been requested. The Hindi meaning and the Gurmukhi word meanings were written for this library, because the PDF has none.
