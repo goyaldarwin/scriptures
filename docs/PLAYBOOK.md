@@ -295,3 +295,8 @@ Then expect from me, in order:
   - **Nothing may be wider than the screen**, even with the phone's text zoom: the work title shrinks to fit (fitTitle), the page clips sideways overflow, and the ☰ sheet scrolls with room below its last row for a browser toolbar.
   - **Reader:** where you are is shown only in the bottom bar (range, then kāṇḍa or day · topic). The top bar holds A− / A+ text size (keeping your place), the हिं/En/शब्द layers, and ⋮.
   - A meaning filled in from a work's second source carries no visible label.
+
+### Decisions (Oct 18, 2026): the Sundarakāṇḍa
+- **A popular part of a big work can be a work of its own** (the Sundarakāṇḍa under Tulasīdāsa, next to the Mānas). It keeps all the text and meanings it has in the big work; only the audio and the additions (Hanumān Chālīsā, āratī, as recited) differ. It must never interfere with the big work: its exporter only *reads* the Mānas and regenerates its own copy, so corrections to the Mānas flow into it on every rebuild, and `check.py` proves the copy is identical.
+- **Widely available texts may be fetched from the web when the owner says so — 2–3 good sources are enough.** Prefer Wikisource and a Gita Press-based page; reconcile word by word and record every choice in the work's `reconciliation.md`. Where web pages use modern spelling, follow the Gita Press house style of the Mānas (ए not ये, ब/स forms, no hyphens) and let the metre decide between words.
+- The web-fetch tool will not return a hymn's full text. Write the text out and ask the page to list the words that differ, or ask yes/no for each candidate spelling.
