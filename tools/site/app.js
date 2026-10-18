@@ -816,7 +816,7 @@ function renderSettings(){
   let h = '<h2>' + T('पढ़ते समय दिखाएँ', 'Show while reading') + '</h2><p class="small muted">' + T('ये वही हैं जो पढ़नेके पन्नेपर ऊपर “हिं · En · शब्द” और ⋮ मेनूमें हैं। ऐप उसी भाषामें दिखता है: अंग्रेज़ी अर्थ चालू हो तो English, नहीं तो हिंदी।', 'These are the same as “हिं · En · शब्द” at the top of the reading page and the switches in its ⋮ menu. The app follows your choice of language: English if English meaning is on, otherwise Hindi.') + '</p>' +
     sw('sh', LB.h() + ' (हिं)', '', st.layers.h) + sw('se', LB.e() + ' (En)', '', st.layers.e) + sw('sw', LB.w() + ' (शब्द)', T('हर शब्दका हिंदी और English अर्थ', 'Hindi and English meaning of each word'), st.layers.w) +
     sw('str', LB.tr(), LB.trSub(), st.tr) + sw('src', LB.rc(), LB.rcSub(), st.recite) +
-    (W ? '<h2>' + LB.src() + ' · ' + esc(TT(W.title)) + '</h2><p class="small muted">' + T('मूल पाठ वही रहता है; अर्थ और ऑडियो किस स्रोतसे आएँ, यहाँ चुनें। शब्दार्थ सब स्रोतोंके लिये एक ही है।', 'The verses stay the same; choose where the meanings and the audio come from. Word meanings are the same for every source.') + '</p>' + pick('hi', LB.h()) + pick('en', LB.e()) + pick('au', LB.au(), true) : '') +
+    (W ? '<h2>' + LB.src() + ' · ' + esc(TT(W.title)) + '</h2><p class="small muted">' + T('मूल पाठ वही रहता है; अर्थ और ऑडियो किस स्रोतसे आएँ, यहाँ चुनें।', 'The verses stay the same; choose where the meanings and the audio come from.') + '</p>' + pick('hi', LB.h()) + pick('en', LB.e()) + pick('au', LB.au(), true) : '') +
     timingHTML() +
     '<h2>' + T('पढ़नेकी सुविधा', 'Reading comfort') + '</h2>' + sw('swk', LB.wake(), '', st.wake) +
     '<div class="field"><label>' + LB.size() + '</label><input type="range" id="ssz" min="16" max="34" value="' + st.size + '" style="border:0;padding:0"></div>' +
@@ -849,9 +849,9 @@ function timingHTML(){
   let h = '<h2>' + T('ऑडियोका समय', 'Audio timing') + '</h2><p class="small muted">' + T('जहाँ पद और आवाज़ मेल न खाएँ, वहाँ ठीक करनेके लिये।', 'For fixing places where the lit verse and the voice do not match.') + '</p>' + sw('stm', T('ऑडियोका समय ठीक करें', 'Adjust audio timing'), '', S.timing.on);
   if (S.timing.on && SRC.au){
     const n = Object.keys(myStarts()).length, p = Object.keys(pendingStarts()).length;
-    h += '<p class="small">' + esc(TT(SRC.au.meta.title)) + ': ' + DEV(n) + T(' पद आपने ठीक किये', ' verses set by you') + (p ? ' · ' + DEV(p) + T(' भेजने बाकी', ' not sent yet') : '') + '</p>' +
-      (SRC.au.meta.draft ? sw('stp', T('यह रिकॉर्डिंग जाँच ली — सबके लिये चालू करें', 'This recording is checked: publish it for everyone'), T('भेजनेके साथ जाएगा', 'Goes with the next send'), !!(S.timing.publish || {})[tkey()]) : '') +
+    h += (SRC.au.meta.draft ? sw('stp', T('यह रिकॉर्डिंग जाँच ली — सबके लिये चालू करें', 'This recording is checked: publish it for everyone'), T('भेजनेके साथ जाएगा', 'Goes with the next send'), !!(S.timing.publish || {})[tkey()]) : '') +
       checkList() + helperList() +
+      '<p class="small" style="margin:14px 0 8px">' + esc(TT(SRC.au.meta.title)) + ': ' + DEV(n) + T(' पद आपने ठीक किये', ' verses set by you') + (p ? ' · ' + DEV(p) + T(' भेजने बाकी', ' not sent yet') : '') + '</p>' +
       '<div class="acts"><button class="btn" id="tSend"' + (p || (S.timing.publish || {})[tkey()] ? '' : ' disabled') + '>' + T('लाइब्रेरीमें भेजें (GitHub)', 'Send to the library (GitHub)') + '</button><button class="btn ghost" id="tSave"' + (n ? '' : ' disabled') + '>' + T('फ़ाइलमें सेव करें', 'Save as a file') + '</button><button class="btn ghost" id="tOpen">' + T('सहायककी फ़ाइल खोलें', 'Open a helper’s file') + '</button>' + (n ? '<button class="btn ghost" id="tClear">' + T('मेरे समय हटाएँ', 'Clear my timings') + '</button>' : '') + '</div>' +
       '<p class="small muted">' + T('सहायता कर रहे हैं? “फ़ाइलमें सेव करें” दबाकर फ़ाइल साइटके मालिकको भेजें; वे जाँचकर लाइब्रेरीमें जोड़ेंगे। लाइब्रेरीमें सीधे केवल मालिक भेज सकते हैं।', 'Helping? Tap “Save as a file” and send the file to the site’s owner, who checks it and adds it to the library. Only the owner can send to the library directly.') + '</p>';
   }
