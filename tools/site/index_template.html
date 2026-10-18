@@ -140,7 +140,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .pause b{display:block;font-size:17px;color:var(--saffron)}
 .pause .sub{font-size:13px;color:var(--muted);margin:2px 0 10px}
 .colo{margin:26px 0;text-align:center;color:var(--muted);font-size:14.5px}
-.player{position:fixed;left:0;right:0;bottom:calc(60px + env(safe-area-inset-bottom));z-index:21;background:var(--surface);border-top:1px solid var(--rule);box-shadow:0 -4px 14px rgba(0,0,0,.06)}
+.player{position:fixed;left:0;right:0;bottom:0;padding-bottom:env(safe-area-inset-bottom);z-index:21;background:var(--surface);border-top:1px solid var(--rule);box-shadow:0 -4px 14px rgba(0,0,0,.06)}
 .player .wrap{display:flex;align-items:center;gap:2px;min-height:56px}
 .player .pmain{background:var(--indigo);color:#fff;border-radius:50%;width:44px;height:44px}
 .player .pmain svg{stroke:#fff}
@@ -250,11 +250,13 @@ input[type=checkbox],input[type=radio],input[type=range]{accent-color:var(--indi
 .secs .sn{font-size:16px}
 .secs button.on{background:var(--indigo-soft);border-radius:10px}
 .endb{text-align:center;margin:30px 0 20px}
-.pwrap{gap:10px;align-items:stretch;padding-top:8px;padding-bottom:8px}
+.pwrap{gap:10px;align-items:stretch;padding-top:6px;padding-bottom:6px}
+/* while reciting, the player replaces the section bar (sections stay in the ⋮ menu); YouTube needs the video at least 200×200 */
+body.playing #reader .navbar{display:none}
 .ytw{flex:none;width:200px;height:200px;border-radius:10px;overflow:hidden;background:#000}
 .pside{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:space-between}
 .pctl{display:flex;align-items:center;gap:0;flex-wrap:nowrap}.pctl .ib{width:36px}.pctl .pmain{width:44px;flex:none}
-body.playing #rBody{padding-bottom:330px}
+body.playing #rBody{padding-bottom:240px}
 </style>
 </head>
 <body>

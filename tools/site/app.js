@@ -478,6 +478,14 @@ setInterval(() => {
   if (PL.end != null && i > PL.end){ stopAudio(); toast(T('पाठ पूर्ण — जय श्रीराम', 'Recitation complete — Jai Shri Ram')); return; }
   setCur(i); const d = ytInfo.d || SRC.au.tracks[PL.t].dur; $('#pProg').style.width = (100 * time / d) + '%';
 }, 300);
+/* place the verse being recited in the space between the top bar and the player:
+   centred if it fits, otherwise with its first line just below the top bar (never hidden under it) */
+function keepInView(el){
+  const top = $('#reader .bar').getBoundingClientRect().bottom, pl = $('#player'), bottom = pl.hidden ? innerHeight : pl.getBoundingClientRect().top;
+  const r = el.getBoundingClientRect(), room = bottom - top, gap = room - r.height;
+  const want = gap > 16 ? top + gap / 2 : top + 8;
+  window.scrollTo({top: Math.max(0, scrollY + r.top - want), behavior: 'smooth'});
+}
 function setCur(i){
   if (PL.cur === i) return; PL.cur = i;
   $$('#rBody .verse.now').forEach(v => v.classList.remove('now'));
@@ -486,7 +494,7 @@ function setCur(i){
   if (i < R.a || i > R.b){ R.org = R.org; [R.a, R.b, R.n] = rangeFor(R.org, i); renderAround(i); }
   else if (!document.getElementById('v' + i)) renderAround(i, false);
   const el = document.getElementById('v' + i);
-  if (el){ el.classList.add('now'); if (Date.now() > PL.hold){ const y = el.getBoundingClientRect().top + scrollY - (innerHeight - el.offsetHeight - 260) / 2; window.scrollTo({top: Math.max(0, y), behavior: 'smooth'}); } }
+  if (el){ el.classList.add('now'); if (Date.now() > PL.hold) keepInView(el); }
 }
 function stopAudio(){ ytPost('pauseVideo'); PL.on = false; $('#player').hidden = true; document.body.classList.remove('playing'); $$('#rBody .verse.now').forEach(v => v.classList.remove('now')); }
 function playing(){ return ytInfo.st === 1 || ytInfo.st === 3; }
