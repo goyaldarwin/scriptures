@@ -9,11 +9,12 @@ Does not touch library/index.json (the shelf is edited by hand) or audio/ (see t
 Then run tools/site/build.py, which registers the sources and checks everything.
 """
 import json, os, sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..')); import jsonio
 
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.dirname(os.path.dirname(os.path.dirname(HERE)))
 ROOT = os.path.join(HERE, 'book')   # where app_data.json is built
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(REPO, 'library')
-WP = 'tulsidas/ramcharitmanas'
+WP = 'hindu/granth/tulsidas/ramcharitmanas'
 d = json.load(open(os.path.join(ROOT, 'app_data.json')))
 IT = d['it']; EG = d['eg']
 
@@ -95,5 +96,5 @@ for lang in ('sa', 'awa'):
     rel = 'glossary/' + lang + '.json'; gp = os.path.join(OUT, rel)
     G = json.load(open(gp)) if os.path.exists(gp) else {}
     new = {k: v for k, v in d['gloss'].items() if k not in G and lang in seen.get(k, {'awa'})}
-    G.update(new); added[lang] = len(new); sizes['gloss-' + lang] = dump(rel, dict(sorted(G.items())))
+    G.update(new); added[lang] = len(new); jsonio.dump_glossary(gp, G); sizes['gloss-' + lang] = os.path.getsize(gp)
 print({k: round(v / 1e6, 2) for k, v in sizes.items()}, 'MB; new words', added)

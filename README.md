@@ -17,12 +17,12 @@ app/                                 website code, styles, fonts                
 library/                             the scriptures, as data
   index.json                           the shelf: authors / collections / works, any depth
   glossary/                            word meanings, one dictionary per language (sa, awa, …) + languages.json
-  aarti/shirdi-sai/dhoop-aarti/       the Shirdi Sāī Bābā evening āratī (work.json, meanings/)
-  tulsidas/ramcharitmanas/
+  hindu/granth/tulsidas/ramcharitmanas/
     work.json                          verses + numbers, kāṇḍas, topics, plans, pārāyaṇa vidhi
     meanings/hi-gitapress.json         a Hindi meaning source
     meanings/en-gitapress.json         an English meaning source
     audio/kamlesh-upadhyay.json        an audio source: YouTube video ids + verse timings     [generated]
+  hindu/aarti/shirdi-sai/dhoop-aarti/   the Shirdi Sāī Bābā evening āratī (work.json, meanings/, audio/)
 docs/
   START-HERE.md                      resume the project in a new session
   HOW-TO.md                          add a work, a meaning source or a reciter; fix text; change the app

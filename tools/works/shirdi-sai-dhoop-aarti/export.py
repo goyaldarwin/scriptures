@@ -1,4 +1,4 @@
-"""Śrī Sāī Bābā (Shirdi) — Dhūpa āratī: text.txt + meanings/ + glossary/ → library/aarti/shirdi-sai/dhoop-aarti/.
+"""Śrī Sāī Bābā (Shirdi) — Dhūpa āratī: text.txt + meanings/ + glossary/ → library/hindu/aarti/shirdi-sai/dhoop-aarti/.
 
 Writes   work.json                     the text (verse + number + language), sections as topics, verse types
          meanings/hi-scriptures.json   Hindi bhāvārtha (written for this library)
@@ -9,10 +9,11 @@ Checks   every verse has a meaning in both languages, and every word of every ve
 Does not touch library/index.json (the shelf is edited by hand). Then run tools/site/build.py.
 """
 import json, os, re, sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..')); import jsonio
 
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.dirname(os.path.dirname(os.path.dirname(HERE)))
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(REPO, 'library')
-WP = 'aarti/shirdi-sai/dhoop-aarti'
+WP = 'hindu/aarti/shirdi-sai/dhoop-aarti'
 WORK = 'shirdi-sai-dhoop-aarti'
 LANG = 'mr'
 
@@ -92,7 +93,7 @@ for lg in sorted(words):
     mine = json.load(open(os.path.join(HERE, 'glossary', lg + '.json'), encoding='utf-8'))
     for k, v in mine.items(): assert v.get('hi') and v.get('en'), f'{lg}:{k} needs hi and en'
     new = {k: v for k, v in mine.items() if k not in G}
-    G.update(new); added[lg] = len(new); dump(rel, dict(sorted(G.items())))
+    G.update(new); added[lg] = len(new); jsonio.dump_glossary(gp, G)
 missing = []
 for lg, ws in words.items():
     chain = [lg] + LANGS[lg].get('fallback', [])

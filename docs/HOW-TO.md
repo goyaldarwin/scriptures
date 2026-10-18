@@ -13,7 +13,7 @@ If `build.py` prints `LIBRARY PROBLEM: …`, fix what it names. It never builds 
 ## Add a new meaning source (another translation or commentary)
 
 1. Choose the id: `<lang>-<publisher or translator>`, e.g. `hi-swami-ramsukhdas` or `en-griffith`.
-2. Turn the book into `{item id: [meaning, footnotes?]}`. Put the scripts and their intermediate files in `tools/works/<work>/meanings/<id>/` so the work can be redone. Match by the item ids in `library/<path>/work.json`, and check the verse text where possible, not by position alone.
+2. Turn the book into `{item id: [meaning, footnotes?]}`. Put the scripts and their intermediate files in `tools/works/<work>/meanings/<id>/` so the work can be redone. Match by the item ids in `library/<path>/work.json`, and check the verse text where possible, not by position alone. Copy the source's meanings faithfully (the owner's rule: copy what the owner gives; write our own, as `<lang>-scriptures`, only for verses no given source covers).
 3. Write `library/<path>/meanings/<id>.json` in the format in `docs/LIBRARY.md` §3, with `id`, `lang`, `title` (bilingual) and `m`.
 4. Build. The source appears in the reader under Settings → Sources. The default stays as it was unless the new file has a lower `order`.
 5. Note the edition and the permission status in the root `README.md` under "Sources and permissions".
@@ -23,17 +23,17 @@ If `build.py` prints `LIBRARY PROBLEM: …`, fix what it names. It never builds 
 1. Choose the id: the reciter's name, e.g. `anup-jalota`. Create `tools/works/<work>/audio/<id>/`.
 2. In it, write `source.json`:
    ```json
-   {"id": "anup-jalota", "work": "tulsidas/ramcharitmanas", "type": "youtube", "lang": "hi",
+   {"id": "anup-jalota", "work": "hindu/granth/tulsidas/ramcharitmanas", "type": "youtube", "lang": "hi",
     "title": {"hi": "अनूप जलोटा", "en": "Anup Jalota"}}
    ```
 3. Write `recordings.json`, one entry per YouTube video in reading order: `{"yt": "<11-char video id>", "file": "<audio file name>", "dur": <seconds>, "order": <n>}`. The video id is in the YouTube link (`watch?v=…`) and in the downloaded file name `[…]`.
 4. Transcribe (hours; resumable): `AUDIO_DIR=<folder with the files> WHISPER_MODEL=<model folder> python3 tools/audio/transcribe.py tools/works/<work>/audio/<id> 0 2`, and the same with `1 2` in parallel. See `tools/audio/README.md`. Commit `transcripts/` as you go, because they are the expensive part.
-5. Make the timings: `python3 tools/audio/make_timings.py tools/works/<work>/audio/<id>`. It prints, for each recording, the first and last verse it found. Check that these match the recording's day.
+5. Make the timings: `python3 tools/audio/make_timings.py tools/works/<work>/audio/<id>`. It prints, for each recording, the first and last verse it found. Check that these match the recording's day. If the speech recogniser missed a line and a verse starts at the wrong place, add its real start to `fixes.json` beside `source.json` (`{video id: {item id: seconds}}`) with the evidence in `fixes.md`, and run this step again. Never edit the generated timings by hand.
 6. Build and test: tap ▶ on a day, then check that the highlighted verse follows the voice at the start, middle and end.
 
 ## Add a new work (Ram Raksha Stotram, an Upanishad, Japji Sahib …)
 
-1. Place it on the shelf, like a REST path from the general to the specific (e.g. `aarti/shirdi-sai/dhoop-aarti`): edit `library/index.json` and add shelves as deep as needed (e.g. Ved › Sāmaveda › Upaniṣad › Kena), ending in `{"id", "work", "path", "title", "by", "edition", "desc"}`. The `path` mirrors the shelf, e.g. `ved/samaveda/upanishad/kena`.
+1. Place it on the shelf at its REST-like address, `<tradition>/<genre>/<group…>/<work>` (`docs/LIBRARY.md` §1), reusing existing levels: e.g. a Hanumān Chālīsā goes to `hindu/chalisa/hanuman/hanuman-chalisa`, the Kena Upaniṣad to `hindu/veda/samaveda/upanishad/kena`, Japji Sahib to `sikh/gurbani/guru-nanak-dev/japji-sahib`. Add the missing shelves to `library/index.json`, ending in `{"id", "work", "path", "title", "by", "edition", "desc"}`. The work id is the shelf id unless that is taken, and the tools go in `tools/works/<work id>/`.
 2. Create `tools/works/<work>/` with the extraction scripts (from PDFs or other sources) and an `export.py` that writes `library/<path>/work.json` (`docs/LIBRARY.md` §2) with each verse's language, its meaning sources (§3), and new words into `glossary/<lang>.json` (§5). A new language needs its own entry first (below). Use `tools/works/ramcharitmanas/` as the model.
 3. Choose the natural divisions for `parts`, the `topics`, and any `plans` (e.g. daily pāṭha). Ask the owner which plans they want. Pages follow the item's section `s`; use a name (e.g. `aarti`), not a number, unless sections are dohā numbers. If the verse types are not the Mānas ones, declare them in `types` (`docs/LIBRARY.md` §2). Model for a short multilingual work: `tools/works/shirdi-sai-dhoop-aarti/`.
 4. Add audio as above if there is a recording.

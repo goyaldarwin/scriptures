@@ -260,10 +260,17 @@ Then expect from me, in order:
 - **Never push without the smoke test.** On Oct 17 a one-line edit (removing the verse-type sheet) left a dangling `else`, and the live reader would not start for about two minutes. Now `build.py` refuses an `app.js` that doesn't parse, and `tools/site/smoke_test.py` opens every work in a browser before each push.
 
 ### Preferences and lessons (Oct 17, 2026): the Shirdi Dhūpa Āratī
-- **Shelve like REST API paths**: kind › deity or author › work, e.g. `aarti/shirdi-sai/dhoop-aarti`. Each āratī is its own work.
-- **Where a meaning's copyright is unclear, write our own meanings** (Hindi and English, one per verse) from the word meanings and the context, rather than copying a website's translation. Name such sources `<lang>-scriptures`.
+- Each āratī is its own work (shelf: see the decisions below; the āratī is at `hindu/aarti/shirdi-sai/dhoop-aarti`).
+- Superseded by the owner's decision below: copy the meanings from the sources the owner gives; write our own (`<lang>-scriptures`) only where none is given.
 - When the owner gives two web printouts, use the one they prefer as the base and the other as a second witness. Correct the base only where it is clearly wrong (a missing space, a wrong word, a sense that doesn't fit, broken Sanskrit). Record every correction in the work's `reconciliation.md`.
 - Use the Devanagari abbreviation sign ॰ (U+0970) for marks like आ॰ / ध्रु॰. A zero (०) turns into "0" in English mode. Write verse numbers compactly (`।।१।।`) so they never wrap away from the line.
 - A work can declare its own verse types (`types` in work.json), so a new kind of text needs no app change.
 - Web-page printouts often have a broken Devanagari text layer (pre-base ि and reph out of order, or blank). OCR the page images with Tesseract `mar`/`hin`; `apt-get install tesseract-ocr-mar tesseract-ocr-hin tesseract-ocr-san` works in the workspace, but GitHub's tessdata does not.
-- Audio timing needs the Whisper model from huggingface.co. When that site is not allowed for the session, transcription cannot run; ask the owner to allow it.
+- Audio timing needs a Whisper model. If huggingface.co is blocked, use `tools/audio/transcribe_onnx.py`, which takes the model from GitHub.
+
+### Decisions (Oct 17, 2026, late): growing the library
+- **Meanings: copy the meanings from the sources the owner gives; write our own only where none is given** (as a separate `<lang>-scriptures` source).
+- **The shelf is a REST-like hierarchy, tradition first**: `<tradition>/<genre>/<group…>/<work>`, e.g. `hindu/granth/tulsidas/ramcharitmanas`, `hindu/stotra/rama/ramraksha`, `hindu/aarti/shirdi-sai/dhoop-aarti`, later `hindu/veda/samaveda/upanishad/kena` and `sikh/gurbani/guru-nanak-dev/japji-sahib`. Think about the whole future library when adding a level; reuse levels. A work's id is permanent, while its place on the shelf can change.
+- **This is a long-term project**: prefer structure that scales (shared code first, one-entry-per-line shared files, checks in the build) over quick one-off fixes.
+- Verse icons sit in the four corners of the verse, in the gutter, so they never touch the text: type tag at top left, bookmark at top right, ▶ at bottom left, ⋮ at bottom right. The verse-type tag is a plain label.
+- A single-part work (āratī, stotra) lists its sections straight on its home screen. A work without reading plans shows no plan switch.
