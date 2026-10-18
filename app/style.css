@@ -117,6 +117,11 @@ html,body{overflow-x:clip}
 .layer{margin-top:6px;font-size:var(--mean-size);line-height:1.6;font-weight:400}
 .layer.h{}
 .layer.e{font-family:var(--lat);font-size:calc(var(--mean-size) - .5px)}
+/* meanings sit under the centred verse: centred too, using the full width, with evenly balanced lines; a small ॰ separates
+   verse and meaning; when Hindi and English are both shown, English is a quieter grey */
+.verse > .layer.h,.verse > .layer.e{text-align:center;text-wrap:pretty}
+.verse > :not(.layer) + .layer:not(.wl)::before{content:"॰";display:block;text-align:center;color:var(--saffron);font-size:18px;line-height:1;margin:2px 0 6px;font-family:var(--dev)}
+.verse > .layer.h ~ .layer.e{color:var(--muted)}
 .layer .lbl{display:block;font-size:12px;color:var(--muted);font-family:var(--dev);margin-bottom:2px}
 .layer .fn{font-size:13.5px;color:var(--muted);margin-top:6px}
 .wb{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:15px}
@@ -141,7 +146,7 @@ html,body{overflow-x:clip}
 .player .pinfo small{display:block;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pbar{height:3px;background:var(--rule)}.pbar span{display:block;height:3px;width:0;background:var(--saffron)}
 body.playing #rBody{padding-bottom:150px}
-.verse.now{background:color-mix(in srgb,var(--saffron) 8%,transparent);border-radius:12px;box-shadow:0 0 0 8px color-mix(in srgb,var(--saffron) 8%,transparent)}
+.verse.now{border-bottom-color:transparent;background:color-mix(in srgb,var(--saffron) 8%,transparent);border-radius:12px;box-shadow:0 0 0 8px color-mix(in srgb,var(--saffron) 8%,transparent)}
 .vb.vplay{position:absolute;left:-27px;bottom:0;height:calc(var(--verse-size) * 1.6);color:var(--saffron);opacity:1}
 .vb.vplay svg{fill:var(--saffron);stroke:none}
 .vbm{position:absolute;right:-25px;top:0;height:calc(var(--verse-size) * 1.6)}
