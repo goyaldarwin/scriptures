@@ -30,6 +30,7 @@ docs/
   HOW-TO.md                          add a work, a meaning source or a reciter; fix text; change the app
   LIBRARY.md                         the data format and its rules
   PLAYBOOK.md                        the owner's preferences, decisions and lessons
+  ROADMAP.md                         what keeps the library sustainable, and what to build next
 tools/                               everything that makes the data and the website (see tools/README.md)
   site/  audio/  fonts/  works/ramcharitmanas/  works/ramraksha/  works/shirdi-sai-dhoop-aarti/
 ```
