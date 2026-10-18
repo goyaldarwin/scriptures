@@ -8,8 +8,12 @@ Works for Devanagari texts; other scripts need their own key().
 """
 import json,re,sys,difflib,unicodedata,collections
 REF=[]  # (item index, half-line text, key)
+GURU={0x0A70:'ं',0x0A71:'',0x0A72:'इ',0x0A73:'उ',0x0A75:''}   # tippi, addak (doubling), bearers ੲ ੳ, yakash
+def gur2dev(s):
+    # Gurmukhi and Devanagari share the ISCII layout, so most letters map by a fixed offset (ਕ U+0A15 → क U+0915)
+    return ''.join(GURU.get(ord(c), chr(ord(c)-0x100)) if 0x0A00<=ord(c)<=0x0A7F else c for c in s)
 def key(s):
-    s=unicodedata.normalize('NFC',s)
+    s=unicodedata.normalize('NFC',gur2dev(s))
     s=re.sub(r'[^ऀ-ॿ ]',' ',s)
     s=re.sub(r'[०-९।॥]',' ',s)
     s=s.replace('ँ','').replace('ं','').replace('़','').replace('्','').replace('ः','')

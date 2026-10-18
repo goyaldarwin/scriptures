@@ -10,3 +10,7 @@
 @font-face{font-family:'TrLat';src:url(fonts/gentium-tr-regular.woff2) format('woff2');font-weight:400;font-style:normal;font-display:swap;}
 @font-face{font-family:'Literata';src:url(fonts/literata-latin-600-normal.woff2) format('woff2');font-weight:600;font-style:normal;font-display:swap;}
 @font-face{font-family:'Literata';src:url(fonts/literata-latin-ext-600-normal.woff2) format('woff2');font-weight:600;font-style:normal;font-display:swap;unicode-range:U+0100-024F,U+1E00-1EFF,U+0300-036F;}
+@font-face{font-family:'NSDev';src:url(fonts/noto-serif-gurmukhi-gurmukhi-400-normal.woff2) format('woff2');font-weight:400;font-style:normal;font-display:swap;unicode-range:U+0A00-0A7F,U+200C-200D,U+25CC;}
+@font-face{font-family:'NSDev';src:url(fonts/noto-serif-gurmukhi-gurmukhi-700-normal.woff2) format('woff2');font-weight:700;font-style:normal;font-display:swap;unicode-range:U+0A00-0A7F,U+200C-200D,U+25CC;}
+@font-face{font-family:'Literata';src:url(fonts/noto-serif-gurmukhi-gurmukhi-400-normal.woff2) format('woff2');font-weight:400;font-style:normal;font-display:swap;unicode-range:U+0A00-0A7F,U+200C-200D,U+25CC;}
+@font-face{font-family:'Literata';src:url(fonts/noto-serif-gurmukhi-gurmukhi-700-normal.woff2) format('woff2');font-weight:600;font-style:normal;font-display:swap;unicode-range:U+0A00-0A7F,U+200C-200D,U+25CC;}

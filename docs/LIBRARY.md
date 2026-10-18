@@ -106,7 +106,7 @@ library/glossary/
   languages.json   every language used by any verse
   sa.json          Sanskrit
   awa.json         Awadhi
-  (later) mr.json Marathi · pa.json Punjabi (Gurmukhi) · bra.json Braj · hi.json Hindi …
+  mr.json Marathi · hi.json Hindi · pa.json Punjabi (Gurmukhi script; Gurbani) · later bra.json Braj …
 ```
 
 `languages.json`:
@@ -115,6 +115,7 @@ library/glossary/
          "suffixes": ["हिं", "न्ह", "…"], "stems": ["", "ा", "ी", "ु"]}}
 ```
 - Codes are ISO 639: `sa`, `awa`, `hi`, `mr`, `pa`, `bra` … Script codes are ISO 15924: `Deva`, `Guru` …
+- Scripts the site supports: Devanagari and Gurmukhi (fonts in `tools/fonts`, registered in `tools/site/build.py`; Gurmukhi digits ੦–੯ work like Devanagari ones). The audio matcher reads Gurmukhi by mapping it onto Devanagari (`tools/audio/align.py` → `gur2dev`). A new script needs a font and a key mapping first.
 - `fallback`: where to look next when a word isn't in this language's dictionary. Awadhi borrows Sanskrit words, so `awa` → `sa`. Sanskrit has no fallback, so a Sanskrit verse never shows an Awadhi sense.
 - `suffixes` / `stems`: how to find the root of an inflected word (रामहि → राम). These are per language, because each language inflects differently.
 

@@ -13,13 +13,16 @@ F = os.environ.get('FONTS') or os.path.join(ROOT, 'tools', 'fonts')
 nd = F + '/_fontsource_noto-serif-devanagari/package/files/'; lt = F + '/_fontsource_literata/package/files/'
 if not os.path.isdir(nd): nd = lt = F + '/'
 DEVR = 'U+0900-097F,U+1CD0-1CF9,U+200C-200D,U+20A8,U+20B9,U+25CC,U+A830-A839,U+A8E0-A8FF'
+GURR = 'U+0A00-0A7F,U+200C-200D,U+25CC'   # Gurmukhi (Gurbani)
 LX = 'U+0100-024F,U+1E00-1EFF,U+0300-036F'
 FONTS = [('NSDev', nd + 'noto-serif-devanagari-devanagari-400-normal.woff2', 400, 'normal', DEVR), ('NSDev', nd + 'noto-serif-devanagari-devanagari-700-normal.woff2', 700, 'normal', DEVR),
          ('NSDev', lt + 'literata-latin-400-normal.woff2', 400, 'normal', 'U+0000-00FF,U+2000-206F'), ('NSDev', lt + 'literata-latin-600-normal.woff2', 700, 'normal', 'U+0000-00FF,U+2000-206F'),
          ('Literata', lt + 'literata-latin-400-normal.woff2', 400, 'normal', None), ('Literata', lt + 'literata-latin-ext-400-normal.woff2', 400, 'normal', LX),
          ('Literata', lt + 'literata-latin-400-italic.woff2', 400, 'italic', None), ('Literata', lt + 'literata-latin-ext-400-italic.woff2', 400, 'italic', LX),
          ('TrLat', F + '/gentium-tr-italic.woff2', 400, 'italic', None), ('TrLat', F + '/gentium-tr-regular.woff2', 400, 'normal', None),
-         ('Literata', lt + 'literata-latin-600-normal.woff2', 600, 'normal', None), ('Literata', lt + 'literata-latin-ext-600-normal.woff2', 600, 'normal', LX)]
+         ('Literata', lt + 'literata-latin-600-normal.woff2', 600, 'normal', None), ('Literata', lt + 'literata-latin-ext-600-normal.woff2', 600, 'normal', LX),
+         ('NSDev', F + '/noto-serif-gurmukhi-gurmukhi-400-normal.woff2', 400, 'normal', GURR), ('NSDev', F + '/noto-serif-gurmukhi-gurmukhi-700-normal.woff2', 700, 'normal', GURR),
+         ('Literata', F + '/noto-serif-gurmukhi-gurmukhi-400-normal.woff2', 400, 'normal', GURR), ('Literata', F + '/noto-serif-gurmukhi-gurmukhi-700-normal.woff2', 600, 'normal', GURR)]
 def face(fam, url, w, st, ur): return f"@font-face{{font-family:'{fam}';src:url({url}) format('woff2');font-weight:{w};font-style:{st};font-display:swap;{('unicode-range:' + ur + ';') if ur else ''}}}"
 tpl = open(os.path.join(HERE, 'index_template.html')).read()
 app = open(os.path.join(HERE, 'app.js')).read()

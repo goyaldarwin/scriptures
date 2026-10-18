@@ -116,7 +116,7 @@ $('#timerPill').onclick = timerToggle;
 /* ---------------- word meanings: one dictionary per language (library/glossary/<lang>.json) ----------------
    A word is looked up in the language of the verse it is in, then in that language's fallbacks
    (languages.json). A work may refine a sense in <work>/glossary.json; a reader's own meaning wins. */
-const PUNCT = /[।॥|,.;:!?\-—‘’“”'"()\[\]०-९0-9]/g;
+const PUNCT = /[।॥|,.;:!?\-—‘’“”'"()\[\]०-९੦-੯0-9]/g;   // Devanagari and Gurmukhi digits are verse numbers, not words
 function cleanWord(w){ return w.replace(PUNCT, '').normalize('NFC'); }
 function langOf(i){ return (i != null && IT[i] && IT[i].l) || W.lang; }
 function langChain(lang){ return [lang].concat((LANGS[lang] || {}).fallback || []); }
@@ -140,7 +140,7 @@ function lookup(w, lang){
 }
 function wordsHTML(line){
   line = line.replace(/\s+(।।|।|॥)/g, ' $1');
-  const halves = line.split(/(?<=।)\s+(?=[^\s।०-९(])/);
+  const halves = line.split(/(?<=[।॥])\s+(?=[^\s।॥०-९੦-੯(])/);
   return halves.map(hf => '<span class="half">' + hf.split(/( +)/).map(tok => { if (/^ +$/.test(tok) || !cleanWord(tok)) return esc(tok); const m = tok.match(/^(.*?)( .*)?$/); return '<span class="w">' + esc(m[1]) + '</span>' + esc(m[2] || ''); }).join('') + '</span>').join(' ');
 }
 function wordList(lines){ const seen = new Set(), out = []; lines.forEach(l => l.split(/\s+/).forEach(t => { const w = cleanWord(t); if (w && !seen.has(w)){ seen.add(w); out.push(w); } })); return out; }
@@ -244,8 +244,8 @@ function verseHTML(i){
   let h = '<div class="verse" id="v' + i + '" data-i="' + i + '"><div class="vtext">' + vv.v.map((l, y) => {
     const last = y === vv.v.length - 1;
     let ln = last && it.y === 'cau' && it.n && /।।\s*$/.test(l) ? l.replace(/\s*।।\s*$/, ' ।।' + String(it.n).replace(/\d/g, d => DIG[d]) + '।।') : l;
-    if (LANG() === 'en') ln = ln.replace(/[०-९]/g, d => DIG.indexOf(d));
-    const w = wordsHTML(ln).replace(/।।\s*([0-9०-९][^\s।<]*)\s*।।/, '<span style="white-space:nowrap">।।$1।।</span>');
+    if (LANG() === 'en') ln = ln.replace(/[०-९]/g, d => DIG.indexOf(d)).replace(/[੦-੯]/g, d => d.charCodeAt(0) - 0x0A66);
+    const w = wordsHTML(ln).replace(/।।\s*([0-9०-९][^\s।<]*)\s*।।/, '<span style="white-space:nowrap">।।$1।।</span>').replace(/॥\s*([0-9०-९੦-੯][^\s॥<]*)\s*॥/, '<span style="white-space:nowrap">॥$1॥</span>');
     const lead = y === 0 && sh ? '<span class="vt">' + T(sh[0], sh[1]) + '</span>' : '';
     // four corners, each inside the gutter so they never touch the text: type tag (top left), bookmark (top right),
     // ▶ (bottom left), ⋮ (bottom right). A one-line verse is given a second line's height so the corners stay apart.
