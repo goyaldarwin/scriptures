@@ -580,7 +580,8 @@ function renderHome(){
   // ▶ the whole work, start to end, across every part and recording
   const pa = $('#hPlayAll'), fa = firstAu(0, IT.length - 1); pa.hidden = fa == null; pa.onclick = () => playRange('k', 0, IT.length - 1);
   const L = WS().last;
-  $('#contCard').innerHTML = L && IT[L.i] ? '<div class="card"><div class="row"><div class="grow"><h3>' + T('जहाँ छोड़ा था', 'Continue where you left off') + '</h3><div class="big" style="font-size:17px">' + esc(KNAME(IT[L.i].p) + (topicOf(L.i) ? ' / ' + TNAME(topicOf(L.i)) : '')) + '</div><div class="sub">' + (L.org !== 'k' && PLAN[L.org] ? PNAME(L.org) + ' · ' + VN(dayOf(L.org, L.i)) + ' · ' : '') + posLabel(L.i) + '</div></div><button class="btn" id="cGo">' + T('आगे पढ़ें', 'Continue') + '</button></div></div>' : '';
+  // one short button: continue where you left off (the reader shows where you are)
+  $('#contCard').innerHTML = L && IT[L.i] ? '<button class="btn ghost cont" id="cGo">' + T('जहाँ छोड़ा था, वहींसे पढ़ें', 'Continue where you left off') + ' ›</button>' : '';
   if ($('#cGo')) $('#cGo').onclick = () => openReader(L.org, L.i);
   const org = homeOrg();
   $('#orgSeg').innerHTML = '<button data-org="k">' + esc(TT(W.parts.name)) + '</button>' + PLANS.map(p => '<button data-org="' + p.id + '">' + esc(TT(p.name)) + '</button>').join('');

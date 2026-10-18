@@ -146,7 +146,7 @@ body.playing #rBody{padding-bottom:150px}
 .vbm{position:absolute;right:-25px;top:0;height:calc(var(--verse-size) * 1.6)}
 .vtext p.one{padding:calc(var(--verse-size) * .8) 0}
 .rowp{position:relative}
-.playall{margin-top:14px}.playall svg{width:16px;height:16px;fill:currentColor;stroke:none}
+.heroacts{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:14px}.heroacts:empty{display:none}.btn.cont{font-size:14.5px}.playall svg{width:16px;height:16px;fill:currentColor;stroke:none}
 .list .lhead{font-size:13px;font-weight:700;color:var(--saffron);letter-spacing:.02em;padding:18px 2px 4px;border:0}
 .ytno{width:200px;height:200px;display:flex;flex-direction:column;justify-content:center;gap:10px;padding:10px;box-sizing:border-box;font-size:13px;text-align:center;background:var(--card,#fff);border:1px solid var(--line,#ddd);border-radius:12px}.ytno .btn{display:block;padding:9px 8px;border-radius:10px;background:var(--accent,#2b3990);color:#fff;text-decoration:none;font-size:13px}
 .rowp .lplay ~ .it .grow{padding-right:46px}
