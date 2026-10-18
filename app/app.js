@@ -567,13 +567,20 @@ function onEnded(){
 }
 function endOf(i){ const x = SRC.au && SRC.au.at[IT[i].id]; return x && x[2] != null ? x[2] : null; }   // a verse's end, when one is set (otherwise it runs until the next verse starts)
 function curAt(time){ const a = AUT[PL.t]; let lo = 0, hi = a.length - 1, r = a[0][0]; while (lo <= hi){ const m = (lo + hi) >> 1; if (a[m][1] <= time){ r = a[m][0]; lo = m + 1; } else hi = m - 1; } return r; }
-setInterval(() => {
+// every 300 ms while playing: light the verse being recited, stop at the end of what was asked, move the progress bar
+function tick(){
   if (!PL.on || !ytOK) return;
   const time = ytInfo.t; const i = curAt(time);
   const e = endOf(i);
   if (PL.end != null && (i > PL.end || (i === PL.end && e != null && time >= e))){ stopAudio(); toast(T('पाठ पूर्ण — जय श्रीराम', 'Recitation complete — Jai Shri Ram')); return; }
-  setCur(i);   // a verse's end matters only where playing stops (one verse, or the last verse of a reading): never skipped, never unlit const d = ytInfo.d || SRC.au.tracks[PL.t].dur; $('#pProg').style.width = (100 * time / d) + '%';
-}, 300);
+  // a verse's end matters only where playing stops (one verse, or the last verse of a reading): never skipped. While timings
+  // are being reviewed, a verse that has ended hands the light to the next one at once, so its start can be marked.
+  let show = i;
+  if (S.timing.on && e != null && time >= e){ const a = AUT[PL.t], k = a.findIndex(x => x[0] === i); if (k >= 0 && k + 1 < a.length) show = a[k + 1][0]; }
+  setCur(show);
+  const d = ytInfo.d || SRC.au.tracks[PL.t].dur; $('#pProg').style.width = (100 * time / d) + '%';
+}
+setInterval(tick, 300);
 /* place the verse being recited in the space between the top bar and the player:
    centred if it fits, otherwise with its first line just below the top bar (never hidden under it) */
 function keepInView(el){
@@ -609,7 +616,7 @@ function setTime(i, k, sec){
   if (k === 2 && v[2] != null && v[2] <= v[1]){ toast(T('अंत शुरुआतके बाद होना चाहिये', 'The end must come after the start')); return; }
   if (k === 1 && v[2] != null && v[2] <= v[1]) v[2] = null;
   fx[id] = v; save(); buildAudio(); [i - 2, i - 1, i, i + 1, i + 2].forEach(j => { if (j >= 0 && j < IT.length && document.getElementById('v' + j)) rerenderItem(j); });   // neighbours may have moved
-  if (PL.on){ PL.cur = -1; setCur(curAt(ytInfo.t)); }
+  if (PL.on){ PL.cur = -1; PL.hold = 0; tick(); }   // the light moves at once (after an end: to the next verse)
   toast((k === 1 ? T('शुरुआत: ', 'Starts at ') : T('अंत: ', 'Ends at ')) + (sec == null ? '—' : fmtT(sec)));
 }
 function setStart(i, sec){ setTime(i, 1, sec); }

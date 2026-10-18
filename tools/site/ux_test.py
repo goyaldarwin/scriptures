@@ -135,6 +135,17 @@ async def main():
                     await ev(f"setTime({j}, 1, AUT[0][{k2}][1]); setTime({j}, 2, {nxs} + 2)")
                     got = await ev(f"SRC.au.at[IT[{nx}].id][1]")
                     check(f'{tag}: the next verse starts where an end set by ear says this one ends', abs(got - (nxs + 2)) < 0.11, [nxs, got])
+                # after "Ends now", the next verse is lit at once (review mode), so its start can be marked; the bar moves
+                a0 = await ev("AUT[0][1] ? AUT[0][1] : AUT[0][0]")
+                if await ev("AUT[0].length > 3"):
+                    v1, s1 = await ev("[AUT[0][1][0], AUT[0][1][1]]"); v2 = await ev("AUT[0][2][0]"); s2 = await ev("AUT[0][2][1]")
+                    if s2 - s1 > 2:
+                        await ev(f"PL.on = true; PL.t = 0; PL.end = null; ytOK = true; ytInfo.t = {s1} + 1; setTime({v1}, 2, {s1} + 0.5)")
+                        check(f'{tag}: after an end is set, the next verse is lit at once', await ev("PL.cur") == v2, [await ev("PL.cur"), v2])
+                        check(f'{tag}: the progress bar moves while playing', (await ev("document.querySelector('#pProg').style.width")) not in ('', '0%'))
+                        await ev("S.timing.on = false; PL.cur = -1; tick()")
+                        check(f'{tag}: outside review mode the highlight follows the starts only', await ev("PL.cur") == v1, await ev("PL.cur"))
+                        await ev("S.timing.on = true; PL.on = false; ytOK = false")
                 await ev("delete S.timing.fix[tkey()]; save()")
             await ev("S.timing.on = false; applyTiming()"); await ev("loadSources()"); await pg.wait_for_timeout(400)
             # continue and play sit on one line
