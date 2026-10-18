@@ -14,6 +14,7 @@ tools/
     transcribe_onnx.py             the same with a Whisper model from GitHub, when the usual model can't be downloaded
     align.py                       matches transcript lines to verses
     make_timings.py                transcripts → library/<work>/audio/<id>.json
+    sync_transcripts.py            copies transcripts made in the cloud (private repo) into tools/works/…/transcripts/
   fonts/                         Noto Serif Devanagari, Literata, Gentium (transliteration subset)
   works/                         one folder per work: how its data was made
     ramcharitmanas/
