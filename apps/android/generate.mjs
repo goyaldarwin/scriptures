@@ -11,7 +11,7 @@ const web = JSON.parse(fs.readFileSync(path.join(ROOT, 'manifest.json'), 'utf8')
 const tm = TwaManifest.fromWebManifestJson(new URL('manifest.json', site), web);
 Object.assign(tm, {packageId: app.packageId, host: app.host, name: app.name, launcherName: app.launcherName,
   startUrl: app.startPath, themeColor: tm.themeColor, appVersionName: app.versionName, appVersionCode: app.versionCode,
-  fallbackType: 'customtabs', enableNotifications: false, orientation: 'portrait', minSdkVersion: 21,
+  fallbackType: 'customtabs', enableNotifications: false, orientation: 'portrait', minSdkVersion: 24,
   signingKey: {path: path.join(HERE, 'upload.keystore'), alias: 'upload'}});
 tm.iconUrl = new URL('app/icon-512.png', site).toString(); tm.maskableIconUrl = new URL('app/maskable-512.png', site).toString();
 tm.webManifestUrl = new URL('manifest.json', site);
