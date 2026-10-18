@@ -33,6 +33,9 @@ if (!S || !S.profiles) S = defaults();
 // timing review (Settings › Audio timing): on/off, and the starts set by ear, by "<work>:<audio source>" → {item id: [track, seconds]}
 if (!S.timing) S.timing = {on: false, fix: {}, sent: {}};
 if (!S.timing.sent) S.timing.sent = {};
+// marks loaded from a helper's file and not yet checked by you: "<work>:<source>" → {item id: helper's name}. They are
+// heard and shown like yours, but go to the library only after you tap ✓ under the verse.
+if (!S.timing.from) S.timing.from = {};
 function migrate(){
   if ((S.v || 1) < 2) migrate2();
   if (S.v < 3){ // v2 → v3: a reader's own word meanings are filed by language (“awa:राम”); earlier ones were all Awadhi
@@ -409,6 +412,7 @@ $('#rBody').addEventListener('click', ev => {
       setTime(i, act === 'tstart' ? 1 : 2, nowAt()); rerenderItem(i);
     }
     else if (act === 'tplay') playFrom(i, i);
+    else if (act === 'tok'){ unfrom(IT[i].id); save(); rerenderItem(i); toast(T('जाँच लिया — अब यह आपका है', 'Checked — it is now yours')); }
     else if (act === 'bm'){ const me = ME(), k = KEY(IT[i].id); const had = !!me.bm[k]; if (had) delete me.bm[k]; else me.bm[k] = Date.now(); save(); rerenderItem(i); toast(!had ? T('बुकमार्क जोड़ा', 'Bookmarked') : T('बुकमार्क हटाया', 'Bookmark removed')); }
     else if (act === 'enote') noteSheet(i, +a.dataset.k);
     else if (act === 'menu') itemMenu(i);
@@ -430,7 +434,7 @@ function itemMenu(i){
   if (S.timing.on && hasAu(i)){   // timing review: this verse's start, nudge it, hear it, undo
     const mine = !!myStarts()[id];
     const row = (k, label) => '<div class="small muted" style="margin-top:8px">' + label + '</div><div class="tctl"><button class="btn ghost small" data-t="' + k + ':-0.5">−0.5 s</button><b id="tS' + k + '">—</b><button class="btn ghost small" data-t="' + k + ':0.5">+0.5 s</button>' + (k === 2 ? '<button class="btn ghost small" data-t="2:none">' + T('अगले पद तक', 'Until next') + '</button>' : '') + '</div>';
-    $('#sheetBody').insertAdjacentHTML('beforeend', '<div class="tbox"><div class="small muted"><b>' + T('ऑडियोका समय', 'Audio timing') + '</b>' + (mine ? T(' · आपका सेट किया हुआ', ' · set by you') : '') + '</div>' + row(1, T('शुरुआत', 'Start')) + row(2, T('अंत (खाली = अगला पद शुरू होनेतक)', 'End (empty = until the next verse starts)')) + '<div class="tctl" style="margin-top:10px"><button class="btn small" data-t="play">▶ ' + T('यही पद सुनें', 'Play this verse') + '</button>' + (mine ? '<button class="btn ghost small" data-t="undo">' + T('पहले जैसा', 'Undo') + '</button>' : '') + '</div></div>');
+    $('#sheetBody').insertAdjacentHTML('beforeend', '<div class="tbox"><div class="small muted"><b>' + T('ऑडियोका समय', 'Audio timing') + '</b>' + (fromOf(id) ? ' · ' + T('', 'from ') + esc(fromOf(id)) + T(' का', '') : mine ? T(' · आपका सेट किया हुआ', ' · set by you') : '') + '</div>' + row(1, T('शुरुआत', 'Start')) + row(2, T('अंत (खाली = अगला पद शुरू होनेतक)', 'End (empty = until the next verse starts)')) + '<div class="tctl" style="margin-top:10px"><button class="btn small" data-t="play">▶ ' + T('यही पद सुनें', 'Play this verse') + '</button>' + (mine ? '<button class="btn ghost small" data-t="undo">' + T('पहले जैसा', 'Undo') + '</button>' : '') + '</div></div>');
     const show = () => { const x = SRC.au.at[id]; $('#tS1').textContent = fmtT(x[1]); $('#tS2').textContent = x[2] != null ? fmtT(x[2]) : '—'; };
     show();
     $$('#sheetBody [data-t]').forEach(b => b.onclick = () => {
@@ -471,13 +475,15 @@ function tkey(){ return W.id + ':' + SRC.au.meta.id; }
 // timing review: under every verse, the verse's own buttons. You mark the verse you are looking at, never a guess:
 // "Starts now" when you hear its first word, "Ends now" when it is over (a refrain or music follows), ▶ to hear it.
 function markBar(i){
-  const x = SRC.au.at[IT[i].id], mine = myStarts()[IT[i].id], est = toCheck(i);
+  const x = SRC.au.at[IT[i].id], mine = myStarts()[IT[i].id], est = toCheck(i), by = fromOf(IT[i].id);
   const when = x ? T('शुरू ', 'Start ') + fmtT(x[1]) + (x[2] != null ? T(' · अंत ', ' · end ') + fmtT(x[2]) : '') : T('ऑडियोमें समय नहीं', 'No time in the recording');
-  return '<div class="tmark"><button data-a="tstart">⏱ ' + T('अभी शुरू', 'Starts now') + '</button><button data-a="tend">⏹ ' + T('अभी समाप्त', 'Ends now') + '</button>' + (x ? '<button data-a="tplay" aria-label="play">▶</button>' : '') +
-    '<span class="tinfo">' + when + (mine ? ' · <b>' + T('आपका', 'yours') + '</b>' : (SRC.au.moved && SRC.au.moved.has(IT[i].id)) ? ' · <b class="test">' + T('आपके समयके अनुसार खिसकाया', 'moved to fit your times') + '</b>' : est ? ' · <b class="test">' + T('अनुमान', 'estimated') + '</b>' : '') + '</span></div>';
+  return '<div class="tmark"><button data-a="tstart">⏱ ' + T('अभी शुरू', 'Starts now') + '</button><button data-a="tend">⏹ ' + T('अभी समाप्त', 'Ends now') + '</button>' + (x ? '<button data-a="tplay" aria-label="play">▶</button>' : '') + (by ? '<button data-a="tok">✓ ' + T('सही है', 'Correct') + '</button>' : '') +
+    '<span class="tinfo">' + when + (by ? ' · <b class="test">' + T('', 'from ') + esc(by) + T(' का — जाँचें', ' — to check') + '</b>' : mine ? ' · <b>' + T('आपका', 'yours') + '</b>' : (SRC.au.moved && SRC.au.moved.has(IT[i].id)) ? ' · <b class="test">' + T('आपके समयके अनुसार खिसकाया', 'moved to fit your times') + '</b>' : est ? ' · <b class="test">' + T('अनुमान', 'estimated') + '</b>' : '') + '</span></div>';
 }
 function toCheck(i){ return !!(S.timing.on && SRC.au && SRC.au.checkSet && SRC.au.checkSet.has(IT[i].id) && !myStarts()[IT[i].id]); }   // a start that is only estimated: to be checked by ear
 function myStarts(){ return (SRC.au && S.timing.fix[tkey()]) || {}; }
+function fromOf(id){ return SRC.au ? (S.timing.from[tkey()] || {})[id] : undefined; }
+function unfrom(id){ const f = S.timing.from[tkey()]; if (f){ delete f[id]; if (!Object.keys(f).length) delete S.timing.from[tkey()]; } }
 function buildAudio(){
   AUT = []; const A = SRC.au; if (!A) return;
   if (!A.at0) A.at0 = A.at;
@@ -553,7 +559,7 @@ function playFrom(i, end){
   if (!hasAu(i)){ const j = firstAu(i, Math.min(IT.length - 1, i + 80)); if (j == null) return; i = j; }
   const [t, st0] = SRC.au.at[IT[i].id], tr = SRC.au.tracks[t];
   const st = (end != null && i === tr.fi) ? 0 : st0;
-  PL.on = true; PL.t = t; PL.end = end; PL.cur = -1; PL.hold = 0;
+  PL.on = true; PL.t = t; PL.end = end; PL.cur = -1; PL.hold = 0; PL.whole = false; PL.endMsg = '';
   $('#player').hidden = false; document.body.classList.add('playing'); wake(true);
   if (ytVid !== tr.yt || !ytFrame()) ytLoad(tr.yt, st); else { ytPost('seekTo', [st, true]); ytPost('playVideo'); ytInfo.t = st; }
   setCur(i); $('#pTrack').textContent = playingName(); syncPlayer();
@@ -572,7 +578,7 @@ function tick(){
   if (!PL.on || !ytOK) return;
   const time = ytInfo.t; const i = curAt(time);
   const e = endOf(i);
-  if (PL.end != null && (i > PL.end || (i === PL.end && e != null && time >= e))){ stopAudio(); toast(T('पाठ पूर्ण — जय श्रीराम', 'Recitation complete — Jai Shri Ram')); return; }
+  if (PL.end != null && (i > PL.end || (i === PL.end && e != null && time >= e))){ stopAudio(); toast(PL.whole ? T('पाठ पूर्ण', 'Recitation complete') : PL.endMsg || T('पूर्ण', 'Finished')); return; }
   // a verse's end matters only where playing stops (one verse, or the last verse of a reading): never skipped. While timings
   // are being reviewed, a verse that has ended hands the light to the next one at once, so its start can be marked.
   let show = i;
@@ -615,18 +621,18 @@ function setTime(i, k, sec){
   const v = [cur[0], cur[1], cur[2] == null ? null : cur[2]]; v[k] = sec == null ? null : Math.round(sec * 10) / 10;
   if (k === 2 && v[2] != null && v[2] <= v[1]){ toast(T('अंत शुरुआतके बाद होना चाहिये', 'The end must come after the start')); return; }
   if (k === 1 && v[2] != null && v[2] <= v[1]) v[2] = null;
-  fx[id] = v; save(); buildAudio(); [i - 2, i - 1, i, i + 1, i + 2].forEach(j => { if (j >= 0 && j < IT.length && document.getElementById('v' + j)) rerenderItem(j); });   // neighbours may have moved
+  fx[id] = v; unfrom(id); save(); buildAudio(); [i - 2, i - 1, i, i + 1, i + 2].forEach(j => { if (j >= 0 && j < IT.length && document.getElementById('v' + j)) rerenderItem(j); });   // neighbours may have moved
   if (PL.on){ PL.cur = -1; PL.hold = 0; tick(); }   // the light moves at once (after an end: to the next verse)
   toast((k === 1 ? T('शुरुआत: ', 'Starts at ') : T('अंत: ', 'Ends at ')) + (sec == null ? '—' : fmtT(sec)));
 }
 function setStart(i, sec){ setTime(i, 1, sec); }
-function clearStart(i){ const fx = S.timing.fix[tkey()] || {}; delete fx[IT[i].id]; if (!Object.keys(fx).length) delete S.timing.fix[tkey()]; save(); buildAudio(); }
+function clearStart(i){ const fx = S.timing.fix[tkey()] || {}; delete fx[IT[i].id]; unfrom(IT[i].id); if (!Object.keys(fx).length) delete S.timing.fix[tkey()]; save(); buildAudio(); }
 function fmtT(sec){ const m = Math.floor(sec / 60), s = sec - m * 60; return m + ':' + (s < 10 ? '0' : '') + s.toFixed(1); }
 function applyTiming(){ document.body.classList.toggle('timing', !!S.timing.on); }
 $('#pPrev').onclick = () => stepVerse(-1);
 $('#pNext').onclick = () => stepVerse(1);
 $('#pInfo').onclick = () => { if (PL.cur < 0) return; if (!$('#reader').classList.contains('on')) openReader(R.org, PL.cur); PL.hold = 0; const c = PL.cur; PL.cur = -1; setCur(c); };
-function playRange(org, a, b){ const st = firstAu(a, b); if (st == null) return; openReader(org, st); playFrom(st, b); }
+function playRange(org, a, b){ const st = firstAu(a, b); if (st == null) return; openReader(org, st); playFrom(st, b); PL.whole = a === 0 && b === IT.length - 1; PL.endMsg = PL.whole ? '' : spanLabel(a, b) + T(' पूर्ण', ' finished'); }
 
 /* ---------------- library (any depth: tradition › text › part › work) ---------------- */
 let libPath = [];
@@ -819,16 +825,17 @@ function renderSettings(){
 /* timing review: Settings › Audio timing. While it is on, a ⏱ row appears in the player and each verse's ⋮ menu shows its start;
    recordings still being checked (drafts) can be played. Starts set by ear go to the library through a GitHub issue, which
    the workflow .github/workflows/timing.yml applies (tools/audio/apply_owner_timing.py). */
-function pendingStarts(){ if (!SRC.au) return {}; const fx = myStarts(), sent = S.timing.sent[tkey()] || {}, out = {}; for (const id in fx) if (JSON.stringify(sent[id]) !== JSON.stringify(fx[id])) out[id] = fx[id]; return out; }
+function pendingStarts(){ if (!SRC.au) return {}; const fx = myStarts(), sent = S.timing.sent[tkey()] || {}, out = {}; for (const id in fx) if (!fromOf(id) && JSON.stringify(sent[id]) !== JSON.stringify(fx[id])) out[id] = fx[id]; return out; }
 function timingHTML(){
   if (!W) return '';
-  let h = '<h2>' + T('ऑडियोका समय', 'Audio timing') + '</h2><p class="small muted">' + T('जहाँ पद और आवाज़ मेल न खाएँ, वहाँ ठीक करनेके लिये।', 'For fixing places where the lit verse and the voice do not match.') + '</p><ol class="small tsteps"><li>' + T('यह स्विच चालू करें। हर पदके नीचे बटन आ जाएँगे: ⏱ अभी शुरू · ⏹ अभी समाप्त · ▶, और उस पदका अभीका समय।', 'Turn this switch on. Every verse gets buttons under it: ⏱ Starts now · ⏹ Ends now · ▶, and its current time.') + '</li><li>' + T('ऑडियो चलाएँ और पाठ देखते रहें।', 'Play the audio and follow the text.') + '</li><li>' + T('जिस पदका पहला शब्द सुनाई दे, उसी पदका “⏱ अभी शुरू” दबाएँ — चमकता पद गलत हो तब भी, उसे छोड़कर सही पदतक स्क्रॉल करें।', 'When you hear a verse’s first word, tap “⏱ Starts now” on that verse — even if the lit verse is a different one; just scroll to the verse being sung.') + '</li><li>' + T('पदके बाद टेक, कीर्तन या संगीत हो तो उसका “⏹ अभी समाप्त” दबाएँ (वैकल्पिक)।', 'If a refrain, kīrtan or music follows a verse, tap its “⏹ Ends now” (optional).') + '</li><li>' + T('▶ से वह पद सुनकर जाँचें; ⋮ मेनूमें ±0.5 सेकंड और “पहले जैसा” है।', 'Check with ▶; the ⋮ menu has ±0.5 s and Undo.') + '</li><li>' + T('अंतमें “लाइब्रेरीमें भेजें” दबाएँ।', 'Finally tap “Send to the library”.') + '</li></ol>' + sw('stm', T('ऑडियोका समय ठीक करें', 'Adjust audio timing'), '', S.timing.on);
+  let h = '<h2>' + T('ऑडियोका समय', 'Audio timing') + '</h2><p class="small muted">' + T('जहाँ पद और आवाज़ मेल न खाएँ, वहाँ ठीक करनेके लिये।', 'For fixing places where the lit verse and the voice do not match.') + '</p>' + sw('stm', T('ऑडियोका समय ठीक करें', 'Adjust audio timing'), '', S.timing.on);
   if (S.timing.on && SRC.au){
     const n = Object.keys(myStarts()).length, p = Object.keys(pendingStarts()).length;
     h += '<p class="small">' + esc(TT(SRC.au.meta.title)) + ': ' + DEV(n) + T(' पद आपने ठीक किये', ' verses set by you') + (p ? ' · ' + DEV(p) + T(' भेजने बाकी', ' not sent yet') : '') + '</p>' +
       (SRC.au.meta.draft ? sw('stp', T('यह रिकॉर्डिंग जाँच ली — सबके लिये चालू करें', 'This recording is checked: publish it for everyone'), T('भेजनेके साथ जाएगा', 'Goes with the next send'), !!(S.timing.publish || {})[tkey()]) : '') +
-      checkList() +
-      '<div class="acts"><button class="btn" id="tSend"' + (p || (S.timing.publish || {})[tkey()] ? '' : ' disabled') + '>' + T('लाइब्रेरीमें भेजें (GitHub)', 'Send to the library (GitHub)') + '</button>' + (n ? '<button class="btn ghost" id="tClear">' + T('मेरे समय हटाएँ', 'Clear my starts') + '</button>' : '') + '</div>';
+      checkList() + helperList() +
+      '<div class="acts"><button class="btn" id="tSend"' + (p || (S.timing.publish || {})[tkey()] ? '' : ' disabled') + '>' + T('लाइब्रेरीमें भेजें (GitHub)', 'Send to the library (GitHub)') + '</button><button class="btn ghost" id="tSave"' + (n ? '' : ' disabled') + '>' + T('फ़ाइलमें सेव करें', 'Save as a file') + '</button><button class="btn ghost" id="tOpen">' + T('सहायककी फ़ाइल खोलें', 'Open a helper’s file') + '</button>' + (n ? '<button class="btn ghost" id="tClear">' + T('मेरे समय हटाएँ', 'Clear my starts') + '</button>' : '') + '</div>' +
+      '<p class="small muted">' + T('सहायता कर रहे हैं? “फ़ाइलमें सेव करें” दबाकर फ़ाइल साइटके मालिकको भेजें; वे जाँचकर लाइब्रेरीमें जोड़ेंगे। लाइब्रेरीमें सीधे केवल मालिक भेज सकते हैं।', 'Helping? Tap “Save as a file” and send the file to the site’s owner, who checks it and adds it to the library. Only the owner can send to the library directly.') + '</p>';
   }
   return h;
 }
@@ -836,13 +843,66 @@ function checkList(){
   const ids = [...SRC.au.checkSet].filter(id => ID[id] != null && !myStarts()[id]).sort((a, b) => ID[a] - ID[b]); if (!ids.length) return '<p class="small muted">' + T('जाँचने लायक कोई पद नहीं बचा।', 'Nothing left to check.') + '</p>';
   return '<details class="tcheck"><summary>' + T('जाँचने हैं: ', 'To check: ') + DEV(ids.length) + T(' पद — इनकी शुरुआत अनुमानसे रखी गयी है', ' verses — their starts are estimated') + '</summary><div class="tlist">' + ids.slice(0, 400).map(id => '<button data-go-i="' + ID[id] + '">' + esc(itemLabel(ID[id])) + ' <span class="muted">' + fmtT(SRC.au.at[id][1]) + '</span></button>').join('') + '</div></details>';
 }
+// marks loaded from helpers' files that you have not checked yet
+function helperList(){
+  const f = S.timing.from[tkey()] || {}, ids = Object.keys(f).filter(id => ID[id] != null).sort((a, b) => ID[a] - ID[b]); if (!ids.length) return '';
+  const names = [...new Set(ids.map(id => f[id]))].map(esc).join(', ');
+  return '<details class="tcheck" open><summary>' + names + T(' के ', ': ') + DEV(ids.length) + T(' पद जाँचने बाकी — हर पदके नीचे ▶ से सुनकर “✓ सही है” दबाएँ; जाँचे हुए ही लाइब्रेरीमें जाएँगे', ' verses still to check — hear each with ▶ under it and tap “✓ Correct”; only checked ones go to the library') + '</summary><div class="tlist">' + ids.slice(0, 400).map(id => '<button data-go-i="' + ID[id] + '">' + esc(itemLabel(ID[id])) + ' <span class="muted">' + fmtT(SRC.au.at[id][1]) + '</span></button>').join('') + '</div><div class="acts"><button class="btn ghost small" id="tOkAll">' + T('सब सही हैं', 'All are correct') + '</button><button class="btn ghost small" id="tDropAll">' + T('ये सब हटाएँ', 'Remove these') + '</button></div></details>';
+}
 function bindTiming(){
   $$('[data-go-i]').forEach(b => b.onclick = () => openReader('k', +b.dataset.goI, true));
   if (!$('#stm')) return;
   $('#stm').onchange = async e => { S.timing.on = e.target.checked; save(); applyTiming(); stopAudio(); await loadSources(); renderSettings(); };
   if ($('#stp')) $('#stp').onchange = e => { S.timing.publish = S.timing.publish || {}; if (e.target.checked) S.timing.publish[tkey()] = true; else delete S.timing.publish[tkey()]; save(); renderSettings(); };
-  if ($('#tClear')) $('#tClear').onclick = () => askYes(T('इस रिकॉर्डिंगके आपके सेट किये सारे समय हट जाएँगे।', 'All starts you set for this recording will be removed.'), T('हाँ, हटाएँ', 'Yes, remove'), () => { delete S.timing.fix[tkey()]; delete S.timing.sent[tkey()]; save(); buildAudio(); renderSettings(); });
+  if ($('#tClear')) $('#tClear').onclick = () => askYes(T('इस रिकॉर्डिंगके आपके सेट किये सारे समय हट जाएँगे।', 'All starts you set for this recording will be removed.'), T('हाँ, हटाएँ', 'Yes, remove'), () => { delete S.timing.fix[tkey()]; delete S.timing.sent[tkey()]; delete S.timing.from[tkey()]; save(); buildAudio(); renderSettings(); });
   if ($('#tSend')) $('#tSend').onclick = sendStarts;
+  if ($('#tSave')) $('#tSave').onclick = saveTimingFile;
+  if ($('#tOpen')) $('#tOpen').onclick = () => $('#fileIn').click();
+  if ($('#tOkAll')) $('#tOkAll').onclick = () => askYes(T('सहायकके सारे समय बिना सुने आपके माने जाएँगे और अगली बार लाइब्रेरीमें भेजे जाएँगे।', 'All the helper’s times will count as yours without hearing them, and go with your next send.'), T('हाँ, सब सही हैं', 'Yes, all correct'), () => { delete S.timing.from[tkey()]; save(); renderSettings(); });
+  if ($('#tDropAll')) $('#tDropAll').onclick = () => askYes(T('सहायकके जो समय आपने अभी नहीं जाँचे, वे हट जाएँगे।', 'The helper’s times you have not checked will be removed.'), T('हाँ, हटाएँ', 'Yes, remove'), () => { const f = S.timing.from[tkey()] || {}, fx = myStarts(); Object.keys(f).forEach(id => delete fx[id]); delete S.timing.from[tkey()]; if (!Object.keys(fx).length) delete S.timing.fix[tkey()]; save(); buildAudio(); renderSettings(); });
+}
+// a helper saves their marks to a file and sends it to the owner (on a phone, the share sheet: WhatsApp, e-mail…)
+function timingDoc(by){
+  const fx = myStarts(), starts = {};
+  Object.keys(fx).sort((a, b) => ID[a] - ID[b]).forEach(id => { const [t, sec, end] = fx[id], yt = SRC.au.tracks[t].yt; (starts[yt] = starts[yt] || {})[id] = end != null ? [sec, end] : sec; });
+  return {kind: 'scriptures-timing', path: W.path, work: TT(W.title), source: SRC.au.meta.id, recording: TT(SRC.au.meta.title), by, made: new Date().toISOString(), starts};
+}
+function saveTimingFile(){
+  if (!Object.keys(myStarts()).length) return;
+  askText(T('आपका नाम (ताकि मालिक जानें किसने किया)', 'Your name (so the owner knows who did this)'), S.timing.name || (ME() || {}).name || '', async name => {
+    S.timing.name = name; save();
+    const text = JSON.stringify(timingDoc(name), null, 1), fname = 'timing-' + W.id + '-' + SRC.au.meta.id + '-' + todayStr() + '.json';
+    try { const file = new File([text], fname, {type: 'application/json'}); if (navigator.canShare && navigator.canShare({files: [file]})){ await navigator.share({files: [file], title: fname}); return; } } catch (e) { if (e && e.name === 'AbortError') return; }
+    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([text], {type: 'application/json'})); a.download = fname; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
+    toast(T('फ़ाइल डाउनलोडमें सेव हुई — इसे मालिकको भेजें', 'File saved to Downloads — send it to the owner'));
+  });
+}
+// the owner opens a helper's file: checked against this work and recording, then loaded as marks "from <helper>" to check
+async function importTiming(X){
+  if (!W || W.path !== X.path){ toast(T('यह फ़ाइल “', 'This file is for “') + (X.work || X.path) + T('” की है — पहले वह पाठ खोलें', '” — open that work first')); return; }
+  if (!S.timing.on){ S.timing.on = true; save(); applyTiming(); }
+  if (!SRC.au || SRC.au.meta.id !== X.source){
+    if (!srcList('au').some(s => s.id === X.source)){ toast(T('इस फ़ाइलकी रिकॉर्डिंग इस पाठमें नहीं है', 'This file’s recording is not in this work')); return; }
+    (S.src[W.id] = S.src[W.id] || {}).au = X.source; save(); stopAudio(); await loadSources();
+  }
+  buildAudio();
+  const tr = {}; SRC.au.tracks.forEach((t, k) => { tr[t.yt] = k; });
+  const got = {}; let bad = 0;
+  for (const yt in (X.starts || {})) for (const id in X.starts[yt]){
+    const v = X.starts[yt][id], s = Array.isArray(v) ? v[0] : v, e = Array.isArray(v) ? v[1] : null, t = tr[yt], tk = SRC.au.tracks[t], i = ID[id];
+    const ok = t != null && i != null && i >= tk.fi && i <= tk.li && typeof s === 'number' && isFinite(s) && s >= 0 && (!tk.dur || s < tk.dur) && (e == null || (typeof e === 'number' && isFinite(e) && e > s));
+    if (ok) got[id] = [t, Math.round(s * 10) / 10, e == null ? null : Math.round(e * 10) / 10]; else bad++;
+  }
+  const mine = myStarts(), ids = Object.keys(got), nw = ids.filter(id => !mine[id]), diff = ids.filter(id => mine[id] && JSON.stringify(mine[id]) !== JSON.stringify(got[id]));
+  const who = esc(String(X.by || T('सहायक', 'a helper')).slice(0, 40));
+  openSheet('<h2>' + T('सहायककी फ़ाइल', 'A helper’s file') + '</h2><p><b>' + who + '</b> · ' + esc(TT(SRC.au.meta.title)) + (X.made ? ' · ' + esc(String(X.made).slice(0, 10)) : '') + '</p><p class="small">' +
+    DEV(ids.length) + T(' पद: ', ' verses: ') + DEV(nw.length) + T(' नये', ' new') + ' · ' + DEV(diff.length) + T(' आपके समयसे अलग', ' different from yours') + ' · ' + DEV(ids.length - nw.length - diff.length) + T(' आपके जैसे', ' the same as yours') + (bad ? ' · ' + DEV(bad) + T(' गलत, छोड़ दिये', ' not valid, skipped') : '') + '</p>' +
+    '<p class="small muted">' + T('ये पदोंके नीचे “', 'They show under each verse as “from ') + who + T(' का — जाँचें” दिखेंगे। ▶ से सुनकर “✓ सही है” दबाएँ, या ⏱ से ठीक करें। जाँचे हुए ही लाइब्रेरीमें जाएँगे।', ' — to check”. Hear each with ▶ and tap “✓ Correct”, or fix it with ⏱. Only checked ones go to the library.') + '</p>' +
+    '<div class="menu">' + (nw.length + diff.length ? '<button id="tiAll">' + T('ले आएँ', 'Load them') + (diff.length ? '<br><small class="muted">' + T('जहाँ अलग हैं वहाँ आपके समयकी जगह', 'replacing yours where they differ') + '</small>' : '') + '</button>' : '') + (diff.length && nw.length ? '<button id="tiNew">' + T('केवल नये', 'Only the new ones') + '<br><small class="muted">' + T('आपके समय वैसे ही रहेंगे', 'yours stay as they are') + '</small></button>' : '') + '<button id="tiNo">' + T('रहने दें', 'Cancel') + '</button></div>');
+  const load = list => { const fx = S.timing.fix[tkey()] = S.timing.fix[tkey()] || {}, fr = S.timing.from[tkey()] = S.timing.from[tkey()] || {}; list.forEach(id => { fx[id] = got[id]; fr[id] = String(X.by || T('सहायक', 'helper')).slice(0, 40); }); save(); buildAudio(); closeSheet(); toast(DEV(list.length) + T(' पद जाँचनेके लिये आये', ' verses loaded to check')); renderSettings(); };
+  if ($('#tiAll')) $('#tiAll').onclick = () => load(nw.concat(diff));
+  if ($('#tiNew')) $('#tiNew').onclick = () => load(nw);
+  $('#tiNo').onclick = () => closeSheet();
 }
 function sendStarts(){
   const pend = pendingStarts(), ids = Object.keys(pend).sort((a, b) => ID[a] - ID[b]), part = ids.slice(0, 150), starts = {};
@@ -865,6 +925,7 @@ async function exportFile(){
 $('#fileIn').onchange = async e => {
   const f = e.target.files[0]; e.target.value = ''; if (!f) return;
   let X; try { X = JSON.parse(await f.text()); } catch (err) { toast(T('यह फ़ाइल नहीं खुल सकी', 'Could not open this file')); return; }
+  if (X && X.kind === 'scriptures-timing'){ importTiming(X); return; }
   if (!X || !X.profiles){ toast(T('यह इस ऐपकी फ़ाइल नहीं है', 'This is not a file from this app')); return; }
   const tmp = S; S = X; migrate(); X = S; S = tmp;
   openSheet('<h2>' + T('फ़ाइल खोलें', 'Open a file') + '</h2><p>' + T('इस फ़ाइलमें: ', 'This file has: ') + '<b>' + X.profiles.map(p => esc(p.name)).join(', ') + '</b></p><div class="menu"><button id="imAdd">' + T('इन्हें इस फ़ोनमें जोड़ें', 'Add them to this phone') + '<br><small class="muted">' + T('यहाँकी आपकी चीज़ें भी रहेंगी', 'Your existing data stays') + '</small></button><button id="imRep">' + T('इस फ़ोनका सब कुछ इस फ़ाइलसे बदलें', 'Replace everything on this phone') + '<br><small class="muted">' + T('सेटिंग्स और प्रगति भी फ़ाइल जैसी हो जाएँगी', 'Settings and progress also come from the file') + '</small></button></div>');
