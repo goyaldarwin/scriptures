@@ -92,6 +92,8 @@ async def main():
                   p.querySelectorAll('.w').forEach(w => { const c = w.getBoundingClientRect();
                     if (a.width && c.width && a.left < c.right - 1 && a.right > c.left + 1 && a.top < c.bottom - 1 && a.bottom > c.top + 1) bad++; }); }); }); return bad; })()""")
             check(f'{tag}: verse icons never touch the words', overlap == 0, overlap)
+            wide = await ev("document.documentElement.scrollWidth - document.documentElement.clientWidth")
+            check(f'{tag}: nothing runs off the side of the screen', wide <= 0, f'{wide}px')
             # continuous scroll loads the next pages
             before = await ev("document.querySelectorAll('#reader .pg').length")
             for _ in range(6): await ev("window.scrollTo(0, document.body.scrollHeight)"); await pg.wait_for_timeout(400)
