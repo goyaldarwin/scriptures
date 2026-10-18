@@ -58,6 +58,53 @@
     ]
    },
    {
+    "id": "stotra",
+    "title": {
+     "hi": "स्तोत्र",
+     "en": "Stotras"
+    },
+    "desc": {
+     "hi": "देवताओंकी स्तुतियाँ",
+     "en": "Hymns of praise"
+    },
+    "children": [
+     {
+      "id": "rama",
+      "title": {
+       "hi": "श्रीराम",
+       "en": "Śrī Rāma"
+      },
+      "desc": {
+       "hi": "श्रीरामरक्षास्तोत्रम्",
+       "en": "Śrī Rāma Rakṣā Stotram"
+      },
+      "children": [
+       {
+        "id": "ramraksha",
+        "work": "ramraksha",
+        "path": "hindu/stotra/rama/ramraksha",
+        "title": {
+         "hi": "श्रीरामरक्षास्तोत्रम्",
+         "en": "Śrī Rāma Rakṣā Stotram"
+        },
+        "by": {
+         "hi": "बुधकौशिक ऋषि",
+         "en": "Budha Kauśika Ṛṣi"
+        },
+        "edition": {
+         "hi": "वन्दे गुरु परम्पराम्",
+         "en": "Vande Guru Paramparaam"
+        },
+        "desc": {
+         "hi": "विनियोग · ध्यान · ३८ श्लोक",
+         "en": "Viniyoga · Dhyāna · 38 ślokas"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   {
     "id": "aarti",
     "title": {
      "hi": "आरती",
