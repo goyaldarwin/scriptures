@@ -13,6 +13,7 @@ This repository holds everything about the project: the website, the data, every
 - **Start from the latest `main`** (`git fetch origin main`), and rebase onto it before opening the pull request. Several sessions may work at once.
 - **Run `python3 tools/site/build.py` and then `python3 tools/site/smoke_test.py` before every commit.** The smoke test opens every work in a real browser and fails on any script error.
 - **Run `python3 tools/site/build.py` before every commit.** It checks the library and refuses to build if anything is inconsistent. Commit the generated files it produces.
+- **Shared code goes first, on its own.** If a work needs something new in the app or the shared tools (`tools/site/`, `tools/audio/`, `tools/jsonio.py`), make that change as its own small pull request first, say why, and build the work on top of it after it is merged. Before writing shared code, check `docs/LIBRARY.md` and the app for a feature that already does it. Two sessions once built the same feature (work-defined verse types) in two different ways, and the pull requests collided.
 - **Touch only what your task needs.** A new work adds its own folders: `library/<path>/` and `tools/works/<work>/`. It edits shared files only to add to them: `library/index.json` (one new entry on the shelf), and `library/glossary/languages.json` plus a new `<lang>.json`. Changes to `tools/site/` or `tools/audio/` affect every work, so call them out in the pull request.
 - **Ask the owner for the sources** (book PDFs, recording links) instead of guessing. Accuracy comes before speed.
 

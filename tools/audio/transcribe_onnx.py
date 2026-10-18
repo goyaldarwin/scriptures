@@ -5,9 +5,12 @@ tools/audio/align.py reads: one JSON line per segment {"s", "e", "t"}.
 Why not tools/audio/transcribe.py: its faster-whisper model comes from Hugging Face, which the
 session that made this work could not reach. GitHub could. sherpa-onnx's own decoder decodes each
 token separately and loses Devanagari bytes, so this script runs the ONNX encoder/decoder itself
-(greedy) and decodes the byte tokens together. Whisper gives no timestamps inside a chant, so the\nrecording is cut into 4–9 s pieces at its quietest points and each piece is one segment.
+(greedy) and decodes the byte tokens together. Whisper gives no timestamps inside a chant, so the
+recording is cut into 4–9 s pieces at its quietest points and each piece is one segment.
 
-python3 transcribe_onnx.py <audio file> <model dir> <out .jsonl> [whisper language, default hi]
+python3 tools/audio/transcribe_onnx.py <audio file> <model dir> <out .jsonl> [whisper language, default hi]
+The alternative to transcribe.py when the faster-whisper model can't be downloaded. First used for the
+Śrī Rāma Rakṣā Stotram (tools/works/ramraksha).
 Needs onnxruntime, librosa, numpy, ffmpeg. About 1× real time on 2 cores.
 """
 import base64, json, subprocess, sys

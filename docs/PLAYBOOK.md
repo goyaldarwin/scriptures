@@ -266,3 +266,10 @@ Then expect from me, in order:
 - **Fix only extraction breaks and plain typos in a publisher's meaning; keep its wording**, even where a clearer phrase comes to mind.
 - **Hugging Face may be blocked; GitHub isn't.** sherpa-onnx publishes Whisper ONNX models in its GitHub releases. Its own decoder drops Devanagari (it decodes byte tokens one at a time), so decode the token ids yourself. Whisper gives no timestamps inside a chant, so cut the recording into 4–9 s pieces at its quietest points and transcribe each piece.
 - **A work can declare its own verse types** (viniyoga, dhyāna, mantra, colophon) in `work.json` → `types` (name + short tag), instead of adding Mānas-only labels to the app.
+
+### Decisions (Oct 17, 2026, late): growing the library
+- **Meanings: copy the meanings from the sources the owner gives; write our own only where none is given** (as a separate `<lang>-scriptures` source).
+- **The shelf is a REST-like hierarchy, tradition first**: `<tradition>/<genre>/<group…>/<work>`, e.g. `hindu/granth/tulsidas/ramcharitmanas`, `hindu/stotra/rama/ramraksha`, `hindu/aarti/shirdi-sai/dhoop-aarti`, later `hindu/veda/samaveda/upanishad/kena` and `sikh/gurbani/guru-nanak-dev/japji-sahib`. Think about the whole future library when adding a level; reuse levels. A work's id is permanent, while its place on the shelf can change.
+- **This is a long-term project**: prefer structure that scales (shared code first, one-entry-per-line shared files, checks in the build) over quick one-off fixes.
+- Verse icons sit in the four corners of the verse, in the gutter, so they never touch the text: type tag at top left, bookmark at top right, ▶ at bottom left, ⋮ at bottom right. The verse-type tag is a plain label.
+- A single-part work (āratī, stotra) lists its sections straight on its home screen. A work without reading plans shows no plan switch.

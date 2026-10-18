@@ -11,21 +11,20 @@ tools/
     build.py                       runs library.py, then builds the website and dist/
   audio/                         audio sources (shared by every work)
     transcribe.py                  recordings → transcripts (Whisper speech recognition)
+    transcribe_onnx.py             the same with a Whisper model from GitHub, when the usual model can't be downloaded
     align.py                       matches transcript lines to verses
     make_timings.py                transcripts → library/<work>/audio/<id>.json
   fonts/                         Noto Serif Devanagari, Literata, Gentium (transliteration subset)
   works/                         one folder per work: how its data was made
     ramcharitmanas/
       book/                        Gita Press PDFs → book/app_data.json (see its README)
-      export.py                    app_data.json → library/tulsidas/ramcharitmanas/ (text + Gita Press meanings)
+      export.py                    app_data.json → library/hindu/granth/tulsidas/ramcharitmanas/ (text + Gita Press meanings)
       audio/kamlesh-upadhyay/      source.json, recordings.json, transcripts/
     ramraksha/
       source/                      the video's text (video_text.tsv), the Hindi web page and its cleaned meanings
-      export.py                    source/ → library/stotra/ramraksha/ (text, English + Hindi meanings, new Sanskrit words)
+      export.py                    source/ → library/hindu/stotra/rama/ramraksha/ (text, English + Hindi meanings, new Sanskrit words)
       glossary_sa.json             the stotra's word meanings, merged into library/glossary/sa.json
-      audio/transcribe_onnx.py     Whisper small (ONNX, from GitHub) → transcript, when Hugging Face is unreachable
-      audio/fix_align.py           hand-checked verse starts applied to the cached alignment
-      audio/vande-guru-paramparaam/ source.json, recordings.json, transcripts/
+      audio/vande-guru-paramparaam/ source.json, recordings.json, fixes.json + fixes.md, transcripts/
 ```
 
 ## Rebuild everything (Rāmacaritamānasa)

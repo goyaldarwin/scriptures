@@ -6,6 +6,7 @@ The source folder holds:
   source.json      {"id", "work": "<library path>", "type": "youtube", "title": {"hi", "en"}, "order"?}
   recordings.json  [{"yt": video id, "file": original file name, "dur": seconds, "order": n}]
   transcripts/     <video id>.jsonl from transcribe.py (+ .done when finished)
+  fixes.json       optional hand-checked verse starts {video id: {item id: seconds}}, with the evidence in fixes.md
 Only finished transcripts are used. The alignment is cached per recording in transcripts/<video id>.align.json:
 one row per transcript segment, [start, end, [[item id, characters of that half-line], …]]. Delete it to realign.
 A segment that covers several half-lines is shared among them by length, so a verse that begins in the
@@ -30,6 +31,9 @@ for p in work.get('plans', []):
 starts = sorted(starts)
 L = lambda i: max(8, len(''.join(IT[i]['v'])))   # text length, used to spread time over unmatched verses
 
+# fixes.json (optional): {video id: {item id: seconds}} — when the verse's first word is heard, checked by ear or in the transcript,
+# for lines the speech recogniser missed. Write the evidence beside each fix in fixes.md.
+FP = os.path.join(SRC, 'fixes.json'); FIX = json.load(open(FP)) if os.path.exists(FP) else {}
 tracks, at = [], {}
 for r in REC:
     v = r['yt']; p = os.path.join(TR, v + '.jsonl')
@@ -45,7 +49,9 @@ for r in REC:
         tot = sum(n for _, n in parts) or 1; acc = 0
         for iid, n in parts:
             first.setdefault(ID[iid], s0 + (e0 - s0) * acc / tot); acc += n
-    items = sorted((i, round(max(0, t - 0.4), 2)) for i, t in first.items())
+    items = {i: round(max(0, t - 0.4), 2) for i, t in first.items()}
+    for iid, t in FIX.get(v, {}).items(): items[ID[iid]] = round(max(0, t - 0.4), 2)   # hand-checked starts win (fixes.json), with the same small lead
+    items = sorted(items.items())
     clean, last = [], -1                       # drop matches that go backwards in time
     for i, t in items:
         if t > last: clean.append([i, t]); last = t

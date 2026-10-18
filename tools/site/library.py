@@ -2,7 +2,8 @@
 
 For each work on the shelf (library/index.json) this:
   1. lists the meaning sources in <work>/meanings/*.json and the audio sources in <work>/audio/*.json
-     and writes them into work.json → "sources" (the website reads that list; it cannot scan folders);
+     and writes them into work.json → "sources" (the website reads that list; it cannot scan folders),
+     and marks "glossary": true when the work has its own <work>/glossary.json;
   2. checks that everything refers to things that exist (sources, plans, topics, verse languages,
      dictionaries in glossary/, fallbacks), and stops the build with a clear message if not.
 A source's file name must equal its "id". The source with the lowest "order" (then id) is the default.
@@ -25,6 +26,9 @@ def leaves(shelf, trail=()):
         seen.add(n['id']); _need(_bi(n.get('title')), f"shelf: {n['id']} needs title {{hi, en}}")
         if 'work' in n:
             _need('children' not in n, f"shelf: {n['id']} has both work and children")
+            want = '/'.join(trail + (n['id'],))
+            _need(n.get('path') == want, f"shelf: {n['id']} path must be {want!r} (the shelf ids above it, then its own id), not {n.get('path')!r}")
+            _need(len(trail) >= 2, f"shelf: {want} is too shallow; a work sits at least at tradition/genre/work (e.g. hindu/stotra/…)")
             yield n
         else:
             _need(isinstance(n.get('children'), list) and n['children'], f"shelf: {n['id']} needs children (a shelf) or work (a book)")
@@ -76,8 +80,11 @@ def check_work(lib, leaf, LANGS):
     for k in src:
         src[k].sort(key=lambda x: (x['order'], x['id']))
         for x in src[k]: del x['order']
-    if w.get('sources') != src:
+    has_g = os.path.exists(wg)   # the app fetches <work>/glossary.json only when the work says it has one
+    if w.get('sources') != src or bool(w.get('glossary')) != has_g:
         w['sources'] = src
+        if has_g: w['glossary'] = True
+        else: w.pop('glossary', None)
         json.dump(w, open(wp, 'w'), ensure_ascii=False, separators=(',', ':'))
     return w['id'], {k: [x['id'] for x in v] for k, v in src.items()}
 

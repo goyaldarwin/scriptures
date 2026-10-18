@@ -1,4 +1,4 @@
-"""Śrī Rāma Rakṣā Stotram (Budha Kauśika): source/ → library/stotra/ramraksha/.
+"""Śrī Rāma Rakṣā Stotram (Budha Kauśika): source/ → library/hindu/stotra/rama/ramraksha/.
 
 Source of truth for the text: the Vande Guru Paramparaam video (YouTube ZIDdE4SZAuw), whose
 on-screen lines (Devanagari · transliteration · English) were transcribed from the owner's
@@ -13,10 +13,11 @@ Does not touch library/index.json (the shelf is edited by hand) or audio/ (see t
 Then run tools/site/build.py.
 """
 import json, os, re, sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..')); import jsonio
 
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.dirname(os.path.dirname(os.path.dirname(HERE)))
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(REPO, 'library')
-WP = 'stotra/ramraksha'
+WP = 'hindu/stotra/rama/ramraksha'
 
 def dump(path, obj):
     path = os.path.join(OUT, path); os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -88,7 +89,7 @@ words = {PUNCT.sub('', t) for x in items for l in x['v'] for t in l.split()} - {
 gp = os.path.join(OUT, 'glossary', 'sa.json'); G = json.load(open(gp))
 gf = os.path.join(HERE, 'glossary_sa.json'); NEW = json.load(open(gf)) if os.path.exists(gf) else {}
 add_ = {k: v for k, v in NEW.items() if k not in G}
-G.update(add_); dump('glossary/sa.json', dict(sorted(G.items())))
+G.update(add_); jsonio.dump_glossary(gp, G)
 missing = sorted(w for w in words if w not in G)
 print(len(items), 'items;', len(en), 'en;', len(hi), 'hi;', len(add_), 'new words;', len(missing), 'words still without a meaning')
 if missing: print(' '.join(missing))
