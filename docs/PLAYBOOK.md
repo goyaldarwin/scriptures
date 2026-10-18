@@ -257,6 +257,7 @@ Then expect from me, in order:
 - The owner tests audio by checking that each verse starts and ends on its own words. Check boundaries inside long breaths, not only the first verse of a day.
 - **Releases must not break phones that have the old version cached.** Moving `gloss.json` to `glossary/` broke a phone that still had the old `app.js` cached; it showed "डेटा नहीं खुल सका". Asset URLs now carry a content hash (`app.js?v=…`), and the service worker revalidates before using its cache. When a data file is renamed or moved, think about readers still running the previous release.
 - **Player size (decided Oct 17, 2026):** keep the visible YouTube embed at its 200×200 minimum (YouTube's rule; ~216 pt player). Do not hide the video to play only its sound; it breaks YouTube's terms and could stop working without warning. If the size or the lack of screen-off playback becomes a problem, the agreed alternative is optional local playback of the owner's own downloaded recordings: picked once in Settings, stored on the device, never uploaded.
+- **Never push without the smoke test.** On Oct 17 a one-line edit (removing the verse-type sheet) left a dangling `else`, and the live reader would not start for about two minutes. Now `build.py` refuses an `app.js` that doesn't parse, and `tools/site/smoke_test.py` opens every work in a browser before each push.
 
 ### Preferences and lessons (Oct 17, 2026): the Shirdi Dhūpa Āratī
 - **Shelve like REST API paths**: kind › deity or author › work, e.g. `aarti/shirdi-sai/dhoop-aarti`. Each āratī is its own work.

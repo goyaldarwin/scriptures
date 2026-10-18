@@ -222,14 +222,7 @@ const layerOn = l => !!S.settings.layers[l];
 
 /* ---------------- reader: continuous scroll over a kāṇḍa or a day's pāṭh ---------------- */
 let R = {org: 'k', a: 0, b: 0, n: 0, pf: -1, pt: -1};
-const VSHORT = {cau: ['चौ०', 'Cau.'], do: ['दो०', 'Do.'], so: ['सो०', 'So.'], cha: ['छं०', 'Cha.'], shloka: ['श्लो०', 'Śl.']};
-const VINFO = {
-  cau: ['चौपाई', 'Chaupāī', 'अवधीका मात्रिक छन्द — चार चरण, प्रत्येकमें १६ मात्राएँ। मानसका मुख्य प्रवाह।', 'An Awadhi metre of four quarters with 16 mātrās (beats) each; the main flow of the Mānasa.'],
-  do: ['दोहा', 'Dohā', 'दो पंक्तियोंका छन्द — प्रत्येक पंक्तिमें १३ + ११ मात्राएँ। चौपाइयोंके प्रसंगको पूरा करता है।', 'A two-line Awadhi metre of 13 + 11 mātrās per line; it closes a passage of chaupāīs.'],
-  so: ['सोरठा', 'Soraṭhā', 'दोहेका उलटा — प्रत्येक पंक्तिमें ११ + १३ मात्राएँ, तुक बीचमें।', 'The reverse of a dohā: 11 + 13 mātrās per line, rhyming in the middle.'],
-  cha: ['छंद', 'Chhand', 'हरिगीतिका आदि लम्बे गेय छन्द, प्रायः स्तुतियों और विशेष प्रसंगोंमें।', 'Longer lyrical metres such as Harigītikā, used mostly for hymns and special moments.'],
-  shloka: ['श्लोक', 'Śloka', 'संस्कृतका छन्द — अक्षरोंकी गिनतीपर आधारित। प्रत्येक काण्डके आरम्भमें मंगलाचरण।', 'A Sanskrit verse, measured by syllables; used for the invocation at the start of each kāṇḍa.']};
-function vtSheet(i){ const it = IT[i], wt = WTYPE(it.y), v = wt ? [wt.name.hi, wt.name.en, (wt.about || {}).hi || '', (wt.about || {}).en || ''] : VINFO[it.y]; if (!v) return; const n = vNum(it.n); openSheet('<h2>' + T(v[0], v[1]) + (n ? ' ' + n : '') + '</h2><p>' + T(v[2], v[3]) + '</p>'); }
+const VSHORT = {cau: ['चौ॰', 'Cau.'], do: ['दो॰', 'Do.'], so: ['सो॰', 'So.'], cha: ['छं॰', 'Cha.'], shloka: ['श्लो॰', 'Śl.']};
 function verseHTML(i){
   const it = IT[i], id = it.id, me = ME(), vv = verseOf(i);
   const bm = SHOWN().some(p => p.bm[KEY(id)]);
@@ -239,7 +232,7 @@ function verseHTML(i){
     let ln = last && it.y === 'cau' && it.n && /।।\s*$/.test(l) ? l.replace(/\s*।।\s*$/, ' ।।' + String(it.n).replace(/\d/g, d => DIG[d]) + '।।') : l;
     if (LANG() === 'en') ln = ln.replace(/[०-९]/g, d => DIG.indexOf(d));
     const w = wordsHTML(ln).replace(/।।\s*([0-9०-९][^\s।<]*)\s*।।/, '<span style="white-space:nowrap">।।$1।।</span>');
-    const lead = y === 0 && sh ? '<button class="vt" data-a="vt">' + T(sh[0], sh[1]) + '</button>' : '';
+    const lead = y === 0 && sh ? '<span class="vt">' + T(sh[0], sh[1]) + '</span>' : '';
     const tail = last ? '<span class="vend"><button class="vb' + (bm ? ' bm-on' : '') + '" data-a="bm" aria-label="bookmark"><svg><use href="#i-bm"/></svg></button><button class="vb" data-a="menu" aria-label="more"><svg><use href="#i-more"/></svg></button></span>' + (hasAu(i) ? '<button class="vb vplay" data-a="play" aria-label="play"><svg><use href="#i-play"/></svg></button>' : '') : '';
     return '<p>' + lead + w + tail + '</p>'; }).join('') + '</div>';
   if (S.settings.tr && it.t && it.t.length) h += '<div class="tr">' + it.t.map(l => '<div>' + l.split(/(?<=,)\s+/).map(x => '<span class="half">' + esc(x).replace(/\s*॥\s*([^॥]*?)\s*॥/g, ' <span class="dd">॥$1॥</span>') + '</span>').join(' ') + '</div>').join('') + '</div>';
@@ -383,8 +376,7 @@ $('#rBody').addEventListener('click', ev => {
   const a = ev.target.closest('[data-a]');
   if (a){
     const act = a.dataset.a;
-    if (act === 'vt') vtSheet(i);
-    else if (act === 'play') playFrom(i, i);   // ▶ beside a verse plays that verse; “Listen from here” keeps going
+    if (act === 'play') playFrom(i, i);   // ▶ beside a verse plays that verse; “Listen from here” keeps going
     else if (act === 'bm'){ const me = ME(), k = KEY(IT[i].id); const had = !!me.bm[k]; if (had) delete me.bm[k]; else me.bm[k] = Date.now(); save(); rerenderItem(i); toast(!had ? T('बुकमार्क जोड़ा', 'Bookmarked') : T('बुकमार्क हटाया', 'Bookmark removed')); }
     else if (act === 'enote') noteSheet(i, +a.dataset.k);
     else if (act === 'menu') itemMenu(i);

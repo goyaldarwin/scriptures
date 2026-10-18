@@ -38,20 +38,12 @@ assert len(set(ids)) == len(ids), 'duplicate item ids'
 assert all(x['v'] for x in items), 'item without lines'
 
 TYPES = {
-    'dhru': {'name': {'hi': 'ध्रुवपद', 'en': 'Dhruvapada'}, 'short': {'hi': 'ध्रु०', 'en': 'Dhru.'},
-             'about': {'hi': 'टेक (मुखड़ा)। आरतीके आरम्भमें गाया जाता है और हर पदके बाद दोहराया जाता है; पदके अन्तमें “आ॰” इसीका संकेत है।',
-                       'en': 'The refrain. It is sung first and repeated after every stanza; “ā.” at the end of a stanza is the cue to repeat it.'}},
-    'pad': {'name': {'hi': 'पद', 'en': 'Pada'}, 'short': {'hi': 'पद', 'en': 'Pada'},
-            'about': {'hi': 'आरती या स्तुतिका एक अन्तरा (छन्द)।', 'en': 'A stanza of the āratī or hymn.'}},
-    'abhang': {'name': {'hi': 'अभंग', 'en': 'Abhaṅga'}, 'short': {'hi': 'अभं०', 'en': 'Abh.'},
-               'about': {'hi': 'मराठी भक्ति-छन्द — वारकरी संत-कवियों (नामदेव, तुकाराम आदि) की परम्परा।',
-                         'en': 'The Marathi devotional metre of the Vārakarī saint-poets such as Nāmadeva and Tukārāma.'}},
-    'shloka': {'name': {'hi': 'श्लोक', 'en': 'Śloka'}, 'short': {'hi': 'श्लो०', 'en': 'Śl.'},
-               'about': {'hi': 'संस्कृतका छन्दोबद्ध पद्य।', 'en': 'A verse in Sanskrit.'}},
-    'mantra': {'name': {'hi': 'मन्त्र', 'en': 'Mantra'}, 'short': {'hi': 'मं०', 'en': 'Man.'},
-               'about': {'hi': 'जपने या पाठ करनेका पवित्र मन्त्र; पुष्पांजलिके मन्त्र वेदसे हैं।', 'en': 'A sacred formula for chanting; the Puṣpāñjali mantras come from the Veda.'}},
-    'jay': {'name': {'hi': 'जयघोष', 'en': 'Jayaghoṣa'}, 'short': {'hi': 'जय', 'en': 'Jaya'},
-            'about': {'hi': 'जयकार — सब मिलकर ऊँचे स्वरमें बोलते हैं।', 'en': 'The call of victory, said aloud together.'}},
+    'dhru':   {'name': {'hi': 'ध्रुवपद', 'en': 'Dhruvapada'}, 'short': {'hi': 'ध्रु॰', 'en': 'Dhru.'}},
+    'pad':    {'name': {'hi': 'पद', 'en': 'Pada'}, 'short': {'hi': 'पद', 'en': 'Pada'}},
+    'abhang': {'name': {'hi': 'अभंग', 'en': 'Abhaṅga'}, 'short': {'hi': 'अभं॰', 'en': 'Abh.'}},
+    'shloka': {'name': {'hi': 'श्लोक', 'en': 'Śloka'}, 'short': {'hi': 'श्लो॰', 'en': 'Śl.'}},
+    'mantra': {'name': {'hi': 'मन्त्र', 'en': 'Mantra'}, 'short': {'hi': 'मं॰', 'en': 'Man.'}},
+    'jay':    {'name': {'hi': 'जयघोष', 'en': 'Jayaghoṣa'}, 'short': {'hi': 'जय', 'en': 'Jaya'}},
 }
 assert {x['y'] for x in items} <= set(TYPES), 'unknown verse type'
 
