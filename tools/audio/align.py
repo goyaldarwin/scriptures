@@ -14,6 +14,7 @@ def gur2dev(s):
     return ''.join(GURU.get(ord(c), chr(ord(c)-0x100)) if 0x0A00<=ord(c)<=0x0A7F else c for c in s)
 def key(s):
     s=unicodedata.normalize('NFC',gur2dev(s))
+    s=re.sub(r'[\u0951-\u0954\u1CD0-\u1CFF\uA8E0-\uA8FF]','',s)   # Vedic svara and accent marks (॑ ॒ ꣳ …) are not heard as letters
     s=re.sub(r'[^ऀ-ॿ ]',' ',s)
     s=re.sub(r'[०-९।॥]',' ',s)
     s=s.replace('ँ','').replace('ं','').replace('़','').replace('्','').replace('ः','')
@@ -80,12 +81,23 @@ def align(S, r0, span=None):
             if j>=4:   # a reciter often runs four half-lines (a whole caupāī) into one breath
                 cat=R[j-4][2]+R[j-3][2]+R[j-2][2]+R[j-1][2]; c=dp[i-1,j-4]+(1-sim(sk,cat))+0.15+over(sk,cat)
                 if c<best: best=c; b=6
+            # one long half-line heard across two or three short segments (Vedic chant: the recogniser cuts mid-line)
+            if j>=1 and i>=2:
+                cs=SK[i-2]+sk; c=dp[i-2,j-1]+(1-sim(cs,R[j-1][2]))+0.05+over(R[j-1][2],cs)
+                if c<best: best=c; b=7
+            if j>=1 and i>=3:
+                cs=SK[i-3]+SK[i-2]+sk; c=dp[i-3,j-1]+(1-sim(cs,R[j-1][2]))+0.1+over(R[j-1][2],cs)
+                if c<best: best=c; b=8
             dp[i,j]=best; bt[i,j]=b
     j=int(dp[n].argmin()); i=n; pairs=[]
     while i>0:
         b=bt[i,j]
         if b==1: i-=1
         elif b==2: j-=1
+        elif b in (7,8):
+            k=b-5   # 2 or 3 segments → one ref
+            for q in range(k): pairs.append((i-1-q,j-1))
+            i-=k; j-=1
         else:
             k={3:1,4:2,5:3,6:4}[b]
             for q in range(k): pairs.append((i-1,j-1-q))
