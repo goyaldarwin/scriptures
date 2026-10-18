@@ -1,6 +1,6 @@
 [
  {
-  "id": "hindu",
+  "id": "hinduism",
   "title": {
    "hi": "हिन्दू धर्म",
    "en": "Hinduism"
@@ -35,7 +35,7 @@
        {
         "id": "ramcharitmanas",
         "work": "manas",
-        "path": "hindu/granth/tulsidas/ramcharitmanas",
+        "path": "hinduism/granth/tulsidas/ramcharitmanas",
         "title": {
          "hi": "श्रीरामचरितमानस",
          "en": "Śrī Rāmacaritamānasa"
@@ -82,7 +82,7 @@
        {
         "id": "ramraksha",
         "work": "ramraksha",
-        "path": "hindu/stotra/rama/ramraksha",
+        "path": "hinduism/stotra/rama/ramraksha",
         "title": {
          "hi": "श्रीरामरक्षास्तोत्रम्",
          "en": "Śrī Rāma Rakṣā Stotram"
@@ -129,7 +129,7 @@
        {
         "id": "dhoop-aarti",
         "work": "shirdi-sai-dhoop-aarti",
-        "path": "hindu/aarti/shirdi-sai/dhoop-aarti",
+        "path": "hinduism/aarti/shirdi-sai/dhoop-aarti",
         "title": {
          "hi": "धूप आरती",
          "en": "Dhūpa Āratī"

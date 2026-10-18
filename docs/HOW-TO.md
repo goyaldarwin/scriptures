@@ -23,7 +23,7 @@ If `build.py` prints `LIBRARY PROBLEM: …`, fix what it names. It never builds 
 1. Choose the id: the reciter's name, e.g. `anup-jalota`. Create `tools/works/<work>/audio/<id>/`.
 2. In it, write `source.json`:
    ```json
-   {"id": "anup-jalota", "work": "hindu/granth/tulsidas/ramcharitmanas", "type": "youtube", "lang": "hi",
+   {"id": "anup-jalota", "work": "hinduism/granth/tulsidas/ramcharitmanas", "type": "youtube", "lang": "hi",
     "title": {"hi": "अनूप जलोटा", "en": "Anup Jalota"}}
    ```
 3. Write `recordings.json`, one entry per YouTube video in reading order: `{"yt": "<11-char video id>", "file": "<original download name>", "data": "<path of its copy in scriptures-data>", "dur": <seconds>, "order": <n>}`. First add the recording to the private repo `scriptures-data` at `<work path>/audio/<source id>/` (speech-quality copy + `.meta.json`, see its README). The video id is in the YouTube link (`watch?v=…`) and in the downloaded file name `[…]`.
@@ -33,7 +33,7 @@ If `build.py` prints `LIBRARY PROBLEM: …`, fix what it names. It never builds 
 
 ## Add a new work (Ram Raksha Stotram, an Upanishad, Japji Sahib …)
 
-1. Place it on the shelf at its REST-like address, `<tradition>/<genre>/<group…>/<work>` (`docs/LIBRARY.md` §1), reusing existing levels: e.g. a Hanumān Chālīsā goes to `hindu/chalisa/hanuman/hanuman-chalisa`, the Kena Upaniṣad to `hindu/veda/samaveda/upanishad/kena`, Japji Sahib to `sikh/gurbani/guru-nanak-dev/japji-sahib`. Add the missing shelves to `library/index.json`, ending in `{"id", "work", "path", "title", "by", "edition", "desc"}`. The work id is the shelf id unless that is taken, and the tools go in `tools/works/<work id>/`.
+1. Place it on the shelf at its REST-like address, `<tradition>/<genre>/<group…>/<work>` (`docs/LIBRARY.md` §1), reusing existing levels: e.g. a Hanumān Chālīsā goes to `hinduism/chalisa/hanuman/hanuman-chalisa`, the Kena Upaniṣad to `hinduism/veda/samaveda/upanishad/kena`, Japji Sahib to `sikhism/gurbani/guru-nanak-dev/japji-sahib`. Add the missing shelves to `library/index.json`, ending in `{"id", "work", "path", "title", "by", "edition", "desc"}`. The work id is the shelf id unless that is taken, and the tools go in `tools/works/<work id>/`.
 2. Create `tools/works/<work>/` with the extraction scripts (from PDFs or other sources) and an `export.py` that writes `library/<path>/work.json` (`docs/LIBRARY.md` §2) with each verse's language, its meaning sources (§3), and new words into `glossary/<lang>.json` (§5). A new language needs its own entry first (below). Use `tools/works/ramcharitmanas/` as the model.
 3. Choose the natural divisions for `parts`, the `topics`, and any `plans` (e.g. daily pāṭha). Ask the owner which plans they want. Pages follow the item's section `s`; use a name (e.g. `aarti`), not a number, unless sections are dohā numbers. Verse types the app doesn't know (viniyoga, dhyāna, pada, abhaṅga …) go in the work's `types` (`docs/LIBRARY.md` §2). Small models: `tools/works/ramraksha/` (a stotra from a video's on-screen text) and `tools/works/shirdi-sai-dhoop-aarti/` (a multilingual āratī from two printouts).
 4. Add audio as above if there is a recording.
