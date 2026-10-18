@@ -31,6 +31,12 @@ tools/
       meanings/hi.json, en.json    one meaning per verse
       glossary/mr|sa|hi.json       word meanings by language
       export.py                    → library/hinduism/aarti/shirdi-sai/dhoop-aarti/ and library/glossary/
+    shri-rudram/
+      source/                      the shlokam.org printouts (PDF) → *_raw.json (extract.py) → ../text.json (settle.py; reconciliation.md)
+      meanings/namakam|chamakam.json  our English and Hindi meaning per mantra
+      glossary/g*.json, work_sa.json  word meanings (→ library/glossary/sa.json) and this work's own senses
+      export.py                    → library/hinduism/veda/yajurveda/krishna-yajurveda/samhita/shri-rudram/
+      audio/shlokam/               source.json, recordings.json (transcripts come from the cloud)
     sundarkand/                  the Sundarakāṇḍa as a work of its own (see its README)
       export.py                    part 1 GENERATED from the Mānas's work.json + Gita Press meanings (same ids, sections,
                                    text, topics); parts 2–3 (Hanumān Chālīsā, āratī) from text.txt → library/hinduism/granth/tulsidas/sundarkand/
@@ -45,7 +51,7 @@ tools/
       meanings/hi.json, en.json    one meaning per mantra, written for this library
       glossary_sa.json             word meanings, merged into library/glossary/sa.json
       export.py                    → library/hinduism/veda/yajurveda/shukla-yajurveda/upanishad/isha-upanishad/
-      audio/smvedroad/             source.json, recordings.json (not timed yet)
+      audio/smvedroad/             source.json, recordings.json, fixes.json/md (timed)
 ```
 
 ## Rebuild everything (Rāmacaritamānasa)

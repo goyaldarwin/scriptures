@@ -187,6 +187,45 @@
       },
       "children": [
        {
+        "id": "krishna-yajurveda",
+        "title": {
+         "hi": "कृष्ण यजुर्वेद",
+         "en": "Kṛṣṇa Yajurveda"
+        },
+        "children": [
+         {
+          "id": "samhita",
+          "title": {
+           "hi": "संहिता",
+           "en": "Saṃhitā"
+          },
+          "children": [
+           {
+            "id": "shri-rudram",
+            "work": "shri-rudram",
+            "path": "hinduism/veda/yajurveda/krishna-yajurveda/samhita/shri-rudram",
+            "title": {
+             "hi": "श्रीरुद्रम्",
+             "en": "Śrī Rudram"
+            },
+            "by": {
+             "hi": "कृष्ण यजुर्वेद, तैत्तिरीय संहिता",
+             "en": "Kṛṣṇa Yajurveda, Taittirīya Saṃhitā"
+            },
+            "edition": {
+             "hi": "श्लोकम् (shlokam.org)",
+             "en": "Shlokam (shlokam.org)"
+            },
+            "desc": {
+             "hi": "नमकम् और चमकम् · ११ + ११ अनुवाक",
+             "en": "Namakam and Chamakam · 11 + 11 anuvākas"
+            }
+           }
+          ]
+         }
+        ]
+       },
+       {
         "id": "shukla-yajurveda",
         "title": {
          "hi": "शुक्ल यजुर्वेद",
