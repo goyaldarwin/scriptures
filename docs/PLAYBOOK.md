@@ -267,6 +267,15 @@ Then expect from me, in order:
 - **Hugging Face may be blocked; GitHub isn't.** sherpa-onnx publishes Whisper ONNX models in its GitHub releases. Its own decoder drops Devanagari (it decodes byte tokens one at a time), so decode the token ids yourself. Whisper gives no timestamps inside a chant, so cut the recording into 4–9 s pieces at its quietest points and transcribe each piece.
 - **A work can declare its own verse types** (viniyoga, dhyāna, mantra, colophon) in `work.json` → `types` (name + short tag), instead of adding Mānas-only labels to the app.
 
+### Preferences and lessons (Oct 17, 2026): the Shirdi Dhūpa Āratī
+- Each āratī is its own work (shelf: see the decisions below; the āratī is at `hindu/aarti/shirdi-sai/dhoop-aarti`).
+- Superseded by the owner's decision below: copy the meanings from the sources the owner gives; write our own (`<lang>-scriptures`) only where none is given.
+- When the owner gives two web printouts, use the one they prefer as the base and the other as a second witness. Correct the base only where it is clearly wrong (a missing space, a wrong word, a sense that doesn't fit, broken Sanskrit). Record every correction in the work's `reconciliation.md`.
+- Use the Devanagari abbreviation sign ॰ (U+0970) for marks like आ॰ / ध्रु॰. A zero (०) turns into "0" in English mode. Write verse numbers compactly (`।।१।।`) so they never wrap away from the line.
+- A work can declare its own verse types (`types` in work.json), so a new kind of text needs no app change.
+- Web-page printouts often have a broken Devanagari text layer (pre-base ि and reph out of order, or blank). OCR the page images with Tesseract `mar`/`hin`; `apt-get install tesseract-ocr-mar tesseract-ocr-hin tesseract-ocr-san` works in the workspace, but GitHub's tessdata does not.
+- Audio timing needs a Whisper model. If huggingface.co is blocked, use `tools/audio/transcribe_onnx.py`, which takes the model from GitHub.
+
 ### Decisions (Oct 17, 2026, late): growing the library
 - **Meanings: copy the meanings from the sources the owner gives; write our own only where none is given** (as a separate `<lang>-scriptures` source).
 - **The shelf is a REST-like hierarchy, tradition first**: `<tradition>/<genre>/<group…>/<work>`, e.g. `hindu/granth/tulsidas/ramcharitmanas`, `hindu/stotra/rama/ramraksha`, `hindu/aarti/shirdi-sai/dhoop-aarti`, later `hindu/veda/samaveda/upanishad/kena` and `sikh/gurbani/guru-nanak-dev/japji-sahib`. Think about the whole future library when adding a level; reuse levels. A work's id is permanent, while its place on the shelf can change.

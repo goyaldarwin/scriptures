@@ -103,6 +103,53 @@
       ]
      }
     ]
+   },
+   {
+    "id": "aarti",
+    "title": {
+     "hi": "आरती",
+     "en": "Āratī"
+    },
+    "desc": {
+     "hi": "आरतियाँ",
+     "en": "Āratīs"
+    },
+    "children": [
+     {
+      "id": "shirdi-sai",
+      "title": {
+       "hi": "शिरडी साईबाबा",
+       "en": "Shirdi Sāī Bābā"
+      },
+      "desc": {
+       "hi": "धूप आरती",
+       "en": "Dhūpa Āratī"
+      },
+      "children": [
+       {
+        "id": "dhoop-aarti",
+        "work": "shirdi-sai-dhoop-aarti",
+        "path": "hindu/aarti/shirdi-sai/dhoop-aarti",
+        "title": {
+         "hi": "धूप आरती",
+         "en": "Dhūpa Āratī"
+        },
+        "by": {
+         "hi": "श्री साईबाबा, शिरडी",
+         "en": "Śrī Sāī Bābā of Shirdi"
+        },
+        "edition": {
+         "hi": "शिरडीकी सायंकालीन आरती",
+         "en": "The evening āratī of Shirdi"
+        },
+        "desc": {
+         "hi": "सायंकालीन आरती · मराठी, संस्कृत, हिन्दी",
+         "en": "Evening āratī · Marathi, Sanskrit, Hindi"
+        }
+       }
+      ]
+     }
+    ]
    }
   ]
  }

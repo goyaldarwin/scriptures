@@ -25,6 +25,11 @@ tools/
       export.py                    source/ → library/hindu/stotra/rama/ramraksha/ (text, English + Hindi meanings, new Sanskrit words)
       glossary_sa.json             the stotra's word meanings, merged into library/glossary/sa.json
       audio/vande-guru-paramparaam/ source.json, recordings.json, fixes.json + fixes.md, transcripts/
+    shirdi-sai-dhoop-aarti/
+      text.txt                     the verse text (settled in reconciliation.md)
+      meanings/hi.json, en.json    one meaning per verse
+      glossary/mr|sa|hi.json       word meanings by language
+      export.py                    → library/hindu/aarti/shirdi-sai/dhoop-aarti/ and library/glossary/
 ```
 
 ## Rebuild everything (Rāmacaritamānasa)

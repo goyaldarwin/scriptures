@@ -3,5 +3,9 @@
          "suffixes": [], "stems": []},
  "awa": {"name": {"hi": "अवधी", "en": "Awadhi"}, "script": "Deva", "fallback": ["sa"],
          "suffixes": ["न्हि", "न्ह", "हिं", "हुँ", "हूँ", "हि", "ें", "ों", "नि", "उँ", "ऊ", "उ", "ु", "ू", "ि", "ी", "ा", "े", "ै", "ौ"],
-         "stems": ["", "ा", "ी", "ु"]}
+         "stems": ["", "ा", "ी", "ु"]},
+ "mr":  {"name": {"hi": "मराठी", "en": "Marathi"}, "script": "Deva", "fallback": ["sa"],
+         "suffixes": [], "stems": []},
+ "hi":  {"name": {"hi": "हिन्दी", "en": "Hindi"}, "script": "Deva", "fallback": ["sa"],
+         "suffixes": [], "stems": []}
 }
