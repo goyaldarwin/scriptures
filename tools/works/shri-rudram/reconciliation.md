@@ -71,3 +71,12 @@ Most restore a reph (र्) that the PDF text layer drops. The page image and t
   - **After anuvāka 1:** श्री शम्भवे नमः and नमस्ते अस्तु भगवन्….
   - **After anuvāka 11:** the closing mantras (त्र्यम्बकम् … ओ-न्नमो भगवते रुद्राय विष्णवे …) and सदाशिवोम् / शान्ति.
   - **Chamakam:** its śānti mantra.
+
+## Two more misprints in the printout's Devanagari (dictionary review, 2026-10-18)
+
+The printout's own transliteration and the standard Taittirīya Saṃhitā agree against its Devanagari in two places; the Devanagari is corrected, as with त्वष्टा above:
+- Namakam 3.12: printed "नमो-ऽस्स॑द्भ्यो॒ विद्य॑द्भ्यश्च" → **नमो-ऽस्य॑द्भ्यो॒ विध्य॑द्भ्यश्च** (transliteration "'syadbhyo viddhyadbhyaśca"; TS 4.5.3 अस्यद्भ्यो विध्यद्भ्यश्च, "to those who shoot and to those who pierce", from अस् and व्यध्).
+- Chamakam 8.2: printed "दिष्णि॑याश्च" → **धिष्णि॑याश्च** (transliteration "dhiṣṇiyāśca"; TS 4.7.8 धिष्णियाः, the side-altars).
+
+Kept as printed, because the printout's transliteration agrees: "मृत्यु॑र्मे पा॒हि" (Namakam closing), "मनु॒राय॑जे" (Namakam 10).
+Meaning corrected: Chamakam 8.4 स्वरवः are the svarus, chips cut from the sacrificial post (Sāyaṇa: यूपशकलाः), not "wooden pegs".
