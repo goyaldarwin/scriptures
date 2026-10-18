@@ -478,7 +478,7 @@ function markBar(i){
   const x = SRC.au.at[IT[i].id], mine = myStarts()[IT[i].id], est = toCheck(i), by = fromOf(IT[i].id);
   const when = x ? T('शुरू ', 'Start ') + fmtT(x[1]) + (x[2] != null ? T(' · अंत ', ' · end ') + fmtT(x[2]) : '') : T('ऑडियोमें समय नहीं', 'No time in the recording');
   return '<div class="tmark"><button data-a="tstart">⏱ ' + T('अभी शुरू', 'Starts now') + '</button><button data-a="tend">⏹ ' + T('अभी समाप्त', 'Ends now') + '</button>' + (x ? '<button data-a="tplay" aria-label="play">▶</button>' : '') + (by ? '<button data-a="tok">✓ ' + T('सही है', 'Correct') + '</button>' : '') +
-    '<span class="tinfo">' + when + (by ? ' · <b class="test">' + T('', 'from ') + esc(by) + T(' का — जाँचें', ' — to check') + '</b>' : mine ? ' · <b>' + T('आपका', 'yours') + '</b>' : (SRC.au.moved && SRC.au.moved.has(IT[i].id)) ? ' · <b class="test">' + T('आपके समयके अनुसार खिसकाया', 'moved to fit your times') + '</b>' : est ? ' · <b class="test">' + T('अनुमान', 'estimated') + '</b>' : '') + '</span></div>';
+    '<span class="tinfo">' + when + (by ? ' · <b class="test">' + T('', 'from ') + esc(by) + T(' का — जाँचें', ' — to check') + '</b>' : mine ? ' · <b>' + T('आपका', 'yours') + '</b>' : est ? ' · <b class="test">' + T('अनुमान', 'estimated') + '</b>' : (SRC.au.moved && SRC.au.moved.has(IT[i].id)) ? ' · <b class="test">' + T('आपके समयके अनुसार खिसकाया', 'moved to fit your times') + '</b>' : '') + '</span></div>';
 }
 function toCheck(i){ return !!(S.timing.on && SRC.au && SRC.au.checkSet && SRC.au.checkSet.has(IT[i].id) && !myStarts()[IT[i].id]); }   // a start that is only estimated: to be checked by ear
 function myStarts(){ return (SRC.au && S.timing.fix[tkey()]) || {}; }
@@ -487,7 +487,7 @@ function unfrom(id){ const f = S.timing.from[tkey()]; if (f){ delete f[id]; if (
 function buildAudio(){
   AUT = []; const A = SRC.au; if (!A) return;
   if (!A.at0) A.at0 = A.at;
-  if (!A.checkSet) A.checkSet = new Set(A.check || []);                       // the published starts; A.at = those plus the starts set by ear on this phone
+  if (!A.checkSet){ A.checkSet = new Set(A.check || []); A.guessSet = new Set(A.guess || []); }                      // the published starts; A.at = those plus the starts set by ear on this phone
   A.at = Object.assign({}, A.at0, myStarts());
   A.tracks.forEach(t => { t.fi = ID[t.first]; t.li = ID[t.last]; }); AUT = A.tracks.map(() => []);
   for (const id in A.at){ const i = ID[id]; if (i == null) continue; const [t, s, e] = A.at[id]; AUT[t].push([i, s, e == null ? null : e]); }
@@ -496,7 +496,7 @@ function buildAudio(){
   // this is placed again, by its length, between the nearest good times on either side. A set end later than the next
   // verse's set start is cut back to it.
   const mine = myStarts(); A.moved = new Set();
-  AUT.forEach(a => {
+  AUT.forEach((a, ti) => {
     a.sort((x, y) => x[0] - y[0]);
     const own = k => !!mine[IT[a[k][0]].id], len = k => Math.max(8, IT[a[k][0]].v.join('').length);
     for (let k = 0; k + 1 < a.length; k++) if (a[k][2] != null && own(k + 1) && a[k][2] > a[k + 1][1]) a[k] = [a[k][0], a[k][1], a[k + 1][1]];
@@ -513,6 +513,22 @@ function buildAudio(){
       const L = p >= 0 ? Math.max(a[p][1] + 0.5, a[p][2] != null ? a[p][2] : 0) : 0, U = n < a.length ? a[n][1] : L + 4 * (e - k + 2);
       let tot = 0; for (let j = k; j <= e; j++) tot += len(j); let acc = 0;
       for (let j = k; j <= e; j++){ a[j] = [a[j][0], Math.round((L + (U - L) * acc / (tot + (n < a.length ? 0 : len(e)))) * 10) / 10, a[j][2]]; acc += len(j); A.moved.add(IT[a[j][0]].id); }
+      k = e;
+    }
+    // starts only guessed by text length (never heard) next to a time you set are guessed again between your time and
+    // the next good one (or the recording's end), so they move with you; a heard start is never re-guessed
+    // (the same rule as tools/audio/make_timings.py)
+    const gs = k => A.guessSet.has(IT[a[k][0]].id) && !own(k);
+    for (let k = 0; k < a.length; k++){
+      if (!gs(k)) continue;
+      let e = k; while (e + 1 < a.length && gs(e + 1)) e++;
+      const p = k - 1, n = e + 1;
+      if ((p >= 0 && own(p)) || (n < a.length && own(n))){
+        const pre = p >= 0 && a[p][2] == null ? len(p) : 0, L0 = p >= 0 ? (a[p][2] != null ? a[p][2] : a[p][1]) : a[k][1];
+        const U = n < a.length ? a[n][1] : A.tracks[ti].dur * 0.98;
+        let tot = pre; for (let j = k; j <= e; j++) tot += len(j); let acc = pre;
+        if (U - L0 > 0.3 * (e - k + 1 + (pre ? 1 : 0))) for (let j = k; j <= e; j++){ const st = Math.round((L0 + (U - L0) * acc / tot) * 10) / 10; acc += len(j); if (st !== a[j][1]){ a[j] = [a[j][0], st, a[j][2]]; A.moved.add(IT[a[j][0]].id); } }
+      }
       k = e;
     }
     a.forEach(([i, s, e]) => { const id = IT[i].id, t = A.at[id][0]; A.at[id] = e != null ? [t, s, e] : [t, s]; });   // the menus and buttons show these
@@ -621,7 +637,9 @@ function setTime(i, k, sec){
   const v = [cur[0], cur[1], cur[2] == null ? null : cur[2]]; v[k] = sec == null ? null : Math.round(sec * 10) / 10;
   if (k === 2 && v[2] != null && v[2] <= v[1]){ toast(T('अंत शुरुआतके बाद होना चाहिये', 'The end must come after the start')); return; }
   if (k === 1 && v[2] != null && v[2] <= v[1]) v[2] = null;
-  fx[id] = v; unfrom(id); save(); buildAudio(); [i - 2, i - 1, i, i + 1, i + 2].forEach(j => { if (j >= 0 && j < IT.length && document.getElementById('v' + j)) rerenderItem(j); });   // neighbours may have moved
+  const was = {}; $$('#rBody .verse').forEach(el => { const j = +el.dataset.i; was[j] = JSON.stringify(SRC.au.at[IT[j].id]); });
+  fx[id] = v; unfrom(id); save(); buildAudio();
+  Object.keys(was).forEach(j => { j = +j; if (j === i || was[j] !== JSON.stringify(SRC.au.at[IT[j].id])) rerenderItem(j); });   // every verse on screen whose time moved
   if (PL.on){ PL.cur = -1; PL.hold = 0; tick(); }   // the light moves at once (after an end: to the next verse)
   toast((k === 1 ? T('शुरुआत: ', 'Starts at ') : T('अंत: ', 'Ends at ')) + (sec == null ? '—' : fmtT(sec)));
 }
@@ -834,7 +852,7 @@ function timingHTML(){
     h += '<p class="small">' + esc(TT(SRC.au.meta.title)) + ': ' + DEV(n) + T(' पद आपने ठीक किये', ' verses set by you') + (p ? ' · ' + DEV(p) + T(' भेजने बाकी', ' not sent yet') : '') + '</p>' +
       (SRC.au.meta.draft ? sw('stp', T('यह रिकॉर्डिंग जाँच ली — सबके लिये चालू करें', 'This recording is checked: publish it for everyone'), T('भेजनेके साथ जाएगा', 'Goes with the next send'), !!(S.timing.publish || {})[tkey()]) : '') +
       checkList() + helperList() +
-      '<div class="acts"><button class="btn" id="tSend"' + (p || (S.timing.publish || {})[tkey()] ? '' : ' disabled') + '>' + T('लाइब्रेरीमें भेजें (GitHub)', 'Send to the library (GitHub)') + '</button><button class="btn ghost" id="tSave"' + (n ? '' : ' disabled') + '>' + T('फ़ाइलमें सेव करें', 'Save as a file') + '</button><button class="btn ghost" id="tOpen">' + T('सहायककी फ़ाइल खोलें', 'Open a helper’s file') + '</button>' + (n ? '<button class="btn ghost" id="tClear">' + T('मेरे समय हटाएँ', 'Clear my starts') + '</button>' : '') + '</div>' +
+      '<div class="acts"><button class="btn" id="tSend"' + (p || (S.timing.publish || {})[tkey()] ? '' : ' disabled') + '>' + T('लाइब्रेरीमें भेजें (GitHub)', 'Send to the library (GitHub)') + '</button><button class="btn ghost" id="tSave"' + (n ? '' : ' disabled') + '>' + T('फ़ाइलमें सेव करें', 'Save as a file') + '</button><button class="btn ghost" id="tOpen">' + T('सहायककी फ़ाइल खोलें', 'Open a helper’s file') + '</button>' + (n ? '<button class="btn ghost" id="tClear">' + T('मेरे समय हटाएँ', 'Clear my timings') + '</button>' : '') + '</div>' +
       '<p class="small muted">' + T('सहायता कर रहे हैं? “फ़ाइलमें सेव करें” दबाकर फ़ाइल साइटके मालिकको भेजें; वे जाँचकर लाइब्रेरीमें जोड़ेंगे। लाइब्रेरीमें सीधे केवल मालिक भेज सकते हैं।', 'Helping? Tap “Save as a file” and send the file to the site’s owner, who checks it and adds it to the library. Only the owner can send to the library directly.') + '</p>';
   }
   return h;
@@ -854,7 +872,7 @@ function bindTiming(){
   if (!$('#stm')) return;
   $('#stm').onchange = async e => { S.timing.on = e.target.checked; save(); applyTiming(); stopAudio(); await loadSources(); renderSettings(); };
   if ($('#stp')) $('#stp').onchange = e => { S.timing.publish = S.timing.publish || {}; if (e.target.checked) S.timing.publish[tkey()] = true; else delete S.timing.publish[tkey()]; save(); renderSettings(); };
-  if ($('#tClear')) $('#tClear').onclick = () => askYes(T('इस रिकॉर्डिंगके आपके सेट किये सारे समय हट जाएँगे।', 'All starts you set for this recording will be removed.'), T('हाँ, हटाएँ', 'Yes, remove'), () => { delete S.timing.fix[tkey()]; delete S.timing.sent[tkey()]; delete S.timing.from[tkey()]; save(); buildAudio(); renderSettings(); });
+  if ($('#tClear')) $('#tClear').onclick = () => askYes(T('“' + esc(TT(W.title)) + '” की “' + esc(TT(SRC.au.meta.title)) + '” रिकॉर्डिंगमें इस फ़ोनपर आपके सेट किये सारे समय हट जाएँगे। जो लाइब्रेरीमें भेज चुके हैं, वे वहाँ रहेंगे। दूसरे पाठ, दूसरी रिकॉर्डिंग और आपकी पढ़ाईकी प्रगति वैसी ही रहेगी।', 'All the timings you set on this phone for the recording “' + esc(TT(SRC.au.meta.title)) + '” of “' + esc(TT(W.title)) + '” will be removed. Those already sent to the library stay there. Other works, other recordings and your reading progress are not touched.'), T('हाँ, हटाएँ', 'Yes, remove'), () => { delete S.timing.fix[tkey()]; delete S.timing.sent[tkey()]; delete S.timing.from[tkey()]; save(); buildAudio(); renderSettings(); });
   if ($('#tSend')) $('#tSend').onclick = sendStarts;
   if ($('#tSave')) $('#tSave').onclick = saveTimingFile;
   if ($('#tOpen')) $('#tOpen').onclick = () => $('#fileIn').click();

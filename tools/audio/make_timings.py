@@ -144,6 +144,27 @@ if own_ids:
             for j in range(k, e + 1):
                 a[j][1] = round(L + (U - L) * acc / tot, 1); acc += ln(j); moved.append(IT[a[j][0]]['id'])
             k = e + 1
+        # starts that were only guessed by text length (never heard), next to a time set by the owner, are guessed again
+        # between the owner's time and the next good time (or the recording's end): a run of guesses after a verse the
+        # owner placed later than guessed moves with it, instead of being squeezed in front of the next guess. A heard
+        # start is never re-guessed. The same rule as the app (buildAudio).
+        gs = lambda k: IT[a[k][0]]['id'] not in heard and not own(k)
+        k = 0
+        while k < len(a):
+            if not gs(k): k += 1; continue
+            e = k
+            while e + 1 < len(a) and gs(e + 1): e += 1
+            p, n = k - 1, e + 1
+            if (p >= 0 and own(p)) or (n < len(a) and own(n)):
+                pre = ln(p) if p >= 0 and a[p][2] is None else 0
+                L0 = (a[p][2] if a[p][2] is not None else a[p][1]) if p >= 0 else a[k][1]
+                U = a[n][1] if n < len(a) else tracks[ti]['dur'] * 0.98
+                tot = pre + sum(ln(j) for j in range(k, e + 1)); acc = pre
+                if U - L0 > 0.3 * (e - k + 1 + (1 if pre else 0)):
+                    for j in range(k, e + 1):
+                        st = round(L0 + (U - L0) * acc / tot, 1); acc += ln(j)
+                        if st != a[j][1]: a[j][1] = st; moved.append(IT[a[j][0]]['id'])
+            k = e + 1
         for i, st, en in a: at[IT[i]['id']] = [ti, st, en] if en is not None else [ti, st]
 # a source marked "draft" in source.json (its timings are not good enough yet) is written with "draft": the app plays it only
 # for someone reviewing timings (Settings › Audio timing), so readers never get audio that starts in the wrong place.
@@ -157,6 +178,8 @@ byhand = set(k for v in FIX.values() for k in v) | set(k for v in OWN.values() f
 check = [x['id'] for x in IT if x['id'] in at and x['id'] not in byhand and (meta.get('draft') or x['id'] not in heard)]
 doc.update(tracks=tracks, at=at)
 if check: doc['check'] = check
-if moved: doc['moved'] = moved   # verses placed again around the owner's times (the app shows them as moved)
+guess = [x['id'] for x in IT if x['id'] in at and x['id'] not in heard and x['id'] not in own_ids]
+if guess: doc['guess'] = guess   # starts only guessed by text length (never heard): guessed again around the owner's times
+if moved: doc['moved'] = sorted(set(moved), key=lambda k: ID[k])   # verses placed again around the owner's times (the app shows them as moved)
 json.dump(doc, open(out, 'w'), ensure_ascii=False, separators=(',', ':'))
 print('verses with audio', len(at), 'of', len(IT), '→', os.path.relpath(out, REPO), '(draft)' if meta.get('draft') else '')

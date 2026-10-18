@@ -144,8 +144,17 @@ async def main():
                         check(f'{tag}: after an end is set, the next verse is lit at once', await ev("PL.cur") == v2, [await ev("PL.cur"), v2])
                         check(f'{tag}: the progress bar moves while playing', (await ev("document.querySelector('#pProg').style.width")) not in ('', '0%'))
                         await ev("S.timing.on = false; PL.cur = -1; tick()")
-                        check(f'{tag}: outside review mode the highlight follows the starts only', await ev("PL.cur") == v1, await ev("PL.cur"))
+                        check(f'{tag}: outside review mode the highlight follows the starts only', await ev("PL.cur") == await ev("curAt(ytInfo.t)"), [await ev("PL.cur"), v1])
                         await ev("S.timing.on = true; PL.on = false; ytOK = false")
+                # guessed starts after a verse you place later than guessed move with it (in order, after its end)
+                g = await ev("""(() => { const a = AUT[0]; for (let k = 0; k + 3 < a.length; k++){ const ids = [0,1,2,3].map(d => IT[a[k + d][0]].id); if (ids.every(x => SRC.au.guessSet.has(x))) return k; } return -1; })()""")
+                if g >= 0:
+                    await ev("S.timing.fix[tkey()] = {}; save(); buildAudio()")
+                    vi, s0, s2 = await ev(f"[AUT[0][{g}][0], AUT[0][{g}][1], AUT[0][{g} + 2][1]]")
+                    await ev(f"setTime({vi}, 1, {s0}); setTime({vi}, 2, {s2} + 5)")
+                    nxt = await ev(f"[1, 2, 3].map(d => AUT[0][{g} + d][1])")
+                    check(f'{tag}: guessed starts after your end follow it, in order', nxt[0] >= s2 + 5 - 0.05 and nxt[0] < nxt[1] < nxt[2], [s2 + 5, nxt])
+                    await ev("delete S.timing.fix[tkey()]; save(); buildAudio()")
                 # a helper's file: saved from the marks, opened by the owner as marks "from <helper>" that are not sent until checked
                 await ev("S.timing.fix[tkey()] = {}; S.timing.from = {}; save(); buildAudio()")
                 await ev(f"setTime({j}, 1, AUT[0].find(x => x[0] === {j})[1] + 0.7)")
