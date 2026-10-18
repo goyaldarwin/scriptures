@@ -85,6 +85,7 @@ for r in REC:
                 tot = sum(L(x) for x in range(a, b)); acc = L(a)
                 for x in range(a + 1, b): full.append([x, round(ta + (tb - ta) * acc / tot, 2)]); acc += L(x)
     i0, t0 = full[0]; ds = max(s for s in starts if s <= i0)
+    if r.get('from'): ds = max(ds, min(i0, ID[r['from']]))   # never back-fill verses before where the recording starts
     if 0 < i0 - ds <= 4:                      # back-fill the first verses of the day
         pre, t = [], t0
         for x in range(i0 - 1, ds - 1, -1): t = max(0, t - L(x) * rate); pre.append([x, round(t, 2)])
