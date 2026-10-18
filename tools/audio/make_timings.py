@@ -3,7 +3,7 @@
 Usage:  python3 tools/audio/make_timings.py tools/works/<work>/audio/<source-id>
 
 The source folder holds:
-  source.json      {"id", "work": "<library path>", "type": "youtube", "title": {"hi", "en"}, "order"?, "draft"?: "<why it is not published yet>", "align"?: "anchors", "fill"?: n}
+  source.json      {"id", "work": "<library path>", "type": "youtube", "title": {"hi", "en"}, "order"?, "draft"?: "<why it is not published yet>", "align"?: "anchors", "fill"?: n, "anchor_min"?: 0.45}
   recordings.json  [{"yt": video id, "file": original file name, "dur": seconds, "order": n}]
   transcripts/     <video id>.jsonl from transcribe.py (+ .done when finished)
   fixes.json       optional hand-checked verse starts {video id: {item id: seconds}}, with the evidence in fixes.md
@@ -51,7 +51,7 @@ for r in REC:
             # source.json "align": "anchors" — for recordings heard only in patches (see align.anchors). A match on a
             # verse's later line still gives its start: back by the letters before that line at the reciter's pace.
             r1 = max(k for k, ref in enumerate(A.REF) if ref[0] == ID[r['to']]) + 1 if r.get('to') else None   # "to": its last item
-            R, pairs, rate = A.anchors(S, r0, r1=r1)
+            R, pairs, rate = A.anchors(S, r0, thr=meta.get('anchor_min', 0.45), r1=r1)   # "anchor_min": how alike a match must be
             rows = {}
             for si, rj in pairs:
                 k = rj
