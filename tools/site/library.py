@@ -43,6 +43,8 @@ def check_work(lib, leaf, LANGS):
         for lg, words in json.load(open(wg)).items():
             _need(lg in LANGS, f"{name}/glossary.json: unknown language {lg!r}")
             for k, v in words.items(): _need(isinstance(v, dict) and ('hi' in v or 'en' in v), f"{name}/glossary.json: {lg}:{k} needs hi/en")
+    for y, t in (w.get('types') or {}).items():
+        _need(_bi(t.get('name')) and all(_bi(t[k]) for k in ('short', 'about') if k in t), f"{name}: types.{y} needs name {{hi, en}} (short and about bilingual too)")
     _need(len(ID) == len(ids), f"{name}: item ids are not unique")
     for x in items:
         _need(isinstance(x.get('v'), list) and x['v'], f"{name}: item {x['id']} has no verse lines")

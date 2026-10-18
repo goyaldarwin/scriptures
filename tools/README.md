@@ -19,6 +19,11 @@ tools/
       book/                        Gita Press PDFs → book/app_data.json (see its README)
       export.py                    app_data.json → library/tulsidas/ramcharitmanas/ (text + Gita Press meanings)
       audio/kamlesh-upadhyay/      source.json, recordings.json, transcripts/
+    shirdi-sai-dhoop-aarti/
+      text.txt                     the verse text (settled in reconciliation.md)
+      meanings/hi.json, en.json    one meaning per verse
+      glossary/mr|sa|hi.json       word meanings by language
+      export.py                    → library/aarti/shirdi-sai/dhoop-aarti/ and library/glossary/
 ```
 
 ## Rebuild everything (Rāmacaritamānasa)

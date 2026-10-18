@@ -257,3 +257,12 @@ Then expect from me, in order:
 - The owner tests audio by checking that each verse starts and ends on its own words. Check boundaries inside long breaths, not only the first verse of a day.
 - **Releases must not break phones that have the old version cached.** Moving `gloss.json` to `glossary/` broke a phone that still had the old `app.js` cached; it showed "डेटा नहीं खुल सका". Asset URLs now carry a content hash (`app.js?v=…`), and the service worker revalidates before using its cache. When a data file is renamed or moved, think about readers still running the previous release.
 - **Player size (decided Oct 17, 2026):** keep the visible YouTube embed at its 200×200 minimum (YouTube's rule; ~216 pt player). Do not hide the video to play only its sound; it breaks YouTube's terms and could stop working without warning. If the size or the lack of screen-off playback becomes a problem, the agreed alternative is optional local playback of the owner's own downloaded recordings: picked once in Settings, stored on the device, never uploaded.
+
+### Preferences and lessons (Oct 17, 2026): the Shirdi Dhūpa Āratī
+- **Shelve like REST API paths**: kind › deity or author › work, e.g. `aarti/shirdi-sai/dhoop-aarti`. Each āratī is its own work.
+- **Where a meaning's copyright is unclear, write our own meanings** (Hindi and English, one per verse) from the word meanings and the context, rather than copying a website's translation. Name such sources `<lang>-scriptures`.
+- When the owner gives two web printouts, use the one they prefer as the base and the other as a second witness. Correct the base only where it is clearly wrong (a missing space, a wrong word, a sense that doesn't fit, broken Sanskrit). Record every correction in the work's `reconciliation.md`.
+- Use the Devanagari abbreviation sign ॰ (U+0970) for marks like आ॰ / ध्रु॰. A zero (०) turns into "0" in English mode. Write verse numbers compactly (`।।१।।`) so they never wrap away from the line.
+- A work can declare its own verse types (`types` in work.json), so a new kind of text needs no app change.
+- Web-page printouts often have a broken Devanagari text layer (pre-base ि and reph out of order, or blank). OCR the page images with Tesseract `mar`/`hin`; `apt-get install tesseract-ocr-mar tesseract-ocr-hin tesseract-ocr-san` works in the workspace, but GitHub's tessdata does not.
+- Audio timing needs the Whisper model from huggingface.co. When that site is not allowed for the session, transcription cannot run; ask the owner to allow it.

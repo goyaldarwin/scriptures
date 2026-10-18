@@ -33,9 +33,9 @@ If `build.py` prints `LIBRARY PROBLEM: …`, fix what it names. It never builds 
 
 ## Add a new work (Ram Raksha Stotram, an Upanishad, Japji Sahib …)
 
-1. Place it on the shelf: edit `library/index.json` and add shelves as deep as needed (e.g. Ved › Sāmaveda › Upaniṣad › Kena), ending in `{"id", "work", "path", "title", "by", "edition", "desc"}`. The `path` mirrors the shelf, e.g. `ved/samaveda/upanishad/kena`.
+1. Place it on the shelf, like a REST path from the general to the specific (e.g. `aarti/shirdi-sai/dhoop-aarti`): edit `library/index.json` and add shelves as deep as needed (e.g. Ved › Sāmaveda › Upaniṣad › Kena), ending in `{"id", "work", "path", "title", "by", "edition", "desc"}`. The `path` mirrors the shelf, e.g. `ved/samaveda/upanishad/kena`.
 2. Create `tools/works/<work>/` with the extraction scripts (from PDFs or other sources) and an `export.py` that writes `library/<path>/work.json` (`docs/LIBRARY.md` §2) with each verse's language, its meaning sources (§3), and new words into `glossary/<lang>.json` (§5). A new language needs its own entry first (below). Use `tools/works/ramcharitmanas/` as the model.
-3. Choose the natural divisions for `parts`, the `topics`, and any `plans` (e.g. daily pāṭha). Ask the owner which plans they want.
+3. Choose the natural divisions for `parts`, the `topics`, and any `plans` (e.g. daily pāṭha). Ask the owner which plans they want. Pages follow the item's section `s`; use a name (e.g. `aarti`), not a number, unless sections are dohā numbers. If the verse types are not the Mānas ones, declare them in `types` (`docs/LIBRARY.md` §2). Model for a short multilingual work: `tools/works/shirdi-sai-dhoop-aarti/`.
 4. Add audio as above if there is a recording.
 5. Build and test the shelf screen, the work's home, the reader, search, and bookmarks.
 

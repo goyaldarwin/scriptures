@@ -11,7 +11,9 @@ const DIG = '०१२३४५६७८९';
 const DEV = n => (typeof S !== 'undefined' && S && S.settings && LANG() === 'en') ? String(n) : String(n).replace(/[0-9]/g, d => DIG[d]);
 const ORDH = ['', 'पहला', 'दूसरा', 'तीसरा', 'चौथा', 'पाँचवाँ', 'छठा', 'सातवाँ', 'आठवाँ', 'नवाँ', 'दसवाँ', 'ग्यारहवाँ', 'बारहवाँ', 'तेरहवाँ', 'चौदहवाँ', 'पंद्रहवाँ', 'सोलहवाँ', 'सत्रहवाँ', 'अठारहवाँ', 'उन्नीसवाँ', 'बीसवाँ', 'इक्कीसवाँ', 'बाईसवाँ', 'तेईसवाँ', 'चौबीसवाँ', 'पचीसवाँ', 'छब्बीसवाँ', 'सत्ताईसवाँ', 'अट्ठाईसवाँ', 'उनतीसवाँ', 'तीसवाँ'];
 const TYPEN = {do: ['दोहा', 'Dohā'], so: ['सोरठा', 'Sorathā'], cha: ['छंद', 'Chhand'], shloka: ['श्लोक', 'Śloka'], cau: ['चौपाई', 'Chaupāī']};
-const TYPE = new Proxy({}, {get: (o, k) => TYPEN[k] ? T(TYPEN[k][0], TYPEN[k][1]) : ''});
+// a work may name its own verse types in work.json → "types" (āratī: dhru, pad, abhang …); these override the built-in Mānas ones
+const WTYPE = y => (typeof W !== 'undefined' && W && W.types && W.types[y]) || null;
+const TYPE = new Proxy({}, {get: (o, k) => WTYPE(k) ? TT(WTYPE(k).name) : TYPEN[k] ? T(TYPEN[k][0], TYPEN[k][1]) : ''});
 const TT = o => o ? (typeof o === 'string' ? o : T(o.hi, o.en || o.hi)) : '';
 
 /* ---------------- loading ---------------- */
@@ -227,11 +229,11 @@ const VINFO = {
   so: ['सोरठा', 'Soraṭhā', 'दोहेका उलटा — प्रत्येक पंक्तिमें ११ + १३ मात्राएँ, तुक बीचमें।', 'The reverse of a dohā: 11 + 13 mātrās per line, rhyming in the middle.'],
   cha: ['छंद', 'Chhand', 'हरिगीतिका आदि लम्बे गेय छन्द, प्रायः स्तुतियों और विशेष प्रसंगोंमें।', 'Longer lyrical metres such as Harigītikā, used mostly for hymns and special moments.'],
   shloka: ['श्लोक', 'Śloka', 'संस्कृतका छन्द — अक्षरोंकी गिनतीपर आधारित। प्रत्येक काण्डके आरम्भमें मंगलाचरण।', 'A Sanskrit verse, measured by syllables; used for the invocation at the start of each kāṇḍa.']};
-function vtSheet(i){ const it = IT[i], v = VINFO[it.y]; if (!v) return; const n = vNum(it.n); openSheet('<h2>' + T(v[0], v[1]) + (n ? ' ' + n : '') + '</h2><p>' + T(v[2], v[3]) + '</p>'); }
+function vtSheet(i){ const it = IT[i], wt = WTYPE(it.y), v = wt ? [wt.name.hi, wt.name.en, (wt.about || {}).hi || '', (wt.about || {}).en || ''] : VINFO[it.y]; if (!v) return; const n = vNum(it.n); openSheet('<h2>' + T(v[0], v[1]) + (n ? ' ' + n : '') + '</h2><p>' + T(v[2], v[3]) + '</p>'); }
 function verseHTML(i){
   const it = IT[i], id = it.id, me = ME(), vv = verseOf(i);
   const bm = SHOWN().some(p => p.bm[KEY(id)]);
-  const sh = VSHORT[it.y];
+  const wt = WTYPE(it.y), sh = wt ? (wt.short ? [wt.short.hi, wt.short.en] : null) : VSHORT[it.y];
   let h = '<div class="verse" id="v' + i + '" data-i="' + i + '"><div class="vtext">' + vv.v.map((l, y) => {
     const last = y === vv.v.length - 1;
     let ln = last && it.y === 'cau' && it.n && /।।\s*$/.test(l) ? l.replace(/\s*।।\s*$/, ' ।।' + String(it.n).replace(/\d/g, d => DIG[d]) + '।।') : l;
