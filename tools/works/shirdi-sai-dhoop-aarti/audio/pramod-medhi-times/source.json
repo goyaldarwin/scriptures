@@ -1,13 +1,1 @@
-{
- "id": "pramod-medhi-times",
- "work": "hinduism/aarti/shirdi-sai/dhoop-aarti",
- "type": "youtube",
- "lang": "mr",
- "order": 1,
- "title": {
-  "hi": "प्रमोद मेधी",
-  "en": "Pramod Medhi"
- },
- "estimate": true,
- "draft": "a new recording (Times Music upload, 2026-10-18): its verse starts are only spread by length until the owner marks them by ear in Settings › Audio timing; publish from there when checked"
-}
+{"id": "pramod-medhi-times", "work": "hinduism/aarti/shirdi-sai/dhoop-aarti", "type": "youtube", "lang": "mr", "order": 1, "title": {"hi": "प्रमोद मेधी", "en": "Pramod Medhi"}, "estimate": true}
