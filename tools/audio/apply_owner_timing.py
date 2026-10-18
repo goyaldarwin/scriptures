@@ -46,6 +46,7 @@ before = json.load(open(out))['at'] if os.path.exists(out) else {}
 subprocess.run([sys.executable, os.path.join(HERE, 'make_timings.py'), src], check=True)
 after = json.load(open(out))['at']
 sent = {iid for items in starts.values() for iid in items}
-moved = sorted(k for k in set(before) | set(after) if k not in sent and before.get(k) != after.get(k))
+refit = set(json.load(open(out)).get('moved', []))   # neighbours placed again around the owner's times (make_timings.py)
+moved = sorted(k for k in set(before) | set(after) if k not in sent and k not in refit and before.get(k) != after.get(k))
 if moved: fail('other verses would change too (%d, e.g. %s); nothing was applied' % (len(moved), moved[:5]))
-print('only the %d verses sent changed' % len(sent))
+print('only the %d verses sent changed%s' % (len(sent), ', and %d neighbours placed around them' % len(refit) if refit else ''))

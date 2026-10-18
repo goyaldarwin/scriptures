@@ -100,9 +100,42 @@ for r in REC:
     print(v, len(full), tracks[-1]['first'], '→', tracks[-1]['last'])
 
 if ONLY: sys.exit(0)
+own_ids = set()
 for ti, tr in enumerate(tracks):
     for iid, t in OWN.get(tr['yt'], {}).items():   # seconds, or [start, end] when the owner also set where the verse ends
-        if iid in ID: at[iid] = [ti, round(float(t[0]), 2), round(float(t[1]), 2)] if isinstance(t, list) else [ti, round(float(t), 2)]
+        if iid in ID: at[iid] = [ti, round(float(t[0]), 2), round(float(t[1]), 2)] if isinstance(t, list) else [ti, round(float(t), 2)]; own_ids.add(iid)
+# keep the text's order around the owner's times — the same rule as the app (tools/site/app.js, buildAudio): a verse cannot
+# start before the one before it, or before that verse's set end; a verse not set by ear that breaks this is placed again, by
+# its length, between the nearest good times; a set end later than the next verse's set start is cut back to it.
+moved = []
+if own_ids:
+    for ti in range(len(tracks)):
+        a = sorted([[ID[k], v[1], v[2] if len(v) > 2 else None] for k, v in at.items() if v[0] == ti])
+        own = lambda k: IT[a[k][0]]['id'] in own_ids
+        ln = lambda k: max(8, len(''.join(IT[a[k][0]]['v'])))
+        for k in range(len(a) - 1):
+            if a[k][2] is not None and own(k + 1) and a[k][2] > a[k + 1][1]: a[k][2] = a[k + 1][1]
+        def next_own(k):
+            for j in range(k + 1, len(a)):
+                if own(j): return a[j][1]
+            return float('inf')
+        good, lo = [True] * len(a), -1.0
+        for k in range(len(a)):
+            if not own(k) and (a[k][1] <= lo or a[k][1] >= next_own(k)): good[k] = False; continue
+            lo = max(a[k][1], a[k][2] - 0.01 if a[k][2] is not None else -1)
+        k = 0
+        while k < len(a):
+            if good[k]: k += 1; continue
+            e = k
+            while e + 1 < len(a) and not good[e + 1]: e += 1
+            p, n = k - 1, e + 1
+            L = max(a[p][1] + 0.5, a[p][2] if a[p][2] is not None else 0) if p >= 0 else 0.0
+            U = a[n][1] if n < len(a) else L + 4 * (e - k + 2)
+            tot = sum(ln(j) for j in range(k, e + 1)) + (0 if n < len(a) else ln(e)); acc = 0
+            for j in range(k, e + 1):
+                a[j][1] = round(L + (U - L) * acc / tot, 1); acc += ln(j); moved.append(IT[a[j][0]]['id'])
+            k = e + 1
+        for i, st, en in a: at[IT[i]['id']] = [ti, st, en] if en is not None else [ti, st]
 # a source marked "draft" in source.json (its timings are not good enough yet) is written with "draft": the app plays it only
 # for someone reviewing timings (Settings › Audio timing), so readers never get audio that starts in the wrong place.
 # Remove "draft" once the timings are checked.
@@ -115,5 +148,6 @@ byhand = set(k for v in FIX.values() for k in v) | set(k for v in OWN.values() f
 check = [x['id'] for x in IT if x['id'] in at and x['id'] not in byhand and (meta.get('draft') or x['id'] not in heard)]
 doc.update(tracks=tracks, at=at)
 if check: doc['check'] = check
+if moved: doc['moved'] = moved   # verses placed again around the owner's times (the app shows them as moved)
 json.dump(doc, open(out, 'w'), ensure_ascii=False, separators=(',', ':'))
 print('verses with audio', len(at), 'of', len(IT), '→', os.path.relpath(out, REPO), '(draft)' if meta.get('draft') else '')

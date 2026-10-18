@@ -474,7 +474,7 @@ function markBar(i){
   const x = SRC.au.at[IT[i].id], mine = myStarts()[IT[i].id], est = toCheck(i);
   const when = x ? T('शुरू ', 'Start ') + fmtT(x[1]) + (x[2] != null ? T(' · अंत ', ' · end ') + fmtT(x[2]) : '') : T('ऑडियोमें समय नहीं', 'No time in the recording');
   return '<div class="tmark"><button data-a="tstart">⏱ ' + T('अभी शुरू', 'Starts now') + '</button><button data-a="tend">⏹ ' + T('अभी समाप्त', 'Ends now') + '</button>' + (x ? '<button data-a="tplay" aria-label="play">▶</button>' : '') +
-    '<span class="tinfo">' + when + (mine ? ' · <b>' + T('आपका', 'yours') + '</b>' : est ? ' · <b class="test">' + T('अनुमान', 'estimated') + '</b>' : '') + '</span></div>';
+    '<span class="tinfo">' + when + (mine ? ' · <b>' + T('आपका', 'yours') + '</b>' : (SRC.au.moved && SRC.au.moved.has(IT[i].id)) ? ' · <b class="test">' + T('आपके समयके अनुसार खिसकाया', 'moved to fit your times') + '</b>' : est ? ' · <b class="test">' + T('अनुमान', 'estimated') + '</b>' : '') + '</span></div>';
 }
 function toCheck(i){ return !!(S.timing.on && SRC.au && SRC.au.checkSet && SRC.au.checkSet.has(IT[i].id) && !myStarts()[IT[i].id]); }   // a start that is only estimated: to be checked by ear
 function myStarts(){ return (SRC.au && S.timing.fix[tkey()]) || {}; }
@@ -485,9 +485,33 @@ function buildAudio(){
   A.at = Object.assign({}, A.at0, myStarts());
   A.tracks.forEach(t => { t.fi = ID[t.first]; t.li = ID[t.last]; }); AUT = A.tracks.map(() => []);
   for (const id in A.at){ const i = ID[id]; if (i == null) continue; const [t, s, e] = A.at[id]; AUT[t].push([i, s, e == null ? null : e]); }
-  // keep the order of the text: a start set by ear may pass the old start of the next verses; those then follow just after it
-  const mine = myStarts();
-  AUT.forEach(a => { a.sort((x, y) => x[0] - y[0]); for (let k = 1; k < a.length; k++) if (a[k][1] <= a[k - 1][1] && !mine[IT[a[k][0]].id]) a[k] = [a[k][0], a[k - 1][1] + 0.3, a[k][2]]; a.sort((x, y) => x[1] - y[1]); });
+  // keep the times in the order of the text around the times set by ear (the same rule as tools/audio/make_timings.py):
+  // a verse cannot start before the one before it has started, or before its set end; any verse not set by ear that breaks
+  // this is placed again, by its length, between the nearest good times on either side. A set end later than the next
+  // verse's set start is cut back to it.
+  const mine = myStarts(); A.moved = new Set();
+  AUT.forEach(a => {
+    a.sort((x, y) => x[0] - y[0]);
+    const own = k => !!mine[IT[a[k][0]].id], len = k => Math.max(8, IT[a[k][0]].v.join('').length);
+    for (let k = 0; k + 1 < a.length; k++) if (a[k][2] != null && own(k + 1) && a[k][2] > a[k + 1][1]) a[k] = [a[k][0], a[k][1], a[k + 1][1]];
+    const good = a.map(() => true); let lo = -1;
+    const nextOwn = k => { for (let j = k + 1; j < a.length; j++) if (own(j)) return a[j][1]; return Infinity; };
+    for (let k = 0; k < a.length; k++){
+      if (!own(k) && (a[k][1] <= lo || a[k][1] >= nextOwn(k))) { good[k] = false; continue; }
+      lo = Math.max(a[k][1], a[k][2] != null ? a[k][2] - 0.01 : -1);
+    }
+    for (let k = 0; k < a.length; k++){
+      if (good[k]) continue;
+      let e = k; while (e + 1 < a.length && !good[e + 1]) e++;
+      const p = k - 1, n = e + 1;
+      const L = p >= 0 ? Math.max(a[p][1] + 0.5, a[p][2] != null ? a[p][2] : 0) : 0, U = n < a.length ? a[n][1] : L + 4 * (e - k + 2);
+      let tot = 0; for (let j = k; j <= e; j++) tot += len(j); let acc = 0;
+      for (let j = k; j <= e; j++){ a[j] = [a[j][0], Math.round((L + (U - L) * acc / (tot + (n < a.length ? 0 : len(e)))) * 10) / 10, a[j][2]]; acc += len(j); A.moved.add(IT[a[j][0]].id); }
+      k = e;
+    }
+    a.forEach(([i, s, e]) => { const id = IT[i].id, t = A.at[id][0]; A.at[id] = e != null ? [t, s, e] : [t, s]; });   // the menus and buttons show these
+    a.sort((x, y) => x[1] - y[1]);
+  });
 }
 function hasAu(i){ return !!(SRC.au && SRC.au.at[IT[i].id]); }
 function firstAu(a, b){ for (let i = a; i <= b; i++) if (hasAu(i)) return i; return null; }
@@ -584,7 +608,7 @@ function setTime(i, k, sec){
   const v = [cur[0], cur[1], cur[2] == null ? null : cur[2]]; v[k] = sec == null ? null : Math.round(sec * 10) / 10;
   if (k === 2 && v[2] != null && v[2] <= v[1]){ toast(T('अंत शुरुआतके बाद होना चाहिये', 'The end must come after the start')); return; }
   if (k === 1 && v[2] != null && v[2] <= v[1]) v[2] = null;
-  fx[id] = v; save(); buildAudio(); if (document.getElementById('v' + i)) rerenderItem(i);
+  fx[id] = v; save(); buildAudio(); [i - 2, i - 1, i, i + 1, i + 2].forEach(j => { if (j >= 0 && j < IT.length && document.getElementById('v' + j)) rerenderItem(j); });   // neighbours may have moved
   if (PL.on){ PL.cur = -1; setCur(curAt(ytInfo.t)); }
   toast((k === 1 ? T('शुरुआत: ', 'Starts at ') : T('अंत: ', 'Ends at ')) + (sec == null ? '—' : fmtT(sec)));
 }

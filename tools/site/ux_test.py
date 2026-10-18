@@ -128,6 +128,13 @@ async def main():
                 await ev(f"openReader('k', {j})"); await pg.wait_for_timeout(800)
                 check(f'{tag}: every verse shows its own timing buttons', await ev("document.querySelectorAll('#rBody .verse .tmark [data-a=tstart]').length") == await ev("document.querySelectorAll('#rBody .verse').length"))
                 await ev("show('home')"); await pg.wait_for_timeout(300)
+                # an end set past the next verse's start moves that verse to begin where this one ends
+                k2 = await ev(f"AUT[0].findIndex(x => x[0] === {j})")
+                if await ev(f"AUT[0].length > {k2} + 2"):
+                    nx = await ev(f"AUT[0][{k2} + 1][0]"); nxs = await ev(f"AUT[0][{k2} + 1][1]")
+                    await ev(f"setTime({j}, 1, AUT[0][{k2}][1]); setTime({j}, 2, {nxs} + 2)")
+                    got = await ev(f"SRC.au.at[IT[{nx}].id][1]")
+                    check(f'{tag}: the next verse starts where an end set by ear says this one ends', abs(got - (nxs + 2)) < 0.11, [nxs, got])
                 await ev("delete S.timing.fix[tkey()]; save()")
             await ev("S.timing.on = false; applyTiming()"); await ev("loadSources()"); await pg.wait_for_timeout(400)
             # continue and play sit on one line
