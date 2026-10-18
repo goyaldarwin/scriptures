@@ -75,7 +75,7 @@ An item: `{"id": "bal.86.cau4", "p": 0, "s": "86", "y": "cau", "n": "4", "v": [l
 - `id` = the file name. Name it `<lang>-<publisher or translator>`, lowercase with hyphens, e.g. `en-gitapress`, `hi-swami-ramsukhdas`.
 - `lang` is `hi` or `en`: the reader's Hindi or English meaning layer.
 - `order` (optional): the lowest is the default for new readers. Without it, sources sort by id.
-- `m` maps item ids to `[meaning, footnotes]`. The footnotes list is optional. A source may cover only some verses.
+- `m` maps item ids to `[meaning, footnotes]`. The footnotes list is optional. A source may cover only some verses. A verse the reader's chosen source doesn't cover is filled in from the work's other sources of the same language, in `order`, with a small tag naming that source.
 
 **Where meanings come from (the owner's rule):**
 1. **Copy the meanings from the sources the owner gives** (a book, a web page, a video's on-screen text), faithfully. Fix only plain typos and broken text layers, and list the fixes in the work's notes.
