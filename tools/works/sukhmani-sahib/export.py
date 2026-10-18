@@ -76,7 +76,7 @@ topics = []
 for k in range(24):
     sal = next(x for x in items if x['p'] == k and x['y'] == 'salok')
     p1 = next(x for x in items if x['p'] == k and x['y'] == 'pauri')
-    topics.append({'id': next(x['id'] for x in items if x['p'] == k), **pratik(sal, ('ਸਲੋਕੁ', 'ੴ'))})
+    topics.append({'id': sal['id'], **pratik(sal, ('ਸਲੋਕੁ', 'ੴ'))})   # Ashtapadi 1: after the title line
     topics.append({'id': p1['id'], **pratik(p1, ('ਅਸਟਪਦੀ',))})
 
 work = {

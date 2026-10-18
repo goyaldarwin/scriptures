@@ -38,6 +38,6 @@ Parts are the 24 Ashtapadis (अष्टपदी / Ashtapadi). Items, in readi
 | `a01.rahao` | rahao | ਸੁਖਮਨੀ ਸੁਖ ਅੰਮ੍ਰਿਤ ਪ੍ਰਭ ਨਾਮੁ ॥ ਭਗਤ ਜਨਾ ਕੈ ਮਨਿ ਬਿਸ੍ਰਾਮ ॥ ਰਹਾਉ ॥ |
 | `aNN.p2` … `aNN.p8` | pauri | ten padas each, the last ending ॥੮॥N॥ |
 
-Each item is its own section (page) in the reader. Topics: two per Ashtapadi, named by the first line of its
+Each item is its own section (page) in the reader. Topics: two per Ashtapadi (starting at its Salok and at its first pauri), named by the first line of its
 Salok and of its first pauri (the traditional way to cite Gurbani), in Devanagari letters for the Hindi interface
 and in the PDF's transliteration for the English one. The transliteration is kept in each item's `t`, as printed.
