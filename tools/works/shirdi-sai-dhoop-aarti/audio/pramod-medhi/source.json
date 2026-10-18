@@ -7,6 +7,6 @@
   "hi": "प्रमोद मेधी",
   "en": "Pramod Medhi"
  },
- "draft": "the windowed transcript (2026-10-18) still has long gaps in the sung passages; 13 of 63 verses matched. Next: a word-timed local transcription in 6-second windows and anchor matching",
- "window": 20
+ "window": 6,
+ "align": "anchors"
 }
