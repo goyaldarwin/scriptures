@@ -1,0 +1,62 @@
+{"k": "अंगु", "why": "only use ayodhya.300 'कृपा अनुग्रहु अंगु अघाई' — Gita Press reads it as 'साङ्गोपाङ्ग' (in every part, fully), not 'पक्ष / acceptance'; other commentators take अंगु = अंगीकार. Sense unsettled", "lang": "awa"}
+{"k": "अनिप", "why": "r 'अनीप' is not a standard Sanskrit word; Gita Press takes अनिप as 'सेनापति' (cf. Skt अनीकप / अनीकिनीपति), but lanka.46 may also read it as a proper name alongside अकंपन, अतिकाय. Root and whether it is a name unsettled", "lang": "awa"}
+{"k": "आयस", "why": "r 'आयसु' is just the variant form, while आयसु itself has r 'आज्ञा' (a synonym); etymologically आयसु < Skt आदेश. Unsure which root convention the dictionary wants", "lang": "awa"}
+{"k": "कुराईं", "why": "glossed 'ढेले / ऊबड़-खाबड़पन' (clods), but Gita Press (ayodhya.311 'कुस कंटक काँकरीं कुराईं') renders it 'दरारें' (cracks/ruts). Could not settle which", "lang": "awa"}
+{"k": "अकसर", "why": "sense 'अकेले' is right (aranya.24, Gita Press), but r 'अकेला' is doubtful: अकसर is usually derived from एक + सर, not from अकेला", "lang": "awa"}
+{"k": "आरेसू", "why": "sense 'डाह' (सौतियाडाह) is right; r 'ईर्ष्या' as the source of आरेस is uncertain", "lang": "awa"}
+{"k": "अभारू", "why": "ayodhya.269 'देवँ दीन्ह सबु मोहि अभारू' — Gita Press 'सारा भार'; unclear whether अभारू = भार (r भार) or अ + भार / a variant; r left as is", "lang": "awa"}
+{"k": "जंत्री", "why": "Gita Press reads 'भरत भगति सब कै मति जंत्री' as 'बुद्धिको कील दिया' (a verb: bound/spellbound), while the entry gives a noun 'नियंत्रक / controller'. Both readings are defended by commentators; please decide.", "lang": "awa"}
+{"k": "छरे", "why": "Entry glosses 'छरहरे / slender'; Gita Press renders 'छरे छबीले छयल' as 'चुने हुए' (select, picked). Unsure which sense is intended.", "lang": "awa"}
+{"k": "जहि", "why": "Fixed meaning to 'destroy(er)' per Gita Press, but the Sanskrit root is ambiguous (jahi is imperative of both हन् 'kill' and हा 'abandon'); root left blank.", "lang": "awa"}
+{"k": "चाहि", "why": "Postposition 'से बढ़कर/than'; root given as 'अपेक्षा', which is a gloss rather than a source form. Unsure of the correct etymon.", "lang": "awa"}
+{"k": "डाढ़ा", "why": "Meaning 'दावानल / forest fire' fits, but r 'दावाग्नि' is a synonym, not the etymon (likely from दग्ध / डाढ़ना).", "lang": "awa"}
+{"k": "चेन", "why": "Glossed 'आनंद / उत्साह' with r 'चैन'; Gita Press gives 'चाव (उत्साह)'. Whether चेन derives from चैन is doubtful.", "lang": "awa"}
+{"k": "ख", "why": "Entry (and ग, घ, ङ, च, छ) describe the letter used as a doha sub-numbering marker (e.g. ३ (ख)); fine if such tokens should be in the dictionary at all.", "lang": "awa"}
+{"k": "तरकेउ", "why": "Sense 'leapt' is right, but root given as तड़कना (to crack); likely तरकना (Awadhi 'to leap'); not certain.", "lang": "awa"}
+{"k": "तोरावति", "why": "Sense 'swift-flowing' matches Gita Press (तेज धारा), but root 'तुरावती' looks invented; may be from तोड़ना (bank-breaking) or त्वरा; unverified.", "lang": "awa"}
+{"k": "दर्पा", "why": "lanka 67 'निसाचर दर्पा' is rendered by Gita Press as 'गर्वित हुआ' (a verb, past); entry treats it as adjective 'घमंड से भरा' with root दर्प; unsure whether to relabel as verb.", "lang": "awa"}
+{"k": "दोहाईं", "why": "'साइँ दोहाईं' (ayodhya 298): Gita Press reads it as स्वामि-द्रोह (traitor to the master), so root should be द्रोह not दुहाई; but it can also be read as 'दुहाई' (I swear by the lord). Unsettled.", "lang": "awa"}
+{"k": "परिखेसु", "why": "Sense 'wait for' is right (Gita Press: प्रतीक्षा करना), but root given as परखना (to test); the 'wait' verb is usually cited as परिखना/परेखना. Same issue in परिखेहु.", "lang": "awa"}
+{"k": "परिखेहु", "why": "Same as परिखेसु: meaning 'wait' correct, root परखना questionable.", "lang": "awa"}
+{"k": "बिहरावा", "why": "'सुनि कपि बचन बिहसि बिहरावा' (sundar.22): sense 'laughed it off' is fine, but root बहलाना is doubtful; possibly बिहराना/बहराना (to dismiss, divert)", "lang": "awa"}
+{"k": "बागहीं", "why": "'करहिं कहत न बागहीं' (lanka.90): root given as बकना; the Awadhi verb is probably बागना (to babble/boast); could not confirm from Gita Press gloss (truncated)", "lang": "awa"}
+{"k": "बरषत", "why": "hi 'बरसाते हुए' (transitive) with r बरसना (intransitive); same mismatch in बरषहिं, बरषहीं, बरषि, बरषे, बरिसहिं, बरिसा, बरिसि. Awadhi बरषना is used both ways; decide on one convention (r बरसना with both senses, or बरसाना for transitive uses)", "lang": "awa"}
+{"k": "पल्लवत", "why": "root पल्लवना is rare/archaic; may be better as पलुहना or 'पल्लवित होना'", "lang": "awa"}
+{"k": "बिबर्ध", "why": "'सेवत बिषय बिबर्ध' = increases (verb); root given as adjective विवर्धित; a verb root (बिबर्धना / वर्धना) may be preferable", "lang": "awa"}
+{"k": "बदति", "why": "r 'वदना' is not a Hindi verb; Sanskrit present participle of वद् or Awadhi बदना; sibling बदत uses बदना", "lang": "awa"}
+{"k": "पिसाचा", "why": "hi 'राक्षस' for पिशाच; Gita Press often renders loosely, but pishacha and rakshasa are distinct beings; same for पिसाचिनि ('राक्षसियाँ')", "lang": "awa"}
+{"k": "बिदुष", "why": "'मागध सूत बिदुष बंदीजन' (bal.309): glossed 'विदूषक / विद्वान' with r विदूषक; could mean learned men (विदुष) rather than jesters; context does not settle it", "lang": "awa"}
+{"k": "बरिबंड", "why": "root 'बलवंड' is not a standard word; likely from बलिवंड/बरिबंड (mighty); left as is", "lang": "awa"}
+{"k": "पस्यामि", "why": "Sanskrit पश्यामि is present 'I see', but hi gives 'देखूँगी' first and is feminine-only; in lanka.107 the speaker is Sita (so feminine fits that verse) — consider 'देखता/देखती हूँ'", "lang": "awa"}
+{"k": "बिसराते", "why": "'ऊँट बिसराते' glossed 'खच्चर' with r बेसरा; plausible (बेसर = mule) but the -ते ending is unusual; not verified", "lang": "awa"}
+{"k": "भूपतहि", "why": "Only use 'चहत न भरत भूपतहि भोरें' means kingship (Gita Press: राजपद), as hi/en say; but r is भूपति (king). The base may be भूपत/भूपतित्व; unsure which root to give", "lang": "awa"}
+{"k": "मापा", "why": "'मोह मन मापा' = mind stupefied; r मापना here is the homograph 'to become intoxicated' (Shabdasagar), not 'to measure', but g says विशेषण for a past verb form; may confuse the reader, unsure whether to relabel", "lang": "awa"}
+{"k": "मापी", "why": "same as मापा ('माजहि खाइ मीन जनु मापी'): past fem. of मापना 'become stupefied', labelled विशेषण; root homograph of 'measure'", "lang": "awa"}
+{"k": "भवाँई", "why": "'गहि पद पटकेउ भूमि भवाँई' = whirling him round; r given as घुमाना (a synonym) — the Awadhi/Hindi verb is भँवाना; left as is since घुमाना is the Hindi infinitive equivalent", "lang": "awa"}
+{"k": "भूँजब", "why": "'राजु कि भूँजब भरत' = will Bharata enjoy the kingdom; r भोगना is the synonym, the Awadhi verb is भूँजना (from Skt भुज्), which in Hindi means 'roast'; unsure which root the owner wants", "lang": "awa"}
+{"k": "सचु", "why": "sense 'सुख / joy' fits all uses, but r 'सच' (truth) looks like a false etymology; correct source form (Skt. शर्म? सच्च?) not settled", "lang": "awa"}
+{"k": "समाऊ", "why": "'सामग्री' fits ayodhya.187, but r 'सामान' (Persian) is doubtful as the source of Awadhi समाऊ; possibly from समाज/सामग्री", "lang": "awa"}
+{"k": "सुबानि", "why": "may be सु + बानि (good habit/nature) rather than सु + वाणी: ayodhya.299 'राउरि रीति सुबानि' reads as 'good nature'; entry gives only 'सुंदर वाणी वाली'", "lang": "awa"}
+{"k": "सोचाई", "why": "bal.91 'सुघरी सोचाई' = had (the hour) fixed/checked (शोधवाकर); r 'शोधना' is non-causative and the form may be causative of सोचना or सोधना", "lang": "awa"}
+{"k": "हाँती", "why": "Gita Press 'नष्ट करके'; r 'हटाना' is a synonym; the verb may be हाँतना (to set aside, destroy)", "lang": "awa"}
+{"k": "हिसिषा", "why": "meaning 'होड़' correct (bal.69), but r 'स्पर्धा' is a synonym; Awadhi हिसिषा may derive from ईर्ष्या", "lang": "awa"}
+{"k": "हटि", "why": "'रोककर' (bal.319 नयन नीरु हटि) is transitive, but r हटना is intransitive; root may be हटकना/हटाना", "lang": "awa"}
+{"k": "सुसारा", "why": "bal.333 Gita Press renders as 'सुन्दर शय्याएँ' (fine beds); entry 'अच्छी वस्तुएँ' may be too vague or wrong", "lang": "awa"}
+{"k": "सगुनु", "why": "ayodhya.232 'सगुनु खीरु' glossed 'गुण' by Gita Press; r 'सगुण' (with attributes) may be wrong if the word is स+गुन 'merit'", "lang": "awa"}
+{"k": "ससंकेउ", "why": "r 'सशंकना' is not a standard Hindi verb; perhaps सशंकित होना / संकना", "lang": "awa"}
+{"k": "लोचनं", "why": "Sanskrit singular inside bahuvrīhi (कंज लोचनं = lotus-eyed); hi/en 'नेत्र / eyes' does not convey the adjectival compound role", "lang": "awa"}
+{"k": "सँवारें", "why": "'धारण करके / assuming' fits bal.152 only (Gita Press 'सजकर'); unsure whether a more general 'सजाकर, सँवारकर' should replace it", "lang": "awa"}
+{"k": "पंडिताही", "why": "In 'कुशल पंडिताही रुसो' unclear whether पंडिता is feminine 'woman scholar' (following विदुषी स्त्रिया) or plural/oblique of पंडित 'scholars'; entry assumes feminine.", "lang": "mr"}
+{"k": "श्रीरंग", "why": "Part 'रंग = रमण करनेवाला (प्रभु)' is questionable; रंग usually 'stage/arena' or from रञ्ज् 'delight'. Etymology needs a source.", "lang": "mr"}
+{"k": "मोहनीराज", "why": "Identification as the poet of the Namaskārāṣṭaka naming himself is unverified; could be an epithet ('king of enchanters').", "lang": "mr"}
+{"k": "सार्थका", "why": "Labelled noun in dative; सार्थक is an adjective, and in 'नरा सार्थका साधनीभूत' it may qualify नरा or mean 'for fulfilment'. Analysis uncertain.", "lang": "mr"}
+{"k": "मा", "why": "r 'माय' given; could equally be poetic मा 'mother' in its own right; also Sanskrit prohibitive मा 'do not' is a common sense of this form not mentioned.", "lang": "mr"}
+{"k": "तुझे", "why": "r 'तू' while sibling forms तुझी/तुझें use 'तुझा'; consider making roots consistent.", "lang": "mr"}
+{"k": "अनूप", "why": "r gives 'अनुपम'. Tulsī's अनूप (अनूप रूप भूपतिं) is a tadbhava of अनुपम, but in Sanskrit lexicons अनूप is a separate word meaning 'watery/marshy land'. Decide whether r should say 'अनुपम (तद्भव)' or be dropped.", "lang": "sa"}
+{"k": "हरतोषये", "why": "r 'हरतोषण' cannot produce the dative -तोषये (that would be -तोषणाय). The form points to an irregular i-stem (हर + तोषि, from तुष्), used as तोषाय/तुष्टये. The root needs correcting, but I am not sure of the citation form to use.", "lang": "sa"}
+{"k": "मनोरमे", "why": "In Rāma Rakṣā 38 (रमे रामे मनोरमे … वरानने) मनोरमे is often taken as a vocative to Pārvatī ('O lovely one'), not a locative agreeing with रामे as the entry has it. Also p gives [रमे, रमानेवाले], but the part should be रम.", "lang": "sa"}
+{"k": "ब्रह्मकुलं", "why": "Glossed 'born of Brahmā's line' for Śiva (Araṇya maṅgalācaraṇa 1). Commentators differ (e.g. Brahmā's offspring as Rudra vs. 'one devoted to the Brahmin race'); I could not confirm which reading the site follows.", "lang": "sa"}
+{"k": "मुनिर्ध्यानगम्यम्", "why": "The र् implies मुनिः + ध्यानगम्यम्, or a misprint for the compound मुनिध्यानगम्यम्. The entry analyses it as a compound (मुनि + ध्यान + गम्य), which matches the meaning but not the sandhi of the text as printed.", "lang": "sa"}
+{"k": "सशक्ति", "why": "g 'अव्ययीभाव'. In भजे सशक्ति सानुजं it works as an adjective (bahuvrīhi, Tulsī's form for सशक्तिम्) qualifying the Lord, like सानुजं beside it. The label may be wrong, but Tulsī's irregular Sanskrit makes this uncertain.", "lang": "sa"}
+{"k": "वरूथः", "why": "In त्रातु सदा नो कृपा वरूथः it is glossed 'समूह / राशि' (mass). In Sanskrit वरूथ primarily means armour/shield/protection, which may be the intended sense ('shield of grace'). Gita Press-style glosses give 'कृपाके पुंज', so I left it.", "lang": "sa"}
+{"k": "कामप्रेर्विश्वेदेवाः", "why": "कामप्रेः is glossed 'पूर्णकाम के'. In the Aitareya passage, interpreters take kāmapri either as 'one whose desires are fulfilled' or as 'fulfiller of desires' (an epithet of Marutta). I could not settle it.", "lang": "sa"}

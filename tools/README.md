@@ -37,6 +37,15 @@ tools/
       glossary/g*.json, work_sa.json  word meanings (→ library/glossary/sa.json) and this work's own senses
       export.py                    → library/hinduism/veda/yajurveda/krishna-yajurveda/samhita/shri-rudram/
       audio/shlokam/               source.json, recordings.json (transcripts come from the cloud)
+    sundarkand/                  the Sundarakāṇḍa as a work of its own (see its README)
+      export.py                    part 1 GENERATED from the Mānas's work.json + Gita Press meanings (same ids, sections,
+                                   text, topics); parts 2–3 (Hanumān Chālīsā, āratī) from text.txt → library/hinduism/granth/tulsidas/sundarkand/
+      check.py                     checks that part 1 is identical to the Mānas's Sundara-kāṇḍa
+      text.txt, reconciliation.md  the Chālīsā and āratī text, and how it was settled from the web sources
+      translit.py                  their transliteration, in the Mānas's style
+      meanings/hi.json, en.json    our own meanings for the Chālīsā and āratī (→ hi-scriptures, en-scriptures)
+      glossary/awa|hi.json         their word meanings, merged into library/glossary/
+      audio/ashwin-pathak/         source.json, recordings.json, transcripts (cloud) → timings
     isha-upanishad/
       text.json                    the text (from the shlokam.org printout; settled in reconciliation.md), check.py verifies it
       meanings/hi.json, en.json    one meaning per mantra, written for this library
@@ -50,6 +59,7 @@ tools/
 (cd tools/works/ramcharitmanas/book && python3 make_appdata.py)                 # book data (no PDFs needed)
 python3 tools/works/ramcharitmanas/export.py                                     # → library/…/work.json, meanings/
 python3 tools/audio/make_timings.py tools/works/ramcharitmanas/audio/kamlesh-upadhyay   # → library/…/audio/
+python3 tools/works/sundarkand/export.py                                         # the standalone Sundarakāṇḍa takes the Mānas's corrections
 python3 tools/site/build.py                                                      # check + website + dist/
 ```
 Needs Python 3 with `numpy`. Transcription also needs `faster-whisper` and `ffmpeg`; reading the PDFs again needs `pymupdf` and `tesseract`; tests need `playwright`.
