@@ -41,6 +41,13 @@ async def main():
             if SHOTS: n += 1; os.makedirs(SHOTS, exist_ok=True); await pg.screenshot(path=os.path.join(SHOTS, f'{n:02d}-{tag}.png'))
         ev = pg.evaluate
         await pg.goto(url); await pg.wait_for_timeout(2500)
+        # first run: the tour shows once, steps through, and is not shown again
+        check('first run: the tour shows', await ev("!document.querySelector('#tour').hidden"))
+        nsteps = await ev("tourSteps().length")
+        for _ in range(nsteps): await (await pg.query_selector('#tourNext')).click(); await pg.wait_for_timeout(120)
+        check('the tour steps through and closes', await ev("document.querySelector('#tour').hidden && S.settings.tour === 1"), nsteps)
+        await pg.reload(); await pg.wait_for_timeout(2000)
+        check('the tour is not shown again', await ev("document.querySelector('#tour').hidden"))
 
         # ---- library: two levels per screen, every tradition is a heading ----
         await ev("libPath=[]; show('library')"); await pg.wait_for_timeout(300); await shot('library')

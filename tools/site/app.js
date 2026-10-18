@@ -834,6 +834,7 @@ function renderSettings(){
     '<div class="field"><label>' + LB.theme() + '</label><select id="sth"><option value="light">' + T('दिन (हल्का)', 'Light') + '</option><option value="dark">' + T('रात (गहरा)', 'Dark') + '</option><option value="auto">' + T('फ़ोनके अनुसार', 'Same as phone') + '</option></select></div>' +
     '<h2>' + T('मेरी फ़ाइल', 'My file') + '</h2><p class="small muted">' + T('आपकी टिप्पणियाँ, बुकमार्क, प्रगति, सेटिंग्स और सुधार इसी फ़ोनमें रहते हैं। फ़ाइल सेव करके बैकअप रखें या दूसरे फ़ोनपर खोलें।', 'Your notes, bookmarks, progress, settings and corrections stay on this phone. Save the file as a backup or to open it on another phone.') + (canStore ? '' : ' <b>' + T('ध्यान दें: यह फ़ोन डेटा अपने-आप नहीं रख पा रहा — पाठके बाद “फ़ाइल सेव करें” दबाएँ।', 'This phone is not keeping app data — tap Save my file after each reading.') + '</b>') + '</p>' +
     '<div class="acts"><button class="btn" id="exp">' + T('फ़ाइल सेव करें', 'Save my file') + '</button><button class="btn ghost" id="imp">' + T('फ़ाइल खोलें', 'Open a file') + '</button></div>' +
+    '<h2>' + T('सहायता', 'Help') + '</h2><div class="acts"><button class="btn ghost" id="tourAgain">' + T('परिचय फिरसे देखें', 'Show the tour again') + '</button><a class="btn ghost" href="privacy.html" target="_blank" rel="noopener">' + T('गोपनीयता', 'Privacy') + '</a></div>' +
     '<h2>' + T('पढ़नेवाले', 'Readers') + '</h2><p class="small muted">' + T('टिप्पणियाँ लिखनेवालेके नामसे सेव होती हैं। गोल बटन: अभी कौन लिख रहा है। चौकोर बटन: किसकी टिप्पणियाँ दिखें।', 'Notes are saved under the writer’s name. Round button: who is writing now. Square box: whose notes to show.') + '</p>' +
     S.profiles.map(p => '<div class="sw"><span class="row grow"><input type="radio" name="act" value="' + p.id + '"' + (p.id === S.active ? ' checked' : '') + ' style="width:auto"> <span class="grow">' + esc(p.name) + '<small>' + Object.values(p.notes).reduce((a, b) => a + b.length, 0) + T(' टिप्पणी · ', ' notes · ') + Object.keys(p.bm).length + T(' बुकमार्क', ' bookmarks') + '</small></span></span><input type="checkbox" data-show="' + p.id + '"' + (S.show.includes(p.id) ? ' checked' : '') + ' style="width:auto"><button class="small" data-ren="' + p.id + '" style="text-decoration:underline;margin-left:8px">' + T('नाम', 'Rename') + '</button>' + (S.profiles.length > 1 ? '<button class="small" data-del="' + p.id + '" style="text-decoration:underline;margin-left:8px">' + T('हटाएँ', 'Delete') + '</button>' : '') + '</div>').join('') +
     '<div class="acts" style="margin-top:12px"><button class="btn ghost small" id="addp">' + T('+ नया व्यक्ति', '+ Add reader') + '</button></div><div style="height:50px"></div>';
@@ -844,6 +845,7 @@ function renderSettings(){
   $$('[data-src]').forEach(s => s.onchange = async () => { const c = S.src[W.id] = S.src[W.id] || {}; c[s.dataset.src] = s.value; save(); if (s.dataset.src === 'au') stopAudio(); await loadSources(); IDX = null; toast(T('स्रोत बदला', 'Source changed')); });
   $('#ssz').oninput = e => { st.size = +e.target.value; applyTheme(); save(); };
   $('#sth').onchange = e => { st.theme = e.target.value; applyTheme(); save(); };
+  $('#tourAgain').onclick = () => showTour(0);
   $('#exp').onclick = exportFile; $('#imp').onclick = () => $('#fileIn').click();
   $$('[name=act]').forEach(r => r.onchange = () => { S.active = r.value; if (!S.show.includes(r.value)) S.show.push(r.value); save(); renderSettings(); });
   $$('[data-show]').forEach(c => c.onchange = () => { const id = c.dataset.show; if (c.checked){ if (!S.show.includes(id)) S.show.push(id); } else S.show = S.show.filter(x => x !== id); save(); });
@@ -990,6 +992,31 @@ function renderVidhi(){
 }
 $('#vidBody').addEventListener('click', ev => { const w = ev.target.closest('.w'); if (w){ w.classList.add('sel'); wordSheet(w.dataset.w || w.textContent, vidTab === 'v' ? W.vg : vidTab === 'visarjan' ? W.vidhi.visarjan.g : null, W.lang); } });
 
+/* ---------------- first-run tour: the few things that make the app useful, shown once (Settings › Help shows it again) ---------------- */
+let tourK = 0;
+function tourSteps(){
+  const bar = w => '<span class="ta-bar" style="width:' + w + 'px"></span>', play = '<span class="ta-play"><svg><use href="#i-play"/></svg></span>';
+  return [
+    {a: '<div class="ta-om">ॐ</div>', t: T('स्वागत है', 'Welcome'), p: T('पुस्तकालयसे कोई ग्रन्थ चुनें। आप जहाँ तक पढ़ते हैं, वह याद रहता है — “आगे पढ़ें” से वहीं लौटें।', 'Choose a scripture from the library. Your place is remembered: “Continue” takes you back to it.')},
+    {a: '<div class="ta-line">' + bar(40) + '<span class="ta-word">शब्द</span>' + bar(56) + '</div><div class="ta-pop"><b>' + T('अर्थ', 'Meaning') + '</b> · ' + T('मूल, व्याकरण', 'root, grammar') + '</div>', t: T('किसी भी शब्दको छुएँ', 'Tap any word'), p: T('पदके किसी भी शब्दको छूकर उसका अर्थ, मूल शब्द और व्याकरण देखें।', 'Tap any word of a verse to see its meaning, its root and its grammar.')},
+    {a: '<div class="ta-pill"><span class="on">हिं</span><span class="on">En</span><span>शब्द</span></div>', t: T('हिंदी और अंग्रेज़ी अर्थ', 'Hindi and English meanings'), p: T('ऊपर “हिं · En · शब्द” से हर पदके नीचे हिंदी अर्थ, अंग्रेज़ी अर्थ या शब्दार्थ दिखाएँ या छिपाएँ।', 'Use “हिं · En · शब्द” at the top to show or hide the Hindi meaning, the English meaning or word-by-word meanings under every verse.')},
+    {a: play + '<div class="ta-lit">' + bar(150) + bar(120) + '</div>', t: T('सुनते हुए पढ़ें', 'Listen, hands-free'), p: T('“सम्पूर्ण पाठ सुनें” दबाएँ: जो पद गाया जा रहा है वह चमकता है और पन्ना अपने आप आगे बढ़ता है।', 'Tap “Play all”: the verse being recited is lit and the page scrolls by itself.')},
+    {a: '<div class="ta-row">' + play + '<span>' + T('<b>▶ पदके पास</b> — केवल वही पद', '<b>▶ beside a verse</b> — just that verse') + '</span></div><div class="ta-row"><b>⋮</b><span>' + T('“यहाँसे सुनें” — यहाँसे आगे', '“Listen from here” — from there on') + '</span></div>', t: T('एक पद या यहाँसे आगे', 'One verse, or from here'), p: T('किसी पदके पास ▶ उसी पदको सुनाता है; ⋮ मेनूमें “यहाँसे सुनें” वहाँसे आगे सुनाता है।', '▶ beside a verse plays just that verse; “Listen from here” in its ⋮ menu goes on from there.')},
+    {a: '<div class="ta-row"><b>३०</b><span>' + T('३० दिन और ९ दिनका पाठ', '30-day and 9-day readings') + '</span></div><div class="ta-row"><svg style="width:20px;height:20px"><use href="#i-bm"/></svg><span>' + T('बुकमार्क और टिप्पणियाँ', 'Bookmarks and notes') + '</span></div>', t: T('नियमित पाठ', 'A daily reading'), p: T('जहाँ हों, वहाँ पाठ-योजनाएँ आपकी प्रगति रखती हैं। बुकमार्क और टिप्पणियाँ ☰ मेनूमें हैं। सब कुछ केवल आपके फ़ोनमें रहता है।', 'Where a work has reading plans, they keep your progress. Bookmarks and notes are in the ☰ menu. Everything stays on your phone.')},
+  ];
+}
+function showTour(k){
+  const st = tourSteps(); tourK = k = Math.max(0, Math.min(k, st.length - 1)); const x = st[k];
+  $('#tourArt').innerHTML = x.a; $('#tourT').textContent = x.t; $('#tourP').textContent = x.p;
+  $('#tourDots').innerHTML = st.map((_, i) => '<i' + (i === k ? ' class="on"' : '') + '></i>').join('');
+  $('#tourSkip').textContent = k ? T('पीछे', 'Back') : T('छोड़ें', 'Skip');
+  $('#tourNext').textContent = k === st.length - 1 ? T('शुरू करें', 'Start') : T('आगे', 'Next');
+  $('#tour').hidden = false;
+}
+function closeTour(){ $('#tour').hidden = true; S.settings.tour = 1; save(); }
+$('#tourNext').onclick = () => { if (tourK >= tourSteps().length - 1) closeTour(); else showTour(tourK + 1); };
+$('#tourSkip').onclick = () => { if (tourK) showTour(tourK - 1); else closeTour(); };
+
 /* ---------------- boot ---------------- */
 (async function boot(){
   if (!S.settings.lightDefault){ if (S.settings.theme === 'auto') S.settings.theme = 'light'; S.settings.lightDefault = 1; save(); }
@@ -997,9 +1024,12 @@ $('#vidBody').addEventListener('click', ev => { const w = ev.target.closest('.w'
   history.replaceState({v: 'library'}, '');
   try { LIB = await getJSON('index'); } catch (e) { $('#loading').textContent = T('डेटा नहीं खुल सका। इंटरनेट जाँचें।', 'Could not load the data. Check the internet connection.'); return; }
   const leafs = []; (function walk(n){ (n || []).forEach(c => c.work ? leafs.push(c.work) : walk(c.children)); })(LIB);
-  const start = S.work && leafs.includes(S.work) ? S.work : (leafs.length === 1 ? leafs[0] : null);
+  // a link may name a work (?w=<work id>): the app's shortcuts and store pages open straight to it
+  const asked = new URLSearchParams(location.search).get('w');
+  const start = asked && leafs.includes(asked) ? asked : S.work && leafs.includes(S.work) ? S.work : (leafs.length === 1 ? leafs[0] : null);
   if (start){ await openWork(start, true); viewStack.push('home'); history.pushState({v: 'home'}, ''); show('home', false); }
   else { $('#loading').hidden = true; renderLibrary(); }
   cloudInit();
+  if (!S.settings.tour) showTour(0);
   if ('serviceWorker' in navigator && location.protocol === 'https:' && !BUNDLE) navigator.serviceWorker.register('sw.js').catch(() => {});
 })();

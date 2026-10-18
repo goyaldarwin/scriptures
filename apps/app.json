@@ -1,0 +1,12 @@
+{
+ "_note": "One place for the app's identity, read by apps/android/generate.mjs (and later the iPhone project). Fill in the CHANGE values before the first store upload; packageId can never change after that.",
+ "name": "शास्त्र · Scriptures",
+ "launcherName": "Scriptures",
+ "packageId": "CHANGE.ME.scriptures",
+ "host": "goyaldarwin.github.io",
+ "startPath": "/scriptures/",
+ "versionName": "1.0.0",
+ "versionCode": 1,
+ "themeColor": "#2B3A8C",
+ "backgroundColor": "#F6F6F2"
+}
