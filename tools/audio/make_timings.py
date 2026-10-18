@@ -34,10 +34,13 @@ L = lambda i: max(8, len(''.join(IT[i]['v'])))   # text length, used to spread t
 # fixes.json (optional): {video id: {item id: seconds}} — when the verse's first word is heard, checked by ear or in the transcript,
 # for lines the speech recogniser missed. Write the evidence beside each fix in fixes.md.
 FP = os.path.join(SRC, 'fixes.json'); FIX = json.load(open(FP)) if os.path.exists(FP) else {}
+# ONLY=<ids>: just make the alignment caches of those recordings (run several in parallel), then run once without it
+ONLY = [x for x in os.environ.get('ONLY', '').split(',') if x]
 tracks, at = [], {}
 for r in REC:
     v = r['yt']; p = os.path.join(TR, v + '.jsonl')
     if not os.path.exists(p + '.done'): continue
+    if ONLY and v not in ONLY: continue
     cache = os.path.join(TR, v + '.align.json')
     if not os.path.exists(cache):
         S = A.load(p); r0 = A.locate(S); R, pairs = A.align(S, r0)
@@ -75,6 +78,7 @@ for r in REC:
     for i, t in full: at.setdefault(IT[i]['id'], [ti, t])
     print(v, len(full), tracks[-1]['first'], '→', tracks[-1]['last'])
 
+if ONLY: sys.exit(0)
 out = os.path.join(REPO, 'library', meta['work'], 'audio', meta['id'] + '.json')
 os.makedirs(os.path.dirname(out), exist_ok=True)
 doc = {k: meta[k] for k in ('id', 'type', 'title', 'order') if k in meta}
