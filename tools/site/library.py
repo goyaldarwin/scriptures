@@ -59,7 +59,9 @@ def check_work(lib, leaf, LANGS):
         pos = [ids.index(e) if e in ID else -1 for e in p['end']]
         _need(min(pos) >= 0 and pos == sorted(pos), f"{name}: plan {p['id']} ends are missing or out of order")
         # before / after: pages read before the first day and after the reading (pūrvāṅga / uttarāṅga)
-        pages = ({'vidhi'} if (w.get('vidhi') or {}).get('hi') else set()) | ({'aarti'} if (w.get('vidhi') or {}).get('aarti') else set())
+        pages = ({'vidhi'} if (w.get('vidhi') or {}).get('hi') else set()) | ({'aarti'} if (w.get('vidhi') or {}).get('aarti') else set()) | ({'visarjan'} if (w.get('vidhi') or {}).get('visarjan') else set())
+        vs = (w.get('vidhi') or {}).get('visarjan')
+        if vs: _need(_bi(vs.get('title')) and _bi(vs.get('when')) and all(len(x.get('v', [])) >= 1 and x.get('hi') and x.get('en') for x in vs.get('verses', [])) and vs.get('verses'), f"{name}: vidhi.visarjan needs title, when and verses [{{v, hi, en}}]")
         for k in ('before', 'after'):
             _need(all(x in pages for x in p.get(k, [])), f"{name}: plan {p['id']} {k} {p.get(k)} names a page the work lacks (has {sorted(pages)})")
     # sources
