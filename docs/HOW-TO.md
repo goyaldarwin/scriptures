@@ -31,6 +31,19 @@ If `build.py` prints `LIBRARY PROBLEM: …`, fix what it names. It never builds 
 5. Make the timings: `python3 tools/audio/make_timings.py tools/works/<work>/audio/<id>`. It prints, for each recording, the first and last verse it found. Check that these match the recording's day. If the speech recogniser missed a line and a verse starts at the wrong place, add its real start to `fixes.json` beside `source.json` (`{video id: {item id: seconds}}`) with the evidence in `fixes.md`, and run this step again. Never edit the generated timings by hand.
 6. Build and test: tap ▶ on a day, then check that the highlighted verse follows the voice at the start, middle and end.
 
+## Time a recording by ear (owner and helpers)
+Use this when automatic timing is weak (kīrtan, chant) or a recording has no transcript.
+1. Make a starting point: in `source.json` set `"estimate": true` (starts spread by text length) and `"draft": "<why>"`, run `make_timings.py`, build and push. A draft is heard only in Audio timing mode.
+2. The owner opens the work, turns on Settings › Audio timing, plays, and marks verses ("⏱ Starts now", "⏹ Ends now"); the light waits on guessed starts. Helpers do the same and send the owner a file ("Save as a file"); the owner opens it ("Open file") and checks each mark.
+3. The owner taps "Send to the library": a GitHub issue "Timing: <path> / <source>"; the `timing` workflow applies it (owner's issues only) and closes it. With the publish switch on, the recording goes live and is marked checked.
+4. To verify a send (the owner often asks): `gh api repos/goyaldarwin/scriptures/issues/<n>` and `/comments` (REST — GraphQL is unavailable), compare the issue's JSON with `library/<path>/audio/<source>.json` (each sent time exact), read `moved`, and check `gh api repos/goyaldarwin/scriptures/commits/main/check-runs`.
+5. Never edit `owner.json` or the generated timings by hand; the issue is the record.
+
+## Correct or remove a verse in a generated text
+- Put the change in the work's generator (`text.txt`, `text_fixes.json`, `settle.py`'s `FIX` / `ITEM_FIX`), never only in a generated file — a regeneration undoes it. Diff the regenerated file against the previous one and explain every change.
+- Item ids are permanent. A removed verse's id is not reused; re-point any topic that started at it; regenerate meanings and audio timings; record it in the work's `reconciliation.md`.
+- A changed word: update both meanings (hi, en) and the work's glossary entry for that word.
+
 ## Add a new work (Ram Raksha Stotram, an Upanishad, Japji Sahib …)
 
 1. Place it on the shelf at its REST-like address, `<tradition>/<genre>/<group…>/<work>` (`docs/LIBRARY.md` §1), reusing existing levels: e.g. a Hanumān Chālīsā goes to `hinduism/chalisa/hanuman/hanuman-chalisa`, the Kena Upaniṣad to `hinduism/veda/samaveda/upanishad/kena`, Japji Sahib to `sikhism/gurbani/guru-nanak-dev/japji-sahib`. Add the missing shelves to `library/index.json`, ending in `{"id", "work", "path", "title", "by", "edition", "desc"}`. The work id is the shelf id unless that is taken, and the tools go in `tools/works/<work id>/`.

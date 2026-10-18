@@ -16,6 +16,7 @@ The owner's priorities, in order: **accuracy**, then unambiguity, clarity, consi
   - Shared code goes to `main` first, on its own.
   - Shared files are written one entry per line, so additions from different branches merge.
   - Transcription runs in the cloud, one machine per recording.
+- **Audio times set by ear, safely.** The app's Audio timing mode sends the owner's times as a GitHub issue; the `timing` workflow applies them to `owner.json` and refuses any change beyond the verses sent and their re-placed neighbours. The light waits on guessed starts; the same ordering rule runs in the app and the builder.
 - **Decisions are written down.** `docs/PLAYBOOK.md` holds preferences and lessons, `docs/LIBRARY.md` the format, and `docs/HOW-TO.md` the procedures.
 
 ## Next (highest value first)
@@ -33,4 +34,5 @@ The owner's priorities, in order: **accuracy**, then unambiguity, clarity, consi
 5. **Settle uncertain readings with the owner's printed copy.** Where a text came from the web (Chālīsā, āratī), compare it with a Gita Press print when the owner provides one. Record the outcome in the work's `reconciliation.md`.
 6. **Check audio against what is sung.** After timing, read each verse's transcript segment against its text, and flag verses where the reciter's wording differs. This catches both text errors and timing errors.
 7. **Release notes.** A short `CHANGELOG.md` entry per merged pull request (what readers will notice), so the owner can see what changed without reading commits.
-8. **Hand-check chant timings.** Recordings the recogniser hears only in patches are timed by anchor matching and published only when checked: the Dhūpa Āratī is published (eight hand-checked starts; the estimated ones are listed in its fixes.md); the Śrī Rudram is a draft (automatic Chamakam starts were 15–19 s off against 14 hand-timed mantras), and the Sukhmani Sahib waits for its 6-second-window transcript. Hand-timing works by re-transcribing a few seconds around each start with word times (see the fixes.md files).
+8. **Finish the drafts by ear.** The owner marks the Śrī Rudram and the Sukhmani Sahib in Settings › Audio timing and publishes each from there (see the playbook, "Audio timing by ear"). Helpers can mark too and send the owner a file.
+9. **Player buttons for timing** (offered to the owner, not built): "⏹ End" and "⏱ Next starts" beside play/pause, so marking needs no scrolling.

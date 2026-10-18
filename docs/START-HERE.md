@@ -15,12 +15,13 @@ This repository holds everything about the project: the website, the data, every
 Both use the same address for a work, the shelf path the reader sees: `hinduism/granth/tulsidas/ramcharitmanas` is `library/hinduism/granth/tulsidas/ramcharitmanas/` here and `hinduism/granth/tulsidas/ramcharitmanas/` there. Under a work, the private repo groups files as `<kind>/<source-id>/<file>` (`books/gitapress/hindi.pdf`, `audio/kamlesh-upadhyay/…`). The source id is the same one used here for the meaning or audio source made from it. Never copy anything from the private repo into this one except what the build produces from it.
 
 ## Working rules for every session
-- **Never push to `main` directly.** `main` is the live website, so every push to it is published.
-  - Create a branch (`work/<short-name>`, e.g. `work/sai-aarti`), commit there, push the branch, and open a pull request.
-  - The owner merges it after testing.
+- **`main` is the live website: every push to it is published within minutes.**
+  - Large work (a new work, a change to shared code) goes on a branch (`work/<short-name>`) and a pull request. The owner has delegated merging: merge it yourself once build, smoke and UX tests pass, and tell the owner what changed.
+  - Small fixes the owner asks for in the conversation may go straight to `main` after the same tests.
+  - Always `git pull` first: the `timing` workflow also pushes to `main` when the owner sends audio times from the app.
 - **Start from the latest `main`** (`git fetch origin main`), and rebase onto it before opening the pull request. Several sessions may work at once.
 - **Run `python3 tools/site/build.py` and then `python3 tools/site/smoke_test.py` and `python3 tools/site/ux_test.py` before every commit.** The smoke test opens every work in a real browser and fails on any script error; the UX test walks every work from the library shelf through home, reader, sections, meanings, word sheet, bookmarks, search and the English interface at phone size (`--shots DIR` saves screenshots to look at). GitHub runs both on every pull request.
-- **Run `python3 tools/site/build.py` before every commit.** It checks the library and refuses to build if anything is inconsistent. Commit the generated files it produces.
+- `build.py` checks the library and refuses to build if anything is inconsistent. Commit the generated files it produces.
 - **Shared code goes first, on its own.** If a work needs something new in the app or the shared tools (`tools/site/`, `tools/audio/`, `tools/jsonio.py`), make that change as its own small pull request first, say why, and build the work on top of it after it is merged. Before writing shared code, check `docs/LIBRARY.md` and the app for a feature that already does it. Two sessions once built the same feature (work-defined verse types) in two different ways, and the pull requests collided.
 - **Touch only what your task needs.** A new work adds its own folders: `library/<path>/` and `tools/works/<work>/`. It edits shared files only to add to them: `library/index.json` (one new entry on the shelf), and `library/glossary/languages.json` plus a new `<lang>.json`. Changes to `tools/site/` or `tools/audio/` affect every work, so call them out in the pull request.
 - **Ask the owner for the sources** (book PDFs, recording links) instead of guessing. Accuracy comes before speed.
@@ -48,9 +49,17 @@ library/ ─ tools/site/build.py (checks everything first) ─► index.html, ap
 ## Common tasks
 See `docs/HOW-TO.md`: add a meaning source, add a reciter, add a work, fix text, change the app, publish.
 
-## Status (October 2026)
-- Śrī Rāmacaritamānasa: the full text, Hindi and English meanings, glossary, topics, plans and vidhi are complete.
-- Audio (Pt. Kamlesh Upadhyay): days 1–10 and 15–17 are timed. 11–14 and 18–30 still need transcribing (`tools/audio/README.md`). There is no recording for day 26.
-- Śrī Rāma Rakṣā Stotram (Stotras shelf): text, English and Hindi meanings, word meanings and audio (Vande Guru Paramparaam) are complete.
-- Sundarakāṇḍa (Tulasīdāsa shelf, next to the Mānas): a work of its own whose Sundarakāṇḍa is generated from the Mānas (`tools/works/sundarkand/export.py`), followed by the Hanumān Chālīsā and the āratī. Audio (Pt. Ashwin Kumar Pathak) still needs transcribing.
-- Pending: a permission letter to Gita Press for the meanings.
+## Status (18 October 2026)
+| Work (shelf) | Text & meanings | Audio |
+|---|---|---|
+| Śrī Rāmacaritamānasa | complete: Gita Press text, Hindi and English meanings, glossary, topics, 30-day and 9-day plans with pārāyaṇa vidhi, āratī and Kathā-visarjana | Pt. Kamlesh Upadhyay, live: 6,156 of 6,157 verses timed, 31 estimated |
+| Sundarakāṇḍa | generated from the Mānas (from Kiṣkindhā dohā 29), plus Hanumān Chālīsā and āratī | Pt. Ashwin Kumar Pathak, live: 403 verses, 8 estimated |
+| Śrī Rāma Rakṣā Stotram | complete | Vande Guru Paramparaam, live |
+| Īśāvāsya Upaniṣad | complete (our own meanings) | live |
+| Shirdi Sāī Dhūpa Āratī | complete (two printouts reconciled; prārthanā reads विहितमविहितं) | Pramod Medhi (Times Music), live: all 64 checked by the owner by ear. The older upload is a draft (YouTube does not allow it inside other sites) |
+| Śrī Rudram | complete (our own meanings; Vedic accents; "श्री शम्भवे नमः" left out) | Shlokam, **draft**: the owner is marking it by ear |
+| Sukhmani Sahib | complete (Gurmukhi; English from the owner's PDF; our Hindi) | Parminder Singh, **draft**: the owner is marking it by ear (ashtapadi 1 done) |
+
+**Open with the owner:** the dictionary doubts (`docs/reviews/2026-10-18-dictionary-doubts.jsonl`); the author named for the Dhūpa Āratī's Guru-prasāda-yācanā-daśaka (बाळकृष्ण विश्वनाथ देव, to confirm); any visarjana reading that differs from the owner's printed copy; a permission letter to Gita Press for the meanings. **Offered, not built:** "⏹ End / ⏱ Next starts" buttons in the player for audio timing.
+
+**Before any change, read `docs/PLAYBOOK.md`** — especially "Audio timing by ear" and "Lessons: the working environment".
