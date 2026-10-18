@@ -104,3 +104,30 @@ def align(S, r0, span=None):
             i-=1; j-=k
     pairs.reverse()
     return R,pairs
+
+def anchors(S, r0=0, thr=0.45, r1=None):
+    """A second way to align, for recordings the recogniser hears only in patches (sung āratīs, Vedic chant):
+    each segment is matched on its own to the one, two or three consecutive half-lines it resembles most; matches
+    below `thr` are dropped; then the heaviest chain that moves forward in both time and text is kept.
+    Returns (pairs [(segment, half-line)], seconds per letter of text, estimated from neighbouring matches)."""
+    R=REF[r0:r1]; cands=[]
+    for i,s in enumerate(S):
+        k=key(s['t'])
+        if len(k)<6: continue
+        sc,j=max(((sim(k,''.join(R[j+q][2] for q in range(n)))-0.03*(n-1),j) for j in range(len(R)) for n in (1,2,3) if j+n<=len(R)), default=(0,0))
+        if sc>=thr: cands.append((i,j,sc))
+    n=len(cands); val=[c[2] for c in cands]; prev=[-1]*n
+    for a in range(n):
+        for b in range(a):
+            if cands[b][1]<=cands[a][1] and val[b]+cands[a][2]>val[a]: val[a]=val[b]+cands[a][2]; prev[a]=b
+    chain=[]
+    a=max(range(n),key=lambda x:val[x]) if n else -1
+    while a>=0: chain.append(cands[a]); a=prev[a]
+    chain.reverse()
+    rates=[]
+    for (i1,j1,_),(i2,j2,_) in zip(chain,chain[1:]):
+        if 0<j2-j1<=3:
+            ch=sum(len(R[q][2]) for q in range(j1,j2))
+            if ch: rates.append((S[i2]['s']-S[i1]['s'])/ch)
+    rates.sort(); rate=rates[len(rates)//2] if rates else 0.25
+    return R,[(i,j) for i,j,_ in chain],rate

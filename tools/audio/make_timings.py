@@ -3,7 +3,7 @@
 Usage:  python3 tools/audio/make_timings.py tools/works/<work>/audio/<source-id>
 
 The source folder holds:
-  source.json      {"id", "work": "<library path>", "type": "youtube", "title": {"hi", "en"}, "order"?, "draft"?: "<why it is not published yet>"}
+  source.json      {"id", "work": "<library path>", "type": "youtube", "title": {"hi", "en"}, "order"?, "draft"?: "<why it is not published yet>", "align"?: "anchors"}
   recordings.json  [{"yt": video id, "file": original file name, "dur": seconds, "order": n}]
   transcripts/     <video id>.jsonl from transcribe.py (+ .done when finished)
   fixes.json       optional hand-checked verse starts {video id: {item id: seconds}}, with the evidence in fixes.md
@@ -47,15 +47,27 @@ for r in REC:
         # recordings.json may say where a recording starts ("from": item id); otherwise it is located by matching words,
         # which can fail on texts whose lines repeat a lot (the Rudram's "namo … namaḥ")
         r0 = next(k for k, ref in enumerate(A.REF) if ref[0] == ID[r['from']]) if r.get('from') else A.locate(S)
-        R, pairs = A.align(S, r0)
-        rows = {}
-        for si, rj in pairs: rows.setdefault(si, []).append([IT[R[rj][0]]['id'], len(R[rj][2])])
+        if meta.get('align') == 'anchors':
+            # source.json "align": "anchors" — for recordings heard only in patches (see align.anchors). A match on a
+            # verse's later line still gives its start: back by the letters before that line at the reciter's pace.
+            r1 = max(k for k, ref in enumerate(A.REF) if ref[0] == ID[r['to']]) + 1 if r.get('to') else None   # "to": its last item
+            R, pairs, rate = A.anchors(S, r0, r1=r1)
+            rows = {}
+            for si, rj in pairs:
+                k = rj
+                while k > 0 and R[k - 1][0] == R[rj][0]: k -= 1
+                rows.setdefault(si, []).append([IT[R[rj][0]]['id'], len(R[rj][2]), round(rate * sum(len(R[q][2]) for q in range(k, rj)), 2)])
+        else:
+            R, pairs = A.align(S, r0)
+            rows = {}
+            for si, rj in pairs: rows.setdefault(si, []).append([IT[R[rj][0]]['id'], len(R[rj][2])])
         json.dump([[S[si]['s'], S[si]['e'], rows[si]] for si in sorted(rows)], open(cache, 'w'), ensure_ascii=False)
     first = {}
     for s0, e0, parts in json.load(open(cache)):
-        tot = sum(n for _, n in parts) or 1; acc = 0
-        for iid, n in parts:
-            first.setdefault(ID[iid], s0 + (e0 - s0) * acc / tot); acc += n
+        tot = sum(p[1] for p in parts) or 1; acc = 0
+        for p in parts:
+            t = s0 + (e0 - s0) * acc / tot - (p[2] if len(p) > 2 else 0); acc += p[1]
+            first[ID[p[0]]] = min(first.get(ID[p[0]], t), t)
     items = {i: round(max(0, t - 0.4), 2) for i, t in first.items()}
     for iid, t in FIX.get(v, {}).items(): items[ID[iid]] = round(max(0, t - 0.4), 2)   # hand-checked starts win (fixes.json), with the same small lead
     items = sorted(items.items())
