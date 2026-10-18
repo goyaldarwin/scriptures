@@ -28,8 +28,8 @@
        "en": "Gosvāmī Tulasīdāsa"
       },
       "desc": {
-       "hi": "श्रीरामचरितमानस",
-       "en": "Śrī Rāmacaritamānasa"
+       "hi": "श्रीरामचरितमानस · सुन्दरकाण्ड",
+       "en": "Śrī Rāmacaritamānasa · Sundarakāṇḍa"
       },
       "children": [
        {
@@ -51,6 +51,27 @@
         "desc": {
          "hi": "७ काण्ड · मासपारायण · नवाह्नपारायण",
          "en": "7 Kāṇḍas · 30-day and 9-day pārāyaṇa"
+        }
+       },
+       {
+        "id": "sundarkand",
+        "work": "sundarkand",
+        "path": "hindu/granth/tulsidas/sundarkand",
+        "title": {
+         "hi": "सुन्दरकाण्ड",
+         "en": "Sundarakāṇḍa"
+        },
+        "by": {
+         "hi": "गोस्वामी तुलसीदास",
+         "en": "Gosvāmī Tulasīdāsa"
+        },
+        "edition": {
+         "hi": "गीताप्रेस, गोरखपुर",
+         "en": "Gita Press, Gorakhpur"
+        },
+        "desc": {
+         "hi": "सुन्दरकाण्ड · हनुमानचालीसा · आरती",
+         "en": "Sundarakāṇḍa · Hanumān Chālīsā · Āratī"
         }
        }
       ]

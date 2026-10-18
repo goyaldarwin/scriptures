@@ -49,4 +49,5 @@ See `docs/HOW-TO.md`: add a meaning source, add a reciter, add a work, fix text,
 - Śrī Rāmacaritamānasa: the full text, Hindi and English meanings, glossary, topics, plans and vidhi are complete.
 - Audio (Pt. Kamlesh Upadhyay): days 1–10 and 15–17 are timed. 11–14 and 18–30 still need transcribing (`tools/audio/README.md`). There is no recording for day 26.
 - Śrī Rāma Rakṣā Stotram (Stotras shelf): text, English and Hindi meanings, word meanings and audio (Vande Guru Paramparaam) are complete.
+- Sundarakāṇḍa (Tulasīdāsa shelf, next to the Mānas): a work of its own whose Sundarakāṇḍa is generated from the Mānas (`tools/works/sundarkand/export.py`), followed by the Hanumān Chālīsā and the āratī. Audio (Pt. Ashwin Kumar Pathak) still needs transcribing.
 - Pending: a permission letter to Gita Press for the meanings.

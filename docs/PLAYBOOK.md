@@ -283,3 +283,8 @@ Then expect from me, in order:
 - Verse icons sit in the four corners of the verse, in the gutter, so they never touch the text: type tag at top left, bookmark at top right, ▶ at bottom left, ⋮ at bottom right. The verse-type tag is a plain label.
 - A single-part work (āratī, stotra) lists its sections straight on its home screen. A work without reading plans shows no plan switch.
 - **Every work has "सम्पूर्ण पाठ सुनें / Play the complete work"** on its home screen. It plays from the first recorded verse to the end, across all parts and recordings. Where a stretch has no recording yet, it skips ahead to the next recorded verse and says so.
+
+### Decisions (Oct 18, 2026): the Sundarakāṇḍa
+- **A popular part of a big work can be a work of its own** (the Sundarakāṇḍa under Tulasīdāsa, next to the Mānas). It keeps all the text and meanings it has in the big work; only the audio and the additions (Hanumān Chālīsā, āratī, as recited) differ. It must never interfere with the big work: its exporter only *reads* the Mānas and regenerates its own copy, so corrections to the Mānas flow into it on every rebuild, and `check.py` proves the copy is identical.
+- **Widely available texts may be fetched from the web when the owner says so — 2–3 good sources are enough.** Prefer Wikisource and a Gita Press-based page; reconcile word by word and record every choice in the work's `reconciliation.md`. Where web pages use modern spelling, follow the Gita Press house style of the Mānas (ए not ये, ब/स forms, no hyphens) and let the metre decide between words.
+- The web-fetch tool will not return a hymn's full text. Write the text out and ask the page to list the words that differ, or ask yes/no for each candidate spelling.
