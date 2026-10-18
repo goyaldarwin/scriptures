@@ -59,7 +59,7 @@ THEME_C = [('प्राण, इन्द्रियाँ और शरीर
 topics = [{'id': 'namakam.purva.guru', 'hi': 'अथ श्रीरुद्रप्रश्नः — मङ्गलाचरण', 'en': 'Śrī Rudra Praśna — the opening'}]
 for a, (h, e) in enumerate(THEME_N, 1):
     topics.append({'id': 'namakam.a%02d.m01' % a, 'hi': '%s अनुवाक — %s' % (ORD[a - 1], h), 'en': 'Anuvāka %d — %s' % (a, e)})
-    if a == 1: topics.append({'id': 'namakam.bhagavan.shambhave', 'hi': 'नमस्ते अस्तु भगवन्', 'en': 'Namaste astu bhagavan'})
+    if a == 1: topics.append({'id': 'namakam.bhagavan.namaste', 'hi': 'नमस्ते अस्तु भगवन्', 'en': 'Namaste astu bhagavan'})
 topics.append({'id': 'namakam.uttara.u1', 'hi': 'उत्तर मन्त्र और शान्ति', 'en': 'Closing mantras and śānti'})
 for a, (h, e) in enumerate(THEME_C, 1):
     topics.append({'id': 'chamakam.a%02d.m01' % a, 'hi': '%s अनुवाक — %s' % (ORD[a - 1], h), 'en': 'Anuvāka %d — %s' % (a, e)})

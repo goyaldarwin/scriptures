@@ -283,24 +283,11 @@
 ]
 },
 {
-"id": "namakam.bhagavan.shambhave",
-"p": 0,
-"s": "nam-bhagavan",
-"y": "mangala",
-"n": "4",
-"v": [
-"श्री शम्भ॑वे॒ नमः॑ ।।"
-],
-"t": [
-"śrī śambha̍ve̠ nama̍ḥ ॥"
-]
-},
-{
 "id": "namakam.bhagavan.namaste",
 "p": 0,
 "s": "nam-bhagavan",
 "y": "mangala",
-"n": "5",
+"n": "4",
 "v": [
 "नम॑स्ते अस्तु भगवन्-विश्वेश्व॒राय॑ महादे॒वाय॑ त्र्यम्ब॒काय॑ त्रिपुरान्त॒काय॑",
 "त्रिकाग्निका॒लाय॑ कालाग्निरु॒द्राय॑ नीलक॒ण्ठाय॑",
@@ -634,7 +621,7 @@
 "नमो-ऽस्य॑द्भ्यो॒ विध्य॑द्भ्यश्च वो॒ नमो॒"
 ],
 "t": [
-"namo-’ssa̍dbhyo̠ vidya̍dbhyaśca vo̠ namo̠"
+"namo-’sya̍dbhyo̠ vidhya̍dbhyaśca vo̠ namo̠"
 ]
 },
 {
@@ -3910,7 +3897,7 @@
 "वेदि॑श्च मे॒ धिष्णि॑याश्च मे॒"
 ],
 "t": [
-"vedi̍śca me̠ diṣṇi̍yāśca me̠"
+"vedi̍śca me̠ dhiṣṇi̍yāśca me̠"
 ]
 },
 {

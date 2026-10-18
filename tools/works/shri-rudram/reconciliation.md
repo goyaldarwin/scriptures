@@ -80,3 +80,6 @@ The printout's own transliteration and the standard Taittirīya Saṃhitā agree
 
 Kept as printed, because the printout's transliteration agrees: "मृत्यु॑र्मे पा॒हि" (Namakam closing), "मनु॒राय॑जे" (Namakam 10).
 Meaning corrected: Chamakam 8.4 स्वरवः are the svarus, chips cut from the sacrificial post (Sāyaṇa: यूपशकलाः), not "wooden pegs".
+
+## "श्री शम्भवे नमः" left out (2026-10-18)
+The printout has "श्री शम्भ॑वे॒ नमः॑ ॥" before "नमस्ते अस्तु भगवन्"; it is not recited, and the owner asked for it to be removed. `source/settle.py` leaves it out; the opening mantras are now numbered 1–4.

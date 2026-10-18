@@ -154,9 +154,6 @@ async def main():
                     await ev(f"setTime({vi}, 1, {s0}); setTime({vi}, 2, {s2} + 5)")
                     nxt = await ev(f"[1, 2, 3].map(d => AUT[0][{g} + d][1])")
                     check(f'{tag}: guessed starts after your end follow it, in order', nxt[0] >= s2 + 5 - 0.05 and nxt[0] < nxt[1] < nxt[2], [s2 + 5, nxt])
-                    cv = await ev(f"AUT[0][{g} + 1][0]"); cs = await ev(f"AUT[0][{g} + 1][1]")
-                    await ev(f"setTime({cv}, 1, SRC.au.at[IT[{cv}].id][1])")
-                    check(f'{tag}: “✓ Correct” on an estimate keeps its start and makes it yours', await ev(f"!!myStarts()[IT[{cv}].id] && SRC.au.at[IT[{cv}].id][1]") == cs and 'tconf' not in await ev(f"markBar({cv})"), cs)
                     await ev("delete S.timing.fix[tkey()]; save(); buildAudio()")
                 # a helper's file: saved from the marks, opened by the owner as marks "from <helper>" that are not sent until checked
                 await ev("S.timing.fix[tkey()] = {}; S.timing.from = {}; save(); buildAudio()")

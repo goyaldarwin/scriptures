@@ -124,8 +124,8 @@ def namakam():
     I.append(item('namakam', 'purva', 'samhita', 'shirsha', '', L[1], P))
     I.append(item('namakam', 'purva', 'rudraya', 'mangala', '3', L[2], P))
     for k, bi in enumerate(range(3, 18), 1): I.append(item('namakam', 'a01', 'm%02d' % k, 'mantra', '1.%d' % k, L[bi], P))
-    I.append(item('namakam', 'bhagavan', 'shambhave', 'mangala', '4', L[18][:1], P))
-    I.append(item('namakam', 'bhagavan', 'namaste', 'mangala', '5', L[18][1:], P))
+    # "श्री शम्भवे नमः" (L[18][:1]) is printed in the source but not recited (owner, 2026-10-18): left out
+    I.append(item('namakam', 'bhagavan', 'namaste', 'mangala', '4', L[18][1:], P))
     for a, bi in zip(range(2, 10), range(19, 27)):
         for k, l in enumerate(L[bi], 1): I.append(item('namakam', 'a%02d' % a, 'm%02d' % k, 'mantra', '%d.%d' % (a, k), [l], P))
     for k, bi in enumerate(range(27, 39), 1): I.append(item('namakam', 'a10', 'm%02d' % k, 'mantra', '10.%d' % k, L[bi], P))
@@ -148,6 +148,14 @@ if __name__ == '__main__':
     N, BN = namakam(); C, BC = chamakam()
     items = N + C
     ids = [x['id'] for x in items]; assert len(ids) == len(set(ids))
+    # misprints in the printout itself (its own transliteration has them too), corrected by item (reconciliation.md),
+    # with the transliteration made again from the corrected Devanagari
+    ITEM_FIX = {'namakam.a03.m12': [('नमो-ऽस्स॑द्भ्यो॒ विद्य॑द्भ्यश्च', 'नमो-ऽस्य॑द्भ्यो॒ विध्य॑द्भ्यश्च')],
+                'chamakam.a08.m02': [('दिष्णि॑याश्च', 'धिष्णि॑याश्च')]}
+    for x in items:
+        for a_, b_ in ITEM_FIX.get(x['id'], []):
+            assert sum(l.count(a_) for l in x['v']) == 1, (x['id'], a_)
+            x['v'] = [l.replace(a_, b_) for l in x['v']]; x['t'] = [deva2iast(l) for l in x['v']]
     # witness check: every block's settled Devanagari against the page's transliteration, conventions folded
     json.dump(items, open(os.path.join(HERE, '..', 'text.json'), 'w'), ensure_ascii=False, indent=0)
     print(len(N), 'Namakam items,', len(C), 'Chamakam items')

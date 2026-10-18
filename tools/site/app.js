@@ -415,7 +415,6 @@ $('#rBody').addEventListener('click', ev => {
       setTime(i, act === 'tstart' ? 1 : 2, nowAt()); rerenderItem(i);
     }
     else if (act === 'tplay') playFrom(i, i);
-    else if (act === 'tconf'){ setTime(i, 1, SRC.au.at[IT[i].id][1]); rerenderItem(i); }   // an estimate heard to be right becomes yours, as it is
     else if (act === 'tok'){ unfrom(IT[i].id); save(); rerenderItem(i); toast(T('जाँच लिया — अब यह आपका है', 'Checked — it is now yours')); }
     else if (act === 'bm'){ const me = ME(), k = KEY(IT[i].id); const had = !!me.bm[k]; if (had) delete me.bm[k]; else me.bm[k] = Date.now(); save(); rerenderItem(i); toast(!had ? T('बुकमार्क जोड़ा', 'Bookmarked') : T('बुकमार्क हटाया', 'Bookmark removed')); }
     else if (act === 'enote') noteSheet(i, +a.dataset.k);
@@ -481,7 +480,7 @@ function tkey(){ return W.id + ':' + SRC.au.meta.id; }
 function markBar(i){
   const x = SRC.au.at[IT[i].id], mine = myStarts()[IT[i].id], est = toCheck(i), by = fromOf(IT[i].id);
   const when = x ? T('शुरू ', 'Start ') + fmtT(x[1]) + (x[2] != null ? T(' · अंत ', ' · end ') + fmtT(x[2]) : '') : T('ऑडियोमें समय नहीं', 'No time in the recording');
-  return '<div class="tmark"><button data-a="tstart">⏱ ' + T('अभी शुरू', 'Starts now') + '</button><button data-a="tend">⏹ ' + T('अभी समाप्त', 'Ends now') + '</button>' + (x ? '<button data-a="tplay" aria-label="play">▶</button>' : '') + (by ? '<button data-a="tok">✓ ' + T('सही है', 'Correct') + '</button>' : (est && x) ? '<button data-a="tconf">✓ ' + T('सही है', 'Correct') + '</button>' : '') +
+  return '<div class="tmark"><button data-a="tstart">⏱ ' + T('अभी शुरू', 'Starts now') + '</button><button data-a="tend">⏹ ' + T('अभी समाप्त', 'Ends now') + '</button>' + (x ? '<button data-a="tplay" aria-label="play">▶</button>' : '') + (by ? '<button data-a="tok">✓ ' + T('सही है', 'Correct') + '</button>' : '') +
     '<span class="tinfo">' + when + (by ? ' · <b class="test">' + T('', 'from ') + esc(by) + T(' का — जाँचें', ' — to check') + '</b>' : mine ? ' · <b>' + T('आपका', 'yours') + '</b>' : est ? ' · <b class="test">' + T('अनुमान', 'estimated') + '</b>' : (SRC.au.moved && SRC.au.moved.has(IT[i].id)) ? ' · <b class="test">' + T('आपके समयके अनुसार खिसकाया', 'moved to fit your times') + '</b>' : '') + '</span></div>';
 }
 function toCheck(i){ return !!(S.timing.on && SRC.au && SRC.au.checkSet && SRC.au.checkSet.has(IT[i].id) && !myStarts()[IT[i].id]); }   // a start that is only estimated: to be checked by ear
@@ -847,12 +846,12 @@ function renderSettings(){
 /* timing review: Settings › Audio timing. While it is on, a ⏱ row appears in the player and each verse's ⋮ menu shows its start;
    recordings still being checked (drafts) can be played. Starts set by ear go to the library through a GitHub issue, which
    the workflow .github/workflows/timing.yml applies (tools/audio/apply_owner_timing.py). */
-function pendingStarts(){ if (!SRC.au) return {}; const fx = myStarts(), sent = S.timing.sent[tkey()] || {}, out = {}; for (const id in fx) if (!fromOf(id) && JSON.stringify(sent[id]) !== JSON.stringify(fx[id])) out[id] = fx[id]; return out; }
+function pendingStarts(){ if (!SRC.au) return {}; const fx = myStarts(), sent = S.timing.sent[tkey()] || {}, out = {}; for (const id in fx) if (ID[id] != null && !fromOf(id) && JSON.stringify(sent[id]) !== JSON.stringify(fx[id])) out[id] = fx[id]; return out; }
 function timingHTML(){
   if (!W) return '';
   let h = '<h2>' + T('ऑडियोका समय', 'Audio timing') + '</h2><p class="small muted">' + T('जहाँ पद और आवाज़ मेल न खाएँ, वहाँ ठीक करनेके लिये।', 'For fixing places where the lit verse and the voice do not match.') + '</p>' + sw('stm', T('ऑडियोका समय ठीक करें', 'Adjust audio timing'), '', S.timing.on);
   if (S.timing.on && SRC.au){
-    const n = Object.keys(myStarts()).length, p = Object.keys(pendingStarts()).length;
+    const n = Object.keys(myStarts()).filter(id => ID[id] != null).length, p = Object.keys(pendingStarts()).length;
     h += (SRC.au.meta.draft ? sw('stp', T('यह रिकॉर्डिंग जाँच ली — सबके लिये चालू करें', 'This recording is checked: publish it for everyone'), T('भेजनेके साथ जाएगा', 'Goes with the next send'), !!(S.timing.publish || {})[tkey()]) : '') +
       checkList() + helperList() +
       '<p class="small" style="margin:14px 0 8px">' + esc(TT(SRC.au.meta.title)) + ': ' + DEV(n) + T(' पद आपने ठीक किये', ' verses set by you') + (p ? ' · ' + DEV(p) + T(' भेजने बाकी', ' not sent yet') : '') + '</p>' +
@@ -886,7 +885,7 @@ function bindTiming(){
 // a helper saves their marks to a file and sends it to the owner (on a phone, the share sheet: WhatsApp, e-mail…)
 function timingDoc(by){
   const fx = myStarts(), starts = {};
-  Object.keys(fx).sort((a, b) => ID[a] - ID[b]).forEach(id => { const [t, sec, end] = fx[id], yt = SRC.au.tracks[t].yt; (starts[yt] = starts[yt] || {})[id] = end != null ? [sec, end] : sec; });
+  Object.keys(fx).filter(id => ID[id] != null).sort((a, b) => ID[a] - ID[b]).forEach(id => { const [t, sec, end] = fx[id], yt = SRC.au.tracks[t].yt; (starts[yt] = starts[yt] || {})[id] = end != null ? [sec, end] : sec; });
   return {kind: 'scriptures-timing', path: W.path, work: TT(W.title), source: SRC.au.meta.id, recording: TT(SRC.au.meta.title), by, made: new Date().toISOString(), starts};
 }
 function saveTimingFile(){
