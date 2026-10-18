@@ -26,10 +26,11 @@ The owner's priorities, in order: **accuracy**, then unambiguity, clarity, consi
    - every public `recordings.json` → `data` exists.
 2. **Make each audio source's state visible.** Add a table per recording (transcribed / timed / verses covered / hand fixes), generated into `docs/AUDIO-STATUS.md`, so "what's left?" is answered by a file, not by memory.
 3. **Run the whole audio chain with one command.** A single command per source: transcribe in the cloud, wait, sync, time, build, open a pull request.
-4. **Settle the dictionary doubts.** The first full review (2026-10-18) corrected 759 entries; 62 doubts remain in `docs/reviews/2026-10-18-dictionary-doubts.jsonl`. The Rudram's ~950 and the Sukhmani's 2,536 new words get the same review when they merge. Some shared senses are context-specific (e.g. तिन "blade of grass" vs "their" in the Chālīsā).
+4. **Settle the dictionary doubts.** The full review (2026-10-18) corrected 879 entries across sa, awa, mr and pa (the Rudram's and Sukhmani's words included); the doubts left are in `docs/reviews/2026-10-18-dictionary-doubts.jsonl`, to settle one by one with the owner.
    - List words whose dictionary sense was written for one work but appears in another.
    - Review them per language.
    - Move work-specific senses into that work's `glossary.json`.
 5. **Settle uncertain readings with the owner's printed copy.** Where a text came from the web (Chālīsā, āratī), compare it with a Gita Press print when the owner provides one. Record the outcome in the work's `reconciliation.md`.
 6. **Check audio against what is sung.** After timing, read each verse's transcript segment against its text, and flag verses where the reciter's wording differs. This catches both text errors and timing errors.
 7. **Release notes.** A short `CHANGELOG.md` entry per merged pull request (what readers will notice), so the owner can see what changed without reading commits.
+8. **Hand-check chant timings.** Recordings the recogniser hears only in patches are timed by anchor matching and published only when checked: the Dhūpa Āratī is published (eight hand-checked starts; the estimated ones are listed in its fixes.md); the Śrī Rudram is a draft (automatic Chamakam starts were 15–19 s off against 14 hand-timed mantras), and the Sukhmani Sahib waits for its 6-second-window transcript. Hand-timing works by re-transcribing a few seconds around each start with word times (see the fixes.md files).
