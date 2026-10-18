@@ -7,6 +7,6 @@
   "hi": "प्रमोद मेधी",
   "en": "Pramod Medhi"
  },
- "draft": "re-transcribing in 20-second windows (the first transcript skipped long passages; only 4 of 63 verses matched)",
- "window": 20
+ "window": 6,
+ "align": "anchors"
 }

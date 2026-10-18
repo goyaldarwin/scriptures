@@ -14,3 +14,4 @@
 @font-face{font-family:'NSDev';src:url(fonts/noto-serif-gurmukhi-gurmukhi-700-normal.woff2) format('woff2');font-weight:700;font-style:normal;font-display:swap;unicode-range:U+0A00-0A7F,U+200C-200D,U+25CC;}
 @font-face{font-family:'Literata';src:url(fonts/noto-serif-gurmukhi-gurmukhi-400-normal.woff2) format('woff2');font-weight:400;font-style:normal;font-display:swap;unicode-range:U+0A00-0A7F,U+200C-200D,U+25CC;}
 @font-face{font-family:'Literata';src:url(fonts/noto-serif-gurmukhi-gurmukhi-700-normal.woff2) format('woff2');font-weight:600;font-style:normal;font-display:swap;unicode-range:U+0A00-0A7F,U+200C-200D,U+25CC;}
+@font-face{font-family:'Vedic';src:url(fonts/tiro-devanagari-sanskrit-devanagari-400-normal.woff2) format('woff2');font-weight:400;font-style:normal;font-display:swap;}

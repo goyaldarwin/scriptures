@@ -28,8 +28,8 @@
        "en": "Gosvāmī Tulasīdāsa"
       },
       "desc": {
-       "hi": "श्रीरामचरितमानस",
-       "en": "Śrī Rāmacaritamānasa"
+       "hi": "श्रीरामचरितमानस · सुन्दरकाण्ड",
+       "en": "Śrī Rāmacaritamānasa · Sundarakāṇḍa"
       },
       "children": [
        {
@@ -51,6 +51,27 @@
         "desc": {
          "hi": "७ काण्ड · मासपारायण · नवाह्नपारायण",
          "en": "7 Kāṇḍas · 30-day and 9-day pārāyaṇa"
+        }
+       },
+       {
+        "id": "sundarkand",
+        "work": "sundarkand",
+        "path": "hinduism/granth/tulsidas/sundarkand",
+        "title": {
+         "hi": "सुन्दरकाण्ड",
+         "en": "Sundarakāṇḍa"
+        },
+        "by": {
+         "hi": "गोस्वामी तुलसीदास",
+         "en": "Gosvāmī Tulasīdāsa"
+        },
+        "edition": {
+         "hi": "गीताप्रेस, गोरखपुर",
+         "en": "Gita Press, Gorakhpur"
+        },
+        "desc": {
+         "hi": "सुन्दरकाण्ड · हनुमानचालीसा · आरती",
+         "en": "Sundarakāṇḍa · Hanumān Chālīsā · Āratī"
         }
        }
       ]
@@ -165,6 +186,45 @@
        "en": "Yajurveda"
       },
       "children": [
+       {
+        "id": "krishna-yajurveda",
+        "title": {
+         "hi": "कृष्ण यजुर्वेद",
+         "en": "Kṛṣṇa Yajurveda"
+        },
+        "children": [
+         {
+          "id": "samhita",
+          "title": {
+           "hi": "संहिता",
+           "en": "Saṃhitā"
+          },
+          "children": [
+           {
+            "id": "shri-rudram",
+            "work": "shri-rudram",
+            "path": "hinduism/veda/yajurveda/krishna-yajurveda/samhita/shri-rudram",
+            "title": {
+             "hi": "श्रीरुद्रम्",
+             "en": "Śrī Rudram"
+            },
+            "by": {
+             "hi": "कृष्ण यजुर्वेद, तैत्तिरीय संहिता",
+             "en": "Kṛṣṇa Yajurveda, Taittirīya Saṃhitā"
+            },
+            "edition": {
+             "hi": "श्लोकम् (shlokam.org)",
+             "en": "Shlokam (shlokam.org)"
+            },
+            "desc": {
+             "hi": "नमकम् और चमकम् · ११ + ११ अनुवाक",
+             "en": "Namakam and Chamakam · 11 + 11 anuvākas"
+            }
+           }
+          ]
+         }
+        ]
+       },
        {
         "id": "shukla-yajurveda",
         "title": {

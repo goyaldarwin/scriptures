@@ -22,7 +22,9 @@ FONTS = [('NSDev', nd + 'noto-serif-devanagari-devanagari-400-normal.woff2', 400
          ('TrLat', F + '/gentium-tr-italic.woff2', 400, 'italic', None), ('TrLat', F + '/gentium-tr-regular.woff2', 400, 'normal', None),
          ('Literata', lt + 'literata-latin-600-normal.woff2', 600, 'normal', None), ('Literata', lt + 'literata-latin-ext-600-normal.woff2', 600, 'normal', LX),
          ('NSDev', F + '/noto-serif-gurmukhi-gurmukhi-400-normal.woff2', 400, 'normal', GURR), ('NSDev', F + '/noto-serif-gurmukhi-gurmukhi-700-normal.woff2', 700, 'normal', GURR),
-         ('Literata', F + '/noto-serif-gurmukhi-gurmukhi-400-normal.woff2', 400, 'normal', GURR), ('Literata', F + '/noto-serif-gurmukhi-gurmukhi-700-normal.woff2', 600, 'normal', GURR)]
+         ('Literata', F + '/noto-serif-gurmukhi-gurmukhi-400-normal.woff2', 400, 'normal', GURR), ('Literata', F + '/noto-serif-gurmukhi-gurmukhi-700-normal.woff2', 600, 'normal', GURR),
+         # Vedic text (svara marks): Tiro Devanagari Sanskrit draws the svarita ॑ as a clear stroke; Noto's looks like an anusvāra at bold
+         ('Vedic', F + '/tiro-devanagari-sanskrit-devanagari-400-normal.woff2', 400, 'normal', None)]
 def face(fam, url, w, st, ur): return f"@font-face{{font-family:'{fam}';src:url({url}) format('woff2');font-weight:{w};font-style:{st};font-display:swap;{('unicode-range:' + ur + ';') if ur else ''}}}"
 tpl = open(os.path.join(HERE, 'index_template.html')).read()
 app = open(os.path.join(HERE, 'app.js')).read()

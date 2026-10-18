@@ -60,3 +60,38 @@
 {"k": "सशक्ति", "why": "g 'अव्ययीभाव'. In भजे सशक्ति सानुजं it works as an adjective (bahuvrīhi, Tulsī's form for सशक्तिम्) qualifying the Lord, like सानुजं beside it. The label may be wrong, but Tulsī's irregular Sanskrit makes this uncertain.", "lang": "sa"}
 {"k": "वरूथः", "why": "In त्रातु सदा नो कृपा वरूथः it is glossed 'समूह / राशि' (mass). In Sanskrit वरूथ primarily means armour/shield/protection, which may be the intended sense ('shield of grace'). Gita Press-style glosses give 'कृपाके पुंज', so I left it.", "lang": "sa"}
 {"k": "कामप्रेर्विश्वेदेवाः", "why": "कामप्रेः is glossed 'पूर्णकाम के'. In the Aitareya passage, interpreters take kāmapri either as 'one whose desires are fulfilled' or as 'fulfiller of desires' (an epithet of Marutta). I could not settle it.", "lang": "sa"}
+{"k": "गोघ्न", "why": "TS pada is गोघ्ने (ए→अ before उत). That is either dat. sg. of गोहन् (agreeing with ते ... क्षयद्वीराय) or loc. sg. of गोघ्न; the entry gives a nominative 'cow-slaying (form)' and no case. Need Sāyaṇa's reading to set r/g", "lang": "sa"}
+{"k": "पूरुषघ्ने", "why": "Same as गोघ्न: dat. of पूरुषहन् or loc. of पूरुषघ्न, but glossed as a nominative ('that slays men') with r पूरुषघ्न", "lang": "sa"}
+{"k": "ऋतञ्च", "why": "hi says 'कर्मका फल', p says 'ऋत, सत्कर्म'. Sāyaṇa may read ऋतम् = यज्ञादि कर्म and अमृतम् = its fruit (heaven); the meanings file also says 'fruit'. Check Sāyaṇa on TS 4.7.3", "lang": "sa"}
+{"k": "कूयवाश्च", "why": "Glossed 'good grain'; the prefix कु- suggests 'poor/inferior barley', which may be Sāyaṇa's reading. Check TS 4.7.4", "lang": "sa"}
+{"k": "वस्यश्च", "why": "वस्यस् is a comparative 'better, welfare' (beside श्रेयः); 'उत्तम निवास / a good home' looks like an etymology from वस् 'dwell'. Check Sāyaṇa", "lang": "sa"}
+{"k": "श्यामञ्च", "why": "Glossed copper and लोहम् bronze. In Vedic usage श्याम(अयस्) is often iron and लोह copper, so the two may be swapped. Check Sāyaṇa on TS 4.7.5", "lang": "sa"}
+{"k": "लोहञ्च", "why": "See श्यामञ्च: लोह may be copper (lohāyasa), not bronze", "lang": "sa"}
+{"k": "दिष्णियाश्च", "why": "work.json reads दिष्णिया-; TS has धिष्णियाः. The key (and verse text) is probably a typo for धिष्णियाश्च; the entry glosses it as धिष्ण्याः", "lang": "sa"}
+{"k": "नमोऽस्सद्भ्यो", "why": "Surface अस्सद्भ्यो looks like a source typo for अस्यद्भ्यो (TS नमोऽस्यद्भ्यः); the part gloss already says अस्यद्भ्यः", "lang": "sa"}
+{"k": "विद्यद्भ्यश्च", "why": "Surface विद्यद्भ्यः looks like a source typo for विध्यद्भ्यः (√व्यध्); the part already says विध्यद्भ्यः", "lang": "sa"}
+{"k": "मृत्युर्मे", "why": "Text reads मृत्युर्मे पाहि; the usual reading is मृत्योर्मा पाहि. The parts give मृत्योः + मे, but पाहि needs accusative मा, and मृत्युर् is not मृत्योः. Probably a source variant or corruption", "lang": "sa"}
+{"k": "भेर्माऽरो", "why": "अरः glossed 'नष्ट करो'. The sense of मा अरः/आरः (√ऋ 'harm, afflict'?) and how the elision mark is to be read need Sāyaṇa", "lang": "sa"}
+{"k": "यक्ष्वामहे", "why": "Glossed as present 'we worship' with no g. The form looks like an s-aorist subjunctive/imperative-type Vedic form ('let us worship'); grammar not settled", "lang": "sa"}
+{"k": "भीममुपहन्तुमुग्रम्", "why": "RV 2.33.11 has उपहत्नुम् (agent noun 'striker'); this text's उपहन्तुम् looks like an infinitive. The gloss treats it as an agent. Check the TS reading", "lang": "sa"}
+{"k": "मनुरायजे", "why": "TS reads आयेजे (perfect of आ+यज्); the text's आयजे may be a typo. Meaning 'won by worship' is fine", "lang": "sa"}
+{"k": "ਕਰਣ", "why": "a11.salok 'ਕਰਣ ਕਾਰਣ': Darpan glosses ਕਰਣ as ਜਗਤ/ਸ੍ਰਿਸ਼ਟੀ (creation), ਕਰਣ ਕਾਰਣ = the cause of creation; entry has 'करनेवाला/doer' (popular reading). Check Darpan before changing", "lang": "pa"}
+{"k": "ਗਨੀ", "why": "a14.p3 'ਸੇ ਧਨਵੰਤ ਗਨੀ ਸੰਸਾਰ': may be Persian ਗਨੀ (ghani, rich) rather than 'counted' (Sant Singh: 'wealthy and prosperous'); site Hindi has 'गिने जाते हैं'. Possibly needs a second sense", "lang": "pa"}
+{"k": "ਕਹਾਵਤ", "why": "a21.p7 'ਪਾਪੁ ਪੁੰਨੁ ਤਹ ਭਈ ਕਹਾਵਤ': feminine ਭਈ suggests ਕਹਾਵਤ is a fem. noun (talk/mention) rather than a present participle; g may be wrong", "lang": "pa"}
+{"k": "ਉਪਰਜਾ", "why": "root 'ਉਪਾਰਜਣਾ' looks coined; Darpan relates ਉਪਰਜਾ to Skt उपार्जन (produced); a Sanskrit root (उप+अर्ज्) may be better", "lang": "pa"}
+{"k": "ਤ੍ਰਿਸਟੈ", "why": "a13.p7 'ਸੰਤ ਕੈ ਦੋਖਿ ਨ ਤ੍ਰਿਸਟੈ ਕੋਇ': both site translations say 'is satisfied', but the form may derive from Skt तिष्ठ- (stands, holds firm) as some teekas gloss it; no root given. Verify against Darpan", "lang": "pa"}
+{"k": "ਪਰਾਨੈ", "why": "root ਪਰਾਨਣਾ is not a standard dictionary verb; sense 'recognizes, considers' (Darpan: ਪਛਾਣਦਾ ਹੈ) is right but the root needs checking", "lang": "pa"}
+{"k": "ਪਰਾਤਾ", "why": "ਉਨ ਜਨ ਚਰਨ ਪਰਾਤਾ: may be 'has fallen (at the feet)' (past) rather than present 'पड़ता है'", "lang": "pa"}
+{"k": "ਪਾਸਾਰੀ", "why": "Darpan may read ਪਾਸਾਰੀ as 'the one who spreads the show' rather than noun 'display'", "lang": "pa"}
+{"k": "ਪੁਨੀ", "why": "root ਪੁੱਜਣਾ is doubtful: ਪੁਨੀ (ਇਛ ਪੁਨੀ 'wish fulfilled') is usually derived from पूर्ण (ਪੁੰਨਾ/ਪੁੰਨੀ = completed), not ਪੁੱਜਣਾ 'to reach'", "lang": "pa"}
+{"k": "ਪਿਆਸਾ", "why": "ਪ੍ਰਭ ਦਰਸ ਪਿਆਸਾ may be adjective 'thirsty (for)' rather than noun 'thirst'; g says स्त्री॰ though form is -ਾ", "lang": "pa"}
+{"k": "ਫੈਲੁ", "why": "ਹਉਮੈ ਬਿਖੁ ਫੈਲੁ: Darpan/Mahan Kosh may read ਫੈਲੁ as noun 'spread, ostentation' (or Persian fe'l 'deed'); entry gives adjective 'फैला हुआ' / 'all-consuming'", "lang": "pa"}
+{"k": "ਬਿਖੋਟਿ", "why": "ਏਕ ਬਸਤੁ ਕਾਰਨਿ ਬਿਖੋਟਿ ਗਵਾਵੈ: hi 'विश्वास (खोकर)' mixes the verb ਗਵਾਵੈ into the gloss; Darpan reads ਬਿਖੋਟਿ roughly as 'by breach of faith / dishonesty'; needs a teeka check", "lang": "pa"}
+{"k": "ਬੂਡਤ", "why": "root ਡੁੱਬਣਾ is the modern synonym; the Gurbani verb is ਬੂਡਣਾ/ਬੂਡਨਾ (Hindi बूड़ना); keep the glossary convention in mind before changing", "lang": "pa"}
+{"k": "ਬਿਬੇਕੈ", "why": "ਜਨ ਕੈ ਬਿਰਤਿ ਬਿਬੇਕੈ: hi 'विवेककी, विवेकपूर्ण' (genitive/adjective) vs g संज्ञा; case of -ੈ here needs a teeka check", "lang": "pa"}
+{"k": "ਮੁਖੀ", "why": "ਬੋਲਹਿ ਹਰਿ ਮੁਖੀ: whether ਮੁਖੀ = 'chief, Supreme' (as entry) or 'with the mouth / turned towards' needs a teeka check", "lang": "pa"}
+{"k": "ਲਹੇ", "why": "root ਲਹਿਣਾ (modern 'to come down/off') vs Gurbani ਲਹਣਾ 'to obtain' (< लभ्): same spelling in the glossary would mislead; consider a distinct root", "lang": "pa"}
+{"k": "ਲਹੈ", "why": "root ਲਹਿਣਾ: the 'obtain' verb is Gurbani ਲਹਣਾ (< लभ्), distinct from modern ਲਹਿਣਾ 'come down'", "lang": "pa"}
+{"k": "ਲਹੰਤੇ", "why": "root ਲਹਿਣਾ: the 'obtain/find' verb is Gurbani ਲਹਣਾ (< लभ्), distinct from modern ਲਹਿਣਾ 'come down'", "lang": "pa"}
+{"k": "ਵਰਸਾਵੈ", "why": "ਜਿਸੁ ਧਨ ਤੇ ਸਭੁ ਕੋ ਵਰਸਾਵੈ: hi mixes 'लाभ उठाता है' with 'बरसाता है' (rains); Darpan sense is 'is blessed/benefits'; 'बरसाता' likely wrong", "lang": "pa"}
+{"k": "ਸੋਖ", "why": "ਜੈਸੇ ਸੂਰੁ ਸਰਬ ਕਉ ਸੋਖ: g 'संज्ञा' / hi 'सोखना' (infinitive) — here it functions verbally ('dries up / warms all'); grammar label needs a teeka check", "lang": "pa"}

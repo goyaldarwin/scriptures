@@ -242,7 +242,7 @@ function verseHTML(i){
   const it = IT[i], id = it.id, me = ME(), vv = verseOf(i);
   const bm = SHOWN().some(p => p.bm[KEY(id)]);
   const sh = VSHORT[it.y];
-  let h = '<div class="verse" id="v' + i + '" data-i="' + i + '"><div class="vtext">' + vv.v.map((l, y) => {
+  let h = '<div class="verse" id="v' + i + '" data-i="' + i + '"><div class="vtext' + (VEDIC.test(vv.v.join('')) ? ' vedic' : '') + '">' + vv.v.map((l, y) => {
     const last = y === vv.v.length - 1;
     let ln = last && it.y === 'cau' && it.n && /।।\s*$/.test(l) ? l.replace(/\s*।।\s*$/, ' ।।' + String(it.n).replace(/\d/g, d => DIG[d]) + '।।') : l;
     if (LANG() === 'en') ln = ln.replace(/[०-९]/g, d => DIG.indexOf(d)).replace(/[੦-੯]/g, d => d.charCodeAt(0) - 0x0A66);
@@ -582,6 +582,7 @@ function fitTitle() {
   h.style.overflowWrap = '';
 }
 addEventListener('resize', () => { if ($('#hTitle') && $('#hTitle').offsetParent) fitTitle(); });
+const VEDIC = /[\u0951\u0952\u1CD0-\u1CFF\uA8E0-\uA8FF]/;   // verses with svara marks are set in the Vedic font
 function renderHome(){
   if (!W) return;
   $('#hTitle').textContent = TT(W.title); fitTitle(); $('#hSub').textContent = TT(W.by) + ' · ' + TT(W.edition);
