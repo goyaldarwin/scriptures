@@ -6,6 +6,15 @@ This repository holds everything about the project: the website, the data, every
 
 > Clone github.com/goyaldarwin/scriptures and read `docs/START-HERE.md`, `docs/PLAYBOOK.md`, `docs/HOW-TO.md` and `docs/LIBRARY.md` before doing anything. Then: **[the task]**. Follow the playbook. Gita Press books are the source of truth. Test at phone size (390×844) with screenshots. Commit and push when done, and tell me in plain words what changed.
 
+## Working rules for every session
+- **Never push to `main` directly.** `main` is the live website, so every push to it is published.
+  - Create a branch (`work/<short-name>`, e.g. `work/sai-aarti`), commit there, push the branch, and open a pull request.
+  - The owner merges it after testing.
+- **Start from the latest `main`** (`git fetch origin main`), and rebase onto it before opening the pull request. Several sessions may work at once.
+- **Run `python3 tools/site/build.py` before every commit.** It checks the library and refuses to build if anything is inconsistent. Commit the generated files it produces.
+- **Touch only what your task needs.** A new work adds its own folders: `library/<path>/` and `tools/works/<work>/`. It edits shared files only to add to them: `library/index.json` (one new entry on the shelf), and `library/glossary/languages.json` plus a new `<lang>.json`. Changes to `tools/site/` or `tools/audio/` affect every work, so call them out in the pull request.
+- **Ask the owner for the sources** (book PDFs, recording links) instead of guessing. Accuracy comes before speed.
+
 ## Owner and standards
 - Owner: Darwin Goyal (GitHub `goyaldarwin`).
 - Accuracy first: the Gita Press books are the only source of truth. Fix discrepancies in the data directly, without notes or annotations. Do not mention AI anywhere in the app.
