@@ -476,7 +476,13 @@ function playFrom(i, end){
   if (ytVid !== tr.yt || !ytFrame()) ytLoad(tr.yt, st); else { ytPost('seekTo', [st, true]); ytPost('playVideo'); ytInfo.t = st; }
   setCur(i); $('#pTrack').textContent = playingName(); syncPlayer();
 }
-function onEnded(){ if (!PL.on) return; const tr = SRC.au.tracks[PL.t]; const nx = tr.li + 1; if ((PL.end == null || PL.end >= nx) && hasAu(nx)){ playFrom(nx, PL.end); return; } stopAudio(); }
+function onEnded(){
+  if (!PL.on) return;
+  // go on with the next recording; where a stretch has no recording yet, skip ahead to the next verse that has one
+  const tr = SRC.au.tracks[PL.t], last = PL.end == null ? IT.length - 1 : PL.end, nx = firstAu(tr.li + 1, last);
+  if (nx != null){ if (nx > tr.li + 1) toast(T('आगेके अंशकी रिकॉर्डिंग नहीं है — अगली रिकॉर्डिंगसे जारी', 'No recording for the next part — continuing with the next one')); playFrom(nx, PL.end); return; }
+  stopAudio();
+}
 function curAt(time){ const a = AUT[PL.t]; let lo = 0, hi = a.length - 1, r = a[0][0]; while (lo <= hi){ const m = (lo + hi) >> 1; if (a[m][1] <= time){ r = a[m][0]; lo = m + 1; } else hi = m - 1; } return r; }
 setInterval(() => {
   if (!PL.on || !ytOK) return;
@@ -549,6 +555,8 @@ function renderHome(){
   if (!W) return;
   $('#hTitle').textContent = TT(W.title); $('#hSub').textContent = TT(W.by) + ' · ' + TT(W.edition);
   $('#qVidhi').hidden = !W.vidhi;
+  // ▶ the whole work, start to end, across every part and recording
+  const pa = $('#hPlayAll'), fa = firstAu(0, IT.length - 1); pa.hidden = fa == null; pa.onclick = () => playRange('k', 0, IT.length - 1);
   const L = WS().last;
   $('#contCard').innerHTML = L && IT[L.i] ? '<div class="card"><div class="row"><div class="grow"><h3>' + T('जहाँ छोड़ा था', 'Continue where you left off') + '</h3><div class="big" style="font-size:17px">' + esc(KNAME(IT[L.i].p) + (topicOf(L.i) ? ' / ' + TNAME(topicOf(L.i)) : '')) + '</div><div class="sub">' + (L.org !== 'k' && PLAN[L.org] ? PNAME(L.org) + ' · ' + VN(dayOf(L.org, L.i)) + ' · ' : '') + posLabel(L.i) + '</div></div><button class="btn" id="cGo">' + T('आगे पढ़ें', 'Continue') + '</button></div></div>' : '';
   if ($('#cGo')) $('#cGo').onclick = () => openReader(L.org, L.i);

@@ -282,3 +282,4 @@ Then expect from me, in order:
 - **This is a long-term project**: prefer structure that scales (shared code first, one-entry-per-line shared files, checks in the build) over quick one-off fixes.
 - Verse icons sit in the four corners of the verse, in the gutter, so they never touch the text: type tag at top left, bookmark at top right, ▶ at bottom left, ⋮ at bottom right. The verse-type tag is a plain label.
 - A single-part work (āratī, stotra) lists its sections straight on its home screen. A work without reading plans shows no plan switch.
+- **Every work has "सम्पूर्ण पाठ सुनें / Play the complete work"** on its home screen. It plays from the first recorded verse to the end, across all parts and recordings. Where a stretch has no recording yet, it skips ahead to the next recorded verse and says so.
