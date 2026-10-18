@@ -121,6 +121,8 @@ library/glossary/
 - `fallback`: where to look next when a word isn't in this language's dictionary. Awadhi borrows Sanskrit words, so `awa` → `sa`. Sanskrit has no fallback, so a Sanskrit verse never shows an Awadhi sense.
 - `suffixes` / `stems`: how to find the root of an inflected word (रामहि → राम). These are per language, because each language inflects differently.
 
+Dictionary keys are written **without Vedic accent marks** (svara: U+0951–0954, U+1CD0–1CFF, U+A8E0–A8F1); the app removes them from a tapped word before looking it up, so a text keeps its svaras and still finds its meanings. Exporters must strip them the same way when they collect words.
+
 A dictionary (`<lang>.json`): `{"राम": {"hi": "भगवान श्रीराम", "en": "Lord Rama", "g": "grammar", "r": "root", "p": [["part", "meaning"]]}}`.
 
 **How a tapped word is looked up:**
