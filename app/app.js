@@ -168,6 +168,7 @@ function glossEdit(w, lang){
 /* ---------------- work structure ---------------- */
 let PAGES = [], itemPage = null, PARTS = [], TOPICS = [], topicAt = new Map(), PLANS = [], PLAN = {}, pauseAfter = {};
 function buildWork(){
+  applyTypes();
   IT = W.items; ID = {}; IT.forEach((x, i) => ID[x.id] = i);
   PAGES = []; itemPage = new Int32Array(IT.length); let cur = null;
   IT.forEach((it, i) => { if (!cur || cur.k !== it.p || cur.s !== it.s){ cur = {k: it.p, s: it.s, from: i, to: i}; PAGES.push(cur); } cur.to = i; itemPage[i] = PAGES.length - 1; });
@@ -221,6 +222,16 @@ const layerOn = l => !!S.settings.layers[l];
 /* ---------------- reader: continuous scroll over a kāṇḍa or a day's pāṭh ---------------- */
 let R = {org: 'k', a: 0, b: 0, n: 0, pf: -1, pt: -1};
 const VSHORT = {cau: ['चौ॰', 'Cau.'], do: ['दो॰', 'Do.'], so: ['सो॰', 'So.'], cha: ['छं॰', 'Cha.'], shloka: ['श्लो॰', 'Śl.']};
+// A work may name its own verse types (work.json → "types": {type: {name, short}}); they add to or replace the built-in ones while it is open.
+const TYPES0 = [[TYPEN, Object.assign({}, TYPEN)], [VSHORT, Object.assign({}, VSHORT)]];
+function applyTypes(){
+  TYPES0.forEach(([o, b]) => { for (const k in o) delete o[k]; Object.assign(o, b); });
+  for (const [k, t] of Object.entries(W.types || {})){
+    const nm = t.name || {hi: k, en: k};
+    TYPEN[k] = [nm.hi, nm.en];
+    if (t.short) VSHORT[k] = [t.short.hi, t.short.en];
+  }
+}
 function verseHTML(i){
   const it = IT[i], id = it.id, me = ME(), vv = verseOf(i);
   const bm = SHOWN().some(p => p.bm[KEY(id)]);

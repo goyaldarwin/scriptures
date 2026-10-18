@@ -47,6 +47,8 @@ def check_work(lib, leaf, LANGS):
     for x in items:
         _need(isinstance(x.get('v'), list) and x['v'], f"{name}: item {x['id']} has no verse lines")
         _need(0 <= x['p'] < len(w['parts']['list']), f"{name}: item {x['id']} part {x['p']} out of range")
+    for k, t in (w.get('types') or {}).items():
+        _need(re.fullmatch(r'[a-z0-9_]+', k) and _bi(t.get('name')) and (_bi(t['short']) if 'short' in t else True), f"{name}: type {k!r} needs name {{hi, en}} (and a bilingual short if given)")
     for t in w.get('topics', []): _need(t['id'] in ID and _bi({'hi': t['hi'], 'en': t['en']}), f"{name}: topic {t} is invalid")
     for p in w.get('plans', []):
         _need(len(p['end']) == p['n'], f"{name}: plan {p['id']} has {len(p['end'])} ends for {p['n']} days")

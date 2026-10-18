@@ -19,6 +19,12 @@ tools/
       book/                        Gita Press PDFs → book/app_data.json (see its README)
       export.py                    app_data.json → library/tulsidas/ramcharitmanas/ (text + Gita Press meanings)
       audio/kamlesh-upadhyay/      source.json, recordings.json, transcripts/
+    ramraksha/
+      source/                      the video's text (video_text.tsv), the Hindi web page and its cleaned meanings
+      export.py                    source/ → library/stotra/ramraksha/ (text, English + Hindi meanings, new Sanskrit words)
+      glossary_sa.json             the stotra's word meanings, merged into library/glossary/sa.json
+      audio/transcribe_onnx.py     Whisper small (ONNX, from GitHub) → transcript, when Hugging Face is unreachable
+      audio/vande-guru-paramparaam/ source.json, recordings.json, transcripts/
 ```
 
 ## Rebuild everything (Rāmacaritamānasa)

@@ -39,4 +39,5 @@ See `docs/HOW-TO.md`: add a meaning source, add a reciter, add a work, fix text,
 ## Status (October 2026)
 - Śrī Rāmacaritamānasa: the full text, Hindi and English meanings, glossary, topics, plans and vidhi are complete.
 - Audio (Pt. Kamlesh Upadhyay): days 1–10 and 15–17 are timed. 11–14 and 18–30 still need transcribing (`tools/audio/README.md`). There is no recording for day 26.
+- Śrī Rāma Rakṣā Stotram (Stotras shelf): text, English and Hindi meanings, word meanings and audio (Vande Guru Paramparaam) are complete.
 - Pending: a permission letter to Gita Press for the meanings.

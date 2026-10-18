@@ -27,7 +27,7 @@ If `build.py` prints `LIBRARY PROBLEM: …`, fix what it names. It never builds 
     "title": {"hi": "अनूप जलोटा", "en": "Anup Jalota"}}
    ```
 3. Write `recordings.json`, one entry per YouTube video in reading order: `{"yt": "<11-char video id>", "file": "<audio file name>", "dur": <seconds>, "order": <n>}`. The video id is in the YouTube link (`watch?v=…`) and in the downloaded file name `[…]`.
-4. Transcribe (hours; resumable): `AUDIO_DIR=<folder with the files> WHISPER_MODEL=<model folder> python3 tools/audio/transcribe.py tools/works/<work>/audio/<id> 0 2`, and the same with `1 2` in parallel. See `tools/audio/README.md`. Commit `transcripts/` as you go, because they are the expensive part.
+4. Transcribe (hours; resumable). If Hugging Face can't be reached, `tools/works/ramraksha/audio/transcribe_onnx.py` does the same from a model on GitHub (see its header): `AUDIO_DIR=<folder with the files> WHISPER_MODEL=<model folder> python3 tools/audio/transcribe.py tools/works/<work>/audio/<id> 0 2`, and the same with `1 2` in parallel. See `tools/audio/README.md`. Commit `transcripts/` as you go, because they are the expensive part.
 5. Make the timings: `python3 tools/audio/make_timings.py tools/works/<work>/audio/<id>`. It prints, for each recording, the first and last verse it found. Check that these match the recording's day.
 6. Build and test: tap ▶ on a day, then check that the highlighted verse follows the voice at the start, middle and end.
 
@@ -35,7 +35,7 @@ If `build.py` prints `LIBRARY PROBLEM: …`, fix what it names. It never builds 
 
 1. Place it on the shelf: edit `library/index.json` and add shelves as deep as needed (e.g. Ved › Sāmaveda › Upaniṣad › Kena), ending in `{"id", "work", "path", "title", "by", "edition", "desc"}`. The `path` mirrors the shelf, e.g. `ved/samaveda/upanishad/kena`.
 2. Create `tools/works/<work>/` with the extraction scripts (from PDFs or other sources) and an `export.py` that writes `library/<path>/work.json` (`docs/LIBRARY.md` §2) with each verse's language, its meaning sources (§3), and new words into `glossary/<lang>.json` (§5). A new language needs its own entry first (below). Use `tools/works/ramcharitmanas/` as the model.
-3. Choose the natural divisions for `parts`, the `topics`, and any `plans` (e.g. daily pāṭha). Ask the owner which plans they want.
+3. Choose the natural divisions for `parts`, the `topics`, and any `plans` (e.g. daily pāṭha). Ask the owner which plans they want. Verse types the app doesn't know (viniyoga, dhyāna …) go in the work's `types` (`docs/LIBRARY.md` §2). `tools/works/ramraksha/` is a small model: a stotra taken from a video's on-screen text.
 4. Add audio as above if there is a recording.
 5. Build and test the shelf screen, the work's home, the reader, search, and bookmarks.
 
