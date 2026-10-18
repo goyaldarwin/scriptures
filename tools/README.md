@@ -31,6 +31,12 @@ tools/
       meanings/hi.json, en.json    one meaning per verse
       glossary/mr|sa|hi.json       word meanings by language
       export.py                    → library/hinduism/aarti/shirdi-sai/dhoop-aarti/ and library/glossary/
+    isha-upanishad/
+      text.json                    the text (from the shlokam.org printout; settled in reconciliation.md), check.py verifies it
+      meanings/hi.json, en.json    one meaning per mantra, written for this library
+      glossary_sa.json             word meanings, merged into library/glossary/sa.json
+      export.py                    → library/hinduism/veda/yajurveda/shukla-yajurveda/upanishad/isha-upanishad/
+      audio/smvedroad/             source.json, recordings.json (not timed yet)
 ```
 
 ## Rebuild everything (Rāmacaritamānasa)
