@@ -1,4 +1,4 @@
-"""Śrī Rāma Rakṣā Stotram (Budha Kauśika): source/ → library/hindu/stotra/rama/ramraksha/.
+"""Śrī Rāma Rakṣā Stotram (Budha Kauśika): source/ → library/hinduism/stotra/rama/ramraksha/.
 
 Source of truth for the text: the Vande Guru Paramparaam video (YouTube ZIDdE4SZAuw), whose
 on-screen lines (Devanagari · transliteration · English) were transcribed from the owner's
@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'
 
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.dirname(os.path.dirname(os.path.dirname(HERE)))
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(REPO, 'library')
-WP = 'hindu/stotra/rama/ramraksha'
+WP = 'hinduism/stotra/rama/ramraksha'
 
 def dump(path, obj):
     path = os.path.join(OUT, path); os.makedirs(os.path.dirname(path), exist_ok=True)

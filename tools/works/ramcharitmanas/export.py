@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.dirname(os.path.dirname(os.path.dirname(HERE)))
 ROOT = os.path.join(HERE, 'book')   # where app_data.json is built
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(REPO, 'library')
-WP = 'hindu/granth/tulsidas/ramcharitmanas'
+WP = 'hinduism/granth/tulsidas/ramcharitmanas'
 d = json.load(open(os.path.join(ROOT, 'app_data.json')))
 IT = d['it']; EG = d['eg']
 
