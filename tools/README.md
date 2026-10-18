@@ -14,6 +14,7 @@ tools/
     transcribe_onnx.py             the same with a Whisper model from GitHub, when the usual model can't be downloaded
     align.py                       matches transcript lines to verses
     make_timings.py                transcripts → library/<work>/audio/<id>.json
+    sync_transcripts.py            copies transcripts made in the cloud (private repo) into tools/works/…/transcripts/
   fonts/                         Noto Serif Devanagari, Literata, Gentium (transliteration subset)
   works/                         one folder per work: how its data was made
     ramcharitmanas/
@@ -38,7 +39,13 @@ tools/
       translit.py                  their transliteration, in the Mānas's style
       meanings/hi.json, en.json    our own meanings for the Chālīsā and āratī (→ hi-scriptures, en-scriptures)
       glossary/awa|hi.json         their word meanings, merged into library/glossary/
-      audio/ashwin-pathak/         source.json, recordings.json (not transcribed yet)
+      audio/ashwin-pathak/         source.json, recordings.json, transcripts (cloud) → timings
+    isha-upanishad/
+      text.json                    the text (from the shlokam.org printout; settled in reconciliation.md), check.py verifies it
+      meanings/hi.json, en.json    one meaning per mantra, written for this library
+      glossary_sa.json             word meanings, merged into library/glossary/sa.json
+      export.py                    → library/hinduism/veda/yajurveda/shukla-yajurveda/upanishad/isha-upanishad/
+      audio/smvedroad/             source.json, recordings.json (not timed yet)
 ```
 
 ## Rebuild everything (Rāmacaritamānasa)

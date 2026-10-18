@@ -14,6 +14,8 @@ import sys,json,os,subprocess,time,numpy as np
 from faster_whisper import WhisperModel
 SRC=os.path.abspath(sys.argv[1]); TR=os.path.join(SRC,'transcripts'); os.makedirs(TR,exist_ok=True)
 DATA=os.environ.get('DATA_DIR'); AUD=os.environ.get('AUDIO_DIR',''); LANG=json.load(open(os.path.join(SRC,'source.json'))).get('lang','hi')
+# Whisper's own Sanskrit mode writes Latin letters; its Hindi mode writes Devanagari, which align.py needs. Awadhi likewise.
+LANG={'sa':'hi','awa':'hi'}.get(LANG,LANG)
 W,K=(int(sys.argv[2]),int(sys.argv[3])) if len(sys.argv)>3 else (0,1)
 m=WhisperModel(os.environ['WHISPER_MODEL'],device='cpu',compute_type='int8',cpu_threads=int(os.environ.get('THREADS','1')))
 REC=sorted(json.load(open(os.path.join(SRC,'recordings.json'))),key=lambda r:r['order'])

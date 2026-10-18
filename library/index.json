@@ -171,6 +171,63 @@
       ]
      }
     ]
+   },
+   {
+    "id": "veda",
+    "title": {
+     "hi": "वेद",
+     "en": "Vedas"
+    },
+    "children": [
+     {
+      "id": "yajurveda",
+      "title": {
+       "hi": "यजुर्वेद",
+       "en": "Yajurveda"
+      },
+      "children": [
+       {
+        "id": "shukla-yajurveda",
+        "title": {
+         "hi": "शुक्ल यजुर्वेद",
+         "en": "Śukla Yajurveda"
+        },
+        "children": [
+         {
+          "id": "upanishad",
+          "title": {
+           "hi": "उपनिषद्",
+           "en": "Upaniṣads"
+          },
+          "children": [
+           {
+            "id": "isha-upanishad",
+            "work": "isha-upanishad",
+            "path": "hinduism/veda/yajurveda/shukla-yajurveda/upanishad/isha-upanishad",
+            "title": {
+             "hi": "ईशावास्योपनिषद्",
+             "en": "Īśāvāsya Upaniṣad"
+            },
+            "by": {
+             "hi": "शुक्ल यजुर्वेद, काण्व संहिता — अध्याय ४०",
+             "en": "Śukla Yajurveda, Kāṇva Saṃhitā — chapter 40"
+            },
+            "edition": {
+             "hi": "shlokam.org",
+             "en": "shlokam.org"
+            },
+            "desc": {
+             "hi": "शान्तिपाठ · १८ मन्त्र",
+             "en": "Śānti Pāṭha · 18 mantras"
+            }
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
    }
   ]
  }
