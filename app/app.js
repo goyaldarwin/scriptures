@@ -356,7 +356,7 @@ let scT;
 window.addEventListener('scroll', () => { if (!$('#reader').classList.contains('on')) return; ensure(); clearTimeout(scT); scT = setTimeout(() => { updateHeader(); savePos(); }, 200); }, {passive: true});
 function savePos(i){ if (i == null) i = topVisibleItem(); const ws = WS(); ws.pos[R.org] = i; ws.last = {org: R.org, i}; save(); }
 function openReader(org, i, flash){
-  if (!S.hinted){ S.hinted = 1; save(); setTimeout(() => toast(T('किसी शब्दको छूकर अर्थ देखें · नीचेसे प्रसंग चुनें', 'Tap any word for its meaning · choose a section at the bottom')), 900); }
+  if (!S.hinted && !TOUR){ S.hinted = 1; save(); setTimeout(() => toast(T('किसी शब्दको छूकर अर्थ देखें · नीचेसे प्रसंग चुनें', 'Tap any word for its meaning · choose a section at the bottom')), 900); }
   R.org = org; [R.a, R.b, R.n] = rangeFor(org, i);
   if (!$('#reader').classList.contains('on')) show('reader');
   renderAround(i); if (flash){ const el = document.getElementById('v' + i); if (el) el.classList.add('flash'); }
@@ -898,7 +898,7 @@ function renderSettings(){
   $$('[data-src]').forEach(s => s.onchange = async () => { const c = S.src[W.id] = S.src[W.id] || {}; c[s.dataset.src] = s.value; save(); if (s.dataset.src === 'au') stopAudio(); await loadSources(); IDX = null; toast(T('स्रोत बदला', 'Source changed')); });
   $('#ssz').oninput = e => { st.size = +e.target.value; applyTheme(); save(); };
   $('#sth').onchange = e => { st.theme = e.target.value; applyTheme(); save(); };
-  $('#tourAgain').onclick = () => showTour(0);
+  $('#tourAgain').onclick = () => startTour();
   $('#exp').onclick = exportFile; $('#imp').onclick = () => $('#fileIn').click();
   $$('[name=act]').forEach(r => r.onchange = () => { S.active = r.value; if (!S.show.includes(r.value)) S.show.push(r.value); save(); renderSettings(); });
   $$('[data-show]').forEach(c => c.onchange = () => { const id = c.dataset.show; if (c.checked){ if (!S.show.includes(id)) S.show.push(id); } else S.show = S.show.filter(x => x !== id); save(); });
@@ -1045,30 +1045,58 @@ function renderVidhi(){
 }
 $('#vidBody').addEventListener('click', ev => { const w = ev.target.closest('.w'); if (w){ w.classList.add('sel'); wordSheet(w.dataset.w || w.textContent, vidTab === 'v' ? W.vg : vidTab === 'visarjan' ? W.vidhi.visarjan.g : null, W.lang); } });
 
-/* ---------------- first-run tour: the few things that make the app useful, shown once (Settings › Help shows it again) ---------------- */
-let tourK = 0;
+/* ---------------- first-run tour: done, not read (owner, 2026-10-19) ----------------
+   A welcome card, then the reader is taken into the Sundarakāṇḍa and asked to do each thing for real — open the text, tap a
+   word, close its drawer, switch a meaning on, play one verse — with that spot lit and the rest dimmed; each step moves on
+   when it has been done. Shown once; Settings › Help › “Show the tour again”. closeTour() ends it at any point. */
+let TOUR = null;   // {k: step, t0, base}
+function tourWork(){ const leafs = []; (function walk(n){ (n || []).forEach(c => c.work ? leafs.push(c.work) : walk(c.children)); })(LIB); return leafs.includes('sundarkand') ? 'sundarkand' : leafs[0]; }
+function inView(el){ const r = el.getBoundingClientRect(); return r.width && r.top > 70 && r.bottom < innerHeight - 90; }
+function firstVisible(sel){ const all = $$(sel); return all.find(inView) || all[0] || null; }
 function tourSteps(){
-  const bar = w => '<span class="ta-bar" style="width:' + w + 'px"></span>', play = '<span class="ta-play"><svg><use href="#i-play"/></svg></span>';
   return [
-    {a: '<div class="ta-om">ॐ</div>', t: T('स्वागत है', 'Welcome'), p: T('पुस्तकालयसे कोई ग्रन्थ चुनें। आप जहाँ तक पढ़ते हैं, वह याद रहता है — “आगे पढ़ें” से वहीं लौटें।', 'Choose a scripture from the library. Your place is remembered: “Continue” takes you back to it.')},
-    {a: '<div class="ta-line">' + bar(40) + '<span class="ta-word">शब्द</span>' + bar(56) + '</div><div class="ta-pop"><b>' + T('अर्थ', 'Meaning') + '</b> · ' + T('मूल, व्याकरण', 'root, grammar') + '</div>', t: T('किसी भी शब्दको छुएँ', 'Tap any word'), p: T('पदके किसी भी शब्दको छूकर उसका अर्थ, मूल शब्द और व्याकरण देखें।', 'Tap any word of a verse to see its meaning, its root and its grammar.')},
-    {a: '<div class="ta-pill"><span class="on">हिं</span><span class="on">En</span><span>शब्द</span></div>', t: T('हिंदी और अंग्रेज़ी अर्थ', 'Hindi and English meanings'), p: T('ऊपर “हिं · En · शब्द” से हर पदके नीचे हिंदी अर्थ, अंग्रेज़ी अर्थ या शब्दार्थ दिखाएँ या छिपाएँ।', 'Use “हिं · En · शब्द” at the top to show or hide the Hindi meaning, the English meaning or word-by-word meanings under every verse.')},
-    {a: play + '<div class="ta-lit">' + bar(150) + bar(120) + '</div>', t: T('सुनते हुए पढ़ें', 'Listen, hands-free'), p: T('“सम्पूर्ण पाठ सुनें” दबाएँ: जो पद गाया जा रहा है वह चमकता है और पन्ना अपने आप आगे बढ़ता है।', 'Tap “Play all”: the verse being recited is lit and the page scrolls by itself.')},
-    {a: '<div class="ta-row">' + play + '<span>' + T('<b>▶ पदके पास</b> — केवल वही पद', '<b>▶ beside a verse</b> — just that verse') + '</span></div><div class="ta-row"><b>⋮</b><span>' + T('“यहाँसे सुनें” — यहाँसे आगे', '“Listen from here” — from there on') + '</span></div>', t: T('एक पद या यहाँसे आगे', 'One verse, or from here'), p: T('किसी पदके पास ▶ उसी पदको सुनाता है; ⋮ मेनूमें “यहाँसे सुनें” वहाँसे आगे सुनाता है।', '▶ beside a verse plays just that verse; “Listen from here” in its ⋮ menu goes on from there.')},
-    {a: '<div class="ta-row"><b>३०</b><span>' + T('३० दिन और ९ दिनका पाठ', '30-day and 9-day readings') + '</span></div><div class="ta-row"><svg style="width:20px;height:20px"><use href="#i-bm"/></svg><span>' + T('बुकमार्क और टिप्पणियाँ', 'Bookmarks and notes') + '</span></div>', t: T('नियमित पाठ', 'A daily reading'), p: T('जहाँ हों, वहाँ पाठ-योजनाएँ आपकी प्रगति रखती हैं। बुकमार्क और टिप्पणियाँ ☰ मेनूमें हैं। सब कुछ केवल आपके फ़ोनमें रहता है।', 'Where a work has reading plans, they keep your progress. Bookmarks and notes are in the ☰ menu. Everything stays on your phone.')},
+    {t: () => $$('#orgList [data-open]')[W && W.id === 'sundarkand' && $$('#orgList [data-open]').length > 1 ? 1 : 0], p: T('पाठ खोलनेके लिये यहाँ छुएँ।', 'Tap here to open the text.'), done: () => CURVIEW === 'reader' && !!$('#rBody .verse')},
+    {t: () => firstVisible('#rBody .verse .vtext .w'), p: T('किसी भी शब्दको छुएँ — उसका अर्थ दिखेगा।', 'Tap any word to see its meaning.'), done: () => $('#sheet').classList.contains('on')},
+    {t: () => $('#sheet'), p: T('यह उस शब्दका अर्थ, मूल शब्द और व्याकरण है। ऊपरकी पट्टीको नीचे खींचकर बंद करें।', 'Its meaning, root and grammar. Drag the drawer down to close it.'), done: () => !$('#sheet').classList.contains('on'), top: true},
+    {t: () => $('#rLayers [data-l="' + (S.settings.layers.h ? 'e' : 'h') + '"]'), p: () => S.settings.layers.h ? T('“En” छूकर हर पदके नीचे अंग्रेज़ी अर्थ दिखाएँ या छिपाएँ। “शब्द” से शब्दार्थ।', 'Tap “En” to show or hide the English meaning under every verse. “शब्द” gives word-by-word meanings.') : T('“हिं” छूकर हर पदके नीचे हिंदी अर्थ दिखाएँ। “En” अंग्रेज़ी, “शब्द” शब्दार्थ।', 'Tap “हिं” to show the Hindi meaning under every verse. “En” is English, “शब्द” word by word.'),
+     enter: () => { TOUR.base = JSON.stringify(S.settings.layers); }, done: () => JSON.stringify(S.settings.layers) !== TOUR.base},
+    {t: () => firstVisible('#rBody .vplay'), p: T('▶ छूकर केवल यह पद सुनें — जो गाया जा रहा है वह चमकेगा।', 'Tap ▶ to hear just this verse — it lights up as it is sung.'), done: () => PL.on},
   ];
 }
-function showTour(k){
-  const st = tourSteps(); tourK = k = Math.max(0, Math.min(k, st.length - 1)); const x = st[k];
-  $('#tourArt').innerHTML = x.a; $('#tourT').textContent = x.t; $('#tourP').textContent = x.p;
-  $('#tourDots').innerHTML = st.map((_, i) => '<i' + (i === k ? ' class="on"' : '') + '></i>').join('');
-  $('#tourSkip').textContent = k ? T('पीछे', 'Back') : T('छोड़ें', 'Skip');
-  $('#tourNext').textContent = k === st.length - 1 ? T('शुरू करें', 'Start') : T('आगे', 'Next');
+function startTour(){
+  closeTour(true); TOUR = {k: -1};
+  $('#tourArt').innerHTML = '<div class="ta-om">ॐ</div>'; $('#tourT').textContent = T('स्वागत है', 'Welcome');
+  $('#tourP').textContent = T('चलिये, सुन्दरकाण्डमें एक मिनटमें देखें कि यह ऐप कैसे काम करता है — आप स्वयं करके देखेंगे।', 'Let’s see how the app works, inside the Sundarakāṇḍa — you will try each thing yourself. It takes a minute.');
+  $('#tourDots').innerHTML = ''; $('#tourSkip').textContent = T('छोड़ें', 'Skip'); $('#tourNext').textContent = T('शुरू करें', 'Start');
+  $('#tourSkip').onclick = () => closeTour(); $('#tourNext').onclick = async () => { $('#tour').hidden = true; await openWork(tourWork()); WS().org = 'k'; renderHome(); tourStep(0); };
   $('#tour').hidden = false;
 }
-function closeTour(){ $('#tour').hidden = true; S.settings.tour = 1; save(); }
-$('#tourNext').onclick = () => { if (tourK >= tourSteps().length - 1) closeTour(); else showTour(tourK + 1); };
-$('#tourSkip').onclick = () => { if (tourK) showTour(tourK - 1); else closeTour(); };
+function tourStep(k){
+  const st = tourSteps(); if (!TOUR) return;
+  if (k >= st.length){ return tourEnd(); }
+  TOUR.k = k; TOUR.t0 = Date.now(); const x = st[k]; if (x.enter) x.enter();
+  const el = x.t(); if (el && el.scrollIntoView && !x.top && !inView(el)) el.scrollIntoView({block: 'center'});
+  $('#coach').hidden = false; $('#cbText').textContent = typeof x.p === 'function' ? x.p() : x.p; $('#cbStep').textContent = DEV(k + 1) + ' / ' + DEV(st.length);
+}
+function tourEnd(){
+  $('#coach').hidden = true; TOUR = null;
+  $('#tourArt').innerHTML = '<div class="ta-om">ॐ</div>'; $('#tourT').textContent = T('बस इतना ही', 'That’s all');
+  $('#tourP').textContent = T('ग्रन्थके पन्नेपर “सम्पूर्ण पाठ सुनें” पूरा पाठ सुनाता है और पन्ने अपने आप पलटता है। पाठ-योजनाएँ, बुकमार्क और टिप्पणियाँ ☰ में हैं। सेटिंग्स › सहायतामें यह परिचय फिरसे देख सकते हैं।', 'On a work’s page, “Play all” reads it aloud hands-free and turns the pages. Reading plans, bookmarks and notes are in ☰. Settings › Help shows this tour again.');
+  $('#tourDots').innerHTML = ''; $('#tourSkip').hidden = true; $('#tourNext').textContent = T('ठीक है', 'Done');
+  $('#tourNext').onclick = () => closeTour(); $('#tour').hidden = false;
+}
+function closeTour(keep){ if (!keep) S.hinted = 1;  $('#tour').hidden = true; $('#coach').hidden = true; $('#tourSkip').hidden = false; TOUR = null; if (!keep){ S.settings.tour = 1; save(); } }
+// keep the light on the step's spot as the page moves; move on when the step has been done (a step that cannot be shown is skipped)
+setInterval(() => {
+  if (!TOUR || TOUR.k < 0) return; const x = tourSteps()[TOUR.k]; if (!x) return;
+  if (x.done()){ const nx = TOUR.k + 1; TOUR.k = -1; $('#cspot').style.opacity = 0; setTimeout(() => tourStep(nx), 450); return; }
+  const el = x.t(), sp = $('#cspot'), cb = $('#cbub');
+  if (!el){ if (Date.now() - TOUR.t0 > 6000) tourStep(TOUR.k + 1); sp.style.opacity = 0; return; }
+  const r = el.getBoundingClientRect(), pad = 6; sp.style.opacity = 1;
+  Object.assign(sp.style, {left: (r.left - pad) + 'px', top: (r.top - pad) + 'px', width: (r.width + 2 * pad) + 'px', height: (r.height + 2 * pad) + 'px'});
+  const below = x.top ? false : r.top < innerHeight / 2; cb.style.top = below ? Math.min(innerHeight - 160, r.bottom + 16) + 'px' : ''; cb.style.bottom = below ? '' : (x.top ? innerHeight - r.top + 16 : innerHeight - r.top + 16) + 'px';
+}, 250);
+$('#cbSkip').onclick = () => closeTour();
 
 // keep only the shelves on the list (paths of shelf ids: "hinduism", "sikhism/gurbani/guru-arjan-dev/sukhmani-sahib")
 function pruneLib(nodes, shelves){
@@ -1100,6 +1128,6 @@ function pruneLib(nodes, shelves){
   if (start){ await openWork(start, true); viewStack.push('home'); history.pushState({v: 'home'}, ''); show('home', false); }
   else { renderLibrary(); await hideSalute(); }
   cloudInit();
-  if (!S.settings.tour) showTour(0);
+  if (!S.settings.tour) startTour();
   if ('serviceWorker' in navigator && location.protocol === 'https:' && !BUNDLE) navigator.serviceWorker.register('sw.js').catch(() => {});
 })();

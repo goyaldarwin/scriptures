@@ -42,11 +42,23 @@ async def main():
             if SHOTS: n += 1; os.makedirs(SHOTS, exist_ok=True); await pg.screenshot(path=os.path.join(SHOTS, f'{n:02d}-{tag}.png'))
         ev = pg.evaluate
         await pg.goto(url); await pg.wait_for_timeout(2500)
-        # first run: the tour shows once, steps through, and is not shown again
+        # first run: an interactive tour inside the Sundarakāṇḍa — each step moves on only when the reader has done it
         check('first run: the tour shows', await ev("!document.querySelector('#tour').hidden"))
-        nsteps = await ev("tourSteps().length")
-        for _ in range(nsteps): await (await pg.query_selector('#tourNext')).click(); await pg.wait_for_timeout(120)
-        check('the tour steps through and closes', await ev("document.querySelector('#tour').hidden && S.settings.tour === 1"), nsteps)
+        await (await pg.query_selector('#tourNext')).click(); await pg.wait_for_timeout(2500)
+        check('tour: opens the Sundarakāṇḍa and lights the first step', await ev("W && W.id") == 'sundarkand' and await ev("!document.querySelector('#coach').hidden && TOUR && TOUR.k === 0"))
+        await ev("tourSteps()[0].t().click()"); await pg.wait_for_timeout(1800)
+        check('tour: opening the text moves to the word step', await ev("TOUR && TOUR.k") == 1, await ev("TOUR && TOUR.k"))
+        await ev("tourSteps()[1].t().click()"); await pg.wait_for_timeout(1200)
+        check('tour: tapping a word opens its meaning and moves on', await ev("TOUR && TOUR.k") == 2 and await ev("document.querySelector('#sheet').classList.contains('on')"))
+        await ev("closeSheet()"); await pg.wait_for_timeout(1200)
+        check('tour: closing the drawer moves on', await ev("TOUR && TOUR.k") == 3)
+        await ev("tourSteps()[3].t().click()"); await pg.wait_for_timeout(1200)
+        check('tour: switching a meaning moves on', await ev("TOUR && TOUR.k") == 4)
+        await ev("tourSteps()[4].t().click()"); await pg.wait_for_timeout(1200)
+        check('tour: playing a verse ends the tour with a closing card', await ev("!TOUR && !document.querySelector('#tour').hidden"))
+        await ev("stopAudio()"); await (await pg.query_selector('#tourNext')).click(); await pg.wait_for_timeout(300)
+        check('the tour closes and is remembered', await ev("document.querySelector('#tour').hidden && document.querySelector('#coach').hidden && S.settings.tour === 1"))
+        await ev("S.work = null; save()")
         await pg.reload(); await pg.wait_for_timeout(2000)
         check('the tour is not shown again', await ev("document.querySelector('#tour').hidden"))
         # the drawer closes when dragged down from its handle

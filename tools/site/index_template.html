@@ -189,7 +189,7 @@ body.recite .vtext{font-size:calc(var(--verse-size) + 5px)}
 /* ---------- sheets ---------- */
 .scrim{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:40;display:none}
 .scrim.on{display:block}
-.tour{position:fixed;inset:0;z-index:60;background:color-mix(in srgb,var(--bg) 70%,#000 30%);display:flex;align-items:center;justify-content:center;padding:16px}.tour[hidden]{display:none}
+.coach{position:fixed;inset:0;z-index:58;pointer-events:none}.coach[hidden]{display:none}.cspot{position:fixed;border-radius:14px;box-shadow:0 0 0 3px var(--saffron),0 0 0 9999px rgba(20,22,40,.55);transition:all .25s ease;pointer-events:none}.cbub{position:fixed;left:16px;right:16px;max-width:440px;margin:0 auto;background:var(--surface);border-radius:16px;padding:14px 16px 10px;box-shadow:0 10px 30px rgba(0,0,0,.3);pointer-events:auto}.cbub p{margin:0 0 8px;font-size:17px;line-height:1.5}.cbrow{display:flex;justify-content:space-between;align-items:center;font-size:13px}.cbrow button{color:var(--indigo);font-size:14px;padding:6px 4px}.tour{position:fixed;inset:0;z-index:60;background:color-mix(in srgb,var(--bg) 70%,#000 30%);display:flex;align-items:center;justify-content:center;padding:16px}.tour[hidden]{display:none}
 .tcard{background:var(--surface);border-radius:22px;max-width:420px;width:100%;padding:22px 20px 18px;box-shadow:0 12px 40px rgba(0,0,0,.25);text-align:center}
 .tcard h2{margin:14px 0 6px;font-size:21px}.tcard p{margin:0 0 14px;color:var(--muted);font-size:16px;line-height:1.5}
 .tart{height:150px;border-radius:16px;background:var(--indigo-soft);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;overflow:hidden}
@@ -429,6 +429,7 @@ body.playing #rBody{padding-bottom:240px}
 
 <div class="loading" id="loading">॥ ॐ श्री परमात्मने नमः ॥</div>
 <div class="scrim" id="scrim"></div>
+<div class="coach" id="coach" hidden><div class="cspot" id="cspot"></div><div class="cbub" id="cbub"><p id="cbText"></p><div class="cbrow"><span id="cbStep" class="muted"></span><button id="cbSkip"><span data-en="Skip tour">परिचय छोड़ें</span></button></div></div></div>
 <div class="tour" id="tour" hidden role="dialog" aria-modal="true"><div class="tcard"><div class="tart" id="tourArt"></div><h2 id="tourT"></h2><p id="tourP"></p><div class="tdots" id="tourDots"></div><div class="tbtns"><button class="btn ghost" id="tourSkip"></button><button class="btn" id="tourNext"></button></div></div></div>
 <div class="sheet" id="sheet"><div class="grab"></div><div class="wrap" id="sheetBody"></div></div>
 <div class="toast" id="toast"></div>
