@@ -271,7 +271,7 @@ function verseHTML(i){
     let ln = last && it.y === 'cau' && it.n && /।।\s*$/.test(l) ? l.replace(/\s*।।\s*$/, ' ।।' + String(it.n).replace(/\d/g, d => DIG[d]) + '।।') : l;
     if (LANG() === 'en') ln = ln.replace(/[०-९]/g, d => DIG.indexOf(d)).replace(/[੦-੯]/g, d => d.charCodeAt(0) - 0x0A66);
     const w = wordsHTML(ln).replace(/।।\s*([0-9०-९][^\s।<]*)\s*।।/, '<span style="white-space:nowrap">।।$1।।</span>').replace(/॥\s*([0-9०-९੦-੯][^\s॥<]*)\s*॥/, '<span style="white-space:nowrap">॥$1॥</span>');
-    const lead = y === 0 && sh ? '<span class="vt">' + T(sh[0], sh[1]) + '</span>' : '';
+    const lead = '';   // the verse type is no longer a corner tag: it is a heading above a run of verses (typeHead)
     // four corners, each inside the gutter so they never touch the text: type tag (top left), bookmark (top right),
     // ▶ (bottom left), ⋮ (bottom right). A one-line verse is given a second line's height so the corners stay apart.
     const top = y === 0 ? '<button class="vb vbm' + (bm ? ' bm-on' : '') + '" data-a="bm" aria-label="bookmark"><svg><use href="#i-bm"/></svg></button>' : '';
@@ -289,12 +289,19 @@ function pauseHTML(i){
   const list = pauseAfter[i]; if (!list) return '';
   return list.filter(([o]) => R.org === 'k' || R.org === o).map(([o, n]) => { const done = DONE(ME(), o)[n]; return '<div class="pause" data-pause="' + o + n + '"><b>' + PNAME(o) + ' · ' + VN(n) + '</b><div class="sub">' + T('यहाँ विश्राम करें', 'A place to pause the reading') + '</div><button class="btn small' + (done ? ' ghost' : '') + '" data-a="done" data-o="' + o + '" data-n="' + n + '" data-i="' + i + '">' + (done ? T('✓ पूर्ण — बदलें', '✓ Completed — undo') : T('विश्राम पूर्ण करें', 'Mark vishram complete')) + '</button></div>'; }).join('');
 }
+// the verse type as a heading above the verse, between two lines (owner, 2026-10-19), shown only where the type changes:
+// before the first chaupāī of a run, then before the dohā that follows, and so on — and at the start of what is read
+function typeHead(i){
+  const y = IT[i].y, nm = TYPEN[y]; if (!nm) return '';
+  if (i !== R.a && i > 0 && IT[i - 1].y === y && IT[i - 1].p === IT[i].p) return '';
+  return '<div class="vtype"><span>' + esc(T(nm[0], nm[1])) + '</span></div>';
+}
 function pageHTML(pg){
   const p = PAGES[pg], a = Math.max(p.from, R.a), b = Math.min(p.to, R.b); let h = '<div class="pg" data-pg="' + pg + '">';
   for (let i = a; i <= b; i++){
     if (i === PARTS[IT[i].p].a) h += '<div class="part-h"><b>' + esc(KNAME(IT[i].p)) + '</b></div>';
     const t = topicAt.get(i); if (t) h += '<div class="topic-h" id="t' + i + '"><b>' + esc(TNAME(t)) + '</b></div>';
-    h += verseHTML(i) + pauseHTML(i);
+    h += typeHead(i) + verseHTML(i) + pauseHTML(i);
   }
   return h + '</div>';
 }
@@ -616,7 +623,7 @@ function tick(anchor){
     // the verse or stretch asked for has ended: stop, and offer to go on from the next verse (owner, 2026-10-19)
     const last = PL.end, whole = PL.whole, msg = whole ? T('पाठ पूर्ण', 'Recitation complete') : PL.endMsg || T('पूर्ण', 'Finished');
     stopAudio(); const nx = whole ? null : firstAu(last + 1, Math.min(IT.length - 1, last + 80));
-    if (nx == null) toast(msg); else toastAct(msg, T('सुनना जारी रखें ▶', 'Continue playing ▶'), () => { if (!$('#reader').classList.contains('on')) openReader(R.org, nx); playFrom(nx); });
+    if (nx == null) toast(msg); else toastAct(msg, T('▶ आगे सुनें', '▶ Play on'), () => { if (!$('#reader').classList.contains('on')) openReader(R.org, nx); playFrom(nx); });
     return;
   }
   // a verse's end matters only where playing stops (one verse, or the last verse of a reading): never skipped. While timings

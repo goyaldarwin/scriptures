@@ -262,6 +262,10 @@ async def main():
                   p.querySelectorAll('.w').forEach(w => { const c = w.getBoundingClientRect();
                     if (a.width && c.width && a.left < c.right - 1 && a.right > c.left + 1 && a.top < c.bottom - 1 && a.bottom > c.top + 1) bad++; }); }); }); return bad; })()""")
             check(f'{tag}: verse icons never touch the words', overlap == 0, overlap)
+            # the verse type is a heading shown only where the type changes (never twice in a row for the same type)
+            dup = await ev("""(() => { const els = [...document.querySelectorAll('#reader .pg > .vtype, #reader .pg > .verse')]; let bad = 0, last = null, prevHead = false;
+              els.forEach(e => { if (e.classList.contains('vtype')){ if (prevHead) bad++; prevHead = true; } else { const y = IT[+e.dataset.i].y; if (!prevHead && last != null && y !== last && TYPEN[y]) bad++; last = y; prevHead = false; } }); return bad; })()""")
+            check(f'{tag}: the verse type heads each run of one type, once', dup == 0, dup)
             wide = await ev("document.documentElement.scrollWidth - document.documentElement.clientWidth")
             check(f'{tag}: nothing runs off the side of the screen', wide <= 0, f'{wide}px')
             # continuous scroll loads the next pages
