@@ -87,7 +87,7 @@ async function cloudInit(){
     const [db, user] = await Promise.all([window.claude.use('db'), window.claude.use('user')]);
     if (!db || !user) return; const uid = await user.id(); if (!uid) return;
     const ref = db.doc('data/users/' + uid + '/state'); const snap = await ref.get(); CLOUD = ref;
-    if (snap.exists){ const d = snap.data(); if (d && d.s && (d.ts || 0) > (S.ts || 0)){ const X = JSON.parse(d.s); if (X && X.profiles){ S = Object.assign(defaults(), X); migrate(); try { localStorage.setItem(LS, JSON.stringify(S)); } catch (e) {} applyTheme(); applyLang(); onView(viewStack[viewStack.length - 1]); } } else if ((S.ts || 0) > (d.ts || 0)) cloudPush(); }
+    if (snap.exists){ const d = snap.data(); if (d && d.s && (d.ts || 0) > (S.ts || 0)){ const X = JSON.parse(d.s); if (X && X.profiles){ S = Object.assign(defaults(), X); migrate(); try { localStorage.setItem(LS, JSON.stringify(S)); } catch (e) {} applyTheme(); applyLang(); onView(CURVIEW); } } else if ((S.ts || 0) > (d.ts || 0)) cloudPush(); }
     else if (S.ts) cloudPush();
     canStore = true;
   } catch (e) {}
@@ -125,12 +125,24 @@ function applyLang(){ const en = LANG() === 'en'; document.documentElement.lang 
   $$('[data-en]').forEach(el => { if (el.dataset.hi == null) el.dataset.hi = el.innerHTML; el.innerHTML = en ? el.dataset.en : el.dataset.hi; });
   $$('[data-en-ph]').forEach(el => { if (el.dataset.hiPh == null) el.dataset.hiPh = el.placeholder; el.placeholder = en ? el.dataset.enPh : el.dataset.hiPh; }); }
 function applyTheme(){ const r = document.documentElement; if (S.settings.theme === 'auto') r.removeAttribute('data-theme'); else r.setAttribute('data-theme', S.settings.theme); r.style.setProperty('--verse-size', S.settings.size + 'px'); r.style.setProperty('--mean-size', Math.round(S.settings.size * 0.78 * 10) / 10 + 'px'); r.style.setProperty('--ui-zoom', (1 + (S.settings.size - 21) * 0.025).toFixed(3)); }   // A−/A+ also scale the library and work pages
-const viewStack = ['library'];
 function show(id, push = true){ { const was = LANG(); CURVIEW = id; if (LANG() !== was) applyLang(); }
   if (id !== 'search' && typeof SCOPE !== 'undefined' && SCOPE === 'lib') SCOPE = 'text';   // leaving the search page: the next search is a text search unless opened from the library
-  $$('.view').forEach(v => v.classList.toggle('on', v.id === id)); if (push){ viewStack.push(id); history.pushState({v: id}, ''); } if (id !== 'reader') window.scrollTo(0, 0); onView(id); }
+  $$('.view').forEach(v => v.classList.toggle('on', v.id === id)); if (push) history.pushState(snap(id), ''); else history.replaceState(snap(id), ''); if (id !== 'reader') window.scrollTo(0, 0); onView(id); }
+// Every page is an entry in the browser's history that carries where you are: the page, the open work and the library
+// shelf (owner, 2026-10-19). Back (the button or the phone's gesture) returns to exactly the previous one — a shelf
+// included — and a refresh reopens the same page, because the browser keeps these entries across a reload.
+function snap(v){ return {v, w: W ? W.id : null, lib: libPath.slice()}; }
+let popping = Promise.resolve();
+async function restore(st){
+  closeSheet();
+  if (!st || !st.v) st = {v: 'library', w: null, lib: []};
+  libPath = Array.isArray(st.lib) ? st.lib.slice() : [];
+  if (st.v !== 'library' && st.w && (!W || W.id !== st.w)) await openWork(st.w, true);
+  const v = document.getElementById(st.v) && (W || !['home', 'reader', 'bookmarks', 'vidhi'].includes(st.v)) ? st.v : 'library';
+  show(v, false); if (v === 'reader') reopenReader();
+}
 function back(){ history.back(); }
-window.addEventListener('popstate', () => { closeSheet(); if (viewStack.length > 1) viewStack.pop(); const id = viewStack[viewStack.length - 1] || 'library'; show(id, false); if (id === 'reader') reopenReader(); });
+window.addEventListener('popstate', e => { const st = e.state; popping = popping.then(() => restore(st)); });
 function onView(id){ if (id === 'library') renderLibrary(); if (id === 'home') renderHome(); if (id === 'bookmarks') renderBookmarks(); if (id === 'settings') renderSettings(); if (id === 'vidhi') renderVidhi(); wake(id === 'reader'); if (id === 'search') setTimeout(() => $('#q').focus(), 50); }
 $$('[data-back]').forEach(b => b.onclick = back);
 $$('[data-go]').forEach(b => b.onclick = () => show(b.dataset.go));
@@ -425,9 +437,9 @@ $$('.lyr.layers button').forEach(b => b.onclick = () => { if (b.dataset.l === 'r
   if (S.settings.recite){ S.settings.recite = false; delete S.settings.preRecite; applyRecite(); }   // a meaning turned on ends recitation mode
   const was = LANG(), l = b.dataset.l; S.settings.layers[l] = !S.settings.layers[l]; save(); syncLayers();
   if (LANG() !== was) applyLang();
-  const v = viewStack[viewStack.length - 1]; if (v === 'reader') refreshReader(); });
+  const v = CURVIEW; if (v === 'reader') refreshReader(); });
 // हिं · En on the library and work pages: one choice, the language of the app
-$$('.lyr.uilang button').forEach(b => b.onclick = () => { if (S.settings.ui === b.dataset.u) return; S.settings.ui = b.dataset.u; save(); applyLang(); syncLayers(); onView(viewStack[viewStack.length - 1]); });
+$$('.lyr.uilang button').forEach(b => b.onclick = () => { if (S.settings.ui === b.dataset.u) return; S.settings.ui = b.dataset.u; save(); applyLang(); syncLayers(); onView(CURVIEW); });
 function syncLayers(){ $$('.lyr.layers button').forEach(b => b.classList.toggle('on', b.dataset.l === 'r' ? !!S.settings.recite : layerOn(b.dataset.l))); $$('.lyr.uilang button').forEach(b => b.classList.toggle('on', S.settings.ui === b.dataset.u)); }
 function applyRecite(){ document.body.classList.toggle('recite', !!S.settings.recite); $('#rRecite').hidden = true; syncLayers(); }
 // recitation mode is the fourth button of the reader's हिं · En · शब्द · 📖 capsule (owner, 2026-10-19): turning it on hides
@@ -436,7 +448,7 @@ function toggleRecite(){
   const on = !S.settings.recite; S.settings.recite = on;
   if (on){ S.settings.preRecite = Object.assign({}, S.settings.layers); S.settings.layers.h = S.settings.layers.e = S.settings.layers.w = false; }
   else if (S.settings.preRecite){ Object.assign(S.settings.layers, S.settings.preRecite); delete S.settings.preRecite; }
-  save(); applyRecite(); applyLang(); if (viewStack[viewStack.length - 1] === 'reader') refreshReader();
+  save(); applyRecite(); applyLang(); if (CURVIEW === 'reader') refreshReader();
   toast(on ? T('पाठ मोड: केवल मूल पाठ', 'Recitation mode: verses only') : T('अर्थ फिर दिखेंगे', 'Meanings shown again'));
 }
 $('#rRecite').onclick = toggleRecite;
@@ -756,7 +768,7 @@ function renderLibrary(){
     const L = libPath.length, lib = '<button data-lp="-1">' + LB.lib() + '</button><span class="sep">›</span>', more = '<button class="crMore">…</button><span class="sep">›</span>', cur = '<span class="cur">' + esc(names[L - 1]) + '</span>';
     const par = L > 1 ? '<button data-lp="' + (L - 2) + '">' + esc(names[L - 2]) + '</button><span class="sep">›</span>' : '';
     for (const v of [lib + (L > 2 ? more : '') + par + cur, lib + more + cur, more + cur]){ cr.innerHTML = v; if (cr.scrollWidth <= cr.clientWidth + 1) break; }
-    $$('#libCrumbs .crMore').forEach(b => b.onclick = () => { openSheet('<div class="menu"><button data-lpj="-1">' + LB.lib() + '</button>' + names.slice(0, -1).map((nm, j) => '<button data-lpj="' + j + '">' + '&nbsp;'.repeat((j + 1) * 3) + esc(nm) + '</button>').join('') + '</div>'); $$('#sheetBody [data-lpj]').forEach(x => x.onclick = () => { closeSheet(); libPath = libPath.slice(0, +x.dataset.lpj + 1); renderLibrary(); window.scrollTo(0, 0); }); });
+    $$('#libCrumbs .crMore').forEach(b => b.onclick = () => { openSheet('<div class="menu"><button data-lpj="-1">' + LB.lib() + '</button>' + names.slice(0, -1).map((nm, j) => '<button data-lpj="' + j + '">' + '&nbsp;'.repeat((j + 1) * 3) + esc(nm) + '</button>').join('') + '</div>'); $$('#sheetBody [data-lpj]').forEach(x => x.onclick = () => { closeSheet(); libPath = libPath.slice(0, +x.dataset.lpj + 1); history.pushState(snap('library'), ''); renderLibrary(); window.scrollTo(0, 0); }); });
   }
   cr.scrollLeft = 1e5;   // if it still does not fit, the end (the shelf you are on) shows
   $('#libTitle').textContent = libPath.length ? TT(node.title) : LB.lib();
@@ -771,10 +783,10 @@ function renderLibrary(){
   $('#libList').innerHTML = kids.map(c => c.children ? '<li class="lhead">' + esc(TT(c.title)) + '</li>' + c.children.map(g => row(g, c.id + '/' + g.id)).join('') : row(c, c.id)).join('');
   $$('#libList [data-node]').forEach(b => b.onclick = () => {
     const ids = b.dataset.node.split('/'); let n = node, c = null; ids.forEach(id => { c = (n.children || []).find(x => x.id === id); n = c; });
-    if (c.work) openWork(c.work); else { libPath.push(...ids); renderLibrary(); window.scrollTo(0, 0); }
+    if (c.work) openWork(c.work); else { libPath.push(...ids); history.pushState(snap('library'), ''); renderLibrary(); window.scrollTo(0, 0); }
   });
   $$('#libList [data-open-work]').forEach(b => b.onclick = () => openWork(b.dataset.openWork));
-  $$('#libCrumbs [data-lp]').forEach(b => b.onclick = () => { libPath = libPath.slice(0, +b.dataset.lp + 1); renderLibrary(); window.scrollTo(0, 0); });
+  $$('#libCrumbs [data-lp]').forEach(b => b.onclick = () => { libPath = libPath.slice(0, +b.dataset.lp + 1); history.pushState(snap('library'), ''); renderLibrary(); window.scrollTo(0, 0); });
 }
 /* library search: finds works and shelves by title, author, edition, description or id, in either script */
 const normQ = x => (x || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[\u093c]/g, '').normalize('NFC');
@@ -866,7 +878,7 @@ function renderHome(){
   $$('#orgList [data-page]').forEach(b => b.onclick = () => { vidTab = b.dataset.page === 'vidhi' ? 'v' : b.dataset.page; show('vidhi'); });
   $$('#orgList [data-pa]').forEach(b => b.onclick = ev => { ev.stopPropagation(); playRange(b.dataset.po, +b.dataset.pa, +b.dataset.pb); });
 }
-$('#hLib').onclick = () => show('library');
+$('#hLib').onclick = () => { libPath = []; show('library'); };   // “‹ Library” goes to the library itself, not the shelf last visited
 $('#hMenu').onclick = () => {
   openSheet('<div class="menu"><button data-go="bookmarks"><svg><use href="#i-bm"/></svg>' + LB.bm() + '</button>' + '<button data-go="settings"><svg><use href="#i-set"/></svg>' + LB.set() + '</button></div>');
   $$('#sheetBody [data-go]').forEach(b => b.onclick = () => { closeSheet(); show(b.dataset.go); });
@@ -1160,8 +1172,7 @@ function pruneLib(nodes, shelves){
 (async function boot(){
   if (!S.settings.lightDefault){ if (S.settings.theme === 'auto') S.settings.theme = 'light'; S.settings.lightDefault = 1; save(); }
   applyTheme(); applyLang(); applyRecite(); syncLayers(); tickTimer(); applyTiming();
-  history.replaceState({v: 'library'}, '');
-  { const pre = new URLSearchParams(location.search).get('w') || S.work; showSalute((pre && (S.sal || {})[pre]) || SALUTE); }
+  { const hs = history.state && history.state.v ? history.state : null, pre = new URLSearchParams(location.search).get('w') || (hs ? (hs.v === 'library' ? null : hs.w) : S.work); showSalute((pre && (S.sal || {})[pre]) || SALUTE); }
   try { LIB = await getJSON('index'); } catch (e) { $('#loading').textContent = T('डेटा नहीं खुल सका। इंटरनेट जाँचें।', 'Could not load the data. Check the internet connection.'); return; }
   // one app per tradition (owner, 2026-10-19): ?app=<id> shows only the shelves library/apps.json lists for that app
   // (the Hindu app also carries the Sukhmani Sahib). The address keeps it while you move around; changing the list
@@ -1172,8 +1183,11 @@ function pruneLib(nodes, shelves){
   // a link may name a work (?w=<work id>): the app's shortcuts and store pages open straight to it
   const asked = new URLSearchParams(location.search).get('w');
   const start = asked && leafs.includes(asked) ? asked : S.work && leafs.includes(S.work) ? S.work : (leafs.length === 1 ? leafs[0] : null);
-  if (start){ await openWork(start, true); viewStack.push('home'); history.pushState({v: 'home'}, ''); show('home', false); }
-  else { renderLibrary(); await hideSalute(); }
+  const nav = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || {};
+  const was = !asked && (nav.type === 'reload' || nav.type === 'back_forward') && history.state && history.state.v ? history.state : null;
+  if (was){ await restore(was); if (!W) await hideSalute(); }   // a refresh: the same page, with the same way back
+  else if (start){ await openWork(start, true); history.replaceState(snap('library'), ''); show('home'); }
+  else { history.replaceState(snap('library'), ''); renderLibrary(); await hideSalute(); }
   cloudInit();
   if (!S.settings.tour) startTour();
   if ('serviceWorker' in navigator && location.protocol === 'https:' && !BUNDLE) navigator.serviceWorker.register('sw.js').catch(() => {});

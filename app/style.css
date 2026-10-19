@@ -202,6 +202,7 @@ input[type=checkbox],input[type=radio],input[type=range]{accent-color:var(--indi
 .sheet h2{font-size:20px;margin:0 0 4px}
 .sheet .wrap > *+*{margin-top:12px}
 .sheet .acts{display:flex;gap:10px;flex-wrap:wrap}
+.acts{display:flex;gap:10px;flex-wrap:wrap;align-items:center}#setBody .acts .btn{padding:6px 14px;font-size:14px;border-radius:10px}   /* settings buttons: apart, and smaller (owner, 2026-10-19) */
 .menu button{display:flex;width:100%;padding:13px 2px;border-bottom:1px solid var(--rule);font-size:16px;gap:12px;align-items:center;text-align:left}
 .menu svg{width:20px;height:20px;stroke:var(--indigo);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:16px}
