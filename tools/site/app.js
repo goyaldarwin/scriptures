@@ -114,6 +114,13 @@ function onView(id){ if (id === 'library') renderLibrary(); if (id === 'home') r
 $$('[data-back]').forEach(b => b.onclick = back);
 $$('[data-go]').forEach(b => b.onclick = () => show(b.dataset.go));
 function openSheet(html){ $('#sheetBody').innerHTML = html; $('#sheet').classList.add('on'); $('#scrim').classList.add('on'); $('#sheet').scrollTop = 0; }
+// the drawer closes by dragging it down (from its handle, or anywhere once it is scrolled to the top), as its handle suggests
+(function(){ const sh = $('#sheet'); let y0 = null, dy = 0;
+  sh.addEventListener('touchstart', e => { const fromGrab = !!e.target.closest('.grab'); if (!fromGrab && sh.scrollTop > 0) { y0 = null; return; } y0 = e.touches[0].clientY; dy = 0; }, {passive: true});
+  sh.addEventListener('touchmove', e => { if (y0 == null) return; dy = e.touches[0].clientY - y0; if (dy > 0){ sh.style.transition = 'none'; sh.style.transform = 'translateY(' + dy + 'px)'; } }, {passive: true});
+  sh.addEventListener('touchend', () => { if (y0 == null) return; sh.style.transition = ''; sh.style.transform = ''; if (dy > 80) closeSheet(); y0 = null; dy = 0; });
+  sh.querySelector('.grab').addEventListener('click', () => closeSheet());
+})();
 function closeSheet(){ $('#sheet').classList.remove('on'); $('#scrim').classList.remove('on'); $$('.w.sel').forEach(w => w.classList.remove('sel')); }
 $('#scrim').onclick = () => closeSheet();
 function sw(id, label, sub, on, icon){ return '<label class="sw">' + (icon ? '<svg class="swic"><use href="#i-' + icon + '"/></svg>' : '') + '<span' + (icon ? ' style="flex:1"' : '') + '>' + label + (sub ? '<small>' + sub + '</small>' : '') + '</span><span class="tg"><input type="checkbox" id="' + id + '"' + (on ? ' checked' : '') + '><span></span></span></label>'; }
@@ -609,7 +616,7 @@ function tick(anchor){
     // the verse or stretch asked for has ended: stop, and offer to go on from the next verse (owner, 2026-10-19)
     const last = PL.end, whole = PL.whole, msg = whole ? T('पाठ पूर्ण', 'Recitation complete') : PL.endMsg || T('पूर्ण', 'Finished');
     stopAudio(); const nx = whole ? null : firstAu(last + 1, Math.min(IT.length - 1, last + 80));
-    if (nx == null) toast(msg); else toastAct(msg, T('आगे सुनें ▶', 'Continue ▶'), () => { if (!$('#reader').classList.contains('on')) openReader(R.org, nx); playFrom(nx); });
+    if (nx == null) toast(msg); else toastAct(msg, T('सुनना जारी रखें ▶', 'Continue playing ▶'), () => { if (!$('#reader').classList.contains('on')) openReader(R.org, nx); playFrom(nx); });
     return;
   }
   // a verse's end matters only where playing stops (one verse, or the last verse of a reading): never skipped. While timings

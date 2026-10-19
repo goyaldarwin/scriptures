@@ -48,6 +48,14 @@ async def main():
         check('the tour steps through and closes', await ev("document.querySelector('#tour').hidden && S.settings.tour === 1"), nsteps)
         await pg.reload(); await pg.wait_for_timeout(2000)
         check('the tour is not shown again', await ev("document.querySelector('#tour').hidden"))
+        # the drawer closes when dragged down from its handle
+        await ev("openSheet('<p>test</p>')"); await pg.wait_for_timeout(300)
+        await ev("""(() => { const sh = document.querySelector('#sheet'), g = sh.querySelector('.grab'), r = g.getBoundingClientRect(), x = r.left + 5, y = r.top + 2;
+          const t = (yy) => new Touch({identifier: 1, target: g, clientX: x, clientY: yy});
+          g.dispatchEvent(new TouchEvent('touchstart', {bubbles: true, touches: [t(y)]}));
+          g.dispatchEvent(new TouchEvent('touchmove', {bubbles: true, touches: [t(y + 150)]}));
+          g.dispatchEvent(new TouchEvent('touchend', {bubbles: true, touches: []})); })()"""); await pg.wait_for_timeout(300)
+        check('the drawer closes when dragged down', not await ev("document.querySelector('#sheet').classList.contains('on')"))
         # the opening screen greets each work with its own salutation (library/index.json "salute"; default ॐ श्री परमात्मने नमः)
         for wid, want in (('manas', '॥ जय श्रीराम ॥'), ('sukhmani-sahib', 'ੴ'), ('ramraksha', '॥ ॐ श्री परमात्मने नमः ॥')):
             got = await ev(f"(async () => {{ await openWork({json.dumps(wid)}, true); return [saluteOf({json.dumps(wid)}), (S.sal || {{}})[{json.dumps(wid)}]]; }})()")
