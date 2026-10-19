@@ -1064,18 +1064,27 @@ function inView(el){ const r = el.getBoundingClientRect(); return r.width && r.t
 function firstVisible(sel){ const all = $$(sel); return all.find(inView) || all[0] || null; }
 function tourSteps(){
   return [
-    {t: () => $$('#orgList [data-open]')[W && W.id === 'sundarkand' && $$('#orgList [data-open]').length > 1 ? 1 : 0], p: T('पाठ खोलनेके लिये यहाँ छुएँ।', 'Tap here to open the text.'), done: () => CURVIEW === 'reader' && !!$('#rBody .verse')},
-    {t: () => firstVisible('#rBody .verse .vtext .w'), p: T('किसी भी शब्दको छुएँ — उसका अर्थ दिखेगा।', 'Tap any word to see its meaning.'), done: () => $('#sheet').classList.contains('on')},
-    {t: () => $('#sheet'), p: T('यह उस शब्दका अर्थ, मूल शब्द और व्याकरण है। ऊपरकी पट्टीको नीचे खींचकर बंद करें।', 'Its meaning, root and grammar. Drag the drawer down to close it.'), done: () => !$('#sheet').classList.contains('on'), top: true},
-    {t: () => $('#rLayers [data-l="' + (S.settings.layers.h ? 'e' : 'h') + '"]'), p: () => S.settings.layers.h ? T('“En” छूकर हर पदके नीचे अंग्रेज़ी अर्थ दिखाएँ या छिपाएँ। “शब्द” से शब्दार्थ।', 'Tap “En” to show or hide the English meaning under every verse. “शब्द” gives word-by-word meanings.') : T('“हिं” छूकर हर पदके नीचे हिंदी अर्थ दिखाएँ। “En” अंग्रेज़ी, “शब्द” शब्दार्थ।', 'Tap “हिं” to show the Hindi meaning under every verse. “En” is English, “शब्द” word by word.'),
+    {t: () => $$('#orgList [data-open]')[W && W.id === 'sundarkand' && $$('#orgList [data-open]').length > 1 ? 1 : 0], allow: '#orgList .it', p: T('पाठ खोलनेके लिये यहाँ छुएँ।', 'Tap here to open the text.'), done: () => CURVIEW === 'reader' && !!$('#rBody .verse')},
+    {t: () => firstVisible('#rBody .verse .vtext .w'), allow: '#rBody .vtext .w', p: T('किसी भी शब्दको छुएँ — उसका अर्थ दिखेगा।', 'Tap any word to see its meaning.'), done: () => $('#sheet').classList.contains('on')},
+    {t: () => $('#sheet'), allow: '#sheet', p: T('यह उस शब्दका अर्थ, मूल शब्द और व्याकरण है। ऊपरकी पट्टीको नीचे खींचकर बंद करें।', 'Its meaning, root and grammar. Drag the drawer down to close it.'), done: () => !$('#sheet').classList.contains('on'), top: true},
+    {t: () => $('#reader .szp'), allow: '#reader .szp, #reader .szm', p: T('A+ छूकर अक्षर बड़े करें (A− से छोटे)।', 'Tap A+ to make the text larger (A− makes it smaller).'), enter: () => { TOUR.base = S.settings.size; }, done: () => S.settings.size !== TOUR.base},
+    {t: () => $('#rLayers [data-l="' + (S.settings.layers.h ? 'e' : 'h') + '"]'), allow: '#rLayers [data-l="h"], #rLayers [data-l="e"], #rLayers [data-l="w"]', p: () => S.settings.layers.h ? T('“En” छूकर हर पदके नीचे अंग्रेज़ी अर्थ दिखाएँ या छिपाएँ। “शब्द” से शब्दार्थ।', 'Tap “En” to show or hide the English meaning under every verse. “शब्द” gives word-by-word meanings.') : T('“हिं” छूकर हर पदके नीचे हिंदी अर्थ दिखाएँ। “En” अंग्रेज़ी, “शब्द” शब्दार्थ।', 'Tap “हिं” to show the Hindi meaning under every verse. “En” is English, “शब्द” word by word.'),
      enter: () => { TOUR.base = JSON.stringify(S.settings.layers); }, done: () => JSON.stringify(S.settings.layers) !== TOUR.base},
-    {t: () => firstVisible('#rBody .vplay'), p: T('▶ छूकर केवल यह पद सुनें — जो गाया जा रहा है वह चमकेगा।', 'Tap ▶ to hear just this verse — it lights up as it is sung.'), done: () => PL.on},
+    {t: () => $('#rLayers [data-l="r"]'), allow: '#rLayers [data-l="r"]', p: T('पुस्तक छूकर पाठ मोड चालू करें — केवल मूल पाठ, बड़े अक्षरोंमें। फिर छूनेपर अर्थ लौट आते हैं।', 'Tap the book for recitation mode — the verses alone, in larger type. Tap it again to bring the meanings back.'), done: () => !!S.settings.recite},
+    {t: () => firstVisible('#rBody .vplay'), allow: '#rBody .vplay', p: T('▶ छूकर केवल यह पद सुनें — जो गाया जा रहा है वह चमकेगा।', 'Tap ▶ to hear just this verse — it lights up as it is sung.'), done: () => PL.on},
   ];
 }
+// while the tour runs, only what the current step asks for can be tapped (a ▶ on the work's page would start the audio
+// and lose the tour — owner, 2026-10-19); the tour's own bubble always works
+document.addEventListener('click', e => {
+  if (!TOUR || TOUR.k < 0) return; const x = tourSteps()[TOUR.k]; if (!x) return;
+  if (e.target.closest('#cbub, #tour') || (x.allow && e.target.closest(x.allow))) return;
+  e.preventDefault(); e.stopPropagation();
+}, true);
 function startTour(){
   closeTour(true); TOUR = {k: -1};
   $('#tourArt').innerHTML = '<div class="ta-om">ॐ</div>'; $('#tourT').textContent = T('स्वागत है', 'Welcome');
-  $('#tourP').textContent = T('चलिये, सुन्दरकाण्डमें एक मिनटमें देखें कि यह ऐप कैसे काम करता है — आप स्वयं करके देखेंगे।', 'Let’s see how the app works, inside the Sundarakāṇḍa — you will try each thing yourself. It takes a minute.');
+  $('#tourP').textContent = T('आइए, एक छोटा परिचय लें।', 'Let’s take a short tutorial.');
   $('#tourDots').innerHTML = ''; $('#tourSkip').textContent = T('छोड़ें', 'Skip'); $('#tourNext').textContent = T('शुरू करें', 'Start');
   $('#tourSkip').onclick = () => closeTour(); $('#tourNext').onclick = async () => { $('#tour').hidden = true; await openWork(tourWork()); WS().org = 'k'; renderHome(); tourStep(0); };
   $('#tour').hidden = false;
@@ -1089,6 +1098,7 @@ function tourStep(k){
 }
 function tourEnd(){
   $('#coach').hidden = true; TOUR = null;
+  if (S.settings.recite) toggleRecite();   // the meanings come back after the tour
   $('#tourArt').innerHTML = '<div class="ta-om">ॐ</div>'; $('#tourT').textContent = T('बस इतना ही', 'That’s all');
   $('#tourP').textContent = T('ग्रन्थके पन्नेपर “सम्पूर्ण पाठ सुनें” पूरा पाठ सुनाता है और पन्ने अपने आप पलटता है। पाठ-योजनाएँ, बुकमार्क और टिप्पणियाँ ☰ में हैं। सेटिंग्स › सहायतामें यह परिचय फिरसे देख सकते हैं।', 'On a work’s page, “Play all” reads it aloud hands-free and turns the pages. Reading plans, bookmarks and notes are in ☰. Settings › Help shows this tour again.');
   $('#tourDots').innerHTML = ''; $('#tourSkip').hidden = true; $('#tourNext').textContent = T('ठीक है', 'Done');
