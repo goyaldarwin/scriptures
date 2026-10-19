@@ -48,6 +48,13 @@ async def main():
         check('the tour steps through and closes', await ev("document.querySelector('#tour').hidden && S.settings.tour === 1"), nsteps)
         await pg.reload(); await pg.wait_for_timeout(2000)
         check('the tour is not shown again', await ev("document.querySelector('#tour').hidden"))
+        # the opening screen greets each work with its own salutation (library/index.json "salute"; default ॐ श्री परमात्मने नमः)
+        for wid, want in (('manas', '॥ जय श्रीराम ॥'), ('sukhmani-sahib', 'ੴ'), ('ramraksha', '॥ ॐ श्री परमात्मने नमः ॥')):
+            got = await ev(f"(async () => {{ await openWork({json.dumps(wid)}, true); return [saluteOf({json.dumps(wid)}), (S.sal || {{}})[{json.dumps(wid)}]]; }})()")
+            check(f'opening screen salutation for {wid}', got == [want, want], got)
+        await pg.goto(url + '?w=sukhmani-sahib'); await pg.wait_for_timeout(300)
+        check('the opening screen greets the work being opened before anything loads', await ev("document.querySelector('#loading').textContent") == 'ੴ', await ev("document.querySelector('#loading').textContent"))
+        await ev("S.work = null; save()"); await pg.goto(url); await pg.wait_for_timeout(2000)
         # a store app shows only its shelves (?app=<id>, library/apps.json)
         apps = json.load(open(os.path.join(ROOT, 'library', 'apps.json')))
         for aid, a in apps.items():
@@ -201,6 +208,16 @@ async def main():
                 await ev(f"unfrom({json.dumps(jid)}); save()")
                 check(f'{tag}: a checked helper mark is sent with yours', jid in await ev("pendingStarts()"))
                 await ev("delete S.timing.fix[tkey()]; S.timing.from = {}; save()")
+                # a single verse that has ended offers “Continue ▶”, which goes on from the next verse, like “Play all”
+                if await ev("AUT[0].length > 3"):
+                    v1 = await ev("AUT[0][1][0]"); v2 = await ev("firstAu(AUT[0][1][0] + 1, IT.length - 1)")
+                    await ev(f"S.timing.on = false; PL.on = true; PL.t = 0; PL.end = {v1}; PL.whole = false; PL.endMsg = ''; ytOK = true; ytInfo.t = AUT[0][2][1] + 0.5; tick()")
+                    shown = await ev("!!document.querySelector('#toast .tact')")
+                    check(f'{tag}: a played verse that ends offers Continue', shown and not await ev("PL.on"))
+                    if shown:
+                        await ev("document.querySelector('#toast .tact').click()"); await pg.wait_for_timeout(300)
+                        check(f'{tag}: Continue plays on from the next verse to the end', await ev("PL.on && PL.end == null") and await ev("PL.cur") == v2, [await ev("PL.cur"), v2])
+                    await ev("stopAudio(); ytOK = false; S.timing.on = true; show('home')"); await pg.wait_for_timeout(300)
             await ev("S.timing.on = false; applyTiming()"); await ev("loadSources()"); await pg.wait_for_timeout(400)
             # continue and play sit on one line
             await ev("WS().last = {org: 'k', i: 0}; renderHome()"); await pg.wait_for_timeout(200)

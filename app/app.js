@@ -95,7 +95,9 @@ const LB = {
 
 /* ---------------- ui helpers ---------------- */
 let toastT;
-function toast(msg){ const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), 2600); }
+// a toast with one action (e.g. “Continue ▶” after a verse has been played); it stays a little longer and can be tapped
+function toastAct(msg, label, fn){ const t = $('#toast'); t.innerHTML = esc(msg) + ' <button class="tact">' + esc(label) + '</button>'; t.classList.add('on', 'act'); t.querySelector('.tact').onclick = () => { t.classList.remove('on', 'act'); fn(); }; clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on', 'act'), 8000); }
+function toast(msg){ $('#toast').classList.remove('act'); const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), 2600); }
 function applyLang(){ const en = LANG() === 'en'; document.documentElement.lang = en ? 'en' : 'hi';
   $$('[data-en]').forEach(el => { if (el.dataset.hi == null) el.dataset.hi = el.innerHTML; el.innerHTML = en ? el.dataset.en : el.dataset.hi; });
   $$('[data-en-ph]').forEach(el => { if (el.dataset.hiPh == null) el.dataset.hiPh = el.placeholder; el.placeholder = en ? el.dataset.enPh : el.dataset.hiPh; }); }
@@ -598,7 +600,13 @@ function tick(anchor){
   if (!PL.on || !ytOK) return; if (typeof anchor !== 'number') anchor = PL.cur;
   const time = ytInfo.t; const i = curAt(time);
   const e = endOf(i);
-  if (PL.end != null && (i > PL.end || (i === PL.end && e != null && time >= e))){ stopAudio(); toast(PL.whole ? T('पाठ पूर्ण', 'Recitation complete') : PL.endMsg || T('पूर्ण', 'Finished')); return; }
+  if (PL.end != null && (i > PL.end || (i === PL.end && e != null && time >= e))){
+    // the verse or stretch asked for has ended: stop, and offer to go on from the next verse (owner, 2026-10-19)
+    const last = PL.end, whole = PL.whole, msg = whole ? T('पाठ पूर्ण', 'Recitation complete') : PL.endMsg || T('पूर्ण', 'Finished');
+    stopAudio(); const nx = whole ? null : firstAu(last + 1, Math.min(IT.length - 1, last + 80));
+    if (nx == null) toast(msg); else toastAct(msg, T('आगे सुनें ▶', 'Continue ▶'), () => { if (!$('#reader').classList.contains('on')) openReader(R.org, nx); playFrom(nx); });
+    return;
+  }
   // a verse's end matters only where playing stops (one verse, or the last verse of a reading): never skipped. While timings
   // are being reviewed, a verse that has ended hands the light to the next one at once, so its start can be marked.
   let show = i;
@@ -727,7 +735,14 @@ $('#hSearch').onclick = () => openSearch('text');
 $('#rSearch').onclick = () => openSearch('text');
 $('#libMenu').onclick = () => { openSheet('<div class="menu"><button data-go="settings"><svg><use href="#i-set"/></svg>' + LB.set() + '</button></div>'); $$('#sheetBody [data-go]').forEach(b => b.onclick = () => { closeSheet(); show(b.dataset.go); }); };
 function workPath(id){ let r = null; (function walk(n){ (n || []).forEach(c => { if (c.work === id) r = c.path; else walk(c.children); }); })(LIB); return r || id; }
+// the salutation on the opening screen (owner, 2026-10-19): the work's own (library/index.json "salute": जय श्रीराम for the
+// Mānas and Sundarakāṇḍa, ॐ श्री साईं राम for the Dhūpa Āratī, ੴ for the Sukhmani Sahib …), otherwise ॐ श्री परमात्मने नमः.
+// The phone remembers each work's, so the screen shown before anything has loaded already greets the work being opened.
+const SALUTE = '॥ ॐ श्री परमात्मने नमः ॥';
+function saluteOf(id){ let r = null; (function walk(n){ (n || []).forEach(c => { if (c.work === id) r = c.salute; else walk(c.children); }); })(LIB); return r || SALUTE; }
+function showSalute(text){ $('#loading').textContent = text; }
 async function openWork(id, noShow){
+  const sal = saluteOf(id); showSalute(sal); if ((S.sal || {})[id] !== sal){ S.sal = S.sal || {}; S.sal[id] = sal; }
   $('#loading').hidden = false;
   try {
     if (!W || W.id !== id){ const path = workPath(id); W = await getJSON(path + '/work'); W.path = path; buildWork(); await Promise.all([loadSources(), loadGlossaries()]); }
@@ -1041,6 +1056,7 @@ function pruneLib(nodes, shelves){
   if (!S.settings.lightDefault){ if (S.settings.theme === 'auto') S.settings.theme = 'light'; S.settings.lightDefault = 1; save(); }
   applyTheme(); applyLang(); applyRecite(); syncLayers(); tickTimer(); applyTiming();
   history.replaceState({v: 'library'}, '');
+  { const pre = new URLSearchParams(location.search).get('w') || S.work; showSalute((pre && (S.sal || {})[pre]) || SALUTE); }
   try { LIB = await getJSON('index'); } catch (e) { $('#loading').textContent = T('डेटा नहीं खुल सका। इंटरनेट जाँचें।', 'Could not load the data. Check the internet connection.'); return; }
   // one app per tradition (owner, 2026-10-19): ?app=<id> shows only the shelves library/apps.json lists for that app
   // (the Hindu app also carries the Sukhmani Sahib). The address keeps it while you move around; changing the list
