@@ -87,7 +87,12 @@ self.addEventListener('fetch',e=>{const u=new URL(e.request.url);if(u.origin!==l
 open(os.path.join(SITE, '.nojekyll'), 'w').write('')
 shutil.copy(os.path.join(ROOT, 'tools', 'site', 'privacy.html'), os.path.join(SITE, 'privacy.html'))
 # the site's own address (GitHub Pages custom domain): apps/app.json host; DNS CNAME <host> → goyaldarwin.github.io (Cloudflare, DNS only)
-open(os.path.join(SITE, 'CNAME'), 'w').write(json.load(open(os.path.join(ROOT, 'apps', 'app.json')))['host'] + '\n')   # the privacy policy the app stores link to
+open(os.path.join(SITE, 'CNAME'), 'w').write(json.load(open(os.path.join(ROOT, 'apps', 'app.json')))['host'] + '\n')
+# Android: the apps that may open this site full screen (Digital Asset Links), from apps/app.json
+_apps = json.load(open(os.path.join(ROOT, 'apps', 'app.json')))['apps']
+os.makedirs(os.path.join(SITE, '.well-known'), exist_ok=True)
+json.dump([{'relation': ['delegate_permission/common.handle_all_urls'], 'target': {'namespace': 'android_app', 'package_name': a['packageId'], 'sha256_cert_fingerprints': a['sha256']}}
+           for a in _apps.values() if a.get('sha256')], open(os.path.join(SITE, '.well-known', 'assetlinks.json'), 'w'), indent=1)   # the privacy policy the app stores link to
 # ---------- single-file bundle ----------
 LIBD = os.path.join(SITE, 'library')
 bundle = {'files': {}}

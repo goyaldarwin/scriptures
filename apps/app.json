@@ -16,7 +16,11 @@
    "launcherName": "Scriptures",
    "startPath": "/?app=hinduism",
    "versionName": "1.0.0",
-   "versionCode": 1
+   "versionCode": 1,
+   "sha256": [
+    "4C:5B:CA:79:4A:85:A8:92:A6:6E:54:61:A1:C1:DE:9D:98:B4:67:D2:CF:A0:77:67:12:9A:E5:4E:14:92:49:68"
+   ],
+   "_sha256": "upload key now; add Play's app-signing key fingerprint (Play Console › Test and release › App integrity) once the app exists"
   }
  }
 }

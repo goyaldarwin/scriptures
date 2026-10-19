@@ -1,0 +1,14 @@
+[
+ {
+  "relation": [
+   "delegate_permission/common.handle_all_urls"
+  ],
+  "target": {
+   "namespace": "android_app",
+   "package_name": "org.craadle.scriptures.hinduism",
+   "sha256_cert_fingerprints": [
+    "4C:5B:CA:79:4A:85:A8:92:A6:6E:54:61:A1:C1:DE:9D:98:B4:67:D2:CF:A0:77:67:12:9A:E5:4E:14:92:49:68"
+   ]
+  }
+ }
+]
