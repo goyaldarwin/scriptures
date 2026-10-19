@@ -31,7 +31,7 @@ READ WITH MEANING
 
 LISTEN, HANDS-FREE
 • Recitation audio for most of the texts: play a whole scripture, a kanda, or a single verse
-• The verse being recited is highlighted and the page turns by itself
+• The verse being recited is highlighted and the page auto-scrolls to the next verse with the recitation
 • Continue from any verse with "Listen from here"
 
 DAILY PATH
@@ -70,7 +70,7 @@ No account, no sign-in, no ads and no tracking. Your notes and progress stay on 
 
 सुनते हुए पढ़ें
 • अधिकतर ग्रन्थोंके पाठका ऑडियो: पूरा ग्रन्थ, एक काण्ड या केवल एक पद सुनें
-• जो पद गाया जा रहा है वह चमकता है, पन्ना अपने आप आगे बढ़ता है
+• जो पद गाया जा रहा है वह हाइलाइट होता है, और पाठके साथ पन्ना अपने आप अगले पदपर बढ़ता है
 • “यहाँसे सुनें” से किसी भी पदसे आगे सुनें
 
 नियमित पाठ

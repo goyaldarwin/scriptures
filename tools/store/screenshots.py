@@ -15,7 +15,7 @@ LAT = base64.b64encode(open(os.path.join(ROOT, 'tools', 'fonts', 'literata-latin
 
 # (name, caption en, caption hi, small line en, small line hi, setup js run inside the app)
 SCENES = [
- ('play', 'Listen, hands-free', 'सुनते हुए पढ़ें', 'The verse being recited is lit and the page turns by itself', 'जो पद गाया जा रहा है वह चमकता है, पन्ना अपने आप आगे बढ़ता है',
+ ('play', 'Listen, hands-free', 'सुनते हुए पढ़ें', 'The verse being recited is highlighted and the page auto-scrolls to the next verse with the recitation', 'जो पद गाया जा रहा है वह हाइलाइट होता है, और पाठके साथ पन्ना अपने आप अगले पदपर बढ़ता है',
   """await openWork('sundarkand'); S.settings.layers.h = true; syncLayers();
      openReader('k', ID['chalisa.cau1']); await new Promise(r => setTimeout(r, 900));
      const i = ID['chalisa.cau2']; PL.on = true; PL.t = 0; PL.cur = -1; $('#player').hidden = false; document.body.classList.add('playing');
