@@ -17,35 +17,38 @@ LAT = base64.b64encode(open(os.path.join(ROOT, 'tools', 'fonts', 'literata-latin
 SCENES = [
  ('play', 'Listen, hands-free', 'सुनते हुए पढ़ें', 'The verse being recited is lit and the page turns by itself', 'जो पद गाया जा रहा है वह चमकता है, पन्ना अपने आप आगे बढ़ता है',
   """await openWork('sundarkand'); S.settings.layers.h = true; syncLayers();
-     openReader('k', ID['sundar.0.shloka3']); await new Promise(r => setTimeout(r, 900));
-     const i = 14; PL.on = true; PL.t = 0; PL.cur = -1; $('#player').hidden = false; document.body.classList.add('playing');
-     $('#ytBox').innerHTML = '<div style="width:200px;height:200px;background:#2B3A8C;display:flex;align-items:center;justify-content:center;color:#F2A653;font:700 52px serif">ॐ</div>';
+     openReader('k', ID['chalisa.cau1']); await new Promise(r => setTimeout(r, 900));
+     const i = ID['chalisa.cau2']; PL.on = true; PL.t = 0; PL.cur = -1; $('#player').hidden = false; document.body.classList.add('playing');
+     $('#ytBox').innerHTML = '<div style="width:200px;height:200px;border-radius:12px;background:#FBF3E4;border:1px solid #EAD9BC;display:flex;align-items:center;justify-content:center;color:#D9822B;font:700 72px serif">ॐ</div>';
      setCur(i); $('#pProg').style.width = '34%'; syncPlayer = () => {}; $('#pPlay').innerHTML = '<svg><use href="#i-pause"/></svg>';"""),
  ('word', 'Tap any word for its meaning', 'किसी भी शब्दको छूकर अर्थ देखें', 'Meaning, root and grammar of every word', 'हर शब्दका अर्थ, मूल शब्द और व्याकरण',
-  """await openWork('manas'); S.settings.layers.h = true; syncLayers(); openReader('k', 40); await new Promise(r => setTimeout(r, 900));
+  """await openWork('sundarkand'); S.settings.layers.h = false; S.settings.layers.e = false; syncLayers(); openReader('k', ID['chalisa.cau5']); await new Promise(r => setTimeout(r, 900));
      const w = [...document.querySelectorAll('#rBody .verse .vtext .w')].find(x => x.getBoundingClientRect().top > 160); w.click();"""),
  ('meanings', 'Hindi and English meanings', 'हिंदी और अंग्रेज़ी अर्थ', 'Under every verse — switch each on or off', 'हर पदके नीचे — जो चाहें वही दिखाएँ',
-  """await openWork('manas'); S.settings.layers.h = true; S.settings.layers.e = true; syncLayers(); openReader('k', 60); await new Promise(r => setTimeout(r, 900));"""),
+  """await openWork('sundarkand'); S.settings.layers.h = true; S.settings.layers.e = true; syncLayers(); openReader('k', ID['chalisa.do1']); await new Promise(r => setTimeout(r, 900));"""),
  ('verse', 'Play one verse — or from any verse', 'एक पद सुनें — या कहींसे भी', '▶ beside a verse plays just that one; “Listen from here” goes on', 'पदके पास ▶ केवल वही पद; “यहाँसे सुनें” आगे तक',
-  """await openWork('sundarkand'); S.settings.layers.h = true; syncLayers(); openReader('k', ID['sundar.3.cau5']); await new Promise(r => setTimeout(r, 900));
+  """await openWork('sundarkand'); S.settings.layers.h = true; syncLayers(); openReader('k', ID['chalisa.cau9']); await new Promise(r => setTimeout(r, 900));
      const v = [...document.querySelectorAll('#rBody .verse')].find(x => x.getBoundingClientRect().top > 300); itemMenu(+v.dataset.i);"""),
  ('plans', '30-day and 9-day readings', '३० दिन और ९ दिनका पाठ', 'Your progress and place are kept', 'प्रगति और स्थान याद रहता है',
   """await openWork('manas'); WS().org = PLANS[0] ? PLANS[0].id : 'k'; show('home'); renderHome(); window.scrollTo(0, 0);"""),
  ('library', 'A growing library', 'बढ़ता हुआ पुस्तकालय', 'Rāmacaritamānasa, Sundarakāṇḍa, Śrī Rudram, Sukhmani Sahib and more', 'रामचरितमानस, सुन्दरकाण्ड, श्रीरुद्रम्, सुखमनी साहिब और भी',
   """libPath = []; show('library'); renderLibrary(); window.scrollTo(0, 0);"""),
 ]
-SIZES = {'appstore': (440, 956, 3), 'play': (360, 640, 3)}
+# Only verses whose meanings are our own appear in store pictures (the opening prayers, the Chālīsā), never a
+# copyrighted meaning (owner, 2026-10-19). (css width, css height, scale, width of the app inside the frame)
+# Play tablets: 7-inch 1080×1920, 10-inch 1440×2560 (9:16), the app at tablet width.
+SIZES = {'appstore': (440, 956, 3, 390), 'play': (360, 640, 3, 390), 'play-tablet7': (540, 960, 2, 540), 'play-tablet10': (720, 1280, 2, 680)}
 
-def page(cw, ch, cap, sub, url, lang):
-    top = 0.2 * ch; fw = cw * 0.86; scale = fw / 390; fh = (ch - top - 0.02 * ch) / scale
+def page(cw, ch, cap, sub, url, lang, aw=390):
+    top = 0.2 * ch; fw = cw * 0.86; scale = fw / aw; fh = (ch - top - 0.02 * ch) / scale
     return f"""<!doctype html><html><head><meta charset=utf-8><style>
 @font-face{{font-family:D;src:url(data:font/woff2;base64,{FONT})}}@font-face{{font-family:L;src:url(data:font/woff2;base64,{LAT})}}
-html,body{{margin:0;width:{cw}px;height:{ch}px;overflow:hidden;background:linear-gradient(170deg,#2B3A8C,#1B2565)}}
-.cap{{position:absolute;top:0;left:0;right:0;height:{top}px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 20px;color:#fff}}
-.cap b{{font:600 {0.072 * cw if lang == 'en' else 0.068 * cw}px/1.2 {'L' if lang == 'en' else 'D'},serif}}.cap span{{margin-top:8px;font:400 {0.036 * cw}px/1.35 {'L' if lang == 'en' else 'D'},serif;color:#F2C894}}
-.ph{{position:absolute;top:{top}px;left:{(cw - fw) / 2}px;width:390px;height:{fh}px;transform:scale({scale});transform-origin:0 0;border-radius:{34 / scale}px;overflow:hidden;
-    box-shadow:0 0 0 {6 / scale}px #0E1440,0 20px 50px rgba(0,0,0,.45);background:#F6F6F2}}
-iframe{{border:0;width:390px;height:{fh}px}}</style></head><body>
+html,body{{margin:0;width:{cw}px;height:{ch}px;overflow:hidden;background:radial-gradient(120% 70% at 50% 0%,#FFFDF8 0%,#F7EFE1 55%,#EFE3CC 100%)}}
+.cap{{position:absolute;top:0;left:0;right:0;height:{top}px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 20px;color:#26307A}}
+.cap b{{font:600 {0.072 * cw if lang == 'en' else 0.068 * cw}px/1.2 {'L' if lang == 'en' else 'D'},serif}}.cap span{{margin-top:8px;font:400 {0.036 * cw}px/1.35 {'L' if lang == 'en' else 'D'},serif;color:#A4561A}}
+.ph{{position:absolute;top:{top}px;left:{(cw - fw) / 2}px;width:{aw}px;height:{fh}px;transform:scale({scale});transform-origin:0 0;border-radius:{34 / scale}px;overflow:hidden;
+    box-shadow:0 0 0 {5 / scale}px #2A2A35,0 18px 44px rgba(80,50,10,.22);background:#F6F6F2}}
+iframe{{border:0;width:{aw}px;height:{fh}px}}</style></head><body>
 <div class=cap><b>{cap}</b><span>{sub}</span></div><div class=ph><iframe id=f src="{url}"></iframe></div></body></html>"""
 
 def serve():
@@ -60,7 +63,7 @@ async def main():
     try:
         async with async_playwright() as p:
             b = await p.chromium.launch()
-            for store, (cw, ch, dpr) in SIZES.items():
+            for store, (cw, ch, dpr, aw) in SIZES.items():
                 for lang in langs:
                     d = os.path.join(OUT, store, lang); os.makedirs(d, exist_ok=True)
                     for n, (name, ce, ch_, se, sh, js) in enumerate(SCENES, 1):
@@ -69,7 +72,7 @@ async def main():
                         await ctx.add_init_script("try{ if (!localStorage.getItem('manas.personal.v1')) {} }catch(e){}")
                         pg = await ctx.new_page()
                         await pg.add_init_script('window.__SALUTE_MS = 0')   # the 1.5 s greeting is tested on its own
-                        open(os.path.join(ROOT, '_shot.html'), 'w').write(page(cw, ch, ce if lang == 'en' else ch_, se if lang == 'en' else sh, base + 'index.html', lang))
+                        open(os.path.join(ROOT, '_shot.html'), 'w').write(page(cw, ch, ce if lang == 'en' else ch_, se if lang == 'en' else sh, base + 'index.html', lang, aw))
                         await pg.goto(base + '_shot.html'); await pg.wait_for_timeout(2500)
                         fr = pg.frame_locator('#f'); f = pg.frames[1]
                         await f.evaluate(f"""async () => {{ closeTour(); const st = document.createElement('style'); st.textContent = '#toast{{display:none!important}}'; document.head.appendChild(st); S.settings.ui = '{lang}'; S.settings.layers.e = {'true' if lang == 'en' else 'false'}; S.settings.layers.w = false; applyLang(); save(); {js} }}""")
@@ -77,15 +80,18 @@ async def main():
                         await pg.screenshot(path=os.path.join(d, f'{n:02d}-{name}.png'))
                         await ctx.close()
                     print(store, lang, '→', os.path.relpath(d, ROOT))
-            # Google Play feature graphic
-            ctx = await b.new_context(viewport={'width': 1024, 'height': 500}); pg = await ctx.new_page()
-            await pg.set_content(f"""<style>@font-face{{font-family:D;src:url(data:font/woff2;base64,{FONT})}}@font-face{{font-family:L;src:url(data:font/woff2;base64,{LAT})}}
-              body{{margin:0;width:1024px;height:500px;background:linear-gradient(160deg,#2B3A8C,#1B2565);display:flex;align-items:center;gap:48px;padding:0 70px;box-sizing:border-box;color:#fff}}
+            # Google Play feature graphic, one per listing language, with the app's store name
+            for lang, title, line in (('en', 'Sunderkand &amp; Ramcharitmanas', 'Read and listen · Hindi &amp; English meanings · word by word'),
+                                      ('hi', 'सुंदरकांड और रामचरितमानस', 'पढ़ें और सुनें · हिंदी और अंग्रेज़ी अर्थ · शब्द-शब्दका अर्थ')):
+              ctx = await b.new_context(viewport={'width': 1024, 'height': 500}); pg = await ctx.new_page()
+              await pg.set_content(f"""<style>@font-face{{font-family:D;src:url(data:font/woff2;base64,{FONT})}}@font-face{{font-family:L;src:url(data:font/woff2;base64,{LAT})}}
+              body{{margin:0;width:1024px;height:500px;background:radial-gradient(120% 120% at 20% 30%,#FFFDF8 0%,#F7EFE1 55%,#EFE3CC 100%);display:flex;align-items:center;gap:48px;padding:0 70px;box-sizing:border-box;color:#26307A}}
               .om{{width:190px;height:190px;border-radius:44px;background:#2B3A8C;box-shadow:0 0 0 3px #F2A65355;display:flex;align-items:center;justify-content:center;color:#F2A653;font:700 120px/1 D}}
-              h1{{font:700 64px/1.1 D;margin:0}}p{{font:600 30px/1.35 L;margin:12px 0 0;color:#F2C894}}</style>
-              <div class=om>ॐ</div><div><h1>शास्त्र</h1><p>Read and listen · Hindi &amp; English meanings · word by word</p></div>""")
-            await pg.wait_for_timeout(500); os.makedirs(os.path.join(OUT, 'play'), exist_ok=True)
-            await pg.screenshot(path=os.path.join(OUT, 'play', 'feature-graphic.png')); await b.close()
+              h1{{font:700 {'52px' if lang == 'en' else '56px'}/1.15 {'L' if lang == 'en' else 'D'};margin:0}}p{{font:600 28px/1.35 {'L' if lang == 'en' else 'D'};margin:14px 0 0;color:#A4561A}}</style>
+              <div class=om>ॐ</div><div><h1>{title}</h1><p>{line}</p></div>""")
+              await pg.wait_for_timeout(500); os.makedirs(os.path.join(OUT, 'play'), exist_ok=True)
+              await pg.screenshot(path=os.path.join(OUT, 'play', f'feature-graphic-{lang}.png')); await ctx.close()
+            await b.close()
     finally:
         os.remove(os.path.join(ROOT, '_shot.html'))
 asyncio.run(main())

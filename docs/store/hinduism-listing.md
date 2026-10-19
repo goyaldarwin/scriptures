@@ -30,7 +30,7 @@ READ WITH MEANING
 • Adjustable text size, and a recitation mode that shows the verses alone
 
 LISTEN, HANDS-FREE
-• Play a whole scripture, a kanda, or a single verse
+• Recitation audio for most of the texts: play a whole scripture, a kanda, or a single verse
 • The verse being recited is highlighted and the page turns by itself
 • Continue from any verse with "Listen from here"
 
@@ -69,7 +69,7 @@ No account, no sign-in, no ads and no tracking. Your notes and progress stay on 
 • अक्षरोंका आकार अपने अनुसार, और केवल मूल पाठ दिखानेवाला पाठ मोड
 
 सुनते हुए पढ़ें
-• पूरा ग्रन्थ, एक काण्ड या केवल एक पद सुनें
+• अधिकतर ग्रन्थोंके पाठका ऑडियो: पूरा ग्रन्थ, एक काण्ड या केवल एक पद सुनें
 • जो पद गाया जा रहा है वह चमकता है, पन्ना अपने आप आगे बढ़ता है
 • “यहाँसे सुनें” से किसी भी पदसे आगे सुनें
 
