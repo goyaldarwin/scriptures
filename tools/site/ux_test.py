@@ -34,6 +34,7 @@ async def main():
         b = await p.chromium.launch(**kw)
         ctx = await b.new_context(viewport={'width': 390, 'height': 844}, device_scale_factor=1, is_mobile=True, has_touch=True)
         pg = await ctx.new_page(); errs = []
+        await pg.add_init_script('window.__SALUTE_MS = 0')   # the 1.5 s greeting is tested on its own
         pg.on('pageerror', lambda e: errs.append(str(e)))
         n = 0
         async def shot(tag):
@@ -63,6 +64,12 @@ async def main():
         await pg.goto(url + '?w=sukhmani-sahib'); await pg.wait_for_timeout(300)
         check('the opening screen greets the work being opened before anything loads', await ev("document.querySelector('#loading').textContent") == 'ੴ', await ev("document.querySelector('#loading').textContent"))
         await ev("S.work = null; save()"); await pg.goto(url); await pg.wait_for_timeout(2000)
+        # the greeting stays 1.5 s even when loading is quicker (a page of its own, without the tests' shortcut)
+        pg2 = await ctx.new_page(); await pg2.add_init_script("window.__SALUTE_MS = undefined")
+        await pg2.goto(url + '?w=ramraksha'); t0 = await pg2.evaluate("performance.now()")
+        await pg2.wait_for_function("document.querySelector('#loading').hidden", timeout=10000)
+        shown = await pg2.evaluate("performance.now()")
+        check('the greeting stays about 1.5 s', shown >= 1450, round(shown)); await pg2.close()
         # a store app shows only its shelves (?app=<id>, library/apps.json)
         apps = json.load(open(os.path.join(ROOT, 'library', 'apps.json')))
         for aid, a in apps.items():

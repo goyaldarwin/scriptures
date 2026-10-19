@@ -25,6 +25,7 @@ async def main():
         kw = {'executable_path': os.environ['CHROMIUM']} if os.environ.get('CHROMIUM') else {}
         b = await p.chromium.launch(**kw)
         pg = await (await b.new_context(viewport={'width': 390, 'height': 844})).new_page()
+        await pg.add_init_script('window.__SALUTE_MS = 0')
         errs = []; pg.on('pageerror', lambda e: errs.append(str(e)))
         await pg.goto(url); await pg.wait_for_timeout(2500)
         await pg.evaluate("typeof closeTour === 'function' && closeTour()")

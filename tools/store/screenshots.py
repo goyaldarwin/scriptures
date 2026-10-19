@@ -68,6 +68,7 @@ async def main():
                         # a fresh reader: tour seen, the chosen interface language
                         await ctx.add_init_script("try{ if (!localStorage.getItem('manas.personal.v1')) {} }catch(e){}")
                         pg = await ctx.new_page()
+                        await pg.add_init_script('window.__SALUTE_MS = 0')   # the 1.5 s greeting is tested on its own
                         open(os.path.join(ROOT, '_shot.html'), 'w').write(page(cw, ch, ce if lang == 'en' else ch_, se if lang == 'en' else sh, base + 'index.html', lang))
                         await pg.goto(base + '_shot.html'); await pg.wait_for_timeout(2500)
                         fr = pg.frame_locator('#f'); f = pg.frames[1]

@@ -753,14 +753,18 @@ function workPath(id){ let r = null; (function walk(n){ (n || []).forEach(c => {
 const SALUTE = '॥ ॐ श्री परमात्मने नमः ॥';
 function saluteOf(id){ let r = null; (function walk(n){ (n || []).forEach(c => { if (c.work === id) r = c.salute; else walk(c.children); }); })(LIB); return r || SALUTE; }
 function showSalute(text){ $('#loading').textContent = text; }
+// the greeting stays at least 1.5 s so it can be read (owner, 2026-10-19); the time spent loading counts towards it
+const SALUTE_MS = typeof window.__SALUTE_MS === 'number' ? window.__SALUTE_MS : 1500;
+let saluteAt = 0;   // when the greeting appeared (0: with the page)
+async function hideSalute(){ const left = SALUTE_MS - (performance.now() - saluteAt); if (left > 0) await new Promise(r => setTimeout(r, left)); $('#loading').hidden = true; }
 async function openWork(id, noShow){
   const sal = saluteOf(id); showSalute(sal); if ((S.sal || {})[id] !== sal){ S.sal = S.sal || {}; S.sal[id] = sal; }
-  $('#loading').hidden = false;
+  if ($('#loading').hidden){ $('#loading').hidden = false; saluteAt = performance.now(); }
   try {
     if (!W || W.id !== id){ const path = workPath(id); W = await getJSON(path + '/work'); W.path = path; buildWork(); await Promise.all([loadSources(), loadGlossaries()]); }
     S.work = id; save();
   } catch (e) { toast(T('यह ग्रन्थ नहीं खुल सका', 'Could not open this text')); $('#loading').hidden = true; return; }
-  $('#loading').hidden = true;
+  await hideSalute();
   if (!noShow) show('home');
 }
 
@@ -1082,7 +1086,7 @@ function pruneLib(nodes, shelves){
   const asked = new URLSearchParams(location.search).get('w');
   const start = asked && leafs.includes(asked) ? asked : S.work && leafs.includes(S.work) ? S.work : (leafs.length === 1 ? leafs[0] : null);
   if (start){ await openWork(start, true); viewStack.push('home'); history.pushState({v: 'home'}, ''); show('home', false); }
-  else { $('#loading').hidden = true; renderLibrary(); }
+  else { renderLibrary(); await hideSalute(); }
   cloudInit();
   if (!S.settings.tour) showTour(0);
   if ('serviceWorker' in navigator && location.protocol === 'https:' && !BUNDLE) navigator.serviceWorker.register('sw.js').catch(() => {});
