@@ -17,7 +17,7 @@ LAT = base64.b64encode(open(os.path.join(ROOT, 'tools', 'fonts', 'literata-latin
 SCENES = [
  ('play', 'Listen, hands-free', 'सुनते हुए पढ़ें', 'The verse being recited is lit and the page turns by itself', 'जो पद गाया जा रहा है वह चमकता है, पन्ना अपने आप आगे बढ़ता है',
   """await openWork('sundarkand'); S.settings.layers.h = true; syncLayers();
-     openReader('k', 12); await new Promise(r => setTimeout(r, 900));
+     openReader('k', ID['sundar.0.shloka3']); await new Promise(r => setTimeout(r, 900));
      const i = 14; PL.on = true; PL.t = 0; PL.cur = -1; $('#player').hidden = false; document.body.classList.add('playing');
      $('#ytBox').innerHTML = '<div style="width:200px;height:200px;background:#2B3A8C;display:flex;align-items:center;justify-content:center;color:#F2A653;font:700 52px serif">ॐ</div>';
      setCur(i); $('#pProg').style.width = '34%'; syncPlayer = () => {}; $('#pPlay').innerHTML = '<svg><use href="#i-pause"/></svg>';"""),
@@ -27,7 +27,7 @@ SCENES = [
  ('meanings', 'Hindi and English meanings', 'हिंदी और अंग्रेज़ी अर्थ', 'Under every verse — switch each on or off', 'हर पदके नीचे — जो चाहें वही दिखाएँ',
   """await openWork('manas'); S.settings.layers.h = true; S.settings.layers.e = true; syncLayers(); openReader('k', 60); await new Promise(r => setTimeout(r, 900));"""),
  ('verse', 'Play one verse — or from any verse', 'एक पद सुनें — या कहींसे भी', '▶ beside a verse plays just that one; “Listen from here” goes on', 'पदके पास ▶ केवल वही पद; “यहाँसे सुनें” आगे तक',
-  """await openWork('sundarkand'); S.settings.layers.h = true; syncLayers(); openReader('k', 30); await new Promise(r => setTimeout(r, 900));
+  """await openWork('sundarkand'); S.settings.layers.h = true; syncLayers(); openReader('k', ID['sundar.3.cau5']); await new Promise(r => setTimeout(r, 900));
      const v = [...document.querySelectorAll('#rBody .verse')].find(x => x.getBoundingClientRect().top > 300); itemMenu(+v.dataset.i);"""),
  ('plans', '30-day and 9-day readings', '३० दिन और ९ दिनका पाठ', 'Your progress and place are kept', 'प्रगति और स्थान याद रहता है',
   """await openWork('manas'); WS().org = PLANS[0] ? PLANS[0].id : 'k'; show('home'); renderHome(); window.scrollTo(0, 0);"""),

@@ -1,9 +1,24 @@
-# Śrī Hanumān Chālīsā and the āratī of the Sundarakāṇḍa work (the Sundarakāṇḍa itself is generated from the Mānas).
+# The maṅgalācaraṇa, the Śrī Hanumān Chālīsā and the āratī of the Sundarakāṇḍa work (the Sundarakāṇḍa itself is generated from the Mānas).
 # The wording is settled in reconciliation.md. Format:
 #   == part | section id | language | topic hi | topic en      starts a section (a page); a new part when "part" changes
 #   [type n]                                                    starts a verse (n = its number; a caupāī's line ends in a bare ।।
 #                                                               and the app prints the number, as in the Mānas)
 #   following lines                                             the verse's lines
+#   [manas <item id>]                                           a verse of the Mānas, taken from it unchanged (only its part and section are this file's)
+== mangal | mangal | sa | गणेशजी और हनुमान्‌जीकी वन्दना | Prayers to Gaṇeśa and Hanumān
+[mantra]
+ॐ श्री परमात्मने नमः ।।
+[shloka 1]
+वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ ।
+निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ।।१।।
+[shloka 2]
+विघ्नेश्वराय वरदाय सुरप्रियाय
+लम्बोदराय सकलाय जगद्धिताय ।
+नागाननाय श्रुतियज्ञविभूषिताय
+गौरीसुताय गणनाथ नमो नमस्ते ।।२।।
+[mantra]
+ॐ श्री परमात्मने नमः ।।
+[manas bal.17.so17]
 == chalisa | chalisa-do | awa | आरम्भके दोहे | The opening dohās
 [do]
 श्रीगुरु चरन सरोज रज निज मनु मुकुरु सुधारि ।

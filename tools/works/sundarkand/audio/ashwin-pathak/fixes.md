@@ -2,6 +2,7 @@
 
 Video QjSpUgnEPLU (Pt. Ashwin Kumar Pathak). Checked by transcribing short windows of the recording again with word times, and in the cloud transcript.
 
+- **The opening prayers (0–84 s), added 2026-10-19.** The recording is silent until 12.2 s. Word times from 6-second windows, and the loudness every 0.1 s at each break: ॐ श्री परमात्मने नमः from 12.6 s ("परमात्मने" 18.0 s, "नमः" 19.6 s); **mangal.shloka1 at 21.9 s** ("वक्रतुण्ड" 21.5–22.0 s, the voice rises at 22.1 s); **mangal.shloka2 at 35.4 s** (a breath 34.7–35.4 s, "विघ्नेश्वराय" 35.5 s); **mangal.mantra2 at 56.9 s** ("…नमस्ते" 54.1 s, "ॐ श्री" 57.1 s); **bal.17.so17 at 64.1 s** ("नमः" 61.8 s, a breath 63.1–64.1 s, "…पवन कुमार" 64.6–65.3 s). kishkindha.29.do29 stays at 84.6 s.
 - **chalisa.do1 at 5791.3 s:** after the jaikāras ("…पवनसुत हनुमान की जय, उमापति महादेव की जय…", 5765–5788 s) and "मंगल भवन अमंगल हारी…", the word times put "श्रीगुरु" at 5791.3 s ("श्रीगु चरन सरोज रज निज मनु मुकुर सुधारि", 5791–5796 s). The aligner had started the dohā on the jaikāras (5769.7 s).
 - **chalisa.do2 at 5802.8 s:** "…जो दायक फल चारि" ends about 5802 s and "बुद्धिहीन तनु जानिके सुमिरौं पवनकुमार" follows (5803–5808 s); "बल बुधि बिद्या देहु…" is at 5808.1 s in the cloud transcript.
 - **aarti.pad5 at 6142.3 s:** the cloud segment 6142.3 s reads "जय जय एन्मान उचारे, कंचन थार कपूर लौ छाई, आरती करत अंजना माई" (pad 5). The segment before it (6125.7–6142.3 s) still holds pad 4's "…भुजा उखारे … दाहिने भुजा संतजन तारे".

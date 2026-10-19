@@ -2,9 +2,13 @@
 
 Shelf: हिन्दू धर्म › ग्रन्थ › गोस्वामी तुलसीदास › सुन्दरकाण्ड (`library/hinduism/granth/tulsidas/sundarkand/`, work id `sundarkand`), next to the Śrī Rāmacaritamānasa.
 
-The Sundarakāṇḍa is the most often recited part of the Mānas, so it is also a work of its own, read in one sitting and followed, as it usually is in practice, by the Śrī Hanumān Chālīsā and the āratī "आरती कीजै हनुमान लला की". It has three parts: सुन्दरकाण्ड, श्रीहनुमानचालीसा, आरती. It has no reading plans.
+The Sundarakāṇḍa is the most often recited part of the Mānas, so it is also a work of its own, read in one sitting and followed, as it usually is in practice, by the Śrī Hanumān Chālīsā and the āratī "आरती कीजै हनुमान लला की". It has five parts: प्रारम्भिक वन्दना (the opening prayers sung in the recording), किष्किन्धाकाण्ड (अन्तिम अंश) (the lead-in from Kiṣkindhā dohā 29), सुन्दरकाण्ड, श्रीहनुमानचालीसा, आरती. It has no reading plans.
 
-## Part 1 is generated from the Mānas, never copied by hand
+## Part 0: the opening prayers
+
+What Pt. Ashwin Kumar Pathak's recording sings before the text: ॐ श्री परमात्मने नमः, the Gaṇeśa ślokas वक्रतुण्ड… and विघ्नेश्वराय…, ॐ again, and the Mānas's sorathā प्रनवउँ पवनकुमार (`bal.17.so17`, pulled from the Mānas by `[manas bal.17.so17]` in `text.txt`, so it is the Mānas's own, with its Gita Press meanings). Section `mangal`, items `mangal.mantra1`, `mangal.shloka1`, `mangal.shloka2`, `mangal.mantra2`, `bal.17.so17`. Sources and choices: `reconciliation.md`. `work.json` → `prepended` (5) keeps readers' older saved places on the same verse (`docs/LIBRARY.md`).
+
+## Parts 1 and 2 are generated from the Mānas, never copied by hand
 
 `export.py` reads `library/hinduism/granth/tulsidas/ramcharitmanas/work.json` and takes every item of the Mānas's Sundara-kāṇḍa part with everything it has: the same ids (`sundar.12.cau3`), sections `s` (dohā numbers, so pages are labelled "Dohā 12" as in the Mānas), types, numbers, verse lines, transliteration and language (`sa` for the three opening ślokas). It takes that part's topics, and the Gita Press Hindi and English meanings of those items from the Mānas's `meanings/hi-gitapress.json` and `en-gitapress.json`, under the same source ids and titles. The Mānas has no closing colophon item for the kāṇḍa, so there is none here either.
 
@@ -19,7 +23,7 @@ Never edit `library/hinduism/granth/tulsidas/sundarkand/` by hand. The Mānas it
 
 Readers' bookmarks, notes and progress are stored per work id, so those made in the Sundarakāṇḍa stay separate from those made in the Mānas, even though the item ids are the same.
 
-## Parts 2 and 3: the Hanumān Chālīsā and the āratī
+## Parts 3 and 4: the Hanumān Chālīsā and the āratī
 
 - `text.txt`: their verse text, section by section. `reconciliation.md` records the sources and every choice.
   - Chālīsā (language `awa`, Tulasīdāsa's Awadhi): the two opening dohās (`chalisa.do1`, `do2`), the 40 caupāīs (`chalisa.cau1`–`cau40`, one item per numbered line, following the usual numbering 1–40 in which each line of two half-lines is one caupāī), and the closing dohā (`chalisa.do3`). Types `do` and `cau` are the Mānas's own. Sections: `chalisa-do`, `chalisa-cau`, `chalisa-ant`.

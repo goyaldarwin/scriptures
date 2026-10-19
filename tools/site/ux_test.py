@@ -46,8 +46,10 @@ async def main():
         check('first run: the tour shows', await ev("!document.querySelector('#tour').hidden"))
         await (await pg.query_selector('#tourNext')).click(); await pg.wait_for_timeout(2500)
         check('tour: opens the Sundarakāṇḍa and lights the first step', await ev("W && W.id") == 'sundarkand' and await ev("!document.querySelector('#coach').hidden && TOUR && TOUR.k === 0"))
+        check('tour: the first step points at the Sundarakāṇḍa itself, not the opening prayers', await ev("IT[+tourSteps()[0].t().dataset.open].id") == 'sundar.0.shloka1', await ev("IT[+tourSteps()[0].t().dataset.open].id"))
         await ev("tourSteps()[0].t().click()"); await pg.wait_for_timeout(1800)
         check('tour: opening the text moves to the word step', await ev("TOUR && TOUR.k") == 1, await ev("TOUR && TOUR.k"))
+        check('tour: the text opens at the Sundarakāṇḍa', await ev("IT[R.a].id") == 'sundar.0.shloka1', await ev("IT[R.a].id"))
         await ev("tourSteps()[1].t().click()"); await pg.wait_for_timeout(1200)
         check('tour: tapping a word opens its meaning and moves on', await ev("TOUR && TOUR.k") == 2 and await ev("document.querySelector('#sheet').classList.contains('on')"))
         await ev("closeSheet()"); await pg.wait_for_timeout(1200)
@@ -368,6 +370,12 @@ async def main():
             await ev("show('home')"); await pg.wait_for_timeout(300)
             check(f'{tag}: back to the work home', await ev("document.querySelector('#home').classList.contains('on')"))
 
+        # a place saved before the Sundarakāṇḍa's opening prayers were added (an item position, no id) still opens the same verse
+        old = await ev("""(async () => { await openWork('sundarkand', true); const old = W.items.findIndex(x => x.id === 'sundar.12.cau3') - W.prepended;
+            S.w.sundarkand.last = {org: 'k', i: old}; S.w.sundarkand.pos = {k: old}; W = null; await openWork('sundarkand', true); return [W.prepended, S.w.sundarkand.last.id, IT[S.w.sundarkand.last.i].id, S.w.sundarkand.pos.k === S.w.sundarkand.last.i]; })()""")
+        check('an old saved place moves forward past the opening prayers, once, and keeps its verse id', old[0] == 5 and old[1] == old[2] == 'sundar.12.cau3' and old[3], old)
+        again = await ev("(async () => { W = null; await openWork('sundarkand', true); return IT[S.w.sundarkand.last.i].id; })()")
+        check('reopening does not move it again', again == 'sundar.12.cau3', again)
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')

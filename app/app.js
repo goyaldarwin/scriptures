@@ -354,7 +354,16 @@ function updateHeader(){
 }
 let scT;
 window.addEventListener('scroll', () => { if (!$('#reader').classList.contains('on')) return; ensure(); clearTimeout(scT); scT = setTimeout(() => { updateHeader(); savePos(); }, 200); }, {passive: true});
-function savePos(i){ if (i == null) i = topVisibleItem(); const ws = WS(); ws.pos[R.org] = i; ws.last = {org: R.org, i}; save(); }
+function savePos(i){ if (i == null) i = topVisibleItem(); const ws = WS(); ws.pos[R.org] = i; ws.last = {org: R.org, i, id: IT[i].id}; save(); }
+// A place is found again by its item id. Places saved before ids were kept are item positions; when a work later had
+// verses put before its text (work.json "prepended": how many), such a place moves forward by that many, once.
+function fixLast(){
+  const ws = S.w[W.id], l = ws && ws.last; if (!l) return;
+  if (l.id != null){ if (ID[l.id] != null) l.i = ID[l.id]; return; }
+  if (W.prepended) l.i += W.prepended;
+  if (IT[l.i]) l.id = IT[l.i].id;
+  for (const o in ws.pos) if (W.prepended) ws.pos[o] += W.prepended;
+}
 function openReader(org, i, flash){
   if (!S.hinted && !TOUR){ S.hinted = 1; save(); setTimeout(() => toast(T('किसी शब्दको छूकर अर्थ देखें · नीचेसे प्रसंग चुनें', 'Tap any word for its meaning · choose a section at the bottom')), 900); }
   R.org = org; [R.a, R.b, R.n] = rangeFor(org, i);
@@ -362,7 +371,7 @@ function openReader(org, i, flash){
   renderAround(i); if (flash){ const el = document.getElementById('v' + i); if (el) el.classList.add('flash'); }
   savePos(i);
 }
-function reopenReader(){ const l = WS().last; if (l) openReader(l.org, l.i); }
+function reopenReader(){ fixLast(); const l = WS().last; if (l) openReader(l.org, l.i); }
 function jumpTo(i){
   if (i < R.a || i > R.b){ openReader(R.org, i); return; }
   const pg = itemPage[i];
@@ -782,7 +791,7 @@ async function openWork(id, noShow){
   const sal = saluteOf(id); showSalute(sal); if ((S.sal || {})[id] !== sal){ S.sal = S.sal || {}; S.sal[id] = sal; }
   if ($('#loading').hidden){ $('#loading').hidden = false; saluteAt = performance.now(); }
   try {
-    if (!W || W.id !== id){ const path = workPath(id); W = await getJSON(path + '/work'); W.path = path; buildWork(); await Promise.all([loadSources(), loadGlossaries()]); }
+    if (!W || W.id !== id){ const path = workPath(id); W = await getJSON(path + '/work'); W.path = path; buildWork(); fixLast(); await Promise.all([loadSources(), loadGlossaries()]); }
     S.work = id; save();
   } catch (e) { toast(T('यह ग्रन्थ नहीं खुल सका', 'Could not open this text')); $('#loading').hidden = true; return; }
   await hideSalute();
@@ -805,7 +814,7 @@ function renderHome(){
   $('#hTitle').textContent = TT(W.title); fitTitle(); $('#hSub').textContent = TT(W.by) + ' · ' + TT(W.edition);
   // ▶ the whole work, start to end, across every part and recording
   const pa = $('#hPlayAll'), fa = firstAu(0, IT.length - 1); pa.hidden = fa == null; pa.onclick = () => playRange('k', 0, IT.length - 1);
-  const L = WS().last;
+  fixLast(); const L = WS().last;
   // one short button: continue where you left off (the reader shows where you are)
   $('#contCard').innerHTML = L && IT[L.i] ? '<button class="btn ghost cont" id="cGo">' + T('आगे पढ़ें', 'Continue') + ' ›</button>' : '';
   if ($('#cGo')) $('#cGo').onclick = () => openReader(L.org, L.i);
@@ -1064,7 +1073,7 @@ function inView(el){ const r = el.getBoundingClientRect(); return r.width && r.t
 function firstVisible(sel){ const all = $$(sel); return all.find(inView) || all[0] || null; }
 function tourSteps(){
   return [
-    {t: () => $$('#orgList [data-open]')[W && W.id === 'sundarkand' && $$('#orgList [data-open]').length > 1 ? 1 : 0], allow: '#orgList .it', p: T('पाठ खोलनेके लिये यहाँ छुएँ।', 'Tap here to open the text.'), done: () => CURVIEW === 'reader' && !!$('#rBody .verse')},
+    {t: () => { const rows = $$('#orgList [data-open]'), k = PARTS.findIndex(p => /^Sundara/.test(p.en || '')); return (W && W.id === 'sundarkand' && k >= 0 && rows[k]) || rows[0]; }, allow: '#orgList .it', p: T('पाठ खोलनेके लिये यहाँ छुएँ।', 'Tap here to open the text.'), done: () => CURVIEW === 'reader' && !!$('#rBody .verse')},
     {t: () => firstVisible('#rBody .verse .vtext .w'), allow: '#rBody .vtext .w', p: T('किसी भी शब्दको छुएँ — उसका अर्थ दिखेगा।', 'Tap any word to see its meaning.'), done: () => $('#sheet').classList.contains('on')},
     {t: () => $('#sheet'), allow: '#sheet', p: T('यह उस शब्दका अर्थ, मूल शब्द और व्याकरण है। ऊपरकी पट्टीको नीचे खींचकर बंद करें।', 'Its meaning, root and grammar. Drag the drawer down to close it.'), done: () => !$('#sheet').classList.contains('on'), top: true},
     {t: () => $('#reader .szp'), allow: '#reader .szp, #reader .szm', p: T('A+ छूकर अक्षर बड़े करें (A− से छोटे)।', 'Tap A+ to make the text larger (A− makes it smaller).'), enter: () => { TOUR.base = S.settings.size; }, done: () => S.settings.size !== TOUR.base},

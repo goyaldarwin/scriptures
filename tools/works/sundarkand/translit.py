@@ -30,6 +30,7 @@ def word(w):
         elif ch == 'ँ': out.append('̐')
         elif ch == 'ः': out.append('ḥ')
         elif ch == 'ऽ': out.append('’')
+        elif ch == 'ॐ': out.append('oṁ')   # as in the Rāma Rakṣā ("oṁ śrīgaṇeśāya namaḥ")
         else: out.append(ch)
         i += 1
     return ''.join(out)
