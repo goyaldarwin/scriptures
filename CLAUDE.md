@@ -1,6 +1,6 @@
 # Scriptures library — notes for Claude sessions
 
-Live site: https://goyaldarwin.github.io/scriptures/ (published from `main`). Owner: Darwin Goyal (`goyaldarwin`).
+Live site: https://scriptures.craadle.org/ (published from `main`). Owner: Darwin Goyal (`goyaldarwin`).
 
 **Read first:** `docs/START-HERE.md` (repos, rules, status), `docs/PLAYBOOK.md` (every preference and lesson), `docs/HOW-TO.md` (procedures), `docs/LIBRARY.md` (data format), `docs/APPS.md` (the store apps).
 

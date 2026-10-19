@@ -2,7 +2,7 @@
 
 A personal, ad-free library for studying scriptures. Each work has the same reading experience: verses with their meanings from selectable sources, word-by-word meanings, natural divisions, reading plans, bookmarks and notes, and hands-free recitation with audio from YouTube.
 
-**Website:** https://goyaldarwin.github.io/scriptures/
+**Website:** https://scriptures.craadle.org/
 
 | Shelf | Work | Edition |
 |---|---|---|

@@ -85,7 +85,9 @@ self.addEventListener('fetch',e=>{const u=new URL(e.request.url);if(u.origin!==l
  e.respondWith(fetch(e.request, {cache: 'no-cache'}).then(r=>{const c=r.clone();caches.open(V).then(x=>x.put(e.request,c));return r;}).catch(()=>caches.match(e.request)));});
 """ % (ver, json.dumps(files)))
 open(os.path.join(SITE, '.nojekyll'), 'w').write('')
-shutil.copy(os.path.join(ROOT, 'tools', 'site', 'privacy.html'), os.path.join(SITE, 'privacy.html'))   # the privacy policy the app stores link to
+shutil.copy(os.path.join(ROOT, 'tools', 'site', 'privacy.html'), os.path.join(SITE, 'privacy.html'))
+# the site's own address (GitHub Pages custom domain): apps/app.json host; DNS CNAME <host> → goyaldarwin.github.io (Cloudflare, DNS only)
+open(os.path.join(SITE, 'CNAME'), 'w').write(json.load(open(os.path.join(ROOT, 'apps', 'app.json')))['host'] + '\n')   # the privacy policy the app stores link to
 # ---------- single-file bundle ----------
 LIBD = os.path.join(SITE, 'library')
 bundle = {'files': {}}

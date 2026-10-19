@@ -15,7 +15,7 @@
 - **Explain what you're changing.** When making changes, say in plain words what changed and why, not just "updated the artifact".
 - **Show screenshots.** Test on a phone-size screen (390px wide) before telling me it's done.
 - **Ask only when a decision is really mine.** Otherwise pick the sensible option and tell me.
-- **Deliverables:** the website https://goyaldarwin.github.io/scriptures/ (published from `main`). `build.py` also makes an offline single HTML file and a claude.ai artifact file in `dist/` (YouTube does not play inside claude.ai).
+- **Deliverables:** the website https://scriptures.craadle.org/ (published from `main`). `build.py` also makes an offline single HTML file and a claude.ai artifact file in `dist/` (YouTube does not play inside claude.ai).
 
 ---
 
@@ -329,6 +329,7 @@ The owner (and helpers) set verse times by ear in the app; the library applies t
 
 ### Decisions (Oct 18, 2026): the apps
 - **Android first (owner, 2026-10-19); the iPhone app is parked until the owner asks.**
+- **The library's address is https://scriptures.craadle.org (2026-10-19)**; the old github.io link redirects. Support email support@craadle.org (Cloudflare routes it to the owner's Gmail).
 - **One app per tradition (owner, 2026-10-19)** — not one per work, not one for everything. The Hindu app (`org.craadle.scriptures.hinduism`) shows the Hindu shelves and also the Sukhmani Sahib; `?app=<id>` + `library/apps.json` decide what each app shows. Publisher: 16493041 Canada Inc. (craadle.org).
 - **One app, published by the owner's corporation, in every country except mainland China.** Not one app per work: stores reject near-identical apps as spam (Apple 4.3); instead one store page per work (Apple custom product pages with keywords) and `?w=<work id>` links that open a work. Details and the owner's steps: `docs/APPS.md`.
 - **The app shows the website**, so content never waits for an app update. The app is rebuilt only for its shell.
