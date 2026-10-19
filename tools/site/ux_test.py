@@ -81,9 +81,9 @@ async def main():
 
         # one header on the library, a work and the reader: back, A−/A+, हिं·En·शब्द, search, menu
         for v in ('library', 'home', 'reader'):
-            need = ['.lyr.layers', '.hsearch', '.hmenu'] + ([] if v == 'library' else ['.szm', '.szp'])   # the library's left side is its breadcrumbs
+            need = ['.lyr.layers' if v == 'reader' else '.lyr.uilang', '.hsearch', '.hmenu'] + ([] if v == 'library' else ['.szm', '.szp'])   # the library's left side is its breadcrumbs
             parts = await ev(f"(() => {{ const b = document.querySelector('#{v} .bar'); return b ? {need!r}.map(c => !!b.querySelector(c)) : []; }})()")
-            check(f'{v}: the same header (हिं·En·शब्द, search, menu; A−/A+ on a work and the reader)', parts and all(parts), parts)
+            check(f'{v}: the same header (हिं·En — with शब्द in the reader —, search, menu; A−/A+ on a work and the reader)', parts and all(parts), parts)
         hgt = await ev("document.querySelector('#library .bar').getBoundingClientRect().height")
         check('library: the header is one row, even inside a shelf', hgt < 70, hgt)
         # the library's way back is the breadcrumb row in its header; inside a work, “‹ Library” goes to the library
@@ -95,9 +95,13 @@ async def main():
         await ev("libPath=[]; renderLibrary()")
         await ev("libPath=[]; show('library')"); await pg.wait_for_timeout(300)
         lang0 = await ev("LANG()")
-        await (await pg.query_selector('#library .lyr.layers [data-l=e]')).click(); await pg.wait_for_timeout(400)
-        check('language can be changed from the library', await ev("LANG()") != lang0, lang0)
-        await (await pg.query_selector('#library .lyr.layers [data-l=e]')).click(); await pg.wait_for_timeout(300)
+        other = 'hi' if lang0 == 'en' else 'en'
+        await (await pg.query_selector(f'#library .lyr.uilang [data-u={other}]')).click(); await pg.wait_for_timeout(400)
+        check('language can be changed from the library (हिं · En, one choice)', await ev("LANG()") == other and await ev("document.querySelector('#libTitle').textContent") in ('पुस्तकालय', 'Library') and not await ev("!!document.querySelector('#library .lyr [data-l=w]')"), lang0)
+        await ev("S.settings.layers.e = true; S.settings.layers.h = true; save()")
+        check('the meanings do not change the language of the app', await ev("LANG()") == other)
+        await (await pg.query_selector(f'#library .lyr.uilang [data-u={lang0}]')).click(); await pg.wait_for_timeout(300)
+        await ev("S.settings.layers.h = false; save()")
         # library search finds a work by its English or Hindi name
         for leaf, trail in list(leaves(shelf))[:3]:
             await ev("libPath=[]; show('library')"); await pg.wait_for_timeout(200)
@@ -294,10 +298,10 @@ async def main():
                     await (await pg.query_selector('#sRes .res')).click(); await pg.wait_for_timeout(1200)
                     check(f'{tag}: a search result opens the reader', await ev("document.querySelector('#reader').classList.contains('on')"))
             # English interface
-            await ev("S.settings.layers.e = true; S.settings.layers.h = false; applyLang(); refreshReader()"); await pg.wait_for_timeout(500)
+            await ev("S.settings.ui = 'en'; S.settings.layers.e = true; S.settings.layers.h = false; applyLang(); refreshReader()"); await pg.wait_for_timeout(500)
             en_hdr = await ev("document.querySelector('#rMid').innerText")
             check(f'{tag}: English interface works in the reader', bool(en_hdr.strip()), en_hdr)
-            await ev("S.settings.layers.h = true; S.settings.layers.e = false; applyLang()")
+            await ev("S.settings.ui = 'hi'; S.settings.layers.h = true; S.settings.layers.e = false; applyLang()")
             # the work menu (☰) leads to bookmarks and settings
             await ev("show('home')"); await pg.wait_for_timeout(300)
             await (await pg.query_selector('#hMenu')).click(); await pg.wait_for_timeout(300)

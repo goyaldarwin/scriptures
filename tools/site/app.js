@@ -27,7 +27,7 @@ const LS = 'manas.personal.v1';
 let canStore = true;
 function newProfile(name){ return {id: 'p' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), name, notes: {}, bm: {}, done: {}, gloss: {}, fix: {}}; }
 // a new reader starts in English (owner, 2026-10-19): English interface and English meaning; हिं adds the Hindi meaning
-function defaults(){ const p = newProfile('Me'); return {v: 2, settings: {layers: {h: false, e: true, w: false}, tr: false, size: 21, theme: 'light', wake: true, lightDefault: 1}, src: {}, w: {}, work: null, profiles: [p], active: p.id, show: [p.id], timer: null}; }
+function defaults(){ const p = newProfile('Me'); return {v: 2, settings: {ui: 'en', layers: {h: false, e: true, w: false}, tr: false, size: 21, theme: 'light', wake: true, lightDefault: 1}, src: {}, w: {}, work: null, profiles: [p], active: p.id, show: [p.id], timer: null}; }
 let S;
 try { S = JSON.parse(localStorage.getItem(LS)); } catch (e) { canStore = false; }
 if (!S || !S.profiles) S = defaults();
@@ -42,6 +42,7 @@ if (!S.timing.from) S.timing.from = {};
 if (S.timing.on && Date.now() - (S.timing.used || 0) > 12 * 3600e3) S.timing.on = false;
 function migrate(){
   if ((S.v || 1) < 2) migrate2();
+  if (S.settings && !S.settings.ui) S.settings.ui = S.settings.layers && S.settings.layers.e ? 'en' : 'hi';   // earlier: the language followed the English meaning
   if (S.v < 3){ // v2 → v3: a reader's own word meanings are filed by language (“awa:राम”); earlier ones were all Awadhi
     S.profiles.forEach(p => { const n = {}; for (const k in p.gloss || {}) n[k.includes(':') ? k : 'awa:' + k] = p.gloss[k]; p.gloss = n; });
     S.v = 3;
@@ -74,7 +75,9 @@ async function cloudInit(){
     canStore = true;
   } catch (e) {}
 }
-const LANG = () => S.settings.layers.e ? 'en' : 'hi';
+// the language of the app (owner, 2026-10-19): its own setting, chosen with हिं · En on the library and work pages (and in
+// Settings); the meanings under the verses (हिं · En · शब्द in the reader) are separate and never change it
+const LANG = () => S.settings.ui === 'hi' ? 'hi' : 'en';
 function T(hi, en){ return LANG() === 'en' ? en : hi; }
 const ME = () => S.profiles.find(p => p.id === S.active) || S.profiles[0];
 const SHOWN = () => S.profiles.filter(p => S.show.includes(p.id));
@@ -374,9 +377,11 @@ function sectionSheet(){
 $('#rMid').onclick = sectionSheet;
 $('#rBack').onclick = back;
 // the same हिं · En · शब्द switch in every header (library, work, reader): one setting, shown and changed anywhere
-$$('.lyr.layers button').forEach(b => b.onclick = () => { const l = b.dataset.l; S.settings.layers[l] = !S.settings.layers[l]; save(); if (l === 'e') applyLang(); syncLayers();
-  const v = viewStack[viewStack.length - 1]; if (v === 'reader') refreshReader(); else if (l === 'e') onView(v); });
-function syncLayers(){ $$('.lyr.layers button').forEach(b => b.classList.toggle('on', layerOn(b.dataset.l))); }
+$$('.lyr.layers button').forEach(b => b.onclick = () => { const l = b.dataset.l; S.settings.layers[l] = !S.settings.layers[l]; save(); syncLayers();
+  const v = viewStack[viewStack.length - 1]; if (v === 'reader') refreshReader(); });
+// हिं · En on the library and work pages: one choice, the language of the app
+$$('.lyr.uilang button').forEach(b => b.onclick = () => { if (S.settings.ui === b.dataset.u) return; S.settings.ui = b.dataset.u; save(); applyLang(); syncLayers(); onView(viewStack[viewStack.length - 1]); });
+function syncLayers(){ $$('.lyr.layers button').forEach(b => b.classList.toggle('on', layerOn(b.dataset.l))); $$('.lyr.uilang button').forEach(b => b.classList.toggle('on', S.settings.ui === b.dataset.u)); }
 function applyRecite(){ document.body.classList.toggle('recite', !!S.settings.recite); $('#rRecite').hidden = !S.settings.recite; }
 function toggleRecite(){ S.settings.recite = !S.settings.recite; save(); applyRecite(); toast(S.settings.recite ? T('पाठ मोड: केवल मूल पाठ', 'Recitation mode: verses only') : T('अर्थ फिर दिखेंगे', 'Meanings shown again')); }
 $('#rRecite').onclick = toggleRecite;
@@ -854,6 +859,7 @@ function renderSettings(){
     timingHTML() +
     '<h2>' + T('पढ़नेकी सुविधा', 'Reading comfort') + '</h2>' + sw('swk', LB.wake(), '', st.wake) +
     '<div class="field"><label>' + LB.size() + '</label><input type="range" id="ssz" min="16" max="34" value="' + st.size + '" style="border:0;padding:0"></div>' +
+    '<div class="field"><label>' + T('ऐपकी भाषा', 'Language of the app') + '</label><select id="sui"><option value="hi">हिंदी</option><option value="en">English</option></select></div>' +
     '<div class="field"><label>' + LB.theme() + '</label><select id="sth"><option value="light">' + T('दिन (हल्का)', 'Light') + '</option><option value="dark">' + T('रात (गहरा)', 'Dark') + '</option><option value="auto">' + T('फ़ोनके अनुसार', 'Same as phone') + '</option></select></div>' +
     '<h2>' + T('मेरी फ़ाइल', 'My file') + '</h2><p class="small muted">' + T('आपकी टिप्पणियाँ, बुकमार्क, प्रगति, सेटिंग्स और सुधार इसी फ़ोनमें रहते हैं। फ़ाइल सेव करके बैकअप रखें या दूसरे फ़ोनपर खोलें।', 'Your notes, bookmarks, progress, settings and corrections stay on this phone. Save the file as a backup or to open it on another phone.') + (canStore ? '' : ' <b>' + T('ध्यान दें: यह फ़ोन डेटा अपने-आप नहीं रख पा रहा — पाठके बाद “फ़ाइल सेव करें” दबाएँ।', 'This phone is not keeping app data — tap Save my file after each reading.') + '</b>') + '</p>' +
     '<div class="acts"><button class="btn" id="exp">' + T('फ़ाइल सेव करें', 'Save my file') + '</button><button class="btn ghost" id="imp">' + T('फ़ाइल खोलें', 'Open a file') + '</button></div>' +
@@ -861,10 +867,11 @@ function renderSettings(){
     '<h2>' + T('पढ़नेवाले', 'Readers') + '</h2><p class="small muted">' + T('टिप्पणियाँ लिखनेवालेके नामसे सेव होती हैं। गोल बटन: अभी कौन लिख रहा है। चौकोर बटन: किसकी टिप्पणियाँ दिखें।', 'Notes are saved under the writer’s name. Round button: who is writing now. Square box: whose notes to show.') + '</p>' +
     S.profiles.map(p => '<div class="sw"><span class="row grow"><input type="radio" name="act" value="' + p.id + '"' + (p.id === S.active ? ' checked' : '') + ' style="width:auto"> <span class="grow">' + esc(p.name) + '<small>' + Object.values(p.notes).reduce((a, b) => a + b.length, 0) + T(' टिप्पणी · ', ' notes · ') + Object.keys(p.bm).length + T(' बुकमार्क', ' bookmarks') + '</small></span></span><input type="checkbox" data-show="' + p.id + '"' + (S.show.includes(p.id) ? ' checked' : '') + ' style="width:auto"><button class="small" data-ren="' + p.id + '" style="text-decoration:underline;margin-left:8px">' + T('नाम', 'Rename') + '</button>' + (S.profiles.length > 1 ? '<button class="small" data-del="' + p.id + '" style="text-decoration:underline;margin-left:8px">' + T('हटाएँ', 'Delete') + '</button>' : '') + '</div>').join('') +
     '<div class="acts" style="margin-top:12px"><button class="btn ghost small" id="addp">' + T('+ नया व्यक्ति', '+ Add reader') + '</button></div><div style="height:50px"></div>';
-  $('#setBody').innerHTML = h; $('#sth').value = st.theme;
+  $('#setBody').innerHTML = h; $('#sth').value = st.theme; $('#sui').value = LANG();
+  $('#sui').onchange = e => { st.ui = e.target.value; save(); applyLang(); syncLayers(); renderSettings(); };
   const bind = (id, f) => $('#' + id).onchange = e => { f(e.target.checked); save(); };
   bindTiming();
-  bind('sh', v => st.layers.h = v); bind('se', v => { st.layers.e = v; applyLang(); renderSettings(); }); bind('sw', v => st.layers.w = v); bind('str', v => st.tr = v); bind('src', v => { if (!!st.recite !== v) toggleRecite(); }); bind('swk', v => st.wake = v);
+  bind('sh', v => st.layers.h = v); bind('se', v => st.layers.e = v); bind('sw', v => st.layers.w = v); bind('str', v => st.tr = v); bind('src', v => { if (!!st.recite !== v) toggleRecite(); }); bind('swk', v => st.wake = v);
   $$('[data-src]').forEach(s => s.onchange = async () => { const c = S.src[W.id] = S.src[W.id] || {}; c[s.dataset.src] = s.value; save(); if (s.dataset.src === 'au') stopAudio(); await loadSources(); IDX = null; toast(T('स्रोत बदला', 'Source changed')); });
   $('#ssz').oninput = e => { st.size = +e.target.value; applyTheme(); save(); };
   $('#sth').onchange = e => { st.theme = e.target.value; applyTheme(); save(); };
@@ -992,7 +999,7 @@ function askYes(msg, yes, cb){ openSheet('<p style="font-size:17px">' + msg + '<
 /* ---------------- vidhi & āratī ---------------- */
 let vidTab = 'v';
 $$('#vidSeg button').forEach(b => b.onclick = () => { vidTab = b.dataset.v; renderVidhi(); });
-$$('#vidLang button').forEach(b => b.onclick = () => { const en = b.dataset.l === 'e'; if (en === (LANG() === 'en')) return; S.settings.layers.e = en; if (!en) S.settings.layers.h = true; save(); applyLang(); renderVidhi(); });
+$$('#vidLang button').forEach(b => b.onclick = () => { const en = b.dataset.l === 'e'; if (en === (LANG() === 'en')) return; S.settings.ui = en ? 'en' : 'hi'; save(); applyLang(); syncLayers(); renderVidhi(); });
 const vW = l => wordsHTML(l);
 function renderVidhi(){
   if (!W || !W.vidhi) return;

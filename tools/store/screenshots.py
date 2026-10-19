@@ -71,7 +71,7 @@ async def main():
                         open(os.path.join(ROOT, '_shot.html'), 'w').write(page(cw, ch, ce if lang == 'en' else ch_, se if lang == 'en' else sh, base + 'index.html', lang))
                         await pg.goto(base + '_shot.html'); await pg.wait_for_timeout(2500)
                         fr = pg.frame_locator('#f'); f = pg.frames[1]
-                        await f.evaluate(f"""async () => {{ closeTour(); const st = document.createElement('style'); st.textContent = '#toast{{display:none!important}}'; document.head.appendChild(st); S.settings.layers.e = {'true' if lang == 'en' else 'false'}; S.settings.layers.w = false; applyLang(); save(); {js} }}""")
+                        await f.evaluate(f"""async () => {{ closeTour(); const st = document.createElement('style'); st.textContent = '#toast{{display:none!important}}'; document.head.appendChild(st); S.settings.ui = '{lang}'; S.settings.layers.e = {'true' if lang == 'en' else 'false'}; S.settings.layers.w = false; applyLang(); save(); {js} }}""")
                         await pg.wait_for_timeout(1200)
                         await pg.screenshot(path=os.path.join(d, f'{n:02d}-{name}.png'))
                         await ctx.close()

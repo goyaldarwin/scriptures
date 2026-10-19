@@ -99,7 +99,7 @@ body.timing .verse.tocheck{box-shadow:inset 3px 0 0 var(--saffron)}.tcheck{margi
 .tr .dd{font-family:'NSDev',var(--lat);font-style:normal;white-space:nowrap}
 .tr{font-family:'TrLat','NSDev',var(--lat);font-style:italic;font-size:14px;color:var(--muted);text-align:center;margin-top:4px;line-height:1.5}
 .lyr{display:flex;border:1px solid var(--rule);border-radius:16px;overflow:hidden;flex:none}
-.lyr button{padding:0 7px;min-height:30px;font-size:12.5px;color:var(--muted)}
+.lyr button{padding:0 9px;min-height:32px;font-size:15px;color:var(--muted)}
 .lyr button+button{border-left:1px solid var(--rule)}
 .lyr button.on{background:var(--indigo-soft);color:var(--indigo);font-weight:700}
 .vend{position:absolute;right:-25px;bottom:0;height:calc(var(--verse-size) * 1.6);display:flex;align-items:center;line-height:1}
@@ -263,7 +263,7 @@ input[type=checkbox],input[type=radio],input[type=range]{accent-color:var(--indi
 .toprow{display:flex;align-items:center;gap:2px;margin-top:10px;min-height:44px}.toprow .grow,.bar .grow{flex:1}
 .bar .hback.off{visibility:hidden}
 .bar .wrap{gap:4px}
-@media (max-width:400px){.bar .sz button{padding:0 8px}.bar .lyr button{padding:0 5px}.bar .ib{width:36px}.bar .libbtn{font-size:14px;padding:6px 2px}}
+@media (max-width:400px){.bar .sz button{padding:0 8px}.bar .lyr button{padding:0 6px}.bar .ib{width:36px}.bar .libbtn{font-size:14px;padding:6px 2px}}
 .crumbrow{flex:1;min-width:0;display:flex;gap:2px;align-items:center;overflow-x:auto;white-space:nowrap;font-size:14.5px;scrollbar-width:none}.crumbrow::-webkit-scrollbar{display:none}.crumbrow button{color:var(--indigo);padding:2px 2px}.crumbrow .sep{color:var(--muted)}.crumbrow .cur{color:var(--ink,inherit);font-weight:700}
 .zoomable{zoom:var(--ui-zoom,1)}
 .bar .ib svg{stroke:var(--indigo)}
