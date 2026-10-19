@@ -376,6 +376,22 @@ async def main():
         check('an old saved place moves forward past the opening prayers, once, and keeps its verse id', old[0] == 5 and old[1] == old[2] == 'sundar.12.cau3' and old[3], old)
         again = await ev("(async () => { W = null; await openWork('sundarkand', true); return IT[S.w.sundarkand.last.i].id; })()")
         check('reopening does not move it again', again == 'sundar.12.cau3', again)
+        # one reader per device: several readers (from an older phone or file) are joined, nothing dropped
+        joined = await ev("""(() => { const a = newProfile('A'), b = newProfile('B'); a.notes['x:1'] = [{t: 'one', ts: 1}]; b.notes['x:1'] = [{t: 'two', ts: 2}]; b.bm['x:2'] = 5;
+            const keep = S; S = {profiles: [a, b], active: b.id, show: [a.id], settings: {}, v: 3}; oneReader(); const r = [S.profiles.length, S.profiles[0].notes['x:1'].length, !!S.profiles[0].bm['x:2'], S.show.length]; S = keep; return r; })()""")
+        check('several readers are joined into one, keeping every note and bookmark', joined == [1, 2, True, 1], joined)
+        await ev("show('settings')"); await pg.wait_for_timeout(500)
+        st = await ev("document.querySelector('#setBody').innerText")
+        check('settings: no Readers section, the new titles', 'Readers' not in st and 'पढ़नेवाले' not in st and ('My bookmarks & notes' in st or 'मेरे बुकमार्क और टिप्पणियाँ' in st) and 'Show while reading' not in st, st[:80])
+        await ev("show('library')"); await pg.wait_for_timeout(500)
+        s0 = await ev("S.settings.size"); await ev("document.querySelector('#library .szp').click()"); s1 = await ev("S.settings.size")
+        check('library: A+ in its header changes the text size', s1 == s0 + 2, [s0, s1])
+        await ev("document.querySelector('#library .szm').click()")
+        fits = await ev("(() => { const b = document.querySelector('#library .bar .wrap'); return b.scrollWidth <= b.clientWidth + 1; })()")
+        check('library: the header still fits a phone', fits)
+        # ▶ after a seek: an old time reported by the player does not light the previous verse
+        guard = await ev("(() => { PL.seekT = null; seekGuard(100); ytInfo.t = 40; const a = playTime(); ytInfo.t = 100.2; const b = playTime(); ytInfo.t = 99; const c = playTime(); return [a, b, c]; })()")
+        check('a stale time right after a seek is held at the asked-for start', guard == [100, 100.2, 99], guard)
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')

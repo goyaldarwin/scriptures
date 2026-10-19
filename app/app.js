@@ -47,6 +47,23 @@ function migrate(){
     S.profiles.forEach(p => { const n = {}; for (const k in p.gloss || {}) n[k.includes(':') ? k : 'awa:' + k] = p.gloss[k]; p.gloss = n; });
     S.v = 3;
   }
+  oneReader();
+}
+// One reader per device (owner, 2026-10-19): there is no list of readers any more. A phone or file that had several keeps
+// everything — their notes, bookmarks, progress, own meanings and corrections are joined into the first one, nothing dropped.
+function mergeInto(a, b){
+  for (const k in b.notes || {}){ const arr = a.notes[k] = a.notes[k] || []; b.notes[k].forEach(n => { if (!arr.some(m => m.ts === n.ts && m.t === n.t)) arr.push(n); }); }
+  for (const k in b.bm || {}) if (!a.bm[k]) a.bm[k] = b.bm[k];
+  for (const w in b.done || {}){ const aw = a.done[w] = a.done[w] || {}; for (const pl in b.done[w]){ const ap = aw[pl] = aw[pl] || {}; for (const n in b.done[w][pl]) if (!ap[n]) ap[n] = b.done[w][pl][n]; } }
+  for (const k in b.gloss || {}) if (!a.gloss[k]) a.gloss[k] = b.gloss[k];
+  for (const k in b.fix || {}) if (!a.fix[k]) a.fix[k] = b.fix[k];
+}
+function oneReader(){
+  if (!S.profiles || !S.profiles.length) return;
+  const me = S.profiles.find(p => p.id === S.active) || S.profiles[0];
+  ['notes', 'bm', 'done', 'gloss', 'fix'].forEach(k => me[k] = me[k] || {});
+  S.profiles.filter(p => p !== me).forEach(p => mergeInto(me, p));
+  S.profiles = [me]; S.active = me.id; S.show = [me.id];
 }
 function migrate2(){
   // v1 → v2: keys gain the work id, per-work positions and plan progress
@@ -286,7 +303,7 @@ function verseHTML(i){
   if (layerOn('h')){ const m = mean('hi', i); if (m) h += '<div class="layer h">' + esc(m.x).replace(/\s*(।।[^।]*।।)\s*$/, '<span style="white-space:nowrap"> $1</span>') + (m.edited ? '<span class="tag">' + T('संशोधित', 'edited') + '</span>' : '') + (m.f ? '<div class="fn">' + m.f.map(esc).join('<br>') + '</div>' : '') + '</div>'; }
   if (layerOn('w')) h += '<div class="layer wl">' + wbHTML(vv.v, langOf(i)) + '</div>';
   if (layerOn('e')){ const m = mean('en', i); if (m) h += '<div class="layer e">' + esc(m.x) + (m.edited ? '<span class="tag">edited</span>' : '') + (m.f ? '<div class="fn">' + m.f.map(esc).join('<br>') + '</div>' : '') + '</div>'; }
-  for (const p of SHOWN()) (p.notes[KEY(id)] || []).forEach((n, k) => { h += '<div class="note"><div class="who">' + esc(p.name) + ' · ' + new Date(n.ts).toLocaleDateString(LANG() === 'en' ? 'en-IN' : 'hi-IN') + (p.id === me.id ? '<button data-a="enote" data-k="' + k + '">' + T('बदलें', 'Edit') + '</button>' : '') + '</div>' + esc(n.t).replace(/\n/g, '<br>') + '</div>'; });
+  for (const p of SHOWN()) (p.notes[KEY(id)] || []).forEach((n, k) => { h += '<div class="note"><div class="who">' + new Date(n.ts).toLocaleDateString(LANG() === 'en' ? 'en-IN' : 'hi-IN') + (p.id === me.id ? '<button data-a="enote" data-k="' + k + '">' + T('बदलें', 'Edit') + '</button>' : '') + '</div>' + esc(n.t).replace(/\n/g, '<br>') + '</div>'; });
   return h + '</div>';
 }
 function pauseHTML(i){
@@ -471,7 +488,7 @@ $('#rBody').addEventListener('click', ev => {
 });
 function noteSheet(i, k){
   const me = ME(), key = KEY(IT[i].id), arr = me.notes[key] || [], cur = k != null ? arr[k] : null;
-  openSheet('<h2>' + (cur ? T('टिप्पणी बदलें', 'Edit note') : T('अपनी टिप्पणी लिखें', 'Write your note')) + '</h2><p class="small muted">' + esc(itemLabel(i)) + T(' · लेखक: ', ' · by ') + esc(me.name) + '</p><textarea id="nt" placeholder="' + T('अपने विचार, भाव या कथा यहाँ लिखें…', 'Your thoughts or the story behind this verse…') + '">' + esc(cur ? cur.t : '') + '</textarea><div class="acts"><button class="btn" id="nSave">' + T('सेव करें', 'Save') + '</button>' + (cur ? '<button class="btn ghost" id="nDel">' + T('हटाएँ', 'Delete') + '</button>' : '') + '</div>');
+  openSheet('<h2>' + (cur ? T('टिप्पणी बदलें', 'Edit note') : T('अपनी टिप्पणी लिखें', 'Write your note')) + '</h2><p class="small muted">' + esc(itemLabel(i)) + '</p><textarea id="nt" placeholder="' + T('अपने विचार, भाव या कथा यहाँ लिखें…', 'Your thoughts or the story behind this verse…') + '">' + esc(cur ? cur.t : '') + '</textarea><div class="acts"><button class="btn" id="nSave">' + T('सेव करें', 'Save') + '</button>' + (cur ? '<button class="btn ghost" id="nDel">' + T('हटाएँ', 'Delete') + '</button>' : '') + '</div>');
   setTimeout(() => $('#nt').focus(), 250);
   $('#nSave').onclick = () => { const t = $('#nt').value.trim(); if (!t){ closeSheet(); return; } if (cur){ cur.t = t; cur.ts = Date.now(); } else { (me.notes[key] = arr).push({t, ts: Date.now()}); } save(); closeSheet(); rerenderItem(i); toast(T('टिप्पणी सेव हुई', 'Note saved')); };
   if ($('#nDel')) $('#nDel').onclick = () => { arr.splice(k, 1); if (!arr.length) delete me.notes[key]; save(); closeSheet(); rerenderItem(i); };
@@ -626,7 +643,16 @@ function playFrom(i, end){
   PL.on = true; PL.t = t; PL.end = end; PL.cur = -1; PL.hold = 0; PL.whole = false; PL.endMsg = '';
   $('#player').hidden = false; document.body.classList.add('playing'); wake(true);
   if (ytVid !== tr.yt || !ytFrame()) ytLoad(tr.yt, st); else { ytPost('seekTo', [st, true]); ytPost('playVideo'); ytInfo.t = st; }
-  setCur(i); $('#pTrack').textContent = playingName(); syncPlayer();
+  seekGuard(st); setCur(i); $('#pTrack').textContent = playingName(); syncPlayer();
+}
+// Right after a seek the player still reports its old time (or a moment before the asked-for one), which would light the
+// previous verse for a beat (owner, 2026-10-19). Until it reports a time at the asked-for start (at most 4 s), use that start.
+function seekGuard(t){ PL.seekT = t; PL.seekAt = performance.now(); }
+function playTime(){
+  const t = ytInfo.t;
+  if (PL.seekT == null) return t;
+  if ((t >= PL.seekT - 0.05 && t <= PL.seekT + 3) || performance.now() - PL.seekAt > 4000){ PL.seekT = null; return t; }
+  return PL.seekT;
 }
 function onEnded(){
   if (!PL.on) return;
@@ -640,7 +666,7 @@ function curAt(time){ const a = AUT[PL.t]; let lo = 0, hi = a.length - 1, r = a[
 // every 300 ms while playing: light the verse being recited, stop at the end of what was asked, move the progress bar
 function tick(anchor){
   if (!PL.on || !ytOK) return; if (typeof anchor !== 'number') anchor = PL.cur;
-  const time = ytInfo.t; const i = curAt(time);
+  const time = playTime(); const i = curAt(time);
   const e = endOf(i);
   if (PL.end != null && (i > PL.end || (i === PL.end && e != null && time >= e))){
     // the verse or stretch asked for has ended: stop, and offer to go on from the next verse (owner, 2026-10-19)
@@ -689,7 +715,7 @@ function syncPlayer(){ $('#pPlay').innerHTML = '<svg><use href="#i-' + (playing(
 ['touchstart', 'wheel'].forEach(e => window.addEventListener(e, ev => { if (PL.on && !ev.target.closest('#player')) PL.hold = Date.now() + 8000; }, {passive: true}));
 $('#pPlay').onclick = () => { if (playing()) ytPost('pauseVideo'); else ytPost('playVideo'); setTimeout(syncPlayer, 400); };
 $('#pClose').onclick = stopAudio;
-function stepVerse(d){ const a = AUT[PL.t]; const k = a.findIndex(x => x[0] === PL.cur); const n = k + d; if (k >= 0 && n >= 0 && n < a.length){ ytPost('seekTo', [a[n][1], true]); ytInfo.t = a[n][1]; PL.hold = 0; PL.cur = -1; tick(); } }
+function stepVerse(d){ const a = AUT[PL.t]; const k = a.findIndex(x => x[0] === PL.cur); const n = k + d; if (k >= 0 && n >= 0 && n < a.length){ ytPost('seekTo', [a[n][1], true]); ytInfo.t = a[n][1]; seekGuard(a[n][1]); PL.hold = 0; PL.cur = -1; tick(); } }
 /* timing review: set a verse's start by ear. The player reports its time a few times a second, so the moment of the tap is
    worked out from the last report; 0.3 s is taken off for the time it takes to hear the word and tap. */
 function nowAt(){ return Math.max(0, ytInfo.t + (playing() && ytInfo.at ? (performance.now() - ytInfo.at) / 1000 : 0) - 0.3); }
@@ -871,7 +897,7 @@ function runSearch(){
     else if (latin && scopes.has('v') && fqs.some(f => x.t.includes(' ' + f))) res.push([i, LB.tr(), IT[i].t.join(' '), true]);
     else if (latin && scopes.has('e') && x.e.includes(nq)) res.push([i, LB.e(), SRC.en.m[IT[i].id][0], true]);
   }
-  if (scopes.has('n')) for (const p of SHOWN()) for (const k in p.notes){ if (!k.startsWith(W.id + ':')) continue; const i = ID[k.slice(W.id.length + 1)]; if (i == null) continue; p.notes[k].forEach(n => { if ((latin ? normL(n.t) : normD(n.t)).includes(nq)) res.push([i, T('टिप्पणी · ', 'Note · ') + p.name, n.t, latin]); }); }
+  if (scopes.has('n')) for (const p of SHOWN()) for (const k in p.notes){ if (!k.startsWith(W.id + ':')) continue; const i = ID[k.slice(W.id.length + 1)]; if (i == null) continue; p.notes[k].forEach(n => { if ((latin ? normL(n.t) : normD(n.t)).includes(nq)) res.push([i, T('टिप्पणी', 'Note'), n.t, latin]); }); }
   box.innerHTML = res.length ? '<p class="small muted">' + DEV(res.length) + (res.length >= 300 ? '+' : '') + T(' परिणाम', ' results') + '</p>' + res.map(r => '<button class="res" data-i="' + r[0] + '"><div class="where">' + esc(itemLabel(r[0])) + ' · ' + esc(r[1]) + '</div><div class="snip' + (r[3] ? ' lat' : '') + '">' + snip(r[2], q, r[3]) + '</div></button>').join('') : '<div class="empty">' + T('कुछ नहीं मिला। दूसरा रूप लिखकर देखें।', 'Nothing found. Try another spelling.') + '</div>';
   $$('#sRes .res').forEach(b => b.onclick = () => openReader('k', +b.dataset.i, true));
 }
@@ -882,9 +908,9 @@ function renderBookmarks(){
   for (const p of SHOWN()){ for (const k in p.bm) if (k.startsWith(pre) && ID[k.slice(pre.length)] != null) bms.push([ID[k.slice(pre.length)], p]); for (const k in p.notes) if (k.startsWith(pre) && ID[k.slice(pre.length)] != null) p.notes[k].forEach(n => notes.push([ID[k.slice(pre.length)], p, n])); }
   bms.sort((a, b) => a[0] - b[0]); notes.sort((a, b) => a[0] - b[0]);
   let h = '<h2 style="font-size:19px;margin:20px 0 4px">' + T('बुकमार्क (', 'Bookmarks (') + DEV(bms.length) + ')</h2>';
-  h += bms.length ? bms.map(b => '<button class="res" data-i="' + b[0] + '"><div class="where">' + esc(itemLabel(b[0])) + (S.profiles.length > 1 ? ' · ' + esc(b[1].name) : '') + '</div><div class="snip" style="font-weight:700">' + esc(IT[b[0]].v[0]) + '</div></button>').join('') : '<p class="muted">' + T('किसी भी पदकी पंक्तिके अन्तमें बुकमार्क चिह्न दबाएँ।', 'Tap the bookmark sign at the end of any verse.') + '</p>';
+  h += bms.length ? bms.map(b => '<button class="res" data-i="' + b[0] + '"><div class="where">' + esc(itemLabel(b[0])) + '' + '</div><div class="snip" style="font-weight:700">' + esc(IT[b[0]].v[0]) + '</div></button>').join('') : '<p class="muted">' + T('किसी भी पदकी पंक्तिके अन्तमें बुकमार्क चिह्न दबाएँ।', 'Tap the bookmark sign at the end of any verse.') + '</p>';
   h += '<h2 style="font-size:19px;margin:26px 0 4px">' + T('टिप्पणियाँ (', 'Notes (') + DEV(notes.length) + ')</h2>';
-  h += notes.length ? notes.map(n => '<button class="res" data-i="' + n[0] + '"><div class="where">' + esc(itemLabel(n[0])) + ' · ' + esc(n[1].name) + '</div><div class="snip">' + esc(n[2].t.slice(0, 200)) + '</div></button>').join('') : '<p class="muted">' + T('किसी पदके ⋮ मेनूसे अपनी टिप्पणी लिखें।', 'Use the ⋮ menu of any verse to write a note.') + '</p>';
+  h += notes.length ? notes.map(n => '<button class="res" data-i="' + n[0] + '"><div class="where">' + esc(itemLabel(n[0])) + '</div><div class="snip">' + esc(n[2].t.slice(0, 200)) + '</div></button>').join('') : '<p class="muted">' + T('किसी पदके ⋮ मेनूसे अपनी टिप्पणी लिखें।', 'Use the ⋮ menu of any verse to write a note.') + '</p>';
   $('#bmBody').innerHTML = h + '<div style="height:40px"></div>';
   $$('#bmBody .res').forEach(b => b.onclick = () => openReader('k', +b.dataset.i, true));
 }
@@ -893,21 +919,19 @@ function renderBookmarks(){
 function renderSettings(){
   const st = S.settings, srcs = (W && W.sources) || {}, cur = S.src[W ? W.id : ''] || {};
   const pick = (kind, label, off) => { const list = W ? srcList(kind) : []; if (!list.length) return ''; const sel = cur[kind] || list[0].id; return '<div class="field"><label>' + label + '</label><select data-src="' + kind + '">' + list.map(s => '<option value="' + s.id + '"' + (sel === s.id ? ' selected' : '') + '>' + esc(TT(s.title)) + (s.draft ? T(' (जाँच बाकी)', ' (to be checked)') : '') + '</option>').join('') + (off ? '<option value="off"' + (sel === 'off' ? ' selected' : '') + '>' + T('बंद', 'Off') + '</option>' : '') + '</select></div>'; };
-  let h = '<h2>' + T('पढ़ते समय दिखाएँ', 'Show while reading') + '</h2><p class="small muted">' + T('ये वही हैं जो पढ़नेके पन्नेपर ऊपर “हिं · En · शब्द” और ⋮ मेनूमें हैं। ऐप उसी भाषामें दिखता है: अंग्रेज़ी अर्थ चालू हो तो English, नहीं तो हिंदी।', 'These are the same as “हिं · En · शब्द” at the top of the reading page and the switches in its ⋮ menu. The app follows your choice of language: English if English meaning is on, otherwise Hindi.') + '</p>' +
+  let h = '<h2>' + T('पाठ और अर्थ', 'Text and meanings') + '</h2>' +
     sw('sh', LB.h() + ' (हिं)', '', st.layers.h) + sw('se', LB.e() + ' (En)', '', st.layers.e) + sw('sw', LB.w() + ' (शब्द)', T('हर शब्दका हिंदी और English अर्थ', 'Hindi and English meaning of each word'), st.layers.w) +
     sw('str', LB.tr(), LB.trSub(), st.tr) + sw('src', LB.rc(), LB.rcSub(), st.recite) +
-    (W ? '<h2>' + LB.src() + ' · ' + esc(TT(W.title)) + '</h2><p class="small muted">' + T('मूल पाठ वही रहता है; अर्थ और ऑडियो किस स्रोतसे आएँ, यहाँ चुनें।', 'The verses stay the same; choose where the meanings and the audio come from.') + '</p>' + pick('hi', LB.h()) + pick('en', LB.e()) + pick('au', LB.au(), true) : '') +
+    (W ? '<h2>' + LB.src() + ' · ' + esc(TT(W.title)) + '</h2>' + pick('hi', LB.h()) + pick('en', LB.e()) + pick('au', LB.au(), true) : '') +
     timingHTML() +
     '<h2>' + T('पढ़नेकी सुविधा', 'Reading comfort') + '</h2>' + sw('swk', LB.wake(), '', st.wake) +
     '<div class="field"><label>' + LB.size() + '</label><input type="range" id="ssz" min="16" max="34" value="' + st.size + '" style="border:0;padding:0"></div>' +
     '<div class="field"><label>' + T('ऐपकी भाषा', 'Language of the app') + '</label><select id="sui"><option value="hi">हिंदी</option><option value="en">English</option></select></div>' +
     '<div class="field"><label>' + LB.theme() + '</label><select id="sth"><option value="light">' + T('दिन (हल्का)', 'Light') + '</option><option value="dark">' + T('रात (गहरा)', 'Dark') + '</option><option value="auto">' + T('फ़ोनके अनुसार', 'Same as phone') + '</option></select></div>' +
-    '<h2>' + T('मेरी फ़ाइल', 'My file') + '</h2><p class="small muted">' + T('आपकी टिप्पणियाँ, बुकमार्क, प्रगति, सेटिंग्स और सुधार इसी फ़ोनमें रहते हैं। फ़ाइल सेव करके बैकअप रखें या दूसरे फ़ोनपर खोलें।', 'Your notes, bookmarks, progress, settings and corrections stay on this phone. Save the file as a backup or to open it on another phone.') + (canStore ? '' : ' <b>' + T('ध्यान दें: यह फ़ोन डेटा अपने-आप नहीं रख पा रहा — पाठके बाद “फ़ाइल सेव करें” दबाएँ।', 'This phone is not keeping app data — tap Save my file after each reading.') + '</b>') + '</p>' +
+    '<h2>' + T('मेरे बुकमार्क और टिप्पणियाँ', 'My bookmarks & notes') + '</h2><p class="small muted">' + T('आपकी टिप्पणियाँ, बुकमार्क, प्रगति, सेटिंग्स और सुधार इसी फ़ोनमें रहते हैं। फ़ाइल सेव करके बैकअप रखें या दूसरे फ़ोनपर खोलें।', 'Your notes, bookmarks, progress, settings and corrections stay on this phone. Save the file as a backup or to open it on another phone.') + (canStore ? '' : ' <b>' + T('ध्यान दें: यह फ़ोन डेटा अपने-आप नहीं रख पा रहा — पाठके बाद “फ़ाइल सेव करें” दबाएँ।', 'This phone is not keeping app data — tap Save my file after each reading.') + '</b>') + '</p>' +
     '<div class="acts"><button class="btn" id="exp">' + T('फ़ाइल सेव करें', 'Save my file') + '</button><button class="btn ghost" id="imp">' + T('फ़ाइल खोलें', 'Open a file') + '</button></div>' +
     '<h2>' + T('सहायता', 'Help') + '</h2><div class="acts"><button class="btn ghost" id="tourAgain">' + T('परिचय फिरसे देखें', 'Show the tour again') + '</button><a class="btn ghost" href="privacy.html" target="_blank" rel="noopener">' + T('गोपनीयता', 'Privacy') + '</a></div>' +
-    '<h2>' + T('पढ़नेवाले', 'Readers') + '</h2><p class="small muted">' + T('टिप्पणियाँ लिखनेवालेके नामसे सेव होती हैं। गोल बटन: अभी कौन लिख रहा है। चौकोर बटन: किसकी टिप्पणियाँ दिखें।', 'Notes are saved under the writer’s name. Round button: who is writing now. Square box: whose notes to show.') + '</p>' +
-    S.profiles.map(p => '<div class="sw"><span class="row grow"><input type="radio" name="act" value="' + p.id + '"' + (p.id === S.active ? ' checked' : '') + ' style="width:auto"> <span class="grow">' + esc(p.name) + '<small>' + Object.values(p.notes).reduce((a, b) => a + b.length, 0) + T(' टिप्पणी · ', ' notes · ') + Object.keys(p.bm).length + T(' बुकमार्क', ' bookmarks') + '</small></span></span><input type="checkbox" data-show="' + p.id + '"' + (S.show.includes(p.id) ? ' checked' : '') + ' style="width:auto"><button class="small" data-ren="' + p.id + '" style="text-decoration:underline;margin-left:8px">' + T('नाम', 'Rename') + '</button>' + (S.profiles.length > 1 ? '<button class="small" data-del="' + p.id + '" style="text-decoration:underline;margin-left:8px">' + T('हटाएँ', 'Delete') + '</button>' : '') + '</div>').join('') +
-    '<div class="acts" style="margin-top:12px"><button class="btn ghost small" id="addp">' + T('+ नया व्यक्ति', '+ Add reader') + '</button></div><div style="height:50px"></div>';
+    '<div style="height:50px"></div>';
   $('#setBody').innerHTML = h; $('#sth').value = st.theme; $('#sui').value = LANG();
   $('#sui').onchange = e => { st.ui = e.target.value; save(); applyLang(); syncLayers(); renderSettings(); };
   const bind = (id, f) => $('#' + id).onchange = e => { f(e.target.checked); save(); };
@@ -918,11 +942,6 @@ function renderSettings(){
   $('#sth').onchange = e => { st.theme = e.target.value; applyTheme(); save(); };
   $('#tourAgain').onclick = () => startTour();
   $('#exp').onclick = exportFile; $('#imp').onclick = () => $('#fileIn').click();
-  $$('[name=act]').forEach(r => r.onchange = () => { S.active = r.value; if (!S.show.includes(r.value)) S.show.push(r.value); save(); renderSettings(); });
-  $$('[data-show]').forEach(c => c.onchange = () => { const id = c.dataset.show; if (c.checked){ if (!S.show.includes(id)) S.show.push(id); } else S.show = S.show.filter(x => x !== id); save(); });
-  $$('[data-ren]').forEach(b => b.onclick = () => { const p = S.profiles.find(x => x.id === b.dataset.ren); askText(T('नाम बदलें', 'Rename'), p.name, n => { p.name = n; save(); renderSettings(); }); });
-  $$('[data-del]').forEach(b => b.onclick = () => { const p = S.profiles.find(x => x.id === b.dataset.del); askYes('“' + esc(p.name) + T('” की सारी टिप्पणियाँ, बुकमार्क और प्रगति हट जाएगी।', '”: all notes, bookmarks and progress will be deleted.'), T('हाँ, हटाएँ', 'Yes, delete'), () => { S.profiles = S.profiles.filter(x => x !== p); S.show = S.show.filter(x => x !== p.id); if (S.active === p.id) S.active = S.profiles[0].id; save(); renderSettings(); }); });
-  $('#addp').onclick = () => askText(T('नये व्यक्तिका नाम', 'New reader’s name'), '', n => { const p = newProfile(n); S.profiles.push(p); S.show.push(p.id); S.active = p.id; save(); renderSettings(); });
 }
 /* timing review: Settings › Audio timing. While it is on, a ⏱ row appears in the player and each verse's ⋮ menu shows its start;
    recordings still being checked (drafts) can be played. Starts set by ear go to the library through a GitHub issue, which
@@ -1030,8 +1049,8 @@ $('#fileIn').onchange = async e => {
   if (X && X.kind === 'scriptures-timing'){ importTiming(X); return; }
   if (!X || !X.profiles){ toast(T('यह इस ऐपकी फ़ाइल नहीं है', 'This is not a file from this app')); return; }
   const tmp = S; S = X; migrate(); X = S; S = tmp;
-  openSheet('<h2>' + T('फ़ाइल खोलें', 'Open a file') + '</h2><p>' + T('इस फ़ाइलमें: ', 'This file has: ') + '<b>' + X.profiles.map(p => esc(p.name)).join(', ') + '</b></p><div class="menu"><button id="imAdd">' + T('इन्हें इस फ़ोनमें जोड़ें', 'Add them to this phone') + '<br><small class="muted">' + T('यहाँकी आपकी चीज़ें भी रहेंगी', 'Your existing data stays') + '</small></button><button id="imRep">' + T('इस फ़ोनका सब कुछ इस फ़ाइलसे बदलें', 'Replace everything on this phone') + '<br><small class="muted">' + T('सेटिंग्स और प्रगति भी फ़ाइल जैसी हो जाएँगी', 'Settings and progress also come from the file') + '</small></button></div>');
-  $('#imAdd').onclick = () => { X.profiles.forEach(p => { const ex = S.profiles.find(q => q.id === p.id); if (ex) Object.assign(ex, p); else S.profiles.push(p); if (!S.show.includes(p.id)) S.show.push(p.id); }); save(); closeSheet(); toast(T('फ़ाइल जोड़ी गई', 'File added')); renderSettings(); };
+  openSheet('<h2>' + T('फ़ाइल खोलें', 'Open a file') + '</h2><p>' + T('इस फ़ाइलमें: ', 'This file has: ') + '<b>' + DEV(Object.values(X.profiles[0].bm).length) + T(' बुकमार्क · ', ' bookmarks · ') + DEV(Object.values(X.profiles[0].notes).reduce((a, b) => a + b.length, 0)) + T(' टिप्पणी', ' notes') + '</b></p><div class="menu"><button id="imAdd">' + T('इन्हें इस फ़ोनमें जोड़ें', 'Add them to this phone') + '<br><small class="muted">' + T('यहाँकी आपकी चीज़ें भी रहेंगी', 'Your existing data stays') + '</small></button><button id="imRep">' + T('इस फ़ोनका सब कुछ इस फ़ाइलसे बदलें', 'Replace everything on this phone') + '<br><small class="muted">' + T('सेटिंग्स और प्रगति भी फ़ाइल जैसी हो जाएँगी', 'Settings and progress also come from the file') + '</small></button></div>');
+  $('#imAdd').onclick = () => { X.profiles.forEach(p => mergeInto(ME(), p)); save(); closeSheet(); toast(T('फ़ाइल जोड़ी गई', 'File added')); renderSettings(); };
   $('#imRep').onclick = () => askYes(T('इस फ़ोनका वर्तमान डेटा फ़ाइलके डेटासे बदल जाएगा।', 'Data on this phone will be replaced by the file.'), T('हाँ, बदलें', 'Yes, replace'), () => { const on = !!S.timing.on; S = Object.assign(defaults(), X); delete S.kind; delete S.exported; if (S.timing) S.timing.on = on; save(); applyTheme(); closeSheet(); toast(T('फ़ाइल खोली गई', 'File opened')); renderSettings(); });
 };
 function askText(title, val, cb){ openSheet('<h2>' + esc(title) + '</h2><input id="askT" value="' + esc(val) + '"><div class="acts"><button class="btn" id="askOk">' + T('ठीक है', 'OK') + '</button><button class="btn ghost" id="askNo">' + T('रहने दें', 'Cancel') + '</button></div>'); setTimeout(() => $('#askT').focus(), 250); $('#askOk').onclick = () => { const v = $('#askT').value.trim(); closeSheet(); if (v) cb(v); }; $('#askNo').onclick = () => closeSheet(); }
@@ -1075,7 +1094,7 @@ function tourSteps(){
   return [
     {t: () => { const rows = $$('#orgList [data-open]'), k = PARTS.findIndex(p => /^Sundara/.test(p.en || '')); return (W && W.id === 'sundarkand' && k >= 0 && rows[k]) || rows[0]; }, allow: '#orgList .it', p: T('पाठ खोलनेके लिये यहाँ छुएँ।', 'Tap here to open the text.'), done: () => CURVIEW === 'reader' && !!$('#rBody .verse')},
     {t: () => firstVisible('#rBody .verse .vtext .w'), allow: '#rBody .vtext .w', p: T('किसी भी शब्दको छुएँ — उसका अर्थ दिखेगा।', 'Tap any word to see its meaning.'), done: () => $('#sheet').classList.contains('on')},
-    {t: () => $('#sheet'), allow: '#sheet', p: T('यह उस शब्दका अर्थ, मूल शब्द और व्याकरण है। ऊपरकी पट्टीको नीचे खींचकर बंद करें।', 'Its meaning, root and grammar. Drag the drawer down to close it.'), done: () => !$('#sheet').classList.contains('on'), top: true},
+    {t: () => $('#sheet'), allow: '#sheet', p: T('इस पट्टीको नीचे खींचकर बंद करें।', 'Drag the drawer down to close it.'), done: () => !$('#sheet').classList.contains('on'), top: true},
     {t: () => $('#reader .szp'), allow: '#reader .szp, #reader .szm', p: T('A+ छूकर अक्षर बड़े करें (A− से छोटे)।', 'Tap A+ to make the text larger (A− makes it smaller).'), enter: () => { TOUR.base = S.settings.size; }, done: () => S.settings.size !== TOUR.base},
     {t: () => $('#rLayers [data-l="' + (S.settings.layers.h ? 'e' : 'h') + '"]'), allow: '#rLayers [data-l="h"], #rLayers [data-l="e"], #rLayers [data-l="w"]', p: () => S.settings.layers.h ? T('“En” छूकर हर पदके नीचे अंग्रेज़ी अर्थ दिखाएँ या छिपाएँ। “शब्द” से शब्दार्थ।', 'Tap “En” to show or hide the English meaning under every verse. “शब्द” gives word-by-word meanings.') : T('“हिं” छूकर हर पदके नीचे हिंदी अर्थ दिखाएँ। “En” अंग्रेज़ी, “शब्द” शब्दार्थ।', 'Tap “हिं” to show the Hindi meaning under every verse. “En” is English, “शब्द” word by word.'),
      enter: () => { TOUR.base = JSON.stringify(S.settings.layers); }, done: () => JSON.stringify(S.settings.layers) !== TOUR.base},
