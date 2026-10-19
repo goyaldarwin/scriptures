@@ -19,6 +19,11 @@
 | `privacy.html` (from `tools/site/privacy.html`) | the privacy policy both stores ask for |
 | first-run tour (`tourSteps()` in app.js) | six steps, shown once; Settings › Help › "Show the tour again" |
 
+## Settled (2026-10-19)
+- Publisher: 16493041 Canada Inc., D-U-N-S 245128343, email darwin@craadle.org, website craadle.org.
+- Package id `org.craadle.scriptures` (permanent); library address `scriptures.craadle.org` (DNS CNAME → goyaldarwin.github.io; switch the site with the Pages API and a `CNAME` file only after the record resolves, or the site breaks).
+- The public developer profile shows the business name, email and phone (address in some regions); name/address changes go through D&B first, then re-verification in Play Console.
+
 ## The owner's steps
 1. **D-U-N-S number** for the corporation (free from Dun & Bradstreet; Apple looks it up during enrolment).
 2. **A domain and email for the app** (e.g. the corporation's site). Point the website at it (GitHub Pages custom domain): Android verifies the app against `https://<domain>/.well-known/assetlinks.json`, which must sit at the domain's root — not possible on `goyaldarwin.github.io/scriptures/`.
