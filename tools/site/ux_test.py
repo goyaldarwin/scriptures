@@ -332,6 +332,18 @@ async def main():
             await ev("S.settings.ui = 'en'; S.settings.layers.e = true; S.settings.layers.h = false; applyLang(); refreshReader()"); await pg.wait_for_timeout(500)
             en_hdr = await ev("document.querySelector('#rMid').innerText")
             check(f'{tag}: English interface works in the reader', bool(en_hdr.strip()), en_hdr)
+            # recitation mode is the fourth button of the reader's capsule: it hides the meanings; a meaning turned on ends it
+            await ev("S.settings.recite = false; S.settings.layers.h = true; S.settings.layers.e = true; save(); applyRecite(); refreshReader()")
+            await (await pg.query_selector('#rLayers [data-l=r]')).click(); await pg.wait_for_timeout(400)
+            ok1 = await ev("S.settings.recite && !S.settings.layers.h && !S.settings.layers.e && !S.settings.layers.w && document.body.classList.contains('recite') && document.querySelector('#rLayers [data-l=r]').classList.contains('on')")
+            await (await pg.query_selector('#rLayers [data-l=r]')).click(); await pg.wait_for_timeout(400)
+            ok2 = await ev("!S.settings.recite && S.settings.layers.h && S.settings.layers.e")
+            await (await pg.query_selector('#rLayers [data-l=r]')).click(); await pg.wait_for_timeout(300)
+            await (await pg.query_selector('#rLayers [data-l=h]')).click(); await pg.wait_for_timeout(300)
+            ok3 = await ev("!S.settings.recite && S.settings.layers.h && !document.body.classList.contains('recite')")
+            check(f'{tag}: recitation mode from the capsule hides meanings and restores them; a meaning ends it', ok1 and ok2 and ok3, [ok1, ok2, ok3])
+            wide2 = await ev("document.documentElement.scrollWidth - document.documentElement.clientWidth")
+            check(f'{tag}: the reader header still fits', wide2 <= 0, wide2)
             # English app, Hindi meaning only inside the work: the reader's words are Hindi; back on the work page, English
             await ev("S.settings.ui = 'en'; S.settings.layers.e = false; S.settings.layers.h = true; applyLang(); refreshReader()"); await pg.wait_for_timeout(400)
             check(f'{tag}: inside the work the words follow the Hindi meaning', await ev("LANG()") == 'hi')

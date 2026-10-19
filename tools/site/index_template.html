@@ -110,7 +110,7 @@ body.timing .verse.tocheck{box-shadow:inset 3px 0 0 var(--saffron)}.tcheck{margi
 .lyr{display:flex;border:1px solid var(--rule);border-radius:16px;overflow:hidden;flex:none}
 .lyr button{padding:0 9px;min-height:32px;font-size:15px;color:var(--muted)}
 .lyr button+button{border-left:1px solid var(--rule)}
-.lyr button.on{background:var(--indigo-soft);color:var(--indigo);font-weight:700}
+.lyr button.on{background:var(--indigo-soft);color:var(--indigo);font-weight:700}.lyr .lrec svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linejoin:round;display:block}
 .vend{position:absolute;right:-25px;bottom:0;height:calc(var(--verse-size) * 1.6);display:flex;align-items:center;line-height:1}
 .vsp{display:inline-block;width:64px}
 .vno{white-space:nowrap}
@@ -370,7 +370,7 @@ body.playing #rBody{padding-bottom:240px}
   <span class="timer" id="timerPill"></span>
   <button class="pill" id="rRecite" hidden style="padding:6px 10px;font-size:13px"><span data-en="Recitation mode">पाठ मोड</span> ✕</button>
   <div class="sz"><button class="szm" id="rSmaller" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" id="rBigger" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div>
-  <div class="lyr layers" id="rLayers"><button data-l="h">हिं</button><button data-l="e" class="lat">En</button><button data-l="w">शब्द</button></div>
+  <div class="lyr layers" id="rLayers"><button data-l="h">हिं</button><button data-l="e" class="lat">En</button><button data-l="w">शब्द</button><button data-l="r" class="lrec" aria-label="पाठ मोड · Recitation mode" title="Recitation mode"><svg><use href="#i-recite"/></svg></button></div>
   <button class="ib hsearch" id="rSearch" aria-label="खोजें"><svg><use href="#i-search"/></svg></button>
   <button class="ib hmenu" id="rMore" aria-label="मेनू"><svg><use href="#i-menu"/></svg></button>
  </div></div>

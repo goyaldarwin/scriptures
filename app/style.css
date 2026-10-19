@@ -101,7 +101,7 @@ body.timing .verse.tocheck{box-shadow:inset 3px 0 0 var(--saffron)}.tcheck{margi
 .lyr{display:flex;border:1px solid var(--rule);border-radius:16px;overflow:hidden;flex:none}
 .lyr button{padding:0 9px;min-height:32px;font-size:15px;color:var(--muted)}
 .lyr button+button{border-left:1px solid var(--rule)}
-.lyr button.on{background:var(--indigo-soft);color:var(--indigo);font-weight:700}
+.lyr button.on{background:var(--indigo-soft);color:var(--indigo);font-weight:700}.lyr .lrec svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linejoin:round;display:block}
 .vend{position:absolute;right:-25px;bottom:0;height:calc(var(--verse-size) * 1.6);display:flex;align-items:center;line-height:1}
 .vsp{display:inline-block;width:64px}
 .vno{white-space:nowrap}

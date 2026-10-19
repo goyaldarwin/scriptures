@@ -395,14 +395,24 @@ function sectionSheet(){
 $('#rMid').onclick = sectionSheet;
 $('#rBack').onclick = back;
 // the same हिं · En · शब्द switch in every header (library, work, reader): one setting, shown and changed anywhere
-$$('.lyr.layers button').forEach(b => b.onclick = () => { const was = LANG(), l = b.dataset.l; S.settings.layers[l] = !S.settings.layers[l]; save(); syncLayers();
+$$('.lyr.layers button').forEach(b => b.onclick = () => { if (b.dataset.l === 'r'){ toggleRecite(); return; }
+  if (S.settings.recite){ S.settings.recite = false; delete S.settings.preRecite; applyRecite(); }   // a meaning turned on ends recitation mode
+  const was = LANG(), l = b.dataset.l; S.settings.layers[l] = !S.settings.layers[l]; save(); syncLayers();
   if (LANG() !== was) applyLang();
   const v = viewStack[viewStack.length - 1]; if (v === 'reader') refreshReader(); });
 // हिं · En on the library and work pages: one choice, the language of the app
 $$('.lyr.uilang button').forEach(b => b.onclick = () => { if (S.settings.ui === b.dataset.u) return; S.settings.ui = b.dataset.u; save(); applyLang(); syncLayers(); onView(viewStack[viewStack.length - 1]); });
-function syncLayers(){ $$('.lyr.layers button').forEach(b => b.classList.toggle('on', layerOn(b.dataset.l))); $$('.lyr.uilang button').forEach(b => b.classList.toggle('on', S.settings.ui === b.dataset.u)); }
-function applyRecite(){ document.body.classList.toggle('recite', !!S.settings.recite); $('#rRecite').hidden = !S.settings.recite; }
-function toggleRecite(){ S.settings.recite = !S.settings.recite; save(); applyRecite(); toast(S.settings.recite ? T('पाठ मोड: केवल मूल पाठ', 'Recitation mode: verses only') : T('अर्थ फिर दिखेंगे', 'Meanings shown again')); }
+function syncLayers(){ $$('.lyr.layers button').forEach(b => b.classList.toggle('on', b.dataset.l === 'r' ? !!S.settings.recite : layerOn(b.dataset.l))); $$('.lyr.uilang button').forEach(b => b.classList.toggle('on', S.settings.ui === b.dataset.u)); }
+function applyRecite(){ document.body.classList.toggle('recite', !!S.settings.recite); $('#rRecite').hidden = true; syncLayers(); }
+// recitation mode is the fourth button of the reader's हिं · En · शब्द · 📖 capsule (owner, 2026-10-19): turning it on hides
+// the meanings (the layers that were on are remembered); turning it off — or turning any meaning on — brings them back
+function toggleRecite(){
+  const on = !S.settings.recite; S.settings.recite = on;
+  if (on){ S.settings.preRecite = Object.assign({}, S.settings.layers); S.settings.layers.h = S.settings.layers.e = S.settings.layers.w = false; }
+  else if (S.settings.preRecite){ Object.assign(S.settings.layers, S.settings.preRecite); delete S.settings.preRecite; }
+  save(); applyRecite(); applyLang(); if (viewStack[viewStack.length - 1] === 'reader') refreshReader();
+  toast(on ? T('पाठ मोड: केवल मूल पाठ', 'Recitation mode: verses only') : T('अर्थ फिर दिखेंगे', 'Meanings shown again'));
+}
 $('#rRecite').onclick = toggleRecite;
 $('#rMore').onclick = () => { openSheet('<div class="menu">' +
   '<button data-m="sec"><svg><use href="#i-jump"/></svg>' + LB.sections() + '</button>' +
@@ -410,9 +420,8 @@ $('#rMore').onclick = () => { openSheet('<div class="menu">' +
   '<button data-m="timer"><svg><use href="#i-clock"/></svg>' + LB.timer() + (S.timer ? ' · ' + timerText() + (S.timer.run ? T(' (रोकें)', ' (pause)') : T(' (चलाएँ)', ' (resume)')) : T(' (शुरू करें)', ' (start)')) + '</button>' +
   (S.timer ? '<button data-m="treset"><svg><use href="#i-clock"/></svg>' + LB.timer() + T(' — शून्य करें', ' — reset') + '</button>' : '') +
   '<button data-m="set"><svg><use href="#i-set"/></svg>' + LB.set() + '</button></div>' +
-  '<div class="menusw">' + sw('mrc', LB.rc(), LB.rcSub(), S.settings.recite, 'recite') + sw('mtr', LB.tr(), LB.trSub(), S.settings.tr, 'text') + '</div>');
+  '<div class="menusw">' + sw('mtr', LB.tr(), LB.trSub(), S.settings.tr, 'text') + '</div>');
   $('#mtr').onchange = e => { S.settings.tr = e.target.checked; save(); refreshReader(); };
-  $('#mrc').onchange = e => { if (!!S.settings.recite !== e.target.checked) toggleRecite(); };
 };
 $('#sheetBody').addEventListener('click', ev => {
   const b = ev.target.closest('[data-m]'); if (!b) return;
