@@ -320,6 +320,12 @@ async def main():
             await ev("S.settings.ui = 'en'; S.settings.layers.e = true; S.settings.layers.h = false; applyLang(); refreshReader()"); await pg.wait_for_timeout(500)
             en_hdr = await ev("document.querySelector('#rMid').innerText")
             check(f'{tag}: English interface works in the reader', bool(en_hdr.strip()), en_hdr)
+            # English app, Hindi meaning only inside the work: the reader's words are Hindi; back on the work page, English
+            await ev("S.settings.ui = 'en'; S.settings.layers.e = false; S.settings.layers.h = true; applyLang(); refreshReader()"); await pg.wait_for_timeout(400)
+            check(f'{tag}: inside the work the words follow the Hindi meaning', await ev("LANG()") == 'hi')
+            await ev("show('home')"); await pg.wait_for_timeout(200)
+            check(f'{tag}: the work page keeps the app language', await ev("LANG()") == 'en')
+            await ev("show('reader')"); await pg.wait_for_timeout(200)
             await ev("S.settings.ui = 'hi'; S.settings.layers.h = true; S.settings.layers.e = false; applyLang()")
             # the work menu (☰) leads to bookmarks and settings
             await ev("show('home')"); await pg.wait_for_timeout(300)

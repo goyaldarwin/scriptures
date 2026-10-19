@@ -105,7 +105,7 @@ body.timing .verse.tocheck{box-shadow:inset 3px 0 0 var(--saffron)}.tcheck{margi
 .vend{position:absolute;right:-25px;bottom:0;height:calc(var(--verse-size) * 1.6);display:flex;align-items:center;line-height:1}
 .vsp{display:inline-block;width:64px}
 .vno{white-space:nowrap}
-.vtype{display:flex;align-items:center;gap:12px;margin:18px auto 4px;max-width:420px;color:var(--saffron);font-size:calc(var(--verse-size) * .78);font-weight:600;line-height:1.2}.vtype::before,.vtype::after{content:'';flex:1;border-top:1px solid color-mix(in srgb,var(--saffron) 45%,transparent)}.vtype span{white-space:nowrap}.vt{position:absolute;left:-28px;top:0;height:calc(var(--verse-size) * 1.6);display:flex;align-items:center;font:inherit;font-size:12px;line-height:1;font-weight:600;color:var(--saffron);padding:0 2px}
+.vtype{text-align:center;margin:18px auto 2px;color:var(--saffron);font-size:calc(var(--verse-size) * .8);font-weight:600;line-height:1.3;white-space:nowrap}.vt{position:absolute;left:-28px;top:0;height:calc(var(--verse-size) * 1.6);display:flex;align-items:center;font:inherit;font-size:12px;line-height:1;font-weight:600;color:var(--saffron);padding:0 2px}
 .vb{width:19px;height:30px;display:inline-grid;place-items:center;color:var(--muted);opacity:.75}
 .vb svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linejoin:round}
 .vb.bm-on{color:var(--saffron);opacity:1}

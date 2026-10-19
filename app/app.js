@@ -77,7 +77,10 @@ async function cloudInit(){
 }
 // the language of the app (owner, 2026-10-19): its own setting, chosen with हिं · En on the library and work pages (and in
 // Settings); the meanings under the verses (हिं · En · शब्द in the reader) are separate and never change it
-const LANG = () => S.settings.ui === 'hi' ? 'hi' : 'en';
+// Inside a work's text (the reader) the words around the verses follow the meanings chosen there (owner, 2026-10-19):
+// English meaning on → English; only the Hindi meaning → Hindi; neither → the app's language.
+let CURVIEW = 'library';
+const LANG = () => CURVIEW === 'reader' ? (S.settings.layers.e ? 'en' : S.settings.layers.h ? 'hi' : (S.settings.ui === 'hi' ? 'hi' : 'en')) : (S.settings.ui === 'hi' ? 'hi' : 'en');
 function T(hi, en){ return LANG() === 'en' ? en : hi; }
 const ME = () => S.profiles.find(p => p.id === S.active) || S.profiles[0];
 const SHOWN = () => S.profiles.filter(p => S.show.includes(p.id));
@@ -106,7 +109,8 @@ function applyLang(){ const en = LANG() === 'en'; document.documentElement.lang 
   $$('[data-en-ph]').forEach(el => { if (el.dataset.hiPh == null) el.dataset.hiPh = el.placeholder; el.placeholder = en ? el.dataset.enPh : el.dataset.hiPh; }); }
 function applyTheme(){ const r = document.documentElement; if (S.settings.theme === 'auto') r.removeAttribute('data-theme'); else r.setAttribute('data-theme', S.settings.theme); r.style.setProperty('--verse-size', S.settings.size + 'px'); r.style.setProperty('--mean-size', Math.round(S.settings.size * 0.78 * 10) / 10 + 'px'); r.style.setProperty('--ui-zoom', (1 + (S.settings.size - 21) * 0.025).toFixed(3)); }   // A−/A+ also scale the library and work pages
 const viewStack = ['library'];
-function show(id, push = true){ if (id !== 'search' && typeof SCOPE !== 'undefined' && SCOPE === 'lib') SCOPE = 'text';   // leaving the search page: the next search is a text search unless opened from the library
+function show(id, push = true){ { const was = LANG(); CURVIEW = id; if (LANG() !== was) applyLang(); }
+  if (id !== 'search' && typeof SCOPE !== 'undefined' && SCOPE === 'lib') SCOPE = 'text';   // leaving the search page: the next search is a text search unless opened from the library
   $$('.view').forEach(v => v.classList.toggle('on', v.id === id)); if (push){ viewStack.push(id); history.pushState({v: id}, ''); } if (id !== 'reader') window.scrollTo(0, 0); onView(id); }
 function back(){ history.back(); }
 window.addEventListener('popstate', () => { closeSheet(); if (viewStack.length > 1) viewStack.pop(); const id = viewStack[viewStack.length - 1] || 'library'; show(id, false); if (id === 'reader') reopenReader(); });
@@ -289,12 +293,12 @@ function pauseHTML(i){
   const list = pauseAfter[i]; if (!list) return '';
   return list.filter(([o]) => R.org === 'k' || R.org === o).map(([o, n]) => { const done = DONE(ME(), o)[n]; return '<div class="pause" data-pause="' + o + n + '"><b>' + PNAME(o) + ' · ' + VN(n) + '</b><div class="sub">' + T('यहाँ विश्राम करें', 'A place to pause the reading') + '</div><button class="btn small' + (done ? ' ghost' : '') + '" data-a="done" data-o="' + o + '" data-n="' + n + '" data-i="' + i + '">' + (done ? T('✓ पूर्ण — बदलें', '✓ Completed — undo') : T('विश्राम पूर्ण करें', 'Mark vishram complete')) + '</button></div>'; }).join('');
 }
-// the verse type as a heading above the verse, between two lines (owner, 2026-10-19), shown only where the type changes:
+// the verse type as a heading above the verse, “॥ चौपाई ॥” (owner, 2026-10-19), shown only where the type changes:
 // before the first chaupāī of a run, then before the dohā that follows, and so on — and at the start of what is read
 function typeHead(i){
   const y = IT[i].y, nm = TYPEN[y]; if (!nm) return '';
   if (i !== R.a && i > 0 && IT[i - 1].y === y && IT[i - 1].p === IT[i].p) return '';
-  return '<div class="vtype"><span>' + esc(T(nm[0], nm[1])) + '</span></div>';
+  return '<div class="vtype">॥ ' + esc(T(nm[0], nm[1])) + ' ॥</div>';
 }
 function pageHTML(pg){
   const p = PAGES[pg], a = Math.max(p.from, R.a), b = Math.min(p.to, R.b); let h = '<div class="pg" data-pg="' + pg + '">';
@@ -391,7 +395,8 @@ function sectionSheet(){
 $('#rMid').onclick = sectionSheet;
 $('#rBack').onclick = back;
 // the same हिं · En · शब्द switch in every header (library, work, reader): one setting, shown and changed anywhere
-$$('.lyr.layers button').forEach(b => b.onclick = () => { const l = b.dataset.l; S.settings.layers[l] = !S.settings.layers[l]; save(); syncLayers();
+$$('.lyr.layers button').forEach(b => b.onclick = () => { const was = LANG(), l = b.dataset.l; S.settings.layers[l] = !S.settings.layers[l]; save(); syncLayers();
+  if (LANG() !== was) applyLang();
   const v = viewStack[viewStack.length - 1]; if (v === 'reader') refreshReader(); });
 // हिं · En on the library and work pages: one choice, the language of the app
 $$('.lyr.uilang button').forEach(b => b.onclick = () => { if (S.settings.ui === b.dataset.u) return; S.settings.ui = b.dataset.u; save(); applyLang(); syncLayers(); onView(viewStack[viewStack.length - 1]); });
