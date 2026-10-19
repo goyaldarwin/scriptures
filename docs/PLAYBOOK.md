@@ -329,6 +329,7 @@ The owner (and helpers) set verse times by ear in the app; the library applies t
 
 ### Decisions (Oct 18, 2026): the apps
 - **Android first (owner, 2026-10-19); the iPhone app is parked until the owner asks.**
+- **Library shelves name their works (owner, 2026-10-19):** under each shelf (Granthas, Stotras, Āratī, Vedas, Gurbāṇī) its works appear as buttons that open the work directly; the shelf's name still opens the shelf (more than six works: “+N”).
 - **A new reader starts in English (owner, 2026-10-19):** English interface and English meaning; हिं adds the Hindi meaning. Readers' saved choices are kept.
 - **The library's address is https://scriptures.craadle.org (2026-10-19)**; the old github.io link redirects. Support email support@craadle.org (Cloudflare routes it to the owner's Gmail).
 - **One app per tradition (owner, 2026-10-19)** — not one per work, not one for everything. The Hindu app (`org.craadle.scriptures.hinduism`) shows the Hindu shelves and also the Sukhmani Sahib; `?app=<id>` + `library/apps.json` decide what each app shows. Publisher: 16493041 Canada Inc. (craadle.org).

@@ -64,6 +64,13 @@ async def main():
         check('library shows each tradition as a heading', len(heads) == len(shelf), heads)
         rows = await ev("document.querySelectorAll('#libList [data-node]').length")
         check('library lists the genres under them', rows == sum(len(t['children']) for t in shelf), rows)
+        # each shelf names its works; tapping one opens it straight away
+        chip = await ev("(() => { const b = document.querySelector('#libList [data-open-work]'); return b ? b.dataset.openWork : null; })()")
+        check('library: a shelf lists its works by name', bool(chip), chip)
+        if chip:
+            await (await pg.query_selector('#libList [data-open-work]')).click(); await pg.wait_for_timeout(1500)
+            check('library: tapping a work on a shelf opens it', await ev("document.querySelector('#home').classList.contains('on') && W && W.id") == chip)
+            await ev("libPath=[]; show('library')"); await pg.wait_for_timeout(300)
 
         # one header on the library, a work and the reader: back, A−/A+, हिं·En·शब्द, search, menu
         for v in ('library', 'home', 'reader'):

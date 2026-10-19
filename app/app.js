@@ -685,12 +685,19 @@ function renderLibrary(){
   cr.scrollLeft = 1e5;   // if it still does not fit, the end (the shelf you are on) shows
   $('#libTitle').textContent = libPath.length ? TT(node.title) : LB.lib();
   // two levels per screen: a shelf inside this one is shown as a heading with its own items under it
-  const row = (c, key) => '<li><button class="it" data-node="' + esc(key) + '"><span class="grow"><span class="ti">' + esc(TT(c.title)) + '</span><br><span class="ds">' + esc(TT(c.desc || c.by) || '') + '</span></span><span class="chev">›</span></button></li>';
+  // a shelf shows the works on it by name (owner, 2026-10-19): tap a work to open it straight away, or the shelf's name to browse it
+  const worksIn = c => { const r = []; (function w(n){ (n.children || []).forEach(x => x.work ? r.push(x) : w(x)); })(c); return r; };
+  const row = (c, key) => {
+    const ws = c.work ? [] : worksIn(c), MAX = 6;
+    return '<li><button class="it" data-node="' + esc(key) + '"><span class="grow"><span class="ti">' + esc(TT(c.title)) + '</span>' + (ws.length ? '' : '<br><span class="ds">' + esc(TT(c.desc || c.by) || '') + '</span>') + '</span><span class="chev">›</span></button>' +
+      (ws.length ? '<div class="lworks">' + ws.slice(0, MAX).map(w => '<button data-open-work="' + esc(w.work) + '">' + esc(TT(w.title)) + '</button>').join('') + (ws.length > MAX ? '<button class="more" data-node="' + esc(key) + '">+' + DEV(ws.length - MAX) + '</button>' : '') + '</div>' : '') + '</li>';
+  };
   $('#libList').innerHTML = kids.map(c => c.children ? '<li class="lhead">' + esc(TT(c.title)) + '</li>' + c.children.map(g => row(g, c.id + '/' + g.id)).join('') : row(c, c.id)).join('');
   $$('#libList [data-node]').forEach(b => b.onclick = () => {
     const ids = b.dataset.node.split('/'); let n = node, c = null; ids.forEach(id => { c = (n.children || []).find(x => x.id === id); n = c; });
     if (c.work) openWork(c.work); else { libPath.push(...ids); renderLibrary(); window.scrollTo(0, 0); }
   });
+  $$('#libList [data-open-work]').forEach(b => b.onclick = () => openWork(b.dataset.openWork));
   $$('#libCrumbs [data-lp]').forEach(b => b.onclick = () => { libPath = libPath.slice(0, +b.dataset.lp + 1); renderLibrary(); window.scrollTo(0, 0); });
 }
 /* library search: finds works and shelves by title, author, edition, description or id, in either script */
