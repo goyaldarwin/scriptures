@@ -1,18 +1,22 @@
 {
- "_note": "One place for the app's identity, read by apps/android/generate.mjs. packageId can never change after the first upload. The host works once the DNS record scriptures.craadle.org → goyaldarwin.github.io exists and the site is switched to it (docs/APPS.md).",
- "name": "शास्त्र · Scriptures",
- "launcherName": "Scriptures",
- "packageId": "org.craadle.scriptures",
- "host": "scriptures.craadle.org",
- "startPath": "/",
- "versionName": "1.0.0",
- "versionCode": 1,
- "themeColor": "#2B3A8C",
- "backgroundColor": "#F6F6F2",
+ "_note": "The store apps' identities, read by apps/android/generate.mjs --app=<id>. Which shelves each app shows is in library/apps.json (changeable without an app update). A packageId can never change after its first upload. The host works once the DNS record scriptures.craadle.org → goyaldarwin.github.io exists and the site is switched to it (docs/APPS.md).",
  "company": {
   "legalName": "16493041 Canada Inc.",
   "duns": "245128343",
   "email": "darwin@craadle.org",
   "website": "https://craadle.org"
+ },
+ "host": "scriptures.craadle.org",
+ "themeColor": "#2B3A8C",
+ "backgroundColor": "#F6F6F2",
+ "apps": {
+  "hinduism": {
+   "packageId": "org.craadle.scriptures.hinduism",
+   "name": "शास्त्र · Scriptures",
+   "launcherName": "Scriptures",
+   "startPath": "/?app=hinduism",
+   "versionName": "1.0.0",
+   "versionCode": 1
+  }
  }
 }

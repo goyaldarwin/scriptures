@@ -1017,12 +1017,28 @@ function closeTour(){ $('#tour').hidden = true; S.settings.tour = 1; save(); }
 $('#tourNext').onclick = () => { if (tourK >= tourSteps().length - 1) closeTour(); else showTour(tourK + 1); };
 $('#tourSkip').onclick = () => { if (tourK) showTour(tourK - 1); else closeTour(); };
 
+// keep only the shelves on the list (paths of shelf ids: "hinduism", "sikhism/gurbani/guru-arjan-dev/sukhmani-sahib")
+function pruneLib(nodes, shelves){
+  const want = shelves.map(x => x.split('/'));
+  const walk = (ns, at) => ns.map(n => {
+    const p = at.concat(n.id), whole = want.some(w => w.length <= p.length && w.every((x, k) => x === p[k]));
+    if (whole) return n;
+    if (!want.some(w => w.length > p.length && p.every((x, k) => x === w[k]))) return null;
+    const kids = walk(n.children || [], p); return kids.length ? Object.assign({}, n, {children: kids}) : null;
+  }).filter(Boolean);
+  return walk(nodes, []);
+}
 /* ---------------- boot ---------------- */
 (async function boot(){
   if (!S.settings.lightDefault){ if (S.settings.theme === 'auto') S.settings.theme = 'light'; S.settings.lightDefault = 1; save(); }
   applyTheme(); applyLang(); applyRecite(); syncLayers(); tickTimer(); applyTiming();
   history.replaceState({v: 'library'}, '');
   try { LIB = await getJSON('index'); } catch (e) { $('#loading').textContent = T('डेटा नहीं खुल सका। इंटरनेट जाँचें।', 'Could not load the data. Check the internet connection.'); return; }
+  // one app per tradition (owner, 2026-10-19): ?app=<id> shows only the shelves library/apps.json lists for that app
+  // (the Hindu app also carries the Sukhmani Sahib). The address keeps it while you move around; changing the list
+  // needs no app update. Without ?app the website shows the whole library.
+  const appId = new URLSearchParams(location.search).get('app');
+  if (appId){ try { const A = (await getJSON('apps'))[appId]; if (A) LIB = pruneLib(LIB, A.shelves); } catch (e) {} }
   const leafs = []; (function walk(n){ (n || []).forEach(c => c.work ? leafs.push(c.work) : walk(c.children)); })(LIB);
   // a link may name a work (?w=<work id>): the app's shortcuts and store pages open straight to it
   const asked = new URLSearchParams(location.search).get('w');

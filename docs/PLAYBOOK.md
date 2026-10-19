@@ -329,6 +329,7 @@ The owner (and helpers) set verse times by ear in the app; the library applies t
 
 ### Decisions (Oct 18, 2026): the apps
 - **Android first (owner, 2026-10-19); the iPhone app is parked until the owner asks.**
+- **One app per tradition (owner, 2026-10-19)** — not one per work, not one for everything. The Hindu app (`org.craadle.scriptures.hinduism`) shows the Hindu shelves and also the Sukhmani Sahib; `?app=<id>` + `library/apps.json` decide what each app shows. Publisher: 16493041 Canada Inc. (craadle.org).
 - **One app, published by the owner's corporation, in every country except mainland China.** Not one app per work: stores reject near-identical apps as spam (Apple 4.3); instead one store page per work (Apple custom product pages with keywords) and `?w=<work id>` links that open a work. Details and the owner's steps: `docs/APPS.md`.
 - **The app shows the website**, so content never waits for an app update. The app is rebuilt only for its shell.
 - **A first-run tour (six steps) shows the essentials**: the library and Continue, tap a word, हिं · En · शब्द, Play all with the lit verse and auto-scroll, ▶ one verse / Listen from here, plans and bookmarks. Shown once; Settings › Help shows it again. Tests close it first (`closeTour()`).

@@ -115,4 +115,15 @@ def prepare(lib):
     for leaf in leaves(shelf):
         _need(leaf['work'] not in works, f"shelf: work id {leaf['work']!r} is used twice")
         wid, src = check_work(lib, leaf, LANGS); works[wid] = src
+    # store apps (library/apps.json): each app's shelves must exist on the shelf
+    ap = os.path.join(lib, 'apps.json')
+    if os.path.exists(ap):
+        paths = set()
+        def walk(ns, at):
+            for n in ns:
+                p = at + [n['id']]; paths.add('/'.join(p)); walk(n.get('children', []), p)
+        walk(shelf, [])
+        for aid, a in json.load(open(ap)).items():
+            if aid.startswith('_'): continue
+            _need(a.get('shelves') and all(x in paths for x in a['shelves']), f"apps.json: {aid}: every shelf must be a path on the shelf ({a.get('shelves')})")
     return works

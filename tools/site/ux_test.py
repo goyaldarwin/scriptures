@@ -48,6 +48,15 @@ async def main():
         check('the tour steps through and closes', await ev("document.querySelector('#tour').hidden && S.settings.tour === 1"), nsteps)
         await pg.reload(); await pg.wait_for_timeout(2000)
         check('the tour is not shown again', await ev("document.querySelector('#tour').hidden"))
+        # a store app shows only its shelves (?app=<id>, library/apps.json)
+        apps = json.load(open(os.path.join(ROOT, 'library', 'apps.json')))
+        for aid, a in apps.items():
+            if aid.startswith('_'): continue
+            await pg.goto(url + '?app=' + aid); await pg.wait_for_timeout(2000)
+            got = await ev("(() => { const r = []; (function w(ns, at){ ns.forEach(n => n.work ? r.push(at.concat(n.id).join('/')) : w(n.children || [], at.concat(n.id))); })(LIB, []); return r; })()")
+            ok = got and all(any(g == s_ or g.startswith(s_ + '/') for s_ in a['shelves']) for g in got)
+            check(f'app {aid}: only its shelves', ok, got)
+        await pg.goto(url); await pg.wait_for_timeout(2000)
 
         # ---- library: two levels per screen, every tradition is a heading ----
         await ev("libPath=[]; show('library')"); await pg.wait_for_timeout(300); await shot('library')

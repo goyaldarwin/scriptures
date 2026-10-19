@@ -8,6 +8,7 @@ name: android
 on:
   workflow_dispatch:
     inputs:
+      app: {description: 'Which app (apps/app.json)', type: string, default: hinduism}
       release: {description: 'Also build the signed Play Store bundle (.aab)', type: boolean, default: false}
 jobs:
   build:
@@ -19,7 +20,7 @@ jobs:
       - uses: actions/setup-java@v5
         with: {distribution: temurin, java-version: 17}
       - name: Generate the Android project
-        run: echo "ANDROID_HOME=$ANDROID_HOME" && cd apps/android && npm install --no-audit --no-fund && node generate.mjs
+        run: echo "ANDROID_HOME=$ANDROID_HOME" && cd apps/android && npm install --no-audit --no-fund && node generate.mjs --app=${{ inputs.app }}
       - name: Test APK (debug-signed)
         run: |
           cd apps/android/project && chmod +x gradlew
@@ -33,7 +34,6 @@ jobs:
           KS_PASS: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           KEY_PASS: ${{ secrets.ANDROID_KEY_PASSWORD }}
         run: |
-          grep -q '"packageId": "CHANGE' apps/app.json && { echo "Fill in packageId in apps/app.json first (it can never change after the first upload)"; exit 1; }
           [ -n "$KS" ] || { echo "The ANDROID_KEYSTORE_* secrets are missing (docs/APPS.md)"; exit 1; }
           echo "$KS" | base64 -d > apps/android/upload.keystore
           cd apps/android/project && ./gradlew --no-daemon bundleRelease

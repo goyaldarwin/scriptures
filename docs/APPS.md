@@ -21,7 +21,8 @@
 
 ## Settled (2026-10-19)
 - Publisher: 16493041 Canada Inc., D-U-N-S 245128343, email darwin@craadle.org, website craadle.org.
-- Package id `org.craadle.scriptures` (permanent); library address `scriptures.craadle.org` (DNS CNAME → goyaldarwin.github.io; switch the site with the Pages API and a `CNAME` file only after the record resolves, or the site breaks).
+- **One app per tradition** (owner, 2026-10-19): the Hindu app first, package id `org.craadle.scriptures.hinduism` (permanent), opening `/?app=hinduism`; it also carries the Sukhmani Sahib (owner's choice). Which shelves an app shows is `library/apps.json` (checked by build.py; changing it needs no app update). A Sikh app can follow as `org.craadle.scriptures.sikhism`. `apps/app.json` holds each app's identity; build with the `android` workflow's `app` input.
+- library address `scriptures.craadle.org` (DNS CNAME → goyaldarwin.github.io; switch the site with the Pages API and a `CNAME` file only after the record resolves, or the site breaks).
 - The public developer profile shows the business name, email and phone (address in some regions); name/address changes go through D&B first, then re-verification in Play Console.
 
 ## The owner's steps
