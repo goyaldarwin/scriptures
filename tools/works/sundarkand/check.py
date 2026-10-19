@@ -2,8 +2,9 @@
 (from kishkindha.29.do29) and the whole Sundara-kāṇḍa. Also that every Mānas verse in part 0 (the maṅgalācaraṇa, e.g.
 bal.17.so17 "प्रनवउँ पवनकुमार") is the Mānas's own apart from its part and section, with the same Gita Press meanings.
 
-Compares every item (all fields except the part index `p`), the order of the items, the topics, and the Gita Press
-Hindi and English meanings (the same entry for every item, and the same source id, language, order and title).
+Compares every item (all fields except the part index `p`), the order of the items, the topics, the Gita Press
+Hindi and English meanings and our own (hi-scriptures, en-scriptures: the same entry for every Mānas item, and the
+same source id, language, order and title).
 Usage: python3 tools/works/sundarkand/check.py        (exits non-zero on any difference)
 """
 import json, os, sys
@@ -32,6 +33,11 @@ for sid in ('hi-gitapress', 'en-gitapress'):
     if {k: v for k, v in a.items() if k != 'm'} != {k: v for k, v in b.items() if k != 'm'}: bad.append(f'{sid}: header differs')
     want = ids | {x['id'] for x in pulled}
     if {i: a['m'][i] for i in want if i in a['m']} != b['m']: bad.append(f'{sid}: meanings differ')
-print(f'{len(mi)} items (+ {len(pulled)} in the maṅgalācaraṇa), {sum(1 for t in S["topics"] if t["id"] in ids)} topics, 2 meaning sources compared:', 'identical' if not bad else 'DIFFERENT')
+for sid in ('hi-scriptures', 'en-scriptures'):   # our own: the Mānas's entries for its verses, copied unchanged
+    a, b = L(f'{MP}/meanings/{sid}.json'), L(f'{SP}/meanings/{sid}.json')
+    if {k: v for k, v in a.items() if k != 'm'} != {k: v for k, v in b.items() if k != 'm'}: bad.append(f'{sid}: header differs')
+    want = ids | {x['id'] for x in pulled}
+    if {i: a['m'][i] for i in want if i in a['m']} != {i: v for i, v in b['m'].items() if i in want}: bad.append(f'{sid}: meanings differ')
+print(f'{len(mi)} items (+ {len(pulled)} in the maṅgalācaraṇa), {sum(1 for t in S["topics"] if t["id"] in ids)} topics, 4 meaning sources compared:', 'identical' if not bad else 'DIFFERENT')
 for x in bad[:20]: print(' ', x)
 sys.exit(1 if bad else 0)

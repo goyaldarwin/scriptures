@@ -2,36 +2,39 @@
 
 Every meaning we write (sources `hi-scriptures` / `en-scriptures`, titled "भावार्थ — शास्त्र" / "Meaning — Scriptures") follows this sheet, so that some 12,000 meanings read as one voice. Rules and plan: `docs/handoff/2026-10-19-own-meanings.md`. Check every batch with `tools/meanings/overlap.py`.
 
-Status: **draft for the pilot (Sundarakāṇḍa)**. Items marked ⟨owner⟩ are being settled with the owner on the samples; change them here first, then in every meaning.
+Status: **pilot (Sundarakāṇḍa)**; the owner settled the open points on 2026-10-19 (recorded below). A change of rule is made here first, then in every meaning.
 
 ## 1. The one rule
-Write from the verse: its words (our word meanings in `library/glossary/`), who is speaking to whom, what has just happened. Use a published meaning only to check understanding (a hard word, an allusion, who "he" is) and only after writing. Never reword a published meaning. Facts and interpretation are free; another translator's sentences, sentence order, distinctive word choices and bracketed additions are not. If ours reads like theirs, write it again.
+**The source is the verse and its word meanings** (`library/glossary/`, checked against trusted dictionaries: §11), read in context: who is speaking to whom, what has just happened. Write the meaning from that.
+
+Only then open the published meanings (Gita Press, Growse), as guidance (owner, 2026-10-19): to check understanding, and to take whatever makes ours better — an interpretation, a line of thought, a well-chosen word, a short phrase, a way of ordering. What we never take is their sentences: copyright protects wording, so no copied sentence (`overlap.py` stops at 10 or more consecutive words in common) and no sentence-by-sentence rewording of one. A shorter shared run (6–9 words) is fine when it is simply the natural words or the verse's own list — the meaning is made from the verse, and two faithful translations meet (owner, 2026-10-19: "if we are creating our own meaning from the words then it should be fine"); it is listed and read, and rewritten only if it is their phrasing rather than the natural one. Never make a sentence less natural just to dodge the check.
 
 ## 2. What a meaning is
 - **What the verse says, all of it, nothing more.** Every clause of the verse is in the meaning; nothing is added that the verse does not say or plainly imply. No commentary, no moral drawn, no "that is to say".
-- **In the verse's order where the language allows,** so a reader can follow line by line.
+- **In the verse's order** (owner, 2026-10-19): the meaning follows the verse line by line and half-line by half-line, so a reader can match each part of the meaning to its words. Reorder only where Hindi or English grammar needs it, and never so far that the parts no longer line up.
 - **Length:** a caupāī one or two sentences; a dohā or sorathā one or two; a chhanda as many as its four lines need; a śloka one to three.
 - **Brackets:** none as a habit. Write implied words into the sentence. A short gloss in round brackets only where a word would otherwise be unclear to most readers and cannot be worked into the sentence (once, not on every occurrence). Never square brackets.
-- **No verse numbers** (no ।।१७।।, no (1)) and no speaker tags in brackets.
+- **Verse numbers** (owner, 2026-10-19): every meaning ends with the verse's number as the verse shows it — `।।१७।।`, `।।३० (क)।।` in Hindi, `।।17।।`, `।।30 (क)।।` in English. They are **not** written in the meaning files: the exporter adds them from the verse itself, so they always match. No speaker tags in brackets.
+- **People as a group** (owner, 2026-10-19): where a verse speaks of a group of people — women, a caste, the unlettered, a people — use respectful, neutral words for them (स्त्री / woman, not औरत or a slur; "the unlettered", not "boors") and the milder sense where the word allows it (ताड़ना → शिक्षा / instruction), while keeping what the verse says. Nothing is added to excuse or explain the verse.
 - **Doubt:** where the verse is genuinely ambiguous or traditions read it differently, give the plain reading of the words in the meaning, and record the issue in `docs/reviews/<date>-meaning-doubts.jsonl` (`{"id", "issue", "our reading", "alternatives"}`). The owner decides.
 
 ## 3. Speakers and the nested dialogue
 - The Mānas is told by Śiva to Pārvatī (उमा, भवानी, गिरिजा), Kākabhuśuṇḍi to Garuḍa (खगेस, खगपति, उरगारि), Yājñavalkya to Bharadvāja, and Tulasīdāsa to the reader. When the verse addresses one of them, keep the address ("हे उमा!" / "Umā,"); do not add the narrator when the verse does not name one.
-- **When a verse opens a speech** and names the speaker (कह, बोले, कहइ), write "X ने कहा —" / "X said:" and then the words. When it does not, the speech simply continues from the previous verse (the reader sees it there).
+- **When a verse opens a speech** and names the speaker (कह, बोले, कहइ), write "X ने कहा —" / "X said:" and then the words. When it does not and **the same speaker goes on**, the speech simply continues from the previous verse (the reader sees it there). When **the speaker changes** and the verse does not name the new one (an answer, a reply), name them anyway — "जाम्बवान्‌जीने कहा —" / "Jāmbavān said:" — so the reader never takes one speaker's words for another's (review of the pilot, kishkindha.30.cau6).
 - **No quotation marks** for speech: a speech often runs over many verses, each a separate meaning, and quotes would open in one verse and close in another. Speech is written in the speaker's own person ("I", "you").
 - **Each speaker keeps his tone.** Devotees and the narrator use honorifics; Rāvaṇa, Laṅkinī or a mocking rākṣasa do not: Rāvaṇa's "तपसी" stays "that ascetic", not "Śrī Rāmajī".
 
 ## 4. Hindi
 - Natural modern Hindi in our house style (as in `tools/works/sundarkand/meanings/hi.json`, Sukhmani, Rudram, Īśa).
-- **Postpositions joined to the noun** ⟨owner⟩: श्रीरामजीको, सीताजीसे, हनुमान्‌जीने, समुद्रके; pronouns too (उसको, उनके). Spellings of this style: लिये, गये, किये, दिये.
-- **Honorific plural** for the Lord, Sītā, Lakṣmaṇa, Hanumān, sages, elders and anyone the speaker honours: वे, उन्होंने, कहते हैं; "आप" when they are addressed by a devotee. The Lord addresses others with तुम, a son or dear one with तुम/बेटा as the verse does.
+- **Postpositions joined to the noun** (owner, 2026-10-19): श्रीरामजीको, सीताजीसे, हनुमान्‌जीने, समुद्रके; pronouns too (उसको, उनके). Spellings of this style: लिये, गये, किये, दिये.
+- **Honorific plural** for the Lord, Sītā, Lakṣmaṇa, Hanumān, sages, elders and anyone the speaker honours: वे, उन्होंने, कहते हैं; "आप" when they are addressed by a devotee. The Lord addresses others, Hanumān included, with तुम (owner, 2026-10-19; Gita Press uses तू).
 - **Standard Hindi spelling for names** (विभीषण not बिभीषन, लक्ष्मण not लछिमन, जाम्बवान्‌ not जामवंत), anusvāra rather than a half-nasal (लंका, संत), ZWNJ in हनुमान्‌जी.
 - Punctuation: । at the end of a sentence; ! after an address or exclamation; — before speech after "कहा"; ; and , as in prose.
 
 ## 5. English
 - Plain, dignified, modern English; no thee/thou, no "verily", no inversion for effect.
 - **IAST for names and Sanskrit terms**, as in our other meanings: Śrī Rāma, Sītā, Lakṣmaṇa, Hanumān, Rāvaṇa, Laṅkā, Ayodhyā. Common nouns that have an English word are translated (monkey, demon, ocean, lotus).
-- **Pronouns for the Lord and Sītā in lower case** ⟨owner⟩ (he, his, you), as in our Chālīsā meanings.
+- **Pronouns for the Lord and Sītā in lower case** (he, his, you), as in our Chālīsā meanings (shown to the owner on 2026-10-19; not objected to).
 - British/Indian spelling (honour, colour, realise).
 - Punctuation: a colon before speech ("Hanumān said: …"); ordinary commas and full stops; no exclamation marks except where the verse exclaims (जय, धन्य, हा).
 
@@ -54,7 +57,7 @@ The verse's epithet is kept where it is a familiar name or where its sense matte
 | हनुमान, हनुमंत, हनू | हनुमान्‌जी | Hanumān |
 | पवनसुत, पवनतनय, पवनकुमार, मारुतसुत | पवनपुत्र हनुमान्‌जी / पवनकुमार | Hanumān, son of the Wind |
 | कपि (of Hanumān) | हनुमान्‌जी; in an address, as the speaker says it: हे कपि / हे वानर | Hanumān; in an address "Hanumān" |
-| कपि, बानर, मर्कट (a group) | वानर | monkeys ⟨owner: monkeys or vānaras⟩ |
+| कपि, बानर, मर्कट (a group) | वानर | monkeys (owner) |
 | भालु, रीछ | भालू, रीछ | bears |
 | रीछपति, जामवंत | जाम्बवान्‌जी | Jāmbavān |
 | लछिमन | लक्ष्मणजी | Lakṣmaṇa |
@@ -62,7 +65,7 @@ The verse's epithet is kept where it is a familiar name or where its sense matte
 | बिभीषन | विभीषण(जी) (जी once he has taken refuge) | Vibhīṣaṇa |
 | रावन, दसानन, दसमुख, दससीस, दसकंधर, दसकंठ | रावण (दशानन etc. only where the heads matter) | Rāvaṇa (the ten-headed where the heads matter) |
 | लंकेस, लंकापति | लंकापति रावण | Rāvaṇa, lord of Laṅkā |
-| निसिचर, निसाचर, जातुधान, राक्षस | राक्षस | demon ⟨owner: demon or rākṣasa⟩ |
+| निसिचर, निसाचर, जातुधान, राक्षस | राक्षस | demon (owner) |
 | मेघनाद; अच्छकुमार | मेघनाद; अक्षयकुमार | Meghanāda; Akṣaya Kumāra |
 | लंकिनी, सुरसा, त्रिजटा, मंदोदरी, सुक | लंकिनी, सुरसा, त्रिजटा, मन्दोदरी, शुक | Laṅkinī, Surasā, Trijaṭā, Mandodarī, Śuka |
 | अंगद, नल, नील, मैनाक | अंगद, नल, नील, मैनाक | Aṅgada, Nala, Nīla, Maināka |
@@ -99,12 +102,19 @@ The verse's epithet is kept where it is a familiar name or where its sense matte
 Translated from the Sanskrit directly, word by word against `glossary/sa.json`, then put into natural Hindi and English. Keep the structure of a list of epithets (one phrase per epithet, in the verse's order) and end with the verb of the verse (वन्दे → "I bow to", नमामि → "I salute").
 
 ## 9. What the pilot samples taught (2026-10-19)
-- **Writing from the verse is not enough on its own.** Of 18 sample verses written from the verse alone, before Gita Press was opened, 9 Hindi and 7 English meanings still shared a run of 6+ words with Gita Press: two literal translations of the same words in the same order meet. So the checker is part of writing, not a formality: rewrite the flagged sentence in our own shape (another sentence order, another natural word), never by copying a third source.
+- **Two faithful translations meet.** Of 18 sample verses written from the verse alone, before Gita Press was opened, 9 Hindi and 7 English meanings still shared a run of 6+ words with Gita Press, almost always the natural words ("साम दान भय और भेद", "in my dream a monkey"). Rewriting those only to dodge a 6-word limit cost naturalness, so the owner relaxed it (2026-10-19): stop at 10+, read 6–9.
 - The verse's own list in the verse's order ("ढोल, गँवार, शूद्र, पशु और नारी") is the verse, not anyone's wording; still, the run around it is rephrased so that the limit stays a plain rule with no exceptions.
 - Keep to the verse: the first draft of sundar.59.cau3 said "my bounds" where the verse says only "the bounds" (मरजादा). The second reading against the verse catches such additions.
 
 ## 10. Before a batch goes in
 1. Every item has a Hindi and an English meaning, once, and nothing extra (the exporter checks).
-2. `python3 tools/meanings/overlap.py` passes for Hindi against `hi-gitapress` and English against `en-gitapress`; read the `--report` list of close rewordings side by side.
+2. `python3 tools/meanings/overlap.py` passes (no 10+ run) for Hindi against `hi-gitapress` and English against `en-gitapress`; read its 6–9-word runs and the `--report` list of close rewordings side by side.
 3. A second reader who did not write the batch checks each meaning against the verse for accuracy and against this sheet.
 4. Doubts are in the doubts file, not in the meanings.
+
+## 11. Word meanings and dictionaries
+Our word meanings (`library/glossary/<lang>.json`) are the starting point; where a word is hard, rare or its entry does not fit the line, check it in trusted dictionaries and fix the entry if it is wrong (every change logged in `docs/reviews/<date>-dictionaries.jsonl` with the old entry and the reason):
+- **Sanskrit and Sanskrit-derived words:** Monier-Williams, *Sanskrit-English Dictionary* (1899); V. S. Apte, *Practical Sanskrit-English Dictionary* (1890) — Cologne Digital Sanskrit Lexicon (`github.com/sanskrit-lexicon/csl-orig`).
+- **Awadhi and Hindi:** J. T. Platts, *Dictionary of Urdū, Classical Hindī and English* (1884); Śyāmasundara Dāsa, *Hindī Śabdasāgara*; R. S. McGregor, *Oxford Hindi-English Dictionary*; Mahendra Caturvedi, *Practical Hindi-English Dictionary* — Digital Dictionaries of South Asia, dsal.uchicago.edu (needs the owner to allow the site).
+- **A second translation to check against:** F. S. Growse, *The Rāmāyaṇa of Tulasīdāsa* (1883, public domain).
+Take the facts (the sense, the grammar), never a dictionary's sentences; a word's entry lists every sense the work uses it in (जाहू: "जाओ / जिसे, जिसके" — "go / whom, whose"), separated by " / ", so the word sheet shows them all; **the verse's meaning uses only the sense that fits its context** (owner, 2026-10-19).
