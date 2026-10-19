@@ -60,6 +60,8 @@ See `docs/HOW-TO.md`: add a meaning source, add a reciter, add a work, fix text,
 | Śrī Rudram | complete (our own meanings; Vedic accents; "श्री शम्भवे नमः" left out) | Shlokam, **draft**: the owner is marking it by ear |
 | Sukhmani Sahib | complete (Gurmukhi; English from the owner's PDF; our Hindi) | Parminder Singh, **draft**: the owner is marking it by ear (ashtapadi 1 done) |
 
+**Next big task (2026-10-19):** our own meanings in place of others' copyrighted ones — see `docs/handoff/2026-10-19-own-meanings.md`.
+
 **Open with the owner:** the dictionary doubts (`docs/reviews/2026-10-18-dictionary-doubts.jsonl`); the author named for the Dhūpa Āratī's Guru-prasāda-yācanā-daśaka (बाळकृष्ण विश्वनाथ देव, to confirm); any visarjana reading that differs from the owner's printed copy; a permission letter to Gita Press for the meanings. **Offered, not built:** "⏹ End / ⏱ Next starts" buttons in the player for audio timing.
 
 **Apps:** Android first (iPhone parked) — see `docs/APPS.md`. Groundwork and a test build are done; the owner is setting up the corporation's Google Play account, domain, app name and package id.
