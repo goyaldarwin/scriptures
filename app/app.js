@@ -26,7 +26,8 @@ let LIB = [], LANGS = {}, GL = {}, WG = {}, ALT = {hi: [], en: []}, W = null, IT
 const LS = 'manas.personal.v1';
 let canStore = true;
 function newProfile(name){ return {id: 'p' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), name, notes: {}, bm: {}, done: {}, gloss: {}, fix: {}}; }
-function defaults(){ const p = newProfile('मेरा'); return {v: 2, settings: {layers: {h: true, e: false, w: false}, tr: false, size: 21, theme: 'light', wake: true, lightDefault: 1}, src: {}, w: {}, work: null, profiles: [p], active: p.id, show: [p.id], timer: null}; }
+// a new reader starts in English (owner, 2026-10-19): English interface and English meaning; हिं adds the Hindi meaning
+function defaults(){ const p = newProfile('Me'); return {v: 2, settings: {layers: {h: false, e: true, w: false}, tr: false, size: 21, theme: 'light', wake: true, lightDefault: 1}, src: {}, w: {}, work: null, profiles: [p], active: p.id, show: [p.id], timer: null}; }
 let S;
 try { S = JSON.parse(localStorage.getItem(LS)); } catch (e) { canStore = false; }
 if (!S || !S.profiles) S = defaults();
