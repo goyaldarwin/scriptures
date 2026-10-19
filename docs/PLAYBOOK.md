@@ -328,6 +328,7 @@ The owner (and helpers) set verse times by ear in the app; the library applies t
 - **Who merges:** the owner delegated merging after verification. Large work (a new work, a shared-code change) goes on a `work/<name>` branch and pull request, merged by the session once build + smoke + UX tests pass; small fixes the owner asks for in the conversation are pushed to `main` after the same tests. Always `git pull` first — the timing workflow pushes to main too.
 
 ### Decisions (Oct 18, 2026): the apps
+- **Android first (owner, 2026-10-19); the iPhone app is parked until the owner asks.**
 - **One app, published by the owner's corporation, in every country except mainland China.** Not one app per work: stores reject near-identical apps as spam (Apple 4.3); instead one store page per work (Apple custom product pages with keywords) and `?w=<work id>` links that open a work. Details and the owner's steps: `docs/APPS.md`.
 - **The app shows the website**, so content never waits for an app update. The app is rebuilt only for its shell.
 - **A first-run tour (six steps) shows the essentials**: the library and Continue, tap a word, हिं · En · शब्द, Play all with the lit verse and auto-scroll, ▶ one verse / Listen from here, plans and bookmarks. Shown once; Settings › Help shows it again. Tests close it first (`closeTour()`).

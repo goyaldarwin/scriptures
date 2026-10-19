@@ -1,11 +1,13 @@
 # The Android and iPhone apps
 
+**Decision (owner, 2026-10-19): Android first; the iPhone app is parked** until the owner asks (no Apple account needed for now).
+
 **Decision (owner, 2026-10-18):** one app for the whole library, published by the owner's Canadian corporation (organization developer accounts), in every country except mainland China (Apple needs a government ICP number there, and YouTube is blocked). Each work gets its own store page (Apple custom product pages tied to search keywords; Play's full description names every work), and `?w=<work id>` links open the app straight to that work.
 
 ## How it works
 - **The app shows the website.** New works, corrections and audio timings reach every phone as soon as `main` is published; the app is rebuilt only when its shell changes (name, icon, version).
 - **Android:** a Trusted Web Activity made by Google's Bubblewrap (`apps/android/generate.mjs`) from `apps/app.json` and the site's `manifest.json`; built by `.github/workflows/android.yml` (a test APK always; the signed `.aab` for Play with `release: true`).
-- **iPhone (next):** a Capacitor app that ships the reader inside and loads the library from the website, with offline reading and a daily-reading reminder, so it is more than a website in a frame (App Store guideline 4.2). Needs a Mac build (GitHub macOS runner) and testing on a real iPhone — in particular that YouTube's player works inside the app.
+- **iPhone (parked, 2026-10-19):** a Capacitor app that ships the reader inside and loads the library from the website, with offline reading and a daily-reading reminder, so it is more than a website in a frame (App Store guideline 4.2). Needs a Mac build (GitHub macOS runner) and testing on a real iPhone — in particular that YouTube's player works inside the app.
 
 ## What is in this repository
 | Path | What |
@@ -20,7 +22,7 @@
 ## The owner's steps
 1. **D-U-N-S number** for the corporation (free from Dun & Bradstreet; Apple looks it up during enrolment).
 2. **A domain and email for the app** (e.g. the corporation's site). Point the website at it (GitHub Pages custom domain): Android verifies the app against `https://<domain>/.well-known/assetlinks.json`, which must sit at the domain's root — not possible on `goyaldarwin.github.io/scriptures/`.
-3. **Google Play Console** — organization account ($25 once). **Apple Developer Program** — organization ($99/year).
+3. **Google Play Console** — organization account ($25 once). (Apple Developer Program, $99/year, only when the iPhone app is taken up.)
 4. Choose the **app name** and the **package id** (reverse domain, e.g. `ca.<company>.scriptures`); put them in `apps/app.json`.
 5. **Content rights:** decide what launches while permissions are pending (Gita Press meanings, Sant Singh Khalsa's English, the shirdisaibabakripa.org English, the Ram Raksha meanings). The app can hide sources not yet cleared.
 

@@ -36,3 +36,4 @@ The owner's priorities, in order: **accuracy**, then unambiguity, clarity, consi
 7. **Release notes.** A short `CHANGELOG.md` entry per merged pull request (what readers will notice), so the owner can see what changed without reading commits.
 8. **Finish the drafts by ear.** The owner marks the Śrī Rudram and the Sukhmani Sahib in Settings › Audio timing and publishes each from there (see the playbook, "Audio timing by ear"). Helpers can mark too and send the owner a file.
 9. **Player buttons for timing** (offered to the owner, not built): "⏹ End" and "⏱ Next starts" beside play/pause, so marking needs no scrolling.
+10. **The Android app** (`docs/APPS.md`): release build once the owner has the Play account, domain, name and package id. The iPhone app is parked.
