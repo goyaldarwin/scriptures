@@ -417,16 +417,21 @@ function refreshReader(){
   updateHeader();
 }
 function rerenderItem(i){ const el = document.getElementById('v' + i); if (!el) return; const tmp = document.createElement('div'); tmp.innerHTML = verseHTML(i); el.replaceWith(tmp.firstChild); if (PL.on && PL.cur === i) document.getElementById('v' + i).classList.add('now'); }
-function sectionSheet(){
-  const cur = curSection(topVisibleItem());
+// The section picker: the row of kāṇḍas (or plan days) on top only chooses which list shows below; nothing opens until a
+// section is tapped — the current one too (owner, 2026-10-19).
+function sectionSheet(n){
+  const cur = curSection(topVisibleItem()), plan = R.org !== 'k';
+  if (n == null) n = R.n;
+  const [A, B] = plan ? dayRange(R.org, n) : [PARTS[n].a, PARTS[n].b];
   let h = '';
-  if (R.org === 'k') h += '<div class="pick">' + PARTS.map(p => '<button data-to="' + p.a + '" class="' + (p.k === R.n ? 'on' : '') + '">' + esc(KNAME(p.k)) + '</button>').join('') + '</div>';
-  else { const P = PLAN[R.org]; h += '<div class="pick days">' + Array.from({length: P.n}, (_, x) => x + 1).map(n => '<button data-to="' + dayRange(R.org, n)[0] + '" class="' + (n === R.n ? 'on' : '') + (DONE(ME(), R.org)[n] ? ' done' : '') + '">' + DEV(n) + '</button>').join('') + '</div>'; }
-  const secs = TOPICS.filter(t => t.i <= R.b && t.end >= R.a);
-  const rows = []; if (!secs.length || secs[0].i > R.a) rows.push({i: R.a, end: (secs[0] ? secs[0].i - 1 : R.b), name: R.org === 'k' ? KNAME(R.n) : VN(R.n)});
-  secs.forEach(t => rows.push({i: Math.max(t.i, R.a), end: Math.min(t.end, R.b), name: TNAME(t), t}));
-  h += '<h2>' + (R.org === 'k' ? esc(KNAME(R.n)) : PNAME(R.org) + ' · ' + VN(R.n)) + '</h2><div class="secs">' + rows.map(r => '<button data-to="' + r.i + '" class="' + (cur && r.t === cur ? 'on' : '') + '"><span class="sr">' + spanLabel(r.i, r.end) + '</span><span class="sn">' + esc(r.name) + '</span></button>').join('') + '</div>';
-  openSheet(h);
+  if (!plan) h += '<div class="pick">' + PARTS.map(p => '<button data-pick="' + p.k + '" class="' + (p.k === n ? 'on' : '') + '">' + esc(KNAME(p.k)) + '</button>').join('') + '</div>';
+  else { const P = PLAN[R.org]; h += '<div class="pick days">' + Array.from({length: P.n}, (_, x) => x + 1).map(d => '<button data-pick="' + d + '" class="' + (d === n ? 'on' : '') + (DONE(ME(), R.org)[d] ? ' done' : '') + '">' + DEV(d) + '</button>').join('') + '</div>'; }
+  const secs = TOPICS.filter(t => t.i <= B && t.end >= A);
+  const rows = []; if (!secs.length || secs[0].i > A) rows.push({i: A, end: (secs[0] ? secs[0].i - 1 : B), name: plan ? VN(n) : KNAME(n)});
+  secs.forEach(t => rows.push({i: Math.max(t.i, A), end: Math.min(t.end, B), name: TNAME(t), t}));
+  h += '<h2>' + (plan ? PNAME(R.org) + ' · ' + VN(n) : esc(KNAME(n))) + '</h2><div class="secs">' + rows.map(r => '<button data-to="' + r.i + '" class="' + (cur && r.t === cur && n === R.n ? 'on' : '') + '"><span class="sr">' + spanLabel(r.i, r.end) + '</span><span class="sn">' + esc(r.name) + '</span></button>').join('') + '</div>';
+  if ($('#sheet').classList.contains('on') && $('#sheetBody .pick')){ $('#sheetBody').innerHTML = h; $('#sheet').scrollTop = 0; } else openSheet(h);
+  $$('#sheetBody [data-pick]').forEach(b => b.onclick = () => sectionSheet(+b.dataset.pick));
   $$('#sheetBody [data-to]').forEach(b => b.onclick = () => { closeSheet(); jumpTo(+b.dataset.to); });
   const on = $('#sheetBody .secs .on'); if (on) setTimeout(() => on.scrollIntoView({block: 'center'}), 60);
 }
