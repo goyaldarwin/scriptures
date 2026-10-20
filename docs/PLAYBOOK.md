@@ -340,6 +340,7 @@ The owner (and helpers) set verse times by ear in the app; the library applies t
 - **Noted, not changed (owner to decide):** "Next kāṇḍa ›" at the end of a part adds no history entry (Back goes to the work page, not the previous kāṇḍa); the installed app caches only the shell (works need the internet; the offline file is separate); if the tour's work fails to load offline, the tour stops silently; the reader reopens at the saved top verse, not the exact scroll offset.
 
 ### Lessons: the working environment
+- **Gate commits on the test's exit code, not on a grep of its output** (`ux_test.py | grep … && git commit` committed with a failing check on 2026-10-20). The failing check had assumed no owner times in the Mānas — true until issue #13 sent some; tests that pick sample verses from live data must exclude verses set by ear.
 - **Never `pkill -f`** in this environment: it matched and killed the session's own shell (exit 144), twice. Kill by PID or a pid file.
 - **GitHub GraphQL is unavailable** from these sessions (`gh issue view`, `gh pr view` fail): use the REST API (`gh api repos/goyaldarwin/scriptures/issues/8`, `…/comments`, `…/commits/main/check-runs`). Workflows are dispatched with `gh api -X POST …/dispatches`.
 - Most websites and Hugging Face are blocked from the shell; WebFetch returns summaries. Never route around a block; ask the owner for a PDF or file.

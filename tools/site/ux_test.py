@@ -588,7 +588,7 @@ async def main():
         check('timing: a time already in the library shows − / + and is carried along like one set here', pubown == [True, True, True, True], pubown)
         # the light never moves on to a start placed again by the order rule (it is only a guess now), even for a heard verse
         mv = await ev("""(async () => { S.timing.on = true; applyTiming(); await openWork('manas', true); await loadSources(); show('home');
-            const keep = JSON.stringify(S.timing.fix[tkey()] || {}); delete S.timing.fix[tkey()]; buildAudio(); const a = AUT[0]; let k = a.findIndex((x, q) => q > 5 && !toCheck(x[0]) && !toCheck(a[q + 1][0]) && !toCheck(a[q + 2][0]) && a[q + 2][1] - a[q][1] > 8); if (k < 0) return 'no run';
+            const keep = JSON.stringify(S.timing.fix[tkey()] || {}); delete S.timing.fix[tkey()]; buildAudio(); const a = AUT[0]; let k = a.findIndex((x, q) => q > 5 && [0, 1, 2].every(d => !toCheck(a[q + d][0]) && !ownAt(IT[a[q + d][0]].id)) && a[q + 2][1] - a[q][1] > 8);   // three heard verses, none set by ear (the owner's sent times would be kept, not placed again) if (k < 0) return 'no run';
             const x = a[k][0], y = a[k + 1][0], z = a[k + 2][0], ys = a[k + 1][1], zs = a[k + 2][1]; setTime(x, 1, ys + 1);   // x starts after y's heard start: y is placed again
             const moved = toCheck(y) && SRC.au.at[IT[y].id][1] > ys; PL.on = true; PL.t = 0; PL.end = null; ytOK = true; PL.seekT = null; PL.cur = x; ytInfo.t = SRC.au.at[IT[y].id][1] + 0.3; tick(); const lit = PL.cur;
             ytInfo.t = zs + 0.3; tick(); const lit2 = PL.cur; PL.on = false; ytOK = false; S.timing.fix[tkey()] = JSON.parse(keep); S.timing.on = false; save(); applyTiming(); await loadSources(); return [moved, lit === x, lit2 === z]; })()""")
