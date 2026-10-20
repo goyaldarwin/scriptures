@@ -386,13 +386,38 @@ window.addEventListener('scroll', () => { if (!$('#reader').classList.contains('
 function savePos(i){ if (i == null) i = topVisibleItem(); const ws = WS(); ws.pos[R.org] = i; ws.last = {org: R.org, i, id: IT[i].id}; save(); }
 // A place is found again by its item id. Places saved before ids were kept are item positions; when a work later had
 // verses put before its text (work.json "prepended": how many), such a place moves forward by that many, once.
+// work.json "renamed" (old item id → new): a joint caupāī split into one item each (owner, 2026-10-20). A reader's notes,
+// bookmarks and place on the old id move to its first part; a meaning correction moves to the last part (where the
+// joint meaning now is); timing marks to the first part. A verse-text correction of the old joint verse is left as it was.
+function moveRenamed(){
+  const ren = W.renamed; if (!ren) return; let changed = false;
+  const lastOf = old => { const m = /^(.+\.cau)\d+-(\d+)$/.exec(old); return m && ID[m[1] + m[2]] != null ? m[1] + m[2] : ren[old]; };
+  for (const p of S.profiles) for (const store of ['notes', 'bm', 'fix']){
+    const o = p[store] || {};
+    for (const k of Object.keys(o)){
+      if (!k.startsWith(W.id + ':')) continue;
+      const old = Object.keys(ren).find(x => k.endsWith(':' + x)); if (!old || ID[old] != null) continue;
+      const isMeaning = store === 'fix' && k.split(':').length > 2;
+      if (store === 'fix' && !isMeaning) continue;   // a correction of the joint verse's text: kept under the old id
+      const nk = k.slice(0, k.length - old.length) + (isMeaning ? lastOf(old) : ren[old]);
+      if (store === 'notes') o[nk] = (o[nk] || []).concat(o[k]); else if (!(nk in o)) o[nk] = o[k];
+      delete o[k]; changed = true;
+    }
+  }
+  for (const box of ['fix', 'from', 'sent']){ const T0 = (S.timing || {})[box] || {};
+    for (const tk in T0){ if (!tk.startsWith(W.id + ':')) continue; const m = T0[tk];
+      for (const old in ren) if (old in m && ID[old] == null){ if (!(ren[old] in m)) m[ren[old]] = m[old]; delete m[old]; changed = true; } } }
+  const l = (S.w[W.id] || {}).last; if (l && l.id && ren[l.id] && ID[l.id] == null){ l.id = ren[l.id]; changed = true; }
+  if (changed) save();
+}
 function fixLast(){
   const ws = S.w[W.id], l = ws && ws.last; if (!l) return;
   if (l.id != null){ if (ID[l.id] != null) l.i = ID[l.id]; else { ws.last = null; delete ws.pos[l.org]; }   // a place at a verse no longer in the text is dropped (2026-10-20)
     for (const o in ws.pos) if (!IT[ws.pos[o]]) delete ws.pos[o]; return; }
-  if (W.prepended) l.i += W.prepended;
+  const sh = i => (W.prepended || 0) + (W.split || []).reduce((n, [at, add]) => n + (at < i ? add : 0), 0);   // items added before it since then ("split": joint caupāīs made separate)
+  l.i += sh(l.i);
   if (IT[l.i]) l.id = IT[l.i].id; else ws.last = null;
-  for (const o in ws.pos) if (W.prepended) ws.pos[o] += W.prepended;
+  for (const o in ws.pos) ws.pos[o] += sh(ws.pos[o]);
 }
 function openReader(org, i, flash){
   if (!S.hinted && !TOUR){ S.hinted = 1; save(); setTimeout(() => toast(T('किसी शब्दको छूकर अर्थ देखें · नीचेसे प्रसंग चुनें', 'Tap any word for its meaning · choose a section at the bottom')), 900); }
@@ -911,7 +936,7 @@ async function openWork(id, noShow){
   greeted = !noShow; showSalute(greeted ? saluteOf(id) : '');
   if (greeted || W === null || W.id !== id){ if ($('#loading').hidden){ $('#loading').hidden = false; } saluteAt = performance.now(); }
   try {
-    if (!W || W.id !== id){ const path = workPath(id); W = await getJSON(path + '/work'); W.path = path; buildWork(); fixLast(); await Promise.all([loadSources(), loadGlossaries()]); }
+    if (!W || W.id !== id){ const path = workPath(id); W = await getJSON(path + '/work'); W.path = path; buildWork(); moveRenamed(); fixLast(); await Promise.all([loadSources(), loadGlossaries()]); }
     S.work = id; save();
   } catch (e) { toast(T('यह ग्रन्थ नहीं खुल सका', 'Could not open this text')); $('#loading').hidden = true; return; }
   await hideSalute();

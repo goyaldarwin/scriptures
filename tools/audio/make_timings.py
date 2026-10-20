@@ -23,6 +23,15 @@ meta = json.load(open(os.path.join(SRC, 'source.json')))
 REC = sorted(json.load(open(os.path.join(SRC, 'recordings.json'))), key=lambda r: r['order'])
 work = json.load(open(os.path.join(REPO, 'library', meta['work'], 'work.json')))
 IT = work['items']; ID = {x['id']: i for i, x in enumerate(IT)}
+# work.json "renamed" (old id → new id, e.g. a joint caupāī split into one item each): an old id in an alignment cache,
+# fixes.json, owner.json or recordings.json counts as its new id; the later parts of a split verse are placed by length
+import re
+SPLIT = {}   # old id of a split joint caupāī → its new items (indices), in order
+for old, new in work.get('renamed', {}).items():
+    if old not in ID and new in ID:
+        ID[old] = ID[new]
+        m = re.fullmatch(r'(.+\.cau)(\d+)-(\d+)', old)
+        if m: SPLIT[old] = [ID[m.group(1) + str(n)] for n in range(int(m.group(2)), int(m.group(3)) + 1) if m.group(1) + str(n) in ID]
 A.init(IT)
 
 # where each reading day starts (any plan): the start of a recording may be back-filled up to it
@@ -75,12 +84,19 @@ for r in REC:
             rows = {}
             for si, rj in pairs: rows.setdefault(si, []).append([IT[R[rj][0]]['id'], len(R[rj][2])])
         json.dump([[S[si]['s'], S[si]['e'], rows[si]] for si in sorted(rows)], open(cache, 'w'), ensure_ascii=False)
-    first = {}
+    first, halves = {}, {}
     for s0, e0, parts in json.load(open(cache)):
         tot = sum(p[1] for p in parts) or 1; acc = 0
         for p in parts:
             t = s0 + (e0 - s0) * acc / tot - (p[2] if len(p) > 2 else 0); acc += p[1]
             first[ID[p[0]]] = min(first.get(ID[p[0]], t), t)
+            if p[0] in SPLIT: halves.setdefault(p[0], []).append(t)
+    # a split joint caupāī whose every half-line was matched: each part starts at its own first half-line (two half-lines a line)
+    for old, h in halves.items():
+        h.sort(); lines = [len(IT[i]['v']) for i in SPLIT[old]]
+        if len(h) == 2 * sum(lines):
+            c = 0
+            for i, nl in zip(SPLIT[old], lines): first[i] = h[2 * c]; c += nl
     items = {i: round(max(0, t - 0.4), 2) for i, t in first.items()}
     for iid, t in FIX.get(v, {}).items(): items[ID[iid]] = round(max(0, t - 0.4), 2)   # hand-checked starts win (fixes.json), with the same small lead
     items = sorted(items.items())
@@ -113,7 +129,7 @@ if ONLY: sys.exit(0)
 own_ids = set()
 for ti, tr in enumerate(tracks):
     for iid, t in OWN.get(tr['yt'], {}).items():   # seconds, or [start, end] when the owner also set where the verse ends
-        if iid in ID: at[iid] = [ti, round(float(t[0]), 2), round(float(t[1]), 2)] if isinstance(t, list) else [ti, round(float(t), 2)]; own_ids.add(iid)
+        if iid in ID: iid = IT[ID[iid]]['id']; at[iid] = [ti, round(float(t[0]), 2), round(float(t[1]), 2)] if isinstance(t, list) else [ti, round(float(t), 2)]; own_ids.add(iid)
 # keep the text's order around the owner's times — the same rule as the app (tools/site/app.js, buildAudio), kept in
 # tools/audio/order.py: a verse cannot start before the one before it, or before that verse's set end; a verse not set by
 # ear that breaks this is placed again, by its length, between the nearest good times; a set end later than the next set

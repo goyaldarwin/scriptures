@@ -37,14 +37,34 @@ def verse_lang(x):
     return 'awa'
 
 # ---- the text: verse + number only (transliteration belongs to the text) ----
+# ---- one caupāī per item (owner, 2026-10-20) ----
+# In 16 places Gita Press prints two or three caupāīs as one (e.g. ।।३-५।।) because its translation renders them jointly.
+# Here each becomes its own item — bal.6.cau3-5 → bal.6.cau3, cau4, cau5 — split where the transliteration numbers each
+# caupāī. The joint Gita Press meaning goes under the last of the group (where Gita Press prints its number), and the
+# earlier ones point to it. work.json "renamed" maps each old id to its first part, so readers' bookmarks, notes and
+# places follow (tools/site/app.js), and tools/audio/make_timings.py reads old ids in its caches the same way.
+JOINT = {}   # old id → [new ids]
+def split_joint(o):
+    a, b = map(int, o['n'].split('-'))
+    groups, st = [], 0
+    for k, t in enumerate(o['t']):
+        m = re.search(r'॥(\d+)॥\s*$', t)
+        if m: groups.append((m.group(1), st, k + 1)); st = k + 1
+    assert [int(g[0]) for g in groups] == list(range(a, b + 1)) and st == len(o['v']), f"cannot split {o['id']}"
+    base = o['id'].rsplit('.cau', 1)[0]
+    return [dict(o, id=f'{base}.cau{n}', n=n, v=o['v'][s0:s1], t=o['t'][s0:s1]) for n, s0, s1 in groups]
 items = []
 for x in IT:
     o = {'id': x['id'], 'p': x['k'], 's': x['s'], 'y': x['y'], 'n': x['n'], 'v': x['v']}
     if x.get('t'): o['t'] = x['t']
     if verse_lang(x) != 'awa': o['l'] = verse_lang(x)
-    items.append(o)
+    if o['y'] == 'cau' and re.fullmatch(r'\d+-\d+', o['n']):
+        parts = split_joint(o); JOINT[o['id']] = [q['id'] for q in parts]; items += parts
+    else: items.append(o)
+assert len({x['id'] for x in items}) == len(items), 'duplicate ids after splitting'
+FIRST = {k: v[0] for k, v in JOINT.items()}; LAST = {k: v[-1] for k, v in JOINT.items()}
 ids = [x['id'] for x in IT]
-plans = {k: {'n': len(v), 'end': [ids[v[str(n)]] for n in range(1, len(v) + 1)]} for k, v in d['P'].items()}
+plans = {k: {'n': len(v), 'end': [LAST.get(ids[v[str(n)]], ids[v[str(n)]]) for n in range(1, len(v) + 1)]} for k, v in d['P'].items()}   # a day ends after the whole group
 work = {
     'id': 'manas',
     'lang': 'awa',
@@ -58,7 +78,10 @@ work = {
         {'id': 'N', 'name': {'hi': 'नवाह्नपारायण', 'en': '9-day'}, 'long': {'hi': 'नवाह्नपारायण (९ दिन)', 'en': 'Navāhna-pārāyaṇa (9 days)'}, 'unit': {'hi': 'विश्राम', 'en': 'Vishram'}, 'before': ['vidhi'], 'after': ['aarti', 'visarjan'], **plans['N']},
     ],
     'items': items,
-    'topics': [{'id': ids[t['i']], 'hi': t['hi'], 'en': t.get('en') or t['hi']} for t in d['topics']],
+    'topics': [{'id': FIRST.get(ids[t['i']], ids[t['i']]), 'hi': t['hi'], 'en': t.get('en') or t['hi']} for t in d['topics']],
+    'renamed': FIRST,
+    # a reader's place saved before 2026-10-19 is an item position, without its id: [old position, items added there]
+    'split': [[k, len(JOINT[x['id']]) - 1] for k, x in enumerate(IT) if x['id'] in JOINT],
     'vidhi': {**d['vidhi'], 'visarjan': {k: v for k, v in json.load(open(os.path.join(HERE, 'visarjan.json'))).items() if k != 'source'}},   # kathā-visarjana: see visarjan.md
     'vg': d['vg'],
 }
@@ -71,6 +94,16 @@ for x in IT:
     e = [x['h']]
     if x.get('f'): e.append(x['f'])
     hi[x['id']] = e
+# a joint meaning (the split caupāīs above): under the last part; the earlier parts say where it is
+def spread(m, lg):
+    for old, new in JOINT.items():
+        if old not in m: continue
+        e = m.pop(old); last = items_by[new[-1]]['n']
+        for q in new[:-1]: m[q] = ['(इस चौपाईका अर्थ नीचे, चौपाई ' + last.translate(DEVA) + ' के साथ दिया गया है।)' if lg == 'hi' else f'(The meaning of this caupāī is given below, with caupāī {last}.)']
+        m[new[-1]] = e
+    return {x['id']: m[x['id']] for x in items if x['id'] in m}   # in text order
+DEVA = str.maketrans('0123456789', '०१२३४५६७८९'); items_by = {x['id']: x for x in items}
+hi = spread(hi, 'hi')
 sizes['hi'] = dump(WP + '/meanings/hi-gitapress.json', {'id': 'hi-gitapress', 'lang': 'hi', 'order': 1, 'title': {'hi': 'गीताप्रेस — भावार्थ (हनुमानप्रसाद पोद्दार)', 'en': 'Gita Press — Hindi bhāvārtha (Hanumānprasād Poddār)'}, 'm': hi})
 
 # ---- English meaning source (one entry per verse; footnotes attached) ----
@@ -81,6 +114,7 @@ for x in IT:
     e = [g['x']]
     if g.get('f'): e.append(g['f'])
     en[x['id']] = e
+en = spread(en, 'en')
 sizes['en'] = dump(WP + '/meanings/en-gitapress.json', {'id': 'en-gitapress', 'lang': 'en', 'order': 1, 'title': {'hi': 'गीताप्रेस — अंग्रेज़ी अनुवाद', 'en': 'Gita Press — English translation'}, 'm': en})
 
 # ---- our own meaning sources (meanings/hi.json, en.json; tools/meanings/style.md) ----
@@ -107,6 +141,7 @@ for lg in ('hi', 'en'):
     m = {i: [vnum.with_number(OWN[lg][i], BYID[i], lg)] for i in order_ids if i in OWN[lg]}
     sizes[lg + '-ours'] = dump(f'{WP}/meanings/{lg}-scriptures.json', {'id': lg + '-scriptures', 'lang': lg, 'order': 2, 'title': TITLES[lg], 'm': m})
 print(f"our own meanings: {len(OWN['hi'])} verses in Hindi and English")
+print(f"{len(JOINT)} joint caupāīs split into {sum(len(v) for v in JOINT.values())} items")
 
 # ---- word meanings, filed by the language of the verses each word occurs in ----
 # A word found in both Sanskrit and Awadhi verses goes into both dictionaries (its sense may differ).

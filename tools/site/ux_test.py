@@ -613,6 +613,15 @@ async def main():
             const t = (pv && pv.classList.contains('vtype') ? pv : v).getBoundingClientRect().top, nx = document.getElementById('v35').getBoundingClientRect().top;
             PL.on = false; return [Math.round(t - bar), nx < innerHeight]; })()""")
         check('playing: the verse being recited is kept at the top, the next verse in view below it', 0 <= pin[0] <= 12 and pin[1], pin)
+        # one caupāī per item: Gita Press's joint caupāīs are split; old ids, places and notes follow
+        sp = await ev("""(async () => { W = null; await openWork('manas', true); const hi = SRC.hi, m = id => ((hi && hi.m[id]) || [''])[0];
+            return [ID['bal.6.cau3-5'] == null, ['bal.6.cau3', 'bal.6.cau4', 'bal.6.cau5'].every(id => ID[id] != null), /चौपाई ५/.test(m('bal.6.cau3')), /३-५/.test(m('bal.6.cau5')), IT[ID['bal.6.cau5']].v.length]; })()""")
+        check('Mānas: joint caupāīs are separate verses; the joint meaning sits under the last', sp == [True, True, True, True, 1], sp)
+        mv = await ev("""(async () => { const me = ME(); me.notes['manas:bal.6.cau3-5'] = [{t: 'n', ts: 1}]; me.bm['manas:bal.6.cau3-5'] = 2; me.fix['manas:hi-gitapress:bal.6.cau3-5'] = {m: 'x'};
+            const old = ID['bal.6.do6'] - 3; S.w.manas.last = {org: 'k', i: old}; S.w.manas.pos = {k: old}; save(); W = null; await openWork('manas', true);
+            const r = [!!me.notes['manas:bal.6.cau3'], !!me.bm['manas:bal.6.cau3'], !!me.fix['manas:hi-gitapress:bal.6.cau5'], !me.notes['manas:bal.6.cau3-5'], S.w.manas.last.id];
+            delete me.notes['manas:bal.6.cau3']; delete me.bm['manas:bal.6.cau3']; delete me.fix['manas:hi-gitapress:bal.6.cau5']; save(); return r; })()""")
+        check('Mānas: notes, bookmarks, corrections and an old place follow the split', mv == [True, True, True, True, 'bal.6.do6'], mv)
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')
