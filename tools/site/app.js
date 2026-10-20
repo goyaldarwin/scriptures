@@ -771,16 +771,18 @@ function tick(anchor){
   }
   // a verse's end matters only where playing stops (one verse, or the last verse of a reading): never skipped. While timings
   // are being reviewed, a verse that has ended hands the light to the next one at once, so its start can be marked.
-  let show = i;
+  let show = i; const a = AUT[PL.t], at = id => a.findIndex(x => x[0] === id);
   if (S.timing.on){
     // the light waits for you: it never moves on to a verse whose start is only a guess. It stays on the verse you are on
     // until you mark the next one ("Starts now"), or that verse's set end passes; verses with checked times are followed.
-    const a = AUT[PL.t], at = id => a.findIndex(x => x[0] === id); let k = at(i); const c = at(anchor);
+    let k = at(i); const c = at(anchor);
     if (c >= 0 && k > c){ while (k > c && toCheck(a[k][0])) k--; show = a[k][0]; }
     else if (c > 0 && k === c - 1 && endOf(a[k][0]) != null && time >= endOf(a[k][0])) show = anchor;   // moved on by an end: stay
-    const m = at(show), e2 = endOf(show);
-    if (e2 != null && time >= e2 && m >= 0 && m + 1 < a.length) show = a[m + 1][0];   // an end set by you hands the light on at once
   }
+  // a verse whose set end has passed hands the light to the next verse at once, in both modes (owner, 2026-10-20) — even when
+  // that verse starts a little later; the same in Settings › Audio timing on or off
+  const m = at(show), e2 = endOf(show);
+  if (e2 != null && time >= e2 && m >= 0 && m + 1 < a.length) show = a[m + 1][0];
   setCur(show);
   const d = ytInfo.d || SRC.au.tracks[PL.t].dur; $('#pProg').style.width = (100 * time / d) + '%';
 }

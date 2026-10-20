@@ -237,11 +237,13 @@ async def main():
                 if await ev("AUT[0].length > 3"):
                     v1, s1 = await ev("[AUT[0][1][0], AUT[0][1][1]]"); v2 = await ev("AUT[0][2][0]"); s2 = await ev("AUT[0][2][1]")
                     if s2 - s1 > 2:
-                        await ev(f"PL.on = true; PL.t = 0; PL.end = null; ytOK = true; ytInfo.t = {s1} + 1; setTime({v1}, 2, {s1} + 0.5)")
+                        await ev(f"PL.on = true; PL.t = 0; PL.end = null; ytOK = true; ytInfo.t = {s1} + 1; setTime({v1}, 2, {s1} + 0.5); setTime({v2}, 1, {s2})")   # the end gives v2 its start; put v2 back at its own, later start
                         check(f'{tag}: after an end is set, the next verse is lit at once', await ev("PL.cur") == v2, [await ev("PL.cur"), v2])
                         check(f'{tag}: the progress bar moves while playing', (await ev("document.querySelector('#pProg').style.width")) not in ('', '0%'))
                         await ev("S.timing.on = false; PL.cur = -1; tick()")
-                        check(f'{tag}: outside review mode the highlight follows the starts only', await ev("PL.cur") == await ev("curAt(ytInfo.t)"), [await ev("PL.cur"), v1])
+                        check(f'{tag}: outside review mode too, a verse whose end has passed hands the light to the next verse (owner, 2026-10-20)', await ev("PL.cur") == v2, [await ev("PL.cur"), v2])
+                        await ev(f"ytInfo.t = {s1} + 0.2; PL.cur = -1; tick()")
+                        check(f'{tag}: outside review mode, before the end the verse itself is lit', await ev("PL.cur") == v1, [await ev("PL.cur"), v1])
                         await ev("S.timing.on = true; PL.on = false; ytOK = false")
                 # guessed starts after a verse you place later than guessed move with it (in order, after its end)
                 g = await ev("""(() => { const a = AUT[0]; for (let k = 0; k + 3 < a.length; k++){ const ids = [0,1,2,3].map(d => IT[a[k + d][0]].id); if (ids.every(x => SRC.au.guessSet.has(x))) return k; } return -1; })()""")
