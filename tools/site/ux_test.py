@@ -622,6 +622,11 @@ async def main():
             const r = [!!me.notes['manas:bal.6.cau3'], !!me.bm['manas:bal.6.cau3'], !!me.fix['manas:hi-gitapress:bal.6.cau5'], !me.notes['manas:bal.6.cau3-5'], S.w.manas.last.id];
             delete me.notes['manas:bal.6.cau3']; delete me.bm['manas:bal.6.cau3']; delete me.fix['manas:hi-gitapress:bal.6.cau5']; save(); return r; })()""")
         check('Mānas: notes, bookmarks, corrections and an old place follow the split', mv == [True, True, True, True, 'bal.6.do6'], mv)
+        for v in ('vidhi', 'bookmarks', 'settings'):
+            hz = await ev(f"""(async () => {{ await openWork('manas', true); show('{v}'); await new Promise(r => setTimeout(r, 300));
+                const sec = document.getElementById('{v}'), b = sec.querySelector('.bar .wrap'), s0 = S.settings.size; sec.querySelector('.szp').click(); const s1 = S.settings.size; sec.querySelector('.szm').click();
+                return [!!sec.querySelector('.bar .lyr'), s1 === s0 + 2, b.scrollWidth <= b.clientWidth + 1]; }})()""")
+            check(f'{v}: text size and हिं · En in the header, and it fits', hz == [True, True, True], hz)
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')
