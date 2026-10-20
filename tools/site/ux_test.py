@@ -580,6 +580,33 @@ async def main():
             r = subprocess.run([sys.executable, os.path.join(ROOT, 'tools/audio/apply_owner_timing.py'), body], env=env, capture_output=True, text=True); out.append((r.returncode, r.stdout.strip().split('\n')[-1]))
         after = json.load(open(os.path.join(tmp, 'library', wp, 'audio', 'pramod-medhi.json')))['at']; shutil.rmtree(tmp)
         check('timing: a second send that lets a moved verse go back to its own start is applied by the workflow', r0.returncode == 0 and out[0][0] == 0 and out[1][0] == 0 and after['aarti.pad3'] == raw['aarti.pad3'] and 60 < raw['aarti.pad3'][1] < 100, (r0.stderr[-200:], out, raw.get('aarti.pad3'), after.get('aarti.pad3')))
+        # ---- app review, 2026-10-20: five bugs of flow and navigation, each reproduced before the fix ----
+        # a saved place at a verse no longer in the text: the reader is not broken after a refresh; the place is dropped
+        await ev("(async () => { await openWork('ramraksha', true); show('home'); openReader('k', 0); })()"); await pg.wait_for_timeout(600)
+        await ev("WS().last = {org: 'k', i: 999, id: 'gone.1'}; WS().pos = {k: 999}; save()")
+        n_err = len(errs); await pg.reload(); await pg.wait_for_timeout(3000)
+        st = await ev("[CURVIEW, document.querySelector('#loading').hidden, S.w.ramraksha.last, Object.keys(S.w.ramraksha.pos).length]")
+        check('a saved place at a removed verse is dropped; the work page opens instead of an empty reader', st == ['home', True, None, 0] and len(errs) == n_err, (st, errs[n_err:]))
+        # "Play all" across two recordings keeps "the whole work" and the finishing message
+        wh = await ev("""(async () => { await openWork('manas', true); show('home'); playRange('k', 0, IT.length - 1); const w0 = PL.whole; PL.on = true; ytOK = true; onEnded(); const r = [w0, PL.whole, PL.t];
+            const P = PLANS[0]; let d = 1; for (; d <= P.n; d++){ const [a, b] = dayRange(P.id, d); const t = SRC.au.at[IT[firstAu(a, b)].id][0]; if (SRC.au.tracks[t].li < b) break; } if (d > P.n) return r.concat(['no day spans two recordings']);
+            const [a, b] = dayRange(P.id, d); playRange(P.id, a, b); const m0 = PL.endMsg; onEnded(); r.push(m0 !== '' && PL.endMsg === m0 && PL.end === b); stopAudio(); ytOK = false; return r; })()""")
+        check('a reading that goes on in the next recording keeps what was asked for (whole work, the day and its message)', wh == [True, True, 1, True], wh)
+        # the search page: clearing the box adds no history entry; Back to a library search keeps its kind and query
+        await ev("libPath = []; show('library'); window.__pushes = 0; if (!history.__wrapped){ const o = history.pushState.bind(history); history.pushState = (...a) => { window.__pushes++; o(...a); }; history.__wrapped = 1; }")   # the browser caps history.length, so the pushes are counted
+        await ev("openSearch('lib')"); await pg.fill('#q', 'ram'); await pg.wait_for_timeout(400); await pg.fill('#q', ''); await pg.wait_for_timeout(400); await pg.fill('#q', 'rudram'); await pg.wait_for_timeout(400); await pg.fill('#q', ''); await pg.wait_for_timeout(400)
+        check('clearing the search box adds no history entry', await ev("window.__pushes") == 1, await ev("window.__pushes"))
+        await pg.fill('#q', 'rudram'); await pg.wait_for_timeout(500)
+        await (await pg.query_selector('#sRes [data-hit]')).click(); await pg.wait_for_timeout(1800)
+        await pg.go_back(); await pg.wait_for_timeout(900)
+        bs = await ev("[CURVIEW, SCOPE, document.querySelector('#q').value, document.querySelector('#scope').hidden, document.querySelectorAll('#sRes [data-hit]').length > 0]")
+        check('Back from a work found by a library search returns to that search, its query and results kept', bs == ['search', 'lib', 'rudram', True, True], bs)
+        # a meaning switched in Settings lights the reader's capsule when you come back
+        await ev("(async () => { await openWork('ramraksha', true); show('home'); openReader('k', 0); S.settings.layers.h = false; S.settings.layers.e = true; save(); syncLayers(); show('settings'); })()"); await pg.wait_for_timeout(300)
+        await ev("document.querySelector('#sh').click()"); await pg.wait_for_timeout(100); await pg.go_back(); await pg.wait_for_timeout(900)
+        cap = await ev("[S.settings.layers.h, document.querySelector('#rLayers [data-l=h]').classList.contains('on'), CURVIEW]")
+        check('a meaning switched in Settings shows lit in the reader’s capsule', cap == [True, True, 'reader'], cap)
+        await ev("S.settings.layers.h = false; save(); syncLayers()")
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')

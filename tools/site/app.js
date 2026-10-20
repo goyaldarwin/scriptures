@@ -126,12 +126,11 @@ function applyLang(){ const en = LANG() === 'en'; document.documentElement.lang 
   $$('[data-en-ph]').forEach(el => { if (el.dataset.hiPh == null) el.dataset.hiPh = el.placeholder; el.placeholder = en ? el.dataset.enPh : el.dataset.hiPh; }); }
 function applyTheme(){ const r = document.documentElement; if (S.settings.theme === 'auto') r.removeAttribute('data-theme'); else r.setAttribute('data-theme', S.settings.theme); r.style.setProperty('--verse-size', S.settings.size + 'px'); r.style.setProperty('--mean-size', Math.round(S.settings.size * 0.78 * 10) / 10 + 'px'); r.style.setProperty('--ui-zoom', (1 + (S.settings.size - 21) * 0.025).toFixed(3)); }   // A−/A+ also scale the library and work pages
 function show(id, push = true){ { const was = LANG(); CURVIEW = id; if (LANG() !== was) applyLang(); }
-  if (id !== 'search' && typeof SCOPE !== 'undefined' && SCOPE === 'lib') SCOPE = 'text';   // leaving the search page: the next search is a text search unless opened from the library
   $$('.view').forEach(v => v.classList.toggle('on', v.id === id)); if (push) history.pushState(snap(id), ''); else history.replaceState(snap(id), ''); if (id !== 'reader') window.scrollTo(0, 0); onView(id); }
 // Every page is an entry in the browser's history that carries where you are: the page, the open work and the library
 // shelf (owner, 2026-10-19). Back (the button or the phone's gesture) returns to exactly the previous one — a shelf
 // included — and a refresh reopens the same page, because the browser keeps these entries across a reload.
-function snap(v){ return {v, w: W ? W.id : null, lib: libPath.slice()}; }
+function snap(v){ return {v, w: W ? W.id : null, lib: libPath.slice(), scope: v === 'search' ? SCOPE : undefined}; }
 let popping = Promise.resolve();
 async function restore(st){
   closeSheet();
@@ -139,6 +138,7 @@ async function restore(st){
   libPath = Array.isArray(st.lib) ? st.lib.slice() : [];
   if (st.v !== 'library' && st.w && (!W || W.id !== st.w)) await openWork(st.w, true);
   const v = document.getElementById(st.v) && (W || !['home', 'reader', 'bookmarks', 'vidhi'].includes(st.v)) ? st.v : 'library';
+  if (v === 'search') setScope(st.scope === 'lib' || !W ? 'lib' : 'text');   // Back to a search: the same kind of search, the query kept
   show(v, false); if (v === 'reader') reopenReader();
 }
 function back(){ history.back(); }
@@ -388,9 +388,10 @@ function savePos(i){ if (i == null) i = topVisibleItem(); const ws = WS(); ws.po
 // verses put before its text (work.json "prepended": how many), such a place moves forward by that many, once.
 function fixLast(){
   const ws = S.w[W.id], l = ws && ws.last; if (!l) return;
-  if (l.id != null){ if (ID[l.id] != null) l.i = ID[l.id]; return; }
+  if (l.id != null){ if (ID[l.id] != null) l.i = ID[l.id]; else { ws.last = null; delete ws.pos[l.org]; }   // a place at a verse no longer in the text is dropped (2026-10-20)
+    for (const o in ws.pos) if (!IT[ws.pos[o]]) delete ws.pos[o]; return; }
   if (W.prepended) l.i += W.prepended;
-  if (IT[l.i]) l.id = IT[l.i].id;
+  if (IT[l.i]) l.id = IT[l.i].id; else ws.last = null;
   for (const o in ws.pos) if (W.prepended) ws.pos[o] += W.prepended;
 }
 function openReader(org, i, flash){
@@ -400,7 +401,7 @@ function openReader(org, i, flash){
   renderAround(i); if (flash){ const el = document.getElementById('v' + i); if (el) el.classList.add('flash'); }
   savePos(i);
 }
-function reopenReader(){ fixLast(); const l = WS().last; if (l) openReader(l.org, l.i); }
+function reopenReader(){ fixLast(); const l = WS().last; if (l && IT[l.i]) openReader(l.org, l.i); else show('home', false); }
 function jumpTo(i){
   if (i < R.a || i > R.b){ openReader(R.org, i); return; }
   const pg = itemPage[i];
@@ -711,7 +712,7 @@ function onEnded(){
   if (!PL.on) return;
   // go on with the next recording; where a stretch has no recording yet, skip ahead to the next verse that has one
   const tr = SRC.au.tracks[PL.t], last = PL.end == null ? IT.length - 1 : PL.end, nx = firstAu(tr.li + 1, last);
-  if (nx != null){ if (nx > tr.li + 1) toast(T('आगेके अंशकी रिकॉर्डिंग नहीं है — अगली रिकॉर्डिंगसे जारी', 'No recording for the next part — continuing with the next one')); playFrom(nx, PL.end); return; }
+  if (nx != null){ if (nx > tr.li + 1) toast(T('आगेके अंशकी रिकॉर्डिंग नहीं है — अगली रिकॉर्डिंगसे जारी', 'No recording for the next part — continuing with the next one')); const whole = PL.whole, msg = PL.endMsg; playFrom(nx, PL.end); PL.whole = whole; PL.endMsg = msg; return; }   // the reading goes on in the next recording: what was asked for (the whole work, a part, a day) is kept
   stopAudio();
 }
 function endOf(i){ const x = SRC.au && SRC.au.at[IT[i].id]; return x && x[2] != null ? x[2] : null; }   // a verse's end, when one is set (otherwise it runs until the next verse starts)
@@ -880,12 +881,12 @@ function libSearch(q){
 }
 // one search page for the whole app: opened from the library it finds works and shelves; from a work, its verses
 let SCOPE = 'text';
-function openSearch(scope){
-  SCOPE = scope; const lib = scope === 'lib';
-  $('#q').value = ''; $('#scope').hidden = lib;
-  $('#q').placeholder = lib ? T('ग्रन्थ, रचयिता या विषय खोजें', 'Search works, authors or shelves') : T('शब्द, अर्थ या English में खोजें', 'Search a word, meaning or English');
+function setScope(scope){ SCOPE = scope; const lib = scope === 'lib'; $('#scope').hidden = lib; $('#q').placeholder = lib ? T('ग्रन्थ, रचयिता या विषय खोजें', 'Search works, authors or shelves') : T('शब्द, अर्थ या English में खोजें', 'Search a word, meaning or English'); }
+function openSearch(scope, stay){   // stay: only reset the page (the box was cleared), without another history entry
+  setScope(scope); const lib = scope === 'lib';
+  $('#q').value = '';
   $('#sRes').innerHTML = '<div class="empty">' + (lib ? T('ग्रन्थका नाम, रचयिता या विषय लिखें।', 'Type the name of a work, an author or a shelf.') : T('चौपाई, दोहे या अर्थका कोई भी शब्द लिखें।', 'Type any word from a verse, its meaning or the English translation.')) + '</div>';
-  show('search');
+  if (!stay) show('search');
 }
 $('#libSearchBtn').onclick = () => openSearch('lib');
 $('#hSearch').onclick = () => openSearch('text');
@@ -974,7 +975,7 @@ $$('#scope .chip').forEach(c => c.onclick = () => { const s = c.dataset.s; if (s
 let sT; $('#q').addEventListener('input', () => { clearTimeout(sT); sT = setTimeout(runSearch, 250); });
 function snip(text, q, latin){ const src = text; const low = latin ? normL(src) : normD(src); const nq = latin ? normL(q) : normD(q); let p = low.indexOf(nq); if (p < 0) return esc(src.slice(0, 160)) + (src.length > 160 ? '…' : ''); let a = Math.max(0, p - 60), b = Math.min(src.length, p + nq.length + 80); if (a > 0){ const sp = src.indexOf(' ', a); if (sp > -1 && sp < p) a = sp + 1; } const s = src.slice(a, b); const pp = (latin ? normL(s) : normD(s)).indexOf(nq); let out; if (pp >= 0 && (latin ? normL(s) : normD(s)).length === s.length) out = esc(s.slice(0, pp)) + '<mark>' + esc(s.slice(pp, pp + nq.length)) + '</mark>' + esc(s.slice(pp + nq.length)); else out = esc(s); return (a > 0 ? '…' : '') + out + (b < src.length ? '…' : ''); }
 function runSearch(){
-  if (SCOPE === 'lib'){ const q = $('#q').value; if (q.trim()) libSearch(q); else openSearch('lib'); return; }
+  if (SCOPE === 'lib'){ const q = $('#q').value; if (q.trim()) libSearch(q); else openSearch('lib', true); return; }
   const q = $('#q').value.trim(), box = $('#sRes');
   if (q.length < 2){ box.innerHTML = '<div class="empty">' + T('कम-से-कम दो अक्षर लिखें।', 'Type at least two letters.') + '</div>'; return; }
   if (!IDX || IDX.w !== W.id + (SRC.hi || {}).id + (SRC.en || {}).id) buildIdx();
@@ -1027,7 +1028,7 @@ function renderSettings(){
   $('#sui').onchange = e => { st.ui = e.target.value; save(); applyLang(); syncLayers(); renderSettings(); };
   const bind = (id, f) => $('#' + id).onchange = e => { f(e.target.checked); save(); };
   bindTiming();
-  bind('sh', v => st.layers.h = v); bind('se', v => st.layers.e = v); bind('sw', v => st.layers.w = v); bind('str', v => st.tr = v); bind('src', v => { if (!!st.recite !== v) toggleRecite(); }); bind('swk', v => st.wake = v);
+  bind('sh', v => { st.layers.h = v; syncLayers(); }); bind('se', v => { st.layers.e = v; syncLayers(); }); bind('sw', v => { st.layers.w = v; syncLayers(); }); bind('str', v => st.tr = v); bind('src', v => { if (!!st.recite !== v) toggleRecite(); }); bind('swk', v => st.wake = v);
   $$('[data-src]').forEach(s => s.onchange = async () => { const c = S.src[W.id] = S.src[W.id] || {}; c[s.dataset.src] = s.value; save(); if (s.dataset.src === 'au') stopAudio(); await loadSources(); IDX = null; toast(T('स्रोत बदला', 'Source changed')); });
   $('#ssz').oninput = e => { st.size = +e.target.value; applyTheme(); save(); };
   $('#sth').onchange = e => { st.theme = e.target.value; applyTheme(); save(); };
