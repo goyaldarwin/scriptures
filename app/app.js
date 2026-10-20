@@ -493,7 +493,7 @@ $('#rBody').addEventListener('click', ev => {
       if (!PL.on || !ytOK){ toast(T('पहले ऑडियो चलाएँ — फिर जिस पदको सुन रहे हैं उसीके बटन दबाएँ', 'Start the audio first, then tap the buttons of the verse you are hearing')); return; }
       setTime(i, act === 'tstart' ? 1 : 2, nowAt()); rerenderItem(i);
     }
-    else if (act === 'tn'){ const x = SRC.au.at[IT[i].id], k = +a.dataset.k; setTime(i, k, Math.max(0, x[k] + a.dataset.d * step())); rerenderItem(i); snippet(i, k); }
+    else if (act === 'tn'){ const x = SRC.au.at[IT[i].id], k = +a.dataset.k; if (setTime(i, k, Math.max(0, x[k] + a.dataset.d * step())) === false) return; rerenderItem(i); snippet(i, k); }
     else if (act === 'tok'){ unfrom(IT[i].id); save(); rerenderItem(i); toast(T('जाँच लिया — अब यह आपका है', 'Checked — it is now yours')); }
     else if (act === 'bm'){ const me = ME(), k = KEY(IT[i].id); const had = !!me.bm[k]; if (had) delete me.bm[k]; else me.bm[k] = Date.now(); save(); rerenderItem(i); toast(!had ? T('बुकमार्क जोड़ा', 'Bookmarked') : T('बुकमार्क हटाया', 'Bookmark removed')); }
     else if (act === 'enote') noteSheet(i, +a.dataset.k);
@@ -528,8 +528,8 @@ function itemMenu(i){
       if (t === 'undo'){ clearStart(i); closeSheet(); toast(T('पहले जैसा', 'Restored')); return; }
       const [k, d] = t.split(':'), x = SRC.au.at[id];
       if (d === 'none') setTime(i, 2, null);
-      else if (k === '1') setTime(i, 1, Math.max(0, x[1] + +d));
-      else { const base = x[2] != null ? x[2] : (() => { const a = AUT[x[0]], n = a.findIndex(y => y[0] === i); return n >= 0 && n + 1 < a.length ? a[n + 1][1] : x[1] + 5; })(); setTime(i, 2, Math.max(x[1] + 0.5, base + +d)); }
+      else if (k === '1'){ if (setTime(i, 1, Math.max(0, x[1] + +d)) === false) return; }
+      else { const base = x[2] != null ? x[2] : (() => { const a = AUT[x[0]], n = a.findIndex(y => y[0] === i); return n >= 0 && n + 1 < a.length ? a[n + 1][1] : x[1] + 5; })(); if (setTime(i, 2, Math.max(x[1] + 0.5, base + +d)) === false) return; }
       show(); if (d !== 'none') snippet(i, +k);
     });
   }
@@ -771,9 +771,14 @@ function setTime(i, k, sec){
     const a = AUT[v[0]] || [], j = a.findIndex(x => x[0] === i), pe = j > 0 ? endOf(a[j - 1][0]) : null;
     const mine = myStarts()[id] && myStarts()[id][1] != null;
     if (!mine && pe != null && pe < v[2]) v[1] = pe;
-    else { toast(mine ? T('अंत शुरुआतके बाद होना चाहिये', 'The end must come after the start') : T('पहले “अभी शुरू” से इसकी शुरुआत लगाएँ', 'Mark its start first (Starts now)')); return; }
+    else { toast(mine ? T('अंत शुरुआतके बाद होना चाहिये', 'The end must come after the start') : T('पहले “अभी शुरू” से इसकी शुरुआत लगाएँ', 'Mark its start first (Starts now)')); return false; }
   }
   if (k === 1 && v[2] != null && v[2] <= v[1]) v[2] = null;
+  // an end cannot pass the start of the next verse when you set that start: say so, rather than seem to do nothing (owner, 2026-10-19)
+  if (k === 2 && v[2] != null){
+    const a = AUT[v[0]] || [], j = a.findIndex(x => x[0] === i), nx = j >= 0 ? a[j + 1] : null;
+    if (nx && myStarts()[IT[nx[0]].id] && v[2] > nx[1] + 0.001){ toast(T('अगला पद ' + fmtT(nx[1]) + ' पर शुरू होता है — अंत इसके बाद नहीं हो सकता। पहले अगले पदकी शुरुआत आगे करें।', 'The next verse starts at ' + fmtT(nx[1]) + ' — the end cannot be later. Move that start first.')); return false; }
+  }
   const was = {}; $$('#rBody .verse').forEach(el => { const j = +el.dataset.i; was[j] = JSON.stringify(SRC.au.at[IT[j].id]); });
   fx[id] = v; unfrom(id); save(); buildAudio();
   Object.keys(was).forEach(j => { j = +j; if (j === i || was[j] !== JSON.stringify(SRC.au.at[IT[j].id])) rerenderItem(j); });   // every verse on screen whose time moved

@@ -465,6 +465,12 @@ async def main():
             const bs = [...document.getElementById('v' + i).querySelectorAll('.tmark .tgrp button')].map(b => Math.round(b.getBoundingClientRect().top));
             S.timing.fix[tkey()] = JSON.parse(keep); S.timing.on = false; save(); applyTiming(); await loadSources(); return bs; })()""")
         check('timing: − Starts now + and − Ends now + sit on one line at phone width', len(row) == 6 and max(row) - min(row) < 4, row)
+        clamp = await ev("""(async () => { S.timing.on = true; applyTiming(); await openWork('shri-rudram', true); await loadSources(); show('home');
+            const a = AUT[0], i = a[10][0], n = a[11][0]; openReader('k', i); await new Promise(r => setTimeout(r, 600));
+            const keep = JSON.stringify(S.timing.fix[tkey()] || {}); setTime(i, 1, a[10][1]); const s0 = SRC.au.at[IT[i].id][1]; setTime(n, 1, s0 + 4); setTime(i, 2, s0 + 3.5);
+            const r = setTime(i, 2, s0 + 4.5), e = SRC.au.at[IT[i].id][2], msg = document.querySelector('#toast').textContent;
+            S.timing.fix[tkey()] = JSON.parse(keep); S.timing.on = false; save(); applyTiming(); await loadSources(); return [r === false, Math.round((e - s0) * 10) / 10, /next verse starts|अगला पद/.test(msg)]; })()""")
+        check('timing: an end past the next verse\'s set start is refused with a reason', clamp == [True, 3.5, True], clamp)
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')
