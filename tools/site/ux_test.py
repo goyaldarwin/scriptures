@@ -448,6 +448,15 @@ async def main():
             const y0 = scrollY; ytInfo.t = a[8][1] + 1; setTime(i, 2, a[8][1] + 1); await new Promise(r => setTimeout(r, 900)); const y1 = scrollY;
             PL.on = false; S.timing.fix[tkey()] = JSON.parse(keep); S.timing.on = false; save(); applyTiming(); await loadSources(); return [y0, y1]; })()""")
         check('timing: marking a verse does not move the page', abs(ns[0] - ns[1]) < 2, ns)
+        nu = await ev("""(async () => { S.timing.on = true; applyTiming(); await openWork('shri-rudram', true); await loadSources(); show('home');
+            const a = AUT[0], i = a[10][0], o = a[12][0]; openReader('k', i); await new Promise(r => setTimeout(r, 600));
+            const keep = JSON.stringify(S.timing.fix[tkey()] || {}); setTime(i, 1, a[10][1]); const s0 = SRC.au.at[IT[i].id][1]; setTime(i, 2, s0 + 3); rerenderItem(i);
+            const v = document.getElementById('v' + i), has = !!v.querySelector('.tnudge'), two = v.querySelectorAll('.tnudge button').length, other = !!document.getElementById('v' + o)?.querySelector('.tnudge'), dup = !!document.querySelector('#rBody [data-a=tplay]');
+            v.querySelector('.tnudge [data-k="1"][data-d="0.5"]').click(); const s1 = SRC.au.at[IT[i].id][1];
+            document.getElementById('v' + i).querySelector('.tnudge [data-k="2"][data-d="-0.5"]').click(); const e1 = SRC.au.at[IT[i].id][2];
+            S.timing.fix[tkey()] = JSON.parse(keep); S.timing.on = false; save(); applyTiming(); await loadSources();
+            return [has, two, other, dup, Math.round((s1 - s0) * 10) / 10, Math.round((e1 - s0) * 10) / 10]; })()""")
+        check('timing: a marked verse has ±0.5 s for its start and end; others do not; no second ▶', nu == [True, 4, False, False, 0.5, 2.5], nu)
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')

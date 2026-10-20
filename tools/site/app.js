@@ -493,7 +493,7 @@ $('#rBody').addEventListener('click', ev => {
       if (!PL.on || !ytOK){ toast(T('पहले ऑडियो चलाएँ — फिर जिस पदको सुन रहे हैं उसीके बटन दबाएँ', 'Start the audio first, then tap the buttons of the verse you are hearing')); return; }
       setTime(i, act === 'tstart' ? 1 : 2, nowAt()); rerenderItem(i);
     }
-    else if (act === 'tplay') playFrom(i, i);
+    else if (act === 'tn'){ const x = SRC.au.at[IT[i].id], k = +a.dataset.k; setTime(i, k, Math.max(0, x[k] + +a.dataset.d)); rerenderItem(i); }
     else if (act === 'tok'){ unfrom(IT[i].id); save(); rerenderItem(i); toast(T('जाँच लिया — अब यह आपका है', 'Checked — it is now yours')); }
     else if (act === 'bm'){ const me = ME(), k = KEY(IT[i].id); const had = !!me.bm[k]; if (had) delete me.bm[k]; else me.bm[k] = Date.now(); save(); rerenderItem(i); toast(!had ? T('बुकमार्क जोड़ा', 'Bookmarked') : T('बुकमार्क हटाया', 'Bookmark removed')); }
     else if (act === 'enote') noteSheet(i, +a.dataset.k);
@@ -559,9 +559,12 @@ function tkey(){ return W.id + ':' + SRC.au.meta.id; }
 function markBar(i){
   const x = SRC.au.at[IT[i].id], mine = myStarts()[IT[i].id], est = toCheck(i), by = fromOf(IT[i].id);
   const when = x ? T('शुरू ', 'Start ') + fmtT(x[1]) + (x[2] != null ? T(' · अंत ', ' · end ') + fmtT(x[2]) : '') : T('ऑडियोमें समय नहीं', 'No time in the recording');
-  return '<div class="tmark"><button data-a="tstart">⏱ ' + T('अभी शुरू', 'Starts now') + '</button><button data-a="tend">⏹ ' + T('अभी समाप्त', 'Ends now') + '</button>' + (x ? '<button data-a="tplay" aria-label="play">▶</button>' : '') + (by ? '<button data-a="tok">✓ ' + T('सही है', 'Correct') + '</button>' : '') +
-    '<span class="tinfo">' + when + (by ? ' · <b class="test">' + T('', 'from ') + esc(by) + T(' का — जाँचें', ' — to check') + '</b>' : mine ? ' · <b>' + T('आपका', 'yours') + '</b>' : est ? ' · <b class="test">' + T('अनुमान', 'estimated') + '</b>' : (SRC.au.moved && SRC.au.moved.has(IT[i].id)) ? ' · <b class="test">' + T('आपके समयके अनुसार खिसकाया', 'moved to fit your times') + '</b>' : '') + '</span></div>';
+  return '<div class="tmark"><button data-a="tstart">⏱ ' + T('अभी शुरू', 'Starts now') + '</button><button data-a="tend">⏹ ' + T('अभी समाप्त', 'Ends now') + '</button>' + (by ? '<button data-a="tok">✓ ' + T('सही है', 'Correct') + '</button>' : '') +
+    '<span class="tinfo">' + when + (by ? ' · <b class="test">' + T('', 'from ') + esc(by) + T(' का — जाँचें', ' — to check') + '</b>' : mine ? ' · <b>' + T('आपका', 'yours') + '</b>' : est ? ' · <b class="test">' + T('अनुमान', 'estimated') + '</b>' : (SRC.au.moved && SRC.au.moved.has(IT[i].id)) ? ' · <b class="test">' + T('आपके समयके अनुसार खिसकाया', 'moved to fit your times') + '</b>' : '') + '</span>' +
+    // a verse you have marked can be fine-tuned here, half a second at a time (owner, 2026-10-19); ▶ beside the verse plays it
+    (mine && x ? '<span class="tnudge">' + nud(1, T('शुरू', 'Start')) + (x[2] != null ? nud(2, T('अंत', 'End')) : '') + '</span>' : '') + '</div>';
 }
+function nud(k, label){ return '<span>' + label + ' <button data-a="tn" data-k="' + k + '" data-d="-0.5">−0.5</button><button data-a="tn" data-k="' + k + '" data-d="0.5">+0.5</button></span>'; }
 function toCheck(i){ return !!(S.timing.on && SRC.au && SRC.au.checkSet && SRC.au.checkSet.has(IT[i].id) && !myStarts()[IT[i].id]); }   // a start that is only estimated: to be checked by ear
 function myStarts(){ return (SRC.au && S.timing.fix[tkey()]) || {}; }
 function fromOf(id){ return SRC.au ? (S.timing.from[tkey()] || {})[id] : undefined; }
