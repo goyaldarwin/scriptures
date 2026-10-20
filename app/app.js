@@ -562,13 +562,12 @@ function tkey(){ return W.id + ':' + SRC.au.meta.id; }
 function markBar(i){
   const x = SRC.au.at[IT[i].id], mine = myStarts()[IT[i].id], est = toCheck(i), by = fromOf(IT[i].id);
   const when = x ? T('शुरू ', 'Start ') + fmtT(x[1]) + (x[2] != null ? T(' · अंत ', ' · end ') + fmtT(x[2]) : '') : T('ऑडियोमें समय नहीं', 'No time in the recording');
-  return '<div class="tmark"><button data-a="tstart">⏱ ' + T('अभी शुरू', 'Starts now') + '</button><button data-a="tend">⏹ ' + T('अभी समाप्त', 'Ends now') + '</button>' + (by ? '<button data-a="tok">✓ ' + T('सही है', 'Correct') + '</button>' : '') +
-    '<span class="tinfo">' + when + (by ? ' · <b class="test">' + T('', 'from ') + esc(by) + T(' का — जाँचें', ' — to check') + '</b>' : mine ? ' · <b>' + T('आपका', 'yours') + '</b>' : est ? ' · <b class="test">' + T('अनुमान', 'estimated') + '</b>' : (SRC.au.moved && SRC.au.moved.has(IT[i].id)) ? ' · <b class="test">' + T('आपके समयके अनुसार खिसकाया', 'moved to fit your times') + '</b>' : '') + '</span>' +
-    // a verse you have marked can be fine-tuned here, half a second at a time (owner, 2026-10-19); ▶ beside the verse plays it
-    (mine && x ? '<span class="tnudge">' + nud(1, T('शुरू', 'Start')) + (x[2] != null ? nud(2, T('अंत', 'End')) : '') + '</span>' : '') + '</div>';
+  // − / + sit on either side of "Starts now" / "Ends now", in the same line (owner, 2026-10-19): for a start you set, and for an end that is set
+  const grp = (k, act, label, on) => '<span class="tgrp">' + (on ? '<button class="tn" data-a="tn" data-k="' + k + '" data-d="-1" aria-label="−">−</button>' : '') + '<button data-a="' + act + '">' + label + '</button>' + (on ? '<button class="tn" data-a="tn" data-k="' + k + '" data-d="1" aria-label="+">+</button>' : '') + '</span>';
+  return '<div class="tmark">' + grp(1, 'tstart', '⏱ ' + T('अभी शुरू', 'Starts now'), !!(mine && x)) + grp(2, 'tend', '⏹ ' + T('अभी समाप्त', 'Ends now'), !!(mine && x && x[2] != null)) + (by ? '<button data-a="tok">✓ ' + T('सही है', 'Correct') + '</button>' : '') +
+    '<span class="tinfo">' + when + (by ? ' · <b class="test">' + T('', 'from ') + esc(by) + T(' का — जाँचें', ' — to check') + '</b>' : mine ? ' · <b>' + T('आपका', 'yours') + '</b>' : est ? ' · <b class="test">' + T('अनुमान', 'estimated') + '</b>' : (SRC.au.moved && SRC.au.moved.has(IT[i].id)) ? ' · <b class="test">' + T('आपके समयके अनुसार खिसकाया', 'moved to fit your times') + '</b>' : '') + '</span></div>';
 }
-// one line, just − and +; how far each tap moves is set in the verse's ⋮ menu (owner, 2026-10-19)
-function nud(k, label){ return '<span>' + label + ' <button data-a="tn" data-k="' + k + '" data-d="-1" aria-label="−">−</button><button data-a="tn" data-k="' + k + '" data-d="1" aria-label="+">+</button></span>'; }
+// how far each − / + moves a time is set in the verse's ⋮ menu (owner, 2026-10-19)
 function step(){ return S.timing.step || 0.5; }
 function toCheck(i){ return !!(S.timing.on && SRC.au && SRC.au.checkSet && SRC.au.checkSet.has(IT[i].id) && !myStarts()[IT[i].id]); }   // a start that is only estimated: to be checked by ear
 function myStarts(){ return (SRC.au && S.timing.fix[tkey()]) || {}; }

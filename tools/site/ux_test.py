@@ -451,14 +451,20 @@ async def main():
         nu = await ev("""(async () => { S.timing.on = true; applyTiming(); await openWork('shri-rudram', true); await loadSources(); show('home');
             const a = AUT[0], i = a[10][0], o = a[12][0]; openReader('k', i); await new Promise(r => setTimeout(r, 600));
             const keep = JSON.stringify(S.timing.fix[tkey()] || {}); setTime(i, 1, a[10][1]); const s0 = SRC.au.at[IT[i].id][1]; setTime(i, 2, s0 + 3); rerenderItem(i);
-            const v = document.getElementById('v' + i), has = !!v.querySelector('.tnudge'), two = v.querySelectorAll('.tnudge button').length, other = !!document.getElementById('v' + o)?.querySelector('.tnudge'), dup = !!document.querySelector('#rBody [data-a=tplay]');
-            S.timing.step = 0.5; v.querySelector('.tnudge [data-k="1"][data-d="1"]').click(); const s1 = SRC.au.at[IT[i].id][1];
-            document.getElementById('v' + i).querySelector('.tnudge [data-k="2"][data-d="-1"]').click(); const e1 = SRC.au.at[IT[i].id][2];
+            const v = document.getElementById('v' + i), has = !!v.querySelector('.tgrp .tn'), two = v.querySelectorAll('.tgrp .tn').length, other = !!document.getElementById('v' + o)?.querySelector('.tgrp .tn'), dup = !!document.querySelector('#rBody [data-a=tplay]');
+            S.timing.step = 0.5; v.querySelector('.tgrp [data-k="1"][data-d="1"]').click(); const s1 = SRC.au.at[IT[i].id][1];
+            document.getElementById('v' + i).querySelector('.tgrp [data-k="2"][data-d="-1"]').click(); const e1 = SRC.au.at[IT[i].id][2];
             const snipSet = PL.on && PL.snip != null && Math.abs(PL.snip - SRC.au.at[IT[i].id][2]) < 0.01;   // the end's preview plays up to the new end
             stopAudio(); S.timing.fix[tkey()] = JSON.parse(keep); S.timing.on = false; save(); applyTiming(); await loadSources();
             if (!snipSet) return 'no preview';
             return [has, two, other, dup, Math.round((s1 - s0) * 10) / 10, Math.round((e1 - s0) * 10) / 10]; })()""")
         check('timing: a marked verse has ±0.5 s for its start and end; others do not; no second ▶', nu == [True, 4, False, False, 0.5, 2.5], nu)
+        row = await ev("""(async () => { S.timing.on = true; applyTiming(); await openWork('shri-rudram', true); await loadSources(); show('home');
+            const a = AUT[0], i = a[10][0]; openReader('k', i); await new Promise(r => setTimeout(r, 600));
+            const keep = JSON.stringify(S.timing.fix[tkey()] || {}); setTime(i, 1, a[10][1]); setTime(i, 2, SRC.au.at[IT[i].id][1] + 3); rerenderItem(i);
+            const bs = [...document.getElementById('v' + i).querySelectorAll('.tmark .tgrp button')].map(b => Math.round(b.getBoundingClientRect().top));
+            S.timing.fix[tkey()] = JSON.parse(keep); S.timing.on = false; save(); applyTiming(); await loadSources(); return bs; })()""")
+        check('timing: − Starts now + and − Ends now + sit on one line at phone width', len(row) == 6 and max(row) - min(row) < 4, row)
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')
