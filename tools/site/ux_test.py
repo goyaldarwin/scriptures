@@ -627,6 +627,10 @@ async def main():
                 const sec = document.getElementById('{v}'), b = sec.querySelector('.bar .wrap'), s0 = S.settings.size; sec.querySelector('.szp').click(); const s1 = S.settings.size; sec.querySelector('.szm').click();
                 return [!!sec.querySelector('.bar .lyr'), s1 === s0 + 2, b.scrollWidth <= b.clientWidth + 1]; }})()""")
             check(f'{v}: text size and हिं · En in the header, and it fits', hz == [True, True, True], hz)
+        tm = await ev("""(async () => { show('library'); document.querySelector('#libMenu').click(); await new Promise(r => setTimeout(r, 300));
+            const b = document.querySelector('#sheetBody [data-tour]'); if (!b) return 'no button'; b.click(); await new Promise(r => setTimeout(r, 300));
+            const on = !document.querySelector('#tour').hidden; closeTour(); const inSet = (show('settings'), /Show the tour|परिचय फिरसे/.test(document.querySelector('#setBody').innerText)); return [on, inSet]; })()""")
+        check('☰ › Take the tour starts the tour; Settings no longer has it', tm == [True, False], tm)
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')

@@ -146,7 +146,7 @@ window.addEventListener('popstate', e => { const st = e.state; popping = popping
 function onView(id){ if (id === 'library') renderLibrary(); if (id === 'home') renderHome(); if (id === 'bookmarks') renderBookmarks(); if (id === 'settings') renderSettings(); if (id === 'vidhi') renderVidhi(); wake(id === 'reader'); if (id === 'search') setTimeout(() => $('#q').focus(), 50); }
 $$('[data-back]').forEach(b => b.onclick = back);
 $$('[data-go]').forEach(b => b.onclick = () => show(b.dataset.go));
-function openSheet(html){ $('#sheetBody').innerHTML = html; $('#sheet').classList.add('on'); $('#scrim').classList.add('on'); $('#sheet').scrollTop = 0; }
+function openSheet(html){ $('#sheetBody').innerHTML = html; $$('#sheetBody [data-tour]').forEach(b => b.onclick = () => { closeSheet(); startTour(); }); $('#sheet').classList.add('on'); $('#scrim').classList.add('on'); $('#sheet').scrollTop = 0; }
 // the drawer closes by dragging it down (from its handle, or anywhere once it is scrolled to the top), as its handle suggests
 (function(){ const sh = $('#sheet'); let y0 = null, dy = 0;
   sh.addEventListener('touchstart', e => { const fromGrab = !!e.target.closest('.grab'); if (!fromGrab && sh.scrollTop > 0) { y0 = null; return; } y0 = e.touches[0].clientY; dy = 0; }, {passive: true});
@@ -488,7 +488,7 @@ $('#rMore').onclick = () => { openSheet('<div class="menu">' +
   '<button data-m="bm"><svg><use href="#i-bm"/></svg>' + LB.bm() + '</button>' +
   '<button data-m="timer"><svg><use href="#i-clock"/></svg>' + LB.timer() + (S.timer ? ' · ' + timerText() + (S.timer.run ? T(' (रोकें)', ' (pause)') : T(' (चलाएँ)', ' (resume)')) : T(' (शुरू करें)', ' (start)')) + '</button>' +
   (S.timer ? '<button data-m="treset"><svg><use href="#i-clock"/></svg>' + LB.timer() + T(' — शून्य करें', ' — reset') + '</button>' : '') +
-  '<button data-m="set"><svg><use href="#i-set"/></svg>' + LB.set() + '</button></div>' +
+  '<button data-m="set"><svg><use href="#i-set"/></svg>' + LB.set() + '</button>' + '<button data-tour><svg><use href="#i-tour"/></svg>' + T('परिचय (टूर)', 'Take the tour') + '</button>' + '</div>' +
   '<div class="menusw">' + sw('mtr', LB.tr(), LB.trSub(), S.settings.tr, 'text') + '</div>');
   $('#mtr').onchange = e => { S.settings.tr = e.target.checked; save(); refreshReader(); };
 };
@@ -918,7 +918,7 @@ function openSearch(scope, stay){   // stay: only reset the page (the box was cl
 $('#libSearchBtn').onclick = () => openSearch('lib');
 $('#hSearch').onclick = () => openSearch('text');
 $('#rSearch').onclick = () => openSearch('text');
-$('#libMenu').onclick = () => { openSheet('<div class="menu"><button data-go="settings"><svg><use href="#i-set"/></svg>' + LB.set() + '</button></div>'); $$('#sheetBody [data-go]').forEach(b => b.onclick = () => { closeSheet(); show(b.dataset.go); }); };
+$('#libMenu').onclick = () => { openSheet('<div class="menu"><button data-go="settings"><svg><use href="#i-set"/></svg>' + LB.set() + '</button>' + '<button data-tour><svg><use href="#i-tour"/></svg>' + T('परिचय (टूर)', 'Take the tour') + '</button>' + '</div>'); $$('#sheetBody [data-go]').forEach(b => b.onclick = () => { closeSheet(); show(b.dataset.go); }); };
 function workPath(id){ let r = null; (function walk(n){ (n || []).forEach(c => { if (c.work === id) r = c.path; else walk(c.children); }); })(LIB); return r || id; }
 // the salutation on the opening screen (owner, 2026-10-19): the work's own (library/index.json "salute": जय श्रीराम for the
 // Mānas and Sundarakāṇḍa, ॐ श्री साईं राम for the Dhūpa Āratī, ੴ for the Sukhmani Sahib …), otherwise ॐ श्री परमात्मने नमः.
@@ -987,7 +987,7 @@ function renderHome(){
 }
 $('#hLib').onclick = () => { libPath = []; show('library'); };   // “‹ Library” goes to the library itself, not the shelf last visited
 $('#hMenu').onclick = () => {
-  openSheet('<div class="menu"><button data-go="bookmarks"><svg><use href="#i-bm"/></svg>' + LB.bm() + '</button>' + '<button data-go="settings"><svg><use href="#i-set"/></svg>' + LB.set() + '</button></div>');
+  openSheet('<div class="menu"><button data-go="bookmarks"><svg><use href="#i-bm"/></svg>' + LB.bm() + '</button>' + '<button data-go="settings"><svg><use href="#i-set"/></svg>' + LB.set() + '</button>' + '<button data-tour><svg><use href="#i-tour"/></svg>' + T('परिचय (टूर)', 'Take the tour') + '</button>' + '</div>');
   $$('#sheetBody [data-go]').forEach(b => b.onclick = () => { closeSheet(); show(b.dataset.go); });
 };
 
@@ -1049,7 +1049,7 @@ function renderSettings(){
     '<div class="field"><label>' + LB.theme() + '</label><select id="sth"><option value="light">' + T('दिन (हल्का)', 'Light') + '</option><option value="dark">' + T('रात (गहरा)', 'Dark') + '</option><option value="auto">' + T('फ़ोनके अनुसार', 'Same as phone') + '</option></select></div>' +
     '<h2>' + T('मेरे बुकमार्क और टिप्पणियाँ', 'My bookmarks & notes') + '</h2><p class="small muted">' + T('आपकी टिप्पणियाँ, बुकमार्क, प्रगति, सेटिंग्स और सुधार इसी फ़ोनमें रहते हैं। फ़ाइल सेव करके बैकअप रखें या दूसरे फ़ोनपर खोलें।', 'Your notes, bookmarks, progress, settings and corrections stay on this phone. Save the file as a backup or to open it on another phone.') + (canStore ? '' : ' <b>' + T('ध्यान दें: यह फ़ोन डेटा अपने-आप नहीं रख पा रहा — पाठके बाद “फ़ाइल सेव करें” दबाएँ।', 'This phone is not keeping app data — tap Save my file after each reading.') + '</b>') + '</p>' +
     '<div class="acts"><button class="btn" id="exp">' + T('फ़ाइल सेव करें', 'Save my file') + '</button><button class="btn ghost" id="imp">' + T('फ़ाइल खोलें', 'Open a file') + '</button></div>' +
-    '<h2>' + T('सहायता', 'Help') + '</h2><div class="acts"><button class="btn ghost" id="tourAgain">' + T('परिचय फिरसे देखें', 'Show the tour again') + '</button><a class="btn ghost" href="privacy.html" target="_blank" rel="noopener">' + T('गोपनीयता', 'Privacy') + '</a></div>' +
+    '<h2>' + T('सहायता', 'Help') + '</h2><div class="acts"><a class="btn ghost" href="privacy.html" target="_blank" rel="noopener">' + T('गोपनीयता', 'Privacy') + '</a></div>' +
     '<div style="height:50px"></div>';
   $('#setBody').innerHTML = h; $('#sth').value = st.theme; $('#sui').value = LANG();
   $('#sui').onchange = e => { st.ui = e.target.value; save(); applyLang(); syncLayers(); renderSettings(); };
@@ -1059,7 +1059,6 @@ function renderSettings(){
   $$('[data-src]').forEach(s => s.onchange = async () => { const c = S.src[W.id] = S.src[W.id] || {}; c[s.dataset.src] = s.value; save(); if (s.dataset.src === 'au') stopAudio(); await loadSources(); IDX = null; toast(T('स्रोत बदला', 'Source changed')); });
   $('#ssz').oninput = e => { st.size = +e.target.value; applyTheme(); save(); };
   $('#sth').onchange = e => { st.theme = e.target.value; applyTheme(); save(); };
-  $('#tourAgain').onclick = () => startTour();
   $('#exp').onclick = exportFile; $('#imp').onclick = () => $('#fileIn').click();
 }
 /* timing review: Settings › Audio timing. While it is on, a ⏱ row appears in the player and each verse's ⋮ menu shows its start;
@@ -1204,7 +1203,7 @@ $('#vidBody').addEventListener('click', ev => { const w = ev.target.closest('.w'
 /* ---------------- first-run tour: done, not read (owner, 2026-10-19) ----------------
    A welcome card, then the reader is taken into the Sundarakāṇḍa and asked to do each thing for real — open the text, tap a
    word, close its drawer, switch a meaning on, play one verse — with that spot lit and the rest dimmed; each step moves on
-   when it has been done. Shown once; Settings › Help › “Show the tour again”. closeTour() ends it at any point. */
+   when it has been done. Shown once; ☰ › “Take the tour” shows it again (owner, 2026-10-20). closeTour() ends it at any point. */
 let TOUR = null;   // {k: step, t0, base}
 function tourWork(){ const leafs = []; (function walk(n){ (n || []).forEach(c => c.work ? leafs.push(c.work) : walk(c.children)); })(LIB); return leafs.includes('sundarkand') ? 'sundarkand' : leafs[0]; }
 function inView(el){ const r = el.getBoundingClientRect(); return r.width && r.top > 70 && r.bottom < innerHeight - 90; }
@@ -1247,7 +1246,7 @@ function tourEnd(){
   $('#coach').hidden = true; TOUR = null;
   if (S.settings.recite) toggleRecite();   // the meanings come back after the tour
   $('#tourArt').innerHTML = '<div class="ta-om">ॐ</div>'; $('#tourT').textContent = T('बस इतना ही', 'That’s all');
-  $('#tourP').textContent = T('ग्रन्थके पन्नेपर “सम्पूर्ण पाठ सुनें” पूरा पाठ सुनाता है और पन्ने अपने आप पलटता है। पाठ-योजनाएँ, बुकमार्क और टिप्पणियाँ ☰ में हैं। सेटिंग्स › सहायतामें यह परिचय फिरसे देख सकते हैं।', 'On a work’s page, “Play all” reads it aloud hands-free and turns the pages. Reading plans, bookmarks and notes are in ☰. Settings › Help shows this tour again.');
+  $('#tourP').textContent = T('ग्रन्थके पन्नेपर “सम्पूर्ण पाठ सुनें” पूरा पाठ सुनाता है और पन्ने अपने आप पलटता है। पाठ-योजनाएँ, बुकमार्क और टिप्पणियाँ ☰ में हैं। ☰ › परिचय (टूर) से इसे फिरसे देख सकते हैं।', 'On a work’s page, “Play all” reads it aloud hands-free and turns the pages. Reading plans, bookmarks and notes are in ☰. ☰ › Take the tour shows it again.');
   $('#tourDots').innerHTML = ''; $('#tourSkip').hidden = true; $('#tourNext').textContent = T('ठीक है', 'Done');
   $('#tourNext').onclick = () => closeTour(); $('#tour').hidden = false;
 }
