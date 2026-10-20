@@ -522,7 +522,7 @@ $('#rBody').addEventListener('click', ev => {
       if (!PL.on || !ytOK){ toast(T('पहले ऑडियो चलाएँ — फिर जिस पदको सुन रहे हैं उसीके बटन दबाएँ', 'Start the audio first, then tap the buttons of the verse you are hearing')); return; }
       setTime(i, act === 'tstart' ? 1 : 2, nowAt()); rerenderItem(i);
     }
-    else if (act === 'tn'){ const x = SRC.au.at[IT[i].id], k = +a.dataset.k; if (setTime(i, k, Math.max(0, x[k] + a.dataset.d * step())) === false) return; rerenderItem(i); snippet(i, k); }
+    else if (act === 'tn'){ const x = SRC.au.at[IT[i].id], k = +a.dataset.k; if (setTime(i, k, Math.max(0, x[k] + a.dataset.d * step())) === false) return; rerenderItem(i); if (!livePlay()) snippet(i, k); }
     else if (act === 'tok'){ unfrom(IT[i].id); save(); rerenderItem(i); toast(T('जाँच लिया — अब यह आपका है', 'Checked — it is now yours')); }
     else if (act === 'bm'){ const me = ME(), k = KEY(IT[i].id); const had = !!me.bm[k]; if (had) delete me.bm[k]; else { me.bm[k] = Date.now(); if (TOUR) TOUR.bmAdded = true; } save(); rerenderItem(i); toast(!had ? T('बुकमार्क जोड़ा', 'Bookmarked') : T('बुकमार्क हटाया', 'Bookmark removed')); }
     else if (act === 'enote') noteSheet(i, +a.dataset.k);
@@ -559,7 +559,7 @@ function itemMenu(i){
       if (d === 'none') setTime(i, 2, null);
       else if (k === '1'){ if (setTime(i, 1, Math.max(0, x[1] + +d)) === false) return; }
       else { const base = x[2] != null ? x[2] : (() => { const a = AUT[x[0]], n = a.findIndex(y => y[0] === i); return n >= 0 && n + 1 < a.length ? a[n + 1][1] : x[1] + 5; })(); if (setTime(i, 2, Math.max(x[1] + 0.5, base + +d)) === false) return; }
-      show(); if (d !== 'none') snippet(i, +k);
+      show(); if (d !== 'none' && !livePlay()) snippet(i, +k);
     });
   }
   $$('#sheetBody [data-x]').forEach(b => b.onclick = () => {
@@ -707,6 +707,9 @@ function playingName(){ return (R.org === 'k' ? KNAME(R.n) : TT(PLAN[R.org].name
 // Fine-tuning preview (owner, 2026-10-19): after − / + on a start, the first 2 s of the verse play from the new start; on an
 // end, the last 2 s up to the new end. Then the player pauses, so the next tap can follow at once.
 let snipT = null;
+// the preview plays only when nothing is playing live (owner, 2026-10-20): while the recitation runs on, − / + just move the
+// time, so marking can go on from what is heard; a preview that is itself playing is replaced by the next one
+function livePlay(){ return PL.on && playing() && PL.snip == null; }
 function snippet(i, k){
   const x = SRC.au.at[IT[i].id]; if (!x) return; const tr = SRC.au.tracks[x[0]];
   const t0 = k === 1 ? x[1] : Math.max(x[1], x[2] - 2), t1 = k === 1 ? (x[2] != null ? Math.min(x[2], x[1] + 2) : x[1] + 2) : x[2];
@@ -851,6 +854,17 @@ function setTime(i, k, sec){
     link.push([nid, [n[0], v[2], n[2] == null ? null : n[2]]]);
   }
   if (k === 1 && p && p[2] != null && v[1] < p[2] - 0.001) link.push([pid, [p[0], p[1], v[1]]]);
+  // "Ends now" also starts the next verse (owner, 2026-10-20): an end on this verse gives the verse after it, when its start
+  // is not set by ear, that end as its start — it is yours from then on, and while the two are equal the start follows the
+  // end (− / + on the end move both), so no second tap is needed at the very moment the next verse begins.
+  const nx = jj >= 0 ? rows[jj + 1] : null, nxid = nx ? IT[nx[0]].id : null;
+  if (k === 2 && v[2] != null && nx){
+    if (!ownAt(nxid)){
+      if (n && v[2] >= n[1] - 0.1){ toast(T('आगेका पद इससे पहले शुरू होता है (', 'A verse after this starts before that (') + fmtT(n[1]) + T(') — पहले उसकी शुरुआत आगे करें', ') — move its start first')); return false; }
+      link.push([nxid, [v[0], v[2], null]]);
+    }
+    else if (nid === nxid && cur[2] != null && Math.abs(n[1] - cur[2]) < 0.001 && !link.some(([lid]) => lid === nid)) link.push([nid, [n[0], v[2], n[2] == null ? null : n[2]]]);   // glued to the old end: moves back with it
+  }
   const was = marksNow();
   fx[id] = v; unfrom(id); link.forEach(([lid, lv]) => { fx[lid] = lv; unfrom(lid); }); save(); buildAudio();
   refreshMarks(was, i);
