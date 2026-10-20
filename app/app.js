@@ -491,8 +491,9 @@ $('#rMore').onclick = () => { openSheet('<div class="menu">' +
   '<button data-m="timer"><svg><use href="#i-clock"/></svg>' + LB.timer() + (S.timer ? ' · ' + timerText() + (S.timer.run ? T(' (रोकें)', ' (pause)') : T(' (चलाएँ)', ' (resume)')) : T(' (शुरू करें)', ' (start)')) + '</button>' +
   (S.timer ? '<button data-m="treset"><svg><use href="#i-clock"/></svg>' + LB.timer() + T(' — शून्य करें', ' — reset') + '</button>' : '') +
   '<button data-m="set"><svg><use href="#i-set"/></svg>' + LB.set() + '</button>' + '<button data-tour><svg><use href="#i-tour"/></svg>' + T('परिचय (टूर)', 'Take the tour') + '</button>' + '</div>' +
-  '<div class="menusw">' + sw('mtr', LB.tr(), LB.trSub(), S.settings.tr, 'text') + '</div>');
+  '<div class="menusw">' + sw('mtr', LB.tr(), LB.trSub(), S.settings.tr, 'text') + '</div>' + rateRow());
   $('#mtr').onchange = e => { S.settings.tr = e.target.checked; save(); refreshReader(); };
+  bindRate();
 };
 $('#sheetBody').addEventListener('click', ev => {
   const b = ev.target.closest('[data-m]'); if (!b) return;
@@ -673,6 +674,13 @@ function ytLoad(vid, start){
   f.addEventListener('load', hello);
   clearTimeout(ytWait); ytWait = setTimeout(() => { if (!ytOK && PL.on) ytBlocked(); }, 5000);
 }
+// Playing speed (owner, 2026-10-20): 1×, 1.25×, 1.5×, 2× — YouTube's own speed, so the verse times (in the recording's
+// time) stay right; the light follows the recording. Chosen in the reader's ☰ and in Settings; kept for next time.
+const RATES = [1, 1.25, 1.5, 2];
+function RATE(){ return S.settings.rate || 1; }
+function applyRate(){ if (ytOK) ytPost('setPlaybackRate', [RATE()]); if (PL.on) $('#pTrack').textContent = playingName(); }
+function rateRow(){ return '<div class="ratebox"><span>' + T('गति', 'Speed') + '</span>' + RATES.map(r => '<button data-rate="' + r + '" class="' + (r === RATE() ? 'on' : '') + '">' + r + '×</button>').join('') + '</div>'; }
+function bindRate(){ $$('#sheetBody [data-rate], #setBody [data-rate]').forEach(b => b.onclick = e => { e.stopPropagation(); S.settings.rate = +b.dataset.rate; save(); applyRate(); $$('[data-rate]').forEach(x => x.classList.toggle('on', +x.dataset.rate === RATE())); toast(T('गति ', 'Speed ') + RATE() + '×'); }); }
 /* outside the website (e.g. a claude.ai artifact) YouTube cannot be embedded: open YouTube's own player page, which can stop at the end of what was asked */
 function ytWatchURL(){
   const A = SRC.au, st = Math.floor(ytInfo.t || 0); let end = '';
@@ -686,15 +694,16 @@ window.addEventListener('message', e => {
   if (!/youtube(-nocookie)?\.com$/.test((e.origin || '').replace(/^https?:\/\/(www\.)?/, ''))) return;
   let d; try { d = typeof e.data === 'string' ? JSON.parse(e.data) : e.data; } catch (x) { return; }
   if (!d) return;
-  if (d.event === 'onReady' || d.event === 'initialDelivery' || d.event === 'infoDelivery'){ if (!ytOK){ ytOK = true; if (PL.on) $('#pTrack').textContent = playingName(); if (PL.on && PL.snip != null && PL.seekT != null) ytPost('seekTo', [PL.seekT, true]); } }   // a preview in a freshly loaded player: the page can only start it at a whole second, so seek to the exact time
+  if (d.event === 'onReady' || d.event === 'initialDelivery' || d.event === 'infoDelivery'){ if (!ytOK){ ytOK = true; if (RATE() !== 1) ytPost('setPlaybackRate', [RATE()]); if (PL.on) $('#pTrack').textContent = playingName(); if (PL.on && PL.snip != null && PL.seekT != null) ytPost('seekTo', [PL.seekT, true]); } }   // a preview in a freshly loaded player: the page can only start it at a whole second, so seek to the exact time
   const info = d.info || {};
   if (typeof info.currentTime === 'number'){ ytInfo.t = info.currentTime; ytInfo.at = performance.now(); }
+  if (typeof info.playbackRate === 'number' && info.playbackRate !== RATE() && ytOK && PL.on) ytPost('setPlaybackRate', [RATE()]);
   if (typeof info.duration === 'number' && info.duration) ytInfo.d = info.duration;
   if (typeof info.playerState === 'number'){ ytInfo.st = info.playerState; syncPlayer(); if (info.playerState === 0) onEnded(); }
   if (d.event === 'onStateChange' && typeof d.info === 'number'){ ytInfo.st = d.info; syncPlayer(); if (d.info === 0) onEnded(); }
 });
 /* what is playing, in the app's own words: the reading (kāṇḍa or plan day) and the reciter — never the recording's title */
-function playingName(){ return (R.org === 'k' ? KNAME(R.n) : TT(PLAN[R.org].name) + ' · ' + VN(R.n)) + ' · ' + TT(SRC.au.meta.title); }
+function playingName(){ return (R.org === 'k' ? KNAME(R.n) : TT(PLAN[R.org].name) + ' · ' + VN(R.n)) + ' · ' + TT(SRC.au.meta.title) + (RATE() !== 1 ? ' · ' + RATE() + '×' : ''); }
 // Fine-tuning preview (owner, 2026-10-19): after − / + on a start, the first 2 s of the verse play from the new start; on an
 // end, the last 2 s up to the new end. Then the player pauses, so the next tap can follow at once.
 let snipT = null;
@@ -708,7 +717,7 @@ function snippet(i, k){
   setCur(i); $('#pTrack').textContent = playingName(); syncPlayer();
   clearInterval(snipT); snipT = setInterval(() => {   // checked often, from the player's last report and the time since
     if (PL.snip == null){ clearInterval(snipT); return; }
-    const now = playTime() + (playing() && ytInfo.at && PL.seekT == null ? (performance.now() - ytInfo.at) / 1000 : 0);
+    const now = playTime() + (playing() && ytInfo.at && PL.seekT == null ? RATE() * (performance.now() - ytInfo.at) / 1000 : 0);
     if (now >= PL.snip - 0.05){ ytPost('pauseVideo'); PL.snip = null; clearInterval(snipT); setTimeout(syncPlayer, 300); }
   }, 50);
 }
@@ -803,7 +812,7 @@ $('#pClose').onclick = stopAudio;
 function stepVerse(d){ PL.snip = null; const a = AUT[PL.t]; const k = a.findIndex(x => x[0] === PL.cur); const n = k + d; if (k >= 0 && n >= 0 && n < a.length){ seekGuard(a[n][1]); ytPost('seekTo', [a[n][1], true]); ytInfo.t = a[n][1]; ytInfo.at = performance.now(); PL.hold = 0; PL.cur = -1; tick(); } }
 /* timing review: set a verse's start by ear. The player reports its time a few times a second, so the moment of the tap is
    worked out from the last report; 0.3 s is taken off for the time it takes to hear the word and tap. */
-function nowAt(){ const t = playTime(), since = PL.seekT != null ? PL.seekAt : ytInfo.at; return Math.max(0, t + (playing() && since ? (performance.now() - since) / 1000 : 0) - 0.3); }   // right after a seek, the player may still report its old time: the asked-for time is used (playTime)
+function nowAt(){ const t = playTime(), since = PL.seekT != null ? PL.seekAt : ytInfo.at; return Math.max(0, t + (playing() && since ? RATE() * (performance.now() - since) / 1000 : 0) - 0.3 * RATE()); }   // right after a seek, the player may still report its old time: the asked-for time is used (playTime)
 // k = 1: the verse's start; k = 2: its end (null = it runs until the next verse starts). Returns false when refused (with the reason shown).
 function setTime(i, k, sec){
   const id = IT[i].id, fx = S.timing.fix[tkey()] = S.timing.fix[tkey()] || {}, cur = SRC.au.at[id] || [PL.on ? PL.t : 0, 0, null];
@@ -1048,7 +1057,7 @@ function renderSettings(){
     sw('str', LB.tr(), LB.trSub(), st.tr) + sw('src', LB.rc(), LB.rcSub(), st.recite) +
     (W ? '<h2>' + LB.src() + ' · ' + esc(TT(W.title)) + '</h2>' + pick('hi', LB.h()) + pick('en', LB.e()) + pick('au', LB.au(), true) : '') +
     timingHTML() +
-    '<h2>' + T('पढ़नेकी सुविधा', 'Reading comfort') + '</h2>' + sw('swk', LB.wake(), '', st.wake) +
+    '<h2>' + T('पढ़नेकी सुविधा', 'Reading comfort') + '</h2>' + sw('swk', LB.wake(), '', st.wake) + rateRow() +
     '<div class="field"><label>' + LB.size() + '</label><input type="range" id="ssz" min="16" max="34" value="' + st.size + '" style="border:0;padding:0"></div>' +
     '<div class="field"><label>' + T('ऐपकी भाषा', 'Language of the app') + '</label><select id="sui"><option value="hi">हिंदी</option><option value="en">English</option></select></div>' +
     '<div class="field"><label>' + LB.theme() + '</label><select id="sth"><option value="light">' + T('दिन (हल्का)', 'Light') + '</option><option value="dark">' + T('रात (गहरा)', 'Dark') + '</option><option value="auto">' + T('फ़ोनके अनुसार', 'Same as phone') + '</option></select></div>' +
@@ -1059,7 +1068,7 @@ function renderSettings(){
   $('#setBody').innerHTML = h; $('#sth').value = st.theme; $('#sui').value = LANG();
   $('#sui').onchange = e => { st.ui = e.target.value; save(); applyLang(); syncLayers(); renderSettings(); };
   const bind = (id, f) => $('#' + id).onchange = e => { f(e.target.checked); save(); };
-  bindTiming();
+  bindTiming(); bindRate();
   bind('sh', v => { st.layers.h = v; syncLayers(); }); bind('se', v => { st.layers.e = v; syncLayers(); }); bind('sw', v => { st.layers.w = v; syncLayers(); }); bind('str', v => st.tr = v); bind('src', v => { if (!!st.recite !== v) toggleRecite(); }); bind('swk', v => st.wake = v);
   $$('[data-src]').forEach(s => s.onchange = async () => { const c = S.src[W.id] = S.src[W.id] || {}; c[s.dataset.src] = s.value; save(); if (s.dataset.src === 'au') stopAudio(); await loadSources(); IDX = null; toast(T('स्रोत बदला', 'Source changed')); });
   $('#ssz').oninput = e => { st.size = +e.target.value; applyTheme(); save(); };

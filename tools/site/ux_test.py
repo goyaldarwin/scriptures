@@ -662,6 +662,12 @@ async def main():
             const n0 = document.querySelectorAll('#bmBody [data-del]').length; document.querySelector('#bmBody [data-del="40"]').click(); await new Promise(r => setTimeout(r, 300));
             const r = [n0, document.querySelectorAll('#bmBody [data-del]').length, !me.bm[KEY(IT[40].id)], !!me.bm[KEY(IT[41].id)]]; delete me.bm[KEY(IT[41].id)]; save(); return r; })()""")
         check('bookmarks: each bookmark can be removed on its own', bd == [2, 1, True, True], bd)
+        rt = await ev("""(async () => { await openWork('manas', true); show('home'); openReader('k', 30); await new Promise(r => setTimeout(r, 400));
+            document.querySelector('#rMore').click(); await new Promise(r => setTimeout(r, 300)); const b = document.querySelector('#sheetBody [data-rate="1.5"]'); if (!b) return 'no chooser';
+            b.click(); const r1 = S.settings.rate, open = document.querySelector('#sheet').classList.contains('on'); closeSheet();
+            show('settings'); await new Promise(r => setTimeout(r, 300)); const on = document.querySelector('#setBody [data-rate].on'); const r2 = on && on.dataset.rate;
+            document.querySelector('#setBody [data-rate="1"]').click(); return [r1, open, r2, S.settings.rate]; })()""")
+        check('speed: 1× · 1.25× · 1.5× · 2× in the reader\'s ☰ and in Settings, remembered', rt == [1.5, True, '1.5', 1], rt)
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')
