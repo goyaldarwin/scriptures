@@ -330,6 +330,13 @@ The owner (and helpers) set verse times by ear in the app; the library applies t
 - **Widely available texts may be fetched from the web when the owner says so — 2–3 good sources are enough.** Prefer Wikisource and a Gita Press-based page; reconcile word by word and record every choice in the work's `reconciliation.md`. Where web pages use modern spelling, follow the Gita Press house style of the Mānas (ए not ये, ब/स forms, no hyphens) and let the metre decide between words.
 - The web-fetch tool will not return a hymn's full text. Write the text out and ask the page to list the words that differ, or ask yes/no for each candidate spelling.
 
+### App review (Oct 20, 2026) — flow and navigation bugs fixed
+- **A saved place at a verse that no longer exists** (a verse removed from a work) is dropped, and the work page opens instead of an empty reader with a script error (`fixLast`, `reopenReader`).
+- **A reading that goes on in the next recording keeps what was asked for:** the whole-work flag and the "<part> finished" message survive the change of recording (`onEnded`), so "Play all" ends with "Recitation complete" and a day spanning two recordings with its own message.
+- **The search page:** clearing the box no longer adds a history entry (Back needed several taps); the history entry of a search carries its kind (library or text), so Back from a work found by a library search returns to that search with its query and results.
+- **A meaning switched in Settings** lights the reader's हिं · En · शब्द capsule when you come back (`syncLayers`).
+- **Noted, not changed (owner to decide):** "Next kāṇḍa ›" at the end of a part adds no history entry (Back goes to the work page, not the previous kāṇḍa); the installed app caches only the shell (works need the internet; the offline file is separate); if the tour's work fails to load offline, the tour stops silently; the reader reopens at the saved top verse, not the exact scroll offset.
+
 ### Lessons: the working environment
 - **Never `pkill -f`** in this environment: it matched and killed the session's own shell (exit 144), twice. Kill by PID or a pid file.
 - **GitHub GraphQL is unavailable** from these sessions (`gh issue view`, `gh pr view` fail): use the REST API (`gh api repos/goyaldarwin/scriptures/issues/8`, `…/comments`, `…/commits/main/check-runs`). Workflows are dispatched with `gh api -X POST …/dispatches`.
