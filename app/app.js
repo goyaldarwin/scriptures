@@ -461,7 +461,7 @@ function sectionSheet(n){
   $$('#sheetBody [data-to]').forEach(b => b.onclick = () => { closeSheet(); jumpTo(+b.dataset.to); });
   const on = $('#sheetBody .secs .on'); if (on) setTimeout(() => on.scrollIntoView({block: 'center'}), 60);
 }
-$('#rMid').onclick = sectionSheet;
+$('#rMid').onclick = () => sectionSheet();   // not the click event as the part (that broke the footer, 2026-10-20)
 $('#rBack').onclick = back;
 // the same हिं · En · शब्द switch in every header (library, work, reader): one setting, shown and changed anywhere
 $$('.lyr.layers button').forEach(b => b.onclick = () => { if (b.dataset.l === 'r'){ toggleRecite(); return; }
@@ -1027,11 +1027,13 @@ function renderBookmarks(){
   for (const p of SHOWN()){ for (const k in p.bm) if (k.startsWith(pre) && ID[k.slice(pre.length)] != null) bms.push([ID[k.slice(pre.length)], p]); for (const k in p.notes) if (k.startsWith(pre) && ID[k.slice(pre.length)] != null) p.notes[k].forEach(n => notes.push([ID[k.slice(pre.length)], p, n])); }
   bms.sort((a, b) => a[0] - b[0]); notes.sort((a, b) => a[0] - b[0]);
   let h = '<h2 style="font-size:19px;margin:20px 0 4px">' + T('बुकमार्क (', 'Bookmarks (') + DEV(bms.length) + ')</h2>';
-  h += bms.length ? bms.map(b => '<button class="res" data-i="' + b[0] + '"><div class="where">' + esc(itemLabel(b[0])) + '' + '</div><div class="snip" style="font-weight:700">' + esc(IT[b[0]].v[0]) + '</div></button>').join('') : '<p class="muted">' + T('किसी भी पदकी पंक्तिके अन्तमें बुकमार्क चिह्न दबाएँ।', 'Tap the bookmark sign at the end of any verse.') + '</p>';
+  // each bookmark has its own ✕ to remove it (owner, 2026-10-20)
+  h += bms.length ? bms.map(b => '<div class="bmrow"><button class="res" data-i="' + b[0] + '"><div class="where">' + esc(itemLabel(b[0])) + '</div><div class="snip" style="font-weight:700">' + esc(IT[b[0]].v[0]) + '</div></button><button class="bmdel" data-del="' + b[0] + '" aria-label="' + T('बुकमार्क हटाएँ', 'Remove bookmark') + '"><svg><use href="#i-x"/></svg></button></div>').join('') : '<p class="muted">' + T('किसी भी पदकी पंक्तिके अन्तमें बुकमार्क चिह्न दबाएँ।', 'Tap the bookmark sign at the end of any verse.') + '</p>';
   h += '<h2 style="font-size:19px;margin:26px 0 4px">' + T('टिप्पणियाँ (', 'Notes (') + DEV(notes.length) + ')</h2>';
   h += notes.length ? notes.map(n => '<button class="res" data-i="' + n[0] + '"><div class="where">' + esc(itemLabel(n[0])) + '</div><div class="snip">' + esc(n[2].t.slice(0, 200)) + '</div></button>').join('') : '<p class="muted">' + T('किसी पदके ⋮ मेनूसे अपनी टिप्पणी लिखें।', 'Use the ⋮ menu of any verse to write a note.') + '</p>';
   $('#bmBody').innerHTML = h + '<div style="height:40px"></div>';
   $$('#bmBody .res').forEach(b => b.onclick = () => openReader('k', +b.dataset.i, true));
+  $$('#bmBody [data-del]').forEach(b => b.onclick = () => { const k = KEY(IT[+b.dataset.del].id); for (const p of S.profiles) delete p.bm[k]; save(); renderBookmarks(); toast(T('बुकमार्क हटाया', 'Bookmark removed')); });
 }
 
 /* ---------------- settings ---------------- */
@@ -1219,6 +1221,8 @@ function tourSteps(){
     {t: () => $('#rLayers [data-l="' + (S.settings.layers.h ? 'e' : 'h') + '"]'), allow: '#rLayers [data-l="h"], #rLayers [data-l="e"], #rLayers [data-l="w"]', p: () => S.settings.layers.h ? T('“En” छूकर हर पदके नीचे अंग्रेज़ी अर्थ दिखाएँ या छिपाएँ। “शब्द” से शब्दार्थ।', 'Tap “En” to show or hide the English meaning under every verse. “शब्द” gives word-by-word meanings.') : T('“हिं” छूकर हर पदके नीचे हिंदी अर्थ दिखाएँ। “En” अंग्रेज़ी, “शब्द” शब्दार्थ।', 'Tap “हिं” to show the Hindi meaning under every verse. “En” is English, “शब्द” word by word.'),
      enter: () => { TOUR.base = JSON.stringify(S.settings.layers); }, done: () => JSON.stringify(S.settings.layers) !== TOUR.base},
     {t: () => $('#rLayers [data-l="r"]'), allow: '#rLayers [data-l="r"]', p: T('पुस्तक छूकर पाठ मोड चालू करें — केवल मूल पाठ, बड़े अक्षरोंमें। फिर छूनेपर अर्थ लौट आते हैं।', 'Tap the book for recitation mode — the verses alone, in larger type. Tap it again to bring the meanings back.'), done: () => !!S.settings.recite},
+    {t: () => firstVisible('#rBody .vbm'), allow: '#rBody .vbm', p: T('बुकमार्क चिह्न छूकर यह पद सहेजें — ☰ › बुकमार्कमें मिलेगा।', 'Tap the bookmark sign to save this verse — find it in ☰ › Bookmarks.'),
+     enter: () => { TOUR.base = Object.keys(ME().bm).length; }, done: () => Object.keys(ME().bm).length > TOUR.base},   // owner, 2026-10-20
     {t: () => firstVisible('#rBody .vplay'), allow: '#rBody .vplay', p: T('▶ छूकर केवल यह पद सुनें — जो गाया जा रहा है वह चमकेगा।', 'Tap ▶ to hear just this verse — it lights up as it is sung.'), done: () => PL.on},
   ];
 }

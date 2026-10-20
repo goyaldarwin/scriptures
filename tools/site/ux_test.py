@@ -80,7 +80,11 @@ async def main():
         await ev("document.querySelector('#cbBack').click()"); await pg.wait_for_timeout(1200)
         check('tour: ‹ Back to recitation mode turns it off so it can be tried again', await ev("TOUR && TOUR.k") == 6 and not await ev("S.settings.recite"))
         await ev("tourSteps()[6].t().click()"); await pg.wait_for_timeout(1200)
+        bm0 = await ev("Object.keys(ME().bm).length")
         await ev("tourSteps()[7].t().click()"); await pg.wait_for_timeout(1200)
+        check('tour: tapping the bookmark sign saves the verse and moves on', await ev("TOUR && TOUR.k") == 8 and await ev("Object.keys(ME().bm).length") == bm0 + 1)
+        await ev("for (const k in ME().bm) delete ME().bm[k]; save()")
+        await ev("tourSteps()[8].t().click()"); await pg.wait_for_timeout(1200)
         check('tour: playing a verse ends the tour in the reader, with a message and the meanings back', await ev("!TOUR && document.querySelector('#tour').hidden && document.querySelector('#coach').hidden && CURVIEW === 'reader' && PL.on && !S.settings.recite && /Tour complete|परिचय पूरा/.test(document.querySelector('#toast').textContent)"))
         await ev("setSize(-2)"); await ev("stopAudio()")
         check('the tour is remembered', await ev("S.settings.tour === 1"))
@@ -647,6 +651,13 @@ async def main():
             const b = document.querySelector('#sheetBody [data-tour]'); if (!b) return 'no button'; b.click(); await new Promise(r => setTimeout(r, 300));
             const on = !document.querySelector('#tour').hidden; closeTour(); const inSet = (show('settings'), /Show the tour|परिचय फिरसे/.test(document.querySelector('#setBody').innerText)); return [on, inSet]; })()""")
         check('☰ › Take the tour starts the tour; Settings no longer has it', tm == [True, False], tm)
+        ft = await ev("""(async () => { await openWork('manas', true); show('home'); openReader('k', 30); await new Promise(r => setTimeout(r, 500));
+            document.querySelector('#rMid').click(); await new Promise(r => setTimeout(r, 300)); const ok = document.querySelector('#sheet').classList.contains('on') && !!document.querySelector('#sheetBody .secs [data-to]'); closeSheet(); return ok; })()""")
+        check('reader: tapping the footer opens the section picker', ft)
+        bd = await ev("""(async () => { const me = ME(); me.bm[KEY(IT[40].id)] = 1; me.bm[KEY(IT[41].id)] = 2; save(); show('bookmarks'); await new Promise(r => setTimeout(r, 300));
+            const n0 = document.querySelectorAll('#bmBody [data-del]').length; document.querySelector('#bmBody [data-del="40"]').click(); await new Promise(r => setTimeout(r, 300));
+            const r = [n0, document.querySelectorAll('#bmBody [data-del]').length, !me.bm[KEY(IT[40].id)], !!me.bm[KEY(IT[41].id)]]; delete me.bm[KEY(IT[41].id)]; save(); return r; })()""")
+        check('bookmarks: each bookmark can be removed on its own', bd == [2, 1, True, True], bd)
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')
