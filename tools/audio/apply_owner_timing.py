@@ -9,7 +9,7 @@ line per change and exits non-zero with a reason when the body is not valid, so 
 """
 import glob, json, os, re, subprocess, sys
 
-HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.dirname(os.path.dirname(HERE))
+HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.environ.get('SCRIPTURES_REPO') or os.path.dirname(os.path.dirname(HERE))   # SCRIPTURES_REPO: a copy to work in (tests)
 def fail(msg): print('ERROR: ' + msg); sys.exit(1)
 body = open(sys.argv[1]).read()
 m = re.search(r'```(?:json)?\s*(\{.*?\})\s*```', body, re.S) or re.search(r'(\{.*\})', body, re.S)
@@ -43,11 +43,13 @@ print('%d starts applied' % n)
 # re-make the timings, and make sure nothing changed except the verses in this issue: the rest of the published work is
 # never touched by a manual correction
 meta = json.load(open(os.path.join(src, 'source.json'))); out = os.path.join(REPO, 'library', path, 'audio', meta['id'] + '.json')
-before = json.load(open(out))['at'] if os.path.exists(out) else {}
+old = json.load(open(out)) if os.path.exists(out) else {}; before = old.get('at', {})
 subprocess.run([sys.executable, os.path.join(HERE, 'make_timings.py'), src], check=True)
-after = json.load(open(out))['at']
+new = json.load(open(out)); after = new['at']
 sent = {iid for items in starts.values() for iid in items}
-refit = set(json.load(open(out)).get('moved', []))   # neighbours placed again around the owner's times (make_timings.py)
+# neighbours placed again around the owner's times (make_timings.py "moved"), now or before this send: a verse that an
+# earlier send had moved goes back to its own start when the new times leave room for it, and that is not a stray change
+refit = set(new.get('moved', [])) | set(old.get('moved', []))
 moved = sorted(k for k in set(before) | set(after) if k not in sent and k not in refit and before.get(k) != after.get(k))
 if moved: fail('other verses would change too (%d, e.g. %s); nothing was applied' % (len(moved), moved[:5]))
 print('only the %d verses sent changed%s' % (len(sent), ', and %d neighbours placed around them' % len(refit) if refit else ''))

@@ -560,37 +560,45 @@ function tkey(){ return W.id + ':' + SRC.au.meta.id; }
 // timing review: under every verse, the verse's own buttons. You mark the verse you are looking at, never a guess:
 // "Starts now" when you hear its first word, "Ends now" when it is over (a refrain or music follows), ▶ to hear it.
 function markBar(i){
-  const x = SRC.au.at[IT[i].id], mine = myStarts()[IT[i].id], est = toCheck(i), by = fromOf(IT[i].id);
+  const x = SRC.au.at[IT[i].id], mine = myStarts()[IT[i].id], own = ownAt(IT[i].id), est = toCheck(i), by = fromOf(IT[i].id);
   const when = x ? T('शुरू ', 'Start ') + fmtT(x[1]) + (x[2] != null ? T(' · अंत ', ' · end ') + fmtT(x[2]) : '') : T('ऑडियोमें समय नहीं', 'No time in the recording');
   // − / + sit on either side of "Starts now" / "Ends now", in the same line (owner, 2026-10-19): for a start you set, and for an end that is set
   const grp = (k, act, label, on) => '<span class="tgrp">' + (on ? '<button class="tn" data-a="tn" data-k="' + k + '" data-d="-1" aria-label="−">−</button>' : '') + '<button data-a="' + act + '">' + label + '</button>' + (on ? '<button class="tn" data-a="tn" data-k="' + k + '" data-d="1" aria-label="+">+</button>' : '') + '</span>';
-  return '<div class="tmark">' + grp(1, 'tstart', '⏱ ' + T('अभी शुरू', 'Starts now'), !!(mine && x)) + grp(2, 'tend', '⏹ ' + T('अभी समाप्त', 'Ends now'), !!(mine && x && x[2] != null)) + (by ? '<button data-a="tok">✓ ' + T('सही है', 'Correct') + '</button>' : '') +
-    '<span class="tinfo">' + when + (by ? ' · <b class="test">' + T('', 'from ') + esc(by) + T(' का — जाँचें', ' — to check') + '</b>' : mine ? ' · <b>' + T('आपका', 'yours') + '</b>' : est ? ' · <b class="test">' + T('अनुमान', 'estimated') + '</b>' : (SRC.au.moved && SRC.au.moved.has(IT[i].id)) ? ' · <b class="test">' + T('आपके समयके अनुसार खिसकाया', 'moved to fit your times') + '</b>' : '') + '</span></div>';
+  // a time set by ear — on this phone ("yours") or by the owner and already in the library ("sent") — has − / + for fine-tuning
+  return '<div class="tmark">' + grp(1, 'tstart', '⏱ ' + T('अभी शुरू', 'Starts now'), !!(own && x)) + grp(2, 'tend', '⏹ ' + T('अभी समाप्त', 'Ends now'), !!(own && x && x[2] != null)) + (by ? '<button data-a="tok">✓ ' + T('सही है', 'Correct') + '</button>' : '') +
+    '<span class="tinfo">' + when + (by ? ' · <b class="test">' + T('', 'from ') + esc(by) + T(' का — जाँचें', ' — to check') + '</b>' : mine ? ' · <b>' + T('आपका', 'yours') + '</b>' : own ? ' · <b>' + T('भेजा हुआ', 'sent') + '</b>' : est && SRC.au.checkSet.has(IT[i].id) ? ' · <b class="test">' + T('अनुमान', 'estimated') + '</b>' : est ? ' · <b class="test">' + T('आपके समयके अनुसार खिसकाया', 'moved to fit your times') + '</b>' : '') + '</span></div>';
 }
 // how far each − / + moves a time is set in the verse's ⋮ menu (owner, 2026-10-19)
 function step(){ return S.timing.step || 0.5; }
-function toCheck(i){ return !!(S.timing.on && SRC.au && SRC.au.checkSet && SRC.au.checkSet.has(IT[i].id) && !myStarts()[IT[i].id]); }   // a start that is only estimated: to be checked by ear
+// a start that is only a guess — listed to be checked by the library, or placed again by text length to fit the set times — and not set by ear on this phone
+function toCheck(i){ const id = IT[i].id, A = SRC.au; return !!(S.timing.on && A && A.checkSet && (A.checkSet.has(id) || (A.moved && A.moved.has(id))) && !myStarts()[id]); }
 function myStarts(){ return (SRC.au && S.timing.fix[tkey()]) || {}; }
+// a verse set by ear: on this phone (myStarts), or by the owner and published (the audio JSON's "own" list) — kept exactly as given
+function ownAt(id){ const A = SRC.au; return myStarts()[id] || (A && A.ownSet && A.ownSet.has(id) ? A.at0[id] : undefined); }
 function fromOf(id){ return SRC.au ? (S.timing.from[tkey()] || {})[id] : undefined; }
 function unfrom(id){ const f = S.timing.from[tkey()]; if (f){ delete f[id]; if (!Object.keys(f).length) delete S.timing.from[tkey()]; } }
 function buildAudio(){
   AUT = []; const A = SRC.au; if (!A) return;
-  if (!A.at0) A.at0 = A.at;
-  if (!A.checkSet){ A.checkSet = new Set(A.check || []); A.guessSet = new Set(A.guess || []); }                      // the published starts; A.at = those plus the starts set by ear on this phone
+  if (!A.at0){   // the published times; A.at = those plus the starts set by ear on this phone, after the order rule below
+    A.at0 = A.at; A.checkSet = new Set(A.check || []); A.guessSet = new Set(A.guess || []); A.ownSet = new Set(A.own || []); A.raw = A.raw || {};
+  }
   A.at = Object.assign({}, A.at0, myStarts());
   A.tracks.forEach(t => { t.fi = ID[t.first]; t.li = ID[t.last]; }); AUT = A.tracks.map(() => []);
-  for (const id in A.at){ const i = ID[id]; if (i == null) continue; const [t, s, e] = A.at[id]; AUT[t].push([i, s, e == null ? null : e]); }
-  // keep the times in the order of the text around the times set by ear (the same rule as tools/audio/make_timings.py):
-  // a verse cannot start before the one before it has started, or before its set end; any verse not set by ear that breaks
-  // this is placed again, by its length, between the nearest good times on either side. A set end later than the next
-  // verse's set start is cut back to it.
-  const mine = myStarts(); A.moved = new Set();
+  // the rule starts from the start each verse had before any re-placing ("raw", kept by make_timings.py for the verses it
+  // moved), so the app and the library, given the same set times, arrive at exactly the same figures
+  for (const id in A.at){ const i = ID[id]; if (i == null) continue; const [t, s, e] = A.at[id]; AUT[t].push([i, A.raw[id] != null && !myStarts()[id] ? A.raw[id] : s, e == null ? null : e]); }
+  // keep the times in the order of the text around the times set by ear (the same rule as tools/audio/order.py, used by
+  // make_timings.py): a verse set by ear (on this phone, or by the owner and published) is kept as given; a verse not set
+  // by ear cannot start before the one before it has started, or before its set end, or at or after the next set start —
+  // such a verse is placed again, by its length, between the nearest good times on either side (at the next good start
+  // when there is no room). A set end later than the next set start is cut back to it.
+  A.moved = new Set();
   AUT.forEach((a, ti) => {
     a.sort((x, y) => x[0] - y[0]);
-    const own = k => !!mine[IT[a[k][0]].id], len = k => Math.max(8, IT[a[k][0]].v.join('').length);
-    for (let k = 0; k + 1 < a.length; k++) if (a[k][2] != null && own(k + 1) && a[k][2] > a[k + 1][1]) a[k] = [a[k][0], a[k][1], a[k + 1][1]];
-    const good = a.map(() => true); let lo = -1;
+    const own = k => !!ownAt(IT[a[k][0]].id), len = k => Math.max(8, IT[a[k][0]].v.join('').length);
     const nextOwn = k => { for (let j = k + 1; j < a.length; j++) if (own(j)) return a[j][1]; return Infinity; };
+    for (let k = 0; k < a.length; k++) if (a[k][2] != null && a[k][2] > nextOwn(k)) a[k] = [a[k][0], a[k][1], nextOwn(k)];
+    const good = a.map(() => true); let lo = -1;
     for (let k = 0; k < a.length; k++){
       if (!own(k) && (a[k][1] <= lo || a[k][1] >= nextOwn(k))) { good[k] = false; continue; }
       lo = Math.max(a[k][1], a[k][2] != null ? a[k][2] - 0.01 : -1);
@@ -599,14 +607,14 @@ function buildAudio(){
       if (good[k]) continue;
       let e = k; while (e + 1 < a.length && !good[e + 1]) e++;
       const p = k - 1, n = e + 1;
-      const L = p >= 0 ? Math.max(a[p][1] + 0.5, a[p][2] != null ? a[p][2] : 0) : 0, U = n < a.length ? a[n][1] : L + 4 * (e - k + 2);
+      let L = p >= 0 ? Math.max(a[p][1] + 0.5, a[p][2] != null ? a[p][2] : 0) : 0; const U = n < a.length ? a[n][1] : L + 4 * (e - k + 2);
+      if (U < L) L = U;
       let tot = 0; for (let j = k; j <= e; j++) tot += len(j); let acc = 0;
       for (let j = k; j <= e; j++){ a[j] = [a[j][0], Math.round((L + (U - L) * acc / (tot + (n < a.length ? 0 : len(e)))) * 10) / 10, a[j][2]]; acc += len(j); A.moved.add(IT[a[j][0]].id); }
       k = e;
     }
-    // starts only guessed by text length (never heard) next to a time you set are guessed again between your time and
-    // the next good one (or the recording's end), so they move with you; a heard start is never re-guessed
-    // (the same rule as tools/audio/make_timings.py)
+    // starts only guessed by text length (never heard) next to a time set by ear are guessed again between that time and
+    // the next good one (or the recording's end), so they move with it; a heard start is never re-guessed
     const gs = k => A.guessSet.has(IT[a[k][0]].id) && !own(k);
     for (let k = 0; k < a.length; k++){
       if (!gs(k)) continue;
@@ -650,7 +658,7 @@ window.addEventListener('message', e => {
   if (!/youtube(-nocookie)?\.com$/.test((e.origin || '').replace(/^https?:\/\/(www\.)?/, ''))) return;
   let d; try { d = typeof e.data === 'string' ? JSON.parse(e.data) : e.data; } catch (x) { return; }
   if (!d) return;
-  if (d.event === 'onReady' || d.event === 'initialDelivery' || d.event === 'infoDelivery'){ if (!ytOK){ ytOK = true; if (PL.on) $('#pTrack').textContent = playingName(); } }
+  if (d.event === 'onReady' || d.event === 'initialDelivery' || d.event === 'infoDelivery'){ if (!ytOK){ ytOK = true; if (PL.on) $('#pTrack').textContent = playingName(); if (PL.on && PL.snip != null && PL.seekT != null) ytPost('seekTo', [PL.seekT, true]); } }   // a preview in a freshly loaded player: the page can only start it at a whole second, so seek to the exact time
   const info = d.info || {};
   if (typeof info.currentTime === 'number'){ ytInfo.t = info.currentTime; ytInfo.at = performance.now(); }
   if (typeof info.duration === 'number' && info.duration) ytInfo.d = info.duration;
@@ -667,8 +675,9 @@ function snippet(i, k){
   const t0 = k === 1 ? x[1] : Math.max(x[1], x[2] - 2), t1 = k === 1 ? (x[2] != null ? Math.min(x[2], x[1] + 2) : x[1] + 2) : x[2];
   PL.on = true; PL.t = x[0]; PL.end = null; PL.snip = t1; PL.whole = false; PL.endMsg = '';
   $('#player').hidden = false; document.body.classList.add('playing');
+  seekGuard(t0);
   if (ytVid !== tr.yt || !ytFrame()) ytLoad(tr.yt, t0); else { ytPost('seekTo', [t0, true]); ytPost('playVideo'); ytInfo.t = t0; ytInfo.at = performance.now(); }
-  seekGuard(t0); setCur(i); $('#pTrack').textContent = playingName(); syncPlayer();
+  setCur(i); $('#pTrack').textContent = playingName(); syncPlayer();
   clearInterval(snipT); snipT = setInterval(() => {   // checked often, from the player's last report and the time since
     if (PL.snip == null){ clearInterval(snipT); return; }
     const now = playTime() + (playing() && ytInfo.at && PL.seekT == null ? (performance.now() - ytInfo.at) / 1000 : 0);
@@ -683,16 +692,19 @@ function playFrom(i, end){
   const st = (end != null && i === tr.fi) ? 0 : st0;
   PL.on = true; PL.t = t; PL.end = end; PL.cur = -1; PL.hold = 0; PL.whole = false; PL.endMsg = '';
   $('#player').hidden = false; document.body.classList.add('playing'); wake(true);
-  if (ytVid !== tr.yt || !ytFrame()) ytLoad(tr.yt, st); else { ytPost('seekTo', [st, true]); ytPost('playVideo'); ytInfo.t = st; }
-  seekGuard(st); setCur(i); $('#pTrack').textContent = playingName(); syncPlayer();
+  seekGuard(st);
+  if (ytVid !== tr.yt || !ytFrame()) ytLoad(tr.yt, st); else { ytPost('seekTo', [st, true]); ytPost('playVideo'); ytInfo.t = st; ytInfo.at = performance.now(); }
+  setCur(i); $('#pTrack').textContent = playingName(); syncPlayer();
 }
 // Right after a seek the player still reports its old time (or a moment before the asked-for one), which would light the
 // previous verse for a beat (owner, 2026-10-19). Until it reports a time at the asked-for start (at most 4 s), use that start.
-function seekGuard(t){ PL.seekT = t; PL.seekAt = performance.now(); }
+// seekFrom: where the player was when the seek was asked — a report of that time afterwards is the old one, not the new
+function seekGuard(t){ PL.seekFrom = PL.seekT == null ? ytInfo.t : PL.seekFrom; PL.seekT = t; PL.seekAt = performance.now(); }
 function playTime(){
   const t = ytInfo.t;
   if (PL.seekT == null) return t;
-  if ((t >= PL.seekT - 0.05 && t <= PL.seekT + 3) || performance.now() - PL.seekAt > 4000){ PL.seekT = null; return t; }
+  const stale = PL.seekFrom != null && Math.abs(t - PL.seekFrom) < 0.3 && Math.abs(PL.seekFrom - PL.seekT) >= 1;   // still the time from before the seek
+  if ((!stale && t >= PL.seekT - 0.05 && t <= PL.seekT + 3) || performance.now() - PL.seekAt > 4000){ PL.seekT = null; return t; }
   return PL.seekT;
 }
 function onEnded(){
@@ -757,48 +769,59 @@ function syncPlayer(){ $('#pPlay').innerHTML = '<svg><use href="#i-' + (playing(
 ['touchstart', 'wheel'].forEach(e => window.addEventListener(e, ev => { if (PL.on && !ev.target.closest('#player')) PL.hold = Date.now() + 8000; }, {passive: true}));
 $('#pPlay').onclick = () => { if (playing()) ytPost('pauseVideo'); else ytPost('playVideo'); setTimeout(syncPlayer, 400); };
 $('#pClose').onclick = stopAudio;
-function stepVerse(d){ PL.snip = null; const a = AUT[PL.t]; const k = a.findIndex(x => x[0] === PL.cur); const n = k + d; if (k >= 0 && n >= 0 && n < a.length){ ytPost('seekTo', [a[n][1], true]); ytInfo.t = a[n][1]; seekGuard(a[n][1]); PL.hold = 0; PL.cur = -1; tick(); } }
+function stepVerse(d){ PL.snip = null; const a = AUT[PL.t]; const k = a.findIndex(x => x[0] === PL.cur); const n = k + d; if (k >= 0 && n >= 0 && n < a.length){ seekGuard(a[n][1]); ytPost('seekTo', [a[n][1], true]); ytInfo.t = a[n][1]; ytInfo.at = performance.now(); PL.hold = 0; PL.cur = -1; tick(); } }
 /* timing review: set a verse's start by ear. The player reports its time a few times a second, so the moment of the tap is
    worked out from the last report; 0.3 s is taken off for the time it takes to hear the word and tap. */
-function nowAt(){ return Math.max(0, ytInfo.t + (playing() && ytInfo.at ? (performance.now() - ytInfo.at) / 1000 : 0) - 0.3); }
-// k = 1: the verse's start; k = 2: its end (null = it runs until the next verse starts)
+function nowAt(){ const t = playTime(), since = PL.seekT != null ? PL.seekAt : ytInfo.at; return Math.max(0, t + (playing() && since ? (performance.now() - since) / 1000 : 0) - 0.3); }   // right after a seek, the player may still report its old time: the asked-for time is used (playTime)
+// k = 1: the verse's start; k = 2: its end (null = it runs until the next verse starts). Returns false when refused (with the reason shown).
 function setTime(i, k, sec){
   const id = IT[i].id, fx = S.timing.fix[tkey()] = S.timing.fix[tkey()] || {}, cur = SRC.au.at[id] || [PL.on ? PL.t : 0, 0, null];
+  if (PL.on && SRC.au.at[id] && cur[0] !== PL.t && sec != null){ toast(T('यह पद दूसरी रिकॉर्डिंगमें है — उसी रिकॉर्डिंगको चलाकर लगाएँ', 'This verse is in another recording — play that recording to mark it')); return false; }
+  if (k === 2 && sec == null && cur[2] == null) return false;   // "Until next" on a verse that has no end: nothing to remove
   const v = [cur[0], cur[1], cur[2] == null ? null : cur[2]]; v[k] = sec == null ? null : Math.round(sec * 10) / 10;
+  // the verses set by ear nearest to this one, before and after, in the order of the text (estimates in between are placed
+  // again by the order rule, so they never block a move)
+  const a = AUT[v[0]] || [], j = a.findIndex(x => x[0] === i);
+  const rows = a.slice().sort((x, y) => x[0] - y[0]), jj = rows.findIndex(x => x[0] === i);
+  let pid = null, nid = null;
+  for (let q = jj - 1; q >= 0; q--) if (ownAt(IT[rows[q][0]].id)){ pid = IT[rows[q][0]].id; break; }
+  for (let q = jj + 1; q < rows.length; q++) if (ownAt(IT[rows[q][0]].id)){ nid = IT[rows[q][0]].id; break; }
+  if (jj < 0) for (const r of rows){ const oid = IT[r[0]].id; if (ownAt(oid)){ if (r[0] < i) pid = oid; else if (nid == null) nid = oid; } }
+  const p = pid && ownAt(pid), n = nid && ownAt(nid);
   if (k === 2 && v[2] != null && v[2] <= v[1]){
     // "Ends now" on a verse whose start is only an estimate that lies after now: the estimate was late. The light came to
     // this verse when the verse before it ended, so that end is its start (owner, 2026-10-19); otherwise ask for the start.
-    const a = AUT[v[0]] || [], j = a.findIndex(x => x[0] === i), pe = j > 0 ? endOf(a[j - 1][0]) : null;
-    const mine = myStarts()[id] && myStarts()[id][1] != null;
+    const pe = j > 0 ? endOf(a[j - 1][0]) : null, mine = !!myStarts()[id];
     if (!mine && pe != null && pe < v[2]) v[1] = pe;
     else { toast(mine ? T('अंत शुरुआतके बाद होना चाहिये', 'The end must come after the start') : T('पहले “अभी शुरू” से इसकी शुरुआत लगाएँ', 'Mark its start first (Starts now)')); return false; }
   }
   if (k === 1 && v[2] != null && v[2] <= v[1]) v[2] = null;
-  // Neighbours move together (owner, 2026-10-19): an end moved past the next verse's start (one you set) carries that start
-  // with it; a start moved before the previous verse's end (one you set) pulls that end back. Nothing is silently cut.
-  const a = AUT[v[0]] || [], j = a.findIndex(x => x[0] === i), link = [];
-  if (k === 2 && v[2] != null && j >= 0 && a[j + 1]){
-    const nid = IT[a[j + 1][0]].id, n = myStarts()[nid];
-    if (n && n[1] != null && v[2] > n[1] + 0.001){
-      if (n[2] != null && n[2] <= v[2] + 0.1){ toast(T('अगला पद इतनी जल्दी समाप्त होता है — पहले उसका अंत आगे करें', 'The next verse ends too soon for that — move its end first')); return false; }
-      link.push([nid, [n[0], v[2], n[2]]]);
-    }
+  // Order is kept between the verses set by ear (owner): a start cannot go before the previous set start, or at or past the
+  // next set start — say which verse is in the way, so it can be moved first
+  if (k === 1 && p && v[1] <= p[1] + 0.1){ toast(T('पिछला पद इसके बाद शुरू होता है (', 'The verse before starts later than that (') + fmtT(p[1]) + T(') — पहले उसकी शुरुआत आगे-पीछे करें', ') — move its start first')); return false; }
+  if (k === 1 && n && v[1] >= n[1] - 0.1){ toast(T('अगला पद इससे पहले शुरू होता है (', 'The next verse starts before that (') + fmtT(n[1]) + T(') — पहले उसकी शुरुआत आगे करें', ') — move its start first')); return false; }
+  // Neighbours move together (owner, 2026-10-19): an end moved past the next set start carries that start with it; a start
+  // moved before the previous verse's set end pulls that end back. Nothing is silently cut; refused only when a neighbour
+  // would be squeezed to nothing (its start reaching its end, or the set start after it).
+  const link = [];
+  if (k === 2 && v[2] != null && n && v[2] > n[1] + 0.001){
+    let nn = null; for (let q = rows.findIndex(x => IT[x[0]].id === nid) + 1; q < rows.length; q++) if (ownAt(IT[rows[q][0]].id)){ nn = ownAt(IT[rows[q][0]].id); break; }
+    const room = n[2] != null ? n[2] : nn ? nn[1] : Infinity;
+    if (room <= v[2] + 0.1){ toast(n[2] != null ? T('अगला पद इतनी जल्दी समाप्त होता है — पहले उसका अंत आगे करें', 'The next verse ends too soon for that — move its end first') : T('उसके बादका पद इससे पहले शुरू होता है — पहले उसकी शुरुआत आगे करें', 'The verse after next starts before that — move its start first')); return false; }
+    link.push([nid, [n[0], v[2], n[2] == null ? null : n[2]]]);
   }
-  if (k === 1 && j > 0){
-    const pid = IT[a[j - 1][0]].id, p = myStarts()[pid];
-    if (p && p[2] != null && v[1] < p[2] - 0.001){
-      if (v[1] <= p[1] + 0.1){ toast(T('पिछला पद इसके बाद शुरू होता है — इतना पीछे नहीं जा सकते', 'The verse before starts later than that — it cannot go back so far')); return false; }
-      link.push([pid, [p[0], p[1], v[1]]]);
-    }
-  }
-  const was = {}; $$('#rBody .verse').forEach(el => { const j = +el.dataset.i; was[j] = JSON.stringify(SRC.au.at[IT[j].id]); });
+  if (k === 1 && p && p[2] != null && v[1] < p[2] - 0.001) link.push([pid, [p[0], p[1], v[1]]]);
+  const was = marksNow();
   fx[id] = v; unfrom(id); link.forEach(([lid, lv]) => { fx[lid] = lv; unfrom(lid); }); save(); buildAudio();
-  Object.keys(was).forEach(j => { j = +j; if (j === i || was[j] !== JSON.stringify(SRC.au.at[IT[j].id])) rerenderItem(j); });   // every verse on screen whose time moved
+  refreshMarks(was, i);
   if (PL.on){ PL.cur = -1; tick(i); }   // the light moves at once, from this verse (after an end: to the next verse); the page stays where you are
   toast((k === 1 ? T('शुरुआत: ', 'Starts at ') : T('अंत: ', 'Ends at ')) + (sec == null ? '—' : fmtT(sec)));
 }
+// after a time was written or removed: every verse on screen whose time, label or buttons changed is drawn again
+function refreshMarks(was, i){ Object.keys(was).forEach(q => { q = +q; if (q === i || was[q] !== JSON.stringify(SRC.au.at[IT[q].id]) + toCheck(q) + !!myStarts()[IT[q].id]) rerenderItem(q); }); }
+function marksNow(){ const was = {}; $$('#rBody .verse').forEach(el => { const q = +el.dataset.i; was[q] = JSON.stringify(SRC.au.at[IT[q].id]) + toCheck(q) + !!myStarts()[IT[q].id]; }); return was; }
 function setStart(i, sec){ setTime(i, 1, sec); }
-function clearStart(i){ const fx = S.timing.fix[tkey()] || {}; delete fx[IT[i].id]; unfrom(IT[i].id); if (!Object.keys(fx).length) delete S.timing.fix[tkey()]; save(); buildAudio(); }
+function clearStart(i){ const fx = S.timing.fix[tkey()] || {}, was = marksNow(); delete fx[IT[i].id]; unfrom(IT[i].id); if (!Object.keys(fx).length) delete S.timing.fix[tkey()]; save(); buildAudio(); refreshMarks(was, i); if (PL.on){ PL.cur = -1; tick(i); } }
 function fmtT(sec){ const m = Math.floor(sec / 60), s = sec - m * 60; return m + ':' + (s < 10 ? '0' : '') + s.toFixed(1); }
 function applyTiming(){ document.body.classList.toggle('timing', !!S.timing.on); }
 $('#pPrev').onclick = () => stepVerse(-1);

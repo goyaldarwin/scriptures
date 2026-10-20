@@ -6,8 +6,9 @@ Needs:  pip install playwright (Chromium; set CHROMIUM=/path/to/chrome if it is 
 Each check prints PASS/FAIL with what it saw; the run fails if any check fails or the page logs a script error.
 --shots saves a screenshot after each step, for a person to look at.
 """
-import asyncio, functools, http.server, json, os, socketserver, sys, threading
+import asyncio, functools, http.server, json, os, random, shutil, socketserver, subprocess, sys, tempfile, threading
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.join(ROOT, 'tools', 'audio')); import order as ORDER   # the order rule, shared with make_timings.py
 from playwright.async_api import async_playwright
 
 SHOTS = sys.argv[sys.argv.index('--shots') + 1] if '--shots' in sys.argv else None
@@ -472,6 +473,104 @@ async def main():
             setTime(n, 1, s0 + 4.2); const ie2 = SRC.au.at[IT[i].id][2] - s0;
             S.timing.fix[tkey()] = JSON.parse(keep); S.timing.on = false; save(); applyTiming(); await loadSources(); return [ie, ns, ie2].map(x => Math.round(x * 10) / 10); })()""")
         check('timing: an end pushed past the next start moves that start along; a start pulled back moves the previous end', link == [4.5, 4.5, 4.2], link)
+        # ---- audio timing, reviewed 2026-10-20 (docs/handoff/2026-10-20-timing-review.md): the order rule in the app and in the
+        # generator give the same figures for the same marks; every write path keeps the order of the text ----
+        T0 = "S.timing.on = true; applyTiming(); await openWork('shri-rudram', true); await loadSources(); show('home'); const keep = JSON.stringify(S.timing.fix[tkey()] || {}); PL.on = false; stopAudio();"
+        T1 = "S.timing.fix[tkey()] = JSON.parse(keep); S.timing.on = false; save(); applyTiming(); await loadSources();"
+        # the same marks give the same times in the app (buildAudio) and in the library (tools/audio/order.py, used by make_timings.py)
+        random.seed(20261020); bad = []
+        for leaf, trail in leaves(shelf):
+            wid = leaf['work']
+            await ev(f"(async () => {{ S.timing.on = true; applyTiming(); await openWork({json.dumps(wid)}, true); await loadSources(); }})()")
+            for sid in await ev("srcList('au').map(s => s.id)"):
+                await ev(f"(async () => {{ (S.src[W.id] = S.src[W.id] || {{}}).au = {json.dumps(sid)}; await loadSources(); }})()")
+                A = await ev("({at: SRC.au.at0, tracks: SRC.au.tracks, guess: SRC.au.guess || [], own: SRC.au.own || [], raw: SRC.au.raw || {}})")
+                items = await ev("IT.map(x => [x.id, x.v.join('').length])"); IDX = {x[0]: i for i, x in enumerate(items)}; guess = set(A['guess'])
+                pub = await ev("(() => { delete S.timing.fix[tkey()]; buildAudio(); return SRC.au.at; })()")
+                if pub != A['at']: bad.append((wid, sid, 'published', [(k, A['at'][k], pub.get(k)) for k in A['at'] if A['at'][k] != pub.get(k)][:3]))
+                for trial in range(8):   # marks near and far from the published times, with and without ends, out of order too
+                    fix = {}
+                    for ti, tr in enumerate(A['tracks']):
+                        ids = [k for k, v in A['at'].items() if v[0] == ti and k in IDX]
+                        for k in random.sample(ids, min(len(ids), random.choice([1, 3, 6]))):
+                            st = max(0, round(A['at'][k][1] + random.uniform(-25, 25), 1)); fix[k] = [ti, st, round(st + random.uniform(0.5, 30), 1) if random.random() < 0.5 else None]
+                    got = await ev(f"(() => {{ S.timing.fix[tkey()] = {json.dumps(fix)}; buildAudio(); return {{at: SRC.au.at, moved: [...SRC.au.moved]}}; }})()")
+                    base = {k: ([v[0], A['raw'][k]] + v[2:]) if k in A['raw'] else v for k, v in A['at'].items()}; base.update(fix); exp = {}; moved = []; ownset = set(A['own']) | set(fix)
+                    for ti, tr in enumerate(A['tracks']):
+                        rows, mv = ORDER.keep_order(sorted([[IDX[k], v[1], v[2] if len(v) > 2 and v[2] is not None else None] for k, v in base.items() if v[0] == ti and k in IDX]), lambda i: items[i][0] in ownset, lambda i: items[i][0] not in guess, lambda i: max(8, items[i][1]), tr['dur'])
+                        for i, st, en in rows: exp[items[i][0]] = [ti, st, en] if en is not None else [ti, st]
+                        moved += [items[i][0] for i in mv]
+                    diff = [(k, got['at'].get(k), exp.get(k)) for k in set(exp) | set(got['at']) if got['at'].get(k) != exp.get(k)]
+                    if diff or set(moved) != set(got['moved']): bad.append((wid, sid, trial, diff[:3], sorted(set(moved) ^ set(got['moved']))[:3]))
+                await ev("delete S.timing.fix[tkey()]; delete S.src[W.id].au; buildAudio()")
+        await ev("(async () => { S.timing.on = false; applyTiming(); await loadSources(); })()")
+        check('timing: the app and the library place the same times for the same marks (every recording, 8 random sets each)', not bad, bad[:2])
+        # Undo in the ⋮ menu redraws the verse (no more − / +, not "yours") and the neighbours it had moved
+        un = await ev("""(async () => { """ + T0 + """
+            const a = AUT[0], i = a[10][0], n = a[11][0]; openReader('k', i); await new Promise(r => setTimeout(r, 600));
+            setTime(i, 1, a[10][1]); setTime(i, 2, a[11][1] + 2); const nMoved = SRC.au.at[IT[n].id][1];
+            itemMenu(i); await new Promise(r => setTimeout(r, 200)); const b = [...document.querySelectorAll('#sheetBody [data-t]')].find(x => x.dataset.t === 'undo'); if (!b) return 'no undo';
+            b.click(); await new Promise(r => setTimeout(r, 200));
+            const v = document.getElementById('v' + i), r = [!!myStarts()[IT[i].id], v.querySelectorAll('.tgrp .tn').length, /yours|आपका/.test(v.querySelector('.tinfo').textContent), document.getElementById('v' + n).querySelector('.tinfo').textContent.includes(fmtT(SRC.au.at[IT[n].id][1])), nMoved !== SRC.au.at[IT[n].id][1]];
+            """ + T1 + """ return r; })()""")
+        check('timing: Undo in the ⋮ menu redraws the verse and the neighbour it had moved', un == [False, 0, False, True, True], un)
+        # "Until next" on a verse that has no end does nothing (it used to make the estimated start "yours")
+        unx = await ev("""(async () => { """ + T0 + """ const i = AUT[0][10][0]; const r = [setTime(i, 2, null), !!myStarts()[IT[i].id]]; """ + T1 + """ return r; })()""")
+        check('timing: Until next on a verse without an end changes nothing', unx == [False, False], unx)
+        # order between verses set by ear: a start cannot go before the previous set start, or at or past the next set start
+        ordr = await ev("""(async () => { """ + T0 + """ const a = AUT[0], p = a[10][0], i = a[11][0], n = a[12][0], s0 = Math.round(a[10][1] * 10) / 10;
+            setTime(p, 1, s0); setTime(n, 1, s0 + 20); setTime(i, 1, s0 + 10); const s = SRC.au.at[IT[i].id][1];
+            const r = [setTime(i, 1, s0 - 1), setTime(i, 1, s0 + 20.5), SRC.au.at[IT[i].id][1] === s, setTime(i, 1, s0 + 19)];
+            """ + T1 + """ return r; })()""")
+        check('timing: a start cannot go before the previous set start or past the next set start', ordr == [False, False, True, None], ordr)
+        # an end carried into the next verse is refused when it would squeeze that verse against the verse after it
+        chain = await ev("""(async () => { """ + T0 + """ const a = AUT[0], i = a[10][0], n = a[11][0], nn = a[12][0], s = Math.round(a[10][1] * 10) / 10;
+            setTime(i, 1, s); setTime(n, 1, s + 10); setTime(nn, 1, s + 14);
+            const r = [setTime(i, 2, s + 15), Math.round((SRC.au.at[IT[n].id][1] - s) * 10) / 10, setTime(i, 2, s + 12), Math.round((SRC.au.at[IT[n].id][1] - s) * 10) / 10];
+            """ + T1 + """ return r; })()""")
+        check('timing: an end pushed past the next start carries it, but not into the verse after next', chain == [False, 10, None, 12], chain)
+        # the link skips estimates in between: a start pulled back pulls the previous *set* end back, even with a guess between them
+        skip = await ev("""(async () => { """ + T0 + """ const a = AUT[0], p = a[10][0], x = a[12][0], s = Math.round(a[10][1] * 10) / 10;
+            setTime(p, 1, s); setTime(p, 2, s + 10); setTime(x, 1, s + 12); setTime(x, 1, s + 8);
+            const r = [Math.round((SRC.au.at[IT[p].id][2] - s) * 10) / 10, SRC.au.at[IT[a[11][0]].id][1] >= s + 8 - 0.01 && SRC.au.at[IT[a[11][0]].id][1] <= s + 8.01];
+            """ + T1 + """ return r; })()""")
+        check('timing: a start pulled back pulls the previous set end back across an estimate, which sits between them', skip == [8, True], skip)
+        # a verse of another recording: marking it while this one plays is refused (the time would belong to the wrong recording)
+        trk = await ev("""(async () => { """ + T0 + """ if (AUT.length < 2) return 'one track'; const i = AUT[0][5][0]; PL.on = true; PL.t = 1; ytOK = true;
+            const r = [setTime(i, 1, 50), !!myStarts()[IT[i].id]]; PL.on = false; ytOK = false; """ + T1 + """ return r; })()""")
+        check('timing: a verse of another recording cannot be marked while this one plays', trk == [False, False], trk)
+        # after a short seek back (− on an end), the player's first report is still the old time: it is not taken as arrived
+        stale = await ev("(() => { PL.seekT = null; ytInfo.t = 100; seekGuard(97.5); ytInfo.t = 100; const a = playTime(); ytInfo.t = 97.6; const b = playTime(); return [a, b]; })()")
+        check('timing: the old time reported after a short seek back is held until the player really moves', stale == [97.5, 97.6], stale)
+        # the moment of a tap right after a seek is taken from the asked-for time, not the player's stale report
+        tap = await ev("(() => { PL.seekT = null; ytInfo.t = 40; ytInfo.at = performance.now() - 2000; ytInfo.st = 1; seekGuard(300); ytInfo.t = 40; const t = nowAt(); ytInfo.st = -1; PL.seekT = null; return t; })()")
+        check('timing: Starts now right after ▶ uses the asked-for time, not the stale one', 299.6 <= tap <= 300.0, tap)
+        # a time already in the library counts as set by ear: it shows − / +, and a neighbour's end pushed past it carries it along
+        pubown = await ev("""(async () => { S.timing.on = true; applyTiming(); await openWork('shirdi-sai-dhoop-aarti', true); (S.src[W.id] = S.src[W.id] || {}).au = 'pramod-medhi-times'; await loadSources(); show('home');
+            const keep = JSON.stringify(S.timing.fix[tkey()] || {}); delete S.timing.fix[tkey()]; buildAudio(); const own = SRC.au.own || []; if (own.length < 3) return 'no own';
+            const i = ID[own[1]], n = ID[own[2]]; openReader('k', i); await new Promise(r => setTimeout(r, 600));
+            const bar = markBar(i), ns = SRC.au.at[own[2]][1]; setTime(i, 2, ns + 1);
+            const r = [bar.includes('data-a="tn"'), /sent|भेजा/.test(bar), Math.round(SRC.au.at[own[2]][1] * 10) / 10 === Math.round((ns + 1) * 10) / 10, !!myStarts()[own[2]]];
+            S.timing.fix[tkey()] = JSON.parse(keep); S.timing.on = false; save(); applyTiming(); await loadSources(); return r; })()""")
+        check('timing: a time already in the library shows − / + and is carried along like one set here', pubown == [True, True, True, True], pubown)
+        # the light never moves on to a start placed again by the order rule (it is only a guess now), even for a heard verse
+        mv = await ev("""(async () => { S.timing.on = true; applyTiming(); await openWork('manas', true); await loadSources(); show('home');
+            const keep = JSON.stringify(S.timing.fix[tkey()] || {}); delete S.timing.fix[tkey()]; buildAudio(); const a = AUT[0]; let k = a.findIndex((x, q) => q > 5 && !toCheck(x[0]) && !toCheck(a[q + 1][0]) && !toCheck(a[q + 2][0]) && a[q + 2][1] - a[q][1] > 8); if (k < 0) return 'no run';
+            const x = a[k][0], y = a[k + 1][0], z = a[k + 2][0], ys = a[k + 1][1], zs = a[k + 2][1]; setTime(x, 1, ys + 1);   // x starts after y's heard start: y is placed again
+            const moved = toCheck(y) && SRC.au.at[IT[y].id][1] > ys; PL.on = true; PL.t = 0; PL.end = null; ytOK = true; PL.seekT = null; PL.cur = x; ytInfo.t = SRC.au.at[IT[y].id][1] + 0.3; tick(); const lit = PL.cur;
+            ytInfo.t = zs + 0.3; tick(); const lit2 = PL.cur; PL.on = false; ytOK = false; S.timing.fix[tkey()] = JSON.parse(keep); S.timing.on = false; save(); applyTiming(); await loadSources(); return [moved, lit === x, lit2 === z]; })()""")
+        check('timing: the light waits on your verse past a start that was placed again, and follows the next heard one', mv == [True, True, True], mv)
+        # the library's workflow (tools/audio/apply_owner_timing.py): a second send that gives a moved verse its own start back is applied
+        tmp = tempfile.mkdtemp(); wp = 'hinduism/aarti/shirdi-sai/dhoop-aarti'; sp = 'tools/works/shirdi-sai-dhoop-aarti/audio/pramod-medhi'
+        os.makedirs(os.path.join(tmp, 'library', wp, 'audio')); shutil.copy(os.path.join(ROOT, 'library', wp, 'work.json'), os.path.join(tmp, 'library', wp)); shutil.copytree(os.path.join(ROOT, sp), os.path.join(tmp, sp))
+        env = dict(os.environ, SCRIPTURES_REPO=tmp); out = []
+        r0 = subprocess.run([sys.executable, os.path.join(ROOT, 'tools/audio/make_timings.py'), os.path.join(tmp, sp)], env=env, capture_output=True, text=True)
+        raw = json.load(open(os.path.join(tmp, 'library', wp, 'audio', 'pramod-medhi.json')))['at']
+        for end in (100, 60):   # the first send pushes the heard verses after pad1 to 100; the second lets pad3 (heard at 65.6) return to its own start
+            body = os.path.join(tmp, 'body.txt'); open(body, 'w').write('```json\n' + json.dumps({'path': wp, 'source': 'pramod-medhi', 'starts': {'QKf_JPbN6Lw': {'aarti.pad1': [30.6, end]}}}) + '\n```\n')
+            r = subprocess.run([sys.executable, os.path.join(ROOT, 'tools/audio/apply_owner_timing.py'), body], env=env, capture_output=True, text=True); out.append((r.returncode, r.stdout.strip().split('\n')[-1]))
+        after = json.load(open(os.path.join(tmp, 'library', wp, 'audio', 'pramod-medhi.json')))['at']; shutil.rmtree(tmp)
+        check('timing: a second send that lets a moved verse go back to its own start is applied by the workflow', r0.returncode == 0 and out[0][0] == 0 and out[1][0] == 0 and after['aarti.pad3'] == raw['aarti.pad3'] and 60 < raw['aarti.pad3'][1] < 100, (r0.stderr[-200:], out, raw.get('aarti.pad3'), after.get('aarti.pad3')))
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')
