@@ -493,7 +493,7 @@ $('#rBody').addEventListener('click', ev => {
       if (!PL.on || !ytOK){ toast(T('पहले ऑडियो चलाएँ — फिर जिस पदको सुन रहे हैं उसीके बटन दबाएँ', 'Start the audio first, then tap the buttons of the verse you are hearing')); return; }
       setTime(i, act === 'tstart' ? 1 : 2, nowAt()); rerenderItem(i);
     }
-    else if (act === 'tn'){ const x = SRC.au.at[IT[i].id], k = +a.dataset.k; setTime(i, k, Math.max(0, x[k] + +a.dataset.d)); rerenderItem(i); }
+    else if (act === 'tn'){ const x = SRC.au.at[IT[i].id], k = +a.dataset.k; setTime(i, k, Math.max(0, x[k] + a.dataset.d * step())); rerenderItem(i); snippet(i, k); }
     else if (act === 'tok'){ unfrom(IT[i].id); save(); rerenderItem(i); toast(T('जाँच लिया — अब यह आपका है', 'Checked — it is now yours')); }
     else if (act === 'bm'){ const me = ME(), k = KEY(IT[i].id); const had = !!me.bm[k]; if (had) delete me.bm[k]; else me.bm[k] = Date.now(); save(); rerenderItem(i); toast(!had ? T('बुकमार्क जोड़ा', 'Bookmarked') : T('बुकमार्क हटाया', 'Bookmark removed')); }
     else if (act === 'enote') noteSheet(i, +a.dataset.k);
@@ -515,9 +515,12 @@ function itemMenu(i){
   openSheet('<p class="small muted">' + esc(itemLabel(i)) + '</p><div class="menu">' + (hasAu(i) ? '<button data-x="play"><svg><use href="#i-play"/></svg>' + T('यहाँसे सुनें', 'Listen from here') + '</button>' : '') + '<button data-x="copy"><svg><use href="#i-copy"/></svg>' + T('मूल पाठ और अर्थ कॉपी करें', 'Copy verse and meaning') + '</button><button data-x="note"><svg><use href="#i-note"/></svg>' + T('टिप्पणी लिखें', 'Write a note') + '</button><button data-x="edit"><svg><use href="#i-edit"/></svg>' + T('पाठ या अर्थमें सुधार करें', 'Correct the text or meaning') + '</button>' + (edited ? '<button data-x="revert"><svg><use href="#i-edit"/></svg>' + T('मेरा सुधार हटाएँ (पुस्तकका पाठ लौटाएँ)', 'Remove my correction (restore book text)') + '</button>' : '') + '</div>');
   if (S.timing.on && hasAu(i)){   // timing review: this verse's start, nudge it, hear it, undo
     const mine = !!myStarts()[id];
-    const row = (k, label) => '<div class="small muted" style="margin-top:8px">' + label + '</div><div class="tctl"><button class="btn ghost small" data-t="' + k + ':-0.5">−0.5 s</button><b id="tS' + k + '">—</b><button class="btn ghost small" data-t="' + k + ':0.5">+0.5 s</button>' + (k === 2 ? '<button class="btn ghost small" data-t="2:none">' + T('अगले पद तक', 'Until next') + '</button>' : '') + '</div>';
-    $('#sheetBody').insertAdjacentHTML('beforeend', '<div class="tbox"><div class="small muted"><b>' + T('ऑडियोका समय', 'Audio timing') + '</b>' + (fromOf(id) ? ' · ' + T('', 'from ') + esc(fromOf(id)) + T(' का', '') : mine ? T(' · आपका सेट किया हुआ', ' · set by you') : '') + '</div>' + row(1, T('शुरुआत', 'Start')) + row(2, T('अंत (खाली = अगला पद शुरू होनेतक)', 'End (empty = until the next verse starts)')) + '<div class="tctl" style="margin-top:10px"><button class="btn small" data-t="play">▶ ' + T('यही पद सुनें', 'Play this verse') + '</button>' + (mine ? '<button class="btn ghost small" data-t="undo">' + T('पहले जैसा', 'Undo') + '</button>' : '') + '</div></div>');
+    const st = step(), row = (k, label) => '<div class="small muted" style="margin-top:8px">' + label + '</div><div class="tctl"><button class="btn ghost small" data-t="' + k + ':-' + st + '">−' + st + ' s</button><b id="tS' + k + '">—</b><button class="btn ghost small" data-t="' + k + ':' + st + '">+' + st + ' s</button>' + (k === 2 ? '<button class="btn ghost small" data-t="2:none">' + T('अगले पद तक', 'Until next') + '</button>' : '') + '</div>';
+    $('#sheetBody').insertAdjacentHTML('beforeend', '<div class="tbox"><div class="small muted"><b>' + T('ऑडियोका समय', 'Audio timing') + '</b>' + (fromOf(id) ? ' · ' + T('', 'from ') + esc(fromOf(id)) + T(' का', '') : mine ? T(' · आपका सेट किया हुआ', ' · set by you') : '') + '</div>' + row(1, T('शुरुआत', 'Start')) + row(2, T('अंत (खाली = अगला पद शुरू होनेतक)', 'End (empty = until the next verse starts)')) +
+      '<div class="small muted" style="margin-top:8px">' + T('− / + एक बारमें कितना खिसकाएँ (हर पदके नीचे भी)', 'How far − / + move a time (here and under every verse)') + '</div><div class="tctl tstep">' + [0.1, 0.25, 0.5, 1].map(v => '<button class="btn small' + (v === st ? '' : ' ghost') + '" data-step="' + v + '">' + v + ' s</button>').join('') + '</div>' +
+      '<div class="tctl" style="margin-top:10px"><button class="btn small" data-t="play">▶ ' + T('यही पद सुनें', 'Play this verse') + '</button>' + (mine ? '<button class="btn ghost small" data-t="undo">' + T('पहले जैसा', 'Undo') + '</button>' : '') + '</div></div>');
     const show = () => { const x = SRC.au.at[id]; $('#tS1').textContent = fmtT(x[1]); $('#tS2').textContent = x[2] != null ? fmtT(x[2]) : '—'; };
+    $$('#sheetBody [data-step]').forEach(b => b.onclick = () => { S.timing.step = +b.dataset.step; save(); closeSheet(); itemMenu(i); toast('− / + = ' + b.dataset.step + ' s'); });
     show();
     $$('#sheetBody [data-t]').forEach(b => b.onclick = () => {
       const t = b.dataset.t;
@@ -527,7 +530,7 @@ function itemMenu(i){
       if (d === 'none') setTime(i, 2, null);
       else if (k === '1') setTime(i, 1, Math.max(0, x[1] + +d));
       else { const base = x[2] != null ? x[2] : (() => { const a = AUT[x[0]], n = a.findIndex(y => y[0] === i); return n >= 0 && n + 1 < a.length ? a[n + 1][1] : x[1] + 5; })(); setTime(i, 2, Math.max(x[1] + 0.5, base + +d)); }
-      show();
+      show(); if (d !== 'none') snippet(i, +k);
     });
   }
   $$('#sheetBody [data-x]').forEach(b => b.onclick = () => {
@@ -564,7 +567,9 @@ function markBar(i){
     // a verse you have marked can be fine-tuned here, half a second at a time (owner, 2026-10-19); ▶ beside the verse plays it
     (mine && x ? '<span class="tnudge">' + nud(1, T('शुरू', 'Start')) + (x[2] != null ? nud(2, T('अंत', 'End')) : '') + '</span>' : '') + '</div>';
 }
-function nud(k, label){ return '<span>' + label + ' <button data-a="tn" data-k="' + k + '" data-d="-0.5">−0.5</button><button data-a="tn" data-k="' + k + '" data-d="0.5">+0.5</button></span>'; }
+// one line, just − and +; how far each tap moves is set in the verse's ⋮ menu (owner, 2026-10-19)
+function nud(k, label){ return '<span>' + label + ' <button data-a="tn" data-k="' + k + '" data-d="-1" aria-label="−">−</button><button data-a="tn" data-k="' + k + '" data-d="1" aria-label="+">+</button></span>'; }
+function step(){ return S.timing.step || 0.5; }
 function toCheck(i){ return !!(S.timing.on && SRC.au && SRC.au.checkSet && SRC.au.checkSet.has(IT[i].id) && !myStarts()[IT[i].id]); }   // a start that is only estimated: to be checked by ear
 function myStarts(){ return (SRC.au && S.timing.fix[tkey()]) || {}; }
 function fromOf(id){ return SRC.au ? (S.timing.from[tkey()] || {})[id] : undefined; }
@@ -655,8 +660,25 @@ window.addEventListener('message', e => {
 });
 /* what is playing, in the app's own words: the reading (kāṇḍa or plan day) and the reciter — never the recording's title */
 function playingName(){ return (R.org === 'k' ? KNAME(R.n) : TT(PLAN[R.org].name) + ' · ' + VN(R.n)) + ' · ' + TT(SRC.au.meta.title); }
+// Fine-tuning preview (owner, 2026-10-19): after − / + on a start, the first 2 s of the verse play from the new start; on an
+// end, the last 2 s up to the new end. Then the player pauses, so the next tap can follow at once.
+let snipT = null;
+function snippet(i, k){
+  const x = SRC.au.at[IT[i].id]; if (!x) return; const tr = SRC.au.tracks[x[0]];
+  const t0 = k === 1 ? x[1] : Math.max(x[1], x[2] - 2), t1 = k === 1 ? (x[2] != null ? Math.min(x[2], x[1] + 2) : x[1] + 2) : x[2];
+  PL.on = true; PL.t = x[0]; PL.end = null; PL.snip = t1; PL.whole = false; PL.endMsg = '';
+  $('#player').hidden = false; document.body.classList.add('playing');
+  if (ytVid !== tr.yt || !ytFrame()) ytLoad(tr.yt, t0); else { ytPost('seekTo', [t0, true]); ytPost('playVideo'); ytInfo.t = t0; ytInfo.at = performance.now(); }
+  seekGuard(t0); setCur(i); $('#pTrack').textContent = playingName(); syncPlayer();
+  clearInterval(snipT); snipT = setInterval(() => {   // checked often, from the player's last report and the time since
+    if (PL.snip == null){ clearInterval(snipT); return; }
+    const now = playTime() + (playing() && ytInfo.at && PL.seekT == null ? (performance.now() - ytInfo.at) / 1000 : 0);
+    if (now >= PL.snip - 0.05){ ytPost('pauseVideo'); PL.snip = null; clearInterval(snipT); setTimeout(syncPlayer, 300); }
+  }, 50);
+}
 function playFrom(i, end){
   if (!SRC.au) return;
+  PL.snip = null;
   if (!hasAu(i)){ const j = firstAu(i, Math.min(IT.length - 1, i + 80)); if (j == null) return; i = j; }
   const [t, st0] = SRC.au.at[IT[i].id], tr = SRC.au.tracks[t];
   const st = (end != null && i === tr.fi) ? 0 : st0;
@@ -730,13 +752,13 @@ function setCur(i){
   // while timings are being marked the page is not moved under your finger: it only follows when the lit verse leaves the screen
   if (el){ el.classList.add('now'); if (Date.now() > PL.hold && !(S.timing.on && inView(el))) keepInView(el); }
 }
-function stopAudio(){ ytPost('pauseVideo'); PL.on = false; $('#player').hidden = true; document.body.classList.remove('playing'); $$('#rBody .verse.now').forEach(v => v.classList.remove('now')); }
+function stopAudio(){ ytPost('pauseVideo'); PL.on = false; PL.snip = null; $('#player').hidden = true; document.body.classList.remove('playing'); $$('#rBody .verse.now').forEach(v => v.classList.remove('now')); }
 function playing(){ return ytInfo.st === 1 || ytInfo.st === 3; }
 function syncPlayer(){ $('#pPlay').innerHTML = '<svg><use href="#i-' + (playing() ? 'pause' : 'play') + '"/></svg>'; }
 ['touchstart', 'wheel'].forEach(e => window.addEventListener(e, ev => { if (PL.on && !ev.target.closest('#player')) PL.hold = Date.now() + 8000; }, {passive: true}));
 $('#pPlay').onclick = () => { if (playing()) ytPost('pauseVideo'); else ytPost('playVideo'); setTimeout(syncPlayer, 400); };
 $('#pClose').onclick = stopAudio;
-function stepVerse(d){ const a = AUT[PL.t]; const k = a.findIndex(x => x[0] === PL.cur); const n = k + d; if (k >= 0 && n >= 0 && n < a.length){ ytPost('seekTo', [a[n][1], true]); ytInfo.t = a[n][1]; seekGuard(a[n][1]); PL.hold = 0; PL.cur = -1; tick(); } }
+function stepVerse(d){ PL.snip = null; const a = AUT[PL.t]; const k = a.findIndex(x => x[0] === PL.cur); const n = k + d; if (k >= 0 && n >= 0 && n < a.length){ ytPost('seekTo', [a[n][1], true]); ytInfo.t = a[n][1]; seekGuard(a[n][1]); PL.hold = 0; PL.cur = -1; tick(); } }
 /* timing review: set a verse's start by ear. The player reports its time a few times a second, so the moment of the tap is
    worked out from the last report; 0.3 s is taken off for the time it takes to hear the word and tap. */
 function nowAt(){ return Math.max(0, ytInfo.t + (playing() && ytInfo.at ? (performance.now() - ytInfo.at) / 1000 : 0) - 0.3); }

@@ -452,9 +452,11 @@ async def main():
             const a = AUT[0], i = a[10][0], o = a[12][0]; openReader('k', i); await new Promise(r => setTimeout(r, 600));
             const keep = JSON.stringify(S.timing.fix[tkey()] || {}); setTime(i, 1, a[10][1]); const s0 = SRC.au.at[IT[i].id][1]; setTime(i, 2, s0 + 3); rerenderItem(i);
             const v = document.getElementById('v' + i), has = !!v.querySelector('.tnudge'), two = v.querySelectorAll('.tnudge button').length, other = !!document.getElementById('v' + o)?.querySelector('.tnudge'), dup = !!document.querySelector('#rBody [data-a=tplay]');
-            v.querySelector('.tnudge [data-k="1"][data-d="0.5"]').click(); const s1 = SRC.au.at[IT[i].id][1];
-            document.getElementById('v' + i).querySelector('.tnudge [data-k="2"][data-d="-0.5"]').click(); const e1 = SRC.au.at[IT[i].id][2];
-            S.timing.fix[tkey()] = JSON.parse(keep); S.timing.on = false; save(); applyTiming(); await loadSources();
+            S.timing.step = 0.5; v.querySelector('.tnudge [data-k="1"][data-d="1"]').click(); const s1 = SRC.au.at[IT[i].id][1];
+            document.getElementById('v' + i).querySelector('.tnudge [data-k="2"][data-d="-1"]').click(); const e1 = SRC.au.at[IT[i].id][2];
+            const snipSet = PL.on && PL.snip != null && Math.abs(PL.snip - SRC.au.at[IT[i].id][2]) < 0.01;   // the end's preview plays up to the new end
+            stopAudio(); S.timing.fix[tkey()] = JSON.parse(keep); S.timing.on = false; save(); applyTiming(); await loadSources();
+            if (!snipSet) return 'no preview';
             return [has, two, other, dup, Math.round((s1 - s0) * 10) / 10, Math.round((e1 - s0) * 10) / 10]; })()""")
         check('timing: a marked verse has ±0.5 s for its start and end; others do not; no second ▶', nu == [True, 4, False, False, 0.5, 2.5], nu)
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
