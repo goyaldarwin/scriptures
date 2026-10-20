@@ -169,7 +169,7 @@ body.playing #rBody{padding-bottom:150px}
    only, so its top edge never crosses the previous verse's rule; that rule is hidden while the next verse is lit */
 .verse.now{border-bottom-color:transparent;background:color-mix(in srgb,var(--saffron) 8%,transparent);border-radius:12px;margin-left:-10px;margin-right:-10px;padding-left:10px;padding-right:10px}
 .verse:has(+ .verse.now){border-bottom-color:transparent}
-.vb.vplay{position:absolute;left:-32px;bottom:0;height:calc(var(--verse-size) * 1.6);color:var(--saffron);opacity:1}
+.vb.vplay{position:absolute;left:-32px;top:0;height:calc(var(--verse-size) * 1.6);color:var(--saffron);opacity:1}
 .vb.vplay svg{fill:var(--saffron);stroke:none;width:34px;height:34px;margin-left:-4px}   /* as easy to see as the bookmark sign (owner, 2026-10-20) */.vb.vplay{width:30px}
 .vbm{position:absolute;right:-25px;top:0;height:calc(var(--verse-size) * 1.6)}
 .vtext p.one{padding:calc(var(--verse-size) * .8) 0}

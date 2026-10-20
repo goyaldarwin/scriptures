@@ -206,7 +206,7 @@ Then expect from me, in order:
 - **Bottom bar = section picker.** Sections listed by name with the **range first, then the topic** (e.g. "Dohā 2–3 · ब्राह्मण-संत-वन्दना"); for plans, a day picker on top. This replaces "Dohā number (0 = …)".
 - **Pages follow the book's own sections, not topics**; topic headings appear inside the page.
 - **Opening sections** are labelled by verse type and number ("Śloka 1 – Sorathā 4"), never "Dohā 0" or a vague "Invocation".
-- **Verse controls never shift centred text:** type label fixed at left of first line; bookmark + ⋮ fixed at right of last line; ▶ at left of last line.
+- **Verse controls never shift centred text:** type label fixed at left of first line; bookmark + ⋮ fixed at right of last line; ▶ at left of the first line, level with the bookmark (owner, 2026-10-20; it was at the last line).
 - **Verse numbers** in the verse; Devanagari digits in Hindi mode, Latin in English mode.
 - **Light theme by default.**
 

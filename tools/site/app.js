@@ -305,10 +305,10 @@ function verseHTML(i){
     if (LANG() === 'en') ln = ln.replace(/[०-९]/g, d => DIG.indexOf(d)).replace(/[੦-੯]/g, d => d.charCodeAt(0) - 0x0A66);
     const w = wordsHTML(ln).replace(/।।\s*([0-9०-९][^\s।<]*)\s*।।/, '<span style="white-space:nowrap">।।$1।।</span>').replace(/॥\s*([0-9०-९੦-੯][^\s॥<]*)\s*॥/, '<span style="white-space:nowrap">॥$1॥</span>');
     const lead = '';   // the verse type is no longer a corner tag: it is a heading above a run of verses (typeHead)
-    // four corners, each inside the gutter so they never touch the text: type tag (top left), bookmark (top right),
-    // ▶ (bottom left), ⋮ (bottom right). A one-line verse is given a second line's height so the corners stay apart.
-    const top = y === 0 ? '<button class="vb vbm' + (bm ? ' bm-on' : '') + '" data-a="bm" aria-label="bookmark"><svg><use href="#i-bm"/></svg></button>' : '';
-    const tail = last ? (hasAu(i) ? '<button class="vb vplay" data-a="play" aria-label="play"><svg><use href="#i-play"/></svg></button>' : '') + '<span class="vend"><button class="vb" data-a="menu" aria-label="more"><svg><use href="#i-more"/></svg></button></span>' : '';
+    // corners, each inside the gutter so they never touch the text: ▶ (top left, on the line of the bookmark — owner,
+    // 2026-10-20), bookmark (top right), ⋮ (bottom right). A one-line verse is given a second line's height so the corners stay apart.
+    const top = y === 0 ? (hasAu(i) ? '<button class="vb vplay" data-a="play" aria-label="play"><svg><use href="#i-play"/></svg></button>' : '') + '<button class="vb vbm' + (bm ? ' bm-on' : '') + '" data-a="bm" aria-label="bookmark"><svg><use href="#i-bm"/></svg></button>' : '';
+    const tail = last ? '<span class="vend"><button class="vb" data-a="menu" aria-label="more"><svg><use href="#i-more"/></svg></button></span>' : '';
     return '<p' + (vv.v.length === 1 ? ' class="one"' : '') + '>' + lead + top + w + tail + '</p>'; }).join('') + '</div>';
   if (S.timing.on && SRC.au) h += markBar(i);
   if (S.settings.tr && it.t && it.t.length) h += '<div class="tr">' + it.t.map(l => '<div>' + l.split(/(?<=,)\s+/).map(x => '<span class="half">' + esc(x).replace(/\s*॥\s*([^॥]*?)\s*॥/g, ' <span class="dd">॥$1॥</span>') + '</span>').join(' ') + '</div>').join('') + '</div>';
