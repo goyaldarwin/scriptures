@@ -541,7 +541,7 @@ async def main():
         # Undo in the ⋮ menu redraws the verse (no more − / +, not "yours") and the neighbours it had moved
         un = await ev("""(async () => { """ + T0 + """
             const a = AUT[0], i = a[10][0], n = a[11][0]; openReader('k', i); await new Promise(r => setTimeout(r, 600));
-            setTime(i, 1, a[10][1]); setTime(i, 2, a[11][1] + 2); const nMoved = SRC.au.at[IT[n].id][1];
+            setTime(i, 1, a[10][1]); setTime(i, 2, a[11][1] + 2); clearStart(n); const nMoved = SRC.au.at[IT[n].id][1];   // the end gave n a start; Undo on n leaves it an estimate placed after the end
             itemMenu(i); await new Promise(r => setTimeout(r, 200)); const b = [...document.querySelectorAll('#sheetBody [data-t]')].find(x => x.dataset.t === 'undo'); if (!b) return 'no undo';
             b.click(); await new Promise(r => setTimeout(r, 200));
             const v = document.getElementById('v' + i), r = [!!myStarts()[IT[i].id], v.querySelectorAll('.tgrp .tn').length, /yours|आपका/.test(v.querySelector('.tinfo').textContent), document.getElementById('v' + n).querySelector('.tinfo').textContent.includes(fmtT(SRC.au.at[IT[n].id][1])), nMoved !== SRC.au.at[IT[n].id][1]];
@@ -564,7 +564,7 @@ async def main():
         check('timing: an end pushed past the next start carries it, but not into the verse after next', chain == [False, 10, None, 12], chain)
         # the link skips estimates in between: a start pulled back pulls the previous *set* end back, even with a guess between them
         skip = await ev("""(async () => { """ + T0 + """ const a = AUT[0], p = a[10][0], x = a[12][0], s = Math.round(a[10][1] * 10) / 10;
-            setTime(p, 1, s); setTime(p, 2, s + 10); setTime(x, 1, s + 12); setTime(x, 1, s + 8);
+            setTime(p, 1, s); setTime(p, 2, s + 10); clearStart(a[11][0]); setTime(x, 1, s + 12); setTime(x, 1, s + 8);   // the end gave a[11] a start; Undo makes it an estimate again
             const r = [Math.round((SRC.au.at[IT[p].id][2] - s) * 10) / 10, SRC.au.at[IT[a[11][0]].id][1] >= s + 8 - 0.01 && SRC.au.at[IT[a[11][0]].id][1] <= s + 8.01];
             """ + T1 + """ return r; })()""")
         check('timing: a start pulled back pulls the previous set end back across an estimate, which sits between them', skip == [8, True], skip)
@@ -668,6 +668,25 @@ async def main():
             show('settings'); await new Promise(r => setTimeout(r, 300)); const on = document.querySelector('#setBody [data-rate].on'); const r2 = on && on.dataset.rate;
             document.querySelector('#setBody [data-rate="1"]').click(); return [r1, open, r2, S.settings.rate]; })()""")
         check('speed: 1× · 1.25× · 1.5× · 2× in the reader\'s ☰ and in Settings, remembered', rt == [1.5, True, '1.5', 1], rt)
+        # ---- owner, 2026-10-20: "Ends now" also starts the next verse; the preview only when nothing plays live ----
+        en = await ev("""(async () => { """ + T0 + """ const a = AUT[0], i = a[10][0], n = a[11][0], m = a[12][0], s = Math.round(a[10][1] * 10) / 10;
+            setTime(i, 1, s); setTime(i, 2, s + 6); const r = [Math.round((SRC.au.at[IT[n].id][1] - s) * 10) / 10, !!myStarts()[IT[n].id], !!myStarts()[IT[m].id]];   // the next verse starts at the end and is yours; the one after is untouched
+            setTime(i, 2, s + 5.5); r.push(Math.round((SRC.au.at[IT[n].id][1] - s) * 10) / 10);   // − on the end: the start follows it back
+            setTime(i, 2, s + 7); r.push(Math.round((SRC.au.at[IT[n].id][1] - s) * 10) / 10);     // + on the end: carried along
+            setTime(n, 1, s + 8); setTime(i, 2, s + 6.5); r.push(Math.round((SRC.au.at[IT[n].id][1] - s) * 10) / 10);   // a start you set yourself no longer follows the end back
+            setTime(m, 1, s + 9); clearStart(n); r.push(setTime(i, 2, s + 9.5), Math.round((SRC.au.at[IT[n].id][1] - s) * 10) / 10);   // the next verse unset again, a set verse after it: an end reaching that start is refused
+            """ + T1 + """ return r; })()""")
+        check('timing: Ends now gives the next unmarked verse that end as its start; the start follows the end while they are equal; refused past a set verse', en == [6, True, False, 5.5, 7, 8, False, 6.5], en)
+        pv = await ev("""(async () => { """ + T0 + """ const a = AUT[0], i = a[10][0], s = Math.round(a[10][1] * 10) / 10; openReader('k', i); await new Promise(r => setTimeout(r, 600));
+            setTime(i, 1, s); setTime(i, 2, s + 4); rerenderItem(i); S.timing.step = 0.5;
+            PL.on = true; PL.t = 0; PL.end = null; PL.snip = null; ytOK = true; ytInfo.st = 1; ytInfo.t = s + 20; ytInfo.at = performance.now(); PL.seekT = null;   // playing live, further on
+            document.getElementById('v' + i).querySelector('.tgrp [data-k="2"][data-d="-1"]').click();
+            const live = [PL.snip == null, Math.round((SRC.au.at[IT[i].id][2] - s) * 10) / 10, PL.seekT == null];   // the end moved, no preview, no seek
+            ytInfo.st = 2;   // paused
+            document.getElementById('v' + i).querySelector('.tgrp [data-k="2"][data-d="-1"]').click();
+            const paused = [PL.snip != null && Math.abs(PL.snip - SRC.au.at[IT[i].id][2]) < 0.01, Math.round((SRC.au.at[IT[i].id][2] - s) * 10) / 10];   // now the preview plays up to the new end
+            stopAudio(); ytOK = false; ytInfo.st = -1; """ + T1 + """ return live.concat(paused); })()""")
+        check('timing: − / + while the recitation plays on only move the time; the 2-second preview plays when nothing is playing', pv == [True, 3.5, True, True, 3], pv)
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')
