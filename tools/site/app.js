@@ -120,6 +120,8 @@ const LB = {
 let toastT;
 // a toast with one action (e.g. “Continue ▶” after a verse has been played); it stays a little longer and can be tapped
 function toastAct(msg, label, fn){ const t = $('#toast'); t.innerHTML = esc(msg) + ' <button class="tact">' + esc(label) + '</button>'; t.classList.add('on', 'act'); t.querySelector('.tact').onclick = () => { t.classList.remove('on', 'act'); fn(); }; clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on', 'act'), 8000); }
+// a message in the light card of "Finished · ▶ Play on" (white and blue), without a button
+function toastLight(msg, ms){ const t = $('#toast'); t.textContent = msg; t.classList.add('on', 'act'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on', 'act'), ms || 4000); }
 function toast(msg){ $('#toast').classList.remove('act'); const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), 2600); }
 function applyLang(){ const en = LANG() === 'en'; document.documentElement.lang = en ? 'en' : 'hi';
   $$('[data-en]').forEach(el => { if (el.dataset.hi == null) el.dataset.hi = el.innerHTML; el.innerHTML = en ? el.dataset.en : el.dataset.hi; });
@@ -521,7 +523,7 @@ $('#rBody').addEventListener('click', ev => {
     }
     else if (act === 'tn'){ const x = SRC.au.at[IT[i].id], k = +a.dataset.k; if (setTime(i, k, Math.max(0, x[k] + a.dataset.d * step())) === false) return; rerenderItem(i); snippet(i, k); }
     else if (act === 'tok'){ unfrom(IT[i].id); save(); rerenderItem(i); toast(T('जाँच लिया — अब यह आपका है', 'Checked — it is now yours')); }
-    else if (act === 'bm'){ const me = ME(), k = KEY(IT[i].id); const had = !!me.bm[k]; if (had) delete me.bm[k]; else me.bm[k] = Date.now(); save(); rerenderItem(i); toast(!had ? T('बुकमार्क जोड़ा', 'Bookmarked') : T('बुकमार्क हटाया', 'Bookmark removed')); }
+    else if (act === 'bm'){ const me = ME(), k = KEY(IT[i].id); const had = !!me.bm[k]; if (had) delete me.bm[k]; else { me.bm[k] = Date.now(); if (TOUR) TOUR.bmAdded = true; } save(); rerenderItem(i); toast(!had ? T('बुकमार्क जोड़ा', 'Bookmarked') : T('बुकमार्क हटाया', 'Bookmark removed')); }
     else if (act === 'enote') noteSheet(i, +a.dataset.k);
     else if (act === 'menu') itemMenu(i);
     else if (act === 'done'){ const o = a.dataset.o, n = +a.dataset.n, d = DONE(ME(), o); if (d[n]) delete d[n]; else d[n] = Date.now(); save(); const box = a.closest('.pause'); const tmp = document.createElement('div'); tmp.innerHTML = pauseHTML(+a.dataset.i); const nb = Array.from(tmp.children).find(x => x.dataset.pause === o + n); if (box && nb) box.replaceWith(nb); if (d[n]) toast(VN(n) + T(' पूर्ण — जय श्रीराम', ' complete — Jai Shri Ram')); }
@@ -1223,7 +1225,7 @@ function tourSteps(){
      enter: () => { TOUR.base = JSON.stringify(S.settings.layers); }, done: () => JSON.stringify(S.settings.layers) !== TOUR.base},
     {t: () => $('#rLayers [data-l="r"]'), allow: '#rLayers [data-l="r"]', p: T('पुस्तक छूकर पाठ मोड चालू करें — केवल मूल पाठ, बड़े अक्षरोंमें। फिर छूनेपर अर्थ लौट आते हैं।', 'Tap the book for recitation mode — the verses alone, in larger type. Tap it again to bring the meanings back.'), done: () => !!S.settings.recite},
     {t: () => firstVisible('#rBody .vbm'), allow: '#rBody .vbm', p: T('बुकमार्क चिह्न छूकर यह पद सहेजें — ☰ › बुकमार्कमें मिलेगा।', 'Tap the bookmark sign to save this verse — find it in ☰ › Bookmarks.'),
-     enter: () => { TOUR.base = Object.keys(ME().bm).length; }, done: () => Object.keys(ME().bm).length > TOUR.base},   // owner, 2026-10-20
+     enter: () => { TOUR.bmAdded = false; }, done: () => !!TOUR.bmAdded},   // any bookmark made in this step — even one taken off and put back (owner, 2026-10-20)
     {t: () => firstVisible('#rBody .vplay'), allow: '#rBody .vplay', p: T('▶ छूकर केवल यह पद सुनें — जो गाया जा रहा है वह चमकेगा।', 'Tap ▶ to hear just this verse — it lights up as it is sung.'), done: () => PL.on},
   ];
 }
@@ -1261,18 +1263,18 @@ function tourBack(){
   if (k === 0 && CURVIEW !== 'home') show('home');
   TOUR.k = -1; $('#cspot').style.opacity = 0; setTimeout(() => tourStep(k), 250);
 }
-// After ▶ the tour waits for the verse to finish playing, then takes the reader to the library with a parting message
-// (owner, 2026-10-20). Closing the player early ends it the same way.
-function tourEnd(){ if (!TOUR) return; TOUR.k = -1; TOUR.waiting = true; $('#coach').hidden = true; if (!PL.on) tourFinish(); }
+// After ▶ the tour lets the verse play for 5 seconds, then takes the reader to the library with a parting message
+// (owner, 2026-10-20). Closing the player sooner ends it the same way.
+function tourEnd(){ if (!TOUR) return; TOUR.k = -1; TOUR.waiting = true; TOUR.until = Date.now() + 5000; $('#coach').hidden = true; if (!PL.on) tourFinish(); }
 function tourFinish(){
   if (S.settings.recite) toggleRecite();   // the meanings come back after the tour
   closeTour(); libPath = []; show('library');
-  toast(T('परिचय पूरा हुआ — आशा है ऐप आपको अच्छा लगेगा!', 'Tour complete — we hope you enjoy the app!'));
+  toastLight(T('परिचय पूरा हुआ — आशा है ऐप आपको अच्छा लगेगा!', 'Tour complete — we hope you enjoy the app!'));
 }
 function closeTour(keep){ if (!keep) S.hinted = 1;  $('#tour').hidden = true; $('#coach').hidden = true; $('#tourSkip').hidden = false; TOUR = null; if (!keep){ S.settings.tour = 1; save(); } }
 // keep the light on the step's spot as the page moves; move on when the step has been done (a step that cannot be shown is skipped)
 setInterval(() => {
-  if (TOUR && TOUR.waiting){ if (!PL.on) tourFinish(); return; }
+  if (TOUR && TOUR.waiting){ if (PL.on && Date.now() >= TOUR.until) stopAudio(); if (!PL.on) tourFinish(); return; }
   if (!TOUR || TOUR.k < 0) return; const x = tourSteps()[TOUR.k]; if (!x) return;
   if (x.done()){ const nx = TOUR.k + 1; TOUR.k = -1; $('#cspot').style.opacity = 0; setTimeout(() => tourStep(nx), 450); return; }
   const el = x.t(), sp = $('#cspot'), cb = $('#cbub');
