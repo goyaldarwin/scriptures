@@ -63,6 +63,8 @@ Copyright protects **wording**, not meaning. A meaning that paraphrases Gita Pre
 - **Sundarakāṇḍa:** `tools/works/sundarkand/export.py` copies the Mānas's Gita Press sources for parts 1–2 and `bal.17.so17`; extend it to copy the new Mānas sources too, merged with its own `hi-scriptures`/`en-scriptures` for the Chālīsā, āratī and opening prayers (one source per language, not two with the same id), and extend `check.py` to prove the copies equal the Mānas's.
 - **Do not change the Mānas's text, ids or Gita Press files.** The Mānas is the owner's most important work; the new sources only add files.
 
+**Update 2026-10-20: one caupāī per item.** The 16 joint caupāīs Gita Press prints as one (e.g. `bal.6.cau3-5`) are now separate items (`bal.6.cau3`, `cau4`, `cau5`; `work.json` → `renamed`). Write our meanings for the new ids, one per caupāī; the joint Gita Press meaning is under the last part, and the earlier parts carry only a pointer — so for these, write from the verse as always and use the joint meaning only to check understanding.
+
 ## Rolling out: side by side, then ours only
 
 1. **Now:** add ours as a second source (`order` after Gita Press), so readers and the owner can switch between them in Settings › Sources. The app is still in internal testing, so this is the "test" phase the owner wants.
