@@ -1213,9 +1213,9 @@ function tourSteps(){
     {t: () => { const rows = $$('#orgList [data-open]'), k = PARTS.findIndex(p => /^Sundara/.test(p.en || '')); return (W && W.id === 'sundarkand' && k >= 0 && rows[k]) || rows[0]; }, allow: '#orgList .it', p: T('पाठ खोलनेके लिये यहाँ छुएँ।', 'Tap here to open the text.'), done: () => CURVIEW === 'reader' && !!$('#rBody .verse')},
     {t: () => firstVisible('#rBody .verse .vtext .w'), allow: '#rBody .vtext .w', p: T('किसी भी शब्दको छुएँ — उसका अर्थ दिखेगा।', 'Tap any word to see its meaning.'), done: () => $('#sheet').classList.contains('on')},
     {t: () => $('#sheet'), allow: '#sheet', p: T('इस पट्टीको नीचे खींचकर बंद करें।', 'Drag the drawer down to close it.'), done: () => !$('#sheet').classList.contains('on'), top: true},
-    {t: () => $('#reader .szp'), allow: '#reader .szp', p: T('A+ छूकर अक्षर बड़े करें।', 'Tap A+ to make the text larger.'), enter: () => { TOUR.base = S.settings.size; }, done: () => S.settings.size > TOUR.base},
+    {t: () => $('#reader .szp'), allow: '#reader .szp', p: T('A+ छूकर अक्षर बड़े करें।', 'Tap A+ to make the text larger.'), enter: () => { TOUR.base = S.settings.size; }, done: () => S.settings.size > TOUR.base || (TOUR.tap && TOUR.base >= 34)},   // already at the largest: the tap is enough (owner, 2026-10-20)
     // A− is a step of its own: after A+, people reach for it (owner, 2026-10-20)
-    {t: () => $('#reader .szm'), allow: '#reader .szm', p: T('A− छूकर अक्षर छोटे करें।', 'Tap A− to make the text smaller.'), enter: () => { TOUR.base = S.settings.size; }, done: () => S.settings.size < TOUR.base},
+    {t: () => $('#reader .szm'), allow: '#reader .szm', p: T('A− छूकर अक्षर छोटे करें।', 'Tap A− to make the text smaller.'), enter: () => { TOUR.base = S.settings.size; }, done: () => S.settings.size < TOUR.base || (TOUR.tap && TOUR.base <= 16)},   // already at the smallest: the tap is enough
     {t: () => $('#rLayers [data-l="' + (S.settings.layers.h ? 'e' : 'h') + '"]'), allow: '#rLayers [data-l="h"], #rLayers [data-l="e"], #rLayers [data-l="w"]', p: () => S.settings.layers.h ? T('“En” छूकर हर पदके नीचे अंग्रेज़ी अर्थ दिखाएँ या छिपाएँ। “शब्द” से शब्दार्थ।', 'Tap “En” to show or hide the English meaning under every verse. “शब्द” gives word-by-word meanings.') : T('“हिं” छूकर हर पदके नीचे हिंदी अर्थ दिखाएँ। “En” अंग्रेज़ी, “शब्द” शब्दार्थ।', 'Tap “हिं” to show the Hindi meaning under every verse. “En” is English, “शब्द” word by word.'),
      enter: () => { TOUR.base = JSON.stringify(S.settings.layers); }, done: () => JSON.stringify(S.settings.layers) !== TOUR.base},
     {t: () => $('#rLayers [data-l="r"]'), allow: '#rLayers [data-l="r"]', p: T('पुस्तक छूकर पाठ मोड चालू करें — केवल मूल पाठ, बड़े अक्षरोंमें। फिर छूनेपर अर्थ लौट आते हैं।', 'Tap the book for recitation mode — the verses alone, in larger type. Tap it again to bring the meanings back.'), done: () => !!S.settings.recite},
@@ -1226,7 +1226,8 @@ function tourSteps(){
 // and lose the tour — owner, 2026-10-19); the tour's own bubble always works
 document.addEventListener('click', e => {
   if (!TOUR || TOUR.k < 0) return; const x = tourSteps()[TOUR.k]; if (!x) return;
-  if (e.target.closest('#cbub, #tour') || (x.allow && e.target.closest(x.allow))) return;
+  if (e.target.closest('#cbub, #tour')) return;
+  if (x.allow && e.target.closest(x.allow)){ TOUR.tap = true; return; }   // the step's own control was tapped
   e.preventDefault(); e.stopPropagation();
 }, true);
 function startTour(){
@@ -1240,7 +1241,7 @@ function startTour(){
 function tourStep(k){
   const st = tourSteps(); if (!TOUR) return;
   if (k >= st.length){ return tourEnd(); }
-  TOUR.k = k; TOUR.t0 = Date.now(); const x = st[k]; if (x.enter) x.enter();
+  TOUR.k = k; TOUR.t0 = Date.now(); TOUR.tap = false; const x = st[k]; if (x.enter) x.enter();
   const el = x.t(); if (el && el.scrollIntoView && !x.top && !inView(el)) el.scrollIntoView({block: 'center'});
   $('#coach').hidden = false; $('#cbText').textContent = typeof x.p === 'function' ? x.p() : x.p; $('#cbStep').textContent = DEV(k + 1) + ' / ' + DEV(st.length);
   $('#cbBack').hidden = k === 0;
@@ -1250,17 +1251,15 @@ function tourStep(k){
 function tourBack(){
   if (!TOUR || TOUR.k <= 0) return; const st = tourSteps(); let k = TOUR.k - 1;
   if (!$('#sheet').classList.contains('on') && k === 2) k = 1;   // "close the drawer" needs an open drawer: back to "tap a word"
+  if (k === 1 && $('#sheet').classList.contains('on')) closeSheet();   // "tap a word" needs a closed drawer, or it would count as done at once (owner, 2026-10-20)
   if (k === 6 && S.settings.recite) toggleRecite();             // back to recitation mode: turn it off so it can be tried again
   if (k === 0 && CURVIEW !== 'home') show('home');
   TOUR.k = -1; $('#cspot').style.opacity = 0; setTimeout(() => tourStep(k), 250);
 }
+// the tour ends where it is — the verse playing in the reader — with a short message, not a card (owner, 2026-10-20)
 function tourEnd(){
-  $('#coach').hidden = true; TOUR = null;
   if (S.settings.recite) toggleRecite();   // the meanings come back after the tour
-  $('#tourArt').innerHTML = '<div class="ta-om">ॐ</div>'; $('#tourT').textContent = T('बस इतना ही', 'That’s all');
-  $('#tourP').textContent = T('ग्रन्थके पन्नेपर “सम्पूर्ण पाठ सुनें” पूरा पाठ सुनाता है और पन्ने अपने आप पलटता है। पाठ-योजनाएँ, बुकमार्क और टिप्पणियाँ ☰ में हैं। ☰ › परिचय (टूर) से इसे फिरसे देख सकते हैं।', 'On a work’s page, “Play all” reads it aloud hands-free and turns the pages. Reading plans, bookmarks and notes are in ☰. ☰ › Take the tour shows it again.');
-  $('#tourDots').innerHTML = ''; $('#tourSkip').hidden = true; $('#tourNext').textContent = T('ठीक है', 'Done');
-  $('#tourNext').onclick = () => closeTour(); $('#tour').hidden = false;
+  closeTour(); toast(T('परिचय पूरा हुआ — ☰ › परिचय (टूर) से फिरसे देखें', 'Tour complete — ☰ › Take the tour shows it again'));
 }
 function closeTour(keep){ if (!keep) S.hinted = 1;  $('#tour').hidden = true; $('#coach').hidden = true; $('#tourSkip').hidden = false; TOUR = null; if (!keep){ S.settings.tour = 1; save(); } }
 // keep the light on the step's spot as the page moves; move on when the step has been done (a step that cannot be shown is skipped)
