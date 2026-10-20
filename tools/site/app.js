@@ -747,11 +747,13 @@ function tick(anchor){
 setInterval(tick, 300);
 /* place the verse being recited in the space between the top bar and the player:
    centred if it fits, otherwise with its first line just below the top bar (never hidden under it) */
+// The verse being recited is kept at the top, just below the bar, and the text moves up under it, so the next verses are
+// always in view — even when the recording runs a little ahead of the timings (owner, 2026-10-20). A verse-type heading
+// (॥ चौपाई ॥) right above it stays with it.
 function keepInView(el){
-  const top = $('#reader .bar').getBoundingClientRect().bottom, pl = $('#player'), bottom = pl.hidden ? innerHeight : pl.getBoundingClientRect().top;
-  const r = el.getBoundingClientRect(), room = bottom - top, gap = room - r.height;
-  const want = gap > 16 ? top + gap / 2 : top + 8;
-  window.scrollTo({top: Math.max(0, scrollY + r.top - want), behavior: 'smooth'});
+  const top = $('#reader .bar').getBoundingClientRect().bottom, prev = el.previousElementSibling;
+  const head = prev && prev.classList && prev.classList.contains('vtype') ? prev : el;
+  window.scrollTo({top: Math.max(0, scrollY + head.getBoundingClientRect().top - (top + 6)), behavior: 'smooth'});
 }
 function setCur(i){
   if (PL.cur === i) return; PL.cur = i;

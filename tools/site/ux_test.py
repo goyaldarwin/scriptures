@@ -607,6 +607,12 @@ async def main():
         cap = await ev("[S.settings.layers.h, document.querySelector('#rLayers [data-l=h]').classList.contains('on'), CURVIEW]")
         check('a meaning switched in Settings shows lit in the reader’s capsule', cap == [True, True, 'reader'], cap)
         await ev("S.settings.layers.h = false; save(); syncLayers()")
+        pin = await ev("""(async () => { S.timing.on = false; applyTiming(); await openWork('manas', true); show('home'); openReader('k', 30); await new Promise(r => setTimeout(r, 700));
+            PL.on = true; PL.hold = 0; PL.cur = -1; setCur(34); await new Promise(r => setTimeout(r, 1200));
+            const bar = document.querySelector('#reader .bar').getBoundingClientRect().bottom, v = document.getElementById('v34'), pv = v.previousElementSibling;
+            const t = (pv && pv.classList.contains('vtype') ? pv : v).getBoundingClientRect().top, nx = document.getElementById('v35').getBoundingClientRect().top;
+            PL.on = false; return [Math.round(t - bar), nx < innerHeight]; })()""")
+        check('playing: the verse being recited is kept at the top, the next verse in view below it', 0 <= pin[0] <= 12 and pin[1], pin)
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')
