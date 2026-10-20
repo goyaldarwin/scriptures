@@ -442,6 +442,15 @@ async def main():
             const got = SRC.au.at[IT[i].id]; S.timing.fix[tkey()] = JSON.parse(keep); S.timing.on = false; save(); applyTiming(); await loadSources();
             return [Math.round(got[1] * 10) / 10 === Math.round((ps + 1) * 10) / 10, Math.round(got[2] * 10) / 10 === Math.round(end * 10) / 10]; })()""")
         check('timing: Ends now on a late estimate starts it at the previous verse\'s end', te == [True, True], te)
+        # …but a start set by ear and already sent (published "own") is never moved by that rule: the end is refused instead
+        so = await ev("""(async () => { S.timing.on = true; applyTiming(); await openWork('shirdi-sai-dhoop-aarti', true); await loadSources(); show('home');
+            const A = SRC.au, ids = [...A.ownSet]; let i = -1, p = -1;
+            for (const id of ids){ const q = ID[id], a = AUT[A.at[id][0]], j = a.findIndex(x => x[0] === q); if (j > 0 && a[j - 1][2] != null && a[j][1] - a[j - 1][2] > 1){ i = q; p = a[j - 1][0]; break; } }
+            if (i < 0){ const id = ids[5], q = ID[id], a = AUT[A.at[id][0]], j = a.findIndex(x => x[0] === q); i = q; p = a[j - 1][0]; const keep0 = JSON.stringify(S.timing.fix[tkey()] || {}); setTime(p, 2, A.at[IT[p].id][1] + 0.5); }
+            openReader('k', i); await new Promise(r => setTimeout(r, 500));
+            const s0 = A.at[IT[i].id][1], pe = A.at[IT[p].id][2], r = setTime(i, 2, Math.min(s0 - 0.2, (pe != null ? pe : s0 - 1) + 0.3)), s1 = A.at[IT[i].id][1];
+            S.timing.fix[tkey()] = {}; S.timing.on = false; save(); applyTiming(); await loadSources(); return [r === false, s1 === s0]; })()""")
+        check('timing: a sent start is never moved by a late "Ends now"', so == [True, True], so)
         # a timing mark never scrolls the page while the lit verse is on screen
         ns = await ev("""(async () => { S.timing.on = true; applyTiming(); await openWork('shri-rudram', true); await loadSources(); show('home');
             const a = AUT[0], i = a[8][0]; openReader('k', i); await new Promise(r => setTimeout(r, 600));

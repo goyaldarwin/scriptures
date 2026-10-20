@@ -791,7 +791,7 @@ function setTime(i, k, sec){
   if (k === 2 && v[2] != null && v[2] <= v[1]){
     // "Ends now" on a verse whose start is only an estimate that lies after now: the estimate was late. The light came to
     // this verse when the verse before it ended, so that end is its start (owner, 2026-10-19); otherwise ask for the start.
-    const pe = j > 0 ? endOf(a[j - 1][0]) : null, mine = !!myStarts()[id];
+    const pe = j > 0 ? endOf(a[j - 1][0]) : null, mine = !!ownAt(id);   // a start set by ear (here or sent) is never moved by this rule
     if (!mine && pe != null && pe < v[2]) v[1] = pe;
     else { toast(mine ? T('अंत शुरुआतके बाद होना चाहिये', 'The end must come after the start') : T('पहले “अभी शुरू” से इसकी शुरुआत लगाएँ', 'Mark its start first (Starts now)')); return false; }
   }
