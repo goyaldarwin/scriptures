@@ -123,11 +123,16 @@ for a_ in lead + sk:
 for i in pulled:   # a Mānas verse in the maṅgalācaraṇa: the Mānas's own, apart from its part and section
     assert {k: v for k, v in MID[i].items() if k not in ('p', 's')} == {k: v for k, v in B[i].items() if k not in ('p', 's')}, i
 
+# ---- meaning sources: which one readers see first ----
+# Our own meanings are the default here (owner, 2026-10-19: "change the default Hindi and English sources for
+# Sundarkand"): order 1. Gita Press stays selectable in Settings › Sources: order 2. (The Mānas keeps Gita Press first.)
+ORDER = {'scriptures': 1, 'gitapress': 2}
+
 # ---- meanings: Gita Press (the Mānas's, Sundarakāṇḍa only) ----
 for sid in ('hi-gitapress', 'en-gitapress'):
     S = load(f'{MANAS}/meanings/{sid}.json')
     m = {x['id']: S['m'][x['id']] for x in items if (x['id'] in sk_ids or x['id'] in pulled) and x['id'] in S['m']}
-    dump(f'{WP}/meanings/{sid}.json', {**{k: v for k, v in S.items() if k != 'm'}, 'm': m})
+    dump(f'{WP}/meanings/{sid}.json', {**{k: v for k, v in S.items() if k != 'm'}, 'order': ORDER['gitapress'], 'm': m})
     print(f"{sid}: {sum(1 for x in sk if x['id'] in S['m'])} of {len(sk)} Sundarakāṇḍa verses")
 
 # ---- meanings: our own (one source per language) ----
@@ -148,7 +153,8 @@ for lg in ('hi', 'en'):
     for i in ids:
         if i in new_ids: m[i] = [versenum.with_number(D[i], BYID[i], lg)]
         elif i in MS['m']: m[i] = MS['m'][i]
-    dump(f'{WP}/meanings/{lg}-scriptures.json', {'id': lg + '-scriptures', 'lang': lg, 'order': 2, 'title': TITLES[lg], 'm': m})
+    dump(f'{WP}/meanings/{lg}-scriptures.json', {'id': lg + '-scriptures', 'lang': lg, 'order': ORDER['scriptures'], 'title': TITLES[lg], 'm': m})
+    assert all(x['id'] in m for x in items), f'{lg}-scriptures must cover every verse, as the default source'
     print(f"{lg}-scriptures: {sum(1 for i in m if i not in new_ids)} Mānas verses + {len(new_ids)} of its own")
 
 # ---- word meanings, filed by the language of the verses each word occurs in ----
