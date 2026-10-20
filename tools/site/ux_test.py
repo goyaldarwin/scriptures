@@ -432,6 +432,22 @@ async def main():
             document.querySelector('#sheetBody .secs [data-to]').click(); await new Promise(r => setTimeout(r, 600));
             return [stillOpen, same, first === PARTS[1].a, R.n === 1, document.querySelector('#sheet').classList.contains('on')]; })()""")
         check('section picker: a kāṇḍa only shows its sections; a section opens it', pk == [True, True, True, True, False], pk)
+        # timing: "Ends now" on a verse whose estimated start lies after now takes the previous verse's set end as its start
+        te = await ev("""(async () => { S.timing.on = true; applyTiming(); await openWork('shri-rudram', true); await loadSources(); show('home');
+            const a = AUT[0]; let j = a.findIndex((x, n) => n > 0 && toCheck(x[0]) && !toCheck(a[n - 1][0]) && x[1] - a[n - 1][1] > 3); if (j < 0) j = 5;
+            const i = a[j][0], p = a[j - 1][0], ps = a[j - 1][1], keep = JSON.stringify(S.timing.fix[tkey()] || {});
+            openReader('k', i); await new Promise(r => setTimeout(r, 500));
+            setTime(p, 2, ps + 1); const end = ps + 2; setTime(i, 2, end);
+            const got = SRC.au.at[IT[i].id]; S.timing.fix[tkey()] = JSON.parse(keep); S.timing.on = false; save(); applyTiming(); await loadSources();
+            return [Math.round(got[1] * 10) / 10 === Math.round((ps + 1) * 10) / 10, Math.round(got[2] * 10) / 10 === Math.round(end * 10) / 10]; })()""")
+        check('timing: Ends now on a late estimate starts it at the previous verse\'s end', te == [True, True], te)
+        # a timing mark never scrolls the page while the lit verse is on screen
+        ns = await ev("""(async () => { S.timing.on = true; applyTiming(); await openWork('shri-rudram', true); await loadSources(); show('home');
+            const a = AUT[0], i = a[8][0]; openReader('k', i); await new Promise(r => setTimeout(r, 600));
+            const keep = JSON.stringify(S.timing.fix[tkey()] || {}); PL.on = true; PL.t = 0; PL.hold = 0; setCur(i); await new Promise(r => setTimeout(r, 900));
+            const y0 = scrollY; ytInfo.t = a[8][1] + 1; setTime(i, 2, a[8][1] + 1); await new Promise(r => setTimeout(r, 900)); const y1 = scrollY;
+            PL.on = false; S.timing.fix[tkey()] = JSON.parse(keep); S.timing.on = false; save(); applyTiming(); await loadSources(); return [y0, y1]; })()""")
+        check('timing: marking a verse does not move the page', abs(ns[0] - ns[1]) < 2, ns)
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')

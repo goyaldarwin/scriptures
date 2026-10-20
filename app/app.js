@@ -724,7 +724,8 @@ function setCur(i){
   if (i < R.a || i > R.b){ R.org = R.org; [R.a, R.b, R.n] = rangeFor(R.org, i); renderAround(i); }
   else if (!document.getElementById('v' + i)) renderAround(i, false);
   const el = document.getElementById('v' + i);
-  if (el){ el.classList.add('now'); if (Date.now() > PL.hold) keepInView(el); }
+  // while timings are being marked the page is not moved under your finger: it only follows when the lit verse leaves the screen
+  if (el){ el.classList.add('now'); if (Date.now() > PL.hold && !(S.timing.on && inView(el))) keepInView(el); }
 }
 function stopAudio(){ ytPost('pauseVideo'); PL.on = false; $('#player').hidden = true; document.body.classList.remove('playing'); $$('#rBody .verse.now').forEach(v => v.classList.remove('now')); }
 function playing(){ return ytInfo.st === 1 || ytInfo.st === 3; }
@@ -740,12 +741,19 @@ function nowAt(){ return Math.max(0, ytInfo.t + (playing() && ytInfo.at ? (perfo
 function setTime(i, k, sec){
   const id = IT[i].id, fx = S.timing.fix[tkey()] = S.timing.fix[tkey()] || {}, cur = SRC.au.at[id] || [PL.on ? PL.t : 0, 0, null];
   const v = [cur[0], cur[1], cur[2] == null ? null : cur[2]]; v[k] = sec == null ? null : Math.round(sec * 10) / 10;
-  if (k === 2 && v[2] != null && v[2] <= v[1]){ toast(T('अंत शुरुआतके बाद होना चाहिये', 'The end must come after the start')); return; }
+  if (k === 2 && v[2] != null && v[2] <= v[1]){
+    // "Ends now" on a verse whose start is only an estimate that lies after now: the estimate was late. The light came to
+    // this verse when the verse before it ended, so that end is its start (owner, 2026-10-19); otherwise ask for the start.
+    const a = AUT[v[0]] || [], j = a.findIndex(x => x[0] === i), pe = j > 0 ? endOf(a[j - 1][0]) : null;
+    const mine = myStarts()[id] && myStarts()[id][1] != null;
+    if (!mine && pe != null && pe < v[2]) v[1] = pe;
+    else { toast(mine ? T('अंत शुरुआतके बाद होना चाहिये', 'The end must come after the start') : T('पहले “अभी शुरू” से इसकी शुरुआत लगाएँ', 'Mark its start first (Starts now)')); return; }
+  }
   if (k === 1 && v[2] != null && v[2] <= v[1]) v[2] = null;
   const was = {}; $$('#rBody .verse').forEach(el => { const j = +el.dataset.i; was[j] = JSON.stringify(SRC.au.at[IT[j].id]); });
   fx[id] = v; unfrom(id); save(); buildAudio();
   Object.keys(was).forEach(j => { j = +j; if (j === i || was[j] !== JSON.stringify(SRC.au.at[IT[j].id])) rerenderItem(j); });   // every verse on screen whose time moved
-  if (PL.on){ PL.cur = -1; PL.hold = 0; tick(i); }   // the light moves at once, from this verse (after an end: to the next verse)
+  if (PL.on){ PL.cur = -1; tick(i); }   // the light moves at once, from this verse (after an end: to the next verse); the page stays where you are
   toast((k === 1 ? T('शुरुआत: ', 'Starts at ') : T('अंत: ', 'Ends at ')) + (sec == null ? '—' : fmtT(sec)));
 }
 function setStart(i, sec){ setTime(i, 1, sec); }
