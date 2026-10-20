@@ -1,5 +1,7 @@
 # Handoff: an independent review of the audio-timing logic
 
+**Done 2026-10-20** on branch `work/timing-review`: findings, fixes and the rules confirmed are recorded in `docs/PLAYBOOK.md` → "Audio timing by ear" → "Review of 2026-10-20"; the open rule questions went to the owner in the session's report.
+
 Written 2026-10-20. The "Audio timing" feature (marking when each verse starts and ends in a recitation, by ear, in the app) grew through many rounds of owner feedback and bug fixes in one long session. The owner wants a fresh, independent reviewer to check it end to end. Paste the prompt below into a new session.
 
 ---

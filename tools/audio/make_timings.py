@@ -13,9 +13,10 @@ A segment that covers several half-lines is shared among them by length, so a ve
 middle of a long breath gets the time it begins, not the time the breath begins.
 """
 import json, os, sys
-HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.dirname(os.path.dirname(HERE))
+HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.environ.get('SCRIPTURES_REPO') or os.path.dirname(os.path.dirname(HERE))   # SCRIPTURES_REPO: a copy to work in (tests)
 sys.path.insert(0, HERE)
 import align as A
+import order as O
 
 SRC = os.path.abspath(sys.argv[1]); TR = os.path.join(SRC, 'transcripts')
 meta = json.load(open(os.path.join(SRC, 'source.json')))
@@ -113,59 +114,20 @@ own_ids = set()
 for ti, tr in enumerate(tracks):
     for iid, t in OWN.get(tr['yt'], {}).items():   # seconds, or [start, end] when the owner also set where the verse ends
         if iid in ID: at[iid] = [ti, round(float(t[0]), 2), round(float(t[1]), 2)] if isinstance(t, list) else [ti, round(float(t), 2)]; own_ids.add(iid)
-# keep the text's order around the owner's times — the same rule as the app (tools/site/app.js, buildAudio): a verse cannot
-# start before the one before it, or before that verse's set end; a verse not set by ear that breaks this is placed again, by
-# its length, between the nearest good times; a set end later than the next verse's set start is cut back to it.
-moved = []
+# keep the text's order around the owner's times — the same rule as the app (tools/site/app.js, buildAudio), kept in
+# tools/audio/order.py: a verse cannot start before the one before it, or before that verse's set end; a verse not set by
+# ear that breaks this is placed again, by its length, between the nearest good times; a set end later than the next set
+# start is cut back to it. The start each moved verse had before the rule is kept as "raw", so the app can apply the same
+# rule from the same starting point and show exactly what the next send will publish.
+moved, raw = [], {}
 if own_ids:
     for ti in range(len(tracks)):
         a = sorted([[ID[k], v[1], v[2] if len(v) > 2 else None] for k, v in at.items() if v[0] == ti])
-        own = lambda k: IT[a[k][0]]['id'] in own_ids
-        ln = lambda k: max(8, len(''.join(IT[a[k][0]]['v'])))
-        for k in range(len(a) - 1):
-            if a[k][2] is not None and own(k + 1) and a[k][2] > a[k + 1][1]: a[k][2] = a[k + 1][1]
-        def next_own(k):
-            for j in range(k + 1, len(a)):
-                if own(j): return a[j][1]
-            return float('inf')
-        good, lo = [True] * len(a), -1.0
-        for k in range(len(a)):
-            if not own(k) and (a[k][1] <= lo or a[k][1] >= next_own(k)): good[k] = False; continue
-            lo = max(a[k][1], a[k][2] - 0.01 if a[k][2] is not None else -1)
-        k = 0
-        while k < len(a):
-            if good[k]: k += 1; continue
-            e = k
-            while e + 1 < len(a) and not good[e + 1]: e += 1
-            p, n = k - 1, e + 1
-            L = max(a[p][1] + 0.5, a[p][2] if a[p][2] is not None else 0) if p >= 0 else 0.0
-            U = a[n][1] if n < len(a) else L + 4 * (e - k + 2)
-            tot = sum(ln(j) for j in range(k, e + 1)) + (0 if n < len(a) else ln(e)); acc = 0
-            for j in range(k, e + 1):
-                a[j][1] = round(L + (U - L) * acc / tot, 1); acc += ln(j); moved.append(IT[a[j][0]]['id'])
-            k = e + 1
-        # starts that were only guessed by text length (never heard), next to a time set by the owner, are guessed again
-        # between the owner's time and the next good time (or the recording's end): a run of guesses after a verse the
-        # owner placed later than guessed moves with it, instead of being squeezed in front of the next guess. A heard
-        # start is never re-guessed. The same rule as the app (buildAudio).
-        gs = lambda k: IT[a[k][0]]['id'] not in heard and not own(k)
-        k = 0
-        while k < len(a):
-            if not gs(k): k += 1; continue
-            e = k
-            while e + 1 < len(a) and gs(e + 1): e += 1
-            p, n = k - 1, e + 1
-            if (p >= 0 and own(p)) or (n < len(a) and own(n)):
-                pre = ln(p) if p >= 0 and a[p][2] is None else 0
-                L0 = (a[p][2] if a[p][2] is not None else a[p][1]) if p >= 0 else a[k][1]
-                U = a[n][1] if n < len(a) else tracks[ti]['dur'] * 0.98
-                tot = pre + sum(ln(j) for j in range(k, e + 1)); acc = pre
-                if U - L0 > 0.3 * (e - k + 1 + (1 if pre else 0)):
-                    for j in range(k, e + 1):
-                        st = round(L0 + (U - L0) * acc / tot, 1); acc += ln(j)
-                        if st != a[j][1]: a[j][1] = st; moved.append(IT[a[j][0]]['id'])
-            k = e + 1
-        for i, st, en in a: at[IT[i]['id']] = [ti, st, en] if en is not None else [ti, st]
+        before = {i: st for i, st, _ in a}
+        rows, mv = O.keep_order(a, lambda i: IT[i]['id'] in own_ids, lambda i: IT[i]['id'] in heard, lambda i: max(8, len(''.join(IT[i]['v']))), tracks[ti]['dur'])
+        for i, st, en in rows: at[IT[i]['id']] = [ti, st, en] if en is not None else [ti, st]
+        for i in mv: raw[IT[i]['id']] = before[i]
+        moved += [IT[i]['id'] for i in mv]
 # a source marked "draft" in source.json (its timings are not good enough yet) is written with "draft": the app plays it only
 # for someone reviewing timings (Settings › Audio timing), so readers never get audio that starts in the wrong place.
 # Remove "draft" once the timings are checked.
@@ -180,6 +142,7 @@ doc.update(tracks=tracks, at=at)
 if check: doc['check'] = check
 guess = [x['id'] for x in IT if x['id'] in at and x['id'] not in heard and x['id'] not in own_ids]
 if guess: doc['guess'] = guess   # starts only guessed by text length (never heard): guessed again around the owner's times
-if moved: doc['moved'] = sorted(set(moved), key=lambda k: ID[k])   # verses placed again around the owner's times (the app shows them as moved)
+if own_ids: doc['own'] = [x['id'] for x in IT if x['id'] in own_ids]   # verses set by ear by the owner: the app keeps them as given and links their neighbours
+if moved: doc['moved'] = sorted(set(moved), key=lambda k: ID[k]); doc['raw'] = {k: raw[k] for k in doc['moved']}   # verses placed again around the owner's times (the app shows them as moved), with the start each had before
 json.dump(doc, open(out, 'w'), ensure_ascii=False, separators=(',', ':'))
 print('verses with audio', len(at), 'of', len(IT), '→', os.path.relpath(out, REPO), '(draft)' if meta.get('draft') else '')
