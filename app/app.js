@@ -1213,7 +1213,9 @@ function tourSteps(){
     {t: () => { const rows = $$('#orgList [data-open]'), k = PARTS.findIndex(p => /^Sundara/.test(p.en || '')); return (W && W.id === 'sundarkand' && k >= 0 && rows[k]) || rows[0]; }, allow: '#orgList .it', p: T('पाठ खोलनेके लिये यहाँ छुएँ।', 'Tap here to open the text.'), done: () => CURVIEW === 'reader' && !!$('#rBody .verse')},
     {t: () => firstVisible('#rBody .verse .vtext .w'), allow: '#rBody .vtext .w', p: T('किसी भी शब्दको छुएँ — उसका अर्थ दिखेगा।', 'Tap any word to see its meaning.'), done: () => $('#sheet').classList.contains('on')},
     {t: () => $('#sheet'), allow: '#sheet', p: T('इस पट्टीको नीचे खींचकर बंद करें।', 'Drag the drawer down to close it.'), done: () => !$('#sheet').classList.contains('on'), top: true},
-    {t: () => $('#reader .szp'), allow: '#reader .szp, #reader .szm', p: T('A+ छूकर अक्षर बड़े करें (A− से छोटे)।', 'Tap A+ to make the text larger (A− makes it smaller).'), enter: () => { TOUR.base = S.settings.size; }, done: () => S.settings.size !== TOUR.base},
+    {t: () => $('#reader .szp'), allow: '#reader .szp', p: T('A+ छूकर अक्षर बड़े करें।', 'Tap A+ to make the text larger.'), enter: () => { TOUR.base = S.settings.size; }, done: () => S.settings.size > TOUR.base},
+    // A− is a step of its own: after A+, people reach for it (owner, 2026-10-20)
+    {t: () => $('#reader .szm'), allow: '#reader .szm', p: T('A− छूकर अक्षर छोटे करें।', 'Tap A− to make the text smaller.'), enter: () => { TOUR.base = S.settings.size; }, done: () => S.settings.size < TOUR.base},
     {t: () => $('#rLayers [data-l="' + (S.settings.layers.h ? 'e' : 'h') + '"]'), allow: '#rLayers [data-l="h"], #rLayers [data-l="e"], #rLayers [data-l="w"]', p: () => S.settings.layers.h ? T('“En” छूकर हर पदके नीचे अंग्रेज़ी अर्थ दिखाएँ या छिपाएँ। “शब्द” से शब्दार्थ।', 'Tap “En” to show or hide the English meaning under every verse. “शब्द” gives word-by-word meanings.') : T('“हिं” छूकर हर पदके नीचे हिंदी अर्थ दिखाएँ। “En” अंग्रेज़ी, “शब्द” शब्दार्थ।', 'Tap “हिं” to show the Hindi meaning under every verse. “En” is English, “शब्द” word by word.'),
      enter: () => { TOUR.base = JSON.stringify(S.settings.layers); }, done: () => JSON.stringify(S.settings.layers) !== TOUR.base},
     {t: () => $('#rLayers [data-l="r"]'), allow: '#rLayers [data-l="r"]', p: T('पुस्तक छूकर पाठ मोड चालू करें — केवल मूल पाठ, बड़े अक्षरोंमें। फिर छूनेपर अर्थ लौट आते हैं।', 'Tap the book for recitation mode — the verses alone, in larger type. Tap it again to bring the meanings back.'), done: () => !!S.settings.recite},
@@ -1241,6 +1243,16 @@ function tourStep(k){
   TOUR.k = k; TOUR.t0 = Date.now(); const x = st[k]; if (x.enter) x.enter();
   const el = x.t(); if (el && el.scrollIntoView && !x.top && !inView(el)) el.scrollIntoView({block: 'center'});
   $('#coach').hidden = false; $('#cbText').textContent = typeof x.p === 'function' ? x.p() : x.p; $('#cbStep').textContent = DEV(k + 1) + ' / ' + DEV(st.length);
+  $('#cbBack').hidden = k === 0;
+}
+// ‹ Back: the step before (owner, 2026-10-20). A step whose action is already in effect (the drawer already closed, recitation
+// mode already on) would move on at once, so Back goes to the step before that one; the first step needs the work's page.
+function tourBack(){
+  if (!TOUR || TOUR.k <= 0) return; const st = tourSteps(); let k = TOUR.k - 1;
+  if (!$('#sheet').classList.contains('on') && k === 2) k = 1;   // "close the drawer" needs an open drawer: back to "tap a word"
+  if (k === 6 && S.settings.recite) toggleRecite();             // back to recitation mode: turn it off so it can be tried again
+  if (k === 0 && CURVIEW !== 'home') show('home');
+  TOUR.k = -1; $('#cspot').style.opacity = 0; setTimeout(() => tourStep(k), 250);
 }
 function tourEnd(){
   $('#coach').hidden = true; TOUR = null;
@@ -1262,6 +1274,7 @@ setInterval(() => {
   const below = x.top ? false : r.top < innerHeight / 2; cb.style.top = below ? Math.min(innerHeight - 160, r.bottom + 16) + 'px' : ''; cb.style.bottom = below ? '' : (x.top ? innerHeight - r.top + 16 : innerHeight - r.top + 16) + 'px';
 }, 250);
 $('#cbSkip').onclick = () => closeTour();
+$('#cbBack').onclick = () => tourBack();
 
 // keep only the shelves on the list (paths of shelf ids: "hinduism", "sikhism/gurbani/guru-arjan-dev/sukhmani-sahib")
 function pruneLib(nodes, shelves){

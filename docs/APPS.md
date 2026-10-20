@@ -17,7 +17,7 @@
 | `tools/store/make_icons.py` → `tools/store/icons/` | every icon from one design (ॐ on indigo); the web ones are copied into `app/` by build.py |
 | `tools/store/screenshots.py` → `tools/store/out/` | captioned store screenshots made from the real app: App Store 6.9" (1320×2868) and Play phone (1080×1920), English and Hindi, plus the Play feature graphic |
 | `privacy.html` (from `tools/site/privacy.html`) | the privacy policy both stores ask for |
-| first-run tour (`tourSteps()` in app.js) | six steps, shown once; ☰ › "Take the tour" |
+| first-run tour (`tourSteps()` in app.js) | eight steps, each with ‹ Back, shown once; ☰ › "Take the tour" |
 
 ## Settled (2026-10-19)
 - Publisher: 16493041 Canada Inc., D-U-N-S 245128343, email darwin@craadle.org, website craadle.org.
