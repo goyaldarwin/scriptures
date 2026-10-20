@@ -3,6 +3,8 @@
 Writes   work.json                  the text (verse + number), kāṇḍas, topics, plans, vidhi
          meanings/hi-gitapress.json Hindi meaning source (Gita Press bhāvārtha)
          meanings/en-gitapress.json English meaning source (Gita Press translation)
+         meanings/hi-scriptures.json, en-scriptures.json  our own meanings (meanings/hi.json, en.json;
+                                    tools/meanings/style.md), with the verse numbers added; stops on any overlap
 Merges   its word meanings into library/glossary/sa.json and awa.json by the language of the verses
          they occur in (adds new words; never overwrites existing ones).
 Does not touch library/index.json (the shelf is edited by hand) or audio/ (see tools/audio).
@@ -80,6 +82,31 @@ for x in IT:
     if g.get('f'): e.append(g['f'])
     en[x['id']] = e
 sizes['en'] = dump(WP + '/meanings/en-gitapress.json', {'id': 'en-gitapress', 'lang': 'en', 'order': 1, 'title': {'hi': 'गीताप्रेस — अंग्रेज़ी अनुवाद', 'en': 'Gita Press — English translation'}, 'm': en})
+
+# ---- our own meaning sources (meanings/hi.json, en.json; tools/meanings/style.md) ----
+# Written from the verse for this library, to replace the copyrighted ones (docs/handoff/2026-10-19-own-meanings.md).
+# They cover the verses written so far; a reader who chooses them sees Gita Press's for the rest. Every verse has both
+# languages; the verse number is added here from the verse (tools/meanings/versenum.py); and no meaning may share a run
+# of 10+ words with Gita Press's (tools/meanings/overlap.py), or the export stops; runs of 6–9 are listed to be read.
+sys.path.insert(0, os.path.join(HERE, '..', '..', 'meanings')); import versenum as vnum, overlap
+OWN = {lg: json.load(open(os.path.join(HERE, 'meanings', lg + '.json'), encoding='utf-8')) for lg in ('hi', 'en')}
+BYID = {x['id']: x for x in items}
+assert set(OWN['hi']) == set(OWN['en']), f"hi and en differ: {sorted(set(OWN['hi']) ^ set(OWN['en']))[:10]}"
+assert all(k in BYID for k in OWN['hi']), f"unknown ids: {[k for k in OWN['hi'] if k not in BYID][:10]}"
+assert all(v.strip() for D in OWN.values() for v in D.values()), 'empty meaning'
+for lg, G in (('hi', hi), ('en', en)):
+    res = overlap.check(OWN[lg], {k: v[0] for k, v in G.items()})
+    bad = [r for r in res if len(r[1]) >= 10]
+    assert not bad, f'{lg}: {len(bad)} meanings share 10+ words with Gita Press, e.g. {bad[0][0]}: {" ".join(bad[0][1])}'
+    note = [r for r in res if len(r[1]) >= 6]
+    if note: print(f'{lg}: {len(note)} meanings share 6–9 words with Gita Press (read them: tools/meanings/overlap.py --report)')
+TITLES = {'hi': {'hi': 'भावार्थ — शास्त्र', 'en': 'Hindi meaning — Scriptures'},
+          'en': {'hi': 'अंग्रेज़ी अर्थ — शास्त्र', 'en': 'English meaning — Scriptures'}}
+order_ids = [x['id'] for x in items]
+for lg in ('hi', 'en'):
+    m = {i: [vnum.with_number(OWN[lg][i], BYID[i], lg)] for i in order_ids if i in OWN[lg]}
+    sizes[lg + '-ours'] = dump(f'{WP}/meanings/{lg}-scriptures.json', {'id': lg + '-scriptures', 'lang': lg, 'order': 2, 'title': TITLES[lg], 'm': m})
+print(f"our own meanings: {len(OWN['hi'])} verses in Hindi and English")
 
 # ---- word meanings, filed by the language of the verses each word occurs in ----
 # A word found in both Sanskrit and Awadhi verses goes into both dictionaries (its sense may differ).

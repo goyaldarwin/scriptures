@@ -123,21 +123,39 @@ for a_ in lead + sk:
 for i in pulled:   # a Mānas verse in the maṅgalācaraṇa: the Mānas's own, apart from its part and section
     assert {k: v for k, v in MID[i].items() if k not in ('p', 's')} == {k: v for k, v in B[i].items() if k not in ('p', 's')}, i
 
+# ---- meaning sources: which one readers see first ----
+# Our own meanings are the default here (owner, 2026-10-19: "change the default Hindi and English sources for
+# Sundarkand"): order 1. Gita Press stays selectable in Settings › Sources: order 2. (The Mānas keeps Gita Press first.)
+ORDER = {'scriptures': 1, 'gitapress': 2}
+
 # ---- meanings: Gita Press (the Mānas's, Sundarakāṇḍa only) ----
 for sid in ('hi-gitapress', 'en-gitapress'):
     S = load(f'{MANAS}/meanings/{sid}.json')
     m = {x['id']: S['m'][x['id']] for x in items if (x['id'] in sk_ids or x['id'] in pulled) and x['id'] in S['m']}
-    dump(f'{WP}/meanings/{sid}.json', {**{k: v for k, v in S.items() if k != 'm'}, 'm': m})
+    dump(f'{WP}/meanings/{sid}.json', {**{k: v for k, v in S.items() if k != 'm'}, 'order': ORDER['gitapress'], 'm': m})
     print(f"{sid}: {sum(1 for x in sk if x['id'] in S['m'])} of {len(sk)} Sundarakāṇḍa verses")
 
-# ---- meanings: our own, for the maṅgalācaraṇa's own lines, the Chālīsā and the āratī ----
+# ---- meanings: our own (one source per language) ----
+# For the Mānas's verses (parts 1–2 and bal.17.so17): the Mānas's own hi-scriptures / en-scriptures, copied unchanged
+# (written in tools/works/ramcharitmanas/meanings, numbered by its exporter). For the maṅgalācaraṇa's own lines, the
+# Chālīsā and the āratī: meanings/hi.json, en.json here, numbered the same way (tools/meanings/versenum.py).
+sys.path.insert(0, os.path.join(HERE, '..', '..', 'meanings')); import versenum
+BYID = {x['id']: x for x in items}
 TITLES = {'hi': {'hi': 'भावार्थ — शास्त्र', 'en': 'Hindi meaning — Scriptures'},
           'en': {'hi': 'अंग्रेज़ी अर्थ — शास्त्र', 'en': 'English meaning — Scriptures'}}
 for lg in ('hi', 'en'):
     D = json.load(open(os.path.join(HERE, 'meanings', lg + '.json'), encoding='utf-8'))
     miss = [i for i in new_ids if not D.get(i)]; extra = [k for k in D if k not in new_ids]
     assert not miss and not extra, f'{lg} meanings: missing {miss[:5]}, unknown {extra[:5]}'
-    dump(f'{WP}/meanings/{lg}-scriptures.json', {'id': lg + '-scriptures', 'lang': lg, 'order': 2, 'title': TITLES[lg], 'm': {i: [D[i]] for i in new_ids}})
+    MS = load(f'{MANAS}/meanings/{lg}-scriptures.json')
+    assert {k: v for k, v in MS.items() if k != 'm'} == {'id': lg + '-scriptures', 'lang': lg, 'order': 2, 'title': TITLES[lg]}, f'{lg}: the Mānas source header differs'
+    m = {}
+    for i in ids:
+        if i in new_ids: m[i] = [versenum.with_number(D[i], BYID[i], lg)]
+        elif i in MS['m']: m[i] = MS['m'][i]
+    dump(f'{WP}/meanings/{lg}-scriptures.json', {'id': lg + '-scriptures', 'lang': lg, 'order': ORDER['scriptures'], 'title': TITLES[lg], 'm': m})
+    assert all(x['id'] in m for x in items), f'{lg}-scriptures must cover every verse, as the default source'
+    print(f"{lg}-scriptures: {sum(1 for i in m if i not in new_ids)} Mānas verses + {len(new_ids)} of its own")
 
 # ---- word meanings, filed by the language of the verses each word occurs in ----
 PUNCT = re.compile(r"[।॥|,.;:!?\-—‘’“”'\"()\[\]०-९0-9]")   # the app's own rule (tools/site/app.js)
