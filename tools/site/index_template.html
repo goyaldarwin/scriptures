@@ -181,7 +181,7 @@ body.playing #rBody{padding-bottom:150px}
 .navbar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--surface);border-top:1px solid var(--rule);padding-bottom:env(safe-area-inset-bottom)}
 .navbar .wrap{display:flex;align-items:center;gap:8px;min-height:60px}
 .navbar .mid{flex:1;text-align:center;font-weight:700;font-size:15px;padding:8px;border-radius:12px}
-.navbar .mid small{display:block;font-weight:400;color:var(--muted);font-size:12px}
+.navbar .mid small{display:block;font-weight:400;color:var(--muted);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .navbtn{padding:10px 14px;border-radius:12px;font-size:15px;color:var(--indigo);font-weight:600}
 .navbtn:disabled{opacity:.3}
 body.recite .chips,body.recite .layer,body.recite .note,body.recite .tr{display:none!important}
@@ -429,7 +429,7 @@ body.playing #rBody{padding-bottom:240px}
  </div>
 </section>
 
-<div class="loading" id="loading">॥ ॐ श्री परमात्मने नमः ॥</div>
+<div class="loading" id="loading"></div>
 <div class="scrim" id="scrim"></div>
 <div class="coach" id="coach" hidden><div class="cspot" id="cspot"></div><div class="cbub" id="cbub"><p id="cbText"></p><div class="cbrow"><span id="cbStep" class="muted"></span><button id="cbSkip"><span data-en="Skip tour">परिचय छोड़ें</span></button></div></div></div>
 <div class="tour" id="tour" hidden role="dialog" aria-modal="true"><div class="tcard"><div class="tart" id="tourArt"></div><h2 id="tourT"></h2><p id="tourP"></p><div class="tdots" id="tourDots"></div><div class="tbtns"><button class="btn ghost" id="tourSkip"></button><button class="btn" id="tourNext"></button></div></div></div>

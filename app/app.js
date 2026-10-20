@@ -379,7 +379,7 @@ function curSection(i){ const t = topicOf(i); return t && t.i <= R.b && t.end >=
 function updateHeader(){
   if (!IT.length) return; const i = topVisibleItem(), t = topicOf(i);
   const s = curSection(i), where = R.org === 'k' ? (PARTS.length > 1 ? KNAME(R.n) : '') : VN(R.n), topic = s ? TNAME(s) : '';
-  $('#rMid').innerHTML = '<span class="ml">' + (s ? spanLabel(Math.max(s.i, R.a), Math.min(s.end, R.b)) : spanLabel(R.a, R.b)) + ' ▾</span><small>' + esc([where, topic].filter(Boolean).join(' · ') || TT(W.title)) + '</small>';
+  $('#rMid').innerHTML = '<span class="ml">' + (s ? spanLabel(Math.max(s.i, R.a), Math.min(s.end, R.b)) : spanLabel(R.a, R.b)) + ' ▾</span><small>' + esc(where || TT(W.title)) + '</small>';   // only the part (or reading day): a small footer (owner, 2026-10-19); the topic heads the page
 }
 let scT;
 window.addEventListener('scroll', () => { if (!$('#reader').classList.contains('on')) return; ensure(); clearTimeout(scT); scT = setTimeout(() => { updateHeader(); savePos(); }, 200); }, {passive: true});
@@ -823,11 +823,13 @@ function saluteOf(id){ let r = null; (function walk(n){ (n || []).forEach(c => {
 function showSalute(text){ $('#loading').textContent = text; }
 // the greeting stays at least 1.5 s so it can be read (owner, 2026-10-19); the time spent loading counts towards it
 const SALUTE_MS = typeof window.__SALUTE_MS === 'number' ? window.__SALUTE_MS : 1500;
-let saluteAt = 0;   // when the greeting appeared (0: with the page)
-async function hideSalute(){ const left = SALUTE_MS - (performance.now() - saluteAt); if (left > 0) await new Promise(r => setTimeout(r, left)); $('#loading').hidden = true; }
+// The greeting is only for stepping into a work from the library (or the tour): never when the app starts, on a refresh
+// or on Back (owner, 2026-10-19). Then the screen just waits, blank, for as long as loading takes.
+let saluteAt = 0, greeted = false;
+async function hideSalute(){ const left = greeted ? SALUTE_MS - (performance.now() - saluteAt) : 0; if (left > 0) await new Promise(r => setTimeout(r, left)); $('#loading').hidden = true; greeted = false; }
 async function openWork(id, noShow){
-  const sal = saluteOf(id); showSalute(sal); if ((S.sal || {})[id] !== sal){ S.sal = S.sal || {}; S.sal[id] = sal; }
-  if ($('#loading').hidden){ $('#loading').hidden = false; saluteAt = performance.now(); }
+  greeted = !noShow; showSalute(greeted ? saluteOf(id) : '');
+  if (greeted || W === null || W.id !== id){ if ($('#loading').hidden){ $('#loading').hidden = false; } saluteAt = performance.now(); }
   try {
     if (!W || W.id !== id){ const path = workPath(id); W = await getJSON(path + '/work'); W.path = path; buildWork(); fixLast(); await Promise.all([loadSources(), loadGlossaries()]); }
     S.work = id; save();
@@ -849,7 +851,7 @@ addEventListener('resize', () => { if ($('#hTitle') && $('#hTitle').offsetParent
 const VEDIC = /[\u0951\u0952\u1CD0-\u1CFF\uA8E0-\uA8FF]/;   // verses with svara marks are set in the Vedic font
 function renderHome(){
   if (!W) return;
-  $('#hTitle').textContent = TT(W.title); fitTitle(); $('#hSub').textContent = TT(W.by) + ' · ' + TT(W.edition);
+  $('#hTitle').textContent = TT(W.title); fitTitle(); $('#hSub').textContent = [TT(W.by), TT(W.from)].filter(Boolean).join(' · ');   // the author and, where there is one, the parent text — never the publisher or source (owner, 2026-10-19)
   // ▶ the whole work, start to end, across every part and recording
   const pa = $('#hPlayAll'), fa = firstAu(0, IT.length - 1); pa.hidden = fa == null; pa.onclick = () => playRange('k', 0, IT.length - 1);
   fixLast(); const L = WS().last;
@@ -1172,7 +1174,7 @@ function pruneLib(nodes, shelves){
 (async function boot(){
   if (!S.settings.lightDefault){ if (S.settings.theme === 'auto') S.settings.theme = 'light'; S.settings.lightDefault = 1; save(); }
   applyTheme(); applyLang(); applyRecite(); syncLayers(); tickTimer(); applyTiming();
-  { const hs = history.state && history.state.v ? history.state : null, pre = new URLSearchParams(location.search).get('w') || (hs ? (hs.v === 'library' ? null : hs.w) : S.work); showSalute((pre && (S.sal || {})[pre]) || SALUTE); }
+  showSalute('');   // starting or refreshing: no greeting (it belongs to opening a work from the library)
   try { LIB = await getJSON('index'); } catch (e) { $('#loading').textContent = T('डेटा नहीं खुल सका। इंटरनेट जाँचें।', 'Could not load the data. Check the internet connection.'); return; }
   // one app per tradition (owner, 2026-10-19): ?app=<id> shows only the shelves library/apps.json lists for that app
   // (the Hindu app also carries the Sukhmani Sahib). The address keeps it while you move around; changing the list

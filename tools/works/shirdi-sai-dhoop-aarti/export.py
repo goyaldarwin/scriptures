@@ -55,6 +55,7 @@ work = {
     'title': {'hi': 'धूप आरती', 'en': 'Dhūpa Āratī'},
     'by': {'hi': 'श्री साईबाबा, शिरडी', 'en': 'Śrī Sāī Bābā of Shirdi'},
     'edition': {'hi': 'शिरडीकी सायंकालीन आरती', 'en': 'The evening āratī of Shirdi'},
+    'from': {'hi': 'शिरडीकी सायंकालीन आरती', 'en': 'The evening āratī of Shirdi'},   # under the title on the work's page (by · from)
     'parts': {'name': {'hi': 'आरती', 'en': 'Āratī'}, 'list': [{'hi': 'धूप आरती', 'en': 'Dhūpa Āratī'}]},
     'types': TYPES,
     'items': items,

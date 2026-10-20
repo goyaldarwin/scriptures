@@ -84,6 +84,7 @@ work = {
     'title': {'hi': 'सुखमनी साहिब', 'en': 'Sukhmani Sahib'},
     'by': {'hi': 'गुरु अर्जन देव जी', 'en': 'Guru Arjan Dev Ji'},
     'edition': {'hi': 'श्री गुरु ग्रन्थ साहिब, अंग २६२–२९६', 'en': 'Sri Guru Granth Sahib, Ang 262–296'},
+    'from': {'hi': 'श्री गुरु ग्रन्थ साहिब, अंग २६२–२९६', 'en': 'Sri Guru Granth Sahib, Ang 262–296'},   # under the title on the work's page (by · from)
     'parts': parts,
     'types': TYPES,
     'items': [{k: x[k] for k in ('id', 'p', 's', 'y', 'n', 'v', 't')} for x in items],

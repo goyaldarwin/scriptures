@@ -54,7 +54,8 @@ The work node itself:
 |---|---|
 | `id` | same as `work` in the shelf |
 | `lang` | the language most of its verses are in (a code from `glossary/languages.json`, e.g. `awa`) |
-| `title`, `by`, `edition`, `colophon` | bilingual labels |
+| `title`, `by`, `edition`, `colophon` | bilingual labels. `edition` names the edition or source (kept for the record and the library search; not shown under the title) |
+| `from` | optional, bilingual: the parent text or context, shown under the title after the author (`by · from`), e.g. the Sundarakāṇḍa's “Śrī Rāmacaritamānasa”, the Sukhmani Sahib's “Sri Guru Granth Sahib, Ang 262–296”. Never a publisher. |
 | `parts` | the top division: `{"name": {"hi":"काण्ड","en":"Kāṇḍa"}, "list": [{"hi":…,"en":…}, …]}` |
 | `items` | every verse, in reading order (below) |
 | `topics` | section headings: `[{"id": <first item id>, "hi": …, "en": …}]` |

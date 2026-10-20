@@ -102,6 +102,7 @@ work = {
     'title': {'hi': 'सुन्दरकाण्ड', 'en': 'Sundarakāṇḍa'},
     'by': M['by'],
     'edition': {'hi': 'श्रीरामचरितमानस, गीताप्रेस', 'en': 'Śrī Rāmacaritamānasa, Gita Press'},
+    'from': {'hi': 'श्रीरामचरितमानस', 'en': 'Śrī Rāmacaritamānasa'},   # under the title on the work's page (by · from): the parent text, not the publisher (owner, 2026-10-19)
     'colophon': {'hi': '।। सियावर रामचन्द्रकी जय ।। पवनसुत हनुमानकी जय ।।', 'en': '।। Glory to Śrī Rāma ।। Glory to Hanumān, son of the Wind ।।'},
     'parts': {'name': {'hi': 'भाग', 'en': 'Part'},
               'list': [PARTS['mangal'][1], {'hi': 'किष्किन्धाकाण्ड (अन्तिम अंश)', 'en': 'Kiṣkindhā-kāṇḍa (closing verses)'}, {'hi': 'सुन्दरकाण्ड', 'en': 'Sundarakāṇḍa'}] + [v[1] for v in sorted(PARTS.values(), key=lambda v: v[0]) if v[0] > 2]},
