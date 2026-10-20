@@ -667,7 +667,8 @@ async def main():
             b.click(); const r1 = S.settings.rate, open = document.querySelector('#sheet').classList.contains('on'); closeSheet();
             show('settings'); await new Promise(r => setTimeout(r, 300)); const on = document.querySelector('#setBody [data-rate].on'); const r2 = on && on.dataset.rate;
             document.querySelector('#setBody [data-rate="1"]').click(); return [r1, open, r2, S.settings.rate]; })()""")
-        check('speed: 1× · 1.25× · 1.5× · 2× in the reader\'s ☰ and in Settings, remembered', rt == [1.5, True, '1.5', 1], rt)
+        n6 = await ev("document.querySelectorAll('#setBody [data-rate]').length")
+        check('speed: 0.5× to 2× in the reader\'s ☰ and in Settings, remembered', rt == [1.5, True, '1.5', 1] and n6 == 6, [rt, n6])
         # ---- owner, 2026-10-20: "Ends now" also starts the next verse; the preview only when nothing plays live ----
         en = await ev("""(async () => { """ + T0 + """ const a = AUT[0], i = a[10][0], n = a[11][0], m = a[12][0], s = Math.round(a[10][1] * 10) / 10;
             setTime(i, 1, s); setTime(i, 2, s + 6); const r = [Math.round((SRC.au.at[IT[n].id][1] - s) * 10) / 10, !!myStarts()[IT[n].id], !!myStarts()[IT[m].id]];   // the next verse starts at the end and is yours; the one after is untouched

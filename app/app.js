@@ -674,9 +674,9 @@ function ytLoad(vid, start){
   f.addEventListener('load', hello);
   clearTimeout(ytWait); ytWait = setTimeout(() => { if (!ytOK && PL.on) ytBlocked(); }, 5000);
 }
-// Playing speed (owner, 2026-10-20): 1×, 1.25×, 1.5×, 2× — YouTube's own speed, so the verse times (in the recording's
+// Playing speed (owner, 2026-10-20): 0.5× to 2× — YouTube's own speed, so the verse times (in the recording's
 // time) stay right; the light follows the recording. Chosen in the reader's ☰ and in Settings; kept for next time.
-const RATES = [1, 1.25, 1.5, 2];
+const RATES = [0.5, 0.75, 1, 1.25, 1.5, 2];
 function RATE(){ return S.settings.rate || 1; }
 function applyRate(){ if (ytOK) ytPost('setPlaybackRate', [RATE()]); if (PL.on) $('#pTrack').textContent = playingName(); }
 function rateRow(){ return '<div class="ratebox"><span>' + T('गति', 'Speed') + '</span>' + RATES.map(r => '<button data-rate="' + r + '" class="' + (r === RATE() ? 'on' : '') + '">' + r + '×</button>').join('') + '</div>'; }
