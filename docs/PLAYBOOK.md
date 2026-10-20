@@ -376,7 +376,7 @@ The owner (and helpers) set verse times by ear in the app; the library applies t
 - **Bookmarks (owner, 2026-10-20):** the bookmark sign beside a verse is larger and darker (20px, indigo) so it is easy to see, and the ▶ beside a verse is as large (34px icon); on the Bookmarks page each bookmark has its own ✕ to remove it; the tour has a bookmark step (9 steps; before ▶, which ends the tour).
 - **Bug (2026-10-20): the reader's footer stopped opening the section picker** — `onclick = sectionSheet` passed the click event as its new part argument. Handlers that call a function with optional arguments must be wrapped (`() => f()`); a UX test now taps the footer itself.
 - Tour fixes (owner, 2026-10-20): ‹ Back from “close the drawer” closes the drawer and waits on “tap a word”; A+ at the largest size (A− at the smallest) moves on with the tap alone.
-- **The tour ends where it is** (the verse playing in the reader) with a short message, “Tour complete — ☰ › Take the tour shows it again”, not a closing card (owner, 2026-10-20).
+- **How the tour ends (owner, 2026-10-20):** after ▶ it waits for the verse to finish (or the player to be closed), then opens the library with “Tour complete — we hope you enjoy the app!” — no closing card, no “Play on”.
 - **The tour is in every ☰ menu (“Take the tour” / “परिचय (टूर)”)**, not in Settings (owner, 2026-10-20).
 - **A− / A+ and हिं · En are standard on every page's header (owner, 2026-10-20):** library, work, reader (हिं · En · शब्द · 📖), Pārāyaṇa vidhi (its हिं · En are the meanings), Bookmarks and Settings (the app's language). The search page keeps its search box.
 - **A touch or scroll while playing pauses auto-scroll for 4 seconds** (was 8; owner, 2026-10-20).

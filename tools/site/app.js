@@ -751,6 +751,7 @@ function tick(anchor){
     // the verse or stretch asked for has ended: stop, and offer to go on from the next verse (owner, 2026-10-19)
     const last = PL.end, whole = PL.whole, msg = whole ? T('पाठ पूर्ण', 'Recitation complete') : PL.endMsg || T('पूर्ण', 'Finished');
     stopAudio(); const nx = whole ? null : firstAu(last + 1, Math.min(IT.length - 1, last + 80));
+    if (TOUR && TOUR.waiting) return;   // the tour's verse has been heard: the tour finishes (no "Play on")
     if (nx == null) toast(msg); else toastAct(msg, T('▶ आगे सुनें', '▶ Play on'), () => { if (!$('#reader').classList.contains('on')) openReader(R.org, nx); playFrom(nx); });
     return;
   }
@@ -1260,14 +1261,18 @@ function tourBack(){
   if (k === 0 && CURVIEW !== 'home') show('home');
   TOUR.k = -1; $('#cspot').style.opacity = 0; setTimeout(() => tourStep(k), 250);
 }
-// the tour ends where it is — the verse playing in the reader — with a short message, not a card (owner, 2026-10-20)
-function tourEnd(){
+// After ▶ the tour waits for the verse to finish playing, then takes the reader to the library with a parting message
+// (owner, 2026-10-20). Closing the player early ends it the same way.
+function tourEnd(){ if (!TOUR) return; TOUR.k = -1; TOUR.waiting = true; $('#coach').hidden = true; if (!PL.on) tourFinish(); }
+function tourFinish(){
   if (S.settings.recite) toggleRecite();   // the meanings come back after the tour
-  closeTour(); toast(T('परिचय पूरा हुआ — ☰ › परिचय (टूर) से फिरसे देखें', 'Tour complete — ☰ › Take the tour shows it again'));
+  closeTour(); libPath = []; show('library');
+  toast(T('परिचय पूरा हुआ — आशा है ऐप आपको अच्छा लगेगा!', 'Tour complete — we hope you enjoy the app!'));
 }
 function closeTour(keep){ if (!keep) S.hinted = 1;  $('#tour').hidden = true; $('#coach').hidden = true; $('#tourSkip').hidden = false; TOUR = null; if (!keep){ S.settings.tour = 1; save(); } }
 // keep the light on the step's spot as the page moves; move on when the step has been done (a step that cannot be shown is skipped)
 setInterval(() => {
+  if (TOUR && TOUR.waiting){ if (!PL.on) tourFinish(); return; }
   if (!TOUR || TOUR.k < 0) return; const x = tourSteps()[TOUR.k]; if (!x) return;
   if (x.done()){ const nx = TOUR.k + 1; TOUR.k = -1; $('#cspot').style.opacity = 0; setTimeout(() => tourStep(nx), 450); return; }
   const el = x.t(), sp = $('#cspot'), cb = $('#cbub');
