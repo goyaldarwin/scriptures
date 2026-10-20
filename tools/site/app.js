@@ -774,13 +774,25 @@ function setTime(i, k, sec){
     else { toast(mine ? T('अंत शुरुआतके बाद होना चाहिये', 'The end must come after the start') : T('पहले “अभी शुरू” से इसकी शुरुआत लगाएँ', 'Mark its start first (Starts now)')); return false; }
   }
   if (k === 1 && v[2] != null && v[2] <= v[1]) v[2] = null;
-  // an end cannot pass the start of the next verse when you set that start: say so, rather than seem to do nothing (owner, 2026-10-19)
-  if (k === 2 && v[2] != null){
-    const a = AUT[v[0]] || [], j = a.findIndex(x => x[0] === i), nx = j >= 0 ? a[j + 1] : null;
-    if (nx && myStarts()[IT[nx[0]].id] && v[2] > nx[1] + 0.001){ toast(T('अगला पद ' + fmtT(nx[1]) + ' पर शुरू होता है — अंत इसके बाद नहीं हो सकता। पहले अगले पदकी शुरुआत आगे करें।', 'The next verse starts at ' + fmtT(nx[1]) + ' — the end cannot be later. Move that start first.')); return false; }
+  // Neighbours move together (owner, 2026-10-19): an end moved past the next verse's start (one you set) carries that start
+  // with it; a start moved before the previous verse's end (one you set) pulls that end back. Nothing is silently cut.
+  const a = AUT[v[0]] || [], j = a.findIndex(x => x[0] === i), link = [];
+  if (k === 2 && v[2] != null && j >= 0 && a[j + 1]){
+    const nid = IT[a[j + 1][0]].id, n = myStarts()[nid];
+    if (n && n[1] != null && v[2] > n[1] + 0.001){
+      if (n[2] != null && n[2] <= v[2] + 0.1){ toast(T('अगला पद इतनी जल्दी समाप्त होता है — पहले उसका अंत आगे करें', 'The next verse ends too soon for that — move its end first')); return false; }
+      link.push([nid, [n[0], v[2], n[2]]]);
+    }
+  }
+  if (k === 1 && j > 0){
+    const pid = IT[a[j - 1][0]].id, p = myStarts()[pid];
+    if (p && p[2] != null && v[1] < p[2] - 0.001){
+      if (v[1] <= p[1] + 0.1){ toast(T('पिछला पद इसके बाद शुरू होता है — इतना पीछे नहीं जा सकते', 'The verse before starts later than that — it cannot go back so far')); return false; }
+      link.push([pid, [p[0], p[1], v[1]]]);
+    }
   }
   const was = {}; $$('#rBody .verse').forEach(el => { const j = +el.dataset.i; was[j] = JSON.stringify(SRC.au.at[IT[j].id]); });
-  fx[id] = v; unfrom(id); save(); buildAudio();
+  fx[id] = v; unfrom(id); link.forEach(([lid, lv]) => { fx[lid] = lv; unfrom(lid); }); save(); buildAudio();
   Object.keys(was).forEach(j => { j = +j; if (j === i || was[j] !== JSON.stringify(SRC.au.at[IT[j].id])) rerenderItem(j); });   // every verse on screen whose time moved
   if (PL.on){ PL.cur = -1; tick(i); }   // the light moves at once, from this verse (after an end: to the next verse); the page stays where you are
   toast((k === 1 ? T('शुरुआत: ', 'Starts at ') : T('अंत: ', 'Ends at ')) + (sec == null ? '—' : fmtT(sec)));
