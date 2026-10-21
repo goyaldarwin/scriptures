@@ -480,7 +480,7 @@ async def main():
         # a timing mark never scrolls the page while the lit verse is on screen
         ns = await ev("""(async () => { S.timing.on = true; applyTiming(); await openWork('shri-rudram', true); await loadSources(); show('home');
             const a = AUT[0], i = a[8][0]; openReader('k', i); await new Promise(r => setTimeout(r, 600));
-            const keep = JSON.stringify(S.timing.fix[tkey()] || {}); PL.on = true; PL.t = 0; PL.hold = 0; setCur(i); await new Promise(r => setTimeout(r, 900));
+            const keep = JSON.stringify(S.timing.fix[tkey()] || {}); PL.on = true; PL.t = 0; setCur(i); await new Promise(r => setTimeout(r, 900));
             const y0 = scrollY; ytInfo.t = a[8][1] + 1; setTime(i, 2, a[8][1] + 1); await new Promise(r => setTimeout(r, 900)); const y1 = scrollY;
             PL.on = false; S.timing.fix[tkey()] = JSON.parse(keep); S.timing.on = false; save(); applyTiming(); await loadSources(); return [y0, y1]; })()""")
         check('timing: marking a verse does not move the page', abs(ns[0] - ns[1]) < 2, ns)
@@ -634,7 +634,7 @@ async def main():
         check('a meaning switched in Settings shows lit in the reader’s capsule', cap == [True, True, 'reader'], cap)
         await ev("S.settings.layers.h = false; save(); syncLayers()")
         pin = await ev("""(async () => { S.timing.on = false; applyTiming(); await openWork('manas', true); show('home'); openReader('k', 30); await new Promise(r => setTimeout(r, 700));
-            PL.on = true; PL.hold = 0; PL.cur = -1; setCur(34); await new Promise(r => setTimeout(r, 1200));
+            PL.on = true; PL.cur = -1; setCur(34); await new Promise(r => setTimeout(r, 1200));
             const bar = document.querySelector('#reader .bar').getBoundingClientRect().bottom, v = document.getElementById('v34'), pv = v.previousElementSibling;
             const t = (pv && pv.classList.contains('vtype') ? pv : v).getBoundingClientRect().top, nx = document.getElementById('v35').getBoundingClientRect().top;
             PL.on = false; return [Math.round(t - bar), nx < innerHeight]; })()""")
@@ -690,6 +690,18 @@ async def main():
             const paused = [PL.snip != null && Math.abs(PL.snip - SRC.au.at[IT[i].id][2]) < 0.01, Math.round((SRC.au.at[IT[i].id][2] - s) * 10) / 10];   // now the preview plays up to the new end
             stopAudio(); ytOK = false; ytInfo.st = -1; """ + T1 + """ return live.concat(paused); })()""")
         check('timing: − / + while the recitation plays on only move the time; the 2-second preview plays when nothing is playing', pv == [True, 3.5, True, True, 3], pv)
+        # the player's timing wins (owner, 2026-10-20): a touch (a bookmark, say) or a scroll does not pause the following; the page
+        # moves to the next verse the moment it starts
+        fl = await ev("""(async () => { await openWork('ramraksha', true); show('home'); S.timing.on = false; openReader('k', 0); await new Promise(r => setTimeout(r, 500));
+            const a = AUT[0], v1 = a[3][0], v2 = a[4][0]; PL.on = true; PL.t = 0; PL.end = null; PL.cur = -1; ytOK = true; PL.seekT = null; ytInfo.t = a[3][1] + 0.2; tick(); await new Promise(r => setTimeout(r, 900));
+            const el = document.getElementById('v' + v1); el.dispatchEvent(new TouchEvent('touchstart', {bubbles: true}));   // a finger on the page
+            el.querySelector('.vbm').click();   // bookmark the lit verse
+            window.scrollBy(0, 600); await new Promise(r => setTimeout(r, 300));   // and scroll away
+            ytInfo.t = a[4][1] + 0.2; tick(); await new Promise(r => setTimeout(r, 1200));   // the next verse starts
+            const r = document.getElementById('v' + v2).getBoundingClientRect(), top = document.querySelector('#reader .bar').getBoundingClientRect().bottom;
+            const ok = PL.cur === v2 && r.top >= top - 2 && r.bottom <= innerHeight;
+            stopAudio(); ytOK = false; Object.keys(ME().bm).filter(k => k.startsWith(W.id + ':')).forEach(k => delete ME().bm[k]); save(); return [ok, PL.cur === v2, Math.round(r.top), Math.round(top)]; })()""")
+        check('playing: after a touch, a bookmark and a scroll, the page still follows the next verse the moment it starts', fl[0], fl)
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')
