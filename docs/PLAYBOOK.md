@@ -339,6 +339,12 @@ The owner (and helpers) set verse times by ear in the app; the library applies t
 - **A meaning switched in Settings** lights the reader's हिं · En · शब्द capsule when you come back (`syncLayers`).
 - **Noted, not changed (owner to decide):** "Next kāṇḍa ›" at the end of a part adds no history entry (Back goes to the work page, not the previous kāṇḍa); the installed app caches only the shell (works need the internet; the offline file is separate); if the tour's work fails to load offline, the tour stops silently; the reader reopens at the saved top verse, not the exact scroll offset.
 
+### Offline reading (owner, 2026-10-21)
+- **Texts and meanings must be readable offline; they rarely change.** The service worker (written by build.py as `sw.js`) keeps two caches: the app shell, renewed on every build, and `lib-v1` for every library file the phone has fetched (texts, meanings, word lists, audio times), which **survives every deploy** — before, each push to `main` wiped the whole cache, so offline reading lasted only until the next deploy. A work opened once is readable offline with all its meanings; one never opened says "No internet — this text has not been opened on this phone yet".
+- **Fresh when online, cached when not:** library files are network-first with a 2.5-second wait, so a published correction is seen at the next open (accuracy first) and a slow or absent network falls back to the copy on the phone. The app's own files are network-first too, with the installed shell as the fallback.
+- **Found on the way: the worker had never installed on the live site.** Its file list named some fonts twice, and `cache.addAll` refuses a duplicate, so the install failed silently on every phone — no offline at all, ever. build.py now lists each file once, and the UX test checks that the worker reaches "active".
+- Tested for real in the UX test: a second server is stopped and the page reloaded with no network at all. The worker is registered on https only (and on the test's localhost with `window.__SW_TEST`).
+
 ### Lessons: the working environment
 - **Gate commits on the test's exit code, not on a grep of its output** (`ux_test.py | grep … && git commit` committed with a failing check on 2026-10-20). The failing check had assumed no owner times in the Mānas — true until issue #13 sent some; tests that pick sample verses from live data must exclude verses set by ear.
 - **Never `pkill -f`** in this environment: it matched and killed the session's own shell (exit 144), twice. Kill by PID or a pid file.

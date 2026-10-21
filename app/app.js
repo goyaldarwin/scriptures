@@ -981,7 +981,8 @@ async function openWork(id, noShow){
   try {
     if (!W || W.id !== id){ const path = workPath(id); W = await getJSON(path + '/work'); W.path = path; buildWork(); moveRenamed(); fixLast(); await Promise.all([loadSources(), loadGlossaries()]); }
     S.work = id; save();
-  } catch (e) { toast(T('यह ग्रन्थ नहीं खुल सका', 'Could not open this text')); $('#loading').hidden = true; return; }
+  } catch (e) { const off = navigator.onLine === false || await fetch('library/.ping?' + Date.now(), {cache: 'no-store'}).then(() => false, () => true);   // offline: not even a probe gets through
+    toast(off ? T('इंटरनेट नहीं है — यह ग्रन्थ इस फ़ोनपर पहले खोला नहीं गया', 'No internet — this text has not been opened on this phone yet') : T('यह ग्रन्थ नहीं खुल सका', 'Could not open this text')); $('#loading').hidden = true; return; }
   await hideSalute();
   if (!noShow) show('home');
 }
@@ -1359,5 +1360,6 @@ function pruneLib(nodes, shelves){
   else { history.replaceState(snap('library'), ''); renderLibrary(); await hideSalute(); }
   cloudInit();
   if (!S.settings.tour) startTour();
-  if ('serviceWorker' in navigator && location.protocol === 'https:' && !BUNDLE) navigator.serviceWorker.register('sw.js').catch(() => {});
+  // offline reading (owner, 2026-10-21): the service worker keeps the app and every library file it has fetched (sw.js, build.py)
+  if ('serviceWorker' in navigator && (location.protocol === 'https:' || window.__SW_TEST) && !BUNDLE) navigator.serviceWorker.register('sw.js').catch(() => {});
 })();

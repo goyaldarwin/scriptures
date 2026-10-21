@@ -76,13 +76,22 @@ json.dump({'id': './', 'name': 'शास्त्र · Scriptures', 'short_nam
            'shortcuts': [{'name': w['title']['en'], 'short_name': w['title']['en'][:12], 'url': './?w=' + w['work'], 'icons': [{'src': 'app/icon-192.png', 'sizes': '192x192'}]} for w in _works[:4]]},
           open(os.path.join(SITE, 'manifest.json'), 'w'), ensure_ascii=False, indent=1)
 open(os.path.join(APPD, 'icon.svg'), 'w').write('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#2B3A8C"/><text x="32" y="44" text-anchor="middle" font-size="34" fill="#F2A653" font-family="serif">ॐ</text></svg>')
-files = ['./', 'index.html', 'manifest.json', 'app/icon.svg', 'app/icon-192.png', 'app/icon-512.png', 'app/apple-touch-icon.png', VJS, VCSS, VF] + ['app/fonts/' + os.path.basename(p[1]) for p in FONTS]
+files = list(dict.fromkeys(['./', 'index.html', 'manifest.json', 'app/icon.svg', 'app/icon-192.png', 'app/icon-512.png', 'app/apple-touch-icon.png', VJS, VCSS, VF] + ['app/fonts/' + os.path.basename(p[1]) for p in FONTS]))   # each file once: cache.addAll refuses a duplicate, and the worker would never install (found 2026-10-21)
 ver = hashlib.sha1((VJS + VCSS + VF).encode()).hexdigest()[:10]
-open(os.path.join(SITE, 'sw.js'), 'w').write("""const V='s-%s';const CORE=%s;
+# The service worker (offline reading, owner 2026-10-21). Two caches: V holds the app shell (CORE) and is renewed on every
+# build; LIB holds the library's files (texts, meanings, word lists, audio times) and survives every deploy, so a work opened
+# once stays readable offline. Library files are network-first with a short wait — fresh text whenever the phone is online
+# (accuracy first; a published correction is seen at the next open) — and from the cache when offline or the network is slow.
+open(os.path.join(SITE, 'sw.js'), 'w').write("""const V='s-%s';const LIB='lib-v1';const CORE=%s;
 self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(CORE)));self.skipWaiting();});
-self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==V).map(k=>caches.delete(k)))));self.clients.claim();});
-self.addEventListener('fetch',e=>{const u=new URL(e.request.url);if(u.origin!==location.origin)return;
- e.respondWith(fetch(e.request, {cache: 'no-cache'}).then(r=>{const c=r.clone();caches.open(V).then(x=>x.put(e.request,c));return r;}).catch(()=>caches.match(e.request)));});
+self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==V&&k!==LIB).map(k=>caches.delete(k)))));self.clients.claim();});
+function netFirst(req,name,ms){
+ const net=fetch(req,{cache:'no-cache'}).then(r=>{if(r.ok){const c=r.clone();caches.open(name).then(x=>x.put(req,c));}return r;});
+ const timed=ms?Promise.race([net,new Promise((_,rej)=>setTimeout(()=>rej('slow'),ms))]):net;
+ return timed.catch(()=>caches.match(req,{ignoreSearch:req.mode==='navigate'}).then(c=>c||(req.mode==='navigate'?caches.match('index.html'):undefined)).then(c=>c||net));
+}
+self.addEventListener('fetch',e=>{const u=new URL(e.request.url);if(u.origin!==location.origin||e.request.method!=='GET')return;
+ e.respondWith(u.pathname.includes('/library/')?netFirst(e.request,LIB,2500):netFirst(e.request,V,0));});
 """ % (ver, json.dumps(files)))
 open(os.path.join(SITE, '.nojekyll'), 'w').write('')
 shutil.copy(os.path.join(ROOT, 'tools', 'site', 'privacy.html'), os.path.join(SITE, 'privacy.html'))

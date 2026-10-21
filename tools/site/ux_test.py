@@ -712,6 +712,23 @@ async def main():
             ytInfo.t = a[4][1] + 0.2; tick(); await new Promise(r => setTimeout(r, 1200)); jumpPill(); r.push(pill.hidden, PL.cur === v2);   // the next verse starts: the page follows, no pill
             stopAudio(); ytOK = false; r.push(pill.hidden); return r; })()""")
         check('playing: the “now playing” pill shows only while the lit verse is off screen, points the way, and brings it back on a tap', jp == [True, True, True, True, True, True, True, True, True], jp)
+        # offline reading (owner, 2026-10-21): a work opened once is readable with no network at all; a work never opened says so
+        srv2 = serve(); url2 = f'http://127.0.0.1:{srv2.server_address[1]}/'
+        ctx2 = await b.new_context(viewport={'width': 390, 'height': 844}, is_mobile=True, has_touch=True); pg3 = await ctx2.new_page(); errs3 = []
+        pg3.on('pageerror', lambda e: errs3.append(str(e))); await pg3.add_init_script('window.__SALUTE_MS = 0; window.__SW_TEST = 1')
+        await pg3.goto(url2); await pg3.wait_for_timeout(2500)
+        sw = await pg3.evaluate("navigator.serviceWorker.getRegistration().then(r => r ? (r.active ? 'active' : 'installing') : 'none')")
+        check('offline: the service worker installs (every file in its list once — a duplicate made it fail silently, 2026-10-21)', sw == 'active', sw)
+        await pg3.reload(); await pg3.wait_for_timeout(2000)   # now every file goes through the worker
+        await pg3.evaluate("(async () => { S.settings.tour = 1; closeTour(); await openWork('ramraksha'); S.settings.layers.h = true; S.settings.layers.e = true; save(); })()"); await pg3.wait_for_timeout(1500)
+        kept = await pg3.evaluate("caches.keys().then(async ks => { const c = await caches.open('lib-v1'); const es = await c.keys(); return [ks.includes('lib-v1'), es.filter(r => r.url.includes('/library/')).length]; })")
+        srv2.shutdown(); srv2.server_close()   # the network is gone
+        await pg3.reload(); await pg3.wait_for_timeout(3000)
+        off = await pg3.evaluate("(async () => { if (!W || W.id !== 'ramraksha') await openWork('ramraksha', true); show('home'); openReader('k', 0); await new Promise(r => setTimeout(r, 600)); return [W && W.id, document.querySelectorAll('#reader .verse').length, document.querySelectorAll('#reader .layer.h').length, document.querySelectorAll('#reader .layer.e').length, document.querySelector('#loading').hidden]; })()")
+        never = await pg3.evaluate("(async () => { await openWork('manas'); return [W && W.id, document.querySelector('#toast').textContent]; })()")
+        check('offline: a work opened once is readable without any network, with its meanings', kept[0] and kept[1] >= 4 and off[0] == 'ramraksha' and off[1] > 0 and off[2] > 0 and off[3] > 0 and off[4], (kept, off, errs3[:2]))
+        check('offline: a work never opened on this phone says so', never[0] == 'ramraksha' and ('No internet' in never[1] or 'इंटरनेट' in never[1]), never)
+        await ctx2.close()
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')
