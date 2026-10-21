@@ -584,7 +584,7 @@ function editSheet(i){
 
 /* ---------------- audio from YouTube: hands-free recitation ---------------- */
 let AUT = [], ytVid = '', ytOK = false, ytInfo = {t: 0, st: -1, d: 0}, ytWait = null;
-let PL = {on: false, t: -1, end: null, cur: -1, hold: 0};
+let PL = {on: false, t: -1, end: null, cur: -1};
 function tkey(){ return W.id + ':' + SRC.au.meta.id; }
 // timing review: under every verse, the verse's own buttons. You mark the verse you are looking at, never a guess:
 // "Starts now" when you hear its first word, "Ends now" when it is over (a refrain or music follows), ▶ to hear it.
@@ -730,7 +730,7 @@ function playFrom(i, end){
   if (!hasAu(i)){ const j = firstAu(i, Math.min(IT.length - 1, i + 80)); if (j == null) return; i = j; }
   const [t, st0] = SRC.au.at[IT[i].id], tr = SRC.au.tracks[t];
   const st = (end != null && i === tr.fi) ? 0 : st0;
-  PL.on = true; PL.t = t; PL.end = end; PL.cur = -1; PL.hold = 0; PL.whole = false; PL.endMsg = '';
+  PL.on = true; PL.t = t; PL.end = end; PL.cur = -1; PL.whole = false; PL.endMsg = '';
   $('#player').hidden = false; document.body.classList.add('playing'); wake(true);
   seekGuard(st);
   if (ytVid !== tr.yt || !ytFrame()) ytLoad(tr.yt, st); else { ytPost('seekTo', [st, true]); ytPost('playVideo'); ytInfo.t = st; ytInfo.at = performance.now(); }
@@ -806,15 +806,16 @@ function setCur(i){
   else if (!document.getElementById('v' + i)) renderAround(i, false);
   const el = document.getElementById('v' + i);
   // while timings are being marked the page is not moved under your finger: it only follows when the lit verse leaves the screen
-  if (el){ el.classList.add('now'); if (Date.now() > PL.hold && !(S.timing.on && inView(el))) keepInView(el); }
+  // the player's timing wins (owner, 2026-10-20): the page follows the light every time a new verse starts, whatever was
+  // touched or scrolled meanwhile — no pause after a touch
+  if (el){ el.classList.add('now'); if (!(S.timing.on && inView(el))) keepInView(el); }
 }
 function stopAudio(){ ytPost('pauseVideo'); PL.on = false; PL.snip = null; $('#player').hidden = true; document.body.classList.remove('playing'); $$('#rBody .verse.now').forEach(v => v.classList.remove('now')); }
 function playing(){ return ytInfo.st === 1 || ytInfo.st === 3; }
 function syncPlayer(){ $('#pPlay').innerHTML = '<svg><use href="#i-' + (playing() ? 'pause' : 'play') + '"/></svg>'; }
-['touchstart', 'wheel'].forEach(e => window.addEventListener(e, ev => { if (PL.on && !ev.target.closest('#player')) PL.hold = Date.now() + 4000; }, {passive: true}));   // a touch or scroll pauses auto-scroll for 4 s (owner, 2026-10-20)
 $('#pPlay').onclick = () => { if (playing()) ytPost('pauseVideo'); else ytPost('playVideo'); setTimeout(syncPlayer, 400); };
 $('#pClose').onclick = stopAudio;
-function stepVerse(d){ PL.snip = null; const a = AUT[PL.t]; const k = a.findIndex(x => x[0] === PL.cur); const n = k + d; if (k >= 0 && n >= 0 && n < a.length){ seekGuard(a[n][1]); ytPost('seekTo', [a[n][1], true]); ytInfo.t = a[n][1]; ytInfo.at = performance.now(); PL.hold = 0; PL.cur = -1; tick(); } }
+function stepVerse(d){ PL.snip = null; const a = AUT[PL.t]; const k = a.findIndex(x => x[0] === PL.cur); const n = k + d; if (k >= 0 && n >= 0 && n < a.length){ seekGuard(a[n][1]); ytPost('seekTo', [a[n][1], true]); ytInfo.t = a[n][1]; ytInfo.at = performance.now(); PL.cur = -1; tick(); } }
 /* timing review: set a verse's start by ear. The player reports its time a few times a second, so the moment of the tap is
    worked out from the last report; 0.3 s is taken off for the time it takes to hear the word and tap. */
 function nowAt(){ const t = playTime(), since = PL.seekT != null ? PL.seekAt : ytInfo.at; return Math.max(0, t + (playing() && since ? RATE() * (performance.now() - since) / 1000 : 0) - 0.3 * RATE()); }   // right after a seek, the player may still report its old time: the asked-for time is used (playTime)
@@ -882,7 +883,7 @@ function fmtT(sec){ const m = Math.floor(sec / 60), s = sec - m * 60; return m +
 function applyTiming(){ document.body.classList.toggle('timing', !!S.timing.on); }
 $('#pPrev').onclick = () => stepVerse(-1);
 $('#pNext').onclick = () => stepVerse(1);
-$('#pInfo').onclick = () => { if (PL.cur < 0) return; if (!$('#reader').classList.contains('on')) openReader(R.org, PL.cur); PL.hold = 0; const c = PL.cur; PL.cur = -1; setCur(c); };
+$('#pInfo').onclick = () => { if (PL.cur < 0) return; if (!$('#reader').classList.contains('on')) openReader(R.org, PL.cur); const c = PL.cur; PL.cur = -1; setCur(c); };
 function playRange(org, a, b){ const st = firstAu(a, b); if (st == null) return; openReader(org, st); playFrom(st, b); PL.whole = a === 0 && b === IT.length - 1; PL.endMsg = PL.whole ? '' : spanLabel(a, b) + T(' पूर्ण', ' finished'); }
 
 /* ---------------- library (any depth: tradition › text › part › work) ---------------- */
