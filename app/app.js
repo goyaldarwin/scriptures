@@ -810,7 +810,7 @@ function setCur(i){
   // touched or scrolled meanwhile — no pause after a touch
   if (el){ el.classList.add('now'); if (!(S.timing.on && inView(el))) keepInView(el); }
 }
-function stopAudio(){ ytPost('pauseVideo'); PL.on = false; PL.snip = null; $('#player').hidden = true; document.body.classList.remove('playing'); $$('#rBody .verse.now').forEach(v => v.classList.remove('now')); }
+function stopAudio(){ ytPost('pauseVideo'); PL.on = false; PL.snip = null; $('#player').hidden = true; $('#pJump').hidden = true; document.body.classList.remove('playing'); $$('#rBody .verse.now').forEach(v => v.classList.remove('now')); }
 function playing(){ return ytInfo.st === 1 || ytInfo.st === 3; }
 function syncPlayer(){ $('#pPlay').innerHTML = '<svg><use href="#i-' + (playing() ? 'pause' : 'play') + '"/></svg>'; }
 $('#pPlay').onclick = () => { if (playing()) ytPost('pauseVideo'); else ytPost('playVideo'); setTimeout(syncPlayer, 400); };
@@ -883,7 +883,21 @@ function fmtT(sec){ const m = Math.floor(sec / 60), s = sec - m * 60; return m +
 function applyTiming(){ document.body.classList.toggle('timing', !!S.timing.on); }
 $('#pPrev').onclick = () => stepVerse(-1);
 $('#pNext').onclick = () => stepVerse(1);
-$('#pInfo').onclick = () => { if (PL.cur < 0) return; if (!$('#reader').classList.contains('on')) openReader(R.org, PL.cur); const c = PL.cur; PL.cur = -1; setCur(c); };
+function toPlaying(){ if (PL.cur < 0) return; if (!$('#reader').classList.contains('on')) openReader(R.org, PL.cur); const c = PL.cur; PL.cur = -1; setCur(c); }
+$('#pInfo').onclick = toPlaying;
+// “↓ now playing” (owner, 2026-10-20): while the lit verse is off the screen, a pill above the player names it (as the footer
+// would); a tap brings it back into view. It goes as soon as the verse is on the screen again, or at the next verse's start.
+$('#pJump').onclick = toPlaying;
+function jumpPill(){
+  const b = $('#pJump'); if (!PL.on || PL.cur < 0 || CURVIEW !== 'reader' || $('#sheet').classList.contains('on')){ b.hidden = true; return; }
+  const el = document.getElementById('v' + PL.cur), r = el && el.getBoundingClientRect(), top = $('#reader .bar').getBoundingClientRect().bottom, pl = $('#player').hidden ? {top: innerHeight} : $('#player').getBoundingClientRect();
+  const seen = r && r.bottom > top + 24 && r.top < pl.top - 24;   // some of the verse is on the screen
+  if (seen){ b.hidden = true; return; }
+  const i = PL.cur, where = R.org === 'k' ? (PARTS.length > 1 ? KNAME(IT[i].p) : '') : VN(R.n);
+  const h = '<b>' + (i >= topVisibleItem() ? '↓ ' : '↑ ') + esc(posLabel(i)) + '</b>' + (where ? '<small>' + esc(where) + '</small>' : '');
+  if (b.innerHTML !== h) b.innerHTML = h; b.style.bottom = (innerHeight - pl.top + 10) + 'px'; b.hidden = false;
+}
+setInterval(jumpPill, 300);
 function playRange(org, a, b){ const st = firstAu(a, b); if (st == null) return; openReader(org, st); playFrom(st, b); PL.whole = a === 0 && b === IT.length - 1; PL.endMsg = PL.whole ? '' : spanLabel(a, b) + T(' पूर्ण', ' finished'); }
 
 /* ---------------- library (any depth: tradition › text › part › work) ---------------- */
