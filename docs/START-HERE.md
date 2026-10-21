@@ -45,6 +45,7 @@ library/ ─ tools/site/build.py (checks everything first) ─► index.html, ap
 - The verse text and its number are the core of each work. Hindi meaning, English meaning and audio are interchangeable sources that the reader picks in Settings. Word meanings (`glossary/<lang>.json`) are fixed and shared, one dictionary per language. Each verse is looked up in its own language: Awadhi for most of the Mānas, Sanskrit for its ślokas and Sanskrit stutis.
 - The app is the same for every work: the shelf screen, the work's home (divisions and plans with ▶), and a continuous-scroll reader with a section picker at the bottom. Bookmarks, notes, progress and hands-free recitation are built in.
 - Readers' personal data stays in their browser (localStorage, key `manas.personal.v1`; v2 format with keys prefixed by work id).
+- A work opened once is readable offline (the service worker keeps every library file fetched, across deploys; see the playbook → "Offline reading").
 
 ## Common tasks
 See `docs/HOW-TO.md`: add a meaning source, add a reciter, add a work, fix text, change the app, publish.
