@@ -702,6 +702,16 @@ async def main():
             const ok = PL.cur === v2 && r.top >= top - 2 && r.bottom <= innerHeight;
             stopAudio(); ytOK = false; Object.keys(ME().bm).filter(k => k.startsWith(W.id + ':')).forEach(k => delete ME().bm[k]); save(); return [ok, PL.cur === v2, Math.round(r.top), Math.round(top)]; })()""")
         check('playing: after a touch, a bookmark and a scroll, the page still follows the next verse the moment it starts', fl[0], fl)
+        # “↓ now playing” pill (owner, 2026-10-20): only while the lit verse is off the screen; a tap brings it back; gone at the next verse
+        jp = await ev("""(async () => { await openWork('ramraksha', true); show('home'); S.timing.on = false; openReader('k', 0); await new Promise(r => setTimeout(r, 500));
+            const a = AUT[0], v1 = a[3][0], v2 = a[4][0], pill = document.querySelector('#pJump'); PL.on = true; document.querySelector('#player').hidden = false; document.body.classList.add('playing'); PL.t = 0; PL.end = null; PL.cur = -1; ytOK = true; PL.seekT = null; ytInfo.t = a[3][1] + 0.2; tick(); await new Promise(r => setTimeout(r, 900));
+            const r = []; jumpPill(); r.push(pill.hidden);                                   // on screen: no pill
+            window.scrollBy(0, 1200); await new Promise(r => setTimeout(r, 400)); jumpPill(); r.push(!pill.hidden, pill.textContent.startsWith('↑') && pill.textContent.includes(posLabel(v1)));   // scrolled past it: the pill, pointing up
+            pill.click(); await new Promise(r => setTimeout(r, 900)); jumpPill(); r.push(pill.hidden, inView(document.getElementById('v' + v1)));   // a tap: back to the verse, pill gone
+            window.scrollTo(0, 0); await new Promise(r => setTimeout(r, 400)); jumpPill(); r.push(!pill.hidden && pill.textContent.startsWith('↓'));   // scrolled before it: pointing down
+            ytInfo.t = a[4][1] + 0.2; tick(); await new Promise(r => setTimeout(r, 1200)); jumpPill(); r.push(pill.hidden, PL.cur === v2);   // the next verse starts: the page follows, no pill
+            stopAudio(); ytOK = false; r.push(pill.hidden); return r; })()""")
+        check('playing: the “now playing” pill shows only while the lit verse is off screen, points the way, and brings it back on a tap', jp == [True, True, True, True, True, True, True, True, True], jp)
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')
