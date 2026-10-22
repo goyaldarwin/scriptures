@@ -542,24 +542,18 @@ function noteSheet(i, k){
 function itemMenu(i){
   const id = IT[i].id, edited = verseOf(i).edited || ['hi', 'en'].some(k => { const m = mean(k, i); return m && m.edited; });
   openSheet('<p class="small muted">' + esc(itemLabel(i)) + '</p><div class="menu">' + (hasAu(i) ? '<button data-x="play"><svg><use href="#i-play"/></svg>' + T('यहाँसे सुनें', 'Listen from here') + '</button>' : '') + '<button data-x="copy"><svg><use href="#i-copy"/></svg>' + T('मूल पाठ और अर्थ कॉपी करें', 'Copy verse and meaning') + '</button><button data-x="note"><svg><use href="#i-note"/></svg>' + T('टिप्पणी लिखें', 'Write a note') + '</button><button data-x="edit"><svg><use href="#i-edit"/></svg>' + T('पाठ या अर्थमें सुधार करें', 'Correct the text or meaning') + '</button>' + (edited ? '<button data-x="revert"><svg><use href="#i-edit"/></svg>' + T('मेरा सुधार हटाएँ (पुस्तकका पाठ लौटाएँ)', 'Remove my correction (restore book text)') + '</button>' : '') + '</div>');
-  if (S.timing.on && hasAu(i)){   // timing review: this verse's start, nudge it, hear it, undo
-    const mine = !!myStarts()[id];
-    const st = step(), row = (k, label) => '<div class="small muted" style="margin-top:8px">' + label + '</div><div class="tctl"><button class="btn ghost small" data-t="' + k + ':-' + st + '">−' + st + ' s</button><b id="tS' + k + '">—</b><button class="btn ghost small" data-t="' + k + ':' + st + '">+' + st + ' s</button>' + (k === 2 ? '<button class="btn ghost small" data-t="2:none">' + T('अगले पद तक', 'Until next') + '</button>' : '') + '</div>';
-    $('#sheetBody').insertAdjacentHTML('beforeend', '<div class="tbox"><div class="small muted"><b>' + T('ऑडियोका समय', 'Audio timing') + '</b>' + (fromOf(id) ? ' · ' + T('', 'from ') + esc(fromOf(id)) + T(' का', '') : mine ? T(' · आपका सेट किया हुआ', ' · set by you') : '') + '</div>' + row(1, T('शुरुआत', 'Start')) + row(2, T('अंत (खाली = अगला पद शुरू होनेतक)', 'End (empty = until the next verse starts)')) +
-      '<div class="small muted" style="margin-top:8px">' + T('− / + एक बारमें कितना खिसकाएँ (हर पदके नीचे भी)', 'How far − / + move a time (here and under every verse)') + '</div><div class="tctl tstep">' + [0.1, 0.25, 0.5, 1].map(v => '<button class="btn small' + (v === st ? '' : ' ghost') + '" data-step="' + v + '">' + v + ' s</button>').join('') + '</div>' +
+  if (S.timing.on && hasAu(i)){   // timing review: this verse's times, "Until next", the step for − / +, hear it, undo (− / + themselves sit under the verse)
+    const mine = !!myStarts()[id], x = SRC.au.at[id], st = step();
+    $('#sheetBody').insertAdjacentHTML('beforeend', '<div class="tbox"><div class="small muted"><b>' + T('ऑडियोका समय', 'Audio timing') + '</b>' + (fromOf(id) ? ' · ' + T('', 'from ') + esc(fromOf(id)) + T(' का', '') : mine ? T(' · आपका सेट किया हुआ', ' · set by you') : '') + '</div>' +
+      '<div class="tctl"><b style="min-width:0">' + T('शुरू ', 'Start ') + fmtT(x[1]) + (x[2] != null ? T(' · अंत ', ' · end ') + fmtT(x[2]) : T(' · अंत: अगला पद शुरू होनेतक', ' · end: until the next verse starts')) + '</b>' + (x[2] != null ? '<button class="btn ghost small" data-t="2:none">' + T('अगले पद तक', 'Until next') + '</button>' : '') + '</div>' +
+      '<div class="small muted" style="margin-top:8px">' + T('पदके नीचे − / + एक बारमें कितना खिसकाएँ', 'How far − / + under the verse move a time') + '</div><div class="tctl tstep">' + [0.1, 0.25, 0.5, 1].map(v => '<button class="btn small' + (v === st ? '' : ' ghost') + '" data-step="' + v + '">' + v + ' s</button>').join('') + '</div>' +
       '<div class="tctl" style="margin-top:10px"><button class="btn small" data-t="play">▶ ' + T('यही पद सुनें', 'Play this verse') + '</button>' + (mine ? '<button class="btn ghost small" data-t="undo">' + T('पहले जैसा', 'Undo') + '</button>' : '') + '</div></div>');
-    const show = () => { const x = SRC.au.at[id]; $('#tS1').textContent = fmtT(x[1]); $('#tS2').textContent = x[2] != null ? fmtT(x[2]) : '—'; };
     $$('#sheetBody [data-step]').forEach(b => b.onclick = () => { S.timing.step = +b.dataset.step; save(); closeSheet(); itemMenu(i); toast('− / + = ' + b.dataset.step + ' s'); });
-    show();
     $$('#sheetBody [data-t]').forEach(b => b.onclick = () => {
       const t = b.dataset.t;
       if (t === 'play'){ closeSheet(); playFrom(i, i); return; }
       if (t === 'undo'){ clearStart(i); closeSheet(); toast(T('पहले जैसा', 'Restored')); return; }
-      const [k, d] = t.split(':'), x = SRC.au.at[id];
-      if (d === 'none') setTime(i, 2, null);
-      else if (k === '1'){ if (setTime(i, 1, Math.max(0, x[1] + +d)) === false) return; }
-      else { const base = x[2] != null ? x[2] : (() => { const a = AUT[x[0]], n = a.findIndex(y => y[0] === i); return n >= 0 && n + 1 < a.length ? a[n + 1][1] : x[1] + 5; })(); if (setTime(i, 2, Math.max(x[1] + 0.5, base + +d)) === false) return; }
-      show(); if (d !== 'none' && !livePlay()) snippet(i, +k);
+      if (t === '2:none'){ setTime(i, 2, null); closeSheet(); itemMenu(i); }
     });
   }
   $$('#sheetBody [data-x]').forEach(b => b.onclick = () => {
@@ -1119,7 +1113,7 @@ function timingHTML(){
     h += (SRC.au.meta.draft ? sw('stp', T('यह रिकॉर्डिंग जाँच ली — सबके लिये चालू करें', 'This recording is checked: publish it for everyone'), T('भेजनेके साथ जाएगा', 'Goes with the next send'), !!(S.timing.publish || {})[tkey()]) : '') +
       checkList() + helperList() +
       '<p class="small" style="margin:14px 0 8px">' + esc(TT(SRC.au.meta.title)) + ': ' + DEV(n) + T(' पद आपने ठीक किये', ' verses set by you') + (p ? ' · ' + DEV(p) + T(' भेजने बाकी', ' not sent yet') : '') + '</p>' +
-      '<div class="acts"><button class="btn" id="tSend"' + (p || (S.timing.publish || {})[tkey()] ? '' : ' disabled') + '>' + T('लाइब्रेरीमें भेजें (GitHub)', 'Send to the library (GitHub)') + '</button><button class="btn ghost" id="tSave"' + (n ? '' : ' disabled') + '>' + T('फ़ाइलमें सेव करें', 'Save as a file') + '</button><button class="btn ghost" id="tOpen">' + T('फ़ाइल खोलें', 'Open file') + '</button>' + (n ? '<button class="btn ghost" id="tClear">' + T('मेरे बदलाव हटाएँ', 'Clear adjustments') + '</button>' : '') + '</div>' +
+      '<div class="acts"><button class="btn" id="tSend"' + (p || (S.timing.publish || {})[tkey()] ? '' : ' disabled') + '>' + T('लाइब्रेरीमें भेजें (GitHub)', 'Send to the library (GitHub)') + '</button><button class="btn ghost" id="tSave"' + (n ? '' : ' disabled') + '>' + T('फ़ाइलमें सेव करें', 'Save as a file') + '</button><button class="btn ghost" id="tOpen">' + T('फ़ाइल खोलें', 'Open a file') + '</button>' + (n ? '<button class="btn ghost" id="tClear">' + T('मेरे बदलाव हटाएँ', 'Clear adjustments') + '</button>' : '') + '</div>' +
       '<p class="small muted">' + T('सहायता कर रहे हैं? “फ़ाइलमें सेव करें” दबाकर फ़ाइल साइटके मालिकको भेजें; वे जाँचकर लाइब्रेरीमें जोड़ेंगे। लाइब्रेरीमें सीधे केवल मालिक भेज सकते हैं।', 'Helping? Tap “Save as a file” and send the file to the site’s owner, who checks it and adds it to the library. Only the owner can send to the library directly.') + '</p>';
   }
   return h;
