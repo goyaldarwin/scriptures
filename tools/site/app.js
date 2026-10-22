@@ -27,7 +27,7 @@ const LS = 'manas.personal.v1';
 let canStore = true;
 function newProfile(name){ return {id: 'p' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), name, notes: {}, bm: {}, done: {}, gloss: {}, fix: {}}; }
 // a new reader starts in English (owner, 2026-10-19): English interface and English meaning; हिं adds the Hindi meaning
-function defaults(){ const p = newProfile('Me'); return {v: 2, settings: {ui: 'en', layers: {h: false, e: true, w: false}, tr: false, size: 21, theme: 'light', wake: true, lightDefault: 1}, src: {}, w: {}, work: null, profiles: [p], active: p.id, show: [p.id], timer: null}; }
+function defaults(){ const p = newProfile('Me'); return {v: 2, settings: {ui: 'en', layers: {h: false, e: true, w: false}, tr: false, size: 21, theme: 'light', wake: true, lightDefault: 1}, src: {}, w: {}, work: null, profiles: [p], active: p.id, show: [p.id]}; }
 let S;
 try { S = JSON.parse(localStorage.getItem(LS)); } catch (e) { canStore = false; }
 if (!S || !S.profiles) S = defaults();
@@ -111,7 +111,7 @@ const LB = {
   tr: () => T('रोमन लिप्यन्तरण', 'Transliteration'), trSub: () => T('मूल पाठके नीचे रोमन अक्षरोंमें', 'The verse in Roman letters, under the text'),
   rc: () => T('पाठ मोड', 'Recitation mode'), rcSub: () => T('केवल मूल पाठ, बड़े अक्षर', 'Verses only, larger text'),
   size: () => T('अक्षरका आकार', 'Text size'), wake: () => T('पढ़ते समय स्क्रीन जलती रहे', 'Keep screen on while reading'), theme: () => T('रंग', 'Theme'),
-  timer: () => T('पाठ-टाइमर', 'Reading timer'), sections: () => T('प्रसंग', 'Sections'), search: () => T('खोजें', 'Search'),
+  sections: () => T('प्रसंग', 'Sections'), search: () => T('खोजें', 'Search'),
   bm: () => T('बुकमार्क और टिप्पणियाँ', 'Bookmarks & notes'), set: () => T('सेटिंग्स', 'Settings'), verses: () => T('मूल पाठ', 'Verses'),
   lib: () => T('पुस्तकालय', 'Library'), src: () => T('स्रोत', 'Sources'), vidhi: () => T('पारायण-विधि', 'Pārāyaṇa vidhi')
 };
@@ -160,16 +160,10 @@ function closeSheet(){ $('#sheet').classList.remove('on'); $('#scrim').classList
 $('#scrim').onclick = () => closeSheet();
 function sw(id, label, sub, on, icon){ return '<label class="sw">' + (icon ? '<svg class="swic"><use href="#i-' + icon + '"/></svg>' : '') + '<span' + (icon ? ' style="flex:1"' : '') + '>' + label + (sub ? '<small>' + sub + '</small>' : '') + '</span><span class="tg"><input type="checkbox" id="' + id + '"' + (on ? ' checked' : '') + '><span></span></span></label>'; }
 
-/* ---------------- wake lock & timer ---------------- */
+/* ---------------- wake lock ---------------- */
 let wl = null;
 async function wake(on){ try { if (on && S.settings.wake && 'wakeLock' in navigator){ if (!wl){ wl = await navigator.wakeLock.request('screen'); wl.addEventListener('release', () => wl = null); } } else if (wl && !PL.on){ await wl.release(); wl = null; } } catch (e) {} }
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && ($('#reader').classList.contains('on') || PL.on)) wake(true); });
-function timerText(){ const t = S.timer; if (!t) return ''; const sec = Math.floor(((t.run ? Date.now() - t.start : 0) + t.acc) / 1000); const h = Math.floor(sec / 3600), m = Math.floor(sec % 3600 / 60), s = sec % 60; return (h ? h + ':' + String(m).padStart(2, '0') : m) + ':' + String(s).padStart(2, '0'); }
-function tickTimer(){ const p = $('#timerPill'); if (S.timer){ p.classList.add('on'); p.textContent = (S.timer.run ? '' : '❚❚ ') + timerText(); } else p.classList.remove('on'); }
-function timerToggle(){ if (!S.timer) S.timer = {start: Date.now(), acc: 0, run: true}; else if (S.timer.run){ S.timer.acc += Date.now() - S.timer.start; S.timer.run = false; } else { S.timer.start = Date.now(); S.timer.run = true; } save(); tickTimer(); }
-function timerReset(){ S.timer = null; save(); tickTimer(); }
-setInterval(tickTimer, 1000);
-$('#timerPill').onclick = timerToggle;
 
 /* ---------------- word meanings: one dictionary per language (library/glossary/<lang>.json) ----------------
    A word is looked up in the language of the verse it is in, then in that language's fallbacks
@@ -488,8 +482,6 @@ $('#rRecite').onclick = toggleRecite;
 $('#rMore').onclick = () => { openSheet('<div class="menu">' +
   '<button data-m="sec"><svg><use href="#i-jump"/></svg>' + LB.sections() + '</button>' +
   '<button data-m="bm"><svg><use href="#i-bm"/></svg>' + LB.bm() + '</button>' +
-  '<button data-m="timer"><svg><use href="#i-clock"/></svg>' + LB.timer() + (S.timer ? ' · ' + timerText() + (S.timer.run ? T(' (रोकें)', ' (pause)') : T(' (चलाएँ)', ' (resume)')) : T(' (शुरू करें)', ' (start)')) + '</button>' +
-  (S.timer ? '<button data-m="treset"><svg><use href="#i-clock"/></svg>' + LB.timer() + T(' — शून्य करें', ' — reset') + '</button>' : '') +
   '<button data-m="set"><svg><use href="#i-set"/></svg>' + LB.set() + '</button>' + '<button data-tour><svg><use href="#i-tour"/></svg>' + T('परिचय (टूर)', 'Take the tour') + '</button>' + '</div>' +
   '<div class="menusw">' + sw('mtr', LB.tr(), LB.trSub(), S.settings.tr, 'text') + '</div>' + rateRow());
   $('#mtr').onchange = e => { S.settings.tr = e.target.checked; save(); refreshReader(); };
@@ -498,7 +490,7 @@ $('#rMore').onclick = () => { openSheet('<div class="menu">' +
 $('#sheetBody').addEventListener('click', ev => {
   const b = ev.target.closest('[data-m]'); if (!b) return;
   const m = b.dataset.m; closeSheet();
-  if (m === 'search') openSearch('text'); if (m === 'sec') sectionSheet(); if (m === 'timer') timerToggle(); if (m === 'treset') timerReset();
+  if (m === 'search') openSearch('text'); if (m === 'sec') sectionSheet();
   if (m === 'font') fontSheet(); if (m === 'bm') show('bookmarks'); if (m === 'set') show('settings');
 });
 function setSize(d){
@@ -672,9 +664,11 @@ function ytLoad(vid, start){
 // time) stay right; the light follows the recording. Chosen in the reader's ☰ and in Settings; kept for next time.
 const RATES = [0.5, 0.75, 1, 1.25, 1.5, 2];
 function RATE(){ return S.settings.rate || 1; }
-function applyRate(){ if (ytOK) ytPost('setPlaybackRate', [RATE()]); if (PL.on) $('#pTrack').textContent = playingName(); }
+function applyRate(){ if (ytOK) ytPost('setPlaybackRate', [RATE()]); if (PL.on) $('#pTrack').textContent = playingName(); $('#pRate').textContent = RATE() + '×'; $$('[data-rate]').forEach(x => x.classList.toggle('on', +x.dataset.rate === RATE())); }
+// the speed button in the player bar (owner, 2026-10-22): one tap moves to the next speed, round and round
+$('#pRate').onclick = () => { S.settings.rate = RATES[(RATES.indexOf(RATE()) + 1) % RATES.length]; save(); applyRate(); toast(T('गति ', 'Speed ') + RATE() + '×'); };
 function rateRow(){ return '<div class="ratebox"><span>' + T('गति', 'Speed') + '</span>' + RATES.map(r => '<button data-rate="' + r + '" class="' + (r === RATE() ? 'on' : '') + '">' + r + '×</button>').join('') + '</div>'; }
-function bindRate(){ $$('#sheetBody [data-rate], #setBody [data-rate]').forEach(b => b.onclick = e => { e.stopPropagation(); S.settings.rate = +b.dataset.rate; save(); applyRate(); $$('[data-rate]').forEach(x => x.classList.toggle('on', +x.dataset.rate === RATE())); toast(T('गति ', 'Speed ') + RATE() + '×'); }); }
+function bindRate(){ $$('#sheetBody [data-rate], #setBody [data-rate]').forEach(b => b.onclick = e => { e.stopPropagation(); S.settings.rate = +b.dataset.rate; save(); applyRate(); toast(T('गति ', 'Speed ') + RATE() + '×'); }); }
 /* outside the website (e.g. a claude.ai artifact) YouTube cannot be embedded: open YouTube's own player page, which can stop at the end of what was asked */
 function ytWatchURL(){
   const A = SRC.au, st = Math.floor(ytInfo.t || 0); let end = '';
@@ -697,7 +691,7 @@ window.addEventListener('message', e => {
   if (d.event === 'onStateChange' && typeof d.info === 'number'){ ytInfo.st = d.info; syncPlayer(); if (d.info === 0) onEnded(); }
 });
 /* what is playing, in the app's own words: the reading (kāṇḍa or plan day) and the reciter — never the recording's title */
-function playingName(){ return (R.org === 'k' ? KNAME(R.n) : TT(PLAN[R.org].name) + ' · ' + VN(R.n)) + ' · ' + TT(SRC.au.meta.title) + (RATE() !== 1 ? ' · ' + RATE() + '×' : ''); }
+function playingName(){ return (R.org === 'k' ? KNAME(R.n) : TT(PLAN[R.org].name) + ' · ' + VN(R.n)) + ' · ' + TT(SRC.au.meta.title); }   // the speed has its own button in the bar
 // Fine-tuning preview (owner, 2026-10-19): after − / + on a start, the first 2 s of the verse play from the new start; on an
 // end, the last 2 s up to the new end. Then the player pauses, so the next tap can follow at once.
 let snipT = null;
@@ -806,7 +800,7 @@ function setCur(i){
 }
 function stopAudio(){ ytPost('pauseVideo'); PL.on = false; PL.snip = null; $('#player').hidden = true; $('#pJump').hidden = true; document.body.classList.remove('playing'); $$('#rBody .verse.now').forEach(v => v.classList.remove('now')); }
 function playing(){ return ytInfo.st === 1 || ytInfo.st === 3; }
-function syncPlayer(){ $('#pPlay').innerHTML = '<svg><use href="#i-' + (playing() ? 'pause' : 'play') + '"/></svg>'; }
+function syncPlayer(){ $('#pPlay').innerHTML = '<svg><use href="#i-' + (playing() ? 'pause' : 'play') + '"/></svg>'; $('#pRate').textContent = RATE() + '×'; }
 $('#pPlay').onclick = () => { if (playing()) ytPost('pauseVideo'); else ytPost('playVideo'); setTimeout(syncPlayer, 400); };
 $('#pClose').onclick = stopAudio;
 function stepVerse(d){ PL.snip = null; const a = AUT[PL.t]; const k = a.findIndex(x => x[0] === PL.cur); const n = k + d; if (k >= 0 && n >= 0 && n < a.length){ seekGuard(a[n][1]); ytPost('seekTo', [a[n][1], true]); ytInfo.t = a[n][1]; ytInfo.at = performance.now(); PL.cur = -1; tick(); } }
@@ -1335,7 +1329,7 @@ function pruneLib(nodes, shelves){
 /* ---------------- boot ---------------- */
 (async function boot(){
   if (!S.settings.lightDefault){ if (S.settings.theme === 'auto') S.settings.theme = 'light'; S.settings.lightDefault = 1; save(); }
-  applyTheme(); applyLang(); applyRecite(); syncLayers(); tickTimer(); applyTiming();
+  applyTheme(); applyLang(); applyRecite(); syncLayers(); applyTiming();
   showSalute('');   // starting or refreshing: no greeting (it belongs to opening a work from the library)
   try { LIB = await getJSON('index'); } catch (e) { $('#loading').textContent = T('डेटा नहीं खुल सका। इंटरनेट जाँचें।', 'Could not load the data. Check the internet connection.'); return; }
   // one app per tradition (owner, 2026-10-19): ?app=<id> shows only the shelves library/apps.json lists for that app

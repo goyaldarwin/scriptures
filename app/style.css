@@ -41,8 +41,6 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .bt{flex:1;min-width:0;line-height:1.25}
 .bt .k{font-size:12.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .bt .t{font-size:17px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.timer{font-family:var(--lat);font-size:13px;color:var(--saffron);padding:2px 8px;border:1px solid var(--saffron);border-radius:20px;display:none}
-.timer.on{display:inline-block}
 /* ---------- home ---------- */
 .hero{padding:34px 0 10px;text-align:center}
 html,body{overflow-x:clip}
@@ -301,4 +299,6 @@ body.playing #reader .navbar{display:none}
 .ytw{flex:none;width:200px;height:200px;border-radius:10px;overflow:hidden;background:#000}
 .pside{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:space-between}
 .pctl{display:flex;align-items:center;gap:0;flex-wrap:nowrap}.pctl .ib{width:36px}.pctl .pmain{width:44px;flex:none}
+.ptop{display:flex;align-items:flex-start;gap:4px;min-width:0}.ptop .pinfo{flex:1;min-width:0}
+.prate{flex:none;font-family:var(--lat);font-size:12px;font-weight:700;color:var(--indigo);border:1px solid var(--indigo);border-radius:12px;padding:2px 6px;margin:5px 2px 0 0;line-height:1.2;white-space:nowrap}   /* playing speed in the bar, beside the verse's name: a tap moves to the next speed (owner, 2026-10-22) */
 body.playing #rBody{padding-bottom:240px}
