@@ -489,7 +489,7 @@ function mainMenu(){
   openSheet('<div class="menu">' + (inWork ? '<button data-m="bm"><svg><use href="#i-bm"/></svg>' + LB.bm() + '</button>' : '') +
     '<div class="menusw">' + sw('mth', T('गहरा रंग (रात)', 'Dark theme'), '', th === 'dark', 'theme') + '</div>' +
     '<button data-tour><svg><use href="#i-tour"/></svg>' + LB.tour() + '</button>' +
-    '<button data-m="set"><svg><use href="#i-set"/></svg>' + LB.more() + '<br><small class="muted">' + T('लिप्यन्तरण · स्रोत · ऑडियोका समय · मेरी फ़ाइल', 'Transliteration · Sources · Audio timing · My file') + '</small></button></div>');
+    '<button data-m="set"><svg><use href="#i-set"/></svg>' + LB.more() + '</button></div>');
   $('#mth').onchange = e => { S.settings.theme = e.target.checked ? 'dark' : 'light'; applyTheme(); save(); };   // light or dark, nothing else (owner, 2026-10-22)
 }
 $('#rMore').onclick = mainMenu;
@@ -1064,7 +1064,10 @@ function renderBookmarks(){
   h += bms.length ? bms.map(b => '<div class="bmrow"><button class="res" data-i="' + b[0] + '"><div class="where">' + esc(itemLabel(b[0])) + '</div><div class="snip" style="font-weight:700">' + esc(IT[b[0]].v[0]) + '</div></button><button class="bmdel" data-del="' + b[0] + '" aria-label="' + T('बुकमार्क हटाएँ', 'Remove bookmark') + '"><svg><use href="#i-x"/></svg></button></div>').join('') : '<p class="muted">' + T('किसी भी पदकी पंक्तिके अन्तमें बुकमार्क चिह्न दबाएँ।', 'Tap the bookmark sign at the end of any verse.') + '</p>';
   h += '<h2 style="font-size:19px;margin:26px 0 4px">' + T('टिप्पणियाँ (', 'Notes (') + DEV(notes.length) + ')</h2>';
   h += notes.length ? notes.map(n => '<button class="res" data-i="' + n[0] + '"><div class="where">' + esc(itemLabel(n[0])) + '</div><div class="snip">' + esc(n[2].t.slice(0, 200)) + '</div></button>').join('') : '<p class="muted">' + T('किसी पदके ⋮ मेनूसे अपनी टिप्पणी लिखें।', 'Use the ⋮ menu of any verse to write a note.') + '</p>';
+  h += '<h2 style="font-size:19px;margin:26px 0 4px">' + T('मेरी फ़ाइल', 'My file') + '</h2><p class="small muted">' + T('आपके बुकमार्क, टिप्पणियाँ, प्रगति और सुधार इसी फ़ोनमें रहते हैं। फ़ाइल सेव करके बैकअप रखें या दूसरे फ़ोनपर खोलें।', 'Your bookmarks, notes, progress and corrections stay on this phone. Save the file as a backup, or open it on another phone.') + (canStore ? '' : ' <b>' + T('ध्यान दें: यह फ़ोन डेटा अपने-आप नहीं रख पा रहा — पाठके बाद “फ़ाइल सेव करें” दबाएँ।', 'This phone is not keeping app data — tap Save my file after each reading.') + '</b>') + '</p>' +
+    '<div class="acts"><button class="btn" id="exp">' + T('फ़ाइल सेव करें', 'Save my file') + '</button><button class="btn ghost" id="imp">' + T('फ़ाइल खोलें', 'Open a file') + '</button></div>';
   $('#bmBody').innerHTML = h + '<div style="height:40px"></div>';
+  $('#exp').onclick = exportFile; $('#imp').onclick = () => $('#fileIn').click();
   $$('#bmBody .res').forEach(b => b.onclick = () => openReader('k', +b.dataset.i, true));
   $$('#bmBody [data-del]').forEach(b => b.onclick = () => { const k = KEY(IT[+b.dataset.del].id); for (const p of S.profiles) delete p.bm[k]; save(); renderBookmarks(); toast(T('बुकमार्क हटाया', 'Bookmark removed')); });
 }
@@ -1076,15 +1079,12 @@ function renderSettings(){   // the "More" page (owner, 2026-10-22): the rare th
   let h = '<h2>' + T('पढ़ना', 'Reading') + '</h2>' + sw('str', LB.tr(), LB.trSub(), S.settings.tr) +
     (W ? '<h2>' + LB.src() + ' · ' + esc(TT(W.title)) + '</h2>' + pick('hi', LB.h()) + pick('en', LB.e()) + pick('au', LB.au(), true) : '') +
     timingHTML() +
-    '<h2>' + T('मेरी फ़ाइल', 'My file') + '</h2><p class="small muted">' + T('आपकी टिप्पणियाँ, बुकमार्क, प्रगति, सेटिंग्स और सुधार इसी फ़ोनमें रहते हैं। फ़ाइल सेव करके बैकअप रखें या दूसरे फ़ोनपर खोलें।', 'Your notes, bookmarks, progress, settings and corrections stay on this phone. Save the file as a backup or to open it on another phone.') + (canStore ? '' : ' <b>' + T('ध्यान दें: यह फ़ोन डेटा अपने-आप नहीं रख पा रहा — पाठके बाद “फ़ाइल सेव करें” दबाएँ।', 'This phone is not keeping app data — tap Save my file after each reading.') + '</b>') + '</p>' +
-    '<div class="acts"><button class="btn" id="exp">' + T('फ़ाइल सेव करें', 'Save my file') + '</button><button class="btn ghost" id="imp">' + T('फ़ाइल खोलें', 'Open a file') + '</button></div>' +
     '<h2>' + T('सहायता', 'Help') + '</h2><div class="acts"><a class="btn ghost" href="privacy.html" target="_blank" rel="noopener">' + T('गोपनीयता', 'Privacy') + '</a></div>' +
     '<div style="height:50px"></div>';
   $('#setBody').innerHTML = h;
   $('#str').onchange = e => { S.settings.tr = e.target.checked; save(); };   // seen in the reader on the next open
   bindTiming();
   $$('[data-src]').forEach(s => s.onchange = async () => { const c = S.src[W.id] = S.src[W.id] || {}; c[s.dataset.src] = s.value; save(); if (s.dataset.src === 'au') stopAudio(); await loadSources(); IDX = null; toast(T('स्रोत बदला', 'Source changed')); });
-  $('#exp').onclick = exportFile; $('#imp').onclick = () => $('#fileIn').click();
 }
 /* timing review: Settings › Audio timing. While it is on, a ⏱ row appears in the player and each verse's ⋮ menu shows its start;
    recordings still being checked (drafts) can be played. Starts set by ear go to the library through a GitHub issue, which
