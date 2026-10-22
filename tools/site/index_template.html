@@ -306,9 +306,9 @@ input[type=checkbox],input[type=radio],input[type=range]{accent-color:var(--indi
 body.playing #reader .navbar{display:none}
 .ytw{flex:none;width:200px;height:200px;border-radius:10px;overflow:hidden;background:#000}
 .pside{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:space-between}
-.pctl{display:flex;align-items:center;gap:0;flex-wrap:nowrap}.pctl .ib{width:36px}.pctl .pmain{width:44px;flex:none}
-.ptop{display:flex;justify-content:flex-end;min-width:0}
-.prate{flex:none;font-family:var(--lat);font-size:12.5px;font-weight:700;color:var(--indigo);border:1px solid var(--indigo);border-radius:12px;padding:3px 8px;margin:2px 2px 0 0;line-height:1.2;white-space:nowrap}   /* the speed on a line of its own, top right: the verse's name keeps its full width (owner, 2026-10-22) */   /* playing speed in the bar, beside the verse's name: a tap moves to the next speed (owner, 2026-10-22) */
+.pctl{display:flex;align-items:center;gap:2px;flex-wrap:nowrap}.pctl .ib{width:36px}.pctl .pmain{width:44px;flex:none}
+.ptop{display:flex;justify-content:flex-end;align-items:center;min-width:0;margin-right:-6px}.ptop .ib{width:34px;height:34px}   /* ✕ alone in the top right corner; the speed sits where ✕ was, after ⏭ (owner, 2026-10-22) */
+.prate{flex:none;font-family:var(--lat);font-size:12.5px;font-weight:700;color:var(--indigo);border:1px solid var(--indigo);border-radius:12px;padding:3px 8px;margin:0 0 0 4px;line-height:1.2;white-space:nowrap}   /* the speed on a line of its own, top right: the verse's name keeps its full width (owner, 2026-10-22) */   /* playing speed in the bar, beside the verse's name: a tap moves to the next speed (owner, 2026-10-22) */
 body.playing #rBody{padding-bottom:240px}
 </style>
 </head>
@@ -394,13 +394,13 @@ body.playing #rBody{padding-bottom:240px}
 <div id="player" class="player" hidden><div class="pbar"><span id="pProg"></span></div><div class="wrap pwrap">
   <div class="ytw"><div id="ytBox"></div></div>
   <div class="pside">
-   <div class="ptop"><button class="prate" id="pRate" aria-label="speed">1×</button></div>
+   <div class="ptop"><button class="ib" id="pClose" aria-label="stop"><svg><use href="#i-x"/></svg></button></div>
    <button class="pinfo" id="pInfo"><b id="pVerse"></b><small id="pTrack" class="lat"></small></button>
    <div class="pctl">
     <button class="ib" id="pPrev" aria-label="previous verse"><svg><use href="#i-prev"/></svg></button>
     <button class="ib pmain" id="pPlay" aria-label="play/pause"><svg><use href="#i-pause"/></svg></button>
     <button class="ib" id="pNext" aria-label="next verse"><svg><use href="#i-next"/></svg></button>
-    <button class="ib" id="pClose" aria-label="stop"><svg><use href="#i-x"/></svg></button>
+    <button class="prate" id="pRate" aria-label="speed">1×</button>
    </div>
   </div>
 </div></div>

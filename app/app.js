@@ -886,7 +886,7 @@ function jumpPill(){
   const seen = r && r.bottom > top + 24 && r.top < pl.top - 24;   // some of the verse is on the screen
   if (seen){ b.hidden = true; return; }
   const i = PL.cur, where = R.org === 'k' ? (PARTS.length > 1 ? KNAME(IT[i].p) : '') : VN(R.n);
-  const h = '<b>' + (i >= topVisibleItem() ? '↓ ' : '↑ ') + esc(posLabel(i)) + '</b>' + (where ? '<small>' + esc(where) + '</small>' : '');
+  const h = '<b>' + (i >= topVisibleItem() ? '↓ ' : '↑ ') + T('अभी चल रहा · ', 'Now playing · ') + esc(posLabel(i)) + '</b>'   // says what it is, not only where (owner, 2026-10-22) + (where ? '<small>' + esc(where) + '</small>' : '');
   if (b.innerHTML !== h) b.innerHTML = h; b.style.bottom = (innerHeight - pl.top + 10) + 'px'; b.hidden = false;
 }
 setInterval(jumpPill, 300);
