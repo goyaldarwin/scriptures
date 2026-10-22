@@ -348,6 +348,9 @@ The owner (and helpers) set verse times by ear in the app; the library applies t
 ### The verse's corners (owner, 2026-10-22)
 - **▶ saffron and filled** — the main action on a verse, meant to draw the eye. **Bookmark and ⋮ blue**, the same size and weight (20 px, the ⋮ dots drawn solid); the bookmark sign fills saffron once set, so the colour change is what shows it is on. Blue is the colour of the app's controls; saffron is for the lit verse, the verse-type heading, the ▶ and anything "on".
 
+### UI consistency pass (2026-10-22)
+- Screens captured at phone size in both themes and languages and compared. Fixed: a chosen chip is always filled dark blue (the search scope chips were pale); the two file buttons both say "Open a file" (they open the same picker); a link drawn as a button is not underlined (Privacy); the vidhi page's header title is short ("Pārāyaṇa vidhi" — the tabs name the parts); the ⋮ menu's Audio timing box no longer repeats the − / + of the row under the verse (owner: a duplicate) — it shows the times, "Until next", the step chooser, "Play this verse" and Undo, in the app's blue (saffron there was tried and looked wrong; the saffron row under the verse stays). Left as they are: cover pages (library, a work) carry a big centred title while utility pages (Settings, Bookmarks, vidhi) carry it in the bar; the reader's back button has no label because its bar is full.
+
 ### Lessons: the working environment
 - **Gate commits on the test's exit code, not on a grep of its output** (`ux_test.py | grep … && git commit` committed with a failing check on 2026-10-20). The failing check had assumed no owner times in the Mānas — true until issue #13 sent some; tests that pick sample verses from live data must exclude verses set by ear.
 - **Never `pkill -f`** in this environment: it matched and killed the session's own shell (exit 144), twice. Kill by PID or a pid file.

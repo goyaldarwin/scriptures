@@ -64,7 +64,7 @@ html,body{overflow-x:clip}
 .row{display:flex;align-items:center;gap:10px}
 .grow{flex:1;min-width:0}
 .btn{display:inline-flex;align-items:center;gap:6px;background:var(--indigo);color:var(--bg);border-radius:12px;padding:10px 16px;font-weight:600;font-size:15px}
-.btn.ghost{background:transparent;color:var(--indigo);border:1px solid var(--indigo)}
+.btn.ghost{background:transparent;color:var(--indigo);border:1px solid var(--indigo)}a.btn{text-decoration:none}
 .btn.small{padding:6px 12px;font-size:14px}
 .seg{display:flex;background:var(--surface);border:1px solid var(--rule);border-radius:14px;padding:4px;margin:18px 0 8px}
 .seg button{flex:1;padding:9px 4px;border-radius:10px;font-size:14.5px;color:var(--muted)}
@@ -127,7 +127,7 @@ body.timing .verse.tocheck{box-shadow:inset 3px 0 0 var(--saffron)}.tcheck{margi
 .menusw{margin-top:2px}.swic{width:20px;height:20px;stroke:var(--indigo);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none;margin-left:2px}
 .chips{display:flex;align-items:center;gap:6px;margin-top:6px}
 .chip{border:1px solid var(--rule);border-radius:20px;padding:1px 11px;font-size:13px;color:var(--muted);min-height:30px}
-.chip.on{background:var(--indigo-soft);border-color:var(--indigo);color:var(--indigo);font-weight:700}
+.chip.on{background:var(--indigo);border-color:var(--indigo);color:var(--bg);font-weight:700}   /* a chosen chip is filled, as the speed, step and section chips are (2026-10-22) */
 .chips .sp{flex:1}
 .chips .ib{width:36px;height:36px}
 .chips .ib svg{width:19px;height:19px}
@@ -432,7 +432,7 @@ body.playing #rBody{padding-bottom:240px}
 
 <!-- VIDHI -->
 <section id="vidhi" class="view vidhi">
- <div class="bar"><div class="wrap"><button class="ib" data-back aria-label="वापस"><svg><use href="#i-back"/></svg></button><div class="bt"><div class="t" data-en="Pārāyaṇa vidhi &amp; Āratī">पारायण-विधि और आरती</div></div><div class="sz"><button class="szm" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div><div class="lyr" id="vidLang"><button data-l="h">हिं</button><button data-l="e" class="lat">En</button></div></div></div>
+ <div class="bar"><div class="wrap"><button class="ib" data-back aria-label="वापस"><svg><use href="#i-back"/></svg></button><div class="bt"><div class="t" data-en="Pārāyaṇa vidhi">पारायण-विधि</div></div><div class="sz"><button class="szm" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div><div class="lyr" id="vidLang"><button data-l="h">हिं</button><button data-l="e" class="lat">En</button></div></div></div>
  <div class="wrap">
   <div class="seg" id="vidSeg"><button data-v="v" class="on" data-en="Pārāyaṇa vidhi">पारायण-विधि</button><button data-v="aarti" data-en="Āratī">आरती</button><button data-v="visarjan" data-en="Visarjana" hidden>विसर्जन</button></div>
   <div id="vidBody" class="zoomable" style="padding-bottom:40px"></div>
