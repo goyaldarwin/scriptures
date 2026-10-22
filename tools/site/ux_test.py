@@ -392,8 +392,8 @@ async def main():
             # the work menu (☰) leads to bookmarks and settings
             await ev("show('home')"); await pg.wait_for_timeout(300)
             await (await pg.query_selector('#hMenu')).click(); await pg.wait_for_timeout(300)
-            items = await ev("Array.from(document.querySelectorAll('#sheetBody [data-go]')).map(b => b.dataset.go)")
-            check(f'{tag}: ☰ holds bookmarks and settings', 'bookmarks' in items and 'settings' in items, items)
+            items = await ev("Array.from(document.querySelectorAll('#sheetBody [data-m], #sheetBody [data-tour], #sheetBody #mth')).map(b => b.dataset.m || (b.dataset.tour != null ? 'tour' : 'dark-theme'))")
+            check(f'{tag}: ☰ holds Bookmarks, Dark theme, Take the tour and More — nothing else (owner, 2026-10-22)', items == ['bm', 'dark-theme', 'tour', 'set'] and not await ev("!!document.querySelector('#sheetBody [data-rate], #sheetBody [data-m=sec], #sheetBody #mtr')"), items)
             await ev("closeSheet()")
             # back goes home
             await ev("show('home')"); await pg.wait_for_timeout(300)
@@ -411,7 +411,7 @@ async def main():
         check('several readers are joined into one, keeping every note and bookmark', joined == [1, 2, True, 1], joined)
         await ev("show('settings')"); await pg.wait_for_timeout(500)
         st = await ev("document.querySelector('#setBody').innerText")
-        check('settings: no Readers section, the new titles', 'Readers' not in st and 'पढ़नेवाले' not in st and ('My bookmarks & notes' in st or 'मेरे बुकमार्क और टिप्पणियाँ' in st) and 'Show while reading' not in st, st[:80])
+        check('More: only sources, audio timing, my file and privacy — no meanings, text size, language, speed or screen switch', ('Sources' in st or 'स्रोत' in st) and ('Audio timing' in st or 'ऑडियोका समय' in st) and ('My file' in st or 'मेरी फ़ाइल' in st) and ('Transliteration' in st or 'लिप्यन्तरण' in st) and not await ev("!!document.querySelector('#setBody #sh, #setBody #ssz, #setBody #sui, #setBody #sth, #setBody [data-rate], #setBody #swk')") and 'Speed' not in st, st[:80])
         await ev("show('library')"); await pg.wait_for_timeout(500)
         s0 = await ev("S.settings.size"); await ev("document.querySelector('#library .szp').click()"); s1 = await ev("S.settings.size")
         check('library: A+ in its header changes the text size', s1 == s0 + 2, [s0, s1])
@@ -627,12 +627,12 @@ async def main():
         await pg.go_back(); await pg.wait_for_timeout(900)
         bs = await ev("[CURVIEW, SCOPE, document.querySelector('#q').value, document.querySelector('#scope').hidden, document.querySelectorAll('#sRes [data-hit]').length > 0]")
         check('Back from a work found by a library search returns to that search, its query and results kept', bs == ['search', 'lib', 'rudram', True, True], bs)
-        # a meaning switched in Settings lights the reader's capsule when you come back
-        await ev("(async () => { await openWork('ramraksha', true); show('home'); openReader('k', 0); S.settings.layers.h = false; S.settings.layers.e = true; save(); syncLayers(); show('settings'); })()"); await pg.wait_for_timeout(300)
-        await ev("document.querySelector('#sh').click()"); await pg.wait_for_timeout(100); await pg.go_back(); await pg.wait_for_timeout(900)
-        cap = await ev("[S.settings.layers.h, document.querySelector('#rLayers [data-l=h]').classList.contains('on'), CURVIEW]")
-        check('a meaning switched in Settings shows lit in the reader’s capsule', cap == [True, True, 'reader'], cap)
-        await ev("S.settings.layers.h = false; save(); syncLayers()")
+        # transliteration is a switch on the More page (rarely used — owner, 2026-10-22), seen in the reader afterwards
+        await ev("(async () => { await openWork('ramraksha', true); show('home'); S.settings.tr = false; save(); show('settings'); })()"); await pg.wait_for_timeout(400)
+        await ev("document.querySelector('#str').click()"); await pg.wait_for_timeout(200); await ev("openReader('k', 0)"); await pg.wait_for_timeout(500)
+        cap = await ev("[S.settings.tr, document.querySelectorAll('#reader .tr').length > 0, document.querySelectorAll('#rLayers button').length]")
+        await ev("S.settings.tr = false; save(); refreshReader()")
+        check('More › Transliteration turns the Roman text on under the verses; the capsule keeps its four buttons', cap == [True, True, 4], cap)
         pin = await ev("""(async () => { S.timing.on = false; applyTiming(); await openWork('manas', true); show('home'); openReader('k', 30); await new Promise(r => setTimeout(r, 700));
             PL.on = true; PL.cur = -1; setCur(34); await new Promise(r => setTimeout(r, 1200));
             const bar = document.querySelector('#reader .bar').getBoundingClientRect().bottom, v = document.getElementById('v34'), pv = v.previousElementSibling;
@@ -664,13 +664,11 @@ async def main():
             const n0 = document.querySelectorAll('#bmBody [data-del]').length; document.querySelector('#bmBody [data-del="40"]').click(); await new Promise(r => setTimeout(r, 300));
             const r = [n0, document.querySelectorAll('#bmBody [data-del]').length, !me.bm[KEY(IT[40].id)], !!me.bm[KEY(IT[41].id)]]; delete me.bm[KEY(IT[41].id)]; save(); return r; })()""")
         check('bookmarks: each bookmark can be removed on its own', bd == [2, 1, True, True], bd)
-        rt = await ev("""(async () => { await openWork('manas', true); show('home'); openReader('k', 30); await new Promise(r => setTimeout(r, 400));
-            document.querySelector('#rMore').click(); await new Promise(r => setTimeout(r, 300)); const b = document.querySelector('#sheetBody [data-rate="1.5"]'); if (!b) return 'no chooser';
-            b.click(); const r1 = S.settings.rate, open = document.querySelector('#sheet').classList.contains('on'); closeSheet();
-            show('settings'); await new Promise(r => setTimeout(r, 300)); const on = document.querySelector('#setBody [data-rate].on'); const r2 = on && on.dataset.rate;
-            document.querySelector('#setBody [data-rate="1"]').click(); return [r1, open, r2, S.settings.rate]; })()""")
-        n6 = await ev("document.querySelectorAll('#setBody [data-rate]').length")
-        check('speed: 0.5× to 2× in the reader\'s ☰ and in Settings, remembered', rt == [1.5, True, '1.5', 1] and n6 == 6, [rt, n6])
+        th = await ev("""(async () => { await openWork('manas', true); show('home'); openReader('k', 30); await new Promise(r => setTimeout(r, 400)); const t0 = S.settings.theme;
+            document.querySelector('#rMore').click(); await new Promise(r => setTimeout(r, 300)); S.settings.theme = 'light'; applyTheme(); document.querySelector('#mth').checked = false; document.querySelector('#mth').click();
+            const r = [S.settings.theme, document.documentElement.getAttribute('data-theme'), document.querySelector('#sheet').classList.contains('on'), document.querySelector('#mth').checked];
+            document.querySelector('#mth').click(); r.push(S.settings.theme); S.settings.theme = t0; applyTheme(); save(); closeSheet(); return r; })()""")
+        check('☰ › Dark theme is one switch: on = dark, off = light, at once, the sheet stays open', th == ['dark', 'dark', True, True, 'light'], th)
         # ---- owner, 2026-10-20: "Ends now" also starts the next verse; the preview only when nothing plays live ----
         en = await ev("""(async () => { """ + T0 + """ const a = AUT[0], i = a[10][0], n = a[11][0], m = a[12][0], s = Math.round(a[10][1] * 10) / 10;
             setTime(i, 1, s); setTime(i, 2, s + 6); const r = [Math.round((SRC.au.at[IT[n].id][1] - s) * 10) / 10, !!myStarts()[IT[n].id], !!myStarts()[IT[m].id]];   // the next verse starts at the end and is yours; the one after is untouched
@@ -732,9 +730,9 @@ async def main():
         # the speed button in the player bar cycles the speeds; the reading timer is gone (owner, 2026-10-22)
         sp = await ev("""(async () => { await openWork('ramraksha', true); show('home'); openReader('k', 0); S.settings.rate = 1; applyRate(); playFrom(0, null); await new Promise(r => setTimeout(r, 300));
             const b = document.querySelector('#pRate'), r = [b.textContent, !!b.offsetParent]; b.click(); r.push(b.textContent, S.settings.rate); for (let k = 0; k < 5; k++) b.click(); r.push(S.settings.rate);
-            document.querySelector('#rMore').click(); await new Promise(r => setTimeout(r, 200)); r.push(document.querySelector('#sheetBody [data-rate="1"]').classList.contains('on'), !!document.querySelector('#sheetBody [data-m=timer]'), !!document.querySelector('#timerPill'));   // six taps: round the six speeds, back to 1×
+            document.querySelector('#rMore').click(); await new Promise(r => setTimeout(r, 200)); r.push(!document.querySelector('#sheetBody [data-rate]'), !!document.querySelector('#sheetBody [data-m=timer]'), !!document.querySelector('#timerPill'));   // six taps: round the six speeds, back to 1×; the speed is only in the bar
             closeSheet(); S.settings.rate = 1; applyRate(); stopAudio(); return r; })()""")
-        check('player: a speed button in the bar steps through the speeds and the menu agrees; no reading timer', sp == ['1×', True, '1.25×', 1.25, 1, True, False, False], sp)
+        check('player: a speed button in the bar steps through the speeds; speed is nowhere else; no reading timer', sp == ['1×', True, '1.25×', 1.25, 1, True, False, False], sp)
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')

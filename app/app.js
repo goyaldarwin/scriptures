@@ -110,9 +110,9 @@ const LB = {
   h: () => T('हिंदी अर्थ', 'Hindi meaning'), e: () => T('अंग्रेज़ी अर्थ', 'English meaning'), w: () => T('शब्दार्थ', 'Word meanings'), au: () => T('ऑडियो', 'Audio'),
   tr: () => T('रोमन लिप्यन्तरण', 'Transliteration'), trSub: () => T('मूल पाठके नीचे रोमन अक्षरोंमें', 'The verse in Roman letters, under the text'),
   rc: () => T('पाठ मोड', 'Recitation mode'), rcSub: () => T('केवल मूल पाठ, बड़े अक्षर', 'Verses only, larger text'),
-  size: () => T('अक्षरका आकार', 'Text size'), wake: () => T('पढ़ते समय स्क्रीन जलती रहे', 'Keep screen on while reading'), theme: () => T('रंग', 'Theme'),
+  size: () => T('अक्षरका आकार', 'Text size'), theme: () => T('रंग', 'Theme'), more: () => T('और', 'More'), tour: () => T('परिचय (टूर)', 'Take the tour'),
   sections: () => T('प्रसंग', 'Sections'), search: () => T('खोजें', 'Search'),
-  bm: () => T('बुकमार्क और टिप्पणियाँ', 'Bookmarks & notes'), set: () => T('सेटिंग्स', 'Settings'), verses: () => T('मूल पाठ', 'Verses'),
+  bm: () => T('बुकमार्क और टिप्पणियाँ', 'Bookmarks & notes'), verses: () => T('मूल पाठ', 'Verses'),
   lib: () => T('पुस्तकालय', 'Library'), src: () => T('स्रोत', 'Sources'), vidhi: () => T('पारायण-विधि', 'Pārāyaṇa vidhi')
 };
 
@@ -162,7 +162,8 @@ function sw(id, label, sub, on, icon){ return '<label class="sw">' + (icon ? '<s
 
 /* ---------------- wake lock ---------------- */
 let wl = null;
-async function wake(on){ try { if (on && S.settings.wake && 'wakeLock' in navigator){ if (!wl){ wl = await navigator.wakeLock.request('screen'); wl.addEventListener('release', () => wl = null); } } else if (wl && !PL.on){ await wl.release(); wl = null; } } catch (e) {} }
+// the screen stays on while reading or playing — always, no setting (owner, 2026-10-22)
+async function wake(on){ try { if (on && 'wakeLock' in navigator){ if (!wl){ wl = await navigator.wakeLock.request('screen'); wl.addEventListener('release', () => wl = null); } } else if (wl && !PL.on){ await wl.release(); wl = null; } } catch (e) {} }
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && ($('#reader').classList.contains('on') || PL.on)) wake(true); });
 
 /* ---------------- word meanings: one dictionary per language (library/glossary/<lang>.json) ----------------
@@ -479,14 +480,19 @@ function toggleRecite(){
   toast(on ? T('पाठ मोड: केवल मूल पाठ', 'Recitation mode: verses only') : T('अर्थ फिर दिखेंगे', 'Meanings shown again'));
 }
 $('#rRecite').onclick = toggleRecite;
-$('#rMore').onclick = () => { openSheet('<div class="menu">' +
-  '<button data-m="sec"><svg><use href="#i-jump"/></svg>' + LB.sections() + '</button>' +
-  '<button data-m="bm"><svg><use href="#i-bm"/></svg>' + LB.bm() + '</button>' +
-  '<button data-m="set"><svg><use href="#i-set"/></svg>' + LB.set() + '</button>' + '<button data-tour><svg><use href="#i-tour"/></svg>' + T('परिचय (टूर)', 'Take the tour') + '</button>' + '</div>' +
-  '<div class="menusw">' + sw('mtr', LB.tr(), LB.trSub(), S.settings.tr, 'text') + '</div>' + rateRow());
-  $('#mtr').onchange = e => { S.settings.tr = e.target.checked; save(); refreshReader(); };
-  bindRate();
-};
+// One ☰ sheet on every page (owner, 2026-10-22): Bookmarks & notes (inside a work), the dark theme, the tour, and "More" — a
+// page with the rare things (transliteration, sources, audio timing, my file, privacy). Nothing here repeats the header:
+// the meanings, recitation mode, the text size and the language are the header's capsules; sections are the reader's
+// footer; the playing speed is in the player.
+function mainMenu(){
+  const inWork = !!W && CURVIEW !== 'library', th = S.settings.theme;
+  openSheet('<div class="menu">' + (inWork ? '<button data-m="bm"><svg><use href="#i-bm"/></svg>' + LB.bm() + '</button>' : '') +
+    '<div class="menusw">' + sw('mth', T('गहरा रंग (रात)', 'Dark theme'), '', th === 'dark', 'theme') + '</div>' +
+    '<button data-tour><svg><use href="#i-tour"/></svg>' + LB.tour() + '</button>' +
+    '<button data-m="set"><svg><use href="#i-set"/></svg>' + LB.more() + '<br><small class="muted">' + T('लिप्यन्तरण · स्रोत · ऑडियोका समय · मेरी फ़ाइल', 'Transliteration · Sources · Audio timing · My file') + '</small></button></div>');
+  $('#mth').onchange = e => { S.settings.theme = e.target.checked ? 'dark' : 'light'; applyTheme(); save(); };   // light or dark, nothing else (owner, 2026-10-22)
+}
+$('#rMore').onclick = mainMenu;
 $('#sheetBody').addEventListener('click', ev => {
   const b = ev.target.closest('[data-m]'); if (!b) return;
   const m = b.dataset.m; closeSheet();
@@ -664,11 +670,9 @@ function ytLoad(vid, start){
 // time) stay right; the light follows the recording. Chosen in the reader's ☰ and in Settings; kept for next time.
 const RATES = [0.5, 0.75, 1, 1.25, 1.5, 2];
 function RATE(){ return S.settings.rate || 1; }
-function applyRate(){ if (ytOK) ytPost('setPlaybackRate', [RATE()]); if (PL.on) $('#pTrack').textContent = playingName(); $('#pRate').textContent = RATE() + '×'; $$('[data-rate]').forEach(x => x.classList.toggle('on', +x.dataset.rate === RATE())); }
+function applyRate(){ if (ytOK) ytPost('setPlaybackRate', [RATE()]); if (PL.on) $('#pTrack').textContent = playingName(); $('#pRate').textContent = RATE() + '×'; }
 // the speed button in the player bar (owner, 2026-10-22): one tap moves to the next speed, round and round
 $('#pRate').onclick = () => { S.settings.rate = RATES[(RATES.indexOf(RATE()) + 1) % RATES.length]; save(); applyRate(); toast(T('गति ', 'Speed ') + RATE() + '×'); };
-function rateRow(){ return '<div class="ratebox"><span>' + T('गति', 'Speed') + '</span>' + RATES.map(r => '<button data-rate="' + r + '" class="' + (r === RATE() ? 'on' : '') + '">' + r + '×</button>').join('') + '</div>'; }
-function bindRate(){ $$('#sheetBody [data-rate], #setBody [data-rate]').forEach(b => b.onclick = e => { e.stopPropagation(); S.settings.rate = +b.dataset.rate; save(); applyRate(); toast(T('गति ', 'Speed ') + RATE() + '×'); }); }
 /* outside the website (e.g. a claude.ai artifact) YouTube cannot be embedded: open YouTube's own player page, which can stop at the end of what was asked */
 function ytWatchURL(){
   const A = SRC.au, st = Math.floor(ytInfo.t || 0); let end = '';
@@ -949,7 +953,7 @@ function openSearch(scope, stay){   // stay: only reset the page (the box was cl
 $('#libSearchBtn').onclick = () => openSearch('lib');
 $('#hSearch').onclick = () => openSearch('text');
 $('#rSearch').onclick = () => openSearch('text');
-$('#libMenu').onclick = () => { openSheet('<div class="menu"><button data-go="settings"><svg><use href="#i-set"/></svg>' + LB.set() + '</button>' + '<button data-tour><svg><use href="#i-tour"/></svg>' + T('परिचय (टूर)', 'Take the tour') + '</button>' + '</div>'); $$('#sheetBody [data-go]').forEach(b => b.onclick = () => { closeSheet(); show(b.dataset.go); }); };
+$('#libMenu').onclick = mainMenu;
 function workPath(id){ let r = null; (function walk(n){ (n || []).forEach(c => { if (c.work === id) r = c.path; else walk(c.children); }); })(LIB); return r || id; }
 // the salutation on the opening screen (owner, 2026-10-19): the work's own (library/index.json "salute": जय श्रीराम for the
 // Mānas and Sundarakāṇḍa, ॐ श्री साईं राम for the Dhūpa Āratī, ੴ for the Sukhmani Sahib …), otherwise ॐ श्री परमात्मने नमः.
@@ -1018,10 +1022,7 @@ function renderHome(){
   $$('#orgList [data-pa]').forEach(b => b.onclick = ev => { ev.stopPropagation(); playRange(b.dataset.po, +b.dataset.pa, +b.dataset.pb); });
 }
 $('#hLib').onclick = () => { libPath = []; show('library'); };   // “‹ Library” goes to the library itself, not the shelf last visited
-$('#hMenu').onclick = () => {
-  openSheet('<div class="menu"><button data-go="bookmarks"><svg><use href="#i-bm"/></svg>' + LB.bm() + '</button>' + '<button data-go="settings"><svg><use href="#i-set"/></svg>' + LB.set() + '</button>' + '<button data-tour><svg><use href="#i-tour"/></svg>' + T('परिचय (टूर)', 'Take the tour') + '</button>' + '</div>');
-  $$('#sheetBody [data-go]').forEach(b => b.onclick = () => { closeSheet(); show(b.dataset.go); });
-};
+$('#hMenu').onclick = mainMenu;
 
 /* ---------------- search ---------------- */
 let IDX = null;
@@ -1069,30 +1070,20 @@ function renderBookmarks(){
 }
 
 /* ---------------- settings ---------------- */
-function renderSettings(){
-  const st = S.settings, srcs = (W && W.sources) || {}, cur = S.src[W ? W.id : ''] || {};
+function renderSettings(){   // the "More" page (owner, 2026-10-22): the rare things only — sources, audio timing, my file, privacy
+  const cur = S.src[W ? W.id : ''] || {};
   const pick = (kind, label, off) => { const list = W ? srcList(kind) : []; if (!list.length) return ''; const sel = cur[kind] || list[0].id; return '<div class="field"><label>' + label + '</label><select data-src="' + kind + '">' + list.map(s => '<option value="' + s.id + '"' + (sel === s.id ? ' selected' : '') + '>' + esc(TT(s.title)) + (s.draft ? T(' (जाँच बाकी)', ' (to be checked)') : '') + '</option>').join('') + (off ? '<option value="off"' + (sel === 'off' ? ' selected' : '') + '>' + T('बंद', 'Off') + '</option>' : '') + '</select></div>'; };
-  let h = '<h2>' + T('पाठ और अर्थ', 'Text and meanings') + '</h2>' +
-    sw('sh', LB.h() + ' (हिं)', '', st.layers.h) + sw('se', LB.e() + ' (En)', '', st.layers.e) + sw('sw', LB.w() + ' (शब्द)', T('हर शब्दका हिंदी और English अर्थ', 'Hindi and English meaning of each word'), st.layers.w) +
-    sw('str', LB.tr(), LB.trSub(), st.tr) + sw('src', LB.rc(), LB.rcSub(), st.recite) +
+  let h = '<h2>' + T('पढ़ना', 'Reading') + '</h2>' + sw('str', LB.tr(), LB.trSub(), S.settings.tr) +
     (W ? '<h2>' + LB.src() + ' · ' + esc(TT(W.title)) + '</h2>' + pick('hi', LB.h()) + pick('en', LB.e()) + pick('au', LB.au(), true) : '') +
     timingHTML() +
-    '<h2>' + T('पढ़नेकी सुविधा', 'Reading comfort') + '</h2>' + sw('swk', LB.wake(), '', st.wake) + rateRow() +
-    '<div class="field"><label>' + LB.size() + '</label><input type="range" id="ssz" min="16" max="34" value="' + st.size + '" style="border:0;padding:0"></div>' +
-    '<div class="field"><label>' + T('ऐपकी भाषा', 'Language of the app') + '</label><select id="sui"><option value="hi">हिंदी</option><option value="en">English</option></select></div>' +
-    '<div class="field"><label>' + LB.theme() + '</label><select id="sth"><option value="light">' + T('दिन (हल्का)', 'Light') + '</option><option value="dark">' + T('रात (गहरा)', 'Dark') + '</option><option value="auto">' + T('फ़ोनके अनुसार', 'Same as phone') + '</option></select></div>' +
-    '<h2>' + T('मेरे बुकमार्क और टिप्पणियाँ', 'My bookmarks & notes') + '</h2><p class="small muted">' + T('आपकी टिप्पणियाँ, बुकमार्क, प्रगति, सेटिंग्स और सुधार इसी फ़ोनमें रहते हैं। फ़ाइल सेव करके बैकअप रखें या दूसरे फ़ोनपर खोलें।', 'Your notes, bookmarks, progress, settings and corrections stay on this phone. Save the file as a backup or to open it on another phone.') + (canStore ? '' : ' <b>' + T('ध्यान दें: यह फ़ोन डेटा अपने-आप नहीं रख पा रहा — पाठके बाद “फ़ाइल सेव करें” दबाएँ।', 'This phone is not keeping app data — tap Save my file after each reading.') + '</b>') + '</p>' +
+    '<h2>' + T('मेरी फ़ाइल', 'My file') + '</h2><p class="small muted">' + T('आपकी टिप्पणियाँ, बुकमार्क, प्रगति, सेटिंग्स और सुधार इसी फ़ोनमें रहते हैं। फ़ाइल सेव करके बैकअप रखें या दूसरे फ़ोनपर खोलें।', 'Your notes, bookmarks, progress, settings and corrections stay on this phone. Save the file as a backup or to open it on another phone.') + (canStore ? '' : ' <b>' + T('ध्यान दें: यह फ़ोन डेटा अपने-आप नहीं रख पा रहा — पाठके बाद “फ़ाइल सेव करें” दबाएँ।', 'This phone is not keeping app data — tap Save my file after each reading.') + '</b>') + '</p>' +
     '<div class="acts"><button class="btn" id="exp">' + T('फ़ाइल सेव करें', 'Save my file') + '</button><button class="btn ghost" id="imp">' + T('फ़ाइल खोलें', 'Open a file') + '</button></div>' +
     '<h2>' + T('सहायता', 'Help') + '</h2><div class="acts"><a class="btn ghost" href="privacy.html" target="_blank" rel="noopener">' + T('गोपनीयता', 'Privacy') + '</a></div>' +
     '<div style="height:50px"></div>';
-  $('#setBody').innerHTML = h; $('#sth').value = st.theme; $('#sui').value = LANG();
-  $('#sui').onchange = e => { st.ui = e.target.value; save(); applyLang(); syncLayers(); renderSettings(); };
-  const bind = (id, f) => $('#' + id).onchange = e => { f(e.target.checked); save(); };
-  bindTiming(); bindRate();
-  bind('sh', v => { st.layers.h = v; syncLayers(); }); bind('se', v => { st.layers.e = v; syncLayers(); }); bind('sw', v => { st.layers.w = v; syncLayers(); }); bind('str', v => st.tr = v); bind('src', v => { if (!!st.recite !== v) toggleRecite(); }); bind('swk', v => st.wake = v);
+  $('#setBody').innerHTML = h;
+  $('#str').onchange = e => { S.settings.tr = e.target.checked; save(); };   // seen in the reader on the next open
+  bindTiming();
   $$('[data-src]').forEach(s => s.onchange = async () => { const c = S.src[W.id] = S.src[W.id] || {}; c[s.dataset.src] = s.value; save(); if (s.dataset.src === 'au') stopAudio(); await loadSources(); IDX = null; toast(T('स्रोत बदला', 'Source changed')); });
-  $('#ssz').oninput = e => { st.size = +e.target.value; applyTheme(); save(); };
-  $('#sth').onchange = e => { st.theme = e.target.value; applyTheme(); save(); };
   $('#exp').onclick = exportFile; $('#imp').onclick = () => $('#fileIn').click();
 }
 /* timing review: Settings › Audio timing. While it is on, a ⏱ row appears in the player and each verse's ⋮ menu shows its start;

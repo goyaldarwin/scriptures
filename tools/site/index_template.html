@@ -121,7 +121,6 @@ body.timing .verse.tocheck{box-shadow:inset 3px 0 0 var(--saffron)}.tcheck{margi
 .vend .vb{width:26px;color:var(--indigo);opacity:.85}.vend .vb svg{width:20px;height:20px}   /* ⋮ as large and as blue as the bookmark sign (owner, 2026-10-22); ▶ keeps its saffron: the main action */
 .bmrow{display:flex;align-items:stretch;gap:6px}.bmrow .res{flex:1;min-width:0}.bmdel{flex:none;width:44px;display:grid;place-items:center;color:var(--muted);border-bottom:1px solid var(--rule)}.bmdel svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
 .vb.bm-on svg{fill:var(--saffron)}
-.ratebox{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:12px 2px}.ratebox span{flex-basis:100%;margin-bottom:2px}.ratebox button{flex:1;min-width:0;border:1px solid var(--rule);border-radius:10px;padding:7px 0;font-size:14px;color:var(--indigo);background:var(--bg)}.ratebox button.on{background:var(--indigo);color:var(--bg);border-color:var(--indigo)}
 .menusw{margin-top:2px}.swic{width:20px;height:20px;stroke:var(--indigo);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none;margin-left:2px}
 .chips{display:flex;align-items:center;gap:6px;margin-top:6px}
 .chip{border:1px solid var(--rule);border-radius:20px;padding:1px 11px;font-size:13px;color:var(--muted);min-height:30px}
@@ -308,8 +307,8 @@ body.playing #reader .navbar{display:none}
 .ytw{flex:none;width:200px;height:200px;border-radius:10px;overflow:hidden;background:#000}
 .pside{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:space-between}
 .pctl{display:flex;align-items:center;gap:0;flex-wrap:nowrap}.pctl .ib{width:36px}.pctl .pmain{width:44px;flex:none}
-.ptop{display:flex;align-items:flex-start;gap:4px;min-width:0}.ptop .pinfo{flex:1;min-width:0}
-.prate{flex:none;font-family:var(--lat);font-size:12px;font-weight:700;color:var(--indigo);border:1px solid var(--indigo);border-radius:12px;padding:2px 6px;margin:5px 2px 0 0;line-height:1.2;white-space:nowrap}   /* playing speed in the bar, beside the verse's name: a tap moves to the next speed (owner, 2026-10-22) */
+.ptop{display:flex;justify-content:flex-end;min-width:0}
+.prate{flex:none;font-family:var(--lat);font-size:12.5px;font-weight:700;color:var(--indigo);border:1px solid var(--indigo);border-radius:12px;padding:3px 8px;margin:2px 2px 0 0;line-height:1.2;white-space:nowrap}   /* the speed on a line of its own, top right: the verse's name keeps its full width (owner, 2026-10-22) */   /* playing speed in the bar, beside the verse's name: a tap moves to the next speed (owner, 2026-10-22) */
 body.playing #rBody{padding-bottom:240px}
 </style>
 </head>
@@ -335,6 +334,7 @@ body.playing #rBody{padding-bottom:240px}
  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
  <symbol id="i-jump" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
  <symbol id="i-recite" viewBox="0 0 24 24"><path d="M12 6.5C10 5 7 4.5 3.5 5v13c3.5-.5 6.5 0 8.5 1.5 2-1.5 5-2 8.5-1.5V5C17 4.5 14 5 12 6.5z"/><path d="M12 6.5v13"/></symbol>
+ <symbol id="i-theme" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17A8.5 8.5 0 0 0 12 3.5z" fill="currentColor" stroke="none"/></symbol>
  <symbol id="i-tour" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M9.6 9.5a2.5 2.5 0 1 1 3.4 2.3c-.6.3-1 .8-1 1.5v.6"/><circle cx="12" cy="16.8" r=".6"/></symbol>
  <symbol id="i-text" viewBox="0 0 24 24"><path d="M4 7V5h16v2M12 5v14M9 19h6"/></symbol>
 </svg>
@@ -394,7 +394,8 @@ body.playing #rBody{padding-bottom:240px}
 <div id="player" class="player" hidden><div class="pbar"><span id="pProg"></span></div><div class="wrap pwrap">
   <div class="ytw"><div id="ytBox"></div></div>
   <div class="pside">
-   <div class="ptop"><button class="pinfo" id="pInfo"><b id="pVerse"></b><small id="pTrack" class="lat"></small></button><button class="prate" id="pRate" aria-label="speed">1×</button></div>
+   <div class="ptop"><button class="prate" id="pRate" aria-label="speed">1×</button></div>
+   <button class="pinfo" id="pInfo"><b id="pVerse"></b><small id="pTrack" class="lat"></small></button>
    <div class="pctl">
     <button class="ib" id="pPrev" aria-label="previous verse"><svg><use href="#i-prev"/></svg></button>
     <button class="ib pmain" id="pPlay" aria-label="play/pause"><svg><use href="#i-pause"/></svg></button>
@@ -425,7 +426,7 @@ body.playing #rBody{padding-bottom:240px}
 
 <!-- SETTINGS -->
 <section id="settings" class="view page">
- <div class="bar"><div class="wrap"><button class="ib" data-back aria-label="वापस"><svg><use href="#i-back"/></svg></button><div class="bt"><div class="t" data-en="Settings">सेटिंग्स</div></div><div class="sz"><button class="szm" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div><div class="lyr uilang"><button data-u="hi">हिं</button><button data-u="en" class="lat">En</button></div></div></div>
+ <div class="bar"><div class="wrap"><button class="ib" data-back aria-label="वापस"><svg><use href="#i-back"/></svg></button><div class="bt"><div class="t" data-en="More">और</div></div><div class="sz"><button class="szm" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div><div class="lyr uilang"><button data-u="hi">हिं</button><button data-u="en" class="lat">En</button></div></div></div>
  <div class="wrap zoomable" id="setBody"></div>
 </section>
 
