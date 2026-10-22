@@ -392,7 +392,7 @@ async def main():
             # the work menu (☰) leads to bookmarks and settings
             await ev("show('home')"); await pg.wait_for_timeout(300)
             await (await pg.query_selector('#hMenu')).click(); await pg.wait_for_timeout(300)
-            items = await ev("Array.from(document.querySelectorAll('#sheetBody [data-m], #sheetBody [data-tour], #sheetBody #mth')).map(b => b.dataset.m || (b.dataset.tour != null ? 'tour' : 'dark-theme'))")
+            items = await ev("Array.from(document.querySelectorAll('#sheetBody [data-m], #sheetBody [data-tour], #sheetBody #mth, #sheetBody #mtm')).map(b => b.dataset.m || (b.dataset.tour != null ? 'tour' : b.id === 'mtm' ? 'timing' : 'dark-theme'))")
             check(f'{tag}: ☰ holds Bookmarks, Dark theme, Take the tour and More — nothing else (owner, 2026-10-22)', items == ['bm', 'dark-theme', 'tour', 'set'] and not await ev("!!document.querySelector('#sheetBody [data-rate], #sheetBody [data-m=sec], #sheetBody #mtr')"), items)
             await ev("closeSheet()")
             # back goes home
@@ -547,11 +547,11 @@ async def main():
         un = await ev("""(async () => { """ + T0 + """
             const a = AUT[0], i = a[10][0], n = a[11][0]; openReader('k', i); await new Promise(r => setTimeout(r, 600));
             setTime(i, 1, a[10][1]); setTime(i, 2, a[11][1] + 2); clearStart(n); const nMoved = SRC.au.at[IT[n].id][1];   // the end gave n a start; Undo on n leaves it an estimate placed after the end
-            itemMenu(i); await new Promise(r => setTimeout(r, 200)); const b = [...document.querySelectorAll('#sheetBody [data-t]')].find(x => x.dataset.t === 'undo'); if (!b) return 'no undo';
+            const b = document.getElementById('v' + i).querySelector('.vundo [data-a=tundo]'); if (!b) return 'no undo';   // ↶, the verse's bottom-left corner (owner, 2026-10-22; it was in the ⋮ menu)
             b.click(); await new Promise(r => setTimeout(r, 200));
             const v = document.getElementById('v' + i), r = [!!myStarts()[IT[i].id], v.querySelectorAll('.tgrp .tn').length, /yours|आपका/.test(v.querySelector('.tinfo').textContent), document.getElementById('v' + n).querySelector('.tinfo').textContent.includes(fmtT(SRC.au.at[IT[n].id][1])), nMoved !== SRC.au.at[IT[n].id][1]];
             """ + T1 + """ return r; })()""")
-        check('timing: Undo in the ⋮ menu redraws the verse and the neighbour it had moved', un == [False, 0, False, True, True], un)
+        check('timing: ↶ under the verse redraws it and the neighbour it had moved', un == [False, 0, False, True, True], un)
         # "Until next" on a verse that has no end does nothing (it used to make the estimated start "yours")
         unx = await ev("""(async () => { """ + T0 + """ const i = AUT[0][10][0]; const r = [setTime(i, 2, null), !!myStarts()[IT[i].id]]; """ + T1 + """ return r; })()""")
         check('timing: Until next on a verse without an end changes nothing', unx == [False, False], unx)
@@ -742,6 +742,20 @@ async def main():
             show('home'); show('bookmarks'); await new Promise(r => setTimeout(r, 300)); r.push(document.querySelector('#bmBody .bmsec[data-fold=bm]').open, document.querySelector('#bmBody .bmsec[data-fold=notes]').open);
             document.querySelector('#bmBody .bmsec[data-fold=bm] summary').click(); await new Promise(r => setTimeout(r, 200)); delete me.bm[KEY(IT[3].id)]; delete S.settings.bmFold; save(); return r; })()""")
         check('bookmarks & notes: the lists fold under their headings and a fold is remembered', fd == [True, 1, False, True, False, True], fd)
+        # the timing controls sit under the verse and in the player bar (owner, 2026-10-22): ↶ is the verse's fourth corner, the saffron
+        # ±step chip beside ✕ cycles (timing mode only), Until next removes the end, ⋮ holds nothing about timing
+        tc = await ev("""(async () => { """ + T0 + """ const a = AUT[0], i = a[10][0], s0 = Math.round(a[10][1] * 10) / 10; openReader('k', i); await new Promise(r => setTimeout(r, 500));
+            setTime(i, 1, s0); setTime(i, 2, s0 + 6); rerenderItem(i); const v = () => document.getElementById('v' + i); S.timing.step = 0.5; syncStep(); const st = document.querySelector('#pStep');
+            const r = [!st.hidden, st.textContent, getComputedStyle(st).color === getComputedStyle(v().querySelector('.tmark button')).color]; st.click(); r.push(S.timing.step, st.textContent);
+            v().querySelector('[data-a=tnone]').click(); r.push(SRC.au.at[IT[i].id][2] == null, !v().querySelector('[data-a=tnone]'), !!v().querySelector('.vundo'), !!v().querySelector('.vplay'));
+            itemMenu(i); await new Promise(r => setTimeout(r, 200)); r.push(!document.querySelector('#sheetBody .tbox')); closeSheet(); S.timing.step = 0.5; """ + T1 + """ syncStep(); r.push(document.querySelector('#pStep').hidden); return r; })()""")
+        check('timing: the ±step chip in the player bar (saffron, timing mode only) cycles; Until next removes the end; ↶ is the fourth corner; ⋮ holds nothing about timing', tc == [True, '±0.5 s', True, 1, '±1 s', True, True, True, True, True, True], tc)
+        # while Audio timing is on, ☰ shows its switch and Clear adjustments at the top level (owner, 2026-10-22)
+        tm2 = await ev("""(async () => { """ + T0 + """ const i = AUT[0][10][0]; openReader('k', i); await new Promise(r => setTimeout(r, 400)); setTime(i, 1, AUT[0][10][1]);
+            document.querySelector('#rMore').click(); await new Promise(r => setTimeout(r, 300)); const r = [!!document.querySelector('#mtm'), !!document.querySelector('#sheetBody [data-m=tclear]')];
+            document.querySelector('#mtm').click(); await new Promise(r => setTimeout(r, 700)); r.push(S.timing.on, !document.querySelector('#sheet').classList.contains('on'), !document.getElementById('v' + i).querySelector('.tmark'));
+            document.querySelector('#rMore').click(); await new Promise(r => setTimeout(r, 300)); r.push(!document.querySelector('#mtm')); closeSheet(); S.timing.on = true; applyTiming(); await loadSources(); """ + T1 + """ return r; })()""")
+        check('☰ while timing is on: the switch turns it off at once and Clear adjustments is there; off, neither shows', tm2 == [True, True, False, True, True, True], tm2)
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')

@@ -90,6 +90,8 @@ html,body{overflow-x:clip}
 .btn[disabled]{opacity:.45;pointer-events:none}
 .tgrp{display:inline-flex;align-items:stretch}.tgrp button+button{margin-left:-1px}.tgrp .tn{min-width:30px;padding:6px 0;font-size:16px;line-height:1}.tgrp .tn:first-child{border-radius:10px 0 0 10px}.tgrp .tn:first-child+button{border-radius:0}.tgrp .tn:first-child+button:last-child{border-radius:0 10px 10px 0}.tgrp button:not(.tn)+.tn{border-radius:0 10px 10px 0}
 .tmark{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px;margin:8px 0 2px}.tmark button{border:1px solid var(--saffron);color:var(--saffron);border-radius:10px;padding:6px 10px;font-size:13.5px;font-weight:700;background:var(--bg)}.tmark button:active{background:color-mix(in srgb,var(--saffron) 18%,transparent)}.tinfo{width:100%;text-align:center;font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}.tinfo .test{color:var(--saffron)}
+.tchips{width:100%;display:flex;justify-content:center;gap:6px;margin-top:-2px}.tmark .tchip{padding:1px 9px;font-size:12px;border-radius:12px;line-height:1.5}   /* Until next as a chip under the times (owner, 2026-10-22) */
+.vundo{position:absolute;left:-28px;bottom:0;height:calc(var(--verse-size) * 1.6);display:flex;align-items:center}.vundo .vb{width:26px;color:var(--saffron);opacity:1}.vundo .vb svg{width:20px;height:20px;stroke-width:2.2;stroke-linecap:round}   /* ↶ Undo: the fourth corner, bottom left, under ▶ (owner, 2026-10-22) */
 body.timing .verse.tocheck{box-shadow:inset 3px 0 0 var(--saffron)}.tcheck{margin:10px 0}.tcheck summary{cursor:pointer;font-size:15px}.tlist{display:flex;flex-direction:column;max-height:50vh;overflow:auto;margin-top:6px}.tlist button{text-align:left;padding:9px 4px;border-bottom:1px solid var(--rule);font-size:15px}
 .tbox{margin-top:14px;padding-top:12px;border-top:1px solid var(--rule)}.tctl{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:6px}.tctl b{min-width:64px;text-align:center;font-variant-numeric:tabular-nums}   /* a long Sanskrit compound may break rather than run off a phone screen */
 .half{display:inline-block}
@@ -113,7 +115,7 @@ body.timing .verse.tocheck{box-shadow:inset 3px 0 0 var(--saffron)}.tcheck{margi
 .bmsec{margin-top:18px}.bmsec summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;padding:2px 0}.bmsec summary::-webkit-details-marker{display:none}.bmsec summary::before{content:'›';display:inline-block;color:var(--muted);font-size:22px;line-height:1;transform:rotate(90deg);transition:transform .15s}.bmsec:not([open]) summary::before{transform:none}.bmsec summary h2{font-size:19px;margin:0}
 .bmrow{display:flex;align-items:stretch;gap:6px}.bmrow .res{flex:1;min-width:0}.bmdel{flex:none;width:44px;display:grid;place-items:center;color:var(--muted);border-bottom:1px solid var(--rule)}.bmdel svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
 .vb.bm-on svg{fill:var(--saffron)}
-.menusw{margin-top:2px}.swic{width:20px;height:20px;stroke:var(--indigo);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none;margin-left:2px}
+.menusw{margin-top:2px}.menu .tsaf{color:var(--saffron)}.menu .tsaf svg{stroke:var(--saffron)}.swic{width:20px;height:20px;stroke:var(--indigo);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none;margin-left:2px}
 .chips{display:flex;align-items:center;gap:6px;margin-top:6px}
 .chip{border:1px solid var(--rule);border-radius:20px;padding:1px 11px;font-size:13px;color:var(--muted);min-height:30px}
 .chip.on{background:var(--indigo);border-color:var(--indigo);color:var(--bg);font-weight:700}   /* a chosen chip is filled, as the speed, step and section chips are (2026-10-22) */
@@ -299,6 +301,7 @@ body.playing #reader .navbar{display:none}
 .ytw{flex:none;width:200px;height:200px;border-radius:10px;overflow:hidden;background:#000}
 .pside{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:space-between}
 .pctl{display:flex;align-items:center;gap:2px;flex-wrap:nowrap}.pctl .ib{width:36px}.pctl .pmain{width:44px;flex:none}
-.ptop{display:flex;justify-content:flex-end;align-items:center;min-width:0;margin-right:-6px}.ptop .ib{width:34px;height:34px}   /* ✕ alone in the top right corner; the speed sits where ✕ was, after ⏭ (owner, 2026-10-22) */
+.ptop{display:flex;justify-content:flex-end;align-items:center;gap:4px;min-width:0;margin-right:-6px}
+.pstep{font-family:var(--lat);font-size:12.5px;font-weight:700;color:var(--saffron);border:1px solid var(--saffron);border-radius:12px;padding:3px 8px;line-height:1.2;white-space:nowrap}   /* how far − / + move a time, while Audio timing is on: saffron like the timing row (owner, 2026-10-22) */.ptop .ib{width:34px;height:34px}   /* ✕ alone in the top right corner; the speed sits where ✕ was, after ⏭ (owner, 2026-10-22) */
 .prate{flex:none;font-family:var(--lat);font-size:12.5px;font-weight:700;color:var(--indigo);border:1px solid var(--indigo);border-radius:12px;padding:3px 8px;margin:0 0 0 4px;line-height:1.2;white-space:nowrap}   /* the speed on a line of its own, top right: the verse's name keeps its full width (owner, 2026-10-22) */   /* playing speed in the bar, beside the verse's name: a tap moves to the next speed (owner, 2026-10-22) */
 body.playing #rBody{padding-bottom:240px}
