@@ -736,6 +736,12 @@ async def main():
             document.querySelector('#rMore').click(); await new Promise(r => setTimeout(r, 200)); r.push(!document.querySelector('#sheetBody [data-rate]'), !!document.querySelector('#sheetBody [data-m=timer]'), !!document.querySelector('#timerPill'));   // six taps: round the six speeds, back to 1×; the speed is only in the bar
             closeSheet(); S.settings.rate = 1; applyRate(); stopAudio(); return r; })()""")
         check('player: a speed button in the bar steps through the speeds; speed is nowhere else; no reading timer', sp == ['1×', True, '1.25×', 1.25, 1, True, False, False], sp)
+        # Bookmarks & notes: each list folds under its heading, and a fold is remembered (owner, 2026-10-22)
+        fd = await ev("""(async () => { await openWork('manas', true); show('home'); const me = ME(); me.bm[KEY(IT[3].id)] = 1; save(); show('bookmarks'); await new Promise(r => setTimeout(r, 300));
+            const d = document.querySelector('#bmBody .bmsec[data-fold=bm]'), r = [d.open, d.querySelectorAll('.res').length]; d.querySelector('summary').click(); await new Promise(r => setTimeout(r, 200)); r.push(d.open, !!(S.settings.bmFold || {}).bm);
+            show('home'); show('bookmarks'); await new Promise(r => setTimeout(r, 300)); r.push(document.querySelector('#bmBody .bmsec[data-fold=bm]').open, document.querySelector('#bmBody .bmsec[data-fold=notes]').open);
+            document.querySelector('#bmBody .bmsec[data-fold=bm] summary').click(); await new Promise(r => setTimeout(r, 200)); delete me.bm[KEY(IT[3].id)]; delete S.settings.bmFold; save(); return r; })()""")
+        check('bookmarks & notes: the lists fold under their headings and a fold is remembered', fd == [True, 1, False, True, False, True], fd)
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')

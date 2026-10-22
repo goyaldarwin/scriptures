@@ -1059,15 +1059,18 @@ function renderBookmarks(){
   const bms = [], notes = [], pre = W.id + ':';
   for (const p of SHOWN()){ for (const k in p.bm) if (k.startsWith(pre) && ID[k.slice(pre.length)] != null) bms.push([ID[k.slice(pre.length)], p]); for (const k in p.notes) if (k.startsWith(pre) && ID[k.slice(pre.length)] != null) p.notes[k].forEach(n => notes.push([ID[k.slice(pre.length)], p, n])); }
   bms.sort((a, b) => a[0] - b[0]); notes.sort((a, b) => a[0] - b[0]);
-  let h = '<h2 style="font-size:19px;margin:20px 0 4px">' + T('बुकमार्क (', 'Bookmarks (') + DEV(bms.length) + ')</h2>';
+  // each list folds under its heading (owner, 2026-10-22): open by default, and a fold is remembered
+  const fold = S.settings.bmFold || {}, sec = (key, title, body) => '<details class="bmsec" data-fold="' + key + '"' + (fold[key] ? '' : ' open') + '><summary><h2>' + title + '</h2></summary>' + body + '</details>';
+  let h = '', bmh = '';
   // each bookmark has its own ✕ to remove it (owner, 2026-10-20)
-  h += bms.length ? bms.map(b => '<div class="bmrow"><button class="res" data-i="' + b[0] + '"><div class="where">' + esc(itemLabel(b[0])) + '</div><div class="snip" style="font-weight:700">' + esc(IT[b[0]].v[0]) + '</div></button><button class="bmdel" data-del="' + b[0] + '" aria-label="' + T('बुकमार्क हटाएँ', 'Remove bookmark') + '"><svg><use href="#i-x"/></svg></button></div>').join('') : '<p class="muted">' + T('किसी भी पदकी पंक्तिके अन्तमें बुकमार्क चिह्न दबाएँ।', 'Tap the bookmark sign at the end of any verse.') + '</p>';
-  h += '<h2 style="font-size:19px;margin:26px 0 4px">' + T('टिप्पणियाँ (', 'Notes (') + DEV(notes.length) + ')</h2>';
-  h += notes.length ? notes.map(n => '<button class="res" data-i="' + n[0] + '"><div class="where">' + esc(itemLabel(n[0])) + '</div><div class="snip">' + esc(n[2].t.slice(0, 200)) + '</div></button>').join('') : '<p class="muted">' + T('किसी पदके ⋮ मेनूसे अपनी टिप्पणी लिखें।', 'Use the ⋮ menu of any verse to write a note.') + '</p>';
+  bmh += bms.length ? bms.map(b => '<div class="bmrow"><button class="res" data-i="' + b[0] + '"><div class="where">' + esc(itemLabel(b[0])) + '</div><div class="snip" style="font-weight:700">' + esc(IT[b[0]].v[0]) + '</div></button><button class="bmdel" data-del="' + b[0] + '" aria-label="' + T('बुकमार्क हटाएँ', 'Remove bookmark') + '"><svg><use href="#i-x"/></svg></button></div>').join('') : '<p class="muted">' + T('किसी भी पदकी पंक्तिके अन्तमें बुकमार्क चिह्न दबाएँ।', 'Tap the bookmark sign at the end of any verse.') + '</p>';
+  h += sec('bm', T('बुकमार्क (', 'Bookmarks (') + DEV(bms.length) + ')', bmh);
+  h += sec('notes', T('टिप्पणियाँ (', 'Notes (') + DEV(notes.length) + ')', notes.length ? notes.map(n => '<button class="res" data-i="' + n[0] + '"><div class="where">' + esc(itemLabel(n[0])) + '</div><div class="snip">' + esc(n[2].t.slice(0, 200)) + '</div></button>').join('') : '<p class="muted">' + T('किसी पदके ⋮ मेनूसे अपनी टिप्पणी लिखें।', 'Use the ⋮ menu of any verse to write a note.') + '</p>');
   h += '<h2 style="font-size:19px;margin:26px 0 4px">' + T('मेरी फ़ाइल', 'My file') + '</h2><p class="small muted">' + T('आपके बुकमार्क, टिप्पणियाँ, प्रगति और सुधार इसी फ़ोनमें रहते हैं। फ़ाइल सेव करके बैकअप रखें या दूसरे फ़ोनपर खोलें।', 'Your bookmarks, notes, progress and corrections stay on this phone. Save the file as a backup, or open it on another phone.') + (canStore ? '' : ' <b>' + T('ध्यान दें: यह फ़ोन डेटा अपने-आप नहीं रख पा रहा — पाठके बाद “फ़ाइल सेव करें” दबाएँ।', 'This phone is not keeping app data — tap Save my file after each reading.') + '</b>') + '</p>' +
     '<div class="acts"><button class="btn" id="exp">' + T('फ़ाइल सेव करें', 'Save my file') + '</button><button class="btn ghost" id="imp">' + T('फ़ाइल खोलें', 'Open a file') + '</button></div>';
   $('#bmBody').innerHTML = h + '<div style="height:40px"></div>';
   $('#exp').onclick = exportFile; $('#imp').onclick = () => $('#fileIn').click();
+  $$('#bmBody .bmsec').forEach(d => d.ontoggle = () => { S.settings.bmFold = S.settings.bmFold || {}; if (d.open) delete S.settings.bmFold[d.dataset.fold]; else S.settings.bmFold[d.dataset.fold] = 1; save(); });
   $$('#bmBody .res').forEach(b => b.onclick = () => openReader('k', +b.dataset.i, true));
   $$('#bmBody [data-del]').forEach(b => b.onclick = () => { const k = KEY(IT[+b.dataset.del].id); for (const p of S.profiles) delete p.bm[k]; save(); renderBookmarks(); toast(T('बुकमार्क हटाया', 'Bookmark removed')); });
 }
