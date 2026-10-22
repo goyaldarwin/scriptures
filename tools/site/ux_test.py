@@ -729,6 +729,12 @@ async def main():
         check('offline: a work opened once is readable without any network, with its meanings', kept[0] and kept[1] >= 4 and off[0] == 'ramraksha' and off[1] > 0 and off[2] > 0 and off[3] > 0 and off[4], (kept, off, errs3[:2]))
         check('offline: a work never opened on this phone says so', never[0] == 'ramraksha' and ('No internet' in never[1] or 'इंटरनेट' in never[1]), never)
         await ctx2.close()
+        # the speed button in the player bar cycles the speeds; the reading timer is gone (owner, 2026-10-22)
+        sp = await ev("""(async () => { await openWork('ramraksha', true); show('home'); openReader('k', 0); S.settings.rate = 1; applyRate(); playFrom(0, null); await new Promise(r => setTimeout(r, 300));
+            const b = document.querySelector('#pRate'), r = [b.textContent, !!b.offsetParent]; b.click(); r.push(b.textContent, S.settings.rate); for (let k = 0; k < 5; k++) b.click(); r.push(S.settings.rate);
+            document.querySelector('#rMore').click(); await new Promise(r => setTimeout(r, 200)); r.push(document.querySelector('#sheetBody [data-rate="1"]').classList.contains('on'), !!document.querySelector('#sheetBody [data-m=timer]'), !!document.querySelector('#timerPill'));   // six taps: round the six speeds, back to 1×
+            closeSheet(); S.settings.rate = 1; applyRate(); stopAudio(); return r; })()""")
+        check('player: a speed button in the bar steps through the speeds and the menu agrees; no reading timer', sp == ['1×', True, '1.25×', 1.25, 1, True, False, False], sp)
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')

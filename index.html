@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#2B3A8C">
 <title>शास्त्र · Scriptures</title>
-<link rel="manifest" href="manifest.json"><link rel="icon" href="app/icon.svg"><link rel="apple-touch-icon" href="app/apple-touch-icon.png"><link rel="stylesheet" href="app/fonts.css?v=6ce0da9346"><link rel="stylesheet" href="app/style.css?v=425514a4bf">
+<link rel="manifest" href="manifest.json"><link rel="icon" href="app/icon.svg"><link rel="apple-touch-icon" href="app/apple-touch-icon.png"><link rel="stylesheet" href="app/fonts.css?v=6ce0da9346"><link rel="stylesheet" href="app/style.css?v=006344ba45">
 
 </head>
 <body>
@@ -73,7 +73,6 @@
  <div class="bar"><div class="wrap">
   <button class="ib hback" id="rBack" aria-label="वापस"><svg><use href="#i-back"/></svg></button>
   <span class="grow"></span>
-  <span class="timer" id="timerPill"></span>
   <button class="pill" id="rRecite" hidden style="padding:6px 10px;font-size:13px"><span data-en="Recitation mode">पाठ मोड</span> ✕</button>
   <div class="sz"><button class="szm" id="rSmaller" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" id="rBigger" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div>
   <div class="lyr layers" id="rLayers"><button data-l="h">हिं</button><button data-l="e" class="lat">En</button><button data-l="w">शब्द</button><button data-l="r" class="lrec" aria-label="पाठ मोड · Recitation mode" title="Recitation mode"><svg><use href="#i-recite"/></svg></button></div>
@@ -90,7 +89,7 @@
 <div id="player" class="player" hidden><div class="pbar"><span id="pProg"></span></div><div class="wrap pwrap">
   <div class="ytw"><div id="ytBox"></div></div>
   <div class="pside">
-   <button class="pinfo" id="pInfo"><b id="pVerse"></b><small id="pTrack" class="lat"></small></button>
+   <div class="ptop"><button class="pinfo" id="pInfo"><b id="pVerse"></b><small id="pTrack" class="lat"></small></button><button class="prate" id="pRate" aria-label="speed">1×</button></div>
    <div class="pctl">
     <button class="ib" id="pPrev" aria-label="previous verse"><svg><use href="#i-prev"/></svg></button>
     <button class="ib pmain" id="pPlay" aria-label="play/pause"><svg><use href="#i-pause"/></svg></button>
@@ -142,6 +141,6 @@
 <div class="toast" id="toast"></div>
 <input type="file" id="fileIn" accept="application/json,.json" style="display:none">
 
-<script src="app/app.js?v=5b1d2c40e3"></script>
+<script src="app/app.js?v=b088ffbf1f"></script>
 </body>
 </html>
