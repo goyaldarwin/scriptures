@@ -42,7 +42,7 @@ YouTube recordings ─ tools/audio/transcribe.py ─► transcripts ─ make_tim
 library/ ─ tools/site/build.py (checks everything first) ─► index.html, app/, sw.js  +  dist/ (offline file, claude.ai file)
 ```
 
-- The verse text and its number are the core of each work. Hindi meaning, English meaning and audio are interchangeable sources that the reader picks in Settings. Word meanings (`glossary/<lang>.json`) are fixed and shared, one dictionary per language. Each verse is looked up in its own language: Awadhi for most of the Mānas, Sanskrit for its ślokas and Sanskrit stutis.
+- The verse text and its number are the core of each work. Hindi meaning, English meaning and audio are interchangeable sources that the reader picks under ☰ › More › Sources. Word meanings (`glossary/<lang>.json`) are fixed and shared, one dictionary per language. Each verse is looked up in its own language: Awadhi for most of the Mānas, Sanskrit for its ślokas and Sanskrit stutis.
 - The app is the same for every work: the shelf screen, the work's home (divisions and plans with ▶), and a continuous-scroll reader with a section picker at the bottom. Bookmarks, notes, progress and hands-free recitation are built in.
 - Readers' personal data stays in their browser (localStorage, key `manas.personal.v1`; v2 format with keys prefixed by work id).
 - A work opened once is readable offline (the service worker keeps every library file fetched, across deploys; see the playbook → "Offline reading").
@@ -50,10 +50,10 @@ library/ ─ tools/site/build.py (checks everything first) ─► index.html, ap
 ## Common tasks
 See `docs/HOW-TO.md`: add a meaning source, add a reciter, add a work, fix text, change the app, publish.
 
-## Status (18 October 2026)
+## Status (22 October 2026)
 | Work (shelf) | Text & meanings | Audio |
 |---|---|---|
-| Śrī Rāmacaritamānasa | complete: Gita Press text, Hindi and English meanings, glossary, topics, 30-day and 9-day plans with pārāyaṇa vidhi, āratī and Kathā-visarjana | Pt. Kamlesh Upadhyay, live: 6,156 of 6,157 verses timed, 31 estimated |
+| Śrī Rāmacaritamānasa | complete: Gita Press text, Hindi and English meanings, glossary, topics, 30-day and 9-day plans with pārāyaṇa vidhi, āratī and Kathā-visarjana | Pt. Kamlesh Upadhyay, live: 6,156 of 6,157 verses timed, 31 estimated; the owner is correcting by ear (36 sent, 2026-10-20) |
 | Sundarakāṇḍa | generated from the Mānas (from Kiṣkindhā dohā 29), plus Hanumān Chālīsā and āratī | Pt. Ashwin Kumar Pathak, live: 403 verses, 8 estimated |
 | Śrī Rāma Rakṣā Stotram | complete | Vande Guru Paramparaam, live |
 | Īśāvāsya Upaniṣad | complete (our own meanings) | live |
@@ -67,4 +67,6 @@ See `docs/HOW-TO.md`: add a meaning source, add a reciter, add a work, fix text,
 
 **Apps:** Android first (iPhone parked) — see `docs/APPS.md`. Groundwork and a test build are done; the owner is setting up the corporation's Google Play account, domain, app name and package id.
 
-**Before any change, read `docs/PLAYBOOK.md`** — especially "Audio timing by ear" and "Lessons: the working environment".
+**The app as of 2026-10-22** (all in the playbook, "Added later" → the Oct 20–22 sections): one ☰ sheet everywhere (Bookmarks & notes · Dark theme · Take the tour · More) and no Settings page; the "More" page holds transliteration, sources, audio timing and privacy; "Save my file / Open a file" on Bookmarks & notes; the screen always on while reading or playing; the playing speed in the player bar (✕ in its top-right corner); a "↑ Now playing" pill when the lit verse is off screen; the page follows the light at every verse start, no pause after a touch; offline reading of every work opened once; the audio-timing rules reviewed and tightened (one order rule in `tools/audio/order.py`).
+
+**Before any change, read `docs/PLAYBOOK.md`** — especially "Audio timing by ear", "The menus" and "Lessons: the working environment".
