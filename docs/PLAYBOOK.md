@@ -345,6 +345,9 @@ The owner (and helpers) set verse times by ear in the app; the library applies t
 - **Found on the way: the worker had never installed on the live site.** Its file list named some fonts twice, and `cache.addAll` refuses a duplicate, so the install failed silently on every phone — no offline at all, ever. build.py now lists each file once, and the UX test checks that the worker reaches "active".
 - Tested for real in the UX test: a second server is stopped and the page reloaded with no network at all. The worker is registered on https only (and on the test's localhost with `window.__SW_TEST`).
 
+### The verse's corners (owner, 2026-10-22)
+- **▶ saffron and filled** — the main action on a verse, meant to draw the eye. **Bookmark and ⋮ blue**, the same size and weight (20 px, the ⋮ dots drawn solid); the bookmark sign fills saffron once set, so the colour change is what shows it is on. Blue is the colour of the app's controls; saffron is for the lit verse, the verse-type heading, the ▶ and anything "on".
+
 ### Lessons: the working environment
 - **Gate commits on the test's exit code, not on a grep of its output** (`ux_test.py | grep … && git commit` committed with a failing check on 2026-10-20). The failing check had assumed no owner times in the Mānas — true until issue #13 sent some; tests that pick sample verses from live data must exclude verses set by ear.
 - **Never `pkill -f`** in this environment: it matched and killed the session's own shell (exit 144), twice. Kill by PID or a pid file.

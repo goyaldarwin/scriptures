@@ -111,6 +111,7 @@ body.timing .verse.tocheck{box-shadow:inset 3px 0 0 var(--saffron)}.tcheck{margi
 .vb svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linejoin:round}
 .vb.bm-on{color:var(--saffron);opacity:1}
 .vbm{width:26px;color:var(--indigo);opacity:.85}.vbm svg{width:20px;height:20px;stroke-width:2.2}   /* the bookmark sign larger and darker, easy to see (owner, 2026-10-20) */
+.vend .vb{width:26px;color:var(--indigo);opacity:.85}.vend .vb svg{width:20px;height:20px}   /* ⋮ as large and as blue as the bookmark sign (owner, 2026-10-22); ▶ keeps its saffron: the main action */
 .bmrow{display:flex;align-items:stretch;gap:6px}.bmrow .res{flex:1;min-width:0}.bmdel{flex:none;width:44px;display:grid;place-items:center;color:var(--muted);border-bottom:1px solid var(--rule)}.bmdel svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
 .vb.bm-on svg{fill:var(--saffron)}
 .ratebox{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:12px 2px}.ratebox span{flex-basis:100%;margin-bottom:2px}.ratebox button{flex:1;min-width:0;border:1px solid var(--rule);border-radius:10px;padding:7px 0;font-size:14px;color:var(--indigo);background:var(--bg)}.ratebox button.on{background:var(--indigo);color:var(--bg);border-color:var(--indigo)}
