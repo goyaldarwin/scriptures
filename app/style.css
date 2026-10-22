@@ -112,7 +112,6 @@ body.timing .verse.tocheck{box-shadow:inset 3px 0 0 var(--saffron)}.tcheck{margi
 .vend .vb{width:26px;color:var(--indigo);opacity:.85}.vend .vb svg{width:20px;height:20px}   /* ⋮ as large and as blue as the bookmark sign (owner, 2026-10-22); ▶ keeps its saffron: the main action */
 .bmrow{display:flex;align-items:stretch;gap:6px}.bmrow .res{flex:1;min-width:0}.bmdel{flex:none;width:44px;display:grid;place-items:center;color:var(--muted);border-bottom:1px solid var(--rule)}.bmdel svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
 .vb.bm-on svg{fill:var(--saffron)}
-.ratebox{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:12px 2px}.ratebox span{flex-basis:100%;margin-bottom:2px}.ratebox button{flex:1;min-width:0;border:1px solid var(--rule);border-radius:10px;padding:7px 0;font-size:14px;color:var(--indigo);background:var(--bg)}.ratebox button.on{background:var(--indigo);color:var(--bg);border-color:var(--indigo)}
 .menusw{margin-top:2px}.swic{width:20px;height:20px;stroke:var(--indigo);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none;margin-left:2px}
 .chips{display:flex;align-items:center;gap:6px;margin-top:6px}
 .chip{border:1px solid var(--rule);border-radius:20px;padding:1px 11px;font-size:13px;color:var(--muted);min-height:30px}
@@ -299,6 +298,6 @@ body.playing #reader .navbar{display:none}
 .ytw{flex:none;width:200px;height:200px;border-radius:10px;overflow:hidden;background:#000}
 .pside{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:space-between}
 .pctl{display:flex;align-items:center;gap:0;flex-wrap:nowrap}.pctl .ib{width:36px}.pctl .pmain{width:44px;flex:none}
-.ptop{display:flex;align-items:flex-start;gap:4px;min-width:0}.ptop .pinfo{flex:1;min-width:0}
-.prate{flex:none;font-family:var(--lat);font-size:12px;font-weight:700;color:var(--indigo);border:1px solid var(--indigo);border-radius:12px;padding:2px 6px;margin:5px 2px 0 0;line-height:1.2;white-space:nowrap}   /* playing speed in the bar, beside the verse's name: a tap moves to the next speed (owner, 2026-10-22) */
+.ptop{display:flex;justify-content:flex-end;min-width:0}
+.prate{flex:none;font-family:var(--lat);font-size:12.5px;font-weight:700;color:var(--indigo);border:1px solid var(--indigo);border-radius:12px;padding:3px 8px;margin:2px 2px 0 0;line-height:1.2;white-space:nowrap}   /* the speed on a line of its own, top right: the verse's name keeps its full width (owner, 2026-10-22) */   /* playing speed in the bar, beside the verse's name: a tap moves to the next speed (owner, 2026-10-22) */
 body.playing #rBody{padding-bottom:240px}
