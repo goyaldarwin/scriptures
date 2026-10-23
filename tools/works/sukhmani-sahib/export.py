@@ -10,6 +10,9 @@ Writes
                                     parts, a topic per Ashtapadi, the work's verse types
   meanings/en-sant-singh-khalsa.json  the PDF's English (Dr. Sant Singh Khalsa), the lines of an item joined
   meanings/hi-scriptures.json       the Hindi meaning (written for this library; the PDF has none)
+  meanings/en-scriptures.json       our English meaning (meanings/en.json, written for this library from the Gurmukhi,
+                                    tools/meanings/style.md §12), the default; the PDF's English stays selectable
+  Both our meanings end with the stanza's number (tools/meanings/versenum.py).
 Merges glossary/pa.json into library/glossary/pa.json (adds new words, never overwrites) and reports how many of
 the work's words have a meaning. Does not touch library/index.json. Then run tools/site/build.py.
 Before exporting it runs the conversion check (check.py) and the structure check, and stops on any failure.
@@ -108,10 +111,19 @@ for x in items:
     s = ' '.join(x['e'])
     for a, b in EN_FIXES: s = s.replace(a, b)
     en[x['id']] = [re.sub(r'\s+', ' ', s).strip()]
+def en_line(l):
+    for a_, b_ in EN_FIXES: l = l.replace(a_, b_)
+    return re.sub(r'\s+', ' ', l).strip()
+# line by line: the PDF prints one English line under each Gurmukhi line, so its pieces are those lines
+enp = {x['id']: [en_line(l) for l in x['e']] for x in items if len(x['e']) == len(x['v']) and any(l.strip() for l in x['e'])}
 dump(f'{WP}/meanings/en-sant-singh-khalsa.json', {
-    'id': 'en-sant-singh-khalsa', 'lang': 'en', 'order': 1,
+    'id': 'en-sant-singh-khalsa', 'lang': 'en', 'order': 2,   # ours is the default (owner, 2026-10-23); this stays selectable
     'title': {'hi': 'अंग्रेज़ी अनुवाद — डॉ. संत सिंह खालसा', 'en': 'English translation — Dr. Sant Singh Khalsa'},
-    'm': en})
+    'm': en, 'p': enp})
+print(f'en-sant-singh-khalsa: {len(enp)} of {len(items)} items line by line')
+
+sys.path.insert(0, os.path.join(REPO, 'tools', 'meanings')); import versenum, overlap
+BYID = {x['id']: x for x in items}
 
 # ---- Hindi: written for this library ----
 hp = os.path.join(HERE, 'meanings', 'hi.json')
@@ -121,7 +133,20 @@ miss = [i for i in ids if not HI.get(i)]
 dump(f'{WP}/meanings/hi-scriptures.json', {
     'id': 'hi-scriptures', 'lang': 'hi', 'order': 1,
     'title': {'hi': 'भावार्थ — शास्त्र', 'en': 'Hindi meaning — Scriptures'},
-    'm': {i: [HI[i]] for i in ids if HI.get(i)}})
+    'm': {i: [versenum.text_and_pieces(HI[i], BYID[i], 'hi')[0]] for i in ids if HI.get(i)},
+    'p': {i: versenum.text_and_pieces(HI[i], BYID[i], 'hi')[1] for i in ids if HI.get(i) and not isinstance(HI[i], str)}})
+
+# ---- English: ours, written for this library (every item; no overlap with the PDF's; the default) ----
+EN = json.load(open(os.path.join(HERE, 'meanings', 'en.json'), encoding='utf-8'))
+miss = [i for i in ids if not EN.get(i)]; extra = [k for k in EN if k not in ids]
+assert not miss and not extra, f'en meanings: missing {miss[:5]}, unknown {extra[:5]}'
+bad = [r for r in overlap.check({k: versenum.joined(v) for k, v in EN.items()}, {k: v[0] for k, v in en.items()}) if len(r[1]) >= 10]
+assert not bad, f'en: {bad[0][0]} shares 10+ words with the PDF\'s English: {" ".join(bad[0][1])}'
+dump(f'{WP}/meanings/en-scriptures.json', {
+    'id': 'en-scriptures', 'lang': 'en', 'order': 1,
+    'title': {'hi': 'अंग्रेज़ी अर्थ — शास्त्र', 'en': 'English meaning — Scriptures'},
+    'm': {i: [versenum.text_and_pieces(EN[i], BYID[i], 'en')[0]] for i in ids},
+    'p': {i: versenum.text_and_pieces(EN[i], BYID[i], 'en')[1] for i in ids if not isinstance(EN[i], str)}})
 
 # ---- word meanings (Gurmukhi → library/glossary/pa.json, add-only) ----
 PUNCT = re.compile(r"[।॥|,.;:!?\-—‘’“”'\"()\[\]०-९੦-੯0-9]")   # the app's own rule (tools/site/app.js)
