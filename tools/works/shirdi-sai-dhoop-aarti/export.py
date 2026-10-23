@@ -78,10 +78,12 @@ for lg in ('hi', 'en'):
     M = json.load(open(os.path.join(HERE, 'meanings', lg + '.json'), encoding='utf-8'))
     miss = [i for i in ids if not M.get(i)]; extra = [k for k in M if k not in ids]
     assert not miss and not extra, f'{lg} meanings: missing {miss[:5]}, unknown {extra[:5]}'
-    dump(f'{WP}/meanings/{lg}-scriptures.json', {'id': lg + '-scriptures', 'lang': lg, 'order': 1 if lg == 'hi' else 2, 'title': TITLES[lg], 'm': {i: [M[i]] for i in ids}})
+    # our own meanings are the default in both languages (owner, 2026-10-23: our own meanings in place of others'
+    # copyrighted ones); the printout's English stays selectable in Settings › Sources
+    dump(f'{WP}/meanings/{lg}-scriptures.json', {'id': lg + '-scriptures', 'lang': lg, 'order': 1, 'title': TITLES[lg], 'm': {i: [M[i]] for i in ids}})
 
 # ---- meanings copied from the owner's printouts (only the verses they cover) ----
-COPIED = {'en-shirdisaibabakripa': {'lang': 'en', 'order': 1,
+COPIED = {'en-shirdisaibabakripa': {'lang': 'en', 'order': 2,
           'title': {'hi': 'shirdisaibabakripa.org — अंग्रेज़ी अर्थ', 'en': 'shirdisaibabakripa.org — English meaning'}}}
 for sid, meta in COPIED.items():
     M = json.load(open(os.path.join(HERE, 'meanings', sid + '.json'), encoding='utf-8'))
