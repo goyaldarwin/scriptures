@@ -368,7 +368,7 @@ The owner (and helpers) set verse times by ear in the app; the library applies t
 
 ### One word for one thing (owner, 2026-10-23) — the app's vocabulary
 "Use one word for one thing everywhere. Multiple words are confusing and poor user experience." Every label, toast, tour step and help line uses exactly these (English / Hindi):
-- **verse / पद** — one verse ("Copy verse and meaning", "Correct the verse or meaning", "Verse restored"). Never "text" for a verse.
+- **verse / पद** — one verse ("Copy verse and meaning", "Improve verse or meaning", "Verse restored"). Never "text" for a verse.
 - **work / ग्रन्थ** — a scripture on the shelf ("Could not open this work", "open that work first").
 - **meaning / अर्थ** — "Hindi meaning", "English meaning", "Word meanings"; never "translation".
 - **note, bookmark, file, recording, section, library, shelf** — as they are; "my file" is the reader's own file, "timings … file" a helper's.
@@ -376,6 +376,8 @@ The owner (and helpers) set verse times by ear in the app; the library applies t
 - **letters / अक्षर** — for size only ("Letter size", "make the letters larger", "Verses only, larger letters"); "text" is not used on its own.
 - **Audio timing / ऑडियोका समय** — the feature and its switch (not "Adjust audio timing"); its controls are saffron everywhere, the ☰ switch included.
 A new label must reuse these words; a new thing gets one word, added here.
+
+- **The ⋮ menu (owner, 2026-10-23): Play from here · Write a note · Copy verse and meaning · Improve verse or meaning.** Menu items are short commands without "the" ("Improve" replaced "Correct the" for the same reason).
 
 ### Lessons: the working environment
 - **Gate commits on the test's exit code, not on a grep of its output** (`ux_test.py | grep … && git commit` committed with a failing check on 2026-10-20). The failing check had assumed no owner times in the Mānas — true until issue #13 sent some; tests that pick sample verses from live data must exclude verses set by ear.
