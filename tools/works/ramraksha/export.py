@@ -8,6 +8,8 @@ Repeated screenshots of the same line are left out of the file.
 Writes   work.json                              the text: invocation, viniyoga, dhyāna, ślokas 1–38, colophon
          meanings/en-vande-guru-paramparaam.json English meaning (the video's on-screen meaning, joined per verse)
          meanings/hi-stuti-chalisa-sangrah.json  Hindi meaning (source/hi_meanings.json, from the owner's PDF of that web page)
+         meanings/hi-scriptures.json, en-scriptures.json  our own meanings (meanings/hi.json, en.json; written for
+                                    this library from the Sanskrit, tools/meanings/style.md), the default; verse numbers added
 Merges   glossary_sa.json into library/glossary/sa.json (adds new words; never overwrites existing ones).
 Does not touch library/index.json (the shelf is edited by hand) or audio/ (see tools/audio).
 Then run tools/site/build.py.
@@ -75,13 +77,30 @@ work = {
 }
 dump(WP + '/work.json', work)
 
-dump(WP + '/meanings/en-vande-guru-paramparaam.json', {'id': 'en-vande-guru-paramparaam', 'lang': 'en', 'order': 1,
+# Which source readers see first: our own (owner, 2026-10-23: our own meanings in place of others' copyrighted ones);
+# the two copied meanings stay selectable in Settings › Sources.
+ORDER = {'scriptures': 1, 'copied': 2}
+dump(WP + '/meanings/en-vande-guru-paramparaam.json', {'id': 'en-vande-guru-paramparaam', 'lang': 'en', 'order': ORDER['copied'],
      'title': {'hi': 'वन्दे गुरु परम्पराम् — अंग्रेज़ी अर्थ', 'en': 'Vande Guru Paramparaam — English meaning'}, 'm': en})
 H = json.load(open(os.path.join(HERE, 'source', 'hi_meanings.json'), encoding='utf-8'))
 hi = {k: [v] for k, v in H.items() if not k.startswith('_')}
 assert set(hi) <= {x['id'] for x in items}, set(hi) - {x['id'] for x in items}
-dump(WP + '/meanings/hi-stuti-chalisa-sangrah.json', {'id': 'hi-stuti-chalisa-sangrah', 'lang': 'hi', 'order': 1,
+dump(WP + '/meanings/hi-stuti-chalisa-sangrah.json', {'id': 'hi-stuti-chalisa-sangrah', 'lang': 'hi', 'order': ORDER['copied'],
      'title': {'hi': 'स्तुति चालीसा संग्रह — हिंदी अर्थ', 'en': 'Stuti Chalisa Sangrah — Hindi meaning'}, 'm': hi})
+
+# ---- our own meanings: every item in Hindi and English, no overlap with the copied ones, verse numbers added ----
+sys.path.insert(0, os.path.join(HERE, '..', '..', 'meanings')); import versenum, overlap
+ids = [x['id'] for x in items]; BYID = {x['id']: x for x in items}
+TITLES = {'hi': {'hi': 'भावार्थ — शास्त्र', 'en': 'Hindi meaning — Scriptures'},
+          'en': {'hi': 'अंग्रेज़ी अर्थ — शास्त्र', 'en': 'English meaning — Scriptures'}}
+for lg, copied in (('hi', hi), ('en', en)):
+    D = json.load(open(os.path.join(HERE, 'meanings', lg + '.json'), encoding='utf-8'))
+    miss = [i for i in ids if not D.get(i)]; extra = [k for k in D if k not in ids]
+    assert not miss and not extra, f'{lg} meanings: missing {miss[:5]}, unknown {extra[:5]}'
+    bad = [r for r in overlap.check(D, {k: v[0] for k, v in copied.items()}) if len(r[1]) >= 10]
+    assert not bad, f'{lg}: {bad[0][0]} shares 10+ words with the copied meaning: {" ".join(bad[0][1])}'
+    dump(f'{WP}/meanings/{lg}-scriptures.json', {'id': lg + '-scriptures', 'lang': lg, 'order': ORDER['scriptures'], 'title': TITLES[lg],
+         'm': {i: [versenum.with_number(D[i], BYID[i], lg)] for i in ids}})
 
 # ---- word meanings: every word of the verses must be in sa.json ----
 PUNCT = re.compile(r"[।॥|,.;:!?\-—‘’“”'\"()\[\]०-९0-9]")
