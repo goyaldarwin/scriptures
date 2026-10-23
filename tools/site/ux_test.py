@@ -774,6 +774,9 @@ async def main():
         words = await ev("""(() => { const src = [...document.querySelectorAll('[data-en]')].map(e => e.dataset.en).join(' | '); return src; })()""")
         bad = [w for w in ('Listen', 'translation', 'Adjust audio timing', 'the text') if w in words]
         check('labels: the template uses the app\'s vocabulary', not bad, bad)
+        # ⋮ order: Play from here · Write a note · Copy verse and meaning · Correct … (owner, 2026-10-23)
+        order = await ev("(async () => { await openWork('manas', true); show('home'); openReader('k', 0); await new Promise(r => setTimeout(r, 300)); itemMenu(0); await new Promise(r => setTimeout(r, 200)); const r = [...document.querySelectorAll('#sheetBody [data-x]')].map(b => b.dataset.x); closeSheet(); return r; })()")
+        check('⋮: Write a note comes before Copy verse and meaning', order[:4] == ['play', 'note', 'copy', 'edit'], order)
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')
