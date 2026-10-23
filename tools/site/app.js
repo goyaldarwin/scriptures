@@ -273,8 +273,9 @@ function verseOf(i){ const id = IT[i].id; for (const p of S.profiles){ const f =
 function mean(kind, i){
   const src = SRC[kind]; if (!src) return null; const id = IT[i].id; const k = KEY(src.id + ':' + id);
   for (const p of S.profiles){ const f = p.fix[k]; if (f && f.m != null) return {x: f.m, edited: true, f: (src.m[id] || [])[1]}; }
-  const e = src.m[id]; if (e) return {x: e[0], f: e[1], edited: false};
-  for (const a of ALT[kind] || []){ const x = a.m[id]; if (x) return {x: x[0], f: x[1], edited: false, from: TT(a.meta.title)}; }
+  // p: the meaning line by line, one piece per verse line (meaning file "p"; owner, 2026-10-23)
+  const e = src.m[id]; if (e) return {x: e[0], f: e[1], edited: false, p: (src.p || {})[id]};
+  for (const a of ALT[kind] || []){ const x = a.m[id]; if (x) return {x: x[0], f: x[1], edited: false, from: TT(a.meta.title), p: (a.p || {})[id]}; }
   return null;
 }
 const layerOn = l => !!S.settings.layers[l];
@@ -296,7 +297,8 @@ function verseHTML(i){
   const it = IT[i], id = it.id, me = ME(), vv = verseOf(i);
   const bm = SHOWN().some(p => p.bm[KEY(id)]);
   const sh = VSHORT[it.y];
-  let h = '<div class="verse' + (toCheck(i) ? ' tocheck' : '') + '" id="v' + i + '" data-i="' + i + '"><div class="vtext' + (VEDIC.test(vv.v.join('')) ? ' vedic' : '') + '">' + vv.v.map((l, y) => {
+  const vcls = '<div class="vtext' + (VEDIC.test(vv.v.join('')) ? ' vedic' : '') + '">';
+  const pl = vv.v.map((l, y) => {
     const last = y === vv.v.length - 1;
     let ln = last && it.y === 'cau' && it.n && /।।\s*$/.test(l) ? l.replace(/\s*।।\s*$/, ' ।।' + String(it.n).replace(/\d/g, d => DIG[d]) + '।।') : l;
     if (LANG() === 'en') ln = ln.replace(/[०-९]/g, d => DIG.indexOf(d)).replace(/[੦-੯]/g, d => d.charCodeAt(0) - 0x0A66);
@@ -307,12 +309,38 @@ function verseHTML(i){
     const top = y === 0 ? (hasAu(i) ? '<button class="vb vplay" data-a="play" aria-label="play"><svg><use href="#i-play"/></svg></button>' : '') + '<button class="vb vbm' + (bm ? ' bm-on' : '') + '" data-a="bm" aria-label="bookmark"><svg><use href="#i-bm"/></svg></button>' : '';
     const undo = last && S.timing.on && SRC.au && myStarts()[id] ? '<span class="vundo"><button class="vb" data-a="tundo" aria-label="' + T('पहले जैसा', 'Undo') + '" title="' + T('पहले जैसा', 'Undo') + '"><svg><use href="#i-undo"/></svg></button></span>' : '';   // ↶ (bottom left) in timing mode, on a verse you set
     const tail = last ? '<span class="vend"><button class="vb" data-a="menu" aria-label="more"><svg><use href="#i-more"/></svg></button></span>' + undo : '';
-    return '<p' + (vv.v.length === 1 ? ' class="one"' : '') + '>' + lead + top + w + tail + '</p>'; }).join('') + '</div>';
-  if (S.timing.on && SRC.au) h += markBar(i);
-  if (S.settings.tr && it.t && it.t.length) h += '<div class="tr">' + it.t.map(l => '<div>' + l.split(/(?<=,)\s+/).map(x => '<span class="half">' + esc(x).replace(/\s*॥\s*([^॥]*?)\s*॥/g, ' <span class="dd">॥$1॥</span>') + '</span>').join(' ') + '</div>').join('') + '</div>';
-  if (layerOn('h')){ const m = mean('hi', i); if (m) h += '<div class="layer h">' + esc(m.x).replace(/\s*(।।[^।]*।।)\s*$/, '<span style="white-space:nowrap"> $1</span>') + (m.edited ? '<span class="tag">' + T('संशोधित', 'edited') + '</span>' : '') + (m.f ? '<div class="fn">' + m.f.map(esc).join('<br>') + '</div>' : '') + '</div>'; }
-  if (layerOn('w')) h += '<div class="layer wl">' + wbHTML(vv.v, langOf(i)) + '</div>';
-  if (layerOn('e')){ const m = mean('en', i); if (m) h += '<div class="layer e">' + esc(m.x) + (m.edited ? '<span class="tag">edited</span>' : '') + (m.f ? '<div class="fn">' + m.f.map(esc).join('<br>') + '</div>' : '') + '</div>'; }
+    return '<p' + (vv.v.length === 1 ? ' class="one"' : '') + '>' + lead + top + w + tail + '</p>'; });
+  let h = '<div class="verse' + (toCheck(i) ? ' tocheck' : '') + '" id="v' + i + '" data-i="' + i + '">';
+  const trl = l => '<div>' + l.split(/(?<=,)\s+/).map(x => '<span class="half">' + esc(x).replace(/\s*॥\s*([^॥]*?)\s*॥/g, ' <span class="dd">॥$1॥</span>') + '</span>').join(' ') + '</div>';
+  const num = x => esc(x).replace(/\s*(।।[^।]*।।)\s*$/, '<span style="white-space:nowrap"> $1</span>');
+  const hiL = (m, x, fn) => '<div class="layer h">' + num(x) + (m.edited ? '<span class="tag">' + T('संशोधित', 'edited') + '</span>' : '') + (fn && m.f ? '<div class="fn">' + m.f.map(esc).join('<br>') + '</div>' : '') + '</div>';
+  const enL = (m, x, fn) => '<div class="layer e">' + (m.p ? num(x) : esc(x)) + (m.edited ? '<span class="tag">edited</span>' : '') + (fn && m.f ? '<div class="fn">' + m.f.map(esc).join('<br>') + '</div>' : '') + '</div>';
+  const mh = layerOn('h') ? mean('hi', i) : null, mE = layerOn('e') ? mean('en', i) : null;
+  // line by line (owner, 2026-10-23): a source that gives one piece per verse line shows each piece under its line; a
+  // source without pieces (or a reader's own correction of the verse or the meaning) is shown whole after the verse
+  const lines = m => m && !m.edited && !vv.edited && Array.isArray(m.p) && m.p.length === vv.v.length ? m.p : null;
+  const ph = lines(mh), pe = lines(mE), trOk = S.settings.tr && it.t && it.t.length === vv.v.length;
+  if (ph || pe){
+    const lastOf = ps => ps ? ps.map(x => !!x.trim()).lastIndexOf(true) : -1, lh = lastOf(ph), le = lastOf(pe);
+    pl.forEach((p, y) => {
+      h += vcls.replace('vtext', 'vtext vline') + p + '</div>';
+      if (trOk) h += '<div class="tr">' + trl(it.t[y]) + '</div>';
+      if (ph && ph[y].trim()) h += hiL(mh, ph[y], y === lh);
+      if (pe && pe[y].trim()) h += enL(mE, pe[y], y === le);
+    });
+    if (S.timing.on && SRC.au) h += markBar(i);
+    if (S.settings.tr && it.t && it.t.length && !trOk) h += '<div class="tr">' + it.t.map(trl).join('') + '</div>';
+    if (mh && !ph) h += hiL(mh, mh.x, true);
+    if (layerOn('w')) h += '<div class="layer wl">' + wbHTML(vv.v, langOf(i)) + '</div>';
+    if (mE && !pe) h += enL(Object.assign({}, mE, {p: null}), mE.x, true);
+  } else {
+    h += vcls + pl.join('') + '</div>';
+    if (S.timing.on && SRC.au) h += markBar(i);
+    if (S.settings.tr && it.t && it.t.length) h += '<div class="tr">' + it.t.map(trl).join('') + '</div>';
+    if (mh) h += hiL(mh, mh.x, true);
+    if (layerOn('w')) h += '<div class="layer wl">' + wbHTML(vv.v, langOf(i)) + '</div>';
+    if (mE) h += enL(Object.assign({}, mE, {p: null}), mE.x, true);
+  }
   for (const p of SHOWN()) (p.notes[KEY(id)] || []).forEach((n, k) => { h += '<div class="note"><div class="who">' + new Date(n.ts).toLocaleDateString(LANG() === 'en' ? 'en-IN' : 'hi-IN') + (p.id === me.id ? '<button data-a="enote" data-k="' + k + '">' + T('बदलें', 'Edit') + '</button>' : '') + '</div>' + esc(n.t).replace(/\n/g, '<br>') + '</div>'; });
   return h + '</div>';
 }

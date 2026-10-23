@@ -777,6 +777,21 @@ async def main():
         # ⋮ order: Play from here · Write a note · Copy verse and meaning · Correct … (owner, 2026-10-23)
         order = await ev("(async () => { await openWork('manas', true); show('home'); openReader('k', 0); await new Promise(r => setTimeout(r, 300)); itemMenu(0); await new Promise(r => setTimeout(r, 200)); const r = [...document.querySelectorAll('#sheetBody [data-x]')].map(b => b.dataset.x); closeSheet(); return r; })()")
         check('⋮: Write a note comes before Copy verse and meaning', order[:4] == ['play', 'note', 'copy', 'edit'], order)
+        # line by line (owner, 2026-10-23): a source with a piece per verse line shows each piece under its line; a source
+        # without pieces, and a verse with no pieces at all, show the meaning whole after the verse
+        lbl = await ev("""(async () => { await openWork('sukhmani-sahib', true); S.settings.layers = {h: true, e: true, w: false}; S.settings.recite = false; await loadSources();
+            const i = IT.findIndex(x => x.id === 'a01.p3'), it = IT[i], n = it.v.length;
+            const keep = {h: SRC.hi.p, e: SRC.en.p}; SRC.hi.p = {}; SRC.en.p = {};
+            SRC.en.p[it.id] = it.v.map((_, k) => k === 1 ? '' : 'EN' + k); SRC.hi.p[it.id] = it.v.map((_, k) => 'HI' + k);
+            const d = document.createElement('div'); d.innerHTML = verseHTML(i); const v = d.firstElementChild;
+            const kids = [...v.children].map(c => c.classList.contains('vline') ? 'V' : c.classList.contains('h') ? 'h' : c.classList.contains('e') ? 'e' : '');
+            const r1 = [v.querySelectorAll('.vline').length === n, v.querySelectorAll('.layer.h').length === n, v.querySelectorAll('.layer.e').length === n - 1, kids.slice(0, 6).join('') === 'VheVhV'];
+            delete SRC.en.p[it.id]; d.innerHTML = verseHTML(i); const w = d.firstElementChild;
+            const r2 = [w.querySelectorAll('.layer.e').length === 1, w.lastElementChild.classList.contains('e'), w.querySelectorAll('.layer.h').length === n];
+            SRC.hi.p = {}; d.innerHTML = verseHTML(i); const u = d.firstElementChild;
+            const r3 = [u.querySelectorAll('.vline').length === 0, u.querySelectorAll('.vtext').length === 1];
+            SRC.hi.p = keep.h; SRC.en.p = keep.e; return [...r1, ...r2, ...r3]; })()""")
+        check('meanings line by line: each piece under its line; a source without pieces shows whole after the verse; none at all keeps the verse whole', all(lbl), lbl)
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')
