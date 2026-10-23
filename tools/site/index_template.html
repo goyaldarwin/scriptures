@@ -85,8 +85,8 @@ html,body{overflow-x:clip}
 #rBody{padding-bottom:110px}
 .sechead{margin:14px 0 2px;text-align:center;color:var(--muted);font-size:13.5px}
 .topic-h{margin:20px 0 2px;text-align:center}
-.topic-h b{display:inline-block;font-size:18px;color:var(--indigo);border-bottom:2px solid var(--saffron);padding:0 6px 2px}
-.topic-h .lat{display:block;font-size:13px;color:var(--muted);margin-top:4px}
+.topic-h b{display:inline-block;font-size:calc(var(--verse-size) * .86);color:var(--indigo);border-bottom:2px solid var(--saffron);padding:0 6px 2px}
+.topic-h .lat{display:block;font-size:calc(var(--verse-size) * .62);color:var(--muted);margin-top:4px}
 .verse{padding:12px 0 8px;border-bottom:1px solid var(--rule);scroll-margin-top:72px}
 .topic-h{scroll-margin-top:72px}
 .verse.flash{animation:flash 1.6s ease-out}
@@ -107,7 +107,7 @@ body.timing .verse.tocheck{box-shadow:inset 3px 0 0 var(--saffron)}.tcheck{margi
 .w{border-radius:4px;cursor:pointer}
 .w:active,.w.sel{background:var(--saffron-soft)}
 .tr .dd{font-family:'NSDev',var(--lat);font-style:normal;white-space:nowrap}
-.tr{font-family:'TrLat','NSDev',var(--lat);font-style:italic;font-size:14px;color:var(--muted);text-align:center;margin-top:4px;line-height:1.5}
+.tr{font-family:'TrLat','NSDev',var(--lat);font-style:italic;font-size:calc(var(--mean-size) * .85);color:var(--muted);text-align:center;margin-top:4px;line-height:1.5}
 .lyr{display:flex;border:1px solid var(--rule);border-radius:16px;overflow:hidden;flex:none}
 .lyr button{padding:0 9px;min-height:32px;font-size:15px;color:var(--muted)}
 .lyr button+button{border-left:1px solid var(--rule)}
@@ -218,7 +218,7 @@ input[type=checkbox],input[type=radio],input[type=range]{accent-color:var(--indi
 .sheet .acts{display:flex;gap:10px;flex-wrap:wrap}
 .acts{display:flex;gap:10px;flex-wrap:wrap;align-items:center}#setBody .acts .btn{padding:6px 14px;font-size:14px;border-radius:10px}   /* settings buttons: apart, and smaller (owner, 2026-10-19) */
 .menu button{display:flex;width:100%;padding:13px 2px;border-bottom:1px solid var(--rule);font-size:16px;gap:12px;align-items:center;text-align:left}
-.menu svg{width:20px;height:20px;stroke:var(--indigo);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.menu svg{width:20px;height:20px;color:var(--indigo);stroke:var(--indigo);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}   /* color too: the filled ▶ (currentColor) was black (owner, 2026-10-23) */
 .kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:16px}
 .kv dt{color:var(--muted);font-size:13.5px;padding-top:2px}
 .kv dd{margin:0}
@@ -291,7 +291,7 @@ input[type=checkbox],input[type=radio],input[type=range]{accent-color:var(--indi
 .libbtn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
 .crumbs{font-size:14px;color:var(--muted);margin:0 0 6px}.crumbs button{color:var(--indigo)}
 .loading{position:fixed;inset:0;z-index:70;background:var(--bg);display:grid;place-items:center;color:var(--saffron);font-size:30px;text-align:center;padding:0 16px}
-.part-h{margin:30px 0 6px;text-align:center}.part-h b{font-size:24px;color:var(--indigo)}
+.part-h{margin:30px 0 6px;text-align:center}.part-h b{font-size:calc(var(--verse-size) * 1.15);color:var(--indigo)}   /* headings follow the text size (owner, 2026-10-23): 24 / 18 / 13 px at the default 21 px */
 .navbar .mid{display:flex;flex-direction:column;align-items:center}
 .navbar .mid .ml{font-size:15px}
 .pick{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}

@@ -362,6 +362,8 @@ The owner (and helpers) set verse times by ear in the app; the library applies t
 - **The screen stays on while reading or playing — always, no setting.** (The old "Keep screen on" switch is gone; any saved value is ignored.)
 - The verse's ⋮ is about that verse and stays as it was.
 
+- **Headings follow the text size (owner, 2026-10-23):** the part heading, the topic heading and its Latin line, and the transliteration line are sized from `--verse-size` / `--mean-size` (24 / 18 / 13 / 14 px at the default 21), as the verse, the meanings and the ॥ type ॥ label already were. A fixed px size in the reader is a bug. The ⋮ menu's ▶ (a filled icon) is blue like the stroked icons (`color` as well as `stroke` on `.menu svg`).
+
 ### Lessons: the working environment
 - **Gate commits on the test's exit code, not on a grep of its output** (`ux_test.py | grep … && git commit` committed with a failing check on 2026-10-20). The failing check had assumed no owner times in the Mānas — true until issue #13 sent some; tests that pick sample verses from live data must exclude verses set by ear.
 - **Never `pkill -f`** in this environment: it matched and killed the session's own shell (exit 144), twice. Kill by PID or a pid file. **Nor `kill $(pgrep -f …)`** — the same thing (2026-10-22, three background test runs lost).
