@@ -763,6 +763,13 @@ async def main():
             itemMenu(0); await new Promise(r => setTimeout(r, 200)); const play = getComputedStyle(document.querySelector('#sheetBody [data-x=play] svg')).color, copy = getComputedStyle(document.querySelector('#sheetBody [data-x=copy] svg')).stroke; closeSheet();
             S.settings.size = 21; S.settings.tr = false; applyTheme(); save(); return [a.every((v, k) => b[k] > v * 1.4), play === copy, a.map(Math.round)]; })()""")
         check('reader: the part and topic headings and the transliteration grow with the text size; the ⋮ menu’s ▶ is blue like its other icons', hs[0] and hs[1], hs)
+        # a shelf shows two works, the most recently used first, then +N (owner, 2026-10-23)
+        sh2 = await ev("""(async () => { const keep = JSON.stringify(Object.fromEntries(Object.entries(S.w).map(([k, v]) => [k, v.at]))); Object.values(S.w).forEach(v => delete v.at);
+            await openWork('isha-upanishad', true); libPath = []; show('library'); await new Promise(r => setTimeout(r, 200));
+            const row = [...document.querySelectorAll('#libList li')].find(li => li.querySelector('[data-node="hinduism/veda"], [data-node="veda"]')); const chips = [...row.querySelectorAll('[data-open-work]')].map(b => b.dataset.openWork), more = row.querySelector('.more');
+            const g = [...document.querySelectorAll('#libList li')].find(li => li.querySelector('[data-node="hinduism/granth"], [data-node="granth"]')); const gchips = g.querySelectorAll('[data-open-work]').length;
+            JSON.parse(keep); Object.entries(JSON.parse(keep)).forEach(([k, v]) => { if (S.w[k]) { if (v) S.w[k].at = v; else delete S.w[k].at; } }); save(); return [chips[0], chips.length, !!more, gchips]; })()""")
+        check('library: a shelf shows two works, the one used most recently first', sh2[0] == 'isha-upanishad' and sh2[1] <= 2 and sh2[3] <= 2, sh2)
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')

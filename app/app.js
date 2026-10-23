@@ -912,7 +912,8 @@ function renderLibrary(){
   // a shelf shows the works on it by name (owner, 2026-10-19): tap a work to open it straight away, or the shelf's name to browse it
   const worksIn = c => { const r = []; (function w(n){ (n.children || []).forEach(x => x.work ? r.push(x) : w(x)); })(c); return r; };
   const row = (c, key) => {
-    const ws = c.work ? [] : worksIn(c), MAX = 6;
+    // a shelf shows two works — the ones used most recently on this phone first (S.w[id].at: last opened, read or played) — then “+N” for the rest (owner, 2026-10-23)
+    const at = w => (S.w[w.work] || {}).at || 0, ws = c.work ? [] : worksIn(c).map((w, k) => [w, k]).sort((x, y) => at(y[0]) - at(x[0]) || x[1] - y[1]).map(x => x[0]), MAX = 2;
     return '<li><button class="it" data-node="' + esc(key) + '"><span class="grow"><span class="ti">' + esc(TT(c.title)) + '</span>' + (ws.length ? '' : '<br><span class="ds">' + esc(TT(c.desc || c.by) || '') + '</span>') + '</span><span class="chev">›</span></button>' +
       (ws.length ? '<div class="lworks">' + ws.slice(0, MAX).map(w => '<button data-open-work="' + esc(w.work) + '">' + esc(TT(w.title)) + '</button>').join('') + (ws.length > MAX ? '<button class="more" data-node="' + esc(key) + '">+' + DEV(ws.length - MAX) + '</button>' : '') + '</div>' : '') + '</li>';
   };
@@ -968,7 +969,7 @@ async function openWork(id, noShow){
   if (greeted || W === null || W.id !== id){ if ($('#loading').hidden){ $('#loading').hidden = false; } saluteAt = performance.now(); }
   try {
     if (!W || W.id !== id){ const path = workPath(id); W = await getJSON(path + '/work'); W.path = path; buildWork(); moveRenamed(); fixLast(); await Promise.all([loadSources(), loadGlossaries()]); }
-    S.work = id; save();
+    S.work = id; WS().at = Date.now(); save();   // when it was last used: the shelf lists recent works first
   } catch (e) { const off = navigator.onLine === false || await fetch('library/.ping?' + Date.now(), {cache: 'no-store'}).then(() => false, () => true);   // offline: not even a probe gets through
     toast(off ? T('इंटरनेट नहीं है — यह ग्रन्थ इस फ़ोनपर पहले खोला नहीं गया', 'No internet — this text has not been opened on this phone yet') : T('यह ग्रन्थ नहीं खुल सका', 'Could not open this text')); $('#loading').hidden = true; return; }
   await hideSalute();
