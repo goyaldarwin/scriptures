@@ -35,3 +35,19 @@ def with_number(text, item, lang):
     m = mark(item)
     if not m: return text
     return f'{text} {latin(m) if lang == "en" else m}'
+
+def text_and_pieces(value, item, lang):
+    """Our meaning as stored (a string, or a list with one piece per verse line — owner, 2026-10-23: line by line) →
+    (whole text with the verse number, pieces with the number on the last non-empty piece, or None)."""
+    if isinstance(value, str): return with_number(value, item, lang), None
+    assert len(value) == len(item['v']), f"{item['id']}: {len(value)} pieces for {len(item['v'])} lines"
+    assert any(p.strip() for p in value), f"{item['id']}: every piece is empty"
+    pieces = [p.strip() for p in value]
+    last = max(k for k, p in enumerate(pieces) if p)
+    whole = with_number(' '.join(p for p in pieces if p), item, lang)
+    pieces[last] = with_number(pieces[last], item, lang)
+    return whole, pieces
+
+def joined(value):
+    """The whole meaning as plain text, from a string or a list of pieces (for checks such as the overlap)."""
+    return value if isinstance(value, str) else ' '.join(p.strip() for p in value if p.strip())
