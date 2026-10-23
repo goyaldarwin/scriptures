@@ -27,7 +27,10 @@ strip2 = lambda x: {k: v for k, v in x.items() if k not in ('p', 's')}
 bad += [f"maṅgalācaraṇa verse {x['id']} differs from the Mānas" for x in pulled if strip2(x) != strip2(MI[x['id']])]
 ids = {x['id'] for x in mi}
 mt = {u['id'] for u in M['topics']}   # the lead-in's opening topic is the Mānas topic it starts inside, under the lead-in's first id
-if [t for t in M['topics'] if t['id'] in ids] != [t for t in S['topics'] if t['id'] in ids and t['id'] in mt]: bad.append('topics differ')
+# topics: at the same places as the Mānas's (plus the lead-in's opening), with our own wording (owner, 2026-10-23)
+if [t['id'] for t in M['topics'] if t['id'] in ids] != [t['id'] for t in S['topics'] if t['id'] in ids and t['id'] in mt]: bad.append('topic places differ from the Mānas')
+OT = json.load(open(os.path.join(REPO, 'tools/works/ramcharitmanas/meanings/topics.json'), encoding='utf-8'))
+bad += [f"topic {t['id']} is not our heading" for t in S['topics'] if t['id'] in ids and (t['hi'], t['en']) != (OT.get(t['id'], {}).get('hi'), OT.get(t['id'], {}).get('en'))]
 for sid in ('hi-gitapress', 'en-gitapress'):
     a, b = L(f'{MP}/meanings/{sid}.json'), L(f'{SP}/meanings/{sid}.json')
     if {k: v for k, v in a.items() if k not in ('m', 'order')} != {k: v for k, v in b.items() if k not in ('m', 'order')}: bad.append(f'{sid}: header differs')   # the order (which is the default) is the work's own
