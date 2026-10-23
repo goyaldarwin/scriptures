@@ -405,6 +405,46 @@
         ]
        }
       ]
+     },
+     {
+      "id": "atharvaveda",
+      "title": {
+       "hi": "अथर्ववेद",
+       "en": "Atharvaveda"
+      },
+      "children": [
+       {
+        "id": "upanishad",
+        "title": {
+         "hi": "उपनिषद्",
+         "en": "Upaniṣads"
+        },
+        "children": [
+         {
+          "id": "mandukya-upanishad",
+          "work": "mandukya-upanishad",
+          "path": "hinduism/veda/atharvaveda/upanishad/mandukya-upanishad",
+          "title": {
+           "hi": "माण्डूक्योपनिषद्",
+           "en": "Māṇḍūkya Upaniṣad"
+          },
+          "by": {
+           "hi": "अथर्ववेद",
+           "en": "Atharvaveda"
+          },
+          "edition": {
+           "hi": "sanskritdocuments.org",
+           "en": "sanskritdocuments.org"
+          },
+          "desc": {
+           "hi": "शान्तिपाठ · १२ मन्त्र",
+           "en": "Śānti Pāṭha · 12 mantras"
+          },
+          "salute": "॥ ॐ श्री परमात्मने नमः ॥"
+         }
+        ]
+       }
+      ]
      }
     ]
    }

@@ -2,8 +2,8 @@
 
   ram-aarti      Śrī Rāma kī Āratī: three āratīs (Tulasīdāsa's stuti "श्रीरामचन्द्र कृपालु" with the Mānas's chhand and
                  sorathā Bāla 236 that close it, "आरती कीजे श्रीरामलला की", and "आरती कीजै रामचन्द्र जी की")
-  hanuman-aarti  "आरती कीजै हनुमान लला की": TAKEN from the Sundarakāṇḍa work, never edited here (same ids, lines and
-                 meanings), so a correction there reaches this work the next time this script runs
+  hanuman-aarti  "आरती कीजै हनुमान लला की": TAKEN from the Sundarakāṇḍa work, never edited here (same ids, lines,
+                 meanings and recordings' timings), so a correction there reaches this work the next time this script runs
   jagdish-aarti  "ॐ जय जगदीश हरे"
   shiv-aarti     "ॐ जय शिव ओंकारा"
   ganga-aarti    "ॐ जय गंगे माता"
@@ -146,6 +146,20 @@ for wid, cfg in WORKS.items():
                 dump(f'{WP}/meanings/{lg}-gitapress.json', {**{k: v for k, v in G.items() if k != 'm'}, 'order': 2, 'm': {i: G['m'][i] for i in pulled if i in G['m']}})
             m = {i: m[i] for i in ids if i in m}
             dump(f'{WP}/meanings/{lg}-scriptures.json', {'id': lg + '-scriptures', 'lang': lg, 'order': 1, 'title': TITLES[lg], 'm': m})
+    if 'take' in cfg:   # the other work's recordings, for these verses only (their timings are made there)
+        ad = os.path.join(OUT, cfg['take'], 'audio')
+        for f in sorted(os.listdir(ad)) if os.path.isdir(ad) else []:
+            A = json.load(open(os.path.join(ad, f), encoding='utf-8'))
+            at = {i: t for i, t in A['at'].items() if i in ids}
+            if not at: continue
+            used = sorted({t[0] for t in at.values()})
+            tracks = [dict(A['tracks'][k], first=min((i for i in at if at[i][0] == k), key=ids.index), last=max((i for i in at if at[i][0] == k), key=ids.index)) for k in used]
+            at = {i: [used.index(t[0])] + t[1:] for i, t in at.items()}
+            out = {k: v for k, v in A.items() if k not in ('tracks', 'at', 'check', 'guess', 'moved', 'raw')}
+            out.update(tracks=tracks, at=at)
+            for k in ('check', 'guess'):
+                if [i for i in A.get(k, []) if i in ids]: out[k] = [i for i in A[k] if i in ids]
+            dump(f'{WP}/audio/{f}', out)
     # the taken verses must equal their originals
     W2 = load(WP + '/work.json'); B = {x['id']: x for x in W2['items']}
     for i in pulled: assert {k: v for k, v in MID[i].items() if k not in ('p', 's', 'l')} == {k: v for k, v in B[i].items() if k not in ('p', 's', 'l')}, i

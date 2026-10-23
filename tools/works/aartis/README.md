@@ -20,3 +20,15 @@ Per work folder: `text.txt` (the verse text; format in `ram-aarti/text.txt`), `m
 `glossary/<lang>.json`: the words of these āratīs that the shared dictionaries did not have. The exporter adds them to `library/glossary/<lang>.json` and never changes a word already there; it stops if any word of any verse has no meaning. The Rāma stuti (Tulasīdāsa's Vinaya-patrikā) is Braj, so it brought the language `bra` (fallback: Sanskrit).
 
 Verse types: टेक (refrain, `tek`, shown once although it is sung after every stanza) and पद (stanza, `pad`), as in the Sundarakāṇḍa's āratī; the Rāmalalā āratī is in caupāīs (`cau`) and the stuti in chhandas (`cha`), types the app knows from the Mānas.
+
+## Recordings (the owner's files, 2026-10-23; transcribed with `tools/audio/transcribe_onnx.py`)
+| Work | Source | Video | State |
+|---|---|---|---|
+| jagdish-aarti | `mahendra-kapoor` | XOHdvjVkBdE | live; 3 starts fixed (`fixes.md`) |
+| ganga-aarti | `anuradha-paudwal` | 5X_cMif5qPM | live; the refrain fixed |
+| ram-aarti | `satya-adhikari` | J5cllhBiAV0 | live for the stuti and the two Mānas verses only (`from`/`to`, `"align": "anchors"`) |
+| shiv-aarti | `anuradha-paudwal` | Yb2GMwJyGnE | **draft**: sings another version of the āratī (`fixes.md`) |
+| hanuman-aarti | `ashwin-pathak` | QjSpUgnEPLU | taken from the Sundarakāṇḍa's timings by `export.py` |
+
+Not used: "Aarti Kije Ram Ki – Ram Mandir Ayodhya Aarti" (3_QR2HxO3N4). It shares the refrain "आरती कीजे श्रीरामलला की" but sings other stanzas ("नारायण नर तन धर आए … कौशल्या सुत राजीव लोचन …"), which are not in our text.
+The recordings themselves belong in scriptures-data at each `recordings.json` → `data` (to add).
