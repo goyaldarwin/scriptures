@@ -756,6 +756,13 @@ async def main():
             document.querySelector('#mtm').click(); await new Promise(r => setTimeout(r, 700)); r.push(S.timing.on, !document.querySelector('#sheet').classList.contains('on'), !document.getElementById('v' + i).querySelector('.tmark'));
             document.querySelector('#rMore').click(); await new Promise(r => setTimeout(r, 300)); r.push(!document.querySelector('#mtm')); closeSheet(); S.timing.on = true; applyTiming(); await loadSources(); """ + T1 + """ return r; })()""")
         check('☰ while timing is on: the switch turns it off at once and Clear adjustments is there; off, neither shows', tm2 == [True, True, False, True, True, True], tm2)
+        # headings follow the text size; the ⋮ menu's ▶ is blue (owner, 2026-10-23)
+        hs = await ev("""(async () => { await openWork('manas', true); show('home'); S.settings.tr = true; S.settings.size = 21; applyTheme(); openReader('k', 0); await new Promise(r => setTimeout(r, 400));
+            const px = q => parseFloat(getComputedStyle(document.querySelector('#rBody ' + q)).fontSize); const a = ['.part-h b', '.topic-h b', '.vtype', '.tr'].map(px);
+            S.settings.size = 34; applyTheme(); await new Promise(r => setTimeout(r, 100)); const b = ['.part-h b', '.topic-h b', '.vtype', '.tr'].map(px);
+            itemMenu(0); await new Promise(r => setTimeout(r, 200)); const play = getComputedStyle(document.querySelector('#sheetBody [data-x=play] svg')).color, copy = getComputedStyle(document.querySelector('#sheetBody [data-x=copy] svg')).stroke; closeSheet();
+            S.settings.size = 21; S.settings.tr = false; applyTheme(); save(); return [a.every((v, k) => b[k] > v * 1.4), play === copy, a.map(Math.round)]; })()""")
+        check('reader: the part and topic headings and the transliteration grow with the text size; the ⋮ menu’s ▶ is blue like its other icons', hs[0] and hs[1], hs)
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')
