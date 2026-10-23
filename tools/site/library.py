@@ -76,6 +76,13 @@ def check_work(lib, leaf, LANGS):
         _need(_bi(s.get('title')), f"{where}: needs title {{hi, en}}")
         bad = [k for k in s['m'] if k not in ID]; _need(not bad, f"{where}: {len(bad)} unknown item ids, e.g. {bad[:3]}")
         for k, e in s['m'].items(): _need(isinstance(e, list) and e and isinstance(e[0], str), f"{where}: {k} must be [text, footnotes?]")
+        # line by line (owner, 2026-10-23): "p" gives a verse's meaning one piece per verse line, shown under its line;
+        # "" where a line has no meaning of its own. The joined text in "m" stays (search, copy, a reader's correction).
+        NL = {x['id']: len(x['v']) for x in items}
+        for k, ps in (s.get('p') or {}).items():
+            _need(k in s['m'], f"{where}: p.{k} has no meaning in m")
+            _need(isinstance(ps, list) and len(ps) == NL.get(k, -1) and all(isinstance(x, str) for x in ps) and any(x.strip() for x in ps),
+                  f"{where}: p.{k} must give one piece (or \"\") per verse line ({NL.get(k, '?')} lines)")
         src[s['lang']].append({'id': sid, 'file': 'meanings/' + sid, 'title': s['title'], 'order': s.get('order', 100)})
     for f in sorted(glob.glob(os.path.join(lib, path, 'audio', '*.json'))):
         s = json.load(open(f)); sid = os.path.basename(f)[:-5]; where = f"{name}/audio/{sid}.json"
