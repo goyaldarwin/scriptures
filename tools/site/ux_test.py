@@ -132,7 +132,7 @@ async def main():
         await ev("libPath=[]; show('library')"); await pg.wait_for_timeout(300); await shot('library')
         heads = await ev("Array.from(document.querySelectorAll('#libList .lhead')).map(x => x.textContent)")
         check('library shows each tradition as a heading', len(heads) == len(shelf), heads)
-        rows = await ev("document.querySelectorAll('#libList [data-node]').length")
+        rows = await ev("document.querySelectorAll('#libList button.it[data-node]').length")   # not the '+N' chip of a shelf with more works
         check('library lists the genres under them', rows == sum(len(t['children']) for t in shelf), rows)
         # each shelf names its works; tapping one opens it straight away
         chip = await ev("(() => { const b = document.querySelector('#libList [data-open-work]'); return b ? b.dataset.openWork : null; })()")

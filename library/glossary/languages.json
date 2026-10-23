@@ -9,5 +9,7 @@
  "hi":  {"name": {"hi": "हिन्दी", "en": "Hindi"}, "script": "Deva", "fallback": ["sa"],
          "suffixes": [], "stems": []},
  "pa":  {"name": {"hi": "पंजाबी (गुरमुखी)", "en": "Punjabi (Gurmukhi)"}, "script": "Guru", "fallback": [],
+         "suffixes": [], "stems": []},
+ "bra": {"name": {"hi": "ब्रजभाषा", "en": "Braj"}, "script": "Deva", "fallback": ["sa"],
          "suffixes": [], "stems": []}
 }

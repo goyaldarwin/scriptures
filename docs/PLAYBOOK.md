@@ -380,6 +380,21 @@ A new label must reuse these words; a new thing gets one word, added here.
 
 - **The ⋮ menu (owner, 2026-10-23): Play from here · Write a note · Copy verse and meaning · Improve verse or meaning.** Menu items are short commands without "the" ("Improve" replaced "Correct the" for the same reason).
 
+### More āratīs (owner, 2026-10-23)
+- **The owner asked for more āratīs: Śrī Rāma, Hanumān (already in the Sundarakāṇḍa), Om Jaya Jagadīśa Hare, Gaṅgā mātā and Śiva.** He gave one source for each: a jansatta.com printout for Rāma (three āratīs on one page, kept together as one work with three sections), pasted text for Jagadīśa, screenshots for Śiva and Gaṅgā, and a recording for each (YouTube audio files with the video id at the end of the name). Each āratī is its own work under `hinduism/aarti/<deity>/`; they share one exporter, `tools/works/aartis/`.
+- **One witness is still the source of truth:** keep its words; correct only what is clearly wrong (typing slips, broken words, a sense that does not fit), mark each such correction **open** in `reconciliation.md`, and ask for a second witness (a printed copy) to settle them.
+- **A verse that belongs to a bigger work is taken from it, never retyped** (the Mānas's Bāla 236 chhand and sorathā after the Rāma stuti; the Hanumān āratī from the Sundarakāṇḍa), so corrections there reach every copy.
+- **The refrain is shown once** (टेक); the sources' "॥ ॐ जय शिव… ॥" cues after each stanza and the closing repeat are left out, as in the Sundarakāṇḍa's āratī.
+- **A text in a new language brings its own language** (the Vinaya-patrikā stuti is Braj: `bra`, fallback Sanskrit), rather than borrowing a near language's dictionary. A word whose shared sense doesn't fit one āratī gets that work's own sense (`senses.json` → `library/<path>/glossary.json`).
+
+- **A recording that sings another version is a draft until the owner chooses** (Anuradha Paudwal's Śiva āratī: five lines differ and one more stanza). The highlight must never sit on words that are not being sung. A recording of a different āratī with the same refrain (the Ayodhya "आरती कीजे श्रीरामलला की") is not timed to our text at all.
+- **The refrain gets timed at its repeat.** In āratīs the alignment often matches the टेक (and a stanza's first line) to a later repeat; check the first verse of every āratī recording against the transcript and fix it in `fixes.json` with the evidence in `fixes.md`. A recording that stops before the text ends (a jaikāra after the last verse) needs `from`/`to` in `recordings.json` with `"align": "anchors"`.
+
+### The Māṇḍūkya Upaniṣad (owner, 2026-10-23)
+- The owner gave a sanskritdocuments.org printout, a second page with the śānti mantra in Roman letters, and SMVedroad's recording, and said: "Find more sources online as needed". From these sessions only GitHub is reachable; the web pages he names (vedantastudents.com …) must come to us as files.
+- **Where the witnesses disagree, follow the majority and say so.** The printout's śānti has "भद्रं नो अपि वातय मनः"; the recording and the second page have the four "स्वस्ति" lines, so the text has those, marked open until a Devanagari print confirms them.
+- **A recording's own divisions can become the topics** (SMVedroad announces four khaṇḍas), without adding their words to the text.
+
 ### Lessons: the working environment
 - **Gate commits on the test's exit code, not on a grep of its output** (`ux_test.py | grep … && git commit` committed with a failing check on 2026-10-20). The failing check had assumed no owner times in the Mānas — true until issue #13 sent some; tests that pick sample verses from live data must exclude verses set by ear.
 - **Never `pkill -f`** in this environment: it matched and killed the session's own shell (exit 144), twice. Kill by PID or a pid file. **Nor `kill $(pgrep -f …)`** — the same thing (2026-10-22, three background test runs lost).

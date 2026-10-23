@@ -892,7 +892,8 @@ function setTime(i, k, sec){
 }
 // after a time was written or removed: every verse on screen whose time, label or buttons changed is drawn again
 function refreshMarks(was, i){ Object.keys(was).forEach(q => { q = +q; if (q === i || was[q] !== JSON.stringify(SRC.au.at[IT[q].id]) + toCheck(q) + !!myStarts()[IT[q].id]) rerenderItem(q); }); }
-function marksNow(){ const was = {}; $$('#rBody .verse').forEach(el => { const q = +el.dataset.i; was[q] = JSON.stringify(SRC.au.at[IT[q].id]) + toCheck(q) + !!myStarts()[IT[q].id]; }); return was; }
+// (a verse index the work doesn't have is skipped: the reader may still hold a longer work's verses)
+function marksNow(){ const was = {}; $$('#rBody .verse').forEach(el => { const q = +el.dataset.i; if (!IT[q]) return; was[q] = JSON.stringify(SRC.au.at[IT[q].id]) + toCheck(q) + !!myStarts()[IT[q].id]; }); return was; }
 function setStart(i, sec){ setTime(i, 1, sec); }
 function clearStart(i){ const fx = S.timing.fix[tkey()] || {}, was = marksNow(); delete fx[IT[i].id]; unfrom(IT[i].id); if (!Object.keys(fx).length) delete S.timing.fix[tkey()]; save(); buildAudio(); refreshMarks(was, i); if (PL.on){ PL.cur = -1; tick(i); } }
 function fmtT(sec){ const m = Math.floor(sec / 60), s = sec - m * 60; return m + ':' + (s < 10 ? '0' : '') + s.toFixed(1); }
