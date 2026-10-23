@@ -196,6 +196,7 @@ Then expect from me, in order:
 
 ### Audio — hands-free pāṭh
 - Audio comes **from YouTube** (video id is in the recording's file name as `[videoId]`); the app stores only timings per verse.
+- **A new recording can come as a YouTube link (owner, 2026-10-23):** the owner runs `uv run tools/fetch_youtube.py <work path> <source id> <link> --commit` in his clone of `scriptures-data` (download, speech-quality copy, `.meta.json`; no venv, needs uv + ffmpeg). It cannot run here or on GitHub's machines: YouTube is blocked in Claude sessions and answers GitHub's with "Sign in to confirm you're not a bot" (tried 2026-10-23); we do not work around that with cookies. Then the session pulls and goes on from step 3 of "Add a new audio source" (HOW-TO).
 - Timings are made by speech recognition of the recording, matched to the book text; extra devotional refrains (e.g. "मंगल भवन अमंगल हारी") are skipped automatically because they match no verse.
 - **▶ on every kāṇḍa, every day of each plan, and every verse.** Playing opens the reader, plays the full recording (tune and refrains included), highlights and auto-scrolls to the verse being sung, turns pages by itself, respects the meaning toggles, keeps the screen on — fully hands-free. Manual scrolling pauses auto-follow briefly.
 - YouTube's rules: the player must stay visible (≥200×200) while playing — no hidden audio.
