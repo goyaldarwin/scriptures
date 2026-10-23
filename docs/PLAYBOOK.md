@@ -366,6 +366,17 @@ The owner (and helpers) set verse times by ear in the app; the library applies t
 
 - **A shelf on the library page shows two works, the ones used most recently on this phone first, then “+N”** (owner, 2026-10-23; was six in shelf order). `S.w[<work>].at` is set whenever a work is opened (reading and playing go through opening it); works never opened keep the shelf's order.
 
+### One word for one thing (owner, 2026-10-23) — the app's vocabulary
+"Use one word for one thing everywhere. Multiple words are confusing and poor user experience." Every label, toast, tour step and help line uses exactly these (English / Hindi):
+- **verse / पद** — one verse ("Copy verse and meaning", "Correct the verse or meaning", "Verse restored"). Never "text" for a verse.
+- **work / ग्रन्थ** — a scripture on the shelf ("Could not open this work", "open that work first").
+- **meaning / अर्थ** — "Hindi meaning", "English meaning", "Word meanings"; never "translation".
+- **note, bookmark, file, recording, section, library, shelf** — as they are; "my file" is the reader's own file, "timings … file" a helper's.
+- **play / सुनें** — for audio, always ("Play all", "Play from here", "Play on YouTube…", "play each with ▶"); never "listen" or "hear" in English.
+- **letters / अक्षर** — for size only ("Letter size", "make the letters larger", "Verses only, larger letters"); "text" is not used on its own.
+- **Audio timing / ऑडियोका समय** — the feature and its switch (not "Adjust audio timing"); its controls are saffron everywhere, the ☰ switch included.
+A new label must reuse these words; a new thing gets one word, added here.
+
 ### Lessons: the working environment
 - **Gate commits on the test's exit code, not on a grep of its output** (`ux_test.py | grep … && git commit` committed with a failing check on 2026-10-20). The failing check had assumed no owner times in the Mānas — true until issue #13 sent some; tests that pick sample verses from live data must exclude verses set by ear.
 - **Never `pkill -f`** in this environment: it matched and killed the session's own shell (exit 144), twice. Kill by PID or a pid file. **Nor `kill $(pgrep -f …)`** — the same thing (2026-10-22, three background test runs lost).

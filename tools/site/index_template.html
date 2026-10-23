@@ -234,7 +234,7 @@ input[type=checkbox],input[type=radio],input[type=range]{accent-color:var(--indi
 .tg input{opacity:0;width:0;height:0;position:absolute}
 .tg span{position:absolute;inset:0;background:var(--rule);border-radius:20px;transition:.15s}
 .tg span:before{content:"";position:absolute;width:22px;height:22px;left:3px;top:3px;background:var(--surface);border-radius:50%;transition:.15s;box-shadow:0 1px 2px rgba(0,0,0,.25)}
-.tg input:checked+span{background:var(--indigo)}
+.tg input:checked+span{background:var(--indigo)}.tsw{color:var(--saffron)}.tsw .tg input:checked+span{background:var(--saffron)}   /* the timing switch in ☰: saffron like every timing control (owner, 2026-10-23) */
 .tg input:checked+span:before{transform:translateX(20px)}
 .res{display:block;width:100%;text-align:left;padding:12px 0;border-bottom:1px solid var(--rule)}
 .res .where{font-size:12.5px;color:var(--saffron);font-weight:600}
@@ -419,7 +419,7 @@ body.playing #rBody{padding-bottom:240px}
   <div class="scope" id="scope">
    <button class="chip on" data-s="v" data-en="Verses">मूल पाठ</button><button class="chip on" data-s="h" data-en="Hindi meaning">हिंदी अर्थ</button><button class="chip on" data-s="e" data-en="English meaning">अंग्रेज़ी अर्थ</button><button class="chip on" data-s="n" data-en="My notes">मेरी टिप्पणियाँ</button>
   </div>
-  <div id="sRes"><div class="empty" data-en="Type any word from a verse, its meaning or the English translation.">चौपाई, दोहे या अर्थका कोई भी शब्द लिखें।</div></div>
+  <div id="sRes"><div class="empty" data-en="Type any word from a verse, its Hindi meaning or its English meaning.">चौपाई, दोहे या अर्थका कोई भी शब्द लिखें।</div></div>
  </div>
 </section>
 
