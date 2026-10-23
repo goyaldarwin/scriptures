@@ -10,13 +10,19 @@ Hindi gets Devanagari digits, English Latin digits (letters such as क stay), a
 import re
 
 DEV = '०१२३४५६७८९'
-_END = re.compile(r'।।\s*([^।]*?)\s*।।\s*$')
-_HAS = re.compile(r'।।\s*[०-९0-9]')
+GUR = '੦੧੨੩੪੫੬੭੮੯'
+_NUM = r'[०-९0-9੦-੯]+(?:\s*\([^()]{1,4}\))?'          # २९ · ३० (क) · ੮ (a number, never a word: "।। ॐ … ।।" is no number)
+_TAIL = re.compile(r'((?:[।॥]{1,2}\s*' + _NUM + r'\s*)+)[।॥]{1,2}\s*$')
+_HAS = re.compile(r'[।॥]{1,2}\s*[०-९0-9੦-੯]')
 
 def mark(item):
-    """'।।२९।।' style mark for an item, in Devanagari digits, or '' when the verse has no number."""
-    m = _END.search(item['v'][-1]) if item.get('v') else None
-    if m and m.group(1): return '।।' + m.group(1) + '।।'
+    """'।।२९।।' style mark for an item, in Devanagari digits, or '' when the verse has no number.
+    Gurmukhi ends a stanza ॥੮॥੨੪॥ (pauri 8 of ashtapadi 24): the stanza's own number, the first, is taken."""
+    m = _TAIL.search(item['v'][-1]) if item.get('v') else None
+    if m:
+        n = re.findall(_NUM, m.group(1))[0].strip()
+        n = re.sub('[੦-੯]', lambda d: DEV[GUR.index(d.group())], n)
+        return '।।' + n + '।।'
     if item.get('y') in ('cau', 'cha') and item.get('n'):
         return '।।' + re.sub(r'\d', lambda d: DEV[int(d.group())], str(item['n'])) + '।।'
     return ''

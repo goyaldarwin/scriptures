@@ -70,3 +70,6 @@ The shirdisaibabakripa.org printout ends with "श्री सच्चिद�
 
 ## Prārthanā, third line: विहितमविहितं (corrected 2026-10-18, at the owner's request)
 Both printouts (and other Sāī āratī booklets, e.g. Sai Austin's) read "विदितमविदितं वा" ("known or unknown"). The verse is borrowed from the Śivāparādha-kṣamāpana stotra, whose text reads "विहितमविहितं वा सर्वमेतत्क्षमस्व" ("whether in what is enjoined or what is not"), as printed by greenmesg.org, shlokam.org and bhaktibharat.com (checked 2026-10-18). The owner asked for the original reading, so the line is now विहितमविहितं, with our Hindi and English meanings and the word glossary to match. The English of the shirdisaibabakripa.org printout (`en-shirdisaibabakripa`) is a published translation and is kept as printed; it renders the printout's "known or unknown".
+
+## Author of the Śrī Guru-prasāda-yācanā-daśaka
+बाळकृष्ण विश्वनाथ देव (Bāḷakṛṣṇa Viśvanātha Deva, known as Bāḷāsāheba Deva / Balasaheb Deo), as named in `text.txt`: confirmed by the owner on 2026-10-23.
