@@ -51,6 +51,12 @@ topics = [t for t in M['topics'] if t['id'] in sk_ids]
 if lead[0]['id'] not in {t['id'] for t in topics}:     # the lead-in starts inside a Mānas topic: it opens with that topic's name
     cover = [t for t in M['topics'] if mids.index(t['id']) <= a][-1]
     topics.insert(0, dict(cover, id=lead[0]['id']))
+# Our own topic headings (owner approved, 2026-10-23), at the same places as the Mānas's: written for this library like
+# our meanings, which are this work's default. The Mānas keeps Gita Press's headings while Gita Press is its default.
+OUR_TOPICS = json.load(open(os.path.join(REPO, 'tools/works/ramcharitmanas/meanings/topics.json'), encoding='utf-8'))
+missing = [t['id'] for t in topics if t['id'] not in OUR_TOPICS]
+assert not missing, f'our topic headings lack {missing}'
+topics = [dict(id=t['id'], hi=OUR_TOPICS[t['id']]['hi'], en=OUR_TOPICS[t['id']]['en']) for t in topics]
 
 # ---- parts 0, 3 and 4: text.txt ----
 PARTS = {'mangal': (0, {'hi': 'प्रारम्भिक वन्दना', 'en': 'Opening prayers'}),
