@@ -139,6 +139,141 @@
     },
     "children": [
      {
+      "id": "rama",
+      "title": {
+       "hi": "श्रीराम",
+       "en": "Śrī Rāma"
+      },
+      "desc": {
+       "hi": "श्रीरामकी आरती",
+       "en": "Śrī Rāma kī Āratī"
+      },
+      "children": [
+       {
+        "id": "ram-aarti",
+        "work": "ram-aarti",
+        "path": "hinduism/aarti/rama/ram-aarti",
+        "title": {
+         "hi": "श्रीरामकी आरती",
+         "en": "Śrī Rāma kī Āratī"
+        },
+        "desc": {
+         "hi": "श्रीरामचन्द्र कृपालु · आरती कीजे श्रीरामलला की · आरती कीजै रामचन्द्र जी की",
+         "en": "Śrī Rāmacandra Kṛpālu · Āratī Kīje Śrī Rāmalalā Kī · Āratī Kījai Rāmacandra Jī Kī"
+        },
+        "salute": "॥ जय श्रीराम ॥"
+       }
+      ]
+     },
+     {
+      "id": "hanuman",
+      "title": {
+       "hi": "श्रीहनुमान",
+       "en": "Śrī Hanumān"
+      },
+      "desc": {
+       "hi": "श्रीहनुमानजीकी आरती",
+       "en": "Śrī Hanumānjī kī Āratī"
+      },
+      "children": [
+       {
+        "id": "hanuman-aarti",
+        "work": "hanuman-aarti",
+        "path": "hinduism/aarti/hanuman/hanuman-aarti",
+        "title": {
+         "hi": "श्रीहनुमानजीकी आरती",
+         "en": "Śrī Hanumānjī kī Āratī"
+        },
+        "desc": {
+         "hi": "आरती कीजै हनुमान लला की",
+         "en": "Āratī kījai Hanumāna lalā kī"
+        },
+        "salute": "॥ जय बजरंगबली ॥"
+       }
+      ]
+     },
+     {
+      "id": "vishnu",
+      "title": {
+       "hi": "भगवान विष्णु",
+       "en": "Bhagavān Viṣṇu"
+      },
+      "desc": {
+       "hi": "ॐ जय जगदीश हरे",
+       "en": "Om Jaya Jagadīśa Hare"
+      },
+      "children": [
+       {
+        "id": "jagdish-aarti",
+        "work": "jagdish-aarti",
+        "path": "hinduism/aarti/vishnu/jagdish-aarti",
+        "title": {
+         "hi": "ॐ जय जगदीश हरे",
+         "en": "Om Jaya Jagadīśa Hare"
+        },
+        "desc": {
+         "hi": "आरती श्रीजगदीशजीकी",
+         "en": "The āratī of Śrī Jagadīśa"
+        },
+        "salute": "॥ ॐ नमो भगवते वासुदेवाय ॥"
+       }
+      ]
+     },
+     {
+      "id": "shiva",
+      "title": {
+       "hi": "भगवान शिव",
+       "en": "Bhagavān Śiva"
+      },
+      "desc": {
+       "hi": "ॐ जय शिव ओंकारा",
+       "en": "Om Jaya Śiva Oṅkārā"
+      },
+      "children": [
+       {
+        "id": "shiv-aarti",
+        "work": "shiv-aarti",
+        "path": "hinduism/aarti/shiva/shiv-aarti",
+        "title": {
+         "hi": "ॐ जय शिव ओंकारा",
+         "en": "Om Jaya Śiva Oṅkārā"
+        },
+        "desc": {
+         "hi": "आरती श्रीशिवजीकी",
+         "en": "The āratī of Śrī Śiva"
+        },
+        "salute": "॥ ॐ नमः शिवाय ॥"
+       }
+      ]
+     },
+     {
+      "id": "ganga",
+      "title": {
+       "hi": "माँ गंगा",
+       "en": "Mother Gaṅgā"
+      },
+      "desc": {
+       "hi": "श्रीगंगाजीकी आरती",
+       "en": "Śrī Gaṅgājī kī Āratī"
+      },
+      "children": [
+       {
+        "id": "ganga-aarti",
+        "work": "ganga-aarti",
+        "path": "hinduism/aarti/ganga/ganga-aarti",
+        "title": {
+         "hi": "श्रीगंगाजीकी आरती",
+         "en": "Śrī Gaṅgājī kī Āratī"
+        },
+        "desc": {
+         "hi": "ॐ जय गंगे माता",
+         "en": "Om Jaya Gaṅge Mātā"
+        },
+        "salute": "॥ हर हर गंगे ॥"
+       }
+      ]
+     },
+     {
       "id": "shirdi-sai",
       "title": {
        "hi": "शिरडी साईबाबा",

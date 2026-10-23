@@ -57,6 +57,7 @@ See `docs/HOW-TO.md`: add a meaning source, add a reciter, add a work, fix text,
 | Sundarakāṇḍa | generated from the Mānas (from Kiṣkindhā dohā 29), plus Hanumān Chālīsā and āratī | Pt. Ashwin Kumar Pathak, live: 403 verses, 8 estimated |
 | Śrī Rāma Rakṣā Stotram | complete | Vande Guru Paramparaam, live |
 | Īśāvāsya Upaniṣad | complete (our own meanings) | live |
+| Āratīs: Śrī Rāma (3), Hanumān, Om Jaya Jagadīśa Hare, Śiva, Gaṅgā (2026-10-23) | complete from the owner's one source each (corrections marked open in each `reconciliation.md`); our own meanings; the Hanumān āratī is taken from the Sundarakāṇḍa | the owner's five recordings: see `tools/works/aartis/README.md` |
 | Shirdi Sāī Dhūpa Āratī | complete (two printouts reconciled; prārthanā reads विहितमविहितं) | Pramod Medhi (Times Music), live: all 64 checked by the owner by ear. The older upload is a draft (YouTube does not allow it inside other sites) |
 | Śrī Rudram | complete (our own meanings; Vedic accents; "श्री शम्भवे नमः" left out) | Shlokam, **draft**: the owner is marking it by ear |
 | Sukhmani Sahib | complete (Gurmukhi; English from the owner's PDF; our Hindi) | Parminder Singh, **draft**: the owner is marking it by ear (ashtapadi 1 done) |
