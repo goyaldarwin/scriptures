@@ -108,9 +108,9 @@ const DONE = (p, plan) => ((p.done[W.id] = p.done[W.id] || {})[plan] = p.done[W.
 /* ---------------- shared labels ---------------- */
 const LB = {
   h: () => T('हिंदी अर्थ', 'Hindi meaning'), e: () => T('अंग्रेज़ी अर्थ', 'English meaning'), w: () => T('शब्दार्थ', 'Word meanings'), au: () => T('ऑडियो', 'Audio'),
-  tr: () => T('रोमन लिप्यन्तरण', 'Transliteration'), trSub: () => T('मूल पाठके नीचे रोमन अक्षरोंमें', 'The verse in Roman letters, under the text'),
-  rc: () => T('पाठ मोड', 'Recitation mode'), rcSub: () => T('केवल मूल पाठ, बड़े अक्षर', 'Verses only, larger text'),
-  size: () => T('अक्षरका आकार', 'Text size'), theme: () => T('रंग', 'Theme'), more: () => T('और', 'More'), tour: () => T('परिचय (टूर)', 'Take the tour'),
+  tr: () => T('रोमन लिप्यन्तरण', 'Transliteration'), trSub: () => T('पदके नीचे रोमन अक्षरोंमें', 'The verse in Roman letters, under it'),
+  rc: () => T('पाठ मोड', 'Recitation mode'), rcSub: () => T('केवल मूल पाठ, बड़े अक्षर', 'Verses only, larger letters'),
+  size: () => T('अक्षरका आकार', 'Letter size'), theme: () => T('रंग', 'Theme'), more: () => T('और', 'More'), tour: () => T('परिचय (टूर)', 'Take the tour'),
   sections: () => T('प्रसंग', 'Sections'), search: () => T('खोजें', 'Search'),
   bm: () => T('बुकमार्क और टिप्पणियाँ', 'Bookmarks & notes'), verses: () => T('मूल पाठ', 'Verses'),
   lib: () => T('पुस्तकालय', 'Library'), src: () => T('स्रोत', 'Sources'), vidhi: () => T('पारायण-विधि', 'Pārāyaṇa vidhi')
@@ -489,7 +489,7 @@ function mainMenu(){
   const inWork = !!W && CURVIEW !== 'library', th = S.settings.theme;
   openSheet('<div class="menu">' + (inWork ? '<button data-m="bm"><svg><use href="#i-bm"/></svg>' + LB.bm() + '</button>' : '') +
     '<div class="menusw">' + sw('mth', T('गहरा रंग (रात)', 'Dark theme'), '', th === 'dark', 'theme') + '</div>' +
-    (S.timing.on && inWork ? '<div class="menusw"><label class="sw tsw"><svg class="swic" style="stroke:var(--saffron)"><use href="#i-clock"/></svg><span style="flex:1">' + T('ऑडियोका समय ठीक करें', 'Adjust audio timing') + '</span><span class="tg"><input type="checkbox" id="mtm" checked><span></span></span></label></div>' + (SRC.au && Object.keys(myStarts()).filter(id => ID[id] != null).length ? '<button data-m="tclear" class="tsaf"><svg><use href="#i-undo"/></svg>' + T('मेरे बदलाव हटाएँ', 'Clear adjustments') + '</button>' : '') : '') +
+    (S.timing.on && inWork ? '<div class="menusw"><label class="sw tsw"><svg class="swic" style="stroke:var(--saffron)"><use href="#i-clock"/></svg><span style="flex:1">' + T('ऑडियोका समय', 'Audio timing') + '</span><span class="tg"><input type="checkbox" id="mtm" checked><span></span></span></label></div>' + (SRC.au && Object.keys(myStarts()).filter(id => ID[id] != null).length ? '<button data-m="tclear" class="tsaf"><svg><use href="#i-undo"/></svg>' + T('मेरे बदलाव हटाएँ', 'Clear adjustments') + '</button>' : '') : '') +
     '<button data-tour><svg><use href="#i-tour"/></svg>' + LB.tour() + '</button>' +
     '<button data-m="set"><svg><use href="#i-set"/></svg>' + LB.more() + '</button></div>');
   if ($('#mtm')) $('#mtm').onchange = async () => { S.timing.on = false; save(); applyTiming(); stopAudio(); closeSheet(); await loadSources(); if (CURVIEW === 'reader') refreshReader(); if (CURVIEW === 'settings') renderSettings(); toast(T('ऑडियोका समय: बंद', 'Audio timing: off')); };   // while on, ☰ turns it off (owner, 2026-10-22)
@@ -537,21 +537,21 @@ $('#rBody').addEventListener('click', ev => {
 });
 function noteSheet(i, k){
   const me = ME(), key = KEY(IT[i].id), arr = me.notes[key] || [], cur = k != null ? arr[k] : null;
-  openSheet('<h2>' + (cur ? T('टिप्पणी बदलें', 'Edit note') : T('अपनी टिप्पणी लिखें', 'Write your note')) + '</h2><p class="small muted">' + esc(itemLabel(i)) + '</p><textarea id="nt" placeholder="' + T('अपने विचार, भाव या कथा यहाँ लिखें…', 'Your thoughts or the story behind this verse…') + '">' + esc(cur ? cur.t : '') + '</textarea><div class="acts"><button class="btn" id="nSave">' + T('सेव करें', 'Save') + '</button>' + (cur ? '<button class="btn ghost" id="nDel">' + T('हटाएँ', 'Delete') + '</button>' : '') + '</div>');
+  openSheet('<h2>' + (cur ? T('टिप्पणी बदलें', 'Edit note') : T('अपनी टिप्पणी लिखें', 'Write a note')) + '</h2><p class="small muted">' + esc(itemLabel(i)) + '</p><textarea id="nt" placeholder="' + T('अपने विचार, भाव या कथा यहाँ लिखें…', 'Your thoughts or the story behind this verse…') + '">' + esc(cur ? cur.t : '') + '</textarea><div class="acts"><button class="btn" id="nSave">' + T('सेव करें', 'Save') + '</button>' + (cur ? '<button class="btn ghost" id="nDel">' + T('हटाएँ', 'Delete') + '</button>' : '') + '</div>');
   setTimeout(() => $('#nt').focus(), 250);
   $('#nSave').onclick = () => { const t = $('#nt').value.trim(); if (!t){ closeSheet(); return; } if (cur){ cur.t = t; cur.ts = Date.now(); } else { (me.notes[key] = arr).push({t, ts: Date.now()}); } save(); closeSheet(); rerenderItem(i); toast(T('टिप्पणी सेव हुई', 'Note saved')); };
   if ($('#nDel')) $('#nDel').onclick = () => { arr.splice(k, 1); if (!arr.length) delete me.notes[key]; save(); closeSheet(); rerenderItem(i); };
 }
 function itemMenu(i){
   const id = IT[i].id, edited = verseOf(i).edited || ['hi', 'en'].some(k => { const m = mean(k, i); return m && m.edited; });
-  openSheet('<p class="small muted">' + esc(itemLabel(i)) + '</p><div class="menu">' + (hasAu(i) ? '<button data-x="play"><svg><use href="#i-play"/></svg>' + T('यहाँसे सुनें', 'Listen from here') + '</button>' : '') + '<button data-x="copy"><svg><use href="#i-copy"/></svg>' + T('मूल पाठ और अर्थ कॉपी करें', 'Copy verse and meaning') + '</button><button data-x="note"><svg><use href="#i-note"/></svg>' + T('टिप्पणी लिखें', 'Write a note') + '</button><button data-x="edit"><svg><use href="#i-edit"/></svg>' + T('पाठ या अर्थमें सुधार करें', 'Correct the text or meaning') + '</button>' + (edited ? '<button data-x="revert"><svg><use href="#i-edit"/></svg>' + T('मेरा सुधार हटाएँ (पुस्तकका पाठ लौटाएँ)', 'Remove my correction (restore book text)') + '</button>' : '') + '</div>');
+  openSheet('<p class="small muted">' + esc(itemLabel(i)) + '</p><div class="menu">' + (hasAu(i) ? '<button data-x="play"><svg><use href="#i-play"/></svg>' + T('यहाँसे सुनें', 'Play from here') + '</button>' : '') + '<button data-x="copy"><svg><use href="#i-copy"/></svg>' + T('मूल पाठ और अर्थ कॉपी करें', 'Copy verse and meaning') + '</button><button data-x="note"><svg><use href="#i-note"/></svg>' + T('टिप्पणी लिखें', 'Write a note') + '</button><button data-x="edit"><svg><use href="#i-edit"/></svg>' + T('पद या अर्थमें सुधार करें', 'Correct the verse or meaning') + '</button>' + (edited ? '<button data-x="revert"><svg><use href="#i-edit"/></svg>' + T('मेरा सुधार हटाएँ (पद लौटाएँ)', 'Remove my correction (restore the verse)') + '</button>' : '') + '</div>');
   $$('#sheetBody [data-x]').forEach(b => b.onclick = () => {
     const x = b.dataset.x; closeSheet();
     if (x === 'play') playFrom(i, null);
     if (x === 'copy'){ const mh = mean('hi', i), me_ = mean('en', i); const txt = verseOf(i).v.join('\n') + (mh ? '\n\n' + mh.x : '') + (me_ ? '\n\n' + me_.x : ''); (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(() => toast(T('कॉपी हो गया', 'Copied'))).catch(() => toast(T('कॉपी नहीं हो सका', 'Could not copy'))); }
     if (x === 'note') noteSheet(i, null);
     if (x === 'edit') editSheet(i);
-    if (x === 'revert'){ S.profiles.forEach(p => { delete p.fix[KEY(id)]; ['hi', 'en'].forEach(k => { if (SRC[k]) delete p.fix[KEY(SRC[k].id + ':' + id)]; }); }); save(); rerenderItem(i); toast(T('पुस्तकका पाठ लौटाया', 'Book text restored')); }
+    if (x === 'revert'){ S.profiles.forEach(p => { delete p.fix[KEY(id)]; ['hi', 'en'].forEach(k => { if (SRC[k]) delete p.fix[KEY(SRC[k].id + ':' + id)]; }); }); save(); rerenderItem(i); toast(T('पद लौटाया', 'Verse restored')); }
   });
 }
 function editSheet(i){
@@ -676,7 +676,7 @@ function ytWatchURL(){
   return 'https://www.youtube.com/embed/' + ytVid + '?autoplay=1&start=' + st + end;
 }
 function ytBlocked(){
-  $('#ytBox').innerHTML = '<div class="ytno"><p>' + T('यह पन्ना YouTube वीडियो नहीं चला पा रहा।', 'This page is not allowed to play YouTube here.') + '</p><a class="btn" target="_blank" rel="noopener" href="' + ytWatchURL() + '">' + T('YouTube पर इसी दोहे से सुनें ↗', 'Listen on YouTube from this verse ↗') + '</a></div>';
+  $('#ytBox').innerHTML = '<div class="ytno"><p>' + T('यह पन्ना YouTube वीडियो नहीं चला पा रहा।', 'This page is not allowed to play YouTube here.') + '</p><a class="btn" target="_blank" rel="noopener" href="' + ytWatchURL() + '">' + T('YouTube पर इसी दोहे से सुनें ↗', 'Play on YouTube from this verse ↗') + '</a></div>';
 }
 window.addEventListener('message', e => {
   if (!/youtube(-nocookie)?\.com$/.test((e.origin || '').replace(/^https?:\/\/(www\.)?/, ''))) return;
@@ -940,11 +940,11 @@ function libSearch(q){
 }
 // one search page for the whole app: opened from the library it finds works and shelves; from a work, its verses
 let SCOPE = 'text';
-function setScope(scope){ SCOPE = scope; const lib = scope === 'lib'; $('#scope').hidden = lib; $('#q').placeholder = lib ? T('ग्रन्थ, रचयिता या विषय खोजें', 'Search works, authors or shelves') : T('शब्द, अर्थ या English में खोजें', 'Search a word, meaning or English'); }
+function setScope(scope){ SCOPE = scope; const lib = scope === 'lib'; $('#scope').hidden = lib; $('#q').placeholder = lib ? T('ग्रन्थ, रचयिता या विषय खोजें', 'Search works, authors or shelves') : T('शब्द, अर्थ या English में खोजें', 'Search a verse or a meaning'); }
 function openSearch(scope, stay){   // stay: only reset the page (the box was cleared), without another history entry
   setScope(scope); const lib = scope === 'lib';
   $('#q').value = '';
-  $('#sRes').innerHTML = '<div class="empty">' + (lib ? T('ग्रन्थका नाम, रचयिता या विषय लिखें।', 'Type the name of a work, an author or a shelf.') : T('चौपाई, दोहे या अर्थका कोई भी शब्द लिखें।', 'Type any word from a verse, its meaning or the English translation.')) + '</div>';
+  $('#sRes').innerHTML = '<div class="empty">' + (lib ? T('ग्रन्थका नाम, रचयिता या विषय लिखें।', 'Type the name of a work, an author or a shelf.') : T('चौपाई, दोहे या अर्थका कोई भी शब्द लिखें।', 'Type any word from a verse, its Hindi meaning or its English meaning.')) + '</div>';
   if (!stay) show('search');
 }
 $('#libSearchBtn').onclick = () => openSearch('lib');
@@ -971,7 +971,7 @@ async function openWork(id, noShow){
     if (!W || W.id !== id){ const path = workPath(id); W = await getJSON(path + '/work'); W.path = path; buildWork(); moveRenamed(); fixLast(); await Promise.all([loadSources(), loadGlossaries()]); }
     S.work = id; WS().at = Date.now(); save();   // when it was last used: the shelf lists recent works first
   } catch (e) { const off = navigator.onLine === false || await fetch('library/.ping?' + Date.now(), {cache: 'no-store'}).then(() => false, () => true);   // offline: not even a probe gets through
-    toast(off ? T('इंटरनेट नहीं है — यह ग्रन्थ इस फ़ोनपर पहले खोला नहीं गया', 'No internet — this text has not been opened on this phone yet') : T('यह ग्रन्थ नहीं खुल सका', 'Could not open this text')); $('#loading').hidden = true; return; }
+    toast(off ? T('इंटरनेट नहीं है — यह ग्रन्थ इस फ़ोनपर पहले खोला नहीं गया', 'No internet — this work has not been opened on this phone yet') : T('यह ग्रन्थ नहीं खुल सका', 'Could not open this work')); $('#loading').hidden = true; return; }
   await hideSalute();
   if (!noShow) show('home');
 }
@@ -1060,7 +1060,7 @@ function renderBookmarks(){
   const fold = S.settings.bmFold || {}, sec = (key, title, body) => '<details class="bmsec" data-fold="' + key + '"' + (fold[key] ? '' : ' open') + '><summary><h2>' + title + '</h2></summary>' + body + '</details>';
   let h = '', bmh = '';
   // each bookmark has its own ✕ to remove it (owner, 2026-10-20)
-  bmh += bms.length ? bms.map(b => '<div class="bmrow"><button class="res" data-i="' + b[0] + '"><div class="where">' + esc(itemLabel(b[0])) + '</div><div class="snip" style="font-weight:700">' + esc(IT[b[0]].v[0]) + '</div></button><button class="bmdel" data-del="' + b[0] + '" aria-label="' + T('बुकमार्क हटाएँ', 'Remove bookmark') + '"><svg><use href="#i-x"/></svg></button></div>').join('') : '<p class="muted">' + T('किसी भी पदकी पंक्तिके अन्तमें बुकमार्क चिह्न दबाएँ।', 'Tap the bookmark sign at the end of any verse.') + '</p>';
+  bmh += bms.length ? bms.map(b => '<div class="bmrow"><button class="res" data-i="' + b[0] + '"><div class="where">' + esc(itemLabel(b[0])) + '</div><div class="snip" style="font-weight:700">' + esc(IT[b[0]].v[0]) + '</div></button><button class="bmdel" data-del="' + b[0] + '" aria-label="' + T('बुकमार्क हटाएँ', 'Remove bookmark') + '"><svg><use href="#i-x"/></svg></button></div>').join('') : '<p class="muted">' + T('किसी भी पदके पास बुकमार्क चिह्न दबाएँ।', 'Tap the bookmark sign beside any verse.') + '</p>';
   h += sec('bm', T('बुकमार्क (', 'Bookmarks (') + DEV(bms.length) + ')', bmh);
   h += sec('notes', T('टिप्पणियाँ (', 'Notes (') + DEV(notes.length) + ')', notes.length ? notes.map(n => '<button class="res" data-i="' + n[0] + '"><div class="where">' + esc(itemLabel(n[0])) + '</div><div class="snip">' + esc(n[2].t.slice(0, 200)) + '</div></button>').join('') : '<p class="muted">' + T('किसी पदके ⋮ मेनूसे अपनी टिप्पणी लिखें।', 'Use the ⋮ menu of any verse to write a note.') + '</p>');
   h += '<h2 style="font-size:19px;margin:26px 0 4px">' + T('मेरी फ़ाइल', 'My file') + '</h2><p class="small muted">' + T('आपके बुकमार्क, टिप्पणियाँ, प्रगति और सुधार इसी फ़ोनमें रहते हैं। फ़ाइल सेव करके बैकअप रखें या दूसरे फ़ोनपर खोलें।', 'Your bookmarks, notes, progress and corrections stay on this phone. Save the file as a backup, or open it on another phone.') + (canStore ? '' : ' <b>' + T('ध्यान दें: यह फ़ोन डेटा अपने-आप नहीं रख पा रहा — पाठके बाद “फ़ाइल सेव करें” दबाएँ।', 'This phone is not keeping app data — tap Save my file after each reading.') + '</b>') + '</p>' +
@@ -1092,14 +1092,14 @@ function renderSettings(){   // the "More" page (owner, 2026-10-22): the rare th
 function pendingStarts(){ if (!SRC.au) return {}; const fx = myStarts(), sent = S.timing.sent[tkey()] || {}, out = {}; for (const id in fx) if (ID[id] != null && !fromOf(id) && JSON.stringify(sent[id]) !== JSON.stringify(fx[id])) out[id] = fx[id]; return out; }
 function timingHTML(){
   if (!W) return '';
-  let h = '<h2>' + T('ऑडियोका समय', 'Audio timing') + '</h2><p class="small muted">' + T('जहाँ पद और आवाज़ मेल न खाएँ, वहाँ ठीक करनेके लिये।', 'For fixing places where the lit verse and the voice do not match.') + '</p>' + sw('stm', T('ऑडियोका समय ठीक करें', 'Adjust audio timing'), '', S.timing.on);
+  let h = '<h2>' + T('ऑडियोका समय', 'Audio timing') + '</h2><p class="small muted">' + T('जहाँ पद और आवाज़ मेल न खाएँ, वहाँ ठीक करनेके लिये।', 'For fixing places where the lit verse and the voice do not match.') + '</p>' + sw('stm', T('ऑडियोका समय', 'Audio timing'), '', S.timing.on);
   if (S.timing.on && SRC.au){
     const n = Object.keys(myStarts()).filter(id => ID[id] != null).length, p = Object.keys(pendingStarts()).length;
     h += (SRC.au.meta.draft ? sw('stp', T('यह रिकॉर्डिंग जाँच ली — सबके लिये चालू करें', 'This recording is checked: publish it for everyone'), T('भेजनेके साथ जाएगा', 'Goes with the next send'), !!(S.timing.publish || {})[tkey()]) : '') +
       checkList() + helperList() +
       '<p class="small" style="margin:14px 0 8px">' + esc(TT(SRC.au.meta.title)) + ': ' + DEV(n) + T(' पद आपने ठीक किये', ' verses set by you') + (p ? ' · ' + DEV(p) + T(' भेजने बाकी', ' not sent yet') : '') + '</p>' +
-      '<div class="acts"><button class="btn" id="tSend"' + (p || (S.timing.publish || {})[tkey()] ? '' : ' disabled') + '>' + T('लाइब्रेरीमें भेजें (GitHub)', 'Send to the library (GitHub)') + '</button><button class="btn ghost" id="tSave"' + (n ? '' : ' disabled') + '>' + T('फ़ाइलमें सेव करें', 'Save as a file') + '</button><button class="btn ghost" id="tOpen">' + T('फ़ाइल खोलें', 'Open a file') + '</button>' + (n ? '<button class="btn ghost" id="tClear">' + T('मेरे बदलाव हटाएँ', 'Clear adjustments') + '</button>' : '') + '</div>' +
-      '<p class="small muted">' + T('सहायता कर रहे हैं? “फ़ाइलमें सेव करें” दबाकर फ़ाइल साइटके मालिकको भेजें; वे जाँचकर लाइब्रेरीमें जोड़ेंगे। लाइब्रेरीमें सीधे केवल मालिक भेज सकते हैं।', 'Helping? Tap “Save as a file” and send the file to the site’s owner, who checks it and adds it to the library. Only the owner can send to the library directly.') + '</p>';
+      '<div class="acts"><button class="btn" id="tSend"' + (p || (S.timing.publish || {})[tkey()] ? '' : ' disabled') + '>' + T('लाइब्रेरीमें भेजें (GitHub)', 'Send to the library (GitHub)') + '</button><button class="btn ghost" id="tSave"' + (n ? '' : ' disabled') + '>' + T('फ़ाइलमें सेव करें', 'Save timings as a file') + '</button><button class="btn ghost" id="tOpen">' + T('फ़ाइल खोलें', 'Open a file') + '</button>' + (n ? '<button class="btn ghost" id="tClear">' + T('मेरे बदलाव हटाएँ', 'Clear adjustments') + '</button>' : '') + '</div>' +
+      '<p class="small muted">' + T('सहायता कर रहे हैं? “फ़ाइलमें सेव करें” दबाकर फ़ाइल साइटके मालिकको भेजें; वे जाँचकर लाइब्रेरीमें जोड़ेंगे। लाइब्रेरीमें सीधे केवल मालिक भेज सकते हैं।', 'Helping? Tap “Save timings as a file” and send the file to the site’s owner, who checks it and adds it to the library. Only the owner can send to the library directly.') + '</p>';
   }
   return h;
 }
@@ -1111,7 +1111,7 @@ function checkList(){
 function helperList(){
   const f = S.timing.from[tkey()] || {}, ids = Object.keys(f).filter(id => ID[id] != null).sort((a, b) => ID[a] - ID[b]); if (!ids.length) return '';
   const names = [...new Set(ids.map(id => f[id]))].map(esc).join(', ');
-  return '<details class="tcheck" open><summary>' + names + T(' के ', ': ') + DEV(ids.length) + T(' पद जाँचने बाकी — हर पदके नीचे ▶ से सुनकर “✓ सही है” दबाएँ; जाँचे हुए ही लाइब्रेरीमें जाएँगे', ' verses still to check — hear each with ▶ under it and tap “✓ Correct”; only checked ones go to the library') + '</summary><div class="tlist">' + ids.slice(0, 400).map(id => '<button data-go-i="' + ID[id] + '">' + esc(itemLabel(ID[id])) + ' <span class="muted">' + fmtT(SRC.au.at[id][1]) + '</span></button>').join('') + '</div><div class="acts"><button class="btn ghost small" id="tOkAll">' + T('सब सही हैं', 'All are correct') + '</button><button class="btn ghost small" id="tDropAll">' + T('ये सब हटाएँ', 'Remove these') + '</button></div></details>';
+  return '<details class="tcheck" open><summary>' + names + T(' के ', ': ') + DEV(ids.length) + T(' पद जाँचने बाकी — हर पदके नीचे ▶ से सुनकर “✓ सही है” दबाएँ; जाँचे हुए ही लाइब्रेरीमें जाएँगे', ' verses still to check — play each with ▶ under it and tap “✓ Correct”; only checked ones go to the library') + '</summary><div class="tlist">' + ids.slice(0, 400).map(id => '<button data-go-i="' + ID[id] + '">' + esc(itemLabel(ID[id])) + ' <span class="muted">' + fmtT(SRC.au.at[id][1]) + '</span></button>').join('') + '</div><div class="acts"><button class="btn ghost small" id="tOkAll">' + T('सब सही हैं', 'All are correct') + '</button><button class="btn ghost small" id="tDropAll">' + T('ये सब हटाएँ', 'Remove these') + '</button></div></details>';
 }
 function clearTimingAsk(){ askYes(T('“' + esc(TT(W.title)) + '” की “' + esc(TT(SRC.au.meta.title)) + '” रिकॉर्डिंगमें इस फ़ोनपर आपके सेट किये सारे समय हट जाएँगे। जो लाइब्रेरीमें भेज चुके हैं, वे वहाँ रहेंगे। दूसरे पाठ, दूसरी रिकॉर्डिंग और आपकी पढ़ाईकी प्रगति वैसी ही रहेगी।', 'All the timings you set on this phone for the recording “' + esc(TT(SRC.au.meta.title)) + '” of “' + esc(TT(W.title)) + '” will be removed. Those already sent to the library stay there. Other works, other recordings and your reading progress are not touched.'), T('हाँ, हटाएँ', 'Yes, remove'), () => { delete S.timing.fix[tkey()]; delete S.timing.sent[tkey()]; delete S.timing.from[tkey()]; save(); buildAudio(); renderSettings(); }); }
 function bindTiming(){
@@ -1162,7 +1162,7 @@ async function importTiming(X){
   const who = esc(String(X.by || T('सहायक', 'a helper')).slice(0, 40));
   openSheet('<h2>' + T('सहायककी फ़ाइल', 'A helper’s file') + '</h2><p><b>' + who + '</b> · ' + esc(TT(SRC.au.meta.title)) + (X.made ? ' · ' + esc(String(X.made).slice(0, 10)) : '') + '</p><p class="small">' +
     DEV(ids.length) + T(' पद: ', ' verses: ') + DEV(nw.length) + T(' नये', ' new') + ' · ' + DEV(diff.length) + T(' आपके समयसे अलग', ' different from yours') + ' · ' + DEV(ids.length - nw.length - diff.length) + T(' आपके जैसे', ' the same as yours') + (bad ? ' · ' + DEV(bad) + T(' गलत, छोड़ दिये', ' not valid, skipped') : '') + '</p>' +
-    '<p class="small muted">' + T('ये पदोंके नीचे “', 'They show under each verse as “from ') + who + T(' का — जाँचें” दिखेंगे। ▶ से सुनकर “✓ सही है” दबाएँ, या ⏱ से ठीक करें। जाँचे हुए ही लाइब्रेरीमें जाएँगे।', ' — to check”. Hear each with ▶ and tap “✓ Correct”, or fix it with ⏱. Only checked ones go to the library.') + '</p>' +
+    '<p class="small muted">' + T('ये पदोंके नीचे “', 'They show under each verse as “from ') + who + T(' का — जाँचें” दिखेंगे। ▶ से सुनकर “✓ सही है” दबाएँ, या ⏱ से ठीक करें। जाँचे हुए ही लाइब्रेरीमें जाएँगे।', ' — to check”. Play each with ▶ and tap “✓ Correct”, or fix it with ⏱. Only checked ones go to the library.') + '</p>' +
     '<div class="menu">' + (nw.length + diff.length ? '<button id="tiAll">' + T('ले आएँ', 'Load them') + (diff.length ? '<br><small class="muted">' + T('जहाँ अलग हैं वहाँ आपके समयकी जगह', 'replacing yours where they differ') + '</small>' : '') + '</button>' : '') + (diff.length && nw.length ? '<button id="tiNew">' + T('केवल नये', 'Only the new ones') + '<br><small class="muted">' + T('आपके समय वैसे ही रहेंगे', 'yours stay as they are') + '</small></button>' : '') + '<button id="tiNo">' + T('रहने दें', 'Cancel') + '</button></div>');
   const load = list => { const fx = S.timing.fix[tkey()] = S.timing.fix[tkey()] || {}, fr = S.timing.from[tkey()] = S.timing.from[tkey()] || {}; list.forEach(id => { fx[id] = got[id]; fr[id] = String(X.by || T('सहायक', 'helper')).slice(0, 40); }); save(); buildAudio(); closeSheet(); toast(DEV(list.length) + T(' पद जाँचनेके लिये आये', ' verses loaded to check')); renderSettings(); };
   if ($('#tiAll')) $('#tiAll').onclick = () => load(nw.concat(diff));
@@ -1236,18 +1236,18 @@ function inView(el){ const r = el.getBoundingClientRect(); return r.width && r.t
 function firstVisible(sel){ const all = $$(sel); return all.find(inView) || all[0] || null; }
 function tourSteps(){
   return [
-    {t: () => { const rows = $$('#orgList [data-open]'), k = PARTS.findIndex(p => /^Sundara/.test(p.en || '')); return (W && W.id === 'sundarkand' && k >= 0 && rows[k]) || rows[0]; }, allow: '#orgList .it', p: T('पाठ खोलनेके लिये यहाँ छुएँ।', 'Tap here to open the text.'), done: () => CURVIEW === 'reader' && !!$('#rBody .verse')},
+    {t: () => { const rows = $$('#orgList [data-open]'), k = PARTS.findIndex(p => /^Sundara/.test(p.en || '')); return (W && W.id === 'sundarkand' && k >= 0 && rows[k]) || rows[0]; }, allow: '#orgList .it', p: T('पढ़ना शुरू करनेके लिये यहाँ छुएँ।', 'Tap here to start reading.'), done: () => CURVIEW === 'reader' && !!$('#rBody .verse')},
     {t: () => firstVisible('#rBody .verse .vtext .w'), allow: '#rBody .vtext .w', p: T('किसी भी शब्दको छुएँ — उसका अर्थ दिखेगा।', 'Tap any word to see its meaning.'), done: () => $('#sheet').classList.contains('on')},
     {t: () => $('#sheet'), allow: '#sheet', p: T('इस पट्टीको नीचे खींचकर बंद करें।', 'Drag the drawer down to close it.'), done: () => !$('#sheet').classList.contains('on'), top: true},
-    {t: () => $('#reader .szp'), allow: '#reader .szp', p: T('A+ छूकर अक्षर बड़े करें।', 'Tap A+ to make the text larger.'), enter: () => { TOUR.base = S.settings.size; }, done: () => S.settings.size > TOUR.base || (TOUR.tap && TOUR.base >= 34)},   // already at the largest: the tap is enough (owner, 2026-10-20)
+    {t: () => $('#reader .szp'), allow: '#reader .szp', p: T('A+ छूकर अक्षर बड़े करें।', 'Tap A+ to make the letters larger.'), enter: () => { TOUR.base = S.settings.size; }, done: () => S.settings.size > TOUR.base || (TOUR.tap && TOUR.base >= 34)},   // already at the largest: the tap is enough (owner, 2026-10-20)
     // A− is a step of its own: after A+, people reach for it (owner, 2026-10-20)
-    {t: () => $('#reader .szm'), allow: '#reader .szm', p: T('A− छूकर अक्षर छोटे करें।', 'Tap A− to make the text smaller.'), enter: () => { TOUR.base = S.settings.size; }, done: () => S.settings.size < TOUR.base || (TOUR.tap && TOUR.base <= 16)},   // already at the smallest: the tap is enough
+    {t: () => $('#reader .szm'), allow: '#reader .szm', p: T('A− छूकर अक्षर छोटे करें।', 'Tap A− to make the letters smaller.'), enter: () => { TOUR.base = S.settings.size; }, done: () => S.settings.size < TOUR.base || (TOUR.tap && TOUR.base <= 16)},   // already at the smallest: the tap is enough
     {t: () => $('#rLayers [data-l="' + (S.settings.layers.h ? 'e' : 'h') + '"]'), allow: '#rLayers [data-l="h"], #rLayers [data-l="e"], #rLayers [data-l="w"]', p: () => S.settings.layers.h ? T('“En” छूकर हर पदके नीचे अंग्रेज़ी अर्थ दिखाएँ या छिपाएँ। “शब्द” से शब्दार्थ।', 'Tap “En” to show or hide the English meaning under every verse. “शब्द” gives word-by-word meanings.') : T('“हिं” छूकर हर पदके नीचे हिंदी अर्थ दिखाएँ। “En” अंग्रेज़ी, “शब्द” शब्दार्थ।', 'Tap “हिं” to show the Hindi meaning under every verse. “En” is English, “शब्द” word by word.'),
      enter: () => { TOUR.base = JSON.stringify(S.settings.layers); }, done: () => JSON.stringify(S.settings.layers) !== TOUR.base},
     {t: () => $('#rLayers [data-l="r"]'), allow: '#rLayers [data-l="r"]', p: T('पुस्तक छूकर पाठ मोड चालू करें — केवल मूल पाठ, बड़े अक्षरोंमें। फिर छूनेपर अर्थ लौट आते हैं।', 'Tap the book for recitation mode — the verses alone, in larger type. Tap it again to bring the meanings back.'), done: () => !!S.settings.recite},
     {t: () => firstVisible('#rBody .vbm'), allow: '#rBody .vbm', p: T('बुकमार्क चिह्न छूकर यह पद सहेजें — ☰ › बुकमार्कमें मिलेगा।', 'Tap the bookmark sign to save this verse — find it in ☰ › Bookmarks.'),
      enter: () => { TOUR.bmAdded = false; }, done: () => !!TOUR.bmAdded},   // any bookmark made in this step — even one taken off and put back (owner, 2026-10-20)
-    {t: () => firstVisible('#rBody .vplay'), allow: '#rBody .vplay', p: T('▶ छूकर केवल यह पद सुनें — जो गाया जा रहा है वह चमकेगा।', 'Tap ▶ to hear just this verse — it lights up as it is sung.'), done: () => PL.on},
+    {t: () => firstVisible('#rBody .vplay'), allow: '#rBody .vplay', p: T('▶ छूकर केवल यह पद सुनें — जो गाया जा रहा है वह चमकेगा।', 'Tap ▶ to play just this verse — it lights up as it is sung.'), done: () => PL.on},
   ];
 }
 // while the tour runs, only what the current step asks for can be tapped (a ▶ on the work's page would start the audio

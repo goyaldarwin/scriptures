@@ -770,6 +770,10 @@ async def main():
             const g = [...document.querySelectorAll('#libList li')].find(li => li.querySelector('[data-node="hinduism/granth"], [data-node="granth"]')); const gchips = g.querySelectorAll('[data-open-work]').length;
             JSON.parse(keep); Object.entries(JSON.parse(keep)).forEach(([k, v]) => { if (S.w[k]) { if (v) S.w[k].at = v; else delete S.w[k].at; } }); save(); return [chips[0], chips.length, !!more, gchips]; })()""")
         check('library: a shelf shows two works, the one used most recently first', sh2[0] == 'isha-upanishad' and sh2[1] <= 2 and sh2[3] <= 2, sh2)
+        # one word for one thing (owner, 2026-10-23): no "text" for a verse, no "listen/hear" for play, no "translation", no "Adjust audio timing"
+        words = await ev("""(() => { const src = [...document.querySelectorAll('[data-en]')].map(e => e.dataset.en).join(' | '); return src; })()""")
+        bad = [w for w in ('Listen', 'translation', 'Adjust audio timing', 'the text') if w in words]
+        check('labels: the template uses the app\'s vocabulary', not bad, bad)
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')
