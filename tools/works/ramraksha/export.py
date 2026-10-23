@@ -97,10 +97,13 @@ for lg, copied in (('hi', hi), ('en', en)):
     D = json.load(open(os.path.join(HERE, 'meanings', lg + '.json'), encoding='utf-8'))
     miss = [i for i in ids if not D.get(i)]; extra = [k for k in D if k not in ids]
     assert not miss and not extra, f'{lg} meanings: missing {miss[:5]}, unknown {extra[:5]}'
-    bad = [r for r in overlap.check(D, {k: v[0] for k, v in copied.items()}) if len(r[1]) >= 10]
+    bad = [r for r in overlap.check({k: versenum.joined(v) for k, v in D.items()}, {k: v[0] for k, v in copied.items()}) if len(r[1]) >= 10]
     assert not bad, f'{lg}: {bad[0][0]} shares 10+ words with the copied meaning: {" ".join(bad[0][1])}'
-    dump(f'{WP}/meanings/{lg}-scriptures.json', {'id': lg + '-scriptures', 'lang': lg, 'order': ORDER['scriptures'], 'title': TITLES[lg],
-         'm': {i: [versenum.with_number(D[i], BYID[i], lg)] for i in ids}})
+    TP = {i: versenum.text_and_pieces(D[i], BYID[i], lg) for i in ids}   # a list in meanings/<lg>.json = line by line
+    out = {'id': lg + '-scriptures', 'lang': lg, 'order': ORDER['scriptures'], 'title': TITLES[lg], 'm': {i: [TP[i][0]] for i in ids}}
+    P = {i: TP[i][1] for i in ids if TP[i][1]}
+    if P: out['p'] = P
+    dump(f'{WP}/meanings/{lg}-scriptures.json', out)
 
 # ---- word meanings: every word of the verses must be in sa.json ----
 PUNCT = re.compile(r"[।॥|,.;:!?\-—‘’“”'\"()\[\]०-९0-9]")
