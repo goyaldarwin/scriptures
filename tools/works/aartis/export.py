@@ -1,14 +1,16 @@
 """The Hindu āratīs (one work each) → library/hinduism/aarti/<deity>/<work>/.
 
-  ram-aarti      Śrī Rāma kī Āratī: three āratīs (Tulasīdāsa's stuti "श्रीरामचन्द्र कृपालु" with the Mānas's chhand and
-                 sorathā Bāla 236 that close it, "आरती कीजे श्रीरामलला की", and "आरती कीजै रामचन्द्र जी की")
+  shri-ramchandra-kripalu  Tulasīdāsa's stuti "श्रीरामचन्द्र कृपालु", with the Mānas's chhand and sorathā Bāla 236 that close it
+  ramlala-aarti  "आरती कीजे श्रीरामलला की"
+  ramchandra-aarti  "आरती कीजै रामचन्द्र जी की"
+                 (the three Rāma āratīs come from one page but are separate works: owner, 2026-10-24)
   hanuman-aarti  "आरती कीजै हनुमान लला की": TAKEN from the Sundarakāṇḍa work, never edited here (same ids, lines,
                  meanings and recordings' timings), so a correction there reaches this work the next time this script runs
   jagdish-aarti  "ॐ जय जगदीश हरे"
   shiv-aarti     "ॐ जय शिव ओंकारा"
   ganga-aarti    "ॐ जय गंगे माता"
 
-Each folder holds text.txt (the verse text; format in ram-aarti/text.txt), meanings/hi.json and en.json (our own
+Each folder holds text.txt (the verse text; format in shri-ramchandra-kripalu/text.txt), meanings/hi.json and en.json (our own
 meanings, one per verse: the owner gave no meanings for these) and reconciliation.md (the source and every change).
 A verse written [manas <id>] is the Mānas's own verse, with its Gita Press meanings (selectable) and our own meanings.
 
@@ -41,11 +43,20 @@ TYPES = {   # verse types the app doesn't know; cau, cha, do and so are the Mān
     'pad': {'name': {'hi': 'पद', 'en': 'Stanza'}, 'short': {'hi': 'पद', 'en': 'St.'}},
 }
 WORKS = {
-    'ram-aarti': {
-        'path': 'hinduism/aarti/rama/ram-aarti', 'lang': 'awa',
-        'title': {'hi': 'श्रीरामकी आरती', 'en': 'Śrī Rāma kī Āratī'},
+    'shri-ramchandra-kripalu': {
+        'path': 'hinduism/aarti/rama/shri-ramchandra-kripalu', 'lang': 'bra',
+        'title': {'hi': 'श्रीरामचन्द्र कृपालु', 'en': 'Śrī Rāmacandra Kṛpālu'},
+        'by': {'hi': 'गोस्वामी तुलसीदास', 'en': 'Gosvāmī Tulasīdāsa'},
+        'from': {'hi': 'विनय-पत्रिका', 'en': 'Vinaya-patrikā'}},
+    'ramlala-aarti': {
+        'path': 'hinduism/aarti/rama/ramlala-aarti', 'lang': 'awa',
+        'title': {'hi': 'आरती कीजे श्रीरामलला की', 'en': 'Āratī Kīje Śrī Rāmalalā Kī'},
+        'by': {'hi': 'भगवान श्रीराम', 'en': 'Bhagavān Śrī Rāma'}},
+    'ramchandra-aarti': {
+        'path': 'hinduism/aarti/rama/ramchandra-aarti', 'lang': 'hi',
+        'title': {'hi': 'आरती कीजै रामचन्द्र जी की', 'en': 'Āratī Kījai Rāmacandra Jī Kī'},
         'by': {'hi': 'भगवान श्रीराम', 'en': 'Bhagavān Śrī Rāma'},
-        'from': {'hi': 'तीन आरतियाँ', 'en': 'Three āratīs'}},
+        'from': {'hi': 'संत नामदेव', 'en': 'Saint Nāmadeva'}},
     'hanuman-aarti': {
         'path': 'hinduism/aarti/hanuman/hanuman-aarti', 'lang': 'hi', 'take': SUNDAR, 'prefix': 'aarti.',
         'title': {'hi': 'श्रीहनुमानजीकी आरती', 'en': 'Śrī Hanumānjī kī Āratī'},
