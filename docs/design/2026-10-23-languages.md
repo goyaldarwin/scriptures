@@ -2,7 +2,7 @@
 
 Owner, 2026-10-23: "design interface for supporting Punjabi and other languages. For now we will support only Punjabi" — and "right now the text of the verse is fixed and we don't have different text in different languages. In future that might also change. Please keep this in mind."
 
-Status: **proposed**, to be built as shared-code changes (each its own pull request with UX tests) once the owner agrees.
+Status: **agreed with the owner (2026-10-24)**, to be built as shared-code changes (each its own pull request with UX tests) once the owner agrees.
 
 ## What is fixed today
 - Meaning layers are hard-coded as two: `hi` and `en` (meaning files `lang: "hi" | "en"`; the header capsule हिं · En · शब्द · 📖; `S.settings.layers = {h, e, w}`; `mean('hi'|'en')`; search scopes h/e).
@@ -13,7 +13,7 @@ Status: **proposed**, to be built as shared-code changes (each its own pull requ
 ## 1. Meaning languages become a list (Punjabi first)
 - **Registry:** `library/glossary/languages.json` gains, for each language a reader can read a meaning in, a `meaning` block: `{"short": "ਪੰ", "name": {"hi": "पंजाबी", "en": "Punjabi", "pa": "ਪੰਜਾਬੀ"}, "font": "Gurmukhi", "order": 3}`. Today: `hi`, `en`, and the new `pa`. Adding a language later is one entry, no app change.
 - **Meaning files:** `lang` may be any registered meaning language (`pa-scriptures` for our Punjabi). `build.py` refuses an unregistered one. Everything else (order, title, `m`, line-by-line `p`) is the same.
-- **Header capsule:** shows a switch for each meaning language **the open work has a source for**, in registry order, then शब्द and 📖. The Mānas keeps हिं · En · शब्द · 📖; the Sukhmani Sahib shows ਪੰ · हिं · En · शब्द · 📖 (a work can name its own order: Gurbani puts ਪੰ first). Settings: `layers` becomes `{hi, en, pa, w}`; old phones' `{h, e, w}` are read as before.
+- **Header capsule: always four places — two meaning switches, then शब्द and 📖 (owner, 2026-10-24).** Measured: the reader's header has about 58 px free at 390 px and 28 px at 360 px, so a fifth switch would not fit smaller phones or larger text. A work with two meaning languages shows both (the Mānas: हिं · En · शब्द · 📖). A work with three shows the reader's chosen pair; the default is **ਪੰ · En** in an English app and **ਪੰ · हिं** in a Hindi app (owner). More › Sources gets one line, "Meanings in the bar", to choose the pair; the third meaning is never lost. Settings: `layers` becomes `{hi, en, pa, w}`; old phones' `{h, e, w}` are read as before.
 - **Reader:** under each verse (or each line, when the source gives `p`), the layers in the work's order. Colours as today: the first layer in full ink, later ones lighter.
 - **More › Sources:** one list per meaning language the work has.
 - **Search:** one scope per meaning language.
