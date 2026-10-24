@@ -10,13 +10,19 @@ Hindi gets Devanagari digits, English Latin digits (letters such as क stay), a
 import re
 
 DEV = '०१२३४५६७८९'
-_END = re.compile(r'।।\s*([^।]*?)\s*।।\s*$')
-_HAS = re.compile(r'।।\s*[०-९0-9]')
+GUR = '੦੧੨੩੪੫੬੭੮੯'
+_NUM = r'[०-९0-9੦-੯]+(?:\s*\([^()]{1,4}\))?'          # २९ · ३० (क) · ੮ (a number, never a word: "।। ॐ … ।।" is no number)
+_TAIL = re.compile(r'((?:[।॥]{1,2}\s*' + _NUM + r'\s*)+)[।॥]{1,2}\s*$')
+_HAS = re.compile(r'[।॥]{1,2}\s*[०-९0-9੦-੯]')
 
 def mark(item):
-    """'।।२९।।' style mark for an item, in Devanagari digits, or '' when the verse has no number."""
-    m = _END.search(item['v'][-1]) if item.get('v') else None
-    if m and m.group(1): return '।।' + m.group(1) + '।।'
+    """'।।२९।।' style mark for an item, in Devanagari digits, or '' when the verse has no number.
+    Gurmukhi ends a stanza ॥੮॥੨੪॥ (pauri 8 of ashtapadi 24): the stanza's own number, the first, is taken."""
+    m = _TAIL.search(item['v'][-1]) if item.get('v') else None
+    if m:
+        n = re.findall(_NUM, m.group(1))[0].strip()
+        n = re.sub('[੦-੯]', lambda d: DEV[GUR.index(d.group())], n)
+        return '।।' + n + '।।'
     if item.get('y') in ('cau', 'cha') and item.get('n'):
         return '।।' + re.sub(r'\d', lambda d: DEV[int(d.group())], str(item['n'])) + '।।'
     return ''
@@ -29,3 +35,19 @@ def with_number(text, item, lang):
     m = mark(item)
     if not m: return text
     return f'{text} {latin(m) if lang == "en" else m}'
+
+def text_and_pieces(value, item, lang):
+    """Our meaning as stored (a string, or a list with one piece per verse line — owner, 2026-10-23: line by line) →
+    (whole text with the verse number, pieces with the number on the last non-empty piece, or None)."""
+    if isinstance(value, str): return with_number(value, item, lang), None
+    assert len(value) == len(item['v']), f"{item['id']}: {len(value)} pieces for {len(item['v'])} lines"
+    assert any(p.strip() for p in value), f"{item['id']}: every piece is empty"
+    pieces = [p.strip() for p in value]
+    last = max(k for k, p in enumerate(pieces) if p)
+    whole = with_number(' '.join(p for p in pieces if p), item, lang)
+    pieces[last] = with_number(pieces[last], item, lang)
+    return whole, pieces
+
+def joined(value):
+    """The whole meaning as plain text, from a string or a list of pieces (for checks such as the overlap)."""
+    return value if isinstance(value, str) else ' '.join(p.strip() for p in value if p.strip())

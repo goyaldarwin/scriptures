@@ -15,7 +15,7 @@ It reads only; it never writes into library/ or the meaning files.
 import argparse, json, os, re
 
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-PUNCT = re.compile(r"[।॥|,.;:!?\-—‘’“”'\"()\[\]०-९0-9]")   # the app's rule (tools/site/app.js)
+PUNCT = re.compile(r"[।॥|,.;:!?\-—‘’“”'\"()\[\]०-९੦-੯0-9]")   # the app's rule (tools/site/app.js): Devanagari and Gurmukhi digits are verse numbers
 
 def main():
     ap = argparse.ArgumentParser()

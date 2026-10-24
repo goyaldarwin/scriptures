@@ -101,6 +101,15 @@ def near_copies(t, u, min_words=8, ratio=0.75):   # shorter sentences that match
         if best[0] >= ratio: out.append((round(best[0], 2), ' '.join(a), ' '.join(best[1])))
     return out
 
+def phrase_share(t, u):
+    """Share of our three-word phrases that also occur in theirs. A sentence-by-sentence rewording with only the
+    subject or a word swapped keeps most of them, which a run count and the near-copy check miss (found in the
+    Sukhmani review, 2026-10-23: a pauri that reused six of ten sentences with only its refrain changed). Not
+    decisive alone — short verses and refrains share phrases naturally — so --report lists the highest for a reader."""
+    tri = lambda ws: [tuple(ws[i:i + 3]) for i in range(len(ws) - 2)]
+    a, b = tri(words(t)), set(tri(words(u)))
+    return sum(1 for g in a if g in b) / len(a) if a else 0.0
+
 def allowed():
     if not os.path.exists(ALLOW): return {}
     return {k: {' '.join(words(p)) for p in v} for k, v in json.load(open(ALLOW, encoding='utf-8')).items()}
@@ -142,6 +151,9 @@ def main(argv):
         print('longest shared run (words: verses):', dict(sorted(hist.items())))
         for k, run, c in sorted(res, key=lambda r: -r[2]):
             if c > 0.6: print(f'close {c:.2f} {k} (longest run {len(run)})')
+        ps = sorted(((phrase_share(ours[k], theirs[k]), k) for k, _, _ in res), reverse=True)
+        top = ps[:max(5, len(ps) // 6)]
+        print('highest shares of shared three-word phrases (read these beside theirs):', ', '.join(f'{k} {v:.2f}' for v, k in top))
     print(f'{len(res)} verses compared, {len(bad)} with a shared run of {a.n}+ words, {len(near)} sentences nearly theirs to read')
     return 1 if bad else 0
 
