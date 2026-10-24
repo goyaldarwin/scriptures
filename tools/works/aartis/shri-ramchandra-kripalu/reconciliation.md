@@ -1,9 +1,9 @@
-# Reconciliation: Śrī Rāma kī Āratī
+# Reconciliation: श्रीरामचन्द्र कृपालु
 
 ## Source
 The owner's printout (PDF, 23 October 2026) of jansatta.com, "श्री रामचंद्र जी की आरती, श्री राम चंद्र कृपालु भजमन हरण भव भय दारुणम्…" (Shivani Singh, updated 20 December 2024):
 https://www.jansatta.com/religion/shri-ram-ji-ki-aarti-lyrics-in-hindi-ram-siya-ram-siya-ram-jay-jay-ram-lyrics-in-hindi/3170131/
-It gives three āratīs: "श्री राम आरती" (the stuti श्रीरामचन्द्र कृपालु, followed by two verses of the Mānas), "श्री राम की दूसरी आरती" (आरती कीजे श्रीरामलला की) and "श्री राम की तीसरी आरती" (आरती कीजै रामचन्द्र जी की). It is the only witness for these texts. Copy for `scriptures-data`: `hinduism/aarti/rama/ram-aarti/printouts/jansatta/` (to add).
+It gives three āratīs: "श्री राम आरती" (the stuti श्रीरामचन्द्र कृपालु, followed by two verses of the Mānas), "श्री राम की दूसरी आरती" (आरती कीजे श्रीरामलला की) and "श्री राम की तीसरी आरती" (आरती कीजै रामचन्द्र जी की). It is the only witness for these texts. The three are separate works (owner, 2026-10-24: "the 3 ram aarti's are independent of each other"). Copy for `scriptures-data`: `hinduism/aarti/rama/ram-aarti/printouts/jansatta/` (to add).
 
 How it was read: the PDF's text layer (the page's own Unicode text), checked against the page images. A pop-up covers the first line of pages 3 and 4 in the images; those lines were read from the text layer by position (`pdftotext -bbox`), where the menu words that overlap them sit on a different baseline.
 
@@ -29,27 +29,6 @@ Kept as the page has them: भजु, दारुणं, कंदर्प, �
 
 ### The two Mānas verses after the stuti
 The page goes on with "मनु जाहिं राचेउ…" and the dohā "जानि गौरी अनुकूल…". These are the Mānas's Bāla-kāṇḍa chhand 236 and sorathā 236 (the page calls the sorathā a dohā). They are taken from our Mānas text (Gita Press), `[manas bal.236.cha1]` and `[manas bal.236.so236]`, never copied from the page, which has several slips: मिलहि (मिलिहि), सिलु (सीलु), एही (एहि), सिया (सिय), पूजी पुनिपुनि (पूजि पुनि पुनि), मन्दिरचली (मंदिर चली), गौरी (गौरि). Their meanings are the Mānas's: Gita Press in both languages until our own Mānas meanings reach Bāla 236.
-
-## 2. आरती कीजे श्रीरामलला की (language Awadhi, `awa`)
-The page prints 18 lines, each a caupāī (two half-lines of 16 mātrās). The first is the refrain (टेक); the other 17 are numbered caupāīs 1–17.
-
-| Line | Page | Ours | Why |
-|---|---|---|---|
-| टेक | पूण निपुण | पूरण निपुण | Broken word; पूरण makes the half-line 16 mātrās. |
-| 1 | धनुष वान | धनुष बान | Typing slip: बान (arrow); वान is not a word here. |
-| 5 | बखानैं (no end mark) | बखानैं ।। | The line's closing dandas are missing. |
-| 16 | कवनव भेदा | कवनउ भेदा | कवनव is not a word; कवनउ ("any at all") gives the sense "keeping no distinction" and the same 16 mātrās. **Open.** |
-
-Kept as the page has them: कीजे, धनुवेद, शोभा, वाम, शिव, शेष, यश (the page mixes श and स, व and ब; we did not regularise them), महु, बधाये, नैवेदा, नहि, तिहुपुर, विभीषन, दुःख.
-
-## 3. आरती कीजै रामचन्द्र जी की (language Hindi, `hi`)
-A refrain and five stanzas of two lines; the last names Nāmadeva. Corrections:
-
-| Stanza | Page | Ours | Why |
-|---|---|---|---|
-| 3 | रत्‍‌न | रत्न | The page's word carries invisible joiner characters (U+200D, U+200C); removed. |
-
-Kept: लाये, चहुं, पांचवीं, गावें, and "काली नाग नाथ" (the serpent Kāliya tamed, as the line means; our word meanings give काली and नाथ that sense in this work only, `senses.json`).
 
 ## Meanings
 Our own (`meanings/hi.json`, `en.json`), one per verse, because the page gives none. The meaning of the Kāliya line, "नाथ" as "tamed with a nose-rope", and of "मन दृढ़ करि नहि कवनउ भेदा" are interpretations.

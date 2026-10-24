@@ -1,0 +1,26 @@
+# The verse text. export.py (one folder up) reads this file.
+# Source: the owner's printout of jansatta.com, "श्री रामचंद्र जी की आरती" (three āratīs; this work is one of them). Every change from the page,
+# and the two Mānas verses taken from our Gita Press text instead of the page, are in reconciliation.md.
+#
+# == <section id> | <language> | <title hi> | <title en>
+# [<type> <number?>]   then the verse lines.   [manas <id>]   the Mānas's own verse, unchanged.
+# Item ids are <section id>.<type><number>, e.g. ramlala.cau3. They are permanent.
+
+== kripalu | bra | श्रीरामचन्द्र कृपालु (श्रीराम-स्तुति) | Śrī Rāmacandra Kṛpālu (Śrī Rāma Stuti)
+[cha 1]
+श्री रामचन्द्र कृपालु भजु मन हरण भव भय दारुणं ।
+नव कंजलोचन, कंज-मुख, कर-कंज, पद कंजारुणं ।।१।।
+[cha 2]
+कंदर्प अगणित अमित छबि नवनील-नीरद सुन्दरं ।
+पटपीत मानहु तडित रुचि शुचि नौमि जनक सुता वरं ।।२।।
+[cha 3]
+भजु दीनबंधु दिनेश दानव-दैत्यवंश-निकंदनं ।
+रघुनंद आनंदकंद कोशलचन्द दशरथ-नन्दनं ।।३।।
+[cha 4]
+सिर मुकुट कुंडल तिलक चारु उदारु अंग विभूषणं ।
+आजानुभुज शर-चाप-धर संग्राम-जित-खरदूषणं ।।४।।
+[cha 5]
+इति वदति तुलसीदास शंकर-शेष-मुनि-मन रंजनं ।
+मम हृदय-कंज निवास कुरु कामादि खलदल-गंजनं ।।५।।
+[manas bal.236.cha1]
+[manas bal.236.so236]

@@ -145,21 +145,49 @@
        "en": "Śrī Rāma"
       },
       "desc": {
-       "hi": "श्रीरामकी आरती",
-       "en": "Śrī Rāma kī Āratī"
+       "hi": "श्रीरामचन्द्र कृपालु · आरती कीजे श्रीरामलला की · आरती कीजै रामचन्द्र जी की",
+       "en": "Śrī Rāmacandra Kṛpālu · Āratī Kīje Śrī Rāmalalā Kī · Āratī Kījai Rāmacandra Jī Kī"
       },
       "children": [
        {
-        "id": "ram-aarti",
-        "work": "ram-aarti",
-        "path": "hinduism/aarti/rama/ram-aarti",
+        "id": "shri-ramchandra-kripalu",
+        "work": "shri-ramchandra-kripalu",
+        "path": "hinduism/aarti/rama/shri-ramchandra-kripalu",
         "title": {
-         "hi": "श्रीरामकी आरती",
-         "en": "Śrī Rāma kī Āratī"
+         "hi": "श्रीरामचन्द्र कृपालु",
+         "en": "Śrī Rāmacandra Kṛpālu"
         },
         "desc": {
-         "hi": "श्रीरामचन्द्र कृपालु · आरती कीजे श्रीरामलला की · आरती कीजै रामचन्द्र जी की",
-         "en": "Śrī Rāmacandra Kṛpālu · Āratī Kīje Śrī Rāmalalā Kī · Āratī Kījai Rāmacandra Jī Kī"
+         "hi": "गोस्वामी तुलसीदास · श्रीराम-स्तुति",
+         "en": "Gosvāmī Tulasīdāsa · Śrī Rāma Stuti"
+        },
+        "salute": "॥ जय श्रीराम ॥"
+       },
+       {
+        "id": "ramlala-aarti",
+        "work": "ramlala-aarti",
+        "path": "hinduism/aarti/rama/ramlala-aarti",
+        "title": {
+         "hi": "आरती कीजे श्रीरामलला की",
+         "en": "Āratī Kīje Śrī Rāmalalā Kī"
+        },
+        "desc": {
+         "hi": "पूरण निपुण धनुवेद कला की",
+         "en": "Pūraṇa nipuṇa dhanuveda kalā kī"
+        },
+        "salute": "॥ जय श्रीराम ॥"
+       },
+       {
+        "id": "ramchandra-aarti",
+        "work": "ramchandra-aarti",
+        "path": "hinduism/aarti/rama/ramchandra-aarti",
+        "title": {
+         "hi": "आरती कीजै रामचन्द्र जी की",
+         "en": "Āratī Kījai Rāmacandra Jī Kī"
+        },
+        "desc": {
+         "hi": "संत नामदेव",
+         "en": "Saint Nāmadeva"
         },
         "salute": "॥ जय श्रीराम ॥"
        }
