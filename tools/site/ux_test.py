@@ -642,11 +642,11 @@ async def main():
         await ev("S.settings.tr = false; save(); refreshReader()")
         check('More › Transliteration turns the Roman text on under the verses; the capsule keeps its four buttons', cap == [True, True, 4], cap)
         pin = await ev("""(async () => { S.timing.on = false; applyTiming(); await openWork('manas', true); show('home'); openReader('k', 30); await new Promise(r => setTimeout(r, 700));
-            PL.on = true; PL.cur = -1; setCur(34); await new Promise(r => setTimeout(r, 1200));
-            const bar = document.querySelector('#reader .bar').getBoundingClientRect().bottom, v = document.getElementById('v34'), pv = v.previousElementSibling;
+            stopAudio(); ytOK = false; PL.seekT = null; PL.on = true; PL.cur = -1; let err = ''; try { setCur(34); } catch (e) { err = String(e); } await new Promise(r => setTimeout(r, 1200));   // a quiet player: the tick must not move the light meanwhile (it did on CI)
+            const bar = document.querySelector('#reader .bar').getBoundingClientRect().bottom, v = document.getElementById('v34'); if (!v){ PL.on = false; return ['no v34', err, CURVIEW, R.a, R.b, document.querySelectorAll('#rBody .verse').length, PL.cur, !!SRC.au, W && W.id]; } const pv = v.previousElementSibling;
             const t = (pv && pv.classList.contains('vtype') ? pv : v).getBoundingClientRect().top, nx = document.getElementById('v35').getBoundingClientRect().top;
             PL.on = false; return [Math.round(t - bar), nx < innerHeight]; })()""")
-        check('playing: the verse being recited is kept at the top, the next verse in view below it', 0 <= pin[0] <= 12 and pin[1], pin)
+        check('playing: the verse being recited is kept at the top, the next verse in view below it', pin[0] != 'no v34' and 0 <= pin[0] <= 12 and pin[1], pin)
         # one caupāī per item: Gita Press's joint caupāīs are split; old ids, places and notes follow
         sp = await ev("""(async () => { W = null; await openWork('manas', true); const hi = SRC.hi, m = id => ((hi && hi.m[id]) || [''])[0];
             return [ID['bal.6.cau3-5'] == null, ['bal.6.cau3', 'bal.6.cau4', 'bal.6.cau5'].every(id => ID[id] != null), /चौपाई ५/.test(m('bal.6.cau3')), /३-५/.test(m('bal.6.cau5')), IT[ID['bal.6.cau5']].v.length]; })()""")

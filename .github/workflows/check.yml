@@ -24,4 +24,7 @@ jobs:
       - name: smoke test (every work opens in a browser)
         run: python tools/site/smoke_test.py
       - name: navigation and reading experience (every work, phone size)
-        run: python tools/site/ux_test.py
+        # every failed check becomes an annotation, readable through the API (the raw log is not reachable from a Claude session)
+        run: |
+          python tools/site/ux_test.py 2>&1 | tee /tmp/ux.txt; rc=${PIPESTATUS[0]}
+          grep -E '^FAIL|Error|error' /tmp/ux.txt | head -20 | sed 's/^/::error::/'; tail -n 3 /tmp/ux.txt | sed 's/^/::notice::/'; exit $rc
