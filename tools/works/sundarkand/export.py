@@ -155,12 +155,16 @@ for lg in ('hi', 'en'):
     miss = [i for i in new_ids if not D.get(i)]; extra = [k for k in D if k not in new_ids]
     assert not miss and not extra, f'{lg} meanings: missing {miss[:5]}, unknown {extra[:5]}'
     MS = load(f'{MANAS}/meanings/{lg}-scriptures.json')
-    assert {k: v for k, v in MS.items() if k != 'm'} == {'id': lg + '-scriptures', 'lang': lg, 'order': 2, 'title': TITLES[lg]}, f'{lg}: the Mānas source header differs'
-    m = {}
+    assert {k: v for k, v in MS.items() if k not in ('m', 'p')} == {'id': lg + '-scriptures', 'lang': lg, 'order': 2, 'title': TITLES[lg]}, f'{lg}: the Mānas source header differs'
+    m, pcs = {}, {}
     for i in ids:
-        if i in new_ids: m[i] = [versenum.with_number(D[i], BYID[i], lg)]
-        elif i in MS['m']: m[i] = MS['m'][i]
-    dump(f'{WP}/meanings/{lg}-scriptures.json', {'id': lg + '-scriptures', 'lang': lg, 'order': ORDER['scriptures'], 'title': TITLES[lg], 'm': m})
+        if i in new_ids:
+            t, ps = versenum.text_and_pieces(D[i], BYID[i], lg); m[i] = [t]
+            if ps: pcs[i] = ps
+        elif i in MS['m']:
+            m[i] = MS['m'][i]
+            if i in MS.get('p', {}): pcs[i] = MS['p'][i]   # line by line, as the Mānas gives it
+    dump(f'{WP}/meanings/{lg}-scriptures.json', {'id': lg + '-scriptures', 'lang': lg, 'order': ORDER['scriptures'], 'title': TITLES[lg], 'm': m, **({'p': pcs} if pcs else {})})
     assert all(x['id'] in m for x in items), f'{lg}-scriptures must cover every verse, as the default source'
     print(f"{lg}-scriptures: {sum(1 for i in m if i not in new_ids)} Mānas verses + {len(new_ids)} of its own")
 

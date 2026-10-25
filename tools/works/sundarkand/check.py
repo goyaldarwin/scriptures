@@ -33,14 +33,15 @@ OT = json.load(open(os.path.join(REPO, 'tools/works/ramcharitmanas/meanings/topi
 bad += [f"topic {t['id']} is not our heading" for t in S['topics'] if t['id'] in ids and (t['hi'], t['en']) != (OT.get(t['id'], {}).get('hi'), OT.get(t['id'], {}).get('en'))]
 for sid in ('hi-gitapress', 'en-gitapress'):
     a, b = L(f'{MP}/meanings/{sid}.json'), L(f'{SP}/meanings/{sid}.json')
-    if {k: v for k, v in a.items() if k not in ('m', 'order')} != {k: v for k, v in b.items() if k not in ('m', 'order')}: bad.append(f'{sid}: header differs')   # the order (which is the default) is the work's own
+    if {k: v for k, v in a.items() if k not in ('m', 'p', 'order')} != {k: v for k, v in b.items() if k not in ('m', 'p', 'order')}: bad.append(f'{sid}: header differs')   # the order (which is the default) is the work's own
     want = ids | {x['id'] for x in pulled}
     if {i: a['m'][i] for i in want if i in a['m']} != b['m']: bad.append(f'{sid}: meanings differ')
 for sid in ('hi-scriptures', 'en-scriptures'):   # our own: the Mānas's entries for its verses, copied unchanged
     a, b = L(f'{MP}/meanings/{sid}.json'), L(f'{SP}/meanings/{sid}.json')
-    if {k: v for k, v in a.items() if k not in ('m', 'order')} != {k: v for k, v in b.items() if k not in ('m', 'order')}: bad.append(f'{sid}: header differs')   # the order (which is the default) is the work's own
+    if {k: v for k, v in a.items() if k not in ('m', 'p', 'order')} != {k: v for k, v in b.items() if k not in ('m', 'p', 'order')}: bad.append(f'{sid}: header differs')   # the order (which is the default) is the work's own
     want = ids | {x['id'] for x in pulled}
     if {i: a['m'][i] for i in want if i in a['m']} != {i: v for i, v in b['m'].items() if i in want}: bad.append(f'{sid}: meanings differ')
+    if {i: v for i, v in a.get('p', {}).items() if i in want} != {i: v for i, v in b.get('p', {}).items() if i in want}: bad.append(f'{sid}: line-by-line pieces differ')
 # our own meanings are this work's default (owner, 2026-10-19): a lower order than Gita Press's
 o = {s: L(f'{SP}/meanings/{s}.json').get('order') for s in ('hi-gitapress', 'en-gitapress', 'hi-scriptures', 'en-scriptures')}
 if not (o['hi-scriptures'] < o['hi-gitapress'] and o['en-scriptures'] < o['en-gitapress']): bad.append(f'our meanings must be the default here (lower order): {o}')

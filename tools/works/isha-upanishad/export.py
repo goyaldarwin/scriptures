@@ -15,6 +15,7 @@ Then run tools/site/build.py.
 """
 import json, os, re, sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..')); import jsonio
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'meanings')); import versenum as vnum
 
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.dirname(os.path.dirname(os.path.dirname(HERE)))
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(REPO, 'library')
@@ -56,6 +57,8 @@ def meanings(lang, title):
     M = json.load(open(os.path.join(HERE, 'meanings', lang + '.json'), encoding='utf-8'))
     m = {k: v for k, v in M.items() if not k.startswith('_')}
     assert set(m) == ids, (lang, ids ^ set(m))
+    I = {x['id']: x for x in items}   # the verse's number at the end of its meaning, as in the other works (owner, 2026-10-24)
+    m = {k: [vnum.with_number(v[0], I[k], lang)] + v[1:] for k, v in m.items()}
     dump(WP + '/meanings/%s-scriptures.json' % lang, {'id': lang + '-scriptures', 'lang': lang, 'order': 1, 'title': title, 'm': m})
     return m
 hi = meanings('hi', {'hi': 'भावार्थ — शास्त्र', 'en': 'Hindi meaning — Scriptures'})

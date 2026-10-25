@@ -29,10 +29,16 @@ def mark(item):
 
 def latin(s): return re.sub('[०-९]', lambda d: str(DEV.index(d.group())), s)
 
-def with_number(text, item, lang):
-    """The meaning as shown: text, a space, the verse's number (if any)."""
+def mark_n(item):
+    """'।।१.१।।' from the item's own number n, for works whose verses carry no mark of their own (the Śrī Rudram
+    numbers its mantras anuvāka.mantra and marks only an anuvāka's end)."""
+    n = str(item.get('n') or '')
+    return '।।' + re.sub(r'\d', lambda d: DEV[int(d.group())], n) + '।।' if n else ''
+
+def with_number(text, item, lang, by_n=False):
+    """The meaning as shown: text, a space, the verse's number (if any). by_n: the number is the item's n."""
     assert not _HAS.search(text), f'{item["id"]}: the meaning file must not carry a verse number: {text[-20:]}'
-    m = mark(item)
+    m = mark_n(item) if by_n else mark(item)
     if not m: return text
     return f'{text} {latin(m) if lang == "en" else m}'
 
