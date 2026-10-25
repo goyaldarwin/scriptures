@@ -642,7 +642,7 @@ async def main():
         await ev("S.settings.tr = false; save(); refreshReader()")
         check('More › Transliteration turns the Roman text on under the verses; the capsule keeps its four buttons', cap == [True, True, 4], cap)
         pin = await ev("""(async () => { S.timing.on = false; applyTiming(); await openWork('manas', true); show('home'); openReader('k', 30); await new Promise(r => setTimeout(r, 700));
-            PL.on = true; PL.cur = -1; let err = ''; try { setCur(34); } catch (e) { err = String(e); } await new Promise(r => setTimeout(r, 1200));
+            stopAudio(); ytOK = false; PL.seekT = null; PL.on = true; PL.cur = -1; let err = ''; try { setCur(34); } catch (e) { err = String(e); } await new Promise(r => setTimeout(r, 1200));   // a quiet player: the tick must not move the light meanwhile (it did on CI)
             const bar = document.querySelector('#reader .bar').getBoundingClientRect().bottom, v = document.getElementById('v34'); if (!v){ PL.on = false; return ['no v34', err, CURVIEW, R.a, R.b, document.querySelectorAll('#rBody .verse').length, PL.cur, !!SRC.au, W && W.id]; } const pv = v.previousElementSibling;
             const t = (pv && pv.classList.contains('vtype') ? pv : v).getBoundingClientRect().top, nx = document.getElementById('v35').getBoundingClientRect().top;
             PL.on = false; return [Math.round(t - bar), nx < innerHeight]; })()""")
