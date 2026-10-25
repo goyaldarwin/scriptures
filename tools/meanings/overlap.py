@@ -33,7 +33,7 @@ import json, os, re, sys, unicodedata
 HERE = os.path.dirname(os.path.abspath(__file__))
 ALLOW = os.path.join(HERE, 'overlap_allow.json')
 
-_PUNCT = re.compile(r"[।॥|,.;:!?\-–—‘’“”'\"()\[\]{}<>/\\*_…·•]|[०-९0-9]+")
+_PUNCT = re.compile(r"[।॥|,.;:!?\-–—‘’“”'\"()\[\]{}<>/\\*_…·•]|[०-९੦-੯0-9]+")
 _JOIN = re.compile('[‌‍]')
 
 def words(text):
@@ -44,6 +44,7 @@ def words(text):
 
 def text_of(v):
     if isinstance(v, str): return v
+    if isinstance(v, list) and v and all(isinstance(x, str) for x in v): return ' '.join(x for x in v if x.strip())   # line by line: one piece per verse line
     if isinstance(v, list) and v and isinstance(v[0], str): return v[0]
     return ''
 

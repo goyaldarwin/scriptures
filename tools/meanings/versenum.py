@@ -40,6 +40,7 @@ def with_number(text, item, lang, by_n=False):
     assert not _HAS.search(text), f'{item["id"]}: the meaning file must not carry a verse number: {text[-20:]}'
     m = mark_n(item) if by_n else mark(item)
     if not m: return text
+    if lang == 'pa': m = re.sub('[०-९]', lambda d: GUR[DEV.index(d.group())], m)   # a Punjabi meaning: Gurmukhi digits
     return f'{text} {latin(m) if lang == "en" else m}'
 
 def text_and_pieces(value, item, lang):
