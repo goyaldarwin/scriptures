@@ -14,6 +14,7 @@ Then run tools/site/build.py.
 """
 import glob, json, os, re, sys, unicodedata
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..')); import jsonio
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'meanings')); import versenum as vnum
 
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.dirname(os.path.dirname(os.path.dirname(HERE)))
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(REPO, 'library')
@@ -88,12 +89,13 @@ def layer(lang):
     out = {}
     for x in items:
         e = M[x['id']]; f = e.get('f' + lang)
-        out[x['id']] = [e[lang], f] if f else [e[lang]]
+        t = vnum.with_number(e[lang], x, lang, by_n=True)   # the mantra's number, as in the other works (owner, 2026-10-24)
+        out[x['id']] = [t, f] if f else [t]
     return out
 dump(WP + '/meanings/en-scriptures.json', {'id': 'en-scriptures', 'lang': 'en', 'order': 1,
-     'title': {'hi': 'शास्त्र — अंग्रेज़ी अर्थ', 'en': 'Scriptures — English meaning'}, 'm': layer('en')})
+     'title': {'hi': 'अंग्रेज़ी अर्थ — शास्त्र', 'en': 'English meaning — Scriptures'}, 'm': layer('en')})
 dump(WP + '/meanings/hi-scriptures.json', {'id': 'hi-scriptures', 'lang': 'hi', 'order': 1,
-     'title': {'hi': 'शास्त्र — हिंदी अर्थ', 'en': 'Scriptures — Hindi meaning'}, 'm': layer('hi')})
+     'title': {'hi': 'भावार्थ — शास्त्र', 'en': 'Hindi meaning — Scriptures'}, 'm': layer('hi')})
 
 # ---- word meanings ----
 W = json.load(open(os.path.join(HERE, 'glossary', 'work_sa.json'), encoding='utf-8')); W.pop('_', None)

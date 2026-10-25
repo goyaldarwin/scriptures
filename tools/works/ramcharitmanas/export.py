@@ -127,9 +127,9 @@ OWN = {lg: json.load(open(os.path.join(HERE, 'meanings', lg + '.json'), encoding
 BYID = {x['id']: x for x in items}
 assert set(OWN['hi']) == set(OWN['en']), f"hi and en differ: {sorted(set(OWN['hi']) ^ set(OWN['en']))[:10]}"
 assert all(k in BYID for k in OWN['hi']), f"unknown ids: {[k for k in OWN['hi'] if k not in BYID][:10]}"
-assert all(v.strip() for D in OWN.values() for v in D.values()), 'empty meaning'
+assert all(vnum.joined(v).strip() for D in OWN.values() for v in D.values()), 'empty meaning'
 for lg, G in (('hi', hi), ('en', en)):
-    res = overlap.check(OWN[lg], {k: v[0] for k, v in G.items()})
+    res = overlap.check({k: vnum.joined(v) for k, v in OWN[lg].items()}, {k: v[0] for k, v in G.items()})
     bad = [r for r in res if len(r[1]) >= 10]
     assert not bad, f'{lg}: {len(bad)} meanings share 10+ words with Gita Press, e.g. {bad[0][0]}: {" ".join(bad[0][1])}'
     note = [r for r in res if len(r[1]) >= 6]
@@ -138,8 +138,9 @@ TITLES = {'hi': {'hi': 'भावार्थ — शास्त्र', 'en': 
           'en': {'hi': 'अंग्रेज़ी अर्थ — शास्त्र', 'en': 'English meaning — Scriptures'}}
 order_ids = [x['id'] for x in items]
 for lg in ('hi', 'en'):
-    m = {i: [vnum.with_number(OWN[lg][i], BYID[i], lg)] for i in order_ids if i in OWN[lg]}
-    sizes[lg + '-ours'] = dump(f'{WP}/meanings/{lg}-scriptures.json', {'id': lg + '-scriptures', 'lang': lg, 'order': 2, 'title': TITLES[lg], 'm': m})
+    TP = {i: vnum.text_and_pieces(OWN[lg][i], BYID[i], lg) for i in order_ids if i in OWN[lg]}   # a list = line by line
+    m = {i: [t[0]] for i, t in TP.items()}; pcs = {i: t[1] for i, t in TP.items() if t[1]}
+    sizes[lg + '-ours'] = dump(f'{WP}/meanings/{lg}-scriptures.json', {'id': lg + '-scriptures', 'lang': lg, 'order': 2, 'title': TITLES[lg], 'm': m, **({'p': pcs} if pcs else {})})
 print(f"our own meanings: {len(OWN['hi'])} verses in Hindi and English")
 print(f"{len(JOINT)} joint caupāīs split into {sum(len(v) for v in JOINT.values())} items")
 

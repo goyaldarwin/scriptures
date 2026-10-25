@@ -2301,52 +2301,11 @@
 ]
 },
 {
-"id": "namakam.uttara.u3",
-"p": 0,
-"s": "nam-uttara",
-"y": "uttara",
-"n": "3",
-"v": [
-"तमु॑ ष्टु॒हि॒ य-स्स्वि॒षुस्सु॒धन्वा॒ यो विश्व॑स्य॒ क्षय॑ति भेष॒जस्य॑ ।"
-],
-"t": [
-"tamu̍ ṣṭu̠hi̠ ya-ssvi̠ṣussu̠dhanvā̠ yo viśva̍sya̠ kṣaya̍ti bheṣa̠jasya̍,"
-]
-},
-{
-"id": "namakam.uttara.u4",
-"p": 0,
-"s": "nam-uttara",
-"y": "uttara",
-"n": "4",
-"v": [
-"यक्ष्वा᳚म॒हे सौ᳚मन॒साय॑ रु॒द्र-न्नमो᳚भिर्दे॒वमसु॑र-न्दुवस्य ।"
-],
-"t": [
-"yakṣvā̎ma̠he sau̎mana̠sāya̍ ru̠dra-nnamo̎bhirde̠vamasu̍ra-nduvasya,"
-]
-},
-{
-"id": "namakam.uttara.u5",
-"p": 0,
-"s": "nam-uttara",
-"y": "uttara",
-"n": "5",
-"v": [
-"अ॒य-म्मे॒ हस्तो॒ भग॑वान॒य-म्मे॒ भग॑वत्तरः ।",
-"अ॒य-म्मे᳚ वि॒श्वभे᳚षजो॒-ऽयग्ं शि॒वाभि॑मर्शनः ।"
-],
-"t": [
-"a̠ya-mme̠ hasto̠ bhaga̍vāna̠ya-mme̠ bhaga̍vattaraḥ,",
-"a̠ya-mme̎ vi̠śvabhe̎ṣajo̠-’yagṁ śi̠vābhi̍marśanaḥ,"
-]
-},
-{
 "id": "namakam.uttara.u6",
 "p": 0,
 "s": "nam-uttara",
 "y": "uttara",
-"n": "6",
+"n": "3",
 "v": [
 "ये ते॑ स॒हस्र॑म॒युत॒-म्पाशा॒ मृत्यो॒ मर्त्या॑य॒ हन्त॑वे ।",
 "तान् य॒ज्ञस्य॑ मा॒यया॒ सर्वा॒नव॑ यजामहे ।"
@@ -2361,7 +2320,7 @@
 "p": 0,
 "s": "nam-uttara",
 "y": "uttara",
-"n": "7",
+"n": "4",
 "v": [
 "मृ॒त्यवे॒ स्वाहा॑ मृ॒त्यवे॒ स्वाहा᳚ ।।११।।"
 ],
@@ -2374,7 +2333,7 @@
 "p": 0,
 "s": "nam-uttara",
 "y": "uttara",
-"n": "8",
+"n": "5",
 "v": [
 "ओ-न्नमो भगवते रुद्राय विष्णवे मृत्यु॑र्मे पा॒हि ।।",
 "प्राणाना-ङ्ग्रन्थिरसि रुद्रो मा॑ विशा॒न्तकः ।",
@@ -2386,6 +2345,47 @@
 "prāṇānā-ṅgranthirasi rudro mā̍ viśā̠ntakaḥ,",
 "tenānnenā̎pyāya̠sva ॥",
 "namo rudrāya viṣṇave mṛtyu̍rme pā̠hi ॥"
+]
+},
+{
+"id": "namakam.uttara.u3",
+"p": 0,
+"s": "nam-uttara",
+"y": "uttara",
+"n": "6",
+"v": [
+"तमु॑ ष्टु॒हि॒ य-स्स्वि॒षुस्सु॒धन्वा॒ यो विश्व॑स्य॒ क्षय॑ति भेष॒जस्य॑ ।"
+],
+"t": [
+"tamu̍ ṣṭu̠hi̠ ya-ssvi̠ṣussu̠dhanvā̠ yo viśva̍sya̠ kṣaya̍ti bheṣa̠jasya̍,"
+]
+},
+{
+"id": "namakam.uttara.u4",
+"p": 0,
+"s": "nam-uttara",
+"y": "uttara",
+"n": "7",
+"v": [
+"यक्ष्वा᳚म॒हे सौ᳚मन॒साय॑ रु॒द्र-न्नमो᳚भिर्दे॒वमसु॑र-न्दुवस्य ।"
+],
+"t": [
+"yakṣvā̎ma̠he sau̎mana̠sāya̍ ru̠dra-nnamo̎bhirde̠vamasu̍ra-nduvasya,"
+]
+},
+{
+"id": "namakam.uttara.u5",
+"p": 0,
+"s": "nam-uttara",
+"y": "uttara",
+"n": "8",
+"v": [
+"अ॒य-म्मे॒ हस्तो॒ भग॑वान॒य-म्मे॒ भग॑वत्तरः ।",
+"अ॒य-म्मे᳚ वि॒श्वभे᳚षजो॒-ऽयग्ं शि॒वाभि॑मर्शनः ।"
+],
+"t": [
+"a̠ya-mme̠ hasto̠ bhaga̍vāna̠ya-mme̠ bhaga̍vattaraḥ,",
+"a̠ya-mme̎ vi̠śvabhe̎ṣajo̠-’yagṁ śi̠vābhi̍marśanaḥ,"
 ]
 },
 {

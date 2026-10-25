@@ -156,6 +156,19 @@ if __name__ == '__main__':
         for a_, b_ in ITEM_FIX.get(x['id'], []):
             assert sum(l.count(a_) for l in x['v']) == 1, (x['id'], a_)
             x['v'] = [l.replace(a_, b_) for l in x['v']]; x['t'] = [deva2iast(l) for l in x['v']]
+    # the closing mantras of the Namakam in the order the recording sings them (owner, 2026-10-24: "the ending verses
+    # are jumbled up and don't match the order in the recording"): Shlokam's recording sings u1 u2 u6 u7 u8 and then
+    # u3 u4 u5 (तमु ष्टुहि, यक्ष्वामहे, अयं मे हस्तो) before the śānti; the printout lists u3–u5 after u2. The ids stay; the
+    # printed numbers follow the new order. Recorded in reconciliation.md.
+    ORDER_FIX = {'namakam.uttara.u8': ['namakam.uttara.u3', 'namakam.uttara.u4', 'namakam.uttara.u5']}
+    for after, moved in ORDER_FIX.items():
+        mv = [next(x for x in items if x['id'] == m) for m in moved]
+        items = [x for x in items if x['id'] not in moved]
+        k = next(i for i, x in enumerate(items) if x['id'] == after) + 1
+        items[k:k] = mv
+    ut = [x for x in items if x['id'].startswith('namakam.uttara.u')]
+    for k, x in enumerate(ut, 1): x['n'] = str(k)
+    assert [x['id'][-2:] for x in ut] == ['u1', 'u2', 'u6', 'u7', 'u8', 'u3', 'u4', 'u5']
     # witness check: every block's settled Devanagari against the page's transliteration, conventions folded
     json.dump(items, open(os.path.join(HERE, '..', 'text.json'), 'w'), ensure_ascii=False, indent=0)
     print(len(N), 'Namakam items,', len(C), 'Chamakam items')
