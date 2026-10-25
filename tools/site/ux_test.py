@@ -792,6 +792,30 @@ async def main():
             const r3 = [u.querySelectorAll('.vline').length === 0, u.querySelectorAll('.vtext').length === 1];
             SRC.hi.p = keep.h; SRC.en.p = keep.e; return [...r1, ...r2, ...r3]; })()""")
         check('meanings line by line: each piece under its line; a source without pieces shows whole after the verse; none at all keeps the verse whole', all(lbl), lbl)
+        # a third meaning language (owner, 2026-10-24): with a Punjabi source the capsule shows ਪੰ · En (English app) or ਪੰ · हिं
+        # (Hindi app), always four places; Punjabi pieces sit under their lines; Sources lists it and "Meanings in the bar";
+        # search finds it; recitation mode turns it off too
+        pa = await ev("""(async () => { await openWork('sukhmani-sahib', true); show('home'); const S0 = JSON.stringify(S.settings);
+            S.settings.ui = 'en'; S.settings.layers = {h: false, e: true, w: false, pa: true}; S.settings.recite = false; delete S.settings.pair;
+            const i = IT.findIndex(x => x.id === 'a01.p3'), it = IT[i], n = it.v.length;
+            W.sources.pa = [{id: 'pa-test', file: 'meanings/pa-test', title: {hi: 'परीक्षा', en: 'Test'}}];
+            SRC.pa = {meta: W.sources.pa[0], id: 'pa-test', m: {[it.id]: ['ਪਰਖ ਅਰਥ ਸਾਰਾ']}, p: {[it.id]: it.v.map((_, k) => 'ਪਰਖ' + k)}}; IDX = null;
+            syncLayers(); openReader('k', i); await new Promise(r => setTimeout(r, 400));
+            const cap = () => [...document.querySelectorAll('#rLayers button')].map(b => b.textContent.trim() || b.dataset.l).join('·');
+            const c1 = cap();
+            const d = document.createElement('div'); d.innerHTML = verseHTML(i); const v = d.firstElementChild;
+            const lay = [v.querySelectorAll('.layer.pa').length === n, v.querySelector('.vline + .layer.pa') != null, v.querySelectorAll('.layer.e').length > 0];
+            S.settings.ui = 'hi'; syncLayers(); const c2 = cap();
+            S.settings.pair = 'hi,en'; syncLayers(); const c3 = cap(); delete S.settings.pair; S.settings.ui = 'en'; syncLayers();
+            show('settings'); await new Promise(r => setTimeout(r, 200));
+            const srcs = [!!document.querySelector('#setBody [data-src="pa"]'), [...document.querySelectorAll('#sPair option')].map(o => o.textContent).join('|')];
+            openSearch('text'); document.querySelector('#q').value = 'ਪਰਖ ਅਰਥ'; runSearch(); const found = document.querySelectorAll('#sRes .res').length > 0 && !document.querySelector('#scope [data-s="pa"]').hidden;
+            toggleRecite(); const off = !S.settings.layers.pa; toggleRecite(); const back = !!S.settings.layers.pa;
+            delete W.sources.pa; SRC.pa = null; IDX = null; S.settings = JSON.parse(S0); syncLayers(); save(); show('home');
+            return {c1, c2, c3, lay, srcs, found, off, back}; })()""")
+        check('a third meaning language: ਪੰ · En in an English app, ਪੰ · हिं in a Hindi one, हिं · En when chosen; four places', pa['c1'].split('·')[:2] == ['ਪੰ', 'En'] and pa['c2'].split('·')[:2] == ['ਪੰ', 'हिं'] and pa['c3'].split('·')[:2] == ['हिं', 'En'] and len(pa['c1'].split('·')) == 4, pa)
+        check('a third meaning language: its pieces under their lines, listed in Sources with "Meanings in the bar", searchable, off in recitation mode',
+              all(pa['lay']) and pa['srcs'][0] and pa['srcs'][1].split('|') == ['ਪੰ · En', 'ਪੰ · हिं', 'हिं · En'] and pa['found'] and pa['off'] and pa['back'], pa)
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')

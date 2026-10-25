@@ -21,6 +21,22 @@ async function getJSON(path){
   const r = await fetch('library/' + path + '.json', {cache: 'no-cache'}); if (!r.ok) throw new Error(path); return r.json();
 }
 let LIB = [], LANGS = {}, GL = {}, WG = {}, ALT = {hi: [], en: []}, W = null, IT = [], ID = {}, SRC = {hi: null, en: null, au: null};
+// meaning languages (owner, 2026-10-24): every language with a "meaning" block in glossary/languages.json (हिं, En, ਪੰ),
+// in its order. A layer's switch is S.settings.layers[LK(kind)]: h and e as before (old phones' settings read unchanged), else the code.
+const MK = () => { const k = Object.keys(LANGS).filter(c => LANGS[c].meaning).sort((a, b) => (LANGS[a].meaning.order || 100) - (LANGS[b].meaning.order || 100)); return k.length ? k : ['hi', 'en']; };
+const LK = kind => kind === 'hi' ? 'h' : kind === 'en' ? 'e' : kind;
+const LCLS = kind => kind === 'hi' ? 'h' : kind === 'en' ? 'e' : 'x ' + kind;   // a meaning layer's class in the reader
+// the work's meaning languages (those it has a source in); the two in the header capsule (always four places: two meaning
+// switches, शब्द, 📖 — owner, 2026-10-24): हिं · En, or with a third language the reader's chosen pair, by default ਪੰ · En in
+// an English app and ਪੰ · हिं in a Hindi one
+function workKinds(){ return W ? MK().filter(k => ((W.sources || {})[k] || []).length) : []; }
+function pairOptions(){ const ks = workKinds(), extra = ks.filter(k => k !== 'hi' && k !== 'en'), out = [];
+  extra.forEach(x => { out.push([x, 'en'], [x, 'hi']); }); out.push(['hi', 'en']); for (let a = 0; a < extra.length; a++) for (let b = a + 1; b < extra.length; b++) out.push([extra[a], extra[b]]);
+  return out.filter(p => p.every(k => ks.includes(k) || k === 'hi' || k === 'en')); }
+function capKinds(){ const ks = workKinds(); if (ks.filter(k => k !== 'hi' && k !== 'en').length === 0) return ['hi', 'en'];
+  const opts = pairOptions(), sel = (S.settings.pair || '').split(','), ok = opts.find(p => p.join(',') === sel.join(','));
+  return ok || opts.find(p => p[1] === (S.settings.ui === 'hi' ? 'hi' : 'en')) || opts[0]; }
+const LBM = kind => kind === 'hi' ? LB.h() : kind === 'en' ? LB.e() : TT((LANGS[kind] && LANGS[kind].meaning || {}).name || {hi: kind, en: kind}) + T(' अर्थ', ' meaning');
 
 /* ---------------- personal store ---------------- */
 const LS = 'manas.personal.v1';
@@ -199,7 +215,7 @@ function wordsHTML(line){
 }
 function wordList(lines){ const seen = new Set(), out = []; lines.forEach(l => l.split(/\s+/).forEach(t => { const w = cleanWord(t); if (w && !seen.has(w)){ seen.add(w); out.push(w); } })); return out; }
 function wbHTML(lines, lang){
-  return '<div class="wb">' + wordList(lines).map(w => { const g = lookup(w, lang); if (!g || g.none) return ''; const m = esc(g.hi || '') + (g.en ? ' <span class="en">· ' + esc(g.en) + '</span>' : '') + (g.possible ? ' <span class="q">(' + esc(g.possible) + ')</span>' : ''); return '<span class="ww w" data-w="' + esc(w) + '">' + esc(w) + '</span><span class="wm">' + m + '</span>'; }).join('') + '</div>';
+  return '<div class="wb">' + wordList(lines).map(w => { const g = lookup(w, lang); if (!g || g.none) return ''; const m = (g.pa && layerOn('pa') ? '<span class="gur">' + esc(g.pa) + '</span> · ' : '') + esc(g.hi || '') + (g.en ? ' <span class="en">· ' + esc(g.en) + '</span>' : '') + (g.possible ? ' <span class="q">(' + esc(g.possible) + ')</span>' : ''); return '<span class="ww w" data-w="' + esc(w) + '">' + esc(w) + '</span><span class="wm">' + m + '</span>'; }).join('') + '</div>';
 }
 function wordSheet(raw, alt, lang){
   const w = cleanWord(raw); const g = (alt && alt[w]) || lookup(raw, lang);
@@ -207,7 +223,7 @@ function wordSheet(raw, alt, lang){
   if (g && !g.none && g.lang && LANGS[g.lang]) h += '<p class="small muted">' + esc(TT(LANGS[g.lang].name)) + '</p>';
   if (g && !g.none){
     if (g.possible) h += '<p class="small muted">' + T('मूल शब्द: ', 'Root: ') + '<b>' + esc(g.possible) + '</b></p>';
-    h += '<dl class="kv">' + (g.r && g.r !== w ? '<dt>' + T('मूल', 'Root') + '</dt><dd>' + esc(g.r) + '</dd>' : '') + '<dt>' + T('हिंदी', 'Hindi') + '</dt><dd>' + esc(g.hi || '—') + '</dd><dt>English</dt><dd class="lat">' + esc(g.en || '—') + '</dd>' + (g.g ? '<dt>' + T('व्याकरण', 'Grammar') + '</dt><dd>' + esc(g.g) + '</dd>' : '') + (g.p && g.p.length ? '<dt>' + T('शब्द-खण्ड', 'Parts') + '</dt><dd>' + g.p.map(x => '<b>' + esc(x[0]) + '</b> (' + esc(x[1]) + ')').join(' + ') + '</dd>' : '') + '</dl>';
+    h += '<dl class="kv">' + (g.r && g.r !== w ? '<dt>' + T('मूल', 'Root') + '</dt><dd>' + esc(g.r) + '</dd>' : '') + (g.pa ? '<dt>' + T('पंजाबी', 'Punjabi') + '</dt><dd class="gur">' + esc(g.pa) + '</dd>' : '') + '<dt>' + T('हिंदी', 'Hindi') + '</dt><dd>' + esc(g.hi || '—') + '</dd><dt>English</dt><dd class="lat">' + esc(g.en || '—') + '</dd>' + (g.g ? '<dt>' + T('व्याकरण', 'Grammar') + '</dt><dd>' + esc(g.g) + '</dd>' : '') + (g.p && g.p.length ? '<dt>' + T('शब्द-खण्ड', 'Parts') + '</dt><dd>' + g.p.map(x => '<b>' + esc(x[0]) + '</b> (' + esc(x[1]) + ')').join(' + ') + '</dd>' : '') + '</dl>';
   }
   h += '<div class="acts"><button class="btn small ghost" id="gEdit">' + (g && !g.none ? T('अर्थ बदलें / जोड़ें', 'Edit meaning') : T('अर्थ जोड़ें', 'Add meaning')) + '</button></div>';
   openSheet(h); $('#gEdit').onclick = () => glossEdit(w, lang || W.lang);
@@ -263,11 +279,12 @@ function rangeDesc(a, b){ const ka = KNAME(IT[a].p), kb = KNAME(IT[b].p); if (ka
 function srcList(kind){ return ((W.sources || {})[kind] || []).filter(s => !s.draft || S.timing.on); }   // a draft recording is heard only while reviewing timings
 function srcChoice(kind){ const list = srcList(kind); const sel = ((S.src[W.id] || {})[kind]); if (sel === 'off') return null; return (list.find(s => s.id === sel) || list[0] || null); }
 async function loadSources(){
-  for (const kind of ['hi', 'en', 'au']){ const c = srcChoice(kind); SRC[kind] = null; if (c){ try { SRC[kind] = Object.assign({meta: c}, await getJSON(W.path + '/' + c.file)); } catch (e) {} } }
+  if (!Object.keys(LANGS).length) LANGS = await getJSON('glossary/languages');   // the meaning languages are listed there
+  for (const kind of MK().concat('au')){ const c = srcChoice(kind); SRC[kind] = null; if (c){ try { SRC[kind] = Object.assign({meta: c}, await getJSON(W.path + '/' + c.file)); } catch (e) {} } }
   // the other meaning sources of a kind fill in verses the chosen one doesn't cover (e.g. a stotra appended to a kāṇḍa)
-  for (const kind of ['hi', 'en']){ ALT[kind] = []; const c = SRC[kind] && SRC[kind].meta;
+  for (const kind of MK()){ ALT[kind] = []; const c = SRC[kind] && SRC[kind].meta;
     for (const s of ((W.sources || {})[kind] || [])) if (c && s.id !== c.id){ try { ALT[kind].push(Object.assign({meta: s}, await getJSON(W.path + '/' + s.file))); } catch (e) {} } }
-  buildAudio();
+  buildAudio(); syncLayers();
 }
 function verseOf(i){ const id = IT[i].id; for (const p of S.profiles){ const f = p.fix[KEY(id)]; if (f && f.v) return {v: f.v, edited: true}; } return {v: IT[i].v, edited: false}; }
 function mean(kind, i){
@@ -279,6 +296,7 @@ function mean(kind, i){
   return null;
 }
 const layerOn = l => !!S.settings.layers[l];
+const shownKinds = () => capKinds().filter(k => layerOn(LK(k)));   // the meaning layers on, in the capsule's order
 
 /* ---------------- reader: continuous scroll over a kāṇḍa or a day's pāṭh ---------------- */
 let R = {org: 'k', a: 0, b: 0, n: 0, pf: -1, pt: -1};
@@ -313,34 +331,34 @@ function verseHTML(i){
   let h = '<div class="verse' + (toCheck(i) ? ' tocheck' : '') + '" id="v' + i + '" data-i="' + i + '">';
   const trl = l => '<div>' + l.split(/(?<=,)\s+/).map(x => '<span class="half">' + esc(x).replace(/\s*॥\s*([^॥]*?)\s*॥/g, ' <span class="dd">॥$1॥</span>') + '</span>').join(' ') + '</div>';
   const num = x => esc(x).replace(/\s*(।।[^।]*।।)\s*$/, '<span style="white-space:nowrap"> $1</span>');
-  const hiL = (m, x, fn) => '<div class="layer h">' + num(x) + (m.edited ? '<span class="tag">' + T('संशोधित', 'edited') + '</span>' : '') + (fn && m.f ? '<div class="fn">' + m.f.map(esc).join('<br>') + '</div>' : '') + '</div>';
-  const enL = (m, x, fn) => '<div class="layer e">' + (m.p ? num(x) : esc(x)) + (m.edited ? '<span class="tag">edited</span>' : '') + (fn && m.f ? '<div class="fn">' + m.f.map(esc).join('<br>') + '</div>' : '') + '</div>';
-  const mh = layerOn('h') ? mean('hi', i) : null, mE = layerOn('e') ? mean('en', i) : null;
+  // one meaning layer: Hindi and Punjabi with the verse number kept on its line; English as before (the number only when line by line)
+  const lay = (kind, m, x, fn) => '<div class="layer ' + LCLS(kind) + '">' + (kind !== 'en' || m.p ? num(x) : esc(x)) + (m.edited ? '<span class="tag">' + (kind === 'en' ? 'edited' : T('संशोधित', 'edited')) + '</span>' : '') + (fn && m.f ? '<div class="fn">' + m.f.map(esc).join('<br>') + '</div>' : '') + '</div>';
+  const ks = shownKinds(), MS = {}; ks.forEach(k => { const m = mean(k, i); if (m) MS[k] = m; });
+  const on = ks.filter(k => MS[k]);
   // line by line (owner, 2026-10-23): a source that gives one piece per verse line shows each piece under its line; a
   // source without pieces (or a reader's own correction of the verse or the meaning) is shown whole after the verse
   const lines = m => m && !m.edited && !vv.edited && Array.isArray(m.p) && m.p.length === vv.v.length ? m.p : null;
-  const ph = lines(mh), pe = lines(mE), trOk = S.settings.tr && it.t && it.t.length === vv.v.length;
-  if (ph || pe){
-    const lastOf = ps => ps ? ps.map(x => !!x.trim()).lastIndexOf(true) : -1, lh = lastOf(ph), le = lastOf(pe);
+  const PS = {}; on.forEach(k => { PS[k] = lines(MS[k]); });
+  const trOk = S.settings.tr && it.t && it.t.length === vv.v.length;
+  // whole meanings: English after the word meanings, the others before them (as with हिं · En)
+  const whole = (late) => on.filter(k => !PS[k] && (k === 'en') === late).map(k => lay(k, Object.assign({}, MS[k], {p: null}), MS[k].x, true)).join('');
+  if (on.some(k => PS[k])){
+    const lastOf = ps => ps ? ps.map(x => !!x.trim()).lastIndexOf(true) : -1, LAST = {}; on.forEach(k => { LAST[k] = lastOf(PS[k]); });
     pl.forEach((p, y) => {
       h += vcls.replace('vtext', 'vtext vline') + p + '</div>';
       if (trOk) h += '<div class="tr">' + trl(it.t[y]) + '</div>';
-      if (ph && ph[y].trim()) h += hiL(mh, ph[y], y === lh);
-      if (pe && pe[y].trim()) h += enL(mE, pe[y], y === le);
+      on.forEach(k => { if (PS[k] && PS[k][y].trim()) h += lay(k, MS[k], PS[k][y], y === LAST[k]); });
     });
     if (S.timing.on && SRC.au) h += markBar(i);
     if (S.settings.tr && it.t && it.t.length && !trOk) h += '<div class="tr">' + it.t.map(trl).join('') + '</div>';
-    if (mh && !ph) h += hiL(mh, mh.x, true);
-    if (layerOn('w')) h += '<div class="layer wl">' + wbHTML(vv.v, langOf(i)) + '</div>';
-    if (mE && !pe) h += enL(Object.assign({}, mE, {p: null}), mE.x, true);
   } else {
     h += vcls + pl.join('') + '</div>';
     if (S.timing.on && SRC.au) h += markBar(i);
     if (S.settings.tr && it.t && it.t.length) h += '<div class="tr">' + it.t.map(trl).join('') + '</div>';
-    if (mh) h += hiL(mh, mh.x, true);
-    if (layerOn('w')) h += '<div class="layer wl">' + wbHTML(vv.v, langOf(i)) + '</div>';
-    if (mE) h += enL(Object.assign({}, mE, {p: null}), mE.x, true);
   }
+  h += whole(false);
+  if (layerOn('w')) h += '<div class="layer wl">' + wbHTML(vv.v, langOf(i)) + '</div>';
+  h += whole(true);
   for (const p of SHOWN()) (p.notes[KEY(id)] || []).forEach((n, k) => { h += '<div class="note"><div class="who">' + new Date(n.ts).toLocaleDateString(LANG() === 'en' ? 'en-IN' : 'hi-IN') + (p.id === me.id ? '<button data-a="enote" data-k="' + k + '">' + T('बदलें', 'Edit') + '</button>' : '') + '</div>' + esc(n.t).replace(/\n/g, '<br>') + '</div>'; });
   return h + '</div>';
 }
@@ -497,13 +515,16 @@ $$('.lyr.layers button').forEach(b => b.onclick = () => { if (b.dataset.l === 'r
   const v = CURVIEW; if (v === 'reader') refreshReader(); });
 // हिं · En on the library and work pages: one choice, the language of the app
 $$('.lyr.uilang button').forEach(b => b.onclick = () => { if (S.settings.ui === b.dataset.u) return; S.settings.ui = b.dataset.u; save(); applyLang(); syncLayers(); onView(CURVIEW); });
-function syncLayers(){ $$('.lyr.layers button').forEach(b => b.classList.toggle('on', b.dataset.l === 'r' ? !!S.settings.recite : layerOn(b.dataset.l))); $$('.lyr.uilang button').forEach(b => b.classList.toggle('on', S.settings.ui === b.dataset.u)); }
+function syncLayers(){
+  // the capsule's first two places are the two meaning switches shown for this work (capKinds)
+  const cb = $$('#rLayers button'); if (cb.length >= 2 && Object.keys(LANGS).length) capKinds().forEach((k, n) => { const b = cb[n], M = LANGS[k] && LANGS[k].meaning; b.dataset.l = LK(k); b.textContent = M ? M.short : k; b.classList.toggle('lat', k === 'en'); b.classList.toggle('gur', k === 'pa'); });
+  $$('.lyr.layers button').forEach(b => b.classList.toggle('on', b.dataset.l === 'r' ? !!S.settings.recite : layerOn(b.dataset.l))); $$('.lyr.uilang button').forEach(b => b.classList.toggle('on', S.settings.ui === b.dataset.u)); }
 function applyRecite(){ document.body.classList.toggle('recite', !!S.settings.recite); $('#rRecite').hidden = true; syncLayers(); }
 // recitation mode is the fourth button of the reader's हिं · En · शब्द · 📖 capsule (owner, 2026-10-19): turning it on hides
 // the meanings (the layers that were on are remembered); turning it off — or turning any meaning on — brings them back
 function toggleRecite(){
   const on = !S.settings.recite; S.settings.recite = on;
-  if (on){ S.settings.preRecite = Object.assign({}, S.settings.layers); S.settings.layers.h = S.settings.layers.e = S.settings.layers.w = false; }
+  if (on){ S.settings.preRecite = Object.assign({}, S.settings.layers); for (const k in S.settings.layers) S.settings.layers[k] = false; }
   else if (S.settings.preRecite){ Object.assign(S.settings.layers, S.settings.preRecite); delete S.settings.preRecite; }
   save(); applyRecite(); applyLang(); if (CURVIEW === 'reader') refreshReader();
   toast(on ? T('पाठ मोड: केवल मूल पाठ', 'Recitation mode: verses only') : T('अर्थ फिर दिखेंगे', 'Meanings shown again'));
@@ -571,24 +592,24 @@ function noteSheet(i, k){
   if ($('#nDel')) $('#nDel').onclick = () => { arr.splice(k, 1); if (!arr.length) delete me.notes[key]; save(); closeSheet(); rerenderItem(i); };
 }
 function itemMenu(i){
-  const id = IT[i].id, edited = verseOf(i).edited || ['hi', 'en'].some(k => { const m = mean(k, i); return m && m.edited; });
+  const id = IT[i].id, edited = verseOf(i).edited || MK().some(k => { const m = mean(k, i); return m && m.edited; });
   openSheet('<p class="small muted">' + esc(itemLabel(i)) + '</p><div class="menu">' + (hasAu(i) ? '<button data-x="play"><svg><use href="#i-play"/></svg>' + T('यहाँसे सुनें', 'Play from here') + '</button>' : '') + '<button data-x="note"><svg><use href="#i-note"/></svg>' + T('टिप्पणी लिखें', 'Write a note') + '</button><button data-x="copy"><svg><use href="#i-copy"/></svg>' + T('पद और अर्थ कॉपी करें', 'Copy verse and meaning') + '</button><button data-x="edit"><svg><use href="#i-edit"/></svg>' + T('पद या अर्थ सुधारें', 'Improve verse or meaning') + '</button>' + (edited ? '<button data-x="revert"><svg><use href="#i-edit"/></svg>' + T('मेरा सुधार हटाएँ (पद लौटाएँ)', 'Remove my correction (restore the verse)') + '</button>' : '') + '</div>');
   $$('#sheetBody [data-x]').forEach(b => b.onclick = () => {
     const x = b.dataset.x; closeSheet();
     if (x === 'play') playFrom(i, null);
-    if (x === 'copy'){ const mh = mean('hi', i), me_ = mean('en', i); const txt = verseOf(i).v.join('\n') + (mh ? '\n\n' + mh.x : '') + (me_ ? '\n\n' + me_.x : ''); (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(() => toast(T('कॉपी हो गया', 'Copied'))).catch(() => toast(T('कॉपी नहीं हो सका', 'Could not copy'))); }
+    if (x === 'copy'){ const ks = shownKinds().length ? shownKinds() : capKinds(); const txt = verseOf(i).v.join('\n') + ks.map(k => mean(k, i)).filter(Boolean).map(m => '\n\n' + m.x).join(''); (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(() => toast(T('कॉपी हो गया', 'Copied'))).catch(() => toast(T('कॉपी नहीं हो सका', 'Could not copy'))); }
     if (x === 'note') noteSheet(i, null);
     if (x === 'edit') editSheet(i);
-    if (x === 'revert'){ S.profiles.forEach(p => { delete p.fix[KEY(id)]; ['hi', 'en'].forEach(k => { if (SRC[k]) delete p.fix[KEY(SRC[k].id + ':' + id)]; }); }); save(); rerenderItem(i); toast(T('पद लौटाया', 'Verse restored')); }
+    if (x === 'revert'){ S.profiles.forEach(p => { delete p.fix[KEY(id)]; MK().forEach(k => { if (SRC[k]) delete p.fix[KEY(SRC[k].id + ':' + id)]; }); }); save(); rerenderItem(i); toast(T('पद लौटाया', 'Verse restored')); }
   });
 }
 function editSheet(i){
-  const id = IT[i].id, vv = verseOf(i), mh = mean('hi', i), me_ = mean('en', i);
-  openSheet('<h2>' + T('सुधार करें', 'Correct') + '</h2><p class="small muted">' + T('अपनी छपी पुस्तकसे मिलाकर सुधारें। मूल डेटा नहीं बदलेगा — सुधार आपकी फ़ाइलमें रहेगा और कभी भी हटाया जा सकता है।', 'Your correction is kept in your file and can be removed any time.') + '</p><div class="field"><label>' + esc(itemLabel(i)) + '</label><textarea id="ev" style="font-weight:700">' + esc(vv.v.join('\n')) + '</textarea></div>' + (mh ? '<div class="field"><label>' + LB.h() + ' · ' + esc(TT(SRC.hi.meta.title)) + '</label><textarea id="eh">' + esc(mh.x) + '</textarea></div>' : '') + (me_ ? '<div class="field"><label>' + LB.e() + ' · ' + esc(TT(SRC.en.meta.title)) + '</label><textarea id="ee" class="lat">' + esc(me_.x) + '</textarea></div>' : '') + '<div class="acts"><button class="btn" id="eSave">' + T('सेव करें', 'Save') + '</button></div>');
+  const id = IT[i].id, vv = verseOf(i), EK = MK().filter(k => SRC[k] && mean(k, i));
+  openSheet('<h2>' + T('सुधार करें', 'Correct') + '</h2><p class="small muted">' + T('अपनी छपी पुस्तकसे मिलाकर सुधारें। मूल डेटा नहीं बदलेगा — सुधार आपकी फ़ाइलमें रहेगा और कभी भी हटाया जा सकता है।', 'Your correction is kept in your file and can be removed any time.') + '</p><div class="field"><label>' + esc(itemLabel(i)) + '</label><textarea id="ev" style="font-weight:700">' + esc(vv.v.join('\n')) + '</textarea></div>' + EK.map(k => '<div class="field"><label>' + LBM(k) + ' · ' + esc(TT(SRC[k].meta.title)) + '</label><textarea id="em-' + k + '"' + (k === 'en' ? ' class="lat"' : '') + '>' + esc(mean(k, i).x) + '</textarea></div>').join('') + '<div class="acts"><button class="btn" id="eSave">' + T('सेव करें', 'Save') + '</button></div>');
   $('#eSave').onclick = () => {
     const me = ME(); const v = $('#ev').value.split('\n').map(s => s.trim()).filter(Boolean);
     if (v.join('\n') !== IT[i].v.join('\n')) me.fix[KEY(id)] = {v}; else delete me.fix[KEY(id)];
-    [['hi', '#eh'], ['en', '#ee']].forEach(([k, sel]) => { if (!$(sel) || !SRC[k]) return; const x = $(sel).value.trim(), orig = (SRC[k].m[id] || [])[0], key = KEY(SRC[k].id + ':' + id); if (x !== orig) me.fix[key] = {m: x}; else delete me.fix[key]; });
+    EK.map(k => [k, '#em-' + k]).forEach(([k, sel]) => { if (!$(sel) || !SRC[k]) return; const x = $(sel).value.trim(), orig = (SRC[k].m[id] || [])[0], key = KEY(SRC[k].id + ':' + id); if (x !== orig) me.fix[key] = {m: x}; else delete me.fix[key]; });
     save(); closeSheet(); rerenderItem(i); toast(T('सुधार सेव हुआ', 'Correction saved'));
   };
 }
@@ -969,7 +990,9 @@ function libSearch(q){
 }
 // one search page for the whole app: opened from the library it finds works and shelves; from a work, its verses
 let SCOPE = 'text';
-function setScope(scope){ SCOPE = scope; const lib = scope === 'lib'; $('#scope').hidden = lib; $('#q').placeholder = lib ? T('ग्रन्थ, रचयिता या विषय खोजें', 'Search works, authors or shelves') : T('शब्द, अर्थ या English में खोजें', 'Search a verse or a meaning'); }
+function setScope(scope){ SCOPE = scope; const lib = scope === 'lib'; $('#scope').hidden = lib;
+  $$('#scope .chip').forEach(c => { if (!['v', 'h', 'e', 'n'].includes(c.dataset.s)) c.hidden = !workKinds().includes(c.dataset.s); });   // a third meaning language's chip, on works that have it
+  $('#q').placeholder = lib ? T('ग्रन्थ, रचयिता या विषय खोजें', 'Search works, authors or shelves') : T('शब्द, अर्थ या English में खोजें', 'Search a verse or a meaning'); }
 function openSearch(scope, stay){   // stay: only reset the page (the box was cleared), without another history entry
   setScope(scope); const lib = scope === 'lib';
   $('#q').value = '';
@@ -1055,8 +1078,11 @@ let IDX = null;
 const normD = s => (s || '').normalize('NFC').replace(/[ँं़‌‍ऽ]/g, '').replace(/\s+/g, ' ');
 const normL = s => (s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/r̥/g, 'r');
 const fzL = s => ' ' + normL(s).replace(/[^a-z\s]/g, ' ').replace(/(aa|ee|ii|oo|uu)/g, m => ({aa: 'a', ee: 'i', ii: 'i', oo: 'u', uu: 'u'})[m]).replace(/sh/g, 's').replace(/ch/g, 'c').replace(/w/g, 'v').replace(/ri/g, 'r').replace(/m(?=[bcdfghjklnpqrstvwxyz])/g, 'n').replace(/\s+/g, ' ').split(' ').map(w => w.length > 2 ? w.replace(/a$/, '') : w).join(' ').trim() + ' ';
-function buildIdx(){ IDX = IT.map((it, i) => { const h = SRC.hi && SRC.hi.m[it.id], e = SRC.en && SRC.en.m[it.id]; return {v: normD(it.v.join(' ')), h: normD(h ? h[0] : ''), t: fzL((it.t || []).join(' ')), e: normL(e ? e[0] : '')}; }); IDX.w = W.id + (SRC.hi || {}).id + (SRC.en || {}).id; }
-const scopes = new Set(['v', 'h', 'e', 'n']);
+const idxKey = () => W.id + MK().map(k => (SRC[k] || {}).id).join('|');
+// one search scope per meaning language (h, e, and the code of any other: pa); Latin script is searched as Latin
+function buildIdx(){ IDX = IT.map((it, i) => { const h = SRC.hi && SRC.hi.m[it.id], e = SRC.en && SRC.en.m[it.id], r = {v: normD(it.v.join(' ')), h: normD(h ? h[0] : ''), t: fzL((it.t || []).join(' ')), e: normL(e ? e[0] : '')};
+  MK().forEach(k => { if (k !== 'hi' && k !== 'en'){ const x = SRC[k] && SRC[k].m[it.id]; r[k] = normD(x ? x[0] : ''); } }); return r; }); IDX.w = idxKey(); }
+const scopes = new Set(['v', 'h', 'e', 'n', 'pa']);
 $$('#scope .chip').forEach(c => c.onclick = () => { const s = c.dataset.s; if (scopes.has(s)) scopes.delete(s); else scopes.add(s); c.classList.toggle('on'); runSearch(); });
 let sT; $('#q').addEventListener('input', () => { clearTimeout(sT); sT = setTimeout(runSearch, 250); });
 function snip(text, q, latin){ const src = text; const low = latin ? normL(src) : normD(src); const nq = latin ? normL(q) : normD(q); let p = low.indexOf(nq); if (p < 0) return esc(src.slice(0, 160)) + (src.length > 160 ? '…' : ''); let a = Math.max(0, p - 60), b = Math.min(src.length, p + nq.length + 80); if (a > 0){ const sp = src.indexOf(' ', a); if (sp > -1 && sp < p) a = sp + 1; } const s = src.slice(a, b); const pp = (latin ? normL(s) : normD(s)).indexOf(nq); let out; if (pp >= 0 && (latin ? normL(s) : normD(s)).length === s.length) out = esc(s.slice(0, pp)) + '<mark>' + esc(s.slice(pp, pp + nq.length)) + '</mark>' + esc(s.slice(pp + nq.length)); else out = esc(s); return (a > 0 ? '…' : '') + out + (b < src.length ? '…' : ''); }
@@ -1064,7 +1090,7 @@ function runSearch(){
   if (SCOPE === 'lib'){ const q = $('#q').value; if (q.trim()) libSearch(q); else openSearch('lib', true); return; }
   const q = $('#q').value.trim(), box = $('#sRes');
   if (q.length < 2){ box.innerHTML = '<div class="empty">' + T('कम-से-कम दो अक्षर लिखें।', 'Type at least two letters.') + '</div>'; return; }
-  if (!IDX || IDX.w !== W.id + (SRC.hi || {}).id + (SRC.en || {}).id) buildIdx();
+  if (!IDX || IDX.w !== idxKey()) buildIdx();
   const latin = /[a-zA-Z]/.test(q), nq = latin ? normL(q) : normD(q);
   const fqs = latin ? [...new Set([q, q.replace(/([aeiouāīū])n\b/gi, '$1'), q.replace(/([aeiouāīū])[nm](?=[bcdfghjklpqrstvz])/gi, '$1'), q.replace(/([aeiouāīū])n\b/gi, '$1').replace(/([aeiouāīū])[nm](?=[bcdfghjklpqrstvz])/gi, '$1')].map(x => fzL(x).trim()).filter(Boolean))] : [];
   const res = [];
@@ -1072,6 +1098,7 @@ function runSearch(){
     const x = IDX[i];
     if (!latin && scopes.has('v') && x.v.includes(nq)) res.push([i, LB.verses(), IT[i].v.join(' । '), false]);
     else if (!latin && scopes.has('h') && x.h.includes(nq)) res.push([i, LB.h(), SRC.hi.m[IT[i].id][0], false]);
+    else if (!latin && MK().some(k => k !== 'hi' && k !== 'en' && scopes.has(k) && x[k] && x[k].includes(nq))){ const k = MK().find(k => k !== 'hi' && k !== 'en' && scopes.has(k) && x[k] && x[k].includes(nq)); res.push([i, LBM(k), SRC[k].m[IT[i].id][0], false]); }
     else if (latin && scopes.has('v') && fqs.some(f => x.t.includes(' ' + f))) res.push([i, LB.tr(), IT[i].t.join(' '), true]);
     else if (latin && scopes.has('e') && x.e.includes(nq)) res.push([i, LB.e(), SRC.en.m[IT[i].id][0], true]);
   }
@@ -1102,17 +1129,21 @@ function renderBookmarks(){
 }
 
 /* ---------------- settings ---------------- */
+// "Meanings in the bar": which two meaning switches the header capsule shows, for a work with more than two meaning languages
+function pairPick(){ if (!W || workKinds().filter(k => k !== 'hi' && k !== 'en').length === 0) return ''; const cur = capKinds().join(','), nm = k => (LANGS[k].meaning || {}).short || k;
+  return '<div class="field"><label>' + T('बारमें अर्थ', 'Meanings in the bar') + '</label><select id="sPair">' + pairOptions().map(p => '<option value="' + p.join(',') + '"' + (p.join(',') === cur ? ' selected' : '') + '>' + p.map(nm).join(' · ') + '</option>').join('') + '</select></div>'; }
 function renderSettings(){   // the "More" page (owner, 2026-10-22): the rare things only — sources, audio timing, my file, privacy
   const cur = S.src[W ? W.id : ''] || {};
   const pick = (kind, label, off) => { const list = W ? srcList(kind) : []; if (!list.length) return ''; const sel = cur[kind] || list[0].id; return '<div class="field"><label>' + label + '</label><select data-src="' + kind + '">' + list.map(s => '<option value="' + s.id + '"' + (sel === s.id ? ' selected' : '') + '>' + esc(TT(s.title)) + (s.draft ? T(' (जाँच बाकी)', ' (to be checked)') : '') + '</option>').join('') + (off ? '<option value="off"' + (sel === 'off' ? ' selected' : '') + '>' + T('बंद', 'Off') + '</option>' : '') + '</select></div>'; };
   let h = '<h2>' + T('पढ़ना', 'Reading') + '</h2>' + sw('str', LB.tr(), LB.trSub(), S.settings.tr) +
-    (W ? '<h2>' + LB.src() + ' · ' + esc(TT(W.title)) + '</h2>' + pick('hi', LB.h()) + pick('en', LB.e()) + pick('au', LB.au(), true) : '') +
+    (W ? '<h2>' + LB.src() + ' · ' + esc(TT(W.title)) + '</h2>' + MK().map(k => pick(k, LBM(k))).join('') + pairPick() + pick('au', LB.au(), true) : '') +
     timingHTML() +
     '<h2>' + T('सहायता', 'Help') + '</h2><div class="acts"><a class="btn ghost" href="privacy.html" target="_blank" rel="noopener">' + T('गोपनीयता', 'Privacy') + '</a></div>' +
     '<div style="height:50px"></div>';
   $('#setBody').innerHTML = h;
   $('#str').onchange = e => { S.settings.tr = e.target.checked; save(); };   // seen in the reader on the next open
   bindTiming();
+  if ($('#sPair')) $('#sPair').onchange = e => { S.settings.pair = e.target.value; save(); syncLayers(); toast(T('बार बदला', 'Bar changed')); };
   $$('[data-src]').forEach(s => s.onchange = async () => { const c = S.src[W.id] = S.src[W.id] || {}; c[s.dataset.src] = s.value; save(); if (s.dataset.src === 'au') stopAudio(); await loadSources(); IDX = null; toast(T('स्रोत बदला', 'Source changed')); });
 }
 /* timing review: Settings › Audio timing. While it is on, a ⏱ row appears in the player and each verse's ⋮ menu shows its start;
@@ -1271,7 +1302,7 @@ function tourSteps(){
     {t: () => $('#reader .szp'), allow: '#reader .szp', p: T('A+ छूकर अक्षर बड़े करें।', 'Tap A+ to make the letters larger.'), enter: () => { TOUR.base = S.settings.size; }, done: () => S.settings.size > TOUR.base || (TOUR.tap && TOUR.base >= 34)},   // already at the largest: the tap is enough (owner, 2026-10-20)
     // A− is a step of its own: after A+, people reach for it (owner, 2026-10-20)
     {t: () => $('#reader .szm'), allow: '#reader .szm', p: T('A− छूकर अक्षर छोटे करें।', 'Tap A− to make the letters smaller.'), enter: () => { TOUR.base = S.settings.size; }, done: () => S.settings.size < TOUR.base || (TOUR.tap && TOUR.base <= 16)},   // already at the smallest: the tap is enough
-    {t: () => $('#rLayers [data-l="' + (S.settings.layers.h ? 'e' : 'h') + '"]'), allow: '#rLayers [data-l="h"], #rLayers [data-l="e"], #rLayers [data-l="w"]', p: () => S.settings.layers.h ? T('“En” छूकर हर पदके नीचे अंग्रेज़ी अर्थ दिखाएँ या छिपाएँ। “शब्द” से शब्दार्थ।', 'Tap “En” to show or hide the English meaning under every verse. “शब्द” gives word-by-word meanings.') : T('“हिं” छूकर हर पदके नीचे हिंदी अर्थ दिखाएँ। “En” अंग्रेज़ी, “शब्द” शब्दार्थ।', 'Tap “हिं” to show the Hindi meaning under every verse. “En” is English, “शब्द” word by word.'),
+    {t: () => { const [a, b] = capKinds().map(LK); return $('#rLayers [data-l="' + (layerOn(a) ? b : a) + '"]'); }, allow: '#rLayers [data-l="h"], #rLayers [data-l="e"], #rLayers [data-l="pa"], #rLayers [data-l="w"]', p: () => S.settings.layers.h ? T('“En” छूकर हर पदके नीचे अंग्रेज़ी अर्थ दिखाएँ या छिपाएँ। “शब्द” से शब्दार्थ।', 'Tap “En” to show or hide the English meaning under every verse. “शब्द” gives word-by-word meanings.') : T('“हिं” छूकर हर पदके नीचे हिंदी अर्थ दिखाएँ। “En” अंग्रेज़ी, “शब्द” शब्दार्थ।', 'Tap “हिं” to show the Hindi meaning under every verse. “En” is English, “शब्द” word by word.'),
      enter: () => { TOUR.base = JSON.stringify(S.settings.layers); }, done: () => JSON.stringify(S.settings.layers) !== TOUR.base},
     {t: () => $('#rLayers [data-l="r"]'), allow: '#rLayers [data-l="r"]', p: T('पुस्तक छूकर पाठ मोड चालू करें — केवल मूल पाठ, बड़े अक्षरोंमें। फिर छूनेपर अर्थ लौट आते हैं।', 'Tap the book for recitation mode — the verses alone, in larger type. Tap it again to bring the meanings back.'), done: () => !!S.settings.recite},
     {t: () => firstVisible('#rBody .vbm'), allow: '#rBody .vbm', p: T('बुकमार्क चिह्न छूकर यह पद सहेजें — ☰ › बुकमार्कमें मिलेगा।', 'Tap the bookmark sign to save this verse — find it in ☰ › Bookmarks.'),

@@ -128,6 +128,10 @@ body.timing .verse.tocheck{box-shadow:inset 3px 0 0 var(--saffron)}.tcheck{margi
 .layer{margin-top:6px;font-size:var(--mean-size);line-height:1.6;font-weight:400}
 .layer.h{}
 .layer.e{font-family:var(--lat);font-size:calc(var(--mean-size) - .5px)}
+.layer.pa,.gur{font-family:'Noto Sans Gurmukhi','Raavi','Gurmukhi MN',var(--dev)}   /* a Punjabi meaning (owner, 2026-10-24) */
+.verse > .layer.x{text-align:center;text-wrap:pretty}
+.verse > .layer.x ~ .layer.h,.verse > .layer.x ~ .layer.e{color:var(--muted)}   /* a third language comes first in its pair (ਪੰ · En, ਪੰ · हिं): it in full ink, the other lighter */
+.verse:has(.fn) > .layer.x ~ .layer.h,.verse:has(.fn) > .layer.x ~ .layer.e{color:inherit}
 /* meanings sit under the centred verse: centred too, using the full width, with evenly balanced lines; a small ॰ separates
    verse and meaning; when Hindi and English are both shown, English is a quieter grey */
 .verse > .layer.h,.verse > .layer.e{text-align:center;text-wrap:pretty}

@@ -7,9 +7,14 @@
  "mr":  {"name": {"hi": "मराठी", "en": "Marathi"}, "script": "Deva", "fallback": ["sa"],
          "suffixes": [], "stems": []},
  "hi":  {"name": {"hi": "हिन्दी", "en": "Hindi"}, "script": "Deva", "fallback": ["sa"],
-         "suffixes": [], "stems": []},
+         "suffixes": [], "stems": [],
+         "meaning": {"short": "हिं", "name": {"hi": "हिंदी", "en": "Hindi"}, "order": 1}},
+ "en":  {"name": {"hi": "अंग्रेज़ी", "en": "English"}, "script": "Latn", "fallback": [],
+         "suffixes": [], "stems": [],
+         "meaning": {"short": "En", "name": {"hi": "अंग्रेज़ी", "en": "English"}, "order": 2}},
  "pa":  {"name": {"hi": "पंजाबी (गुरमुखी)", "en": "Punjabi (Gurmukhi)"}, "script": "Guru", "fallback": [],
-         "suffixes": [], "stems": []},
+         "suffixes": [], "stems": [],
+         "meaning": {"short": "ਪੰ", "name": {"hi": "पंजाबी", "en": "Punjabi", "pa": "ਪੰਜਾਬੀ"}, "order": 3}},
  "bra": {"name": {"hi": "ब्रजभाषा", "en": "Braj"}, "script": "Deva", "fallback": ["sa"],
          "suffixes": [], "stems": []}
 }

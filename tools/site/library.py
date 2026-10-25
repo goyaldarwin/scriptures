@@ -68,11 +68,14 @@ def check_work(lib, leaf, LANGS):
         for k in ('before', 'after'):
             _need(all(x in pages for x in p.get(k, [])), f"{name}: plan {p['id']} {k} {p.get(k)} names a page the work lacks (has {sorted(pages)})")
     # sources
-    src = {'hi': [], 'en': [], 'au': []}
+    # meaning languages: those with a "meaning" block in glossary/languages.json (hi, en, pa — owner, 2026-10-24: "design
+    # interface for supporting Punjabi and other languages"); hi, en and au are always listed, another only when the work has one
+    ML = sorted((k for k, L in LANGS.items() if L.get('meaning')), key=lambda k: (LANGS[k]['meaning'].get('order', 100), k))
+    src = {k: [] for k in ML}; src.setdefault('hi', []); src.setdefault('en', []); src['au'] = []
     for f in sorted(glob.glob(os.path.join(lib, path, 'meanings', '*.json'))):
         s = json.load(open(f)); sid = os.path.basename(f)[:-5]; where = f"{name}/meanings/{sid}.json"
         _need(s.get('id') == sid, f"{where}: id {s.get('id')!r} must equal the file name")
-        _need(s.get('lang') in ('hi', 'en'), f"{where}: lang must be hi or en")
+        _need(s.get('lang') in ML, f"{where}: lang must be a meaning language of glossary/languages.json ({', '.join(ML)})")
         _need(_bi(s.get('title')), f"{where}: needs title {{hi, en}}")
         bad = [k for k in s['m'] if k not in ID]; _need(not bad, f"{where}: {len(bad)} unknown item ids, e.g. {bad[:3]}")
         for k, e in s['m'].items(): _need(isinstance(e, list) and e and isinstance(e[0], str), f"{where}: {k} must be [text, footnotes?]")
@@ -98,6 +101,7 @@ def check_work(lib, leaf, LANGS):
     for k in src:
         src[k].sort(key=lambda x: (x['order'], x['id']))
         for x in src[k]: del x['order']
+    src = {k: v for k, v in src.items() if v or k in ('hi', 'en', 'au')}
     has_g = os.path.exists(wg)   # the app fetches <work>/glossary.json only when the work says it has one
     if w.get('sources') != src or bool(w.get('glossary')) != has_g:
         w['sources'] = src
@@ -112,6 +116,8 @@ def prepare(lib):
         _need(re.fullmatch(r'[a-z]{2,3}', code), f"languages.json: {code!r} must be an ISO 639 code (2–3 lowercase letters)")
         _need(_bi(L.get('name')) and isinstance(L.get('script'), str), f"languages.json: {code} needs name {{hi, en}} and script")
         bad = [f for f in L.get('fallback', []) if f not in LANGS or f == code]; _need(not bad, f"languages.json: {code} has bad fallback {bad}")
+        M = L.get('meaning')
+        if M: _need(isinstance(M.get('short'), str) and M['short'] and _bi(M.get('name')), f"languages.json: {code}.meaning needs short and name {{hi, en}}")
     for f in glob.glob(os.path.join(lib, 'glossary', '*.json')):
         code = os.path.basename(f)[:-5]
         if code == 'languages': continue
