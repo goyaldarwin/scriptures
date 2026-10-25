@@ -80,7 +80,7 @@ An item: `{"id": "bal.86.cau4", "p": 0, "s": "86", "y": "cau", "n": "4", "v": [l
  "m": {"bal.0.shloka1": ["meaning text", ["footnote", "…"]]}}
 ```
 - `id` = the file name. Name it `<lang>-<publisher or translator>`, lowercase with hyphens, e.g. `en-gitapress`, `hi-swami-ramsukhdas`.
-- `lang` is `hi` or `en`: the reader's Hindi or English meaning layer.
+- `lang` is a meaning language: one with a `meaning` block in `glossary/languages.json` (`hi`, `en`, `pa` today: `{"short": "ਪੰ", "name": {…}, "order": 3}`). Adding a language is one entry there; the app needs no change. A work with a third meaning language shows two of them in the reader's header (by default ਪੰ · En in an English app, ਪੰ · हिं in a Hindi one; More › Sources › "Meanings in the bar").
 - `order` (optional): the lowest is the default for new readers. Without it, sources sort by id.
 - `p` (optional): the meaning **line by line**, `{item id: [one piece per verse line]}` — the reader shows each piece under its line (owner, 2026-10-23: "whatever our line in the verse, its meaning below it wherever present"). A piece may be `""` where a line has no meaning of its own (a heading line such as ਸਲੋਕੁ ॥). The list has exactly as many pieces as the verse has lines; `m` still holds the whole meaning (search, copy, a reader's own correction, and any reader whose verse was corrected see it whole). A source without `p` is shown whole after the verse, as before. `library.py` checks it.
 - `m` maps item ids to `[meaning, footnotes]`. The footnotes list is optional. A source may cover only some verses. A verse the reader's chosen source doesn't cover is filled in from the work's other sources of the same language, in `order`, with a small tag naming that source.
@@ -131,7 +131,7 @@ library/glossary/
 
 Dictionary keys are written **without Vedic accent marks** (svara: U+0951–0954, U+1CD0–1CFF, U+A8E0–A8F1); the app removes them from a tapped word before looking it up, so a text keeps its svaras and still finds its meanings. Exporters must strip them the same way when they collect words.
 
-A dictionary (`<lang>.json`): `{"राम": {"hi": "भगवान श्रीराम", "en": "Lord Rama", "g": "grammar", "r": "root", "p": [["part", "meaning"]]}}`.
+A dictionary (`<lang>.json`): `{"राम": {"hi": "भगवान श्रीराम", "en": "Lord Rama", "g": "grammar", "r": "root", "p": [["part", "meaning"]]}}`. An entry may also carry `"pa"`, its Punjabi meaning (shown in the word sheet, and in the word list while the ਪੰ layer is on).
 
 **How a tapped word is looked up:**
 1. The verse's language comes from the item's `l`, otherwise the work's `lang`.

@@ -2,7 +2,7 @@
 
 Owner, 2026-10-23: "design interface for supporting Punjabi and other languages. For now we will support only Punjabi" — and "right now the text of the verse is fixed and we don't have different text in different languages. In future that might also change. Please keep this in mind."
 
-Status: **agreed with the owner (2026-10-24)**, to be built as shared-code changes (each its own pull request with UX tests) once the owner agrees.
+Status: **agreed with the owner (2026-10-24)**. Step 1 (meaning languages as a list, `pa` registered, the capsule pair, Sources, search, word sheet) **built 2026-10-24**; step 2 (our Punjabi Sukhmani) next.
 
 ## What is fixed today
 - Meaning layers are hard-coded as two: `hi` and `en` (meaning files `lang: "hi" | "en"`; the header capsule हिं · En · शब्द · 📖; `S.settings.layers = {h, e, w}`; `mean('hi'|'en')`; search scopes h/e).
