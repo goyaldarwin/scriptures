@@ -396,6 +396,16 @@ A new label must reuse these words; a new thing gets one word, added here.
 - **Where the witnesses disagree, follow the majority and say so.** The printout's śānti has "भद्रं नो अपि वातय मनः"; the recording and the second page have the four "स्वस्ति" lines, so the text has those, marked open until a Devanagari print confirms them.
 - **A recording's own divisions can become the topics** (SMVedroad announces four khaṇḍas), without adding their words to the text.
 
+### Language and meanings coupled (owner, 2026-10-25) — replaces the separate setting of 2026-10-19
+- **हिं · En on the library and work pages chooses the language and the meaning together:** हिं → Hindi interface and the Hindi meaning only; En → English and the English meaning only (recitation mode ends if it was on).
+- **Inside a work the meaning switches set the language:** English meaning on → English (also when both are on); only Hindi → Hindi; neither → unchanged. शब्द and 📖 do not touch the language.
+- So the two places always agree: whatever was chosen last, inside or outside, shows in both.
+
+### Owner, 2026-10-25
+- **"Play from here" ends with what is open** — the kāṇḍa, or the vishram — with its "… finished" message, like ▶ on the row (it used to play on to the end of the work).
+- **A search by Roman letters shows the verse itself**, not the transliteration (the Roman text is only how it is found).
+- **The "now playing" pill says "↑ Go to Dohā 56"** with a large saffron arrow — a tap goes to the verse being played. (A line with the kāṇḍa under it had been lost to a stray comment on 10-22; back.)
+
 ### Lessons: the working environment
 - **Gate commits on the test's exit code, not on a grep of its output** (`ux_test.py | grep … && git commit` committed with a failing check on 2026-10-20). The failing check had assumed no owner times in the Mānas — true until issue #13 sent some; tests that pick sample verses from live data must exclude verses set by ear.
 - **Never `pkill -f`** in this environment: it matched and killed the session's own shell (exit 144), twice. Kill by PID or a pid file. **Nor `kill $(pgrep -f …)`** — the same thing (2026-10-22, three background test runs lost).
@@ -406,7 +416,7 @@ A new label must reuse these words; a new thing gets one word, added here.
 
 ### Decisions (Oct 18, 2026): the apps
 - **Android first (owner, 2026-10-19); the iPhone app is parked until the owner asks.**
-- **The app's language is its own setting (owner, 2026-10-19).** On the library and work pages the header shows **हिं · En** only — one choice that switches the whole interface at once (no शब्द there: no verses). In the reader **हिं · En · शब्द** are the meaning layers, and the words around the verses follow them (English meaning on → English; only Hindi → Hindi; neither → the app's language), so an English app read with the Hindi meaning shows “॥ चौपाई ॥”, not “Chaupāī”. *(The Settings › “Language of the app” select is gone since 2026-10-22; the header's हिं · En is the only place.)* Older phones keep their language (taken once from their English-meaning setting). The हिं · En capsule has the same height and type size as A− / A+.
+- *(Superseded 2026-10-25 — "Language and meanings coupled".)* **The app's language is its own setting (owner, 2026-10-19).** On the library and work pages the header shows **हिं · En** only — one choice that switches the whole interface at once (no शब्द there: no verses). In the reader **हिं · En · शब्द** are the meaning layers, and the words around the verses follow them (English meaning on → English; only Hindi → Hindi; neither → the app's language), so an English app read with the Hindi meaning shows “॥ चौपाई ॥”, not “Chaupāī”. *(The Settings › “Language of the app” select is gone since 2026-10-22; the header's हिं · En is the only place.)* Older phones keep their language (taken once from their English-meaning setting). The हिं · En capsule has the same height and type size as A− / A+.
 - **The opening screen greets the work being opened (owner, 2026-10-19):** ॥ जय श्रीराम ॥ for the Mānas, ॥ जय बजरंगबली ॥ for the Sundarakāṇḍa, ॥ ॐ श्री साईं राम ॥ for the Dhūpa Āratī, ੴ for the Sukhmani Sahib, otherwise ॥ ॐ श्री परमात्मने नमः ॥ (the Rudram, the Īśa Upaniṣad, and any work without its own). Set per work as `salute` in library/index.json; the phone remembers each, so it shows before anything loads. 30px; it stays at least 1.5 s (loading time counts) so it can be read — 2 s was judged too long for every opening. Tests set `window.__SALUTE_MS = 0`.
 - **When a verse or part played on its own ends, the message offers “▶ Play on” (▶ आगे सुनें)** (owner, 2026-10-19): it plays on from the next verse to the end, like “Play all”. One line, in quiet colours (a light card with an indigo button, not the dark toast); it stays 8 s. A whole work ends with “Recitation complete” only.
 - **Drawers close by dragging them down** (from the handle, or anywhere when scrolled to the top; a tap on the handle closes too) — owner, 2026-10-19. The ▶ beside a verse is larger (22px).

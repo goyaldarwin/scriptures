@@ -510,11 +510,14 @@ $('#rBack').onclick = back;
 // the same हिं · En · शब्द switch in every header (library, work, reader): one setting, shown and changed anywhere
 $$('.lyr.layers button').forEach(b => b.onclick = () => { if (b.dataset.l === 'r'){ toggleRecite(); return; }
   if (S.settings.recite){ S.settings.recite = false; delete S.settings.preRecite; applyRecite(); }   // a meaning turned on ends recitation mode
-  const was = LANG(), l = b.dataset.l; S.settings.layers[l] = !S.settings.layers[l]; save(); syncLayers();
-  if (LANG() !== was) applyLang();
+  const was = LANG(), l = b.dataset.l; S.settings.layers[l] = !S.settings.layers[l];
+  // the meanings and the app's language are coupled (owner, 2026-10-25): English meaning on → English; only Hindi → Hindi; neither → unchanged
+  if (S.settings.layers.e) S.settings.ui = 'en'; else if (S.settings.layers.h) S.settings.ui = 'hi';
+  save(); syncLayers(); if (LANG() !== was) applyLang();
   const v = CURVIEW; if (v === 'reader') refreshReader(); });
 // हिं · En on the library and work pages: one choice, the language of the app
-$$('.lyr.uilang button').forEach(b => b.onclick = () => { if (S.settings.ui === b.dataset.u) return; S.settings.ui = b.dataset.u; save(); applyLang(); syncLayers(); onView(CURVIEW); });
+// हिं · En on the library and work pages sets the language and the meaning with it (owner, 2026-10-25): Hindi → the Hindi meaning only, English → the English meaning only
+$$('.lyr.uilang button').forEach(b => b.onclick = () => { if (S.settings.ui === b.dataset.u) return; S.settings.ui = b.dataset.u; S.settings.layers.h = b.dataset.u === 'hi'; S.settings.layers.e = b.dataset.u === 'en'; if (S.settings.recite){ S.settings.recite = false; delete S.settings.preRecite; applyRecite(); } save(); applyLang(); syncLayers(); onView(CURVIEW); });
 function syncLayers(){
   // the capsule's first two places are the two meaning switches shown for this work (capKinds)
   const cb = $$('#rLayers button'); if (cb.length >= 2 && Object.keys(LANGS).length) capKinds().forEach((k, n) => { const b = cb[n], M = LANGS[k] && LANGS[k].meaning; b.dataset.l = LK(k); b.textContent = M ? M.short : k; b.classList.toggle('lat', k === 'en'); b.classList.toggle('gur', k === 'pa'); });
@@ -596,7 +599,7 @@ function itemMenu(i){
   openSheet('<p class="small muted">' + esc(itemLabel(i)) + '</p><div class="menu">' + (hasAu(i) ? '<button data-x="play"><svg><use href="#i-play"/></svg>' + T('यहाँसे सुनें', 'Play from here') + '</button>' : '') + '<button data-x="note"><svg><use href="#i-note"/></svg>' + T('टिप्पणी लिखें', 'Write a note') + '</button><button data-x="copy"><svg><use href="#i-copy"/></svg>' + T('पद और अर्थ कॉपी करें', 'Copy verse and meaning') + '</button><button data-x="edit"><svg><use href="#i-edit"/></svg>' + T('पद या अर्थ सुधारें', 'Improve verse or meaning') + '</button>' + (edited ? '<button data-x="revert"><svg><use href="#i-edit"/></svg>' + T('मेरा सुधार हटाएँ (पद लौटाएँ)', 'Remove my correction (restore the verse)') + '</button>' : '') + '</div>');
   $$('#sheetBody [data-x]').forEach(b => b.onclick = () => {
     const x = b.dataset.x; closeSheet();
-    if (x === 'play') playFrom(i, null);
+    if (x === 'play'){ playFrom(i, R.b); PL.whole = false; PL.endMsg = (R.org === 'k' ? KNAME(R.n) : VN(R.n)) + T(' पूर्ण', ' finished'); }   // to the end of what is open: the kāṇḍa, or the vishram (owner, 2026-10-25)
     if (x === 'copy'){ const ks = shownKinds().length ? shownKinds() : capKinds(); const txt = verseOf(i).v.join('\n') + ks.map(k => mean(k, i)).filter(Boolean).map(m => '\n\n' + m.x).join(''); (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(() => toast(T('कॉपी हो गया', 'Copied'))).catch(() => toast(T('कॉपी नहीं हो सका', 'Could not copy'))); }
     if (x === 'note') noteSheet(i, null);
     if (x === 'edit') editSheet(i);
@@ -932,7 +935,7 @@ function jumpPill(){
   const seen = r && r.bottom > top + 24 && r.top < pl.top - 24;   // some of the verse is on the screen
   if (seen){ b.hidden = true; return; }
   const i = PL.cur, where = R.org === 'k' ? (PARTS.length > 1 ? KNAME(IT[i].p) : '') : VN(R.n);
-  const h = '<b>' + (i >= topVisibleItem() ? '↓ ' : '↑ ') + T('अभी चल रहा · ', 'Now playing · ') + esc(posLabel(i)) + '</b>'   // says what it is, not only where (owner, 2026-10-22) + (where ? '<small>' + esc(where) + '</small>' : '');
+  const h = '<b><span class="arr">' + (i >= topVisibleItem() ? '↓' : '↑') + '</span>' + T('', 'Go to ') + esc(posLabel(i)) + T(' पर जाएँ', '') + '</b>' + (where ? '<small>' + esc(where) + '</small>' : '');   // "Go to <verse>", a big arrow pointing the way (owner, 2026-10-25)
   if (b.innerHTML !== h) b.innerHTML = h; b.style.bottom = (innerHeight - pl.top + 10) + 'px'; b.hidden = false;
 }
 setInterval(jumpPill, 300);
@@ -1099,7 +1102,7 @@ function runSearch(){
     if (!latin && scopes.has('v') && x.v.includes(nq)) res.push([i, LB.verses(), IT[i].v.join(' । '), false]);
     else if (!latin && scopes.has('h') && x.h.includes(nq)) res.push([i, LB.h(), SRC.hi.m[IT[i].id][0], false]);
     else if (!latin && MK().some(k => k !== 'hi' && k !== 'en' && scopes.has(k) && x[k] && x[k].includes(nq))){ const k = MK().find(k => k !== 'hi' && k !== 'en' && scopes.has(k) && x[k] && x[k].includes(nq)); res.push([i, LBM(k), SRC[k].m[IT[i].id][0], false]); }
-    else if (latin && scopes.has('v') && fqs.some(f => x.t.includes(' ' + f))) res.push([i, LB.tr(), IT[i].t.join(' '), true]);
+    else if (latin && scopes.has('v') && fqs.some(f => x.t.includes(' ' + f))) res.push([i, LB.verses(), IT[i].v.join(' । '), false]);   // found by its Roman letters, shown as the verse itself (owner, 2026-10-25)
     else if (latin && scopes.has('e') && x.e.includes(nq)) res.push([i, LB.e(), SRC.en.m[IT[i].id][0], true]);
   }
   if (scopes.has('n')) for (const p of SHOWN()) for (const k in p.notes){ if (!k.startsWith(W.id + ':')) continue; const i = ID[k.slice(W.id.length + 1)]; if (i == null) continue; p.notes[k].forEach(n => { if ((latin ? normL(n.t) : normD(n.t)).includes(nq)) res.push([i, T('टिप्पणी', 'Note'), n.t, latin]); }); }

@@ -161,8 +161,7 @@ async def main():
         other = 'hi' if lang0 == 'en' else 'en'
         await (await pg.query_selector(f'#library .lyr.uilang [data-u={other}]')).click(); await pg.wait_for_timeout(400)
         check('language can be changed from the library (हिं · En, one choice)', await ev("LANG()") == other and await ev("document.querySelector('#libTitle').textContent") in ('पुस्तकालय', 'Library') and not await ev("!!document.querySelector('#library .lyr [data-l=w]')"), lang0)
-        await ev("S.settings.layers.e = true; S.settings.layers.h = true; save()")
-        check('the meanings do not change the language of the app', await ev("LANG()") == other)
+        check('हिं · En on the library also chooses the meaning (owner, 2026-10-25)', await ev("[S.settings.layers.h, S.settings.layers.e]") == [other == 'hi', other == 'en'])
         await (await pg.query_selector(f'#library .lyr.uilang [data-u={lang0}]')).click(); await pg.wait_for_timeout(300)
         await ev("S.settings.layers.h = false; save()")
         # library search finds a work by its English or Hindi name
@@ -387,8 +386,12 @@ async def main():
             # English app, Hindi meaning only inside the work: the reader's words are Hindi; back on the work page, English
             await ev("S.settings.ui = 'en'; S.settings.layers.e = false; S.settings.layers.h = true; applyLang(); refreshReader()"); await pg.wait_for_timeout(400)
             check(f'{tag}: inside the work the words follow the Hindi meaning', await ev("LANG()") == 'hi')
+            await ev("(document.querySelector('#rLayers [data-l=e]') || {click(){ S.settings.layers.e = true; S.settings.ui = 'en'; }}).click()"); await pg.wait_for_timeout(300)   # English meaning on → the app is English, in the work page too
             await ev("show('home')"); await pg.wait_for_timeout(200)
-            check(f'{tag}: the work page keeps the app language', await ev("LANG()") == 'en')
+            check(f'{tag}: a meaning chosen inside the work sets the app language (both on → English)', await ev("[S.settings.ui, LANG()]") == ['en', 'en'])
+            await ev("document.querySelector('#home .lyr.uilang [data-u=hi]').click()"); await pg.wait_for_timeout(300)
+            check(f'{tag}: हिं on the work page → Hindi meaning only', await ev("[S.settings.ui, S.settings.layers.h, S.settings.layers.e]") == ['hi', True, False])
+            await ev("S.settings.ui = 'en'; S.settings.layers.e = true; S.settings.layers.h = false; applyLang(); syncLayers()")
             await ev("show('reader')"); await pg.wait_for_timeout(200)
             await ev("S.settings.ui = 'hi'; S.settings.layers.h = true; S.settings.layers.e = false; applyLang()")
             # the work menu (☰) leads to bookmarks and settings
@@ -709,7 +712,7 @@ async def main():
         jp = await ev("""(async () => { await openWork('ramraksha', true); show('home'); S.timing.on = false; openReader('k', 0); await new Promise(r => setTimeout(r, 500));
             const a = AUT[0], v1 = a[3][0], v2 = a[4][0], pill = document.querySelector('#pJump'); PL.on = true; document.querySelector('#player').hidden = false; document.body.classList.add('playing'); PL.t = 0; PL.end = null; PL.cur = -1; ytOK = true; PL.seekT = null; ytInfo.t = a[3][1] + 0.2; tick(); await new Promise(r => setTimeout(r, 900));
             const r = []; jumpPill(); r.push(pill.hidden);                                   // on screen: no pill
-            window.scrollBy(0, 1200); await new Promise(r => setTimeout(r, 400)); jumpPill(); r.push(!pill.hidden, pill.textContent.startsWith('↑') && pill.textContent.includes(posLabel(v1)));   // scrolled past it: the pill, pointing up
+            window.scrollBy(0, 1200); await new Promise(r => setTimeout(r, 400)); jumpPill(); r.push(!pill.hidden, pill.textContent.startsWith('↑') && (pill.textContent.includes('Go to') || pill.textContent.includes('पर जाएँ')) && pill.textContent.includes(posLabel(v1)));   // scrolled past it: the pill, pointing up
             pill.click(); await new Promise(r => setTimeout(r, 900)); jumpPill(); r.push(pill.hidden, inView(document.getElementById('v' + v1)));   // a tap: back to the verse, pill gone
             window.scrollTo(0, 0); await new Promise(r => setTimeout(r, 400)); jumpPill(); r.push(!pill.hidden && pill.textContent.startsWith('↓'));   // scrolled before it: pointing down
             ytInfo.t = a[4][1] + 0.2; tick(); await new Promise(r => setTimeout(r, 1200)); jumpPill(); r.push(pill.hidden, PL.cur === v2);   // the next verse starts: the page follows, no pill
@@ -818,6 +821,11 @@ async def main():
         check('a third meaning language: ਪੰ · En in an English app, ਪੰ · हिं in a Hindi one, हिं · En when chosen; four places', pa['c1'].split('·')[:2] == ['ਪੰ', 'En'] and pa['c2'].split('·')[:2] == ['ਪੰ', 'हिं'] and pa['c3'].split('·')[:2] == ['हिं', 'En'] and len(pa['c1'].split('·')) == 4, pa)
         check('a third meaning language: its pieces under their lines, listed in Sources with "Meanings in the bar", searchable, off in recitation mode',
               all(pa['lay']) and pa['srcs'][0] and pa['srcs'][1].split('|') == ['ਪੰ · En', 'ਪੰ · हिं', 'हिं · En'] and pa['found'] and pa['off'] and pa['back'], pa)
+        # a Roman-letter search shows the verse itself; Play from here ends with the open section (owner, 2026-10-25)
+        rs = await ev("(async () => { await openWork('manas', true); show('home'); openSearch('text'); document.querySelector('#q').value = 'asur chal chonip'; runSearch(); await new Promise(r => setTimeout(r, 300)); const r = document.querySelector('#sRes .res'); return r ? [r.querySelector('.where').textContent, r.querySelector('.snip').textContent.slice(0, 12)] : 'none'; })()")
+        check('search: a verse found by Roman letters is shown as the verse', rs != 'none' and ('Verses' in rs[0] or 'मूल पाठ' in rs[0]) and 'रहे' in rs[1], rs)
+        pf = await ev("(async () => { const P = PLANS[0]; const [a, b] = dayRange(P.id, 2); openReader(P.id, a + 3); await new Promise(r => setTimeout(r, 300)); itemMenu(a + 3); await new Promise(r => setTimeout(r, 200)); document.querySelector('#sheetBody [data-x=play]').click(); const r = [PL.end === b, PL.endMsg]; stopAudio(); return r; })()")
+        check('Play from here ends with the open vishram, with its message', pf[0] and 'finished' in pf[1], pf)
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')
