@@ -148,6 +148,20 @@ dump(f'{WP}/meanings/en-scriptures.json', {
     'm': {i: [versenum.text_and_pieces(EN[i], BYID[i], 'en')[0]] for i in ids},
     'p': {i: versenum.text_and_pieces(EN[i], BYID[i], 'en')[1] for i in ids if not isinstance(EN[i], str)}})
 
+# ---- Punjabi: ours, written for this library line by line (owner, 2026-10-24), shown in the ਪੰ layer ----
+# (checked against Prof. Sahib Singh's Darpan and the Faridkot Teeka with tools/meanings/overlap.py while writing; those
+# books are private, so the check is not repeated here: style.md §13)
+pp = os.path.join(HERE, 'meanings', 'pa.json')
+if os.path.exists(pp):
+    PA = json.load(open(pp, encoding='utf-8'))
+    pmiss = [i for i in ids if not PA.get(i)]; pextra = [k for k in PA if k not in ids]
+    assert not pmiss and not pextra, f'pa meanings: missing {pmiss[:5]}, unknown {pextra[:5]}'
+    dump(f'{WP}/meanings/pa-scriptures.json', {
+        'id': 'pa-scriptures', 'lang': 'pa', 'order': 1,
+        'title': {'hi': 'पंजाबी अर्थ — शास्त्र', 'en': 'Punjabi meaning — Scriptures'},
+        'm': {i: [versenum.text_and_pieces(PA[i], BYID[i], 'pa')[0]] for i in ids},
+        'p': {i: versenum.text_and_pieces(PA[i], BYID[i], 'pa')[1] for i in ids if not isinstance(PA[i], str)}})
+
 # ---- word meanings (Gurmukhi → library/glossary/pa.json, add-only) ----
 PUNCT = re.compile(r"[।॥|,.;:!?\-—‘’“”'\"()\[\]०-९੦-੯0-9]")   # the app's own rule (tools/site/app.js)
 words = {}

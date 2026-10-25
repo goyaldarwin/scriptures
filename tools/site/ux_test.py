@@ -335,7 +335,8 @@ async def main():
                 check(f'{tag}: picking a section jumps there', where is not None, where)
             # meaning layers
             for lang, sel in (('h', '.layer.h'), ('e', '.layer.e')):
-                await ev(f"S.settings.layers.{lang} = true; refreshReader()"); await pg.wait_for_timeout(500)
+                # a work with a third meaning language shows a chosen pair: choose one with this language (owner, 2026-10-24)
+                await ev(f"S.settings.layers.{lang} = true; {{ const k = '{'hi' if lang == 'h' else 'en'}', o = pairOptions().find(p => p.includes(k)); if (workKinds().length > 2 && o) S.settings.pair = o.join(','); }} syncLayers(); refreshReader()"); await pg.wait_for_timeout(500)
                 cnt = await ev(f"document.querySelectorAll('#reader {sel}').length")
                 srcs = await ev(f"((W.sources||{{}})['{'hi' if lang == 'h' else 'en'}']||[]).length")
                 check(f'{tag}: {"Hindi" if lang == "h" else "English"} meanings show', cnt > 0 or srcs == 0, f'{cnt} on screen, {srcs} sources')
@@ -371,7 +372,7 @@ async def main():
             en_hdr = await ev("document.querySelector('#rMid').innerText")
             check(f'{tag}: English interface works in the reader', bool(en_hdr.strip()), en_hdr)
             # recitation mode is the fourth button of the reader's capsule: it hides the meanings; a meaning turned on ends it
-            await ev("S.settings.recite = false; S.settings.layers.h = true; S.settings.layers.e = true; save(); applyRecite(); refreshReader()")
+            await ev("S.settings.recite = false; S.settings.layers.h = true; S.settings.layers.e = true; if (workKinds().length > 2) S.settings.pair = 'pa,hi'; save(); applyRecite(); syncLayers(); refreshReader()")
             await (await pg.query_selector('#rLayers [data-l=r]')).click(); await pg.wait_for_timeout(400)
             ok1 = await ev("S.settings.recite && !S.settings.layers.h && !S.settings.layers.e && !S.settings.layers.w && document.body.classList.contains('recite') && document.querySelector('#rLayers [data-l=r]').classList.contains('on')")
             await (await pg.query_selector('#rLayers [data-l=r]')).click(); await pg.wait_for_timeout(400)
@@ -380,6 +381,7 @@ async def main():
             await (await pg.query_selector('#rLayers [data-l=h]')).click(); await pg.wait_for_timeout(300)
             ok3 = await ev("!S.settings.recite && S.settings.layers.h && !document.body.classList.contains('recite')")
             check(f'{tag}: recitation mode from the capsule hides meanings and restores them; a meaning ends it', ok1 and ok2 and ok3, [ok1, ok2, ok3])
+            await ev("delete S.settings.pair; save(); syncLayers()")
             wide2 = await ev("document.documentElement.scrollWidth - document.documentElement.clientWidth")
             check(f'{tag}: the reader header still fits', wide2 <= 0, wide2)
             # English app, Hindi meaning only inside the work: the reader's words are Hindi; back on the work page, English
@@ -779,7 +781,7 @@ async def main():
         check('⋮: Write a note comes before Copy verse and meaning', order[:4] == ['play', 'note', 'copy', 'edit'], order)
         # line by line (owner, 2026-10-23): a source with a piece per verse line shows each piece under its line; a source
         # without pieces, and a verse with no pieces at all, show the meaning whole after the verse
-        lbl = await ev("""(async () => { await openWork('sukhmani-sahib', true); S.settings.layers = {h: true, e: true, w: false}; S.settings.recite = false; await loadSources();
+        lbl = await ev("""(async () => { await openWork('sukhmani-sahib', true); S.settings.layers = {h: true, e: true, w: false}; S.settings.pair = 'hi,en'; S.settings.recite = false; await loadSources();
             const i = IT.findIndex(x => x.id === 'a01.p3'), it = IT[i], n = it.v.length;
             const keep = {h: SRC.hi.p, e: SRC.en.p}; SRC.hi.p = {}; SRC.en.p = {};
             SRC.en.p[it.id] = it.v.map((_, k) => k === 1 ? '' : 'EN' + k); SRC.hi.p[it.id] = it.v.map((_, k) => 'HI' + k);
@@ -790,7 +792,7 @@ async def main():
             const r2 = [w.querySelectorAll('.layer.e').length === 1, w.lastElementChild.classList.contains('e'), w.querySelectorAll('.layer.h').length === n];
             SRC.hi.p = {}; d.innerHTML = verseHTML(i); const u = d.firstElementChild;
             const r3 = [u.querySelectorAll('.vline').length === 0, u.querySelectorAll('.vtext').length === 1];
-            SRC.hi.p = keep.h; SRC.en.p = keep.e; return [...r1, ...r2, ...r3]; })()""")
+            SRC.hi.p = keep.h; SRC.en.p = keep.e; delete S.settings.pair; return [...r1, ...r2, ...r3]; })()""")
         check('meanings line by line: each piece under its line; a source without pieces shows whole after the verse; none at all keeps the verse whole', all(lbl), lbl)
         # a third meaning language (owner, 2026-10-24): with a Punjabi source the capsule shows ਪੰ · En (English app) or ਪੰ · हिं
         # (Hindi app), always four places; Punjabi pieces sit under their lines; Sources lists it and "Meanings in the bar";
