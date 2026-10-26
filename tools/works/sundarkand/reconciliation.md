@@ -72,9 +72,9 @@ The two sources share the popular modern text, and differ from each other in pla
 
 Pt. Ashwin Kumar Pathak's recording (YouTube `QjSpUgnEPLU`) sings these before Kiṣkindhā dohā 29, and the owner asked for them to be shown and timed. The order is the recording's: ॐ श्री परमात्मने नमः (12.6 s), वक्रतुण्ड… (21.9 s), विघ्नेश्वराय… (35.4 s), ॐ श्री परमात्मने नमः again (56.9 s), प्रनवउँ पवनकुमार… (64.1 s); then kishkindha.29.do29 at 84.6 s. The evidence for the times is in `audio/ashwin-pathak/fixes.md`.
 
-- **"प्रनवउँ पवनकुमार…" is the Mānas's own sorathā, Bāla-kāṇḍa 17 (`bal.17.so17`)**, with its Gita Press Hindi and English meanings. It is pulled from the Mānas by id (`[manas bal.17.so17]`), never copied, and `check.py` proves it equal; it keeps its number ।।१७।।, as in the book. The video's caption (ग्यानघन) is not used: the Mānas's text is.
-- **ॐ श्री परमात्मने नमः**: as sung and as the video writes it, and as the app's own default greeting. Written with ।। at the end, type मन्त्र (as the Rāma Rakṣā's ।। ॐ श्रीगणेशाय नमः ।।). It is shown twice because it is sung twice; each is timed.
-- **वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ । निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ।।**
+- **"प्रनवउँ पवनकुमार…" is the Mānas's own sorathā, Bāla-kāṇḍa 17 (`bal.17.so17`)**, with its Gita Press Hindi and English meanings. It is pulled from the Mānas by id (`[manas bal.17.so17]`), never copied, and `check.py` proves it equal; it keeps its number ॥१७॥, as in the book. The video's caption (ग्यानघन) is not used: the Mānas's text is.
+- **ॐ श्री परमात्मने नमः**: as sung and as the video writes it, and as the app's own default greeting. Written with ॥ at the end, type मन्त्र (as the Rāma Rakṣā's ॥ ॐ श्रीगणेशाय नमः ॥). It is shown twice because it is sung twice; each is timed.
+- **वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ । निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥**
 
   | Source | Text |
   |---|---|
@@ -83,7 +83,7 @@ Pt. Ashwin Kumar Pathak's recording (YouTube `QjSpUgnEPLU`) sings these before K
   | the video | its caption has errors (कार्येशु) |
 
   Ours = E. समप्रभ (vocative, like वक्रतुण्ड, महाकाय, देव) is the correct form; F's समप्रभा is not. सर्वकार्येषु (locative plural) with ष. सूर्यकोटि समप्रभ is one compound in grammar, but both sources print it as two words, and so do we.
-- **विघ्नेश्वराय वरदाय सुरप्रियाय / लम्बोदराय सकलाय जगद्धिताय । / नागाननाय श्रुतियज्ञविभूषिताय / गौरीसुताय गणनाथ नमो नमस्ते ।।**
+- **विघ्नेश्वराय वरदाय सुरप्रियाय / लम्बोदराय सकलाय जगद्धिताय । / नागाननाय श्रुतियज्ञविभूषिताय / गौरीसुताय गणनाथ नमो नमस्ते ॥**
 
   | Source | Differs from ours |
   |---|---|
@@ -91,7 +91,7 @@ Pt. Ashwin Kumar Pathak's recording (YouTube `QjSpUgnEPLU`) sings these before K
   | H | vnktchari.blogspot.com, "Ganesh Vandana Lyrics", §4 Ganesh Stuti: https://vnktchari.blogspot.com/2015/02/ganesh-vandana-lyrics-in-english-hindi.html — जगतजिताय, श्रुतियज्ञ विभूषिताय (apart) |
   | the video | as ours |
 
-  **जगद्धिताय**: जगत् + हिताय joins as जगद्धिताय (त् + ह → द्ध); G's जगद्हिताय is the same word without the joining, H's जगतजिताय is a mistake (it would mean "conqueror of the world", and the recording sings "जगद हिताय"). **नमो नमस्ते** apart, as H and the video. **श्रुतियज्ञविभूषिताय** joined, as G and the video (one compound). The four lines are four quarters of one verse (metre vasantatilakā, 14 syllables each); the number ।।२।। is ours, after वक्रतुण्ड as ।।१।।.
+  **जगद्धिताय**: जगत् + हिताय joins as जगद्धिताय (त् + ह → द्ध); G's जगद्हिताय is the same word without the joining, H's जगतजिताय is a mistake (it would mean "conqueror of the world", and the recording sings "जगद हिताय"). **नमो नमस्ते** apart, as H and the video. **श्रुतियज्ञविभूषिताय** joined, as G and the video (one compound). The four lines are four quarters of one verse (metre vasantatilakā, 14 syllables each); the number ॥२॥ is ours, after वक्रतुण्ड as ॥१॥.
   The source work of this verse is not known: it is not among sanskritdocuments.org's Gaṇeśa stutis, nor in the Gaṇanātha-stuti of the Mudgala Purāṇa. It is a well-known verse of Gaṇeśa worship; no author is shown.
 - **Meanings** of these four lines and the word meanings of their 17 new Sanskrit words (`glossary/sa.json`) are our own. सकलाय is given as "complete, whole in every part (सब कलाओंसे युक्त)".
 

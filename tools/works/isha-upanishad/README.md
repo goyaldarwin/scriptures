@@ -9,8 +9,8 @@ Shelf: हिन्दू धर्म › वेद › यजुर्वे�
 - **Audio:** SMVedroad, “Ishavashya Upanishad Chant … With Lyrics” (YouTube `mzczDkOtk0k`), in `audio/smvedroad/` (`source.json`, `recordings.json`). The private copy is in scriptures-data at `hinduism/veda/yajurveda/shukla-yajurveda/upanishad/isha-upanishad/audio/smvedroad/`. Live: `make_timings.py` times all 19 items from the transcript (`transcripts/`); two starts are hand-checked (`fixes.json`, evidence in `fixes.md`).
 
 ## Files
-- `text.json`: the settled text, items in reading order, in house style (`v` Devanagari, `t` transliteration).
-- `check.py <printout.pdf>`: compares `text.json` with the printout's transliteration (only the corrections in `reconciliation.md` may differ), and checks that `t` spells the same text as `v`. Run it after any change to the text.
+- `text.json`: the settled text, items in reading order, in Devanagari (`v`); the exporter writes it by the library's standard and makes the transliteration (PLAYBOOK §3).
+- `check.py <printout.pdf>`: compares `text.json` with the printout's transliteration (only the corrections in `reconciliation.md` may differ). Run it after any change to the text.
 - `meanings/hi.json`, `meanings/en.json`: `{item id: [meaning, [footnotes]]}` → `meanings/hi-scriptures.json`, `en-scriptures.json` (both `order: 1`).
 - `glossary_sa.json`: every word of the text. The exporter adds the new ones to `library/glossary/sa.json` and never overwrites an existing word. Two words already in the shared dictionary with a sense that doesn't fit here (कृतं “what has been done”, देव “O god”) go to the work's own `glossary.json` (`WORK_SENSES` in `export.py`).
 - `export.py`: run it, then `python3 tools/site/build.py`. It stops if a mantra lacks a meaning in either language, and it reports any word without a meaning.

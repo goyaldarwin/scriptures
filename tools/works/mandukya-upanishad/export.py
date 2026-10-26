@@ -17,14 +17,12 @@ Then run tools/site/build.py.
 import json, os, re, sys
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.dirname(os.path.dirname(os.path.dirname(HERE)))
 sys.path.insert(0, os.path.join(HERE, '..', '..')); import jsonio
-sys.path.insert(0, os.path.join(HERE, '..', 'sundarkand')); import translit
 
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(REPO, 'library')
 WP = 'hinduism/veda/atharvaveda/upanishad/mandukya-upanishad'
 
 def dump(path, obj):
-    path = os.path.join(OUT, path); os.makedirs(os.path.dirname(path), exist_ok=True)
-    json.dump(obj, open(path, 'w'), ensure_ascii=False, separators=(',', ':'))
+    return jsonio.dump_library(OUT, path, obj)
 
 items = []
 for raw in open(os.path.join(HERE, 'text.txt'), encoding='utf-8'):
@@ -34,11 +32,9 @@ for raw in open(os.path.join(HERE, 'text.txt'), encoding='utf-8'):
     if m:
         items.append({'id': m.group(1), 'p': 0, 's': m.group(1), 'y': m.group(2), 'n': m.group(3) or '', 'v': []}); continue
     items[-1]['v'].append(line)
-for x in items:   # the transliteration, as the Īśāvāsya's: ṛ (not r̥); ꣳ (the Vedic anusvāra) is ṁ like ं
-    x['t'] = [l.replace('r̥', 'ṛ') for l in translit.verse([v.replace('ꣳ', 'ं') for v in x['v']])]
 assert [x['id'] for x in items] == ['shanti.1'] + ['m%02d' % n for n in range(1, 13)] + ['iti']
 for x in items:   # each mantra ends with its own number
-    if x['y'] == 'mantra': assert re.search(r'।।%s।।$' % ''.join('०१२३४५६७८९'[int(c)] for c in x['n']), x['v'][-1]), x['id']
+    if x['y'] == 'mantra': assert re.search(r'॥%s॥$' % ''.join('०१२३४५६७८९'[int(c)] for c in x['n']), x['v'][-1]), x['id']
 
 work = {
     'id': 'mandukya-upanishad',

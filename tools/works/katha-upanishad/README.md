@@ -10,7 +10,7 @@ Shelf: हिन्दू धर्म › वेद › यजुर्वे�
 
 ## Files
 - `source/extract.py <the PDF>` → `source/pdf_raw.json`: each mantra's transliteration lines, decoded (and the śānti mantra's).
-- `source/settle.py` → `text.json`: the settled text, one item per mantra, in house style (`v` Devanagari, `t` IAST made back from the Devanagari).
+- `source/settle.py` → `text.json`: the settled text, one item per mantra, in Devanagari (`v`); the exporter writes it by the library's standard and makes the transliteration (PLAYBOOK §3).
 - `source/witness/*.txt`: Devanagari witnesses (verses separated by blank lines, `# 1.2` naming a vallī).
 - `check.py`: `t` must spell `v`; every witness verse must spell the same words as `v` (only the differences in `reconciliation.md` are allowed). Run it after any change to the text.
 - `meanings/hi.json`, `meanings/en.json`: `{item id: [meaning, [footnotes]]}` → `meanings/hi-scriptures.json`, `en-scriptures.json`.
@@ -22,7 +22,7 @@ Rebuild: `python3 tools/works/katha-upanishad/source/settle.py && python3 tools/
 ## Structure
 - **Parts:** प्रथम अध्याय, द्वितीय अध्याय.
 - **Sections (pages):** the six vallīs (`v1.1` … `v2.3`), plus `shanti` (opening).
-- **Items:** `shanti.1`; `1.1.1` … `2.3.18` (adhyāya.vallī.mantra, the standard numbering, also in `n`; each verse ends with its number within the vallī, ।।१।।). The book and sanskritdocuments.org print the closing śānti as “2.3.19”; the work ends with 2.3.18 (the owner's decision; the recording ends there too). Ids are permanent.
+- **Items:** `shanti.1`; `1.1.1` … `2.3.18` (adhyāya.vallī.mantra, the standard numbering, also in `n`; each verse ends with its number within the vallī, ॥१॥). The book and sanskritdocuments.org print the closing śānti as “2.3.19”; the work ends with 2.3.18 (the owner's decision; the recording ends there too). Ids are permanent.
 - **Types:** `shanti` (शा॰ / Śā.) and `mantra` (मं॰ / Man.).
 - **Topics:** one per vallī with its theme, plus the śānti pāṭha.
 - **Reading plans:** none; the Upaniṣad is read in one or two sittings.

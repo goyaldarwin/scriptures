@@ -2,15 +2,14 @@
 
 The PDF's Devanagari layer is unreadable (legacy font), its IAST transliteration is clean. The Devanagari is
 therefore made from the transliteration (iast2deva: a letter-for-letter conversion, no guessing), in the
-library's house style, and ../check.py compares it with the Devanagari witnesses in witness/,
-see ../reconciliation.md. The transliteration `t` is made back from the settled Devanagari (deva2iast), in
-the library's IAST convention (ṁ, ’ for the avagraha, ॥ and the number as in the other works).
+library's daṇḍas (॥), and ../check.py compares it with the Devanagari witnesses in witness/,
+see ../reconciliation.md. The transliteration is made by the exporter (tools/text/standard.py).
 
 Items: shanti.1 (the opening śānti), 1.1.1 … 2.3.18 (adhyāya.vallī.mantra, the standard numbering: 29+25+17 and
 15+15+18 = 119 mantras). The closing śānti the book prints as "2.3.19" is left out. Sections (pages) are the vallīs.
 Run: python3 settle.py   (then ../export.py)
 """
-import json, os, re, unicodedata
+import json, os, re
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 # ---- IAST → Devanagari ----
@@ -46,7 +45,7 @@ def iast2deva(line):
     out = []
     for w in line.replace(',', '').split():   # the author's two commas (1.1.1, 1.3.14) are not part of the text
         if w == '|': out.append('।')
-        elif w == '||': out.append('।।')
+        elif w == '||': out.append('॥')
         else: out.append(iast2deva_word(w.rstrip('|')) + (' ।' if w.endswith('|') else ''))
     return ' '.join(out)
 
@@ -56,35 +55,6 @@ CONS = dict(zip('कखगघङचछजझञटठडढणतथदधनप
 VOW = dict(zip('अआइईउऊऋॠऌएऐओऔ', 'a ā i ī u ū ṛ ṝ ḷ e ai o au'.split()))
 MAT = dict(zip('ािीुूृॄॢेैोौ', 'ā i ī u ū ṛ ṝ ḷ e ai o au'.split()))
 DIG = dict(zip('०१२३४५६७८९', '0123456789'))
-def deva2iast(s):
-    out = []; pend = False
-    for c in s:
-        if c in CONS:
-            if pend: out.append('a')
-            out.append(CONS[c]); pend = True
-        elif c == '्': pend = False
-        elif c in MAT: out.append(MAT[c]); pend = False
-        elif c in VOW:
-            if pend: out.append('a'); pend = False
-            out.append(VOW[c])
-        else:
-            if pend: out.append('a'); pend = False
-            if c == 'ं': out.append('ṁ')
-            elif c == 'ः': out.append('ḥ')
-            elif c == 'ँ': out.append('̐')
-            elif c == 'ऽ': out.append('’')
-            elif c == 'ꣳ': out.append('gͫ')
-            elif c == 'ॐ': out.append('oṁ')
-            elif c in DIG: out.append(DIG[c])
-            else: out.append(c)
-    if pend: out.append('a')
-    t = unicodedata.normalize('NFC', ''.join(out))
-    t = re.sub(r'\s*।।(\d+)।।', r' ॥\1॥', t)
-    t = re.sub(r'\s*।।', ' ॥', t)
-    t = re.sub(r'\s*।\s*$', ',', t)
-    t = re.sub(r'\s*।\s*', ', ', t)
-    return t.strip()
-
 # ---- corrections to the book's reading, each checked against the Devanagari witnesses (../reconciliation.md) ----
 FIX = {   # item: [(book, settled)]; each must occur exactly once in the item's text
     '1.1.26': [('जरयंति', 'जरयन्ति')],                      # the book's jarayaṃti; the text has the dental न्
@@ -101,12 +71,12 @@ VALLI = [('1', '1', 29), ('1', '2', 25), ('1', '3', 17), ('2', '1', 15), ('2', '
 
 def item(id_, p, s, y, n, lines):
     v = [l.strip() for l in lines if l.strip()]
-    return {'id': id_, 'p': p, 's': s, 'y': y, 'n': n, 'v': v, 't': [deva2iast(l) for l in v]}
+    return {'id': id_, 'p': p, 's': s, 'y': y, 'n': n, 'v': v}
 
 def main():
     R = json.load(open(os.path.join(HERE, 'pdf_raw.json'), encoding='utf-8'))
     sh = [iast2deva(l) for l in R['shanti']['t']]
-    assert sh[0].startswith('ॐ') and sh[-1].endswith('।।'), sh
+    assert sh[0].startswith('ॐ') and sh[-1].endswith('॥'), sh
     items = [item('shanti.1', 0, 'shanti', 'shanti', '', sh)]
     for a, va, cnt in VALLI:
         for m in range(1, cnt + 1):
@@ -116,7 +86,7 @@ def main():
                 assert sum(l.count(wrong) for l in lines) == 1, (vid, wrong)
                 lines = [l.replace(wrong, right) for l in lines]
             assert lines and not lines[-1].endswith('।'), (vid, lines)   # the last line carries no bar: the number goes there
-            lines[-1] += ' ।।%s।।' % DEV(m)
+            lines[-1] += ' ॥%s॥' % DEV(m)
             items.append(item(vid, int(a) - 1, 'v%s.%s' % (a, va), 'mantra', vid, lines))
     assert len(items) == 120, len(items)   # the work ends with 2.3.18: no closing śānti
     json.dump({'items': items}, open(os.path.join(HERE, '..', 'text.json'), 'w'), ensure_ascii=False, indent=1)

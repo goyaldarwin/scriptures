@@ -2,11 +2,10 @@
 
 The Devanagari is the page's own, with the PDF text layer's breaks mended (rudram_text.norm_deva) and the
 corrections below, each checked against the page image and the page's own transliteration
-(see ../reconciliation.md). The transliteration `t` is made from the settled Devanagari (deva2iast),
-in the library's IAST convention, keeping the svaras as accents (◌̍ udātta/svarita mark ॑, ◌̠ anudātta ॒, ◌̎ ᳚).
+(see ../reconciliation.md). The transliteration is made by the exporter (tools/text/standard.py).
 Run: python3 settle.py   (then ../export.py)
 """
-import json, os, re, sys, unicodedata
+import json, os, re, sys
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
 from rudram_text import norm_deva, tr2deva, key, SV
 
@@ -59,63 +58,16 @@ def blocks(part):
     return [x.split('\n') for x in out], B
 
 def house(l):
-    """Library house style: ।। for ॥, the number inside without spaces (।।११।।)."""
-    l = re.sub(r'\s*॥\s*([०-९]+)\s*॥', r' ।।\1।।', l)
-    l = re.sub(r'\s*॥', ' ।।', l)
+    """The page's daṇḍas as the library writes them: ॥, the number inside without spaces (॥११॥)."""
+    l = re.sub(r'\s*॥\s*([०-९]+)\s*॥', r' ॥\1॥', l)
+    l = re.sub(r'\s*॥(?![०-९])(?<![०-९]॥)', ' ॥', l)
     return l.strip()
-
-# ---- Devanagari → IAST (with svara accents) ----
-CONS = dict(zip('कखगघङचछजझञटठडढणतथदधनपफबभमयरलवशषसह',
-    'k kh g gh ṅ c ch j jh ñ ṭ ṭh ḍ ḍh ṇ t th d dh n p ph b bh m y r l v ś ṣ s h'.split()))
-VOW = dict(zip('अआइईउऊऋॠऌएऐओऔ', 'a ā i ī u ū ṛ ṝ ḷ e ai o au'.split()))
-MAT = dict(zip('ािीुूृॄॢेैोौ', 'ā i ī u ū ṛ ṝ ḷ e ai o au'.split()))
-ACC = {'॑': '̍', '॒': '̠', '᳚': '̎'}
-DIG = dict(zip('०१२३४५६७८९', '0123456789'))
-def deva2iast(s):
-    out = []; i = 0; pend = False      # pend: a consonant waits for its vowel
-    def vowel(v):
-        out.append(v)
-    while i < len(s):
-        c = s[i]
-        if c in CONS:
-            if pend: out.append('a')
-            out.append(CONS[c]); pend = True
-        elif c == '्': pend = False
-        elif c in MAT: out.append(MAT[c]); pend = False
-        elif c in VOW:
-            if pend: out.append('a'); pend = False
-            out.append(VOW[c])
-        else:
-            if pend and c not in ACC: out.append('a'); pend = False
-            if c in ACC:
-                if pend: out.append('a'); pend = False
-                # the page writes the svara after ं/ः: put the accent on the vowel before them
-                j = len(out)
-                while j and out[j - 1] in ('ṁ', 'ḥ'): j -= 1
-                out.insert(j, ACC[c])
-            elif c == 'ं': out.append('ṁ')
-            elif c == 'ः': out.append('ḥ')
-            elif c == 'ँ': out.append('̐')
-            elif c == 'ꣳ': out.append('gͫ')
-            elif c == 'ऽ': out.append('’')
-            elif c == 'ॐ': out.append('oṁ')
-            elif c in DIG: out.append(DIG[c])
-            elif c == '।': out.append('।')
-            else: out.append(c)
-        i += 1
-    if pend: out.append('a')
-    t = unicodedata.normalize('NFC', ''.join(out))
-    t = re.sub(r'\s*।।(\d+)।।', r' ॥\1॥', t)
-    t = re.sub(r'\s*।।', ' ॥', t)
-    t = re.sub(r'\s*।\s*$', ',', t)
-    t = re.sub(r'\s*।\s*', ', ', t)           # a daṇḍa inside the line, as in the Mānas convention
-    return t.strip()
 
 # ---- items ----
 def item(part, sec, key_, y, n, lines, p):
     v = [house(l) for l in lines if l.strip()]
     return {'id': '%s.%s.%s' % (part, sec, key_), 'p': p, 's': '%s-%s' % (part[:3], sec), 'y': y, 'n': n,
-            'v': v, 't': [deva2iast(l) for l in v]}
+            'v': v}
 
 def namakam():
     L, B = blocks('namakam'); I = []; P = 0
@@ -148,14 +100,13 @@ if __name__ == '__main__':
     N, BN = namakam(); C, BC = chamakam()
     items = N + C
     ids = [x['id'] for x in items]; assert len(ids) == len(set(ids))
-    # misprints in the printout itself (its own transliteration has them too), corrected by item (reconciliation.md),
-    # with the transliteration made again from the corrected Devanagari
+    # misprints in the printout itself (its own transliteration has them too), corrected by item (reconciliation.md)
     ITEM_FIX = {'namakam.a03.m12': [('नमो-ऽस्स॑द्भ्यो॒ विद्य॑द्भ्यश्च', 'नमो-ऽस्य॑द्भ्यो॒ विध्य॑द्भ्यश्च')],
                 'chamakam.a08.m02': [('दिष्णि॑याश्च', 'धिष्णि॑याश्च')]}
     for x in items:
         for a_, b_ in ITEM_FIX.get(x['id'], []):
             assert sum(l.count(a_) for l in x['v']) == 1, (x['id'], a_)
-            x['v'] = [l.replace(a_, b_) for l in x['v']]; x['t'] = [deva2iast(l) for l in x['v']]
+            x['v'] = [l.replace(a_, b_) for l in x['v']]
     # the closing mantras of the Namakam in the order the recording sings them (the owner: "the ending verses
     # are jumbled up and don't match the order in the recording"): Shlokam's recording sings u1 u2 u6 u7 u8 and then
     # u3 u4 u5 (तमु ष्टुहि, यक्ष्वामहे, अयं मे हस्तो) before the śānti; the printout lists u3–u5 after u2. The ids stay; the

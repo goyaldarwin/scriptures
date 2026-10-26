@@ -15,7 +15,7 @@ Appends the writers' doubts (with the reviewer's comments on them) to --doubts, 
 import argparse, glob, json, os, re
 
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-NUM = re.compile(r'।।\s*[०-९0-9]|\(\d+\)\s*$')
+NUM = re.compile(r'(?:।।|॥)\s*[०-९0-9]|\(\d+\)\s*$')
 
 def jl(p): return [json.loads(l) for l in open(p, encoding='utf-8') if l.strip()] if os.path.exists(p) else []
 

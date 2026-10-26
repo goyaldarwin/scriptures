@@ -196,7 +196,14 @@ async function loadGlossaries(){
   await Promise.all([...need].filter(c => !GL[c]).map(async c => { try { GL[c] = await getJSON('glossary/' + c); } catch (e) { GL[c] = {}; } }));
   WG = {}; if (W.glossary){ try { WG = await getJSON(W.path + '/glossary'); } catch (e) {} }
 }
-function dictEntry(lang, w){ return (WG[lang] && WG[lang][w]) || (GL[lang] && GL[lang][w]) || null; }
+// a word's lookup form (fold() in tools/text/standard.py): a class nasal before its stop, ꣳ (also as typed, ग्ं) and a
+// word-final म् are ं, so गङ्गा finds गंगा and इदम् finds इदं
+function fold(w){ return w.replace(/ग्ं/g, 'ं').replace(/ꣳ/g, 'ं').replace(/[ङञणनम]्(?=[कखगघचछजझटठडढतथदधपफबभ])/g, 'ं').replace(/म्$/, 'ं'); }
+function foldIndex(d){ if (!d) return null; if (!d.__fold){ const f = {}; for (const k in d){ const g = fold(k); if (!(g in f)) f[g] = d[k]; } Object.defineProperty(d, '__fold', {value: f}); } return d.__fold; }
+function dictEntry(lang, w){
+  const e = (WG[lang] && WG[lang][w]) || (GL[lang] && GL[lang][w]); if (e) return e;
+  const f = fold(w); return (foldIndex(WG[lang]) || {})[f] || (foldIndex(GL[lang]) || {})[f] || null;
+}
 function lookup(w, lang){
   w = cleanWord(w); if (!w) return null; lang = lang || W.lang;
   const chain = langChain(lang);
@@ -209,7 +216,7 @@ function lookup(w, lang){
   return {w, lang, none: true};
 }
 function wordsHTML(line){
-  line = line.replace(/\s+(।।|।|॥)/g, ' $1');
+  line = line.replace(/\s+(।|॥)/g, ' $1');
   const halves = line.split(/(?<=[।॥])\s+(?=[^\s।॥०-९੦-੯(])/).reduce((a, h) => { if (a.length && /^[।॥\s]+$/.test(a[a.length - 1])) a[a.length - 1] += ' ' + h; else a.push(h); return a; }, []);
   return halves.map(hf => '<span class="half">' + hf.split(/( +)/).map(tok => { if (/^ +$/.test(tok) || !cleanWord(tok)) return esc(tok); const m = tok.match(/^(.*?)( .*)?$/); return '<span class="w">' + esc(m[1]) + '</span>' + esc(m[2] || ''); }).join('') + '</span>').join(' ');
 }
@@ -318,9 +325,9 @@ function verseHTML(i){
   const vcls = '<div class="vtext' + (VEDIC.test(vv.v.join('')) ? ' vedic' : '') + '">';
   const pl = vv.v.map((l, y) => {
     const last = y === vv.v.length - 1;
-    let ln = last && it.y === 'cau' && it.n && /।।\s*$/.test(l) ? l.replace(/\s*।।\s*$/, ' ।।' + String(it.n).replace(/\d/g, d => DIG[d]) + '।।') : l;
+    let ln = last && (it.y === 'cau' || it.y === 'cha') && it.n && /॥\s*$/.test(l) && !/॥[^॥]+॥\s*$/.test(l) ? l.replace(/\s*॥\s*$/, ' ॥' + String(it.n).replace(/\d/g, d => DIG[d]) + '॥') : l;
     if (LANG() === 'en') ln = ln.replace(/[०-९]/g, d => DIG.indexOf(d)).replace(/[੦-੯]/g, d => d.charCodeAt(0) - 0x0A66);
-    const w = wordsHTML(ln).replace(/।।\s*([0-9०-९][^\s।<]*)\s*।।/, '<span style="white-space:nowrap">।।$1।।</span>').replace(/॥\s*([0-9०-९੦-੯][^\s॥<]*)\s*॥/, '<span style="white-space:nowrap">॥$1॥</span>');
+    const w = wordsHTML(ln).replace(/॥\s*([0-9०-९੦-੯][^\s॥<]*)\s*॥/, '<span style="white-space:nowrap">॥$1॥</span>');
     // corners, each inside the gutter so they never touch the text: ▶ (top left, on the line of the bookmark),
     // bookmark (top right), ⋮ (bottom right). A one-line verse is given a second line's height so the corners stay apart.
     const top = y === 0 ? (hasAu(i) ? '<button class="vb vplay" data-a="play" aria-label="play"><svg><use href="#i-play"/></svg></button>' : '') + '<button class="vb vbm' + (bm ? ' bm-on' : '') + '" data-a="bm" aria-label="bookmark"><svg><use href="#i-bm"/></svg></button>' : '';
@@ -329,7 +336,7 @@ function verseHTML(i){
     return '<p' + (vv.v.length === 1 ? ' class="one"' : '') + '>' + top + w + tail + '</p>'; });
   let h = '<div class="verse' + (toCheck(i) ? ' tocheck' : '') + '" id="v' + i + '" data-i="' + i + '">';
   const trl = l => '<div>' + l.split(/(?<=,)\s+/).map(x => '<span class="half">' + esc(x).replace(/\s*॥\s*([^॥]*?)\s*॥/g, ' <span class="dd">॥$1॥</span>') + '</span>').join(' ') + '</div>';
-  const num = x => esc(x).replace(/\s*(।।[^।]*।।)\s*$/, '<span style="white-space:nowrap"> $1</span>');
+  const num = x => esc(x).replace(/\s*(॥[^॥]*॥)\s*$/, '<span style="white-space:nowrap"> $1</span>');
   // one meaning layer: Hindi and Punjabi keep the verse number on its line; English only when line by line
   const lay = (kind, m, x, fn) => '<div class="layer ' + LCLS(kind) + '">' + (kind !== 'en' || m.p ? num(x) : esc(x)) + (m.edited ? '<span class="tag">' + (kind === 'en' ? 'edited' : T('संशोधित', 'edited')) + '</span>' : '') + (fn && m.f ? '<div class="fn">' + m.f.map(esc).join('<br>') + '</div>' : '') + '</div>';
   const ks = shownKinds(), MS = {}; ks.forEach(k => { const m = mean(k, i); if (m) MS[k] = m; });

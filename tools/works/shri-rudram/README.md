@@ -15,7 +15,7 @@ Shelf: हिन्दू धर्म › वेद › यजुर्वे�
 ## Files
 - `source/extract.py <namakam.pdf> <chamakam.pdf> [private folder]` → `source/namakam_raw.json`, `chamakam_raw.json`: each page block's Devanagari and transliteration lines.
 - `source/rudram_text.py`: mends the PDF text layer (`norm_deva`) and converts the page's transliteration back to Devanagari (`tr2deva`) as a second witness.
-- `source/settle.py` → `text.json`: the settled text, one item per mantra, with the corrections (`FIX`) and the IAST transliteration made from the Devanagari.
+- `source/settle.py` → `text.json`: the settled text, one item per mantra, with the corrections (`FIX`); the exporter writes it by the library's standard and makes the transliteration (PLAYBOOK §3).
 - `meanings/namakam.json`, `chamakam.json`: our meanings, `{item id: {en, hi, fen?, fhi?}}`. `fen` and `fhi` are footnotes.
 - `glossary/g1–g5.json`: word meanings, merged into `library/glossary/sa.json` (add-only). `glossary/work_sa.json` holds this work's own senses, written to `library/…/glossary.json`.
 - `export.py` → `work.json`, `meanings/en-scriptures.json`, `meanings/hi-scriptures.json`, `glossary.json`; then run `python3 tools/site/build.py`.

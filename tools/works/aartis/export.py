@@ -26,7 +26,6 @@ library/index.json (the shelf is edited by hand). Then run tools/site/build.py.
 import json, os, re, sys
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.dirname(os.path.dirname(os.path.dirname(HERE)))
 sys.path.insert(0, os.path.join(HERE, '..', '..')); import jsonio
-sys.path.insert(0, os.path.join(HERE, '..', 'sundarkand')); import translit
 sys.path.insert(0, os.path.join(HERE, '..', '..', 'meanings')); import versenum
 
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(REPO, 'library')
@@ -35,8 +34,7 @@ SUNDAR = 'hinduism/granth/tulsidas/sundarkand'
 
 def load(rel): return json.load(open(os.path.join(OUT, rel), encoding='utf-8'))
 def dump(rel, obj):
-    p = os.path.join(OUT, rel); os.makedirs(os.path.dirname(p), exist_ok=True)
-    json.dump(obj, open(p, 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
+    return jsonio.dump_library(OUT, rel, obj)
 
 TYPES = {   # verse types the app doesn't know; cau, cha, do and so are the Mānas's own
     'tek': {'name': {'hi': 'टेक', 'en': 'Refrain (ṭeka)'}, 'short': {'hi': 'टेक', 'en': 'Ref.'}},
@@ -102,8 +100,6 @@ def read_text(wid, lang):
             if sec['lang'] != lang: it['l'] = sec['lang']
             items.append(it); sec['first'] = sec['first'] or it['id']; continue
         items[-1]['v'].append(line)
-    for it in items:
-        if it['id'] not in pulled: it['t'] = translit.verse(it['v'], it['n'] if it['y'] == 'cau' else None)
     return sections, items, pulled
 
 PUNCT = re.compile(r"[।॥|,.;:!?\-—‘’“”'\"()\[\]०-९0-9]")   # the app's own rule (tools/site/app.js)

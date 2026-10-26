@@ -21,7 +21,7 @@ The printouts, not the live pages, are the source: the workspace cannot reach sh
    - च्छ / chCh;
    - the page's own spelling अर्ण॒वें᳚-ऽतरि॑क्षे, which the image confirms;
    - नमस्स / नमः स.
-4. **Items.** One item per mantra (below). `t` is not the page's transliteration. It is made from the settled Devanagari, in the library's IAST convention (c for च, ṁ for anusvāra, e/o without macron, "," for a daṇḍa, ॥N॥), and it keeps the svaras as accents: ◌̍ for ॑, ◌̠ for ॒, ◌̎ for ᳚. So it always agrees with the Devanagari.
+4. **Items.** One item per mantra (below). `t` is not the page's transliteration. The exporter makes it from the settled Devanagari by the library's writing standard (docs/PLAYBOOK.md §3: ISO 15919, the svaras as accents ◌̍ ◌̠ ◌̎), so it always agrees with the Devanagari. The same standard writes the page's typed ग्ं as ꣳ, the anusvāra before श ष स ह र as ꣳ, ओं as ॐ, and a nasal before a stop as its class letter.
 
 ## Corrections (all in `source/settle.py` → `FIX`)
 Most restore a reph (र्) that the PDF text layer drops. The page image and the page's transliteration both show it.

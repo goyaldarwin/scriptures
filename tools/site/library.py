@@ -10,7 +10,8 @@ For each work on the shelf (library/index.json) this:
      a clear message if not.
 A source's file name must equal its "id". The source with the lowest "order" (then id) is the default.
 """
-import glob, json, os, re, unicodedata
+import glob, json, os, re, sys, unicodedata
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'text')); import standard
 
 class LibraryError(Exception): pass
 
@@ -45,6 +46,13 @@ def word_rule():
     P, S = re.compile(P.group(1)), re.compile(S.group(1))
     return lambda t: unicodedata.normalize('NFC', S.sub('', P.sub('', t)))
 
+_FOLDED = {}
+def _folded(D, lang):
+    """The lookup forms (standard.fold) of a dictionary's words."""
+    key = (id(D), lang)
+    if key not in _FOLDED or _FOLDED[key][0] is not D: _FOLDED[key] = (D, {standard.fold(k) for k in D.get(lang, {})})
+    return _FOLDED[key][1]
+
 def check_words(lib, name, w, LANGS, G, clean):
     """Every word of every verse has a meaning in its language or a fallback (the work's own glossary.json first)."""
     wg = os.path.join(lib, name, 'glossary.json'); WG = json.load(open(wg, encoding='utf-8')) if os.path.exists(wg) else {}
@@ -54,7 +62,7 @@ def check_words(lib, name, w, LANGS, G, clean):
         for line in x['v']:
             for t in line.split():
                 k = clean(t)
-                if k and not any(k in WG.get(c, {}) or k in G.get(c, {}) for c in chain): miss.setdefault(lg, set()).add(k)
+                if k and not any(k in WG.get(c, {}) or k in G.get(c, {}) or standard.fold(k) in _folded(WG, c) or standard.fold(k) in _folded(G, c) for c in chain): miss.setdefault(lg, set()).add(k)
     _need(not miss, f"{name}: words without a meaning: " + '; '.join(f"{lg}: {' '.join(sorted(ws)[:12])}{' …' if len(ws) > 12 else ''} ({len(ws)})" for lg, ws in miss.items()))
 
 def check_work(lib, leaf, LANGS):
@@ -71,6 +79,12 @@ def check_work(lib, leaf, LANGS):
             _need(lg in LANGS, f"{name}/glossary.json: unknown language {lg!r}")
             for k, v in words.items(): _need(isinstance(v, dict) and ('hi' in v or 'en' in v), f"{name}/glossary.json: {lg}:{k} needs hi/en")
     _need(len(ID) == len(ids), f"{name}: item ids are not unique")
+    # the writing standard (tools/text/standard.py, PLAYBOOK §3): every verse and transliteration is what it makes
+    std = standard.apply(json.loads(json.dumps(items)), w['lang'], standard.yajur(path))
+    bad = [a['id'] for a, b in zip(items, std) if a['v'] != b['v'] or a.get('t') != b.get('t')]
+    _need(not bad, f"{name}: {len(bad)} items are not written by the standard (export through jsonio.dump_library): {bad[:5]}")
+    for f in [wp] + glob.glob(os.path.join(lib, path, 'meanings', '*.json')):
+        _need('।।' not in open(f, encoding='utf-8').read(), f"{os.path.relpath(f, lib)}: two daṇḍas ।। where the standard writes ॥")
     for x in items:
         _need(isinstance(x.get('v'), list) and x['v'], f"{name}: item {x['id']} has no verse lines")
         _need(0 <= x['p'] < len(w['parts']['list']), f"{name}: item {x['id']} part {x['p']} out of range")
@@ -134,6 +148,8 @@ def check_work(lib, leaf, LANGS):
     return w['id'], {k: [x['id'] for x in v] for k, v in src.items()}
 
 def prepare(lib):
+    bad = standard.selftest()
+    _need(not bad, 'tools/text/standard.py fails its own cases: ' + '; '.join(f'{c}: wants {w!r}, makes {g!r}' for c, w, g in bad))
     LANGS = json.load(open(os.path.join(lib, 'glossary', 'languages.json')))
     for code, L in LANGS.items():
         _need(re.fullmatch(r'[a-z]{2,3}', code), f"languages.json: {code!r} must be an ISO 639 code (2–3 lowercase letters)")

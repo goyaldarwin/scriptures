@@ -27,7 +27,8 @@ tools/
     sanskrit_dict.py               Monier-Williams and Apte look-ups
   store/                         the store apps (docs/APPS.md): icons, screenshots, listing check
   fonts/                         Noto Serif Devanagari and Gurmukhi, Tiro Devanagari Sanskrit (svaras), Literata, Gentium (transliteration subset)
-  jsonio.py                      writes shared library files one entry per line
+  jsonio.py                      writes library files: shared ones one entry per line; a work's through the standard
+  text/standard.py               the writing standard for verses (PLAYBOOK §3): ॥, Pāṇini's spelling for Sanskrit, ISO 15919
   works/                         one folder per work: how its data is made (each has a README.md)
     ramcharitmanas/
       book/                        Gita Press PDFs → book/app_data.json (see its README)
@@ -41,7 +42,6 @@ tools/
                                    Hanumān Chālīsā, āratī) from text.txt → library/hinduism/granth/tulsidas/sundarkand/
       check.py                     checks that the Mānas part is identical to the Mānas's Sundara-kāṇḍa
       text.txt, reconciliation.md  the added texts, and how they were settled from the web sources
-      translit.py                  their transliteration, in the Mānas's style (also used by the āratīs and the Māṇḍūkya)
       meanings/hi.json, en.json    our own meanings for the added texts
       glossary/awa|hi|sa.json      their word meanings, merged into library/glossary/
       audio/ashwin-pathak/         source.json, recordings.json, fixes.json + fixes.md, transcripts/

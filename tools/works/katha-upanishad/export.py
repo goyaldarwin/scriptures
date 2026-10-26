@@ -21,8 +21,7 @@ OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(REPO, 'library')
 WP = 'hinduism/veda/yajurveda/krishna-yajurveda/upanishad/katha-upanishad'
 
 def dump(path, obj):
-    path = os.path.join(OUT, path); os.makedirs(os.path.dirname(path), exist_ok=True)
-    json.dump(obj, open(path, 'w'), ensure_ascii=False, separators=(',', ':'))
+    return jsonio.dump_library(OUT, path, obj)
 
 items = json.load(open(os.path.join(HERE, 'text.json'), encoding='utf-8'))['items']
 VALLI = [('1', '1', 29), ('1', '2', 25), ('1', '3', 17), ('2', '1', 15), ('2', '2', 15), ('2', '3', 18)]
@@ -30,7 +29,7 @@ want = ['shanti.1'] + ['%s.%s.%d' % (a, v, m) for a, v, n in VALLI for m in rang
 assert [x['id'] for x in items] == want, 'text.json is not in the expected order'
 for x in items:
     if x['y'] == 'mantra':   # each mantra ends with its number within the vallī
-        assert re.search(r'।।%s।।$' % ''.join('०१२३४५६७८९'[int(c)] for c in x['n'].split('.')[-1]), x['v'][-1]), x['id']
+        assert re.search(r'॥%s॥$' % ''.join('०१२३४५६७८९'[int(c)] for c in x['n'].split('.')[-1]), x['v'][-1]), x['id']
 
 ORD = ['प्रथमा', 'द्वितीया', 'तृतीया']
 work = {

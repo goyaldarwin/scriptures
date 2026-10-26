@@ -22,24 +22,19 @@ OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(REPO, 'library')
 WP = 'hinduism/stotra/rama/ramraksha'
 
 def dump(path, obj):
-    path = os.path.join(OUT, path); os.makedirs(os.path.dirname(path), exist_ok=True)
-    json.dump(obj, open(path, 'w'), ensure_ascii=False, separators=(',', ':'))
+    return jsonio.dump_library(OUT, path, obj)
 
 # ---- the video's lines ----
 rows = [l.rstrip('\n').split('\t') for l in open(os.path.join(HERE, 'source', 'video_text.tsv'), encoding='utf-8') if l.strip()]
 DIG = '०१२३४५६७८९'
-def deva(s):   # house style shared with the Mānas: ।। (two daṇḍas) and the number inside ।।N।।
-    s = s.replace('॥', '।।'); return re.sub(r'\s+', ' ', s).strip()
-def tr(s):     # transliteration in the Mānas convention: ṁ for anusvāra, e/o without macron, ',' for the half-line daṇḍa
-    s = s.replace('ṃ', 'ṁ').replace('ē', 'e').replace('ō', 'o').replace("'", '’')
-    s = re.sub(r'\s*।\s*$', ',', s.strip()); return re.sub(r'\s+', ' ', s).strip()
+def deva(s): return re.sub(r'\s+', ' ', s).strip()   # the transliteration is made from it (tools/text/standard.py)
 
 # ---- group lines into verses ----
 # frame 001 the invocation · 002–008 viniyoga · 009 the heading "ध्यानम्" (a topic, not a verse)
 # 010–013 the dhyāna verse · 014–108 ślokas 1–38 (a śloka ends with its number) · 109–110 colophon
 items, en = [], {}
 def add(id, y, n, rs, s=None):
-    items.append({'id': id, 'p': 0, 's': s or id, 'y': y, 'n': n, 'v': [deva(r[1]) for r in rs], 't': [tr(r[2]) for r in rs]})
+    items.append({'id': id, 'p': 0, 's': s or id, 'y': y, 'n': n, 'v': [deva(r[1]) for r in rs]})
     en[id] = [' '.join(r[3].strip() for r in rs)]
 F = {int(r[0]): r for r in rows}
 add('mangal', 'mantra', '', [F[1]])

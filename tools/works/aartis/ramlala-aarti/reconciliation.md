@@ -7,7 +7,7 @@ It gives three āratīs: "श्री राम आरती" (the stuti श्
 
 How it is read: the PDF's text layer (the page's own Unicode text), checked against the page images. A pop-up covers the first line of pages 3 and 4 in the images; those lines are read from the text layer by position (`pdftotext -bbox`), where the menu words that overlap them sit on a different baseline.
 
-The rule, as for the Dhūpa Āratī: keep the source; correct it only where it is clearly wrong (a typing slip, a broken word, a sense that does not fit). Every correction is below. House style everywhere: ।/।। for the dandas, stanzas numbered (।।१।।), the refrain (टेक) shown once although it is sung after each stanza, hyphens only inside compounds (the page's spaced dashes " – " are written "-").
+The rule, as for the Dhūpa Āratī: keep the source; correct it only where it is clearly wrong (a typing slip, a broken word, a sense that does not fit). Every correction is below. The library's writing standard (docs/PLAYBOOK.md §3) everywhere: ।/॥ for the daṇḍas, stanzas numbered (॥१॥); the refrain (टेक) shown once although it is sung after each stanza, hyphens only inside compounds (the page's spaced dashes " – " are written "-").
 
 ## 2. आरती कीजे श्रीरामलला की (language Awadhi, `awa`)
 The page prints 18 lines, each a caupāī (two half-lines of 16 mātrās). The first is the refrain (टेक); the other 17 are numbered caupāīs 1–17.
@@ -16,7 +16,7 @@ The page prints 18 lines, each a caupāī (two half-lines of 16 mātrās). The f
 |---|---|---|---|
 | टेक | पूण निपुण | पूरण निपुण | Broken word; पूरण makes the half-line 16 mātrās. |
 | 1 | धनुष वान | धनुष बान | Typing slip: बान (arrow); वान is not a word here. |
-| 5 | बखानैं (no end mark) | बखानैं ।। | The line's closing dandas are missing. |
+| 5 | बखानैं (no end mark) | बखानैं ॥ | The line's closing dandas are missing. |
 | 16 | कवनव भेदा | कवनउ भेदा | कवनव is not a word; कवनउ ("any at all") gives the sense "keeping no distinction" and the same 16 mātrās. **Open.** |
 
 Kept as the page has them: कीजे, धनुवेद, शोभा, वाम, शिव, शेष, यश (the page mixes श and स, व and ब; we did not regularise them), महु, बधाये, नैवेदा, नहि, तिहुपुर, विभीषन, दुःख.

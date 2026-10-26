@@ -9,7 +9,7 @@ OURS and THEIRS are meaning files: a library source (`{"m": {id: [text, footnote
 Only verses in both are compared, and only the meaning text (not footnotes).
 
 Fails (exit 1) when any verse shares a run of N or more consecutive words with the other (default 10: a copied
-sentence), after normalising: punctuation, quotation marks, brackets, dashes, verse numbers (।।१।।, digits), ZWNJ/ZWJ
+sentence), after normalising: punctuation, quotation marks, brackets, dashes, verse numbers (॥१॥, digits), ZWNJ/ZWJ
 and case are ignored; Devanagari nukta and candrabindu are kept (they are spelling). Runs of --note words or more
 (default 6) up to N are listed, not failed: a person reads each beside the other meaning, keeps it when it is simply the
 natural words or the verse's own list ("साम दान भय और भेद", "in my dream a monkey"), and rewrites it otherwise.

@@ -13,7 +13,7 @@ read directly, then checked against the page images.
 - Not yet read: vedantastudents.com, "11-Mandukya-Upanishad-Summary.pdf" (the site is blocked from the workspace; open, for the
   owner to share as a file).
 
-House style, as in the Īśāvāsya: ।। for ॥, compact verse numbers (`।।१।।`); transliteration with ṁ, ṛ, ’ for the avagraha.
+The library's writing standard (docs/PLAYBOOK.md §3) applies: ॥ and compact verse numbers (`॥१॥`), Pāṇini's spelling, the ISO 15919 transliteration made from the verse.
 
 ## The śānti mantra
 The printout has: भद्रं कर्णेभिः … यदायुः ॥ **भद्रं नो अपि वातय मनः ॥** ॐ शान्तिः शान्तिः शान्तिः ।
