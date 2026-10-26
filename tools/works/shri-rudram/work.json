@@ -1,0 +1,87 @@
+{
+ "id": "shri-rudram",
+ "path": "hinduism/veda/yajurveda/krishna-yajurveda/samhita/shri-rudram",
+ "lang": "sa",
+ "title": {
+  "hi": "श्रीरुद्रम्",
+  "en": "Śrī Rudram"
+ },
+ "by": {
+  "hi": "कृष्ण यजुर्वेद, तैत्तिरीय संहिता ४.५ और ४.७",
+  "en": "Kṛṣṇa Yajurveda, Taittirīya Saṃhitā 4.5 and 4.7"
+ },
+ "edition": {
+  "hi": "श्लोकम् (shlokam.org)",
+  "en": "Shlokam (shlokam.org)"
+ },
+ "parts": {
+  "name": {
+   "hi": "भाग",
+   "en": "Part"
+  },
+  "list": [
+   {
+    "key": "namakam",
+    "hi": "नमकम्",
+    "en": "Namakam"
+   },
+   {
+    "key": "chamakam",
+    "hi": "चमकम्",
+    "en": "Chamakam"
+   }
+  ]
+ },
+ "types": {
+  "mangala": {
+   "name": {
+    "hi": "मङ्गल मन्त्र",
+    "en": "Maṅgala mantra"
+   },
+   "short": {
+    "hi": "मङ्ग॰",
+    "en": "Maṅg."
+   }
+  },
+  "shirsha": {
+   "name": {
+    "hi": "शीर्षक",
+    "en": "Heading"
+   },
+   "short": {
+    "hi": "शी॰",
+    "en": "Hd."
+   }
+  },
+  "mantra": {
+   "name": {
+    "hi": "मन्त्र",
+    "en": "Mantra"
+   },
+   "short": {
+    "hi": "मं॰",
+    "en": "Man."
+   }
+  },
+  "uttara": {
+   "name": {
+    "hi": "उत्तर मन्त्र",
+    "en": "Closing mantra"
+   },
+   "short": {
+    "hi": "उ॰",
+    "en": "Cl."
+   }
+  },
+  "shanti": {
+   "name": {
+    "hi": "शान्ति मन्त्र",
+    "en": "Śānti mantra"
+   },
+   "short": {
+    "hi": "शा॰",
+    "en": "Śā."
+   }
+  }
+ }
+}

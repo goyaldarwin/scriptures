@@ -3,7 +3,7 @@
 Usage:  python3 tools/audio/make_timings.py tools/works/<work>/audio/<source-id>
 
 The source folder holds:
-  source.json      {"id", "work": "<library path>", "type": "youtube", "title": {"hi", "en"}, "order"?, "draft"?: "<why it is not published yet>", "align"?: "anchors", "split"?: true, "fill"?: n, "anchor_min"?: 0.45, "estimate"?: true, "checked"?: true}
+  source.json      {"id", "work": "<library path>", "take"?: "<work id>" (then nothing else is needed), "type": "youtube", "title": {"hi", "en"}, "order"?, "draft"?: "<why it is not published yet>", "align"?: "anchors", "split"?: true, "fill"?: n, "anchor_min"?: 0.45, "estimate"?: true, "checked"?: true}
   recordings.json  [{"yt": video id, "file": original file name, "dur": seconds, "order": n, "from"?/"to"?: item id, "lead"?: seconds}]
   transcripts/     <video id>.jsonl from transcribe.py (+ .done when finished)
   fixes.json       optional hand-checked verse starts {video id: {item id: seconds}}, with the evidence in fixes.md
@@ -21,6 +21,24 @@ import order as O
 
 SRC = os.path.abspath(sys.argv[1]); TR = os.path.join(SRC, 'transcripts')
 meta = json.load(open(os.path.join(SRC, 'source.json')))
+if meta.get('take'):
+    # source.json "take": "<work id>": the same recording as that work's source of this id, for the verses this work takes
+    # from it (text.txt [take …]); its timings are copied, so a correction there reaches this work when this is run again
+    work = json.load(open(os.path.join(REPO, 'library', meta['work'], 'work.json'))); ids = [x['id'] for x in work['items']]
+    frm = json.load(open(os.path.join(HERE, '..', 'works', meta['take'], 'work.json')))['path']
+    A = json.load(open(os.path.join(REPO, 'library', frm, 'audio', meta['id'] + '.json')))
+    at = {i: A['at'][i] for i in ids if i in A['at']}
+    assert at, f"{meta['take']}'s recording {meta['id']} has none of this work's verses"
+    used = sorted({t[0] for t in at.values()})
+    tracks = [dict(A['tracks'][k], first=next(i for i in at if at[i][0] == k), last=[i for i in at if at[i][0] == k][-1]) for k in used]
+    doc = {k: v for k, v in A.items() if k not in ('tracks', 'at', 'check', 'guess', 'moved', 'raw', 'own')}
+    doc.update(tracks=tracks, at={i: [used.index(t[0])] + t[1:] for i, t in at.items()})
+    for k in ('check', 'guess', 'own'):
+        if [i for i in A.get(k, []) if i in at]: doc[k] = [i for i in A[k] if i in at]
+    out = os.path.join(REPO, 'library', meta['work'], 'audio', meta['id'] + '.json')
+    os.makedirs(os.path.dirname(out), exist_ok=True)
+    json.dump(doc, open(out, 'w'), ensure_ascii=False, separators=(',', ':'))
+    print('verses with audio', len(at), 'of', len(ids), '(from', meta['take'] + ') →', os.path.relpath(out, REPO)); sys.exit()
 REC = sorted(json.load(open(os.path.join(SRC, 'recordings.json'))), key=lambda r: r['order'])
 work = json.load(open(os.path.join(REPO, 'library', meta['work'], 'work.json')))
 IT = work['items']; ID = {x['id']: i for i, x in enumerate(IT)}

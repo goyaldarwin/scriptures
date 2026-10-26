@@ -19,6 +19,7 @@ This repository holds everything about the scriptures library: the website, the 
 | `docs/APPS.md` | the store apps |
 | `docs/reviews/` | open questions for the owner |
 | `tools/meanings/style.md` | how our meanings are written |
+| `tools/works/README.md` | the format of a work's folder (`work.json`, `text.txt`, meanings, recordings) and the one exporter |
 | `tools/works/<work>/README.md` | each work: its sources, files and structure; `reconciliation.md`: every difference from its sources and why |
 
 ## Two repositories, one hierarchy
@@ -33,7 +34,7 @@ Both use the same address for a work, the shelf path the reader sees: `hinduism/
 ## How the pieces fit
 
 ```
-the owner's sources (scriptures-data) ─ tools/works/<work>/ (extract, settle, export.py) ─► library/<path>/work.json, meanings/, glossary
+the owner's sources (scriptures-data) ─ tools/works/<work>/ (source/ scripts → text.txt, meanings/) ─ tools/works/export.py ─► library/<path>/work.json, meanings/, glossary
 recordings ─ transcription ─► tools/works/<work>/audio/<source>/transcripts ─ tools/audio/make_timings.py ─► library/<path>/audio/<source>.json
 library/ ─ tools/site/build.py (checks everything first) ─► index.html, app/, sw.js, manifest.json  +  dist/ (offline file)
 ```
@@ -52,7 +53,7 @@ library/ ─ tools/site/build.py (checks everything first) ─► index.html, ap
 | Āratīs of Śrī Rāma: श्रीरामचन्द्र कृपालु, आरती कीजे श्रीरामलला की, आरती कीजै रामचन्द्र जी की (`aarti/rama/…`) | one printout; corrections open | ours | the stuti: Satya Adhikari, live; the other two: none yet |
 | Hanumān āratī (`aarti/hanuman/hanuman-aarti`) | from the Sundarakāṇḍa | ours | the Sundarakāṇḍa's, live |
 | ॐ जय जगदीश हरे (`aarti/vishnu/jagdish-aarti`) | the owner's pasted text | ours | Mahendra Kapoor, live |
-| ॐ जय शिव ओंकारा (`aarti/shiva/shiv-aarti`) | the owner's screenshot | ours | Anuradha Paudwal, **draft**: she sings another version |
+| ॐ जय शिव ओंकारा (`aarti/shiva/shiv-aarti`) | Anuradha Paudwal's version, from four written witnesses | ours | Anuradha Paudwal, live |
 | ॐ जय गंगे माता (`aarti/ganga/ganga-aarti`) | the owner's screenshot | ours | Anuradha Paudwal, live |
 | Shirdi Sāī Dhūpa Āratī (`aarti/shirdi-sai/dhoop-aarti`) | two printouts reconciled | ours | Pramod Medhi (Times Music), live |
 | Śrī Rudram (`veda/yajurveda/krishna-yajurveda/samhita/shri-rudram`) | shlokam.org, with Vedic accents | ours | Sri Sathya Sai Official, live; checked by ear by the owner |
@@ -63,5 +64,5 @@ library/ ─ tools/site/build.py (checks everything first) ─► index.html, ap
 
 ## Open with the owner
 - The questions in `docs/reviews/` (word senses; readings in the Rāma Rakṣā and the Sukhmani Sahib).
-- The āratīs: Anuradha Paudwal's Śiva version needs a written source; recordings for आरती कीजे श्रीरामलला की and आरती कीजै रामचन्द्र जी की (the owner will share them); the "open" corrections in each āratī's `reconciliation.md`.
+- The āratīs: recordings for आरती कीजे श्रीरामलला की and आरती कीजै रामचन्द्र जी की (the owner will share them); the "open" corrections in each āratī's `reconciliation.md`.
 - Offered, not built: "⏹ End / ⏱ Next starts" buttons in the player for audio timing.

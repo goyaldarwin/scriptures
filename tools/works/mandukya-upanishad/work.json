@@ -1,0 +1,62 @@
+{
+ "id": "mandukya-upanishad",
+ "path": "hinduism/veda/atharvaveda/upanishad/mandukya-upanishad",
+ "lang": "sa",
+ "title": {
+  "hi": "माण्डूक्योपनिषद्",
+  "en": "Māṇḍūkya Upaniṣad"
+ },
+ "by": {
+  "hi": "अथर्ववेद",
+  "en": "Atharvaveda"
+ },
+ "edition": {
+  "hi": "sanskritdocuments.org",
+  "en": "sanskritdocuments.org"
+ },
+ "parts": {
+  "name": {
+   "hi": "उपनिषद्",
+   "en": "Upaniṣad"
+  },
+  "list": [
+   {
+    "key": "mandukya",
+    "hi": "माण्डूक्योपनिषद्",
+    "en": "Māṇḍūkya Upaniṣad"
+   }
+  ]
+ },
+ "types": {
+  "shanti": {
+   "name": {
+    "hi": "शान्तिमन्त्र",
+    "en": "Śānti Mantra"
+   },
+   "short": {
+    "hi": "शा॰",
+    "en": "Śā."
+   }
+  },
+  "mantra": {
+   "name": {
+    "hi": "मन्त्र",
+    "en": "Mantra"
+   },
+   "short": {
+    "hi": "मं॰",
+    "en": "Man."
+   }
+  },
+  "iti": {
+   "name": {
+    "hi": "समापन (पुष्पिका)",
+    "en": "Closing words (iti)"
+   },
+   "short": {
+    "hi": "इति",
+    "en": "Iti"
+   }
+  }
+ }
+}

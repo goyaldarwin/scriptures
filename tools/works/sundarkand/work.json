@@ -1,0 +1,92 @@
+{
+ "id": "sundarkand",
+ "path": "hinduism/granth/tulsidas/sundarkand",
+ "lang": "awa",
+ "title": {
+  "hi": "सुन्दरकाण्ड",
+  "en": "Sundarakāṇḍa"
+ },
+ "by": {
+  "hi": "गोस्वामी तुलसीदास",
+  "en": "Gosvāmī Tulasīdāsa"
+ },
+ "edition": {
+  "hi": "श्रीरामचरितमानस, गीताप्रेस",
+  "en": "Śrī Rāmacaritamānasa, Gita Press"
+ },
+ "from": {
+  "hi": "श्रीरामचरितमानस",
+  "en": "Śrī Rāmacaritamānasa"
+ },
+ "colophon": {
+  "hi": "॥ सियावर रामचन्द्रकी जय ॥ पवनसुत हनुमानकी जय ॥",
+  "en": "॥ Glory to Śrī Rāma ॥ Glory to Hanumān, son of the Wind ॥"
+ },
+ "parts": {
+  "name": {
+   "hi": "भाग",
+   "en": "Part"
+  },
+  "list": [
+   {
+    "key": "mangal",
+    "hi": "प्रारम्भिक वन्दना",
+    "en": "Opening prayers"
+   },
+   {
+    "key": "kishkindha",
+    "hi": "किष्किन्धाकाण्ड (अन्तिम अंश)",
+    "en": "Kiṣkindhā-kāṇḍa (closing verses)"
+   },
+   {
+    "key": "sundar",
+    "hi": "सुन्दरकाण्ड",
+    "en": "Sundarakāṇḍa"
+   },
+   {
+    "key": "chalisa",
+    "hi": "श्रीहनुमानचालीसा",
+    "en": "Śrī Hanumān Chālīsā"
+   },
+   {
+    "key": "aarti",
+    "hi": "आरती",
+    "en": "Āratī"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (ṭeka)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  },
+  "mantra": {
+   "name": {
+    "hi": "मन्त्र",
+    "en": "Mantra"
+   },
+   "short": {
+    "hi": "मं॰",
+    "en": "Man."
+   }
+  }
+ },
+ "prepended": 5,
+ "topics": "ours"
+}

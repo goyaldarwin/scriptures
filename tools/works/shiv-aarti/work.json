@@ -1,0 +1,48 @@
+{
+ "id": "shiv-aarti",
+ "path": "hinduism/aarti/shiva/shiv-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "ॐ जय शिव ओंकारा",
+  "en": "Om Jaya Śiva Oṅkārā"
+ },
+ "by": {
+  "hi": "भगवान शिव",
+  "en": "Bhagavān Śiva"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Āratī"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "ॐ जय शिव ओंकारा",
+    "en": "Om Jaya Śiva Oṅkārā"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (ṭeka)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

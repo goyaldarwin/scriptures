@@ -6,7 +6,7 @@
 
 ## How it is read
 - The printout's Devanagari **text layer is broken**. It drops every र् (repha and र् in conjuncts: पूणम् for पूर्णम्, सवम् for सर्वम्, तीत्वा for तीर्त्वा), doubles some vowel signs (देेवा, शुश्रुुम) and splits words at line ends. So the Devanagari is read from the **page images** (rendered at 200 dpi, each verse checked by eye).
-- The printout's **transliteration layer is clean**. `check.py` converts it to Devanagari and compares it with `text.json` word for word. The only differences it allows are the corrections below. It also checks that our own transliteration (`t`) spells the same text as our Devanagari (`v`).
+- The printout's **transliteration layer is clean**. `source/check.py` converts it to Devanagari and compares it with `text.txt` word for word. The only differences it allows are the corrections below and the writing standard's own forms (ꣳ, the anusvāra, ॐ).
 - The library's writing standard (docs/PLAYBOOK.md §3) applies: ॥ and compact verse numbers (`॥१॥`), Pāṇini's spelling, ꣳ (a Yajurveda text), the ISO 15919 transliteration made from the verse. The printout's `|` after ओं is a daṇḍa (।).
 
 ## Corrections to the printout
@@ -27,4 +27,4 @@
 - The printout gives the śānti mantra once, at the start; it does not repeat it at the end, so neither does the text here.
 
 ## Meanings
-At the owner's instruction for the Sanskrit texts, the meanings are not copied from the printout. `meanings/en.json` and `meanings/hi.json` are written for this library: one to three sentences per mantra, following Śaṅkara's reading, with other readings (Viśiṣṭādvaita, Sri Aurobindo) briefly in the footnotes. The printout's section headings (“Verses 1-2: Cosmos and Renunciation”, “3-8: The Nature of Atman”, “9-14: Vidya and Avidya”, “15-18: Closing Prayers”) are the topics, reworded. Its commentary (Śaṅkara's bhāṣya in M. Hiriyanna's 1911 translation) informed the meanings and is not reproduced.
+At the owner's instruction for the Sanskrit texts, the meanings are not copied from the printout. `meanings/en/scriptures.json` and `meanings/hi/scriptures.json` are written for this library: one to three sentences per mantra, following Śaṅkara's reading, with other readings (Viśiṣṭādvaita, Sri Aurobindo) briefly in the footnotes. The printout's section headings (“Verses 1-2: Cosmos and Renunciation”, “3-8: The Nature of Atman”, “9-14: Vidya and Avidya”, “15-18: Closing Prayers”) are the topics, reworded. Its commentary (Śaṅkara's bhāṣya in M. Hiriyanna's 1911 translation) informed the meanings and is not reproduced.

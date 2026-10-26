@@ -9,11 +9,11 @@ Shelf: हिन्दू धर्म › वेद › यजुर्वे�
 - **Audio:** SMVedroad, “Ishavashya Upanishad Chant … With Lyrics” (YouTube `mzczDkOtk0k`), in `audio/smvedroad/` (`source.json`, `recordings.json`). The private copy is in scriptures-data at `hinduism/veda/yajurveda/shukla-yajurveda/upanishad/isha-upanishad/audio/smvedroad/`. Live: `make_timings.py` times all 19 items from the transcript (`transcripts/`); two starts are hand-checked (`fixes.json`, evidence in `fixes.md`).
 
 ## Files
-- `text.json`: the settled text, items in reading order, in Devanagari (`v`); the exporter writes it by the library's standard and makes the transliteration (PLAYBOOK §3).
-- `check.py <printout.pdf>`: compares `text.json` with the printout's transliteration (only the corrections in `reconciliation.md` may differ). Run it after any change to the text.
-- `meanings/hi.json`, `meanings/en.json`: `{item id: [meaning, [footnotes]]}` → `meanings/hi-scriptures.json`, `en-scriptures.json` (both `order: 1`).
-- `glossary_sa.json`: every word of the text. The exporter adds the new ones to `library/glossary/sa.json` and never overwrites an existing word. Two words already in the shared dictionary with a sense that doesn't fit here (कृतं “what has been done”, देव “O god”) go to the work's own `glossary.json` (`WORK_SENSES` in `export.py`).
-- `export.py`: run it, then `python3 tools/site/build.py`. It stops if a mantra lacks a meaning in either language, and it reports any word without a meaning.
+The folder's format: `tools/works/README.md`.
+- `text.txt`: the settled text, in Devanagari; the export writes it by the library's standard and makes the transliteration (PLAYBOOK §3).
+- `source/check.py <printout.pdf>`: compares `text.txt` with the printout's transliteration (only the corrections in `reconciliation.md` may differ). Run it after any change to the text.
+- `meanings/hi/scriptures.json`, `meanings/en/scriptures.json`: our meanings, with footnotes (`notes`).
+- `glossary/sa.json`: two words whose shared sense doesn't fit here (कृतं “what has been done”, देव “O god”); every other word is in `library/glossary/sa.json`.
 
 ## Structure
 One part (the Upaniṣad). Items: `shanti.1` (type `shanti`) and `m01`–`m18` (type `mantra`, with the printed number in `n`). Both types are declared in `work.json` → `types`. Each item is its own section. The topics follow the printout's sections: Śānti Pāṭha (`shanti.1`), mantras 1–2, 3–8, 9–14 and 15–18. Item ids are permanent.

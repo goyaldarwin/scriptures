@@ -1,0 +1,52 @@
+{
+ "id": "ganga-aarti",
+ "path": "hinduism/aarti/ganga/ganga-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "श्रीगंगाजीकी आरती",
+  "en": "Śrī Gaṅgājī kī Āratī"
+ },
+ "by": {
+  "hi": "माँ गंगा",
+  "en": "Mother Gaṅgā"
+ },
+ "from": {
+  "hi": "ॐ जय गंगे माता",
+  "en": "Om Jaya Gaṅge Mātā"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Āratī"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "श्रीगंगाजीकी आरती",
+    "en": "Śrī Gaṅgājī kī Āratī"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (ṭeka)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

@@ -72,7 +72,7 @@ The two sources share the popular modern text, and differ from each other in pla
 
 Pt. Ashwin Kumar Pathak's recording (YouTube `QjSpUgnEPLU`) sings these before Kiṣkindhā dohā 29, and the owner asked for them to be shown and timed. The order is the recording's: ॐ श्री परमात्मने नमः (12.6 s), वक्रतुण्ड… (21.9 s), विघ्नेश्वराय… (35.4 s), ॐ श्री परमात्मने नमः again (56.9 s), प्रनवउँ पवनकुमार… (64.1 s); then kishkindha.29.do29 at 84.6 s. The evidence for the times is in `audio/ashwin-pathak/fixes.md`.
 
-- **"प्रनवउँ पवनकुमार…" is the Mānas's own sorathā, Bāla-kāṇḍa 17 (`bal.17.so17`)**, with its Gita Press Hindi and English meanings. It is pulled from the Mānas by id (`[manas bal.17.so17]`), never copied, and `check.py` proves it equal; it keeps its number ॥१७॥, as in the book. The video's caption (ग्यानघन) is not used: the Mānas's text is.
+- **"प्रनवउँ पवनकुमार…" is the Mānas's own sorathā, Bāla-kāṇḍa 17 (`bal.17.so17`)**, with its Gita Press Hindi and English meanings. It is taken from the Mānas by id (`[take manas bal.17.so17]`), never copied, so it is the Mānas's own; it keeps its number ॥१७॥, as in the book. The video's caption (ग्यानघन) is not used: the Mānas's text is.
 - **ॐ श्री परमात्मने नमः**: as sung and as the video writes it, and as the app's own default greeting. Written with ॥ at the end, type मन्त्र (as the Rāma Rakṣā's ॥ ॐ श्रीगणेशाय नमः ॥). It is shown twice because it is sung twice; each is timed.
 - **वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ । निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥**
 

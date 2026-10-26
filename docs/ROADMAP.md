@@ -7,11 +7,12 @@ The owner's priorities, in order: **accuracy**, then unambiguity, clarity, consi
 - **Permanent ids.** Work ids, item ids and source ids never change, so readers' bookmarks, notes and progress survive any reorganisation (`renamed` in `work.json` moves them when a verse is split).
 - **Checks before anything goes live.**
   - `build.py` checks the library: sources, item ids, line-by-line meanings, plans, languages, dictionaries, a meaning for every word of every verse, paths and the store apps' shelves. It also refuses an `app.js` that doesn't parse.
-  - `regen_check.py` runs every work's exporter and fails if `library/` differs from what they make, so a hand edit to generated data, or a generator changed without regenerating, is caught.
+  - `regen_check.py` makes the library again in an empty folder (`tools/works/export.py`, `make_timings.py`) and fails if `library/` differs from it, so a hand edit to generated data, or a generator changed without regenerating, is caught.
   - `smoke_test.py` opens every work in a browser; `ux_test.py` checks navigation and reading at phone size.
   - GitHub Actions (`check.yml`) runs them all on every pull request and every push to `main`. It also fails if the committed website differs from what the build makes.
 - **Sources separated from results.** Raw books, printouts and recordings live privately in `scriptures-data`, each with a `.meta.json` (origin, checksum, rights, what it feeds). The public repo holds only what is built from them, plus every script.
-- **Generated, never hand-copied.** A work that reuses another's text, like the Sundarakāṇḍa from the Mānas, is generated from it by its exporter, and `regen_check.py` keeps the two identical.
+- **One folder per work, one format, one exporter.** `tools/works/<work id>/` holds the work's manifest, text, meanings per language, recordings and source scripts (`tools/works/README.md`); `build.py` refuses a work without its folder and required files.
+- **Generated, never hand-copied.** A work that reuses another's text, like the Sundarakāṇḍa from the Mānas, takes its verses by id (`[take …]` in `text.txt`), and `regen_check.py` keeps the two identical.
 - **Parallel work without collisions.**
   - Branches and pull requests.
   - Shared code goes to `main` first, on its own.

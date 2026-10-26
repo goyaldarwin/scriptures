@@ -1,0 +1,5 @@
+# The āratī of the Sundarakāṇḍa work, taken from it unchanged (its text, meanings and recording's timings).
+
+@part aarti
+@topic श्रीहनुमानजीकी आरती | Śrī Hanumānjī kī Āratī
+[take sundarkand aarti.tek .. aarti.pad6]

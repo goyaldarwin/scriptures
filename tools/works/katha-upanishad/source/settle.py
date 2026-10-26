@@ -1,4 +1,4 @@
-"""Kaṭha Upaniṣad: source/pdf_raw.json (the owner's PDF, see extract.py) → ../text.json (the settled text).
+"""Kaṭha Upaniṣad: source/pdf_raw.json (the owner's PDF, see extract.py) → ../text.txt (the settled text).
 
 The PDF's Devanagari layer is unreadable (legacy font), its IAST transliteration is clean. The Devanagari is
 therefore made from the transliteration (iast2deva: a letter-for-letter conversion, no guessing), in the
@@ -9,8 +9,8 @@ Items: shanti.1 (the opening śānti), 1.1.1 … 2.3.18 (adhyāya.vallī.mantra,
 15+15+18 = 119 mantras). The closing śānti the book prints as "2.3.19" is left out. Sections (pages) are the vallīs.
 Run: python3 settle.py   (then ../export.py)
 """
-import json, os, re
-HERE = os.path.dirname(os.path.abspath(__file__))
+import json, os, re, sys
+HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, os.path.join(HERE, '..', '..')); import textfile
 
 # ---- IAST → Devanagari ----
 V = {'a': '', 'ā': 'ा', 'i': 'ि', 'ī': 'ी', 'u': 'ु', 'ū': 'ू', 'ṛ': 'ृ', 'ṝ': 'ॄ', 'e': 'े', 'ai': 'ै', 'o': 'ो', 'au': 'ौ'}
@@ -89,7 +89,46 @@ def main():
             lines[-1] += ' ॥%s॥' % DEV(m)
             items.append(item(vid, int(a) - 1, 'v%s.%s' % (a, va), 'mantra', vid, lines))
     assert len(items) == 120, len(items)   # the work ends with 2.3.18: no closing śānti
-    json.dump({'items': items}, open(os.path.join(HERE, '..', 'text.json'), 'w'), ensure_ascii=False, indent=1)
+    TOPICS = [
+     {
+      "id": "shanti.1",
+      "hi": "शान्तिपाठ",
+      "en": "Śānti Pāṭha"
+     },
+     {
+      "id": "1.1.1",
+      "hi": "प्रथम अध्याय, प्रथमा वल्ली — नचिकेताकी कथा और तीन वर",
+      "en": "Adhyāya 1, Vallī 1 — The story of Naciketā and the three boons"
+     },
+     {
+      "id": "1.2.1",
+      "hi": "प्रथम अध्याय, द्वितीया वल्ली — श्रेय और प्रेय; ॐ; अजर-अमर आत्मा",
+      "en": "Adhyāya 1, Vallī 2 — The good and the pleasant; Om; the deathless Self"
+     },
+     {
+      "id": "1.3.1",
+      "hi": "प्रथम अध्याय, तृतीया वल्ली — रथका रूपक; उठो, जागो",
+      "en": "Adhyāya 1, Vallī 3 — The chariot; arise, awake"
+     },
+     {
+      "id": "2.1.1",
+      "hi": "द्वितीय अध्याय, प्रथमा वल्ली — भीतर देखो; यही वह है",
+      "en": "Adhyāya 2, Vallī 1 — Look within; this indeed is that"
+     },
+     {
+      "id": "2.2.1",
+      "hi": "द्वितीय अध्याय, द्वितीया वल्ली — ग्यारह द्वारोंका नगर; सबका अन्तरात्मा",
+      "en": "Adhyāya 2, Vallī 2 — The city of eleven gates; the inner Self of all"
+     },
+     {
+      "id": "2.3.1",
+      "hi": "द्वितीय अध्याय, तृतीया वल्ली — ऊर्ध्वमूल अश्वत्थ; योग; अमरता",
+      "en": "Adhyāya 2, Vallī 3 — The inverted tree; yoga; immortality"
+     }
+    ]
+    textfile.write(os.path.join(HERE, '..', 'text.txt'), items, TOPICS, ['1', '2'], 'sa', [
+        'Kaṭha Upaniṣad: the śānti mantra and mantras 1.1.1 … 2.3.18. Made by source/settle.py from the owner\'s book; do not edit',
+        'here. Every correction and choice: reconciliation.md; source/check.py compares it with the Devanagari witnesses.'])
     print(len(items), 'items')
 
 if __name__ == '__main__':

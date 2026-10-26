@@ -1,0 +1,48 @@
+{
+ "id": "jagdish-aarti",
+ "path": "hinduism/aarti/vishnu/jagdish-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "ॐ जय जगदीश हरे",
+  "en": "Om Jaya Jagadīśa Hare"
+ },
+ "by": {
+  "hi": "भगवान विष्णु (जगदीश)",
+  "en": "Bhagavān Viṣṇu (Jagadīśa)"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Āratī"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "ॐ जय जगदीश हरे",
+    "en": "Om Jaya Jagadīśa Hare"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (ṭeka)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

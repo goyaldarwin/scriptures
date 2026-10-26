@@ -1,12 +1,13 @@
-"""Śrī Rudram: source/<part>_raw.json (the printout's blocks) → text.json (the settled text, one item per mantra).
+"""Śrī Rudram: source/<part>_raw.json (the printout's blocks) → ../text.txt (the settled text, one verse per mantra,
+with the parts, the sections and our topic headings).
 
 The Devanagari is the page's own, with the PDF text layer's breaks mended (rudram_text.norm_deva) and the
 corrections below, each checked against the page image and the page's own transliteration
 (see ../reconciliation.md). The transliteration is made by the exporter (tools/text/standard.py).
-Run: python3 settle.py   (then ../export.py)
+Run: python3 settle.py   (then python3 tools/works/export.py shri-rudram)
 """
 import json, os, re, sys
-HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
+HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE); sys.path.insert(0, os.path.join(HERE, '..', '..')); import textfile
 from rudram_text import norm_deva, tr2deva, key, SV
 
 # ---- corrections: (block, wrong, right); each must occur exactly once in that block's text ----
@@ -126,6 +127,39 @@ if __name__ == '__main__':
     ut = [x for x in items if x['id'].startswith('namakam.uttara.u')]
     for k, x in enumerate(ut, 1): x['n'] = str(k)
     assert [x['id'][-2:] for x in ut] == ['u1', 'u2', 'u6', 'u7', 'u8', 'u3', 'u4', 'u5']
-    # witness check: every block's settled Devanagari against the page's transliteration, conventions folded
-    json.dump(items, open(os.path.join(HERE, '..', 'text.json'), 'w'), ensure_ascii=False, indent=0)
+    ORD = ['प्रथम', 'द्वितीय', 'तृतीय', 'चतुर्थ', 'पञ्चम', 'षष्ठ', 'सप्तम', 'अष्टम', 'नवम', 'दशम', 'एकादश']
+    # one topic per anuvāka (with its theme), plus the opening and closing
+    THEME_N = [('धनुष-बाण शान्त हों', 'Rudra’s bow and arrows made gracious'),
+               ('सबके स्वामी', 'Lord of all: armies, trees, paths, fields'),
+               ('चोरों-डाकुओंमें भी वही', 'Present even in thieves and robbers'),
+               ('गण, शिल्पी और शिकारी', 'Hosts, craftsmen and hunters'),
+               ('रुद्रके नाम और रूप', 'Rudra’s own names and forms'),
+               ('ज्येष्ठ-कनिष्ठ, सर्वत्र', 'Eldest and youngest, everywhere'),
+               ('जल, मेघ और घरमें', 'In waters, clouds and dwellings'),
+               ('नमः शिवाय', 'Namaḥ Śivāya'),
+               ('भूमि, घर और देवहृदय', 'In the earth, the home and the gods’ hearts'),
+               ('रक्षा और कृपाकी प्रार्थना', 'Prayer for protection and grace'),
+               ('सब रुद्रोंके धनुष दूर', 'The bows of all the Rudras laid away')]
+    THEME_C = [('प्राण, इन्द्रियाँ और शरीर', 'Life, senses and body'),
+               ('प्रतिष्ठा, सत्य और समृद्धि', 'Standing, truth and growth'),
+               ('सुख, कल्याण और अभय', 'Happiness, welfare and fearlessness'),
+               ('अन्न और धान्य', 'Food and grains'),
+               ('पृथ्वीकी सम्पदा', 'The wealth of the earth'),
+               ('इन्द्रके साथ देवता', 'The gods together with Indra'),
+               ('सोमयागके ग्रह', 'The soma cups'),
+               ('यज्ञकी सामग्री', 'The things of the sacrifice'),
+               ('महायज्ञ और वेद', 'The great rites and the Vedas'),
+               ('पशुधन और प्राण यज्ञमें', 'Cattle, and life offered in the yajña'),
+               ('संख्याएँ और लोकोंके स्वामी', 'The numbers, and the lords of the worlds')]
+    topics = [{'id': 'namakam.purva.guru', 'hi': 'अथ श्रीरुद्रप्रश्नः — मङ्गलाचरण', 'en': 'Śrī Rudra Praśna — the opening'}]
+    for a, (h, e) in enumerate(THEME_N, 1):
+        topics.append({'id': 'namakam.a%02d.m01' % a, 'hi': '%s अनुवाक — %s' % (ORD[a - 1], h), 'en': 'Anuvāka %d — %s' % (a, e)})
+        if a == 1: topics.append({'id': 'namakam.bhagavan.namaste', 'hi': 'नमस्ते अस्तु भगवन्', 'en': 'Namaste astu bhagavan'})
+    topics.append({'id': 'namakam.uttara.u1', 'hi': 'उत्तर मन्त्र और शान्ति', 'en': 'Closing mantras and śānti'})
+    for a, (h, e) in enumerate(THEME_C, 1):
+        topics.append({'id': 'chamakam.a%02d.m01' % a, 'hi': '%s अनुवाक — %s' % (ORD[a - 1], h), 'en': 'Anuvāka %d — %s' % (a, e)})
+    topics.append({'id': 'chamakam.shanti.shanti', 'hi': 'शान्ति मन्त्र', 'en': 'Śānti mantra'})
+    textfile.write(os.path.join(HERE, '..', 'text.txt'), items, topics, ['namakam', 'chamakam'], 'sa', [
+        'Śrī Rudram (Namakam and Chamakam), shlokam.org. Made by source/settle.py from the owner\'s printouts; do not edit',
+        'here. Every correction and choice: reconciliation.md.'])
     print(len(N), 'Namakam items,', len(C), 'Chamakam items')

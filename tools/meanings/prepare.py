@@ -1,7 +1,7 @@
 """Prepare batches of verses for writing our own meanings (tools/meanings/style.md).
 
     python3 tools/meanings/prepare.py OUT_DIR FIRST_ID LAST_ID [--size 50] [--context 6]
-            [--work hinduism/granth/tulsidas/ramcharitmanas] [--ours tools/works/ramcharitmanas/meanings]
+            [--work manas]   (a work's id: its folder in tools/works)
 
 Splits the verses FIRST_ID..LAST_ID (reading order, inclusive) into batches that end on a section (dohā) boundary,
 about --size verses each, and writes OUT_DIR/batch-NN.md for each: the topic headings, the verses just before the batch
@@ -21,19 +21,20 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('out'); ap.add_argument('first'); ap.add_argument('last')
     ap.add_argument('--size', type=int, default=50); ap.add_argument('--context', type=int, default=6)
-    ap.add_argument('--work', default='hinduism/granth/tulsidas/ramcharitmanas')
-    ap.add_argument('--ours', default='tools/works/ramcharitmanas/meanings')
+    ap.add_argument('--work', default='manas')
     a = ap.parse_args()
-    lib = os.path.join(REPO, 'library')
-    W = json.load(open(os.path.join(lib, a.work, 'work.json'), encoding='utf-8'))
+    lib = os.path.join(REPO, 'library'); folder = os.path.join(REPO, 'tools', 'works', a.work)
+    path = json.load(open(os.path.join(folder, 'work.json'), encoding='utf-8'))['path']
+    W = json.load(open(os.path.join(lib, path, 'work.json'), encoding='utf-8'))
     LANGS = json.load(open(os.path.join(lib, 'glossary', 'languages.json'), encoding='utf-8'))
     G = {}
     def gloss(lg):
         if lg not in G: G[lg] = json.load(open(os.path.join(lib, 'glossary', lg + '.json'), encoding='utf-8'))
         return G[lg]
-    own = os.path.join(lib, a.work, 'glossary.json')
+    own = os.path.join(lib, path, 'glossary.json')
     OWN = json.load(open(own, encoding='utf-8')) if os.path.exists(own) else {}
-    ours = {lg: (json.load(open(os.path.join(REPO, a.ours, lg + '.json'), encoding='utf-8')) if os.path.exists(os.path.join(REPO, a.ours, lg + '.json')) else {}) for lg in ('hi', 'en')}
+    mine = lambda lg: os.path.join(folder, 'meanings', lg, 'scriptures.json')   # our own meanings (tools/works/README.md)
+    ours = {lg: json.load(open(mine(lg), encoding='utf-8')).get('m', {}) if os.path.exists(mine(lg)) else {} for lg in ('hi', 'en')}
 
     def lookup(w, lg):
         chain = [lg] + LANGS[lg].get('fallback', [])

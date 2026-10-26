@@ -1,135 +1,151 @@
-# The maṅgalācaraṇa, the Śrī Hanumān Chālīsā and the āratī of the Sundarakāṇḍa work (the Sundarakāṇḍa itself is generated from the Mānas).
-# The wording is settled in reconciliation.md. Format:
-#   == part | section id | language | topic hi | topic en      starts a section (a page); a new part when "part" changes
-#   [type n]                                                    starts a verse (n = its number; a caupāī's line ends in a bare ॥
-#                                                               and the app prints the number, as in the Mānas)
-#   following lines                                             the verse's lines
-#   [manas <item id>]                                           a verse of the Mānas, taken from it unchanged (only its part and section are this file's)
-== mangal | mangal | sa | गणेशजी और हनुमान्‌जीकी वन्दना | Prayers to Gaṇeśa and Hanumān
-[mantra]
+# Sundarakāṇḍa: the opening prayers Pt. Ashwin Kumar Pathak's recording sings, the close of the Kiṣkindhā-kāṇḍa and the
+# Sundara-kāṇḍa (taken from the Mānas, never copied), the Śrī Hanumān Chālīsā and the āratī. The wording of the
+# verses written here is settled in reconciliation.md.
+
+@part mangal
+@section mangal
+@lang sa
+@topic गणेशजी और हनुमान्‌जीकी वन्दना | Prayers to Gaṇeśa and Hanumān
+[mangal.mantra1 mantra]
 ॐ श्री परमात्मने नमः ॥
-[shloka 1]
+[mangal.shloka1 shloka 1]
 वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ ।
 निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥१॥
-[shloka 2]
+[mangal.shloka2 shloka 2]
 विघ्नेश्वराय वरदाय सुरप्रियाय
 लम्बोदराय सकलाय जगद्धिताय ।
 नागाननाय श्रुतियज्ञविभूषिताय
 गौरीसुताय गणनाथ नमो नमस्ते ॥२॥
-[mantra]
+[mangal.mantra2 mantra]
 ॐ श्री परमात्मने नमः ॥
-[manas bal.17.so17]
-== chalisa | chalisa-do | awa | आरम्भके दोहे | The opening dohās
-[do]
+[take manas bal.17.so17]
+
+@part kishkindha
+[take manas kishkindha.29.do29 .. kishkindha.30.so30ख]
+
+@part sundar
+[take manas sundar.0.shloka1 .. sundar.60.do60]
+
+@part chalisa
+@section chalisa-do
+@lang awa
+@topic आरम्भके दोहे | The opening dohās
+[chalisa.do1 do]
 श्रीगुरु चरन सरोज रज निज मनु मुकुरु सुधारि ।
 बरनउँ रघुबर बिमल जसु जो दायकु फल चारि ॥
-[do]
+[chalisa.do2 do]
 बुद्धिहीन तनु जानिके सुमिरौं पवनकुमार ।
 बल बुधि बिद्या देहु मोहिं हरहु कलेस बिकार ॥
-== chalisa | chalisa-cau | awa | चालीसा | The forty caupāīs
-[cau 1]
+@section chalisa-cau
+@topic चालीसा | The forty caupāīs
+[chalisa.cau1 cau 1]
 जय हनुमान ज्ञान गुन सागर । जय कपीस तिहुँ लोक उजागर ॥
-[cau 2]
+[chalisa.cau2 cau 2]
 राम दूत अतुलित बल धामा । अंजनि पुत्र पवनसुत नामा ॥
-[cau 3]
+[chalisa.cau3 cau 3]
 महाबीर बिक्रम बजरंगी । कुमति निवार सुमति के संगी ॥
-[cau 4]
+[chalisa.cau4 cau 4]
 कंचन बरन बिराज सुबेसा । कानन कुंडल कुंचित केसा ॥
-[cau 5]
+[chalisa.cau5 cau 5]
 हाथ बज्र औ ध्वजा बिराजै । काँधे मूँज जनेऊ साजै ॥
-[cau 6]
+[chalisa.cau6 cau 6]
 संकर सुवन केसरीनंदन । तेज प्रताप महा जगबंदन ॥
-[cau 7]
+[chalisa.cau7 cau 7]
 बिद्यावान गुनी अति चातुर । राम काज करिबे को आतुर ॥
-[cau 8]
+[chalisa.cau8 cau 8]
 प्रभु चरित्र सुनिबे को रसिया । राम लखन सीता मन बसिया ॥
-[cau 9]
+[chalisa.cau9 cau 9]
 सूक्ष्म रूप धरि सियहिं दिखावा । बिकट रूप धरि लंक जरावा ॥
-[cau 10]
+[chalisa.cau10 cau 10]
 भीम रूप धरि असुर सँहारे । रामचंद्र के काज सँवारे ॥
-[cau 11]
+[chalisa.cau11 cau 11]
 लाय सजीवन लखन जियाए । श्रीरघुबीर हरषि उर लाए ॥
-[cau 12]
+[chalisa.cau12 cau 12]
 रघुपति कीन्ही बहुत बड़ाई । तुम मम प्रिय भरतहि सम भाई ॥
-[cau 13]
+[chalisa.cau13 cau 13]
 सहस बदन तुम्हरो जस गावैं । अस कहि श्रीपति कंठ लगावैं ॥
-[cau 14]
+[chalisa.cau14 cau 14]
 सनकादिक ब्रह्मादि मुनीसा । नारद सारद सहित अहीसा ॥
-[cau 15]
+[chalisa.cau15 cau 15]
 जम कुबेर दिगपाल जहाँ ते । कबि कोबिद कहि सके कहाँ ते ॥
-[cau 16]
+[chalisa.cau16 cau 16]
 तुम उपकार सुग्रीवहिं कीन्हा । राम मिलाय राज पद दीन्हा ॥
-[cau 17]
+[chalisa.cau17 cau 17]
 तुम्हरो मंत्र बिभीषन माना । लंकेस्वर भए सब जग जाना ॥
-[cau 18]
+[chalisa.cau18 cau 18]
 जुग सहस्र जोजन पर भानू । लील्यो ताहि मधुर फल जानू ॥
-[cau 19]
+[chalisa.cau19 cau 19]
 प्रभु मुद्रिका मेलि मुख माहीं । जलधि लाँघि गए अचरज नाहीं ॥
-[cau 20]
+[chalisa.cau20 cau 20]
 दुर्गम काज जगत के जेते । सुगम अनुग्रह तुम्हरे तेते ॥
-[cau 21]
+[chalisa.cau21 cau 21]
 राम दुआरे तुम रखवारे । होत न आज्ञा बिनु पैसारे ॥
-[cau 22]
+[chalisa.cau22 cau 22]
 सब सुख लहै तुम्हारी सरना । तुम रच्छक काहू को डर ना ॥
-[cau 23]
+[chalisa.cau23 cau 23]
 आपन तेज सम्हारो आपै । तीनों लोक हाँक तें काँपै ॥
-[cau 24]
+[chalisa.cau24 cau 24]
 भूत पिसाच निकट नहिं आवै । महाबीर जब नाम सुनावै ॥
-[cau 25]
+[chalisa.cau25 cau 25]
 नासै रोग हरै सब पीरा । जपत निरंतर हनुमत बीरा ॥
-[cau 26]
+[chalisa.cau26 cau 26]
 संकट तें हनुमान छुड़ावै । मन क्रम बचन ध्यान जो लावै ॥
-[cau 27]
+[chalisa.cau27 cau 27]
 सब पर राम तपस्वी राजा । तिन के काज सकल तुम साजा ॥
-[cau 28]
+[chalisa.cau28 cau 28]
 और मनोरथ जो कोइ लावै । सोइ अमित जीवन फल पावै ॥
-[cau 29]
+[chalisa.cau29 cau 29]
 चारों जुग परताप तुम्हारा । है परसिद्ध जगत उजियारा ॥
-[cau 30]
+[chalisa.cau30 cau 30]
 साधु संत के तुम रखवारे । असुर निकंदन राम दुलारे ॥
-[cau 31]
+[chalisa.cau31 cau 31]
 अष्ट सिद्धि नौ निधि के दाता । अस बर दीन जानकी माता ॥
-[cau 32]
+[chalisa.cau32 cau 32]
 राम रसायन तुम्हरे पासा । सदा रहो रघुपति के दासा ॥
-[cau 33]
+[chalisa.cau33 cau 33]
 तुम्हरे भजन राम को पावै । जनम जनम के दुख बिसरावै ॥
-[cau 34]
+[chalisa.cau34 cau 34]
 अंत काल रघुबर पुर जाई । जहाँ जन्म हरिभक्त कहाई ॥
-[cau 35]
+[chalisa.cau35 cau 35]
 और देवता चित्त न धरई । हनुमत सेइ सर्ब सुख करई ॥
-[cau 36]
+[chalisa.cau36 cau 36]
 संकट कटै मिटै सब पीरा । जो सुमिरै हनुमत बलबीरा ॥
-[cau 37]
+[chalisa.cau37 cau 37]
 जै जै जै हनुमान गोसाईं । कृपा करहु गुरु देव की नाईं ॥
-[cau 38]
+[chalisa.cau38 cau 38]
 जो सत बार पाठ कर कोई । छूटहि बंदि महा सुख होई ॥
-[cau 39]
+[chalisa.cau39 cau 39]
 जो यह पढ़ै हनुमान चालीसा । होय सिद्धि साखी गौरीसा ॥
-[cau 40]
+[chalisa.cau40 cau 40]
 तुलसीदास सदा हरि चेरा । कीजै नाथ हृदय महँ डेरा ॥
-== chalisa | chalisa-ant | awa | समापनका दोहा | The closing dohā
-[do]
+@section chalisa-ant
+@topic समापनका दोहा | The closing dohā
+[chalisa.do3 do]
 पवनतनय संकट हरन मंगल मूरति रूप ।
 राम लखन सीता सहित हृदय बसहु सुर भूप ॥
-== aarti | aarti | hi | श्रीहनुमानजीकी आरती | The āratī of Śrī Hanumān
-[tek]
+
+@part aarti
+@section aarti
+@lang hi
+@topic श्रीहनुमानजीकी आरती | The āratī of Śrī Hanumān
+[aarti.tek tek]
 आरती कीजै हनुमान लला की ।
 दुष्ट दलन रघुनाथ कला की ॥
-[pad 1]
+[aarti.pad1 pad 1]
 जाके बल से गिरिवर काँपे । रोग दोष जाके निकट न झाँके ॥
 अंजनि पुत्र महा बलदाई । संतन के प्रभु सदा सहाई ॥१॥
-[pad 2]
+[aarti.pad2 pad 2]
 दे बीड़ा रघुनाथ पठाए । लंका जारि सिया सुधि लाए ॥
 लंका सो कोट समुद्र सी खाई । जात पवनसुत बार न लाई ॥२॥
-[pad 3]
+[aarti.pad3 pad 3]
 लंका जारि असुर संहारे । सियारामजी के काज सँवारे ॥
 लक्ष्मण मूर्छित पड़े सकारे । आनि संजीवन प्राण उबारे ॥३॥
-[pad 4]
+[aarti.pad4 pad 4]
 पैठि पताल तोरि जमकारे । अहिरावन की भुजा उखारे ॥
 बाईं भुजा असुरदल मारे । दाहिने भुजा संतजन तारे ॥४॥
-[pad 5]
+[aarti.pad5 pad 5]
 सुर नर मुनि जन आरती उतारें । जय जय जय हनुमान उचारें ॥
 कंचन थार कपूर लौ छाई । आरती करत अंजना माई ॥५॥
-[pad 6]
+[aarti.pad6 pad 6]
 जो हनुमानजी की आरती गावे । बसि बैकुंठ परम पद पावे ॥
 लंक विध्वंस किए रघुराई । तुलसीदास स्वामी कीर्ति गाई ॥६॥

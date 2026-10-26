@@ -4,7 +4,8 @@ Usage:  python3 tools/audio/apply_owner_timing.py <file with the GitHub issue bo
 The body carries one JSON block: {"path": "<library path of the work>", "source": "<audio source id>",
 "starts": {"<video id>": {"<item id>": seconds or [start, end]}}, "publish"?: true}.
 It merges the starts into tools/works/<work>/audio/<source>/owner.json (later sends win), removes "draft" from that
-source's source.json and marks it "checked" when "publish" is true, and re-makes the source's timings with make_timings.py. It prints one
+source's source.json and marks it "checked" when "publish" is true, and re-makes the source's timings with make_timings.py
+(and those of works that take this recording: source.json "take"). It prints one
 line per change and exits non-zero with a reason when the body is not valid, so the workflow can say so on the issue.
 """
 import glob, json, os, re, subprocess, sys
@@ -22,6 +23,7 @@ for sj in glob.glob(os.path.join(REPO, 'tools', 'works', '*', 'audio', '*', 'sou
     meta = json.load(open(sj))
     if meta.get('work') == path and meta.get('id') == sid: src = os.path.dirname(sj); break
 if not src: fail('no audio source %r for the work %r' % (sid, path))
+if meta.get('take'): fail('%s takes its timings from %s: set the times there' % (sid, meta['take']))
 work = json.load(open(os.path.join(REPO, 'library', path, 'work.json'))); ids = {x['id'] for x in work['items']}
 vids = {r['yt'] for r in json.load(open(os.path.join(src, 'recordings.json')))}
 OP = os.path.join(src, 'owner.json'); own = json.load(open(OP)) if os.path.exists(OP) else {}
@@ -45,6 +47,9 @@ print('%d starts applied' % n)
 meta = json.load(open(os.path.join(src, 'source.json'))); out = os.path.join(REPO, 'library', path, 'audio', meta['id'] + '.json')
 old = json.load(open(out)) if os.path.exists(out) else {}; before = old.get('at', {})
 subprocess.run([sys.executable, os.path.join(HERE, 'make_timings.py'), src], check=True)
+wid = os.path.basename(os.path.dirname(os.path.dirname(src)))   # the work's folder: works that take this recording follow
+for sj in sorted(glob.glob(os.path.join(REPO, 'tools', 'works', '*', 'audio', sid, 'source.json'))):
+    if json.load(open(sj)).get('take') == wid: subprocess.run([sys.executable, os.path.join(HERE, 'make_timings.py'), os.path.dirname(sj)], check=True)
 new = json.load(open(out)); after = new['at']
 sent = {iid for items in starts.values() for iid in items}
 # neighbours placed again around the owner's times (make_timings.py "moved"), now or before this send: a verse that an

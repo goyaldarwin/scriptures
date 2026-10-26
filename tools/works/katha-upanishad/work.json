@@ -1,0 +1,60 @@
+{
+ "id": "katha-upanishad",
+ "path": "hinduism/veda/yajurveda/krishna-yajurveda/upanishad/katha-upanishad",
+ "lang": "sa",
+ "title": {
+  "hi": "कठोपनिषद्",
+  "en": "Kaṭha Upaniṣad"
+ },
+ "by": {
+  "hi": "कृष्ण यजुर्वेद, कठ शाखा",
+  "en": "Kṛṣṇa Yajurveda, Kaṭha śākhā"
+ },
+ "edition": {
+  "hi": "स्वामी गुरुभक्तानन्द (सन्दीपनी) की पुस्तक; shlokam.org, sanskritdocuments.org",
+  "en": "Swami Gurubhaktananda (Sandeepany); shlokam.org, sanskritdocuments.org"
+ },
+ "parts": {
+  "name": {
+   "hi": "अध्याय",
+   "en": "Adhyāya"
+  },
+  "list": [
+   {
+    "key": "1",
+    "hi": "प्रथम अध्याय",
+    "en": "Adhyāya 1"
+   },
+   {
+    "key": "2",
+    "hi": "द्वितीय अध्याय",
+    "en": "Adhyāya 2"
+   }
+  ]
+ },
+ "types": {
+  "shanti": {
+   "name": {
+    "hi": "शान्तिमन्त्र",
+    "en": "Śānti Mantra"
+   },
+   "short": {
+    "hi": "शा॰",
+    "en": "Śā."
+   }
+  },
+  "mantra": {
+   "name": {
+    "hi": "मन्त्र",
+    "en": "Mantra"
+   },
+   "short": {
+    "hi": "मं॰",
+    "en": "Man."
+   }
+  }
+ },
+ "removed": [
+  "shanti.2"
+ ]
+}
