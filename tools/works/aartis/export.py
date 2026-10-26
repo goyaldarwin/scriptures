@@ -3,7 +3,7 @@
   shri-ramchandra-kripalu  Tulasīdāsa's stuti "श्रीरामचन्द्र कृपालु", with the Mānas's chhand and sorathā Bāla 236 that close it
   ramlala-aarti  "आरती कीजे श्रीरामलला की"
   ramchandra-aarti  "आरती कीजै रामचन्द्र जी की"
-                 (the three Rāma āratīs come from one page but are separate works: owner, 2026-10-24)
+                 (the three Rāma āratīs come from one page but are separate works, as the owner asked)
   hanuman-aarti  "आरती कीजै हनुमान लला की": TAKEN from the Sundarakāṇḍa work, never edited here (same ids, lines,
                  meanings and recordings' timings), so a correction there reaches this work the next time this script runs
   jagdish-aarti  "ॐ जय जगदीश हरे"
@@ -142,7 +142,10 @@ for wid, cfg in WORKS.items():
         for lg in ('hi', 'en'):
             S = load(f"{cfg['take']}/meanings/{lg}-scriptures.json")
             m = {i: S['m'][i] for i in ids}
-            dump(f'{WP}/meanings/{lg}-scriptures.json', {'id': lg + '-scriptures', 'lang': lg, 'order': 1, 'title': TITLES[lg], 'm': m})
+            out = {'id': lg + '-scriptures', 'lang': lg, 'order': 1, 'title': TITLES[lg], 'm': m}
+            p = {i: S['p'][i] for i in ids if i in (S.get('p') or {})}   # the pieces, one per verse line, where the work has them
+            if p: out['p'] = p
+            dump(f'{WP}/meanings/{lg}-scriptures.json', out)
     else:
         BYID = {x['id']: x for x in items}
         for lg in ('hi', 'en'):

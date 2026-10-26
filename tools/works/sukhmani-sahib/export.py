@@ -3,16 +3,17 @@
 Inputs (all in this folder; see README.md):
   source/lines.json        the PDF's printed lines (extract.py): legacy Gurmukhi, transliteration, English
   gurmukhi.py              legacy font encoding → Unicode Gurmukhi;  structure.py: lines → items
-  meanings/hi.json         Hindi meaning of every item, written for this library
+  meanings/hi.json, en.json, pa.json   our Hindi, English and Punjabi meaning of every item, written for this library
   glossary/pa.json         Gurmukhi word meanings
 Writes
   work.json                         the text (Gurmukhi verse lines + the PDF's transliteration), 24 Ashtapadis as
-                                    parts, a topic per Ashtapadi, the work's verse types
-  meanings/en-sant-singh-khalsa.json  the PDF's English (Dr. Sant Singh Khalsa), the lines of an item joined
+                                    parts, two topics per Ashtapadi, the work's verse types
+  meanings/en-sant-singh-khalsa.json  the PDF's English (Dr. Sant Singh Khalsa), the lines of an item joined (order 2)
   meanings/hi-scriptures.json       the Hindi meaning (written for this library; the PDF has none)
   meanings/en-scriptures.json       our English meaning (meanings/en.json, written for this library from the Gurmukhi,
                                     tools/meanings/style.md §12), the default; the PDF's English stays selectable
-  Both our meanings end with the stanza's number (tools/meanings/versenum.py).
+  meanings/pa-scriptures.json       our Punjabi meaning (meanings/pa.json, line by line), shown in the ਪੰ layer
+  Our meanings end with the stanza's number (tools/meanings/versenum.py).
 Merges glossary/pa.json into library/glossary/pa.json (adds new words, never overwrites) and reports how many of
 the work's words have a meaning. Does not touch library/index.json. Then run tools/site/build.py.
 Before exporting it runs the conversion check (check.py) and the structure check, and stops on any failure.
@@ -117,7 +118,7 @@ def en_line(l):
 # line by line: the PDF prints one English line under each Gurmukhi line, so its pieces are those lines
 enp = {x['id']: [en_line(l) for l in x['e']] for x in items if len(x['e']) == len(x['v']) and any(l.strip() for l in x['e'])}
 dump(f'{WP}/meanings/en-sant-singh-khalsa.json', {
-    'id': 'en-sant-singh-khalsa', 'lang': 'en', 'order': 2,   # ours is the default (owner, 2026-10-23); this stays selectable
+    'id': 'en-sant-singh-khalsa', 'lang': 'en', 'order': 2,   # ours is the default; this stays selectable
     'title': {'hi': 'अंग्रेज़ी अनुवाद — डॉ. संत सिंह खालसा', 'en': 'English translation — Dr. Sant Singh Khalsa'},
     'm': en, 'p': enp})
 print(f'en-sant-singh-khalsa: {len(enp)} of {len(items)} items line by line')
@@ -148,7 +149,7 @@ dump(f'{WP}/meanings/en-scriptures.json', {
     'm': {i: [versenum.text_and_pieces(EN[i], BYID[i], 'en')[0]] for i in ids},
     'p': {i: versenum.text_and_pieces(EN[i], BYID[i], 'en')[1] for i in ids if not isinstance(EN[i], str)}})
 
-# ---- Punjabi: ours, written for this library line by line (owner, 2026-10-24), shown in the ਪੰ layer ----
+# ---- Punjabi: ours, written for this library line by line, shown in the ਪੰ layer ----
 # (checked against Prof. Sahib Singh's Darpan and the Faridkot Teeka with tools/meanings/overlap.py while writing; those
 # books are private, so the check is not repeated here: style.md §13)
 pp = os.path.join(HERE, 'meanings', 'pa.json')

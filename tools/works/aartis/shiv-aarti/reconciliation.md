@@ -1,7 +1,7 @@
 # Reconciliation: ॐ जय शिव ओंकारा
 
 ## Source
-A screenshot of a web page the owner shared in the conversation on 23 October 2026 (title "ॐ जय शिव ओंकारा"; the site is not named). It is the only witness. Copy for `scriptures-data`: `hinduism/aarti/shiva/shiv-aarti/screenshots/` (to add).
+A screenshot of a web page the owner shared (title "ॐ जय शिव ओंकारा"; the site is not named). It is the only witness. Copy for `scriptures-data`: `hinduism/aarti/shiva/shiv-aarti/screenshots/` (not there yet).
 
 The rule: keep the source; correct it only where it is clearly wrong. House style: ।/।। for the dandas, stanzas numbered (।।१।।), and the refrain (टेक, the first two lines) shown once although it is sung after each stanza.
 

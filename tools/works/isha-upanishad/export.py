@@ -2,7 +2,7 @@
 
 Source of truth for the text: the owner's printout of shlokam.org/text/isha-upanishad.htm (scriptures-data:
 <path>/printouts/shlokam/isha-upanishad.pdf), settled in text.json; its corrections are in reconciliation.md
-and check.py verifies text.json against the printout. The meanings were written for this library (the owner's
+and check.py verifies text.json against the printout. The meanings are written for this library (the owner's
 instruction for the Sanskrit texts): concise, faithful, following Śaṅkara's reading, with other readings in footnotes.
 
 Writes   work.json                     the text: śānti mantra and mantras 1–18
@@ -57,7 +57,7 @@ def meanings(lang, title):
     M = json.load(open(os.path.join(HERE, 'meanings', lang + '.json'), encoding='utf-8'))
     m = {k: v for k, v in M.items() if not k.startswith('_')}
     assert set(m) == ids, (lang, ids ^ set(m))
-    I = {x['id']: x for x in items}   # the verse's number at the end of its meaning, as in the other works (owner, 2026-10-24)
+    I = {x['id']: x for x in items}   # the verse's number at the end of its meaning, as in the other works
     m = {k: [vnum.with_number(v[0], I[k], lang)] + v[1:] for k, v in m.items()}
     dump(WP + '/meanings/%s-scriptures.json' % lang, {'id': lang + '-scriptures', 'lang': lang, 'order': 1, 'title': title, 'm': m})
     return m

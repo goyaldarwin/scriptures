@@ -1,5 +1,5 @@
 """Checks a store listing file (docs/store/*-listing.md) against Google Play's limits: name ≤ 30, short ≤ 80,
-full description ≤ 4000, release notes ≤ 500 characters.  python3 tools/store/check_listing.py docs/store/hinduism-listing.md"""
+full description ≤ 4000 characters.  python3 tools/store/check_listing.py docs/store/hinduism-listing.md"""
 import re, sys
 s = open(sys.argv[1], encoding='utf-8').read(); ok = True
 for lang in re.split(r'\n## ', s)[1:]:

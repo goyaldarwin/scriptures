@@ -89,7 +89,7 @@ def layer(lang):
     out = {}
     for x in items:
         e = M[x['id']]; f = e.get('f' + lang)
-        t = vnum.with_number(e[lang], x, lang, by_n=True)   # the mantra's number, as in the other works (owner, 2026-10-24)
+        t = vnum.with_number(e[lang], x, lang, by_n=True)   # the mantra's number, as in the other works
         out[x['id']] = [t, f] if f else [t]
     return out
 dump(WP + '/meanings/en-scriptures.json', {'id': 'en-scriptures', 'lang': 'en', 'order': 1,

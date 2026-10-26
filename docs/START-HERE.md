@@ -1,75 +1,69 @@
-# Start here: resuming this project
+# Start here
 
-This repository holds everything about the project: the website, the data, every script used to make the data, and the owner's preferences. If the original Claude session is lost, a new session can continue from here.
+This repository holds everything about the scriptures library: the website, the data, every script that makes the data, and the rules. A new session can continue from it alone.
 
 ## Prompt to paste in a new session
 
-> Clone github.com/goyaldarwin/scriptures and read `docs/START-HERE.md`, `docs/PLAYBOOK.md`, `docs/HOW-TO.md` and `docs/LIBRARY.md` before doing anything. Then: **[the task]**. Follow the playbook. Each work’s source of truth is the source I gave for it (see its README). Test at phone size (390×844) with screenshots. Commit and push when done, and tell me in plain words what changed.
+> Clone github.com/goyaldarwin/scriptures and read `CLAUDE.md`, `docs/START-HERE.md`, `docs/PLAYBOOK.md`, `docs/HOW-TO.md` and `docs/LIBRARY.md` before doing anything. Then: **[the task]**. Follow the playbook. Each work's source of truth is the source I gave for it (see its README). Test at phone size (390×844) with screenshots. Commit and push when done, and tell me in plain words what changed.
+
+## The documents
+
+| File | What it is for |
+|---|---|
+| `CLAUDE.md` | the non-negotiables, in brief |
+| `docs/START-HERE.md` | this page: the repositories, how the pieces fit, the status of each work, what is open |
+| `docs/PLAYBOOK.md` | every rule and preference of the owner, by topic |
+| `docs/HOW-TO.md` | step-by-step procedures: add a work, a meaning source, a recording; fix a text; change the app |
+| `docs/LIBRARY.md` | the data format (`library/`), field by field |
+| `docs/ROADMAP.md` | work not done yet |
+| `docs/APPS.md` | the store apps |
+| `docs/reviews/` | open questions for the owner |
+| `tools/meanings/style.md` | how our meanings are written |
+| `tools/works/<work>/README.md` | each work: its sources, files and structure; `reconciliation.md`: every difference from its sources and why |
 
 ## Two repositories, one hierarchy
+
 | Repository | Visibility | What it holds |
 |---|---|---|
-| `goyaldarwin/scriptures` (this one) | public | the website, the library data made from the sources (text, meanings, word meanings, verse timings), every script and intermediate file, and the docs |
-| `goyaldarwin/scriptures-data` | **private, always** | the raw sources that aren't ours to publish: books, printouts, screenshots, recordings, each with a `<file>.meta.json` (see its README) |
+| `goyaldarwin/scriptures` (this one) | public | the website, the library data made from the sources (text, meanings, word meanings, verse times), every script and intermediate file, the docs |
+| `goyaldarwin/scriptures-data` | **private, always** | the raw sources that are not ours to publish: books, printouts, screenshots, recordings, reference dictionaries, each with a `<file>.meta.json` (see its README) |
 
-Both use the same address for a work, the shelf path the reader sees: `hinduism/granth/tulsidas/ramcharitmanas` is `library/hinduism/granth/tulsidas/ramcharitmanas/` here and `hinduism/granth/tulsidas/ramcharitmanas/` there. Under a work, the private repo groups files as `<kind>/<source-id>/<file>` (`books/gitapress/hindi.pdf`, `audio/kamlesh-upadhyay/…`). The source id is the same one used here for the meaning or audio source made from it. Never copy anything from the private repo into this one except what the build produces from it.
-
-## Working rules for every session
-- **`main` is the live website: every push to it is published within minutes.**
-  - Large work (a new work, a change to shared code) goes on a branch (`work/<short-name>`) and a pull request. The owner has delegated merging: merge it yourself once build, smoke and UX tests pass, and tell the owner what changed.
-  - Small fixes the owner asks for in the conversation may go straight to `main` after the same tests.
-  - Always `git pull` first: the `timing` workflow also pushes to `main` when the owner sends audio times from the app.
-- **Start from the latest `main`** (`git fetch origin main`), and rebase onto it before opening the pull request. Several sessions may work at once.
-- **Run `python3 tools/site/build.py` and then `python3 tools/site/smoke_test.py` and `python3 tools/site/ux_test.py` before every commit.** The smoke test opens every work in a real browser and fails on any script error; the UX test walks every work from the library shelf through home, reader, sections, meanings, word sheet, bookmarks, search and the English interface at phone size (`--shots DIR` saves screenshots to look at). GitHub runs both on every pull request.
-- `build.py` checks the library and refuses to build if anything is inconsistent. Commit the generated files it produces.
-- **Shared code goes first, on its own.** If a work needs something new in the app or the shared tools (`tools/site/`, `tools/audio/`, `tools/jsonio.py`), make that change as its own small pull request first, say why, and build the work on top of it after it is merged. Before writing shared code, check `docs/LIBRARY.md` and the app for a feature that already does it. Two sessions once built the same feature (work-defined verse types) in two different ways, and the pull requests collided.
-- **Touch only what your task needs.** A new work adds its own folders: `library/<path>/` and `tools/works/<work>/`. It edits shared files only to add to them: `library/index.json` (one new entry on the shelf), and `library/glossary/languages.json` plus a new `<lang>.json`. Changes to `tools/site/` or `tools/audio/` affect every work, so call them out in the pull request.
-- **Ask the owner for the sources** (book PDFs, recording links) instead of guessing. Accuracy comes before speed.
-
-## Owner and standards
-- Owner: Darwin Goyal (GitHub `goyaldarwin`).
-- **Accuracy comes first, then unambiguity, clarity, consistency and structure.**
-  - Each work's source of truth is the source the owner gave for it: the Gita Press books for the Rāmacaritamānasa, a video's on-screen text, a web page, a PDF. That source is named in the work's README.
-  - Fix discrepancies in the data directly, and record each fix in the work's `reconciliation.md`, not in the app. Do not mention AI anywhere in the app.
-- **Getting a source's text:** the web-fetch tool returns summaries, not whole pages, and most websites are blocked from the shell. For a web page, ask the owner to print it to PDF and add it to `scriptures-data` under `printouts/<site>/`, or to allow the site for the session. Never write a text from memory.
-- `docs/PLAYBOOK.md` records every preference and lesson. Keep adding to it whenever the owner states a new preference or a lesson is learned.
+Both use the same address for a work, the shelf path the reader sees: `hinduism/granth/tulsidas/ramcharitmanas` is `library/hinduism/granth/tulsidas/ramcharitmanas/` here and `hinduism/granth/tulsidas/ramcharitmanas/` there. Under a work, the private repo groups files as `<kind>/<source-id>/<file>` (`books/gitapress/hindi.pdf`, `audio/kamlesh-upadhyay/…`); the source id is the one used here for the meaning or audio source made from it. Reference books shared by all works are under `reference/<lang>/…` there.
 
 ## How the pieces fit
 
 ```
-Gita Press PDFs ─ tools/works/ramcharitmanas/book ─► app_data.json ─ export.py ─► library/…/work.json, meanings/
-YouTube recordings ─ tools/audio/transcribe.py ─► transcripts ─ make_timings.py ─► library/…/audio/
-library/ ─ tools/site/build.py (checks everything first) ─► index.html, app/, sw.js  +  dist/ (offline file, claude.ai file)
+the owner's sources (scriptures-data) ─ tools/works/<work>/ (extract, settle, export.py) ─► library/<path>/work.json, meanings/, glossary
+recordings ─ transcription ─► tools/works/<work>/audio/<source>/transcripts ─ tools/audio/make_timings.py ─► library/<path>/audio/<source>.json
+library/ ─ tools/site/build.py (checks everything first) ─► index.html, app/, sw.js, manifest.json  +  dist/ (offline file)
 ```
 
-- The verse text and its number are the core of each work. Hindi meaning, English meaning and audio are interchangeable sources that the reader picks under ☰ › More › Sources. Word meanings (`glossary/<lang>.json`) are fixed and shared, one dictionary per language. Each verse is looked up in its own language: Awadhi for most of the Mānas, Sanskrit for its ślokas and Sanskrit stutis.
-- The app is the same for every work: the shelf screen, the work's home (divisions and plans with ▶), and a continuous-scroll reader with a section picker at the bottom. Bookmarks, notes, progress and hands-free recitation are built in.
-- Readers' personal data stays in their browser (localStorage, key `manas.personal.v1`; v2 format with keys prefixed by work id).
-- A work opened once is readable offline (the service worker keeps every library file fetched, across deploys; see the playbook → "Offline reading").
+- The verse and its number are the core of each work. Meanings (Hindi, English, Punjabi) and recordings are selectable sources; word meanings are one dictionary per language (`library/glossary/<lang>.json`), each verse looked up in its own language.
+- The app is the same for every work: the library, the work's home (parts, plans, ▶), and a continuous reader. Bookmarks, notes, progress and hands-free playing are built in; readers' data stays on their phone.
+- The working rules (branches, tests, merging, the environment) are in `docs/PLAYBOOK.md` §10.
 
-## Common tasks
-See `docs/HOW-TO.md`: add a meaning source, add a reciter, add a work, fix text, change the app, publish.
+## Status of the works
 
-## Status (26 October 2026)
-| Work (shelf) | Text & meanings | Audio |
-|---|---|---|
-| Śrī Rāmacaritamānasa | complete: Gita Press text, Hindi and English meanings, glossary, topics, 30-day and 9-day plans with pārāyaṇa vidhi, āratī and Kathā-visarjana | Pt. Kamlesh Upadhyay, live: 6,156 of 6,157 verses timed, 31 estimated; the owner is correcting by ear (36 sent, 2026-10-20) |
-| Sundarakāṇḍa | generated from the Mānas (from Kiṣkindhā dohā 29), plus Hanumān Chālīsā and āratī | Pt. Ashwin Kumar Pathak, live: 403 verses, 8 estimated |
-| Śrī Rāma Rakṣā Stotram | complete | Vande Guru Paramparaam, live |
-| Īśāvāsya Upaniṣad | complete (our own meanings) | live |
-| Āratīs: three of Śrī Rāma (each its own work), Hanumān, Om Jaya Jagadīśa Hare, Śiva, Gaṅgā (2026-10-23) | complete from the owner's one source each (corrections marked open in each `reconciliation.md`); our own meanings; the Hanumān āratī is taken from the Sundarakāṇḍa | live: Jagadīśa (Mahendra Kapoor), Gaṅgā (Anuradha Paudwal), the Rāma stuti (Satya Adhikari), Hanumān (the Sundarakāṇḍa's Pt. Ashwin Kumar Pathak); **draft:** Śiva (Anuradha Paudwal sings another version; the owner to choose) |
-| Shirdi Sāī Dhūpa Āratī | complete (two printouts reconciled; prārthanā reads विहितमविहितं) | Pramod Medhi (Times Music), live: all 64 checked by the owner by ear. The older upload is a draft (YouTube does not allow it inside other sites) |
-| Māṇḍūkya Upaniṣad (2026-10-23) | complete (our own meanings); the śānti's svasti lines to confirm in Devanagari | SMVedroad, live |
-| Kaṭha Upaniṣad (2026-10-26) | complete (119 mantras from the owner's Sandeepany book's transliteration, checked word for word against the owner's sanskritdocuments.org copy and shlokam.org; our own meanings; 914 glossary words) | SMVedroad, live: 120 of 121 timed (no closing śānti in the recording); 2.3.18's start is an estimate to check by ear |
-| Śrī Rudram | complete (our own meanings; Vedic accents; "श्री शम्भवे नमः" left out) | Shlokam, **draft**: the owner is marking it by ear |
-| Sukhmani Sahib | complete (Gurmukhi; English from the owner's PDF; our Hindi) | Parminder Singh, **draft**: the owner is marking it by ear (ashtapadi 1 done) |
+| Work (shelf path under `hinduism/` or `sikhism/`) | Text | Meanings shown first | Recording |
+|---|---|---|---|
+| Śrī Rāmacaritamānasa (`granth/tulsidas/ramcharitmanas`) | Gita Press, complete; 30-day and 9-day plans with vidhi, āratī and visarjana | Gita Press (ours written for the Sundara-kāṇḍa only) | Pt. Kamlesh Upadhyay, live; the owner corrects times by ear |
+| Sundarakāṇḍa (`granth/tulsidas/sundarkand`) | from the Mānas, plus opening prayers, Hanumān Chālīsā, āratī | ours | Pt. Ashwin Kumar Pathak, live |
+| Śrī Rāma Rakṣā Stotram (`stotra/rama/ramraksha`) | a video's on-screen text | ours | Vande Guru Paramparaam, live |
+| Āratīs of Śrī Rāma: श्रीरामचन्द्र कृपालु, आरती कीजे श्रीरामलला की, आरती कीजै रामचन्द्र जी की (`aarti/rama/…`) | one printout; corrections open | ours | the stuti: Satya Adhikari, live; the other two: none yet |
+| Hanumān āratī (`aarti/hanuman/hanuman-aarti`) | from the Sundarakāṇḍa | ours | the Sundarakāṇḍa's, live |
+| ॐ जय जगदीश हरे (`aarti/vishnu/jagdish-aarti`) | the owner's pasted text | ours | Mahendra Kapoor, live |
+| ॐ जय शिव ओंकारा (`aarti/shiva/shiv-aarti`) | the owner's screenshot | ours | Anuradha Paudwal, **draft**: she sings another version |
+| ॐ जय गंगे माता (`aarti/ganga/ganga-aarti`) | the owner's screenshot | ours | Anuradha Paudwal, live |
+| Shirdi Sāī Dhūpa Āratī (`aarti/shirdi-sai/dhoop-aarti`) | two printouts reconciled | ours | Pramod Medhi (Times Music), live |
+| Śrī Rudram (`veda/yajurveda/krishna-yajurveda/samhita/shri-rudram`) | shlokam.org, with Vedic accents | ours | Shlokam, **draft**: the owner is marking it by ear |
+| Kaṭha Upaniṣad (`veda/yajurveda/krishna-yajurveda/upanishad/katha-upanishad`) | the owner's Sandeepany book, checked word for word against his sanskritdocuments.org copy and shlokam.org | ours | SMVedroad, live |
+| Īśāvāsya Upaniṣad (`veda/yajurveda/shukla-yajurveda/upanishad/isha-upanishad`) | shlokam.org | ours | SMVedroad, live |
+| Māṇḍūkya Upaniṣad (`veda/atharvaveda/upanishad/mandukya-upanishad`) | sanskritdocuments.org; the śānti's svasti lines to confirm in Devanagari | ours | SMVedroad, live |
+| Sukhmani Sahib (`gurbani/guru-arjan-dev/sukhmani-sahib`) | the owner's PDF (Gurmukhi) | ours (Hindi, English, Punjabi) | Parminder Singh, **draft**: the owner is marking it by ear |
 
-**Next big task (2026-10-19):** our own meanings in place of others' copyrighted ones — see `docs/handoff/2026-10-19-own-meanings.md`.
-
-**Open with the owner:** the dictionary doubts (`docs/reviews/2026-10-18-dictionary-doubts.jsonl`); any visarjana reading that differs from the owner's printed copy; a permission letter to Gita Press for the meanings. **Offered, not built:** "⏹ End / ⏱ Next starts" buttons in the player for audio timing.
-
-**Apps:** Android first (iPhone parked) — see `docs/APPS.md`. Groundwork and a test build are done; the owner is setting up the corporation's Google Play account, domain, app name and package id.
-
-**The app as of 2026-10-22** (all in the playbook, "Added later" → the Oct 20–22 sections): one ☰ sheet everywhere (Bookmarks & notes · Dark theme · Take the tour · More) and no Settings page; the "More" page holds transliteration, sources, audio timing and privacy; "Save my file / Open a file" on Bookmarks & notes; the screen always on while reading or playing; the playing speed in the player bar (✕ in its top-right corner); a "↑ Now playing" pill when the lit verse is off screen; the page follows the light at every verse start, no pause after a touch; offline reading of every work opened once; the audio-timing rules reviewed and tightened (one order rule in `tools/audio/order.py`).
-
-**Before any change, read `docs/PLAYBOOK.md`** — especially "Audio timing by ear", "The menus" and "Lessons: the working environment".
+## Open with the owner
+- The questions in `docs/reviews/` (word senses; readings in the Rāma Rakṣā and the Sukhmani Sahib).
+- The āratīs: Anuradha Paudwal's Śiva version needs a written source; the Ayodhya Rām āratī needs its text; the "open" corrections in each āratī's `reconciliation.md`.
+- The Māṇḍūkya's svasti lines (a Devanagari print to confirm them).
+- A permission letter to Gita Press for its meanings, while they are shown.
+- Offered, not built: "⏹ End / ⏱ Next starts" buttons in the player for audio timing.

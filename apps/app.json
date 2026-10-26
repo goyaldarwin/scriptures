@@ -1,5 +1,5 @@
 {
- "_note": "The store apps' identities, read by apps/android/generate.mjs --app=<id>. Which shelves each app shows is in library/apps.json (changeable without an app update). A packageId can never change after its first upload. The host works once the DNS record scriptures.craadle.org → goyaldarwin.github.io exists and the site is switched to it (docs/APPS.md).",
+ "_note": "The store apps' identities, read by apps/android/generate.mjs --app=<id>. Which shelves each app shows is in library/apps.json (changeable without an app update). A packageId can never change after its first upload. The site is served at host: build.py writes it to CNAME, and the DNS record scriptures.craadle.org → goyaldarwin.github.io points there (docs/APPS.md).",
  "company": {
   "legalName": "16493041 Canada Inc.",
   "duns": "245128343",
@@ -21,7 +21,7 @@
     "C4:9F:32:EE:57:CC:B6:82:3A:23:7A:22:6F:6A:6F:EB:37:4F:A5:60:35:E6:D9:A4:A3:54:22:31:74:0D:87:CA",
     "4C:5B:CA:79:4A:85:A8:92:A6:6E:54:61:A1:C1:DE:9D:98:B4:67:D2:CF:A0:77:67:12:9A:E5:4E:14:92:49:68"
    ],
-   "_sha256": "first: Play's app-signing key (Play Console › App signing, 2026-10-19) — what installed apps carry; second: the upload key (sideloaded builds)"
+   "_sha256": "first: Play's app-signing key (Play Console › App signing) — what installed apps carry; second: the upload key (sideloaded builds)"
   }
  }
 }

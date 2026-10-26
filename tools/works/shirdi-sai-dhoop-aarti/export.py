@@ -1,10 +1,10 @@
 """Śrī Sāī Bābā (Shirdi) — Dhūpa āratī: text.txt + meanings/ + glossary/ → library/hinduism/aarti/shirdi-sai/dhoop-aarti/.
 
 Writes   work.json                     the text (verse + number + language), sections as topics, verse types
+         meanings/hi-scriptures.json   Hindi bhāvārtha (written for this library; the default)
+         meanings/en-scriptures.json   English meaning (written for this library; every verse; the default)
          meanings/en-shirdisaibabakripa.json   English meaning copied from the shirdisaibabakripa.org printout
-                                       (the default English source; it has no meaning for prarthana.jay2)
-         meanings/hi-scriptures.json   Hindi bhāvārtha (written for this library)
-         meanings/en-scriptures.json   English meaning (written for this library; every verse, second choice)
+                                       (second choice; it has no meaning for prarthana.jay2 and jay3)
 Merges   glossary/<lang>.json (mr, sa, hi) into library/glossary/<lang>.json: adds new words, never overwrites.
 Checks   every verse has a meaning in both written sources, and every word of every verse has a meaning in its
          language or a fallback (Marathi and Hindi fall back to Sanskrit). It stops if anything is missing.
@@ -78,8 +78,8 @@ for lg in ('hi', 'en'):
     M = json.load(open(os.path.join(HERE, 'meanings', lg + '.json'), encoding='utf-8'))
     miss = [i for i in ids if not M.get(i)]; extra = [k for k in M if k not in ids]
     assert not miss and not extra, f'{lg} meanings: missing {miss[:5]}, unknown {extra[:5]}'
-    # our own meanings are the default in both languages (owner, 2026-10-23: our own meanings in place of others'
-    # copyrighted ones); the printout's English stays selectable in Settings › Sources
+    # our own meanings are the default in both languages (the owner's rule: our own meanings in place of others'
+    # copyrighted ones); the printout's English stays selectable in ☰ › More › Sources
     dump(f'{WP}/meanings/{lg}-scriptures.json', {'id': lg + '-scriptures', 'lang': lg, 'order': 1, 'title': TITLES[lg], 'm': {i: [M[i]] for i in ids}})
 
 # ---- meanings copied from the owner's printouts (only the verses they cover) ----

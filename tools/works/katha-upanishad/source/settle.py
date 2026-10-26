@@ -2,7 +2,7 @@
 
 The PDF's Devanagari layer is unreadable (legacy font), its IAST transliteration is clean. The Devanagari is
 therefore made from the transliteration (iast2deva: a letter-for-letter conversion, no guessing), in the
-library's house style, and ../check.py compares it with a Devanagari witness (shlokam.org / sanskritdocuments.org),
+library's house style, and ../check.py compares it with the Devanagari witnesses in witness/,
 see ../reconciliation.md. The transliteration `t` is made back from the settled Devanagari (deva2iast), in
 the library's IAST convention (ṁ, ’ for the avagraha, ॥ and the number as in the other works).
 

@@ -1,8 +1,8 @@
-# Dhūpa Āratī (Pramod Medhi, QKf_JPbN6Lw): how the verse starts were found
+# Dhūpa Āratī (Pramod Medhi, QKf_JPbN6Lw): how the verse starts are found
 
-The cloud transcript skipped most of the singing, so the transcript used here was made locally: the recording cut into 6-second windows, each transcribed on its own with word times (Whisper small, Hindi mode, no temperature fallback). Starts come from anchor matching (`"align": "anchors"`), then the hand-checked starts below.
+The cloud transcript skips most of the singing, so the transcript used here is made locally: the recording cut into 6-second windows, each transcribed on its own with word times (Whisper small, Hindi mode, no temperature fallback). Starts come from anchor matching (`"align": "anchors"`), then the hand-checked starts below.
 
-Hand-checked (word times; cloud transcripts of 2026-10-18 as a second witness):
+Hand-checked (word times; the cloud transcript as a second witness):
 - **aarti.dhru 10.4 s:** the opening jaikāra ("…साईनाथ महाराज की जय") ends about 10 s; "आरती साईबाबा" at 10.4 s.
 - **aarti.pad1 31.0 s:** after the refrain "आरती साईबाबा" (26–29 s), "जाळुनियां अनंग" at 31 s.
 - **aarti.pad7 146.0 s:** "इच्छित दीन चातक" heard at 146 s.

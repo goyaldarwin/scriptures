@@ -1,7 +1,7 @@
 """Śrī Rāma Rakṣā Stotram (Budha Kauśika): source/ → library/hinduism/stotra/rama/ramraksha/.
 
 Source of truth for the text: the Vande Guru Paramparaam video (YouTube ZIDdE4SZAuw), whose
-on-screen lines (Devanagari · transliteration · English) were transcribed from the owner's
+on-screen lines (Devanagari · transliteration · English) are transcribed from the owner's
 screenshots into source/video_text.tsv (frame number, Devanagari, transliteration, English).
 Repeated screenshots of the same line are left out of the file.
 
@@ -77,8 +77,8 @@ work = {
 }
 dump(WP + '/work.json', work)
 
-# Which source readers see first: our own (owner, 2026-10-23: our own meanings in place of others' copyrighted ones);
-# the two copied meanings stay selectable in Settings › Sources.
+# Which source readers see first: our own (the owner's rule: our own meanings in place of others' copyrighted ones);
+# the two copied meanings stay selectable in ☰ › More › Sources.
 ORDER = {'scriptures': 1, 'copied': 2}
 dump(WP + '/meanings/en-vande-guru-paramparaam.json', {'id': 'en-vande-guru-paramparaam', 'lang': 'en', 'order': ORDER['copied'],
      'title': {'hi': 'वन्दे गुरु परम्पराम् — अंग्रेज़ी अर्थ', 'en': 'Vande Guru Paramparaam — English meaning'}, 'm': en})

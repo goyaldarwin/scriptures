@@ -1,7 +1,7 @@
 """Overlap check: is our meaning of a verse its own wording, or does it reuse a copyrighted source's?
 
 Copyright protects wording, not meaning. Our meanings are written from the verse itself; this script proves, verse by
-verse, that they do not reuse the copyrighted source's sentences (docs/handoff/2026-10-19-own-meanings.md, rule 4).
+verse, that they do not reuse the copyrighted source's sentences (tools/meanings/style.md §1).
 
     python3 tools/meanings/overlap.py OURS THEIRS [--n 10] [--note 6] [--only PREFIX ...] [--report]
 
@@ -13,12 +13,11 @@ sentence), after normalising: punctuation, quotation marks, brackets, dashes, ve
 and case are ignored; Devanagari nukta and candrabindu are kept (they are spelling). Runs of --note words or more
 (default 6) up to N are listed, not failed: a person reads each beside the other meaning, keeps it when it is simply the
 natural words or the verse's own list ("साम दान भय और भेद", "in my dream a monkey"), and rewrites it otherwise.
-(The limit was 6 until the owner relaxed it on 2026-10-19: our meanings are made from the verse and its words, so a
-natural phrase that happens to match is fine; rewriting it only to dodge the check made sentences less natural.)
+(The limit is 10, not 6: our meanings are made from the verse and its words, so a natural phrase that happens to match
+is fine; rewriting it only to dodge the check makes sentences less natural.)
 
 It also lists (never fails on) sentences that are nearly one of theirs — the same words in the same order with a word
-or two swapped (a name for a pronoun, a synonym), which breaks a run but is still their sentence (found in the pilot
-review): a person reads each and rewrites it unless it is simply the natural sentence.
+or two swapped (a name for a pronoun, a synonym), which breaks a run but is still their sentence: a person reads each and rewrites it unless it is simply the natural sentence.
 And it reports a looser signal, `close`: the longest common subsequence of words divided by our
 length. A high value with no long run can still mean a sentence-by-sentence rewording, so --report lists the verses
 above 0.6 for a person to read side by side.
@@ -26,7 +25,7 @@ above 0.6 for a person to read side by side.
 Reviewed exceptions (a run that is unavoidable, e.g. a list of names in the verse's own order) go in
 tools/meanings/overlap_allow.json: {"<item id>": ["<the shared run, normalised>", ...]}, each with a reason in git.
 
-As a module: `check(ours, theirs, n=6)` returns [(id, run_words, close)] for every verse, longest run first.
+As a module: `check(ours, theirs)` returns [(id, longest shared run as words, close)] for every verse, longest run first.
 """
 import json, os, re, sys, unicodedata
 
@@ -104,8 +103,8 @@ def near_copies(t, u, min_words=8, ratio=0.75):   # shorter sentences that match
 
 def phrase_share(t, u):
     """Share of our three-word phrases that also occur in theirs. A sentence-by-sentence rewording with only the
-    subject or a word swapped keeps most of them, which a run count and the near-copy check miss (found in the
-    Sukhmani review, 2026-10-23: a pauri that reused six of ten sentences with only its refrain changed). Not
+    subject or a word swapped keeps most of them, which a run count and the near-copy check miss (e.g. a
+    pauri that reuses six of ten sentences with only its refrain changed). Not
     decisive alone — short verses and refrains share phrases naturally — so --report lists the highest for a reader."""
     tri = lambda ws: [tuple(ws[i:i + 3]) for i in range(len(ws) - 2)]
     a, b = tri(words(t)), set(tri(words(u)))

@@ -1,7 +1,7 @@
 """Kaṭha Upaniṣad (Kṛṣṇa Yajurveda, Kaṭha śākhā): this folder → library/hinduism/veda/yajurveda/krishna-yajurveda/upanishad/katha-upanishad/.
 
 The text (text.json) is settled by source/settle.py from the owner's PDF (see README.md and reconciliation.md); check.py
-compares it with the Devanagari witnesses. The meanings were written for this library (the owner's instruction for the
+compares it with the Devanagari witnesses. The meanings are written for this library (the owner's instruction for the
 Sanskrit texts): concise, faithful, following Śaṅkara's reading, with other readings in footnotes.
 
 Writes   work.json                     the text: śānti mantra, mantras 1.1.1 … 2.3.18, closing śānti

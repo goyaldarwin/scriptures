@@ -1,4 +1,4 @@
-"""The verse number at the end of our own meanings (owner, 2026-10-19: "keep the verse number in the meaning").
+"""The verse number at the end of our own meanings.
 
 The number is never written in the meaning files; exporters add it from the verse, so it always matches:
 - the number the verse's last line ends with (dohā ।।२९।।, ।।३० (क)।।, śloka ।।१।।);
@@ -44,7 +44,7 @@ def with_number(text, item, lang, by_n=False):
     return f'{text} {latin(m) if lang == "en" else m}'
 
 def text_and_pieces(value, item, lang):
-    """Our meaning as stored (a string, or a list with one piece per verse line — owner, 2026-10-23: line by line) →
+    """Our meaning as stored (a string, or a list with one piece per verse line: line by line) →
     (whole text with the verse number, pieces with the number on the last non-empty piece, or None)."""
     if isinstance(value, str): return with_number(value, item, lang), None
     assert len(value) == len(item['v']), f"{item['id']}: {len(value)} pieces for {len(item['v'])} lines"

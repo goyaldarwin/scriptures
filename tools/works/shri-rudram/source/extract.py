@@ -49,7 +49,7 @@ def blocks(L):
 
 if __name__ == '__main__':
     # Only the Sanskrit and its transliteration are kept here. The page's English and word glosses are the
-    # publisher's own text: they were read as a guide for our meanings and are written, if a 3rd argument
+    # publisher's own text: they are read as a guide for our meanings and are written, if a 3rd argument
     # (a private folder) is given, only there, never into this public repository.
     priv = sys.argv[3] if len(sys.argv) > 3 else None
     for name, pdf in zip(('namakam', 'chamakam'), sys.argv[1:3]):

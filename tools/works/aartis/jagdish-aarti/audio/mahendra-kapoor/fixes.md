@@ -1,7 +1,7 @@
 # Mahendra Kapoor, "Om Jai Jagdish Hare" (YouTube XOHdvjVkBdE): hand-checked starts
 
-From the transcript (`transcripts/XOHdvjVkBdE.jsonl`), segment start → verse. The alignment had matched the refrain
-and stanza 1 to their repeats, and stanza 7 to the refrain sung before it.
+From the transcript (`transcripts/XOHdvjVkBdE.jsonl`), segment start → verse. Without these fixes the automatic
+alignment matches the refrain and stanza 1 to their repeats, and stanza 7 to the refrain sung before it.
 
 | Verse | Start | Evidence |
 |---|---|---|

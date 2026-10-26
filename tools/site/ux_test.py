@@ -107,7 +107,7 @@ async def main():
         for wid, want in (('manas', '॥ जय श्रीराम ॥'), ('sukhmani-sahib', 'ੴ'), ('ramraksha', '॥ ॐ श्री परमात्मने नमः ॥')):
             got = await ev(f"(async () => {{ const p = openWork({json.dumps(wid)}); await new Promise(r => setTimeout(r, 0)); const t = document.querySelector('#loading').textContent; await p; return [saluteOf({json.dumps(wid)}), t]; }})()")
             check(f'opening {wid} from the library greets it', got == [want, want], got)
-        # no greeting when the app starts, on a refresh, or on a quiet open (owner, 2026-10-19)
+        # no greeting when the app starts, on a refresh, or on a quiet open
         pg2 = await ctx.new_page(); await pg2.add_init_script("window.__SALUTE_MS = undefined")
         await pg2.goto(url + '?w=sukhmani-sahib'); await pg2.wait_for_timeout(200)
         t1 = await pg2.evaluate("document.querySelector('#loading').textContent")
@@ -161,7 +161,7 @@ async def main():
         other = 'hi' if lang0 == 'en' else 'en'
         await (await pg.query_selector(f'#library .lyr.uilang [data-u={other}]')).click(); await pg.wait_for_timeout(400)
         check('language can be changed from the library (हिं · En, one choice)', await ev("LANG()") == other and await ev("document.querySelector('#libTitle').textContent") in ('पुस्तकालय', 'Library') and not await ev("!!document.querySelector('#library .lyr [data-l=w]')"), lang0)
-        check('हिं · En on the library also chooses the meaning (owner, 2026-10-25)', await ev("[S.settings.layers.h, S.settings.layers.e]") == [other == 'hi', other == 'en'])
+        check('हिं · En on the library also chooses the meaning', await ev("[S.settings.layers.h, S.settings.layers.e]") == [other == 'hi', other == 'en'])
         await (await pg.query_selector(f'#library .lyr.uilang [data-u={lang0}]')).click(); await pg.wait_for_timeout(300)
         await ev("S.settings.layers.h = false; save()")
         # library search finds a work by its English or Hindi name
@@ -211,7 +211,7 @@ async def main():
                 first = await ev("(document.querySelector('#orgList .it') || {}).dataset ? document.querySelector('#orgList .it').dataset.page || 'day' : ''")
                 check(f'{tag}: plan {pid} lists its before/after pages in place', got == want_pg and (first == (want_pg[0] if (await ev(f"(PLAN[{json.dumps(pid)}].before || []).length")) else 'day')), f'{got} first={first}')
             if await ev("PLANS.length"): await ev("WS().org = 'k'; renderHome()"); await pg.wait_for_timeout(200)
-            # timing review: drafts only with Settings › Audio timing on; a start and an end set by ear take effect at once
+            # timing review: drafts only with ☰ › More › Audio timing on; a start and an end set by ear take effect at once
             drafts = await ev("(W.sources.au || []).filter(s => s.draft).map(s => s.id)")
             if drafts:
                 check(f'{tag}: a draft recording is not played to readers', (await ev("SRC.au ? SRC.au.meta.id : null")) not in drafts)
@@ -240,7 +240,7 @@ async def main():
                         check(f'{tag}: after an end is set, the next verse is lit at once', await ev("PL.cur") == v2, [await ev("PL.cur"), v2])
                         check(f'{tag}: the progress bar moves while playing', (await ev("document.querySelector('#pProg').style.width")) not in ('', '0%'))
                         await ev("S.timing.on = false; PL.cur = -1; tick()")
-                        check(f'{tag}: outside review mode too, a verse whose end has passed hands the light to the next verse (owner, 2026-10-20)', await ev("PL.cur") == v2, [await ev("PL.cur"), v2])
+                        check(f'{tag}: outside review mode too, a verse whose end has passed hands the light to the next verse', await ev("PL.cur") == v2, [await ev("PL.cur"), v2])
                         await ev(f"ytInfo.t = {s1} + 0.2; PL.cur = -1; tick()")
                         check(f'{tag}: outside review mode, before the end the verse itself is lit', await ev("PL.cur") == v1, [await ev("PL.cur"), v1])
                         await ev("S.timing.on = true; PL.on = false; ytOK = false")
@@ -334,7 +334,7 @@ async def main():
                 check(f'{tag}: picking a section jumps there', where is not None, where)
             # meaning layers
             for lang, sel in (('h', '.layer.h'), ('e', '.layer.e')):
-                # a work with a third meaning language shows a chosen pair: choose one with this language (owner, 2026-10-24)
+                # a work with a third meaning language shows a chosen pair: choose one with this language
                 await ev(f"S.settings.layers.{lang} = true; {{ const k = '{'hi' if lang == 'h' else 'en'}', o = pairOptions().find(p => p.includes(k)); if (workKinds().length > 2 && o) S.settings.pair = o.join(','); }} syncLayers(); refreshReader()"); await pg.wait_for_timeout(500)
                 cnt = await ev(f"document.querySelectorAll('#reader {sel}').length")
                 srcs = await ev(f"((W.sources||{{}})['{'hi' if lang == 'h' else 'en'}']||[]).length")
@@ -398,7 +398,7 @@ async def main():
             await ev("show('home')"); await pg.wait_for_timeout(300)
             await (await pg.query_selector('#hMenu')).click(); await pg.wait_for_timeout(300)
             items = await ev("Array.from(document.querySelectorAll('#sheetBody [data-m], #sheetBody [data-tour], #sheetBody #mth, #sheetBody #mtm')).map(b => b.dataset.m || (b.dataset.tour != null ? 'tour' : b.id === 'mtm' ? 'timing' : 'dark-theme'))")
-            check(f'{tag}: ☰ holds Bookmarks, Dark theme, Take the tour and More — nothing else (owner, 2026-10-22)', items == ['bm', 'dark-theme', 'tour', 'set'] and not await ev("!!document.querySelector('#sheetBody [data-rate], #sheetBody [data-m=sec], #sheetBody #mtr')"), items)
+            check(f'{tag}: ☰ holds Bookmarks, Dark theme, Take the tour and More — nothing else', items == ['bm', 'dark-theme', 'tour', 'set'] and not await ev("!!document.querySelector('#sheetBody [data-rate], #sheetBody [data-m=sec], #sheetBody #mtr')"), items)
             await ev("closeSheet()")
             # back goes home
             await ev("show('home')"); await pg.wait_for_timeout(300)
@@ -417,7 +417,7 @@ async def main():
         await ev("show('settings')"); await pg.wait_for_timeout(500)
         st = await ev("document.querySelector('#setBody').innerText")
         bmf = await ev("(async () => { show('bookmarks'); await new Promise(r => setTimeout(r, 300)); return [!!document.querySelector('#bmBody #exp'), !!document.querySelector('#bmBody #imp')]; })()")
-        check('Bookmarks & notes: Save my file / Open a file live there (owner, 2026-10-22)', bmf == [True, True], bmf)
+        check('Bookmarks & notes: Save my file / Open a file live there', bmf == [True, True], bmf)
         await ev("show('settings')"); await pg.wait_for_timeout(300); st = await ev("document.querySelector('#setBody').innerText")
         check('More: only transliteration, sources, audio timing and privacy — no my file, meanings, text size, language, speed or screen switch', ('Sources' in st or 'स्रोत' in st) and ('Audio timing' in st or 'ऑडियोका समय' in st) and not ('My file' in st or 'मेरी फ़ाइल' in st) and not await ev("!!document.querySelector('#setBody #exp')") and ('Transliteration' in st or 'लिप्यन्तरण' in st) and not await ev("!!document.querySelector('#setBody #sh, #setBody #ssz, #setBody #sui, #setBody #sth, #setBody [data-rate], #setBody #swk')") and 'Speed' not in st, st[:80])
         await ev("show('library')"); await pg.wait_for_timeout(500)
@@ -429,7 +429,7 @@ async def main():
         # ▶ after a seek: an old time reported by the player does not light the previous verse
         guard = await ev("(() => { PL.seekT = null; seekGuard(100); ytInfo.t = 40; const a = playTime(); ytInfo.t = 100.2; const b = playTime(); ytInfo.t = 99; const c = playTime(); return [a, b, c]; })()")
         check('a stale time right after a seek is held at the asked-for start', guard == [100, 100.2, 99], guard)
-        # a refresh keeps you on the same page (owner, 2026-10-19)
+        # a refresh keeps you on the same page
         await ev("show('library'); libPath = [LIB[0].id]; renderLibrary()"); await pg.reload(); await pg.wait_for_timeout(2500)
         r1 = await ev("[CURVIEW, libPath.join('/')]")
         check('refresh on a library shelf stays on that shelf', r1[0] == 'library' and r1[1] != '', r1)
@@ -516,7 +516,7 @@ async def main():
             setTime(n, 1, s0 + 4.2); const ie2 = SRC.au.at[IT[i].id][2] - s0;
             S.timing.fix[tkey()] = JSON.parse(keep); S.timing.on = false; save(); applyTiming(); await loadSources(); return [ie, ns, ie2].map(x => Math.round(x * 10) / 10); })()""")
         check('timing: an end pushed past the next start moves that start along; a start pulled back moves the previous end', link == [4.5, 4.5, 4.2], link)
-        # ---- audio timing, reviewed 2026-10-20 (docs/handoff/2026-10-20-timing-review.md): the order rule in the app and in the
+        # ---- audio timing: the order rule in the app and in the
         # generator give the same figures for the same marks; every write path keeps the order of the text ----
         T0 = "S.timing.on = true; applyTiming(); await openWork('shri-rudram', true); await loadSources(); show('home'); const keep = JSON.stringify(S.timing.fix[tkey()] || {}); PL.on = false; stopAudio();"
         T1 = "S.timing.fix[tkey()] = JSON.parse(keep); S.timing.on = false; save(); applyTiming(); await loadSources();"
@@ -548,16 +548,16 @@ async def main():
                 await ev("delete S.timing.fix[tkey()]; delete S.src[W.id].au; buildAudio()")
         await ev("(async () => { S.timing.on = false; applyTiming(); await loadSources(); })()")
         check('timing: the app and the library place the same times for the same marks (every recording, 8 random sets each)', not bad, bad[:2])
-        # Undo in the ⋮ menu redraws the verse (no more − / +, not "yours") and the neighbours it had moved
+        # Undo (↶, the verse's bottom-left corner) redraws the verse (no more − / +, not "yours") and the neighbours it had moved
         un = await ev("""(async () => { """ + T0 + """
             const a = AUT[0], i = a[10][0], n = a[11][0]; openReader('k', i); await new Promise(r => setTimeout(r, 600));
             setTime(i, 1, a[10][1]); setTime(i, 2, a[11][1] + 2); clearStart(n); const nMoved = SRC.au.at[IT[n].id][1];   // the end gave n a start; Undo on n leaves it an estimate placed after the end
-            const b = document.getElementById('v' + i).querySelector('.vundo [data-a=tundo]'); if (!b) return 'no undo';   // ↶, the verse's bottom-left corner (owner, 2026-10-22; it was in the ⋮ menu)
+            const b = document.getElementById('v' + i).querySelector('.vundo [data-a=tundo]'); if (!b) return 'no undo';   // ↶, the verse's bottom-left corner
             b.click(); await new Promise(r => setTimeout(r, 200));
             const v = document.getElementById('v' + i), r = [!!myStarts()[IT[i].id], v.querySelectorAll('.tgrp .tn').length, /yours|आपका/.test(v.querySelector('.tinfo').textContent), document.getElementById('v' + n).querySelector('.tinfo').textContent.includes(fmtT(SRC.au.at[IT[n].id][1])), nMoved !== SRC.au.at[IT[n].id][1]];
             """ + T1 + """ return r; })()""")
         check('timing: ↶ under the verse redraws it and the neighbour it had moved', un == [False, 0, False, True, True], un)
-        # "Until next" on a verse that has no end does nothing (it used to make the estimated start "yours")
+        # "Until next" on a verse that has no end does nothing (the estimated start does not become "yours")
         unx = await ev("""(async () => { """ + T0 + """ const i = AUT[0][10][0]; const r = [setTime(i, 2, null), !!myStarts()[IT[i].id]]; """ + T1 + """ return r; })()""")
         check('timing: Until next on a verse without an end changes nothing', unx == [False, False], unx)
         # order between verses set by ear: a start cannot go before the previous set start, or at or past the next set start
@@ -614,7 +614,7 @@ async def main():
             r = subprocess.run([sys.executable, os.path.join(ROOT, 'tools/audio/apply_owner_timing.py'), body], env=env, capture_output=True, text=True); out.append((r.returncode, r.stdout.strip().split('\n')[-1]))
         after = json.load(open(os.path.join(tmp, 'library', wp, 'audio', 'pramod-medhi.json')))['at']; shutil.rmtree(tmp)
         check('timing: a second send that lets a moved verse go back to its own start is applied by the workflow', r0.returncode == 0 and out[0][0] == 0 and out[1][0] == 0 and after['aarti.pad3'] == raw['aarti.pad3'] and 60 < raw['aarti.pad3'][1] < 100, (r0.stderr[-200:], out, raw.get('aarti.pad3'), after.get('aarti.pad3')))
-        # ---- app review, 2026-10-20: five bugs of flow and navigation, each reproduced before the fix ----
+        # ---- flow and navigation ----
         # a saved place at a verse no longer in the text: the reader is not broken after a refresh; the place is dropped
         await ev("(async () => { await openWork('ramraksha', true); show('home'); openReader('k', 0); })()"); await pg.wait_for_timeout(600)
         await ev("WS().last = {org: 'k', i: 999, id: 'gone.1'}; WS().pos = {k: 999}; save()")
@@ -635,7 +635,7 @@ async def main():
         await pg.go_back(); await pg.wait_for_timeout(900)
         bs = await ev("[CURVIEW, SCOPE, document.querySelector('#q').value, document.querySelector('#scope').hidden, document.querySelectorAll('#sRes [data-hit]').length > 0]")
         check('Back from a work found by a library search returns to that search, its query and results kept', bs == ['search', 'lib', 'rudram', True, True], bs)
-        # transliteration is a switch on the More page (rarely used — owner, 2026-10-22), seen in the reader afterwards
+        # transliteration is a switch on the More page (rarely used), seen in the reader afterwards
         await ev("(async () => { await openWork('ramraksha', true); show('home'); S.settings.tr = false; save(); show('settings'); })()"); await pg.wait_for_timeout(400)
         await ev("document.querySelector('#str').click()"); await pg.wait_for_timeout(200); await ev("openReader('k', 0)"); await pg.wait_for_timeout(500)
         cap = await ev("[S.settings.tr, document.querySelectorAll('#reader .tr').length > 0, document.querySelectorAll('#rLayers button').length]")
@@ -664,7 +664,7 @@ async def main():
         tm = await ev("""(async () => { show('library'); document.querySelector('#libMenu').click(); await new Promise(r => setTimeout(r, 300));
             const b = document.querySelector('#sheetBody [data-tour]'); if (!b) return 'no button'; b.click(); await new Promise(r => setTimeout(r, 300));
             const on = !document.querySelector('#tour').hidden; closeTour(); const inSet = (show('settings'), /Show the tour|परिचय फिरसे/.test(document.querySelector('#setBody').innerText)); return [on, inSet]; })()""")
-        check('☰ › Take the tour starts the tour; Settings no longer has it', tm == [True, False], tm)
+        check('☰ › Take the tour starts the tour; More does not have it', tm == [True, False], tm)
         ft = await ev("""(async () => { await openWork('manas', true); show('home'); openReader('k', 30); await new Promise(r => setTimeout(r, 500));
             document.querySelector('#rMid').click(); await new Promise(r => setTimeout(r, 300)); const ok = document.querySelector('#sheet').classList.contains('on') && !!document.querySelector('#sheetBody .secs [data-to]'); closeSheet(); return ok; })()""")
         check('reader: tapping the footer opens the section picker', ft)
@@ -677,7 +677,7 @@ async def main():
             const r = [S.settings.theme, document.documentElement.getAttribute('data-theme'), document.querySelector('#sheet').classList.contains('on'), document.querySelector('#mth').checked];
             document.querySelector('#mth').click(); r.push(S.settings.theme); S.settings.theme = t0; applyTheme(); save(); closeSheet(); return r; })()""")
         check('☰ › Dark theme is one switch: on = dark, off = light, at once, the sheet stays open', th == ['dark', 'dark', True, True, 'light'], th)
-        # ---- owner, 2026-10-20: "Ends now" also starts the next verse; the preview only when nothing plays live ----
+        # ---- "Ends now" also starts the next verse; the preview only when nothing plays live ----
         en = await ev("""(async () => { """ + T0 + """ const a = AUT[0], i = a[10][0], n = a[11][0], m = a[12][0], s = Math.round(a[10][1] * 10) / 10;
             setTime(i, 1, s); setTime(i, 2, s + 6); const r = [Math.round((SRC.au.at[IT[n].id][1] - s) * 10) / 10, !!myStarts()[IT[n].id], !!myStarts()[IT[m].id]];   // the next verse starts at the end and is yours; the one after is untouched
             setTime(i, 2, s + 5.5); r.push(Math.round((SRC.au.at[IT[n].id][1] - s) * 10) / 10);   // − on the end: the start follows it back
@@ -696,7 +696,7 @@ async def main():
             const paused = [PL.snip != null && Math.abs(PL.snip - SRC.au.at[IT[i].id][2]) < 0.01, Math.round((SRC.au.at[IT[i].id][2] - s) * 10) / 10];   // now the preview plays up to the new end
             stopAudio(); ytOK = false; ytInfo.st = -1; """ + T1 + """ return live.concat(paused); })()""")
         check('timing: − / + while the recitation plays on only move the time; the 2-second preview plays when nothing is playing', pv == [True, 3.5, True, True, 3], pv)
-        # the player's timing wins (owner, 2026-10-20): a touch (a bookmark, say) or a scroll does not pause the following; the page
+        # the player's timing wins: a touch (a bookmark, say) or a scroll does not pause the following; the page
         # moves to the next verse the moment it starts
         fl = await ev("""(async () => { await openWork('ramraksha', true); show('home'); S.timing.on = false; openReader('k', 0); await new Promise(r => setTimeout(r, 500));
             const a = AUT[0], v1 = a[3][0], v2 = a[4][0]; PL.on = true; PL.t = 0; PL.end = null; PL.cur = -1; ytOK = true; PL.seekT = null; ytInfo.t = a[3][1] + 0.2; tick(); await new Promise(r => setTimeout(r, 900));
@@ -708,7 +708,7 @@ async def main():
             const ok = PL.cur === v2 && r.top >= top - 2 && r.bottom <= innerHeight;
             stopAudio(); ytOK = false; Object.keys(ME().bm).filter(k => k.startsWith(W.id + ':')).forEach(k => delete ME().bm[k]); save(); return [ok, PL.cur === v2, Math.round(r.top), Math.round(top)]; })()""")
         check('playing: after a touch, a bookmark and a scroll, the page still follows the next verse the moment it starts', fl[0], fl)
-        # “↓ now playing” pill (owner, 2026-10-20): only while the lit verse is off the screen; a tap brings it back; gone at the next verse
+        # “↓ now playing” pill: only while the lit verse is off the screen; a tap brings it back; gone at the next verse
         jp = await ev("""(async () => { await openWork('ramraksha', true); show('home'); S.timing.on = false; openReader('k', 0); await new Promise(r => setTimeout(r, 500));
             const a = AUT[0], v1 = a[3][0], v2 = a[4][0], pill = document.querySelector('#pJump'); PL.on = true; document.querySelector('#player').hidden = false; document.body.classList.add('playing'); PL.t = 0; PL.end = null; PL.cur = -1; ytOK = true; PL.seekT = null; ytInfo.t = a[3][1] + 0.2; tick(); await new Promise(r => setTimeout(r, 900));
             const r = []; jumpPill(); r.push(pill.hidden);                                   // on screen: no pill
@@ -718,13 +718,13 @@ async def main():
             ytInfo.t = a[4][1] + 0.2; tick(); await new Promise(r => setTimeout(r, 1200)); jumpPill(); r.push(pill.hidden, PL.cur === v2);   // the next verse starts: the page follows, no pill
             stopAudio(); ytOK = false; r.push(pill.hidden); return r; })()""")
         check('playing: the “now playing” pill shows only while the lit verse is off screen, points the way, and brings it back on a tap', jp == [True, True, True, True, True, True, True, True, True], jp)
-        # offline reading (owner, 2026-10-21): a work opened once is readable with no network at all; a work never opened says so
+        # offline reading: a work opened once is readable with no network at all; a work never opened says so
         srv2 = serve(); url2 = f'http://127.0.0.1:{srv2.server_address[1]}/'
         ctx2 = await b.new_context(viewport={'width': 390, 'height': 844}, is_mobile=True, has_touch=True); pg3 = await ctx2.new_page(); errs3 = []
         pg3.on('pageerror', lambda e: errs3.append(str(e))); await pg3.add_init_script('window.__SALUTE_MS = 0; window.__SW_TEST = 1')
         await pg3.goto(url2); await pg3.wait_for_timeout(2500)
         sw = await pg3.evaluate("navigator.serviceWorker.getRegistration().then(r => r ? (r.active ? 'active' : 'installing') : 'none')")
-        check('offline: the service worker installs (every file in its list once — a duplicate made it fail silently, 2026-10-21)', sw == 'active', sw)
+        check('offline: the service worker installs (every file in its list once — a duplicate makes it fail silently)', sw == 'active', sw)
         await pg3.reload(); await pg3.wait_for_timeout(2000)   # now every file goes through the worker
         await pg3.evaluate("(async () => { S.settings.tour = 1; closeTour(); await openWork('ramraksha'); S.settings.layers.h = true; S.settings.layers.e = true; save(); })()"); await pg3.wait_for_timeout(1500)
         kept = await pg3.evaluate("caches.keys().then(async ks => { const c = await caches.open('lib-v1'); const es = await c.keys(); return [ks.includes('lib-v1'), es.filter(r => r.url.includes('/library/')).length]; })")
@@ -735,19 +735,19 @@ async def main():
         check('offline: a work opened once is readable without any network, with its meanings', kept[0] and kept[1] >= 4 and off[0] == 'ramraksha' and off[1] > 0 and off[2] > 0 and off[3] > 0 and off[4], (kept, off, errs3[:2]))
         check('offline: a work never opened on this phone says so', never[0] == 'ramraksha' and ('No internet' in never[1] or 'इंटरनेट' in never[1]), never)
         await ctx2.close()
-        # the speed button in the player bar cycles the speeds; the reading timer is gone (owner, 2026-10-22)
+        # the speed button in the player bar cycles the speeds; ☰ has no speed and no reading timer
         sp = await ev("""(async () => { await openWork('ramraksha', true); show('home'); openReader('k', 0); S.settings.rate = 1; applyRate(); playFrom(0, null); await new Promise(r => setTimeout(r, 300));
             const b = document.querySelector('#pRate'), r = [b.textContent, !!b.offsetParent]; b.click(); r.push(b.textContent, S.settings.rate); for (let k = 0; k < 5; k++) b.click(); r.push(S.settings.rate);
             document.querySelector('#rMore').click(); await new Promise(r => setTimeout(r, 200)); r.push(!document.querySelector('#sheetBody [data-rate]'), !!document.querySelector('#sheetBody [data-m=timer]'), !!document.querySelector('#timerPill'));   // six taps: round the six speeds, back to 1×; the speed is only in the bar
             closeSheet(); S.settings.rate = 1; applyRate(); stopAudio(); return r; })()""")
         check('player: a speed button in the bar steps through the speeds; speed is nowhere else; no reading timer', sp == ['1×', True, '1.25×', 1.25, 1, True, False, False], sp)
-        # Bookmarks & notes: each list folds under its heading, and a fold is remembered (owner, 2026-10-22)
+        # Bookmarks & notes: each list folds under its heading, and a fold is remembered
         fd = await ev("""(async () => { await openWork('manas', true); show('home'); const me = ME(); me.bm[KEY(IT[3].id)] = 1; save(); show('bookmarks'); await new Promise(r => setTimeout(r, 300));
             const d = document.querySelector('#bmBody .bmsec[data-fold=bm]'), r = [d.open, d.querySelectorAll('.res').length]; d.querySelector('summary').click(); await new Promise(r => setTimeout(r, 200)); r.push(d.open, !!(S.settings.bmFold || {}).bm);
             show('home'); show('bookmarks'); await new Promise(r => setTimeout(r, 300)); r.push(document.querySelector('#bmBody .bmsec[data-fold=bm]').open, document.querySelector('#bmBody .bmsec[data-fold=notes]').open);
             document.querySelector('#bmBody .bmsec[data-fold=bm] summary').click(); await new Promise(r => setTimeout(r, 200)); delete me.bm[KEY(IT[3].id)]; delete S.settings.bmFold; save(); return r; })()""")
         check('bookmarks & notes: the lists fold under their headings and a fold is remembered', fd == [True, 1, False, True, False, True], fd)
-        # the timing controls sit under the verse and in the player bar (owner, 2026-10-22): ↶ is the verse's fourth corner, the saffron
+        # the timing controls sit under the verse and in the player bar: ↶ is the verse's fourth corner, the saffron
         # ±step chip beside ✕ cycles (timing mode only), Until next removes the end, ⋮ holds nothing about timing
         tc = await ev("""(async () => { """ + T0 + """ const a = AUT[0], i = a[10][0], s0 = Math.round(a[10][1] * 10) / 10; openReader('k', i); await new Promise(r => setTimeout(r, 500));
             setTime(i, 1, s0); setTime(i, 2, s0 + 6); rerenderItem(i); const v = () => document.getElementById('v' + i); S.timing.step = 0.5; syncStep(); const st = document.querySelector('#pStep');
@@ -755,34 +755,34 @@ async def main():
             v().querySelector('[data-a=tnone]').click(); r.push(SRC.au.at[IT[i].id][2] == null, !v().querySelector('[data-a=tnone]'), !!v().querySelector('.vundo'), !!v().querySelector('.vplay'));
             itemMenu(i); await new Promise(r => setTimeout(r, 200)); r.push(!document.querySelector('#sheetBody .tbox')); closeSheet(); S.timing.step = 0.5; """ + T1 + """ syncStep(); r.push(document.querySelector('#pStep').hidden); return r; })()""")
         check('timing: the ±step chip in the player bar (saffron, timing mode only) cycles; Until next removes the end; ↶ is the fourth corner; ⋮ holds nothing about timing', tc == [True, '±0.5 s', True, 1, '±1 s', True, True, True, True, True, True], tc)
-        # while Audio timing is on, ☰ shows its switch and Clear adjustments at the top level (owner, 2026-10-22)
+        # while Audio timing is on, ☰ shows its switch and Clear adjustments at the top level
         tm2 = await ev("""(async () => { """ + T0 + """ const i = AUT[0][10][0]; openReader('k', i); await new Promise(r => setTimeout(r, 400)); setTime(i, 1, AUT[0][10][1]);
             document.querySelector('#rMore').click(); await new Promise(r => setTimeout(r, 300)); const r = [!!document.querySelector('#mtm'), !!document.querySelector('#sheetBody [data-m=tclear]')];
             document.querySelector('#mtm').click(); await new Promise(r => setTimeout(r, 700)); r.push(S.timing.on, !document.querySelector('#sheet').classList.contains('on'), !document.getElementById('v' + i).querySelector('.tmark'));
             document.querySelector('#rMore').click(); await new Promise(r => setTimeout(r, 300)); r.push(!document.querySelector('#mtm')); closeSheet(); S.timing.on = true; applyTiming(); await loadSources(); """ + T1 + """ return r; })()""")
         check('☰ while timing is on: the switch turns it off at once and Clear adjustments is there; off, neither shows', tm2 == [True, True, False, True, True, True], tm2)
-        # headings follow the text size; the ⋮ menu's ▶ is blue (owner, 2026-10-23)
+        # headings follow the text size; the ⋮ menu's ▶ is blue
         hs = await ev("""(async () => { await openWork('manas', true); show('home'); S.settings.tr = true; S.settings.size = 21; applyTheme(); openReader('k', 0); await new Promise(r => setTimeout(r, 400));
             const px = q => parseFloat(getComputedStyle(document.querySelector('#rBody ' + q)).fontSize); const a = ['.part-h b', '.topic-h b', '.vtype', '.tr'].map(px);
             S.settings.size = 34; applyTheme(); await new Promise(r => setTimeout(r, 100)); const b = ['.part-h b', '.topic-h b', '.vtype', '.tr'].map(px);
             itemMenu(0); await new Promise(r => setTimeout(r, 200)); const play = getComputedStyle(document.querySelector('#sheetBody [data-x=play] svg')).color, copy = getComputedStyle(document.querySelector('#sheetBody [data-x=copy] svg')).stroke; closeSheet();
             S.settings.size = 21; S.settings.tr = false; applyTheme(); save(); return [a.every((v, k) => b[k] > v * 1.4), play === copy, a.map(Math.round)]; })()""")
         check('reader: the part and topic headings and the transliteration grow with the text size; the ⋮ menu’s ▶ is blue like its other icons', hs[0] and hs[1], hs)
-        # a shelf shows two works, the most recently used first, then +N (owner, 2026-10-23)
+        # a shelf shows two works, the most recently used first, then +N
         sh2 = await ev("""(async () => { const keep = JSON.stringify(Object.fromEntries(Object.entries(S.w).map(([k, v]) => [k, v.at]))); Object.values(S.w).forEach(v => delete v.at);
             await openWork('isha-upanishad', true); libPath = []; show('library'); await new Promise(r => setTimeout(r, 200));
             const row = [...document.querySelectorAll('#libList li')].find(li => li.querySelector('[data-node="hinduism/veda"], [data-node="veda"]')); const chips = [...row.querySelectorAll('[data-open-work]')].map(b => b.dataset.openWork), more = row.querySelector('.more');
             const g = [...document.querySelectorAll('#libList li')].find(li => li.querySelector('[data-node="hinduism/granth"], [data-node="granth"]')); const gchips = g.querySelectorAll('[data-open-work]').length;
             JSON.parse(keep); Object.entries(JSON.parse(keep)).forEach(([k, v]) => { if (S.w[k]) { if (v) S.w[k].at = v; else delete S.w[k].at; } }); save(); return [chips[0], chips.length, !!more, gchips]; })()""")
         check('library: a shelf shows two works, the one used most recently first', sh2[0] == 'isha-upanishad' and sh2[1] <= 2 and sh2[3] <= 2, sh2)
-        # one word for one thing (owner, 2026-10-23): no "text" for a verse, no "listen/hear" for play, no "translation", no "Adjust audio timing"
+        # one word for one thing: no "text" for a verse, no "listen/hear" for play, no "translation", no "Adjust audio timing"
         words = await ev("""(() => { const src = [...document.querySelectorAll('[data-en]')].map(e => e.dataset.en).join(' | '); return src; })()""")
         bad = [w for w in ('Listen', 'translation', 'Adjust audio timing', 'the text') if w in words]
         check('labels: the template uses the app\'s vocabulary', not bad, bad)
-        # ⋮ order: Play from here · Write a note · Copy verse and meaning · Correct … (owner, 2026-10-23)
+        # ⋮ order: Play from here · Write a note · Copy verse and meaning · Correct …
         order = await ev("(async () => { await openWork('manas', true); show('home'); openReader('k', 0); await new Promise(r => setTimeout(r, 300)); itemMenu(0); await new Promise(r => setTimeout(r, 200)); const r = [...document.querySelectorAll('#sheetBody [data-x]')].map(b => b.dataset.x); closeSheet(); return r; })()")
         check('⋮: Write a note comes before Copy verse and meaning', order[:4] == ['play', 'note', 'copy', 'edit'], order)
-        # line by line (owner, 2026-10-23): a source with a piece per verse line shows each piece under its line; a source
+        # line by line: a source with a piece per verse line shows each piece under its line; a source
         # without pieces, and a verse with no pieces at all, show the meaning whole after the verse
         lbl = await ev("""(async () => { await openWork('sukhmani-sahib', true); S.settings.layers = {h: true, e: true, w: false}; S.settings.pair = 'hi,en'; S.settings.recite = false; await loadSources();
             const i = IT.findIndex(x => x.id === 'a01.p3'), it = IT[i], n = it.v.length;
@@ -797,7 +797,7 @@ async def main():
             const r3 = [u.querySelectorAll('.vline').length === 0, u.querySelectorAll('.vtext').length === 1];
             SRC.hi.p = keep.h; SRC.en.p = keep.e; delete S.settings.pair; return [...r1, ...r2, ...r3]; })()""")
         check('meanings line by line: each piece under its line; a source without pieces shows whole after the verse; none at all keeps the verse whole', all(lbl), lbl)
-        # a third meaning language (owner, 2026-10-24): with a Punjabi source the capsule shows ਪੰ · En (English app) or ਪੰ · हिं
+        # a third meaning language: with a Punjabi source the capsule shows ਪੰ · En (English app) or ਪੰ · हिं
         # (Hindi app), always four places; Punjabi pieces sit under their lines; Sources lists it and "Meanings in the bar";
         # search finds it; recitation mode turns it off too
         pa = await ev("""(async () => { await openWork('sukhmani-sahib', true); show('home'); const S0 = JSON.stringify(S.settings);
@@ -821,7 +821,7 @@ async def main():
         check('a third meaning language: ਪੰ · En in an English app, ਪੰ · हिं in a Hindi one, हिं · En when chosen; four places', pa['c1'].split('·')[:2] == ['ਪੰ', 'En'] and pa['c2'].split('·')[:2] == ['ਪੰ', 'हिं'] and pa['c3'].split('·')[:2] == ['हिं', 'En'] and len(pa['c1'].split('·')) == 4, pa)
         check('a third meaning language: its pieces under their lines, listed in Sources with "Meanings in the bar", searchable, off in recitation mode',
               all(pa['lay']) and pa['srcs'][0] and pa['srcs'][1].split('|') == ['ਪੰ · En', 'ਪੰ · हिं', 'हिं · En'] and pa['found'] and pa['off'] and pa['back'], pa)
-        # a Roman-letter search shows the verse itself; Play from here ends with the open section (owner, 2026-10-25)
+        # a Roman-letter search shows the verse itself; Play from here ends with the open section
         rs = await ev("(async () => { await openWork('manas', true); show('home'); openSearch('text'); document.querySelector('#q').value = 'asur chal chonip'; runSearch(); await new Promise(r => setTimeout(r, 300)); const r = document.querySelector('#sRes .res'); return r ? [r.querySelector('.where').textContent, r.querySelector('.snip').textContent.slice(0, 12)] : 'none'; })()")
         check('search: a verse found by Roman letters is shown as the verse', rs != 'none' and ('Verses' in rs[0] or 'मूल पाठ' in rs[0]) and 'रहे' in rs[1], rs)
         pf = await ev("(async () => { const P = PLANS[0]; const [a, b] = dayRange(P.id, 2); openReader(P.id, a + 3); await new Promise(r => setTimeout(r, 300)); itemMenu(a + 3); await new Promise(r => setTimeout(r, 200)); document.querySelector('#sheetBody [data-x=play]').click(); const r = [PL.end === b, PL.endMsg]; stopAudio(); return r; })()")

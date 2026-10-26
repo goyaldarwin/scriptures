@@ -2,7 +2,8 @@
 
   python3 tools/store/screenshots.py [--lang en|hi|both]   →  tools/store/out/<store>/<lang>/NN-<scene>.png
 
-Sizes: App Store iPhone 6.9" (1320×2868) and Google Play phone (1080×1920), plus the Play feature graphic (1024×500).
+Sizes: App Store iPhone 6.9" (1320×2868), Google Play phone (1080×1920) and tablets (7-inch 1080×1920, 10-inch
+1440×2560), plus the Play feature graphic (1024×500).
 YouTube cannot be reached from the build machine, so in the "playing" scene the video area shows the app's ॐ tile;
 a capture from a real phone can replace that one picture.
 """
@@ -35,7 +36,7 @@ SCENES = [
   """libPath = []; show('library'); renderLibrary(); window.scrollTo(0, 0);"""),
 ]
 # Only verses whose meanings are our own appear in store pictures (the opening prayers, the Chālīsā), never a
-# copyrighted meaning (owner, 2026-10-19). (css width, css height, scale, width of the app inside the frame)
+# copyrighted meaning. (css width, css height, scale, width of the app inside the frame)
 # Play tablets: 7-inch 1080×1920, 10-inch 1440×2560 (9:16), the app at tablet width.
 SIZES = {'appstore': (440, 956, 3, 390), 'play': (360, 640, 3, 390), 'play-tablet7': (540, 960, 2, 540), 'play-tablet10': (720, 1280, 2, 680)}
 

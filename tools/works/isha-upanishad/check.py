@@ -6,7 +6,7 @@ can't be compared directly; its transliteration layer is clean. This script:
   2. converts it to Devanagari and compares it with text.json → v; the only differences allowed are the
      corrections listed in reconciliation.md (EXPECTED below),
   3. converts text.json → t to Devanagari and checks it equals v (our transliteration matches our text).
-The Devanagari of every verse was also checked by eye against the page images (reconciliation.md).
+The Devanagari of every verse is also checked by eye against the page images (reconciliation.md).
 
 Usage: python3 tools/works/isha-upanishad/check.py <scriptures-data>/hinduism/veda/yajurveda/shukla-yajurveda/upanishad/isha-upanishad/printouts/shlokam/isha-upanishad.pdf
 Without the PDF it runs step 3 only.
