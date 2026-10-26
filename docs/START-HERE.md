@@ -50,7 +50,7 @@ library/ ─ tools/site/build.py (checks everything first) ─► index.html, ap
 ## Common tasks
 See `docs/HOW-TO.md`: add a meaning source, add a reciter, add a work, fix text, change the app, publish.
 
-## Status (22 October 2026)
+## Status (26 October 2026)
 | Work (shelf) | Text & meanings | Audio |
 |---|---|---|
 | Śrī Rāmacaritamānasa | complete: Gita Press text, Hindi and English meanings, glossary, topics, 30-day and 9-day plans with pārāyaṇa vidhi, āratī and Kathā-visarjana | Pt. Kamlesh Upadhyay, live: 6,156 of 6,157 verses timed, 31 estimated; the owner is correcting by ear (36 sent, 2026-10-20) |
@@ -60,6 +60,7 @@ See `docs/HOW-TO.md`: add a meaning source, add a reciter, add a work, fix text,
 | Āratīs: three of Śrī Rāma (each its own work), Hanumān, Om Jaya Jagadīśa Hare, Śiva, Gaṅgā (2026-10-23) | complete from the owner's one source each (corrections marked open in each `reconciliation.md`); our own meanings; the Hanumān āratī is taken from the Sundarakāṇḍa | live: Jagadīśa (Mahendra Kapoor), Gaṅgā (Anuradha Paudwal), the Rāma stuti (Satya Adhikari), Hanumān (the Sundarakāṇḍa's Pt. Ashwin Kumar Pathak); **draft:** Śiva (Anuradha Paudwal sings another version; the owner to choose) |
 | Shirdi Sāī Dhūpa Āratī | complete (two printouts reconciled; prārthanā reads विहितमविहितं) | Pramod Medhi (Times Music), live: all 64 checked by the owner by ear. The older upload is a draft (YouTube does not allow it inside other sites) |
 | Māṇḍūkya Upaniṣad (2026-10-23) | complete (our own meanings); the śānti's svasti lines to confirm in Devanagari | SMVedroad, live |
+| Kaṭha Upaniṣad (2026-10-26) | complete (119 mantras from the owner's Sandeepany book's transliteration, checked against shlokam.org's first 20; our own meanings; 913 glossary words); the full sanskritdocuments.org witness is awaited from the owner | SMVedroad, live: 120 of 121 timed (no closing śānti in the recording); 2.3.18's start is an estimate to check by ear |
 | Śrī Rudram | complete (our own meanings; Vedic accents; "श्री शम्भवे नमः" left out) | Shlokam, **draft**: the owner is marking it by ear |
 | Sukhmani Sahib | complete (Gurmukhi; English from the owner's PDF; our Hindi) | Parminder Singh, **draft**: the owner is marking it by ear (ashtapadi 1 done) |
 
