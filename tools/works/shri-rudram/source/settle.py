@@ -107,6 +107,12 @@ if __name__ == '__main__':
         for a_, b_ in ITEM_FIX.get(x['id'], []):
             assert sum(l.count(a_) for l in x['v']) == 1, (x['id'], a_)
             x['v'] = [l.replace(a_, b_) for l in x['v']]
+    # a line the recording does not recite, left out at the owner's word (reconciliation.md): u8 begins at प्राणानां
+    DROP_LINE = {'namakam.uttara.u8': 'ओ-न्नमो भगवते रुद्राय विष्णवे मृत्यु॑र्मे पा॒हि ॥'}
+    for x in items:
+        if x['id'] in DROP_LINE:
+            assert x['v'].count(DROP_LINE[x['id']]) == 1, (x['id'], x['v'])
+            x['v'].remove(DROP_LINE[x['id']])
     # the closing mantras of the Namakam in the order the recording sings them (the owner: "the ending verses
     # are jumbled up and don't match the order in the recording"): Shlokam's recording sings u1 u2 u6 u7 u8 and then
     # u3 u4 u5 (तमु ष्टुहि, यक्ष्वामहे, अयं मे हस्तो) before the śānti; the printout lists u3–u5 after u2. The ids stay; the

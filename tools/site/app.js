@@ -656,6 +656,9 @@ function buildAudio(){
   // the rule starts from the start each verse had before any re-placing ("raw", kept by make_timings.py for the verses it
   // moved), so the app and the library, given the same set times, arrive at exactly the same figures
   for (const id in A.at){ const i = ID[id]; if (i == null) continue; const [t, s, e] = A.at[id]; AUT[t].push([i, A.raw[id] != null && !myStarts()[id] ? A.raw[id] : s, e == null ? null : e]); }
+  // a recording covers every verse timed on it, also one set by ear after its last matched verse (else, at the recording's
+  // end, "go on with the next verse" would find that verse and play it again: a loop)
+  A.tracks.forEach((t, k) => AUT[k].forEach(([i]) => { if (i < t.fi) t.fi = i; if (i > t.li) t.li = i; }));
   // keep the times in the order of the text around the times set by ear (the same rule as tools/audio/order.py, used by
   // make_timings.py): a verse set by ear (on this phone, or by the owner and published) is kept as given; a verse not set
   // by ear cannot start before the one before it has started, or before its set end, or at or after the next set start —

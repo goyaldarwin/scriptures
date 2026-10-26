@@ -131,6 +131,11 @@ own_ids = set()
 for ti, tr in enumerate(tracks):
     for iid, t in OWN.get(tr['yt'], {}).items():   # seconds, or [start, end] when the owner also set where the verse ends
         if iid in ID: iid = IT[ID[iid]]['id']; at[iid] = [ti, round(float(t[0]), 2), round(float(t[1]), 2)] if isinstance(t, list) else [ti, round(float(t), 2)]; own_ids.add(iid)
+# a recording covers every verse timed on it, also one the owner set after its last matched verse (the app goes on with
+# the verse after a recording's "last" when it ends: a verse beyond it on the same recording would play again, a loop)
+for ti, tr in enumerate(tracks):
+    on = [ID[k] for k, v in at.items() if v[0] == ti]
+    if on: tr['first'], tr['last'] = IT[min(on)]['id'], IT[max(on)]['id']
 # keep the text's order around the owner's times — the same rule as the app (tools/site/app.js, buildAudio), kept in
 # tools/audio/order.py: a verse cannot start before the one before it, or before that verse's set end; a verse not set by
 # ear that breaks this is placed again, by its length, between the nearest good times; a set end later than the next set

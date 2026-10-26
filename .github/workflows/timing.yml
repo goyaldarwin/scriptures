@@ -1,5 +1,6 @@
 # Audio starts (and ends) set by ear in the app arrive as GitHub issues titled "Timing: <work path> / <source>" (Settings › Audio
-# timing › Send to the library). Only the owner's issues are applied: the starts go into the source's owner.json, the
+# timing › Send to the library). Only the owner's issues are applied (the owner's two GitHub accounts, goyaldarwin and darwingoyal,
+# listed in `if:` below): the starts go into the source's owner.json, the
 # timings are re-made, the site is rebuilt and checked, and the result is pushed to main; the issue is then closed
 # with a summary (or left open with the error).
 name: timing
@@ -14,7 +15,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   apply:
-    if: startsWith(github.event.issue.title, 'Timing:') && github.event.issue.user.login == github.repository_owner
+    if: startsWith(github.event.issue.title, 'Timing:') && contains(fromJSON('["goyaldarwin", "darwingoyal"]'), github.event.issue.user.login)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

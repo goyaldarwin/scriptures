@@ -132,6 +132,9 @@ def check_work(lib, leaf, LANGS):
         T = s['tracks']
         for t in T: _need(re.fullmatch(r'[\w-]{11}', t['yt']) and t['first'] in ID and t['last'] in ID and t['dur'] > 0, f"{where}: bad track {t}")
         for k, v in s['at'].items(): _need(k in ID and len(v) in (2, 3) and 0 <= v[0] < len(T) and 0 <= v[1] <= T[v[0]]['dur'] and (len(v) == 2 or v[1] < v[2] <= T[v[0]]['dur'] + 1), f"{where}: bad timing {k}: {v}")   # [track, start, end?]
+        POS = {x: k for k, x in enumerate(ids)}
+        out = [k for k, v in s['at'].items() if k in POS and not POS[T[v[0]]['first']] <= POS[k] <= POS[T[v[0]]['last']]]
+        _need(not out, f"{where}: verses timed outside their recording's first..last (the player would loop on them): {out[:5]}")
         _need(all(k in s['at'] for k in s.get('check', [])), f"{where}: check lists verses without a time")
         _need(all(k in s['at'] for k in s.get('guess', [])), f"{where}: guess lists verses without a time")
         src['au'].append({'id': sid, 'file': 'audio/' + sid, 'title': s['title'], 'order': s.get('order', 100), **({'draft': True} if s.get('draft') else {})})

@@ -19,7 +19,7 @@ Shelf: हिन्दू धर्म › वेद › यजुर्वे�
 - `meanings/namakam.json`, `chamakam.json`: our meanings, `{item id: {en, hi, fen?, fhi?}}`. `fen` and `fhi` are footnotes.
 - `glossary/g1–g5.json`: word meanings, merged into `library/glossary/sa.json` (add-only). `glossary/work_sa.json` holds this work's own senses, written to `library/…/glossary.json`.
 - `export.py` → `work.json`, `meanings/en-scriptures.json`, `meanings/hi-scriptures.json`, `glossary.json`; then run `python3 tools/site/build.py`.
-- `audio/shlokam/`: `source.json` and `recordings.json` for the two shlokam.org recordings (YouTube `GbQM33333xs` Namakam, `0Gap1jjn2EM` Chamakam), their transcripts, and hand-checked starts (`fixes.json`, evidence in `fixes.md`). `python3 tools/audio/make_timings.py tools/works/shri-rudram/audio/shlokam` writes the timings. The source is a **draft** (`source.json` → `draft`): the automatic starts are not good enough, so it stays a draft until the owner checks the starts by ear in the app.
+- `audio/shlokam/`: `source.json` and `recordings.json` for the two shlokam.org recordings (YouTube `GbQM33333xs` Namakam, `0Gap1jjn2EM` Chamakam), their transcripts, hand-checked starts (`fixes.json`, evidence in `fixes.md`) and the owner's starts and ends set by ear in the app (`owner.json`). `python3 tools/audio/make_timings.py tools/works/shri-rudram/audio/shlokam` writes the timings. The owner has heard the whole recording through (`source.json` → `checked`): the verses left unmarked are right as they are.
 
 Rebuild: `python3 tools/works/shri-rudram/source/settle.py && python3 tools/works/shri-rudram/export.py && python3 tools/site/build.py`. Run `extract.py` again only if the printouts change.
 
