@@ -2,7 +2,7 @@
 
 Source of truth for the text: the owner's printout of sanskritdocuments.org/doc_upanishhat/maandu.html, settled in
 text.txt; the śānti mantra as SMVedroad chants it and as the owner's second printout (freepressjournal.in, NJ Reddy)
-gives it. Every change is in reconciliation.md. The meanings were written for this library (the owner's instruction
+gives it. Every change is in reconciliation.md. The meanings are written for this library (the owner's instruction
 for the Sanskrit texts): concise, faithful, following Śaṅkara's reading, with other context in footnotes.
 
 Writes   work.json                     the text: śānti mantra, mantras 1–12, the closing words

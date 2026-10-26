@@ -1,8 +1,8 @@
-# Māṇḍūkya Upaniṣad — how the text was settled
+# Māṇḍūkya Upaniṣad — how the text is settled
 
-**Source of truth:** the owner's printout (23 Oct 2026) of sanskritdocuments.org, *Māṇḍūkyopaniṣat*
+**Source of truth:** the owner's printout of sanskritdocuments.org, *Māṇḍūkyopaniṣat*
 <https://sanskritdocuments.org/doc_upanishhat/maandu.html> (encoded by M. Giridhar, proofread by John Manetta). It gives the
-śānti mantra, mantras 1–12 and the closing words, in Devanagari, with no svara marks. Its text layer is clean Unicode and was
+śānti mantra, mantras 1–12 and the closing words, in Devanagari, with no svara marks. Its text layer is clean Unicode and is
 read directly, then checked against the page images.
 
 **Second witnesses:**
@@ -10,8 +10,8 @@ read directly, then checked against the page images.
   transcript (`audio/smvedroad/transcripts/`). The chant follows the printout word for word in mantras 1–12.
 - The owner's printout of freepressjournal.in, NJ Reddy, "The Peace Mantra 'OM Bhadram Karnebhih'" (13 May 2021): the śānti
   mantra in Roman letters, with word meanings.
-- Asked for, not yet read: vedantastudents.com, "11-Mandukya-Upanishad-Summary.pdf" (the site is blocked from this session; the
-  owner to share it as a file).
+- Not yet read: vedantastudents.com, "11-Mandukya-Upanishad-Summary.pdf" (the site is blocked from the workspace; open, for the
+  owner to share as a file).
 
 House style, as in the Īśāvāsya: ।। for ॥, compact verse numbers (`।।१।।`); transliteration with ṁ, ṛ, ’ for the avagraha.
 
@@ -38,7 +38,7 @@ No word changed. Kept as printed:
 
 ## Divisions
 The recording announces four khaṇḍas (अथ प्रथमः खण्डः … इति चतुर्थः खण्डः): mantras 1–2, 3–7, 8–11 and 12. The printout has
-none. The four topics follow the khaṇḍas, under our own names; no khaṇḍa words were added to the text.
+none. The four topics follow the khaṇḍas, under our own names; the text has no khaṇḍa words added.
 
 ## Meanings
 Our own (the owner's instruction for the Sanskrit texts): one to three sentences per mantra, following Śaṅkara's bhāṣya, with

@@ -3,10 +3,10 @@
 Shelf: हिन्दू धर्म › वेद › अथर्ववेद › उपनिषद् › माण्डूक्योपनिषद् (`library/hinduism/veda/atharvaveda/upanishad/mandukya-upanishad/`, work id `mandukya-upanishad`). The śānti mantra, 12 mantras and the closing words.
 
 ## Sources
-- **Text:** the owner's printout of <https://sanskritdocuments.org/doc_upanishhat/maandu.html>; the śānti mantra as SMVedroad chants it and the owner's freepressjournal.in printout (NJ Reddy) gives it. Copies for scriptures-data: `hinduism/veda/atharvaveda/upanishad/mandukya-upanishad/printouts/` (to add). Every choice is in `reconciliation.md`.
+- **Text:** the owner's printout of <https://sanskritdocuments.org/doc_upanishhat/maandu.html>; the śānti mantra as SMVedroad chants it and the owner's freepressjournal.in printout (NJ Reddy) gives it. Copies for scriptures-data: `hinduism/veda/atharvaveda/upanishad/mandukya-upanishad/printouts/` (not there yet). Every choice is in `reconciliation.md`.
 - **Meanings:** written for this library (`hi-scriptures`, `en-scriptures`), following Śaṅkara's reading.
 - **Word meanings:** written for this library (`glossary_sa.json`); three words whose shared sense doesn't fit here are in `WORK_SENSES` (`export.py`).
-- **Audio:** SMVedroad, "Mandukya Upanishad Chant … With Lyrics" (YouTube `mZTo8OEhRpc`), in `audio/smvedroad/`.
+- **Audio:** SMVedroad, "Mandukya Upanishad Chant … With Lyrics" (YouTube `mZTo8OEhRpc`), in `audio/smvedroad/`. Live: `make_timings.py` times all 14 items from the transcript; five starts are hand-checked (`fixes.json`, evidence in `fixes.md`). The recording itself is not in scriptures-data yet.
 
 ## Files
 - `text.txt`: the settled text, one item per mantra (`[<id> <type> <number>]`, then the lines).

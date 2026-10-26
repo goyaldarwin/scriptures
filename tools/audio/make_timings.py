@@ -3,10 +3,11 @@
 Usage:  python3 tools/audio/make_timings.py tools/works/<work>/audio/<source-id>
 
 The source folder holds:
-  source.json      {"id", "work": "<library path>", "type": "youtube", "title": {"hi", "en"}, "order"?, "draft"?: "<why it is not published yet>", "align"?: "anchors", "fill"?: n, "anchor_min"?: 0.45, "estimate"?: true}
-  recordings.json  [{"yt": video id, "file": original file name, "dur": seconds, "order": n}]
+  source.json      {"id", "work": "<library path>", "type": "youtube", "title": {"hi", "en"}, "order"?, "draft"?: "<why it is not published yet>", "align"?: "anchors", "split"?: true, "fill"?: n, "anchor_min"?: 0.45, "estimate"?: true, "checked"?: true}
+  recordings.json  [{"yt": video id, "file": original file name, "dur": seconds, "order": n, "from"?/"to"?: item id, "lead"?: seconds}]
   transcripts/     <video id>.jsonl from transcribe.py (+ .done when finished)
   fixes.json       optional hand-checked verse starts {video id: {item id: seconds}}, with the evidence in fixes.md
+  owner.json       optional starts (and ends) the owner set by ear in the app, written by apply_owner_timing.py
 Only finished transcripts are used. The alignment is cached per recording in transcripts/<video id>.align.json:
 one row per transcript segment, [start, end, [[item id, characters of that half-line], …]]. Delete it to realign.
 A segment that covers several half-lines is shared among them by length, so a verse that begins in the
@@ -54,7 +55,7 @@ for r in REC:
     v = r['yt']; p = os.path.join(TR, v + '.jsonl')
     if not os.path.exists(p + '.done') and meta.get('estimate'):
         # source.json "estimate": true and no transcript: spread the verses over the recording by their length, as a
-        # starting point for the owner to mark by ear (Settings › Audio timing); every start is listed to be checked
+        # starting point for the owner to mark by ear (☰ › More › Audio timing); every start is listed to be checked
         a0 = ID[r['from']] if r.get('from') else 0; a1 = ID[r['to']] if r.get('to') else len(IT) - 1
         t0, t1 = float(r.get('lead', 0)), r['dur'] * 0.98; tot = sum(L(x) for x in range(a0, a1 + 1)); acc = 0; ti = len(tracks)
         tracks.append({'yt': v, 'dur': r['dur'], 'first': IT[a0]['id'], 'last': IT[a1]['id']})
@@ -145,13 +146,13 @@ if own_ids:
         for i in mv: raw[IT[i]['id']] = before[i]
         moved += [IT[i]['id'] for i in mv]
 # a source marked "draft" in source.json (its timings are not good enough yet) is written with "draft": the app plays it only
-# for someone reviewing timings (Settings › Audio timing), so readers never get audio that starts in the wrong place.
+# for someone reviewing timings (☰ › More › Audio timing), so readers never get audio that starts in the wrong place.
 # Remove "draft" once the timings are checked.
 out = os.path.join(REPO, 'library', meta['work'], 'audio', meta['id'] + '.json')
 os.makedirs(os.path.dirname(out), exist_ok=True)
 doc = {k: meta[k] for k in ('id', 'type', 'title', 'order', 'draft') if k in meta}
 # "check": verses whose start is only estimated (placed by text length between heard ones), or, for a draft, every verse
-# not yet checked by hand; the app lists them for review in Settings › Audio timing. Starts set by the owner never count.
+# not yet checked by hand; the app lists them for review in ☰ › More › Audio timing. Starts set by the owner never count.
 byhand = set(k for v in FIX.values() for k in v) | set(k for v in OWN.values() for k in v)
 check = [] if meta.get('checked') else [x['id'] for x in IT if x['id'] in at and x['id'] not in byhand and (meta.get('draft') or x['id'] not in heard)]   # "checked": published by the owner after hearing it through
 doc.update(tracks=tracks, at=at)

@@ -1,40 +1,38 @@
 # Our own meanings: style sheet
 
-Every meaning we write (sources `hi-scriptures` / `en-scriptures`, titled "भावार्थ — शास्त्र" / "Meaning — Scriptures") follows this sheet, so that some 12,000 meanings read as one voice. Rules and plan: `docs/handoff/2026-10-19-own-meanings.md`. Check every batch with `tools/meanings/overlap.py`.
-
-Status: **pilot (Sundarakāṇḍa)**; the owner settled the open points on 2026-10-19 (recorded below). A change of rule is made here first, then in every meaning.
+Every meaning we write (sources `hi-scriptures` / `en-scriptures`, titled "भावार्थ — शास्त्र" / "Meaning — Scriptures") follows this sheet, so that all our meanings read as one voice. The rules behind it are in `docs/PLAYBOOK.md` §4. Check every batch with `tools/meanings/overlap.py`. A change of rule is made here first, then in every meaning.
 
 ## 1. The one rule
 **The source is the verse and its word meanings** (`library/glossary/`, checked against trusted dictionaries: §11), read in context: who is speaking to whom, what has just happened. Write the meaning from that.
 
-Only then open the published meanings (Gita Press, Growse), as guidance (owner, 2026-10-19): to check understanding, and to take whatever makes ours better — an interpretation, a line of thought, a well-chosen word, a short phrase, a way of ordering. What we never take is their sentences: copyright protects wording, so no copied sentence (`overlap.py` stops at 10 or more consecutive words in common) and no sentence-by-sentence rewording of one. A shorter shared run (6–9 words) is fine when it is simply the natural words or the verse's own list — the meaning is made from the verse, and two faithful translations meet (owner, 2026-10-19: "if we are creating our own meaning from the words then it should be fine"); it is listed and read, and rewritten only if it is their phrasing rather than the natural one. Never make a sentence less natural just to dodge the check.
+Only then open the published meanings (Gita Press, Growse), as guidance: to check understanding, and to take whatever makes ours better — an interpretation, a line of thought, a well-chosen word, a short phrase, a way of ordering. What we never take is their sentences: copyright protects wording, so no copied sentence (`overlap.py` stops at 10 or more consecutive words in common) and no sentence-by-sentence rewording of one. A shorter shared run (6–9 words) is fine when it is simply the natural words or the verse's own list — the meaning is made from the verse, and two faithful translations meet (the owner: "if we are creating our own meaning from the words then it should be fine"); it is listed and read, and rewritten only if it is their phrasing rather than the natural one. Never make a sentence less natural just to dodge the check.
 
 ## 2. What a meaning is
 - **What the verse says, all of it, nothing more.** Every clause of the verse is in the meaning; nothing is added that the verse does not say or plainly imply. No commentary, no moral drawn, no "that is to say".
-- **In the verse's order** (owner, 2026-10-19): the meaning follows the verse line by line and half-line by half-line, so a reader can match each part of the meaning to its words. Reorder only where Hindi or English grammar needs it, and never so far that the parts no longer line up.
+- **In the verse's order:** the meaning follows the verse line by line and half-line by half-line, so a reader can match each part of the meaning to its words. Reorder only where Hindi or English grammar needs it, and never so far that the parts no longer line up.
 - **Length:** a caupāī one or two sentences; a dohā or sorathā one or two; a chhanda as many as its four lines need; a śloka one to three.
 - **Brackets:** none as a habit. Write implied words into the sentence. A short gloss in round brackets only where a word would otherwise be unclear to most readers and cannot be worked into the sentence (once, not on every occurrence). Never square brackets.
-- **Verse numbers** (owner, 2026-10-19): every meaning ends with the verse's number as the verse shows it — `।।१७।।`, `।।३० (क)।।` in Hindi, `।।17।।`, `।।30 (क)।।` in English. They are **not** written in the meaning files: the exporter adds them from the verse itself, so they always match. No speaker tags in brackets.
-- **People as a group** (owner, 2026-10-19): where a verse speaks of a group of people — women, a caste, the unlettered, a people — use respectful, neutral words for them (स्त्री / woman, not औरत or a slur; "the unlettered", not "boors") and the milder sense where the word allows it (ताड़ना → शिक्षा / instruction), while keeping what the verse says. Nothing is added to excuse or explain the verse.
-- **Doubt:** where the verse is genuinely ambiguous or traditions read it differently, give the plain reading of the words in the meaning, and record the issue in `docs/reviews/<date>-meaning-doubts.jsonl` (`{"id", "issue", "our reading", "alternatives"}`). The owner decides.
+- **Verse numbers:** every meaning ends with the verse's number as the verse shows it — `।।१७।।`, `।।३० (क)।।` in Hindi, `।।17।।`, `।।30 (क)।।` in English. They are **not** written in the meaning files: the exporter adds them from the verse itself, so they always match. No speaker tags in brackets.
+- **People as a group:** where a verse speaks of a group of people — women, a caste, the unlettered, a people — use respectful, neutral words for them (स्त्री / woman, not औरत or a slur; "the unlettered", not "boors") and the milder sense where the word allows it (ताड़ना → शिक्षा / instruction), while keeping what the verse says. Nothing is added to excuse or explain the verse.
+- **Doubt:** where the verse is genuinely ambiguous or traditions read it differently, give the plain reading of the words in the meaning, and record the issue in `docs/reviews/<work>-doubts.jsonl` (`{"id", "issue", "our reading", "alternatives"}`). The owner decides; a decided doubt is applied and removed from the file.
 
 ## 3. Speakers and the nested dialogue
 - The Mānas is told by Śiva to Pārvatī (उमा, भवानी, गिरिजा), Kākabhuśuṇḍi to Garuḍa (खगेस, खगपति, उरगारि), Yājñavalkya to Bharadvāja, and Tulasīdāsa to the reader. When the verse addresses one of them, keep the address ("हे उमा!" / "Umā,"); do not add the narrator when the verse does not name one.
-- **When a verse opens a speech** and names the speaker (कह, बोले, कहइ), write "X ने कहा —" / "X said:" and then the words. When it does not and **the same speaker goes on**, the speech simply continues from the previous verse (the reader sees it there). When **the speaker changes** and the verse does not name the new one (an answer, a reply), name them anyway — "जाम्बवान्‌जीने कहा —" / "Jāmbavān said:" — so the reader never takes one speaker's words for another's (review of the pilot, kishkindha.30.cau6).
+- **When a verse opens a speech** and names the speaker (कह, बोले, कहइ), write "X ने कहा —" / "X said:" and then the words. When it does not and **the same speaker goes on**, the speech simply continues from the previous verse (the reader sees it there). When **the speaker changes** and the verse does not name the new one (an answer, a reply), name them anyway — "जाम्बवान्‌जीने कहा —" / "Jāmbavān said:" — so the reader never takes one speaker's words for another's (e.g. kishkindha.30.cau6).
 - **No quotation marks** for speech: a speech often runs over many verses, each a separate meaning, and quotes would open in one verse and close in another. Speech is written in the speaker's own person ("I", "you").
 - **Each speaker keeps his tone.** Devotees and the narrator use honorifics; Rāvaṇa, Laṅkinī or a mocking rākṣasa do not: Rāvaṇa's "तपसी" stays "that ascetic", not "Śrī Rāmajī".
 
 ## 4. Hindi
 - Natural modern Hindi in our house style (as in `tools/works/sundarkand/meanings/hi.json`, Sukhmani, Rudram, Īśa).
-- **Postpositions joined to the noun** (owner, 2026-10-19): श्रीरामजीको, सीताजीसे, हनुमान्‌जीने, समुद्रके; pronouns too (उसको, उनके). Spellings of this style: लिये, गये, किये, दिये.
-- **Honorific plural** for the Lord, Sītā, Lakṣmaṇa, Hanumān, sages, elders and anyone the speaker honours: वे, उन्होंने, कहते हैं; "आप" when they are addressed by a devotee. The Lord addresses others, Hanumān included, with तुम (owner, 2026-10-19; Gita Press uses तू).
+- **Postpositions joined to the noun:** श्रीरामजीको, सीताजीसे, हनुमान्‌जीने, समुद्रके; pronouns too (उसको, उनके). Spellings of this style: लिये, गये, किये, दिये.
+- **Honorific plural** for the Lord, Sītā, Lakṣmaṇa, Hanumān, sages, elders and anyone the speaker honours: वे, उन्होंने, कहते हैं; "आप" when they are addressed by a devotee. The Lord addresses others, Hanumān included, with तुम (the owner's choice; Gita Press uses तू).
 - **Standard Hindi spelling for names** (विभीषण not बिभीषन, लक्ष्मण not लछिमन, जाम्बवान्‌ not जामवंत), anusvāra rather than a half-nasal (लंका, संत), ZWNJ in हनुमान्‌जी.
 - Punctuation: । at the end of a sentence; ! after an address or exclamation; — before speech after "कहा"; ; and , as in prose.
 
 ## 5. English
 - Plain, dignified, modern English; no thee/thou, no "verily", no inversion for effect.
 - **IAST for names and Sanskrit terms**, as in our other meanings: Śrī Rāma, Sītā, Lakṣmaṇa, Hanumān, Rāvaṇa, Laṅkā, Ayodhyā. Common nouns that have an English word are translated (monkey, demon, ocean, lotus).
-- **Pronouns for the Lord and Sītā in lower case** (he, his, you), as in our Chālīsā meanings (shown to the owner on 2026-10-19; not objected to).
+- **Pronouns for the Lord and Sītā in lower case** (he, his, you), as in all our meanings.
 - British/Indian spelling (honour, colour, realise).
 - Punctuation: a colon before speech ("Hanumān said: …"); ordinary commas and full stops; no exclamation marks except where the verse exclaims (जय, धन्य, हा).
 
@@ -104,10 +102,10 @@ Translated from the Sanskrit directly, word by word against `glossary/sa.json`, 
 ## 8a. Stotras of names (Rāma Rakṣā and the like)
 A stotra is a litany of names, and the names are its text: render each name as the verse gives it (राम, रामभद्र, रामचन्द्र; श्रीराम only where the verse has श्री), translating an epithet's sense where it matters (कौसल्येय → कौसल्यानन्दन / son of Kausalyā). Honorific verbs throughout (रक्षा करें). A sentence spread over several verses is closed in the last of them, and each verse still reads on its own.
 
-## 9. What the pilot samples taught (2026-10-19)
-- **Two faithful translations meet.** Of 18 sample verses written from the verse alone, before Gita Press was opened, 9 Hindi and 7 English meanings still shared a run of 6+ words with Gita Press, almost always the natural words ("साम दान भय और भेद", "in my dream a monkey"). Rewriting those only to dodge a 6-word limit cost naturalness, so the owner relaxed it (2026-10-19): stop at 10+, read 6–9.
+## 9. Shared runs of words
+- **Two faithful translations meet.** A meaning written from the verse alone often shares a run of 6–9 words with Gita Press: the natural words ("साम दान भय और भेद", "in my dream a monkey"). Keep such a run; do not make a sentence less natural to dodge the check. The limit is 10 or more words.
 - The verse's own list in the verse's order ("ढोल, गँवार, शूद्र, पशु और नारी") is the verse, not anyone's wording; still, the run around it is rephrased so that the limit stays a plain rule with no exceptions.
-- Keep to the verse: the first draft of sundar.59.cau3 said "my bounds" where the verse says only "the bounds" (मरजादा). The second reading against the verse catches such additions.
+- Keep to the verse: read every meaning a second time against the verse to catch additions (the verse says "the bounds", मरजादा, not "my bounds": sundar.59.cau3).
 
 ## 10. Before a batch goes in
 1. Every item has a Hindi and an English meaning, once, and nothing extra (the exporter checks).
@@ -116,11 +114,14 @@ A stotra is a litany of names, and the names are its text: render each name as t
 4. Doubts are in the doubts file, not in the meanings.
 
 ## 11. Word meanings and dictionaries
-Our word meanings (`library/glossary/<lang>.json`) are the starting point; where a word is hard, rare or its entry does not fit the line, check it in trusted dictionaries and fix the entry if it is wrong (every change logged in `docs/reviews/<date>-dictionaries.jsonl` with the old entry and the reason):
-- **Sanskrit and Sanskrit-derived words:** Monier-Williams, *Sanskrit-English Dictionary* (1899); V. S. Apte, *Practical Sanskrit-English Dictionary* (1890) — Cologne Digital Sanskrit Lexicon (`github.com/sanskrit-lexicon/csl-orig`).
-- **Awadhi and Hindi:** J. T. Platts, *Dictionary of Urdū, Classical Hindī and English* (1884); Śyāmasundara Dāsa, *Hindī Śabdasāgara*; R. S. McGregor, *Oxford Hindi-English Dictionary*; Mahendra Caturvedi, *Practical Hindi-English Dictionary* — Digital Dictionaries of South Asia, dsal.uchicago.edu (needs the owner to allow the site).
+Our word meanings (`library/glossary/<lang>.json`) are the starting point. Where a word is hard, rare or its entry does not fit the line, check it in trusted dictionaries and fix the entry if it is wrong. The commit message says what changed and why.
+- **Sanskrit and Sanskrit-derived words:** Monier-Williams, *Sanskrit-English Dictionary* (1899); V. S. Apte, *Practical Sanskrit-English Dictionary* (1890) — Cologne Digital Sanskrit Lexicon (`github.com/sanskrit-lexicon/csl-orig`; `tools/meanings/sanskrit_dict.py` looks words up).
+- **Awadhi, Braj and Hindi:** J. T. Platts, *Dictionary of Urdū, Classical Hindī and English* (1884), the main dictionary for Awadhi and Braj; Śyāmasundara Dāsa, *Hindī Śabdasāgara*; R. S. McGregor, *Oxford Hindi-English Dictionary*, read on its page images (or by hand on dsal.uchicago.edu), never from its OCR, which is unreliable; Mahendra Caturvedi, *Practical Hindi-English Dictionary* (dsal.uchicago.edu, which needs the owner to allow the site).
+- **Punjabi (Gurmukhi):** Bhai Kahn Singh Nabha, *Gur Shabad Ratnakar Mahan Kosh*.
+- **The reference books** are in `scriptures-data` under `reference/<lang>/dictionaries/`: `hi/dictionaries/platts/`, `hi/dictionaries/mcgregor/` (the page images; its `ocr/` text is not to be trusted), `hi/dictionaries/hindi-shabdasagar/` (volume 1) and `pa/dictionaries/mahan-kosh/`. The Gurbani commentaries of §13 are under `reference/pa/commentaries/`.
 - **A second translation to check against:** F. S. Growse, *The Rāmāyaṇa of Tulasīdāsa* (1883, public domain).
-Take the facts (the sense, the grammar), never a dictionary's sentences; a word's entry lists every sense the work uses it in (जाहू: "जाओ / जिसे, जिसके" — "go / whom, whose"), separated by " / ", so the word sheet shows them all; **the verse's meaning uses only the sense that fits its context** (owner, 2026-10-19).
+
+Take the facts (the sense, the grammar), never a dictionary's sentences. A word's entry lists every sense the work uses it in (जाहू: "जाओ / जिसे, जिसके" — "go / whom, whose"), separated by " / ", so the word sheet shows them all; **the verse's meaning uses only the sense that fits its context**. A sense that is not settled goes in `docs/reviews/dictionary-doubts.jsonl`.
 
 ## 12. Gurbani (Sukhmani Sahib and later Sikh works)
 The verse is Gurmukhi (Sant Bhasha: Braj, Punjabi, Sanskrit and Persian words), read with `library/glossary/pa.json` and our own Hindi meaning (`tools/works/sukhmani-sahib/meanings/hi.json`) as aids. The Sikh understanding is the frame: one formless Lord (Ik Oankar), reached by the Guru's word and remembrance of the Naam, not by ritual.
@@ -130,12 +131,12 @@ The verse is Gurmukhi (Sant Bhasha: Braj, Punjabi, Sanskrit and Persian words), 
 - **Refrains:** a pauri repeats one phrase line after line (ਪ੍ਰਭ ਕੈ ਸਿਮਰਨਿ…, ਬ੍ਰਹਮ ਗਿਆਨੀ…). Render the phrase the same way every time in a pauri and across the work, in our own wording, so the litany is heard.
 - **Order and completeness:** one English sentence (or clause) per line of the pauri, in the line order, so a reader can match them; nothing added.
 - **Verse numbers:** none in the text; the exporter adds the stanza number from the verse (॥੧॥ → ।।1।।).
-- **Glosses settled in the Sukhmani (2026-10-23)**, in round brackets at the first use in each ashtapadi: Naam (the Name, God's presence remembered) · Simran (meditative remembrance of God) · Gurmukh (one who follows the Guru) · Saadh Sangat (the company of the holy) · Saadh (holy one) · Sant (saint) · Brahm Giani (one who knows God) · Hukam (God's will and command) · Maya (the world's illusion and lure) · Haumai (ego) · Gobind (the Lord of the universe) · Gopal (the sustainer of the world) · Dharam Rai (the judge of souls) · Kirtan (songs of God's praise) · Shabad (the Word) · Ekankar (the One Creator).
+- **Glosses in the Sukhmani**, in round brackets at the first use in each ashtapadi: Naam (the Name, God's presence remembered) · Simran (meditative remembrance of God) · Gurmukh (one who follows the Guru) · Saadh Sangat (the company of the holy) · Saadh (holy one) · Sant (saint) · Brahm Giani (one who knows God) · Hukam (God's will and command) · Maya (the world's illusion and lure) · Haumai (ego) · Gobind (the Lord of the universe) · Gopal (the sustainer of the world) · Dharam Rai (the judge of souls) · Kirtan (songs of God's praise) · Shabad (the Word) · Ekankar (the One Creator).
 - **Recurring renderings:** ਸਾਧ ਕੈ ਸੰਗਿ "in the Saadh's company", ਸਾਧਸੰਗਿ "in the Saadh Sangat"; ਨਾਮੁ alone "the Naam", with an owner "the Lord's Name"; ਜਪ "repeat", ਧਿਆ "meditate on", ਸਿਮਰ "remember"; ਆਠ ਪਹਰ "at all hours"; ਦਰਸਨੁ "the sight of …"; ਦਰਗਹ "the Lord's court"; ਸਤਿਗੁਰ "the True Guru"; ਪਰਮੇਸੁਰ "the Supreme God"; ਕਰਨ ਕਰਾਵਨ "does and causes all to be done".
 - **ਨਾਨਕ in the last line:** a third-person verb (ਜਪੈ, ਬੋਲੈ, ਕਹੈ) is never a command. Where our Hindi reads Nanak as the subject, so does the English; the grammarians' reading of a bare ਨਾਨਕ (no ੁ) as an address ("O Nanak") is kept where our Hindi has it and is a doubt for the owner elsewhere.
 - **Copying shows as shared phrases, not only runs:** a pauri can follow another translation line by line with only its refrain changed. Read the checker's "highest shares of shared three-word phrases" beside theirs.
 
-## 13. Punjabi (ਪੰਜਾਬੀ) meanings (owner, 2026-10-24: "our Punjabi meaning of the Sukhmani Sahib")
+## 13. Punjabi (ਪੰਜਾਬੀ) meanings
 Source `pa-scriptures` ("ਪੰਜਾਬੀ ਅਰਥ — ਸ਼ਾਸਤਰ / Punjabi meaning — Scriptures"), shown in the ਪੰ layer.
 - **Language:** today's standard Punjabi in Gurmukhi (Unicode, NFC), as an educated reader in Punjab writes it: plain, clear, warm. Not the old teeka idiom (ਕਰਤੇ ਹੈਂ, ਤਿਸ ਕੌ, ਹੈਣ) and not word-for-word glossing; whole sentences. Postpositions written separately (ਦੇ, ਨੂੰ, ਵਿੱਚ, ਤੋਂ, ਨਾਲ); ਵਿੱਚ, ਪਰਮਾਤਮਾ, ਪ੍ਰਭੂ, ਸ਼ਬਦ (with ਸ਼ where modern spelling has it).
 - **Line by line:** one piece per verse line, in the verse's order; "" for a line that is only a heading (ਅਸਟਪਦੀ ॥, ਸਲੋਕੁ ॥). Each piece reads as a sentence or clause under its line; a sentence may run on to the next line's piece where the verse's sentence does.

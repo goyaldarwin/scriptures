@@ -7,12 +7,15 @@ Part 1 is the lead-in recited before the Sundarakāṇḍa: the close of the Ki�
 Hanumān of his strength), as Pt. Ashwin Kumar Pathak recites it. Like part 2 it is taken from the Mānas unchanged.
 Part 2, the Sundarakāṇḍa, is GENERATED from the Rāmacaritamānasa and never edited here: every item of the Mānas's
 Sundara-kāṇḍa part (same ids, sections `s` = dohā numbers, types, numbers, verse lines, transliteration and
-language `l`), its topics, and its Gita Press Hindi and English meanings (same source ids and titles). So a correction
-made to the Mānas reaches this work the next time this script runs. Run it after tools/works/ramcharitmanas/export.py.
+language `l`), the places of its topics (with our own headings, tools/works/ramcharitmanas/meanings/topics.json), its
+Gita Press Hindi and English meanings (same source ids and titles) and our own (hi-scriptures, en-scriptures). So a
+correction made to the Mānas reaches this work the next time this script runs. Run it after
+tools/works/ramcharitmanas/export.py.
 
 Parts 3 and 4, the Śrī Hanumān Chālīsā and the āratī "आरती कीजै हनुमान लला की", come from text.txt (settled in
-reconciliation.md). Their meanings, and those of the maṅgalācaraṇa's own lines, are our own (meanings/hi.json, en.json → sources hi-scriptures, en-scriptures,
-order 2); the app shows them to a reader who has chosen Gita Press, because Gita Press does not cover these verses.
+reconciliation.md). Their meanings, and those of the maṅgalācaraṇa's own lines, are our own (meanings/hi.json,
+en.json → sources hi-scriptures, en-scriptures). Our own meanings are this work's default (order 1, Gita Press order 2);
+a reader who has chosen Gita Press sees ours for these verses, because Gita Press does not cover them.
 
 Writes   work.json, meanings/hi-gitapress.json, en-gitapress.json, hi-scriptures.json, en-scriptures.json
 Merges   glossary/awa.json, hi.json and sa.json (this folder) into library/glossary/<lang>.json: adds new words, never overwrites.
@@ -51,7 +54,7 @@ topics = [t for t in M['topics'] if t['id'] in sk_ids]
 if lead[0]['id'] not in {t['id'] for t in topics}:     # the lead-in starts inside a Mānas topic: it opens with that topic's name
     cover = [t for t in M['topics'] if mids.index(t['id']) <= a][-1]
     topics.insert(0, dict(cover, id=lead[0]['id']))
-# Our own topic headings (owner approved, 2026-10-23), at the same places as the Mānas's: written for this library like
+# Our own topic headings (owner approved), at the same places as the Mānas's: written for this library like
 # our meanings, which are this work's default. The Mānas keeps Gita Press's headings while Gita Press is its default.
 OUR_TOPICS = json.load(open(os.path.join(REPO, 'tools/works/ramcharitmanas/meanings/topics.json'), encoding='utf-8'))
 missing = [t['id'] for t in topics if t['id'] not in OUR_TOPICS]
@@ -108,15 +111,15 @@ work = {
     'title': {'hi': 'सुन्दरकाण्ड', 'en': 'Sundarakāṇḍa'},
     'by': M['by'],
     'edition': {'hi': 'श्रीरामचरितमानस, गीताप्रेस', 'en': 'Śrī Rāmacaritamānasa, Gita Press'},
-    'from': {'hi': 'श्रीरामचरितमानस', 'en': 'Śrī Rāmacaritamānasa'},   # under the title on the work's page (by · from): the parent text, not the publisher (owner, 2026-10-19)
+    'from': {'hi': 'श्रीरामचरितमानस', 'en': 'Śrī Rāmacaritamānasa'},   # under the title on the work's page (by · from): the parent text, not the publisher (the owner's rule)
     'colophon': {'hi': '।। सियावर रामचन्द्रकी जय ।। पवनसुत हनुमानकी जय ।।', 'en': '।। Glory to Śrī Rāma ।। Glory to Hanumān, son of the Wind ।।'},
     'parts': {'name': {'hi': 'भाग', 'en': 'Part'},
               'list': [PARTS['mangal'][1], {'hi': 'किष्किन्धाकाण्ड (अन्तिम अंश)', 'en': 'Kiṣkindhā-kāṇḍa (closing verses)'}, {'hi': 'सुन्दरकाण्ड', 'en': 'Sundarakāṇḍa'}] + [v[1] for v in sorted(PARTS.values(), key=lambda v: v[0]) if v[0] > 2]},
     'types': TYPES,
     'items': items,
     'topics': topics,
-    # the maṅgalācaraṇa (part 0) was put before the text on 2026-10-19, after readers had saved their places as item
-    # positions: the app moves a place saved without an item id (only those older ones) forward by this many items
+    # the maṅgalācaraṇa (part 0) stands before the text: the app moves a reader's place saved as a bare item position
+    # (without an item id) forward by this many items (docs/LIBRARY.md → prepended)
     'prepended': sum(1 for x in new if x['p'] == 0),
 }
 old = os.path.join(OUT, WP, 'work.json')   # keep the sources list that build.py registered
@@ -131,8 +134,8 @@ for i in pulled:   # a Mānas verse in the maṅgalācaraṇa: the Mānas's own,
     assert {k: v for k, v in MID[i].items() if k not in ('p', 's')} == {k: v for k, v in B[i].items() if k not in ('p', 's')}, i
 
 # ---- meaning sources: which one readers see first ----
-# Our own meanings are the default here (owner, 2026-10-19: "change the default Hindi and English sources for
-# Sundarkand"): order 1. Gita Press stays selectable in Settings › Sources: order 2. (The Mānas keeps Gita Press first.)
+# Our own meanings are the default here (owner: "change the default Hindi and English sources for Sundarkand"):
+# order 1. Gita Press stays selectable under ☰ › More › Sources: order 2. (The Mānas keeps Gita Press first.)
 ORDER = {'scriptures': 1, 'gitapress': 2}
 
 # ---- meanings: Gita Press (the Mānas's, Sundarakāṇḍa only) ----

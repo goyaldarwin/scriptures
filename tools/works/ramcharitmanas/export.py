@@ -1,10 +1,11 @@
-"""Śrī Rāmacaritamānasa: book data (book/app_data.json) → library/tulsidas/ramcharitmanas/.
+"""Śrī Rāmacaritamānasa: book data (book/app_data.json) → library/hinduism/granth/tulsidas/ramcharitmanas/.
 
 Writes   work.json                  the text (verse + number), kāṇḍas, topics, plans, vidhi
          meanings/hi-gitapress.json Hindi meaning source (Gita Press bhāvārtha)
          meanings/en-gitapress.json English meaning source (Gita Press translation)
          meanings/hi-scriptures.json, en-scriptures.json  our own meanings (meanings/hi.json, en.json;
-                                    tools/meanings/style.md), with the verse numbers added; stops on any overlap
+                                    tools/meanings/style.md), with the verse numbers added; stops on a run of
+                                    10+ words shared with Gita Press
 Merges   its word meanings into library/glossary/sa.json and awa.json by the language of the verses
          they occur in (adds new words; never overwrites existing ones).
 Does not touch library/index.json (the shelf is edited by hand) or audio/ (see tools/audio).
@@ -37,13 +38,14 @@ def verse_lang(x):
     return 'awa'
 
 # ---- the text: verse + number only (transliteration belongs to the text) ----
-# ---- one caupāī per item (owner, 2026-10-20) ----
+# ---- one caupāī per item (the owner's rule) ----
 # In 16 places Gita Press prints two or three caupāīs as one (e.g. ।।३-५।।) because its translation renders them jointly.
 # Here each becomes its own item — bal.6.cau3-5 → bal.6.cau3, cau4, cau5 — split where the transliteration numbers each
 # caupāī. The joint Gita Press meaning goes under the last of the group (where Gita Press prints its number), and the
-# earlier ones point to it. work.json "renamed" maps each old id to its first part, so readers' bookmarks, notes and
-# places follow (tools/site/app.js), and tools/audio/make_timings.py reads old ids in its caches the same way.
-JOINT = {}   # old id → [new ids]
+# earlier ones point to it. work.json "renamed" maps each joint id to its first part, so readers' bookmarks, notes and
+# places saved on a joint id follow (tools/site/app.js), and tools/audio/make_timings.py reads joint ids in its caches
+# the same way.
+JOINT = {}   # joint id → [ids of its parts]
 def split_joint(o):
     a, b = map(int, o['n'].split('-'))
     groups, st = [], 0
@@ -80,7 +82,7 @@ work = {
     'items': items,
     'topics': [{'id': FIRST.get(ids[t['i']], ids[t['i']]), 'hi': t['hi'], 'en': t.get('en') or t['hi']} for t in d['topics']],
     'renamed': FIRST,
-    # a reader's place saved before 2026-10-19 is an item position, without its id: [old position, items added there]
+    # a reader's place saved as a bare item position (no id) counts the joint caupāīs as one: [position, items added there]
     'split': [[k, len(JOINT[x['id']]) - 1] for k, x in enumerate(IT) if x['id'] in JOINT],
     'vidhi': {**d['vidhi'], 'visarjan': {k: v for k, v in json.load(open(os.path.join(HERE, 'visarjan.json'))).items() if k != 'source'}},   # kathā-visarjana: see visarjan.md
     'vg': d['vg'],
@@ -118,7 +120,7 @@ en = spread(en, 'en')
 sizes['en'] = dump(WP + '/meanings/en-gitapress.json', {'id': 'en-gitapress', 'lang': 'en', 'order': 1, 'title': {'hi': 'गीताप्रेस — अंग्रेज़ी अनुवाद', 'en': 'Gita Press — English translation'}, 'm': en})
 
 # ---- our own meaning sources (meanings/hi.json, en.json; tools/meanings/style.md) ----
-# Written from the verse for this library, to replace the copyrighted ones (docs/handoff/2026-10-19-own-meanings.md).
+# Written from the verse for this library, in place of the copyrighted ones (tools/meanings/style.md; what remains: docs/ROADMAP.md).
 # They cover the verses written so far; a reader who chooses them sees Gita Press's for the rest. Every verse has both
 # languages; the verse number is added here from the verse (tools/meanings/versenum.py); and no meaning may share a run
 # of 10+ words with Gita Press's (tools/meanings/overlap.py), or the export stops; runs of 6–9 are listed to be read.

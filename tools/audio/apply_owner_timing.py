@@ -1,10 +1,10 @@
-"""Apply audio starts the owner set by ear in the app (Settings › Audio timing › Send to the library).
+"""Apply audio starts the owner set by ear in the app (☰ › More › Audio timing › Send to the library).
 
 Usage:  python3 tools/audio/apply_owner_timing.py <file with the GitHub issue body>
 The body carries one JSON block: {"path": "<library path of the work>", "source": "<audio source id>",
 "starts": {"<video id>": {"<item id>": seconds or [start, end]}}, "publish"?: true}.
 It merges the starts into tools/works/<work>/audio/<source>/owner.json (later sends win), removes "draft" from that
-source's source.json when "publish" is true, and re-makes the source's timings with make_timings.py. It prints one
+source's source.json and marks it "checked" when "publish" is true, and re-makes the source's timings with make_timings.py. It prints one
 line per change and exits non-zero with a reason when the body is not valid, so the workflow can say so on the issue.
 """
 import glob, json, os, re, subprocess, sys

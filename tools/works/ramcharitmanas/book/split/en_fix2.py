@@ -11,11 +11,11 @@ def fix(groups):
             if v.get('f'):
                 nf=[s.replace(a,b) for s in v['f']]
                 if nf!=v['f']: n+=1; v['f']=nf
-    # footnote † of doha 20 continued on the next page and was attached to doha 21
+    # footnote † of doha 20 continues on the next page, where the extraction attaches it to doha 21: move it back
     a=groups.get('104'); b=groups.get('102')
     if a and b and a.get('f') and a['f'][0].startswith('vowel'):
         b['f']=b['f']+a['f']; del a['f']; n+=1
-    # footnotes continued from the previous page that landed on the next group
+    # a footnote continued from the previous page lands on the next group: join it to the footnote it continues
     ks=sorted(groups,key=int); prev=None
     for k in ks:
         f=groups[k].get('f')

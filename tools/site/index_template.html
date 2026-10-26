@@ -96,12 +96,12 @@ html,body{overflow-x:clip}
 .vtext p{margin:0;position:relative}
 .vtext{padding:0 30px;overflow-wrap:anywhere}
 .vtext.vedic{font-family:'Vedic','NSDev',serif}
-.verse > .layer + .vline,.verse > .tr + .vline{margin-top:16px}   /* line by line: a verse line after the meaning of the line before (owner, 2026-10-23) */
+.verse > .layer + .vline,.verse > .tr + .vline{margin-top:16px}   /* line by line: a verse line after the meaning of the line before */
 .btn[disabled]{opacity:.45;pointer-events:none}
 .tgrp{display:inline-flex;align-items:stretch}.tgrp button+button{margin-left:-1px}.tgrp .tn{min-width:30px;padding:6px 0;font-size:16px;line-height:1}.tgrp .tn:first-child{border-radius:10px 0 0 10px}.tgrp .tn:first-child+button{border-radius:0}.tgrp .tn:first-child+button:last-child{border-radius:0 10px 10px 0}.tgrp button:not(.tn)+.tn{border-radius:0 10px 10px 0}
 .tmark{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px;margin:8px 0 2px}.tmark button{border:1px solid var(--saffron);color:var(--saffron);border-radius:10px;padding:6px 10px;font-size:13.5px;font-weight:700;background:var(--bg)}.tmark button:active{background:color-mix(in srgb,var(--saffron) 18%,transparent)}.tinfo{width:100%;text-align:center;font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}.tinfo .test{color:var(--saffron)}
-.tchips{width:100%;display:flex;justify-content:center;gap:6px;margin-top:-2px}.tmark .tchip{padding:1px 9px;font-size:12px;border-radius:12px;line-height:1.5}   /* Until next as a chip under the times (owner, 2026-10-22) */
-.vundo{position:absolute;left:-28px;bottom:0;height:calc(var(--verse-size) * 1.6);display:flex;align-items:center}.vundo .vb{width:26px;color:var(--saffron);opacity:1}.vundo .vb svg{width:20px;height:20px;stroke-width:2.2;stroke-linecap:round}   /* ↶ Undo: the fourth corner, bottom left, under ▶ (owner, 2026-10-22) */
+.tchips{width:100%;display:flex;justify-content:center;gap:6px;margin-top:-2px}.tmark .tchip{padding:1px 9px;font-size:12px;border-radius:12px;line-height:1.5}   /* Until next as a chip under the times */
+.vundo{position:absolute;left:-28px;bottom:0;height:calc(var(--verse-size) * 1.6);display:flex;align-items:center}.vundo .vb{width:26px;color:var(--saffron);opacity:1}.vundo .vb svg{width:20px;height:20px;stroke-width:2.2;stroke-linecap:round}   /* ↶ Undo: the fourth corner, bottom left, under ▶ */
 body.timing .verse.tocheck{box-shadow:inset 3px 0 0 var(--saffron)}.tcheck{margin:10px 0}.tcheck summary{cursor:pointer;font-size:15px}.tlist{display:flex;flex-direction:column;max-height:50vh;overflow:auto;margin-top:6px}.tlist button{text-align:left;padding:9px 4px;border-bottom:1px solid var(--rule);font-size:15px}
 .tbox{margin-top:14px;padding-top:12px;border-top:1px solid var(--rule)}.tctl{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:6px}.tctl b{min-width:64px;text-align:center;font-variant-numeric:tabular-nums}   /* a long Sanskrit compound may break rather than run off a phone screen */
 .half{display:inline-block}
@@ -120,15 +120,15 @@ body.timing .verse.tocheck{box-shadow:inset 3px 0 0 var(--saffron)}.tcheck{margi
 .vb{width:19px;height:30px;display:inline-grid;place-items:center;color:var(--muted);opacity:.75}
 .vb svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linejoin:round}
 .vb.bm-on{color:var(--saffron);opacity:1}
-.vbm{width:26px;color:var(--indigo);opacity:.85}.vbm svg{width:20px;height:20px;stroke-width:2.2}   /* the bookmark sign larger and darker, easy to see (owner, 2026-10-20) */
-.vend .vb{width:26px;color:var(--indigo);opacity:.85}.vend .vb svg{width:20px;height:20px}   /* ⋮ as large and as blue as the bookmark sign (owner, 2026-10-22); ▶ keeps its saffron: the main action */
+.vbm{width:26px;color:var(--indigo);opacity:.85}.vbm svg{width:20px;height:20px;stroke-width:2.2}   /* the bookmark sign larger and darker, easy to see */
+.vend .vb{width:26px;color:var(--indigo);opacity:.85}.vend .vb svg{width:20px;height:20px}   /* ⋮ as large and as blue as the bookmark sign; ▶ keeps its saffron: the main action */
 .bmsec{margin-top:18px}.bmsec summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;padding:2px 0}.bmsec summary::-webkit-details-marker{display:none}.bmsec summary::before{content:'›';display:inline-block;color:var(--muted);font-size:22px;line-height:1;transform:rotate(90deg);transition:transform .15s}.bmsec:not([open]) summary::before{transform:none}.bmsec summary h2{font-size:19px;margin:0}
 .bmrow{display:flex;align-items:stretch;gap:6px}.bmrow .res{flex:1;min-width:0}.bmdel{flex:none;width:44px;display:grid;place-items:center;color:var(--muted);border-bottom:1px solid var(--rule)}.bmdel svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
 .vb.bm-on svg{fill:var(--saffron)}
 .menusw{margin-top:2px}.menu .tsaf{color:var(--saffron)}.menu .tsaf svg{stroke:var(--saffron)}.swic{width:20px;height:20px;stroke:var(--indigo);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none;margin-left:2px}
 .chips{display:flex;align-items:center;gap:6px;margin-top:6px}
 .chip{border:1px solid var(--rule);border-radius:20px;padding:1px 11px;font-size:13px;color:var(--muted);min-height:30px}
-.chip.on{background:var(--indigo);border-color:var(--indigo);color:var(--bg);font-weight:700}   /* a chosen chip is filled, as the speed, step and section chips are (2026-10-22) */
+.chip.on{background:var(--indigo);border-color:var(--indigo);color:var(--bg);font-weight:700}   /* a chosen chip is filled, as the speed, step and section chips are */
 .chips .sp{flex:1}
 .chips .ib{width:36px;height:36px}
 .chips .ib svg{width:19px;height:19px}
@@ -137,7 +137,7 @@ body.timing .verse.tocheck{box-shadow:inset 3px 0 0 var(--saffron)}.tcheck{margi
 .layer{margin-top:6px;font-size:var(--mean-size);line-height:1.6;font-weight:400}
 .layer.h{}
 .layer.e{font-family:var(--lat);font-size:calc(var(--mean-size) - .5px)}
-.layer.pa,.gur{font-family:'Noto Sans Gurmukhi','Raavi','Gurmukhi MN',var(--dev)}   /* a Punjabi meaning (owner, 2026-10-24) */
+.layer.pa,.gur{font-family:'Noto Sans Gurmukhi','Raavi','Gurmukhi MN',var(--dev)}   /* a Punjabi meaning */
 .verse > .layer.x{text-align:center;text-wrap:pretty}
 .verse > .layer.x ~ .layer.h,.verse > .layer.x ~ .layer.e{color:var(--muted)}   /* a third language comes first in its pair (ਪੰ · En, ਪੰ · हिं): it in full ink, the other lighter */
 .verse:has(.fn) > .layer.x ~ .layer.h,.verse:has(.fn) > .layer.x ~ .layer.e{color:inherit}
@@ -177,7 +177,7 @@ body.playing #rBody{padding-bottom:150px}
 .verse.now{border-bottom-color:transparent;background:color-mix(in srgb,var(--saffron) 8%,transparent);border-radius:12px;margin-left:-10px;margin-right:-10px;padding-left:10px;padding-right:10px}
 .verse:has(+ .verse.now){border-bottom-color:transparent}
 .vb.vplay{position:absolute;left:-32px;top:0;height:calc(var(--verse-size) * 1.6);color:var(--saffron);opacity:1}
-.vb.vplay svg{fill:var(--saffron);stroke:none;width:34px;height:34px;margin-left:-4px}   /* as easy to see as the bookmark sign (owner, 2026-10-20) */.vb.vplay{width:30px}
+.vb.vplay svg{fill:var(--saffron);stroke:none;width:34px;height:34px;margin-left:-4px}   /* as easy to see as the bookmark sign */.vb.vplay{width:30px}
 .vbm{position:absolute;right:-25px;top:0;height:calc(var(--verse-size) * 1.6)}
 .vtext p.one{padding:calc(var(--verse-size) * .8) 0}
 .rowp{position:relative}
@@ -221,9 +221,9 @@ input[type=checkbox],input[type=radio],input[type=range]{accent-color:var(--indi
 .sheet h2{font-size:20px;margin:0 0 4px}
 .sheet .wrap > *+*{margin-top:12px}
 .sheet .acts{display:flex;gap:10px;flex-wrap:wrap}
-.acts{display:flex;gap:10px;flex-wrap:wrap;align-items:center}#setBody .acts .btn{padding:6px 14px;font-size:14px;border-radius:10px}   /* settings buttons: apart, and smaller (owner, 2026-10-19) */
+.acts{display:flex;gap:10px;flex-wrap:wrap;align-items:center}#setBody .acts .btn{padding:6px 14px;font-size:14px;border-radius:10px}   /* settings buttons: apart, and smaller */
 .menu button{display:flex;width:100%;padding:13px 2px;border-bottom:1px solid var(--rule);font-size:16px;gap:12px;align-items:center;text-align:left}
-.menu svg{width:20px;height:20px;color:var(--indigo);stroke:var(--indigo);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}   /* color too: the filled ▶ (currentColor) was black (owner, 2026-10-23) */
+.menu svg{width:20px;height:20px;color:var(--indigo);stroke:var(--indigo);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}   /* color too: the filled ▶ uses currentColor, which would otherwise be black */
 .kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:16px}
 .kv dt{color:var(--muted);font-size:13.5px;padding-top:2px}
 .kv dd{margin:0}
@@ -239,7 +239,7 @@ input[type=checkbox],input[type=radio],input[type=range]{accent-color:var(--indi
 .tg input{opacity:0;width:0;height:0;position:absolute}
 .tg span{position:absolute;inset:0;background:var(--rule);border-radius:20px;transition:.15s}
 .tg span:before{content:"";position:absolute;width:22px;height:22px;left:3px;top:3px;background:var(--surface);border-radius:50%;transition:.15s;box-shadow:0 1px 2px rgba(0,0,0,.25)}
-.tg input:checked+span{background:var(--indigo)}.tsw{color:var(--saffron)}.tsw .tg input:checked+span{background:var(--saffron)}   /* the timing switch in ☰: saffron like every timing control (owner, 2026-10-23) */
+.tg input:checked+span{background:var(--indigo)}.tsw{color:var(--saffron)}.tsw .tg input:checked+span{background:var(--saffron)}   /* the timing switch in ☰: saffron like every timing control */
 .tg input:checked+span:before{transform:translateX(20px)}
 .res{display:block;width:100%;text-align:left;padding:12px 0;border-bottom:1px solid var(--rule)}
 .res .where{font-size:12.5px;color:var(--saffron);font-weight:600}
@@ -276,7 +276,7 @@ input[type=checkbox],input[type=radio],input[type=range]{accent-color:var(--indi
 .vna{margin-top:4px;font-size:15px}
 .vna .vcm{text-align:left;font-weight:600}
 .toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:20px;font-size:14px;z-index:60;opacity:0;transition:opacity .2s;pointer-events:none;max-width:90vw;text-align:center}
-/* “↓ now playing” pill (owner, 2026-10-20): shown above the player only while the lit verse is off the screen; tap to come back to it */
+/* “↓ now playing” pill: shown above the player only while the lit verse is off the screen; tap to come back to it */
 .pjump{position:fixed;left:50%;transform:translateX(-50%);z-index:22;display:flex;flex-direction:column;align-items:center;padding:6px 18px;border-radius:20px;background:var(--surface);color:var(--ink);border:1px solid var(--rule);box-shadow:0 6px 24px rgba(0,0,0,.14);max-width:90vw;white-space:nowrap}
 .pjump b{font-size:15px;overflow:hidden;text-overflow:ellipsis;max-width:86vw;display:flex;align-items:center;gap:8px}.pjump .arr{font-size:24px;line-height:1;color:var(--saffron)}.pjump small{font-size:12px;color:var(--muted)}
 .toast.on{opacity:1}.toast.act{pointer-events:auto;display:flex;align-items:center;gap:14px;padding:6px 6px 6px 18px;background:var(--surface);color:var(--muted);border:1px solid var(--rule);box-shadow:0 6px 24px rgba(0,0,0,.14);white-space:nowrap}.toast .tact{color:var(--indigo);background:var(--indigo-soft);border-radius:16px;padding:7px 14px;font-weight:700;font-size:14px;white-space:nowrap}
@@ -296,7 +296,7 @@ input[type=checkbox],input[type=radio],input[type=range]{accent-color:var(--indi
 .libbtn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
 .crumbs{font-size:14px;color:var(--muted);margin:0 0 6px}.crumbs button{color:var(--indigo)}
 .loading{position:fixed;inset:0;z-index:70;background:var(--bg);display:grid;place-items:center;color:var(--saffron);font-size:30px;text-align:center;padding:0 16px}
-.part-h{margin:30px 0 6px;text-align:center}.part-h b{font-size:calc(var(--verse-size) * 1.15);color:var(--indigo)}   /* headings follow the text size (owner, 2026-10-23): 24 / 18 / 13 px at the default 21 px */
+.part-h{margin:30px 0 6px;text-align:center}.part-h b{font-size:calc(var(--verse-size) * 1.15);color:var(--indigo)}   /* headings follow the text size: 24 / 18 / 13 px at the default 21 px */
 .navbar .mid{display:flex;flex-direction:column;align-items:center}
 .navbar .mid .ml{font-size:15px}
 .pick{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}
@@ -310,14 +310,14 @@ input[type=checkbox],input[type=radio],input[type=range]{accent-color:var(--indi
 .secs button.on{background:var(--indigo-soft);border-radius:10px}
 .endb{text-align:center;margin:30px 0 20px}
 .pwrap{gap:10px;align-items:stretch;padding-top:6px;padding-bottom:6px}
-/* while reciting, the player replaces the section bar (sections stay in the ⋮ menu); YouTube needs the video at least 200×200 */
+/* while reciting, the player replaces the section bar; YouTube needs the video at least 200×200 */
 body.playing #reader .navbar{display:none}
 .ytw{flex:none;width:200px;height:200px;border-radius:10px;overflow:hidden;background:#000}
 .pside{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:space-between}
 .pctl{display:flex;align-items:center;gap:2px;flex-wrap:nowrap}.pctl .ib{width:36px}.pctl .pmain{width:44px;flex:none}
 .ptop{display:flex;justify-content:flex-end;align-items:center;gap:4px;min-width:0;margin-right:-6px}
-.pstep{font-family:var(--lat);font-size:12.5px;font-weight:700;color:var(--saffron);border:1px solid var(--saffron);border-radius:12px;padding:3px 8px;line-height:1.2;white-space:nowrap}   /* how far − / + move a time, while Audio timing is on: saffron like the timing row (owner, 2026-10-22) */.ptop .ib{width:34px;height:34px}   /* ✕ alone in the top right corner; the speed sits where ✕ was, after ⏭ (owner, 2026-10-22) */
-.prate{flex:none;font-family:var(--lat);font-size:12.5px;font-weight:700;color:var(--indigo);border:1px solid var(--indigo);border-radius:12px;padding:3px 8px;margin:0 0 0 4px;line-height:1.2;white-space:nowrap}   /* the speed on a line of its own, top right: the verse's name keeps its full width (owner, 2026-10-22) */   /* playing speed in the bar, beside the verse's name: a tap moves to the next speed (owner, 2026-10-22) */
+.pstep{font-family:var(--lat);font-size:12.5px;font-weight:700;color:var(--saffron);border:1px solid var(--saffron);border-radius:12px;padding:3px 8px;line-height:1.2;white-space:nowrap}   /* how far − / + move a time, while Audio timing is on: saffron like the timing row */.ptop .ib{width:34px;height:34px}   /* ✕ in the top right corner; the speed sits after ⏭ */
+.prate{flex:none;font-family:var(--lat);font-size:12.5px;font-weight:700;color:var(--indigo);border:1px solid var(--indigo);border-radius:12px;padding:3px 8px;margin:0 0 0 4px;line-height:1.2;white-space:nowrap}   /* playing speed, after ⏭ in the controls: a tap moves to the next speed */
 body.playing #rBody{padding-bottom:240px}
 </style>
 </head>

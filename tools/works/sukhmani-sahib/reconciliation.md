@@ -1,4 +1,4 @@
-# Sukhmani Sahib: how the text was settled
+# Sukhmani Sahib — how the text is settled
 
 Source of truth: the owner's PDF, “Sukhmani Sahib with phonetic transliteration & English translation, Gurmukhi”
 (K. Thind, 2003; 225 pages). Private copy: `scriptures-data/sikhism/gurbani/guru-arjan-dev/sukhmani-sahib/books/sant-singh-khalsa/sukhmani-sahib.pdf`.
@@ -7,12 +7,12 @@ Source of truth: the owner's PDF, “Sukhmani Sahib with phonetic transliteratio
 
 The text layer is clean, and every line of the bani is printed as three lines in three fonts (`extract.py`):
 the Gurmukhi in **GurbaniAkharThick** (a legacy font: ASCII letters drawn as Gurmukhi), then the transliteration
-and the English translation in Tahoma, each sometimes wrapped. 2,018 printed lines; no OCR was needed.
+and the English translation in Tahoma, each sometimes wrapped. 2,018 printed lines; no OCR is needed.
 
 The transliteration is told from the English by counting pada ends: the Gurmukhi ends each pada with `]`, the
-transliteration with `.` (and a numbered line with `||n||`). One fix was needed while building this: on page 223
-the transliteration's `||6||` wraps onto a line of its own and was at first taken as the start of the English
-(“||6|| - these blessings come to one who…”). The extractor now also waits for the `||n||` of a numbered line.
+transliteration with `.` (and a numbered line with `||n||`). On page 223 the transliteration's
+`||6||` wraps onto a line of its own; the extractor waits for the `||n||` of a numbered line, so it is not taken as
+the start of the English (“||6|| - these blessings come to one who…”).
 
 ## 2. Converting the Gurmukhi (`gurmukhi.py`)
 
@@ -52,9 +52,9 @@ The Noto Serif Gurmukhi font of the site has both signs (checked in its cmap and
    ਗਉੜੀ ਸੁਖਮਨੀ ਮਃ ੫ ॥ · ਸੁਖਮਨੀ ਸੁਖ ਅੰਮ੍ਰਿਤ ਪ੍ਰਭ ਨਾਮੁ ॥ ਭਗਤ ਜਨਾ ਕੈ ਮਨਿ ਬਿਸ੍ਰਾਮ ॥ ਰਹਾਉ ॥ · ਆਦਿ ਗੁਰਏ ਨਮਹ ॥ ·
    ਬੇਦ ਪੁਰਾਨ ਸਿੰਮ੍ਰਿਤਿ ਸੁਧਾਖੵਰ ॥ · ਟੂਟੀ ਗਾਢਨਹਾਰ ਗੋੁਪਾਲ ॥ (hora and aunkar together, as printed) ·
    ਨਾਨਕ ਇਹ ਗੁਣਿ ਨਾਮੁ ਸੁਖਮਨੀ ॥੮॥੨੪॥.
-   Web pages (searchgurbani.com, sikhsamridhi.com, api.banidb.com) could not be used for spot checks: their
-   Gurbani is rendered by JavaScript, and direct downloads were refused by this workspace's network proxy. The
-   Shabad OS database above served instead.
+   Web pages (searchgurbani.com, sikhsamridhi.com, api.banidb.com) are not used for spot checks: their
+   Gurbani is rendered by JavaScript, and the workspace's network proxy refuses direct downloads. The
+   Shabad OS database above serves instead.
 
 ## Skeleton exceptions
 
@@ -76,10 +76,12 @@ Copied from the PDF; the lines of an item are joined into one paragraph in order
 one paragraph). Checked word by word against the same translation in the Shabad OS database (translation source
 “Dr. Sant Singh Khalsa”): 18,755 words, 67 differences, all of them the PDF's own presentation (“Shalok:” where
 the database has “Salok:”, its leading “- ” before a continuing sentence, capitals at the database's line
-starts) except one extraction break, fixed: **“obtai n” → “obtain”** (Ashtapadi 15, pauri 5). Nothing else was
+starts) except one extraction break, fixed: **“obtai n” → “obtain”** (Ashtapadi 15, pauri 5). Nothing else is
 changed.
 
-## 6. Hindi and word meanings
+## 6. Our meanings and word meanings
 
-The PDF has no Hindi and no word meanings, so both were written for this library (`hi-scriptures`;
-`glossary/pa.json`), from the Gurmukhi and the English: 218 of 218 items and 2,536 of 2,536 distinct words.
+The PDF has no Hindi, no Punjabi and no word meanings, so they are written for this library (`hi-scriptures`,
+`pa-scriptures`; `glossary/pa.json`): 218 of 218 items and 2,536 of 2,536 distinct words. Our English
+(`en-scriptures`, the default) is also written for this library from the Gurmukhi; the PDF's English stays
+selectable (order 2), and `export.py` stops if ours shares a run of 10 or more words with it.

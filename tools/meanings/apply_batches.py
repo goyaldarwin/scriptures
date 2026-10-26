@@ -1,8 +1,7 @@
 """Merge written and reviewed batches (tools/meanings/prepare.py → writers → reviewers) into a work's meaning files.
 
     python3 tools/meanings/apply_batches.py BATCH_DIR [--ours tools/works/ramcharitmanas/meanings]
-            [--work hinduism/granth/tulsidas/ramcharitmanas] [--doubts docs/reviews/<date>-meaning-doubts.jsonl]
-            [--keep KEEP_DIR]
+            [--work hinduism/granth/tulsidas/ramcharitmanas] [--doubts docs/reviews/<work>-doubts.jsonl]
 
 For every batch-NN.ids in BATCH_DIR: takes the writer's batch-NN.hi.json / .en.json / .topics.json, then applies the
 reviewer's fixes from batch-NN.review.jsonl (lines with lang "hi", "en" or "topic" and a "fix"; the reviewer's fix
@@ -12,9 +11,8 @@ verse number. Writes, in the work's reading order:
   OURS/topics.json             our topic headings {first verse id: {hi, en}}
 Appends the writers' doubts (with the reviewer's comments on them) to --doubts, and gathers every word-meaning issue
 (writer's .words.jsonl and reviewer's "word" lines) into BATCH_DIR/words-to-settle.jsonl for the dictionary step.
-With --keep, copies the batches' outputs and reviews there (the record of how each meaning was made).
 """
-import argparse, glob, json, os, re, shutil
+import argparse, glob, json, os, re
 
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 NUM = re.compile(r'।।\s*[०-९0-9]|\(\d+\)\s*$')
@@ -29,7 +27,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('dir'); ap.add_argument('--ours', default='tools/works/ramcharitmanas/meanings')
     ap.add_argument('--work', default='hinduism/granth/tulsidas/ramcharitmanas')
-    ap.add_argument('--doubts'); ap.add_argument('--keep')
+    ap.add_argument('--doubts')
     a = ap.parse_args()
     W = json.load(open(os.path.join(REPO, 'library', a.work, 'work.json'), encoding='utf-8'))
     order = [x['id'] for x in W['items']]
@@ -76,10 +74,6 @@ def main():
             for d in doubts: f.write(json.dumps(d, ensure_ascii=False) + '\n')
     with open(os.path.join(a.dir, 'words-to-settle.jsonl'), 'w', encoding='utf-8') as f:
         for w in words: f.write(json.dumps(w, ensure_ascii=False) + '\n')
-    if a.keep:
-        os.makedirs(a.keep, exist_ok=True)
-        for p in glob.glob(os.path.join(a.dir, 'batch-*')):
-            if not p.endswith('.md'): shutil.copy(p, a.keep)   # the .md inputs are made again by prepare.py
     print(f"{len(D['hi'])} verses in our Hindi and English; review fixes applied {fixed}; {len(T)} topic headings; "
           f'{len(doubts)} doubts; {len(words)} word issues to settle')
 

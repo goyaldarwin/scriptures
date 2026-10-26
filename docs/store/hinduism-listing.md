@@ -1,6 +1,6 @@
 # Google Play listing — the Hindu app (org.craadle.scriptures.hinduism)
 
-Decided 2026-10-19 (owner): name from search evidence (docs/APPS.md). Only what the app really does; no "best", "#1", "free", emojis, ALL CAPS or keyword lists (Play metadata policy) — other spellings sit in brackets inside the sentences. Lengths checked by `tools/store/check_listing.py`.
+The name is the owner's choice, from what people search for. Only what the app really does; no "best", "#1", "free", emojis, ALL CAPS or keyword lists (Play metadata policy) — other spellings sit in brackets inside the sentences. Lengths checked by `tools/store/check_listing.py`.
 
 ## English (United States) — default
 
@@ -18,7 +18,8 @@ WHAT IS INSIDE
 • Sunderkand (Sundarkand, सुन्दरकाण्ड) — with Hanuman Chalisa and the aarti, as it is recited
 • Shri Ram Raksha Stotram
 • Shri Rudram — Namakam and Chamakam from the Yajurveda, with Vedic accents
-• Isha Upanishad (Ishavasya Upanishad, Ishopanishad)
+• Isha Upanishad (Ishavasya Upanishad, Ishopanishad), Katha Upanishad and Mandukya Upanishad
+• Aartis: Om Jai Jagdish Hare, Om Jai Shiv Omkara, Ganga Aarti, Hanuman Aarti, Shri Ramchandra Kripalu and two Ram aartis
 • Shirdi Sai Baba Dhoop Aarti
 • Sukhmani Sahib
 More scriptures are added to the library over time, without updating the app.
@@ -57,7 +58,8 @@ No account, no sign-in, no ads and no tracking. Your notes and progress stay on 
 • सुन्दरकाण्ड (सुंदरकांड) — हनुमान चालीसा और आरतीके साथ, जैसे पाठ होता है
 • श्रीरामरक्षास्तोत्रम्
 • श्रीरुद्रम् — यजुर्वेदका नमकम् और चमकम्, स्वरचिह्नोंके साथ
-• ईशावास्योपनिषद्
+• ईशावास्योपनिषद्, कठोपनिषद् और माण्डूक्योपनिषद्
+• आरतियाँ: ॐ जय जगदीश हरे, ॐ जय शिव ओंकारा, श्रीगंगाजीकी आरती, श्रीहनुमानजीकी आरती, श्रीरामचन्द्र कृपालु और श्रीरामकी दो आरतियाँ
 • शिरडी साईं बाबाकी धूप आरती
 • सुखमनी साहिब
 पुस्तकालयमें नये ग्रन्थ जुड़ते रहते हैं — ऐप अपडेट किये बिना।

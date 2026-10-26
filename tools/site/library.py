@@ -4,11 +4,13 @@ For each work on the shelf (library/index.json) this:
   1. lists the meaning sources in <work>/meanings/*.json and the audio sources in <work>/audio/*.json
      and writes them into work.json → "sources" (the website reads that list; it cannot scan folders),
      and marks "glossary": true when the work has its own <work>/glossary.json;
-  2. checks that everything refers to things that exist (sources, plans, topics, verse languages,
-     dictionaries in glossary/, fallbacks), and stops the build with a clear message if not.
+  2. checks that everything refers to things that exist (sources, plans, topics, verse languages, a meaning for
+     every word of every verse (check_words, with the app's own word rule),
+     dictionaries in glossary/, fallbacks, each store app's shelves in library/apps.json), and stops the build with
+     a clear message if not.
 A source's file name must equal its "id". The source with the lowest "order" (then id) is the default.
 """
-import glob, json, os, re
+import glob, json, os, re, unicodedata
 
 class LibraryError(Exception): pass
 
@@ -33,6 +35,27 @@ def leaves(shelf, trail=()):
         else:
             _need(isinstance(n.get('children'), list) and n['children'], f"shelf: {n['id']} needs children (a shelf) or work (a book)")
             yield from leaves(n['children'], trail + (n['id'],))
+
+def word_rule():
+    """The app's own rule for turning a verse token into a dictionary key (tools/site/app.js cleanWord: PUNCT, SVARA,
+    NFC), read from app.js itself so the build and the app can never disagree."""
+    js = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'app.js'), encoding='utf-8').read()
+    P = re.search(r"const PUNCT = /(\[[^\n]*?\])/g;", js); S = re.search(r"const SVARA = /(\[[^\n]*?\])/g;", js)
+    _need(P and S, "library.py: could not read PUNCT / SVARA from tools/site/app.js")
+    P, S = re.compile(P.group(1)), re.compile(S.group(1))
+    return lambda t: unicodedata.normalize('NFC', S.sub('', P.sub('', t)))
+
+def check_words(lib, name, w, LANGS, G, clean):
+    """Every word of every verse has a meaning in its language or a fallback (the work's own glossary.json first)."""
+    wg = os.path.join(lib, name, 'glossary.json'); WG = json.load(open(wg, encoding='utf-8')) if os.path.exists(wg) else {}
+    miss = {}
+    for x in w['items']:
+        lg = x.get('l', w['lang']); chain = [lg] + LANGS[lg].get('fallback', [])
+        for line in x['v']:
+            for t in line.split():
+                k = clean(t)
+                if k and not any(k in WG.get(c, {}) or k in G.get(c, {}) for c in chain): miss.setdefault(lg, set()).add(k)
+    _need(not miss, f"{name}: words without a meaning: " + '; '.join(f"{lg}: {' '.join(sorted(ws)[:12])}{' …' if len(ws) > 12 else ''} ({len(ws)})" for lg, ws in miss.items()))
 
 def check_work(lib, leaf, LANGS):
     path = leaf.get('path'); wp = os.path.join(lib, path or '', 'work.json')
@@ -68,8 +91,8 @@ def check_work(lib, leaf, LANGS):
         for k in ('before', 'after'):
             _need(all(x in pages for x in p.get(k, [])), f"{name}: plan {p['id']} {k} {p.get(k)} names a page the work lacks (has {sorted(pages)})")
     # sources
-    # meaning languages: those with a "meaning" block in glossary/languages.json (hi, en, pa — owner, 2026-10-24: "design
-    # interface for supporting Punjabi and other languages"); hi, en and au are always listed, another only when the work has one
+    # meaning languages: those with a "meaning" block in glossary/languages.json (hi, en, pa);
+    # hi, en and au are always listed, another only when the work has one
     ML = sorted((k for k, L in LANGS.items() if L.get('meaning')), key=lambda k: (LANGS[k]['meaning'].get('order', 100), k))
     src = {k: [] for k in ML}; src.setdefault('hi', []); src.setdefault('en', []); src['au'] = []
     for f in sorted(glob.glob(os.path.join(lib, path, 'meanings', '*.json'))):
@@ -79,7 +102,7 @@ def check_work(lib, leaf, LANGS):
         _need(_bi(s.get('title')), f"{where}: needs title {{hi, en}}")
         bad = [k for k in s['m'] if k not in ID]; _need(not bad, f"{where}: {len(bad)} unknown item ids, e.g. {bad[:3]}")
         for k, e in s['m'].items(): _need(isinstance(e, list) and e and isinstance(e[0], str), f"{where}: {k} must be [text, footnotes?]")
-        # line by line (owner, 2026-10-23): "p" gives a verse's meaning one piece per verse line, shown under its line;
+        # line by line: "p" gives a verse's meaning one piece per verse line, shown under its line;
         # "" where a line has no meaning of its own. The joined text in "m" stays (search, copy, a reader's correction).
         NL = {x['id']: len(x['v']) for x in items}
         for k, ps in (s.get('p') or {}).items():
@@ -123,11 +146,14 @@ def prepare(lib):
         if code == 'languages': continue
         _need(code in LANGS, f"glossary/{code}.json: {code!r} is not in languages.json")
         for k, v in json.load(open(f)).items(): _need(isinstance(v, dict) and ('hi' in v or 'en' in v), f"glossary/{code}.json: {k!r} needs hi/en")
+    G = {os.path.basename(f)[:-5]: json.load(open(f, encoding='utf-8')) for f in glob.glob(os.path.join(lib, 'glossary', '*.json')) if not f.endswith('languages.json')}
+    clean = word_rule()
     shelf = json.load(open(os.path.join(lib, 'index.json')))
     works = {}
     for leaf in leaves(shelf):
         _need(leaf['work'] not in works, f"shelf: work id {leaf['work']!r} is used twice")
         wid, src = check_work(lib, leaf, LANGS); works[wid] = src
+        check_words(lib, leaf['path'], json.load(open(os.path.join(lib, leaf['path'], 'work.json'), encoding='utf-8')), LANGS, G, clean)
     # store apps (library/apps.json): each app's shelves must exist on the shelf
     ap = os.path.join(lib, 'apps.json')
     if os.path.exists(ap):

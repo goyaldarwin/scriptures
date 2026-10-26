@@ -1,11 +1,11 @@
 # Brief: divide our meanings into one piece per verse line
 
-The app now shows a meaning **line by line**: each line of the verse, then its meaning right under it (owner: "whatever our line in the verse, its meaning below it wherever present"). Your job is to divide our existing, already reviewed Hindi and English meanings of some verses into **one piece per verse line**. You are not re-translating: the meanings are settled; you only cut them at the right places and make each piece read well on its own.
+The app shows a meaning **line by line**: each line of the verse, then its meaning right under it (the owner: "whatever our line in the verse, its meaning below it wherever present"; the format is `p` in `docs/LIBRARY.md` §3). Your job is to divide our existing, already reviewed Hindi and English meanings of some verses into **one piece per verse line**. You are not re-translating: the meanings are settled; you only cut them at the right places and make each piece read well on its own.
 
 ## Inputs
 - Verses: the work's `work.json` (named in your task): `items[]` with `id` and `v` (the verse lines, in order).
-- Our meanings: `hi.json` and `en.json` (named in your task): `{id: "whole meaning"}`. They were written to follow the verse line by line, so most lines already have their own sentence.
-- Style: `/root/scriptures/tools/meanings/style.md` (§2, §4, §5; §8a for stotras; §12 for Gurbani).
+- Our meanings: `hi.json` and `en.json` (named in your task): `{id: "whole meaning"}`. They follow the verse line by line, so most lines already have their own sentence.
+- Style: `tools/meanings/style.md` (§2, §4, §5; §8a for stotras; §12 for Gurbani).
 
 ## Rules
 1. For every item, produce a list with **exactly as many pieces as the verse has lines** (`len(v)`), in line order: piece k is the meaning of line k.

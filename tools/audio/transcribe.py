@@ -20,7 +20,7 @@ DATA=os.environ.get('DATA_DIR'); AUD=os.environ.get('AUDIO_DIR',''); LANG=json.l
 # Whisper's own Sanskrit mode writes Latin letters; its Hindi mode writes Devanagari, which align.py needs. Awadhi likewise.
 LANG={'sa':'hi','awa':'hi','pa':'hi'}.get(LANG,LANG)   # Punjabi mode mixes Gurmukhi and Latin; Hindi mode gives Devanagari (align.py reads Gurmukhi as Devanagari)
 WIN=json.load(open(os.path.join(SRC,'source.json'))).get('window')
-# with windows: no temperature fallback and no "no speech" dropping (both made Whisper loop on, or drop, sung passages),
+# with windows: no temperature fallback and no "no speech" dropping (both make Whisper loop on, or drop, sung passages),
 # at most 60 tokens per window, and word times
 NOFALLBACK=dict(temperature=0.0,compression_ratio_threshold=None,log_prob_threshold=None,no_speech_threshold=None,max_new_tokens=60) if WIN else {}
 W,K=(int(sys.argv[2]),int(sys.argv[3])) if len(sys.argv)>3 else (0,1)

@@ -1,6 +1,6 @@
 # Kathā-visarjana: source and readings
 
-**Source:** a printed page the owner sent on 2026-10-18, kept privately in scriptures-data at `hinduism/granth/tulsidas/ramcharitmanas/books/visarjan-print/visarjan.jpg` (with its `.meta.json`). It is recited on the last day of a pārāyaṇa, after the reading and the āratī. The text in `visarjan.json` is typed from that page line by line; the Hindi and English meanings are our own.
+**Source:** a printed page from the owner, kept privately in scriptures-data at `hinduism/granth/tulsidas/ramcharitmanas/books/visarjan-print/visarjan.jpg` (with its `.meta.json`). It is recited on the last day of a pārāyaṇa, after the reading and the āratī. The text in `visarjan.json` is typed from that page line by line; the Hindi and English meanings are our own.
 
 **Layout:** the page prints 20 lines without dandas or numbers. They are dohā pairs, so they are shown as 10 numbered couplets, with । after the first line and ।।n।। after the second, as in the Mānas.
 

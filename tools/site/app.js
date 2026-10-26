@@ -21,13 +21,13 @@ async function getJSON(path){
   const r = await fetch('library/' + path + '.json', {cache: 'no-cache'}); if (!r.ok) throw new Error(path); return r.json();
 }
 let LIB = [], LANGS = {}, GL = {}, WG = {}, ALT = {hi: [], en: []}, W = null, IT = [], ID = {}, SRC = {hi: null, en: null, au: null};
-// meaning languages (owner, 2026-10-24): every language with a "meaning" block in glossary/languages.json (हिं, En, ਪੰ),
-// in its order. A layer's switch is S.settings.layers[LK(kind)]: h and e as before (old phones' settings read unchanged), else the code.
+// meaning languages: every language with a "meaning" block in glossary/languages.json (हिं, En, ਪੰ),
+// in its order. A layer's switch is S.settings.layers[LK(kind)]: h and e for Hindi and English (so older saved settings read unchanged), else the code.
 const MK = () => { const k = Object.keys(LANGS).filter(c => LANGS[c].meaning).sort((a, b) => (LANGS[a].meaning.order || 100) - (LANGS[b].meaning.order || 100)); return k.length ? k : ['hi', 'en']; };
 const LK = kind => kind === 'hi' ? 'h' : kind === 'en' ? 'e' : kind;
 const LCLS = kind => kind === 'hi' ? 'h' : kind === 'en' ? 'e' : 'x ' + kind;   // a meaning layer's class in the reader
 // the work's meaning languages (those it has a source in); the two in the header capsule (always four places: two meaning
-// switches, शब्द, 📖 — owner, 2026-10-24): हिं · En, or with a third language the reader's chosen pair, by default ਪੰ · En in
+// switches, शब्द, 📖): हिं · En, or with a third language the reader's chosen pair, by default ਪੰ · En in
 // an English app and ਪੰ · हिं in a Hindi one
 function workKinds(){ return W ? MK().filter(k => ((W.sources || {})[k] || []).length) : []; }
 function pairOptions(){ const ks = workKinds(), extra = ks.filter(k => k !== 'hi' && k !== 'en'), out = [];
@@ -42,12 +42,12 @@ const LBM = kind => kind === 'hi' ? LB.h() : kind === 'en' ? LB.e() : TT((LANGS[
 const LS = 'manas.personal.v1';
 let canStore = true;
 function newProfile(name){ return {id: 'p' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), name, notes: {}, bm: {}, done: {}, gloss: {}, fix: {}}; }
-// a new reader starts in English (owner, 2026-10-19): English interface and English meaning; हिं adds the Hindi meaning
-function defaults(){ const p = newProfile('Me'); return {v: 2, settings: {ui: 'en', layers: {h: false, e: true, w: false}, tr: false, size: 21, theme: 'light', wake: true, lightDefault: 1}, src: {}, w: {}, work: null, profiles: [p], active: p.id, show: [p.id]}; }
+// a new reader starts in English: English interface and English meaning; हिं adds the Hindi meaning
+function defaults(){ const p = newProfile('Me'); return {v: 2, settings: {ui: 'en', layers: {h: false, e: true, w: false}, tr: false, size: 21, theme: 'light', lightDefault: 1}, src: {}, w: {}, work: null, profiles: [p], active: p.id, show: [p.id]}; }
 let S;
 try { S = JSON.parse(localStorage.getItem(LS)); } catch (e) { canStore = false; }
 if (!S || !S.profiles) S = defaults();
-// timing review (Settings › Audio timing): on/off, and the starts set by ear, by "<work>:<audio source>" → {item id: [track, seconds]}
+// timing review (☰ › More › Audio timing): on/off, and the starts set by ear, by "<work>:<audio source>" → {item id: [track, seconds]}
 if (!S.timing) S.timing = {on: false, fix: {}, sent: {}};
 if (!S.timing.sent) S.timing.sent = {};
 // marks loaded from a helper's file and not yet checked by you: "<work>:<source>" → {item id: helper's name}. They are
@@ -58,14 +58,14 @@ if (!S.timing.from) S.timing.from = {};
 if (S.timing.on && Date.now() - (S.timing.used || 0) > 12 * 3600e3) S.timing.on = false;
 function migrate(){
   if ((S.v || 1) < 2) migrate2();
-  if (S.settings && !S.settings.ui) S.settings.ui = S.settings.layers && S.settings.layers.e ? 'en' : 'hi';   // earlier: the language followed the English meaning
-  if (S.v < 3){ // v2 → v3: a reader's own word meanings are filed by language (“awa:राम”); earlier ones were all Awadhi
+  if (S.settings && !S.settings.ui) S.settings.ui = S.settings.layers && S.settings.layers.e ? 'en' : 'hi';   // an older saved file has no ui: it follows the English meaning
+  if (S.v < 3){ // v2 → v3: a reader's own word meanings are filed by language (“awa:राम”); older ones are all Awadhi
     S.profiles.forEach(p => { const n = {}; for (const k in p.gloss || {}) n[k.includes(':') ? k : 'awa:' + k] = p.gloss[k]; p.gloss = n; });
     S.v = 3;
   }
   oneReader();
 }
-// One reader per device (owner, 2026-10-19): there is no list of readers any more. A phone or file that had several keeps
+// One reader per device: there is no list of readers. Older saved data that has several keeps
 // everything — their notes, bookmarks, progress, own meanings and corrections are joined into the first one, nothing dropped.
 function mergeInto(a, b){
   for (const k in b.notes || {}){ const arr = a.notes[k] = a.notes[k] || []; b.notes[k].forEach(n => { if (!arr.some(m => m.ts === n.ts && m.t === n.t)) arr.push(n); }); }
@@ -108,9 +108,9 @@ async function cloudInit(){
     canStore = true;
   } catch (e) {}
 }
-// the language of the app (owner, 2026-10-19): its own setting, chosen with हिं · En on the library and work pages (and in
-// Settings); the meanings under the verses (हिं · En · शब्द in the reader) are separate and never change it
-// Inside a work's text (the reader) the words around the verses follow the meanings chosen there (owner, 2026-10-19):
+// the language of the app: its own setting (S.settings.ui), chosen with हिं · En on the library, work and vidhi pages;
+// turning the English or the Hindi meaning on in the reader sets it too (the layer switch below)
+// Inside a work's text (the reader) the words around the verses follow the meanings chosen there:
 // English meaning on → English; only the Hindi meaning → Hindi; neither → the app's language.
 let CURVIEW = 'library';
 const LANG = () => CURVIEW === 'reader' ? (S.settings.layers.e ? 'en' : S.settings.layers.h ? 'hi' : (S.settings.ui === 'hi' ? 'hi' : 'en')) : (S.settings.ui === 'hi' ? 'hi' : 'en');
@@ -146,7 +146,7 @@ function applyTheme(){ const r = document.documentElement; if (S.settings.theme 
 function show(id, push = true){ { const was = LANG(); CURVIEW = id; if (LANG() !== was) applyLang(); }
   $$('.view').forEach(v => v.classList.toggle('on', v.id === id)); if (push) history.pushState(snap(id), ''); else history.replaceState(snap(id), ''); if (id !== 'reader') window.scrollTo(0, 0); onView(id); }
 // Every page is an entry in the browser's history that carries where you are: the page, the open work and the library
-// shelf (owner, 2026-10-19). Back (the button or the phone's gesture) returns to exactly the previous one — a shelf
+// shelf. Back (the button or the phone's gesture) returns to exactly the previous one — a shelf
 // included — and a refresh reopens the same page, because the browser keeps these entries across a reload.
 function snap(v){ return {v, w: W ? W.id : null, lib: libPath.slice(), scope: v === 'search' ? SCOPE : undefined}; }
 let popping = Promise.resolve();
@@ -178,7 +178,7 @@ function sw(id, label, sub, on, icon){ return '<label class="sw">' + (icon ? '<s
 
 /* ---------------- wake lock ---------------- */
 let wl = null;
-// the screen stays on while reading or playing — always, no setting (owner, 2026-10-22)
+// the screen stays on while reading or playing — always, no setting
 async function wake(on){ try { if (on && 'wakeLock' in navigator){ if (!wl){ wl = await navigator.wakeLock.request('screen'); wl.addEventListener('release', () => wl = null); } } else if (wl && !PL.on){ await wl.release(); wl = null; } } catch (e) {} }
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && ($('#reader').classList.contains('on') || PL.on)) wake(true); });
 
@@ -290,7 +290,7 @@ function verseOf(i){ const id = IT[i].id; for (const p of S.profiles){ const f =
 function mean(kind, i){
   const src = SRC[kind]; if (!src) return null; const id = IT[i].id; const k = KEY(src.id + ':' + id);
   for (const p of S.profiles){ const f = p.fix[k]; if (f && f.m != null) return {x: f.m, edited: true, f: (src.m[id] || [])[1]}; }
-  // p: the meaning line by line, one piece per verse line (meaning file "p"; owner, 2026-10-23)
+  // p: the meaning line by line, one piece per verse line (meaning file "p")
   const e = src.m[id]; if (e) return {x: e[0], f: e[1], edited: false, p: (src.p || {})[id]};
   for (const a of ALT[kind] || []){ const x = a.m[id]; if (x) return {x: x[0], f: x[1], edited: false, from: TT(a.meta.title), p: (a.p || {})[id]}; }
   return null;
@@ -321,21 +321,20 @@ function verseHTML(i){
     let ln = last && it.y === 'cau' && it.n && /।।\s*$/.test(l) ? l.replace(/\s*।।\s*$/, ' ।।' + String(it.n).replace(/\d/g, d => DIG[d]) + '।।') : l;
     if (LANG() === 'en') ln = ln.replace(/[०-९]/g, d => DIG.indexOf(d)).replace(/[੦-੯]/g, d => d.charCodeAt(0) - 0x0A66);
     const w = wordsHTML(ln).replace(/।।\s*([0-9०-९][^\s।<]*)\s*।।/, '<span style="white-space:nowrap">।।$1।।</span>').replace(/॥\s*([0-9०-९੦-੯][^\s॥<]*)\s*॥/, '<span style="white-space:nowrap">॥$1॥</span>');
-    const lead = '';   // the verse type is no longer a corner tag: it is a heading above a run of verses (typeHead)
-    // corners, each inside the gutter so they never touch the text: ▶ (top left, on the line of the bookmark — owner,
-    // 2026-10-20), bookmark (top right), ⋮ (bottom right). A one-line verse is given a second line's height so the corners stay apart.
+    // corners, each inside the gutter so they never touch the text: ▶ (top left, on the line of the bookmark),
+    // bookmark (top right), ⋮ (bottom right). A one-line verse is given a second line's height so the corners stay apart.
     const top = y === 0 ? (hasAu(i) ? '<button class="vb vplay" data-a="play" aria-label="play"><svg><use href="#i-play"/></svg></button>' : '') + '<button class="vb vbm' + (bm ? ' bm-on' : '') + '" data-a="bm" aria-label="bookmark"><svg><use href="#i-bm"/></svg></button>' : '';
     const undo = last && S.timing.on && SRC.au && myStarts()[id] ? '<span class="vundo"><button class="vb" data-a="tundo" aria-label="' + T('पहले जैसा', 'Undo') + '" title="' + T('पहले जैसा', 'Undo') + '"><svg><use href="#i-undo"/></svg></button></span>' : '';   // ↶ (bottom left) in timing mode, on a verse you set
     const tail = last ? '<span class="vend"><button class="vb" data-a="menu" aria-label="more"><svg><use href="#i-more"/></svg></button></span>' + undo : '';
-    return '<p' + (vv.v.length === 1 ? ' class="one"' : '') + '>' + lead + top + w + tail + '</p>'; });
+    return '<p' + (vv.v.length === 1 ? ' class="one"' : '') + '>' + top + w + tail + '</p>'; });
   let h = '<div class="verse' + (toCheck(i) ? ' tocheck' : '') + '" id="v' + i + '" data-i="' + i + '">';
   const trl = l => '<div>' + l.split(/(?<=,)\s+/).map(x => '<span class="half">' + esc(x).replace(/\s*॥\s*([^॥]*?)\s*॥/g, ' <span class="dd">॥$1॥</span>') + '</span>').join(' ') + '</div>';
   const num = x => esc(x).replace(/\s*(।।[^।]*।।)\s*$/, '<span style="white-space:nowrap"> $1</span>');
-  // one meaning layer: Hindi and Punjabi with the verse number kept on its line; English as before (the number only when line by line)
+  // one meaning layer: Hindi and Punjabi keep the verse number on its line; English only when line by line
   const lay = (kind, m, x, fn) => '<div class="layer ' + LCLS(kind) + '">' + (kind !== 'en' || m.p ? num(x) : esc(x)) + (m.edited ? '<span class="tag">' + (kind === 'en' ? 'edited' : T('संशोधित', 'edited')) + '</span>' : '') + (fn && m.f ? '<div class="fn">' + m.f.map(esc).join('<br>') + '</div>' : '') + '</div>';
   const ks = shownKinds(), MS = {}; ks.forEach(k => { const m = mean(k, i); if (m) MS[k] = m; });
   const on = ks.filter(k => MS[k]);
-  // line by line (owner, 2026-10-23): a source that gives one piece per verse line shows each piece under its line; a
+  // line by line: a source that gives one piece per verse line shows each piece under its line; a
   // source without pieces (or a reader's own correction of the verse or the meaning) is shown whole after the verse
   const lines = m => m && !m.edited && !vv.edited && Array.isArray(m.p) && m.p.length === vv.v.length ? m.p : null;
   const PS = {}; on.forEach(k => { PS[k] = lines(MS[k]); });
@@ -366,7 +365,7 @@ function pauseHTML(i){
   const list = pauseAfter[i]; if (!list) return '';
   return list.filter(([o]) => R.org === 'k' || R.org === o).map(([o, n]) => { const done = DONE(ME(), o)[n]; return '<div class="pause" data-pause="' + o + n + '"><b>' + PNAME(o) + ' · ' + VN(n) + '</b><div class="sub">' + T('यहाँ विश्राम करें', 'A place to pause the reading') + '</div><button class="btn small' + (done ? ' ghost' : '') + '" data-a="done" data-o="' + o + '" data-n="' + n + '" data-i="' + i + '">' + (done ? T('✓ पूर्ण — बदलें', '✓ Completed — undo') : T('विश्राम पूर्ण करें', 'Mark vishram complete')) + '</button></div>'; }).join('');
 }
-// the verse type as a heading above the verse, “॥ चौपाई ॥” (owner, 2026-10-19), shown only where the type changes:
+// the verse type as a heading above the verse, “॥ चौपाई ॥”, shown only where the type changes:
 // before the first chaupāī of a run, then before the dohā that follows, and so on — and at the start of what is read
 function typeHead(i){
   const y = IT[i].y, nm = TYPEN[y]; if (!nm) return '';
@@ -423,16 +422,16 @@ function curSection(i){ const t = topicOf(i); return t && t.i <= R.b && t.end >=
 function updateHeader(){
   if (!IT.length) return; const i = topVisibleItem(), t = topicOf(i);
   const s = curSection(i), where = R.org === 'k' ? (PARTS.length > 1 ? KNAME(R.n) : '') : VN(R.n), topic = s ? TNAME(s) : '';
-  $('#rMid').innerHTML = '<span class="ml">' + (s ? spanLabel(Math.max(s.i, R.a), Math.min(s.end, R.b)) : spanLabel(R.a, R.b)) + ' ▾</span><small>' + esc(where || TT(W.title)) + '</small>';   // only the part (or reading day): a small footer (owner, 2026-10-19); the topic heads the page
+  $('#rMid').innerHTML = '<span class="ml">' + (s ? spanLabel(Math.max(s.i, R.a), Math.min(s.end, R.b)) : spanLabel(R.a, R.b)) + ' ▾</span><small>' + esc(where || TT(W.title)) + '</small>';   // only the part (or reading day): a small footer; the topic heads the page
 }
 let scT;
 window.addEventListener('scroll', () => { if (!$('#reader').classList.contains('on')) return; ensure(); clearTimeout(scT); scT = setTimeout(() => { updateHeader(); savePos(); }, 200); }, {passive: true});
 function savePos(i){ if (i == null) i = topVisibleItem(); const ws = WS(); ws.pos[R.org] = i; ws.last = {org: R.org, i, id: IT[i].id}; save(); }
 // A place is found again by its item id. Places saved before ids were kept are item positions; when a work later had
 // verses put before its text (work.json "prepended": how many), such a place moves forward by that many, once.
-// work.json "renamed" (old item id → new): a joint caupāī split into one item each (owner, 2026-10-20). A reader's notes,
+// work.json "renamed" (old item id → new): a joint caupāī split into one item each. A reader's notes,
 // bookmarks and place on the old id move to its first part; a meaning correction moves to the last part (where the
-// joint meaning now is); timing marks to the first part. A verse-text correction of the old joint verse is left as it was.
+// joint meaning is); timing marks to the first part. A verse-text correction of the old joint verse is left as it was.
 function moveRenamed(){
   const ren = W.renamed; if (!ren) return; let changed = false;
   const lastOf = old => { const m = /^(.+\.cau)\d+-(\d+)$/.exec(old); return m && ID[m[1] + m[2]] != null ? m[1] + m[2] : ren[old]; };
@@ -456,7 +455,7 @@ function moveRenamed(){
 }
 function fixLast(){
   const ws = S.w[W.id], l = ws && ws.last; if (!l) return;
-  if (l.id != null){ if (ID[l.id] != null) l.i = ID[l.id]; else { ws.last = null; delete ws.pos[l.org]; }   // a place at a verse no longer in the text is dropped (2026-10-20)
+  if (l.id != null){ if (ID[l.id] != null) l.i = ID[l.id]; else { ws.last = null; delete ws.pos[l.org]; }   // a place at a verse no longer in the text is dropped
     for (const o in ws.pos) if (!IT[ws.pos[o]]) delete ws.pos[o]; return; }
   const sh = i => (W.prepended || 0) + (W.split || []).reduce((n, [at, add]) => n + (at < i ? add : 0), 0);   // items added before it since then ("split": joint caupāīs made separate)
   l.i += sh(l.i);
@@ -488,7 +487,7 @@ function refreshReader(){
 }
 function rerenderItem(i){ const el = document.getElementById('v' + i); if (!el) return; const tmp = document.createElement('div'); tmp.innerHTML = verseHTML(i); el.replaceWith(tmp.firstChild); if (PL.on && PL.cur === i) document.getElementById('v' + i).classList.add('now'); }
 // The section picker: the row of kāṇḍas (or plan days) on top only chooses which list shows below; nothing opens until a
-// section is tapped — the current one too (owner, 2026-10-19).
+// section is tapped — the current one too.
 function sectionSheet(n){
   const cur = curSection(topVisibleItem()), plan = R.org !== 'k';
   if (n == null) n = R.n;
@@ -505,25 +504,24 @@ function sectionSheet(n){
   $$('#sheetBody [data-to]').forEach(b => b.onclick = () => { closeSheet(); jumpTo(+b.dataset.to); });
   const on = $('#sheetBody .secs .on'); if (on) setTimeout(() => on.scrollIntoView({block: 'center'}), 60);
 }
-$('#rMid').onclick = () => sectionSheet();   // not the click event as the part (that broke the footer, 2026-10-20)
+$('#rMid').onclick = () => sectionSheet();   // without the click event, which sectionSheet would take as its section n
 $('#rBack').onclick = back;
 // the same हिं · En · शब्द switch in every header (library, work, reader): one setting, shown and changed anywhere
 $$('.lyr.layers button').forEach(b => b.onclick = () => { if (b.dataset.l === 'r'){ toggleRecite(); return; }
   if (S.settings.recite){ S.settings.recite = false; delete S.settings.preRecite; applyRecite(); }   // a meaning turned on ends recitation mode
   const was = LANG(), l = b.dataset.l; S.settings.layers[l] = !S.settings.layers[l];
-  // the meanings and the app's language are coupled (owner, 2026-10-25): English meaning on → English; only Hindi → Hindi; neither → unchanged
+  // the meanings and the app's language are coupled: English meaning on → English; only Hindi → Hindi; neither → unchanged
   if (S.settings.layers.e) S.settings.ui = 'en'; else if (S.settings.layers.h) S.settings.ui = 'hi';
   save(); syncLayers(); if (LANG() !== was) applyLang();
   const v = CURVIEW; if (v === 'reader') refreshReader(); });
-// हिं · En on the library and work pages: one choice, the language of the app
-// हिं · En on the library and work pages sets the language and the meaning with it (owner, 2026-10-25): Hindi → the Hindi meaning only, English → the English meaning only
+// हिं · En on the library and work pages sets the language and the meaning with it: Hindi → the Hindi meaning only, English → the English meaning only
 $$('.lyr.uilang button').forEach(b => b.onclick = () => { if (S.settings.ui === b.dataset.u) return; S.settings.ui = b.dataset.u; S.settings.layers.h = b.dataset.u === 'hi'; S.settings.layers.e = b.dataset.u === 'en'; if (S.settings.recite){ S.settings.recite = false; delete S.settings.preRecite; applyRecite(); } save(); applyLang(); syncLayers(); onView(CURVIEW); });
 function syncLayers(){
   // the capsule's first two places are the two meaning switches shown for this work (capKinds)
   const cb = $$('#rLayers button'); if (cb.length >= 2 && Object.keys(LANGS).length) capKinds().forEach((k, n) => { const b = cb[n], M = LANGS[k] && LANGS[k].meaning; b.dataset.l = LK(k); b.textContent = M ? M.short : k; b.classList.toggle('lat', k === 'en'); b.classList.toggle('gur', k === 'pa'); });
   $$('.lyr.layers button').forEach(b => b.classList.toggle('on', b.dataset.l === 'r' ? !!S.settings.recite : layerOn(b.dataset.l))); $$('.lyr.uilang button').forEach(b => b.classList.toggle('on', S.settings.ui === b.dataset.u)); }
 function applyRecite(){ document.body.classList.toggle('recite', !!S.settings.recite); $('#rRecite').hidden = true; syncLayers(); }
-// recitation mode is the fourth button of the reader's हिं · En · शब्द · 📖 capsule (owner, 2026-10-19): turning it on hides
+// recitation mode is the fourth button of the reader's हिं · En · शब्द · 📖 capsule: turning it on hides
 // the meanings (the layers that were on are remembered); turning it off — or turning any meaning on — brings them back
 function toggleRecite(){
   const on = !S.settings.recite; S.settings.recite = on;
@@ -533,8 +531,8 @@ function toggleRecite(){
   toast(on ? T('पाठ मोड: केवल मूल पाठ', 'Recitation mode: verses only') : T('अर्थ फिर दिखेंगे', 'Meanings shown again'));
 }
 $('#rRecite').onclick = toggleRecite;
-// One ☰ sheet on every page (owner, 2026-10-22): Bookmarks & notes (inside a work), the dark theme, the tour, and "More" — a
-// page with the rare things (transliteration, sources, audio timing, my file, privacy). Nothing here repeats the header:
+// One ☰ sheet on every page: Bookmarks & notes (inside a work), the dark theme, the tour, and "More" — a
+// page with the rare things (transliteration, sources, audio timing, privacy). Nothing here repeats the header:
 // the meanings, recitation mode, the text size and the language are the header's capsules; sections are the reader's
 // footer; the playing speed is in the player.
 function mainMenu(){
@@ -544,15 +542,14 @@ function mainMenu(){
     (S.timing.on && inWork ? '<div class="menusw"><label class="sw tsw"><svg class="swic" style="stroke:var(--saffron)"><use href="#i-clock"/></svg><span style="flex:1">' + T('ऑडियोका समय', 'Audio timing') + '</span><span class="tg"><input type="checkbox" id="mtm" checked><span></span></span></label></div>' + (SRC.au && Object.keys(myStarts()).filter(id => ID[id] != null).length ? '<button data-m="tclear" class="tsaf"><svg><use href="#i-undo"/></svg>' + T('मेरे बदलाव हटाएँ', 'Clear adjustments') + '</button>' : '') : '') +
     '<button data-tour><svg><use href="#i-tour"/></svg>' + LB.tour() + '</button>' +
     '<button data-m="set"><svg><use href="#i-set"/></svg>' + LB.more() + '</button></div>');
-  if ($('#mtm')) $('#mtm').onchange = async () => { S.timing.on = false; save(); applyTiming(); stopAudio(); closeSheet(); await loadSources(); if (CURVIEW === 'reader') refreshReader(); if (CURVIEW === 'settings') renderSettings(); toast(T('ऑडियोका समय: बंद', 'Audio timing: off')); };   // while on, ☰ turns it off (owner, 2026-10-22)
-  $('#mth').onchange = e => { S.settings.theme = e.target.checked ? 'dark' : 'light'; applyTheme(); save(); };   // light or dark, nothing else (owner, 2026-10-22)
+  if ($('#mtm')) $('#mtm').onchange = async () => { S.timing.on = false; save(); applyTiming(); stopAudio(); closeSheet(); await loadSources(); if (CURVIEW === 'reader') refreshReader(); if (CURVIEW === 'settings') renderSettings(); toast(T('ऑडियोका समय: बंद', 'Audio timing: off')); };   // while on, ☰ turns it off
+  $('#mth').onchange = e => { S.settings.theme = e.target.checked ? 'dark' : 'light'; applyTheme(); save(); };   // light or dark, nothing else
 }
 $('#rMore').onclick = mainMenu;
 $('#sheetBody').addEventListener('click', ev => {
   const b = ev.target.closest('[data-m]'); if (!b) return;
   const m = b.dataset.m; closeSheet();
-  if (m === 'search') openSearch('text'); if (m === 'sec') sectionSheet();
-  if (m === 'font') fontSheet(); if (m === 'bm') show('bookmarks'); if (m === 'set') show('settings'); if (m === 'tclear') clearTimingAsk();
+  if (m === 'bm') show('bookmarks'); if (m === 'set') show('settings'); if (m === 'tclear') clearTimingAsk();
 });
 function setSize(d){
   const i = topVisibleItem(); S.settings.size = Math.max(16, Math.min(34, S.settings.size + d)); applyTheme(); save();
@@ -560,10 +557,6 @@ function setSize(d){
   toast(LB.size() + ' ' + DEV(S.settings.size));
 }
 $$('.szm').forEach(b => b.onclick = () => setSize(-2)); $$('.szp').forEach(b => b.onclick = () => setSize(2));
-function fontSheet(){
-  openSheet('<h2>' + LB.size() + '</h2><input type="range" id="fs" min="16" max="34" step="1" value="' + S.settings.size + '" style="border:0;padding:0"><p class="vtext" id="fsDemo" style="font-size:' + S.settings.size + 'px">' + esc(IT[0] ? IT[0].v[0].slice(0, 28) : '') + '</p>');
-  $('#fs').oninput = () => { S.settings.size = +$('#fs').value; $('#fsDemo').style.fontSize = S.settings.size + 'px'; applyTheme(); save(); };
-}
 $('#rBody').addEventListener('click', ev => {
   const nx = ev.target.closest('[data-next]'); if (nx){ openReader(R.org, +nx.dataset.next); return; }
   const v = ev.target.closest('.verse'), i = v ? +v.dataset.i : null;
@@ -599,7 +592,7 @@ function itemMenu(i){
   openSheet('<p class="small muted">' + esc(itemLabel(i)) + '</p><div class="menu">' + (hasAu(i) ? '<button data-x="play"><svg><use href="#i-play"/></svg>' + T('यहाँसे सुनें', 'Play from here') + '</button>' : '') + '<button data-x="note"><svg><use href="#i-note"/></svg>' + T('टिप्पणी लिखें', 'Write a note') + '</button><button data-x="copy"><svg><use href="#i-copy"/></svg>' + T('पद और अर्थ कॉपी करें', 'Copy verse and meaning') + '</button><button data-x="edit"><svg><use href="#i-edit"/></svg>' + T('पद या अर्थ सुधारें', 'Improve verse or meaning') + '</button>' + (edited ? '<button data-x="revert"><svg><use href="#i-edit"/></svg>' + T('मेरा सुधार हटाएँ (पद लौटाएँ)', 'Remove my correction (restore the verse)') + '</button>' : '') + '</div>');
   $$('#sheetBody [data-x]').forEach(b => b.onclick = () => {
     const x = b.dataset.x; closeSheet();
-    if (x === 'play'){ playFrom(i, R.b); PL.whole = false; PL.endMsg = (R.org === 'k' ? KNAME(R.n) : VN(R.n)) + T(' पूर्ण', ' finished'); }   // to the end of what is open: the kāṇḍa, or the vishram (owner, 2026-10-25)
+    if (x === 'play'){ playFrom(i, R.b); PL.whole = false; PL.endMsg = (R.org === 'k' ? KNAME(R.n) : VN(R.n)) + T(' पूर्ण', ' finished'); }   // to the end of what is open: the kāṇḍa, or the vishram
     if (x === 'copy'){ const ks = shownKinds().length ? shownKinds() : capKinds(); const txt = verseOf(i).v.join('\n') + ks.map(k => mean(k, i)).filter(Boolean).map(m => '\n\n' + m.x).join(''); (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(() => toast(T('कॉपी हो गया', 'Copied'))).catch(() => toast(T('कॉपी नहीं हो सका', 'Could not copy'))); }
     if (x === 'note') noteSheet(i, null);
     if (x === 'edit') editSheet(i);
@@ -626,15 +619,15 @@ function tkey(){ return W.id + ':' + SRC.au.meta.id; }
 function markBar(i){
   const x = SRC.au.at[IT[i].id], mine = myStarts()[IT[i].id], own = ownAt(IT[i].id), est = toCheck(i), by = fromOf(IT[i].id);
   const when = x ? T('शुरू ', 'Start ') + fmtT(x[1]) + (x[2] != null ? T(' · अंत ', ' · end ') + fmtT(x[2]) : '') : T('ऑडियोमें समय नहीं', 'No time in the recording');
-  // − / + sit on either side of "Starts now" / "Ends now", in the same line (owner, 2026-10-19): for a start you set, and for an end that is set
+  // − / + sit on either side of "Starts now" / "Ends now", in the same line: for a start you set, and for an end that is set
   const grp = (k, act, label, on) => '<span class="tgrp">' + (on ? '<button class="tn" data-a="tn" data-k="' + k + '" data-d="-1" aria-label="−">−</button>' : '') + '<button data-a="' + act + '">' + label + '</button>' + (on ? '<button class="tn" data-a="tn" data-k="' + k + '" data-d="1" aria-label="+">+</button>' : '') + '</span>';
   // a time set by ear — on this phone ("yours") or by the owner and already in the library ("sent") — has − / + for fine-tuning
-  // under the times: "Until next" when an end is set; ↶ Undo is the verse's bottom-left corner; the step is in the player bar (owner, 2026-10-22) — nothing timing-related is left in the ⋮ menu (owner, 2026-10-22)
+  // under the times: "Until next" when an end is set; ↶ Undo is the verse's bottom-left corner; the step is in the player bar; the ⋮ menu holds nothing about timing
   const chips = own && x && x[2] != null ? '<button class="tchip" data-a="tnone">' + T('अगले पद तक', 'Until next') + '</button>' : '';
   return '<div class="tmark">' + grp(1, 'tstart', '⏱ ' + T('अभी शुरू', 'Starts now'), !!(own && x)) + grp(2, 'tend', '⏹ ' + T('अभी समाप्त', 'Ends now'), !!(own && x && x[2] != null)) + (by ? '<button data-a="tok">✓ ' + T('सही है', 'Correct') + '</button>' : '') + 
     '<span class="tinfo">' + when + (by ? ' · <b class="test">' + T('', 'from ') + esc(by) + T(' का — जाँचें', ' — to check') + '</b>' : mine ? ' · <b>' + T('आपका', 'yours') + '</b>' : own ? ' · <b>' + T('भेजा हुआ', 'sent') + '</b>' : est && SRC.au.checkSet.has(IT[i].id) ? ' · <b class="test">' + T('अनुमान', 'estimated') + '</b>' : est ? ' · <b class="test">' + T('आपके समयके अनुसार खिसकाया', 'moved to fit your times') + '</b>' : '') + '</span>' + (chips ? '<span class="tchips">' + chips + '</span>' : '') + '</div>';
 }
-// how far each − / + moves a time: the saffron ±… s chip in the player bar, beside ✕, shown while timing is on (owner, 2026-10-22; it was in the ⋮ menu)
+// how far each − / + moves a time: the saffron ±… s chip in the player bar, beside ✕, shown while timing is on
 const STEPS = [0.1, 0.25, 0.5, 1];
 function syncStep(){ const b = $('#pStep'); b.hidden = !S.timing.on; b.textContent = '±' + step() + ' s'; }
 $('#pStep').onclick = () => { S.timing.step = STEPS[(STEPS.indexOf(step()) + 1) % STEPS.length]; save(); syncStep(); toast('− / + = ' + step() + ' s'); };
@@ -714,12 +707,12 @@ function ytLoad(vid, start){
   f.addEventListener('load', hello);
   clearTimeout(ytWait); ytWait = setTimeout(() => { if (!ytOK && PL.on) ytBlocked(); }, 5000);
 }
-// Playing speed (owner, 2026-10-20): 0.5× to 2× — YouTube's own speed, so the verse times (in the recording's
-// time) stay right; the light follows the recording. Chosen in the reader's ☰ and in Settings; kept for next time.
+// Playing speed: 0.5× to 2× — YouTube's own speed, so the verse times (in the recording's
+// time) stay right; the light follows the recording. Chosen with the speed button in the player bar; kept for next time.
 const RATES = [0.5, 0.75, 1, 1.25, 1.5, 2];
 function RATE(){ return S.settings.rate || 1; }
 function applyRate(){ if (ytOK) ytPost('setPlaybackRate', [RATE()]); if (PL.on) $('#pTrack').textContent = playingName(); $('#pRate').textContent = RATE() + '×'; }
-// the speed button in the player bar (owner, 2026-10-22): one tap moves to the next speed, round and round
+// the speed button in the player bar: one tap moves to the next speed, round and round
 $('#pRate').onclick = () => { S.settings.rate = RATES[(RATES.indexOf(RATE()) + 1) % RATES.length]; save(); applyRate(); toast(T('गति ', 'Speed ') + RATE() + '×'); };
 /* outside the website (e.g. a claude.ai artifact) YouTube cannot be embedded: open YouTube's own player page, which can stop at the end of what was asked */
 function ytWatchURL(){
@@ -744,10 +737,10 @@ window.addEventListener('message', e => {
 });
 /* what is playing, in the app's own words: the reading (kāṇḍa or plan day) and the reciter — never the recording's title */
 function playingName(){ return (R.org === 'k' ? KNAME(R.n) : TT(PLAN[R.org].name) + ' · ' + VN(R.n)) + ' · ' + TT(SRC.au.meta.title); }   // the speed has its own button in the bar
-// Fine-tuning preview (owner, 2026-10-19): after − / + on a start, the first 2 s of the verse play from the new start; on an
+// Fine-tuning preview: after − / + on a start, the first 2 s of the verse play from the new start; on an
 // end, the last 2 s up to the new end. Then the player pauses, so the next tap can follow at once.
 let snipT = null;
-// the preview plays only when nothing is playing live (owner, 2026-10-20): while the recitation runs on, − / + just move the
+// the preview plays only when nothing is playing live: while the recitation runs on, − / + just move the
 // time, so marking can go on from what is heard; a preview that is itself playing is replaced by the next one
 function livePlay(){ return PL.on && playing() && PL.snip == null; }
 function snippet(i, k){
@@ -777,7 +770,7 @@ function playFrom(i, end){
   setCur(i); $('#pTrack').textContent = playingName(); syncPlayer();
 }
 // Right after a seek the player still reports its old time (or a moment before the asked-for one), which would light the
-// previous verse for a beat (owner, 2026-10-19). Until it reports a time at the asked-for start (at most 4 s), use that start.
+// previous verse for a beat. Until it reports a time at the asked-for start (at most 4 s), use that start.
 // seekFrom: where the player was when the seek was asked — a report of that time afterwards is the old one, not the new
 function seekGuard(t){ PL.seekFrom = PL.seekT == null ? ytInfo.t : PL.seekFrom; PL.seekT = t; PL.seekAt = performance.now(); }
 function playTime(){
@@ -802,7 +795,7 @@ function tick(anchor){
   const time = playTime(); const i = curAt(time);
   const e = endOf(i);
   if (PL.end != null && (i > PL.end || (i === PL.end && e != null && time >= e))){
-    // the verse or stretch asked for has ended: stop, and offer to go on from the next verse (owner, 2026-10-19)
+    // the verse or stretch asked for has ended: stop, and offer to go on from the next verse
     const last = PL.end, whole = PL.whole, msg = whole ? T('पाठ पूर्ण', 'Recitation complete') : PL.endMsg || T('पूर्ण', 'Finished');
     stopAudio(); const nx = whole ? null : firstAu(last + 1, Math.min(IT.length - 1, last + 80));
     if (TOUR && TOUR.waiting) return;   // the tour's verse has been heard: the tour finishes (no "Play on")
@@ -819,8 +812,8 @@ function tick(anchor){
     if (c >= 0 && k > c){ while (k > c && toCheck(a[k][0])) k--; show = a[k][0]; }
     else if (c > 0 && k === c - 1 && endOf(a[k][0]) != null && time >= endOf(a[k][0])) show = anchor;   // moved on by an end: stay
   }
-  // a verse whose set end has passed hands the light to the next verse at once, in both modes (owner, 2026-10-20) — even when
-  // that verse starts a little later; the same in Settings › Audio timing on or off
+  // a verse whose set end has passed hands the light to the next verse at once, in both modes — even when
+  // that verse starts a little later; the same in ☰ › More › Audio timing on or off
   const m = at(show), e2 = endOf(show);
   if (e2 != null && time >= e2 && m >= 0 && m + 1 < a.length) show = a[m + 1][0];
   setCur(show);
@@ -830,7 +823,7 @@ setInterval(tick, 300);
 /* place the verse being recited in the space between the top bar and the player:
    centred if it fits, otherwise with its first line just below the top bar (never hidden under it) */
 // The verse being recited is kept at the top, just below the bar, and the text moves up under it, so the next verses are
-// always in view — even when the recording runs a little ahead of the timings (owner, 2026-10-20). A verse-type heading
+// always in view — even when the recording runs a little ahead of the timings. A verse-type heading
 // (॥ चौपाई ॥) right above it stays with it.
 function keepInView(el){
   const top = $('#reader .bar').getBoundingClientRect().bottom, prev = el.previousElementSibling;
@@ -846,7 +839,7 @@ function setCur(i){
   else if (!document.getElementById('v' + i)) renderAround(i, false);
   const el = document.getElementById('v' + i);
   // while timings are being marked the page is not moved under your finger: it only follows when the lit verse leaves the screen
-  // the player's timing wins (owner, 2026-10-20): the page follows the light every time a new verse starts, whatever was
+  // the player's timing wins: the page follows the light every time a new verse starts, whatever was
   // touched or scrolled meanwhile — no pause after a touch
   if (el){ el.classList.add('now'); if (!(S.timing.on && inView(el))) keepInView(el); }
 }
@@ -876,17 +869,17 @@ function setTime(i, k, sec){
   const p = pid && ownAt(pid), n = nid && ownAt(nid);
   if (k === 2 && v[2] != null && v[2] <= v[1]){
     // "Ends now" on a verse whose start is only an estimate that lies after now: the estimate was late. The light came to
-    // this verse when the verse before it ended, so that end is its start (owner, 2026-10-19); otherwise ask for the start.
+    // this verse when the verse before it ended, so that end is its start; otherwise ask for the start.
     const pe = j > 0 ? endOf(a[j - 1][0]) : null, mine = !!ownAt(id);   // a start set by ear (here or sent) is never moved by this rule
     if (!mine && pe != null && pe < v[2]) v[1] = pe;
     else { toast(mine ? T('अंत शुरुआतके बाद होना चाहिये', 'The end must come after the start') : T('पहले “अभी शुरू” से इसकी शुरुआत लगाएँ', 'Mark its start first (Starts now)')); return false; }
   }
   if (k === 1 && v[2] != null && v[2] <= v[1]) v[2] = null;
-  // Order is kept between the verses set by ear (owner): a start cannot go before the previous set start, or at or past the
+  // Order is kept between the verses set by ear: a start cannot go before the previous set start, or at or past the
   // next set start — say which verse is in the way, so it can be moved first
   if (k === 1 && p && v[1] <= p[1] + 0.1){ toast(T('पिछला पद इसके बाद शुरू होता है (', 'The verse before starts later than that (') + fmtT(p[1]) + T(') — पहले उसकी शुरुआत आगे-पीछे करें', ') — move its start first')); return false; }
   if (k === 1 && n && v[1] >= n[1] - 0.1){ toast(T('अगला पद इससे पहले शुरू होता है (', 'The next verse starts before that (') + fmtT(n[1]) + T(') — पहले उसकी शुरुआत आगे करें', ') — move its start first')); return false; }
-  // Neighbours move together (owner, 2026-10-19): an end moved past the next set start carries that start with it; a start
+  // Neighbours move together: an end moved past the next set start carries that start with it; a start
   // moved before the previous verse's set end pulls that end back. Nothing is silently cut; refused only when a neighbour
   // would be squeezed to nothing (its start reaching its end, or the set start after it).
   const link = [];
@@ -897,7 +890,7 @@ function setTime(i, k, sec){
     link.push([nid, [n[0], v[2], n[2] == null ? null : n[2]]]);
   }
   if (k === 1 && p && p[2] != null && v[1] < p[2] - 0.001) link.push([pid, [p[0], p[1], v[1]]]);
-  // "Ends now" also starts the next verse (owner, 2026-10-20): an end on this verse gives the verse after it, when its start
+  // "Ends now" also starts the next verse: an end on this verse gives the verse after it, when its start
   // is not set by ear, that end as its start — it is yours from then on, and while the two are equal the start follows the
   // end (− / + on the end move both), so no second tap is needed at the very moment the next verse begins.
   const nx = jj >= 0 ? rows[jj + 1] : null, nxid = nx ? IT[nx[0]].id : null;
@@ -918,7 +911,6 @@ function setTime(i, k, sec){
 function refreshMarks(was, i){ Object.keys(was).forEach(q => { q = +q; if (q === i || was[q] !== JSON.stringify(SRC.au.at[IT[q].id]) + toCheck(q) + !!myStarts()[IT[q].id]) rerenderItem(q); }); }
 // (a verse index the work doesn't have is skipped: the reader may still hold a longer work's verses)
 function marksNow(){ const was = {}; $$('#rBody .verse').forEach(el => { const q = +el.dataset.i; if (!IT[q]) return; was[q] = JSON.stringify(SRC.au.at[IT[q].id]) + toCheck(q) + !!myStarts()[IT[q].id]; }); return was; }
-function setStart(i, sec){ setTime(i, 1, sec); }
 function clearStart(i){ const fx = S.timing.fix[tkey()] || {}, was = marksNow(); delete fx[IT[i].id]; unfrom(IT[i].id); if (!Object.keys(fx).length) delete S.timing.fix[tkey()]; save(); buildAudio(); refreshMarks(was, i); if (PL.on){ PL.cur = -1; tick(i); } }
 function fmtT(sec){ const m = Math.floor(sec / 60), s = sec - m * 60; return m + ':' + (s < 10 ? '0' : '') + s.toFixed(1); }
 function applyTiming(){ document.body.classList.toggle('timing', !!S.timing.on); syncStep(); }
@@ -926,7 +918,7 @@ $('#pPrev').onclick = () => stepVerse(-1);
 $('#pNext').onclick = () => stepVerse(1);
 function toPlaying(){ if (PL.cur < 0) return; if (!$('#reader').classList.contains('on')) openReader(R.org, PL.cur); const c = PL.cur; PL.cur = -1; setCur(c); }
 $('#pInfo').onclick = toPlaying;
-// “↓ now playing” (owner, 2026-10-20): while the lit verse is off the screen, a pill above the player names it (as the footer
+// “↓ now playing”: while the lit verse is off the screen, a pill above the player names it (as the footer
 // would); a tap brings it back into view. It goes as soon as the verse is on the screen again, or at the next verse's start.
 $('#pJump').onclick = toPlaying;
 function jumpPill(){
@@ -935,7 +927,7 @@ function jumpPill(){
   const seen = r && r.bottom > top + 24 && r.top < pl.top - 24;   // some of the verse is on the screen
   if (seen){ b.hidden = true; return; }
   const i = PL.cur, where = R.org === 'k' ? (PARTS.length > 1 ? KNAME(IT[i].p) : '') : VN(R.n);
-  const h = '<b><span class="arr">' + (i >= topVisibleItem() ? '↓' : '↑') + '</span>' + T('', 'Go to ') + esc(posLabel(i)) + T(' पर जाएँ', '') + '</b>' + (where ? '<small>' + esc(where) + '</small>' : '');   // "Go to <verse>", a big arrow pointing the way (owner, 2026-10-25)
+  const h = '<b><span class="arr">' + (i >= topVisibleItem() ? '↓' : '↑') + '</span>' + T('', 'Go to ') + esc(posLabel(i)) + T(' पर जाएँ', '') + '</b>' + (where ? '<small>' + esc(where) + '</small>' : '');   // "Go to <verse>", a big arrow pointing the way
   if (b.innerHTML !== h) b.innerHTML = h; b.style.bottom = (innerHeight - pl.top + 10) + 'px'; b.hidden = false;
 }
 setInterval(jumpPill, 300);
@@ -962,10 +954,10 @@ function renderLibrary(){
   cr.scrollLeft = 1e5;   // if it still does not fit, the end (the shelf you are on) shows
   $('#libTitle').textContent = libPath.length ? TT(node.title) : LB.lib();
   // two levels per screen: a shelf inside this one is shown as a heading with its own items under it
-  // a shelf shows the works on it by name (owner, 2026-10-19): tap a work to open it straight away, or the shelf's name to browse it
+  // a shelf shows the works on it by name: tap a work to open it straight away, or the shelf's name to browse it
   const worksIn = c => { const r = []; (function w(n){ (n.children || []).forEach(x => x.work ? r.push(x) : w(x)); })(c); return r; };
   const row = (c, key) => {
-    // a shelf shows two works — the ones used most recently on this phone first (S.w[id].at: last opened, read or played) — then “+N” for the rest (owner, 2026-10-23)
+    // a shelf shows two works — the ones used most recently on this phone first (S.w[id].at: last opened, read or played) — then “+N” for the rest
     const at = w => (S.w[w.work] || {}).at || 0, ws = c.work ? [] : worksIn(c).map((w, k) => [w, k]).sort((x, y) => at(y[0]) - at(x[0]) || x[1] - y[1]).map(x => x[0]), MAX = 2;
     return '<li><button class="it" data-node="' + esc(key) + '"><span class="grow"><span class="ti">' + esc(TT(c.title)) + '</span>' + (ws.length ? '' : '<br><span class="ds">' + esc(TT(c.desc || c.by) || '') + '</span>') + '</span><span class="chev">›</span></button>' +
       (ws.length ? '<div class="lworks">' + ws.slice(0, MAX).map(w => '<button data-open-work="' + esc(w.work) + '">' + esc(TT(w.title)) + '</button>').join('') + (ws.length > MAX ? '<button class="more" data-node="' + esc(key) + '">+' + DEV(ws.length - MAX) + '</button>' : '') + '</div>' : '') + '</li>';
@@ -1007,16 +999,16 @@ $('#hSearch').onclick = () => openSearch('text');
 $('#rSearch').onclick = () => openSearch('text');
 $('#libMenu').onclick = mainMenu;
 function workPath(id){ let r = null; (function walk(n){ (n || []).forEach(c => { if (c.work === id) r = c.path; else walk(c.children); }); })(LIB); return r || id; }
-// the salutation on the opening screen (owner, 2026-10-19): the work's own (library/index.json "salute": जय श्रीराम for the
+// the salutation on the opening screen: the work's own (library/index.json "salute": जय श्रीराम for the
 // Mānas and Sundarakāṇḍa, ॐ श्री साईं राम for the Dhūpa Āratī, ੴ for the Sukhmani Sahib …), otherwise ॐ श्री परमात्मने नमः.
 // The phone remembers each work's, so the screen shown before anything has loaded already greets the work being opened.
 const SALUTE = '॥ ॐ श्री परमात्मने नमः ॥';
 function saluteOf(id){ let r = null; (function walk(n){ (n || []).forEach(c => { if (c.work === id) r = c.salute; else walk(c.children); }); })(LIB); return r || SALUTE; }
 function showSalute(text){ $('#loading').textContent = text; }
-// the greeting stays at least 1.5 s so it can be read (owner, 2026-10-19); the time spent loading counts towards it
+// the greeting stays at least 1.5 s so it can be read; the time spent loading counts towards it
 const SALUTE_MS = typeof window.__SALUTE_MS === 'number' ? window.__SALUTE_MS : 1500;
 // The greeting is only for stepping into a work from the library (or the tour): never when the app starts, on a refresh
-// or on Back (owner, 2026-10-19). Then the screen just waits, blank, for as long as loading takes.
+// or on Back. Then the screen just waits, blank, for as long as loading takes.
 let saluteAt = 0, greeted = false;
 async function hideSalute(){ const left = greeted ? SALUTE_MS - (performance.now() - saluteAt) : 0; if (left > 0) await new Promise(r => setTimeout(r, left)); $('#loading').hidden = true; greeted = false; }
 async function openWork(id, noShow){
@@ -1044,7 +1036,7 @@ addEventListener('resize', () => { if ($('#hTitle') && $('#hTitle').offsetParent
 const VEDIC = /[\u0951\u0952\u1CD0-\u1CFF\uA8E0-\uA8FF]/;   // verses with svara marks are set in the Vedic font
 function renderHome(){
   if (!W) return;
-  $('#hTitle').textContent = TT(W.title); fitTitle(); $('#hSub').textContent = [TT(W.by), TT(W.from)].filter(Boolean).join(' · ');   // the author and, where there is one, the parent text — never the publisher or source (owner, 2026-10-19)
+  $('#hTitle').textContent = TT(W.title); fitTitle(); $('#hSub').textContent = [TT(W.by), TT(W.from)].filter(Boolean).join(' · ');   // the author and, where there is one, the parent text — never the publisher or source
   // ▶ the whole work, start to end, across every part and recording
   const pa = $('#hPlayAll'), fa = firstAu(0, IT.length - 1); pa.hidden = fa == null; pa.onclick = () => playRange('k', 0, IT.length - 1);
   fixLast(); const L = WS().last;
@@ -1102,7 +1094,7 @@ function runSearch(){
     if (!latin && scopes.has('v') && x.v.includes(nq)) res.push([i, LB.verses(), IT[i].v.join(' । '), false]);
     else if (!latin && scopes.has('h') && x.h.includes(nq)) res.push([i, LB.h(), SRC.hi.m[IT[i].id][0], false]);
     else if (!latin && MK().some(k => k !== 'hi' && k !== 'en' && scopes.has(k) && x[k] && x[k].includes(nq))){ const k = MK().find(k => k !== 'hi' && k !== 'en' && scopes.has(k) && x[k] && x[k].includes(nq)); res.push([i, LBM(k), SRC[k].m[IT[i].id][0], false]); }
-    else if (latin && scopes.has('v') && fqs.some(f => x.t.includes(' ' + f))) res.push([i, LB.verses(), IT[i].v.join(' । '), false]);   // found by its Roman letters, shown as the verse itself (owner, 2026-10-25)
+    else if (latin && scopes.has('v') && fqs.some(f => x.t.includes(' ' + f))) res.push([i, LB.verses(), IT[i].v.join(' । '), false]);   // found by its Roman letters, shown as the verse itself
     else if (latin && scopes.has('e') && x.e.includes(nq)) res.push([i, LB.e(), SRC.en.m[IT[i].id][0], true]);
   }
   if (scopes.has('n')) for (const p of SHOWN()) for (const k in p.notes){ if (!k.startsWith(W.id + ':')) continue; const i = ID[k.slice(W.id.length + 1)]; if (i == null) continue; p.notes[k].forEach(n => { if ((latin ? normL(n.t) : normD(n.t)).includes(nq)) res.push([i, T('टिप्पणी', 'Note'), n.t, latin]); }); }
@@ -1115,10 +1107,10 @@ function renderBookmarks(){
   const bms = [], notes = [], pre = W.id + ':';
   for (const p of SHOWN()){ for (const k in p.bm) if (k.startsWith(pre) && ID[k.slice(pre.length)] != null) bms.push([ID[k.slice(pre.length)], p]); for (const k in p.notes) if (k.startsWith(pre) && ID[k.slice(pre.length)] != null) p.notes[k].forEach(n => notes.push([ID[k.slice(pre.length)], p, n])); }
   bms.sort((a, b) => a[0] - b[0]); notes.sort((a, b) => a[0] - b[0]);
-  // each list folds under its heading (owner, 2026-10-22): open by default, and a fold is remembered
+  // each list folds under its heading: open by default, and a fold is remembered
   const fold = S.settings.bmFold || {}, sec = (key, title, body) => '<details class="bmsec" data-fold="' + key + '"' + (fold[key] ? '' : ' open') + '><summary><h2>' + title + '</h2></summary>' + body + '</details>';
   let h = '', bmh = '';
-  // each bookmark has its own ✕ to remove it (owner, 2026-10-20)
+  // each bookmark has its own ✕ to remove it
   bmh += bms.length ? bms.map(b => '<div class="bmrow"><button class="res" data-i="' + b[0] + '"><div class="where">' + esc(itemLabel(b[0])) + '</div><div class="snip" style="font-weight:700">' + esc(IT[b[0]].v[0]) + '</div></button><button class="bmdel" data-del="' + b[0] + '" aria-label="' + T('बुकमार्क हटाएँ', 'Remove bookmark') + '"><svg><use href="#i-x"/></svg></button></div>').join('') : '<p class="muted">' + T('किसी भी पदके पास बुकमार्क चिह्न दबाएँ।', 'Tap the bookmark sign beside any verse.') + '</p>';
   h += sec('bm', T('बुकमार्क (', 'Bookmarks (') + DEV(bms.length) + ')', bmh);
   h += sec('notes', T('टिप्पणियाँ (', 'Notes (') + DEV(notes.length) + ')', notes.length ? notes.map(n => '<button class="res" data-i="' + n[0] + '"><div class="where">' + esc(itemLabel(n[0])) + '</div><div class="snip">' + esc(n[2].t.slice(0, 200)) + '</div></button>').join('') : '<p class="muted">' + T('किसी पदके ⋮ मेनूसे अपनी टिप्पणी लिखें।', 'Use the ⋮ menu of any verse to write a note.') + '</p>');
@@ -1135,7 +1127,7 @@ function renderBookmarks(){
 // "Meanings in the bar": which two meaning switches the header capsule shows, for a work with more than two meaning languages
 function pairPick(){ if (!W || workKinds().filter(k => k !== 'hi' && k !== 'en').length === 0) return ''; const cur = capKinds().join(','), nm = k => (LANGS[k].meaning || {}).short || k;
   return '<div class="field"><label>' + T('बारमें अर्थ', 'Meanings in the bar') + '</label><select id="sPair">' + pairOptions().map(p => '<option value="' + p.join(',') + '"' + (p.join(',') === cur ? ' selected' : '') + '>' + p.map(nm).join(' · ') + '</option>').join('') + '</select></div>'; }
-function renderSettings(){   // the "More" page (owner, 2026-10-22): the rare things only — sources, audio timing, my file, privacy
+function renderSettings(){   // the "More" page: the rare things only — transliteration, sources, audio timing, privacy
   const cur = S.src[W ? W.id : ''] || {};
   const pick = (kind, label, off) => { const list = W ? srcList(kind) : []; if (!list.length) return ''; const sel = cur[kind] || list[0].id; return '<div class="field"><label>' + label + '</label><select data-src="' + kind + '">' + list.map(s => '<option value="' + s.id + '"' + (sel === s.id ? ' selected' : '') + '>' + esc(TT(s.title)) + (s.draft ? T(' (जाँच बाकी)', ' (to be checked)') : '') + '</option>').join('') + (off ? '<option value="off"' + (sel === 'off' ? ' selected' : '') + '>' + T('बंद', 'Off') + '</option>' : '') + '</select></div>'; };
   let h = '<h2>' + T('पढ़ना', 'Reading') + '</h2>' + sw('str', LB.tr(), LB.trSub(), S.settings.tr) +
@@ -1149,7 +1141,7 @@ function renderSettings(){   // the "More" page (owner, 2026-10-22): the rare th
   if ($('#sPair')) $('#sPair').onchange = e => { S.settings.pair = e.target.value; save(); syncLayers(); toast(T('बार बदला', 'Bar changed')); };
   $$('[data-src]').forEach(s => s.onchange = async () => { const c = S.src[W.id] = S.src[W.id] || {}; c[s.dataset.src] = s.value; save(); if (s.dataset.src === 'au') stopAudio(); await loadSources(); IDX = null; toast(T('स्रोत बदला', 'Source changed')); });
 }
-/* timing review: Settings › Audio timing. While it is on, a ⏱ row appears in the player and each verse's ⋮ menu shows its start;
+/* timing review: ☰ › More › Audio timing. While it is on, each verse shows its times and “Starts now” / “Ends now” (markBar), and the player bar the ± step;
    recordings still being checked (drafts) can be played. Starts set by ear go to the library through a GitHub issue, which
    the workflow .github/workflows/timing.yml applies (tools/audio/apply_owner_timing.py). */
 function pendingStarts(){ if (!SRC.au) return {}; const fx = myStarts(), sent = S.timing.sent[tkey()] || {}, out = {}; for (const id in fx) if (ID[id] != null && !fromOf(id) && JSON.stringify(sent[id]) !== JSON.stringify(fx[id])) out[id] = fx[id]; return out; }
@@ -1289,10 +1281,10 @@ function renderVidhi(){
 }
 $('#vidBody').addEventListener('click', ev => { const w = ev.target.closest('.w'); if (w){ w.classList.add('sel'); wordSheet(w.dataset.w || w.textContent, vidTab === 'v' ? W.vg : vidTab === 'visarjan' ? W.vidhi.visarjan.g : null, W.lang); } });
 
-/* ---------------- first-run tour: done, not read (owner, 2026-10-19) ----------------
+/* ---------------- first-run tour: done, not read ----------------
    A welcome card, then the reader is taken into the Sundarakāṇḍa and asked to do each thing for real — open the text, tap a
    word, close its drawer, switch a meaning on, play one verse — with that spot lit and the rest dimmed; each step moves on
-   when it has been done. Shown once; ☰ › “Take the tour” shows it again (owner, 2026-10-20). closeTour() ends it at any point. */
+   when it has been done. Shown once; ☰ › “Take the tour” shows it again. closeTour() ends it at any point. */
 let TOUR = null;   // {k: step, t0, base}
 function tourWork(){ const leafs = []; (function walk(n){ (n || []).forEach(c => c.work ? leafs.push(c.work) : walk(c.children)); })(LIB); return leafs.includes('sundarkand') ? 'sundarkand' : leafs[0]; }
 function inView(el){ const r = el.getBoundingClientRect(); return r.width && r.top > 70 && r.bottom < innerHeight - 90; }
@@ -1302,19 +1294,19 @@ function tourSteps(){
     {t: () => { const rows = $$('#orgList [data-open]'), k = PARTS.findIndex(p => /^Sundara/.test(p.en || '')); return (W && W.id === 'sundarkand' && k >= 0 && rows[k]) || rows[0]; }, allow: '#orgList .it', p: T('पढ़ना शुरू करनेके लिये यहाँ छुएँ।', 'Tap here to start reading.'), done: () => CURVIEW === 'reader' && !!$('#rBody .verse')},
     {t: () => firstVisible('#rBody .verse .vtext .w'), allow: '#rBody .vtext .w', p: T('किसी भी शब्दको छुएँ — उसका अर्थ दिखेगा।', 'Tap any word to see its meaning.'), done: () => $('#sheet').classList.contains('on')},
     {t: () => $('#sheet'), allow: '#sheet', p: T('इस पट्टीको नीचे खींचकर बंद करें।', 'Drag the drawer down to close it.'), done: () => !$('#sheet').classList.contains('on'), top: true},
-    {t: () => $('#reader .szp'), allow: '#reader .szp', p: T('A+ छूकर अक्षर बड़े करें।', 'Tap A+ to make the letters larger.'), enter: () => { TOUR.base = S.settings.size; }, done: () => S.settings.size > TOUR.base || (TOUR.tap && TOUR.base >= 34)},   // already at the largest: the tap is enough (owner, 2026-10-20)
-    // A− is a step of its own: after A+, people reach for it (owner, 2026-10-20)
+    {t: () => $('#reader .szp'), allow: '#reader .szp', p: T('A+ छूकर अक्षर बड़े करें।', 'Tap A+ to make the letters larger.'), enter: () => { TOUR.base = S.settings.size; }, done: () => S.settings.size > TOUR.base || (TOUR.tap && TOUR.base >= 34)},   // already at the largest: the tap is enough
+    // A− is a step of its own: after A+, people reach for it
     {t: () => $('#reader .szm'), allow: '#reader .szm', p: T('A− छूकर अक्षर छोटे करें।', 'Tap A− to make the letters smaller.'), enter: () => { TOUR.base = S.settings.size; }, done: () => S.settings.size < TOUR.base || (TOUR.tap && TOUR.base <= 16)},   // already at the smallest: the tap is enough
     {t: () => { const [a, b] = capKinds().map(LK); return $('#rLayers [data-l="' + (layerOn(a) ? b : a) + '"]'); }, allow: '#rLayers [data-l="h"], #rLayers [data-l="e"], #rLayers [data-l="pa"], #rLayers [data-l="w"]', p: () => S.settings.layers.h ? T('“En” छूकर हर पदके नीचे अंग्रेज़ी अर्थ दिखाएँ या छिपाएँ। “शब्द” से शब्दार्थ।', 'Tap “En” to show or hide the English meaning under every verse. “शब्द” gives word-by-word meanings.') : T('“हिं” छूकर हर पदके नीचे हिंदी अर्थ दिखाएँ। “En” अंग्रेज़ी, “शब्द” शब्दार्थ।', 'Tap “हिं” to show the Hindi meaning under every verse. “En” is English, “शब्द” word by word.'),
      enter: () => { TOUR.base = JSON.stringify(S.settings.layers); }, done: () => JSON.stringify(S.settings.layers) !== TOUR.base},
     {t: () => $('#rLayers [data-l="r"]'), allow: '#rLayers [data-l="r"]', p: T('पुस्तक छूकर पाठ मोड चालू करें — केवल मूल पाठ, बड़े अक्षरोंमें। फिर छूनेपर अर्थ लौट आते हैं।', 'Tap the book for recitation mode — the verses alone, in larger type. Tap it again to bring the meanings back.'), done: () => !!S.settings.recite},
     {t: () => firstVisible('#rBody .vbm'), allow: '#rBody .vbm', p: T('बुकमार्क चिह्न छूकर यह पद सहेजें — ☰ › बुकमार्कमें मिलेगा।', 'Tap the bookmark sign to save this verse — find it in ☰ › Bookmarks.'),
-     enter: () => { TOUR.bmAdded = false; }, done: () => !!TOUR.bmAdded},   // any bookmark made in this step — even one taken off and put back (owner, 2026-10-20)
+     enter: () => { TOUR.bmAdded = false; }, done: () => !!TOUR.bmAdded},   // any bookmark made in this step — even one taken off and put back
     {t: () => firstVisible('#rBody .vplay'), allow: '#rBody .vplay', p: T('▶ छूकर केवल यह पद सुनें — जो गाया जा रहा है वह चमकेगा।', 'Tap ▶ to play just this verse — it lights up as it is sung.'), done: () => PL.on},
   ];
 }
 // while the tour runs, only what the current step asks for can be tapped (a ▶ on the work's page would start the audio
-// and lose the tour — owner, 2026-10-19); the tour's own bubble always works
+// and lose the tour); the tour's own bubble always works
 document.addEventListener('click', e => {
   if (!TOUR || TOUR.k < 0) return; const x = tourSteps()[TOUR.k]; if (!x) return;
   if (e.target.closest('#cbub, #tour')) return;
@@ -1337,18 +1329,18 @@ function tourStep(k){
   $('#coach').hidden = false; $('#cbText').textContent = typeof x.p === 'function' ? x.p() : x.p; $('#cbStep').textContent = DEV(k + 1) + ' / ' + DEV(st.length);
   $('#cbBack').hidden = k === 0;
 }
-// ‹ Back: the step before (owner, 2026-10-20). A step whose action is already in effect (the drawer already closed, recitation
+// ‹ Back: the step before. A step whose action is already in effect (the drawer already closed, recitation
 // mode already on) would move on at once, so Back goes to the step before that one; the first step needs the work's page.
 function tourBack(){
   if (!TOUR || TOUR.k <= 0) return; const st = tourSteps(); let k = TOUR.k - 1;
   if (!$('#sheet').classList.contains('on') && k === 2) k = 1;   // "close the drawer" needs an open drawer: back to "tap a word"
-  if (k === 1 && $('#sheet').classList.contains('on')) closeSheet();   // "tap a word" needs a closed drawer, or it would count as done at once (owner, 2026-10-20)
+  if (k === 1 && $('#sheet').classList.contains('on')) closeSheet();   // "tap a word" needs a closed drawer, or it would count as done at once
   if (k === 6 && S.settings.recite) toggleRecite();             // back to recitation mode: turn it off so it can be tried again
   if (k === 0 && CURVIEW !== 'home') show('home');
   TOUR.k = -1; $('#cspot').style.opacity = 0; setTimeout(() => tourStep(k), 250);
 }
-// After ▶ the tour lets the verse play for 5 seconds, then takes the reader to the library with a parting message
-// (owner, 2026-10-20). Closing the player sooner ends it the same way.
+// After ▶ the tour lets the verse play for 5 seconds, then takes the reader to the library with a parting message.
+// Closing the player sooner ends it the same way.
 function tourEnd(){ if (!TOUR) return; TOUR.k = -1; TOUR.waiting = true; TOUR.until = Date.now() + 5000; $('#coach').hidden = true; if (!PL.on) tourFinish(); }
 function tourFinish(){
   if (S.settings.recite) toggleRecite();   // the meanings come back after the tour
@@ -1387,7 +1379,7 @@ function pruneLib(nodes, shelves){
   applyTheme(); applyLang(); applyRecite(); syncLayers(); applyTiming();
   showSalute('');   // starting or refreshing: no greeting (it belongs to opening a work from the library)
   try { LIB = await getJSON('index'); } catch (e) { $('#loading').textContent = T('डेटा नहीं खुल सका। इंटरनेट जाँचें।', 'Could not load the data. Check the internet connection.'); return; }
-  // one app per tradition (owner, 2026-10-19): ?app=<id> shows only the shelves library/apps.json lists for that app
+  // one app per tradition: ?app=<id> shows only the shelves library/apps.json lists for that app
   // (the Hindu app also carries the Sukhmani Sahib). The address keeps it while you move around; changing the list
   // needs no app update. Without ?app the website shows the whole library.
   const appId = new URLSearchParams(location.search).get('app');
@@ -1403,6 +1395,6 @@ function pruneLib(nodes, shelves){
   else { history.replaceState(snap('library'), ''); renderLibrary(); await hideSalute(); }
   cloudInit();
   if (!S.settings.tour) startTour();
-  // offline reading (owner, 2026-10-21): the service worker keeps the app and every library file it has fetched (sw.js, build.py)
+  // offline reading: the service worker keeps the app and every library file it has fetched (sw.js, build.py)
   if ('serviceWorker' in navigator && (location.protocol === 'https:' || window.__SW_TEST) && !BUNDLE) navigator.serviceWorker.register('sw.js').catch(() => {});
 })();

@@ -1,7 +1,7 @@
 # Reconciliation: ॐ जय जगदीश हरे
 
 ## Source
-The text the owner pasted in the conversation on 23 October 2026 (no page named). It is the only witness.
+The text the owner pasted (no page named). It is the only witness.
 
 The rule: keep the source; correct it only where it is clearly wrong. House style: ।/।। for the dandas, stanzas numbered (।।१।।), and the refrain (टेक, the first stanza) shown once although it is sung after each stanza.
 

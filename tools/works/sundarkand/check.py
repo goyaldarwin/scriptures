@@ -2,7 +2,8 @@
 (from kishkindha.29.do29) and the whole Sundara-kāṇḍa. Also that every Mānas verse in part 0 (the maṅgalācaraṇa, e.g.
 bal.17.so17 "प्रनवउँ पवनकुमार") is the Mānas's own apart from its part and section, with the same Gita Press meanings.
 
-Compares every item (all fields except the part index `p`), the order of the items, the topics, the Gita Press
+Compares every item (all fields except the part index `p`), the order of the items, the topic places (and that
+their headings are ours, from tools/works/ramcharitmanas/meanings/topics.json), the Gita Press
 Hindi and English meanings and our own (hi-scriptures, en-scriptures: the same entry for every Mānas item, and the
 same source id, language, order and title).
 Usage: python3 tools/works/sundarkand/check.py        (exits non-zero on any difference)
@@ -27,7 +28,7 @@ strip2 = lambda x: {k: v for k, v in x.items() if k not in ('p', 's')}
 bad += [f"maṅgalācaraṇa verse {x['id']} differs from the Mānas" for x in pulled if strip2(x) != strip2(MI[x['id']])]
 ids = {x['id'] for x in mi}
 mt = {u['id'] for u in M['topics']}   # the lead-in's opening topic is the Mānas topic it starts inside, under the lead-in's first id
-# topics: at the same places as the Mānas's (plus the lead-in's opening), with our own wording (owner, 2026-10-23)
+# topics: at the same places as the Mānas's (plus the lead-in's opening), with our own wording (owner approved)
 if [t['id'] for t in M['topics'] if t['id'] in ids] != [t['id'] for t in S['topics'] if t['id'] in ids and t['id'] in mt]: bad.append('topic places differ from the Mānas')
 OT = json.load(open(os.path.join(REPO, 'tools/works/ramcharitmanas/meanings/topics.json'), encoding='utf-8'))
 bad += [f"topic {t['id']} is not our heading" for t in S['topics'] if t['id'] in ids and (t['hi'], t['en']) != (OT.get(t['id'], {}).get('hi'), OT.get(t['id'], {}).get('en'))]
@@ -42,7 +43,7 @@ for sid in ('hi-scriptures', 'en-scriptures'):   # our own: the Mānas's entries
     want = ids | {x['id'] for x in pulled}
     if {i: a['m'][i] for i in want if i in a['m']} != {i: v for i, v in b['m'].items() if i in want}: bad.append(f'{sid}: meanings differ')
     if {i: v for i, v in a.get('p', {}).items() if i in want} != {i: v for i, v in b.get('p', {}).items() if i in want}: bad.append(f'{sid}: line-by-line pieces differ')
-# our own meanings are this work's default (owner, 2026-10-19): a lower order than Gita Press's
+# our own meanings are this work's default (the owner's choice): a lower order than Gita Press's
 o = {s: L(f'{SP}/meanings/{s}.json').get('order') for s in ('hi-gitapress', 'en-gitapress', 'hi-scriptures', 'en-scriptures')}
 if not (o['hi-scriptures'] < o['hi-gitapress'] and o['en-scriptures'] < o['en-gitapress']): bad.append(f'our meanings must be the default here (lower order): {o}')
 print(f'{len(mi)} items (+ {len(pulled)} in the maṅgalācaraṇa), {sum(1 for t in S["topics"] if t["id"] in ids)} topics, 4 meaning sources compared:', 'identical' if not bad else 'DIFFERENT')

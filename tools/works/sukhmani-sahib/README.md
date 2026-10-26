@@ -18,13 +18,17 @@ is printed as Gurmukhi (in a legacy font encoding), transliteration and English 
 - `check.py` — checks the conversion of every line against the PDF's own transliteration; optionally against two
   outside witnesses (see its header). `export.py` runs it first and stops if it fails.
 - `structure.py` — printed lines → the 218 items (below), with structural checks.
-- `meanings/hi.json` — the Hindi meaning of every item, written for this library.
+- `meanings/hi.json`, `en.json`, `pa.json` — our Hindi, English and Punjabi meanings of every item, written for this
+  library from the Gurmukhi (`tools/meanings/style.md` §12–13).
 - `glossary/pa.json` — meanings of all 2,536 Gurmukhi words of the text, written for this library.
-- `reconciliation.md` — how the text was settled: conversion decisions, check results, the one English fix.
-- `export.py` — writes `work.json`, `meanings/en-sant-singh-khalsa.json` (the PDF's English, order 1),
-  `meanings/hi-scriptures.json` (order 1), and adds new words to `library/glossary/pa.json`. Then run
+- `reconciliation.md` — how the text is settled: conversion decisions, check results, the one English fix.
+- `export.py` — writes `work.json`, `meanings/hi-scriptures.json`, `en-scriptures.json` and `pa-scriptures.json`
+  (ours, order 1; the English is checked to share no run of 10+ words with the PDF's), `meanings/en-sant-singh-khalsa.json`
+  (the PDF's English, order 2, still selectable), and adds new words to `library/glossary/pa.json`. Then run
   `python3 tools/site/build.py`.
-- `audio/parminder-singh/` — the recording (YouTube `KJ8D_ObQNzQ`); not timed yet.
+- `audio/parminder-singh/` — the recording (YouTube `KJ8D_ObQNzQ`), a **draft** (`source.json` → `draft`): kīrtan with
+  long instrumental passages, so the automatic starts are not reliable. The owner marks the starts by ear in the app
+  (`owner.json`, written by `tools/audio/apply_owner_timing.py`).
 
 ## Structure
 
