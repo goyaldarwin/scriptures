@@ -467,8 +467,11 @@ async def main():
             document.querySelector('#sheetBody .secs [data-to]').click(); await new Promise(r => setTimeout(r, 600));
             return [stillOpen, same, first === PARTS[1].a, R.n === 1, document.querySelector('#sheet').classList.contains('on')]; })()""")
         check('section picker: a kāṇḍa only shows its sections; a section opens it', pk == [True, True, True, True, False], pk)
+        # The timing tests practise on the Śrī Rudram's recording as if nothing had been set by ear yet (every verse estimated,
+        # none the owner's), so they do not depend on how far the owner has marked it: each first clears, in memory only, the
+        # published marks, ends and checks, and rebuilds the times (inlined: the page reloads between tests).
         # timing: "Ends now" on a verse whose estimated start lies after now takes the previous verse's set end as its start
-        te = await ev("""(async () => { S.timing.on = true; applyTiming(); await openWork('shri-rudram', true); await loadSources(); show('home');
+        te = await ev("""(async () => { S.timing.on = true; applyTiming(); await openWork('shri-rudram', true); await loadSources(); show('home'); { const A = SRC.au; A.at0 = Object.fromEntries(Object.entries(A.at0).map(([k, v]) => [k, v.slice(0, 2)])); A.own = []; A.ownSet = new Set(); A.checkSet = new Set(Object.keys(A.at0)); A.guess = []; A.guessSet = new Set(); A.raw = {}; buildAudio(); }
             const a = AUT[0]; let j = a.findIndex((x, n) => n > 0 && toCheck(x[0]) && !toCheck(a[n - 1][0]) && x[1] - a[n - 1][1] > 3); if (j < 0) j = 5;
             const i = a[j][0], p = a[j - 1][0], ps = a[j - 1][1], keep = JSON.stringify(S.timing.fix[tkey()] || {});
             openReader('k', i); await new Promise(r => setTimeout(r, 500));
@@ -486,13 +489,13 @@ async def main():
             S.timing.fix[tkey()] = {}; S.timing.on = false; save(); applyTiming(); await loadSources(); return [r === false, s1 === s0]; })()""")
         check('timing: a sent start is never moved by a late "Ends now"', so == [True, True], so)
         # a timing mark never scrolls the page while the lit verse is on screen
-        ns = await ev("""(async () => { S.timing.on = true; applyTiming(); await openWork('shri-rudram', true); await loadSources(); show('home');
+        ns = await ev("""(async () => { S.timing.on = true; applyTiming(); await openWork('shri-rudram', true); await loadSources(); show('home'); { const A = SRC.au; A.at0 = Object.fromEntries(Object.entries(A.at0).map(([k, v]) => [k, v.slice(0, 2)])); A.own = []; A.ownSet = new Set(); A.checkSet = new Set(Object.keys(A.at0)); A.guess = []; A.guessSet = new Set(); A.raw = {}; buildAudio(); }
             const a = AUT[0], i = a[8][0]; openReader('k', i); await new Promise(r => setTimeout(r, 600));
             const keep = JSON.stringify(S.timing.fix[tkey()] || {}); PL.on = true; PL.t = 0; setCur(i); await new Promise(r => setTimeout(r, 900));
             const y0 = scrollY; ytInfo.t = a[8][1] + 1; setTime(i, 2, a[8][1] + 1); await new Promise(r => setTimeout(r, 900)); const y1 = scrollY;
             PL.on = false; S.timing.fix[tkey()] = JSON.parse(keep); S.timing.on = false; save(); applyTiming(); await loadSources(); return [y0, y1]; })()""")
         check('timing: marking a verse does not move the page', abs(ns[0] - ns[1]) < 2, ns)
-        nu = await ev("""(async () => { S.timing.on = true; applyTiming(); await openWork('shri-rudram', true); await loadSources(); show('home');
+        nu = await ev("""(async () => { S.timing.on = true; applyTiming(); await openWork('shri-rudram', true); await loadSources(); show('home'); { const A = SRC.au; A.at0 = Object.fromEntries(Object.entries(A.at0).map(([k, v]) => [k, v.slice(0, 2)])); A.own = []; A.ownSet = new Set(); A.checkSet = new Set(Object.keys(A.at0)); A.guess = []; A.guessSet = new Set(); A.raw = {}; buildAudio(); }
             const a = AUT[0], i = a[10][0], o = a[12][0]; openReader('k', i); await new Promise(r => setTimeout(r, 600));
             const keep = JSON.stringify(S.timing.fix[tkey()] || {}); setTime(i, 1, a[10][1]); const s0 = SRC.au.at[IT[i].id][1]; setTime(i, 2, s0 + 3); rerenderItem(i);
             const v = document.getElementById('v' + i), has = !!v.querySelector('.tgrp .tn'), two = v.querySelectorAll('.tgrp .tn').length, other = !!document.getElementById('v' + o)?.querySelector('.tgrp .tn'), dup = !!document.querySelector('#rBody [data-a=tplay]');
@@ -503,13 +506,13 @@ async def main():
             if (!snipSet) return 'no preview';
             return [has, two, other, dup, Math.round((s1 - s0) * 10) / 10, Math.round((e1 - s0) * 10) / 10]; })()""")
         check('timing: a marked verse has ±0.5 s for its start and end; others do not; no second ▶', nu == [True, 4, False, False, 0.5, 2.5], nu)
-        row = await ev("""(async () => { S.timing.on = true; applyTiming(); await openWork('shri-rudram', true); await loadSources(); show('home');
+        row = await ev("""(async () => { S.timing.on = true; applyTiming(); await openWork('shri-rudram', true); await loadSources(); show('home'); { const A = SRC.au; A.at0 = Object.fromEntries(Object.entries(A.at0).map(([k, v]) => [k, v.slice(0, 2)])); A.own = []; A.ownSet = new Set(); A.checkSet = new Set(Object.keys(A.at0)); A.guess = []; A.guessSet = new Set(); A.raw = {}; buildAudio(); }
             const a = AUT[0], i = a[10][0]; openReader('k', i); await new Promise(r => setTimeout(r, 600));
             const keep = JSON.stringify(S.timing.fix[tkey()] || {}); setTime(i, 1, a[10][1]); setTime(i, 2, SRC.au.at[IT[i].id][1] + 3); rerenderItem(i);
             const bs = [...document.getElementById('v' + i).querySelectorAll('.tmark .tgrp button')].map(b => Math.round(b.getBoundingClientRect().top));
             S.timing.fix[tkey()] = JSON.parse(keep); S.timing.on = false; save(); applyTiming(); await loadSources(); return bs; })()""")
         check('timing: − Starts now + and − Ends now + sit on one line at phone width', len(row) == 6 and max(row) - min(row) < 4, row)
-        link = await ev("""(async () => { S.timing.on = true; applyTiming(); await openWork('shri-rudram', true); await loadSources(); show('home');
+        link = await ev("""(async () => { S.timing.on = true; applyTiming(); await openWork('shri-rudram', true); await loadSources(); show('home'); { const A = SRC.au; A.at0 = Object.fromEntries(Object.entries(A.at0).map(([k, v]) => [k, v.slice(0, 2)])); A.own = []; A.ownSet = new Set(); A.checkSet = new Set(Object.keys(A.at0)); A.guess = []; A.guessSet = new Set(); A.raw = {}; buildAudio(); }
             const a = AUT[0], i = a[10][0], n = a[11][0]; openReader('k', i); await new Promise(r => setTimeout(r, 600));
             const keep = JSON.stringify(S.timing.fix[tkey()] || {}); setTime(i, 1, a[10][1]); const s0 = SRC.au.at[IT[i].id][1]; setTime(n, 1, s0 + 4); setTime(n, 2, s0 + 7); setTime(i, 2, s0 + 4);
             setTime(i, 2, s0 + 4.5); const ns = SRC.au.at[IT[n].id][1] - s0, ie = SRC.au.at[IT[i].id][2] - s0;
@@ -518,7 +521,7 @@ async def main():
         check('timing: an end pushed past the next start moves that start along; a start pulled back moves the previous end', link == [4.5, 4.5, 4.2], link)
         # ---- audio timing: the order rule in the app and in the
         # generator give the same figures for the same marks; every write path keeps the order of the text ----
-        T0 = "S.timing.on = true; applyTiming(); await openWork('shri-rudram', true); await loadSources(); show('home'); const keep = JSON.stringify(S.timing.fix[tkey()] || {}); PL.on = false; stopAudio();"
+        T0 = "S.timing.on = true; applyTiming(); await openWork('shri-rudram', true); await loadSources(); show('home'); { const A = SRC.au; A.at0 = Object.fromEntries(Object.entries(A.at0).map(([k, v]) => [k, v.slice(0, 2)])); A.own = []; A.ownSet = new Set(); A.checkSet = new Set(Object.keys(A.at0)); A.guess = []; A.guessSet = new Set(); A.raw = {}; buildAudio(); } const keep = JSON.stringify(S.timing.fix[tkey()] || {}); PL.on = false; stopAudio();"
         T1 = "S.timing.fix[tkey()] = JSON.parse(keep); S.timing.on = false; save(); applyTiming(); await loadSources();"
         # the same marks give the same times in the app (buildAudio) and in the library (tools/audio/order.py, used by make_timings.py)
         random.seed(20261020); bad = []
