@@ -24,8 +24,6 @@ EXPECTED = {   # item id: [(witness, ours)]: differences recorded in reconciliat
     '1.2.18': [('विपश्चिन्नायं', 'विपश्चिन् नायं')],         # the book breaks the line inside the sandhi
     '2.1.1': [('स्वयम्भूस्तस्मात्पराङ्पश्यति', 'स्वयम्भूः तस्मात्पराङ्पश्यति'), ('प्रत्यगात्मानमैक्षदावृत्त', 'प्रत्यगात्मानमैक्षद् आवृत्त')],
     '2.3.17': [('प्रवृहेन्मुञ्जादिवेषीकां', 'प्रवृहेन् मुञ्जादिवेषीकां')],
-    'shanti.2': [('सह नाववतु', 'ओं सह नाववतु'), ('सह वीर्यं', 'सहवीर्यं'), ('तेजस्विनावधीतमस्तु', 'तेजस्वि नावधीतमस्तु'),
-                 ('विद्विषावहै', 'विद्विषावहै ओं शान्तिः शान्तिः शान्तिः')],   # the witness numbers the closing śānti 2.3.19 and sets it without ॐ
 }
 
 def witness(path):
@@ -40,7 +38,7 @@ def witness(path):
             num = int(''.join(str('०१२३४५६७८९'.find(c)) if c in '०१२३४५६७८९' else c for c in m.group(1)))
             vid = '%s.%d' % (valli, num)
         else: vid = 'shanti.1'
-        if vid == '2.3.19': vid = 'shanti.2'
+        if vid == '2.3.19': continue      # the witness's closing śānti; the work ends with 2.3.18
         if vid not in BY: print(path, 'has', vid, 'which is not in text.json'); bad += 1; continue
         a, b = words(blk), words('\n'.join(BY[vid]['v']))
         for w, o in EXPECTED.get(vid, []): a = a.replace(w, o)

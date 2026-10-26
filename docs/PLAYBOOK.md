@@ -154,4 +154,5 @@ Contents: 1 Working with the owner · 2 Sources and accuracy · 3 Texts · 4 Mea
 - **Footnotes run across pages** (one starting lowercase continues the previous) and restart their marks per page: match notes to marks in order.
 - **Web-page printouts** often have a broken Devanagari text layer: OCR the page images, or read the text layer by position (`pdftotext -bbox`) where an overlay hides lines.
 - **A book whose Devanagari is in a legacy font** can still be the source through its IAST layer, converted letter for letter and checked against another witness.
+- **A śānti mantra printed again at the end of an Upaniṣad is not an item:** the work ends with its last verse (the Kaṭha ends with 2.3.18).
 - **A video's on-screen text** can be the source when the owner says so: crop the subtitle band at full width, transcribe line by line with the frame number; repeated screenshots of a line are one line. Where the video's Devanagari and its transliteration disagree, follow the correct one.

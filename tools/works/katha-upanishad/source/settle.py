@@ -7,7 +7,7 @@ see ../reconciliation.md. The transliteration `t` is made back from the settled 
 the library's IAST convention (ṁ, ’ for the avagraha, ॥ and the number as in the other works).
 
 Items: shanti.1 (the opening śānti), 1.1.1 … 2.3.18 (adhyāya.vallī.mantra, the standard numbering: 29+25+17 and
-15+15+18 = 119 mantras), shanti.2 (the closing śānti, the author's "2.3.19"). Sections (pages) are the vallīs.
+15+15+18 = 119 mantras). The closing śānti the book prints as "2.3.19" is left out. Sections (pages) are the vallīs.
 Run: python3 settle.py   (then ../export.py)
 """
 import json, os, re, unicodedata
@@ -118,8 +118,7 @@ def main():
             assert lines and not lines[-1].endswith('।'), (vid, lines)   # the last line carries no bar: the number goes there
             lines[-1] += ' ।।%s।।' % DEV(m)
             items.append(item(vid, int(a) - 1, 'v%s.%s' % (a, va), 'mantra', vid, lines))
-    items.append(item('shanti.2', 1, 'shanti2', 'shanti', '', sh))
-    assert len(items) == 121, len(items)
+    assert len(items) == 120, len(items)   # the work ends with 2.3.18: no closing śānti
     json.dump({'items': items}, open(os.path.join(HERE, '..', 'text.json'), 'w'), ensure_ascii=False, indent=1)
     print(len(items), 'items')
 

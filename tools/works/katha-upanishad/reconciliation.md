@@ -5,7 +5,7 @@ The owner's book (Swami Gurubhaktananda, Sandeepany Text 20) prints every mantra
 
 ## The witnesses
 - **shlokam.org** (<https://shlokam.org/text/kathopanishad.htm>): the page serves mantras 1.1.1–1.1.20 and the śānti mantra to a reader (the rest loads only in a browser). These 21 verses are in `source/witness/shlokam-1.1.1-20.txt`, and `check.py` finds **no difference** in words between them and our text. The two sources are independent (the book's IAST, the site's Devanagari), so this agreement is the check that the decoding and the conversion are right.
-- **sanskritdocuments.org** (`doc_upanishhat/katha.html`, the owner's saved copy, in scriptures-data at `<work path>/printouts/sanskritdocuments/`): the standard Devanagari text, all 119 mantras in six vallīs, the śānti before and after (the closing one numbered ॥ १९॥ in vallī 2.3, as in the book). Its verses are in `source/witness/sanskritdocuments-full.txt`; after the corrections below `check.py` finds **no difference** in words in any of the 121 items, apart from the four line-division cases listed as expected.
+- **sanskritdocuments.org** (`doc_upanishhat/katha.html`, the owner's saved copy, in scriptures-data at `<work path>/printouts/sanskritdocuments/`): the standard Devanagari text, all 119 mantras in six vallīs, the śānti before and after (the closing one numbered ॥ १९॥ in vallī 2.3, as in the book). Its verses are in `source/witness/sanskritdocuments-full.txt`; after the corrections below `check.py` finds **no difference** in words in any of the 120 items, apart from the four line-division cases listed as expected.
 
 ## Corrections to the book's reading (settle.py → FIX), from the full witness
 - **1.3.3 रथिनं** (rathinam, "the lord of the chariot"): the book's IAST has *rathitaṃ*, a slip.
@@ -17,10 +17,10 @@ The owner's book (Swami Gurubhaktananda, Sandeepany Text 20) prints every mantra
 
 ## Differences left as they are (check.py → EXPECTED)
 - Line division inside a sandhi: 1.2.18 विपश्चिन् / नायं, 2.1.1 स्वयम्भूः / तस्मात् and ऐक्षद् / आवृत्त, 2.3.17 प्रवृहेन् / मुञ्जादिव — the book ends the line at the pāda, in pausa form; the witness writes the sandhi across it on one line. The words are the same.
-- The closing śānti: the witness sets it without the opening ॐ and with सह वीर्यं, तेजस्विनावधीतमस्तु; ours repeats the opening śānti exactly, as the recitation does.
+- The closing śānti (the witness's ॥ १९॥) is not compared: the work ends with 2.3.18.
 
 ## Decisions
-- **Mantra count and numbering.** The standard count: 1.1 (29), 1.2 (25), 1.3 (17), 2.1 (15), 2.2 (15), 2.3 (18). The book numbers the closing śānti mantra as 2.3.19; it is the same सह नाववतु as the opening, and is item `shanti.2`.
+- **Mantra count and numbering.** The standard count: 1.1 (29), 1.2 (25), 1.3 (17), 2.1 (15), 2.2 (15), 2.3 (18). The book and the witness number the closing śānti mantra as 2.3.19; it is the same सह नाववतु as the opening, the work ends with 2.3.18 (the owner's decision), as the recording does.
 - **Line division** follows the book (which follows the metre): two lines for an anuṣṭubh, four for a triṣṭubh; a word broken across lines keeps the hyphen at the line end, as the witnesses print it (1.1.9 मे-/ऽनश्नन्, 1.1.20, 1.2.1, 1.2.20, 2.1.2, 2.2.2, 2.3.16, 2.3.18). The refrain एतद्वै तत् is on its own line when the book sets it so (2.1.3, 2.1.5 …) and at the end of the last line where the book puts it there (2.3.1). 1.3.17 has three lines as in the book.
 - **Punctuation.** The book's `|` and `||` become । and ।।; each mantra's last line ends with its number within the vallī in Devanagari digits (।।१।।). The book's two commas (1.1.1 after वाजश्रवसः, 1.3.14 after जाग्रत) are the author's and are dropped.
 - **ॐ** is written with the sign ॐ (as shlokam.org), the book's `om̐`.
@@ -28,4 +28,4 @@ The owner's book (Swami Gurubhaktananda, Sandeepany Text 20) prints every mantra
 - **Transliteration `t`** is made back from the settled Devanagari in the library's convention (ṁ for anusvāra, ’ for the avagraha, ॥N॥), so it always spells the text; `check.py` proves it.
 
 ## Open
-- None for the text. The owner may want to check 2.3.18's audio start by ear (`audio/smvedroad/fixes.md`).
+- None.
