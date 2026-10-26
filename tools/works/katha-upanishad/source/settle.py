@@ -73,6 +73,7 @@ def deva2iast(s):
             elif c == 'ः': out.append('ḥ')
             elif c == 'ँ': out.append('̐')
             elif c == 'ऽ': out.append('’')
+            elif c == 'ꣳ': out.append('gͫ')
             elif c == 'ॐ': out.append('oṁ')
             elif c in DIG: out.append(DIG[c])
             else: out.append(c)
@@ -83,6 +84,17 @@ def deva2iast(s):
     t = re.sub(r'\s*।\s*$', ',', t)
     t = re.sub(r'\s*।\s*', ', ', t)
     return t.strip()
+
+# ---- corrections to the book's reading, each checked against the Devanagari witnesses (../reconciliation.md) ----
+FIX = {   # item: [(book, settled)]; each must occur exactly once in the item's text
+    '1.1.26': [('जरयंति', 'जरयन्ति')],                      # the book's jarayaṃti; the text has the dental न्
+    '1.2.15': [('तपांसि', 'तपाꣳसि'), ('पदं', 'पदꣳ'), ('संग्रहेण', 'सङ्ग्रहेण')],   # ꣳ before a sibilant, ङ् before ग, as the Devanagari witness writes
+    '1.2.23': [('तनूं', 'तनूꣳ')],
+    '1.3.3': [('रथितं', 'रथिनं')],                          # rathinam (rathin, the lord of the chariot); the book's rathitaṃ is a slip
+    '2.1.3': [('स्पर्शांश्च', 'स्पर्शाꣳश्च')],
+    '2.2.2': [('वसुरान्तरिक्षसद्', 'वसुरन्तरिक्षसद्')],      # vasur antarikṣasat (Ṛgveda 4.40.5); the book's -rā- is a slip
+    '2.3.2': [('किंच', 'किं च')],                            # two words, as the witness divides them
+}
 
 DEV = lambda n: ''.join('०१२३४५६७८९'[int(c)] for c in str(n))
 VALLI = [('1', '1', 29), ('1', '2', 25), ('1', '3', 17), ('2', '1', 15), ('2', '2', 15), ('2', '3', 18)]
@@ -100,6 +112,9 @@ def main():
         for m in range(1, cnt + 1):
             vid = '%s.%s.%d' % (a, va, m)
             lines = [iast2deva(l) for l in R[vid]['t']]
+            for wrong, right in FIX.get(vid, []):
+                assert sum(l.count(wrong) for l in lines) == 1, (vid, wrong)
+                lines = [l.replace(wrong, right) for l in lines]
             assert lines and not lines[-1].endswith('।'), (vid, lines)   # the last line carries no bar: the number goes there
             lines[-1] += ' ।।%s।।' % DEV(m)
             items.append(item(vid, int(a) - 1, 'v%s.%s' % (a, va), 'mantra', vid, lines))

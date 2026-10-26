@@ -17,10 +17,16 @@ BY = {x['id']: x for x in ITEMS}
 
 def words(s):
     s = re.sub(r'-\s*\n\s*', '', s)                 # a word broken over two lines (मे-/ऽनश्नन्)
-    s = s.replace('ॐ', 'ओं')
+    s = s.replace('ॐ', 'ओं').replace('\u200d', '')      # the witness writes श‍ृ with a joiner
     return ' '.join(re.sub(r'[।॥|,0-9०-९\-]', ' ', s).split())
 
-EXPECTED = {}   # item id: [(witness, ours)] — none so far
+EXPECTED = {   # item id: [(witness, ours)]: differences recorded in reconciliation.md
+    '1.2.18': [('विपश्चिन्नायं', 'विपश्चिन् नायं')],         # the book breaks the line inside the sandhi
+    '2.1.1': [('स्वयम्भूस्तस्मात्पराङ्पश्यति', 'स्वयम्भूः तस्मात्पराङ्पश्यति'), ('प्रत्यगात्मानमैक्षदावृत्त', 'प्रत्यगात्मानमैक्षद् आवृत्त')],
+    '2.3.17': [('प्रवृहेन्मुञ्जादिवेषीकां', 'प्रवृहेन् मुञ्जादिवेषीकां')],
+    'shanti.2': [('सह नाववतु', 'ओं सह नाववतु'), ('सह वीर्यं', 'सहवीर्यं'), ('तेजस्विनावधीतमस्तु', 'तेजस्वि नावधीतमस्तु'),
+                 ('विद्विषावहै', 'विद्विषावहै ओं शान्तिः शान्तिः शान्तिः')],   # the witness numbers the closing śānti 2.3.19 and sets it without ॐ
+}
 
 def witness(path):
     txt = open(path, encoding='utf-8').read()
@@ -34,6 +40,7 @@ def witness(path):
             num = int(''.join(str('०१२३४५६७८९'.find(c)) if c in '०१२३४५६७८९' else c for c in m.group(1)))
             vid = '%s.%d' % (valli, num)
         else: vid = 'shanti.1'
+        if vid == '2.3.19': vid = 'shanti.2'
         if vid not in BY: print(path, 'has', vid, 'which is not in text.json'); bad += 1; continue
         a, b = words(blk), words('\n'.join(BY[vid]['v']))
         for w, o in EXPECTED.get(vid, []): a = a.replace(w, o)
@@ -45,8 +52,8 @@ def witness(path):
 
 bad = 0
 for x in ITEMS:   # step 2: our transliteration spells our text
-    t = [iast2deva(re.sub(r'॥\d*॥', '', l).replace('॥', '').replace(',', '').replace('’', "'").replace('̐', 'm̐')) for l in x['t']]
-    a, b = words('\n'.join(t)), words('\n'.join(x['v']))
+    t = [iast2deva(re.sub(r'॥\d*॥', '', l).replace('॥', '').replace(',', '').replace('’', "'").replace('̐', 'm̐').replace('gͫ', 'ṃ')) for l in x['t']]
+    a, b = words('\n'.join(t)), words('\n'.join(x['v'])).replace('ꣳ', 'ं')   # ꣳ (gͫ) is read as anusvāra here
     if a != b: bad += 1; print('t ≠ v', x['id'], '\n  v:', b, '\n  t:', a)
 print('t ↔ v:', len(ITEMS), 'items,', bad, 'differences')
 for path in sorted(glob.glob(os.path.join(HERE, 'source', 'witness', '*.txt'))):   # step 1
