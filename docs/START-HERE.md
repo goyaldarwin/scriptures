@@ -55,15 +55,13 @@ library/ ─ tools/site/build.py (checks everything first) ─► index.html, ap
 | ॐ जय शिव ओंकारा (`aarti/shiva/shiv-aarti`) | the owner's screenshot | ours | Anuradha Paudwal, **draft**: she sings another version |
 | ॐ जय गंगे माता (`aarti/ganga/ganga-aarti`) | the owner's screenshot | ours | Anuradha Paudwal, live |
 | Shirdi Sāī Dhūpa Āratī (`aarti/shirdi-sai/dhoop-aarti`) | two printouts reconciled | ours | Pramod Medhi (Times Music), live |
-| Śrī Rudram (`veda/yajurveda/krishna-yajurveda/samhita/shri-rudram`) | shlokam.org, with Vedic accents | ours | Shlokam, live; checked by ear by the owner |
+| Śrī Rudram (`veda/yajurveda/krishna-yajurveda/samhita/shri-rudram`) | shlokam.org, with Vedic accents | ours | Sri Sathya Sai Official, live; checked by ear by the owner |
 | Kaṭha Upaniṣad (`veda/yajurveda/krishna-yajurveda/upanishad/katha-upanishad`) | the owner's Sandeepany book, checked word for word against his sanskritdocuments.org copy and shlokam.org | ours | SMVedroad, live |
 | Īśāvāsya Upaniṣad (`veda/yajurveda/shukla-yajurveda/upanishad/isha-upanishad`) | shlokam.org | ours | SMVedroad, live |
-| Māṇḍūkya Upaniṣad (`veda/atharvaveda/upanishad/mandukya-upanishad`) | sanskritdocuments.org; the śānti's svasti lines to confirm in Devanagari | ours | SMVedroad, live |
-| Sukhmani Sahib (`gurbani/guru-arjan-dev/sukhmani-sahib`) | the owner's PDF (Gurmukhi) | ours (Hindi, English, Punjabi) | Parminder Singh, **draft**: the owner is marking it by ear |
+| Māṇḍūkya Upaniṣad (`veda/atharvaveda/upanishad/mandukya-upanishad`) | sanskritdocuments.org; the svasti lines confirmed by shlokam.org | ours | SMVedroad, live |
+| Sukhmani Sahib (`gurbani/guru-arjan-dev/sukhmani-sahib`) | the owner's PDF (Gurmukhi) | ours (Hindi, English, Punjabi) | Parminder Singh, live; 207 starts not yet set by ear are listed for the owner to check (`review`) |
 
 ## Open with the owner
 - The questions in `docs/reviews/` (word senses; readings in the Rāma Rakṣā and the Sukhmani Sahib).
-- The āratīs: Anuradha Paudwal's Śiva version needs a written source; the Ayodhya Rām āratī needs its text; the "open" corrections in each āratī's `reconciliation.md`.
-- The Māṇḍūkya's svasti lines (a Devanagari print to confirm them).
-- A permission letter to Gita Press for its meanings, while they are shown.
+- The āratīs: Anuradha Paudwal's Śiva version needs a written source; recordings for आरती कीजे श्रीरामलला की and आरती कीजै रामचन्द्र जी की (the owner will share them); the "open" corrections in each āratī's `reconciliation.md`.
 - Offered, not built: "⏹ End / ⏱ Next starts" buttons in the player for audio timing.

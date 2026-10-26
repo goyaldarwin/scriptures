@@ -31,7 +31,7 @@ One app per tradition, published by the owner's Canadian corporation (organizati
 - The Hindu app's Play content rating: IARC Everyone / PEGI 3 / USK 0 / 3+ (contact support@craadle.org); "primarily a news or educational product?" → No.
 
 ## The owner's open decision
-**Content rights:** decide what launches while permissions are pending (Gita Press meanings, Sant Singh Khalsa's English, the shirdisaibabakripa.org English, the Rāma Rakṣā video's English and the स्तुति चालीसा संग्रह Hindi). The app can hide sources not yet cleared.
+**Content rights:** decide what launches while permissions are pending (Sant Singh Khalsa's English, the shirdisaibabakripa.org English, the Rāma Rakṣā video's English and the स्तुति चालीसा संग्रह Hindi). The app can hide sources not yet cleared. The Gita Press meanings need no permission letter (the owner).
 
 ## Releasing
 1. The upload key: `upload.keystore`, kept with its passwords outside the repository and stored as repository secrets `ANDROID_KEYSTORE_B64` (`base64 -w0 upload.keystore`), `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_PASSWORD`. Play App Signing holds the app-signing key.

@@ -3,12 +3,15 @@
 Each procedure ends with the same three steps: **build, test, publish**.
 ```bash
 python3 tools/site/build.py        # registers sources, checks the library, builds the site
-python3 tools/site/regen_check.py  # library/ is exactly what the exporters make
+python3 tools/site/regen_check.py  # library/ is exactly what the exporters and make_timings.py make
+python3 tools/site/history_check.py  # no work or verse id that readers' data points at has disappeared
 python3 tools/site/smoke_test.py   # every work opens in a browser without script errors
 python3 tools/site/ux_test.py      # navigation and reading, every work, at phone size
 python3 -m http.server 8000        # open http://localhost:8000 at phone size (390×844) and look
 git pull && git add -A && git commit -m "…" && git push   # GitHub Pages updates in about a minute
 ```
+After a change to a work's text, make its recordings' timings again too (`python3 tools/audio/make_timings.py tools/works/<work>/audio/<source>`): the starts not set by ear are spread by verse length, and `regen_check.py` fails on a stale timing file.
+
 If `build.py` prints `LIBRARY PROBLEM: …`, fix what it names. It never builds a broken library. Large work (a new work, a change to shared code) goes on a branch and a pull request (`docs/START-HERE.md`). Always `git pull` first: the `timing` workflow also pushes to `main`.
 
 ---

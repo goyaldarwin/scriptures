@@ -26,9 +26,9 @@ is printed as Gurmukhi (in a legacy font encoding), transliteration and English 
   (ours, order 1; the English is checked to share no run of 10+ words with the PDF's), `meanings/en-sant-singh-khalsa.json`
   (the PDF's English, order 2, still selectable), and adds new words to `library/glossary/pa.json`. Then run
   `python3 tools/site/build.py`.
-- `audio/parminder-singh/` — the recording (YouTube `KJ8D_ObQNzQ`), a **draft** (`source.json` → `draft`): kīrtan with
-  long instrumental passages, so the automatic starts are not reliable. The owner marks the starts by ear in the app
-  (`owner.json`, written by `tools/audio/apply_owner_timing.py`).
+- `audio/parminder-singh/` — the recording (YouTube `KJ8D_ObQNzQ`), published for review (`source.json` → `review`): kīrtan
+  with long instrumental passages, so the automatic starts are only partly confirmed. Readers hear it; every start not yet
+  set by ear is listed for the owner to check in timing mode (`owner.json`, written by `tools/audio/apply_owner_timing.py`).
 
 ## Structure
 
@@ -44,4 +44,6 @@ Parts are the 24 Ashtapadis (अष्टपदी / Ashtapadi). Items, in readi
 
 Each item is its own section (page) in the reader. Topics: two per Ashtapadi (starting at its Salok and at its first pauri), named by the first line of its
 Salok and of its first pauri (the traditional way to cite Gurbani), in Devanagari letters for the Hindi interface
-and in the PDF's transliteration for the English one. The transliteration is kept in each item's `t`, as printed.
+and in its ISO 15919 transliteration for the English one. Each item's `t` is the ISO 15919 transliteration of its
+Gurmukhi, made by the writing standard (`tools/text/standard.py`); the PDF's own phonetic transliteration is used only by
+`check.py`, as a witness of the conversion.

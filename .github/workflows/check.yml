@@ -1,6 +1,6 @@
 # Every pull request and every push to main: the library must pass its checks, the committed website must be
-# exactly what the build makes from it, library/ must be exactly what the works' generators make, and every work must
-# open in a real browser without script errors.
+# exactly what the build makes from it, library/ must be exactly what the works' generators make, no id that readers'
+# data points at may disappear, and every work must open in a real browser without script errors.
 name: check
 on:
   pull_request:
@@ -10,12 +10,18 @@ jobs:
   check:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    env:
+      CHROMIUM: /usr/bin/google-chrome   # the runner's own Chrome: no browser download, no apt-get
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install -q pymupdf playwright && python -m playwright install --with-deps chromium
+          cache: pip
+          cache-dependency-path: .github/workflows/check.yml
+      - name: the browser test driver (the build itself needs nothing beyond Python)
+        timeout-minutes: 5
+        run: pip install -q playwright==1.64.1 && "$CHROMIUM" --version
       - name: library checks + build
         run: python tools/site/build.py
       - name: the committed website matches the build
@@ -26,6 +32,10 @@ jobs:
         run: |
           python tools/site/regen_check.py 2>&1 | tee /tmp/regen.txt; rc=${PIPESTATUS[0]}
           grep -E '^FAIL|^ ' /tmp/regen.txt | head -20 | sed 's/^/::error::/'; exit $rc
+      - name: no work or verse id that readers' bookmarks, notes and audio times point at has disappeared
+        run: |
+          base="${{ github.event.pull_request.base.sha || github.event.before }}"
+          if git fetch -q --depth=1 origin "$base" 2>/dev/null; then python tools/site/history_check.py "$base"; else echo "no earlier commit to compare with"; fi
       - name: smoke test (every work opens in a browser)
         run: python tools/site/smoke_test.py
       - name: navigation and reading experience (every work, phone size)

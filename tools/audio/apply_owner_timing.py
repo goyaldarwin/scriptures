@@ -37,7 +37,7 @@ json.dump(own, open(OP, 'w'), ensure_ascii=False, indent=1, sort_keys=True); ope
 if doc.get('publish'):
     sp = os.path.join(src, 'source.json'); meta = json.load(open(sp))
     meta['checked'] = True   # the owner has heard it through: what is left unmarked is right as it is (no "check" list)
-    meta.pop('draft', None)
+    meta.pop('draft', None); meta.pop('review', None)
     open(sp, 'w').write(json.dumps(meta, ensure_ascii=False) + '\n'); print('published', sid)
 print('%d starts applied' % n)
 # re-make the timings, and make sure nothing changed except the verses in this issue: the rest of the published work is

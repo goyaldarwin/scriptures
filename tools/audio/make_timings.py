@@ -156,10 +156,11 @@ if own_ids:
 out = os.path.join(REPO, 'library', meta['work'], 'audio', meta['id'] + '.json')
 os.makedirs(os.path.dirname(out), exist_ok=True)
 doc = {k: meta[k] for k in ('id', 'type', 'title', 'order', 'draft') if k in meta}
-# "check": verses whose start is only estimated (placed by text length between heard ones), or, for a draft, every verse
-# not yet checked by hand; the app lists them for review in ☰ › More › Audio timing. Starts set by the owner never count.
+# "check": verses whose start is only estimated (placed by text length between heard ones), or, for a draft or a source
+# published for review (source.json "review": the owner checks it by ear while readers already hear it), every verse not
+# yet checked by hand; the app lists them for review in ☰ › More › Audio timing. Starts set by the owner never count.
 byhand = set(k for v in FIX.values() for k in v) | set(k for v in OWN.values() for k in v)
-check = [] if meta.get('checked') else [x['id'] for x in IT if x['id'] in at and x['id'] not in byhand and (meta.get('draft') or x['id'] not in heard)]   # "checked": published by the owner after hearing it through
+check = [] if meta.get('checked') else [x['id'] for x in IT if x['id'] in at and x['id'] not in byhand and (meta.get('draft') or meta.get('review') or x['id'] not in heard)]   # "checked": published by the owner after hearing it through
 doc.update(tracks=tracks, at=at)
 if check: doc['check'] = check
 guess = [x['id'] for x in IT if x['id'] in at and x['id'] not in heard and x['id'] not in own_ids]
