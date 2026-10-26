@@ -17,3 +17,14 @@ def dump_glossary(path, d):
 
 def dump_shelf(path, tree):
     open(path, 'w').write(json.dumps(tree, ensure_ascii=False, indent=1) + '\n')
+
+def dump_library(out, rel, obj):
+    """Write one of a work's files, library/<rel> under `out`, compact, after the writing standard
+    (tools/text/standard.py): a work.json's verses and transliteration, a meaning file's daṇḍas. Every exporter writes
+    through this, so no work can differ from the standard. Returns the file's size."""
+    import os, sys
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'text')); import standard
+    obj = standard.finish(rel, obj)
+    p = os.path.join(out, rel); os.makedirs(os.path.dirname(p), exist_ok=True)
+    with open(p, 'w', encoding='utf-8') as f: json.dump(obj, f, ensure_ascii=False, separators=(',', ':'))
+    return os.path.getsize(p)

@@ -7,7 +7,7 @@ It gives three āratīs: "श्री राम आरती" (the stuti श्
 
 How it is read: the PDF's text layer (the page's own Unicode text), checked against the page images. A pop-up covers the first line of pages 3 and 4 in the images; those lines are read from the text layer by position (`pdftotext -bbox`), where the menu words that overlap them sit on a different baseline.
 
-The rule, as for the Dhūpa Āratī: keep the source; correct it only where it is clearly wrong (a typing slip, a broken word, a sense that does not fit). Every correction is below. House style everywhere: ।/।। for the dandas, stanzas numbered (।।१।।), the refrain (टेक) shown once although it is sung after each stanza, hyphens only inside compounds (the page's spaced dashes " – " are written "-").
+The rule, as for the Dhūpa Āratī: keep the source; correct it only where it is clearly wrong (a typing slip, a broken word, a sense that does not fit). Every correction is below. The library's writing standard (docs/PLAYBOOK.md §3) everywhere: ।/॥ for the daṇḍas, stanzas numbered (॥१॥); the refrain (टेक) shown once although it is sung after each stanza, hyphens only inside compounds (the page's spaced dashes " – " are written "-").
 
 ## 3. आरती कीजै रामचन्द्र जी की (language Hindi, `hi`)
 A refrain and five stanzas of two lines; the last names Nāmadeva. Corrections:

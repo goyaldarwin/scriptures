@@ -21,7 +21,7 @@ The printouts, not the live pages, are the source: the workspace cannot reach sh
    - च्छ / chCh;
    - the page's own spelling अर्ण॒वें᳚-ऽतरि॑क्षे, which the image confirms;
    - नमस्स / नमः स.
-4. **Items.** One item per mantra (below). `t` is not the page's transliteration. It is made from the settled Devanagari, in the library's IAST convention (c for च, ṁ for anusvāra, e/o without macron, "," for a daṇḍa, ॥N॥), and it keeps the svaras as accents: ◌̍ for ॑, ◌̠ for ॒, ◌̎ for ᳚. So it always agrees with the Devanagari.
+4. **Items.** One item per mantra (below). `t` is not the page's transliteration. The exporter makes it from the settled Devanagari by the library's writing standard (docs/PLAYBOOK.md §3: ISO 15919, the svaras as accents ◌̍ ◌̠ ◌̎), so it always agrees with the Devanagari. The same standard writes the page's typed ग्ं as ꣳ, the anusvāra before श ष स ह र as ꣳ, ओं as ॐ, and a nasal before a stop as its class letter.
 
 ## Corrections (all in `source/settle.py` → `FIX`)
 Most restore a reph (र्) that the PDF text layer drops. The page image and the page's transliteration both show it.
@@ -83,6 +83,9 @@ Meaning: Chamakam 8.4 स्वरवः are the svarus, chips cut from the sacr
 
 ## "श्री शम्भवे नमः" left out
 The printout has "श्री शम्भ॑वे॒ नमः॑ ॥" before "नमस्ते अस्तु भगवन्"; it is not recited, and the owner asked for it to be left out. `source/settle.py` leaves it out; the opening mantras are numbered 1–4.
+
+## Namakam u8 begins at प्राणानां
+The printout opens u8 with "ओं नमो भगवते रुद्राय विष्णवे मृत्युर्मे पाहि ॥" before "प्राणानां ग्रन्थिरसि …". The recording does not recite that line (it goes from मृत्यवे स्वाहा to ॐ प्राणानां ग्रन्थिरसि, `fixes.md`), and the owner gave the mantra as three lines: प्राणाना-ङ्ग्रन्थिरसि रुद्रो मा॑ विशा॒न्तकः । / तेनान्नेना᳚प्याय॒स्व ॥ / नमो रुद्राय विष्णवे मृत्यु॑र्मे पा॒हि ॥. `source/settle.py` (`DROP_LINE`) leaves the line out; the meanings follow.
 
 ## The closing mantras in the recording's order
 The owner: "In Namakam, the ending verses are jumbled up and don't match the order in the recording", and chose the recording's order. The printout lists त्र्यम्बकं (u1), यो रुद्रो (u2), तमु ष्टुहि (u3), यक्ष्वामहे (u4), अयं मे हस्तो (u5), ये ते सहस्रम् (u6), मृत्यवे स्वाहा (u7), ओं नमो भगवते रुद्राय विष्णवे (u8). Shlokam's recording (GbQM33333xs) sings u1 u2 u6 u7 u8 and then u3 u4 u5 before the śānti (transcript, 1170–1253 s; the प्राणानां ग्रन्थिरसि line is part of u8 and is sung before ओं नमो भगवते). `source/settle.py` (ORDER_FIX) moves u3–u5 after u8; the ids stay, the numbers 1–8 follow the recording's order. The text of each mantra is unchanged.

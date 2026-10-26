@@ -75,6 +75,7 @@ An item: `{"id": "bal.86.cau4", "p": 0, "s": "86", "y": "cau", "n": "4", "v": [v
 - `l` (only when it differs from the work's `lang`): the verse's language. In the Mānas, `sa` marks the ślokas and the Sanskrit stutis; every other verse is `awa`.
 - `p`: index into `parts.list`. `s`: the section (book page heading, e.g. the dohā number the item belongs to). `y`: type (`shloka`, `cau`, `do`, `so`, `cha`, or one of the work's `types`). A numeric `s` is shown as “Dohā N” (the Mānas); other works use non-numeric sections (e.g. `sh4`), which are labelled by their verses. `n`: the number printed in the book.
 - `v` (the verse) and its number are the core of the work. Meanings are never stored here.
+- `v` and `t` are written by the standard (`docs/PLAYBOOK.md` §3, `tools/text/standard.py`): `t` is the ISO 15919 transliteration of `v` for a Devanagari verse, the source's own for another script.
 
 ## 3. A meaning source: `library/<path>/meanings/<id>.json`
 

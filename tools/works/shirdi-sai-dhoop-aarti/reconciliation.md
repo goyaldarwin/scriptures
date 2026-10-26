@@ -35,10 +35,10 @@ Two printouts the owner supplied are the sources. They are web pages, so they ar
 | Aisā yeī bā 5 | परीध्यान; पूर्णा नंद सूखे; हरीगुण | परि ध्यान; पूर्णानंद सुखे; हरिगुण | dhoop.pdf |
 | Mahimna stotra | many misspellings, e.g. भवध्वांत…मर्तांडमिड्य, मुनीर्ध्यानग्म्यम्, भवांभोधीमग्नादिर्तानां, कल्लो संभवंतं, निंबवृक्ष्यस, तस्यधिमुले, अनेकाश्रुतातर्क्यलीला, सतां:विश्रम…, अजनम्माद्यमेकं…, उपसनादैवत…, पाद्युमे भुड्डो | the stotra in correct Sanskrit, agreeing with dhoop.pdf word for word except where dhoop.pdf's own text layer is broken | dhoop2's Sanskrit is unreliable here |
 | Mahimna 11 | कृपातपात्रं | कृपातपत्रं | "umbrella of grace" (the verse goes on to its shade) |
-| Guru-prasāda-yācanā-daśaka 2 | पुसो ।। (end of line 1); मा मजवरी, कधीही | पुसो । ; मा, मजवरी कधीही | `।।` belongs only at the half-stanza; misplaced comma (dhoop.pdf and every other stanza) |
+| Guru-prasāda-yācanā-daśaka 2 | पुसो ॥ (end of line 1); मा मजवरी, कधीही | पुसो । ; मा, मजवरी कधीही | `॥` belongs only at the half-stanza; misplaced comma (dhoop.pdf and every other stanza) |
 | Daśaka 3 | वृदही | वृद्धही | "even the old" (dhoop.pdf) |
 | Daśaka 4, 8 | न दतगुरु | न दत्तगुरु | missing त्त, as in every other stanza |
-| Daśaka 4 | ।४ ।।। | ।।४।। | stray marks |
+| Daśaka 4 | ।४ ॥। | ॥४॥ | stray marks |
 | Daśaka 7 | यशिणीही | यक्षिणीही | misprint (dhoop.pdf यक्षिणीही) |
 | Daśaka 9 | रुसो,दृढ | रुसो, दृढ | missing space |
 | Daśaka 10 | हदयीं | हृदयीं | missing ृ (dhoop.pdf) |

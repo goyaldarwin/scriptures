@@ -22,14 +22,13 @@ OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(REPO, 'library')
 WP = 'hinduism/veda/yajurveda/shukla-yajurveda/upanishad/isha-upanishad'
 
 def dump(path, obj):
-    path = os.path.join(OUT, path); os.makedirs(os.path.dirname(path), exist_ok=True)
-    json.dump(obj, open(path, 'w'), ensure_ascii=False, separators=(',', ':'))
+    return jsonio.dump_library(OUT, path, obj)
 
 T = json.load(open(os.path.join(HERE, 'text.json'), encoding='utf-8'))['items']
-items = [{'id': x['id'], 'p': 0, 's': x['id'], 'y': x['y'], 'n': x['n'], 'v': x['v'], 't': x['t']} for x in T]
+items = [{'id': x['id'], 'p': 0, 's': x['id'], 'y': x['y'], 'n': x['n'], 'v': x['v']} for x in T]
 assert [x['id'] for x in items] == ['shanti.1'] + ['m%02d' % n for n in range(1, 19)]
 for x in items[1:]:   # each mantra ends with its own number
-    assert re.search(r'।।%s।।$' % ''.join('०१२३४५६७८९'[int(c)] for c in x['n']), x['v'][-1]), x['id']
+    assert re.search(r'॥%s॥$' % ''.join('०१२३४५६७८९'[int(c)] for c in x['n']), x['v'][-1]), x['id']
 
 work = {
     'id': 'isha-upanishad',

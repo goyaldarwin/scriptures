@@ -55,7 +55,7 @@ library/ ─ tools/site/build.py (checks everything first) ─► index.html, ap
 | ॐ जय शिव ओंकारा (`aarti/shiva/shiv-aarti`) | the owner's screenshot | ours | Anuradha Paudwal, **draft**: she sings another version |
 | ॐ जय गंगे माता (`aarti/ganga/ganga-aarti`) | the owner's screenshot | ours | Anuradha Paudwal, live |
 | Shirdi Sāī Dhūpa Āratī (`aarti/shirdi-sai/dhoop-aarti`) | two printouts reconciled | ours | Pramod Medhi (Times Music), live |
-| Śrī Rudram (`veda/yajurveda/krishna-yajurveda/samhita/shri-rudram`) | shlokam.org, with Vedic accents | ours | Shlokam, **draft**: the owner is marking it by ear |
+| Śrī Rudram (`veda/yajurveda/krishna-yajurveda/samhita/shri-rudram`) | shlokam.org, with Vedic accents | ours | Shlokam, live; checked by ear by the owner |
 | Kaṭha Upaniṣad (`veda/yajurveda/krishna-yajurveda/upanishad/katha-upanishad`) | the owner's Sandeepany book, checked word for word against his sanskritdocuments.org copy and shlokam.org | ours | SMVedroad, live |
 | Īśāvāsya Upaniṣad (`veda/yajurveda/shukla-yajurveda/upanishad/isha-upanishad`) | shlokam.org | ours | SMVedroad, live |
 | Māṇḍūkya Upaniṣad (`veda/atharvaveda/upanishad/mandukya-upanishad`) | sanskritdocuments.org; the śānti's svasti lines to confirm in Devanagari | ours | SMVedroad, live |

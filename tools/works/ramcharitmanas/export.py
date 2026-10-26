@@ -22,10 +22,7 @@ d = json.load(open(os.path.join(ROOT, 'app_data.json')))
 IT = d['it']; EG = d['eg']
 
 def dump(path, obj):
-    path = os.path.join(OUT, path)
-    os.makedirs(os.path.dirname(path), exist_ok=True)
-    json.dump(obj, open(path, 'w'), ensure_ascii=False, separators=(',', ':'))
-    return os.path.getsize(path)
+    return jsonio.dump_library(OUT, path, obj)
 
 # ---- language of each verse ----
 # The Mānas is in Awadhi (awa). Its Sanskrit (sa) passages: every śloka, Atri's stuti
@@ -39,7 +36,7 @@ def verse_lang(x):
 
 # ---- the text: verse + number only (transliteration belongs to the text) ----
 # ---- one caupāī per item (the owner's rule) ----
-# In 16 places Gita Press prints two or three caupāīs as one (e.g. ।।३-५।।) because its translation renders them jointly.
+# In 16 places Gita Press prints two or three caupāīs as one (e.g. ॥३-५॥) because its translation renders them jointly.
 # Here each becomes its own item — bal.6.cau3-5 → bal.6.cau3, cau4, cau5 — split where the transliteration numbers each
 # caupāī. The joint Gita Press meaning goes under the last of the group (where Gita Press prints its number), and the
 # earlier ones point to it. work.json "renamed" maps each joint id to its first part, so readers' bookmarks, notes and
@@ -73,7 +70,7 @@ work = {
     'title': {'hi': 'श्रीरामचरितमानस', 'en': 'Śrī Rāmacaritamānasa'},
     'by': {'hi': 'गोस्वामी तुलसीदास', 'en': 'Gosvāmī Tulasīdāsa'},
     'edition': {'hi': 'गीताप्रेस, गोरखपुर', 'en': 'Gita Press, Gorakhpur'},
-    'colophon': {'hi': '।। इति श्रीरामचरितमानस समाप्त ।। सियावर रामचन्द्रकी जय', 'en': '।। इति श्रीरामचरितमानस समाप्त ।। Glory to Śrī Rāma'},
+    'colophon': {'hi': '॥ इति श्रीरामचरितमानस समाप्त ॥ सियावर रामचन्द्रकी जय', 'en': '॥ इति श्रीरामचरितमानस समाप्त ॥ Glory to Śrī Rāma'},
     'parts': {'name': {'hi': 'काण्ड', 'en': 'Kāṇḍa'}, 'list': d['kands']},
     'plans': [
         {'id': 'M', 'name': {'hi': 'मासपारायण', 'en': '30-day'}, 'long': {'hi': 'मासपारायण (३० दिन)', 'en': 'Māsa-pārāyaṇa (30 days)'}, 'unit': {'hi': 'विश्राम', 'en': 'Vishram'}, 'before': ['vidhi'], 'after': ['aarti', 'visarjan'], **plans['M']},

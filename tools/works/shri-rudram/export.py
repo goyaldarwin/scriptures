@@ -21,8 +21,7 @@ OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(REPO, 'library')
 WP = 'hinduism/veda/yajurveda/krishna-yajurveda/samhita/shri-rudram'
 
 def dump(path, obj):
-    path = os.path.join(OUT, path); os.makedirs(os.path.dirname(path), exist_ok=True)
-    json.dump(obj, open(path, 'w'), ensure_ascii=False, separators=(',', ':'))
+    return jsonio.dump_library(OUT, path, obj)
 
 items = json.load(open(os.path.join(HERE, 'text.json'), encoding='utf-8'))
 
@@ -75,7 +74,7 @@ work = {
     'edition': {'hi': 'श्लोकम् (shlokam.org)', 'en': 'Shlokam (shlokam.org)'},
     'parts': {'name': {'hi': 'भाग', 'en': 'Part'}, 'list': [{'hi': 'नमकम्', 'en': 'Namakam'}, {'hi': 'चमकम्', 'en': 'Chamakam'}]},
     'types': types,
-    'items': [{k: x[k] for k in ('id', 'p', 's', 'y', 'n', 'v', 't')} for x in items],
+    'items': [{k: x[k] for k in ('id', 'p', 's', 'y', 'n', 'v')} for x in items],
     'topics': topics,
 }
 dump(WP + '/work.json', work)

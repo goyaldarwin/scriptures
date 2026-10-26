@@ -11,7 +11,7 @@ The owner's book (Swami Gurubhaktananda, Sandeepany Text 20) prints every mantra
 - **1.3.3 रथिनं** (rathinam, "the lord of the chariot"): the book's IAST has *rathitaṃ*, a slip.
 - **2.2.2 शुचिषद्वसुरन्तरिक्षसद्** (vasur antarikṣasat, Ṛgveda 4.40.5): the book has *-rāntarikṣa-*, a slip.
 - **1.1.26 जरयन्ति**: the book's *jarayaṃti* would give an anusvāra before त; the witness has the dental न्, as the grammar requires.
-- **ꣳ before a sibilant** (तपाꣳसि, पदꣳ, तनूꣳ, स्पर्शाꣳश्च) and **सङ्ग्रहेण**: IAST writes all of these with ṃ, so the book cannot show which Devanagari sign the tradition uses; the Kṛṣṇa Yajurveda witness writes ꣳ and ङ्, as the library's Śrī Rudram does. `t` renders ꣳ as gͫ, as there.
+- **ꣳ before a sibilant** (तपाꣳसि, पदꣳ, तनूꣳ, स्पर्शाꣳश्च) and **सङ्ग्रहेण**: IAST writes all of these with ṃ, so the book cannot show which Devanagari sign the tradition uses; the Kṛṣṇa Yajurveda witness writes ꣳ and ङ्, as the library's Śrī Rudram does. `t` renders ꣳ as gͫ.
 - **2.3.2 किं च**: two words, as the witness divides them (the book's IAST runs them together).
 - The witness writes श‍ृ with a joiner (1.2.7); the check ignores it.
 
@@ -22,10 +22,10 @@ The owner's book (Swami Gurubhaktananda, Sandeepany Text 20) prints every mantra
 ## Decisions
 - **Mantra count and numbering.** The standard count: 1.1 (29), 1.2 (25), 1.3 (17), 2.1 (15), 2.2 (15), 2.3 (18). The book and the witness number the closing śānti mantra as 2.3.19; it is the same सह नाववतु as the opening, the work ends with 2.3.18 (the owner's decision), as the recording does.
 - **Line division** follows the book (which follows the metre): two lines for an anuṣṭubh, four for a triṣṭubh; a word broken across lines keeps the hyphen at the line end, as the witnesses print it (1.1.9 मे-/ऽनश्नन्, 1.1.20, 1.2.1, 1.2.20, 2.1.2, 2.2.2, 2.3.16, 2.3.18). The refrain एतद्वै तत् is on its own line when the book sets it so (2.1.3, 2.1.5 …) and at the end of the last line where the book puts it there (2.3.1). 1.3.17 has three lines as in the book.
-- **Punctuation.** The book's `|` and `||` become । and ।।; each mantra's last line ends with its number within the vallī in Devanagari digits (।।१।।). The book's two commas (1.1.1 after वाजश्रवसः, 1.3.14 after जाग्रत) are the author's and are dropped.
+- **Punctuation.** The book's `|` and `||` become । and ॥; each mantra's last line ends with its number within the vallī in Devanagari digits (॥१॥). The book's two commas (1.1.1 after वाजश्रवसः, 1.3.14 after जाग्रत) are the author's and are dropped.
 - **ॐ** is written with the sign ॐ (as shlokam.org), the book's `om̐`.
 - **Candrabindu** (तँ ह, कुमारँ, किँ स्वित्, सुखँ, हँसः …): kept where the book's IAST has `m̐` (the font's `°`), which is exactly where shlokam.org has ँ.
-- **Transliteration `t`** is made back from the settled Devanagari in the library's convention (ṁ for anusvāra, ’ for the avagraha, ॥N॥), so it always spells the text; `check.py` proves it.
+- **The library's writing standard** (docs/PLAYBOOK.md §3) is applied by the exporter: ꣳ before श ष स ह र (a Yajurveda text), a nasal before a stop as its class letter (सङ्कल्प, किञ्चन), ॐ, and the ISO 15919 transliteration `t` made from the verse.
 
 ## Open
 - None.

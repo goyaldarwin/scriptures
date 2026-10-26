@@ -26,7 +26,6 @@ Does not touch library/index.json (the shelf is edited by hand) or audio/ (see t
 import json, os, re, sys
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.dirname(os.path.dirname(os.path.dirname(HERE)))
 sys.path.insert(0, os.path.join(HERE, '..', '..')); import jsonio
-sys.path.insert(0, HERE); import translit
 
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(REPO, 'library')
 MANAS = 'hinduism/granth/tulsidas/ramcharitmanas'
@@ -35,8 +34,7 @@ LANG = 'awa'
 
 def load(rel): return json.load(open(os.path.join(OUT, rel), encoding='utf-8'))
 def dump(rel, obj):
-    p = os.path.join(OUT, rel); os.makedirs(os.path.dirname(p), exist_ok=True)
-    json.dump(obj, open(p, 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
+    return jsonio.dump_library(OUT, rel, obj)
 
 # ---- parts 1 and 2: the close of the Kiṣkindhā-kāṇḍa and the Sundarakāṇḍa, taken from the Mānas ----
 M = load(MANAS + '/work.json')
@@ -96,8 +94,6 @@ for raw in open(os.path.join(HERE, 'text.txt'), encoding='utf-8'):
         if new_topic: topics.append(dict(id=iid, **new_topic)); new_topic = None
         continue
     new[-1]['v'].append(line)
-for it in new:
-    if it['id'] not in pulled: it['t'] = translit.verse(it['v'], it['n'] if it['y'] == 'cau' else None)
 items = [x for x in new if x['p'] == 0] + items + [x for x in new if x['p'] > 2]
 assert [x['p'] for x in items] == sorted(x['p'] for x in items), 'items out of part order'
 ids = [x['id'] for x in items]; new_ids = [x['id'] for x in new if x['id'] not in pulled]   # new_ids: the verses with our own meanings
@@ -112,7 +108,7 @@ work = {
     'by': M['by'],
     'edition': {'hi': 'श्रीरामचरितमानस, गीताप्रेस', 'en': 'Śrī Rāmacaritamānasa, Gita Press'},
     'from': {'hi': 'श्रीरामचरितमानस', 'en': 'Śrī Rāmacaritamānasa'},   # under the title on the work's page (by · from): the parent text, not the publisher (the owner's rule)
-    'colophon': {'hi': '।। सियावर रामचन्द्रकी जय ।। पवनसुत हनुमानकी जय ।।', 'en': '।। Glory to Śrī Rāma ।। Glory to Hanumān, son of the Wind ।।'},
+    'colophon': {'hi': '॥ सियावर रामचन्द्रकी जय ॥ पवनसुत हनुमानकी जय ॥', 'en': '॥ Glory to Śrī Rāma ॥ Glory to Hanumān, son of the Wind ॥'},
     'parts': {'name': {'hi': 'भाग', 'en': 'Part'},
               'list': [PARTS['mangal'][1], {'hi': 'किष्किन्धाकाण्ड (अन्तिम अंश)', 'en': 'Kiṣkindhā-kāṇḍa (closing verses)'}, {'hi': 'सुन्दरकाण्ड', 'en': 'Sundarakāṇḍa'}] + [v[1] for v in sorted(PARTS.values(), key=lambda v: v[0]) if v[0] > 2]},
     'types': TYPES,

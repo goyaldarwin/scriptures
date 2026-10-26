@@ -4,12 +4,10 @@ The printout's Devanagari text layer drops every र् (पूणम् for प
 can't be compared directly; its transliteration layer is clean. This script:
   1. reads the printout's transliteration of each verse (the Latin lines ending in |, || or || N ||),
   2. converts it to Devanagari and compares it with text.json → v; the only differences allowed are the
-     corrections listed in reconciliation.md (EXPECTED below),
-  3. converts text.json → t to Devanagari and checks it equals v (our transliteration matches our text).
+     corrections listed in reconciliation.md (EXPECTED below).
 The Devanagari of every verse is also checked by eye against the page images (reconciliation.md).
 
 Usage: python3 tools/works/isha-upanishad/check.py <scriptures-data>/hinduism/veda/yajurveda/shukla-yajurveda/upanishad/isha-upanishad/printouts/shlokam/isha-upanishad.pdf
-Without the PDF it runs step 3 only.
 """
 import json, os, re, sys, unicodedata
 
@@ -47,15 +45,10 @@ def deva(s):
 
 def words_v(lines):   # our Devanagari, without daṇḍas and numbers
     return ' '.join(re.sub(r'[।॥|,0-9०-९]', ' ', ' '.join(lines)).split())
-def words_t(lines):
-    return deva(' '.join(re.sub(r'[।॥|,0-9]', ' ', ' '.join(lines)).split()))
 
 bad = 0
-for x in ITEMS:   # step 3
-    a, b = words_v(x['v']), words_t(x['t'])
-    if a != b: bad += 1; print('t ≠ v', x['id'], '\n  v:', a, '\n  t:', b)
 
-# step 2: the printout's own transliteration, with the corrections recorded in reconciliation.md
+# the printout's own transliteration, with the corrections recorded in reconciliation.md
 EXPECTED = {   # item: [(printout, settled)]
     'shanti.1': [('pūrṇamevāvaśiṣyate', 'pūrṇamevāvaśiṣyate oṁ śāntiḥ śāntiḥ śāntiḥ')],
     'm08': [('asnāviraṁśuddham apāpaviddham', 'asnāviraṁ śuddhamapāpaviddham'), ('syayambhūr', 'svayambhūr')],

@@ -63,8 +63,7 @@ work = {
 }
 
 def dump(rel, obj):
-    p = os.path.join(OUT, rel); os.makedirs(os.path.dirname(p), exist_ok=True)
-    json.dump(obj, open(p, 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
+    return jsonio.dump_library(OUT, rel, obj)
 
 # keep the sources list that build.py registered, so an export alone does not change it
 old = os.path.join(OUT, WP, 'work.json')

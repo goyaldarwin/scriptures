@@ -3,7 +3,7 @@
 ## Source
 The text the owner pasted (no page named). It is the only witness.
 
-The rule: keep the source; correct it only where it is clearly wrong. House style: ।/।। for the dandas, stanzas numbered (।।१।।), and the refrain (टेक, the first stanza) shown once although it is sung after each stanza.
+The rule: keep the source; correct it only where it is clearly wrong. The library's writing standard (docs/PLAYBOOK.md §3): ।/॥ for the daṇḍas, stanzas numbered (॥१॥); and the refrain (टेक, the first stanza) shown once although it is sung after each stanza.
 
 | Place | Source | Ours | Why |
 |---|---|---|---|
