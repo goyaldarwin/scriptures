@@ -4,7 +4,7 @@ The text (text.json) is settled by source/settle.py from the owner's PDF (see RE
 compares it with the Devanagari witnesses. The meanings are written for this library (the owner's instruction for the
 Sanskrit texts): concise, faithful, following Śaṅkara's reading, with other readings in footnotes.
 
-Writes   work.json                     the text: śānti mantra, mantras 1.1.1 … 2.3.18, closing śānti
+Writes   work.json                     the text: śānti mantra, mantras 1.1.1 … 2.3.18
          meanings/hi-scriptures.json   Hindi meaning (meanings/hi.json)
          meanings/en-scriptures.json   English meaning (meanings/en.json)
          glossary.json                 the work's own senses of words whose shared sense doesn't fit here (WORK_SENSES)
@@ -26,7 +26,7 @@ def dump(path, obj):
 
 items = json.load(open(os.path.join(HERE, 'text.json'), encoding='utf-8'))['items']
 VALLI = [('1', '1', 29), ('1', '2', 25), ('1', '3', 17), ('2', '1', 15), ('2', '2', 15), ('2', '3', 18)]
-want = ['shanti.1'] + ['%s.%s.%d' % (a, v, m) for a, v, n in VALLI for m in range(1, n + 1)] + ['shanti.2']
+want = ['shanti.1'] + ['%s.%s.%d' % (a, v, m) for a, v, n in VALLI for m in range(1, n + 1)]
 assert [x['id'] for x in items] == want, 'text.json is not in the expected order'
 for x in items:
     if x['y'] == 'mantra':   # each mantra ends with its number within the vallī
@@ -53,7 +53,6 @@ work = {
         {'id': '2.1.1', 'hi': 'द्वितीय अध्याय, प्रथमा वल्ली — भीतर देखो; यही वह है', 'en': 'Adhyāya 2, Vallī 1 — Look within; this indeed is that'},
         {'id': '2.2.1', 'hi': 'द्वितीय अध्याय, द्वितीया वल्ली — ग्यारह द्वारोंका नगर; सबका अन्तरात्मा', 'en': 'Adhyāya 2, Vallī 2 — The city of eleven gates; the inner Self of all'},
         {'id': '2.3.1', 'hi': 'द्वितीय अध्याय, तृतीया वल्ली — ऊर्ध्वमूल अश्वत्थ; योग; अमरता', 'en': 'Adhyāya 2, Vallī 3 — The inverted tree; yoga; immortality'},
-        {'id': 'shanti.2', 'hi': 'शान्तिपाठ', 'en': 'Śānti Pāṭha'},
     ],
 }
 dump(WP + '/work.json', work)
