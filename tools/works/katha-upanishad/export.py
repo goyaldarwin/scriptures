@@ -44,6 +44,7 @@ work = {
         'mantra': {'name': {'hi': 'मन्त्र', 'en': 'Mantra'}, 'short': {'hi': 'मं॰', 'en': 'Man.'}},
     },
     'items': items,
+    'removed': ['shanti.2'],   # the closing śānti, left out at the owner's word (reconciliation.md); its id is never reused
     'topics': [
         {'id': 'shanti.1', 'hi': 'शान्तिपाठ', 'en': 'Śānti Pāṭha'},
         {'id': '1.1.1', 'hi': 'प्रथम अध्याय, प्रथमा वल्ली — नचिकेताकी कथा और तीन वर', 'en': 'Adhyāya 1, Vallī 1 — The story of Naciketā and the three boons'},

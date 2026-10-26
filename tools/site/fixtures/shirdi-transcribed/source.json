@@ -9,6 +9,6 @@
  },
  "window": 6,
  "align": "anchors",
- "draft": "YouTube does not allow this upload (QKf_JPbN6Lw) to be played inside other sites; pramod-medhi-times is the live source. Kept for its checked timings.",
+ "draft": "A test fixture (tools/site/ux_test.py), not a source of the library: a recording timed only from its transcript, with no times set by ear. YouTube does not let this upload (QKf_JPbN6Lw) play inside other sites.",
  "order": 2
 }

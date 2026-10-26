@@ -15,10 +15,13 @@ tools/site/library.py refuses an item that does not already equal what `apply` m
      elsewhere ꣳ is written ं (the other traditions recite it as anusvāra). ꣳ typed as ग्ं is written ꣳ.
    The avagraha ऽ cannot be added by rule (it needs the words split); `avagraha_candidates` lists places to check.
 3. The Roman transliteration (`t`) of every Devanagari verse is ISO 15919, made from the verse itself (`iso`): every
-   letter written, every inherent a written; ऋ r̥, ड़ ṛ, anusvāra ṁ, candrabindu m̐, visarga ḥ, avagraha ’, ꣳ gͫ.
+   letter written, every inherent a written; ऋ r̥, ड़ ṛ, anusvāra ṁ, candrabindu m̐, visarga ḥ, avagraha ’, ꣳ gͫ; इ उ after an a
+   are ï ü (गउ gaü, never gau = गौ).
    Vedic accents stay on the vowel of their syllable: udātta ॑ → ◌̍, anudātta ॒ → ◌̠, double svarita ᳚ → ◌̎.
    A daṇḍa inside or at the end of a line is ",", a line ending in ॥ ends with "." (a line that opens with ॥ also
-   closes with it), and a verse number is " ॥N॥" (Latin digits).
+   closes with it), and a verse number is " ॥N॥" (Latin digits; Gurbani's chain ॥੮॥੧੧॥ stays a chain, ॥8॥11॥).
+   Gurmukhi is transliterated the same way, letter for letter (`gurmukhi`: each Gurmukhi letter is its Devanagari twin;
+   tippi and bindi ṁ, addak doubles the next consonant, yakash y, ੴ ik oaṅkār).
 """
 import re
 
@@ -100,6 +103,7 @@ _VOWEL_OUT = set(_V.values()) | set(_M.values()) | {'a'}
 def iso_word(w):
     for a, b in _PRE.items(): w = w.replace(a, b)
     w = w.replace('\u200c', '').replace('\u200d', '')
+    if w == 'ੴ': return 'ik oaṅkār'
     out, i = [], 0
     while i < len(w):
         ch = w[i]
@@ -115,21 +119,36 @@ def iso_word(w):
             if nx == '्': i += 1; continue
             if nx in _M: out.append(_M[nx]); i += 1; continue
             out.append('a'); continue
-        if ch in _V: out.append(_V[ch])
+        if ch in _V:   # इ उ after an a are ï ü, so that a-i, a-u never read as ai, au (ऐ, औ)
+            out.append({'i': 'ï', 'u': 'ü'}.get(_V[ch], _V[ch]) if out and out[-1].endswith('a') and _V[ch] in ('i', 'u') else _V[ch])
         elif ch in _SIGN: out.append(_SIGN[ch])
         elif ch in DEV_DIG: out.append(str(DEV_DIG.index(ch)))
         else: out.append(ch)
         i += 1
     return ''.join(out)
 
+# Gurmukhi: its letters sit 0x100 above their Devanagari twins in Unicode; the marks of its own are mapped here
+_GUR = {'\u0a70': 'ं', '\u0a02': 'ं', '\u0a75': '्य', '\u0a51': '', 'ੴ': 'ੴ'}
+
+def gurmukhi(s):
+    """Gurmukhi → Devanagari letter for letter, for the transliteration (addak ੱ doubles the next consonant)."""
+    s = re.sub('\u0a71(.)', lambda m: gurmukhi(m.group(1)) + '्' + gurmukhi(m.group(1)), s)
+    out = []
+    for ch in s:
+        c = ord(ch)
+        if ch in _GUR: out.append(_GUR[ch])
+        elif 0x0a01 <= c <= 0x0a6f: out.append(chr(c - 0x100))
+        else: out.append(ch)
+    return ''.join(out)
+
 def iso_line(l, n=None):
     """One Devanagari verse line → ISO 15919. n: a caupāī's or chhand's number, printed after its last line when the
     line ends in a bare ॥ (the Mānas prints the number at the end of the caupāī and the chhand)."""
     l = dandas(l)
-    m = re.search(r'\s*॥([०-९0-9][^॥]*)॥$', l)
-    if not m and n and l.endswith('॥'): l = l[:-1].rstrip() + ' ॥' + str(n) + '॥'; m = re.search(r'\s*॥([^॥]+)॥$', l)
+    m = re.search(r'\s*((?:॥[०-९0-9][^॥]*)+)॥$', l)
+    if not m and n and l.endswith('॥'): l = l[:-1].rstrip() + ' ॥' + str(n) + '॥'; m = re.search(r'\s*((?:॥[^॥]+)+)॥$', l)
     num = None
-    if m: num = iso_word(m.group(1).replace(' ', '\0')).replace('\0', ' '); l = l[:m.start()]
+    if m: num = '॥'.join(iso_word(x.replace(' ', '\0')).replace('\0', ' ') for x in m.group(1).split('॥')[1:]); l = l[:m.start()]
     end = ''
     if not m:
         if l.endswith('॥'): l, end = l[:-1].rstrip(), '.'
@@ -170,6 +189,7 @@ def finish(rel, obj):
     return obj
 
 DEVANAGARI = re.compile('[\u0900-\u0963\u0966-\u097f]')   # a Devanagari letter (the daṇḍas are shared with Gurmukhi)
+GURMUKHI = re.compile('[\u0a01-\u0a75]')
 
 def apply(items, work_lang, yajur=False):
     """Rewrite each item's verse lines (`v`) by the standard, and its transliteration (`t`) as ISO 15919 of them
@@ -181,6 +201,8 @@ def apply(items, work_lang, yajur=False):
         x['v'] = v
         if DEVANAGARI.search(''.join(v)):
             x['t'] = iso(v, x['n'] if x.get('y') in ('cau', 'cha') and x.get('n') else None)
+        elif GURMUKHI.search(''.join(v)):
+            x['t'] = iso([gurmukhi(l) for l in v])
     return items
 
 
@@ -199,6 +221,9 @@ CASES = [
     (iso_line, ('दोइ ॥३ (क)॥',), 'doi ॥3 (ka)॥'),
     (iso_line, ('नमो॒ नम॑ः ॥',), 'namo̠ nama̍ḥ.'),
     (lambda l: iso_line(l, 4), ('सुजाना ॥',), 'sujānā ॥4॥'),
+    (iso_line, ('गउ भइ गौ भै ॥',), 'gaü bhaï gau bhai.'),
+    (lambda l: iso_line(gurmukhi(l)), ('ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥',), 'ik oaṅkār satigura prasādi.'),
+    (lambda l: iso_line(gurmukhi(l)), ('ਨਾਨਕ ਸੱਚ ਸਿੰਮ੍ਰਿਤਿ ਸੁਧਾਖੵਰ ॥੮॥੧੧॥',), 'nānaka sacca siṁmriti sudhākhyara ॥8॥11॥'),
     (fold, ('गङ्गा',), 'गंगा'), (fold, ('इदम्',), 'इदं'), (fold, ('अग्ंशुः',), 'अंशुः'), (fold, ('अन्न',), 'अन्न'),
 ]
 

@@ -519,6 +519,19 @@ async def main():
             setTime(n, 1, s0 + 4.2); const ie2 = SRC.au.at[IT[i].id][2] - s0;
             S.timing.fix[tkey()] = JSON.parse(keep); S.timing.on = false; save(); applyTiming(); await loadSources(); return [ie, ns, ie2].map(x => Math.round(x * 10) / 10); })()""")
         check('timing: an end pushed past the next start moves that start along; a start pulled back moves the previous end', link == [4.5, 4.5, 4.2], link)
+        # a send bigger than one GitHub issue: the button names its parts, and "publish" goes with the last part only
+        sp = await ev("""(async () => { S.timing.on = true; applyTiming(); await openWork('shri-rudram', true); await loadSources(); show('home');
+            const keep = JSON.stringify(S.timing.fix[tkey()] || {}), keepSent = JSON.stringify(S.timing.sent[tkey()] || {}), keepPub = JSON.stringify(S.timing.publish || {});
+            const a = AUT[0].concat(AUT[1] || []), fx = {}; a.slice(0, SEND_MAX + 10).forEach(([i, s0], k) => { fx[IT[i].id] = [SRC.au.at[IT[i].id][0], Math.round((s0 + 0.3) * 10) / 10, null]; });
+            S.timing.fix[tkey()] = fx; S.timing.sent[tkey()] = {}; (S.timing.publish = S.timing.publish || {})[tkey()] = true; save(); buildAudio();
+            const urls = [], open0 = window.open; window.open = u => { urls.push(u); return null; };
+            const label1 = (timingHTML().match(/id="tSend"[^>]*>(.*?)<\/button>/) || [])[1] || '';
+            sendStarts(); const label2 = (timingHTML().match(/id="tSend"[^>]*>(.*?)<\/button>/) || [])[1] || ''; sendStarts();
+            window.open = open0; const pub = urls.map(u => decodeURIComponent(u).includes('"publish":true'));
+            const left = Object.keys(pendingStarts()).length, still = !!(S.timing.publish || {})[tkey()];
+            S.timing.fix[tkey()] = JSON.parse(keep); S.timing.sent[tkey()] = JSON.parse(keepSent); S.timing.publish = JSON.parse(keepPub); S.timing.on = false; save(); applyTiming(); await loadSources();
+            return [urls.length, pub, /part 1 of 2|भाग १, कुल २/.test(label1), /part/.test(label2), left, still]; })()""")
+        check('timing: a send of two parts names them on the button; "publish" goes with the last part only', sp == [2, [False, True], True, False, 0, False], sp)
         # ---- audio timing: the order rule in the app and in the
         # generator give the same figures for the same marks; every write path keeps the order of the text ----
         T0 = "S.timing.on = true; applyTiming(); await openWork('shri-rudram', true); await loadSources(); show('home'); { const A = SRC.au; A.at0 = Object.fromEntries(Object.entries(A.at0).map(([k, v]) => [k, v.slice(0, 2)])); A.own = []; A.ownSet = new Set(); A.checkSet = new Set(Object.keys(A.at0)); A.guess = []; A.guessSet = new Set(); A.raw = {}; buildAudio(); } const keep = JSON.stringify(S.timing.fix[tkey()] || {}); PL.on = false; stopAudio();"
@@ -607,8 +620,9 @@ async def main():
             ytInfo.t = zs + 0.3; tick(); const lit2 = PL.cur; PL.on = false; ytOK = false; S.timing.fix[tkey()] = JSON.parse(keep); S.timing.on = false; save(); applyTiming(); await loadSources(); return [moved, lit === x, lit2 === z]; })()""")
         check('timing: the light waits on your verse past a start that was placed again, and follows the next heard one', mv == [True, True, True], mv)
         # the library's workflow (tools/audio/apply_owner_timing.py): a second send that gives a moved verse its own start back is applied
+        # (on a recording timed only from its transcript: the fixture tools/site/fixtures/shirdi-transcribed, placed in a temporary library)
         tmp = tempfile.mkdtemp(); wp = 'hinduism/aarti/shirdi-sai/dhoop-aarti'; sp = 'tools/works/shirdi-sai-dhoop-aarti/audio/pramod-medhi'
-        os.makedirs(os.path.join(tmp, 'library', wp, 'audio')); shutil.copy(os.path.join(ROOT, 'library', wp, 'work.json'), os.path.join(tmp, 'library', wp)); shutil.copytree(os.path.join(ROOT, sp), os.path.join(tmp, sp))
+        os.makedirs(os.path.join(tmp, 'library', wp, 'audio')); shutil.copy(os.path.join(ROOT, 'library', wp, 'work.json'), os.path.join(tmp, 'library', wp)); shutil.copytree(os.path.join(ROOT, 'tools/site/fixtures/shirdi-transcribed'), os.path.join(tmp, sp))
         env = dict(os.environ, SCRIPTURES_REPO=tmp); out = []
         r0 = subprocess.run([sys.executable, os.path.join(ROOT, 'tools/audio/make_timings.py'), os.path.join(tmp, sp)], env=env, capture_output=True, text=True)
         raw = json.load(open(os.path.join(tmp, 'library', wp, 'audio', 'pramod-medhi.json')))['at']
@@ -671,6 +685,25 @@ async def main():
         ft = await ev("""(async () => { await openWork('manas', true); show('home'); openReader('k', 30); await new Promise(r => setTimeout(r, 500));
             document.querySelector('#rMid').click(); await new Promise(r => setTimeout(r, 300)); const ok = document.querySelector('#sheet').classList.contains('on') && !!document.querySelector('#sheetBody .secs [data-to]'); closeSheet(); return ok; })()""")
         check('reader: tapping the footer opens the section picker', ft)
+        # the footer has broken before (a tap passed the click event on as the part): tap it the way a finger does
+        # (Playwright refuses to tap what is hidden or covered), in every work, and pick the last section listed: the
+        # reader must move there. (While reciting, the player bar takes the footer's place, by design.)
+        for leaf, trail in leaves(shelf):
+            wid = leaf['work']
+            for with_player in (False,):
+                await ev(f"""(async () => {{ closeSheet(); await openWork({json.dumps(wid)}, true); show('home'); openReader('k', 0); await new Promise(r => setTimeout(r, 400));
+                    if ({'true' if with_player else 'false'}) {{ $('#player').hidden = false; document.body.classList.add('playing'); }} }})()""")
+                try:
+                    await pg.click('#rMid', timeout=3000); await pg.wait_for_timeout(400)
+                    opened = await ev("document.querySelector('#sheet').classList.contains('on') && document.querySelectorAll('#sheetBody .secs [data-to]').length")
+                    to = await ev("(() => { const b = [...document.querySelectorAll('#sheetBody .secs [data-to]')]; return b.length ? +b[b.length - 1].dataset.to : null; })()")
+                    if to is not None: await pg.click('#sheetBody .secs [data-to="%d"]' % to, timeout=3000); await pg.wait_for_timeout(700)
+                    got = await ev(f"[!document.querySelector('#sheet').classList.contains('on'), (() => {{ const el = document.getElementById('v{to}'); if (!el) return false; const r = el.getBoundingClientRect(); return r.top >= 0 && r.top < innerHeight - 80; }})()]")
+                    res = [bool(opened), got]
+                except Exception as e:
+                    res = repr(e)[:120]
+                await ev("(() => { closeSheet(); $('#player').hidden = true; document.body.classList.remove('playing'); })()")
+                check(f'{wid}: a tap on the reader footer opens the sections and a tap on the last one goes there' + (' (player open)' if with_player else ''), res == [True, [True, True]], res)
         bd = await ev("""(async () => { const me = ME(); me.bm[KEY(IT[40].id)] = 1; me.bm[KEY(IT[41].id)] = 2; save(); show('bookmarks'); await new Promise(r => setTimeout(r, 300));
             const n0 = document.querySelectorAll('#bmBody [data-del]').length; document.querySelector('#bmBody [data-del="40"]').click(); await new Promise(r => setTimeout(r, 300));
             const r = [n0, document.querySelectorAll('#bmBody [data-del]').length, !me.bm[KEY(IT[40].id)], !!me.bm[KEY(IT[41].id)]]; delete me.bm[KEY(IT[41].id)]; save(); return r; })()""")

@@ -12,6 +12,5 @@ The work has one part (Dhūpa Āratī). Its pages are the sections (āratī, abh
 
 Item ids look like `aarti.pad3` or `mahimna.shloka9` (section, type, number). They are permanent.
 
-Audio (Pramod Medhi), two uploads of the same recording:
+Audio (Pramod Medhi):
 - `audio/pramod-medhi-times/`: the Times Music upload (YouTube `b_JJzjc2Rgk`), the live source (`order: 1`). Its starts are the owner's, set by ear in the app's timing mode (`owner.json`, written by `tools/audio/apply_owner_timing.py`); `source.json` → `checked`.
-- `audio/pramod-medhi/`: the Sai Aashirwad upload (YouTube `QKf_JPbN6Lw`), a draft: YouTube does not allow it to be played inside other sites. It keeps its hand-checked starts (`fixes.json`, evidence in `fixes.md`).

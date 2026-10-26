@@ -6,7 +6,7 @@ Inputs (all in this folder; see README.md):
   meanings/hi.json, en.json, pa.json   our Hindi, English and Punjabi meaning of every item, written for this library
   glossary/pa.json         Gurmukhi word meanings
 Writes
-  work.json                         the text (Gurmukhi verse lines + the PDF's transliteration), 24 Ashtapadis as
+  work.json                         the text (Gurmukhi verse lines; ISO 15919 transliteration), 24 Ashtapadis as
                                     parts, two topics per Ashtapadi, the work's verse types
   meanings/en-sant-singh-khalsa.json  the PDF's English (Dr. Sant Singh Khalsa), the lines of an item joined (order 2)
   meanings/hi-scriptures.json       the Hindi meaning (written for this library; the PDF has none)
@@ -22,6 +22,7 @@ import json, os, re, sys, subprocess
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.dirname(os.path.dirname(os.path.dirname(HERE)))
 sys.path.insert(0, HERE); sys.path.insert(0, os.path.join(REPO, 'tools'))
 import jsonio
+sys.path.insert(0, os.path.join(REPO, 'tools', 'text')); import standard
 from structure import build, check
 
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(REPO, 'library')
@@ -68,11 +69,11 @@ parts = {'name': {'hi': 'अष्टपदी', 'en': 'Ashtapadi'},
 
 # Two topics in each Ashtapadi: its Salok and its eight pauris, each named by its first line — the way a passage
 # of Gurbani is cited ("ਸਿਮਰਉ ਸਿਮਰਿ ਸਿਮਰਿ ਸੁਖੁ ਪਾਵਉ"). The Hindi name is the line in Devanagari letters, the English
-# name the PDF's transliteration of it.
+# name its ISO 15919 transliteration (tools/text/standard.py).
 def pratik(x, skip):
     j = next(i for i, l in enumerate(x['v']) if not l.startswith(skip))
     first = re.sub(r'\s*॥.*$', '', x['v'][j])
-    tr = re.sub(r'[.\s]+$', '', re.sub(r'\|\|.*$', '', x['t'][j]))
+    tr = standard.iso_line(standard.gurmukhi(first))
     return {'hi': gur2dev(first), 'en': tr[:1].upper() + tr[1:]}
 
 

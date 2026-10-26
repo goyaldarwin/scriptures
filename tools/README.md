@@ -12,6 +12,7 @@ tools/
     privacy.html                   the privacy policy → privacy.html
     regen_check.py                 library/ must be exactly what the works' exporters make
     smoke_test.py, ux_test.py      every work in a browser; navigation and reading at phone size
+    fixtures/                      data only the tests use (its README)
   audio/                         audio sources (shared by every work; see audio/README.md)
     transcribe.py                  recordings → transcripts (Whisper speech recognition)
     transcribe_onnx.py             the same with a Whisper model from GitHub, when the usual model can't be downloaded
@@ -61,7 +62,6 @@ tools/
       glossary/mr|sa|hi.json       word meanings by language
       export.py                    → library/hinduism/aarti/shirdi-sai/dhoop-aarti/ and library/glossary/
       audio/pramod-medhi-times/    the live recording, timed by ear (owner.json)
-      audio/pramod-medhi/          a recording YouTube does not let other sites play (a draft)
     shri-rudram/
       source/                      the shlokam.org printouts → *_raw.json (extract.py) → ../text.json (settle.py; reconciliation.md)
       meanings/namakam|chamakam.json  our English and Hindi meaning per mantra

@@ -32,5 +32,4 @@ Verse types: टेक (refrain, `tek`, shown once although it is sung after eve
 | shiv-aarti | `anuradha-paudwal` | Yb2GMwJyGnE | **draft**: sings another version of the āratī (`fixes.md`) |
 | hanuman-aarti | `ashwin-pathak` | QjSpUgnEPLU | taken from the Sundarakāṇḍa's timings by `export.py` |
 
-Not used: "Aarti Kije Ram Ki – Ram Mandir Ayodhya Aarti" (3_QR2HxO3N4). It shares the refrain "आरती कीजे श्रीरामलला की" but sings other stanzas ("नारायण नर तन धर आए … कौशल्या सुत राजीव लोचन …"), which are not in our text.
 The recordings themselves belong in scriptures-data at each `recordings.json` → `data`; they are not there yet.

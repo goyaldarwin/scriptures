@@ -10,8 +10,9 @@ read directly, then checked against the page images.
   transcript (`audio/smvedroad/transcripts/`). The chant follows the printout word for word in mantras 1–12.
 - The owner's printout of freepressjournal.in, NJ Reddy, "The Peace Mantra 'OM Bhadram Karnebhih'" (13 May 2021): the śānti
   mantra in Roman letters, with word meanings.
-- Not yet read: vedantastudents.com, "11-Mandukya-Upanishad-Summary.pdf" (the site is blocked from the workspace; open, for the
-  owner to share as a file).
+- The owner's saved copy of shlokam.org, "Mandukya Upanishad – Translation, Word Meaning, Commentary and Audio" (HTML; private
+  copy in scriptures-data at `…/mandukya-upanishad/printouts/shlokam/`): the śānti mantra with the four svasti lines and
+  mantras 1–12, in Devanagari.
 
 The library's writing standard (docs/PLAYBOOK.md §3) applies: ॥ and compact verse numbers (`॥१॥`), Pāṇini's spelling, the ISO 15919 transliteration made from the verse.
 
@@ -22,9 +23,11 @@ The recording chants भद्रं कर्णेभिः … यदाय�
 Bruhaspatir-Dadhaatu). This is the śānti pāṭha of the Atharvaveda's Upaniṣads (Praśna, Muṇḍaka, Māṇḍūkya) as usually recited,
 so the text follows the recording and the Reddy page, and leaves out "भद्रं नो अपि वातय मनः".
 
-**Open:** the Devanagari of the four svasti lines comes from those two witnesses (one heard, one in Roman letters) with the
-regular sandhi (नः + इन्द्रः → न इन्द्रो; नः + तार्क्ष्यः → नस्तार्क्ष्यो; नः + बृहस्पतिः → नो बृहस्पतिः), not from a Devanagari
-page. To confirm against a printed Devanagari text (the vedantastudents PDF, or Gita Press).
+The four svasti lines are confirmed in Devanagari by the shlokam.org page: the same words in the same order. The page has
+three slips, and the text keeps the standard Ṛgveda reading (RV 1.89.6, 1.89.8) in each: ताक्षर्यो for तार्क्ष्यो (Tārkṣya,
+Garuḍa), वृहस्पति for बृहस्पति, यदायूः for यदायुः. The page writes देवाः at its line end where the text joins शृणुयाम देवा
+भद्रं (visarga dropped before a voiced consonant after ā), and तुष्टुवागँसस् where the text has तुष्टुवांसस्, the Yajurveda's
+way of writing the anusvāra (this is an Atharvaveda text: ं).
 
 Also: शृणुयाम — the printout's word carries an invisible joiner (श‍ृ, U+200D); removed. The middle daṇḍa after यजत्राः and
 यदायुः and the line breaks follow the printout and the chant's breaths.
@@ -32,9 +35,15 @@ Also: शृणुयाम — the printout's word carries an invisible joiner 
 ## Mantras 1–12
 No word changed. Kept as printed:
 - हरिः ॐ । at the head of mantra 1 (the recording does not chant it there, but at the very end).
-- इदꣳ (with the Vedic anusvāra ꣳ, as printed).
-- एष सर्वेश्वरः एष सर्वज्ञ (m06): the visarga before ए is kept as printed (strict sandhi would give सर्वेश्वर एष). **Open.**
-- अलक्षणं अचिन्त्यम्… (m07), भवद् भविष्यद्, …आदिमत्त्वाद् / वाऽऽप्नोति (m09): the printout's spacing at line ends.
+- इदꣳ, as printed, is written इदं: ꣳ belongs to the Yajurveda's texts (the writing standard).
+- एष सर्वेश्वरः एष सर्वज्ञ (m06): the visarga before ए is kept as printed (strict sandhi would give सर्वेश्वर एष); the shlokam.org page has it too. **Open.**
+- अलक्षणं अचिन्त्यम्… (m07), भवद् भविष्यद्, …आदिमत्त्वाद् / वाऽऽप्नोति (m09), मात्रोत्कर्षात् / उभयत्वाद् (m10): the printout's
+  line ends, where a word keeps its pausa form; the shlokam.org page joins them (भवद्भविष्यद्, मात्रोत्कर्षादुभयत्वाद्), the
+  same words.
+
+The shlokam.org page agrees with mantras 1–12 word for word, apart from the line-end joins above, ऽऽ written in एवाऽऽनन्दमयो
+(m05) but not in वाप्नोति (m09), बहिःप्रज्ञं for बहिष्प्रज्ञं (m07; the text keeps Pāṇini's ष्, 8.3.41), ओमित्येतद् for ॐ
+इत्येतद् (m01; the writing standard writes ॐ), and a verse from elsewhere (सर्वभूतस्थमात्मानं…) that it places before mantra 4.
 
 ## Divisions
 The recording announces four khaṇḍas (अथ प्रथमः खण्डः … इति चतुर्थः खण्डः): mantras 1–2, 3–7, 8–11 and 12. The printout has
