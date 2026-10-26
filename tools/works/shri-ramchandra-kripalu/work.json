@@ -1,0 +1,31 @@
+{
+ "id": "shri-ramchandra-kripalu",
+ "path": "hinduism/aarti/rama/shri-ramchandra-kripalu",
+ "lang": "bra",
+ "title": {
+  "hi": "श्रीरामचन्द्र कृपालु",
+  "en": "Śrī Rāmacandra Kṛpālu"
+ },
+ "by": {
+  "hi": "गोस्वामी तुलसीदास",
+  "en": "Gosvāmī Tulasīdāsa"
+ },
+ "from": {
+  "hi": "विनय-पत्रिका",
+  "en": "Vinaya-patrikā"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Āratī"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "श्रीरामचन्द्र कृपालु",
+    "en": "Śrī Rāmacandra Kṛpālu"
+   }
+  ]
+ },
+ "types": {}
+}

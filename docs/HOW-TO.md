@@ -10,7 +10,7 @@ python3 tools/site/ux_test.py      # navigation and reading, every work, at phon
 python3 -m http.server 8000        # open http://localhost:8000 at phone size (390×844) and look
 git pull && git add -A && git commit -m "…" && git push   # GitHub Pages updates in about a minute
 ```
-After a change to a work's text, make its recordings' timings again too (`python3 tools/audio/make_timings.py tools/works/<work>/audio/<source>`): the starts not set by ear are spread by verse length, and `regen_check.py` fails on a stale timing file.
+A work's files are in `tools/works/<work>/` (the format: `tools/works/README.md`); `python3 tools/works/export.py <work>` writes it into `library/`. After a change to a work's text, make its recordings' timings again too (`python3 tools/audio/make_timings.py tools/works/<work>/audio/<source>`, then the same for any work whose recording takes from it, `source.json` → `take`): the starts not set by ear are spread by verse length, and `regen_check.py` fails on a stale timing file.
 
 If `build.py` prints `LIBRARY PROBLEM: …`, fix what it names. It never builds a broken library. Large work (a new work, a change to shared code) goes on a branch and a pull request (`docs/START-HERE.md`). Always `git pull` first: the `timing` workflow also pushes to `main`.
 
@@ -18,13 +18,12 @@ If `build.py` prints `LIBRARY PROBLEM: …`, fix what it names. It never builds 
 
 ## Add a new meaning source (another translation or commentary)
 
-1. Choose the id: `<lang>-<publisher or translator>`, e.g. `hi-swami-ramsukhdas` or `en-griffith`.
-2. Turn the book into `{item id: [meaning, footnotes?]}`. Put the scripts and their intermediate files in `tools/works/<work>/meanings/<id>/` so the work can be redone. Match by the item ids in `library/<path>/work.json`, and check the verse text where possible, not by position alone. Copy the source's meanings faithfully (`docs/LIBRARY.md` §3).
-3. Write `library/<path>/meanings/<id>.json` in the format in `docs/LIBRARY.md` §3, with `id`, `lang`, `title` (bilingual), `m`, and optionally `order` and the line-by-line `p`.
-4. Build. The source appears under ☰ › More › Sources. The default stays as it was unless the new file has a lower `order`.
-5. Note the edition and the permission status in the root `README.md` under "Sources and permissions".
+1. Choose the source's name: the publisher or translator, e.g. `swami-ramsukhdas` or `griffith`; its library id is `<lang>-<name>`.
+2. Write `tools/works/<work>/meanings/<lang>/<name>.json` (`tools/works/README.md` → meanings): `title` (bilingual), `order`, `"copied": true`, `m` {verse id: meaning, or a list of one piece per line}, and `notes` for footnotes. Match by the verse ids in `text.txt`, and check the verse text where possible, not by position alone. Copy the source's meanings faithfully (`docs/LIBRARY.md` §3). When a script makes the file from a book, keep the script and its intermediate files in `tools/works/<work>/source/` so it can be redone.
+3. Export the work and build. The source appears under ☰ › More › Sources. The default stays as it was unless the new file has a lower `order`.
+4. Note the edition and the permission status in the root `README.md` under "Sources and permissions".
 
-Our own meanings (`<lang>-scriptures`) follow `tools/meanings/style.md`; `tools/meanings/prepare.py` makes the batches to write, `apply_batches.py` merges them, and `overlap.py` checks them.
+Our own meanings (`meanings/<lang>/scriptures.json`) follow `tools/meanings/style.md`; `tools/meanings/prepare.py --work <work>` makes the batches to write, `apply_batches.py --work <work>` merges them, and the export checks them against the copied sources (`overlap.py`).
 
 ## Add a new audio source (another reciter)
 
@@ -53,16 +52,16 @@ Use this when automatic timing is weak (kīrtan, chant) or a recording has no tr
 5. Never edit `owner.json` or the generated timings by hand; the issue is the record.
 
 ## Correct or remove a verse in a generated text
-- Put the change in the work's generator (`text.txt`, `text_fixes.json`, `settle.py`'s `FIX` / `ITEM_FIX`), never only in a generated file: a regeneration undoes it. Diff the regenerated file against the previous one and explain every change.
+- Put the change where the work's text is made (`text.txt`, or, when a script in `source/` makes it, that script's corrections: the Mānas's `text_fixes.json`, `settle.py`'s `FIX` / `ITEM_FIX`), never only in `library/`: a regeneration undoes it. Diff the regenerated file against the previous one and explain every change.
 - Item ids are permanent. A removed verse's id is not reused; re-point any topic that started at it; regenerate meanings and audio timings; record it in the work's `reconciliation.md`.
 - A changed word: update every meaning of the verse and the work's glossary entry for that word.
 
 ## Add a new work (an Upanishad, Japji Sahib …)
 
-1. Place it on the shelf at its address, `<tradition>/<genre>/<group…>/<work>` (`docs/LIBRARY.md` §1), reusing existing levels: e.g. a Hanumān Chālīsā goes to `hinduism/chalisa/hanuman/hanuman-chalisa`, the Kena Upaniṣad to `hinduism/veda/samaveda/upanishad/kena`, Japji Sahib to `sikhism/gurbani/guru-nanak-dev/japji-sahib`. Add the missing shelves to `library/index.json`, ending in `{"id", "work", "path", "title", "by", "edition", "desc"}` (and `salute` if the work has its own). The work id is the shelf id unless that is taken, and the tools go in `tools/works/<work id>/`.
-2. Create `tools/works/<work>/` with the extraction scripts (from PDFs or other sources), a `reconciliation.md` (the source and every choice), a `README.md`, and an `export.py` that writes `library/<path>/work.json` through `jsonio.dump_library` (it applies the writing standard, PLAYBOOK §3, and makes the transliteration) (`docs/LIBRARY.md` §2) with each verse's language, its meaning sources (§3), and new words into `glossary/<lang>.json` (§5). A new language needs its own entry first (below).
+1. Place it on the shelf at its address, `<tradition>/<genre>/<group…>/<work>` (`docs/LIBRARY.md` §1), reusing existing levels: e.g. a Hanumān Chālīsā goes to `hinduism/chalisa/hanuman/hanuman-chalisa`, the Kena Upaniṣad to `hinduism/veda/samaveda/upanishad/kena`, Japji Sahib to `sikhism/gurbani/guru-nanak-dev/japji-sahib`. Add the missing shelves to `library/index.json`, ending in `{"id", "work", "path", "title", "by", "edition", "desc"}` (and `salute` if the work has its own). The work id is the shelf id unless that is taken.
+2. Create `tools/works/<work id>/` (`tools/works/README.md`): `work.json` (the manifest, with the work's `path`), `text.txt` (the verses, with each verse's language), `README.md`, `reconciliation.md` (the source and every choice), the meanings in `meanings/<lang>/`, and any scripts that make the text from PDFs or pages in `source/`. Add the new words to `library/glossary/<lang>.json` (`docs/LIBRARY.md` §5). `python3 tools/works/export.py <work id>` writes it through the writing standard (PLAYBOOK §3) and makes the transliteration. A new language needs its own entry first (below).
 3. Choose the natural divisions for `parts`, the `topics`, and any `plans` (e.g. daily pāṭha). Ask the owner which plans they want. Pages follow the item's section `s`; use a name (e.g. `aarti`), not a number, unless sections are dohā numbers. Verse types the app doesn't know (viniyoga, dhyāna, pada, abhaṅga …) go in the work's `types` (`docs/LIBRARY.md` §2).
-4. Models: `tools/works/katha-upanishad/` (a Sanskrit text from a book, checked against witnesses), `tools/works/aartis/` (short texts from printouts, one exporter for several works), `tools/works/shirdi-sai-dhoop-aarti/` (a multilingual āratī from two printouts), `tools/works/sukhmani-sahib/` (Gurmukhi, line-by-line meanings).
+4. Models: `tools/works/katha-upanishad/` (a Sanskrit text from a book, checked against witnesses), `tools/works/shiv-aarti/` (a short text from printouts and pages), `tools/works/shirdi-sai-dhoop-aarti/` (a multilingual āratī from two printouts), `tools/works/sukhmani-sahib/` (Gurmukhi, line-by-line meanings), `tools/works/sundarkand/` (a work that takes its verses from another).
 5. Add audio as above if there is a recording.
 6. Build and test the shelf screen, the work's home, the reader, search, and bookmarks.
 
@@ -74,9 +73,9 @@ Use this when automatic timing is weak (kīrtan, chant) or a recording has no tr
 5. Build: the check refuses unknown languages, dictionaries without an entry in `languages.json`, and fallbacks to languages that don't exist.
 
 ## Fix a word or meaning in the Rāmacaritamānasa
-- Verse text: add the fix to `tools/works/ramcharitmanas/book/text_fixes.json`, then run `(cd tools/works/ramcharitmanas/book && python3 make_appdata.py) && python3 tools/works/ramcharitmanas/export.py && python3 tools/works/sundarkand/export.py && python3 tools/works/aartis/export.py`.
-- A Gita Press meaning: the same files and steps (see `tools/works/ramcharitmanas/book/README.md`).
-- Our own meaning: `tools/works/ramcharitmanas/meanings/hi.json` or `en.json`, then the same export.
+- Verse text: add the fix to `tools/works/manas/source/text_fixes.json` (and the witness to `reconciliation.md`), then run `(cd tools/works/manas/source && python3 make_appdata.py && python3 make.py) && python3 tools/works/export.py`. The works that take its verses follow (the Sundarakāṇḍa, Śrī Rāmacandra Kṛpālu, and through the Sundarakāṇḍa the Hanumān āratī); make the recordings' timings again (top of this page).
+- A Gita Press meaning: the same files and steps (see `tools/works/manas/source/README.md`).
+- Our own meaning: `tools/works/manas/meanings/hi/scriptures.json` or `en/scriptures.json`, then `python3 tools/works/export.py`.
 - A word meaning: edit `library/glossary/<lang>.json` directly, in the language of the verse (`sa` for the ślokas and Sanskrit stutis, otherwise `awa`).
 
 ## Change the app

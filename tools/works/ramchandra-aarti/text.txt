@@ -1,0 +1,23 @@
+# आरती कीजै रामचन्द्र जी की (Āratī Kījai Rāmacandra Jī Kī): the verse text. The source and every choice: reconciliation.md.
+
+@part aarti
+@section ramchandra
+@topic आरती कीजै रामचन्द्र जी की | Āratī Kījai Rāmacandra Jī Kī
+[ramchandra.tek tek]
+आरती कीजै रामचन्द्र जी की ।
+हरि-हरि दुष्टदलन सीतापति जी की ॥
+[ramchandra.pad1 pad 1]
+पहली आरती पुष्पन की माला ।
+काली नाग नाथ लाये गोपाला ॥१॥
+[ramchandra.pad2 pad 2]
+दूसरी आरती देवकी नन्दन ।
+भक्त उबारन कंस निकन्दन ॥२॥
+[ramchandra.pad3 pad 3]
+तीसरी आरती त्रिभुवन मोहे ।
+रत्न सिंहासन सीता रामजी सोहे ॥३॥
+[ramchandra.pad4 pad 4]
+चौथी आरती चहुं युग पूजा ।
+देव निरंजन स्वामी और न दूजा ॥४॥
+[ramchandra.pad5 pad 5]
+पांचवीं आरती राम को भावे ।
+रामजी का यश नामदेव जी गावें ॥५॥

@@ -1,0 +1,82 @@
+{
+ "id": "ramraksha",
+ "path": "hinduism/stotra/rama/ramraksha",
+ "lang": "sa",
+ "title": {
+  "hi": "श्रीरामरक्षास्तोत्रम्",
+  "en": "Śrī Rāma Rakṣā Stotram"
+ },
+ "by": {
+  "hi": "बुधकौशिक ऋषि",
+  "en": "Budha Kauśika Ṛṣi"
+ },
+ "edition": {
+  "hi": "वन्दे गुरु परम्पराम्",
+  "en": "Vande Guru Paramparaam"
+ },
+ "parts": {
+  "name": {
+   "hi": "पाठ",
+   "en": "Pāṭha"
+  },
+  "list": [
+   {
+    "key": "ramraksha",
+    "hi": "श्रीरामरक्षास्तोत्रम्",
+    "en": "Śrī Rāma Rakṣā Stotram"
+   }
+  ]
+ },
+ "types": {
+  "mantra": {
+   "name": {
+    "hi": "मन्त्र",
+    "en": "Mantra"
+   },
+   "short": {
+    "hi": "मं॰",
+    "en": "Man."
+   }
+  },
+  "viniyoga": {
+   "name": {
+    "hi": "विनियोग",
+    "en": "Viniyoga"
+   },
+   "short": {
+    "hi": "विनि॰",
+    "en": "Vin."
+   }
+  },
+  "dhyana": {
+   "name": {
+    "hi": "ध्यान",
+    "en": "Dhyāna"
+   },
+   "short": {
+    "hi": "ध्या॰",
+    "en": "Dhy."
+   }
+  },
+  "shloka": {
+   "name": {
+    "hi": "श्लोक",
+    "en": "Śloka"
+   },
+   "short": {
+    "hi": "श्लो॰",
+    "en": "Śl."
+   }
+  },
+  "iti": {
+   "name": {
+    "hi": "समापन (पुष्पिका)",
+    "en": "Closing words (iti)"
+   },
+   "short": {
+    "hi": "इति",
+    "en": "Iti"
+   }
+  }
+ }
+}

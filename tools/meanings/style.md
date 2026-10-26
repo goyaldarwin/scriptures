@@ -23,7 +23,7 @@ Only then open the published meanings (Gita Press, Growse), as guidance: to chec
 - **Each speaker keeps his tone.** Devotees and the narrator use honorifics; Rāvaṇa, Laṅkinī or a mocking rākṣasa do not: Rāvaṇa's "तपसी" stays "that ascetic", not "Śrī Rāmajī".
 
 ## 4. Hindi
-- Natural modern Hindi in our house style (as in `tools/works/sundarkand/meanings/hi.json`, Sukhmani, Rudram, Īśa).
+- Natural modern Hindi in our house style (as in `tools/works/sundarkand/meanings/hi/scriptures.json`, Sukhmani, Rudram, Īśa).
 - **Postpositions joined to the noun:** श्रीरामजीको, सीताजीसे, हनुमान्‌जीने, समुद्रके; pronouns too (उसको, उनके). Spellings of this style: लिये, गये, किये, दिये.
 - **Honorific plural** for the Lord, Sītā, Lakṣmaṇa, Hanumān, sages, elders and anyone the speaker honours: वे, उन्होंने, कहते हैं; "आप" when they are addressed by a devotee. The Lord addresses others, Hanumān included, with तुम (the owner's choice; Gita Press uses तू).
 - **Standard Hindi spelling for names** (विभीषण not बिभीषन, लक्ष्मण not लछिमन, जाम्बवान्‌ not जामवंत), anusvāra rather than a half-nasal (लंका, संत), ZWNJ in हनुमान्‌जी.
@@ -124,7 +124,7 @@ Our word meanings (`library/glossary/<lang>.json`) are the starting point. Where
 Take the facts (the sense, the grammar), never a dictionary's sentences. A word's entry lists every sense the work uses it in (जाहू: "जाओ / जिसे, जिसके" — "go / whom, whose"), separated by " / ", so the word sheet shows them all; **the verse's meaning uses only the sense that fits its context**. A sense that is not settled goes in `docs/reviews/dictionary-doubts.jsonl`.
 
 ## 12. Gurbani (Sukhmani Sahib and later Sikh works)
-The verse is Gurmukhi (Sant Bhasha: Braj, Punjabi, Sanskrit and Persian words), read with `library/glossary/pa.json` and our own Hindi meaning (`tools/works/sukhmani-sahib/meanings/hi.json`) as aids. The Sikh understanding is the frame: one formless Lord (Ik Oankar), reached by the Guru's word and remembrance of the Naam, not by ritual.
+The verse is Gurmukhi (Sant Bhasha: Braj, Punjabi, Sanskrit and Persian words), read with `library/glossary/pa.json` and our own Hindi meaning (`tools/works/sukhmani-sahib/meanings/hi/scriptures.json`) as aids. The Sikh understanding is the frame: one formless Lord (Ik Oankar), reached by the Guru's word and remembrance of the Naam, not by ritual.
 - **Sikh terms as the community uses them**, in the plain Roman spelling of Sikh English (no IAST diacritics), glossed once per ashtapadi where a reader may not know them: **Naam** (the Name: God's presence remembered), **Simran** (remembrance, meditating on the Naam), **Gurmukh** (one who follows the Guru) / **manmukh** (the self-willed), **Saadh Sangat** (the company of the holy), **Sant** / **Saadh** (the saint, the holy one), **Brahm Giani** (one who knows God), **Hukam** (God's will, command), **Maya**, **Haumai** (ego), **Waheguru**, **Gurbani**, **Kirtan**, **Har** / **Hari**, **Gobind**, **Paarbrahm** (the Supreme Lord).
 - **God:** ਪ੍ਰਭ / ਪ੍ਰਭੂ → God; ਹਰਿ → the Lord (Har where it is a name in a list); ਠਾਕੁਰ, ਸੁਆਮੀ → the Master, my Lord; ਪਾਰਬ੍ਰਹਮ → the Supreme Lord (Paarbrahm). Pronouns lower case, as in all our English (he, you); where natural, repeat "God" rather than lean on "he".
 - **ਨਾਨਕ** in the last line is the Guru's own signature: "Nanak", as he speaks of himself ("Nanak begs for the dust of their feet"), never "Guru Nanak".

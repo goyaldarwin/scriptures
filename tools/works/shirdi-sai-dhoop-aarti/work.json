@@ -1,0 +1,96 @@
+{
+ "id": "shirdi-sai-dhoop-aarti",
+ "path": "hinduism/aarti/shirdi-sai/dhoop-aarti",
+ "lang": "mr",
+ "title": {
+  "hi": "धूप आरती",
+  "en": "Dhūpa Āratī"
+ },
+ "by": {
+  "hi": "श्री साईबाबा, शिरडी",
+  "en": "Śrī Sāī Bābā of Shirdi"
+ },
+ "edition": {
+  "hi": "शिरडीकी सायंकालीन आरती",
+  "en": "The evening āratī of Shirdi"
+ },
+ "from": {
+  "hi": "शिरडीकी सायंकालीन आरती",
+  "en": "The evening āratī of Shirdi"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Āratī"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "धूप आरती",
+    "en": "Dhūpa Āratī"
+   }
+  ]
+ },
+ "types": {
+  "dhru": {
+   "name": {
+    "hi": "ध्रुवपद",
+    "en": "Dhruvapada"
+   },
+   "short": {
+    "hi": "ध्रु॰",
+    "en": "Dhru."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Pada"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "Pada"
+   }
+  },
+  "abhang": {
+   "name": {
+    "hi": "अभंग",
+    "en": "Abhaṅga"
+   },
+   "short": {
+    "hi": "अभं॰",
+    "en": "Abh."
+   }
+  },
+  "shloka": {
+   "name": {
+    "hi": "श्लोक",
+    "en": "Śloka"
+   },
+   "short": {
+    "hi": "श्लो॰",
+    "en": "Śl."
+   }
+  },
+  "mantra": {
+   "name": {
+    "hi": "मन्त्र",
+    "en": "Mantra"
+   },
+   "short": {
+    "hi": "मं॰",
+    "en": "Man."
+   }
+  },
+  "jay": {
+   "name": {
+    "hi": "जयघोष",
+    "en": "Jayaghoṣa"
+   },
+   "short": {
+    "hi": "जय",
+    "en": "Jaya"
+   }
+  }
+ }
+}

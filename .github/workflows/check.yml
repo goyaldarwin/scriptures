@@ -1,5 +1,5 @@
 # Every pull request and every push to main: the library must pass its checks, the committed website must be
-# exactly what the build makes from it, library/ must be exactly what the works' generators make, no id that readers'
+# exactly what the build makes from it, library/ must be exactly what tools/works/export.py and the timings make, no id that readers'
 # data points at may disappear, and every work must open in a real browser without script errors.
 name: check
 on:

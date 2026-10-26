@@ -1,0 +1,38 @@
+{
+ "id": "ramlala-aarti",
+ "path": "hinduism/aarti/rama/ramlala-aarti",
+ "lang": "awa",
+ "title": {
+  "hi": "आरती कीजे श्रीरामलला की",
+  "en": "Āratī Kīje Śrī Rāmalalā Kī"
+ },
+ "by": {
+  "hi": "भगवान श्रीराम",
+  "en": "Bhagavān Śrī Rāma"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Āratī"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "आरती कीजे श्रीरामलला की",
+    "en": "Āratī Kīje Śrī Rāmalalā Kī"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (ṭeka)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  }
+ }
+}

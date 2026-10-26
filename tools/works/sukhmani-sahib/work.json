@@ -1,0 +1,187 @@
+{
+ "id": "sukhmani-sahib",
+ "path": "sikhism/gurbani/guru-arjan-dev/sukhmani-sahib",
+ "lang": "pa",
+ "title": {
+  "hi": "सुखमनी साहिब",
+  "en": "Sukhmani Sahib"
+ },
+ "by": {
+  "hi": "गुरु अर्जन देव जी",
+  "en": "Guru Arjan Dev Ji"
+ },
+ "edition": {
+  "hi": "श्री गुरु ग्रन्थ साहिब, अंग २६२–२९६",
+  "en": "Sri Guru Granth Sahib, Ang 262–296"
+ },
+ "from": {
+  "hi": "श्री गुरु ग्रन्थ साहिब, अंग २६२–२९६",
+  "en": "Sri Guru Granth Sahib, Ang 262–296"
+ },
+ "parts": {
+  "name": {
+   "hi": "अष्टपदी",
+   "en": "Ashtapadi"
+  },
+  "list": [
+   {
+    "key": "1",
+    "hi": "अष्टपदी १",
+    "en": "Ashtapadi 1"
+   },
+   {
+    "key": "2",
+    "hi": "अष्टपदी २",
+    "en": "Ashtapadi 2"
+   },
+   {
+    "key": "3",
+    "hi": "अष्टपदी ३",
+    "en": "Ashtapadi 3"
+   },
+   {
+    "key": "4",
+    "hi": "अष्टपदी ४",
+    "en": "Ashtapadi 4"
+   },
+   {
+    "key": "5",
+    "hi": "अष्टपदी ५",
+    "en": "Ashtapadi 5"
+   },
+   {
+    "key": "6",
+    "hi": "अष्टपदी ६",
+    "en": "Ashtapadi 6"
+   },
+   {
+    "key": "7",
+    "hi": "अष्टपदी ७",
+    "en": "Ashtapadi 7"
+   },
+   {
+    "key": "8",
+    "hi": "अष्टपदी ८",
+    "en": "Ashtapadi 8"
+   },
+   {
+    "key": "9",
+    "hi": "अष्टपदी ९",
+    "en": "Ashtapadi 9"
+   },
+   {
+    "key": "10",
+    "hi": "अष्टपदी १०",
+    "en": "Ashtapadi 10"
+   },
+   {
+    "key": "11",
+    "hi": "अष्टपदी ११",
+    "en": "Ashtapadi 11"
+   },
+   {
+    "key": "12",
+    "hi": "अष्टपदी १२",
+    "en": "Ashtapadi 12"
+   },
+   {
+    "key": "13",
+    "hi": "अष्टपदी १३",
+    "en": "Ashtapadi 13"
+   },
+   {
+    "key": "14",
+    "hi": "अष्टपदी १४",
+    "en": "Ashtapadi 14"
+   },
+   {
+    "key": "15",
+    "hi": "अष्टपदी १५",
+    "en": "Ashtapadi 15"
+   },
+   {
+    "key": "16",
+    "hi": "अष्टपदी १६",
+    "en": "Ashtapadi 16"
+   },
+   {
+    "key": "17",
+    "hi": "अष्टपदी १७",
+    "en": "Ashtapadi 17"
+   },
+   {
+    "key": "18",
+    "hi": "अष्टपदी १८",
+    "en": "Ashtapadi 18"
+   },
+   {
+    "key": "19",
+    "hi": "अष्टपदी १९",
+    "en": "Ashtapadi 19"
+   },
+   {
+    "key": "20",
+    "hi": "अष्टपदी २०",
+    "en": "Ashtapadi 20"
+   },
+   {
+    "key": "21",
+    "hi": "अष्टपदी २१",
+    "en": "Ashtapadi 21"
+   },
+   {
+    "key": "22",
+    "hi": "अष्टपदी २२",
+    "en": "Ashtapadi 22"
+   },
+   {
+    "key": "23",
+    "hi": "अष्टपदी २३",
+    "en": "Ashtapadi 23"
+   },
+   {
+    "key": "24",
+    "hi": "अष्टपदी २४",
+    "en": "Ashtapadi 24"
+   }
+  ]
+ },
+ "types": {
+  "heading": {
+   "name": {
+    "hi": "शीर्षक",
+    "en": "Heading"
+   }
+  },
+  "salok": {
+   "name": {
+    "hi": "सलोक",
+    "en": "Salok"
+   },
+   "short": {
+    "hi": "सलोक",
+    "en": "Salok"
+   }
+  },
+  "pauri": {
+   "name": {
+    "hi": "पउड़ी",
+    "en": "Pauri"
+   },
+   "short": {
+    "hi": "पउड़ी",
+    "en": "Pauri"
+   }
+  },
+  "rahao": {
+   "name": {
+    "hi": "रहाउ",
+    "en": "Rahao"
+   },
+   "short": {
+    "hi": "रहाउ",
+    "en": "Rahao"
+   }
+  }
+ }
+}

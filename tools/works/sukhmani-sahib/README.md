@@ -12,23 +12,26 @@ is printed as Gurmukhi (in a legacy font encoding), transliteration and English 
 
 ## Files
 
-- `extract.py` — the PDF → `source/lines.json` (2,018 printed lines: legacy Gurmukhi, transliteration, English, page).
-  Only needed again if the PDF changes: `python3 tools/works/sukhmani-sahib/extract.py <the PDF>`.
-- `gurmukhi.py` — the legacy ASCII Gurmukhi encoding (GurbaniAkhar / AnmolLipi) → Unicode, with its mapping table.
-- `check.py` — checks the conversion of every line against the PDF's own transliteration; optionally against two
-  outside witnesses (see its header). `export.py` runs it first and stops if it fails.
-- `structure.py` — printed lines → the 218 items (below), with structural checks.
-- `meanings/hi.json`, `en.json`, `pa.json` — our Hindi, English and Punjabi meanings of every item, written for this
-  library from the Gurmukhi (`tools/meanings/style.md` §12–13).
-- `glossary/pa.json` — meanings of all 2,536 Gurmukhi words of the text, written for this library.
+The folder's format: `tools/works/README.md`.
+
+- `source/extract.py` — the PDF → `source/lines.json` (2,018 printed lines: legacy Gurmukhi, transliteration, English, page).
+  Only needed again if the PDF changes: `python3 tools/works/sukhmani-sahib/source/extract.py <the PDF>`.
+- `source/gurmukhi.py` — the legacy ASCII Gurmukhi encoding (GurbaniAkhar / AnmolLipi) → Unicode, with its mapping table.
+- `source/check.py` — checks the conversion of every line against the PDF's own transliteration; optionally against two
+  outside witnesses (see its header).
+- `source/structure.py` — printed lines → the 218 verses (below), with structural checks.
+- `source/make.py` — runs both checks, then writes `text.txt` (with the parts and topics) and
+  `meanings/en/sant-singh-khalsa.json` (the PDF's English, copied, `order: 2`, still selectable).
+- `meanings/hi/scriptures.json`, `meanings/en/scriptures.json`, `meanings/pa/scriptures.json` — our Hindi, English and
+  Punjabi meanings of every verse, written for this library from the Gurmukhi (`tools/meanings/style.md` §12–13); ours
+  are the default, and the export checks that our English shares no run of 10+ words with the PDF's.
+- The meanings of all 2,536 Gurmukhi words of the text, written for this library, are in `library/glossary/pa.json`.
 - `reconciliation.md` — how the text is settled: conversion decisions, check results, the one English fix.
-- `export.py` — writes `work.json`, `meanings/hi-scriptures.json`, `en-scriptures.json` and `pa-scriptures.json`
-  (ours, order 1; the English is checked to share no run of 10+ words with the PDF's), `meanings/en-sant-singh-khalsa.json`
-  (the PDF's English, order 2, still selectable), and adds new words to `library/glossary/pa.json`. Then run
-  `python3 tools/site/build.py`.
 - `audio/parminder-singh/` — the recording (YouTube `KJ8D_ObQNzQ`), published for review (`source.json` → `review`): kīrtan
   with long instrumental passages, so the automatic starts are only partly confirmed. Readers hear it; every start not yet
   set by ear is listed for the owner to check in timing mode (`owner.json`, written by `tools/audio/apply_owner_timing.py`).
+
+Rebuild: `python3 tools/works/sukhmani-sahib/source/make.py && python3 tools/works/export.py sukhmani-sahib && python3 tools/site/build.py`.
 
 ## Structure
 
@@ -46,4 +49,4 @@ Each item is its own section (page) in the reader. Topics: two per Ashtapadi (st
 Salok and of its first pauri (the traditional way to cite Gurbani), in Devanagari letters for the Hindi interface
 and in its ISO 15919 transliteration for the English one. Each item's `t` is the ISO 15919 transliteration of its
 Gurmukhi, made by the writing standard (`tools/text/standard.py`); the PDF's own phonetic transliteration is used only by
-`check.py`, as a witness of the conversion.
+`source/check.py`, as a witness of the conversion.

@@ -1,0 +1,67 @@
+{
+ "id": "manas",
+ "path": "hinduism/granth/tulsidas/ramcharitmanas",
+ "lang": "awa",
+ "title": {
+  "hi": "श्रीरामचरितमानस",
+  "en": "Śrī Rāmacaritamānasa"
+ },
+ "by": {
+  "hi": "गोस्वामी तुलसीदास",
+  "en": "Gosvāmī Tulasīdāsa"
+ },
+ "edition": {
+  "hi": "गीताप्रेस, गोरखपुर",
+  "en": "Gita Press, Gorakhpur"
+ },
+ "colophon": {
+  "hi": "॥ इति श्रीरामचरितमानस समाप्त ॥ सियावर रामचन्द्रकी जय",
+  "en": "॥ इति श्रीरामचरितमानस समाप्त ॥ Glory to Śrī Rāma"
+ },
+ "parts": {
+  "name": {
+   "hi": "काण्ड",
+   "en": "Kāṇḍa"
+  },
+  "list": [
+   {
+    "key": "bal",
+    "hi": "बालकाण्ड",
+    "en": "Bāla-kāṇḍa"
+   },
+   {
+    "key": "ayodhya",
+    "hi": "अयोध्याकाण्ड",
+    "en": "Ayodhyā-kāṇḍa"
+   },
+   {
+    "key": "aranya",
+    "hi": "अरण्यकाण्ड",
+    "en": "Araṇya-kāṇḍa"
+   },
+   {
+    "key": "kishkindha",
+    "hi": "किष्किन्धाकाण्ड",
+    "en": "Kiṣkindhā-kāṇḍa"
+   },
+   {
+    "key": "sundar",
+    "hi": "सुन्दरकाण्ड",
+    "en": "Sundara-kāṇḍa"
+   },
+   {
+    "key": "lanka",
+    "hi": "लङ्काकाण्ड",
+    "en": "Laṅkā-kāṇḍa"
+   },
+   {
+    "key": "uttar",
+    "hi": "उत्तरकाण्ड",
+    "en": "Uttara-kāṇḍa"
+   }
+  ]
+ },
+ "include": [
+  "book.json"
+ ]
+}

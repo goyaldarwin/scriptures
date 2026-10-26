@@ -1,0 +1,52 @@
+{
+ "id": "ramchandra-aarti",
+ "path": "hinduism/aarti/rama/ramchandra-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "आरती कीजै रामचन्द्र जी की",
+  "en": "Āratī Kījai Rāmacandra Jī Kī"
+ },
+ "by": {
+  "hi": "भगवान श्रीराम",
+  "en": "Bhagavān Śrī Rāma"
+ },
+ "from": {
+  "hi": "संत नामदेव",
+  "en": "Saint Nāmadeva"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Āratī"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "आरती कीजै रामचन्द्र जी की",
+    "en": "Āratī Kījai Rāmacandra Jī Kī"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (ṭeka)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

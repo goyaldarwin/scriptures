@@ -1,6 +1,6 @@
 # The library: format reference
 
-Step-by-step procedures are in `docs/HOW-TO.md`. This page defines the files.
+Step-by-step procedures are in `docs/HOW-TO.md`. This page defines the files the website reads. A work's files are made from its folder, `tools/works/<work id>/`, whose format is in `tools/works/README.md`; only the shelf (`index.json`), `removed.json`, `apps.json` and the dictionaries (`glossary/`) are edited here.
 
 All scriptures live under `library/` as JSON. The website reads only these files, so a new work needs no change to the app code if it follows this format. Every visible label carries both languages: `{"hi": "…", "en": "…"}`.
 
@@ -154,7 +154,7 @@ A dictionary (`<lang>.json`): `{"राम": {"hi": "भगवान श्र�
 3. If nothing matches exactly, it tries the suffix rules of each language in the chain.
 The word sheet shows which language's meaning it is showing.
 
-**A work's own senses** (optional), `library/<path>/glossary.json`: `{"sa": {"word": {…}}, "awa": {…}}`. Use it when a word means something particular in one work. Never use it for a general correction; that belongs in the shared dictionary.
+**A work's own senses** (optional), `library/<path>/glossary.json`: `{"sa": {"word": {…}}, "awa": {…}}`, made from the work's `tools/works/<work>/glossary/<lang>.json`. Use it when a word means something particular in one work. Never use it for a general correction; that belongs in the shared dictionary.
 
 **Maintenance:** the files in `glossary/` are the master copies, so correct a word there directly. A work's exporter files each new word by the language of the verses it occurs in, and only adds words that aren't there yet. A word that occurs in two languages is added to both, so check that each sense fits its language.
 
@@ -164,5 +164,5 @@ The word sheet shows which language's meaning it is showing.
 - The verse text (`work.json`) never contains meanings, and a source never contains verse text.
 - Every verse has a language, and every language has an entry in `languages.json`. A new language means a new dictionary file; never mix languages in one dictionary.
 - Every label shown to readers is bilingual: `{"hi", "en"}`.
-- Generated files (`index.html`, `app/`, `work.json` → `sources`/`glossary`, `audio/*.json`, and every file a work's `export.py` writes) are rebuilt, never edited. `tools/site/regen_check.py` fails on any hand edit.
+- Generated files (`index.html`, `app/`, `work.json` → `sources`/`glossary`, `audio/*.json`, and every file `tools/works/export.py` writes) are rebuilt, never edited. `tools/site/regen_check.py` fails on any hand edit.
 - Files that many works add to are written **one entry per line, sorted** (`tools/jsonio.py`): `glossary/<lang>.json` and `index.json`. `build.py` re-writes them in that form, so two branches that add different words usually merge without conflict. If two branches add words that sort next to each other, git asks; keep both lines.

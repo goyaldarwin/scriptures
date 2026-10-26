@@ -1,20 +1,21 @@
 """Merge written and reviewed batches (tools/meanings/prepare.py → writers → reviewers) into a work's meaning files.
 
-    python3 tools/meanings/apply_batches.py BATCH_DIR [--ours tools/works/ramcharitmanas/meanings]
-            [--work hinduism/granth/tulsidas/ramcharitmanas] [--doubts docs/reviews/<work>-doubts.jsonl]
+    python3 tools/meanings/apply_batches.py BATCH_DIR [--work manas] [--doubts docs/reviews/<work>-doubts.jsonl]
+            (--work: the work's id, its folder in tools/works)
 
 For every batch-NN.ids in BATCH_DIR: takes the writer's batch-NN.hi.json / .en.json / .topics.json, then applies the
 reviewer's fixes from batch-NN.review.jsonl (lines with lang "hi", "en" or "topic" and a "fix"; the reviewer's fix
 wins, as the second reader's). Checks that each batch covers exactly its ids, both languages, no empty value and no
-verse number. Writes, in the work's reading order:
-  OURS/hi.json, OURS/en.json   our meanings (existing entries outside the batches are kept)
-  OURS/topics.json             our topic headings {first verse id: {hi, en}}
+verse number. Writes into the work's folder, in its reading order:
+  meanings/hi/scriptures.json, meanings/en/scriptures.json   our meanings (other entries and the settings are kept)
+  topics.json                                                our topic headings {first verse id: {hi, en}}
 Appends the writers' doubts (with the reviewer's comments on them) to --doubts, and gathers every word-meaning issue
 (writer's .words.jsonl and reviewer's "word" lines) into BATCH_DIR/words-to-settle.jsonl for the dictionary step.
 """
-import argparse, glob, json, os, re
+import argparse, glob, json, os, re, sys
 
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.join(REPO, 'tools')); import jsonio
 NUM = re.compile(r'(?:।।|॥)\s*[०-९0-9]|\(\d+\)\s*$')
 
 def jl(p): return [json.loads(l) for l in open(p, encoding='utf-8') if l.strip()] if os.path.exists(p) else []
@@ -25,15 +26,17 @@ def dump_map(p, d):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('dir'); ap.add_argument('--ours', default='tools/works/ramcharitmanas/meanings')
-    ap.add_argument('--work', default='hinduism/granth/tulsidas/ramcharitmanas')
+    ap.add_argument('dir'); ap.add_argument('--work', default='manas')
     ap.add_argument('--doubts')
     a = ap.parse_args()
-    W = json.load(open(os.path.join(REPO, 'library', a.work, 'work.json'), encoding='utf-8'))
+    folder = os.path.join(REPO, 'tools', 'works', a.work)
+    path = json.load(open(os.path.join(folder, 'work.json'), encoding='utf-8'))['path']
+    W = json.load(open(os.path.join(REPO, 'library', path, 'work.json'), encoding='utf-8'))
     order = [x['id'] for x in W['items']]
-    ours = os.path.join(REPO, a.ours)
-    D = {lg: json.load(open(os.path.join(ours, lg + '.json'), encoding='utf-8')) for lg in ('hi', 'en')}
-    tp = os.path.join(ours, 'topics.json')
+    mine = lambda lg: os.path.join(folder, 'meanings', lg, 'scriptures.json')
+    F = {lg: json.load(open(mine(lg), encoding='utf-8')) for lg in ('hi', 'en')}
+    D = {lg: F[lg].setdefault('m', {}) for lg in ('hi', 'en')}
+    tp = os.path.join(folder, 'topics.json')
     T = json.load(open(tp, encoding='utf-8')) if os.path.exists(tp) else {}
     doubts, words, fixed = [], [], {'hi': 0, 'en': 0, 'topic': 0}
     for idf in sorted(glob.glob(os.path.join(a.dir, 'batch-*.ids'))):
@@ -66,8 +69,8 @@ def main():
         doubts += [dict(d, batch=os.path.basename(b)) for d in jl(f'{b}.doubts.jsonl')]
         words += [{'source': 'writer', 'batch': os.path.basename(b), **w} for w in jl(f'{b}.words.jsonl')]
     for lg in ('hi', 'en'):
-        D[lg] = {i: D[lg][i] for i in order if i in D[lg]}
-        dump_map(os.path.join(ours, lg + '.json'), D[lg])
+        F[lg]['m'] = {i: D[lg][i] for i in order if i in D[lg]}
+        jsonio.dump_meanings(mine(lg), F[lg])
     T = {i: T[i] for i in order if i in T}; dump_map(tp, T)
     if a.doubts:
         with open(os.path.join(REPO, a.doubts), 'a', encoding='utf-8') as f:

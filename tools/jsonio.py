@@ -28,3 +28,17 @@ def dump_library(out, rel, obj):
     p = os.path.join(out, rel); os.makedirs(os.path.dirname(p), exist_ok=True)
     with open(p, 'w', encoding='utf-8') as f: json.dump(obj, f, ensure_ascii=False, separators=(',', ':'))
     return os.path.getsize(p)
+
+def dump_meanings(path, obj):
+    """A meaning source in a work's folder (tools/works/<work>/meanings/<lang>/<source>.json): its settings first, then
+    `m` and `notes` one verse per line in the text's order, so a change to one meaning is a one-line diff."""
+    import os
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    head = {k: v for k, v in obj.items() if k not in ('m', 'notes')}
+    lines = ['{'] + [json.dumps(k, ensure_ascii=False) + ': ' + json.dumps(v, ensure_ascii=False) + ',' for k, v in head.items()]
+    blocks = [k for k in ('m', 'notes') if k in obj]
+    for b, k in enumerate(blocks):
+        rows = [json.dumps(i, ensure_ascii=False) + ': ' + json.dumps(v, ensure_ascii=False) for i, v in obj[k].items()]
+        lines.append(json.dumps(k) + ': {'); lines.append(',\n'.join(rows)); lines.append('}' + (',' if b < len(blocks) - 1 else ''))
+    if not blocks: lines[-1] = lines[-1].rstrip(',')
+    open(path, 'w', encoding='utf-8').write('\n'.join(lines) + '\n}\n')

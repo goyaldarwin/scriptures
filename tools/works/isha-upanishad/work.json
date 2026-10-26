@@ -1,0 +1,52 @@
+{
+ "id": "isha-upanishad",
+ "path": "hinduism/veda/yajurveda/shukla-yajurveda/upanishad/isha-upanishad",
+ "lang": "sa",
+ "title": {
+  "hi": "ईशावास्योपनिषद्",
+  "en": "Īśāvāsya Upaniṣad"
+ },
+ "by": {
+  "hi": "शुक्ल यजुर्वेद, काण्व संहिता — अध्याय ४०",
+  "en": "Śukla Yajurveda, Kāṇva Saṃhitā — chapter 40"
+ },
+ "edition": {
+  "hi": "shlokam.org",
+  "en": "shlokam.org"
+ },
+ "parts": {
+  "name": {
+   "hi": "उपनिषद्",
+   "en": "Upaniṣad"
+  },
+  "list": [
+   {
+    "key": "isha",
+    "hi": "ईशावास्योपनिषद्",
+    "en": "Īśāvāsya Upaniṣad"
+   }
+  ]
+ },
+ "types": {
+  "shanti": {
+   "name": {
+    "hi": "शान्तिमन्त्र",
+    "en": "Śānti Mantra"
+   },
+   "short": {
+    "hi": "शा॰",
+    "en": "Śā."
+   }
+  },
+  "mantra": {
+   "name": {
+    "hi": "मन्त्र",
+    "en": "Mantra"
+   },
+   "short": {
+    "hi": "मं॰",
+    "en": "Man."
+   }
+  }
+ }
+}

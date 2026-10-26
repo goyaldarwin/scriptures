@@ -4,7 +4,8 @@ For each work on the shelf (library/index.json) this:
   1. lists the meaning sources in <work>/meanings/*.json and the audio sources in <work>/audio/*.json
      and writes them into work.json → "sources" (the website reads that list; it cannot scan folders),
      and marks "glossary": true when the work has its own <work>/glossary.json;
-  2. checks that everything refers to things that exist (sources, plans, topics, verse languages, a meaning for
+  2. checks that every work has its folder in tools/works with the files every work has (check_folders), and that
+     everything refers to things that exist (sources, plans, topics in reading order, verse languages, a meaning for
      every word of every verse (check_words, with the app's own word rule),
      dictionaries in glossary/, fallbacks, each store app's shelves in library/apps.json), and stops the build with
      a clear message if not.
@@ -91,6 +92,8 @@ def check_work(lib, leaf, LANGS):
     for k, t in (w.get('types') or {}).items():
         _need(re.fullmatch(r'[a-z0-9_]+', k) and _bi(t.get('name')) and (_bi(t['short']) if 'short' in t else True), f"{name}: type {k!r} needs name {{hi, en}} (and a bilingual short if given)")
     for t in w.get('topics', []): _need(t['id'] in ID and _bi({'hi': t['hi'], 'en': t['en']}), f"{name}: topic {t} is invalid")
+    tp = [ids.index(t['id']) for t in w.get('topics', []) if t['id'] in ID]
+    _need(tp == sorted(set(tp)), f"{name}: topics must be in reading order, one per verse at most")
     for p in w.get('plans', []):
         _need(len(p['end']) == p['n'], f"{name}: plan {p['id']} has {len(p['end'])} ends for {p['n']} days")
         pos = [ids.index(e) if e in ID else -1 for e in p['end']]
@@ -150,6 +153,22 @@ def check_work(lib, leaf, LANGS):
         json.dump(w, open(wp, 'w'), ensure_ascii=False, separators=(',', ':'))
     return w['id'], {k: [x['id'] for x in v] for k, v in src.items()}
 
+WORKS = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'works')
+FOLDER_FILES = ['work.json', 'text.txt', 'README.md', 'reconciliation.md']   # every work's folder (tools/works/README.md)
+
+def check_folders():
+    """Every work folder in tools/works has the files every work has, and its manifest names it. Returns {id: path}."""
+    out = {}
+    for d in sorted(os.listdir(WORKS)):
+        f = os.path.join(WORKS, d)
+        if not os.path.isfile(os.path.join(f, 'work.json')): continue
+        miss = [x for x in FOLDER_FILES if not os.path.isfile(os.path.join(f, x))]
+        _need(not miss, f"tools/works/{d}/: missing {miss}")
+        m = json.load(open(os.path.join(f, 'work.json'), encoding='utf-8'))
+        _need(m.get('id') == d and m.get('path'), f"tools/works/{d}/work.json: needs id {d!r} and the work's path")
+        out[d] = m['path']
+    return out
+
 def prepare(lib):
     bad = standard.selftest()
     _need(not bad, 'tools/text/standard.py fails its own cases: ' + '; '.join(f'{c}: wants {w!r}, makes {g!r}' for c, w, g in bad))
@@ -168,9 +187,11 @@ def prepare(lib):
     G = {os.path.basename(f)[:-5]: json.load(open(f, encoding='utf-8')) for f in glob.glob(os.path.join(lib, 'glossary', '*.json')) if not f.endswith('languages.json')}
     clean = word_rule()
     shelf = json.load(open(os.path.join(lib, 'index.json')))
+    folders = check_folders()
     works = {}
     for leaf in leaves(shelf):
         _need(leaf['work'] not in works, f"shelf: work id {leaf['work']!r} is used twice")
+        _need(folders.get(leaf['work']) == leaf['path'], f"shelf: work {leaf['work']!r} needs its folder tools/works/{leaf['work']}/ with path {leaf['path']!r} in work.json")
         wid, src = check_work(lib, leaf, LANGS); works[wid] = src
         check_words(lib, leaf['path'], json.load(open(os.path.join(lib, leaf['path'], 'work.json'), encoding='utf-8')), LANGS, G, clean)
     # store apps (library/apps.json): each app's shelves must exist on the shelf

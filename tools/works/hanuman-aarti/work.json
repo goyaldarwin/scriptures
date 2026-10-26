@@ -1,0 +1,52 @@
+{
+ "id": "hanuman-aarti",
+ "path": "hinduism/aarti/hanuman/hanuman-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "श्रीहनुमानजीकी आरती",
+  "en": "Śrī Hanumānjī kī Āratī"
+ },
+ "by": {
+  "hi": "श्रीहनुमानजी",
+  "en": "Śrī Hanumān"
+ },
+ "from": {
+  "hi": "आरती कीजै हनुमान लला की",
+  "en": "Āratī kījai Hanumāna lalā kī"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Āratī"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "श्रीहनुमानजीकी आरती",
+    "en": "Śrī Hanumānjī kī Āratī"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (ṭeka)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

@@ -5,7 +5,7 @@ Source of truth: the owner's PDF, “Sukhmani Sahib with phonetic transliteratio
 
 ## 1. Reading the PDF
 
-The text layer is clean, and every line of the bani is printed as three lines in three fonts (`extract.py`):
+The text layer is clean, and every line of the bani is printed as three lines in three fonts (`source/extract.py`):
 the Gurmukhi in **GurbaniAkharThick** (a legacy font: ASCII letters drawn as Gurmukhi), then the transliteration
 and the English translation in Tahoma, each sometimes wrapped. 2,018 printed lines; no OCR is needed.
 
@@ -34,7 +34,7 @@ generic ੍ + letter:
   haha, stays ੍ਹ.
 The Noto Serif Gurmukhi font of the site has both signs (checked in its cmap and on screen).
 
-## 3. Checks (`check.py`)
+## 3. Checks (`source/check.py`)
 
 1. **Conversion**: all 2,018 lines convert; no unknown character, no bare vowel bearer, nothing outside Gurmukhi,
    digits, ॥ and spaces.
@@ -60,7 +60,7 @@ The Noto Serif Gurmukhi font of the site has both signs (checked in its cmap and
 
 None: every line agrees (the check fails on any line not listed here).
 
-## 4. Structure (`structure.py`)
+## 4. Structure (`source/structure.py`)
 
 Checked by the code: 24 Ashtapadis; each has one Salok and eight pauris numbered ॥੧॥ … ॥੮॥, the last ending
 ॥੮॥n॥ with its Ashtapadi's number; every pauri has ten padas (plus the heading ਅਸਟਪਦੀ ॥ in pauri 1). The title
@@ -84,4 +84,4 @@ changed.
 The PDF has no Hindi, no Punjabi and no word meanings, so they are written for this library (`hi-scriptures`,
 `pa-scriptures`; `glossary/pa.json`): 218 of 218 items and 2,536 of 2,536 distinct words. Our English
 (`en-scriptures`, the default) is also written for this library from the Gurmukhi; the PDF's English stays
-selectable (order 2), and `export.py` stops if ours shares a run of 10 or more words with it.
+selectable (order 2), and the export stops if ours shares a run of 10 or more words with it.
