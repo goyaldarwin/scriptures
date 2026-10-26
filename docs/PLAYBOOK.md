@@ -396,6 +396,12 @@ A new label must reuse these words; a new thing gets one word, added here.
 - **Where the witnesses disagree, follow the majority and say so.** The printout's śānti has "भद्रं नो अपि वातय मनः"; the recording and the second page have the four "स्वस्ति" lines, so the text has those, marked open until a Devanagari print confirms them.
 - **A recording's own divisions can become the topics** (SMVedroad announces four khaṇḍas), without adding their words to the text.
 
+### The Kaṭha Upaniṣad (owner, 2026-10-26)
+- The owner gave a Sandeepany book (Swami Gurubhaktananda, PDF) and SMVedroad's recording, named Wikipedia, and said "get content from shlokam.org if needed". **A book whose Devanagari is in a legacy font can still be the source:** its IAST layer, decoded symbol by symbol and converted letter for letter (`tools/works/katha-upanishad/source/`), gave a text that agrees word for word with shlokam.org's 20 served verses — the two layers check each other. A text made this way still gets a full Devanagari witness in `source/witness/` as soon as the owner can provide one; the session cannot fetch whole pages (WebFetch stops at ~85 KB and will not quote long passages; the shell is blocked).
+- **Shelf:** `hinduism/veda/yajurveda/krishna-yajurveda/upanishad/katha-upanishad` (Kaṭha is Kṛṣṇa Yajurveda; Īśa is Śukla). Sections are the vallīs; ids are the standard `1.1.1` numbering; the book's "2.3.19" is the closing śānti.
+- **A private source's own prose stays out of the public repo** (the book's word-by-word English informed the glossary and was not copied); the book itself is in scriptures-data with its `.meta.json`.
+- **The audio pipeline from this side:** ffmpeg to a speech copy → scriptures-data (`<work>/audio/<source>/`) → `source.json` + `recordings.json` on the work branch → dispatch `transcribe.yml` with `inputs[ref]=<branch>` → `sync_transcripts.py` → `make_timings.py`. The transcription of 35 minutes of chanting took the GitHub runner about as long as the recording.
+
 ### Language and meanings coupled (owner, 2026-10-25) — replaces the separate setting of 2026-10-19
 - **हिं · En on the library and work pages chooses the language and the meaning together:** हिं → Hindi interface and the Hindi meaning only; En → English and the English meaning only (recitation mode ends if it was on).
 - **Inside a work the meaning switches set the language:** English meaning on → English (also when both are on); only Hindi → Hindi; neither → unchanged. शब्द and 📖 do not touch the language.

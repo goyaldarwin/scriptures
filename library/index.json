@@ -389,6 +389,37 @@
             "salute": "॥ ॐ श्री परमात्मने नमः ॥"
            }
           ]
+         },
+         {
+          "id": "upanishad",
+          "title": {
+           "hi": "उपनिषद्",
+           "en": "Upaniṣads"
+          },
+          "children": [
+           {
+            "id": "katha-upanishad",
+            "work": "katha-upanishad",
+            "path": "hinduism/veda/yajurveda/krishna-yajurveda/upanishad/katha-upanishad",
+            "title": {
+             "hi": "कठोपनिषद्",
+             "en": "Kaṭha Upaniṣad"
+            },
+            "by": {
+             "hi": "कृष्ण यजुर्वेद, कठ शाखा",
+             "en": "Kṛṣṇa Yajurveda, Kaṭha śākhā"
+            },
+            "edition": {
+             "hi": "सन्दीपनी (स्वामी गुरुभक्तानन्द); shlokam.org",
+             "en": "Sandeepany (Swami Gurubhaktananda); shlokam.org"
+            },
+            "desc": {
+             "hi": "नचिकेता और यम का संवाद · २ अध्याय · ६ वल्ली · ११९ मन्त्र",
+             "en": "Naciketā and Yama · 2 adhyāyas · 6 vallīs · 119 mantras"
+            },
+            "salute": "॥ ॐ श्री परमात्मने नमः ॥"
+           }
+          ]
          }
         ]
        },
