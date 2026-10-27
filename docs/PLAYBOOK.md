@@ -156,6 +156,7 @@ Contents: 1 Working with the owner · 2 Sources and accuracy · 3 Texts · 4 Mea
 - **A handler that calls a function with optional arguments is wrapped** (`() => f()`), so the click event is never passed as an argument.
 - **A scripted docs edit asserts its anchor first:** `str.replace` silently does nothing when the anchor is missing.
 - **Merging:** large work (a new work, a shared-code change) on a branch and pull request, merged by the session once the tests pass; a small fix the owner asks for may go to `main` after the same tests. Always `git pull` first: the `timing` workflow pushes to `main`.
+- **GitHub Actions minutes:** jobs in the public repo are free; jobs in the private `scriptures-data` (transcription, experiments) use the owner's 2,000 included minutes a month, and more is billed. Before a private-repo run, estimate its minutes (jobs × hours each); ask the owner first when it is large (the whole-Mānas MMS run took about 2,350).
 - **This environment:** never `pkill -f` or `kill $(pgrep -f …)` (they kill the session's own shell; kill by PID). GitHub GraphQL is unavailable; use the REST API (`gh api …`). Hugging Face is blocked; the Whisper model comes from GitHub (`tools/audio/transcribe_onnx.py`). Tesseract `hin`/`mar`/`san` install with apt.
 
 ## 11. Extraction techniques
