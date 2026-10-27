@@ -794,9 +794,14 @@ async def main():
         check('timing: the ±step chip in the player bar (saffron, timing mode only) cycles; Until next removes the end; ↶ is the fourth corner; ⋮ holds nothing about timing', tc == [True, '±0.5 s', True, 1, '±1 s', True, True, True, True, True, True], tc)
         # Next ▸ (saffron, player bar, timing mode only): a finger's tap goes to the next verse still to check after the one
         # playing and plays it, round to the first; the count drops when one is set by ear; hidden when none is left
-        await ev("(async () => { " + T0 + " window.__keep = keep; const a = AUT[0], ids = [a[20][0], a[40][0], a[5][0]]; SRC.au.checkSet = new Set(ids.map(i => IT[i].id)); window.__nx = ids; window.__got = []; openReader('k', a[10][0]); await new Promise(r => setTimeout(r, 400)); PL.on = true; PL.cur = a[10][0]; $('#player').hidden = false; syncStep(); })()")
+        await ev("(async () => { " + T0 + """ window.__keep = keep; const a = AUT[0], ids = [a[20][0], a[40][0], a[5][0]]; SRC.au.checkSet = new Set(ids.map(i => IT[i].id)); window.__nx = ids; window.__got = []; openReader('k', a[10][0]); await new Promise(r => setTimeout(r, 400)); PL.on = true; PL.cur = a[10][0]; $('#player').hidden = false; syncStep();
+            // on a runner with YouTube, the real player moves the lit verse between taps: each tap starts from the verse the last
+            // one reached (pinned as the tap begins, capture phase) and records where it went (right after the app's handler)
+            window.__at = a[10][0]; window.__h = [['#pCheck', () => { PL.cur = window.__at; }, true], ['#pCheck', () => { window.__got.push(PL.cur); window.__at = PL.cur; }, false],
+              ['#pNext', () => { PL.t = SRC.au.at[IT[window.__nx[2]].id][0]; PL.cur = window.__nx[2]; window.__t0 = SRC.au.at[IT[PL.cur].id][1]; }, true], ['#pNext', () => { window.__t1 = ytInfo.t; }, false]];
+            window.__h.forEach(([s, f, c]) => $(s).addEventListener('click', f, c)); })()""")
         nx = [await ev("[!$('#pCheck').hidden, $('#pCheck').textContent === T('अगला ▸ ', 'Next ▸ ') + DEV(3), getComputedStyle($('#pCheck')).backgroundColor === getComputedStyle($('#pStep')).color]")]
-        for _ in range(3): await pg.click('#pCheck'); await pg.wait_for_timeout(250); await ev("window.__got.push(PL.cur)")
+        for _ in range(3): await pg.click('#pCheck'); await pg.wait_for_timeout(250)
         nx.append(await ev("window.__got.map(i => window.__nx.indexOf(i))"))
         nx.append(await ev("(() => { const i = window.__nx[0]; setTime(i, 1, SRC.au.at[IT[i].id][1]); refreshMarks({}, i); return $('#pCheck').textContent === T('अगला ▸ ', 'Next ▸ ') + DEV(2); })()"))
         lay = await ev("(() => { const r = s => document.querySelector(s).getBoundingClientRect(), v = r('.ytw'), c = r('#pCheck'), t = r('#pStep'), x = r('#pClose'); return [c.left >= v.right, t.left >= v.right, x.bottom <= Math.min(c.top, t.top) + 1, Math.abs(c.top - t.top) < 2]; })()")
@@ -804,9 +809,9 @@ async def main():
         RT = "(() => { const r = s => document.querySelector(s).getBoundingClientRect(), t = r('#pRate'), x = r('#pClose'), p = r('#pPlay'); return [t.right <= innerWidth, t.top < p.top ? 'top' : 'controls', Math.abs((t.top + t.bottom) / 2 - (x.top + x.bottom) / 2) < 4]; })()"
         rw = [await ev(RT)]; await pg.set_viewport_size({'width': 360, 'height': 844}); await pg.wait_for_timeout(300); rw.append(await ev(RT)); await pg.set_viewport_size({'width': 390, 'height': 844}); await pg.wait_for_timeout(300)
         check('player bar: 1× stays after ⏭ on a 390-px phone, and moves up beside ✕ on a 360-px one, never cut off', rw == [[True, 'controls', False], [True, 'top', True]], rw)
-        c0 = await ev("(() => { setCur(window.__nx[2]); return ytInfo.t; })()"); await pg.click('#pNext'); await pg.wait_for_timeout(300); nx.append(await ev("ytInfo.t") > c0)   # ⏭ still goes on to the next verse
+        await pg.click('#pNext'); await pg.wait_for_timeout(300); nx.append(await ev("window.__t1 > window.__t0"))   # ⏭ still goes on to the next verse
         nx.append(await ev("(() => { const ids = [...document.querySelectorAll('[id]')].map(e => e.id); return ids.length === new Set(ids).size; })()"))   # an id used twice took ⏭'s tap away once
-        nx.append(await ev("(async () => { stopAudio(); ytOK = false; $('#player').hidden = true; const keep = window.__keep; " + T1 + " syncStep(); return $('#pCheck').hidden; })()"))
+        nx.append(await ev("(async () => { window.__h.forEach(([s, f, c]) => $(s).removeEventListener('click', f, c)); stopAudio(); ytOK = false; $('#player').hidden = true; const keep = window.__keep; " + T1 + " syncStep(); return $('#pCheck').hidden; })()"))
         check('timing: Next ▸ in the player bar (saffron) goes to the next verse to check and plays it, round to the first; the count drops when one is set; hidden when timing is off; no id is used twice; ⏭ still works', nx == [[True, True, True], [0, 1, 2], True, True, True, True], nx)
         # while Audio timing is on, ☰ shows its switch and Clear adjustments at the top level
         tm2 = await ev("""(async () => { """ + T0 + """ const i = AUT[0][10][0]; openReader('k', i); await new Promise(r => setTimeout(r, 400)); setTime(i, 1, AUT[0][10][1]);
