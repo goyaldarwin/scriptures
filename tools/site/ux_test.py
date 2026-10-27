@@ -799,6 +799,8 @@ async def main():
         for _ in range(3): await pg.click('#pCheck'); await pg.wait_for_timeout(250); await ev("window.__got.push(PL.cur)")
         nx.append(await ev("window.__got.map(i => window.__nx.indexOf(i))"))
         nx.append(await ev("(() => { const i = window.__nx[0]; setTime(i, 1, SRC.au.at[IT[i].id][1]); refreshMarks({}, i); return $('#pCheck').textContent === T('अगला ▸ ', 'Next ▸ ') + DEV(2); })()"))
+        lay = await ev("(() => { const r = s => document.querySelector(s).getBoundingClientRect(), v = r('.ytw'), c = r('#pCheck'), t = r('#pStep'), x = r('#pClose'); return [c.left >= v.right, t.left >= v.right, x.bottom <= Math.min(c.top, t.top) + 1, Math.abs(c.top - t.top) < 2]; })()")
+        check('timing: in the player bar ✕ sits on its own line above Next ▸ and ±step, which stay clear of the video', lay == [True, True, True, True], lay)
         c0 = await ev("(() => { setCur(window.__nx[2]); return ytInfo.t; })()"); await pg.click('#pNext'); await pg.wait_for_timeout(300); nx.append(await ev("ytInfo.t") > c0)   # ⏭ still goes on to the next verse
         nx.append(await ev("(() => { const ids = [...document.querySelectorAll('[id]')].map(e => e.id); return ids.length === new Set(ids).size; })()"))   # an id used twice took ⏭'s tap away once
         nx.append(await ev("(async () => { stopAudio(); ytOK = false; $('#player').hidden = true; const keep = window.__keep; " + T1 + " syncStep(); return $('#pCheck').hidden; })()"))
