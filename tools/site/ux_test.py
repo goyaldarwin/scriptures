@@ -45,6 +45,7 @@ async def main():
         await pg.goto(url); await pg.wait_for_timeout(2500)
         # first run: an interactive tour inside the Sundarakāṇḍa — each step moves on only when the reader has done it
         check('first run: the tour shows', await ev("!document.querySelector('#tour').hidden"))
+        check('the page asks browsers never to offer translating it', await ev("document.documentElement.getAttribute('translate') === 'no' && !!document.querySelector('meta[name=google][content=notranslate]')"))
         await (await pg.query_selector('#tourNext')).click(); await pg.wait_for_timeout(2500)
         check('tour: opens the Sundarakāṇḍa and lights the first step', await ev("W && W.id") == 'sundarkand' and await ev("!document.querySelector('#coach').hidden && TOUR && TOUR.k === 0"))
         check('tour: the first step points at the Sundarakāṇḍa itself, not the opening prayers', await ev("IT[+tourSteps()[0].t().dataset.open].id") == 'sundar.0.shloka1', await ev("IT[+tourSteps()[0].t().dataset.open].id"))
