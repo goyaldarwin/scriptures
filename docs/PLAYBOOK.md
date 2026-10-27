@@ -151,6 +151,7 @@ Contents: 1 Working with the owner · 2 Sources and accuracy · 3 Texts · 4 Mea
 - **A test that touches the player starts from a quiet player** (`stopAudio(); ytOK = false`). Tests that sample live data exclude verses set by ear; the timing tests clear the published marks in memory first, so they never depend on how far the owner has marked a recording.
 - **Everything that broke gets a test** in the same change as its fix: a button is tapped the way a finger does (Playwright's `click`, which refuses a hidden or covered element), not called from code.
 - **Releases must not break phones with the old version cached:** asset URLs carry a content hash; the service worker revalidates; think of readers on the previous release when moving a data file.
+- **An element id is used once** in the page: `$('#id')` binds the first, so a second element with the same id takes the first one's tap away (`ux_test.py` checks it).
 - **A handler that calls a function with optional arguments is wrapped** (`() => f()`), so the click event is never passed as an argument.
 - **A scripted docs edit asserts its anchor first:** `str.replace` silently does nothing when the anchor is missing.
 - **Merging:** large work (a new work, a shared-code change) on a branch and pull request, merged by the session once the tests pass; a small fix the owner asks for may go to `main` after the same tests. Always `git pull` first: the `timing` workflow pushes to `main`.
