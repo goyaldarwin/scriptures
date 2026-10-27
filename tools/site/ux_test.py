@@ -687,9 +687,21 @@ async def main():
         await ev("show('library'); window.__shared = null; Object.defineProperty(navigator, 'share', {configurable: true, value: async d => { window.__shared = d; }})")
         await (await pg.query_selector('#libMenu')).click(); await pg.wait_for_timeout(300)
         await (await pg.query_selector('#sheetBody [data-m=share]')).click(); await pg.wait_for_timeout(600)
-        sh = await ev("(() => { const t = (window.__shared || {}).text || ''; return [t.includes('https://play.google.com/store/apps/details?id=org.craadle.scriptures.hinduism'), t.includes(location.origin + '/'), /Free, no ads|निःशुल्क, बिना विज्ञापन/.test(t)]; })()")
+        sh = await ev("(() => { const t = (window.__shared || {}).text || ''; return [t.trim().endsWith(location.origin + '/get'), (t.match(/https?:\\/\\//g) || []).length, /Free, no ads|निःशुल्क, बिना विज्ञापन/.test(t)]; })()")
         await ev("delete navigator.share")
-        check('☰ › Share the app shares a description, the Play Store app and the website', sh == [True, True, True], sh)
+        check('☰ › Share the app shares a description and one link, <site>/get', sh == [True, 1, True], sh)
+        # <site>/get: a chat app's card (title, description, icon); an Android phone goes on to the Play Store, anything else to the site
+        card = await ev("fetch('get/').then(r => r.text()).then(h => ['og:title', 'og:description', 'og:image'].every(k => h.includes('property=\"' + k + '\"')))")
+        dest = {}
+        for ua, tag in (('Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 Chrome/130 Mobile Safari/537.36', 'android'), ('Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Mobile/15E148', 'iphone')):
+            cx = await b.new_context(user_agent=ua); gp = await cx.new_page(); seen = []
+            async def to_store(r): seen.append(r.request.url); await r.abort()   # the store itself is never opened
+            await gp.route('https://play.google.com/**', to_store)
+            try: await gp.goto(url + 'get/', wait_until='domcontentloaded'); await gp.wait_for_timeout(800)
+            except Exception: pass
+            dest[tag] = 'play' if seen and 'org.craadle.scriptures.hinduism' in seen[0] else 'site' if gp.url == url else gp.url
+            await cx.close()
+        check('<site>/get: a link card for chat apps; Android goes to the Play Store, an iPhone to the website', [card, dest.get('android'), dest.get('iphone')] == [True, 'play', 'site'], [card, dest])
         ft = await ev("""(async () => { await openWork('manas', true); show('home'); openReader('k', 30); await new Promise(r => setTimeout(r, 500));
             document.querySelector('#rMid').click(); await new Promise(r => setTimeout(r, 300)); const ok = document.querySelector('#sheet').classList.contains('on') && !!document.querySelector('#sheetBody .secs [data-to]'); closeSheet(); return ok; })()""")
         check('reader: tapping the footer opens the section picker', ft)
