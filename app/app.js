@@ -559,13 +559,15 @@ $('#sheetBody').addEventListener('click', ev => {
   const m = b.dataset.m; closeSheet();
   if (m === 'bm') show('bookmarks'); if (m === 'set') show('settings'); if (m === 'tclear') clearTimingAsk(); if (m === 'share') shareApp();
 });
-// ☰ › Share the app: a short description and one link, <site>/get, which sends an Android phone to the store app
-// (library/apps.json → "store") and anything else to the website, and gives chat apps a card; through the phone's share
-// sheet, or copied to the clipboard where there is none
+// ☰ › Share the app: one short line and one link, <site>/get, which sends an Android phone to the store app
+// (library/apps.json → "store") and anything else to the website; chat apps show the site's card under it (title, the
+// library's contents, the picture app/share-card.png). Through the phone's share sheet, or copied where there is none
 async function shareApp(){
-  const app = new URLSearchParams(location.search).get('app'), link = location.origin + '/get' + (app ? '?app=' + encodeURIComponent(app) : '');
-  const text = T('शास्त्र — श्रीरामचरितमानस, सुन्दरकाण्ड, हनुमान चालीसा, उपनिषद्, आरती और बहुत कुछ: मूल पाठ, हिन्दी और अंग्रेज़ी अर्थ, हर शब्दका अर्थ और पाठका ऑडियो। निःशुल्क, बिना विज्ञापन।',
-                 'Scriptures — the Śrī Rāmacaritamānasa, Sundarakāṇḍa, Hanumān Chālīsā, Upaniṣads, āratīs and more: the original text with Hindi and English meanings, the meaning of every word, and recitation audio. Free, no ads.') + '\n\n' + link;
+  // ?app=<id> only for a store app other than the first (library/apps.json): with one app the link stays short
+  const app = new URLSearchParams(location.search).get('app'); let first = '';
+  try { first = Object.keys(await getJSON('apps')).find(k => !k.startsWith('_')) || ''; } catch (e) {}
+  const link = location.origin + '/get' + (app && app !== first ? '?app=' + encodeURIComponent(app) : '');
+  const text = T('शास्त्र — पढ़ें, अर्थ समझें और पाठ सुनें। निःशुल्क, बिना विज्ञापन।', 'Scriptures — read, understand and listen. Free, no ads.') + '\n' + link;   // the card under the link says what is inside
   try { if (navigator.share){ await navigator.share({title: T('शास्त्र', 'Scriptures'), text}); return; } } catch (e) { if (e && e.name === 'AbortError') return; }
   try { await navigator.clipboard.writeText(text); toast(T('लिंक कॉपी हो गया — अब कहीं भी चिपकाएँ', 'Copied — paste it anywhere')); } catch (e) { toast(link); }
 }

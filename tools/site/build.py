@@ -61,16 +61,16 @@ hv = lambda name: hashlib.sha1(open(os.path.join(APPD, name), 'rb').read()).hexd
 VJS, VCSS, VF = 'app/app.js?v=' + hv('app.js'), 'app/style.css?v=' + hv('style.css'), 'app/fonts.css?v=' + hv('fonts.css')
 # the card a chat app (WhatsApp …) shows under a shared link to the site: title, description and icon (Open Graph)
 HOST = json.load(open(os.path.join(ROOT, 'apps', 'app.json')))['host']
-SHARE_DESC = 'Śrī Rāmacaritamānasa, Sundarakāṇḍa, Hanumān Chālīsā, Upaniṣads, āratīs and more: the original text with Hindi and English meanings, the meaning of every word, and recitation audio. Free, no ads.'
+SHARE_DESC = 'श्रीरामचरितमानस, सुन्दरकाण्ड, हनुमान चालीसा, उपनिषद्, आरती — मूल पाठ, अर्थ, शब्दार्थ और ऑडियो। निःशुल्क। · Śrī Rāmacaritamānasa, Sundarakāṇḍa, Hanumān Chālīsā, Upaniṣads, āratīs: the text, Hindi and English meanings, the meaning of every word, recitation audio. Free, no ads.'
 OG = ('<meta property="og:type" content="website"><meta property="og:site_name" content="शास्त्र · Scriptures"><meta property="og:title" content="शास्त्र · Scriptures">'
-      '<meta property="og:description" content="' + SHARE_DESC + '"><meta property="og:image" content="https://' + HOST + '/app/icon-512.png"><meta property="og:image:width" content="512"><meta property="og:image:height" content="512">'
+      '<meta property="og:description" content="' + SHARE_DESC + '"><meta property="og:image" content="https://' + HOST + '/app/share-card.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">'
       '<meta property="og:url" content="https://' + HOST + '/"><meta name="description" content="' + SHARE_DESC + '">\n')
 head = OG + '<link rel="manifest" href="manifest.json"><link rel="icon" href="app/icon.svg"><link rel="apple-touch-icon" href="app/apple-touch-icon.png"><link rel="stylesheet" href="' + VF + '"><link rel="stylesheet" href="' + VCSS + '">\n'
 html = tpl.replace(m.group(0), head).replace('/*BUNDLE*/\n', '').replace('<script>\n/*APP*/\n</script>', '<script src="' + VJS + '"></script>')
 open(os.path.join(SITE, 'index.html'), 'w').write(html)
 # installable app (web, Android, iPhone): PNG icons made by tools/store/make_icons.py; one shortcut per work (?w=<work id>)
 ICONS = os.path.join(ROOT, 'tools', 'store', 'icons')
-for n in ('icon-192.png', 'icon-512.png', 'maskable-512.png', 'apple-touch-icon.png'): shutil.copy(os.path.join(ICONS, n), os.path.join(APPD, n))
+for n in ('icon-192.png', 'icon-512.png', 'maskable-512.png', 'apple-touch-icon.png', 'share-card.png'): shutil.copy(os.path.join(ICONS, n), os.path.join(APPD, n))   # share-card: the picture under a shared link (og:image)
 _works = []
 def _walk(ns):
     for n in ns:
