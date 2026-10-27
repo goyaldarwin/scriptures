@@ -16,7 +16,7 @@ One app per tradition, published by the owner's Canadian corporation (organizati
 |---|---|
 | `apps/app.json` | the company, the site's host, and each app's identity: name, `packageId` (it can never change after the first upload), start path, version, signing fingerprints |
 | `apps/android/` | the project generator; `project/` is made on every build and not committed |
-| `library/apps.json` | which shelves each app shows, and its public store page (`store`, shared by ☰ › Share the app) |
+| `library/apps.json` | which shelves each app shows, and its public store page (`store`: where `<site>/get`, the link ☰ › Share the app sends, takes an Android phone) |
 | `tools/store/make_icons.py` → `tools/store/icons/` | every icon from one design (ॐ on indigo); the web ones are copied into `app/` by build.py |
 | `tools/store/screenshots.py` → `tools/store/out/` | captioned store screenshots made from the real app: App Store 6.9" (1320×2868) and Play phone (1080×1920), English and Hindi, plus the Play feature graphic |
 | `docs/store/<app>-listing.md` | the store listing text; `tools/store/check_listing.py` checks its lengths |

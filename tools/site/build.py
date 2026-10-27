@@ -4,7 +4,7 @@ python3 tools/site/build.py
   1. registers each work's meaning/audio sources and checks the library (library.py), re-writes the shared glossary and
      shelf files one entry per line (tools/jsonio.py) and checks that app.js parses; stops on any problem
   2. writes the website at the repository root: index.html, app/ (app.js, style.css, fonts.css, fonts, icons), manifest.json, sw.js,
-     privacy.html, CNAME, .nojekyll and .well-known/assetlinks.json
+     privacy.html, get/ (the shared link), CNAME, .nojekyll and .well-known/assetlinks.json
   3. writes dist/Scriptures-offline.html (everything in one file) and dist/Scriptures-artifact.html (for a claude.ai artifact)
 Sources of the app: tools/site/app.js and tools/site/index_template.html. Never edit the generated files.
 """
@@ -59,7 +59,13 @@ open(os.path.join(APPD, 'app.js'), 'w').write(app)
 import hashlib
 hv = lambda name: hashlib.sha1(open(os.path.join(APPD, name), 'rb').read()).hexdigest()[:10]
 VJS, VCSS, VF = 'app/app.js?v=' + hv('app.js'), 'app/style.css?v=' + hv('style.css'), 'app/fonts.css?v=' + hv('fonts.css')
-head = '<link rel="manifest" href="manifest.json"><link rel="icon" href="app/icon.svg"><link rel="apple-touch-icon" href="app/apple-touch-icon.png"><link rel="stylesheet" href="' + VF + '"><link rel="stylesheet" href="' + VCSS + '">\n'
+# the card a chat app (WhatsApp …) shows under a shared link to the site: title, description and icon (Open Graph)
+HOST = json.load(open(os.path.join(ROOT, 'apps', 'app.json')))['host']
+SHARE_DESC = 'Śrī Rāmacaritamānasa, Sundarakāṇḍa, Hanumān Chālīsā, Upaniṣads, āratīs and more: the original text with Hindi and English meanings, the meaning of every word, and recitation audio. Free, no ads.'
+OG = ('<meta property="og:type" content="website"><meta property="og:site_name" content="शास्त्र · Scriptures"><meta property="og:title" content="शास्त्र · Scriptures">'
+      '<meta property="og:description" content="' + SHARE_DESC + '"><meta property="og:image" content="https://' + HOST + '/app/icon-512.png"><meta property="og:image:width" content="512"><meta property="og:image:height" content="512">'
+      '<meta property="og:url" content="https://' + HOST + '/"><meta name="description" content="' + SHARE_DESC + '">\n')
+head = OG + '<link rel="manifest" href="manifest.json"><link rel="icon" href="app/icon.svg"><link rel="apple-touch-icon" href="app/apple-touch-icon.png"><link rel="stylesheet" href="' + VF + '"><link rel="stylesheet" href="' + VCSS + '">\n'
 html = tpl.replace(m.group(0), head).replace('/*BUNDLE*/\n', '').replace('<script>\n/*APP*/\n</script>', '<script src="' + VJS + '"></script>')
 open(os.path.join(SITE, 'index.html'), 'w').write(html)
 # installable app (web, Android, iPhone): PNG icons made by tools/store/make_icons.py; one shortcut per work (?w=<work id>)
@@ -97,6 +103,16 @@ self.addEventListener('fetch',e=>{const u=new URL(e.request.url);if(u.origin!==l
 """ % (ver, json.dumps(files)))
 open(os.path.join(SITE, '.nojekyll'), 'w').write('')
 shutil.copy(os.path.join(ROOT, 'tools', 'site', 'privacy.html'), os.path.join(SITE, 'privacy.html'))   # the privacy policy the app stores link to
+# /get: the one link ☰ › Share the app sends. An Android phone goes on to the store app's page (library/apps.json → "store";
+# ?app=<id> picks the app, else the first that has one), anything else to the website; a chat app shows the same card as the site's
+_stores = {k: v['store'] for k, v in json.load(open(os.path.join(SITE, 'library', 'apps.json'))).items() if isinstance(v, dict) and v.get('store')}
+os.makedirs(os.path.join(SITE, 'get'), exist_ok=True)
+open(os.path.join(SITE, 'get', 'index.html'), 'w').write('<!doctype html>\n<html lang="hi" translate="no"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
+    '<meta name="google" content="notranslate"><title>शास्त्र · Scriptures</title>' + OG.replace('content="https://' + HOST + '/"', 'content="https://' + HOST + '/get"') +
+    '<script>const S=' + json.dumps(_stores) + ',a=new URLSearchParams(location.search).get("app"),s=S[a]||Object.values(S)[0];'
+    'location.replace(/Android/i.test(navigator.userAgent)&&s?s:"/");</script></head>'
+    '<body style="font-family:serif;text-align:center;padding:40px 16px"><p><a href="/">शास्त्र · Scriptures</a></p>' +
+    ''.join('<p><a href="' + u + '">Android</a></p>' for u in list(_stores.values())[:1]) + '</body></html>\n')
 # the site's own address (GitHub Pages custom domain): apps/app.json host; DNS CNAME <host> → goyaldarwin.github.io (Cloudflare, DNS only)
 open(os.path.join(SITE, 'CNAME'), 'w').write(json.load(open(os.path.join(ROOT, 'apps', 'app.json')))['host'] + '\n')
 # Android: the apps that may open this site full screen (Digital Asset Links), from apps/app.json

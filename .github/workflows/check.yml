@@ -26,7 +26,7 @@ jobs:
         run: python tools/site/build.py
       - name: the committed website matches the build
         run: |
-          git status --porcelain -- index.html app sw.js manifest.json library > /tmp/diff.txt
+          git status --porcelain -- index.html app get sw.js manifest.json library > /tmp/diff.txt
           if [ -s /tmp/diff.txt ]; then echo "These generated files differ from what the build makes — run tools/site/build.py and commit:"; cat /tmp/diff.txt; git diff --stat; exit 1; fi
       - name: library/ is exactly what the generators make
         run: |

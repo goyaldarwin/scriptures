@@ -559,17 +559,15 @@ $('#sheetBody').addEventListener('click', ev => {
   const m = b.dataset.m; closeSheet();
   if (m === 'bm') show('bookmarks'); if (m === 'set') show('settings'); if (m === 'tclear') clearTimingAsk(); if (m === 'share') shareApp();
 });
-// ☰ › Share the app: a short description, the store app's page (library/apps.json → "store": this app's, or on the website
-// the first app that has one) and the website, through the phone's share sheet; where there is none, copied to the clipboard
+// ☰ › Share the app: a short description and one link, <site>/get, which sends an Android phone to the store app
+// (library/apps.json → "store") and anything else to the website, and gives chat apps a card; through the phone's share
+// sheet, or copied to the clipboard where there is none
 async function shareApp(){
-  let store = '';
-  try { const A = await getJSON('apps'), id = new URLSearchParams(location.search).get('app'); store = ((A[id] && A[id].store) ? A[id] : Object.values(A).find(a => a && a.store) || {}).store || ''; } catch (e) {}
-  const site = location.origin + '/';
-  const text = T('शास्त्र — श्रीरामचरितमानस, उपनिषद्, स्तोत्र, आरती और बहुत कुछ: मूल पाठ, हिन्दी और अंग्रेज़ी अर्थ, हर शब्दका अर्थ और पाठका ऑडियो। निःशुल्क, बिना विज्ञापन।',
-                 'Scriptures — the Śrī Rāmacaritamānasa, Upaniṣads, stotras, āratīs and more: the original text with Hindi and English meanings, the meaning of every word, and recitation audio. Free, no ads.') +
-    (store ? '\n\n' + T('Android ऐप: ', 'Android app: ') + store : '') + '\n' + T('वेबसाइट (iPhone, कंप्यूटर): ', 'Website (iPhone, computer): ') + site;
+  const app = new URLSearchParams(location.search).get('app'), link = location.origin + '/get' + (app ? '?app=' + encodeURIComponent(app) : '');
+  const text = T('शास्त्र — श्रीरामचरितमानस, सुन्दरकाण्ड, हनुमान चालीसा, उपनिषद्, आरती और बहुत कुछ: मूल पाठ, हिन्दी और अंग्रेज़ी अर्थ, हर शब्दका अर्थ और पाठका ऑडियो। निःशुल्क, बिना विज्ञापन।',
+                 'Scriptures — the Śrī Rāmacaritamānasa, Sundarakāṇḍa, Hanumān Chālīsā, Upaniṣads, āratīs and more: the original text with Hindi and English meanings, the meaning of every word, and recitation audio. Free, no ads.') + '\n\n' + link;
   try { if (navigator.share){ await navigator.share({title: T('शास्त्र', 'Scriptures'), text}); return; } } catch (e) { if (e && e.name === 'AbortError') return; }
-  try { await navigator.clipboard.writeText(text); toast(T('लिंक कॉपी हो गया — अब कहीं भी चिपकाएँ', 'Copied — paste it anywhere')); } catch (e) { toast(store || site); }
+  try { await navigator.clipboard.writeText(text); toast(T('लिंक कॉपी हो गया — अब कहीं भी चिपकाएँ', 'Copied — paste it anywhere')); } catch (e) { toast(link); }
 }
 function setSize(d){
   const i = topVisibleItem(); S.settings.size = Math.max(16, Math.min(34, S.settings.size + d)); applyTheme(); save();
