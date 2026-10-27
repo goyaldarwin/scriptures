@@ -1,9 +1,10 @@
 {
- "_note": "Store apps and the shelves each shows (?app=<id>): one app per tradition; the Hindu app also carries the Sukhmani Sahib.",
+ "_note": "Store apps and the shelves each shows (?app=<id>): one app per tradition; the Hindu app also carries the Sukhmani Sahib. \"store\": the app's public store page, shared by ☰ › Share the app.",
  "hinduism": {
   "shelves": [
    "hinduism",
    "sikhism/gurbani/guru-arjan-dev/sukhmani-sahib"
-  ]
+  ],
+  "store": "https://play.google.com/store/apps/details?id=org.craadle.scriptures.hinduism"
  }
 }

@@ -1,4 +1,4 @@
-"""Apply audio starts the owner set by ear in the app (☰ › More › Audio timing › Send to the library).
+"""Apply audio starts the owner set by ear in the app (☰ › More settings › Audio timing › Send to the library).
 
 Usage:  python3 tools/audio/apply_owner_timing.py <file with the GitHub issue body>
 The body carries one JSON block: {"path": "<library path of the work>", "source": "<audio source id>",

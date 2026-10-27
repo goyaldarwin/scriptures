@@ -20,7 +20,7 @@ If `build.py` prints `LIBRARY PROBLEM: …`, fix what it names. It never builds 
 
 1. Choose the source's name: the publisher or translator, e.g. `swami-ramsukhdas` or `griffith`; its library id is `<lang>-<name>`.
 2. Write `tools/works/<work>/meanings/<lang>/<name>.json` (`tools/works/README.md` → meanings): `title` (bilingual), `order`, `"copied": true`, `m` {verse id: meaning, or a list of one piece per line}, and `notes` for footnotes. Match by the verse ids in `text.txt`, and check the verse text where possible, not by position alone. Copy the source's meanings faithfully (`docs/LIBRARY.md` §3). When a script makes the file from a book, keep the script and its intermediate files in `tools/works/<work>/source/` so it can be redone.
-3. Export the work and build. The source appears under ☰ › More › Sources. The default stays as it was unless the new file has a lower `order`.
+3. Export the work and build. The source appears under ☰ › More settings › Sources. The default stays as it was unless the new file has a lower `order`.
 4. Note the edition and the permission status in the root `README.md` under "Sources and permissions".
 
 Our own meanings (`meanings/<lang>/scriptures.json`) follow `tools/meanings/style.md`; `tools/meanings/prepare.py --work <work>` makes the batches to write, `apply_batches.py --work <work>` merges them, and the export checks them against the copied sources (`overlap.py`).
@@ -46,7 +46,7 @@ Our own meanings (`meanings/<lang>/scriptures.json`) follow `tools/meanings/styl
 ## Time a recording by ear (owner and helpers)
 Use this when automatic timing is weak (kīrtan, chant) or a recording has no transcript.
 1. Make a starting point: in `source.json` set `"estimate": true` (starts spread by text length) and `"draft": "<why>"`, run `make_timings.py`, build and push. A draft plays only while Audio timing is on.
-2. The owner opens the work, turns on ☰ › More › Audio timing, plays, and marks verses ("⏱ Starts now", "⏹ Ends now"); the light waits on guessed starts. "Next ▸" in the player bar goes to the next verse still to check and plays it. Helpers do the same and send the owner a file ("Save timings as a file"); the owner opens it ("Open a file") and checks each mark.
+2. The owner opens the work, turns on ☰ › More settings › Audio timing, plays, and marks verses ("⏱ Starts now", "⏹ Ends now"); the light waits on guessed starts. "Next ▸" in the player bar goes to the next verse still to check and plays it. Helpers do the same and send the owner a file ("Save timings as a file"); the owner opens it ("Open a file") and checks each mark.
 3. The owner taps "Send to the library (GitHub)": this opens a GitHub issue "Timing: <path> / <source>". The `timing` workflow applies it (issues from the owner's accounts only: `goyaldarwin`, `darwingoyal`) and closes it. For a draft, the switch "This recording is checked: publish it for everyone" goes with the send: the recording goes live and is marked checked.
 4. To verify a send: `gh api repos/goyaldarwin/scriptures/issues/<n>` and `/comments` (REST; GraphQL is unavailable), compare the issue's JSON with `library/<path>/audio/<source>.json` (each sent time exact), read `moved`, and check `gh api repos/goyaldarwin/scriptures/commits/main/check-runs`.
 5. Never edit `owner.json` or the generated timings by hand; the issue is the record.
