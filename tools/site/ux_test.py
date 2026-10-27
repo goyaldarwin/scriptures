@@ -691,7 +691,7 @@ async def main():
         await ev("delete navigator.share")
         check('☰ › Share the app shares a description and one link, <site>/get', sh == [True, 1, True], sh)
         # <site>/get: a chat app's card (title, description, icon); an Android phone goes on to the Play Store, anything else to the site
-        card = await ev("fetch('get/').then(r => r.text()).then(h => ['og:title', 'og:description', 'og:image'].every(k => h.includes('property=\"' + k + '\"')))")
+        card = await ev("Promise.all([fetch('get/').then(r => r.text()), fetch('app/share-card.png').then(r => r.ok)]).then(([h, img]) => img && ['og:title', 'og:description', 'og:image'].every(k => h.includes('property=\"' + k + '\"')) && h.includes('share-card.png'))")
         dest = {}
         for ua, tag in (('Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 Chrome/130 Mobile Safari/537.36', 'android'), ('Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Mobile/15E148', 'iphone')):
             cx = await b.new_context(user_agent=ua); gp = await cx.new_page(); seen = []
@@ -701,7 +701,7 @@ async def main():
             except Exception: pass
             dest[tag] = 'play' if seen and 'org.craadle.scriptures.hinduism' in seen[0] else 'site' if gp.url == url else gp.url
             await cx.close()
-        check('<site>/get: a link card for chat apps; Android goes to the Play Store, an iPhone to the website', [card, dest.get('android'), dest.get('iphone')] == [True, 'play', 'site'], [card, dest])
+        check('<site>/get: a link card for chat apps (picture app/share-card.png); Android goes to the Play Store, an iPhone to the website', [card, dest.get('android'), dest.get('iphone')] == [True, 'play', 'site'], [card, dest])
         ft = await ev("""(async () => { await openWork('manas', true); show('home'); openReader('k', 30); await new Promise(r => setTimeout(r, 500));
             document.querySelector('#rMid').click(); await new Promise(r => setTimeout(r, 300)); const ok = document.querySelector('#sheet').classList.contains('on') && !!document.querySelector('#sheetBody .secs [data-to]'); closeSheet(); return ok; })()""")
         check('reader: tapping the footer opens the section picker', ft)
