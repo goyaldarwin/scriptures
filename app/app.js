@@ -636,7 +636,17 @@ function markBar(i){
 }
 // how far each − / + moves a time: the saffron ±… s chip in the player bar, beside ✕, shown while timing is on
 const STEPS = [0.1, 0.25, 0.5, 1];
-function syncStep(){ const b = $('#pStep'); b.hidden = !S.timing.on; b.textContent = '±' + step() + ' s'; }
+function syncStep(){ const b = $('#pStep'); b.hidden = !S.timing.on; b.textContent = '±' + step() + ' s'; syncCheck(); }
+// Next ▸ (saffron, beside the step while Audio timing is on): the next verse still to check after the one playing (or in view),
+// round to the first; one tap goes there and plays it. It shows how many are left and hides when none is.
+function toCheckIds(){ const A = SRC.au; if (!S.timing.on || !A || !A.checkSet) return []; return IT.map((x, i) => i).filter(toCheck); }
+function syncCheck(){ const b = $('#pCheck'), n = toCheckIds().length; b.hidden = !n; b.textContent = T('अगला ▸ ', 'Next ▸ ') + DEV(n); }
+$('#pCheck').onclick = () => {
+  const ids = toCheckIds(); if (!ids.length){ syncCheck(); return; }
+  const cur = PL.on && PL.cur >= 0 ? PL.cur : topVisibleItem(), i = ids.find(k => k > cur) ?? ids[0];
+  jumpTo(i); const el = document.getElementById('v' + i); if (el){ el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash'); }
+  playFrom(i);
+};
 $('#pStep').onclick = () => { S.timing.step = STEPS[(STEPS.indexOf(step()) + 1) % STEPS.length]; save(); syncStep(); toast('− / + = ' + step() + ' s'); };
 function step(){ return S.timing.step || 0.5; }
 // a start that is only a guess — listed to be checked by the library, or placed again by text length to fit the set times — and not set by ear on this phone
@@ -918,7 +928,7 @@ function setTime(i, k, sec){
   toast((k === 1 ? T('शुरुआत: ', 'Starts at ') : T('अंत: ', 'Ends at ')) + (sec == null ? '—' : fmtT(sec)));
 }
 // after a time was written or removed: every verse on screen whose time, label or buttons changed is drawn again
-function refreshMarks(was, i){ Object.keys(was).forEach(q => { q = +q; if (q === i || was[q] !== JSON.stringify(SRC.au.at[IT[q].id]) + toCheck(q) + !!myStarts()[IT[q].id]) rerenderItem(q); }); }
+function refreshMarks(was, i){ Object.keys(was).forEach(q => { q = +q; if (q === i || was[q] !== JSON.stringify(SRC.au.at[IT[q].id]) + toCheck(q) + !!myStarts()[IT[q].id]) rerenderItem(q); }); syncCheck(); }
 // (a verse index the work doesn't have is skipped: the reader may still hold a longer work's verses)
 function marksNow(){ const was = {}; $$('#rBody .verse').forEach(el => { const q = +el.dataset.i; if (!IT[q]) return; was[q] = JSON.stringify(SRC.au.at[IT[q].id]) + toCheck(q) + !!myStarts()[IT[q].id]; }); return was; }
 function clearStart(i){ const fx = S.timing.fix[tkey()] || {}, was = marksNow(); delete fx[IT[i].id]; unfrom(IT[i].id); if (!Object.keys(fx).length) delete S.timing.fix[tkey()]; save(); buildAudio(); refreshMarks(was, i); if (PL.on){ PL.cur = -1; tick(i); } }
