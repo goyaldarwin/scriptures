@@ -801,6 +801,9 @@ async def main():
         nx.append(await ev("(() => { const i = window.__nx[0]; setTime(i, 1, SRC.au.at[IT[i].id][1]); refreshMarks({}, i); return $('#pCheck').textContent === T('अगला ▸ ', 'Next ▸ ') + DEV(2); })()"))
         lay = await ev("(() => { const r = s => document.querySelector(s).getBoundingClientRect(), v = r('.ytw'), c = r('#pCheck'), t = r('#pStep'), x = r('#pClose'); return [c.left >= v.right, t.left >= v.right, x.bottom <= Math.min(c.top, t.top) + 1, Math.abs(c.top - t.top) < 2]; })()")
         check('timing: in the player bar ✕ sits on its own line above Next ▸ and ±step, which stay clear of the video', lay == [True, True, True, True], lay)
+        RT = "(() => { const r = s => document.querySelector(s).getBoundingClientRect(), t = r('#pRate'), x = r('#pClose'), p = r('#pPlay'); return [t.right <= innerWidth, t.top < p.top ? 'top' : 'controls', Math.abs((t.top + t.bottom) / 2 - (x.top + x.bottom) / 2) < 4]; })()"
+        rw = [await ev(RT)]; await pg.set_viewport_size({'width': 360, 'height': 844}); await pg.wait_for_timeout(300); rw.append(await ev(RT)); await pg.set_viewport_size({'width': 390, 'height': 844}); await pg.wait_for_timeout(300)
+        check('player bar: 1× stays after ⏭ on a 390-px phone, and moves up beside ✕ on a 360-px one, never cut off', rw == [[True, 'controls', False], [True, 'top', True]], rw)
         c0 = await ev("(() => { setCur(window.__nx[2]); return ytInfo.t; })()"); await pg.click('#pNext'); await pg.wait_for_timeout(300); nx.append(await ev("ytInfo.t") > c0)   # ⏭ still goes on to the next verse
         nx.append(await ev("(() => { const ids = [...document.querySelectorAll('[id]')].map(e => e.id); return ids.length === new Set(ids).size; })()"))   # an id used twice took ⏭'s tap away once
         nx.append(await ev("(async () => { stopAudio(); ytOK = false; $('#player').hidden = true; const keep = window.__keep; " + T1 + " syncStep(); return $('#pCheck').hidden; })()"))

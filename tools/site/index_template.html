@@ -314,7 +314,8 @@ input[type=checkbox],input[type=radio],input[type=range]{accent-color:var(--indi
 /* while reciting, the player replaces the section bar; YouTube needs the video at least 200×200 */
 body.playing #reader .navbar{display:none}
 .ytw{flex:none;width:200px;height:200px;border-radius:10px;overflow:hidden;background:#000}
-.pside{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:space-between}
+.pside{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:space-between;position:relative;container-type:inline-size}
+@container (max-width:155px){.pctl .prate{position:absolute;top:2px;right:38px;margin:0}}   /* a narrow phone (under 390 px): ⏮ ▶ ⏭ 1× do not fit beside the 200-px video, so 1× moves up beside ✕ (the owner); wider phones keep it after ⏭ */
 .pctl{display:flex;align-items:center;gap:2px;flex-wrap:nowrap}.pctl .ib{width:36px}.pctl .pmain{width:44px;flex:none}
 .ptop{display:flex;justify-content:flex-end;align-items:center;min-width:0;margin:-4px -6px 0 0}   /* ✕ alone on the top line */
 .ptime{display:flex;justify-content:flex-end;align-items:center;flex-wrap:wrap;gap:4px;min-width:0}.ptime:not(:has(button:not([hidden]))){display:none}   /* Next ▸ and ±step on their own line under ✕ (Audio timing only), never over the video */
