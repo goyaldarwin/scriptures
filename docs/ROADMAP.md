@@ -37,7 +37,7 @@ The owner's priorities, in order: **accuracy**, then unambiguity, clarity, consi
    - Move work-specific senses into that work's `glossary.json`.
 6. **Settle uncertain readings with the owner's printed copy.** Where a text came from the web (Chālīsā, āratīs), compare it with a Gita Press print when the owner provides one. Record the outcome in the work's `reconciliation.md`.
 7. **Check audio against what is sung.** After timing, read each verse's transcript segment against its text, and flag verses where the reciter's wording differs. This catches both text errors and timing errors.
-8. **Finish the drafts by ear.** The owner marks the Śrī Rudram and the Sukhmani Sahib under ☰ › More › Audio timing and publishes each from there (`docs/HOW-TO.md` → "Time a recording by ear"). Helpers can mark too and send the owner a file. The Mānas recording still has verses to check, and one dohā (`aranya.46.do46ख`) without a time.
+8. **Finish the drafts by ear.** The owner marks the Śrī Rudram and the Sukhmani Sahib under ☰ › More settings › Audio timing and publishes each from there (`docs/HOW-TO.md` → "Time a recording by ear"). Helpers can mark too and send the owner a file. The Mānas recording still has verses to check, and one dohā (`aranya.46.do46ख`) without a time.
 9. **Player buttons for timing** (offered to the owner): "⏹ End" and "⏱ Next starts" beside play/pause, so marking needs no scrolling.
 10. **Punjabi word meanings.** Fill in `pa` in `library/glossary/pa.json` (`docs/design/languages.md` §2).
 11. **The Android app** (`docs/APPS.md`): the content-rights decision, then the Play release. The iPhone app is parked.

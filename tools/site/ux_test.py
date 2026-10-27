@@ -212,7 +212,7 @@ async def main():
                 first = await ev("(document.querySelector('#orgList .it') || {}).dataset ? document.querySelector('#orgList .it').dataset.page || 'day' : ''")
                 check(f'{tag}: plan {pid} lists its before/after pages in place', got == want_pg and (first == (want_pg[0] if (await ev(f"(PLAN[{json.dumps(pid)}].before || []).length")) else 'day')), f'{got} first={first}')
             if await ev("PLANS.length"): await ev("WS().org = 'k'; renderHome()"); await pg.wait_for_timeout(200)
-            # timing review: drafts only with ☰ › More › Audio timing on; a start and an end set by ear take effect at once
+            # timing review: drafts only with ☰ › More settings › Audio timing on; a start and an end set by ear take effect at once
             drafts = await ev("(W.sources.au || []).filter(s => s.draft).map(s => s.id)")
             if drafts:
                 check(f'{tag}: a draft recording is not played to readers', (await ev("SRC.au ? SRC.au.meta.id : null")) not in drafts)
@@ -399,7 +399,7 @@ async def main():
             await ev("show('home')"); await pg.wait_for_timeout(300)
             await (await pg.query_selector('#hMenu')).click(); await pg.wait_for_timeout(300)
             items = await ev("Array.from(document.querySelectorAll('#sheetBody [data-m], #sheetBody [data-tour], #sheetBody #mth, #sheetBody #mtm')).map(b => b.dataset.m || (b.dataset.tour != null ? 'tour' : b.id === 'mtm' ? 'timing' : 'dark-theme'))")
-            check(f'{tag}: ☰ holds Bookmarks, Dark theme, Share the app, Take the tour and More — nothing else', items == ['bm', 'dark-theme', 'share', 'tour', 'set'] and not await ev("!!document.querySelector('#sheetBody [data-rate], #sheetBody [data-m=sec], #sheetBody #mtr')"), items)
+            check(f'{tag}: ☰ holds Bookmarks, Dark theme, Share the app, Take the tour and More settings — nothing else', items == ['bm', 'dark-theme', 'share', 'tour', 'set'] and not await ev("!!document.querySelector('#sheetBody [data-rate], #sheetBody [data-m=sec], #sheetBody #mtr')"), items)
             await ev("closeSheet()")
             # back goes home
             await ev("show('home')"); await pg.wait_for_timeout(300)
@@ -420,7 +420,7 @@ async def main():
         bmf = await ev("(async () => { show('bookmarks'); await new Promise(r => setTimeout(r, 300)); return [!!document.querySelector('#bmBody #exp'), !!document.querySelector('#bmBody #imp')]; })()")
         check('Bookmarks & notes: Save my file / Open a file live there', bmf == [True, True], bmf)
         await ev("show('settings')"); await pg.wait_for_timeout(300); st = await ev("document.querySelector('#setBody').innerText")
-        check('More: only transliteration, sources, audio timing and privacy — no my file, meanings, text size, language, speed or screen switch', ('Sources' in st or 'स्रोत' in st) and ('Audio timing' in st or 'ऑडियोका समय' in st) and not ('My file' in st or 'मेरी फ़ाइल' in st) and not await ev("!!document.querySelector('#setBody #exp')") and ('Transliteration' in st or 'लिप्यन्तरण' in st) and not await ev("!!document.querySelector('#setBody #sh, #setBody #ssz, #setBody #sui, #setBody #sth, #setBody [data-rate], #setBody #swk')") and 'Speed' not in st, st[:80])
+        check('More settings: only transliteration, sources, audio timing and privacy — no my file, meanings, text size, language, speed or screen switch', ('Sources' in st or 'स्रोत' in st) and ('Audio timing' in st or 'ऑडियोका समय' in st) and not ('My file' in st or 'मेरी फ़ाइल' in st) and not await ev("!!document.querySelector('#setBody #exp')") and ('Transliteration' in st or 'लिप्यन्तरण' in st) and not await ev("!!document.querySelector('#setBody #sh, #setBody #ssz, #setBody #sui, #setBody #sth, #setBody [data-rate], #setBody #swk')") and 'Speed' not in st, st[:80])
         await ev("show('library')"); await pg.wait_for_timeout(500)
         s0 = await ev("S.settings.size"); await ev("document.querySelector('#library .szp').click()"); s1 = await ev("S.settings.size")
         check('library: A+ in its header changes the text size', s1 == s0 + 2, [s0, s1])
@@ -653,12 +653,12 @@ async def main():
         await pg.go_back(); await pg.wait_for_timeout(900)
         bs = await ev("[CURVIEW, SCOPE, document.querySelector('#q').value, document.querySelector('#scope').hidden, document.querySelectorAll('#sRes [data-hit]').length > 0]")
         check('Back from a work found by a library search returns to that search, its query and results kept', bs == ['search', 'lib', 'rudram', True, True], bs)
-        # transliteration is a switch on the More page (rarely used), seen in the reader afterwards
+        # transliteration is a switch on the More settings page (rarely used), seen in the reader afterwards
         await ev("(async () => { await openWork('ramraksha', true); show('home'); S.settings.tr = false; save(); show('settings'); })()"); await pg.wait_for_timeout(400)
         await ev("document.querySelector('#str').click()"); await pg.wait_for_timeout(200); await ev("openReader('k', 0)"); await pg.wait_for_timeout(500)
         cap = await ev("[S.settings.tr, document.querySelectorAll('#reader .tr').length > 0, document.querySelectorAll('#rLayers button').length]")
         await ev("S.settings.tr = false; save(); refreshReader()")
-        check('More › Transliteration turns the Roman text on under the verses; the capsule keeps its four buttons', cap == [True, True, 4], cap)
+        check('More settings › Transliteration turns the Roman text on under the verses; the capsule keeps its four buttons', cap == [True, True, 4], cap)
         pin = await ev("""(async () => { S.timing.on = false; applyTiming(); await openWork('manas', true); show('home'); openReader('k', 30); await new Promise(r => setTimeout(r, 700));
             stopAudio(); ytOK = false; PL.seekT = null; PL.on = true; PL.cur = -1; let err = ''; try { setCur(34); } catch (e) { err = String(e); } await new Promise(r => setTimeout(r, 1200));   // a quiet player: the tick must not move the light meanwhile (it did on CI)
             const bar = document.querySelector('#reader .bar').getBoundingClientRect().bottom, v = document.getElementById('v34'); if (!v){ PL.on = false; return ['no v34', err, CURVIEW, R.a, R.b, document.querySelectorAll('#rBody .verse').length, PL.cur, !!SRC.au, W && W.id]; } const pv = v.previousElementSibling;
@@ -682,7 +682,7 @@ async def main():
         tm = await ev("""(async () => { show('library'); document.querySelector('#libMenu').click(); await new Promise(r => setTimeout(r, 300));
             const b = document.querySelector('#sheetBody [data-tour]'); if (!b) return 'no button'; b.click(); await new Promise(r => setTimeout(r, 300));
             const on = !document.querySelector('#tour').hidden; closeTour(); const inSet = (show('settings'), /Show the tour|परिचय फिरसे/.test(document.querySelector('#setBody').innerText)); return [on, inSet]; })()""")
-        check('☰ › Take the tour starts the tour; More does not have it', tm == [True, False], tm)
+        check('☰ › Take the tour starts the tour; More settings does not have it', tm == [True, False], tm)
         # ☰ › Share the app (on every page): the phone's share sheet gets a short description, the store app and the website
         await ev("show('library'); window.__shared = null; Object.defineProperty(navigator, 'share', {configurable: true, value: async d => { window.__shared = d; }})")
         await (await pg.query_selector('#libMenu')).click(); await pg.wait_for_timeout(300)
