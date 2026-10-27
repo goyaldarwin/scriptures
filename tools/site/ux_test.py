@@ -791,6 +791,15 @@ async def main():
             v().querySelector('[data-a=tnone]').click(); r.push(SRC.au.at[IT[i].id][2] == null, !v().querySelector('[data-a=tnone]'), !!v().querySelector('.vundo'), !!v().querySelector('.vplay'));
             itemMenu(i); await new Promise(r => setTimeout(r, 200)); r.push(!document.querySelector('#sheetBody .tbox')); closeSheet(); S.timing.step = 0.5; """ + T1 + """ syncStep(); r.push(document.querySelector('#pStep').hidden); return r; })()""")
         check('timing: the ±step chip in the player bar (saffron, timing mode only) cycles; Until next removes the end; ↶ is the fourth corner; ⋮ holds nothing about timing', tc == [True, '±0.5 s', True, 1, '±1 s', True, True, True, True, True, True], tc)
+        # Next ▸ (saffron, player bar, timing mode only): a finger's tap goes to the next verse still to check after the one
+        # playing and plays it, round to the first; the count drops when one is set by ear; hidden when none is left
+        await ev("(async () => { " + T0 + " window.__keep = keep; const a = AUT[0], ids = [a[20][0], a[40][0], a[5][0]]; SRC.au.checkSet = new Set(ids.map(i => IT[i].id)); window.__nx = ids; window.__pf = playFrom; window.__got = []; playFrom = i => { window.__got.push(i); PL.cur = i; }; openReader('k', a[10][0]); await new Promise(r => setTimeout(r, 400)); PL.on = true; PL.cur = a[10][0]; $('#player').hidden = false; syncStep(); })()")
+        nx = [await ev("[!$('#pNext').hidden, $('#pNext').textContent === T('अगला ▸ ', 'Next ▸ ') + DEV(3), getComputedStyle($('#pNext')).backgroundColor === getComputedStyle($('#pStep')).color]")]
+        for _ in range(3): await pg.click('#pNext'); await pg.wait_for_timeout(250)
+        nx.append(await ev("window.__got.map(i => window.__nx.indexOf(i))"))
+        nx.append(await ev("(() => { const i = window.__nx[0]; setTime(i, 1, SRC.au.at[IT[i].id][1]); refreshMarks({}, i); return $('#pNext').textContent === T('अगला ▸ ', 'Next ▸ ') + DEV(2); })()"))
+        nx.append(await ev("(async () => { playFrom = window.__pf; PL.on = false; $('#player').hidden = true; const keep = window.__keep; " + T1 + " syncStep(); return $('#pNext').hidden; })()"))
+        check('timing: Next ▸ in the player bar (saffron) goes to the next verse to check and plays it, round to the first; the count drops when one is set; hidden when timing is off', nx == [[True, True, True], [0, 1, 2], True, True], nx)
         # while Audio timing is on, ☰ shows its switch and Clear adjustments at the top level
         tm2 = await ev("""(async () => { """ + T0 + """ const i = AUT[0][10][0]; openReader('k', i); await new Promise(r => setTimeout(r, 400)); setTime(i, 1, AUT[0][10][1]);
             document.querySelector('#rMore').click(); await new Promise(r => setTimeout(r, 300)); const r = [!!document.querySelector('#mtm'), !!document.querySelector('#sheetBody [data-m=tclear]')];
