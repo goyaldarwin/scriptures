@@ -8,6 +8,8 @@ The source folder holds:
   transcripts/     <video id>.jsonl from transcribe.py (+ .done when finished)
   fixes.json       optional hand-checked verse starts {video id: {item id: seconds}}, with the evidence in fixes.md
   owner.json       optional starts (and ends) the owner set by ear in the app, written by apply_owner_timing.py
+  check.json       optional {"why": "<how the list was found>", "ids": [item ids]}: verses whose start is in doubt, listed
+                   for the owner to check by ear (☰ › More › Audio timing, Next ▸) until a start is set for them
 Only finished transcripts are used. The alignment is cached per recording in transcripts/<video id>.align.json:
 one row per transcript segment, [start, end, [[item id, characters of that half-line], …]]. Delete it to realign.
 A segment that covers several half-lines is shared among them by length, so a verse that begins in the
@@ -179,6 +181,9 @@ doc = {k: meta[k] for k in ('id', 'type', 'title', 'order', 'draft') if k in met
 # yet checked by hand; the app lists them for review in ☰ › More › Audio timing. Starts set by the owner never count.
 byhand = set(k for v in FIX.values() for k in v) | set(k for v in OWN.values() for k in v)
 check = [] if meta.get('checked') else [x['id'] for x in IT if x['id'] in at and x['id'] not in byhand and (meta.get('draft') or meta.get('review') or x['id'] not in heard)]   # "checked": published by the owner after hearing it through
+CP = os.path.join(SRC, 'check.json'); DOUBT = set(json.load(open(CP))['ids']) if os.path.exists(CP) else set()   # check.json: starts in doubt, even when heard
+assert DOUBT <= set(ID), f'check.json: unknown verse ids {sorted(DOUBT - set(ID))[:5]}'
+check = [x['id'] for x in IT if x['id'] in at and x['id'] not in byhand and (x['id'] in check or x['id'] in DOUBT)]
 doc.update(tracks=tracks, at=at)
 if check: doc['check'] = check
 guess = [x['id'] for x in IT if x['id'] in at and x['id'] not in heard and x['id'] not in own_ids]
