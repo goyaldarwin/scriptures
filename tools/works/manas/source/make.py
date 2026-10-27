@@ -86,16 +86,33 @@ def spread(m, notes, lg):
         if f is not None: notes[new[-1]] = f
     order = [x['id'] for x in items]
     return {i: m[i] for i in order if i in m}, {i: notes[i] for i in order if i in notes}
+# A footnote comes from the book one printed line per entry; the lines of one note are joined, so the app shows each note
+# as one paragraph. A note starts with its mark (*, †, ‡, §, # or "2."); any other line continues the one before. A line
+# that ends in a hyphen keeps it (forty-eight, mind-born), except where the printer split a word (WORD_SPLIT).
+MARK = re.compile(r'^\s*(?:[*†‡§¶#]|\d+\.\s)')
+WORD_SPLIT = {'expand-ing', 'consti-tute', 'circumambu-lation'}
+COMPOUND = {'wind-god', 'forty-eight', 'monkey-god', 'ill-will', 'non-Brāhmaṇa', 'mind-born', 'sixty-four'}
+def note_lines(lines):
+    out = []
+    for l in lines:
+        l = l.strip()
+        if not out or MARK.match(l): out.append(l); continue
+        if out[-1].endswith('-'):
+            pair = re.sub(r'^\W+|\W+$', '', out[-1].split()[-1] + l.split()[0])   # the two halves, without brackets or commas
+            assert pair in WORD_SPLIT | COMPOUND, f'a line ends in a hyphen: is "{pair}" one split word (WORD_SPLIT) or a hyphenated word (COMPOUND)?'
+            out[-1] = (out[-1][:-1] if pair in WORD_SPLIT else out[-1]) + l
+        else: out[-1] += ' ' + l
+    return out
 hi, hin = {}, {}
 for x in IT:
     hi[x['id']] = x['h']
-    if x.get('f'): hin[x['id']] = x['f']
+    if x.get('f'): hin[x['id']] = note_lines(x['f'])
 en, enn = {}, {}
 for x in IT:
     g = EG.get(str(x['g'])) if x.get('g') is not None else None
     if not g: continue
     en[x['id']] = g['x']
-    if g.get('f'): enn[x['id']] = g['f']
+    if g.get('f'): enn[x['id']] = note_lines(g['f'])
 for lg, m, notes, title in (('hi', hi, hin, {'hi': 'गीताप्रेस — भावार्थ (हनुमानप्रसाद पोद्दार)', 'en': 'Gita Press — Hindi bhāvārtha (Hanumānprasād Poddār)'}),
                             ('en', en, enn, {'hi': 'गीताप्रेस — अंग्रेज़ी अनुवाद', 'en': 'Gita Press — English translation'})):
     m, notes = spread(m, notes, lg)
