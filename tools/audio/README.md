@@ -18,7 +18,7 @@ The website plays recordings from YouTube and highlights each verse as it is rec
 3. **`make_timings.py`**: takes each verse's first matched time, drops matches that go backwards, and fills short gaps (≤ 8 verses, or `source.json` → `fill`) by text length.
    - The first verses of a day are back-filled to the day's start.
    - Each recording's alignment is cached as `transcripts/<video id>.align.json`. Delete the cache to realign.
-   - `fixes.json` (hand-checked starts, with the evidence in `fixes.md`) wins over the automatic match; `owner.json` (times the owner set by ear in the app) wins over both.
+   - `fixes.json` (hand-checked starts, with the evidence in `fixes.md`) wins over the automatic match; `owner.json` (times the owner set by ear in the app) wins over both. `check.json` (`{why, ids}`) lists starts in doubt (e.g. where another aligner disagrees by more than 5 s); they join the app's "to check" list (Next ▸) until the owner sets them, and no time changes.
    - Around the owner's times, `order.py` places the other verses again so that starts never go backwards. The app applies the same rule (`buildAudio` in `tools/site/app.js`), and `tools/site/ux_test.py` checks that both agree.
    - With `"estimate": true` and no transcript, the verses are spread over the recording by text length, as a starting point for timing by ear.
 
