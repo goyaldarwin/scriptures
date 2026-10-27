@@ -205,4 +205,5 @@ def prepare(lib):
         for aid, a in json.load(open(ap)).items():
             if aid.startswith('_'): continue
             _need(a.get('shelves') and all(x in paths for x in a['shelves']), f"apps.json: {aid}: every shelf must be a path on the shelf ({a.get('shelves')})")
+            _need(not a.get('store') or re.fullmatch(r'https://\S+', a['store']), f"apps.json: {aid}: store must be an https link ({a.get('store')})")
     return works

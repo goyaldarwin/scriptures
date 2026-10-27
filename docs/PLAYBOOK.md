@@ -95,7 +95,7 @@ Contents: 1 Working with the owner · 2 Sources and accuracy · 3 Texts · 4 Mea
 - **One header on every page.** Left: the way back only (breadcrumbs on the library, shortened to one row; "‹ Library" on a work; ‹ in the reader). Right: A− / A+, the language or meaning capsule, search, ☰.
 - **Language and meaning are one choice.** On the library and work pages, हिं · En sets the interface and the meaning together. In the reader the capsule holds the meaning switches, शब्द (word meanings) and 📖 (recitation mode); turning English on makes the interface English, only Hindi makes it Hindi. A work with a third meaning language (ਪੰ) shows two of them in the capsule, chosen under More › Sources.
 - **Recitation mode (📖)** hides every meaning and remembers which were on; turning a meaning on ends it.
-- **One ☰ sheet everywhere:** Bookmarks & notes (in a work), Dark theme (on = dark), Take the tour, More. **More** holds the rare things: Transliteration, Sources, Audio timing, Privacy. While Audio timing is on, its switch and "Clear adjustments" also show at the top of ☰. Nothing in ☰ repeats the header.
+- **One ☰ sheet everywhere:** Bookmarks & notes (in a work), Dark theme (on = dark), Share the app (the owner: a short description, the store app from `library/apps.json` → `store`, and the website, through the phone's share sheet), Take the tour, More. **More** holds the rare things: Transliteration, Sources, Audio timing, Privacy. While Audio timing is on, its switch and "Clear adjustments" also show at the top of ☰. Nothing in ☰ repeats the header.
 - **The ⋮ menu of a verse:** Play from here · Write a note · Copy verse and meaning · Improve verse or meaning. Items are short commands without "the".
 
 **Reader**

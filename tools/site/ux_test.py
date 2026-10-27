@@ -399,7 +399,7 @@ async def main():
             await ev("show('home')"); await pg.wait_for_timeout(300)
             await (await pg.query_selector('#hMenu')).click(); await pg.wait_for_timeout(300)
             items = await ev("Array.from(document.querySelectorAll('#sheetBody [data-m], #sheetBody [data-tour], #sheetBody #mth, #sheetBody #mtm')).map(b => b.dataset.m || (b.dataset.tour != null ? 'tour' : b.id === 'mtm' ? 'timing' : 'dark-theme'))")
-            check(f'{tag}: ☰ holds Bookmarks, Dark theme, Take the tour and More — nothing else', items == ['bm', 'dark-theme', 'tour', 'set'] and not await ev("!!document.querySelector('#sheetBody [data-rate], #sheetBody [data-m=sec], #sheetBody #mtr')"), items)
+            check(f'{tag}: ☰ holds Bookmarks, Dark theme, Share the app, Take the tour and More — nothing else', items == ['bm', 'dark-theme', 'share', 'tour', 'set'] and not await ev("!!document.querySelector('#sheetBody [data-rate], #sheetBody [data-m=sec], #sheetBody #mtr')"), items)
             await ev("closeSheet()")
             # back goes home
             await ev("show('home')"); await pg.wait_for_timeout(300)
@@ -683,6 +683,13 @@ async def main():
             const b = document.querySelector('#sheetBody [data-tour]'); if (!b) return 'no button'; b.click(); await new Promise(r => setTimeout(r, 300));
             const on = !document.querySelector('#tour').hidden; closeTour(); const inSet = (show('settings'), /Show the tour|परिचय फिरसे/.test(document.querySelector('#setBody').innerText)); return [on, inSet]; })()""")
         check('☰ › Take the tour starts the tour; More does not have it', tm == [True, False], tm)
+        # ☰ › Share the app (on every page): the phone's share sheet gets a short description, the store app and the website
+        await ev("show('library'); window.__shared = null; Object.defineProperty(navigator, 'share', {configurable: true, value: async d => { window.__shared = d; }})")
+        await (await pg.query_selector('#libMenu')).click(); await pg.wait_for_timeout(300)
+        await (await pg.query_selector('#sheetBody [data-m=share]')).click(); await pg.wait_for_timeout(600)
+        sh = await ev("(() => { const t = (window.__shared || {}).text || ''; return [t.includes('https://play.google.com/store/apps/details?id=org.craadle.scriptures.hinduism'), t.includes(location.origin + '/'), /Free, no ads|निःशुल्क, बिना विज्ञापन/.test(t)]; })()")
+        await ev("delete navigator.share")
+        check('☰ › Share the app shares a description, the Play Store app and the website', sh == [True, True, True], sh)
         ft = await ev("""(async () => { await openWork('manas', true); show('home'); openReader('k', 30); await new Promise(r => setTimeout(r, 500));
             document.querySelector('#rMid').click(); await new Promise(r => setTimeout(r, 300)); const ok = document.querySelector('#sheet').classList.contains('on') && !!document.querySelector('#sheetBody .secs [data-to]'); closeSheet(); return ok; })()""")
         check('reader: tapping the footer opens the section picker', ft)

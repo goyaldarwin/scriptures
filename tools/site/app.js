@@ -547,6 +547,7 @@ function mainMenu(){
   openSheet('<div class="menu">' + (inWork ? '<button data-m="bm"><svg><use href="#i-bm"/></svg>' + LB.bm() + '</button>' : '') +
     '<div class="menusw">' + sw('mth', T('गहरा रंग (रात)', 'Dark theme'), '', th === 'dark', 'theme') + '</div>' +
     (S.timing.on && inWork ? '<div class="menusw"><label class="sw tsw"><svg class="swic" style="stroke:var(--saffron)"><use href="#i-clock"/></svg><span style="flex:1">' + T('ऑडियोका समय', 'Audio timing') + '</span><span class="tg"><input type="checkbox" id="mtm" checked><span></span></span></label></div>' + (SRC.au && Object.keys(myStarts()).filter(id => ID[id] != null).length ? '<button data-m="tclear" class="tsaf"><svg><use href="#i-undo"/></svg>' + T('मेरे बदलाव हटाएँ', 'Clear adjustments') + '</button>' : '') : '') +
+    '<button data-m="share"><svg><use href="#i-share"/></svg>' + T('ऐप साझा करें', 'Share the app') + '</button>' +
     '<button data-tour><svg><use href="#i-tour"/></svg>' + LB.tour() + '</button>' +
     '<button data-m="set"><svg><use href="#i-set"/></svg>' + LB.more() + '</button></div>');
   if ($('#mtm')) $('#mtm').onchange = async () => { S.timing.on = false; save(); applyTiming(); stopAudio(); closeSheet(); await loadSources(); if (CURVIEW === 'reader') refreshReader(); if (CURVIEW === 'settings') renderSettings(); toast(T('ऑडियोका समय: बंद', 'Audio timing: off')); };   // while on, ☰ turns it off
@@ -556,8 +557,20 @@ $('#rMore').onclick = mainMenu;
 $('#sheetBody').addEventListener('click', ev => {
   const b = ev.target.closest('[data-m]'); if (!b) return;
   const m = b.dataset.m; closeSheet();
-  if (m === 'bm') show('bookmarks'); if (m === 'set') show('settings'); if (m === 'tclear') clearTimingAsk();
+  if (m === 'bm') show('bookmarks'); if (m === 'set') show('settings'); if (m === 'tclear') clearTimingAsk(); if (m === 'share') shareApp();
 });
+// ☰ › Share the app: a short description, the store app's page (library/apps.json → "store": this app's, or on the website
+// the first app that has one) and the website, through the phone's share sheet; where there is none, copied to the clipboard
+async function shareApp(){
+  let store = '';
+  try { const A = await getJSON('apps'), id = new URLSearchParams(location.search).get('app'); store = ((A[id] && A[id].store) ? A[id] : Object.values(A).find(a => a && a.store) || {}).store || ''; } catch (e) {}
+  const site = location.origin + '/';
+  const text = T('शास्त्र — श्रीरामचरितमानस, उपनिषद्, स्तोत्र, आरती और बहुत कुछ: मूल पाठ, हिन्दी और अंग्रेज़ी अर्थ, हर शब्दका अर्थ और पाठका ऑडियो। निःशुल्क, बिना विज्ञापन।',
+                 'Scriptures — the Śrī Rāmacaritamānasa, Upaniṣads, stotras, āratīs and more: the original text with Hindi and English meanings, the meaning of every word, and recitation audio. Free, no ads.') +
+    (store ? '\n\n' + T('Android ऐप: ', 'Android app: ') + store : '') + '\n' + T('वेबसाइट (iPhone, कंप्यूटर): ', 'Website (iPhone, computer): ') + site;
+  try { if (navigator.share){ await navigator.share({title: T('शास्त्र', 'Scriptures'), text}); return; } } catch (e) { if (e && e.name === 'AbortError') return; }
+  try { await navigator.clipboard.writeText(text); toast(T('लिंक कॉपी हो गया — अब कहीं भी चिपकाएँ', 'Copied — paste it anywhere')); } catch (e) { toast(store || site); }
+}
 function setSize(d){
   const i = topVisibleItem(); S.settings.size = Math.max(16, Math.min(34, S.settings.size + d)); applyTheme(); save();
   if ($('#reader').classList.contains('on') && i != null) scrollToItem(i);
