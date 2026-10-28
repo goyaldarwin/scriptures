@@ -920,6 +920,16 @@ async def main():
         # a Roman-letter search shows the verse itself; Play from here ends with the open section
         rs = await ev("(async () => { await openWork('manas', true); show('home'); openSearch('text'); document.querySelector('#q').value = 'asur chal chonip'; runSearch(); await new Promise(r => setTimeout(r, 300)); const r = document.querySelector('#sRes .res'); return r ? [r.querySelector('.where').textContent, r.querySelector('.snip').textContent.slice(0, 12)] : 'none'; })()")
         check('search: a verse found by Roman letters is shown as the verse', rs != 'none' and ('Verses' in rs[0] or 'मूल पाठ' in rs[0]) and 'रहे' in rs[1], rs)
+        # search forgives spelling: Tulsīdās's forms, sound-alike letters, a missing word, spaces, Roman letters, Hindi letters for Gurmukhi
+        fz = await ev("""(async () => { const top = async (w, q) => { await openWork(w, true); show('home'); await loadSources(); openSearch('text'); document.querySelector('#q').value = q; runSearch(); const r = document.querySelector('#sRes .res'); return r ? IT[+r.dataset.i].id : null; };
+            const out = {};
+            for (const [w, q] of [['manas', 'aise bachan'], ['manas', 'मंगल भवन अमंगल हारी'], ['manas', 'सियाराम मय सब जग जानी'], ['manas', 'राम काज कीन्हे बिनु मोहि कहाँ बिश्राम'], ['manas', 'बिनु पग चलै सुनै बिनु काना'],
+                ['manas', 'जय राम रमा रमनं समनं'], ['manas', 'होई है वही जो राम रचि राखा'], ['manas', 'mangal bhavan amangal hari'], ['manas', 'Jahan lagi nath'], ['manas', 'tan dhan dham'], ['sukhmani-sahib', 'प्रभ कै सिमरनि गरभि न बसै']]) out[q] = await top(w, q);
+            out.none = await top('manas', 'श्री रामचंद्र कृपालु भजु मन'); return out; })()""")
+        want = {'aise bachan': 'ayodhya.67.do67', 'सियाराम मय सब जग जानी': 'bal.8.cau1', 'राम काज कीन्हे बिनु मोहि कहाँ बिश्राम': 'sundar.1.do1', 'बिनु पग चलै सुनै बिनु काना': 'bal.118.cau3',
+                'जय राम रमा रमनं समनं': 'uttar.14.cha1', 'होई है वही जो राम रचि राखा': 'bal.52.cau4', 'Jahan lagi nath': 'ayodhya.65.cau2', 'tan dhan dham': 'ayodhya.65.cau2', 'प्रभ कै सिमरनि गरभि न बसै': 'a01.p2'}
+        bad = {q: fz.get(q) for q in want if fz.get(q) != want[q]}
+        check('search forgives spelling: the verse meant comes first', not bad and fz['मंगल भवन अमंगल हारी'] and fz['mangal bhavan amangal hari'] == fz['मंगल भवन अमंगल हारी'] and fz['none'] is None, bad or fz)
         pf = await ev("(async () => { const P = PLANS[0]; const [a, b] = dayRange(P.id, 2); openReader(P.id, a + 3); await new Promise(r => setTimeout(r, 300)); itemMenu(a + 3); await new Promise(r => setTimeout(r, 200)); document.querySelector('#sheetBody [data-x=play]').click(); const r = [PL.end === b, PL.endMsg]; stopAudio(); return r; })()")
         check('Play from here ends with the open vishram, with its message', pf[0] and 'finished' in pf[1], pf)
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))

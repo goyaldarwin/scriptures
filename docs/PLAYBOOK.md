@@ -121,7 +121,7 @@ Contents: 1 Working with the owner · 2 Sources and accuracy · 3 Texts · 4 Mea
 - **Back retraces exactly, and a refresh stays on the same page** (every page and shelf is a browser-history entry). "‹ Library" opens the library itself.
 - **Drawers close by dragging them down.** Buttons on a page stand 10 px apart.
 - **Bookmarks & notes** lists fold under their headings (the fold is remembered); each bookmark has its own ✕.
-- **Search forgives transliteration** (final "a" optional, doubled vowels, sh/ch/ri/w, optional nasals); a Roman-letter search shows the verse itself. Hindi search ignores anusvāra, candrabindu and nukta differences.
+- **Search forgives spelling** (the owner: one should not have to try a few spellings). The text and what is typed are folded to one sound key: in Devanagari (and Gurmukhi, read as Devanagari, so Hindi letters find the Sukhmani Sahib) ि/ी, ु/ू, ब/व, श/ष/स, ण/न, ृ/रि, ै/अइ, ौ/अउ, a nasal before a consonant, ँ ं ़ ् and Vedic accents count as one; in Roman letters long vowels, aspiration, sh/s, ch/c, v/w/b, f/p, z/j, a nasal before a consonant and a word's final a; in both, a word's final u (तनु धनु धामु, काजु). A verse is found by what was typed with spaces ignored and about one letter in six allowed to differ (Tulsīdās's ऐसेउ for "aise", काजु for काज), or by most of its words in any order; the closest comes first, then meanings, then the looser matches. A Roman-letter search shows the verse itself.
 - **Offline:** a work opened once is readable offline with its meanings; library files are fetched fresh when online (2.5 s wait) and from the phone's copy when not.
 
 ## 8. Audio
