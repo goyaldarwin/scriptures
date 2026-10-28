@@ -881,6 +881,18 @@ async def main():
             const dot = getComputedStyle(m, '::before').content, d1 = getComputedStyle(ls[0], '::before'), d2 = getComputedStyle(ls[1], '::before');
             return [dot === 'none', d1.content === 'none', d2.content === '""' && parseFloat(d2.width) < 80 && d2.borderTopStyle === 'solid', getComputedStyle(v).borderBottomStyle === 'solid']; })()""")
         check('line by line: each line sits on its meaning, a short dash parts the pairs, the verse ends with the full rule', all(look), look)
+        # a verse taller than the screen: while it plays, the page turns inside it — the line being recited, with its meaning, comes up below the bar
+        tall = await ev("""(async () => { stopAudio(); ytOK = false; await openWork('sukhmani-sahib', true); S.settings.layers = {h: false, e: true, w: false}; S.settings.recite = false; delete S.settings.pair; await loadSources(); syncLayers();
+            const i = IT.findIndex(x => x.id === 'a01.p3'); show('home'); openReader('k', i); await new Promise(r => setTimeout(r, 500));
+            PL.t = AUT.findIndex(a => a.some(x => x[0] === i)); const a = AUT[PL.t], m = a.findIndex(x => x[0] === i), s = a[m][1], e = endOf(i) ?? a[m + 1][1];
+            PL.on = true; PL.cur = -1; $('#player').hidden = false; document.body.classList.add('playing'); setCur(i); await new Promise(r => setTimeout(r, 900));
+            const y0 = scrollY; followLines(i, s + 0.02 * (e - s)); await new Promise(r => setTimeout(r, 700)); const y1 = scrollY;
+            for (let n = 0; n < 5; n++){ followLines(i, e - 0.3); await new Promise(r => setTimeout(r, 300)); }   // as each tick does
+            await new Promise(r => setTimeout(r, 500)); const y2 = scrollY, ls = document.getElementById('v' + i).querySelectorAll('.vline'), last = ls[ls.length - 1].getBoundingClientRect();
+            const ok = [document.getElementById('v' + i).offsetHeight > innerHeight, y1 === y0, y2 > y0 + 100, last.top > $('#reader .bar').getBoundingClientRect().bottom && last.bottom < $('#player').getBoundingClientRect().top];
+            window.scrollBy(0, -300); await new Promise(r => setTimeout(r, 300)); const y3 = scrollY; for (let n = 0; n < 3; n++){ followLines(i, e - 0.2); await new Promise(r => setTimeout(r, 300)); } ok.push(Math.abs(scrollY - y3) < 2);   // scrolled back by hand: left there
+            stopAudio(); return ok; })()""")
+        check('playing a verse taller than the screen: the page follows its lines, from the first to the last, once each', all(tall), tall)
         # a third meaning language: with a Punjabi source the capsule shows ਪੰ · En (English app) or ਪੰ · हिं
         # (Hindi app), always four places; Punjabi pieces sit under their lines; Sources lists it and "Meanings in the bar";
         # search finds it; recitation mode turns it off too

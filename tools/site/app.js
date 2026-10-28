@@ -849,7 +849,7 @@ function tick(anchor){
   // that verse starts a little later; the same in ☰ › More settings › Audio timing on or off
   const m = at(show), e2 = endOf(show);
   if (e2 != null && time >= e2 && m >= 0 && m + 1 < a.length) show = a[m + 1][0];
-  setCur(show);
+  setCur(show); followLines(show, time);
   const d = ytInfo.d || SRC.au.tracks[PL.t].dur; $('#pProg').style.width = (100 * time / d) + '%';
 }
 setInterval(tick, 300);
@@ -863,8 +863,28 @@ function keepInView(el){
   const head = prev && prev.classList && prev.classList.contains('vtype') ? prev : el;
   window.scrollTo({top: Math.max(0, scrollY + head.getBoundingClientRect().top - (top + 6)), behavior: 'smooth'});
 }
+// a verse taller than the space between the bar and the player: the page turns inside it while it is recited. The line being
+// recited is guessed from the time spent in the verse (its lines share the verse's time by their length); when that line —
+// line by line, with its meaning — runs under the player, it is brought up to just below the bar
+function followLines(i, time){
+  if (S.timing.on || !$('#reader').classList.contains('on')) return; const el = document.getElementById('v' + i); if (!el) return;
+  const top = $('#reader .bar').getBoundingClientRect().bottom, bot = $('#player').getBoundingClientRect().top;
+  if (el.offsetHeight <= bot - top - 12) return;
+  const a = AUT[PL.t], m = a.findIndex(x => x[0] === i); if (m < 0) return;
+  const s = a[m][1], e = endOf(i) ?? (m + 1 < a.length ? a[m + 1][1] : (ytInfo.d || SRC.au.tracks[PL.t].dur));
+  const vl = [...el.querySelectorAll('.vline')], ls = vl.length ? vl : [...el.querySelectorAll('.vtext p')];
+  if (!(e > s) || ls.length < 2) return;
+  const w = ls.map(l => l.textContent.length || 1), f = (time - s) / (e - s) * w.reduce((x, y) => x + y);
+  let k = 0, acc = w[0]; while (k < ls.length - 1 && acc <= f){ k++; acc += w[k]; }
+  if (k === 0 || PL.line === i + ':' + k) return;   // once for each line, so the reader can still scroll by hand within the verse
+  const r = ls[k].getBoundingClientRect(), end = !vl.length ? r.bottom : k + 1 < ls.length ? ls[k + 1].getBoundingClientRect().top : el.getBoundingClientRect().bottom;
+  // in place (in view, or at the top when it is taller than the space): this line is done; otherwise each tick moves it up
+  // until it is (a smooth scroll can be cut short when verses are added above)
+  if (r.top >= top && (end <= bot - 4 || r.top <= top + 24)) PL.line = i + ':' + k;
+  else window.scrollTo({top: Math.max(0, scrollY + r.top - (top + 6)), behavior: 'smooth'});
+}
 function setCur(i){
-  if (PL.cur === i) return; PL.cur = i;
+  if (PL.cur === i) return; PL.cur = i; PL.line = null;
   $$('#rBody .verse.now').forEach(v => v.classList.remove('now'));
   $('#pVerse').textContent = KNAME(IT[i].p) + ' · ' + posLabel(i); $('#pTrack').textContent = playingName();
   if (!$('#reader').classList.contains('on')) return;

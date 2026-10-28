@@ -110,7 +110,7 @@ Contents: 1 Working with the owner · 2 Sources and accuracy · 3 Texts · 4 Mea
 - **Vedic accents must be unmistakable:** a verse with svaras is set in Tiro Devanagari Sanskrit.
 
 **Playing**
-- **▶ on every part, every plan day and every verse;** "Play all" on a work's home. Playing is hands-free: the verse being recited stays at the top, the page follows it, meanings follow the switches, the screen stays on.
+- **▶ on every part, every plan day and every verse;** "Play all" on a work's home. Playing is hands-free: the verse being recited stays at the top, the page follows it, meanings follow the switches, the screen stays on. A verse taller than the screen is followed inside too: when the line being recited (guessed from the time spent in the verse, shared among its lines by length) runs under the player, it comes up just below the bar, with its meaning when line by line — once for each line, so the reader can still scroll back by hand.
 - **Playing ends where its button says:** ▶ on a part or day, and "Play from here", end with what is open ("<part> finished" and "▶ Play on"); "Play all" ends with "Recitation complete". The end message names no deity.
 - **A touch or scroll never pauses the following;** when the lit verse is off screen, a pill "↑ Go to <verse>" brings it back.
 - **The playing speed** (0.5–2×, YouTube's own) is a button in the player bar; ✕ is alone in its top-right corner.
