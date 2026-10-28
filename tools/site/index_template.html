@@ -97,7 +97,13 @@ html,body{overflow-x:clip}
 .vtext p{margin:0;position:relative}
 .vtext{padding:0 30px;overflow-wrap:anywhere}
 .vtext.vedic{font-family:'Vedic','NSDev',serif}
-.verse > .layer + .vline,.verse > .tr + .vline{margin-top:16px}   /* line by line: a verse line after the meaning of the line before */
+/* line by line: each verse line sits on its own meaning, with no ॰; a short faint saffron dash parts one pair from the next,
+   so the full rule under the verse is the only long line and marks its end */
+.verse:has(> .vline) > .layer.layer:not(.wl)::before{content:none}
+.verse > .vline + .layer{margin-top:6px}
+.verse > .layer + .vline,.verse > .tr + .vline{margin-top:14px}
+.verse > .layer + .vline::before,.verse > .tr + .vline::before{content:"";display:block;width:56px;margin:0 auto 14px;border-top:1px solid var(--saffron);opacity:.45}
+.verse:has(> .vline){padding-bottom:18px}
 .btn[disabled]{opacity:.45;pointer-events:none}
 .tgrp{display:inline-flex;align-items:stretch}.tgrp button+button{margin-left:-1px}.tgrp .tn{min-width:30px;padding:6px 0;font-size:16px;line-height:1}.tgrp .tn:first-child{border-radius:10px 0 0 10px}.tgrp .tn:first-child+button{border-radius:0}.tgrp .tn:first-child+button:last-child{border-radius:0 10px 10px 0}.tgrp button:not(.tn)+.tn{border-radius:0 10px 10px 0}
 .tmark{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px;margin:8px 0 2px}.tmark button{border:1px solid var(--saffron);color:var(--saffron);border-radius:10px;padding:6px 10px;font-size:13.5px;font-weight:700;background:var(--bg)}.tmark button:active{background:color-mix(in srgb,var(--saffron) 18%,transparent)}.tinfo{width:100%;text-align:center;font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}.tinfo .test{color:var(--saffron)}

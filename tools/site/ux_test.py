@@ -874,6 +874,13 @@ async def main():
             const r3 = [u.querySelectorAll('.vline').length === 0, u.querySelectorAll('.vtext').length === 1];
             SRC.hi.p = keep.h; SRC.en.p = keep.e; delete S.settings.pair; return [...r1, ...r2, ...r3]; })()""")
         check('meanings line by line: each piece under its line; a source without pieces shows whole after the verse; none at all keeps the verse whole', all(lbl), lbl)
+        # line by line looks like pairs: no ॰ between a line and its meaning, a short dash between pairs, the full rule only at the end
+        look = await ev("""(async () => { await openWork('sukhmani-sahib', true); S.settings.layers = {h: false, e: true, w: false}; S.settings.recite = false; delete S.settings.pair; await loadSources(); syncLayers();
+            show('home'); openReader('k', IT.findIndex(x => x.id === 'a01.p3')); await new Promise(r => setTimeout(r, 500));
+            const v = [...document.querySelectorAll('.verse')].find(e => e.querySelector('.vline')), ls = v.querySelectorAll('.vline'), m = v.querySelector('.vline + .layer');
+            const dot = getComputedStyle(m, '::before').content, d1 = getComputedStyle(ls[0], '::before'), d2 = getComputedStyle(ls[1], '::before');
+            return [dot === 'none', d1.content === 'none', d2.content === '""' && parseFloat(d2.width) < 80 && d2.borderTopStyle === 'solid', getComputedStyle(v).borderBottomStyle === 'solid']; })()""")
+        check('line by line: each line sits on its meaning, a short dash parts the pairs, the verse ends with the full rule', all(look), look)
         # a third meaning language: with a Punjabi source the capsule shows ਪੰ · En (English app) or ਪੰ · हिं
         # (Hindi app), always four places; Punjabi pieces sit under their lines; Sources lists it and "Meanings in the bar";
         # search finds it; recitation mode turns it off too
