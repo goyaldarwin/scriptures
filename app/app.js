@@ -1125,11 +1125,39 @@ $('#hMenu').onclick = mainMenu;
 let IDX = null;
 const normD = s => (s || '').normalize('NFC').replace(/[ँं़‌‍ऽ]/g, '').replace(/\s+/g, ' ');
 const normL = s => (s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/r̥/g, 'r');
-const fzL = s => ' ' + normL(s).replace(/[^a-z\s]/g, ' ').replace(/(aa|ee|ii|oo|uu)/g, m => ({aa: 'a', ee: 'i', ii: 'i', oo: 'u', uu: 'u'})[m]).replace(/sh/g, 's').replace(/ch/g, 'c').replace(/w/g, 'v').replace(/ri/g, 'r').replace(/m(?=[bcdfghjklnpqrstvwxyz])/g, 'n').replace(/\s+/g, ' ').split(' ').map(w => w.length > 2 ? w.replace(/a$/, '') : w).join(' ').trim() + ' ';
+// Search forgives spelling: both the text and what is typed are folded to a sound key, so letters people use for one
+// another count as one. Devanagari (and Gurmukhi, read as Devanagari): ि/ी, ु/ू, ब/व, श/ष/स, ण/न, ृ/रि, ै/अइ, ौ/अउ, a nasal
+// before a consonant, ँ ं ़ ् and Vedic accents. Roman: long vowels, aspiration (bh = b), sh/s, ch/c, v/w/b, f/p, z/j, a nasal
+// before a consonant, a word's final a. Both: a word's final u (Tulsīdās's तनु धनु धामु, काजु for तन धन धाम, काज). Then a verse is found by the words typed, with spaces ignored and about one letter in six
+// allowed to differ, anywhere in it; or, failing that, by most of the words typed, in any order.
+const GUR = s => s.replace(/[਀-੿]/g, c => c === 'ੰ' ? 'ं' : c === 'ੱ' ? '' : c === 'ੵ' ? '्य' : String.fromCharCode(c.charCodeAt(0) - 0x100));
+const fD = s => GUR((s || '').normalize('NFC')).normalize('NFD').replace(/[ङञणनम]्(?=[क-ह])/g, '').replace(/[॑-॔᳐-᳿꣠-ꣿँं़‌‍ऽ्]/g, '')
+  .replace(/[ीूईऊवशषणृऋैौऐऔॉ]/g, c => ({'ी': 'ि', 'ू': 'ु', 'ई': 'इ', 'ऊ': 'उ', 'व': 'ब', 'श': 'स', 'ष': 'स', 'ण': 'न', 'ृ': 'रि', 'ऋ': 'रि', 'ै': 'इ', 'ौ': 'उ', 'ऐ': 'अइ', 'औ': 'अउ', 'ॉ': 'ो'})[c])
+  .replace(/[^ऀ-ॿ]+/g, ' ').replace(/[।॥०-९]/g, ' ').trim().split(/\s+/).filter(Boolean).map(w => w.length > 2 ? w.replace(/ु$/, '') : w);
+const fL = s => normL((s || '').normalize('NFD').replace(/m[̇̐]/g, 'n')).replace(/[^a-z]+/g, ' ')
+  .replace(/(aa|ee|ii|oo|uu)/g, m => ({aa: 'a', ee: 'i', ii: 'i', oo: 'u', uu: 'u'})[m]).replace(/([bcdgjkptsr])h/g, '$1').replace(/[vw]/g, 'b').replace(/f/g, 'p').replace(/z/g, 'j').replace(/q/g, 'k')
+  .replace(/ri/g, 'r').replace(/[nm](?=[bcdgjklpqrstxyz])/g, '').trim().split(/\s+/).filter(Boolean).map(w => w.length > 2 ? w.replace(/[au]$/, '') : w);
+let ROW0 = new Int32Array(256), ROW1 = new Int32Array(256);
+// the fewest letters to change, add or drop for p to appear somewhere in t (more than k: k + 1)
+function near(p, t, k){
+  if (t.includes(p)) return 0; if (!k) return 1;
+  const n = t.length; if (ROW0.length <= n){ ROW0 = new Int32Array(n + 1); ROW1 = new Int32Array(n + 1); }
+  let prev = ROW0, cur = ROW1; prev.fill(0, 0, n + 1);
+  for (let i = 1; i <= p.length; i++){
+    const c = p.charCodeAt(i - 1); cur[0] = i; let lo = i;
+    for (let j = 1; j <= n; j++){ let v = prev[j - 1] + (c === t.charCodeAt(j - 1) ? 0 : 1); if (prev[j] + 1 < v) v = prev[j] + 1; if (cur[j - 1] + 1 < v) v = cur[j - 1] + 1; cur[j] = v; if (v < lo) lo = v; }
+    if (lo > k) return k + 1; const x = prev; prev = cur; cur = x;
+  }
+  let m = k + 1; for (let j = 0; j <= n; j++) if (prev[j] < m) m = prev[j]; return m;
+}
+const ed1 = (a, b) => { if (Math.abs(a.length - b.length) > 1) return false; let i = 0; while (i < a.length && a[i] === b[i]) i++; return a.slice(i + 1) === b.slice(i + 1) || a.slice(i) === b.slice(i + 1) || a.slice(i + 1) === b.slice(i); };
+// how many of the words typed a text's words hold: whole (1), as the start of a word (0.9), one letter apart (0.8) or inside
+// a joined word (0.7: दीन दयाल in दीनदयाल)
+const wordsIn = (qs, ws) => qs.reduce((n, q) => n + (ws.includes(q) ? 1 : q.length >= 3 && ws.some(w => w.startsWith(q)) ? .9 : q.length >= 4 && ws.some(w => ed1(q, w)) ? .8 : q.length >= 3 && ws.some(w => w.includes(q)) ? .7 : 0), 0);
 const idxKey = () => W.id + MK().map(k => (SRC[k] || {}).id).join('|');
 // one search scope per meaning language (h, e, and the code of any other: pa); Latin script is searched as Latin
-function buildIdx(){ IDX = IT.map((it, i) => { const h = SRC.hi && SRC.hi.m[it.id], e = SRC.en && SRC.en.m[it.id], r = {v: normD(it.v.join(' ')), h: normD(h ? h[0] : ''), t: fzL((it.t || []).join(' ')), e: normL(e ? e[0] : '')};
-  MK().forEach(k => { if (k !== 'hi' && k !== 'en'){ const x = SRC[k] && SRC[k].m[it.id]; r[k] = normD(x ? x[0] : ''); } }); return r; }); IDX.w = idxKey(); }
+function buildIdx(){ IDX = IT.map((it, i) => { const h = SRC.hi && SRC.hi.m[it.id], e = SRC.en && SRC.en.m[it.id], vw = fD(it.v.join(' ')), tw = fL((it.t || []).join(' ')), r = {vw, v: vw.join(''), tw, t: tw.join(''), h: fD(h ? h[0] : '').join(' '), e: normL(e ? e[0] : '')};
+  MK().forEach(k => { if (k !== 'hi' && k !== 'en'){ const x = SRC[k] && SRC[k].m[it.id]; r[k] = fD(x ? x[0] : '').join(' '); } }); return r; }); IDX.w = idxKey(); }
 const scopes = new Set(['v', 'h', 'e', 'n', 'pa']);
 $$('#scope .chip').forEach(c => c.onclick = () => { const s = c.dataset.s; if (scopes.has(s)) scopes.delete(s); else scopes.add(s); c.classList.toggle('on'); runSearch(); });
 let sT; $('#q').addEventListener('input', () => { clearTimeout(sT); sT = setTimeout(runSearch, 250); });
@@ -1140,16 +1168,23 @@ function runSearch(){
   if (q.length < 2){ box.innerHTML = '<div class="empty">' + T('कम-से-कम दो अक्षर लिखें।', 'Type at least two letters.') + '</div>'; return; }
   if (!IDX || IDX.w !== idxKey()) buildIdx();
   const latin = /[a-zA-Z]/.test(q), nq = latin ? normL(q) : normD(q);
-  const fqs = latin ? [...new Set([q, q.replace(/([aeiouāīū])n\b/gi, '$1'), q.replace(/([aeiouāīū])[nm](?=[bcdfghjklpqrstvz])/gi, '$1'), q.replace(/([aeiouāīū])n\b/gi, '$1').replace(/([aeiouāīū])[nm](?=[bcdfghjklpqrstvz])/gi, '$1')].map(x => fzL(x).trim()).filter(Boolean))] : [];
-  const res = [];
-  for (let i = 0; i < IT.length && res.length < 300; i++){
-    const x = IDX[i];
-    if (!latin && scopes.has('v') && x.v.includes(nq)) res.push([i, LB.verses(), IT[i].v.join(' । '), false]);
-    else if (!latin && scopes.has('h') && x.h.includes(nq)) res.push([i, LB.h(), SRC.hi.m[IT[i].id][0], false]);
-    else if (!latin && MK().some(k => k !== 'hi' && k !== 'en' && scopes.has(k) && x[k] && x[k].includes(nq))){ const k = MK().find(k => k !== 'hi' && k !== 'en' && scopes.has(k) && x[k] && x[k].includes(nq)); res.push([i, LBM(k), SRC[k].m[IT[i].id][0], false]); }
-    else if (latin && scopes.has('v') && fqs.some(f => x.t.includes(' ' + f))) res.push([i, LB.verses(), IT[i].v.join(' । '), false]);   // found by its Roman letters, shown as the verse itself
-    else if (latin && scopes.has('e') && x.e.includes(nq)) res.push([i, LB.e(), SRC.en.m[IT[i].id][0], true]);
+  const qs = latin ? fL(q) : fD(q), qj = qs.join(''), k = Math.floor(qj.length / 6), need = qs.length >= 3 ? qs.length - Math.max(1, Math.floor(qs.length / 3)) : qs.length;   // most words: all of two, all but one of three to five, then two in three
+  // verses whose letters hold what was typed (closest first), then meanings that do, then texts holding most of its words
+  const ew = latin ? nq.split(/\s+/).filter(Boolean) : [], meanK = MK().filter(k => k !== 'hi' && k !== 'en' && scopes.has(k)), hits = [];
+  const mean = (x, words) => { const qm = qs.join(' '); if (!latin){ if (scopes.has('h') && (words ? wordsIn(qs, x.h.split(' ')) >= need : x.h.includes(qm))) return ['h', LB.h(), SRC.hi.m[IT[x.i].id][0], false];
+      for (const m of meanK) if (x[m] && (words ? wordsIn(qs, x[m].split(' ')) >= need : x[m].includes(qm))) return [m, LBM(m), SRC[m].m[IT[x.i].id][0], false]; }
+    else if (scopes.has('e') && x.e && (words ? ew.every(w => x.e.includes(w)) : x.e.includes(nq))) return ['e', LB.e(), SRC.en.m[IT[x.i].id][0], true];
+    return null; };
+  if (qj) for (let i = 0; i < IT.length; i++){
+    const x = IDX[i]; x.i = i; const vt = latin ? x.t : x.v, vw = latin ? x.tw : x.vw;
+    // a near match that holds few of the words typed is chance; among matches as near, the one holding more words comes first
+    if (scopes.has('v') && vt){ const d = near(qj, vt, k), sc = d <= k && qs.length > 1 ? wordsIn(qs, vw) : 1; if (d <= k && (d === 0 || qs.length < 2 || sc >= qs.length / 2)){ hits.push([d - sc / 100, i, LB.verses(), IT[i].v.join(' । '), false]); continue; } }
+    const m = mean(x, false); if (m){ hits.push([k + 1, i, m[1], m[2], m[3]]); continue; }
+    const sc = qs.length >= 2 && scopes.has('v') && vw.length ? wordsIn(qs, vw) : 0; if (sc && sc >= need - .25){ hits.push([k + 3 - sc / 100, i, LB.verses(), IT[i].v.join(' । '), false]); continue; }
+    const w = qs.length >= 2 && mean(x, true); if (w) hits.push([k + 4, i, w[1], w[2], w[3]]);
   }
+  hits.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+  const res = hits.slice(0, 300).map(h => h.slice(1));
   if (scopes.has('n')) for (const p of SHOWN()) for (const k in p.notes){ if (!k.startsWith(W.id + ':')) continue; const i = ID[k.slice(W.id.length + 1)]; if (i == null) continue; p.notes[k].forEach(n => { if ((latin ? normL(n.t) : normD(n.t)).includes(nq)) res.push([i, T('टिप्पणी', 'Note'), n.t, latin]); }); }
   box.innerHTML = res.length ? '<p class="small muted">' + DEV(res.length) + (res.length >= 300 ? '+' : '') + T(' परिणाम', ' results') + '</p>' + res.map(r => '<button class="res" data-i="' + r[0] + '"><div class="where">' + esc(itemLabel(r[0])) + ' · ' + esc(r[1]) + '</div><div class="snip' + (r[3] ? ' lat' : '') + '">' + snip(r[2], q, r[3]) + '</div></button>').join('') : '<div class="empty">' + T('कुछ नहीं मिला। दूसरा रूप लिखकर देखें।', 'Nothing found. Try another spelling.') + '</div>';
   $$('#sRes .res').forEach(b => b.onclick = () => openReader('k', +b.dataset.i, true));
