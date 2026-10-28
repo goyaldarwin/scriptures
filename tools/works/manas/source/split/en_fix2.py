@@ -2,10 +2,15 @@ REP=[('( ⁄U and ◊)','( र and म)'),('“⁄U”','“र”'),('“∑¸�
 ('(∑È§øÊśË)','(कुचाली)'),('“EÿÈﬂ◊ÉÊÊŸÊ◊ÎÃÁhÃ”','“श्वयुवमघोनामतद्धिते”'),('XIII.7ñ11','XIII.7—11'),('(SﬂÃ— ¬˝◊ÊáÊ)','(स्वतः प्रमाण)'),
 ('§Rṣyamūka','Ṛṣyamūka'),('§Rṣi','Ṛṣi'),('(¡Êª˝Ã˜)','(जाग्रत्)'),('(Sﬂ¬A)','(स्वप्न)'),('(‚ÈcÊÈÁ#)','(सुषुप्ति)'),('(ÃÈ⁄UËÿ)','(तुरीय)'),
 ('(•ÁSàÊ)','(अस्ति)'),('(¡ÊÿÃ)','(जायते)'),('(Áﬂ¬Á⁄UáÊ◊Ã)','(विपरिणमते)'),('(ﬂh¸Ã)','(वर्धते)'),('(ˇÊËÿÃ)','(क्षीयते)'),('(Ÿ‡ÿÁàÊ)','(नश्यति)'),
-('(üÊË⁄UÊ◊Êÿ Ÿ◊—)','(श्रीरामाय नमः)'),('cuckcﬂos','cuckoos'),('(¬˝śÿ)','(प्रलय)'),('(˙ Ÿ◊Ê ÷ªﬂÃ ﬂÊ‚ÈḍﬂÊÿ)','(ॐ नमो भगवते वासुदेवाय)')]
+('(üÊË⁄UÊ◊Êÿ Ÿ◊—)','(श्रीरामाय नमः)'),('cuckcﬂos','cuckoos'),('(¬˝śÿ)','(प्रलय)'),('(˙ Ÿ◊Ê ÷ªﬂÃ ﬂÊ‚ÈḍﬂÊÿ)','(ॐ नमो भगवते वासुदेवाय)'),
+# letters of the transliteration font the conversion missed: ∫ is Ī (Īśa, Īśitva, Īśāna, Īti), ® is Ṣ (Ṣaṇmukha, Ṣaṭkoṇa)
+('∫','Ī'),('®','Ṣ'),('Śrī ªRāma','Śrī Rāma')]
+PUA = '\uf8ff'   # a private-use character the PDF puts inside old-font Devanagari: removed first, or the pairs above never match
 def fix(groups):
     n=0
     for k,v in groups.items():
+        v['x']=v['x'].replace(PUA,'')
+        if v.get('f'): v['f']=[s.replace(PUA,'') for s in v['f']]
         for a,b in REP:
             if a in v['x']: v['x']=v['x'].replace(a,b); n+=1
             if v.get('f'):
