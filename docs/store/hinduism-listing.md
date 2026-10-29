@@ -16,7 +16,7 @@ Read and listen to the Hindu scriptures in one calm, ad-free app.
 WHAT IS INSIDE
 • Shri Ramcharitmanas (Ram Charit Manas, Tulsi Ramayan) of Goswami Tulsidas — complete, all seven kandas
 • Sunderkand (Sundarkand, सुन्दरकाण्ड) — with Hanuman Chalisa and the aarti, as it is recited
-• Shri Ram Raksha Stotram
+• Stotras: Shri Ram Raksha Stotram, Bilvashtakam, and Bhaja Govindam of Adi Shankaracharya
 • Shri Rudram — Namakam and Chamakam from the Yajurveda, with Vedic accents
 • Isha Upanishad (Ishavasya Upanishad, Ishopanishad), Katha Upanishad and Mandukya Upanishad
 • Aartis: Om Jai Jagdish Hare, Om Jai Shiv Omkara, Ganga Aarti, Hanuman Aarti, Shri Ramchandra Kripalu and two Ram aartis
@@ -56,7 +56,7 @@ No account, no sign-in, no ads and no tracking. Your notes and progress stay on 
 इसमें क्या है
 • गोस्वामी तुलसीदासकृत श्रीरामचरितमानस (तुलसी रामायण) — सम्पूर्ण, सातों काण्ड
 • सुन्दरकाण्ड (सुंदरकांड) — हनुमान चालीसा और आरतीके साथ, जैसे पाठ होता है
-• श्रीरामरक्षास्तोत्रम्
+• स्तोत्र: श्रीरामरक्षास्तोत्रम्, बिल्वाष्टकम् और आदि शंकराचार्यका भज गोविन्दम्
 • श्रीरुद्रम् — यजुर्वेदका नमकम् और चमकम्, स्वरचिह्नोंके साथ
 • ईशावास्योपनिषद्, कठोपनिषद् और माण्डूक्योपनिषद्
 • आरतियाँ: ॐ जय जगदीश हरे, ॐ जय शिव ओंकारा, श्रीगंगाजीकी आरती, श्रीहनुमानजीकी आरती, श्रीरामचन्द्र कृपालु और श्रीरामकी दो आरतियाँ

@@ -124,6 +124,76 @@
         }
        }
       ]
+     },
+     {
+      "id": "shiva",
+      "title": {
+       "hi": "भगवान शिव",
+       "en": "Bhagavān Śiva"
+      },
+      "desc": {
+       "hi": "बिल्वाष्टकम्",
+       "en": "Bilvāṣṭakam"
+      },
+      "children": [
+       {
+        "id": "bilvashtakam",
+        "work": "bilvashtakam",
+        "path": "hinduism/stotra/shiva/bilvashtakam",
+        "title": {
+         "hi": "बिल्वाष्टकम्",
+         "en": "Bilvāṣṭakam"
+        },
+        "by": {
+         "hi": "पारम्परिक स्तोत्र",
+         "en": "Traditional"
+        },
+        "edition": {
+         "hi": "साउंड्स ऑफ़ ईशा; sanskritdocuments.org",
+         "en": "Sounds of Isha; sanskritdocuments.org"
+        },
+        "desc": {
+         "hi": "बिल्वपत्रकी महिमा · ९ श्लोक · फलश्रुति",
+         "en": "The glory of the bilva leaf · 9 ślokas · phalaśruti"
+        },
+        "salute": "॥ ॐ नमः शिवाय ॥"
+       }
+      ]
+     },
+     {
+      "id": "krishna",
+      "title": {
+       "hi": "भगवान श्रीकृष्ण",
+       "en": "Bhagavān Śrī Kṛṣṇa"
+      },
+      "desc": {
+       "hi": "भज गोविन्दम्",
+       "en": "Bhaja Govindam"
+      },
+      "children": [
+       {
+        "id": "bhaja-govindam",
+        "work": "bhaja-govindam",
+        "path": "hinduism/stotra/krishna/bhaja-govindam",
+        "title": {
+         "hi": "भज गोविन्दम्",
+         "en": "Bhaja Govindam"
+        },
+        "by": {
+         "hi": "आदि शंकराचार्य",
+         "en": "Ādi Śaṅkarācārya"
+        },
+        "edition": {
+         "hi": "sanskritdocuments.org",
+         "en": "sanskritdocuments.org"
+        },
+        "desc": {
+         "hi": "मोहमुद्गर · ३१ श्लोक",
+         "en": "Moha-mudgara · 31 ślokas"
+        },
+        "salute": "॥ ॐ नमो भगवते वासुदेवाय ॥"
+       }
+      ]
      }
     ]
    },

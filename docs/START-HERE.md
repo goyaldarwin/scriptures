@@ -50,6 +50,8 @@ library/ ─ tools/site/build.py (checks everything first) ─► index.html, ap
 | Śrī Rāmacaritamānasa (`granth/tulsidas/ramcharitmanas`) | Gita Press, complete; 30-day and 9-day plans with vidhi, āratī and visarjana | Gita Press (ours written for the Sundara-kāṇḍa only) | Pt. Kamlesh Upadhyay, live; the owner corrects times by ear |
 | Sundarakāṇḍa (`granth/tulsidas/sundarkand`) | from the Mānas, plus opening prayers, Hanumān Chālīsā, āratī | ours | Pt. Ashwin Kumar Pathak, live |
 | Śrī Rāma Rakṣā Stotram (`stotra/rama/ramraksha`) | a video's on-screen text | ours | Vande Guru Paramparaam, live |
+| Bilvāṣṭakam (`stotra/shiva/bilvashtakam`) | the owner's pasted text, checked against sanskritdocuments.org | ours | Sounds of Isha, live (it does not sing śloka 2 or the phalaśruti) |
+| Bhaja Govindam (`stotra/krishna/bhaja-govindam`) | sanskritdocuments.org, checked against the recording | ours | Chinmaya Mission Boston, live (verse 13अ is not sung) |
 | Āratīs of Śrī Rāma: श्रीरामचन्द्र कृपालु, आरती कीजे श्रीरामलला की, आरती कीजै रामचन्द्र जी की (`aarti/rama/…`) | one printout; corrections open | ours | the stuti: Satya Adhikari, live; the other two: none yet |
 | Hanumān āratī (`aarti/hanuman/hanuman-aarti`) | from the Sundarakāṇḍa | ours | the Sundarakāṇḍa's, live |
 | ॐ जय जगदीश हरे (`aarti/vishnu/jagdish-aarti`) | the owner's pasted text | ours | Mahendra Kapoor, live |
