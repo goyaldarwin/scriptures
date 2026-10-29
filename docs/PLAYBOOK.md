@@ -48,6 +48,7 @@ Contents: 1 Working with the owner · 2 Sources and accuracy · 3 Texts · 4 Mea
 - **Vedic accents** (svaras) are kept in the text; the app strips them only when looking a word up.
 - **Each āratī is its own work**, on its deity's shelf (`hinduism/aarti/<deity>/<work>`), even when several come from one page. **The refrain (टेक) is shown once**; the "॥ ॐ जय शिव… ॥" cues after each stanza and the closing repeat are left out.
 - **A popular part of a big work can be a work of its own** (the Sundarakāṇḍa beside the Mānas): it is generated from the big work and never written into it; its own additions (opening prayers, Chālīsā, āratī) come from its own `text.txt`.
+- **The verses follow the order of the owner's recording** (the owner: "re-order the verses to suit the recording"): where it sings them in another order than the source, the text takes the recording's order and `reconciliation.md` says so. A verse of the source that the recording leaves out stays in the text, untimed.
 - **A recording's opening that is not in the book is added as text too, and timed**, so the reader sees what is being sung (the Sundarakāṇḍa's opening prayers).
 - **The closing verse is "समापन (पुष्पिका)" / "Closing words (iti)"**, not "colophon".
 
@@ -127,6 +128,7 @@ Contents: 1 Working with the owner · 2 Sources and accuracy · 3 Texts · 4 Mea
 ## 8. Audio
 - **Recordings play from YouTube;** the library stores only verse times. The player stays visible at YouTube's minimum (200×200): no hidden audio, it breaks YouTube's terms.
 - **The pipeline:** the owner's audio file → a speech-quality copy in `scriptures-data` → `source.json` + `recordings.json` → transcription (the `transcribe` workflow of scriptures-data, or `tools/audio/transcribe_onnx.py` with the Whisper model from GitHub) → `tools/audio/make_timings.py`. Steps: `docs/HOW-TO.md`.
+- **A verse the recording does not sing gets no time:** no start is guessed for it (`source.json` → `"fill": 0` when every other verse is heard), so the light stays on the verse being sung.
 - **Check the timings against the transcript before publishing:** the first and last verse of each recording, and boundaries inside long breaths. In āratīs the alignment often matches the refrain to a later repeat. A hand-checked start goes in `fixes.json` with its evidence in `fixes.md`.
 - **A recording that stops before the text ends** (a jaikāra after the last verse) gets `from` / `to` in `recordings.json` and `"align": "anchors"`.
 - **The highlight must never sit on words that are not being sung:** a recording of another version is a draft until the owner chooses the text; a recording of a different composition is not timed to our text.

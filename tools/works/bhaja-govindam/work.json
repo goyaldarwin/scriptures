@@ -1,0 +1,42 @@
+{
+ "id": "bhaja-govindam",
+ "path": "hinduism/stotra/krishna/bhaja-govindam",
+ "lang": "sa",
+ "title": {
+  "hi": "भज गोविन्दम्",
+  "en": "Bhaja Govindam"
+ },
+ "by": {
+  "hi": "आदि शंकराचार्य",
+  "en": "Ādi Śaṅkarācārya"
+ },
+ "edition": {
+  "hi": "sanskritdocuments.org",
+  "en": "sanskritdocuments.org"
+ },
+ "parts": {
+  "name": {
+   "hi": "पाठ",
+   "en": "Pāṭha"
+  },
+  "list": [
+   {
+    "key": "bhaja-govindam",
+    "hi": "भज गोविन्दम्",
+    "en": "Bhaja Govindam"
+   }
+  ]
+ },
+ "types": {
+  "shloka": {
+   "name": {
+    "hi": "श्लोक",
+    "en": "Śloka"
+   },
+   "short": {
+    "hi": "श्लो॰",
+    "en": "Śl."
+   }
+  }
+ }
+}

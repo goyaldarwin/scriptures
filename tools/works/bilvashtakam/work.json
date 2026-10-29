@@ -1,0 +1,62 @@
+{
+ "id": "bilvashtakam",
+ "path": "hinduism/stotra/shiva/bilvashtakam",
+ "lang": "sa",
+ "title": {
+  "hi": "बिल्वाष्टकम्",
+  "en": "Bilvāṣṭakam"
+ },
+ "by": {
+  "hi": "पारम्परिक स्तोत्र",
+  "en": "Traditional"
+ },
+ "edition": {
+  "hi": "साउंड्स ऑफ़ ईशा; sanskritdocuments.org",
+  "en": "Sounds of Isha; sanskritdocuments.org"
+ },
+ "parts": {
+  "name": {
+   "hi": "पाठ",
+   "en": "Pāṭha"
+  },
+  "list": [
+   {
+    "key": "bilvashtakam",
+    "hi": "बिल्वाष्टकम्",
+    "en": "Bilvāṣṭakam"
+   }
+  ]
+ },
+ "types": {
+  "shloka": {
+   "name": {
+    "hi": "श्लोक",
+    "en": "Śloka"
+   },
+   "short": {
+    "hi": "श्लो॰",
+    "en": "Śl."
+   }
+  },
+  "phalashruti": {
+   "name": {
+    "hi": "फलश्रुति",
+    "en": "Phalaśruti"
+   },
+   "short": {
+    "hi": "फल॰",
+    "en": "Phala."
+   }
+  },
+  "iti": {
+   "name": {
+    "hi": "समापन (पुष्पिका)",
+    "en": "Closing words (iti)"
+   },
+   "short": {
+    "hi": "इति",
+    "en": "Iti"
+   }
+  }
+ }
+}
