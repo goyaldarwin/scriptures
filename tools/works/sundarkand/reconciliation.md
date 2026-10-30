@@ -1,6 +1,6 @@
 # Reconciliation: the opening prayers, the Hanumān Chālīsā and the āratī
 
-The owner gave no source for these two texts and asked for them to be taken from the web, from two or three good sources. The Sundarakāṇḍa itself is not covered here: it is generated from the Mānas (see `README.md`).
+The owner gave no source for the Chālīsā and the āratī and asked for them to be taken from the web, from two or three good sources; the opening prayers are as the recording sings them (below). The Sundarakāṇḍa itself is not covered here: it is generated from the Mānas (see `README.md`).
 
 ## Sources
 
@@ -34,7 +34,7 @@ How the pages are compared: the fetch tool does not return either text in full, 
 | 12, 16 | कीन्ही, कीन्हा, दीन्हा | (different encoding) | किन्ही, किन्हा | Mānas spelling. |
 | 15 | कबि कोबिद | = | कवि कोविद | Mānas spelling; A agrees. |
 | 17 | बिभीषन, लंकेस्वर, भए | बिभीषण, लंकेश्वर | विभीषन, लंकेश्वर, भये | Mānas spelling (बिभीषन; स for श as in लंकेस). |
-| 18 | सहस्र, भानू | सहस्त्र, भानु | सहस्त्र | सहस्र is correct (सहस्त्र is a common misspelling; the playbook records the same fix in the Rāma Rakṣā). भानू rhymes with जानू. |
+| 18 | सहस्र, भानू | सहस्त्र, भानु | सहस्त्र | सहस्र is correct (सहस्त्र is a common misspelling). भानू rhymes with जानू. |
 | 19 | गए | गये | गए | ए, as in the Mānas (गए 85×, गये 0×). |
 | 22 | रच्छक, डर ना | रक्षक, डरना | (not compared) | रच्छक is the Mānas's word. "डर ना" (no fear) is kept as two words for its sense, though A joins it. |
 | 24 | पिसाच, महाबीर | पिशाच, महावीर | | Mānas spelling. |
@@ -93,5 +93,5 @@ Pt. Ashwin Kumar Pathak's recording (YouTube `QjSpUgnEPLU`) sings these before K
 
   **जगद्धिताय**: जगत् + हिताय joins as जगद्धिताय (त् + ह → द्ध); G's जगद्हिताय is the same word without the joining, H's जगतजिताय is a mistake (it would mean "conqueror of the world", and the recording sings "जगद हिताय"). **नमो नमस्ते** apart, as H and the video. **श्रुतियज्ञविभूषिताय** joined, as G and the video (one compound). The four lines are four quarters of one verse (metre vasantatilakā, 14 syllables each); the number ॥२॥ is ours, after वक्रतुण्ड as ॥१॥.
   The source work of this verse is not known: it is not among sanskritdocuments.org's Gaṇeśa stutis, nor in the Gaṇanātha-stuti of the Mudgala Purāṇa. It is a well-known verse of Gaṇeśa worship; no author is shown.
-- **Meanings** of these four lines and the word meanings of their 17 new Sanskrit words (`glossary/sa.json`) are our own. सकलाय is given as "complete, whole in every part (सब कलाओंसे युक्त)".
+- **Meanings** of these four lines and the word meanings of their 17 new Sanskrit words (`library/glossary/sa.json`) are our own. सकलाय is given as "complete, whole in every part (सब कलाओंसे युक्त)".
 

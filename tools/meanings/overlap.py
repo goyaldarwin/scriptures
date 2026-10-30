@@ -22,8 +22,8 @@ And it reports a looser signal, `close`: the longest common subsequence of words
 length. A high value with no long run can still mean a sentence-by-sentence rewording, so --report lists the verses
 above 0.6 for a person to read side by side.
 
-Reviewed exceptions (a run that is unavoidable, e.g. a list of names in the verse's own order) go in
-tools/meanings/overlap_allow.json: {"<item id>": ["<the shared run, normalised>", ...]}, each with a reason in git.
+No exceptions file exists, and tools/meanings/style.md §9 allows none: the limit is a plain rule. (The script still
+reads tools/meanings/overlap_allow.json, {"<item id>": ["<the shared run, normalised>", ...]}, if one is present.)
 
 As a module: `check(ours, theirs)` returns [(id, longest shared run as words, close)] for every verse, longest run first.
 """

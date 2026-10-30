@@ -12,7 +12,7 @@ git pull && git add -A && git commit -m "…" && git push   # GitHub Pages updat
 ```
 A work's files are in `tools/works/<work>/` (the format: `tools/works/README.md`); `python3 tools/works/export.py <work>` writes it into `library/`. After a change to a work's text, make its recordings' timings again too (`python3 tools/audio/make_timings.py tools/works/<work>/audio/<source>`, then the same for any work whose recording takes from it, `source.json` → `take`): the starts not set by ear are spread by verse length, and `regen_check.py` fails on a stale timing file.
 
-If `build.py` prints `LIBRARY PROBLEM: …`, fix what it names. It never builds a broken library. Large work (a new work, a change to shared code) goes on a branch and a pull request (`docs/START-HERE.md`). Always `git pull` first: the `timing` workflow also pushes to `main`.
+If `build.py` prints `LIBRARY PROBLEM: …`, fix what it names. It never builds a broken library. Large work (a new work, a change to shared code) goes on a branch and a pull request (`docs/PLAYBOOK.md` §10). Always `git pull` first: the `timing` workflow also pushes to `main`.
 
 ---
 
@@ -27,7 +27,7 @@ Our own meanings (`meanings/<lang>/scriptures.json`) follow `tools/meanings/styl
 
 ## Write our own meanings for a kāṇḍa of the Mānas
 
-The rules are `tools/meanings/style.md` (above all §1) and `docs/PLAYBOOK.md` §4; each step has its brief in `tools/meanings/briefs/`, and every step reads its brief, `style.md` and the owner-approved Sundarakāṇḍa samples first.
+The rules are `tools/meanings/style.md` (above all §1) and `docs/PLAYBOOK.md` §4; each step has its brief in `tools/meanings/briefs/`, and every step reads its brief, `style.md` and the owner-approved Sundarakāṇḍa samples (the `sundar.` entries of `tools/works/manas/meanings/hi/scriptures.json` and `en/scriptures.json`) first.
 
 0. **Dictionaries:** `python3 tools/meanings/sanskrit_dict.py fetch`, then `check`. They live outside the repository, so a new machine or cloud session never has them; nothing below runs without them (`prepare.py` and `apply_batches.py` refuse).
 1. **Batches:** `python3 tools/meanings/prepare.py <scratch folder> <first id> <last id> --work manas --size 50`, the scratch folder outside the repository (e.g. `/home/claude/work/bal/`), the ids the kāṇḍa's first and last (`library/hinduism/granth/tulsidas/ramcharitmanas/work.json`; the Bāla-kāṇḍa is `bal.0.shloka1` to `bal.361.so361`, 1,957 verses). It writes `batch-NN.md` (verses, transliteration, word meanings, context) and `batch-NN.ids`, and marks a verse that already has our meaning ALREADY WRITTEN (an owner-approved one, such as the Sundarakāṇḍa's opening prayer `bal.17.so17`, stays as it is).
@@ -38,10 +38,10 @@ The rules are `tools/meanings/style.md` (above all §1) and `docs/PLAYBOOK.md` �
    4. accuracy and dictionary check — `manas-accuracy-checker.md` → `batch-NN.dict.jsonl` (every reworded piece read against the verse again).
 
    Each later step's fix wins over an earlier one for the same piece (writer < review < audit < accuracy check).
-3. **Apply:** `python3 tools/meanings/apply_batches.py <scratch folder> --work manas --doubts docs/reviews/<date>-manas-<kāṇḍa>-doubts.jsonl` on a branch `manas-meanings-<kāṇḍa>` (the doubts file is new for each kāṇḍa, named with the day it is written). It applies the writer's files and then the three steps' fixes, refuses a batch that missed a step (`--steps` names the steps required, all three by default), appends the doubts, and gathers every word issue into `<scratch folder>/words-to-settle.jsonl`. Check that no entry outside the kāṇḍa changed.
+3. **Apply:** `python3 tools/meanings/apply_batches.py <scratch folder> --work manas --doubts docs/reviews/manas-<kāṇḍa>-doubts.jsonl` on a branch `manas-meanings-<kāṇḍa>` (one doubts file per kāṇḍa). It applies the writer's files and then the three steps' fixes, refuses a batch that missed a step (`--steps` names the steps required, all three by default), appends the doubts, and gathers every word issue into `<scratch folder>/words-to-settle.jsonl`. Check that no entry outside the kāṇḍa changed.
 4. **Consistency pass** over the kāṇḍa — `manas-consistency.md`.
 5. **Dictionary:** each issue of `words-to-settle.jsonl` that is clearly right for the word goes into `library/glossary/<lang>.json` as an added sense (old senses stay: other verses use them); the rest into `docs/reviews/dictionary-doubts.jsonl`.
-6. **Copy check of the whole file:** `overlap.py` for Hindi and English, 0 runs of 10+.
+6. **Copy check of the whole file:** `python3 tools/meanings/overlap.py tools/works/manas/meanings/hi/scriptures.json library/hinduism/granth/tulsidas/ramcharitmanas/meanings/hi-gitapress.json` and `python3 tools/meanings/overlap.py tools/works/manas/meanings/en/scriptures.json library/hinduism/granth/tulsidas/ramcharitmanas/meanings/en-gitapress.json`, 0 runs of 10+ for both.
 7. `python3 tools/works/export.py`, then every check of `CLAUDE.md`; diff the regenerated data; one pull request per kāṇḍa, with the doubts named for the owner. The owner's decisions on doubts are applied and removed from the doubts file (`docs/reviews/README.md`).
 
 ## Add a new audio source (another reciter)

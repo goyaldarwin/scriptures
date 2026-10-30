@@ -6,4 +6,4 @@ Tulasīdāsa's stuti from the Vinaya-patrikā, in Braj (`bra`), closed by the M�
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`), the default; Gita Press's for the two Mānas verses (`meanings/<lang>/gitapress.json` takes them from the Mānas).
 - **Recordings:** `audio/satya-adhikari/` (YouTube `J5cllhBiAV0`): live, for the stuti and the two Mānas verses only (`from`/`to`, `"align": "anchors"`).
 
-Verse types: टेक (refrain, `tek`, shown once at the start although it is sung after every stanza) and पद (stanza, `pad`); the Mānas's own types (`cau`, `cha`, `do`, `so`) where a text uses them. The folder's format: `tools/works/README.md`.
+Verse types: the Mānas's छंद (`cha`) for the five stanzas and for `bal.236.cha1`, and सोरठा (`so`) for `bal.236.so236`. The folder's format: `tools/works/README.md`.

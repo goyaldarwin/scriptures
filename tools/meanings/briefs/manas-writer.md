@@ -1,13 +1,13 @@
 <!-- The first step for each batch of the Mānas (docs/HOW-TO.md, "Write our own meanings for a kāṇḍa of the Mānas"). Paths are relative to the repository root. -->
 # Brief for writing our own meanings of the Śrī Rāmacaritamānasa
 
-You are writing new Hindi and English meanings ("bhāvārtha") for a batch of verses of Gosvāmī Tulasīdāsa's Śrī Rāmacaritamānasa, for a free, ad-free scripture-reading app owned by Darwin Goyal. The app currently shows Gita Press's meanings, which are Gita Press's copyright; ours will replace them. The owner reads both Hindi and English and cares above all about **accuracy**, then unambiguity, clarity and consistency; accuracy and consistency are never traded for anything, including distance from Gita Press's wording.
+You are writing new Hindi and English meanings ("bhāvārtha") for a batch of verses of Gosvāmī Tulasīdāsa's Śrī Rāmacaritamānasa, for a free, ad-free scripture-reading app owned by Darwin Goyal. The app shows Gita Press's meanings, which are Gita Press's copyright, first; ours are our own meanings, shown as a second source beside Gita Press's. The owner reads both Hindi and English and cares above all about **accuracy**, then unambiguity, clarity and consistency; accuracy and consistency are never traded for anything, including distance from Gita Press's wording.
 
 **Before anything else:** `python3 tools/meanings/sanskrit_dict.py fetch && python3 tools/meanings/sanskrit_dict.py check`. If it fails, stop and report it — never write a meaning without Monier-Williams and Apte.
 
-## Read first (all of it)
+## Read first
 1. `tools/meanings/style.md` — the style sheet. It is binding: names, epithets, terms, honorifics, punctuation, speech, order, respectful wording for groups of people.
-2. Our Sundarakāṇḍa meanings, owner-approved: `tools/works/manas/meanings/hi/scriptures.json` and `en/scriptures.json` (`m`: verse id → one piece per verse line). Match this voice, length and line-by-line division. (No verse numbers in them; the exporter adds them.)
+2. Our Sundarakāṇḍa meanings, owner-approved: the `sundar.` entries of `tools/works/manas/meanings/hi/scriptures.json` and `en/scriptures.json` (`m`: verse id → one piece per verse line). Match this voice, length and line-by-line division. (No verse numbers in them; the exporter adds them.)
 3. Your batch file (named in your task): context verses, then each verse with its transliteration and our word meanings for every word.
 
 ## How to write each verse (the owner's process — follow it in this order)
@@ -30,8 +30,8 @@ You are writing new Hindi and English meanings ("bhāvārtha") for a batch of ve
 - Do **not** edit any file in the repository — write only in your output folder.
 
 ## Output (in the batch folder given in your task; NN = your batch number)
-- `batch-NN.hi.json` and `batch-NN.en.json`: `{"<id>": ["<piece for line 1>", "<piece for line 2>", …], …}` — exactly the ids in `batch-NN.ids`, in that order, each once, nothing else; **one piece per verse line** (the owner: "whatever our line in the verse, its meaning below it"), each piece reading on its own under its line. Where one sentence cannot be cut (the verb only in the later line), keep it in the later line's piece and give the earlier line `""`, but cut whenever the lines carry their own sense; Hindi and English cut at the same lines (`tools/meanings/LINES-BRIEF.md` rules 2–3, 6). UTF-8, `ensure_ascii=False`.
-- `batch-NN.topics.json`: for each "▸ Topic" heading in your batch, our own short heading written from the verses it heads: `{"<first verse id>": {"hi": "…", "en": "…"}}` (a short label of what happens, in the style of a table of contents; Hindi joined postpositions; English IAST; not Gita Press's wording).
+- `batch-NN.hi.json` and `batch-NN.en.json`: `{"<id>": ["<piece for line 1>", "<piece for line 2>", …], …}` — exactly the ids in `batch-NN.ids`, in that order, each once, nothing else; **one piece per verse line** (the owner: "whatever our line in the verse, its meaning below it"), each piece reading on its own under its line. Where one sentence cannot be cut (the verb only in the later line), keep it in the later line's piece and give the earlier line `""`, but cut whenever the lines carry their own sense; Hindi and English cut at the same lines. UTF-8, `ensure_ascii=False`.
+- `batch-NN.topics.json`: for each "▸ Topic" heading in your batch, our own short heading written from the verses it heads: `{"<first verse id>": {"hi": "…", "en": "…"}}` (a short label of what happens, in the style of a table of contents; Hindi joined postpositions; English IAST; not Gita Press's wording). An owner-approved heading or meaning (the Sundarakāṇḍa and its Kiṣkindhā lead-in) is changed only to fix an error or a copy, never for taste.
 - `batch-NN.doubts.jsonl` (may be empty): one JSON object per line, `{"id", "issue", "our reading", "alternatives"}` — only genuine doubts of reading.
 - `batch-NN.words.jsonl` (may be empty): word meanings in our dictionary that are wrong or missing a sense for this line: `{"id", "word", "current", "suggested": {"hi", "en"}, "reason"}`.
 - Final reply (short, plain): verses written, overlap result for hi and en, number of doubts and word issues, and any ALREADY WRITTEN verse you changed and why.

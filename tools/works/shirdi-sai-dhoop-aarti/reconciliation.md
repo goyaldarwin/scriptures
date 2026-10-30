@@ -47,7 +47,7 @@ Two printouts the owner supplied are the sources. They are web pages, so they ar
 ## Left out
 - The repeat of the dhruvapada printed after Āratī stanza 7. It is the refrain again, and the "आ०" at the end of each stanza already marks every repeat.
 
-# English meaning (`meanings/en-shirdisaibabakripa.json`)
+# English meaning (`meanings/en/shirdisaibabakripa.json`)
 
 Copied from dhoop.pdf (shirdisaibabakripa.org), the English paragraph printed in red after each stanza (the green word-by-word glosses are not used). Its Latin text layer is sound; page-edge lines that the printout repeats half-cut at the top of the next page are dropped, and every page break is checked against the page images.
 

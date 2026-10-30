@@ -6,7 +6,7 @@ Shelf: हिन्दू धर्म › स्तोत्र › भगव�
 - **Text:** the owner's printout of sanskritdocuments.org, *भज गोविन्दम्* (<https://sanskritdocuments.org/doc_vishhnu/bhajagovindam.html>; private copy in scriptures-data at `hinduism/stotra/krishna/bhaja-govindam/printouts/sanskritdocuments/bhajagovindam.pdf`), checked word by word against the Chinmaya Mission Boston recording. Every choice is in `reconciliation.md`.
 - **Meanings:** ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`), line by line, shown first. Copied: the printout's English (`meanings/en/sanskritdocuments.json`).
 - **Word meanings:** written for this library, in `library/glossary/sa.json`.
-- **Recording:** live; hand-checked starts in `audio/chinmaya-mission-boston/fixes.md`. Chinmaya Mission Boston, "Bhaja Govindam full, Verses 1 to 31" (YouTube `xrNOEva86pA`), in `audio/chinmaya-mission-boston/`; the speech-quality copy is in scriptures-data at `hinduism/stotra/krishna/bhaja-govindam/audio/chinmaya-mission-boston/xrNOEva86pA.opus`.
+- **Recording:** Chinmaya Mission Boston, "Bhaja Govindam full, Verses 1 to 31" (YouTube `xrNOEva86pA`), in `audio/chinmaya-mission-boston/`; the speech-quality copy is in scriptures-data at `hinduism/stotra/krishna/bhaja-govindam/audio/chinmaya-mission-boston/xrNOEva86pA.opus`. Live; hand-checked starts in `fixes.md`.
 
 ## Files
 The folder's format: `tools/works/README.md`.

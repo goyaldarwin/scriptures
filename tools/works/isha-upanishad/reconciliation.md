@@ -7,7 +7,7 @@
 ## How it is read
 - The printout's Devanagari **text layer is broken**. It drops every र् (repha and र् in conjuncts: पूणम् for पूर्णम्, सवम् for सर्वम्, तीत्वा for तीर्त्वा), doubles some vowel signs (देेवा, शुश्रुुम) and splits words at line ends. So the Devanagari is read from the **page images** (rendered at 200 dpi, each verse checked by eye).
 - The printout's **transliteration layer is clean**. `source/check.py` converts it to Devanagari and compares it with `text.txt` word for word. The only differences it allows are the corrections below and the writing standard's own forms (ꣳ, the anusvāra, ॐ).
-- The library's writing standard (docs/PLAYBOOK.md §3) applies: ॥ and compact verse numbers (`॥१॥`), Pāṇini's spelling, ꣳ (a Yajurveda text), the ISO 15919 transliteration made from the verse. The printout's `|` after ओं is a daṇḍa (।).
+- The library's writing standard (docs/PLAYBOOK.md §3) applies: ॥ and compact verse numbers (`॥१॥`), Pāṇini's spelling, ꣳ (a Yajurveda text), the ISO 15919 transliteration made from the verse. The printout's ओं (in the śānti mantra and m17) is written ॐ, the standard's form of the sacred syllable, and its `|` after it is a daṇḍa (।).
 
 ## Corrections to the printout
 
@@ -17,12 +17,11 @@
 | m08 | …अस्नाविरंशुद्धम् अपापविद्धम् | …अस्नाविरं शुद्धमपापविद्धम् | शुद्धम् + अपापविद्धम् must join (म् before a vowel), as in the standard text and sanskritdocuments.org (…अस्नाविरꣳशुद्धमपापविद्धम्). The space falls after the anusvāra, as in Gita Press and most printings. This changes no letter, and it lets the line fit a phone screen. |
 | m09 | ततो भूय इव ते तमोय उ विद्यायां रताः | …ते तमो य उ विद्यायां रताः | A missing space: तमः + ये + उ → तमो य उ. Mantra 12 of the same printout, the standard text and sanskritdocuments.org all have तमो य उ. |
 | m16 | …व्यूह रश्मीन्समूह । / तेजः यत्ते रूपं… | …व्यूह रश्मीन्समूह तेजः । / यत्ते रूपं… | The printout misplaces the daṇḍa (and line break). तेजः is the object of समूह (“gather in your light”), and the printout's own translation reads it that way (“gather up thy burning light”). The standard text and sanskritdocuments.org (“…व्यूह रश्मीन् समूह तेजः । यत्ते रूपं…”) put the daṇḍa after तेजः, which is also why तेजः keeps its visarga. |
-| shanti.1 | two lines ending …पूर्णमेवावशिष्यते ॥ | a third line ओं शान्तिः शान्तिः शान्तिः ॥ | The printout's word-by-word list for this mantra ends with ॐ शान्तिः शान्तिः शान्तिः, and the mantra is always recited with it. It is written ओं, like the first line. |
+| shanti.1 | two lines ending …पूर्णमेवावशिष्यते ॥ | a third line ॐ शान्तिः शान्तिः शान्तिः ॥ | The printout's word-by-word list for this mantra ends with ॐ शान्तिः शान्तिः शान्तिः, and the mantra is always recited with it. It is written ॐ, like the first line. |
 
 ## Kept as printed (valid forms, not errors)
 - अन्धन्तमः (m09) beside अन्धं तमः (m12): the same words, with the anusvāra written as a nasal. Both are standard.
 - सम्भूति / संभूति, असम्भूतिम् / असंभवात्: the printout mixes the two spellings of the nasal; kept as printed.
-- ओं (in the śānti mantra and m17) rather than ॐ: kept as printed in the verse lines.
 - m14 संभूत्यामृतमश्नुते: kept. Śaṅkara reads it as असम्भूत्या (the अ lost in sandhi); the meaning notes this.
 - The printout gives the śānti mantra once, at the start; it does not repeat it at the end, so neither does the text here.
 
