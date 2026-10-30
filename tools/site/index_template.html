@@ -129,6 +129,8 @@ body.timing .verse.tocheck{box-shadow:inset 3px 0 0 var(--saffron)}.tcheck{margi
 .vb.bm-on{color:var(--saffron);opacity:1}
 .vbm{width:26px;color:var(--indigo);opacity:.85}.vbm svg{width:20px;height:20px;stroke-width:2.2}   /* the bookmark sign larger and darker, easy to see */
 .vend .vb{width:26px;color:var(--indigo);opacity:.85}.vend .vb svg{width:20px;height:20px}   /* ⋮ as large and as blue as the bookmark sign; ▶ keeps its saffron: the main action */
+.vend .vb.vflagged{position:relative}.vend .vb.vflagged::after{content:"";position:absolute;top:3px;right:4px;width:7px;height:7px;border-radius:50%;background:var(--saffron)}   /* a verse marked "Timing is off!" */
+#sheetBody .menu .tick{margin-left:auto;color:var(--saffron)}
 .bmsec{margin-top:18px}.bmsec summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;padding:2px 0}.bmsec summary::-webkit-details-marker{display:none}.bmsec summary::before{content:'›';display:inline-block;color:var(--muted);font-size:22px;line-height:1;transform:rotate(90deg);transition:transform .15s}.bmsec:not([open]) summary::before{transform:none}.bmsec summary h2{font-size:19px;margin:0}
 .bmrow{display:flex;align-items:stretch;gap:6px}.bmrow .res{flex:1;min-width:0}.bmdel{flex:none;width:44px;display:grid;place-items:center;color:var(--muted);border-bottom:1px solid var(--rule)}.bmdel svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
 .vb.bm-on svg{fill:var(--saffron)}
@@ -341,6 +343,7 @@ body.playing #rBody{padding-bottom:240px}
  <symbol id="i-prev" viewBox="0 0 24 24"><path d="M7 5v14M18 6l-8 6 8 6z" fill="currentColor"/></symbol>
  <symbol id="i-next" viewBox="0 0 24 24"><path d="M17 5v14M6 6l8 6-8 6z" fill="currentColor"/></symbol>
  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+ <symbol id="i-flag" viewBox="0 0 24 24"><path d="M4 22V15"/><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/></symbol>
  <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/></symbol>
  <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>

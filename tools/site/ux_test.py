@@ -930,6 +930,19 @@ async def main():
                 'जय राम रमा रमनं समनं': 'uttar.14.cha1', 'होई है वही जो राम रचि राखा': 'bal.52.cau4', 'Jahan lagi nath': 'ayodhya.65.cau2', 'tan dhan dham': 'ayodhya.65.cau2', 'प्रभ कै सिमरनि गरभि न बसै': 'a01.p2'}
         bad = {q: fz.get(q) for q in want if fz.get(q) != want[q]}
         check('search forgives spelling: the verse meant comes first', not bad and fz['मंगल भवन अमंगल हारी'] and fz['mangal bhavan amangal hari'] == fz['मंगल भवन अमंगल हारी'] and fz['none'] is None, bad or fz)
+        # “Timing is off!” in the verse's ⋮ menu: only that verse joins the to-check list (seen in timing mode); ✓ in the menu and a
+        # dot on ⋮ show it is marked; it leaves the list once its start is set
+        fg = await ev("""(async () => { const k0 = JSON.stringify(S.timing.flags); await openWork('manas', true); await loadSources(); show('home');
+            const i = IT.findIndex(x => x.id === 'bal.1.cau2'); openReader('k', i); await new Promise(r => setTimeout(r, 500));
+            S.timing.on = true; const before = new Set(toCheckIds()); S.timing.on = false;
+            itemMenu(i); await new Promise(r => setTimeout(r, 150)); const menu = [...document.querySelectorAll('#sheetBody [data-x]')].map(b => b.dataset.x);
+            document.querySelector('#sheetBody [data-x=flag]').click(); await new Promise(r => setTimeout(r, 200));
+            S.timing.on = true; const added = toCheckIds().filter(j => !before.has(j)); S.timing.on = false;
+            itemMenu(i); await new Promise(r => setTimeout(r, 150)); const off = document.querySelector('#sheetBody [data-x=flag]').textContent.includes('✓') && !!document.querySelector('#v' + i + ' .vend .vflagged'); closeSheet();
+            flagDone(IT[i].id); S.timing.on = true; const gone = !toCheckIds().includes(i) || before.has(i); S.timing.on = false;
+            S.timing.flags = JSON.parse(k0); syncFlags(); save();
+            return [menu.slice(0, 4).join() === 'play,note,copy,edit' && menu[4] === 'flag', added.length === 1 && added[0] === i, off, gone]; })()""")
+        check('timing flag in ⋮: “Timing is off!” puts only that verse on the check list; ✓ in ⋮ and a dot on ⋮ show it; it leaves once set', all(fg), fg)
         # every number is shown as 1 2 3, in Hindi too; a digit inside a word (ओ३म्) and what a textarea holds stay as written
         nm = await ev("""(async () => { const ui = S.settings.ui, ly = JSON.stringify(S.settings.layers); S.settings.ui = 'hi'; applyLang(); await openWork('manas', true); await loadSources(); S.settings.layers = {h: true, e: false, w: false}; syncLayers();
             show('home'); renderHome(); await new Promise(r => setTimeout(r, 300)); const home = document.querySelector('#home').innerText;
