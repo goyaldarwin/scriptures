@@ -140,3 +140,13 @@
 {"k": "बिभाग", "why": "lanka.109.cha2: the writer suggests 'भाग, ओर / भेद | side, part / division' for the entry 'भेद | divisions' (बाम बिभाग: the left side); no reviewer has confirmed it yet", "lang": "awa"}
 {"k": "ते", "why": "lanka.121.cha1 नमामि ते: Sanskrit te 'to you' inside an Awadhi chhanda; the reviewer agrees, but the awa entry would take a Sanskrit sense for one line", "lang": "awa"}
 {"k": "कर", "why": "lanka.121.cha1 सो कर बीनती: the reviewer agrees on 'करता है / makes'; the entry already lists करना, so it is a question of order, not a missing sense", "lang": "awa"}
+{"k": "ससि", "why": "ससि संपन्न सोह महि (kishkindha.15.cau3): read as सस्य 'crops' (writer and reviewer agree); the entry has only शशि 'moon'. A sense this rare may fit this line alone; check Platts / Śabdasāgara before adding it to the general entry", "lang": "awa"}
+{"k": "धर्म", "why": "धर्म पराहीं (kishkindha.15.cau5) is plural ('virtues, ways of dharma'); suggested adding a plural sense 'सद्गुण / virtues'. It is the line's use rather than a sense of the word; decide whether the word sheet should show it", "lang": "awa"}
+{"k": "सयन", "why": "aranya.17.cau10 सयन बुझाई: writer suggests adding 'सैन, इशारा' / 'sign, signal' to 'शयन, सोना'; no reviewer agreement in batch-03", "lang": "awa"}
+{"k": "कसि", "why": "aranya.18.cha1 कटि कसि निषंग: writer suggests 'कसकर' / 'having tightened, girding' (absolutive of कसना) beside 'कैसी, कैसे'; no reviewer agreement in batch-03", "lang": "awa"}
+{"k": "लीनी", "why": "aranya.18.cau3 आगें करि लीनी: writer suggests 'ली' / 'took (fem.)' (past of लेना), not लीन; no reviewer agreement in batch-03", "lang": "awa"}
+{"k": "तोरि", "why": "aranya.17.cau9 तृन तोरि: writer suggests 'तोड़कर' / 'having broken' beside 'तेरी, तुम्हारी'; no reviewer agreement in batch-03", "lang": "awa"}
+{"k": "सुंदरि", "why": "aranya.17.cau7: writer suggests vocative 'हे सुन्दरी' / 'O fair one' beside 'सुंदर स्त्रियाँ'; no reviewer agreement in batch-03", "lang": "awa"}
+{"k": "जानकिहि", "why": "aranya.18.cau6 लै जानकिहि: writer suggests 'जानकीजीको' / object, not dative 'for'; g संप्रदान कारक may need to become कर्म; no reviewer agreement in batch-03", "lang": "awa"}
+{"k": "देख", "why": "aranya.15.cau4: writer suggests general present 'देखता है' / 'sees' beside 'देखा'; no reviewer agreement in batch-03", "lang": "awa"}
+{"k": "सहरोसा", "why": "aranya.43.cau2 कहउँ सहरोसा: entry has 'सहर्ष / प्रसन्नता से' (Gita Press: हर्षके साथ); writer and reviewer read स+रोष 'रोषसहित, ज़ोर देकर' / 'with vehemence, emphatically', which our meaning follows; readings differ, so the sense is unsettled", "lang": "awa"}
