@@ -1,0 +1,37 @@
+<!-- The briefs for writing the rest of the Mānas (ROADMAP item 1), from the Sundarakāṇḍa pilot (2026-10-19), updated for line-by-line meanings. Paths are relative to the repository root. -->
+# Brief for writing our own meanings of the Śrī Rāmacaritamānasa
+
+You are writing new Hindi and English meanings ("bhāvārtha") for a batch of verses of Gosvāmī Tulasīdāsa's Śrī Rāmacaritamānasa, for a free, ad-free scripture-reading app owned by Darwin Goyal. The app currently shows Gita Press's meanings, which are Gita Press's copyright; ours will replace them. The owner reads both Hindi and English and cares above all about **accuracy**, then unambiguity, clarity and consistency.
+
+## Read first (all of it)
+1. `tools/meanings/style.md` — the style sheet. It is binding: names, epithets, terms, honorifics, punctuation, speech, order, respectful wording for groups of people.
+2. Our Sundarakāṇḍa meanings, owner-approved: `tools/works/manas/meanings/hi/scriptures.json` and `en/scriptures.json` (`m`: verse id → one piece per verse line). Match this voice, length and line-by-line division. (No verse numbers in them; the exporter adds them.)
+3. Your batch file (named in your task): context verses, then each verse with its transliteration and our word meanings for every word.
+
+## How to write each verse (the owner's process — follow it in this order)
+1. **From the source.** Read the verse, its word meanings and the context (who speaks to whom, what has just happened; the verses before it). Work out exactly what it says. Write the Hindi and the English meaning from that, following the verse line by line and half-line by half-line (reorder only where grammar needs it).
+2. **Then, as guidance only, the existing meanings.** After your draft, look at Gita Press's meaning of the same verse:
+   `python3 -c "import json,sys; L='library/hinduism/granth/tulsidas/ramcharitmanas/meanings/'; H=json.load(open(L+'hi-gitapress.json'))['m']; E=json.load(open(L+'en-gitapress.json'))['m']; [print(i,'\n HI:',H[i][0],'\n EN:',E.get(i,[''])[0]) for i in sys.argv[1:]]" <ids…>`
+   Use it to check your understanding (a hard word, an allusion, who "he" is) and to improve yours — an interpretation, a line of thought, a well-chosen word or short phrase are fine to take. **Never take their sentences**: no copied sentences (the check stops at 10+ consecutive words in common; a 6–9-word run is fine when it is simply the natural words or the verse's own list), and no sentence-by-sentence rewording of theirs. Their bracketed insertions ([…], "(काकभुशुण्डिजी कहते हैं—)") are their additions, not the verse; leave them out. Where you and they differ in reading, think again from the verse; if it remains a genuine doubt, give the plain reading and record a doubt (below).
+3. **Check overlap** and rewrite anything flagged, in your own sentence shape (do not swap in a worse word just to dodge the check):
+   `python3 tools/meanings/overlap.py OUT/batch-NN.hi.json library/hinduism/granth/tulsidas/ramcharitmanas/meanings/hi-gitapress.json --report`
+   and the same for `.en.json` against `en-gitapress.json`. It must end with "0 with a shared run of 10+ words" for both; read every "read …" line it prints and rewrite only runs that are Gita Press's phrasing rather than the natural words.
+
+## Rules you must not break
+- Accuracy: every clause of the verse is in the meaning; nothing invented; no commentary or moral drawn; no added explanation in brackets (a short round-bracket gloss only where a word would otherwise be unclear, rarely).
+- **No verse numbers** in your text (no ।।१।।, no (1)) — the exporter adds them.
+- Speech: "X ने कहा —" / "X said:" when the verse names the speaker opening a speech; otherwise the speech just continues. No quotation marks. Keep each speaker's tone (Rāvaṇa does not say श्रीरामजी).
+- Hindi: joined postpositions (श्रीरामजीको), honorific plural for the Lord, Sītā, Lakṣmaṇa, Hanumān, elders; the Lord says तुम to Hanumān and others. Standard Hindi spelling of names (विभीषण, लक्ष्मण, जाम्बवान्), हनुमान्‌जी with ZWNJ (U+200C) exactly as in the samples.
+- English: plain dignified modern English, IAST names, lower-case pronouns for the Lord, "monkeys", "demons", British spelling, "Śrī Rāma" for Raghu-epithets in narration (translate an epithet only in address).
+- Groups of people: respectful, neutral words, milder sense where the word allows, without changing what the verse says.
+- Verses marked ALREADY WRITTEN: keep them as they are unless you find a real error; if you change one, say why in your report.
+- Do **not** edit any file in the repository — write only in your output folder.
+
+## Output (in the batch folder given in your task; NN = your batch number)
+- `batch-NN.hi.json` and `batch-NN.en.json`: `{"<id>": ["<piece for line 1>", "<piece for line 2>", …], …}` — exactly the ids in `batch-NN.ids`, in that order, each once, nothing else; **one piece per verse line** (the owner: "whatever our line in the verse, its meaning below it"), each piece reading on its own under its line. Where one sentence cannot be cut (the verb only in the later line), keep it in the later line's piece and give the earlier line `""`, but cut whenever the lines carry their own sense; Hindi and English cut at the same lines (`tools/meanings/LINES-BRIEF.md` rules 2–3, 6). UTF-8, `ensure_ascii=False`.
+- `batch-NN.topics.json`: for each "▸ Topic" heading in your batch, our own short heading written from the verses it heads: `{"<first verse id>": {"hi": "…", "en": "…"}}` (a short label of what happens, in the style of a table of contents; Hindi joined postpositions; English IAST; not Gita Press's wording).
+- `batch-NN.doubts.jsonl` (may be empty): one JSON object per line, `{"id", "issue", "our reading", "alternatives"}` — only genuine doubts of reading.
+- `batch-NN.words.jsonl` (may be empty): word meanings in our dictionary that are wrong or missing a sense for this line: `{"id", "word", "current", "suggested": {"hi", "en"}, "reason"}`.
+- Final reply (short, plain): verses written, overlap result for hi and en, number of doubts and word issues, and any ALREADY WRITTEN verse you changed and why.
+
+Before finishing, verify: `python3 -c` that both json files load, have exactly the ids of the .ids file in order, each with exactly as many pieces as the verse has lines (`library/hinduism/granth/tulsidas/ramcharitmanas/work.json` → `items[].v`), at least one non-empty piece, `""` at the same lines in Hindi and English, no "।।" followed by a digit and no Latin "(1)"-style verse numbers; and both overlap checks pass.
