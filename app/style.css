@@ -65,7 +65,6 @@ html,body{overflow-x:clip}
 .list .no.done{background:var(--ok);color:var(--bg)}
 .list .ti{font-size:17px;font-weight:600}
 .list .ds{font-size:13.5px;color:var(--muted)}
-.list .ds .dur{color:var(--indigo);font-weight:600;font-variant-numeric:tabular-nums}   /* how long a vishram takes to hear */
 .list .chev{color:var(--muted)}
 .topics{padding:0 0 8px 46px}
 .topics button{display:block;width:100%;text-align:left;padding:7px 0;font-size:15px;color:var(--ink);border-top:1px dashed var(--rule)}
@@ -185,6 +184,10 @@ body.playing #rBody{padding-bottom:150px}
 .ytno{width:200px;height:200px;display:flex;flex-direction:column;justify-content:center;gap:10px;padding:10px;box-sizing:border-box;font-size:13px;text-align:center;background:var(--card,#fff);border:1px solid var(--line,#ddd);border-radius:12px}.ytno .btn{display:block;padding:9px 8px;border-radius:10px;background:var(--accent,#2b3990);color:#fff;text-decoration:none;font-size:13px}
 .rowp .lplay ~ .it .grow{padding-right:46px}.lworks{display:flex;flex-wrap:wrap;gap:8px;padding:0 2px 14px;margin-top:-4px}.lworks button{padding:7px 13px;border:1px solid color-mix(in srgb,var(--indigo) 30%,var(--rule));border-radius:999px;font-size:15px;color:var(--indigo);background:var(--surface);font-weight:600;text-align:left}.lworks button.more{color:var(--muted);font-weight:400}
 .lplay{position:absolute;right:30px;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:var(--indigo-soft);color:var(--indigo);display:grid;place-items:center;z-index:2}
+/* a plan day's ▶ with how long it plays under it: the two centred together in the row */
+.lplay.timed{transform:translateY(calc(-50% - 9px))}.ldur{position:absolute;right:18px;width:60px;top:calc(50% + 11px);text-align:center;font-size:12px;line-height:1.2;color:var(--indigo);font-variant-numeric:tabular-nums;white-space:nowrap;pointer-events:none;z-index:2}
+.rowp .lplay.timed ~ .it .grow{padding-right:66px}   /* room for the time under ▶ */
+.endb .ndur{font-size:13px;color:var(--muted);margin-top:6px;font-variant-numeric:tabular-nums}
 .lplay svg{width:16px;height:16px;fill:var(--indigo);stroke:none}
 .navbar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--surface);border-top:1px solid var(--rule);padding-bottom:env(safe-area-inset-bottom)}
 .navbar .wrap{display:flex;align-items:center;gap:8px;min-height:60px}
