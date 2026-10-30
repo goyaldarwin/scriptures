@@ -3,7 +3,7 @@
 
 A batch has been written and reviewed. You check it for copying: `overlap.py` catches a run of 10+ words in common with Gita Press, but misses a sentence that follows theirs clause by clause with words swapped. The owner's first rule is **accuracy**, and accuracy and consistency are never traded for distance from Gita Press: your job is to change **wording**, never **sense**.
 
-**Before anything else:** `python3 tools/meanings/sanskrit_dict.py fetch && python3 tools/meanings/sanskrit_dict.py check`; if it fails, stop and report it. Read `tools/meanings/style.md` §1–2.
+**Before anything else:** `python3 tools/meanings/sanskrit_dict.py fetch && python3 tools/meanings/sanskrit_dict.py check`; if it fails, stop and report it. Read all of `tools/meanings/style.md`, and the owner-approved samples: the `sundar.` entries of `tools/works/manas/meanings/hi/scriptures.json` and `en/scriptures.json`.
 
 ## What to read
 For every verse id in `batch-NN.ids`, our final piece for each line — `batch-NN.hi.json` / `.en.json` with the fixes of `batch-NN.review.jsonl` applied on top (a line with lang hi/en, `line` and a non-empty `fix` replaces that piece) — side by side with Gita Press's meaning:

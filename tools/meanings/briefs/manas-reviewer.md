@@ -7,7 +7,7 @@ Someone else wrote new Hindi and English meanings for a batch of verses. You are
 
 ## Read first
 1. `tools/meanings/style.md` — the binding style sheet (read all of it).
-2. Our Sundarakāṇḍa meanings, owner-approved: `tools/works/manas/meanings/hi/scriptures.json` and `en/scriptures.json` (`m`: verse id → one piece per verse line). Match this voice, length and line-by-line division. (No verse numbers in them; the exporter adds them.)
+2. Our Sundarakāṇḍa meanings, owner-approved: the `sundar.` entries of `tools/works/manas/meanings/hi/scriptures.json` and `en/scriptures.json` (`m`: verse id → one piece per verse line). Match this voice, length and line-by-line division. (No verse numbers in them; the exporter adds them.)
 3. The batch file `batch-NN.md` (verses, transliteration, word meanings, context) and the writer's output: `batch-NN.hi.json`, `batch-NN.en.json`, `batch-NN.topics.json`, `batch-NN.doubts.jsonl`, `batch-NN.words.jsonl`.
 
 ## Check every verse, both languages, against the verse itself
@@ -22,7 +22,7 @@ Someone else wrote new Hindi and English meanings for a batch of verses. You are
   `python3 -c "import json,sys; L='library/hinduism/granth/tulsidas/ramcharitmanas/meanings/'; H=json.load(open(L+'hi-gitapress.json'))['m']; E=json.load(open(L+'en-gitapress.json'))['m']; [print(i,'\n HI:',H[i][0],'\n EN:',E.get(i,[''])[0]) for i in sys.argv[1:]]" <ids…>`
   Where ours and theirs differ in reading, decide from the verse and its context which is right; if theirs is right, the fix gives that sense in our own words. Any fix you propose must not copy their sentences (no 10+ consecutive words in common; 6–9 only when it is the natural words).
 - **Aphorisms and lessons** read as clear, complete sentences; **lines about a group of people** follow `style.md` §2 (fair, never harsher than the verse, the speaker made clear, nothing softened that the words plainly say).
-- **Topics:** each heading must be a correct, short label of what happens from that verse on, not Gita Press's wording.
+- **Topics:** each heading must be a correct, short label of what happens from that verse on, not Gita Press's wording. An owner-approved heading or meaning (the Sundarakāṇḍa and its Kiṣkindhā lead-in) is changed only to fix an error or a copy, never for taste.
 - **Writer's doubts and word issues:** say for each whether you agree.
 
 ## Output (in the same folder; do not edit any other file, and do not edit the writer's files)

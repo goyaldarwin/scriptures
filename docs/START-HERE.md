@@ -19,7 +19,10 @@ This repository holds everything about the scriptures library: the website, the 
 | `docs/APPS.md` | the store apps |
 | `docs/reviews/` | open questions for the owner |
 | `tools/meanings/style.md` | how our meanings are written (§1 first: from the verse, its word meanings, the dictionaries and its context in the work and the nearby verses; accuracy never traded away) |
+| `tools/meanings/LINES-BRIEF.md` | the brief for dividing an existing meaning into one piece per verse line |
 | `tools/meanings/briefs/` | the brief for each step of writing a kāṇḍa of the Mānas: writer, reviewer, copy auditor, accuracy checker, consistency pass (`docs/HOW-TO.md`) |
+| `tools/README.md` | every script, folder by folder, and how to rebuild everything |
+| `tools/audio/README.md` | the audio sources: how a recording is transcribed, aligned and timed |
 | `tools/works/README.md` | the format of a work's folder (`work.json`, `text.txt`, meanings, recordings) and the one exporter |
 | `tools/works/<work>/README.md` | each work: its sources, files and structure; `reconciliation.md`: every difference from its sources and why |
 
@@ -27,8 +30,8 @@ This repository holds everything about the scriptures library: the website, the 
 
 | Repository | Visibility | What it holds |
 |---|---|---|
-| `goyaldarwin/scriptures` (this one) | public | the website, the library data made from the sources (text, meanings, word meanings, verse times), every script and intermediate file, the docs |
-| `goyaldarwin/scriptures-data` | **private, always** | the raw sources that are not ours to publish: books, printouts, screenshots, recordings, reference dictionaries, each with a `<file>.meta.json` (see its README) |
+| `goyaldarwin/scriptures` (this one) | public | the website, the library data made from the sources (text, meanings, word meanings, verse times), every script and intermediate file (except the Sukhmani Sahib's Punjabi meaning records, whose batches quote copyrighted commentaries: they are in `scriptures-data` under `sikhism/gurbani/guru-arjan-dev/sukhmani-sahib/meaning-records/`), the docs |
+| `goyaldarwin/scriptures-data` | **private, always** | the raw sources that are not ours to publish: books, printouts, screenshots, recordings, reference dictionaries, each with a `<file>.meta.json` (see its README); `meaning-records/` under a work (our meaning batches that quote copyrighted commentaries); `experiments/` (alignment experiments) |
 
 Both use the same address for a work, the shelf path the reader sees: `hinduism/granth/tulsidas/ramcharitmanas` is `library/hinduism/granth/tulsidas/ramcharitmanas/` here and `hinduism/granth/tulsidas/ramcharitmanas/` there. Under a work, the private repo groups files as `<kind>/<source-id>/<file>` (`books/gitapress/hindi.pdf`, `audio/kamlesh-upadhyay/…`); the source id is the one used here for the meaning or audio source made from it. Reference books shared by all works are under `reference/<lang>/…` there.
 
@@ -68,4 +71,9 @@ library/ ─ tools/site/build.py (checks everything first) ─► index.html, ap
 ## Open with the owner
 - The questions in `docs/reviews/` (word senses; readings in the Rāma Rakṣā and the Sukhmani Sahib).
 - The āratīs: recordings for आरती कीजे श्रीरामलला की and आरती कीजै रामचन्द्र जी की (the owner will share them); the "open" corrections in each āratī's `reconciliation.md`.
+- The Sundarakāṇḍa's Hanumān Chālīsā and āratī: the sung words are still to be compared with the text (`tools/works/sundarkand/reconciliation.md`, "Open points for the owner").
+- The Kathā-visarjana: three typesetting slips corrected, for the owner to confirm (`tools/works/manas/source/visarjan.md`).
+- Bhaja Govindam verse 29: नास्ति ततः written as two words, on one witness (`tools/works/bhaja-govindam/reconciliation.md`).
+- Māṇḍūkya m06: the visarga in एष सर्वेश्वरः एष kept as printed (`tools/works/mandukya-upanishad/reconciliation.md`).
+- Private copies not yet in `scriptures-data`: the Gaṅgā āratī screenshot, the jansatta.com printout of the Rāma āratīs, the Māṇḍūkya's sanskritdocuments.org and freepressjournal.in printouts and its recording.
 - Offered, not built: "⏹ End / ⏱ Next starts" buttons in the player for audio timing.

@@ -3,7 +3,7 @@
 
 A batch has been written, reviewed and copy-audited. A piece reworded to avoid a copy can drift from the verse, so you read the final text once more against the verse and the dictionaries. Accuracy and consistency come first, always.
 
-**Before anything else:** `python3 tools/meanings/sanskrit_dict.py fetch && python3 tools/meanings/sanskrit_dict.py check`; if it fails, stop and report it. Read `tools/meanings/style.md`.
+**Before anything else:** `python3 tools/meanings/sanskrit_dict.py fetch && python3 tools/meanings/sanskrit_dict.py check`; if it fails, stop and report it. Read all of `tools/meanings/style.md`, and the owner-approved samples: the `sundar.` entries of `tools/works/manas/meanings/hi/scriptures.json` and `en/scriptures.json`.
 
 ## The final text
 `batch-NN.hi.json` / `.en.json`, with the fixes of `batch-NN.review.jsonl` and then `batch-NN.audit.jsonl` applied on top (a line with lang hi/en, `line` and a non-empty `fix` replaces that piece; the audit's wins). The verses, their nearby verses and our word meanings are in `batch-NN.md`.
