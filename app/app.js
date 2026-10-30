@@ -345,7 +345,8 @@ function verseHTML(i){
     const top = y === 0 ? (hasAu(i) ? '<button class="vb vplay" data-a="play" aria-label="play"><svg><use href="#i-play"/></svg>' + (SRC.au && flagsNow()[id] && !(S.timing.flagsOn && !S.timing.on) ? REVB : '') + '</button>' : '') + '<button class="vb vbm' + (bm ? ' bm-on' : '') + '" data-a="bm" aria-label="bookmark"><svg><use href="#i-bm"/></svg></button>' : '';
     const undo = last && S.timing.on && SRC.au && myStarts()[id] ? '<span class="vundo"><button class="vb" data-a="tundo" aria-label="' + T('पहले जैसा', 'Undo') + '" title="' + T('पहले जैसा', 'Undo') + '"><svg><use href="#i-undo"/></svg></button></span>' : '';   // ↶ (bottom left) in timing mode, on a verse you set
     // ⚑ (bottom left) for the reader who turned on "A flag on each verse" (☰ › More settings › Audio timing), outside timing
-    // mode (where ↶ has that corner): blue, filled once the verse is marked "Review audio timing" (then ▶ needs no blue dot)
+    // mode (where ↶ has that corner): shown while playing on the verse being recited and the verses just before and after it
+    // (the light may already have moved on), and always once marked "Review audio timing" (filled blue; ▶ then needs no dot)
     const flagOn = S.timing.flagsOn && !S.timing.on, flag = last && flagOn && hasAu(i) ? '<span class="vflag"><button class="vb' + (SRC.au && flagsNow()[id] ? ' on' : '') + '" data-a="tflag" aria-label="' + T('ऑडियोका समय जाँचें', 'Review audio timing') + '"><svg><use href="#i-flag"/></svg></button></span>' : '';
     const tail = last ? '<span class="vend"><button class="vb" data-a="menu" aria-label="more"><svg><use href="#i-more"/></svg></button></span>' + undo + flag : '';
     return '<p' + (vv.v.length === 1 ? ' class="one"' : '') + '>' + top + w + tail + '</p>'; });
@@ -505,9 +506,10 @@ function refreshReader(){
   $('#pages').innerHTML = h; $('#endB').innerHTML = endHTML();
   const el2 = document.getElementById('v' + i); if (el2) window.scrollBy(0, el2.getBoundingClientRect().top - off);
   if (PL.on && PL.cur >= 0){ const c = document.getElementById('v' + PL.cur); if (c) c.classList.add('now'); }
+  markNear();
   updateHeader();
 }
-function rerenderItem(i){ const el = document.getElementById('v' + i); if (!el) return; const tmp = document.createElement('div'); tmp.innerHTML = verseHTML(i); el.replaceWith(tmp.firstChild); if (PL.on && PL.cur === i) document.getElementById('v' + i).classList.add('now'); }
+function rerenderItem(i){ const el = document.getElementById('v' + i); if (!el) return; const tmp = document.createElement('div'); tmp.innerHTML = verseHTML(i); el.replaceWith(tmp.firstChild); if (PL.on && PL.cur === i) document.getElementById('v' + i).classList.add('now'); if (PL.on && Math.abs(PL.cur - i) === 1) document.getElementById('v' + i).classList.add('near'); }
 // The section picker: the row of kāṇḍas (or plan days) on top only chooses which list shows below; nothing opens until a
 // section is tapped — the current one too.
 function sectionSheet(n){
@@ -696,6 +698,8 @@ function toggleFlag(i){
   if (!Object.keys(F).length) delete S.timing.flags[k]; save(); syncFlags(); rerenderItem(i); if (S.timing.on) syncCheck();
   toast(had ? T('ऑडियोका समय जाँचना — हटाया', 'Review audio timing — removed') : T('यह पद ऑडियोका समय जाँचनेकी सूचीमें', 'This verse is on the audio timing check list'));
 }
+// the verses next to the one being recited carry ⚑ too
+function markNear(){ $$('#rBody .verse.near').forEach(v => v.classList.remove('near')); if (!PL.on || PL.cur < 0) return; [PL.cur - 1, PL.cur + 1].forEach(j => { const el = document.getElementById('v' + j); if (el) el.classList.add('near'); }); }
 function flagDone(id){ const k = tkey(), F = S.timing.flags[k]; if (!F || !F[id]) return; delete F[id]; if (!Object.keys(F).length) delete S.timing.flags[k]; syncFlags(); }   // its start was set (or checked)
 function myStarts(){ return (SRC.au && S.timing.fix[tkey()]) || {}; }
 // a verse set by ear: on this phone (myStarts), or by the owner and published (the audio JSON's "own" list) — kept exactly as given
@@ -939,6 +943,7 @@ function setCur(i){
   // the player's timing wins: the page follows the light every time a new verse starts, whatever was
   // touched or scrolled meanwhile — no pause after a touch
   if (el){ el.classList.add('now'); if (!(S.timing.on && inView(el))) keepInView(el); }
+  markNear();
 }
 function stopAudio(){ ytPost('pauseVideo'); PL.on = false; PL.snip = null; $('#player').hidden = true; $('#pJump').hidden = true; document.body.classList.remove('playing'); $$('#rBody .verse.now').forEach(v => v.classList.remove('now')); }
 function playing(){ return ytInfo.st === 1 || ytInfo.st === 3; }
