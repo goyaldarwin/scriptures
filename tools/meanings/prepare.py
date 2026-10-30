@@ -25,7 +25,7 @@ def main():
     ap.add_argument('--work', default='manas')
     a = ap.parse_args()
     import sanskrit_dict   # Monier-Williams and Apte check the hard words (style.md); no batch is made without them
-    missing = [d for d in sanskrit_dict.DICTS if not os.path.exists(os.path.join(sanskrit_dict.CACHE, d + '.txt'))]
+    missing = sanskrit_dict.missing()
     if missing:
         raise SystemExit(f'The Sanskrit dictionaries are not downloaded ({", ".join(missing)}): run python3 tools/meanings/sanskrit_dict.py fetch first')
     lib = os.path.join(REPO, 'library'); folder = os.path.join(REPO, 'tools', 'works', a.work)

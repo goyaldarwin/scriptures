@@ -82,6 +82,6 @@ changed.
 ## 6. Our meanings and word meanings
 
 The PDF has no Hindi, no Punjabi and no word meanings, so they are written for this library (`hi-scriptures`,
-`pa-scriptures`; `glossary/pa.json`): 218 of 218 items and 2,536 of 2,536 distinct words. Our English
+`pa-scriptures`; `library/glossary/pa.json`): 218 of 218 items and 2,536 of 2,536 distinct words. Our English
 (`en-scriptures`, the default) is also written for this library from the Gurmukhi; the PDF's English stays
 selectable (order 2), and the export stops if ours shares a run of 10 or more words with it.

@@ -68,7 +68,7 @@ Most restore a reph (र्) that the PDF text layer drops. The page image and t
   - Mantras are numbered within the anuvāka (`n` = "anuvāka.mantra", e.g. 8.11).
 - **The parts the page has outside TS 4.5 / 4.7** are placed in their own sections:
   - **Opening:** अथ श्रीरुद्रप्रश्नः (the heading, used as the topic), गुरुभ्यो नमः, गणानां त्वा, the TS heading, ओ-न्नमो भगवते रुद्राय. The page shows the last of these under its "1st Anuvaka" label, but it is an invocation, not part of TS 4.5.1.
-  - **After anuvāka 1:** श्री शम्भवे नमः and नमस्ते अस्तु भगवन्….
+  - **After anuvāka 1:** नमस्ते अस्तु भगवन्… (the printout's श्री शम्भवे नमः before it is left out, below).
   - **After anuvāka 11:** the closing mantras (त्र्यम्बकम् … ओ-न्नमो भगवते रुद्राय विष्णवे …) and सदाशिवोम् / शान्ति.
   - **Chamakam:** its śānti mantra.
 
@@ -88,4 +88,4 @@ The printout has "श्री शम्भ॑वे॒ नमः॑ ॥" before
 The printout opens u8 with "ओं नमो भगवते रुद्राय विष्णवे मृत्युर्मे पाहि ॥" before "प्राणानां ग्रन्थिरसि …". The recording does not recite that line (it goes from मृत्यवे स्वाहा to ॐ प्राणानां ग्रन्थिरसि, `fixes.md`), and the owner gave the mantra as three lines: प्राणाना-ङ्ग्रन्थिरसि रुद्रो मा॑ विशा॒न्तकः । / तेनान्नेना᳚प्याय॒स्व ॥ / नमो रुद्राय विष्णवे मृत्यु॑र्मे पा॒हि ॥. `source/settle.py` (`DROP_LINE`) leaves the line out; the meanings follow.
 
 ## The closing mantras in the recording's order
-The owner: "In Namakam, the ending verses are jumbled up and don't match the order in the recording", and chose the recording's order. The printout lists त्र्यम्बकं (u1), यो रुद्रो (u2), तमु ष्टुहि (u3), यक्ष्वामहे (u4), अयं मे हस्तो (u5), ये ते सहस्रम् (u6), मृत्यवे स्वाहा (u7), ओं नमो भगवते रुद्राय विष्णवे (u8). Shlokam's recording (GbQM33333xs) sings u1 u2 u6 u7 u8 and then u3 u4 u5 before the śānti (transcript, 1170–1253 s; the प्राणानां ग्रन्थिरसि line is part of u8 and is sung before ओं नमो भगवते). `source/settle.py` (ORDER_FIX) moves u3–u5 after u8; the ids stay, the numbers 1–8 follow the recording's order. The text of each mantra is unchanged.
+The owner: "In Namakam, the ending verses are jumbled up and don't match the order in the recording", and chose the recording's order. The printout lists त्र्यम्बकं (u1), यो रुद्रो (u2), तमु ष्टुहि (u3), यक्ष्वामहे (u4), अयं मे हस्तो (u5), ये ते सहस्रम् (u6), मृत्यवे स्वाहा (u7), ओं नमो भगवते रुद्राय विष्णवे (u8). The Sri Sathya Sai Official recording (`audio/sri-sathya-sai/`, YouTube `GbQM33333xs`) sings u1 u2 u6 u7 u8 and then u3 u4 u5 before the śānti (transcript, 1170–1253 s; the प्राणानां ग्रन्थिरसि line is part of u8 and is sung before ओं नमो भगवते). `source/settle.py` (ORDER_FIX) moves u3–u5 after u8; the ids stay, the numbers 1–8 follow the recording's order. The text of each mantra is unchanged.

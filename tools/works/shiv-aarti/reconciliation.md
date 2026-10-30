@@ -9,7 +9,7 @@ Written witnesses (private copies in `scriptures-data` at `hinduism/aarti/shiva/
 - **B**: Bhakti Bharat, "शिव आरती - ॐ जय शिव ओंकारा" (<https://www.bhaktibharat.com/aarti/shri-shiv-shankar-bholenath>), text given by the owner.
 - **BD**: Bharat Discovery, "शिव जी की आरती" (<https://bharatdiscovery.org/india/शिव_जी_की_आरती>), text given by the owner: the closest to her singing, and the base of the text.
 
-The library's writing standard (docs/PLAYBOOK.md §3): ।/॥ for the daṇḍas, stanzas numbered (॥१॥); the refrain (टेक) shown once at the start and once at the end, as she sings it, although it is also sung after each stanza.
+The library's writing standard (docs/PLAYBOOK.md §3): ।/॥ for the daṇḍas, stanzas numbered (॥१॥); the refrain (टेक) shown at the start (`aarti.tek`) and, as she sings it differently at the end, once more there (`aarti.tek2`), although it is also sung after each stanza.
 
 | Place | Witnesses | Text | Why |
 |---|---|---|---|

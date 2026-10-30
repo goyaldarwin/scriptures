@@ -33,9 +33,10 @@ Also: शृणुयाम — the printout's word carries an invisible joiner 
 यदायुः and the line breaks follow the printout and the chant's breaths.
 
 ## Mantras 1–12
-No word changed. Kept as printed:
+No word changed. Written by the writing standard: इदꣳ, as printed, is written इदं (ꣳ belongs to the Yajurveda's texts).
+
+Kept as printed:
 - हरिः ॐ । at the head of mantra 1 (the recording does not chant it there, but at the very end).
-- इदꣳ, as printed, is written इदं: ꣳ belongs to the Yajurveda's texts (the writing standard).
 - एष सर्वेश्वरः एष सर्वज्ञ (m06): the visarga before ए is kept as printed (strict sandhi would give सर्वेश्वर एष); the shlokam.org page has it too. **Open.**
 - अलक्षणं अचिन्त्यम्… (m07), भवद् भविष्यद्, …आदिमत्त्वाद् / वाऽऽप्नोति (m09), मात्रोत्कर्षात् / उभयत्वाद् (m10): the printout's
   line ends, where a word keeps its pausa form; the shlokam.org page joins them (भवद्भविष्यद्, मात्रोत्कर्षादुभयत्वाद्), the

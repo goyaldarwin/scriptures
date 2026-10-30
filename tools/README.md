@@ -11,6 +11,7 @@ tools/
     build.py                       runs library.py, then builds the website and dist/
     privacy.html                   the privacy policy → privacy.html
     regen_check.py                 library/ must be exactly what tools/works/export.py and make_timings.py make
+    history_check.py               no work or verse id that readers' data points at has disappeared
     smoke_test.py, ux_test.py      every work in a browser; navigation and reading at phone size
     fixtures/                      data only the tests use (its README)
   audio/                         audio sources (shared by every work; see audio/README.md)
@@ -18,7 +19,7 @@ tools/
     transcribe_onnx.py             the same with a Whisper model from GitHub, when the usual model can't be downloaded
     sync_transcripts.py            copies transcripts made in the cloud (private repo) into tools/works/…/transcripts/
     align.py                       matches transcript lines to verses
-    make_timings.py                transcripts → library/<work>/audio/<id>.json
+    make_timings.py                transcripts → library/<path>/audio/<id>.json
     order.py                       the order rule for times set by ear (the same rule as the app's)
     apply_owner_timing.py          a "Timing:" issue from the app → the source's owner.json (run by the timing workflow)
   meanings/                      our own meanings (style.md)
