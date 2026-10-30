@@ -5,7 +5,8 @@
 
 For every batch-NN.ids in BATCH_DIR: takes the writer's batch-NN.hi.json / .en.json / .topics.json, then applies the
 reviewer's fixes from batch-NN.review.jsonl (lines with lang "hi", "en" or "topic" and a "fix"; the reviewer's fix
-wins, as the second reader's). Checks that each batch covers exactly its ids, both languages, no empty value and no
+wins, as the second reader's). A meaning is a string or, line by line, a list with one piece per verse line; a fix with
+"line" (0-based) replaces that one piece. Checks that each batch covers exactly its ids, both languages, no empty value and no
 verse number. Writes into the work's folder, in its reading order:
   meanings/hi/scriptures.json, meanings/en/scriptures.json   our meanings (other entries and the settings are kept)
   topics.json                                                our topic headings {first verse id: {hi, en}}
@@ -46,9 +47,15 @@ def main():
         rev = jl(f'{b}.review.jsonl')
         assert rev or os.path.exists(f'{b}.review.jsonl'), f'{b}: not reviewed yet'
         for r in rev:
-            if r.get('lang') in ('hi', 'en') and r.get('fix'):
+            if r.get('lang') in ('hi', 'en') and r.get('fix') is not None:
                 assert r['id'] in M[r['lang']], f"{b}: review fix for unknown id {r['id']}"
-                M[r['lang']][r['id']] = r['fix'].strip(); fixed[r['lang']] += 1
+                cur = M[r['lang']][r['id']]
+                if isinstance(cur, list) and r.get('line') is not None:   # line by line: the fix is one line's piece
+                    assert 0 <= int(r['line']) < len(cur), f"{b}: review fix for {r['id']} line {r['line']} out of range"
+                    cur[int(r['line'])] = r['fix'].strip()
+                elif isinstance(r['fix'], list): M[r['lang']][r['id']] = [x.strip() for x in r['fix']]
+                else: M[r['lang']][r['id']] = r['fix'].strip()
+                fixed[r['lang']] += 1
             elif r.get('lang') == 'topic' and r.get('fix'):
                 fx = r['fix']
                 if isinstance(fx, str):   # a Hindi heading, or "hi | en"
@@ -61,9 +68,17 @@ def main():
                 doubts.append({'review': r.get('problem'), 'id': r.get('id'), 'reviewer_fix': r.get('fix')})
         for lg in ('hi', 'en'):
             assert list(M[lg]) == ids, f'{b}.{lg}: ids differ from the batch'
+            NL = {x['id']: len(x['v']) for x in W['items']}
             for i, t in M[lg].items():
-                assert t and t.strip(), f'{b}.{lg}: empty {i}'
-                assert not NUM.search(t), f'{b}.{lg}: verse number in {i}'
+                # a meaning is a string, or (line by line, owner 2026-10-23) one piece per verse line, "" where a line has none
+                ps = t if isinstance(t, list) else [t]
+                assert any(p and p.strip() for p in ps), f'{b}.{lg}: empty {i}'
+                assert not isinstance(t, list) or len(t) == NL[i], f'{b}.{lg}: {i} has {len(t)} pieces for {NL[i]} verse lines'
+                assert not any(NUM.search(p) for p in ps), f'{b}.{lg}: verse number in {i}'
+            for i in ids:
+                h, e = M['hi'].get(i), M['en'].get(i)
+                if lg == 'en' and isinstance(h, list) and isinstance(e, list):
+                    assert [not p.strip() for p in h] == [not p.strip() for p in e], f'{b}: {i}: Hindi and English must cut at the same lines'
             D[lg].update(M[lg])
         T.update(top)
         doubts += [dict(d, batch=os.path.basename(b)) for d in jl(f'{b}.doubts.jsonl')]
