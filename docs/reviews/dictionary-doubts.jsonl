@@ -97,3 +97,21 @@
 {"k": "ਸੋਖ", "why": "ਜੈਸੇ ਸੂਰੁ ਸਰਬ ਕਉ ਸੋਖ: g 'संज्ञा' / hi 'सोखना' (infinitive) — here it functions verbally ('dries up / warms all'); grammar label needs a teeka check", "lang": "pa"}
 {"k": "ससि", "why": "ससि संपन्न सोह महि (kishkindha.15.cau3): read as सस्य 'crops' (writer and reviewer agree); the entry has only शशि 'moon'. A sense this rare may fit this line alone; check Platts / Śabdasāgara before adding it to the general entry", "lang": "awa"}
 {"k": "धर्म", "why": "धर्म पराहीं (kishkindha.15.cau5) is plural ('virtues, ways of dharma'); suggested adding a plural sense 'सद्गुण / virtues'. It is the line's use rather than a sense of the word; decide whether the word sheet should show it", "lang": "awa"}
+{"k": "किन", "why": "uttar.13.cha4 कंटक किन लहे: writer reads किन as Skt. किण 'calluses, scars' (Monier-Williams: kiṇa, a corn, callosity); the entry has only 'क्यों नहीं / why not'. No reviewer check; the sense may fit this line alone", "lang": "awa"}
+{"k": "दच्छ", "why": "uttar.13.cha2, 46.cau3, 49.cau4: used as 'skilful, expert' (Skt. दक्ष, Monier-Williams 'able, expert, clever'); the entry has only Prajāpati Dakṣa. Writer's suggestion 'दक्ष, कुशल / प्रजापति दक्ष | skilful, capable / Dakṣa' was not checked by a reviewer", "lang": "awa"}
+{"k": "हरे", "why": "uttar.13.cha2 अग जग हरे: writer suggests adding a vocative 'हे हरि'; tied to the doubt of reading of that line", "lang": "awa"}
+{"k": "कंध", "why": "uttar.13.cha5 षट कंध (of the tree of worldly existence): writer suggests 'तना, स्कन्ध | trunk'; the entry has only 'shoulder'. Not checked by a reviewer", "lang": "awa"}
+{"k": "पाही", "why": "uttar.18.cau4 प्रभु पाही: may be the postposition पाहीं 'near, to' rather than Skt. पाहि 'protect'; writer and reviewer leave it open", "lang": "awa"}
+{"k": "ग्रहइ", "why": "uttar.44.cau2 गुंजा ग्रहइ: writer suggests 'ग्रहण करता है, ले लेता है | takes'; the entry gives 'perceives'. Not checked by a reviewer", "lang": "awa"}
+{"k": "धुनि", "why": "uttar.43.do43 सिर धुनि धुनि: from धुनना 'beat (the head)', not ध्वनि; writer suggests adding the sense. Not checked by a reviewer", "lang": "awa"}
+{"k": "द्वारा", "why": "uttar.43.cau4 मोच्छ कर द्वारा: writer suggests 'द्वार, दरवाजा | door'; the entry gives 'at the gate'. Not checked by a reviewer", "lang": "awa"}
+{"k": "जिव", "why": "uttar.44.cau2 यह जिव अबिनासी: writer suggests 'जीव, जीवात्मा | soul'; the entry gives 'life'. Not checked by a reviewer", "lang": "awa"}
+{"k": "आसा", "why": "uttar.46.cau3 सुखमय ताहि सदा सब आसा: writer reads आसा as 'quarter, direction' (Skt. 2. आशा, Monier-Williams 'region, quarter'); a sense possibly for this line alone", "lang": "awa"}
+{"k": "खंडित", "why": "uttar.51.cau3 भार महि खंडित: writer suggests the agent sense 'who destroyed'; the entry gives 'cut off'. Not checked by a reviewer", "lang": "awa"}
+{"k": "समाज", "why": "uttar.44.do44 नर समाज अस पाइ: writer suggests 'सामग्री, साज-सामान | means, equipment'; a sense possibly for this line alone", "lang": "awa"}
+{"k": "सोहाई", "why": "uttar.43.cau2 जो तुम्हहि सोहाई: writer suggests the present 'अच्छा लगे | pleases'; the entry gives the past. Not checked by a reviewer", "lang": "awa"}
+{"k": "लागहु", "why": "uttar.130.do130ख प्रिय लागहु मोहि: writer suggests adding 'लगो, लगिये (प्रतीत होओ) | seem, be (dear)'. Not checked by a reviewer", "lang": "awa"}
+{"k": "सत", "why": "uttar.130.cha2 सत पंच चौपाईं: commonly read 'five or seven'; writer suggests adding 'सात | seven'. Traditions differ on the line", "lang": "awa"}
+{"k": "बाना", "why": "uttar.130.cau4 पतित पावन बड़ बाना: writer suggests adding 'प्रण, विरद | vow, avowed character'. Not checked by a reviewer", "lang": "awa"}
+{"k": "सकृत", "why": "uttar.54.cau2 सम्यक ग्यान सकृत कोउ लहई: writer and reviewer read 'scarcely one, rarely' rather than 'once'; it may be the line's use of 'once' rather than a sense of the word", "lang": "awa"}
+{"k": "अग", "why": "uttar.60.cau3 अग जगमय: writer and reviewer read the compound अग-जग 'moving and unmoving'; whether the entry for अग should carry the compound or अग-जग get its own entry is unsettled", "lang": "awa"}
