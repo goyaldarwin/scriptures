@@ -930,6 +930,14 @@ async def main():
                 'जय राम रमा रमनं समनं': 'uttar.14.cha1', 'होई है वही जो राम रचि राखा': 'bal.52.cau4', 'Jahan lagi nath': 'ayodhya.65.cau2', 'tan dhan dham': 'ayodhya.65.cau2', 'प्रभ कै सिमरनि गरभि न बसै': 'a01.p2'}
         bad = {q: fz.get(q) for q in want if fz.get(q) != want[q]}
         check('search forgives spelling: the verse meant comes first', not bad and fz['मंगल भवन अमंगल हारी'] and fz['mangal bhavan amangal hari'] == fz['मंगल भवन अमंगल हारी'] and fz['none'] is None, bad or fz)
+        # every number is shown as 1 2 3, in Hindi too; a digit inside a word (ओ३म्) and what a textarea holds stay as written
+        nm = await ev("""(async () => { const ui = S.settings.ui, ly = JSON.stringify(S.settings.layers); S.settings.ui = 'hi'; applyLang(); await openWork('manas', true); await loadSources(); S.settings.layers = {h: true, e: false, w: false}; syncLayers();
+            show('home'); renderHome(); await new Promise(r => setTimeout(r, 300)); const home = document.querySelector('#home').innerText;
+            openReader('k', IT.findIndex(x => x.id === 'bal.1.cau1')); await new Promise(r => setTimeout(r, 600)); const rd = document.querySelector('#rBody').innerText + document.querySelector('#reader .navbar').innerText;
+            const ta = document.createElement('textarea'); ta.textContent = 'ओ३म् ॥१॥'; document.body.appendChild(ta); const d = document.createElement('div'); d.textContent = 'ओ३म् ॥१॥ १०८ ੧੨'; document.body.appendChild(d);
+            await new Promise(r => setTimeout(r, 50)); const r = [!/[०-९]/.test(home), !/[०-९]/.test(rd), rd.includes('॥1॥'), ta.value === 'ओ३म् ॥१॥', d.textContent === 'ओ३म् ॥1॥ 108 12'];
+            ta.remove(); d.remove(); S.settings.ui = ui; S.settings.layers = JSON.parse(ly); syncLayers(); applyLang(); return r; })()""")
+        check('numbers are shown as 1 2 3 in Hindi too; ओ३म् and a textarea keep their digits', all(nm), nm)
         # each plan day's ▶ says how long it plays; the days add up to the recordings; the speed shortens it; the next-day button says it too
         du = await ev("""(async () => { await openWork('manas', true); await loadSources(); const o = PLANS[0].id; WS().org = o; show('home'); renderHome(); await new Promise(r => setTimeout(r, 300));
             const rows = document.querySelectorAll('#orgList .lplay.timed + .ldur').length; let sum = 0; for (let n = 1; n <= PLAN[o].n; n++){ const [a, b] = dayRange(o, n); sum += spanSecs(a, b); }

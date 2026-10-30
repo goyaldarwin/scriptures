@@ -7,8 +7,20 @@
 const $ = s => document.querySelector(s);
 const $$ = s => Array.from(document.querySelectorAll(s));
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
-const DIG = '०१२३४५६७८९';
-const DEV = n => (typeof S !== 'undefined' && S && S.settings && LANG() === 'en') ? String(n) : String(n).replace(/[0-9]/g, d => DIG[d]);
+// every number is shown as 1 2 3, in Hindi too (the owner: few read १ २ ३ today); the texts keep their own digits and are
+// shown so: each Devanagari or Gurmukhi number on the page is written in Latin digits as it appears (a digit inside a word,
+// the pluta ३ of ओ३म्, stays); a textarea keeps what it holds, so a correction or a note is saved as written
+const DEV = n => String(n);
+const LATD = /(^|[^\u0900-\u0963\u0971-\u097F\u0A00-\u0A65\u0A70-\u0A7F])([०-९੦-੯]+)/g;
+const LAT = s => s.replace(LATD, (m, a, d) => a + d.replace(/[०-९੦-੯]/g, c => { const k = c.charCodeAt(0); return String(k >= 0x0A66 ? k - 0x0A66 : k - 0x0966); }));
+function latNode(root){
+  if (root.nodeType === 3){ if (!root.parentNode || root.parentNode.closest('textarea,script,style')) return; const v = LAT(root.data); if (v !== root.data) root.data = v; return; }
+  if (root.nodeType !== 1 || root.closest('textarea,script,style')) return;
+  const tw = document.createTreeWalker(root, NodeFilter.SHOW_TEXT), ns = []; while (tw.nextNode()) if (/[०-९੦-੯]/.test(tw.currentNode.data)) ns.push(tw.currentNode);
+  ns.forEach(latNode);
+}
+new MutationObserver(ms => ms.forEach(m => m.type === 'characterData' ? latNode(m.target) : m.addedNodes.forEach(latNode))).observe(document.documentElement, {childList: true, subtree: true, characterData: true});
+latNode(document.body);
 const ORDH = ['', 'पहला', 'दूसरा', 'तीसरा', 'चौथा', 'पाँचवाँ', 'छठा', 'सातवाँ', 'आठवाँ', 'नवाँ', 'दसवाँ', 'ग्यारहवाँ', 'बारहवाँ', 'तेरहवाँ', 'चौदहवाँ', 'पंद्रहवाँ', 'सोलहवाँ', 'सत्रहवाँ', 'अठारहवाँ', 'उन्नीसवाँ', 'बीसवाँ', 'इक्कीसवाँ', 'बाईसवाँ', 'तेईसवाँ', 'चौबीसवाँ', 'पचीसवाँ', 'छब्बीसवाँ', 'सत्ताईसवाँ', 'अट्ठाईसवाँ', 'उनतीसवाँ', 'तीसवाँ'];
 const TYPEN = {do: ['दोहा', 'Dohā'], so: ['सोरठा', 'Sorathā'], cha: ['छंद', 'Chhand'], shloka: ['श्लोक', 'Śloka'], cau: ['चौपाई', 'Chaupāī']};
 const TYPE = new Proxy({}, {get: (o, k) => TYPEN[k] ? T(TYPEN[k][0], TYPEN[k][1]) : ''});
@@ -325,8 +337,7 @@ function verseHTML(i){
   const vcls = '<div class="vtext' + (VEDIC.test(vv.v.join('')) ? ' vedic' : '') + '">';
   const pl = vv.v.map((l, y) => {
     const last = y === vv.v.length - 1;
-    let ln = last && (it.y === 'cau' || it.y === 'cha') && it.n && /॥\s*$/.test(l) && !/॥[^॥]+॥\s*$/.test(l) ? l.replace(/\s*॥\s*$/, ' ॥' + String(it.n).replace(/\d/g, d => DIG[d]) + '॥') : l;
-    if (LANG() === 'en') ln = ln.replace(/[०-९]/g, d => DIG.indexOf(d)).replace(/[੦-੯]/g, d => d.charCodeAt(0) - 0x0A66);
+    let ln = last && (it.y === 'cau' || it.y === 'cha') && it.n && /॥\s*$/.test(l) && !/॥[^॥]+॥\s*$/.test(l) ? l.replace(/\s*॥\s*$/, ' ॥' + it.n + '॥') : l;
     const w = wordsHTML(ln).replace(/॥\s*([0-9०-९੦-੯][^\s॥<]*)\s*॥/, '<span style="white-space:nowrap">॥$1॥</span>');
     // corners, each inside the gutter so they never touch the text: ▶ (top left, on the line of the bookmark),
     // bookmark (top right), ⋮ (bottom right). A one-line verse is given a second line's height so the corners stay apart.
