@@ -1258,7 +1258,7 @@ function timingHTML(){
   return h;
 }
 function checkList(){
-  const ids = [...SRC.au.checkSet].filter(id => ID[id] != null && !myStarts()[id]).sort((a, b) => ID[a] - ID[b]); if (!ids.length) return '<p class="small muted">' + T('जाँचने लायक कोई पद नहीं बचा।', 'Nothing left to check.') + '</p>';
+  const ids = [...((SRC.au && SRC.au.checkSet) || [])].filter(id => ID[id] != null && !myStarts()[id]).sort((a, b) => ID[a] - ID[b]); if (!ids.length) return '<p class="small muted">' + T('जाँचने लायक कोई पद नहीं बचा।', 'Nothing left to check.') + '</p>';
   return '<details class="tcheck"><summary>' + T('जाँचने हैं: ', 'To check: ') + DEV(ids.length) + T(' पद — इनकी शुरुआत अनुमानसे रखी गयी है', ' verses — their starts are estimated') + '</summary><div class="tlist">' + ids.slice(0, 400).map(id => '<button data-go-i="' + ID[id] + '">' + esc(itemLabel(ID[id])) + ' <span class="muted">' + fmtT(SRC.au.at[id][1]) + '</span></button>').join('') + '</div></details>';
 }
 // marks loaded from helpers' files that you have not checked yet

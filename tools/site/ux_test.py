@@ -938,6 +938,10 @@ async def main():
             openReader(o, b1); await new Promise(r => setTimeout(r, 600)); const nx = document.querySelector('.endb [data-next]'); WS().org = 'k';
             return [rows === PLAN[o].n, Math.abs(sum - tr) < 60, Math.abs(two * 2 - one) < 1, !!nx && nx.textContent.includes('≈')]; })()""")
         check('a plan day shows how long it takes to hear, at the speed set, also on the button to the next day', all(du), du)
+        # the timing panel can draw while a recording's lists are still being made: it must not throw
+        tc = await ev("""(async () => { await openWork('manas', true); await loadSources(); const A = SRC.au, on = S.timing.on, c = A.checkSet; S.timing.on = true; A.checkSet = undefined;
+            let ok = true; try { timingHTML(); } catch (e) { ok = String(e); } A.checkSet = c; S.timing.on = on; return ok; })()""")
+        check('the audio-timing panel draws before the recording\'s lists are ready', tc is True, tc)
         pf = await ev("(async () => { const P = PLANS[0]; const [a, b] = dayRange(P.id, 2); openReader(P.id, a + 3); await new Promise(r => setTimeout(r, 300)); itemMenu(a + 3); await new Promise(r => setTimeout(r, 200)); document.querySelector('#sheetBody [data-x=play]').click(); const r = [PL.end === b, PL.endMsg]; stopAudio(); return r; })()")
         check('Play from here ends with the open vishram, with its message', pf[0] and 'finished' in pf[1], pf)
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
