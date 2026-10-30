@@ -1,7 +1,12 @@
 """Look up Sanskrit words in Monier-Williams (1899) and Apte (1890), from the Cologne Digital Sanskrit Lexicon.
 
-    python3 tools/meanings/sanskrit_dict.py fetch                 # download the two dictionaries (~62 MB) once
+    python3 tools/meanings/sanskrit_dict.py fetch                 # download the two dictionaries (~62 MB)
+    python3 tools/meanings/sanskrit_dict.py check                 # exit 1 unless both are downloaded
     python3 tools/meanings/sanskrit_dict.py look शान्त निर्भर …     # print their entries for each word (Devanagari)
+
+The download lives outside the repository (CACHE below), so every new machine or cloud session starts without it:
+run `fetch` (or `check`) before any meaning is written, reviewed or applied. `look` downloads them itself when missing;
+`prepare.py` and `apply_batches.py` refuse to run without them.
 
 Used to check our word meanings (library/glossary/sa.json, and Sanskrit-derived Awadhi words) and our meanings of
 Sanskrit verses: tools/meanings/style.md §11. The data comes from the lexicon's own repository on GitHub
@@ -36,6 +41,9 @@ def slp1(w):
         i += 1
     return ''.join(out)
 
+def missing():
+    return [d for d in DICTS if not os.path.exists(os.path.join(CACHE, d + '.txt'))]
+
 def fetch():
     os.makedirs(CACHE, exist_ok=True)
     for d in DICTS:
@@ -45,6 +53,7 @@ def fetch():
 _IDX = {}
 def index(d):
     if d not in _IDX:
+        if missing(): fetch()
         idx = {}
         txt = open(os.path.join(CACHE, d + '.txt'), encoding='utf-8').read()
         for m in re.finditer(r'<L>[^\n]*?<k1>([^<\n]+)[^\n]*\n(.*?)<LEND>', txt, re.S):
@@ -63,6 +72,10 @@ def look(word, limit=6):
 
 if __name__ == '__main__':
     if sys.argv[1:2] == ['fetch']: fetch()
+    elif sys.argv[1:2] == ['check']:
+        m = missing()
+        if m: sys.exit(f'The Sanskrit dictionaries are not downloaded ({", ".join(m)}): run python3 tools/meanings/sanskrit_dict.py fetch')
+        print('Monier-Williams and Apte are downloaded:', CACHE)
     elif sys.argv[1:2] == ['look']:
         for w in sys.argv[2:]:
             k, out = look(w); print(f'== {w} ({k})'); print('\n'.join(out) or '   (not found as a headword; try the stem)')

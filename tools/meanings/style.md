@@ -3,9 +3,13 @@
 Every meaning we write (sources `hi-scriptures` / `en-scriptures`, titled "भावार्थ — शास्त्र" / "Meaning — Scriptures") follows this sheet, so that all our meanings read as one voice. The rules behind it are in `docs/PLAYBOOK.md` §4. Check every batch with `tools/meanings/overlap.py`. A change of rule is made here first, then in every meaning.
 
 ## 1. The one rule
-**The source is the verse and its word meanings** (`library/glossary/`, checked against trusted dictionaries: §11), read in context: who is speaking to whom, what has just happened. Write the meaning from that.
+**Accuracy and consistency come first, and are never traded for anything else** — not for distance from another translation, not for style.
 
-Only then open the published meanings (Gita Press, Growse), as guidance: to check understanding, and to take whatever makes ours better — an interpretation, a line of thought, a well-chosen word, a short phrase, a way of ordering. What we never take is their sentences: copyright protects wording, so no copied sentence (`overlap.py` stops at 10 or more consecutive words in common) and no sentence-by-sentence rewording of one. A shorter shared run (6–9 words) is fine when it is simply the natural words or the verse's own list — the meaning is made from the verse, and two faithful translations meet (the owner: "if we are creating our own meaning from the words then it should be fine"); it is listed and read, and rewritten only if it is their phrasing rather than the natural one. Never make a sentence less natural just to dodge the check.
+**The meaning comes from the verse, its word meanings, the dictionaries and its context in the work overall and in the nearby verses.** Read the verse with our word meanings (`library/glossary/`), look up every hard Sanskrit or Sanskrit-derived word in Monier-Williams and Apte (§11; `python3 tools/meanings/sanskrit_dict.py look <word>`), and read it in its context: in the nearby verses, who is speaking to whom and what has just happened; in the work overall, what this moment means in it (for the Mānas, in the Rāmāyaṇa). Often the context makes the sense plain where the words alone leave it open; derive the meaning from both. Write the whole draft from that, **without any published meaning open**.
+
+Only after the draft, open the published meanings (Gita Press; Growse's 1883 translation where a copy is at hand, §11) to check the reading: a hard word, an allusion, who "he" is. Where theirs is the better reading, take the reading — **the sense of the verse belongs to no one**, so when the right meaning is the same as Gita Press's, ours says the same thing (the owner: "I don't like changing them or distorting the meanings to match the copyright meanings"). What we never take is their **wording**: no copied sentence (`overlap.py` stops at 10 or more consecutive words in common), no sentence-by-sentence rewording of one, none of their bracketed additions. A shorter shared run (6–9 words) is fine when it is the natural words or the verse's own list (the owner: "if we are creating our own meaning from the words then it should be fine").
+
+**When wording must change to avoid a copy, change only the wording.** Keep the subject, object, speaker, tense, number and every clause exactly; never move a reading away from the right one, never add or drop a word of sense, never make a sentence less natural just to pass the check. Every reworded piece is read against the verse again before it goes in.
 
 ## 2. What a meaning is
 - **What the verse says, all of it, nothing more.** Every clause of the verse is in the meaning; nothing is added that the verse does not say or plainly imply. No commentary, no moral drawn, no "that is to say".
@@ -13,8 +17,9 @@ Only then open the published meanings (Gita Press, Growse), as guidance: to chec
 - **Length:** a caupāī one or two sentences; a dohā or sorathā one or two; a chhanda as many as its four lines need; a śloka one to three.
 - **Brackets:** none as a habit. Write implied words into the sentence. A short gloss in round brackets only where a word would otherwise be unclear to most readers and cannot be worked into the sentence (once, not on every occurrence). Never square brackets.
 - **Verse numbers:** every meaning ends with the verse's number as the verse shows it — `॥१७॥`, `॥३० (क)॥` in Hindi, `॥17॥`, `॥30 (क)॥` in English. They are **not** written in the meaning files: the exporter adds them from the verse itself, so they always match. No speaker tags in brackets.
-- **People as a group:** where a verse speaks of a group of people — women, a caste, the unlettered, a people — use respectful, neutral words for them (स्त्री / woman, not औरत or a slur; "the unlettered", not "boors") and the milder sense where the word allows it (ताड़ना → शिक्षा / instruction), while keeping what the verse says. Nothing is added to excuse or explain the verse.
-- **Doubt:** where the verse is genuinely ambiguous or traditions read it differently, give the plain reading of the words in the meaning, and record the issue in `docs/reviews/<work>-doubts.jsonl` (`{"id", "issue", "our reading", "alternatives"}`). The owner decides; a decided doubt is applied and removed from the file.
+- **People as a group (women, a caste, the unlettered, a people of the forest, another sect):** fair, never distorted. Use respectful, neutral words (स्त्री / woman, not औरत or a slur; "the unlettered", not "boors"); where a word has an established milder sense, use it (the owner approved ताड़ना → शिक्षा / instruction in sundar.59.cau3); never make a line harsher than the verse; and make clear who is speaking (the frightened Ocean, a description of Kali-yuga's decline), so a character's words never read as a timeless instruction. What the words plainly say is not softened (aranya.34.cau1 stays as it reads, the owner's decision). Nothing is added to excuse or explain the verse; a reading that is open goes in the doubts file.
+- **Aphorisms and lessons** (सूक्तियाँ, नीति — the verses people quote): present them well. A clear, complete sentence that reads on its own and can be carried away, in the verse's own image and order, without a moral added that the verse does not draw.
+- **Doubt:** where the verse is genuinely ambiguous or traditions read it differently, give the plain reading of the words in the meaning, and record the issue in `docs/reviews/<work>-doubts.jsonl` (the Mānas: one file per kāṇḍa, `docs/reviews/<date>-manas-<kāṇḍa>-doubts.jsonl`) as `{"id", "issue", "our reading", "alternatives"}`. The owner decides; a decided doubt is applied and removed from the file.
 
 ## 3. Speakers and the nested dialogue
 - The Mānas is told by Śiva to Pārvatī (उमा, भवानी, गिरिजा), Kākabhuśuṇḍi to Garuḍa (खगेस, खगपति, उरगारि), Yājñavalkya to Bharadvāja, and Tulasīdāsa to the reader. When the verse addresses one of them, keep the address ("हे उमा!" / "Umā,"); do not add the narrator when the verse does not name one.
@@ -23,7 +28,7 @@ Only then open the published meanings (Gita Press, Growse), as guidance: to chec
 - **Each speaker keeps his tone.** Devotees and the narrator use honorifics; Rāvaṇa, Laṅkinī or a mocking rākṣasa do not: Rāvaṇa's "तपसी" stays "that ascetic", not "Śrī Rāmajī".
 
 ## 4. Hindi
-- Natural modern Hindi in our house style (as in `tools/works/sundarkand/meanings/hi/scriptures.json`, Sukhmani, Rudram, Īśa).
+- Natural modern Hindi in our house style (as in the owner-approved Sundarakāṇḍa: the `sundar.` entries of `tools/works/manas/meanings/hi/scriptures.json`, the same as `tools/works/sundarkand/meanings/hi/scriptures.json`; Sukhmani, Rudram, Īśa).
 - **Postpositions joined to the noun:** श्रीरामजीको, सीताजीसे, हनुमान्‌जीने, समुद्रके; pronouns too (उसको, उनके). Spellings of this style: लिये, गये, किये, दिये.
 - **Honorific plural** for the Lord, Sītā, Lakṣmaṇa, Hanumān, sages, elders and anyone the speaker honours: वे, उन्होंने, कहते हैं; "आप" when they are addressed by a devotee. The Lord addresses others, Hanumān included, with तुम (the owner's choice; Gita Press uses तू).
 - **Standard Hindi spelling for names** (विभीषण not बिभीषन, लक्ष्मण not लछिमन, जाम्बवान्‌ not जामवंत; the monkey king is बालि / Vāli, as the verse spells him, kept apart from बलि / Bali, the king Vāmana bound), anusvāra rather than a half-nasal (लंका, संत), ZWNJ in हनुमान्‌जी.
@@ -108,10 +113,12 @@ A stotra is a litany of names, and the names are its text: render each name as t
 - Keep to the verse: read every meaning a second time against the verse to catch additions (the verse says "the bounds", मरजादा, not "my bounds": sundar.59.cau3).
 
 ## 10. Before a batch goes in
+0. The dictionaries were in use from the first verse: `python3 tools/meanings/sanskrit_dict.py check` passes (no batch is made, written or applied without them).
 1. Every item has a Hindi and an English meaning, once, and nothing extra (the exporter checks).
 2. `python3 tools/meanings/overlap.py` passes (no 10+ run) for Hindi against `hi-gitapress` and English against `en-gitapress`; read its 6–9-word runs and the `--report` list of close rewordings side by side.
 3. A second reader who did not write the batch checks each meaning against the verse for accuracy and against this sheet.
-4. Doubts are in the doubts file, not in the meanings.
+4. Every piece reworded to avoid a copy has been read against the verse again (§1).
+5. Doubts are in the doubts file, not in the meanings.
 
 ## 11. Word meanings and dictionaries
 Our word meanings (`library/glossary/<lang>.json`) are the starting point. Where a word is hard, rare or its entry does not fit the line, check it in trusted dictionaries and fix the entry if it is wrong. The commit message says what changed and why.
