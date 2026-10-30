@@ -930,14 +930,14 @@ async def main():
                 'जय राम रमा रमनं समनं': 'uttar.14.cha1', 'होई है वही जो राम रचि राखा': 'bal.52.cau4', 'Jahan lagi nath': 'ayodhya.65.cau2', 'tan dhan dham': 'ayodhya.65.cau2', 'प्रभ कै सिमरनि गरभि न बसै': 'a01.p2'}
         bad = {q: fz.get(q) for q in want if fz.get(q) != want[q]}
         check('search forgives spelling: the verse meant comes first', not bad and fz['मंगल भवन अमंगल हारी'] and fz['mangal bhavan amangal hari'] == fz['मंगल भवन अमंगल हारी'] and fz['none'] is None, bad or fz)
-        # each plan day says how long it takes to hear; the days add up to the recordings; the speed shortens it; the next-day button says it too
+        # each plan day's ▶ says how long it plays; the days add up to the recordings; the speed shortens it; the next-day button says it too
         du = await ev("""(async () => { await openWork('manas', true); await loadSources(); const o = PLANS[0].id; WS().org = o; show('home'); renderHome(); await new Promise(r => setTimeout(r, 300));
-            const rows = document.querySelectorAll('#orgList .dur').length; let sum = 0; for (let n = 1; n <= PLAN[o].n; n++){ const [a, b] = dayRange(o, n); sum += spanSecs(a, b); }
+            const rows = document.querySelectorAll('#orgList .lplay.timed + .ldur').length; let sum = 0; for (let n = 1; n <= PLAN[o].n; n++){ const [a, b] = dayRange(o, n); sum += spanSecs(a, b); }
             const tr = AUT.reduce((s, L, t) => s + SRC.au.tracks[t].dur - L[0][1], 0), [a1, b1] = dayRange(o, 1), one = spanSecs(a1, b1);
             const r0 = S.settings.rate; S.settings.rate = 2; const two = spanSecs(a1, b1); S.settings.rate = r0;
-            openReader(o, b1); await new Promise(r => setTimeout(r, 600)); const nx = document.querySelector('.endb [data-next]'); WS().org = 'k';
-            return [rows === PLAN[o].n, Math.abs(sum - tr) < 60, Math.abs(two * 2 - one) < 1, !!nx && nx.textContent.includes('≈')]; })()""")
-        check('a plan day shows how long it takes to hear, at the speed set, also on the button to the next day', all(du), du)
+            openReader(o, b1); await new Promise(r => setTimeout(r, 600)); const nx = document.querySelector('.endb [data-next] + .ndur'); WS().org = 'k';
+            return [rows === PLAN[o].n, Math.abs(sum - tr) < 60, Math.abs(two * 2 - one) < 1, !!nx && nx.textContent.startsWith('▶')]; })()""")
+        check('a plan day\'s ▶ shows how long it plays, at the speed set; so does the next day at a day\'s end', all(du), du)
         # the timing panel can draw while a recording's lists are still being made: it must not throw
         tc = await ev("""(async () => { await openWork('manas', true); await loadSources(); const A = SRC.au, on = S.timing.on, c = A.checkSet; S.timing.on = true; A.checkSet = undefined;
             let ok = true; try { timingHTML(); } catch (e) { ok = String(e); } A.checkSet = c; S.timing.on = on; return ok; })()""")

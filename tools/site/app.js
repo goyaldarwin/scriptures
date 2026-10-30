@@ -396,7 +396,7 @@ function endHTML(){
   let h = '<div class="endb">';
   if (R.b === IT.length - 1) h += '<div class="colo">' + esc(TT(W.colophon) || '') + '</div>';
   if (R.org === 'k'){ const nx = PARTS[R.n + 1]; if (nx) h += '<button class="btn" data-next="' + nx.a + '">' + esc(KNAME(nx.k)) + ' ›</button>'; }
-  else { const P = PLAN[R.org]; if (R.n < P.n){ const [na, nb] = dayRange(R.org, R.n + 1), d = durLabel(spanSecs(na, nb)); h += '<button class="btn" data-next="' + na + '">' + VN(R.n + 1) + (d ? ' · ' + d : '') + ' ›</button>'; } }   // the next vishram with how long it takes to hear
+  else { const P = PLAN[R.org]; if (R.n < P.n){ const [na, nb] = dayRange(R.org, R.n + 1), d = durLabel(spanSecs(na, nb)); h += '<button class="btn" data-next="' + na + '">' + VN(R.n + 1) + ' ›</button>' + (d ? '<div class="ndur">▶ ' + d + '</div>' : ''); } }   // the next vishram, and how long it plays
   return h + '</div>';
 }
 function renderAround(i, focus){
@@ -752,9 +752,9 @@ function spanSecs(a, b){
     const e = L[k1][2] != null ? L[k1][2] : k1 + 1 < L.length ? L[k1 + 1][1] : SRC.au.tracks[t].dur; if (e > L[k0][1]) s += e - L[k0][1]; });
   return s ? s / RATE() : null;
 }
-// ≈ 48 min · ≈ 1 h 5 min (to the nearest minute)
+// 48 m · 4 h 58 m (४ घं ५८ मि), to the nearest minute: a listening time, so it is shown with ▶, never as the time to read
 function durLabel(sec){ if (!sec) return ''; const m = Math.max(1, Math.round(sec / 60)), h = Math.floor(m / 60), r = m % 60;
-  return '≈ ' + (h ? DEV(h) + T(' घंटा', ' h') + (r ? ' ' + DEV(r) + T(' मिनट', ' min') : '') : DEV(m) + T(' मिनट', ' min')); }
+  return h ? DEV(h) + T(' घं', ' h') + (r ? ' ' + DEV(r) + T(' मि', ' m') : '') : DEV(m) + T(' मि', ' m'); }
 function applyRate(){ if (ytOK) ytPost('setPlaybackRate', [RATE()]); if (PL.on) $('#pTrack').textContent = playingName(); $('#pRate').textContent = RATE() + '×'; }
 // the speed button in the player bar: one tap moves to the next speed, round and round
 $('#pRate').onclick = () => { S.settings.rate = RATES[(RATES.indexOf(RATE()) + 1) % RATES.length]; save(); applyRate(); toast(T('गति ', 'Speed ') + RATE() + '×'); };
@@ -1122,7 +1122,7 @@ function renderHome(){
     // pages read before the first day and after the reading (pūrvāṅga / uttarāṅga), when the plan names them
     const page = (pg, when) => { const t = pg === 'aarti' ? T('श्रीरामायणजीकी आरती', 'Śrī Rāmāyaṇajī kī Āratī') : pg === 'visarjan' ? TT(W.vidhi.visarjan.title) : T('पारायण-विधि', 'Pārāyaṇa vidhi'); if (pg === 'visarjan') when = T('पारायणके अन्तिम दिन', 'On the last day of the pārāyaṇa'); return '<li class="rowp"><button class="it" data-page="' + pg + '"><span class="no pg"><svg><use href="#i-lamp"/></svg></span><span class="grow"><span class="ti">' + t + '</span><br><span class="ds">' + when + '</span></span><span class="chev">›</span></button></li>'; };
     (P.before || []).forEach(pg => h += page(pg, T('पाठसे पहले', 'Before the reading')));
-    for (let n = 1; n <= P.n; n++){ const [a, b] = dayRange(org, n), d = DONE(ME(), org)[n]; h += '<li class="rowp">' + play(org, a, b) + '<button class="it" data-open="' + a + '"><span class="no' + (d ? ' done' : '') + '">' + (d ? '✓' : DEV(n)) + '</span><span class="grow"><span class="ti">' + VN(n) + '</span><br><span class="ds">' + rangeDesc(a, b) + (spanSecs(a, b) ? '<br><span class="dur">' + durLabel(spanSecs(a, b)) + '</span>' : '') + '</span></span><span class="chev">›</span></button></li>'; }
+    for (let n = 1; n <= P.n; n++){ const [a, b] = dayRange(org, n), d = DONE(ME(), org)[n], t = firstAu(a, b) != null ? durLabel(spanSecs(a, b)) : ''; h += '<li class="rowp">' + (t ? play(org, a, b).replace('class="lplay"', 'class="lplay timed"') + '<span class="ldur">' + t + '</span>' : play(org, a, b)) + '<button class="it" data-open="' + a + '"><span class="no' + (d ? ' done' : '') + '">' + (d ? '✓' : DEV(n)) + '</span><span class="grow"><span class="ti">' + VN(n) + '</span><br><span class="ds">' + rangeDesc(a, b) + '</span></span><span class="chev">›</span></button></li>'; }
     (P.after || []).forEach(pg => h += page(pg, T('पाठके बाद', 'After the reading'))); }
   $('#orgList').innerHTML = h;
   $$('#orgList [data-open]').forEach(b => b.onclick = () => openReader(org, +b.dataset.open));
