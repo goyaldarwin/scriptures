@@ -187,6 +187,7 @@ body.playing #rBody{padding-bottom:150px}
 .vb.vplay svg{fill:var(--saffron);stroke:none;width:34px;height:34px;margin-left:-4px}   /* as easy to see as the bookmark sign */.vb.vplay{width:30px}
 .revd{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--indigo);box-shadow:0 0 0 2px var(--bg);flex:none}   /* "Review audio timing": one blue dot on ▶ and in ⋮ */
 .vb.vplay .revd{position:absolute;top:calc(50% - 17px);right:-4px}
+.vflag{position:absolute;left:-28px;bottom:0;height:calc(var(--verse-size) * 1.6);display:flex;align-items:center}.vflag .vb{width:26px;color:var(--indigo);opacity:.85}.vflag .vb svg{width:19px;height:19px;stroke-width:1.8}.vflag .vb.on{opacity:1;--flag-fill:var(--indigo)}   /* ⚑ review audio timing: blue, filled once marked */
 .menu button .revd{margin-left:auto;box-shadow:none}
 .vbm{position:absolute;right:-25px;top:0;height:calc(var(--verse-size) * 1.6)}
 .vtext p.one{padding:calc(var(--verse-size) * .8) 0}
@@ -344,6 +345,7 @@ body.playing #rBody{padding-bottom:240px}
  <symbol id="i-prev" viewBox="0 0 24 24"><path d="M7 5v14M18 6l-8 6 8 6z" fill="currentColor"/></symbol>
  <symbol id="i-next" viewBox="0 0 24 24"><path d="M17 5v14M6 6l8 6-8 6z" fill="currentColor"/></symbol>
  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+ <symbol id="i-flag" viewBox="0 0 24 24"><path d="M4 22V15"/><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" style="fill:var(--flag-fill,none)"/></symbol>
  <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/></symbol>
  <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
