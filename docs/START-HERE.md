@@ -47,7 +47,7 @@ library/ ─ tools/site/build.py (checks everything first) ─► index.html, ap
 
 | Work (shelf path under `hinduism/` or `sikhism/`) | Text | Meanings shown first | Recording |
 |---|---|---|---|
-| Śrī Rāmacaritamānasa (`granth/tulsidas/ramcharitmanas`) | Gita Press, complete; 30-day and 9-day plans with vidhi, āratī and visarjana | Gita Press (ours, the second source, written for the Kiṣkindhā and Sundara-kāṇḍas) | Pt. Kamlesh Upadhyay, live; the owner corrects times by ear |
+| Śrī Rāmacaritamānasa (`granth/tulsidas/ramcharitmanas`) | Gita Press, complete; 30-day and 9-day plans with vidhi, āratī and visarjana | Gita Press (ours, the second source, written for the Araṇya-, Kiṣkindhā-, Sundara- and Uttara-kāṇḍas) | Pt. Kamlesh Upadhyay, live; the owner corrects times by ear |
 | Sundarakāṇḍa (`granth/tulsidas/sundarkand`) | from the Mānas, plus opening prayers, Hanumān Chālīsā, āratī | ours | Pt. Ashwin Kumar Pathak, live |
 | Śrī Rāma Rakṣā Stotram (`stotra/rama/ramraksha`) | a video's on-screen text | ours | Vande Guru Paramparaam, live |
 | Bilvāṣṭakam (`stotra/shiva/bilvashtakam`) | the owner's pasted text, checked against sanskritdocuments.org | ours | Sounds of Isha, live (it does not sing śloka 2 or the phalaśruti) |
