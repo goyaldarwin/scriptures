@@ -858,7 +858,7 @@ async def main():
         check('labels: the template uses the app\'s vocabulary', not bad, bad)
         # ⋮ order: Play from here · Write a note · Copy verse and meaning · Correct …
         order = await ev("(async () => { await openWork('manas', true); show('home'); openReader('k', 0); await new Promise(r => setTimeout(r, 300)); itemMenu(0); await new Promise(r => setTimeout(r, 200)); const r = [...document.querySelectorAll('#sheetBody [data-x]')].map(b => b.dataset.x); closeSheet(); return r; })()")
-        check('⋮: Write a note comes before Copy verse and meaning', order[:4] == ['play', 'note', 'copy', 'edit'], order)
+        check('⋮: Play from here · Write a note · Review audio timing · Copy verse and meaning · Improve', order[:5] == ['play', 'note', 'flag', 'copy', 'edit'], order)
         # line by line: a source with a piece per verse line shows each piece under its line; a source
         # without pieces, and a verse with no pieces at all, show the meaning whole after the verse
         lbl = await ev("""(async () => { await openWork('sukhmani-sahib', true); S.settings.layers = {h: true, e: true, w: false}; S.settings.pair = 'hi,en'; S.settings.recite = false; await loadSources();
@@ -930,6 +930,19 @@ async def main():
                 'जय राम रमा रमनं समनं': 'uttar.14.cha1', 'होई है वही जो राम रचि राखा': 'bal.52.cau4', 'Jahan lagi nath': 'ayodhya.65.cau2', 'tan dhan dham': 'ayodhya.65.cau2', 'प्रभ कै सिमरनि गरभि न बसै': 'a01.p2'}
         bad = {q: fz.get(q) for q in want if fz.get(q) != want[q]}
         check('search forgives spelling: the verse meant comes first', not bad and fz['मंगल भवन अमंगल हारी'] and fz['mangal bhavan amangal hari'] == fz['मंगल भवन अमंगल हारी'] and fz['none'] is None, bad or fz)
+        # “Review audio timing” in the verse's ⋮ menu: only that verse joins the to-check list (seen in timing mode); one blue dot on ▶
+        # and in the menu shows it is marked; it leaves the list once its start is set
+        fg = await ev("""(async () => { const k0 = JSON.stringify(S.timing.flags); await openWork('manas', true); await loadSources(); show('home');
+            const i = IT.findIndex(x => x.id === 'bal.1.cau2'); openReader('k', i); await new Promise(r => setTimeout(r, 500));
+            S.timing.on = true; const before = new Set(toCheckIds()); S.timing.on = false;
+            itemMenu(i); await new Promise(r => setTimeout(r, 150)); const menu = [...document.querySelectorAll('#sheetBody [data-x]')].map(b => b.dataset.x);
+            document.querySelector('#sheetBody [data-x=flag]').click(); await new Promise(r => setTimeout(r, 200));
+            S.timing.on = true; const added = toCheckIds().filter(j => !before.has(j)); S.timing.on = false;
+            itemMenu(i); await new Promise(r => setTimeout(r, 150)); const off = !!document.querySelector('#sheetBody [data-x=flag] .revd') && !!document.querySelector('#v' + i + ' .vplay .revd'); closeSheet();
+            flagDone(IT[i].id); S.timing.on = true; const gone = !toCheckIds().includes(i) || before.has(i); S.timing.on = false;
+            S.timing.flags = JSON.parse(k0); syncFlags(); save();
+            return [menu.slice(0, 5).join() === 'play,note,flag,copy,edit', added.length === 1 && added[0] === i, off, gone]; })()""")
+        check('timing flag in ⋮: “Review audio timing” (third in ⋮) puts only that verse on the check list; one blue dot on ▶ and in ⋮ shows it; it leaves once set', all(fg), fg)
         # every number is shown as 1 2 3, in Hindi too; a digit inside a word (ओ३म्) and what a textarea holds stay as written
         nm = await ev("""(async () => { const ui = S.settings.ui, ly = JSON.stringify(S.settings.layers); S.settings.ui = 'hi'; applyLang(); await openWork('manas', true); await loadSources(); S.settings.layers = {h: true, e: false, w: false}; syncLayers();
             show('home'); renderHome(); await new Promise(r => setTimeout(r, 300)); const home = document.querySelector('#home').innerText;
