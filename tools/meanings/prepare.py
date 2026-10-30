@@ -12,7 +12,8 @@ OUT_DIR/batch-NN.ids (one id per line), which is what the writer must cover exac
 
 It reads only; it never writes into library/ or the meaning files.
 """
-import argparse, json, os, re
+import argparse, json, os, re, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 PUNCT = re.compile(r"[।॥|,.;:!?\-—‘’“”'\"()\[\]०-९੦-੯0-9]")   # the app's rule (tools/site/app.js): Devanagari and Gurmukhi digits are verse numbers
@@ -23,6 +24,10 @@ def main():
     ap.add_argument('--size', type=int, default=50); ap.add_argument('--context', type=int, default=6)
     ap.add_argument('--work', default='manas')
     a = ap.parse_args()
+    import sanskrit_dict   # Monier-Williams and Apte check the hard words (style.md); no batch is made without them
+    missing = [d for d in sanskrit_dict.DICTS if not os.path.exists(os.path.join(sanskrit_dict.CACHE, d + '.txt'))]
+    if missing:
+        raise SystemExit(f'The Sanskrit dictionaries are not downloaded ({", ".join(missing)}): run python3 tools/meanings/sanskrit_dict.py fetch first')
     lib = os.path.join(REPO, 'library'); folder = os.path.join(REPO, 'tools', 'works', a.work)
     path = json.load(open(os.path.join(folder, 'work.json'), encoding='utf-8'))['path']
     W = json.load(open(os.path.join(lib, path, 'work.json'), encoding='utf-8'))
