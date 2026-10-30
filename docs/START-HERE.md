@@ -18,7 +18,8 @@ This repository holds everything about the scriptures library: the website, the 
 | `docs/ROADMAP.md` | work not done yet |
 | `docs/APPS.md` | the store apps |
 | `docs/reviews/` | open questions for the owner |
-| `tools/meanings/style.md` | how our meanings are written |
+| `tools/meanings/style.md` | how our meanings are written (§1 first: from the verse, its word meanings, the dictionaries and its context in the work and the nearby verses; accuracy never traded away) |
+| `tools/meanings/briefs/` | the brief for each step of writing a kāṇḍa of the Mānas: writer, reviewer, copy auditor, accuracy checker, consistency pass (`docs/HOW-TO.md`) |
 | `tools/works/README.md` | the format of a work's folder (`work.json`, `text.txt`, meanings, recordings) and the one exporter |
 | `tools/works/<work>/README.md` | each work: its sources, files and structure; `reconciliation.md`: every difference from its sources and why |
 
