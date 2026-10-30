@@ -51,7 +51,7 @@ library/ ─ tools/site/build.py (checks everything first) ─► index.html, ap
 
 | Work (shelf path under `hinduism/` or `sikhism/`) | Text | Meanings shown first | Recording |
 |---|---|---|---|
-| Śrī Rāmacaritamānasa (`granth/tulsidas/ramcharitmanas`) | Gita Press, complete; 30-day and 9-day plans with vidhi, āratī and visarjana | Gita Press (ours, the second source, written for every kāṇḍa but the Bāla-kāṇḍa) | Pt. Kamlesh Upadhyay, live; the owner corrects times by ear |
+| Śrī Rāmacaritamānasa (`granth/tulsidas/ramcharitmanas`) | Gita Press, complete; 30-day and 9-day plans with vidhi, āratī and visarjana | Gita Press (ours, the second source, written for every kāṇḍa but the Bāla-kāṇḍa) | Pt. Kamlesh Upadhyay, live; the owner corrects times by ear; 136 starts where Meta's MMS aligner disagrees by more than 5 s are on the to-check list (`check.json`) |
 | Sundarakāṇḍa (`granth/tulsidas/sundarkand`) | from the Mānas, plus opening prayers, Hanumān Chālīsā, āratī | ours | Pt. Ashwin Kumar Pathak, live |
 | Śrī Rāma Rakṣā Stotram (`stotra/rama/ramraksha`) | a video's on-screen text | ours | Vande Guru Paramparaam, live |
 | Bilvāṣṭakam (`stotra/shiva/bilvashtakam`) | the owner's pasted text, checked against sanskritdocuments.org | ours | Sounds of Isha, live (it does not sing śloka 2 or the phalaśruti) |
@@ -76,4 +76,6 @@ library/ ─ tools/site/build.py (checks everything first) ─► index.html, ap
 - Bhaja Govindam verse 29: नास्ति ततः written as two words, on one witness (`tools/works/bhaja-govindam/reconciliation.md`).
 - Māṇḍūkya m06: the visarga in एष सर्वेश्वरः एष kept as printed (`tools/works/mandukya-upanishad/reconciliation.md`).
 - Private copies not yet in `scriptures-data`: the Gaṅgā āratī screenshot, the jansatta.com printout of the Rāma āratīs, the Māṇḍūkya's sanskritdocuments.org and freepressjournal.in printouts and its recording.
+- The Mānas timings: the owner is setting by ear the 136 starts MMS doubts (`tools/works/manas/audio/kamlesh-upadhyay/check.json`). Then compare his times with MMS's and the library's to decide whether MMS retimes, or lists for checking, the 1,108 verses where the two differ by more than 2 s (the experiment and its figures: `experiments/align/README.md` in `scriptures-data`).
 - Offered, not built: "⏹ End / ⏱ Next starts" buttons in the player for audio timing.
+- Offered, not built: sending a listener's "Review audio timing" marks to the owner, as times are sent (marks stay on the phone they were made on).
