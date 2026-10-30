@@ -342,9 +342,13 @@ function verseHTML(i){
     const w = wordsHTML(ln).replace(/॥\s*([0-9०-९੦-੯][^\s॥<]*)\s*॥/, '<span style="white-space:nowrap">॥$1॥</span>');
     // corners, each inside the gutter so they never touch the text: ▶ (top left, on the line of the bookmark),
     // bookmark (top right), ⋮ (bottom right). A one-line verse is given a second line's height so the corners stay apart.
-    const top = y === 0 ? (hasAu(i) ? '<button class="vb vplay" data-a="play" aria-label="play"><svg><use href="#i-play"/></svg>' + (SRC.au && flagsNow()[id] ? REVB : '') + '</button>' : '') + '<button class="vb vbm' + (bm ? ' bm-on' : '') + '" data-a="bm" aria-label="bookmark"><svg><use href="#i-bm"/></svg></button>' : '';
+    const top = y === 0 ? (hasAu(i) ? '<button class="vb vplay" data-a="play" aria-label="play"><svg><use href="#i-play"/></svg>' + (SRC.au && flagsNow()[id] && !(S.timing.flagsOn && !S.timing.on) ? REVB : '') + '</button>' : '') + '<button class="vb vbm' + (bm ? ' bm-on' : '') + '" data-a="bm" aria-label="bookmark"><svg><use href="#i-bm"/></svg></button>' : '';
     const undo = last && S.timing.on && SRC.au && myStarts()[id] ? '<span class="vundo"><button class="vb" data-a="tundo" aria-label="' + T('पहले जैसा', 'Undo') + '" title="' + T('पहले जैसा', 'Undo') + '"><svg><use href="#i-undo"/></svg></button></span>' : '';   // ↶ (bottom left) in timing mode, on a verse you set
-    const tail = last ? '<span class="vend"><button class="vb" data-a="menu" aria-label="more"><svg><use href="#i-more"/></svg></button></span>' + undo : '';
+    // ⚑ (bottom left) for the reader who turned on "A flag on each verse" (☰ › More settings › Audio timing), outside timing
+    // mode (where ↶ has that corner): shown while playing on the verse being recited and the verses just before and after it
+    // (the light may already have moved on), and always once marked "Review audio timing" (filled blue; ▶ then needs no dot)
+    const flagOn = S.timing.flagsOn && !S.timing.on, flag = last && flagOn && hasAu(i) ? '<span class="vflag"><button class="vb' + (SRC.au && flagsNow()[id] ? ' on' : '') + '" data-a="tflag" aria-label="' + T('ऑडियोका समय जाँचें', 'Review audio timing') + '"><svg><use href="#i-flag"/></svg></button></span>' : '';
+    const tail = last ? '<span class="vend"><button class="vb" data-a="menu" aria-label="more"><svg><use href="#i-more"/></svg></button></span>' + undo + flag : '';
     return '<p' + (vv.v.length === 1 ? ' class="one"' : '') + '>' + top + w + tail + '</p>'; });
   let h = '<div class="verse' + (toCheck(i) ? ' tocheck' : '') + '" id="v' + i + '" data-i="' + i + '">';
   const trl = l => '<div>' + l.split(/(?<=,)\s+/).map(x => '<span class="half">' + esc(x).replace(/\s*॥\s*([^॥]*?)\s*॥((?:[^॥\s]+॥)*)/g, ' <span class="dd">॥$1॥$2</span>') + '</span>').join(' ') + '</div>';
@@ -502,9 +506,10 @@ function refreshReader(){
   $('#pages').innerHTML = h; $('#endB').innerHTML = endHTML();
   const el2 = document.getElementById('v' + i); if (el2) window.scrollBy(0, el2.getBoundingClientRect().top - off);
   if (PL.on && PL.cur >= 0){ const c = document.getElementById('v' + PL.cur); if (c) c.classList.add('now'); }
+  markNear();
   updateHeader();
 }
-function rerenderItem(i){ const el = document.getElementById('v' + i); if (!el) return; const tmp = document.createElement('div'); tmp.innerHTML = verseHTML(i); el.replaceWith(tmp.firstChild); if (PL.on && PL.cur === i) document.getElementById('v' + i).classList.add('now'); }
+function rerenderItem(i){ const el = document.getElementById('v' + i); if (!el) return; const tmp = document.createElement('div'); tmp.innerHTML = verseHTML(i); el.replaceWith(tmp.firstChild); if (PL.on && PL.cur === i) document.getElementById('v' + i).classList.add('now'); if (PL.on && Math.abs(PL.cur - i) === 1) document.getElementById('v' + i).classList.add('near'); }
 // The section picker: the row of kāṇḍas (or plan days) on top only chooses which list shows below; nothing opens until a
 // section is tapped — the current one too.
 function sectionSheet(n){
@@ -601,6 +606,7 @@ $('#rBody').addEventListener('click', ev => {
       setTime(i, act === 'tstart' ? 1 : 2, nowAt()); if (act === 'tstart'){ flagDone(IT[i].id); save(); } rerenderItem(i);
     }
     else if (act === 'tn'){ const x = SRC.au.at[IT[i].id], k = +a.dataset.k; if (setTime(i, k, Math.max(0, x[k] + a.dataset.d * step())) === false) return; if (k === 1){ flagDone(IT[i].id); save(); } rerenderItem(i); if (!livePlay()) snippet(i, k); }
+    else if (act === 'tflag') toggleFlag(i);
     else if (act === 'tok'){ unfrom(IT[i].id); flagDone(IT[i].id); save(); rerenderItem(i); toast(T('जाँच लिया — अब यह आपका है', 'Checked — it is now yours')); }
     else if (act === 'tundo'){ clearStart(i); toast(T('पहले जैसा', 'Restored')); }
     else if (act === 'tnone'){ setTime(i, 2, null); rerenderItem(i); }
@@ -692,6 +698,8 @@ function toggleFlag(i){
   if (!Object.keys(F).length) delete S.timing.flags[k]; save(); syncFlags(); rerenderItem(i); if (S.timing.on) syncCheck();
   toast(had ? T('ऑडियोका समय जाँचना — हटाया', 'Review audio timing — removed') : T('यह पद ऑडियोका समय जाँचनेकी सूचीमें', 'This verse is on the audio timing check list'));
 }
+// the verses next to the one being recited carry ⚑ too
+function markNear(){ $$('#rBody .verse.near').forEach(v => v.classList.remove('near')); if (!PL.on || PL.cur < 0) return; [PL.cur - 1, PL.cur + 1].forEach(j => { const el = document.getElementById('v' + j); if (el) el.classList.add('near'); }); }
 function flagDone(id){ const k = tkey(), F = S.timing.flags[k]; if (!F || !F[id]) return; delete F[id]; if (!Object.keys(F).length) delete S.timing.flags[k]; syncFlags(); }   // its start was set (or checked)
 function myStarts(){ return (SRC.au && S.timing.fix[tkey()]) || {}; }
 // a verse set by ear: on this phone (myStarts), or by the owner and published (the audio JSON's "own" list) — kept exactly as given
@@ -935,6 +943,7 @@ function setCur(i){
   // the player's timing wins: the page follows the light every time a new verse starts, whatever was
   // touched or scrolled meanwhile — no pause after a touch
   if (el){ el.classList.add('now'); if (!(S.timing.on && inView(el))) keepInView(el); }
+  markNear();
 }
 function stopAudio(){ ytPost('pauseVideo'); PL.on = false; PL.snip = null; $('#player').hidden = true; $('#pJump').hidden = true; document.body.classList.remove('playing'); $$('#rBody .verse.now').forEach(v => v.classList.remove('now')); }
 function playing(){ return ytInfo.st === 1 || ytInfo.st === 3; }
@@ -1275,7 +1284,8 @@ function renderSettings(){   // the "More" page: the rare things only — transl
 function pendingStarts(){ if (!SRC.au) return {}; const fx = myStarts(), sent = S.timing.sent[tkey()] || {}, out = {}; for (const id in fx) if (ID[id] != null && !fromOf(id) && JSON.stringify(sent[id]) !== JSON.stringify(fx[id])) out[id] = fx[id]; return out; }
 function timingHTML(){
   if (!W) return '';
-  let h = '<h2>' + T('ऑडियोका समय', 'Audio timing') + '</h2><p class="small muted">' + T('जहाँ पद और आवाज़ मेल न खाएँ, वहाँ ठीक करनेके लिये।', 'For fixing places where the lit verse and the voice do not match.') + '</p>' + sw('stm', T('ऑडियोका समय', 'Audio timing'), '', S.timing.on);
+  let h = '<h2>' + T('ऑडियोका समय', 'Audio timing') + '</h2><p class="small muted">' + T('जहाँ पद और आवाज़ मेल न खाएँ, वहाँ ठीक करनेके लिये।', 'For fixing places where the lit verse and the voice do not match.') + '</p>' + sw('stm', T('ऑडियोका समय', 'Audio timing'), '', S.timing.on) +
+    sw('stf', T('हर पदपर समय जाँचनेका झंडा', 'A flag on each verse to review its timing'), T('नीचे बाईं ओर; दबानेसे पद जाँचनेकी सूचीमें', 'Bottom left; a tap puts the verse on the to-check list'), !!S.timing.flagsOn);
   if (S.timing.on && SRC.au){
     const n = Object.keys(myStarts()).filter(id => ID[id] != null).length, p = Object.keys(pendingStarts()).length;
     h += (SRC.au.meta.draft ? sw('stp', T('यह रिकॉर्डिंग जाँच ली — सबके लिये चालू करें', 'This recording is checked: publish it for everyone'), (Object.keys(pendingStarts()).length > SEND_MAX ? T('भेजनेके अन्तिम भागके साथ जाएगा', 'Goes with the last part of the send') : T('भेजनेके साथ जाएगा', 'Goes with the next send')), !!(S.timing.publish || {})[tkey()]) : '') +
@@ -1287,7 +1297,7 @@ function timingHTML(){
   return h;
 }
 function checkList(){
-  const ids = [...((SRC.au && SRC.au.checkSet) || [])].filter(id => ID[id] != null && !myStarts()[id]).sort((a, b) => ID[a] - ID[b]); if (!ids.length) return '<p class="small muted">' + T('जाँचने लायक कोई पद नहीं बचा।', 'Nothing left to check.') + '</p>';
+  const ids = [...new Set([...[...((SRC.au && SRC.au.checkSet) || [])].filter(id => !myStarts()[id]), ...FLAGGED])].filter(id => ID[id] != null).sort((a, b) => ID[a] - ID[b]); if (!ids.length) return '<p class="small muted">' + T('जाँचने लायक कोई पद नहीं बचा।', 'Nothing left to check.') + '</p>';
   return '<details class="tcheck"><summary>' + T('जाँचने हैं: ', 'To check: ') + DEV(ids.length) + T(' पद — इनकी शुरुआत अनुमानसे रखी गयी है', ' verses — their starts are estimated') + '</summary><div class="tlist">' + ids.slice(0, 400).map(id => '<button data-go-i="' + ID[id] + '">' + esc(itemLabel(ID[id])) + ' <span class="muted">' + fmtT(SRC.au.at[id][1]) + '</span></button>').join('') + '</div></details>';
 }
 // marks loaded from helpers' files that you have not checked yet
@@ -1301,6 +1311,7 @@ function bindTiming(){
   $$('[data-go-i]').forEach(b => b.onclick = () => openReader('k', +b.dataset.goI, true));
   if (!$('#stm')) return;
   $('#stm').onchange = async e => { S.timing.on = e.target.checked; save(); applyTiming(); stopAudio(); await loadSources(); renderSettings(); };
+  if ($('#stf')) $('#stf').onchange = e => { S.timing.flagsOn = e.target.checked; save(); renderSettings(); };
   if ($('#stp')) $('#stp').onchange = e => { S.timing.publish = S.timing.publish || {}; if (e.target.checked) S.timing.publish[tkey()] = true; else delete S.timing.publish[tkey()]; save(); renderSettings(); };
   if ($('#tClear')) $('#tClear').onclick = clearTimingAsk;
   if ($('#tSend')) $('#tSend').onclick = sendStarts;

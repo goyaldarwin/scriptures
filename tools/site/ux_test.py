@@ -943,6 +943,22 @@ async def main():
             S.timing.flags = JSON.parse(k0); syncFlags(); save();
             return [menu.slice(0, 5).join() === 'play,note,flag,copy,edit', added.length === 1 && added[0] === i, off, gone]; })()""")
         check('timing flag in ⋮: “Review audio timing” (third in ⋮) puts only that verse on the check list; one blue dot on ▶ and in ⋮ shows it; it leaves once set', all(fg), fg)
+        # "A flag on each verse" (Audio timing settings): off, no flag; on, while playing, a blue ⚑ bottom left of the verse recited and
+        # its neighbours, outside timing mode; a tap fills it, marks the verse (on the settings' to-check list too, and ▶ needs no dot); timing mode hides it
+        vf = await ev("""(async () => { const k0 = JSON.stringify(S.timing.flags), f0 = S.timing.flagsOn; await openWork('manas', true); await loadSources(); show('home');
+            const i = IT.findIndex(x => x.id === 'bal.1.cau2'); S.timing.flagsOn = false; openReader('k', i); await new Promise(r => setTimeout(r, 400)); const none = !document.querySelector('#v' + i + ' .vflag');
+            S.timing.flagsOn = true; refreshReader(); await new Promise(r => setTimeout(r, 400)); const d = j => getComputedStyle(document.querySelector('#v' + j + ' .vflag')).display, idle = d(i) === 'none';
+            stopAudio(); ytOK = false; PL.on = true; PL.t = AUT.findIndex(a => a.some(x => x[0] === i)); PL.cur = -1; $('#player').hidden = false; document.body.classList.add('playing'); setCur(i); await new Promise(r => setTimeout(r, 400));
+            const shown = [d(i - 1), d(i), d(i + 1), d(i + 2)].join() === 'flex,flex,flex,none' && !document.querySelector('#v' + i + ' .vflag .on');
+            document.querySelector('#v' + (i + 1) + ' [data-a=tflag]').click(); await new Promise(r => setTimeout(r, 200)); stopAudio(); await new Promise(r => setTimeout(r, 100));
+            const kept = d(i + 1) === 'flex' && d(i) === 'none'; document.querySelector('#v' + (i + 1) + ' [data-a=tflag]').click(); await new Promise(r => setTimeout(r, 100));
+            document.querySelector('#v' + i + ' [data-a=tflag]').click(); await new Promise(r => setTimeout(r, 200));
+            const filled = !!document.querySelector('#v' + i + ' .vflag .on') && !document.querySelector('#v' + i + ' .vplay .revd') && FLAGGED.has(IT[i].id);
+            const listed = checkList().includes('data-go-i="' + i + '"');
+            S.timing.on = true; refreshReader(); await new Promise(r => setTimeout(r, 300)); const hidden = !document.querySelector('#v' + i + ' .vflag'); S.timing.on = false;
+            S.timing.flags = JSON.parse(k0); S.timing.flagsOn = f0; syncFlags(); save(); refreshReader();
+            return [none, idle, shown, kept, filled, listed, hidden]; })()""")
+        check('“A flag on each verse”: while playing, a blue ⚑ on the verse recited and its neighbours; a tap fills it (shown after playing too) and lists the verse; hidden in timing mode', all(vf), vf)
         # every number is shown as 1 2 3, in Hindi too; a digit inside a word (ओ३म्) and what a textarea holds stay as written
         nm = await ev("""(async () => { const ui = S.settings.ui, ly = JSON.stringify(S.settings.layers); S.settings.ui = 'hi'; applyLang(); await openWork('manas', true); await loadSources(); S.settings.layers = {h: true, e: false, w: false}; syncLayers();
             show('home'); renderHome(); await new Promise(r => setTimeout(r, 300)); const home = document.querySelector('#home').innerText;
