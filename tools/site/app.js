@@ -137,6 +137,7 @@ const DONE = (p, plan) => ((p.done[W.id] = p.done[W.id] || {})[plan] = p.done[W.
 const LB = {
   h: () => T('हिंदी अर्थ', 'Hindi meaning'), e: () => T('अंग्रेज़ी अर्थ', 'English meaning'), w: () => T('शब्दार्थ', 'Word meanings'), au: () => T('ऑडियो', 'Audio'),
   tr: () => T('रोमन लिप्यन्तरण', 'Transliteration'), trSub: () => T('पदके नीचे रोमन अक्षरोंमें', 'The verse in Roman letters, under it'),
+  lines: () => T('पंक्ति-पंक्ति अर्थ', 'Meaning line by line'), linesSub: () => T('हमारे अर्थमें हर पंक्तिके नीचे उसका अर्थ; बंद हो तो पूरा अर्थ पदके बाद', 'Our meaning under each line of the verse; off, the whole meaning after the verse'),
   rc: () => T('पाठ मोड', 'Recitation mode'), rcSub: () => T('केवल मूल पाठ, बड़े अक्षर', 'Verses only, larger letters'),
   size: () => T('अक्षरका आकार', 'Letter size'), theme: () => T('रंग', 'Theme'), more: () => T('और सेटिंग', 'More settings'), tour: () => T('परिचय (टूर)', 'Take the tour'),
   sections: () => T('प्रसंग', 'Sections'), search: () => T('खोजें', 'Search'),
@@ -186,7 +187,7 @@ function openSheet(html){ $('#sheetBody').innerHTML = html; $$('#sheetBody [data
   sh.addEventListener('touchend', () => { if (y0 == null) return; sh.style.transition = ''; sh.style.transform = ''; if (dy > 80) closeSheet(); y0 = null; dy = 0; });
   sh.querySelector('.grab').addEventListener('click', () => closeSheet());
 })();
-function closeSheet(){ $('#sheet').classList.remove('on'); $('#scrim').classList.remove('on'); $$('.w.sel').forEach(w => w.classList.remove('sel')); }
+function closeSheet(){ $('#sheet').classList.remove('on'); $('#scrim').classList.remove('on'); $$('.w.sel, .mw.sel').forEach(w => w.classList.remove('sel')); }
 $('#scrim').onclick = () => closeSheet();
 function sw(id, label, sub, on, icon){ return '<label class="sw">' + (icon ? '<svg class="swic"><use href="#i-' + icon + '"/></svg>' : '') + '<span' + (icon ? ' style="flex:1"' : '') + '>' + label + (sub ? '<small>' + sub + '</small>' : '') + '</span><span class="tg"><input type="checkbox" id="' + id + '"' + (on ? ' checked' : '') + '><span></span></span></label>'; }
 
@@ -206,7 +207,7 @@ function langOf(i){ return (i != null && IT[i] && IT[i].l) || W.lang; }
 function langChain(lang){ return [lang].concat((LANGS[lang] || {}).fallback || []); }
 async function loadGlossaries(){
   if (!Object.keys(LANGS).length) LANGS = await getJSON('glossary/languages');
-  const need = new Set(); [W.lang].concat(IT.map(x => x.l).filter(Boolean)).forEach(l => langChain(l).forEach(c => need.add(c)));
+  const need = new Set(['hi', 'en']); [W.lang].concat(IT.map(x => x.l).filter(Boolean)).forEach(l => langChain(l).forEach(c => need.add(c)));   // hi, en: the hard words of the meanings
   await Promise.all([...need].filter(c => !GL[c]).map(async c => { try { GL[c] = await getJSON('glossary/' + c); } catch (e) { GL[c] = {}; } }));
   WG = {}; if (W.glossary){ try { WG = await getJSON(W.path + '/glossary'); } catch (e) {} }
 }
@@ -233,6 +234,21 @@ function wordsHTML(line){
   line = line.replace(/\s+(।|॥)/g, ' $1');
   const halves = line.split(/(?<=[।॥])\s+(?=[^\s।॥०-९੦-੯(])/).reduce((a, h) => { if (a.length && /^[।॥\s]+$/.test(a[a.length - 1])) a[a.length - 1] += ' ' + h; else a.push(h); return a; }, []);
   return halves.map(hf => '<span class="half">' + hf.split(/( +)/).map(tok => { if (/^ +$/.test(tok) || !cleanWord(tok)) return esc(tok); const m = tok.match(/^(.*?)( .*)?$/); return '<span class="w">' + esc(m[1]) + '</span>' + esc(m[2] || ''); }).join('') + '</span>').join(' ');
+}
+/* the hard words of our meanings: a word of a Hindi or English meaning whose entry in that language's dictionary
+   (the work's own glossary first, then glossary/hi.json or en.json) has "hard": true is faintly underlined and opens its meaning like a verse word. A joined
+   ending (मनमें, विषयोंसे, आसक्तियोंको) or an English plural, tense or 's is looked through to the entry. */
+const HARD_RE = {hi: /[\u0900-\u0963\u0966-\u097F\u200C\u200D]+/g, en: /[A-Za-zÀ-ɏḀ-ỿ]+(?:[’'][A-Za-zÀ-ɏḀ-ỿ]+)*/g};
+const HI_POST = ['वाला', 'वाली', 'वाले', 'में', 'से', 'को', 'का', 'की', 'के', 'ने', 'पर', 'तक'];
+function hardForms(w, lang){
+  if (lang === 'en'){ const x = w.toLowerCase().replace(/[’']s$/, ''); return [x, x.replace(/ies$/, 'y'), x.replace(/es$/, ''), x.replace(/s$/, ''), x.replace(/ed$/, ''), x.replace(/ed$/, 'e'), x.replace(/ing$/, ''), x.replace(/ing$/, 'e'), x.replace(/ly$/, '')]; }
+  const base = [w].concat(HI_POST.filter(p => w.length > p.length + 1 && w.endsWith(p)).map(p => w.slice(0, -p.length)));
+  return base.flatMap(x => [x, x.replace(/ियों$/, 'ि'), x.replace(/ियों$/, 'ी'), x.replace(/ओं$/, ''), x.replace(/ों$/, ''), x.replace(/ों$/, 'ा'), x.replace(/ें$/, ''), x.replace(/ें$/, 'ा'), x.replace(/े$/, 'ा')]);
+}
+function hardKey(w, lang){ const Ds = [WG[lang], GL[lang]].filter(Boolean); for (const k of hardForms(w, lang)) if (Ds.some(D => D[k] && D[k].hard)) return k; return null; }
+function hardWords(html, lang){   // html is already escaped; only whole words outside the tags are wrapped
+  const re = HARD_RE[lang]; if (!re || !(GL[lang] || WG[lang])) return html;
+  return html.split(/(<[^>]*>|&[a-z#0-9]+;)/).map((s, k) => k % 2 ? s : s.replace(re, w => { const key = hardKey(w, lang); return key ? '<span class="mw" data-mw="' + esc(key) + '" data-ml="' + lang + '">' + w + '</span>' : w; })).join('');
 }
 function wordList(lines){ const seen = new Set(), out = []; lines.forEach(l => l.split(/\s+/).forEach(t => { const w = cleanWord(t); if (w && !seen.has(w)){ seen.add(w); out.push(w); } })); return out; }
 function wbHTML(lines, lang){
@@ -355,12 +371,13 @@ function verseHTML(i){
   const trl = l => '<div>' + l.split(/(?<=,)\s+/).map(x => '<span class="half">' + esc(x).replace(/\s*॥\s*([^॥]*?)\s*॥((?:[^॥\s]+॥)*)/g, ' <span class="dd">॥$1॥$2</span>') + '</span>').join(' ') + '</div>';
   const num = x => esc(x).replace(/\s*(॥[^॥]*॥)\s*$/, '<span style="white-space:nowrap"> $1</span>');
   // one meaning layer: Hindi and Punjabi keep the verse number on its line; English only when line by line
-  const lay = (kind, m, x, fn) => '<div class="layer ' + LCLS(kind) + '">' + (kind !== 'en' || m.p ? num(x) : esc(x)) + (m.edited ? '<span class="tag">' + (kind === 'en' ? 'edited' : T('संशोधित', 'edited')) + '</span>' : '') + (fn && m.f ? '<div class="fn">' + m.f.map(esc).join('<br>') + '</div>' : '') + '</div>';
+  const lay = (kind, m, x, fn) => '<div class="layer ' + LCLS(kind) + '">' + hardWords(kind !== 'en' || m.p ? num(x) : esc(x), kind) + (m.edited ? '<span class="tag">' + (kind === 'en' ? 'edited' : T('संशोधित', 'edited')) + '</span>' : '') + (fn && m.f ? '<div class="fn">' + m.f.map(esc).join('<br>') + '</div>' : '') + '</div>';
   const ks = shownKinds(), MS = {}; ks.forEach(k => { const m = mean(k, i); if (m) MS[k] = m; });
   const on = ks.filter(k => MS[k]);
-  // line by line: a source that gives one piece per verse line shows each piece under its line; a
-  // source without pieces (or a reader's own correction of the verse or the meaning) is shown whole after the verse
-  const lines = m => m && !m.edited && !vv.edited && Array.isArray(m.p) && m.p.length === vv.v.length ? m.p : null;
+  // line by line (☰ › More settings › "Meaning line by line", off by default): a source that gives one piece per verse line
+  // shows each piece under its line; otherwise, and for a source without pieces (or a reader's own correction of the verse or
+  // the meaning), the meaning is shown whole after the verse
+  const lines = m => S.settings.lines && m && !m.edited && !vv.edited && Array.isArray(m.p) && m.p.length === vv.v.length ? m.p : null;
   const PS = {}; on.forEach(k => { PS[k] = lines(MS[k]); });
   const trOk = S.settings.tr && it.t && it.t.length === vv.v.length;
   // whole meanings: English after the word meanings, the others before them (as with हिं · En)
@@ -607,6 +624,7 @@ function setSize(d){
 $$('.szm').forEach(b => b.onclick = () => setSize(-2)); $$('.szp').forEach(b => b.onclick = () => setSize(2));
 $('#rBody').addEventListener('click', ev => {
   const nx = ev.target.closest('[data-next]'); if (nx){ openReader(R.org, +nx.dataset.next); return; }
+  const mw = ev.target.closest('.mw'); if (mw){ mw.classList.add('sel'); wordSheet(mw.dataset.mw, null, mw.dataset.ml); return; }   // a hard word of a meaning
   const v = ev.target.closest('.verse'), i = v ? +v.dataset.i : null;
   const a = ev.target.closest('[data-a]');
   if (a){
@@ -1297,13 +1315,14 @@ function pairPick(){ if (!W || workKinds().filter(k => k !== 'hi' && k !== 'en')
 function renderSettings(){   // the "More settings" page: the rare things only — transliteration, sources, audio timing, privacy
   const cur = S.src[W ? W.id : ''] || {};
   const pick = (kind, label, off) => { const list = W ? srcList(kind) : []; if (!list.length) return ''; const sel = cur[kind] || list[0].id; return '<div class="field"><label>' + label + '</label><select data-src="' + kind + '">' + list.map(s => '<option value="' + s.id + '"' + (sel === s.id ? ' selected' : '') + '>' + esc(TT(s.title)) + (s.draft ? T(' (जाँच बाकी)', ' (to be checked)') : '') + '</option>').join('') + (off ? '<option value="off"' + (sel === 'off' ? ' selected' : '') + '>' + T('बंद', 'Off') + '</option>' : '') + '</select></div>'; };
-  let h = '<h2>' + T('पढ़ना', 'Reading') + '</h2>' + sw('str', LB.tr(), LB.trSub(), S.settings.tr) +
+  let h = '<h2>' + T('पढ़ना', 'Reading') + '</h2>' + sw('str', LB.tr(), LB.trSub(), S.settings.tr) + sw('slines', LB.lines(), LB.linesSub(), S.settings.lines) +
     (W ? '<h2>' + LB.src() + ' · ' + esc(TT(W.title)) + '</h2>' + MK().map(k => pick(k, LBM(k))).join('') + pairPick() + pick('au', LB.au(), true) : '') +
     timingHTML() +
     '<h2>' + T('सहायता', 'Help') + '</h2><div class="acts"><a class="btn ghost" href="privacy.html" target="_blank" rel="noopener">' + T('गोपनीयता', 'Privacy') + '</a></div>' +
     '<div style="height:50px"></div>';
   $('#setBody').innerHTML = h;
   $('#str').onchange = e => { S.settings.tr = e.target.checked; save(); };   // seen in the reader on the next open
+  $('#slines').onchange = e => { S.settings.lines = e.target.checked; save(); };
   bindTiming();
   if ($('#sPair')) $('#sPair').onchange = e => { S.settings.pair = e.target.value; save(); syncLayers(); toast(T('बार बदला', 'Bar changed')); };
   $$('[data-src]').forEach(s => s.onchange = async () => { const c = S.src[W.id] = S.src[W.id] || {}; c[s.dataset.src] = s.value; save(); if (s.dataset.src === 'au') stopAudio(); await loadSources(); IDX = null; toast(T('स्रोत बदला', 'Source changed')); });

@@ -1,0 +1,37 @@
+{
+ "vidyā": {
+  "en": "knowledge; in this Upaniṣad, the worship of deities",
+  "hi": "ज्ञान; इस उपनिषद्‌में देवताओंकी उपासना",
+  "hard": true
+ },
+ "avidyā": {
+  "en": "ignorance; in this Upaniṣad, ritual works",
+  "hi": "अज्ञान; इस उपनिषद्‌में (यज्ञ आदि) कर्म",
+  "hard": true
+ },
+ "sambhūti": {
+  "en": "coming into being; here, the manifest",
+  "hi": "उत्पन्न होना; यहाँ व्यक्त (प्रकट) जगत्",
+  "hard": true
+ },
+ "asambhūti": {
+  "en": "the unborn; here, unmanifest nature, the cause of the world",
+  "hi": "जो उत्पन्न न हुआ हो; यहाँ अव्यक्त प्रकृति",
+  "hard": true
+ },
+ "sambhava": {
+  "en": "birth; here, the manifest",
+  "hi": "उत्पत्ति; यहाँ व्यक्त (प्रकट) जगत्",
+  "hard": true
+ },
+ "asambhava": {
+  "en": "the unborn; here, unmanifest nature",
+  "hi": "जो उत्पन्न न हो; यहाँ अव्यक्त प्रकृति",
+  "hard": true
+ },
+ "vināśa": {
+  "en": "destruction; here, the perishable (the manifest)",
+  "hi": "नाश; यहाँ नष्ट होनेवाला (व्यक्त) जगत्",
+  "hard": true
+ }
+}

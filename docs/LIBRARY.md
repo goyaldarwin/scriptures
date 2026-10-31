@@ -126,6 +126,7 @@ library/glossary/
   sa.json          Sanskrit
   awa.json         Awadhi
   mr.json Marathi · hi.json Hindi · bra.json Braj · pa.json Punjabi (Gurmukhi script; Gurbani)
+  en.json          English: only the hard words of our English meanings
 ```
 
 `languages.json`:
@@ -145,6 +146,8 @@ The file lists every language of a verse, and every language a meaning is writte
 Dictionary keys are written **without Vedic accent marks** (svara: U+0951–0954, U+1CD0–1CFF, U+A8E0–A8F1); the app removes them from a tapped word before looking it up, so a text keeps its svaras and still finds its meanings. Exporters must strip them the same way when they collect words.
 
 A dictionary (`<lang>.json`): `{"राम": {"hi": "भगवान श्रीराम", "en": "Lord Rama", "g": "grammar", "r": "root", "p": [["part", "meaning"]]}}`. Every entry has `hi` or `en`. An entry may also carry `"pa"`, its Punjabi meaning: the app shows it in the word sheet, and in the word list while the ਪੰ layer is on. No entry has one yet.
+
+**The hard words of our meanings** (`"hard": true`): a word of one of our Hindi or English meanings that a reader may not know (विषयासक्ति, अमृतत्व; "covet", "Pūṣan") has an entry in that language's dictionary (`hi.json`, `en.json`) marked `"hard": true`, with `hi` and `en` (a simple Hindi meaning and an English one) and, for Hindi, `g`. In the reader it is faintly underlined and opens its meaning like a verse word; other words of a meaning are plain text. The entry's key is the word's plain form: the app looks through a joined Hindi ending (मनमें, विषयोंसे, आसक्तियोंको → the word) and an English plural, tense or 's (lowercase keys). A sense that fits only one work (विद्या in the Īśāvāsya Upaniṣad) goes in that work's `glossary/<lang>.json` with `"hard": true`, and the exporter checks the word is in that work's meanings.
 
 **How a tapped word is looked up:**
 1. The verse's language comes from the item's `l`, otherwise the work's `lang`.

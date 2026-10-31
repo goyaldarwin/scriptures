@@ -866,7 +866,7 @@ async def main():
         check('⋮: Play from here · Write a note · Review audio timing · Copy verse and meaning · Improve', order[:5] == ['play', 'note', 'flag', 'copy', 'edit'], order)
         # line by line: a source with a piece per verse line shows each piece under its line; a source
         # without pieces, and a verse with no pieces at all, show the meaning whole after the verse
-        lbl = await ev("""(async () => { await openWork('sukhmani-sahib', true); S.settings.layers = {h: true, e: true, w: false}; S.settings.pair = 'hi,en'; S.settings.recite = false; await loadSources();
+        lbl = await ev("""(async () => { await openWork('sukhmani-sahib', true); S.settings.layers = {h: true, e: true, w: false}; S.settings.pair = 'hi,en'; S.settings.recite = false; S.settings.lines = true; await loadSources();
             const i = IT.findIndex(x => x.id === 'a01.p3'), it = IT[i], n = it.v.length;
             const keep = {h: SRC.hi.p, e: SRC.en.p}; SRC.hi.p = {}; SRC.en.p = {};
             SRC.en.p[it.id] = it.v.map((_, k) => k === 1 ? '' : 'EN' + k); SRC.hi.p[it.id] = it.v.map((_, k) => 'HI' + k);
@@ -877,17 +877,19 @@ async def main():
             const r2 = [w.querySelectorAll('.layer.e').length === 1, w.lastElementChild.classList.contains('e'), w.querySelectorAll('.layer.h').length === n];
             SRC.hi.p = {}; d.innerHTML = verseHTML(i); const u = d.firstElementChild;
             const r3 = [u.querySelectorAll('.vline').length === 0, u.querySelectorAll('.vtext').length === 1];
-            SRC.hi.p = keep.h; SRC.en.p = keep.e; delete S.settings.pair; return [...r1, ...r2, ...r3]; })()""")
-        check('meanings line by line: each piece under its line; a source without pieces shows whole after the verse; none at all keeps the verse whole', all(lbl), lbl)
+            SRC.hi.p = {[it.id]: it.v.map((_, k) => 'HI' + k)}; S.settings.lines = false; d.innerHTML = verseHTML(i); const o = d.firstElementChild;
+            const r4 = [o.querySelectorAll('.vline').length === 0, o.querySelectorAll('.layer.h').length === 1]; S.settings.lines = true;
+            SRC.hi.p = keep.h; SRC.en.p = keep.e; delete S.settings.pair; return [...r1, ...r2, ...r3, ...r4]; })()""")
+        check('meanings line by line (when chosen): each piece under its line; a source without pieces shows whole after the verse; none at all keeps the verse whole; not chosen, the meaning is whole', all(lbl), lbl)
         # line by line looks like pairs: no ॰ between a line and its meaning, a short dash between pairs, the full rule only at the end
-        look = await ev("""(async () => { await openWork('sukhmani-sahib', true); S.settings.layers = {h: false, e: true, w: false}; S.settings.recite = false; delete S.settings.pair; await loadSources(); syncLayers();
+        look = await ev("""(async () => { await openWork('sukhmani-sahib', true); S.settings.layers = {h: false, e: true, w: false}; S.settings.recite = false; S.settings.lines = true; delete S.settings.pair; await loadSources(); syncLayers();
             show('home'); openReader('k', IT.findIndex(x => x.id === 'a01.p3')); await new Promise(r => setTimeout(r, 500));
             const v = [...document.querySelectorAll('.verse')].find(e => e.querySelector('.vline')), ls = v.querySelectorAll('.vline'), m = v.querySelector('.vline + .layer');
             const dot = getComputedStyle(m, '::before').content, d1 = getComputedStyle(ls[0], '::before'), d2 = getComputedStyle(ls[1], '::before');
             return [dot === 'none', d1.content === 'none', d2.content === '""' && parseFloat(d2.width) < 80 && d2.borderTopStyle === 'solid', getComputedStyle(v).borderBottomStyle === 'solid']; })()""")
         check('line by line: each line sits on its meaning, a short dash parts the pairs, the verse ends with the full rule', all(look), look)
         # a verse taller than the screen: while it plays, the page turns inside it — the line being recited, with its meaning, comes up below the bar
-        tall = await ev("""(async () => { stopAudio(); ytOK = false; await openWork('sukhmani-sahib', true); S.settings.layers = {h: false, e: true, w: false}; S.settings.recite = false; delete S.settings.pair; await loadSources(); syncLayers();
+        tall = await ev("""(async () => { stopAudio(); ytOK = false; await openWork('sukhmani-sahib', true); S.settings.layers = {h: false, e: true, w: false}; S.settings.recite = false; S.settings.lines = true; delete S.settings.pair; await loadSources(); syncLayers();
             const i = IT.findIndex(x => x.id === 'a01.p3'); show('home'); openReader('k', i); await new Promise(r => setTimeout(r, 500));
             PL.t = AUT.findIndex(a => a.some(x => x[0] === i)); const a = AUT[PL.t], m = a.findIndex(x => x[0] === i), s = a[m][1], e = endOf(i) ?? a[m + 1][1];
             PL.on = true; PL.cur = -1; $('#player').hidden = false; document.body.classList.add('playing'); setCur(i); await new Promise(r => setTimeout(r, 900));
@@ -902,7 +904,7 @@ async def main():
         # (Hindi app), always four places; Punjabi pieces sit under their lines; Sources lists it and "Meanings in the bar";
         # search finds it; recitation mode turns it off too
         pa = await ev("""(async () => { await openWork('sukhmani-sahib', true); show('home'); const S0 = JSON.stringify(S.settings);
-            S.settings.ui = 'en'; S.settings.layers = {h: false, e: true, w: false, pa: true}; S.settings.recite = false; delete S.settings.pair;
+            S.settings.ui = 'en'; S.settings.layers = {h: false, e: true, w: false, pa: true}; S.settings.recite = false; S.settings.lines = true; delete S.settings.pair;
             const i = IT.findIndex(x => x.id === 'a01.p3'), it = IT[i], n = it.v.length;
             W.sources.pa = [{id: 'pa-test', file: 'meanings/pa-test', title: {hi: 'परीक्षा', en: 'Test'}}];
             SRC.pa = {meta: W.sources.pa[0], id: 'pa-test', m: {[it.id]: ['ਪਰਖ ਅਰਥ ਸਾਰਾ']}, p: {[it.id]: it.v.map((_, k) => 'ਪਰਖ' + k)}}; IDX = null;
@@ -1047,6 +1049,19 @@ async def main():
         await ev("openReader('k', 0)"); await pg.wait_for_timeout(800)
         rep = await ev("[document.querySelectorAll('#rBody .verse').length, !!(S.timing && S.timing.fix)]")
         check('a saved file: “1 note” (not “1 notes”); added bookmarks show at once; Replace with an older file keeps the reader working', '1 note' in one and '1 notes' not in one and 'Bookmarks (1)' in added and rep[0] > 0 and rep[1] and len(errs) == n_err, [one[:80], added[:40], rep, errs[n_err:]])
+        # the hard words of our meanings: underlined, a tap opens its meaning; the work's own sense first (विद्या in the Īśāvāsya)
+        hw = await ev("""(async () => { await openWork('isha-upanishad', true); S.settings.layers = {h: true, e: true, w: false}; S.settings.recite = false; await loadSources(); syncLayers(); openReader('k', IT.findIndex(x => x.id === 'm09')); await new Promise(r => setTimeout(r, 600));
+            const v = document.querySelector('#v' + IT.findIndex(x => x.id === 'm09')), ws = [...v.querySelectorAll('.layer .mw')].map(w => w.dataset.mw), plain = !v.querySelector('.layer .mw[data-mw="जो"]');
+            return [ws, plain]; })()""")
+        await (await pg.query_selector('#rBody .layer .mw[data-mw="avidyā"]')).click(); await pg.wait_for_timeout(400)
+        sheet = await ev("$('#sheet').classList.contains('on') ? $('#sheetBody').innerText : ''")
+        await ev("closeSheet()")
+        check('hard words of a meaning are underlined and open their meaning (the work’s own sense first); other words are plain', 'अविद्या' in hw[0] and 'avidyā' in hw[0] and 'उपासना' in hw[0] and hw[1] and 'ritual works' in sheet, [hw, sheet[:120]])
+        # ☰ › More settings › "Meaning line by line": off by default; the switch turns it on
+        await ev("delete S.settings.lines; save(); show('settings')"); await pg.wait_for_timeout(300)
+        off0 = await ev("!document.querySelector('#slines').checked")
+        await (await pg.query_selector('label:has(#slines)')).click(); await pg.wait_for_timeout(200)
+        check('“Meaning line by line” is off by default and its switch turns it on', off0 and await ev("S.settings.lines === true"))
         await ev(f"(() => {{ S = JSON.parse({json.dumps(keep)}); save(); applyState(); }})()")
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await b.close()

@@ -183,7 +183,10 @@ def prepare(lib):
         code = os.path.basename(f)[:-5]
         if code == 'languages': continue
         _need(code in LANGS, f"glossary/{code}.json: {code!r} is not in languages.json")
-        for k, v in json.load(open(f)).items(): _need(isinstance(v, dict) and ('hi' in v or 'en' in v), f"glossary/{code}.json: {k!r} needs hi/en")
+        for k, v in json.load(open(f)).items():
+            _need(isinstance(v, dict) and ('hi' in v or 'en' in v), f"glossary/{code}.json: {k!r} needs hi/en")
+            # a hard word of our meanings (tappable in the Hindi or English meaning): both senses, simply put
+            _need(v.get('hard', True) is True and (not v.get('hard') or (v.get('hi') and v.get('en'))), f"glossary/{code}.json: {k!r}: \"hard\" is true, with hi and en")
     G = {os.path.basename(f)[:-5]: json.load(open(f, encoding='utf-8')) for f in glob.glob(os.path.join(lib, 'glossary', '*.json')) if not f.endswith('languages.json')}
     clean = word_rule()
     shelf = json.load(open(os.path.join(lib, 'index.json')))
