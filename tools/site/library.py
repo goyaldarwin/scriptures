@@ -183,10 +183,21 @@ def prepare(lib):
         code = os.path.basename(f)[:-5]
         if code == 'languages': continue
         _need(code in LANGS, f"glossary/{code}.json: {code!r} is not in languages.json")
-        for k, v in json.load(open(f)).items(): _need(isinstance(v, dict) and ('hi' in v or 'en' in v), f"glossary/{code}.json: {k!r} needs hi/en")
+        for k, v in json.load(open(f)).items():
+            _need(isinstance(v, dict) and ('hi' in v or 'en' in v), f"glossary/{code}.json: {k!r} needs hi/en")
+            # a hard word of our meanings (tappable in the Hindi or English meaning): both senses, simply put
+            _need(v.get('hard', True) is True and (not v.get('hard') or (v.get('hi') and v.get('en'))), f"glossary/{code}.json: {k!r}: \"hard\" is true, with hi and en")
     G = {os.path.basename(f)[:-5]: json.load(open(f, encoding='utf-8')) for f in glob.glob(os.path.join(lib, 'glossary', '*.json')) if not f.endswith('languages.json')}
     clean = word_rule()
     shelf = json.load(open(os.path.join(lib, 'index.json')))
+    # the app shows no tradition; a genre's "shelf" shows it inside another tradition's genre of that id
+    genres = {g['id'] for t in shelf for g in t.get('children', []) if 'shelf' not in g}
+    for t in shelf:
+        _need('work' not in t and 'shelf' not in t, f"shelf: {t['id']} is a tradition: it holds genres, and has no work or shelf")
+        for g in t['children']:
+            _need('shelf' not in g or g['shelf'] in genres and g['shelf'] != g['id'], f"shelf: {t['id']}/{g['id']}: shelf {g.get('shelf')!r} must be the id of another genre")
+            for n in g.get('children', []):
+                _need('shelf' not in n, f"shelf: only a genre has shelf ({t['id']}/{g['id']}/{n['id']})")
     folders = check_folders()
     works = {}
     for leaf in leaves(shelf):

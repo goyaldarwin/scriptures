@@ -3,7 +3,7 @@
 The owner's priorities, in order: **accuracy**, then unambiguity, clarity, consistency and structure. This page lists what protects them and what should come next. When an item is done, move it to "In place" with one line on how it works.
 
 ## In place
-- **One hierarchy everywhere.** A work's address (`<tradition>/<genre>/<group…>/<work>`) is the shelf in the app, the folder in `library/`, and the folder in the private `scriptures-data`. `build.py` refuses a path that doesn't match the shelf.
+- **One hierarchy everywhere.** A work's address (`<tradition>/<genre>/<group…>/<work>`) is the folder in `library/` and in the private `scriptures-data`, and the shelf in the app from the genre down (the app shows no tradition). `build.py` refuses a path that doesn't match the shelf.
 - **Permanent ids.** Work ids, item ids and source ids never change, so readers' bookmarks, notes and progress survive any reorganisation (`renamed` in `work.json` moves them when a verse is split).
 - **Checks before anything goes live.**
   - `build.py` checks the library: sources, item ids, line-by-line meanings, plans, languages, dictionaries, a meaning for every word of every verse, paths and the store apps' shelves. It also refuses an `app.js` that doesn't parse.
@@ -39,5 +39,6 @@ The owner's priorities, in order: **accuracy**, then unambiguity, clarity, consi
 7. **Check audio against what is sung.** After timing, read each verse's transcript segment against its text, and flag verses where the reciter's wording differs. This catches both text errors and timing errors.
 8. **Finish the timings by ear.** The Sukhmani Sahib recording is published with every start not yet set by ear listed to check; the owner checks them under ☰ › More settings › Audio timing (`docs/HOW-TO.md` → "Time a recording by ear"). Helpers can mark too and send the owner a file. The Mānas recording still has verses to check, and one dohā (`aranya.46.do46ख`) without a time.
 9. **Player buttons for timing** (offered to the owner): "⏹ End" and "⏱ Next starts" beside play/pause, so marking needs no scrolling.
-10. **Punjabi word meanings.** Fill in `pa` in `library/glossary/pa.json` (`docs/design/languages.md` §2).
-11. **The Android app** (`docs/APPS.md`): the content-rights decision, then the Play release. The iPhone app is parked.
+10. **The hard words of our meanings, for every work.** The reader taps a hard word of a Hindi or English meaning for its meaning (`"hard": true`, `docs/LIBRARY.md` §5); the Īśāvāsya Upaniṣad has them. For each other work, in batches: list the words of its meanings that a reader may not know (rare, Sanskrit-derived, technical, names), write each entry from the dictionaries (`tools/meanings/style.md` §11), have it reviewed, and put a sense that fits only that work in its own glossary. About 2–3,000 Hindi and 1,000 English words in all.
+11. **Punjabi word meanings.** Fill in `pa` in `library/glossary/pa.json` (`docs/design/languages.md` §2).
+12. **The Android app** (`docs/APPS.md`): the content-rights decision, then the Play release. The iPhone app is parked.

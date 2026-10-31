@@ -124,17 +124,19 @@ async def main():
         for aid, a in apps.items():
             if aid.startswith('_'): continue
             await pg.goto(url + '?app=' + aid); await pg.wait_for_timeout(2000)
-            got = await ev("(() => { const r = []; (function w(ns, at){ ns.forEach(n => n.work ? r.push(at.concat(n.id).join('/')) : w(n.children || [], at.concat(n.id))); })(LIB, []); return r; })()")
+            got = await ev("(() => { const r = []; (function w(ns, at){ ns.forEach(n => n.work ? r.push(n.path) : w(n.children || [], at.concat(n.id))); })(LIB, []); return r; })()")
             ok = got and all(any(g == s_ or g.startswith(s_ + '/') for s_ in a['shelves']) for g in got)
             check(f'app {aid}: only its shelves', ok, got)
         await pg.goto(url); await pg.wait_for_timeout(2000)
 
-        # ---- library: two levels per screen, every tradition is a heading ----
+        # ---- library: one row per genre, no headings and no tradition; the Sikh gurbani among the Granthas ----
         await ev("libPath=[]; show('library')"); await pg.wait_for_timeout(300); await shot('library')
         heads = await ev("Array.from(document.querySelectorAll('#libList .lhead')).map(x => x.textContent)")
-        check('library shows each tradition as a heading', len(heads) == len(shelf), heads)
-        rows = await ev("document.querySelectorAll('#libList button.it[data-node]').length")   # not the '+N' chip of a shelf with more works
-        check('library lists the genres under them', rows == sum(len(t['children']) for t in shelf), rows)
+        genres = [g for t in shelf for g in t['children'] if 'shelf' not in g]
+        rows = await ev("[...document.querySelectorAll('#libList button.it[data-node]')].map(b => b.dataset.node)")   # not the '+N' chip of a shelf with more works
+        check('library: one row per genre, no headings, no tradition', not heads and rows == [g['id'] for g in genres], [heads, rows])
+        sukh = await ev("(async () => { libPath = ['granth']; renderLibrary(); const n = document.querySelectorAll('#libList [data-node=\"guru-arjan-dev\"]').length; libPath = []; renderLibrary(); return n; })()")
+        check('library: the Sukhmani Sahib’s Guru is on the Granthas shelf', sukh == 1, sukh)
         # each shelf names its works; tapping one opens it straight away
         chip = await ev("(() => { const b = document.querySelector('#libList [data-open-work]'); return b ? b.dataset.openWork : null; })()")
         check('library: a shelf lists its works by name', bool(chip), chip)
@@ -179,7 +181,7 @@ async def main():
             wid = leaf['work']; tag = wid
             # walk the shelf exactly as a reader would: tap down the path, two levels at a time
             await ev("libPath=[]; show('library')"); await pg.wait_for_timeout(200)
-            path = list(trail) + [leaf['id']]
+            path = await ev(f"(() => {{ let r = null; (function w(ns, at){{ ns.forEach(n => n.work === {json.dumps(leaf['work'])} ? r = at.concat(n.id) : w(n.children || [], at.concat(n.id))); }})(LIB, []); return r; }})()")   # its place in the library the reader sees
             k = 0; opened = False
             while k < len(path):
                 key = '/'.join(path[k:k + 2]) if k + 1 < len(path) else path[k]
@@ -373,8 +375,11 @@ async def main():
             check(f'{tag}: English interface works in the reader', bool(en_hdr.strip()), en_hdr)
             # recitation mode is the fourth button of the reader's capsule: it hides the meanings; a meaning turned on ends it
             await ev("S.settings.recite = false; S.settings.layers.h = true; S.settings.layers.e = true; if (workKinds().length > 2) S.settings.pair = 'pa,hi'; save(); applyRecite(); syncLayers(); refreshReader()")
+            size0 = await ev("getComputedStyle(document.querySelector('.vtext')).fontSize")
             await (await pg.query_selector('#rLayers [data-l=r]')).click(); await pg.wait_for_timeout(400)
             ok1 = await ev("S.settings.recite && !S.settings.layers.h && !S.settings.layers.e && !S.settings.layers.w && document.body.classList.contains('recite') && document.querySelector('#rLayers [data-l=r]').classList.contains('on')")
+            size1 = await ev("getComputedStyle(document.querySelector('.vtext')).fontSize")
+            check(f'{tag}: recitation mode keeps the reader’s letter size', size0 == size1, [size0, size1])
             await (await pg.query_selector('#rLayers [data-l=r]')).click(); await pg.wait_for_timeout(400)
             ok2 = await ev("!S.settings.recite && S.settings.layers.h && S.settings.layers.e")
             await (await pg.query_selector('#rLayers [data-l=r]')).click(); await pg.wait_for_timeout(300)
@@ -635,7 +640,7 @@ async def main():
         # ---- flow and navigation ----
         # a saved place at a verse no longer in the text: the reader is not broken after a refresh; the place is dropped
         await ev("(async () => { await openWork('ramraksha', true); show('home'); openReader('k', 0); })()"); await pg.wait_for_timeout(600)
-        await ev("WS().last = {org: 'k', i: 999, id: 'gone.1'}; WS().pos = {k: 999}; save()")
+        await ev("WS().last = {org: 'k', i: 999, id: 'gone.1'}; WS().pos = {k: 999}; save(); history.replaceState(Object.assign({}, history.state, {r: {org: 'k', id: 'gone.1'}}), '')")   # the place on this phone and in the page's history entry
         n_err = len(errs); await pg.reload(); await pg.wait_for_timeout(3000)
         st = await ev("[CURVIEW, document.querySelector('#loading').hidden, S.w.ramraksha.last, Object.keys(S.w.ramraksha.pos).length]")
         check('a saved place at a removed verse is dropped; the work page opens instead of an empty reader', st == ['home', True, None, 0] and len(errs) == n_err, (st, errs[n_err:]))
@@ -848,8 +853,8 @@ async def main():
         # a shelf shows two works, the most recently used first, then +N
         sh2 = await ev("""(async () => { const keep = JSON.stringify(Object.fromEntries(Object.entries(S.w).map(([k, v]) => [k, v.at]))); Object.values(S.w).forEach(v => delete v.at);
             await openWork('isha-upanishad', true); libPath = []; show('library'); await new Promise(r => setTimeout(r, 200));
-            const row = [...document.querySelectorAll('#libList li')].find(li => li.querySelector('[data-node="hinduism/veda"], [data-node="veda"]')); const chips = [...row.querySelectorAll('[data-open-work]')].map(b => b.dataset.openWork), more = row.querySelector('.more');
-            const g = [...document.querySelectorAll('#libList li')].find(li => li.querySelector('[data-node="hinduism/granth"], [data-node="granth"]')); const gchips = g.querySelectorAll('[data-open-work]').length;
+            const row = [...document.querySelectorAll('#libList li')].find(li => li.querySelector('[data-node="veda"]')); const chips = [...row.querySelectorAll('[data-open-work]')].map(b => b.dataset.openWork), more = row.querySelector('.more');
+            const g = [...document.querySelectorAll('#libList li')].find(li => li.querySelector('[data-node="granth"]')); const gchips = g.querySelectorAll('[data-open-work]').length;
             JSON.parse(keep); Object.entries(JSON.parse(keep)).forEach(([k, v]) => { if (S.w[k]) { if (v) S.w[k].at = v; else delete S.w[k].at; } }); save(); return [chips[0], chips.length, !!more, gchips]; })()""")
         check('library: a shelf shows two works, the one used most recently first', sh2[0] == 'isha-upanishad' and sh2[1] <= 2 and sh2[3] <= 2, sh2)
         # one word for one thing: no "text" for a verse, no "listen/hear" for play, no "translation", no "Adjust audio timing"
@@ -861,7 +866,7 @@ async def main():
         check('⋮: Play from here · Write a note · Review audio timing · Copy verse and meaning · Improve', order[:5] == ['play', 'note', 'flag', 'copy', 'edit'], order)
         # line by line: a source with a piece per verse line shows each piece under its line; a source
         # without pieces, and a verse with no pieces at all, show the meaning whole after the verse
-        lbl = await ev("""(async () => { await openWork('sukhmani-sahib', true); S.settings.layers = {h: true, e: true, w: false}; S.settings.pair = 'hi,en'; S.settings.recite = false; await loadSources();
+        lbl = await ev("""(async () => { await openWork('sukhmani-sahib', true); S.settings.layers = {h: true, e: true, w: false}; S.settings.pair = 'hi,en'; S.settings.recite = false; S.settings.lines = true; await loadSources();
             const i = IT.findIndex(x => x.id === 'a01.p3'), it = IT[i], n = it.v.length;
             const keep = {h: SRC.hi.p, e: SRC.en.p}; SRC.hi.p = {}; SRC.en.p = {};
             SRC.en.p[it.id] = it.v.map((_, k) => k === 1 ? '' : 'EN' + k); SRC.hi.p[it.id] = it.v.map((_, k) => 'HI' + k);
@@ -872,17 +877,19 @@ async def main():
             const r2 = [w.querySelectorAll('.layer.e').length === 1, w.lastElementChild.classList.contains('e'), w.querySelectorAll('.layer.h').length === n];
             SRC.hi.p = {}; d.innerHTML = verseHTML(i); const u = d.firstElementChild;
             const r3 = [u.querySelectorAll('.vline').length === 0, u.querySelectorAll('.vtext').length === 1];
-            SRC.hi.p = keep.h; SRC.en.p = keep.e; delete S.settings.pair; return [...r1, ...r2, ...r3]; })()""")
-        check('meanings line by line: each piece under its line; a source without pieces shows whole after the verse; none at all keeps the verse whole', all(lbl), lbl)
+            SRC.hi.p = {[it.id]: it.v.map((_, k) => 'HI' + k)}; S.settings.lines = false; d.innerHTML = verseHTML(i); const o = d.firstElementChild;
+            const r4 = [o.querySelectorAll('.vline').length === 0, o.querySelectorAll('.layer.h').length === 1]; S.settings.lines = true;
+            SRC.hi.p = keep.h; SRC.en.p = keep.e; delete S.settings.pair; return [...r1, ...r2, ...r3, ...r4]; })()""")
+        check('meanings line by line (when chosen): each piece under its line; a source without pieces shows whole after the verse; none at all keeps the verse whole; not chosen, the meaning is whole', all(lbl), lbl)
         # line by line looks like pairs: no ॰ between a line and its meaning, a short dash between pairs, the full rule only at the end
-        look = await ev("""(async () => { await openWork('sukhmani-sahib', true); S.settings.layers = {h: false, e: true, w: false}; S.settings.recite = false; delete S.settings.pair; await loadSources(); syncLayers();
+        look = await ev("""(async () => { await openWork('sukhmani-sahib', true); S.settings.layers = {h: false, e: true, w: false}; S.settings.recite = false; S.settings.lines = true; delete S.settings.pair; await loadSources(); syncLayers();
             show('home'); openReader('k', IT.findIndex(x => x.id === 'a01.p3')); await new Promise(r => setTimeout(r, 500));
             const v = [...document.querySelectorAll('.verse')].find(e => e.querySelector('.vline')), ls = v.querySelectorAll('.vline'), m = v.querySelector('.vline + .layer');
             const dot = getComputedStyle(m, '::before').content, d1 = getComputedStyle(ls[0], '::before'), d2 = getComputedStyle(ls[1], '::before');
             return [dot === 'none', d1.content === 'none', d2.content === '""' && parseFloat(d2.width) < 80 && d2.borderTopStyle === 'solid', getComputedStyle(v).borderBottomStyle === 'solid']; })()""")
         check('line by line: each line sits on its meaning, a short dash parts the pairs, the verse ends with the full rule', all(look), look)
         # a verse taller than the screen: while it plays, the page turns inside it — the line being recited, with its meaning, comes up below the bar
-        tall = await ev("""(async () => { stopAudio(); ytOK = false; await openWork('sukhmani-sahib', true); S.settings.layers = {h: false, e: true, w: false}; S.settings.recite = false; delete S.settings.pair; await loadSources(); syncLayers();
+        tall = await ev("""(async () => { stopAudio(); ytOK = false; await openWork('sukhmani-sahib', true); S.settings.layers = {h: false, e: true, w: false}; S.settings.recite = false; S.settings.lines = true; delete S.settings.pair; await loadSources(); syncLayers();
             const i = IT.findIndex(x => x.id === 'a01.p3'); show('home'); openReader('k', i); await new Promise(r => setTimeout(r, 500));
             PL.t = AUT.findIndex(a => a.some(x => x[0] === i)); const a = AUT[PL.t], m = a.findIndex(x => x[0] === i), s = a[m][1], e = endOf(i) ?? a[m + 1][1];
             PL.on = true; PL.cur = -1; $('#player').hidden = false; document.body.classList.add('playing'); setCur(i); await new Promise(r => setTimeout(r, 900));
@@ -897,7 +904,7 @@ async def main():
         # (Hindi app), always four places; Punjabi pieces sit under their lines; Sources lists it and "Meanings in the bar";
         # search finds it; recitation mode turns it off too
         pa = await ev("""(async () => { await openWork('sukhmani-sahib', true); show('home'); const S0 = JSON.stringify(S.settings);
-            S.settings.ui = 'en'; S.settings.layers = {h: false, e: true, w: false, pa: true}; S.settings.recite = false; delete S.settings.pair;
+            S.settings.ui = 'en'; S.settings.layers = {h: false, e: true, w: false, pa: true}; S.settings.recite = false; S.settings.lines = true; delete S.settings.pair;
             const i = IT.findIndex(x => x.id === 'a01.p3'), it = IT[i], n = it.v.length;
             W.sources.pa = [{id: 'pa-test', file: 'meanings/pa-test', title: {hi: 'परीक्षा', en: 'Test'}}];
             SRC.pa = {meta: W.sources.pa[0], id: 'pa-test', m: {[it.id]: ['ਪਰਖ ਅਰਥ ਸਾਰਾ']}, p: {[it.id]: it.v.map((_, k) => 'ਪਰਖ' + k)}}; IDX = null;
@@ -981,6 +988,82 @@ async def main():
         check('the audio-timing panel draws before the recording\'s lists are ready', tc is True, tc)
         pf = await ev("(async () => { const P = PLANS[0]; const [a, b] = dayRange(P.id, 2); openReader(P.id, a + 3); await new Promise(r => setTimeout(r, 300)); itemMenu(a + 3); await new Promise(r => setTimeout(r, 200)); document.querySelector('#sheetBody [data-x=play]').click(); const r = [PL.end === b, PL.endMsg]; stopAudio(); return r; })()")
         check('Play from here ends with the open vishram, with its message', pf[0] and 'finished' in pf[1], pf)
+        # ---- fixes found by an audit: each is driven the way a reader does it ----
+        keep = await ev("JSON.stringify(S)")
+        # a search result opened during a plan opens on that plan's day; Back returns to the day and verse that were open, and Continue too
+        await ev("""(async () => { await openWork('manas', true); await loadSources(); WS().org = PLANS[PLANS.length - 1].id; show('home'); const o = WS().org, [a] = dayRange(o, 4); openReader(o, a + 2); await new Promise(r => setTimeout(r, 600)); window.__at = [o, IT[a + 2].id]; })()""")
+        await ev("openSearch('text')"); await pg.fill('#q', 'सिया राम मय'); await pg.wait_for_timeout(800)
+        await (await pg.query_selector('#sRes .res')).click(); await pg.wait_for_timeout(800)
+        in_plan = await ev("R.org === window.__at[0]")
+        await pg.go_back(); await pg.wait_for_timeout(600); await pg.go_back(); await pg.wait_for_timeout(1200)
+        back_to = await ev("[CURVIEW, R.org === window.__at[0], R.n, IT[topVisibleItem()].id === window.__at[1] || Math.abs(topVisibleItem() - ID[window.__at[1]]) <= 1]")
+        await pg.go_back(); await pg.wait_for_timeout(800)
+        cont = await ev("[CURVIEW, WS().last.org === window.__at[0], WS().last.id]")
+        check('a search result opens in the plan being read; Back returns to that day and verse, and so does Continue', in_plan and back_to[0] == 'reader' and back_to[1] and back_to[2] == 4 and back_to[3] and cont[0] == 'home' and cont[1], [in_plan, back_to, cont])
+        # the headings above the first verse of a part (the part, the topic, ॥ चौपाई ॥) are below the top bar, not under it
+        hd = await ev("""(async () => { await openWork('manas', true); openReader('k', PARTS[1].a); await new Promise(r => setTimeout(r, 600)); const bar = $('#reader .bar').getBoundingClientRect().bottom;
+            return [...document.querySelectorAll('#rBody .part-h, #rBody .topic-h, #rBody .vtype')].filter(e => e.getBoundingClientRect().bottom > 0).slice(0, 3).map(e => Math.round(e.getBoundingClientRect().top - bar)); })()""")
+        check('opening a part: its headings are in view below the top bar', bool(hd) and all(y >= 0 for y in hd), hd)
+        # Back with a word's drawer open closes the drawer and stays in the reader
+        await (await pg.query_selector('#rBody .verse .w')).click(); await pg.wait_for_timeout(400)
+        opened = await ev("$('#sheet').classList.contains('on')")
+        await pg.go_back(); await pg.wait_for_timeout(600)
+        st = await ev("[$('#sheet').classList.contains('on'), CURVIEW]")
+        await pg.go_back(); await pg.wait_for_timeout(800)
+        check('Back with a drawer open closes it and stays on the page; Back again leaves', opened and st == [False, 'reader'] and await ev("CURVIEW") == 'home', [opened, st])
+        # recitation mode: tapping हिं ends it and shows only the Hindi meaning (the interface follows: only Hindi → Hindi)
+        rc = await ev("""(async () => { S.settings.ui = 'en'; S.settings.layers = {h: false, e: true, w: false}; S.settings.recite = false; save(); applyLang(); openReader('k', 5); await new Promise(r => setTimeout(r, 400));
+            toggleRecite(); document.querySelector('#rLayers [data-l=h]').click(); await new Promise(r => setTimeout(r, 300)); const r = [S.settings.recite, S.settings.layers.h, S.settings.layers.e, S.settings.ui];
+            S.settings.ui = 'en'; S.settings.layers = {h: true, e: true, w: false}; save(); applyLang(); syncLayers(); return r; })()""")
+        check('recitation mode: tapping हिं ends it and shows only the meaning tapped', rc == [False, True, False, 'hi'], rc)
+        # the Sukhmani Sahib: no number or space can be tapped as a word
+        sk = await ev("""(async () => { await openWork('sukhmani-sahib', true); openReader('k', 0); await new Promise(r => setTimeout(r, 800));
+            return [...document.querySelectorAll('#rBody .w')].filter(w => !cleanWord(w.dataset.w || w.textContent)).map(w => w.textContent); })()""")
+        check('Sukhmani Sahib: “ਮਃ ੫ ॥” — the number is not a word', sk == [], sk)
+        # library search forgives spelling, as verse search does
+        await ev("libPath = []; show('library'); openSearch('lib')"); await pg.fill('#q', 'सुंदरकांड'); await pg.wait_for_timeout(600)
+        ls = await ev("[...document.querySelectorAll('#sRes .snip')].map(x => x.textContent)")
+        await pg.fill('#q', 'Sunderkand'); await pg.wait_for_timeout(600)
+        ls2 = await ev("[...document.querySelectorAll('#sRes .snip')].map(x => x.textContent)")
+        check('library search: “सुंदरकांड” and “Sunderkand” find the Sundarakāṇḍa', any(t in x for x in ls for t in ('सुन्दरकाण्ड', 'Sundarakāṇḍa')) and any(t in x for x in ls2 for t in ('सुन्दरकाण्ड', 'Sundarakāṇḍa')), [ls[:3], ls2[:3]])
+        # a shelf that holds only works is one row with its works as buttons (Āratī › Śrī Rāma like Vedas › Yajurveda)
+        sv = await ev("""(async () => { libPath = ['aarti']; show('library'); await new Promise(r => setTimeout(r, 300));
+            const rama = document.querySelector('#libList button.it[data-node="rama"]'); return [document.querySelectorAll('#libList .lhead').length, !!rama, rama ? rama.closest('li').querySelectorAll('[data-open-work], .more').length : 0, document.querySelectorAll('#libList [data-node="rama/shri-ramchandra-kripalu"]').length]; })()""")
+        check('a shelf of works is one row with its works as buttons, no heading', sv[0] == 0 and sv[1] and sv[2] >= 2 and sv[3] == 0, sv)
+        # offline, playing says it needs the internet (not that YouTube is not allowed)
+        await ctx.set_offline(True)
+        off = await ev("(() => { ytBlocked(); return $('#ytBox').innerText; })()")
+        await ctx.set_offline(False)
+        check('offline: playing says it needs the internet', 'internet' in off.lower() or 'इंटरनेट' in off, off)
+        # a saved file: “Add them to this phone” shows them at once; “Replace everything” with an older file (no timing) keeps the app working
+        f = {'kind': 'manas-personal', 'v': 3, 'settings': {'ui': 'en', 'layers': {'h': False, 'e': True, 'w': False}, 'tr': False, 'size': 21, 'theme': 'light', 'tour': 1}, 'src': {}, 'w': {},
+             'profiles': [{'id': 'px', 'name': 'Me', 'notes': {'manas:bal.1.cau1': [{'t': 'a note', 'ts': 1}]}, 'bm': {'manas:bal.1.cau2': 1}, 'done': {}, 'gloss': {}, 'fix': {}}], 'active': 'px', 'show': ['px']}
+        await ev("""(async () => { S.profiles[0].bm = {}; S.profiles[0].notes = {}; save(); await openWork('manas', true); show('bookmarks'); })()"""); await pg.wait_for_timeout(400)
+        payload = {'name': 'my-file.json', 'mimeType': 'application/json', 'buffer': json.dumps(f).encode()}
+        await pg.set_input_files('#fileIn', payload); await pg.wait_for_timeout(500)
+        one = await ev("$('#sheetBody').innerText")
+        await (await pg.query_selector('#imAdd')).click(); await pg.wait_for_timeout(500)
+        added = await ev("$('#bmBody').innerText")
+        n_err = len(errs)
+        await pg.set_input_files('#fileIn', payload); await pg.wait_for_timeout(500)
+        await (await pg.query_selector('#imRep')).click(); await pg.wait_for_timeout(300); await (await pg.query_selector('#askOk')).click(); await pg.wait_for_timeout(600)
+        await ev("openReader('k', 0)"); await pg.wait_for_timeout(800)
+        rep = await ev("[document.querySelectorAll('#rBody .verse').length, !!(S.timing && S.timing.fix)]")
+        check('a saved file: “1 note” (not “1 notes”); added bookmarks show at once; Replace with an older file keeps the reader working', '1 note' in one and '1 notes' not in one and 'Bookmarks (1)' in added and rep[0] > 0 and rep[1] and len(errs) == n_err, [one[:80], added[:40], rep, errs[n_err:]])
+        # the hard words of our meanings: underlined, a tap opens its meaning; the work's own sense first (विद्या in the Īśāvāsya)
+        hw = await ev("""(async () => { await openWork('isha-upanishad', true); S.settings.layers = {h: true, e: true, w: false}; S.settings.recite = false; await loadSources(); syncLayers(); openReader('k', IT.findIndex(x => x.id === 'm09')); await new Promise(r => setTimeout(r, 600));
+            const v = document.querySelector('#v' + IT.findIndex(x => x.id === 'm09')), ws = [...v.querySelectorAll('.layer .mw')].map(w => w.dataset.mw), plain = !v.querySelector('.layer .mw[data-mw="जो"]');
+            return [ws, plain]; })()""")
+        await (await pg.query_selector('#rBody .layer .mw[data-mw="avidyā"]')).click(); await pg.wait_for_timeout(400)
+        sheet = await ev("$('#sheet').classList.contains('on') ? $('#sheetBody').innerText : ''")
+        await ev("closeSheet()")
+        check('hard words of a meaning are underlined and open their meaning (the work’s own sense first); other words are plain', 'अविद्या' in hw[0] and 'avidyā' in hw[0] and 'उपासना' in hw[0] and hw[1] and 'ritual works' in sheet, [hw, sheet[:120]])
+        # ☰ › More settings › "Meaning line by line": off by default; the switch turns it on
+        await ev("delete S.settings.lines; save(); show('settings')"); await pg.wait_for_timeout(300)
+        off0 = await ev("!document.querySelector('#slines').checked")
+        await (await pg.query_selector('label:has(#slines)')).click(); await pg.wait_for_timeout(200)
+        check('“Meaning line by line” is off by default and its switch turns it on', off0 and await ev("S.settings.lines === true"))
+        await ev(f"(() => {{ S = JSON.parse({json.dumps(keep)}); save(); applyState(); }})()")
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')

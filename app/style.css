@@ -104,6 +104,7 @@ body.timing .verse.tocheck{box-shadow:inset 3px 0 0 var(--saffron)}.tcheck{margi
 .half{display:inline-block}
 .w{border-radius:4px;cursor:pointer}
 .w:active,.w.sel{background:var(--saffron-soft)}
+.mw{cursor:pointer;text-decoration:underline dotted color-mix(in srgb,currentColor 45%,transparent);text-decoration-thickness:1px;text-underline-offset:.22em;border-radius:4px}.mw:active,.mw.sel{background:var(--saffron-soft)}   /* a hard word of a meaning: tap for its meaning */
 .tr .dd{font-family:'NSDev',var(--lat);font-style:normal;white-space:nowrap}
 .tr{font-family:'TrLat','NSDev',var(--lat);font-style:italic;font-size:calc(var(--mean-size) * .85);color:var(--muted);text-align:center;margin-top:4px;line-height:1.5}
 .lyr{display:flex;border:1px solid var(--rule);border-radius:16px;overflow:hidden;flex:none}
@@ -200,7 +201,6 @@ body.playing #rBody{padding-bottom:150px}
 .navbtn{padding:10px 14px;border-radius:12px;font-size:15px;color:var(--indigo);font-weight:600}
 .navbtn:disabled{opacity:.3}
 body.recite .chips,body.recite .layer,body.recite .note,body.recite .tr{display:none!important}
-body.recite .vtext{font-size:calc(var(--verse-size) + 5px)}
 /* ---------- sheets ---------- */
 .scrim{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:40;display:none}
 .scrim.on{display:block}

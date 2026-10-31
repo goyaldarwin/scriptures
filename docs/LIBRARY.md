@@ -14,7 +14,7 @@ Every work has an address, read from the general to the specific like a REST pat
 
 | Level | What it is | Ids in use or planned |
 |---|---|---|
-| tradition | the faith | `hinduism` (हिन्दू धर्म), `sikhism` (सिख धर्म); later `jain`, `bauddh` … |
+| tradition | the faith; in the paths and folders only, never shown in the app | `hinduism` (हिन्दू धर्म), `sikhism` (सिख धर्म); later `jain`, `bauddh` … |
 | genre | the kind of text, as a reader looks for it | Hindu: `granth` (epics, scriptures), `stotra`, `aarti`, `chalisa`, `bhajan`, `veda`, `purana` … · Sikh: `gurbani` … |
 | group(s) | whatever groups works naturally inside that genre (one or more levels) | `granth`: the author (`tulsidas`, `valmiki`, `vyasa`) · `stotra`, `aarti`, `chalisa`: the deity or saint (`rama`, `hanuman`, `vishnu`, `shiva`, `ganga`, `shirdi-sai`) · `veda`: the Veda, its śākhā where there are two (`yajurveda/krishna-yajurveda`, `yajurveda/shukla-yajurveda`), then the division `samhita` / `brahmana` / `aranyaka` / `upanishad` · `gurbani`: the Guru (`guru-arjan-dev`, `guru-nanak-dev`) |
 | work | the text you open | `ramcharitmanas`, `ramraksha`, `dhoop-aarti`, `katha-upanishad`, `sukhmani-sahib` |
@@ -34,7 +34,8 @@ sikhism/gurbani/guru-nanak-dev/japji-sahib     (planned)
 ```
 
 Rules (`tools/site/build.py` checks them):
-- **The path is the chain of ids.** A work's `path` must be exactly the ids of the shelves above it, followed by its own id, and the files live in `library/<path>/`. The library screen shows two levels at a time: a shelf's sub-shelves as headings, with their contents listed under them.
+- **The path is the chain of ids.** A work's `path` must be exactly the ids of the shelves above it, followed by its own id, and the files live in `library/<path>/`. The library screen lists the genres, one row each with its works as buttons; a shelf's page shows a sub-shelf that holds shelves as a heading over them, and one that holds only works as a row with its works as buttons (docs/PLAYBOOK.md §6).
+- **The app shows no tradition.** Its top shelves are the genres of every tradition, and genres (and groups inside them) with the same id are one shelf. A genre may name another tradition's genre in `shelf`: its groups are then shown on that shelf (`sikhism/gurbani` has `"shelf": "granth"`, so Guru Arjan Dev Ji's Sukhmani Sahib is among the Granthas). Only a genre has `shelf`, and it must name a genre without one (`build.py` checks).
 - **At least three levels** (tradition / genre / work). Add a group level when the genre will hold works of more than one author or deity, which is almost always.
 - **Ids** are lowercase ASCII with hyphens, in common romanised spelling without diacritics (`ramraksha`, `shirdi-sai`, `hanuman-chalisa`). Titles carry the proper Devanagari and diacritics.
 - **Before adding a level, reuse an existing one.** Look at `index.json` first: a new Hanumān stotra goes under `hinduism/stotra/hanuman/`, not a new `hanumaan/`. A new genre or tradition is a deliberate decision; say so in the pull request.
@@ -125,6 +126,7 @@ library/glossary/
   sa.json          Sanskrit
   awa.json         Awadhi
   mr.json Marathi · hi.json Hindi · bra.json Braj · pa.json Punjabi (Gurmukhi script; Gurbani)
+  en.json          English: only the hard words of our English meanings
 ```
 
 `languages.json`:
@@ -144,6 +146,8 @@ The file lists every language of a verse, and every language a meaning is writte
 Dictionary keys are written **without Vedic accent marks** (svara: U+0951–0954, U+1CD0–1CFF, U+A8E0–A8F1); the app removes them from a tapped word before looking it up, so a text keeps its svaras and still finds its meanings. Exporters must strip them the same way when they collect words.
 
 A dictionary (`<lang>.json`): `{"राम": {"hi": "भगवान श्रीराम", "en": "Lord Rama", "g": "grammar", "r": "root", "p": [["part", "meaning"]]}}`. Every entry has `hi` or `en`. An entry may also carry `"pa"`, its Punjabi meaning: the app shows it in the word sheet, and in the word list while the ਪੰ layer is on. No entry has one yet.
+
+**The hard words of our meanings** (`"hard": true`): a word of one of our Hindi or English meanings that a reader may not know (विषयासक्ति, अमृतत्व; "covet", "Pūṣan") has an entry in that language's dictionary (`hi.json`, `en.json`) marked `"hard": true`, with `hi` and `en` (a simple Hindi meaning and an English one) and, for Hindi, `g`. In the reader it is faintly underlined and opens its meaning like a verse word; other words of a meaning are plain text. The entry's key is the word's plain form: the app looks through a joined Hindi ending (मनमें, विषयोंसे, आसक्तियोंको → the word) and an English plural, tense or 's (lowercase keys). A sense that fits only one work (विद्या in the Īśāvāsya Upaniṣad) goes in that work's `glossary/<lang>.json` with `"hard": true`, and the exporter checks the word is in that work's meanings.
 
 **How a tapped word is looked up:**
 1. The verse's language comes from the item's `l`, otherwise the work's `lang`.

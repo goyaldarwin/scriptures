@@ -1,0 +1,44 @@
+{
+ "विद्या": {
+  "hi": "ज्ञान; इस उपनिषद्‌में देवताओंकी उपासना",
+  "en": "knowledge; in this Upaniṣad, the worship of deities",
+  "g": "संज्ञा",
+  "hard": true
+ },
+ "अविद्या": {
+  "hi": "अज्ञान; इस उपनिषद्‌में (यज्ञ आदि) कर्म",
+  "en": "ignorance; in this Upaniṣad, ritual works",
+  "g": "संज्ञा",
+  "hard": true
+ },
+ "सम्भूति": {
+  "hi": "उत्पन्न होना; यहाँ व्यक्त (प्रकट) जगत्",
+  "en": "coming into being; here, the manifest",
+  "g": "संज्ञा",
+  "hard": true
+ },
+ "असम्भूति": {
+  "hi": "जो उत्पन्न न हुआ हो; यहाँ अव्यक्त प्रकृति, जगत्‌का कारण",
+  "en": "the unborn; here, unmanifest nature, the cause of the world",
+  "g": "संज्ञा",
+  "hard": true
+ },
+ "सम्भव": {
+  "hi": "उत्पत्ति; यहाँ व्यक्त (प्रकट) जगत्",
+  "en": "birth; here, the manifest",
+  "g": "संज्ञा",
+  "hard": true
+ },
+ "असम्भव": {
+  "hi": "जो उत्पन्न न हो; यहाँ अव्यक्त प्रकृति",
+  "en": "the unborn; here, unmanifest nature",
+  "g": "संज्ञा",
+  "hard": true
+ },
+ "विनाश": {
+  "hi": "नाश; यहाँ नष्ट होनेवाला (व्यक्त) जगत्",
+  "en": "destruction; here, the perishable (the manifest)",
+  "g": "संज्ञा",
+  "hard": true
+ }
+}

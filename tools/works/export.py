@@ -203,9 +203,11 @@ def export(wid, lib):
     for x in items:
         for l in x['v']:
             for t in l.split(): words.setdefault(x.get('l', M['lang']), set()).add(standard.fold(standard.SVARA.sub('', re.sub(r"[।॥|,.;:!?\-—‘’“”'\"()\[\]०-९੦-੯0-9]", '', t))))
+    # a hard word of the work's own meanings ("hard": true, tappable in the Hindi or English meaning) is in those meanings
+    said = {lg: json.dumps([json.load(open(f, encoding='utf-8')).get('m') for f in glob.glob(os.path.join(HERE, wid, 'meanings', lg, '*.json'))], ensure_ascii=False).lower() for lg in senses}
     for lg, D in senses.items():   # a word as the app looks it up (standard.fold: गङ्गा and गंगा are one word)
-        bad = [k for k, v in D.items() if standard.fold(k) not in words.get(lg, ()) or not (v.get('hi') and v.get('en'))]
-        need(not bad, f'{wid}/glossary/{lg}.json: senses of words not in any {lg} verse, or without hi and en: {bad[:5]}')
+        bad = [k for k, v in D.items() if not (k.lower() in said[lg] if v.get('hard') else standard.fold(k) in words.get(lg, ())) or not (v.get('hi') and v.get('en'))]
+        need(not bad, f'{wid}/glossary/{lg}.json: senses of words not in any {lg} verse (or, if hard, in its {lg} meanings), or without hi and en: {bad[:5]}')
     gl = os.path.join(lib.out, WP, 'glossary.json')
     if senses: lib.dump(WP + '/glossary.json', senses)
     elif os.path.exists(gl): os.remove(gl)

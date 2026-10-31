@@ -600,6 +600,7 @@
      "hi": "गुरुओंकी वाणी",
      "en": "The Gurus' hymns"
     },
+    "shelf": "granth",
     "children": [
      {
       "id": "guru-arjan-dev",
