@@ -14,7 +14,7 @@ Every work has an address, read from the general to the specific like a REST pat
 
 | Level | What it is | Ids in use or planned |
 |---|---|---|
-| tradition | the faith | `hinduism` (हिन्दू धर्म), `sikhism` (सिख धर्म); later `jain`, `bauddh` … |
+| tradition | the faith; in the paths and folders only, never shown in the app | `hinduism` (हिन्दू धर्म), `sikhism` (सिख धर्म); later `jain`, `bauddh` … |
 | genre | the kind of text, as a reader looks for it | Hindu: `granth` (epics, scriptures), `stotra`, `aarti`, `chalisa`, `bhajan`, `veda`, `purana` … · Sikh: `gurbani` … |
 | group(s) | whatever groups works naturally inside that genre (one or more levels) | `granth`: the author (`tulsidas`, `valmiki`, `vyasa`) · `stotra`, `aarti`, `chalisa`: the deity or saint (`rama`, `hanuman`, `vishnu`, `shiva`, `ganga`, `shirdi-sai`) · `veda`: the Veda, its śākhā where there are two (`yajurveda/krishna-yajurveda`, `yajurveda/shukla-yajurveda`), then the division `samhita` / `brahmana` / `aranyaka` / `upanishad` · `gurbani`: the Guru (`guru-arjan-dev`, `guru-nanak-dev`) |
 | work | the text you open | `ramcharitmanas`, `ramraksha`, `dhoop-aarti`, `katha-upanishad`, `sukhmani-sahib` |
@@ -35,6 +35,7 @@ sikhism/gurbani/guru-nanak-dev/japji-sahib     (planned)
 
 Rules (`tools/site/build.py` checks them):
 - **The path is the chain of ids.** A work's `path` must be exactly the ids of the shelves above it, followed by its own id, and the files live in `library/<path>/`. The library screen shows two levels at a time: a shelf's sub-shelves as headings, with their contents listed under them.
+- **The app shows no tradition.** Its top shelves are the genres of every tradition, and genres (and groups inside them) with the same id are one shelf. A genre may name another tradition's genre in `shelf`: its groups are then shown on that shelf (`sikhism/gurbani` has `"shelf": "granth"`, so Guru Arjan Dev Ji's Sukhmani Sahib is among the Granthas). Only a genre has `shelf`, and it must name a genre without one (`build.py` checks).
 - **At least three levels** (tradition / genre / work). Add a group level when the genre will hold works of more than one author or deity, which is almost always.
 - **Ids** are lowercase ASCII with hyphens, in common romanised spelling without diacritics (`ramraksha`, `shirdi-sai`, `hanuman-chalisa`). Titles carry the proper Devanagari and diacritics.
 - **Before adding a level, reuse an existing one.** Look at `index.json` first: a new Hanumān stotra goes under `hinduism/stotra/hanuman/`, not a new `hanumaan/`. A new genre or tradition is a deliberate decision; say so in the pull request.

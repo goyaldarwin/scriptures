@@ -1035,12 +1035,25 @@ function jumpPill(){
 setInterval(jumpPill, 300);
 function playRange(org, a, b){ const st = firstAu(a, b); if (st == null) return; openReader(org, st); playFrom(st, b); PL.whole = a === 0 && b === IT.length - 1; PL.endMsg = PL.whole ? '' : spanLabel(a, b) + T(' पूर्ण', ' finished'); }
 
-/* ---------------- library (any depth: tradition › text › part › work) ---------------- */
+/* ---------------- library (any depth: genre › group … › work) ---------------- */
+// The library shows no tradition: index.json's top shelves (hinduism, sikhism) keep the paths, and the reader sees their
+// genres as the top shelves. A genre with "shelf" is shown inside that genre (the Sikh gurbani among the Granthas), and
+// shelves with the same id are one shelf. Work nodes are kept as they are, so their path and work id still find the files.
+function libView(traditions){
+  const out = [], copy = n => Object.assign({}, n, {children: []});
+  const add = (into, n) => { if (n.work){ into.push(n); return; }
+    let s = into.find(x => !x.work && x.id === n.id); if (!s){ s = copy(n); delete s.shelf; into.push(s); }
+    n.children.forEach(c => add(s.children, c)); };
+  const genres = traditions.flatMap(t => t.children || []);
+  genres.filter(g => !g.shelf).forEach(g => add(out, g));
+  genres.filter(g => g.shelf).forEach(g => { const to = out.find(x => x.id === g.shelf); if (to) g.children.forEach(c => add(to.children, c)); else add(out, g); });
+  return out;
+}
 let libPath = [];
 function libNode(){ let n = {children: LIB}; for (const id of libPath){ const c = (n.children || []).find(x => x.id === id); if (!c) { libPath = []; return {children: LIB}; } n = c; } return n; }
 function renderLibrary(){
   const node = libNode(), kids = node.children || [];
-  // the way back up, in the header: Library › Hinduism › Vedas › … (the shelf you are on is the last, not a link)
+  // the way back up, in the header: Library › Vedas › Yajurveda › … (the shelf you are on is the last, not a link)
   let crumbs = '<button data-lp="-1">' + LB.lib() + '</button>'; let n = {children: LIB};
   libPath.forEach((id, k) => { n = n.children.find(x => x.id === id); crumbs += '<span class="sep">›</span>' + (k === libPath.length - 1 ? '<span class="cur">' + esc(TT(n.title)) + '</span>' : '<button data-lp="' + k + '">' + esc(TT(n.title)) + '</button>'); });
   const cr = $('#libCrumbs'); cr.innerHTML = libPath.length ? crumbs : '';
@@ -1439,7 +1452,7 @@ function tourSteps(){
     {t: () => $('#reader .szm'), allow: '#reader .szm', p: T('A− छूकर अक्षर छोटे करें।', 'Tap A− to make the letters smaller.'), enter: () => { TOUR.base = S.settings.size; }, done: () => S.settings.size < TOUR.base || (TOUR.tap && TOUR.base <= 16)},   // already at the smallest: the tap is enough
     {t: () => { const [a, b] = capKinds().map(LK); return $('#rLayers [data-l="' + (layerOn(a) ? b : a) + '"]'); }, allow: '#rLayers [data-l="h"], #rLayers [data-l="e"], #rLayers [data-l="pa"], #rLayers [data-l="w"]', p: () => S.settings.layers.h ? T('“En” छूकर हर पदके नीचे अंग्रेज़ी अर्थ दिखाएँ या छिपाएँ। “शब्द” से शब्दार्थ।', 'Tap “En” to show or hide the English meaning under every verse. “शब्द” gives word-by-word meanings.') : T('“हिं” छूकर हर पदके नीचे हिंदी अर्थ दिखाएँ। “En” अंग्रेज़ी, “शब्द” शब्दार्थ।', 'Tap “हिं” to show the Hindi meaning under every verse. “En” is English, “शब्द” word by word.'),
      enter: () => { TOUR.base = JSON.stringify(S.settings.layers); }, done: () => JSON.stringify(S.settings.layers) !== TOUR.base},
-    {t: () => $('#rLayers [data-l="r"]'), allow: '#rLayers [data-l="r"]', p: T('पुस्तक छूकर पाठ मोड चालू करें — केवल मूल पाठ, बड़े अक्षरोंमें। फिर छूनेपर अर्थ लौट आते हैं।', 'Tap the book for recitation mode — the verses alone, in larger type. Tap it again to bring the meanings back.'), done: () => !!S.settings.recite},
+    {t: () => $('#rLayers [data-l="r"]'), allow: '#rLayers [data-l="r"]', p: T('पुस्तक छूकर पाठ मोड चालू करें — केवल मूल पाठ। फिर छूनेपर अर्थ लौट आते हैं।', 'Tap the book for recitation mode — the verses alone. Tap it again to bring the meanings back.'), done: () => !!S.settings.recite},
     {t: () => firstVisible('#rBody .vbm'), allow: '#rBody .vbm', p: T('बुकमार्क चिह्न छूकर यह पद सहेजें — ☰ › बुकमार्कमें मिलेगा।', 'Tap the bookmark sign to save this verse — find it in ☰ › Bookmarks.'),
      enter: () => { TOUR.bmAdded = false; }, done: () => !!TOUR.bmAdded},   // any bookmark made in this step — even one taken off and put back
     {t: () => firstVisible('#rBody .vplay'), allow: '#rBody .vplay', p: T('▶ छूकर केवल यह पद सुनें — जो गाया जा रहा है वह चमकेगा।', 'Tap ▶ to play just this verse — it lights up as it is sung.'), done: () => PL.on},
@@ -1524,6 +1537,7 @@ function pruneLib(nodes, shelves){
   // needs no app update. Without ?app the website shows the whole library.
   const appId = new URLSearchParams(location.search).get('app');
   if (appId){ try { const A = (await getJSON('apps'))[appId]; if (A) LIB = pruneLib(LIB, A.shelves); } catch (e) {} }
+  LIB = libView(LIB);
   const leafs = []; (function walk(n){ (n || []).forEach(c => c.work ? leafs.push(c.work) : walk(c.children)); })(LIB);
   // a link may name a work (?w=<work id>): the app's shortcuts and store pages open straight to it
   const asked = new URLSearchParams(location.search).get('w');

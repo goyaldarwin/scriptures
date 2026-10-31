@@ -3,7 +3,7 @@
 The owner's priorities, in order: **accuracy**, then unambiguity, clarity, consistency and structure. This page lists what protects them and what should come next. When an item is done, move it to "In place" with one line on how it works.
 
 ## In place
-- **One hierarchy everywhere.** A work's address (`<tradition>/<genre>/<group…>/<work>`) is the shelf in the app, the folder in `library/`, and the folder in the private `scriptures-data`. `build.py` refuses a path that doesn't match the shelf.
+- **One hierarchy everywhere.** A work's address (`<tradition>/<genre>/<group…>/<work>`) is the folder in `library/` and in the private `scriptures-data`, and the shelf in the app from the genre down (the app shows no tradition). `build.py` refuses a path that doesn't match the shelf.
 - **Permanent ids.** Work ids, item ids and source ids never change, so readers' bookmarks, notes and progress survive any reorganisation (`renamed` in `work.json` moves them when a verse is split).
 - **Checks before anything goes live.**
   - `build.py` checks the library: sources, item ids, line-by-line meanings, plans, languages, dictionaries, a meaning for every word of every verse, paths and the store apps' shelves. It also refuses an `app.js` that doesn't parse.

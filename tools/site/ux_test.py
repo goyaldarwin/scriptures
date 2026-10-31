@@ -124,17 +124,20 @@ async def main():
         for aid, a in apps.items():
             if aid.startswith('_'): continue
             await pg.goto(url + '?app=' + aid); await pg.wait_for_timeout(2000)
-            got = await ev("(() => { const r = []; (function w(ns, at){ ns.forEach(n => n.work ? r.push(at.concat(n.id).join('/')) : w(n.children || [], at.concat(n.id))); })(LIB, []); return r; })()")
+            got = await ev("(() => { const r = []; (function w(ns, at){ ns.forEach(n => n.work ? r.push(n.path) : w(n.children || [], at.concat(n.id))); })(LIB, []); return r; })()")
             ok = got and all(any(g == s_ or g.startswith(s_ + '/') for s_ in a['shelves']) for g in got)
             check(f'app {aid}: only its shelves', ok, got)
         await pg.goto(url); await pg.wait_for_timeout(2000)
 
-        # ---- library: two levels per screen, every tradition is a heading ----
+        # ---- library: two levels per screen; no tradition, every genre is a heading (the Sikh gurbani among the Granthas) ----
         await ev("libPath=[]; show('library')"); await pg.wait_for_timeout(300); await shot('library')
         heads = await ev("Array.from(document.querySelectorAll('#libList .lhead')).map(x => x.textContent)")
-        check('library shows each tradition as a heading', len(heads) == len(shelf), heads)
+        genres = [g for t in shelf for g in t['children'] if 'shelf' not in g]
+        check('library shows each genre as a heading, and no tradition', heads == [g['title'][await ev('LANG()')] for g in genres], heads)
         rows = await ev("document.querySelectorAll('#libList button.it[data-node]').length")   # not the '+N' chip of a shelf with more works
-        check('library lists the genres under them', rows == sum(len(t['children']) for t in shelf), rows)
+        check('library lists the groups under them', rows == len({(g.get('shelf', g['id']), n['id']) for t in shelf for g in t['children'] for n in g['children']}), rows)
+        sukh = await ev("[...document.querySelectorAll('#libList [data-node=\"granth/guru-arjan-dev\"]')].length")
+        check('library: the Sukhmani Sahib’s Guru is on the Granthas shelf', sukh == 1, sukh)
         # each shelf names its works; tapping one opens it straight away
         chip = await ev("(() => { const b = document.querySelector('#libList [data-open-work]'); return b ? b.dataset.openWork : null; })()")
         check('library: a shelf lists its works by name', bool(chip), chip)
@@ -179,7 +182,7 @@ async def main():
             wid = leaf['work']; tag = wid
             # walk the shelf exactly as a reader would: tap down the path, two levels at a time
             await ev("libPath=[]; show('library')"); await pg.wait_for_timeout(200)
-            path = list(trail) + [leaf['id']]
+            path = await ev(f"(() => {{ let r = null; (function w(ns, at){{ ns.forEach(n => n.work === {json.dumps(leaf['work'])} ? r = at.concat(n.id) : w(n.children || [], at.concat(n.id))); }})(LIB, []); return r; }})()")   # its place in the library the reader sees
             k = 0; opened = False
             while k < len(path):
                 key = '/'.join(path[k:k + 2]) if k + 1 < len(path) else path[k]
@@ -373,8 +376,11 @@ async def main():
             check(f'{tag}: English interface works in the reader', bool(en_hdr.strip()), en_hdr)
             # recitation mode is the fourth button of the reader's capsule: it hides the meanings; a meaning turned on ends it
             await ev("S.settings.recite = false; S.settings.layers.h = true; S.settings.layers.e = true; if (workKinds().length > 2) S.settings.pair = 'pa,hi'; save(); applyRecite(); syncLayers(); refreshReader()")
+            size0 = await ev("getComputedStyle(document.querySelector('.vtext')).fontSize")
             await (await pg.query_selector('#rLayers [data-l=r]')).click(); await pg.wait_for_timeout(400)
             ok1 = await ev("S.settings.recite && !S.settings.layers.h && !S.settings.layers.e && !S.settings.layers.w && document.body.classList.contains('recite') && document.querySelector('#rLayers [data-l=r]').classList.contains('on')")
+            size1 = await ev("getComputedStyle(document.querySelector('.vtext')).fontSize")
+            check(f'{tag}: recitation mode keeps the reader’s letter size', size0 == size1, [size0, size1])
             await (await pg.query_selector('#rLayers [data-l=r]')).click(); await pg.wait_for_timeout(400)
             ok2 = await ev("!S.settings.recite && S.settings.layers.h && S.settings.layers.e")
             await (await pg.query_selector('#rLayers [data-l=r]')).click(); await pg.wait_for_timeout(300)
@@ -848,8 +854,8 @@ async def main():
         # a shelf shows two works, the most recently used first, then +N
         sh2 = await ev("""(async () => { const keep = JSON.stringify(Object.fromEntries(Object.entries(S.w).map(([k, v]) => [k, v.at]))); Object.values(S.w).forEach(v => delete v.at);
             await openWork('isha-upanishad', true); libPath = []; show('library'); await new Promise(r => setTimeout(r, 200));
-            const row = [...document.querySelectorAll('#libList li')].find(li => li.querySelector('[data-node="hinduism/veda"], [data-node="veda"]')); const chips = [...row.querySelectorAll('[data-open-work]')].map(b => b.dataset.openWork), more = row.querySelector('.more');
-            const g = [...document.querySelectorAll('#libList li')].find(li => li.querySelector('[data-node="hinduism/granth"], [data-node="granth"]')); const gchips = g.querySelectorAll('[data-open-work]').length;
+            const row = [...document.querySelectorAll('#libList li')].find(li => li.querySelector('[data-node="veda/yajurveda"]')); const chips = [...row.querySelectorAll('[data-open-work]')].map(b => b.dataset.openWork), more = row.querySelector('.more');
+            const g = [...document.querySelectorAll('#libList li')].find(li => li.querySelector('[data-node="granth/tulsidas"]')); const gchips = g.querySelectorAll('[data-open-work]').length;
             JSON.parse(keep); Object.entries(JSON.parse(keep)).forEach(([k, v]) => { if (S.w[k]) { if (v) S.w[k].at = v; else delete S.w[k].at; } }); save(); return [chips[0], chips.length, !!more, gchips]; })()""")
         check('library: a shelf shows two works, the one used most recently first', sh2[0] == 'isha-upanishad' and sh2[1] <= 2 and sh2[3] <= 2, sh2)
         # one word for one thing: no "text" for a verse, no "listen/hear" for play, no "translation", no "Adjust audio timing"
