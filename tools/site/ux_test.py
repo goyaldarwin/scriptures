@@ -1011,10 +1011,11 @@ async def main():
         st = await ev("[$('#sheet').classList.contains('on'), CURVIEW]")
         await pg.go_back(); await pg.wait_for_timeout(800)
         check('Back with a drawer open closes it and stays on the page; Back again leaves', opened and st == [False, 'reader'] and await ev("CURVIEW") == 'home', [opened, st])
-        # recitation mode: turning a meaning on brings back the ones that were on, with it; the interface keeps its language
+        # recitation mode: tapping हिं ends it and shows only the Hindi meaning (the interface follows: only Hindi → Hindi)
         rc = await ev("""(async () => { S.settings.ui = 'en'; S.settings.layers = {h: false, e: true, w: false}; S.settings.recite = false; save(); applyLang(); openReader('k', 5); await new Promise(r => setTimeout(r, 400));
-            toggleRecite(); document.querySelector('#rLayers [data-l=h]').click(); await new Promise(r => setTimeout(r, 300)); return [S.settings.recite, S.settings.layers.h, S.settings.layers.e, S.settings.ui]; })()""")
-        check('recitation mode: a meaning turned on brings back the meanings that were on, the interface unchanged', rc == [False, True, True, 'en'], rc)
+            toggleRecite(); document.querySelector('#rLayers [data-l=h]').click(); await new Promise(r => setTimeout(r, 300)); const r = [S.settings.recite, S.settings.layers.h, S.settings.layers.e, S.settings.ui];
+            S.settings.ui = 'en'; S.settings.layers = {h: true, e: true, w: false}; save(); applyLang(); syncLayers(); return r; })()""")
+        check('recitation mode: tapping हिं ends it and shows only the meaning tapped', rc == [False, True, False, 'hi'], rc)
         # the Sukhmani Sahib: no number or space can be tapped as a word
         sk = await ev("""(async () => { await openWork('sukhmani-sahib', true); openReader('k', 0); await new Promise(r => setTimeout(r, 800));
             return [...document.querySelectorAll('#rBody .w')].filter(w => !cleanWord(w.dataset.w || w.textContent)).map(w => w.textContent); })()""")

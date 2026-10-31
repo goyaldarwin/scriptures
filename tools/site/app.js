@@ -556,10 +556,8 @@ $('#rMid').onclick = () => sectionSheet();   // without the click event, which s
 $('#rBack').onclick = back;
 // the same हिं · En · शब्द switch in every header (library, work, reader): one setting, shown and changed anywhere
 $$('.lyr.layers button').forEach(b => b.onclick = () => { if (b.dataset.l === 'r'){ toggleRecite(); return; }
-  const was = LANG(), l = b.dataset.l;
-  // a meaning turned on ends recitation mode: the meanings that were on come back, with this one
-  if (S.settings.recite){ S.settings.recite = false; Object.assign(S.settings.layers, S.settings.preRecite || {}); delete S.settings.preRecite; S.settings.layers[l] = true; applyRecite(); }
-  else S.settings.layers[l] = !S.settings.layers[l];
+  if (S.settings.recite){ S.settings.recite = false; delete S.settings.preRecite; applyRecite(); }   // a meaning turned on ends recitation mode: only that meaning shows
+  const was = LANG(), l = b.dataset.l; S.settings.layers[l] = !S.settings.layers[l];
   // the meanings and the app's language are coupled: English meaning on → English; only Hindi → Hindi; neither → unchanged
   if (S.settings.layers.e) S.settings.ui = 'en'; else if (S.settings.layers.h) S.settings.ui = 'hi';
   save(); syncLayers(); if (LANG() !== was) applyLang();
