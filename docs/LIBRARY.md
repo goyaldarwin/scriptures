@@ -34,7 +34,7 @@ sikhism/gurbani/guru-nanak-dev/japji-sahib     (planned)
 ```
 
 Rules (`tools/site/build.py` checks them):
-- **The path is the chain of ids.** A work's `path` must be exactly the ids of the shelves above it, followed by its own id, and the files live in `library/<path>/`. The library screen shows two levels at a time: a shelf's sub-shelves as headings, with their contents listed under them.
+- **The path is the chain of ids.** A work's `path` must be exactly the ids of the shelves above it, followed by its own id, and the files live in `library/<path>/`. The library screen lists the genres, one row each with its works as buttons; a shelf's page shows a sub-shelf that holds shelves as a heading over them, and one that holds only works as a row with its works as buttons (docs/PLAYBOOK.md §6).
 - **The app shows no tradition.** Its top shelves are the genres of every tradition, and genres (and groups inside them) with the same id are one shelf. A genre may name another tradition's genre in `shelf`: its groups are then shown on that shelf (`sikhism/gurbani` has `"shelf": "granth"`, so Guru Arjan Dev Ji's Sukhmani Sahib is among the Granthas). Only a genre has `shelf`, and it must name a genre without one (`build.py` checks).
 - **At least three levels** (tradition / genre / work). Add a group level when the genre will hold works of more than one author or deity, which is almost always.
 - **Ids** are lowercase ASCII with hyphens, in common romanised spelling without diacritics (`ramraksha`, `shirdi-sai`, `hanuman-chalisa`). Titles carry the proper Devanagari and diacritics.
