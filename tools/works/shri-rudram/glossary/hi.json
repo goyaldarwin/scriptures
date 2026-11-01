@@ -88,5 +88,17 @@
   "en": "here, one of the grahas (Soma cups) of the Soma sacrifice",
   "g": "संज्ञा",
   "hard": true
+ },
+ "अर्क": {
+  "hard": true,
+  "hi": "यहाँ यज्ञकी पवित्र अग्नि (अर्क)",
+  "en": "here the arka, the sacred fire of the rite",
+  "g": "संज्ञा"
+ },
+ "गणपति": {
+  "hard": true,
+  "hi": "यहाँ, आरम्भमें गणोंके स्वामी ब्रह्मणस्पति (बृहस्पति) / गणों (दलों)के नायक",
+  "en": "here, at the opening, the lord of the hosts, Brahmaṇaspati (Bṛhaspati) / leaders of hosts (troops)",
+  "g": "संज्ञा"
  }
 }
