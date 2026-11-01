@@ -8,5 +8,10 @@
   "hi": "यहाँ, स्वप्नमें आत्मा, 'तैजस' (तेजवाला), जिसकी चेतना भीतरकी ओर है: आत्माका दूसरा पाद",
   "en": "here, the Self in dream, 'the shining one', its awareness turned inward: the second quarter of the Self",
   "hard": true
+ },
+ "vaiśvānara": {
+  "en": "here, the Self in the waking state, 'Vaiśvānara', its awareness turned outward: the first quarter of the Self",
+  "hi": "यहाँ, जाग्रत् अवस्थामें आत्मा, 'वैश्वानर', जिसकी चेतना बाहरकी ओर है: आत्माका पहला पाद",
+  "hard": true
  }
 }
