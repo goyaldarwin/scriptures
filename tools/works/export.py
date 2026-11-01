@@ -17,7 +17,7 @@ import glob, json, os, re, sys
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.dirname(os.path.dirname(HERE))
 sys.path.insert(0, os.path.join(REPO, 'tools')); import jsonio
 sys.path.insert(0, HERE)
-sys.path.insert(0, os.path.join(REPO, 'tools', 'meanings')); import versenum, overlap
+sys.path.insert(0, os.path.join(REPO, 'tools', 'meanings')); import versenum, overlap, hard_words
 sys.path.insert(0, os.path.join(REPO, 'tools', 'text')); import standard
 
 # the title of our own meanings (source "scriptures") in each language, when its file gives none
@@ -203,10 +203,14 @@ def export(wid, lib):
     for x in items:
         for l in x['v']:
             for t in l.split(): words.setdefault(x.get('l', M['lang']), set()).add(standard.fold(standard.SVARA.sub('', re.sub(r"[।॥|,.;:!?\-—‘’“”'\"()\[\]०-९੦-੯0-9]", '', t))))
-    # a hard word of the work's own meanings ("hard": true, tappable in the Hindi or English meaning) is in those meanings
-    said = {lg: json.dumps([json.load(open(f, encoding='utf-8')).get('m') for f in glob.glob(os.path.join(HERE, wid, 'meanings', lg, '*.json'))], ensure_ascii=False).lower() for lg in senses}
+    # a hard word of the work's own meanings ("hard": true, tappable in the Hindi or English meaning) is reached from a word of
+    # those meanings, as the app reaches it (tools/meanings/hard_words.py forms)
+    said = {}
+    for lg in senses:
+        text = json.dumps([json.load(open(f, encoding='utf-8')).get('m') for f in glob.glob(os.path.join(HERE, wid, 'meanings', lg, '*.json'))], ensure_ascii=False)
+        said[lg] = {f for w in hard_words.WORD[lg].findall(text) for f in hard_words.forms(w, lg)} if lg in hard_words.WORD else set()
     for lg, D in senses.items():   # a word as the app looks it up (standard.fold: गङ्गा and गंगा are one word)
-        bad = [k for k, v in D.items() if not (k.lower() in said[lg] if v.get('hard') else standard.fold(k) in words.get(lg, ())) or not (v.get('hi') and v.get('en'))]
+        bad = [k for k, v in D.items() if not (k in said[lg] if v.get('hard') else standard.fold(k) in words.get(lg, ())) or not (v.get('hi') and v.get('en'))]
         need(not bad, f'{wid}/glossary/{lg}.json: senses of words not in any {lg} verse (or, if hard, in its {lg} meanings), or without hi and en: {bad[:5]}')
     gl = os.path.join(lib.out, WP, 'glossary.json')
     if senses: lib.dump(WP + '/glossary.json', senses)

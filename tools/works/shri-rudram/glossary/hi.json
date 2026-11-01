@@ -1,0 +1,92 @@
+{
+ "अंशु": {
+  "hi": "यहाँ सोमयागका अंशु नामक ग्रह (सोमरस लेनेका पात्र)",
+  "en": "here the aṃśu, one of the cups of the soma sacrifice",
+  "g": "संज्ञा",
+  "hard": true
+ },
+ "अदाभ्य": {
+  "hi": "यहाँ सोमयागका अदाभ्य नामक ग्रह (सोमरस लेनेका पात्र)",
+  "en": "here the adābhya, one of the cups of the soma sacrifice",
+  "g": "संज्ञा",
+  "hard": true
+ },
+ "इडा": {
+  "hi": "यहाँ यज्ञकी हवि (भेंट) की देवी",
+  "en": "here Iḍā, the goddess of the sacrificial offering",
+  "g": "संज्ञा (व्यक्तिवाचक)",
+  "hard": true
+ },
+ "उपांशु": {
+  "hi": "यहाँ सोमयागका उपांशु नामक ग्रह (सोमरस लेनेका पात्र)",
+  "en": "here the upāṃśu, one of the cups of the soma sacrifice",
+  "g": "संज्ञा",
+  "hard": true
+ },
+ "घर्म": {
+  "hi": "यहाँ प्रवर्ग्य यज्ञ, जिसमें गरम दूधकी आहुति दी जाती है (और उसका पात्र)",
+  "en": "here the Pravargya rite, the offering of hot milk (and its vessel)",
+  "g": "संज्ञा",
+  "hard": true
+ },
+ "धृष्ट": {
+  "hi": "यहाँ निर्भीक, साहसी",
+  "en": "here bold, fearless",
+  "g": "विशेषण",
+  "hard": true
+ },
+ "ध्रुव": {
+  "hi": "यहाँ सोमयागका ध्रुव नामका ग्रह (सोमका पात्र)",
+  "en": "here the graha (Soma cup) named Dhruva in the Soma sacrifice",
+  "g": "संज्ञा",
+  "hard": true
+ },
+ "प्रतिप्रस्थान": {
+  "hi": "यहाँ सोमयागका एक ग्रह (सोमका पात्र)",
+  "en": "here a graha (Soma cup) of the Soma sacrifice",
+  "g": "संज्ञा",
+  "hard": true
+ },
+ "बृहत्": {
+  "hi": "यहाँ सामवेदका एक प्रसिद्ध साम (गान), बृहत्साम",
+  "en": "here, the Bṛhat, a famous Sāman (chant of the Sāmaveda)",
+  "g": "संज्ञा",
+  "hard": true
+ },
+ "मन्थी": {
+  "hi": "मथनेवाला; यहाँ सोमयागका एक ग्रह (पात्र), जिसमें सत्तू मिला सोमरस लिया जाता है",
+  "en": "churning; here, a Soma cup (graha) of the Soma rite, holding Soma stirred with meal",
+  "g": "संज्ञा",
+  "hard": true
+ },
+ "माहेन्द्र": {
+  "hi": "महेन्द्र (इन्द्र) का; यहाँ इन्द्रका एक ग्रह (सोमका पात्र)",
+  "en": "of great Indra; here, a Soma cup (graha) of Indra",
+  "g": "संज्ञा",
+  "hard": true
+ },
+ "मूर्धा": {
+  "hi": "सिर, चोटी; यहाँ ऊपरकी (ऊर्ध्व) दिशा",
+  "en": "head, summit; here, the upward direction",
+  "g": "संज्ञा",
+  "hard": true
+ },
+ "रश्मि": {
+  "hi": "किरण; यहाँ सोमयागका एक ग्रह (पात्र)",
+  "en": "ray; here, a Soma cup (graha) of the Soma rite",
+  "g": "संज्ञा",
+  "hard": true
+ },
+ "वायव्य": {
+  "hi": "यहाँ वायव्य पात्र: सोमयागके ओखली-जैसे कुछ पात्र (वायुदेवताके)",
+  "en": "here, the vāyavya vessels: certain mortar-shaped Soma vessels (sacred to Vāyu)",
+  "g": "विशेषण",
+  "hard": true
+ },
+ "शुक्र": {
+  "hi": "यहाँ सोमयागका एक ग्रह (सोमरस लेनेका पात्र)",
+  "en": "here, one of the grahas (Soma cups) of the Soma sacrifice",
+  "g": "संज्ञा",
+  "hard": true
+ }
+}

@@ -1,0 +1,26 @@
+{
+ "पाद": {
+  "hi": "चौथाई भाग; यहाँ आत्माके चार पादों (अवस्थाओं) में से एक — वैश्वानर, तैजस, प्राज्ञ और तुरीय",
+  "en": "quarter; here one of the four quarters (states) of the Self — Vaiśvānara, Taijasa, Prājña and Turīya",
+  "g": "संज्ञा",
+  "hard": true
+ },
+ "मात्रा": {
+  "hi": "नाप, अंश; यहाँ ओंकारके तीन अंश — अ, उ और म",
+  "en": "measure, part; here the three parts of Om — a, u and m",
+  "g": "संज्ञा",
+  "hard": true
+ },
+ "तैजस": {
+  "hi": "तेजवाला; यहाँ: स्वप्न-अवस्थाका आत्मा, जिसकी प्रज्ञा भीतरकी ओर है (आत्माका दूसरा पाद)",
+  "en": "luminous; here: the Self in the dream state, its awareness turned within (the second quarter)",
+  "g": "संज्ञा",
+  "hard": true
+ },
+ "प्राज्ञ": {
+  "hi": "बुद्धिमान्; यहाँ: गहरी नींद (सुषुप्ति)का आत्मा, जो केवल प्रज्ञा (ज्ञान) है (आत्माका तीसरा पाद)",
+  "en": "wise; here: the Self in deep sleep, pure awareness (the third quarter)",
+  "g": "संज्ञा",
+  "hard": true
+ }
+}
