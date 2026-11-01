@@ -183,3 +183,15 @@
 {"k": "पुराना", "why": "ayodhya.25.cau3 पटु मोट पुराना: only 'old' fits; the writer asks that 'पुराण / Puranas' not lead. Sense order only, left for the owner", "lang": "awa"}
 {"k": "असि", "why": "ayodhya.25.cau2 सूल कुलिस असि: sword; the writer asks that 'तलवार' be listed first. Sense order only, left for the owner", "lang": "awa"}
 {"k": "महासायकचारुचापं", "why": "ayodhya.0.shloka3: a bahuvrīhi qualifying रामं ('bearing a great arrow and a lovely bow'), द्वितीया like नीलाम्बुजश्यामलकोमलाङ्गं; the entry has the noun 'महान बाण और सुंदर धनुष' and g 'संज्ञा, द्वितीया'. The fix replaces sense and grammar, so it is left for the owner", "lang": "sa"}
+{"k": "अर्क", "why": "hard word of our Śrī Rudram meaning (chamakam a09): not given an entry. Monier-Williams gives 'fire' and 'the sun', but सूर्य is the next item in the same list; the rite sense needs a commentary (Sāyaṇa). English 'arka' carries 'the sacred fire of a great rite' for the Rudram — check", "lang": "hi"}
+{"k": "साम", "why": "hard word of our meanings (the Sāman, ~5 places): no entry, because its key would also underline सामने ('in front', 66 places). Decide whether to key it differently", "lang": "hi"}
+{"k": "आगम", "why": "hard word of our meanings: no entry, because its key would also underline आगमें ('in the fire'). Decide whether to key it differently", "lang": "hi"}
+{"k": "महोख", "why": "hard word of our Mānas meaning: given as a bird, the crow-pheasant (coucal); English 'mahokha' says only 'a kind of bird'. Platts / McGregor to confirm", "lang": "hi"}
+{"k": "ढेक", "why": "hard word of our Mānas meaning: given only as 'a kind of (water) bird'; Monier-Williams and Apte do not list it. Platts to name it", "lang": "hi"}
+{"k": "दशकंध", "why": "hard word: read as 'ten-shouldered' (कंध < स्कन्ध); 'ten-necked' (< कन्धर) is also possible. Monier-Williams and Apte do not settle it", "lang": "hi"}
+{"k": "दुघड़िया", "why": "hard word: given as a two-ghaṛī auspicious moment 'reckoned for setting out in haste'; Platts / McGregor to confirm", "lang": "hi"}
+{"k": "घमोई", "why": "hard word: given as 'a growth at a bamboo's root that destroys it'; whether a pest, a fungus or a grass is not settled. Platts to sharpen", "lang": "hi"}
+{"k": "शितिकण्ठ", "why": "hard word: follows our Śrī Rudram meaning, 'white-necked' (Monier-Williams: 'white-necked' in the Kāṭhaka; 'dark-necked' as Rudra's usual epithet). Confirm the reading of our meaning", "lang": "hi"}
+{"k": "गणपति", "why": "hard word: the entry leads with Śrī Gaṇeśa; our Śrī Rudram opening names him Brahmaṇaspati. Decide whether the Rudram needs its own sense", "lang": "hi"}
+{"k": "vaiśvānara", "why": "hard word: one shared entry gives Agni / the waking Self (Māṇḍūkya) / a cup (Rudram). It could be split like taijasa and prājña (the Māṇḍūkya's and the Rudram's senses in their own glossaries)", "lang": "en"}
+{"k": "bheda", "why": "hard word: 'bheda in the dance' (uttar.22.do22) is a pun; which sense of bheda it plays on is open", "lang": "en"}

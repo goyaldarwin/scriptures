@@ -25,6 +25,7 @@ tools/
   meanings/                      our own meanings (style.md)
     prepare.py, apply_batches.py   batches of verses for writers and reviewers → a work's meanings/<lang>/scriptures.json
     overlap.py                     no sentence copied from a copyrighted meaning
+    hard_words.py                  the hard words of our meanings: candidates for a writer, apply written entries, report what the app underlines
     versenum.py                    the verse number at the end of each of our meanings
     sanskrit_dict.py               Monier-Williams and Apte look-ups
   store/                         the store apps (docs/APPS.md): icons, screenshots, listing check

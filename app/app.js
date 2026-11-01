@@ -237,13 +237,15 @@ function wordsHTML(line){
 }
 /* the hard words of our meanings: a word of a Hindi or English meaning whose entry in that language's dictionary
    (the work's own glossary first, then glossary/hi.json or en.json) has "hard": true is faintly underlined and opens its meaning like a verse word. A joined
-   ending (मनमें, विषयोंसे, आसक्तियोंको) or an English plural, tense or 's is looked through to the entry. */
+   ending (मनमें, विषयोंसे, आसक्तियोंको), a name's जी (विभीषणजीने) or an English plural, tense or 's is looked through to the entry. */
 const HARD_RE = {hi: /[\u0900-\u0963\u0966-\u097F\u200C\u200D]+/g, en: /[A-Za-zÀ-ɏḀ-ỿ]+(?:[’'][A-Za-zÀ-ɏḀ-ỿ]+)*/g};
 const HI_POST = ['वाला', 'वाली', 'वाले', 'में', 'से', 'को', 'का', 'की', 'के', 'ने', 'पर', 'तक'];
 function hardForms(w, lang){
   if (lang === 'en'){ const x = w.toLowerCase().replace(/[’']s$/, ''); return [x, x.replace(/ies$/, 'y'), x.replace(/es$/, ''), x.replace(/s$/, ''), x.replace(/ed$/, ''), x.replace(/ed$/, 'e'), x.replace(/ing$/, ''), x.replace(/ing$/, 'e'), x.replace(/ly$/, '')]; }
-  const base = [w].concat(HI_POST.filter(p => w.length > p.length + 1 && w.endsWith(p)).map(p => w.slice(0, -p.length)));
-  return base.flatMap(x => [x, x.replace(/ियों$/, 'ि'), x.replace(/ियों$/, 'ी'), x.replace(/ओं$/, ''), x.replace(/ों$/, ''), x.replace(/ों$/, 'ा'), x.replace(/ें$/, ''), x.replace(/ें$/, 'ा'), x.replace(/े$/, 'ा')]);
+  w = w.replace(/[\u200C\u200D]/g, '');   // a joiner (जाम्बवान्‌ने) is not part of the word
+  let base = [w].concat(HI_POST.filter(p => w.length > p.length + 1 && w.endsWith(p)).map(p => w.slice(0, -p.length)));
+  base = base.concat(base.filter(x => x.length > 3 && x.endsWith('जी')).map(x => x.slice(0, -2)));   // विभीषणजीने → विभीषण
+  return base.flatMap(x => [x, x.replace(/ियों$/, 'ि'), x.replace(/ियों$/, 'ी'), x.replace(/ियाँ$/, 'ी'), x.replace(/ियाँ$/, 'ि'), x.replace(/एँ$/, ''), x.replace(/ओं$/, ''), x.replace(/ों$/, ''), x.replace(/ों$/, 'ा'), x.replace(/ें$/, ''), x.replace(/ें$/, 'ा'), x.replace(/े$/, 'ा')]);
 }
 function hardKey(w, lang){ const Ds = [WG[lang], GL[lang]].filter(Boolean); for (const k of hardForms(w, lang)) if (Ds.some(D => D[k] && D[k].hard)) return k; return null; }
 function hardWords(html, lang){   // html is already escaped; only whole words outside the tags are wrapped
