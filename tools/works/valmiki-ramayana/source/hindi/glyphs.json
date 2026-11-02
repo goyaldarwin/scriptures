@@ -1,0 +1,3357 @@
+{
+ "meta": {
+  "pdf_font": "IYECGW+NotoSansDevanagari-Regular (xref 1343), Type0 Identity-H, 967 glyph slots, 254 non-empty outlines",
+  "reference_font": {
+   "file": "NotoSansDevanagari-Regular-2.000.ttf",
+   "version": "2.000;GOOG;noto-source:20170915",
+   "source": "https://raw.githubusercontent.com/googlefonts/noto-fonts/v2017-10-24-phase3-second-cleanup/hinted/NotoSansDevanagari-Regular.ttf",
+   "sha1": "7da7ce9e40ba7c51f4a8080aa152b99a6951e88b"
+  },
+  "outline_check": "all 254 non-empty embedded glyphs have the same contour points, end points and advance width as the same glyph id in the reference font (fontTools); 2.002 and 2.007 releases have 954/845 glyphs and do not match",
+  "method": "each used glyph id is identified by shaping the reference font with HarfBuzz (uharfbuzz) on 187,394 generated clusters (consonants ± nukta with every vowel sign and ं ँ ः, all 2-consonant conjuncts with every vowel sign, ्र/्य/्व clusters, all 3-consonant conjuncts, reph forms of all of these, independent vowels, digits, punctuation); \"evidence\" lists the shortest inputs that produce the glyph. The value/role assignment is then checked by decoding every survey string back from its glyphs",
+  "validation": {
+   "ok": 93565,
+   "bad": 11,
+   "skip": 93818
+  },
+  "roles": "base: spacing cluster glyph; half: pre-base half form; pre: pre-base ि variant (written after its cluster), possibly carrying ं/ँ and/or reph; post: mark after the base, possibly carrying reph; reph: र् drawn after its syllable (written before it); dummy: no text; dotted: shaper-inserted U+25CC, no text",
+  "unmapped": "none: every glyph id that occurs in the PDF (251) is produced by the shaping survey; no glyph needed to be settled by eye"
+ },
+ "glyphs": {
+  "5": {
+   "name": "candrabindudeva",
+   "role": "post",
+   "value": "ँ",
+   "how": "mark",
+   "evidence": [
+    "अँ → [adeva, candrabindudeva]",
+    "आँ → [aadeva, candrabindudeva]",
+    "इँ → [ideva, candrabindudeva]"
+   ],
+   "count_in_book": 14706,
+   "pdf_tounicode": "ँ"
+  },
+  "6": {
+   "name": "anusvaradeva",
+   "role": "post",
+   "value": "ं",
+   "how": "mark",
+   "evidence": [
+    "अं → [adeva, anusvaradeva]",
+    "आं → [aadeva, anusvaradeva]",
+    "इं → [ideva, anusvaradeva]"
+   ],
+   "count_in_book": 9266,
+   "pdf_tounicode": "ं"
+  },
+  "7": {
+   "name": "visargadeva",
+   "role": "post",
+   "value": "ः",
+   "how": "mark",
+   "evidence": [
+    "ऄः → [ashortdeva, visargadeva]",
+    "अः → [adeva, visargadeva]",
+    "आः → [aadeva, visargadeva]"
+   ],
+   "count_in_book": 1,
+   "pdf_tounicode": "ः"
+  },
+  "9": {
+   "name": "adeva",
+   "role": "base",
+   "value": "अ",
+   "how": "single glyph",
+   "evidence": [
+    "अ → [adeva]",
+    "ऄँ → [adeva, eshortvowelsigncandrabindudeva]",
+    "अँ → [adeva, candrabindudeva]"
+   ],
+   "count_in_book": 23289,
+   "pdf_tounicode": "अ"
+  },
+  "10": {
+   "name": "aadeva",
+   "role": "base",
+   "value": "आ",
+   "how": "single glyph",
+   "evidence": [
+    "आ → [aadeva]",
+    "आँ → [aadeva, candrabindudeva]",
+    "आं → [aadeva, anusvaradeva]"
+   ],
+   "count_in_book": 20621,
+   "pdf_tounicode": "आ"
+  },
+  "11": {
+   "name": "ideva",
+   "role": "base",
+   "value": "इ",
+   "how": "single glyph",
+   "evidence": [
+    "इ → [ideva]",
+    "इँ → [ideva, candrabindudeva]",
+    "इं → [ideva, anusvaradeva]"
+   ],
+   "count_in_book": 17172,
+   "pdf_tounicode": "इ"
+  },
+  "12": {
+   "name": "iideva",
+   "role": "base",
+   "value": "ई",
+   "how": "single glyph",
+   "evidence": [
+    "ई → [iideva]",
+    "ईः → [iideva, visargadeva]"
+   ],
+   "count_in_book": 1,
+   "pdf_tounicode": "ई"
+  },
+  "13": {
+   "name": "udeva",
+   "role": "base",
+   "value": "उ",
+   "how": "single glyph",
+   "evidence": [
+    "उ → [udeva]",
+    "उँ → [udeva, candrabindudeva]",
+    "उं → [udeva, anusvaradeva]"
+   ],
+   "count_in_book": 26417,
+   "pdf_tounicode": "उ"
+  },
+  "14": {
+   "name": "uudeva",
+   "role": "base",
+   "value": "ऊ",
+   "how": "single glyph",
+   "evidence": [
+    "ऊ → [uudeva]",
+    "ऊँ → [uudeva, candrabindudeva]",
+    "ऊं → [uudeva, anusvaradeva]"
+   ],
+   "count_in_book": 1020,
+   "pdf_tounicode": "ऊ"
+  },
+  "15": {
+   "name": "rvocalicdeva",
+   "role": "base",
+   "value": "ऋ",
+   "how": "single glyph",
+   "evidence": [
+    "ऋ → [rvocalicdeva]",
+    "ऋँ → [rvocalicdeva, candrabindudeva]",
+    "ऋं → [rvocalicdeva, anusvaradeva]"
+   ],
+   "count_in_book": 764,
+   "pdf_tounicode": "ऋ"
+  },
+  "19": {
+   "name": "edeva",
+   "role": "base",
+   "value": "ए",
+   "how": "single glyph",
+   "evidence": [
+    "ए → [edeva]",
+    "ऍँ → [edeva, ecandravowelsigncandrabindudeva]",
+    "ऎँ → [edeva, eshortvowelsigncandrabindudeva]"
+   ],
+   "count_in_book": 9762,
+   "pdf_tounicode": "ए"
+  },
+  "20": {
+   "name": "aideva",
+   "role": "base",
+   "value": "ऐ",
+   "how": "single glyph",
+   "evidence": [
+    "ऐ → [aideva]",
+    "ऐः → [aideva, visargadeva]"
+   ],
+   "count_in_book": 2111,
+   "pdf_tounicode": "ऐ"
+  },
+  "21": {
+   "name": "ocandradeva",
+   "role": "base",
+   "value": "ऑ",
+   "how": "single glyph",
+   "evidence": [
+    "ऑ → [ocandradeva]",
+    "ऑः → [ocandradeva, visargadeva]"
+   ],
+   "count_in_book": 1,
+   "pdf_tounicode": "ऑ"
+  },
+  "23": {
+   "name": "odeva",
+   "role": "base",
+   "value": "ओ",
+   "how": "single glyph",
+   "evidence": [
+    "ओ → [odeva]",
+    "ओः → [odeva, visargadeva]"
+   ],
+   "count_in_book": 2406,
+   "pdf_tounicode": "ओ"
+  },
+  "24": {
+   "name": "audeva",
+   "role": "base",
+   "value": "औ",
+   "how": "single glyph",
+   "evidence": [
+    "औ → [audeva]",
+    "औः → [audeva, visargadeva]"
+   ],
+   "count_in_book": 13148,
+   "pdf_tounicode": "औ"
+  },
+  "25": {
+   "name": "kadeva",
+   "role": "base",
+   "value": "क",
+   "how": "single glyph",
+   "evidence": [
+    "क → [kadeva]",
+    "कँ → [kadeva, candrabindudeva]",
+    "कं → [kadeva, anusvaradeva]"
+   ],
+   "count_in_book": 167249,
+   "pdf_tounicode": "क"
+  },
+  "26": {
+   "name": "khadeva",
+   "role": "base",
+   "value": "ख",
+   "how": "single glyph",
+   "evidence": [
+    "ख → [khadeva]",
+    "खँ → [khadeva, candrabindudeva]",
+    "खं → [khadeva, anusvaradeva]"
+   ],
+   "count_in_book": 12564,
+   "pdf_tounicode": "ख"
+  },
+  "27": {
+   "name": "gadeva",
+   "role": "base",
+   "value": "ग",
+   "how": "single glyph",
+   "evidence": [
+    "ग → [gadeva]",
+    "गँ → [gadeva, candrabindudeva]",
+    "गं → [gadeva, anusvaradeva]"
+   ],
+   "count_in_book": 31955,
+   "pdf_tounicode": "ग"
+  },
+  "28": {
+   "name": "ghadeva",
+   "role": "base",
+   "value": "घ",
+   "how": "single glyph",
+   "evidence": [
+    "घ → [ghadeva]",
+    "घँ → [ghadeva, candrabindudeva]",
+    "घं → [ghadeva, anusvaradeva]"
+   ],
+   "count_in_book": 5298,
+   "pdf_tounicode": "घ"
+  },
+  "29": {
+   "name": "ngadeva",
+   "role": "base",
+   "value": "ङ",
+   "how": "single glyph",
+   "evidence": [
+    "ङ → [ngadeva]",
+    "ङँ → [ngadeva, candrabindudeva]",
+    "ङं → [ngadeva, anusvaradeva]"
+   ],
+   "count_in_book": 1157,
+   "pdf_tounicode": "ङ"
+  },
+  "30": {
+   "name": "cadeva",
+   "role": "base",
+   "value": "च",
+   "how": "single glyph",
+   "evidence": [
+    "च → [cadeva]",
+    "चँ → [cadeva, candrabindudeva]",
+    "चं → [cadeva, anusvaradeva]"
+   ],
+   "count_in_book": 18322,
+   "pdf_tounicode": "च"
+  },
+  "31": {
+   "name": "chadeva",
+   "role": "base",
+   "value": "छ",
+   "how": "single glyph",
+   "evidence": [
+    "छ → [chadeva]",
+    "छँ → [chadeva, candrabindudeva]",
+    "छं → [chadeva, anusvaradeva]"
+   ],
+   "count_in_book": 4389,
+   "pdf_tounicode": "छ"
+  },
+  "32": {
+   "name": "jadeva",
+   "role": "base",
+   "value": "ज",
+   "how": "single glyph",
+   "evidence": [
+    "ज → [jadeva]",
+    "जँ → [jadeva, candrabindudeva]",
+    "जं → [jadeva, anusvaradeva]"
+   ],
+   "count_in_book": 37882,
+   "pdf_tounicode": "ज"
+  },
+  "33": {
+   "name": "jhadeva",
+   "role": "base",
+   "value": "झ",
+   "how": "single glyph",
+   "evidence": [
+    "झ → [jhadeva]",
+    "झँ → [jhadeva, candrabindudeva]",
+    "झं → [jhadeva, anusvaradeva]"
+   ],
+   "count_in_book": 3495,
+   "pdf_tounicode": "झ"
+  },
+  "35": {
+   "name": "ttadeva",
+   "role": "base",
+   "value": "ट",
+   "how": "single glyph",
+   "evidence": [
+    "ट → [ttadeva]",
+    "टँ → [ttadeva, candrabindudeva]",
+    "टं → [ttadeva, anusvaradeva]"
+   ],
+   "count_in_book": 6396,
+   "pdf_tounicode": "ट"
+  },
+  "36": {
+   "name": "tthadeva",
+   "role": "base",
+   "value": "ठ",
+   "how": "single glyph",
+   "evidence": [
+    "ठ → [tthadeva]",
+    "ठँ → [tthadeva, candrabindudeva]",
+    "ठं → [tthadeva, anusvaradeva]"
+   ],
+   "count_in_book": 3792,
+   "pdf_tounicode": "ठ"
+  },
+  "37": {
+   "name": "ddadeva",
+   "role": "base",
+   "value": "ड",
+   "how": "single glyph",
+   "evidence": [
+    "ड → [ddadeva]",
+    "डँ → [ddadeva, candrabindudeva]",
+    "डं → [ddadeva, anusvaradeva]"
+   ],
+   "count_in_book": 3785,
+   "pdf_tounicode": "ड"
+  },
+  "38": {
+   "name": "ddhadeva",
+   "role": "base",
+   "value": "ढ",
+   "how": "single glyph",
+   "evidence": [
+    "ढ → [ddhadeva]",
+    "ढँ → [ddhadeva, candrabindudeva]",
+    "ढं → [ddhadeva, anusvaradeva]"
+   ],
+   "count_in_book": 408,
+   "pdf_tounicode": "ढ"
+  },
+  "39": {
+   "name": "nnadeva",
+   "role": "base",
+   "value": "ण",
+   "how": "single glyph",
+   "evidence": [
+    "ण → [nnadeva]",
+    "णँ → [nnadeva, candrabindudeva]",
+    "णं → [nnadeva, anusvaradeva]"
+   ],
+   "count_in_book": 20983,
+   "pdf_tounicode": "ण"
+  },
+  "40": {
+   "name": "tadeva",
+   "role": "base",
+   "value": "त",
+   "how": "single glyph",
+   "evidence": [
+    "त → [tadeva]",
+    "तँ → [tadeva, candrabindudeva]",
+    "तं → [tadeva, anusvaradeva]"
+   ],
+   "count_in_book": 86018,
+   "pdf_tounicode": "त"
+  },
+  "41": {
+   "name": "thadeva",
+   "role": "base",
+   "value": "थ",
+   "how": "single glyph",
+   "evidence": [
+    "थ → [thadeva]",
+    "थँ → [thadeva, candrabindudeva]",
+    "थं → [thadeva, anusvaradeva]"
+   ],
+   "count_in_book": 24747,
+   "pdf_tounicode": "थ"
+  },
+  "42": {
+   "name": "dadeva",
+   "role": "base",
+   "value": "द",
+   "how": "single glyph",
+   "evidence": [
+    "द → [dadeva]",
+    "दँ → [dadeva, candrabindudeva]",
+    "दं → [dadeva, anusvaradeva]"
+   ],
+   "count_in_book": 39342,
+   "pdf_tounicode": "द"
+  },
+  "43": {
+   "name": "dhadeva",
+   "role": "base",
+   "value": "ध",
+   "how": "single glyph",
+   "evidence": [
+    "ध → [dhadeva]",
+    "धँ → [dhadeva, candrabindudeva]",
+    "धं → [dhadeva, anusvaradeva]"
+   ],
+   "count_in_book": 11728,
+   "pdf_tounicode": "ध"
+  },
+  "44": {
+   "name": "nadeva",
+   "role": "base",
+   "value": "न",
+   "how": "single glyph",
+   "evidence": [
+    "न → [nadeva]",
+    "नँ → [nadeva, candrabindudeva]",
+    "नं → [nadeva, anusvaradeva]"
+   ],
+   "count_in_book": 113690,
+   "pdf_tounicode": "न"
+  },
+  "46": {
+   "name": "padeva",
+   "role": "base",
+   "value": "प",
+   "how": "single glyph",
+   "evidence": [
+    "प → [padeva]",
+    "पँ → [padeva, candrabindudeva]",
+    "पं → [padeva, anusvaradeva]"
+   ],
+   "count_in_book": 59222,
+   "pdf_tounicode": "प"
+  },
+  "47": {
+   "name": "phadeva",
+   "role": "base",
+   "value": "फ",
+   "how": "single glyph",
+   "evidence": [
+    "फ → [phadeva]",
+    "फँ → [phadeva, candrabindudeva]",
+    "फं → [phadeva, anusvaradeva]"
+   ],
+   "count_in_book": 3508,
+   "pdf_tounicode": "फ"
+  },
+  "48": {
+   "name": "badeva",
+   "role": "base",
+   "value": "ब",
+   "how": "single glyph",
+   "evidence": [
+    "ब → [badeva]",
+    "बँ → [badeva, candrabindudeva]",
+    "बं → [badeva, anusvaradeva]"
+   ],
+   "count_in_book": 30452,
+   "pdf_tounicode": "ब"
+  },
+  "49": {
+   "name": "bhadeva",
+   "role": "base",
+   "value": "भ",
+   "how": "single glyph",
+   "evidence": [
+    "भ → [bhadeva]",
+    "भँ → [bhadeva, candrabindudeva]",
+    "भं → [bhadeva, anusvaradeva]"
+   ],
+   "count_in_book": 26415,
+   "pdf_tounicode": "भ"
+  },
+  "50": {
+   "name": "madeva",
+   "role": "base",
+   "value": "म",
+   "how": "single glyph",
+   "evidence": [
+    "म → [madeva]",
+    "मँ → [madeva, candrabindudeva]",
+    "मं → [madeva, anusvaradeva]"
+   ],
+   "count_in_book": 97777,
+   "pdf_tounicode": "म"
+  },
+  "51": {
+   "name": "yadeva",
+   "role": "base",
+   "value": "य",
+   "how": "single glyph",
+   "evidence": [
+    "य → [yadeva]",
+    "यँ → [yadeva, candrabindudeva]",
+    "यं → [yadeva, anusvaradeva]"
+   ],
+   "count_in_book": 72656,
+   "pdf_tounicode": "य"
+  },
+  "52": {
+   "name": "radeva",
+   "role": "base",
+   "value": "र",
+   "how": "single glyph",
+   "evidence": [
+    "र → [radeva]",
+    "रँ → [radeva, candrabindudeva]",
+    "रं → [radeva, anusvaradeva]"
+   ],
+   "count_in_book": 151129,
+   "pdf_tounicode": "र"
+  },
+  "54": {
+   "name": "ladeva",
+   "role": "base",
+   "value": "ल",
+   "how": "single glyph",
+   "evidence": [
+    "ल → [ladeva]",
+    "लँ → [ladeva, candrabindudeva]",
+    "लं → [ladeva, anusvaradeva]"
+   ],
+   "count_in_book": 53596,
+   "pdf_tounicode": "ल"
+  },
+  "57": {
+   "name": "vadeva",
+   "role": "base",
+   "value": "व",
+   "how": "single glyph",
+   "evidence": [
+    "व → [vadeva]",
+    "वँ → [vadeva, candrabindudeva]",
+    "वं → [vadeva, anusvaradeva]"
+   ],
+   "count_in_book": 75245,
+   "pdf_tounicode": "व"
+  },
+  "58": {
+   "name": "shadeva",
+   "role": "base",
+   "value": "श",
+   "how": "single glyph",
+   "evidence": [
+    "श → [shadeva]",
+    "शँ → [shadeva, candrabindudeva]",
+    "शं → [shadeva, anusvaradeva]"
+   ],
+   "count_in_book": 22030,
+   "pdf_tounicode": "श"
+  },
+  "59": {
+   "name": "ssadeva",
+   "role": "base",
+   "value": "ष",
+   "how": "single glyph",
+   "evidence": [
+    "ष → [ssadeva]",
+    "षँ → [ssadeva, candrabindudeva]",
+    "षं → [ssadeva, anusvaradeva]"
+   ],
+   "count_in_book": 8844,
+   "pdf_tounicode": "ष"
+  },
+  "60": {
+   "name": "sadeva",
+   "role": "base",
+   "value": "स",
+   "how": "single glyph",
+   "evidence": [
+    "स → [sadeva]",
+    "सँ → [sadeva, candrabindudeva]",
+    "सं → [sadeva, anusvaradeva]"
+   ],
+   "count_in_book": 110817,
+   "pdf_tounicode": "स"
+  },
+  "61": {
+   "name": "hadeva",
+   "role": "base",
+   "value": "ह",
+   "how": "single glyph",
+   "evidence": [
+    "ह → [hadeva]",
+    "हँ → [hadeva, candrabindudeva]",
+    "हं → [hadeva, anusvaradeva]"
+   ],
+   "count_in_book": 94461,
+   "pdf_tounicode": "ह"
+  },
+  "65": {
+   "name": "avagrahadeva",
+   "role": "base",
+   "value": "ऽ",
+   "how": "single glyph",
+   "evidence": [
+    "ऽ → [avagrahadeva]",
+    "ऽँ → [avagrahadeva, candrabindudeva]",
+    "ऽं → [avagrahadeva, anusvaradeva]"
+   ],
+   "count_in_book": 33,
+   "pdf_tounicode": "ऽ"
+  },
+  "66": {
+   "name": "aavowelsigndeva",
+   "role": "post",
+   "value": "ा",
+   "how": "vowel sign",
+   "reph": false,
+   "evidence": [
+    "का → [kadeva, aavowelsigndeva]",
+    "खा → [khadeva, aavowelsigndeva]",
+    "गा → [gadeva, aavowelsigndeva]"
+   ],
+   "count_in_book": 250598,
+   "pdf_tounicode": "ा"
+  },
+  "68": {
+   "name": "iivowelsigndeva",
+   "role": "post",
+   "value": "ी",
+   "how": "vowel sign",
+   "reph": false,
+   "evidence": [
+    "खी → [khadeva, iivowelsigndeva]",
+    "गी → [gadeva, iivowelsigndeva]",
+    "घी → [ghadeva, iivowelsigndeva]"
+   ],
+   "count_in_book": 78948,
+   "pdf_tounicode": "ी"
+  },
+  "69": {
+   "name": "uvowelsigndeva",
+   "role": "post",
+   "value": "ु",
+   "how": "vowel sign",
+   "reph": false,
+   "evidence": [
+    "कु → [kadeva, uvowelsigndeva]",
+    "खु → [khadeva, uvowelsigndeva]",
+    "गु → [gadeva, uvowelsigndeva]"
+   ],
+   "count_in_book": 49068,
+   "pdf_tounicode": "ु"
+  },
+  "70": {
+   "name": "uuvowelsigndeva",
+   "role": "post",
+   "value": "ू",
+   "how": "vowel sign",
+   "reph": false,
+   "evidence": [
+    "कू → [kadeva, uuvowelsigndeva]",
+    "खू → [khadeva, uuvowelsigndeva]",
+    "गू → [gadeva, uuvowelsigndeva]"
+   ],
+   "count_in_book": 13687,
+   "pdf_tounicode": "ू"
+  },
+  "71": {
+   "name": "rvocalicvowelsigndeva",
+   "role": "post",
+   "value": "ृ",
+   "how": "vowel sign",
+   "reph": false,
+   "evidence": [
+    "कृ → [kadeva, rvocalicvowelsigndeva]",
+    "खृ → [khadeva, rvocalicvowelsigndeva]",
+    "गृ → [gadeva, rvocalicvowelsigndeva]"
+   ],
+   "count_in_book": 4760,
+   "pdf_tounicode": "ृ"
+  },
+  "75": {
+   "name": "evowelsigndeva",
+   "role": "post",
+   "value": "े",
+   "how": "vowel sign",
+   "reph": false,
+   "evidence": [
+    "के → [kadeva, evowelsigndeva]",
+    "खे → [khadeva, evowelsigndeva]",
+    "गे → [gadeva, evowelsigndeva]"
+   ],
+   "count_in_book": 169238,
+   "pdf_tounicode": "े"
+  },
+  "76": {
+   "name": "aivowelsigndeva",
+   "role": "post",
+   "value": "ै",
+   "how": "vowel sign",
+   "reph": false,
+   "evidence": [
+    "कै → [kadeva, aivowelsigndeva]",
+    "खै → [khadeva, aivowelsigndeva]",
+    "गै → [gadeva, aivowelsigndeva]"
+   ],
+   "count_in_book": 16238,
+   "pdf_tounicode": "ै"
+  },
+  "79": {
+   "name": "ovowelsigndeva",
+   "role": "post",
+   "value": "ो",
+   "how": "vowel sign",
+   "reph": false,
+   "evidence": [
+    "को → [kadeva, ovowelsigndeva]",
+    "खो → [khadeva, ovowelsigndeva]",
+    "गो → [gadeva, ovowelsigndeva]"
+   ],
+   "count_in_book": 55749,
+   "pdf_tounicode": "ो"
+  },
+  "80": {
+   "name": "auvowelsigndeva",
+   "role": "post",
+   "value": "ौ",
+   "how": "vowel sign",
+   "reph": false,
+   "evidence": [
+    "कौ → [kadeva, auvowelsigndeva]",
+    "खौ → [khadeva, auvowelsigndeva]",
+    "गौ → [gadeva, auvowelsigndeva]"
+   ],
+   "count_in_book": 3349,
+   "pdf_tounicode": "ौ"
+  },
+  "81": {
+   "name": "viramadeva",
+   "role": "post",
+   "value": "्",
+   "how": "mark",
+   "evidence": [
+    "क् → [kadeva, viramadeva]",
+    "ख् → [khadeva, viramadeva]",
+    "ग् → [gadeva, viramadeva]"
+   ],
+   "count_in_book": 6374,
+   "pdf_tounicode": "्"
+  },
+  "84": {
+   "name": "omdeva",
+   "role": "base",
+   "value": "ॐ",
+   "how": "single glyph",
+   "evidence": [
+    "ॐ → [omdeva]",
+    "ॐँ → [omdeva, uni25CC, candrabindudeva]",
+    "ॐं → [omdeva, uni25CC, anusvaradeva]"
+   ],
+   "count_in_book": 121,
+   "pdf_tounicode": "ॐ"
+  },
+  "96": {
+   "name": "dddhadeva",
+   "role": "base",
+   "value": "ड़",
+   "how": "single glyph",
+   "evidence": [
+    "ड़ → [dddhadeva]",
+    "ड़ँ → [dddhadeva, candrabindudeva]",
+    "ड़ं → [dddhadeva, anusvaradeva]"
+   ],
+   "count_in_book": 10471,
+   "pdf_tounicode": "ड़"
+  },
+  "97": {
+   "name": "rhadeva",
+   "role": "base",
+   "value": "ढ़",
+   "how": "single glyph",
+   "evidence": [
+    "ढ़ → [rhadeva]",
+    "ढ़ँ → [rhadeva, candrabindudeva]",
+    "ढ़ं → [rhadeva, anusvaradeva]"
+   ],
+   "count_in_book": 1798,
+   "pdf_tounicode": "ढ़"
+  },
+  "104": {
+   "name": "dandadeva",
+   "role": "base",
+   "value": "।",
+   "how": "single glyph",
+   "evidence": [
+    "। → [dandadeva]",
+    "।ँ → [dandadeva, uni25CC, candrabindudeva]",
+    "।ं → [dandadeva, uni25CC, anusvaradeva]"
+   ],
+   "count_in_book": 15017,
+   "pdf_tounicode": "।"
+  },
+  "105": {
+   "name": "dbldandadeva",
+   "role": "base",
+   "value": "॥",
+   "how": "single glyph",
+   "evidence": [
+    "॥ → [dbldandadeva]",
+    "॥ँ → [dbldandadeva, uni25CC, candrabindudeva]",
+    "॥ं → [dbldandadeva, uni25CC, anusvaradeva]"
+   ],
+   "count_in_book": 42973,
+   "pdf_tounicode": "॥"
+  },
+  "106": {
+   "name": "zerodeva",
+   "role": "base",
+   "value": "०",
+   "how": "single glyph",
+   "evidence": [
+    "० → [zerodeva]",
+    "०ँ → [zerodeva, candrabindudeva]",
+    "०ं → [zerodeva, anusvaradeva]"
+   ],
+   "count_in_book": 2313,
+   "pdf_tounicode": "०"
+  },
+  "107": {
+   "name": "onedeva",
+   "role": "base",
+   "value": "१",
+   "how": "single glyph",
+   "evidence": [
+    "१ → [onedeva]",
+    "१ँ → [onedeva, candrabindudeva]",
+    "१ं → [onedeva, anusvaradeva]"
+   ],
+   "count_in_book": 11829,
+   "pdf_tounicode": "१"
+  },
+  "108": {
+   "name": "twodeva",
+   "role": "base",
+   "value": "२",
+   "how": "single glyph",
+   "evidence": [
+    "२ → [twodeva]",
+    "२ँ → [twodeva, candrabindudeva]",
+    "२ं → [twodeva, anusvaradeva]"
+   ],
+   "count_in_book": 9660,
+   "pdf_tounicode": "२"
+  },
+  "109": {
+   "name": "threedeva",
+   "role": "base",
+   "value": "३",
+   "how": "single glyph",
+   "evidence": [
+    "३ → [threedeva]",
+    "३ँ → [threedeva, candrabindudeva]",
+    "३ं → [threedeva, anusvaradeva]"
+   ],
+   "count_in_book": 5314,
+   "pdf_tounicode": "३"
+  },
+  "110": {
+   "name": "fourdeva",
+   "role": "base",
+   "value": "४",
+   "how": "single glyph",
+   "evidence": [
+    "४ → [fourdeva]",
+    "४ँ → [fourdeva, candrabindudeva]",
+    "४ं → [fourdeva, anusvaradeva]"
+   ],
+   "count_in_book": 4127,
+   "pdf_tounicode": "४"
+  },
+  "111": {
+   "name": "fivedeva",
+   "role": "base",
+   "value": "५",
+   "how": "single glyph",
+   "evidence": [
+    "५ → [fivedeva]",
+    "५ँ → [fivedeva, candrabindudeva]",
+    "५ं → [fivedeva, anusvaradeva]"
+   ],
+   "count_in_book": 3320,
+   "pdf_tounicode": "५"
+  },
+  "112": {
+   "name": "sixdeva",
+   "role": "base",
+   "value": "६",
+   "how": "single glyph",
+   "evidence": [
+    "६ → [sixdeva]",
+    "६ँ → [sixdeva, candrabindudeva]",
+    "६ं → [sixdeva, anusvaradeva]"
+   ],
+   "count_in_book": 2996,
+   "pdf_tounicode": "६"
+  },
+  "113": {
+   "name": "sevendeva",
+   "role": "base",
+   "value": "७",
+   "how": "single glyph",
+   "evidence": [
+    "७ → [sevendeva]",
+    "७ँ → [sevendeva, candrabindudeva]",
+    "७ं → [sevendeva, anusvaradeva]"
+   ],
+   "count_in_book": 2641,
+   "pdf_tounicode": "७"
+  },
+  "114": {
+   "name": "eightdeva",
+   "role": "base",
+   "value": "८",
+   "how": "single glyph",
+   "evidence": [
+    "८ → [eightdeva]",
+    "८ँ → [eightdeva, candrabindudeva]",
+    "८ं → [eightdeva, anusvaradeva]"
+   ],
+   "count_in_book": 2488,
+   "pdf_tounicode": "८"
+  },
+  "115": {
+   "name": "ninedeva",
+   "role": "base",
+   "value": "९",
+   "how": "single glyph",
+   "evidence": [
+    "९ → [ninedeva]",
+    "९ँ → [ninedeva, candrabindudeva]",
+    "९ं → [ninedeva, anusvaradeva]"
+   ],
+   "count_in_book": 2360,
+   "pdf_tounicode": "९"
+  },
+  "134": {
+   "name": "uni25CC",
+   "role": "dotted",
+   "value": "",
+   "how": "U+25CC: HarfBuzz inserts it before a mark/reph without a base, e.g. 'र्इ' → [uni25CC, rephdeva, ideva]",
+   "evidence": [
+    "ॐँ → [omdeva, uni25CC, candrabindudeva]",
+    "ॐं → [omdeva, uni25CC, anusvaradeva]",
+    "ॐः → [omdeva, uni25CC, visargadeva]"
+   ],
+   "count_in_book": 4686,
+   "pdf_tounicode": "◌"
+  },
+  "179": {
+   "name": "kassadeva",
+   "role": "base",
+   "value": "क्ष",
+   "how": "single glyph",
+   "evidence": [
+    "क्ष → [kassadeva]",
+    "क्षँ → [kassadeva, candrabindudeva]",
+    "क्षं → [kassadeva, anusvaradeva]"
+   ],
+   "count_in_book": 7780,
+   "pdf_tounicode": "�"
+  },
+  "180": {
+   "name": "janyadeva",
+   "role": "base",
+   "value": "ज्ञ",
+   "how": "single glyph",
+   "evidence": [
+    "ज्ञ → [janyadeva]",
+    "ज्ञँ → [janyadeva, candrabindudeva]",
+    "ज्ञं → [janyadeva, anusvaradeva]"
+   ],
+   "count_in_book": 2365,
+   "pdf_tounicode": "�"
+  },
+  "181": {
+   "name": "rephdeva",
+   "role": "reph",
+   "value": "र्",
+   "how": "'र्क' → [kadeva, rephdeva]",
+   "evidence": [
+    "र्अ → [adeva, rephdeva]",
+    "र्आ → [aadeva, rephdeva]",
+    "र्इ → [uni25CC, rephdeva, ideva]"
+   ],
+   "count_in_book": 24587,
+   "pdf_tounicode": "�"
+  },
+  "183": {
+   "name": "kaprehalfdeva",
+   "role": "half",
+   "value": "क्",
+   "how": "half form of kadeva",
+   "evidence": [
+    "क्क → [kaprehalfdeva, kadeva]",
+    "क्ख → [kaprehalfdeva, khadeva]",
+    "क्ग → [kaprehalfdeva, gadeva]"
+   ],
+   "count_in_book": 1777,
+   "pdf_tounicode": "�"
+  },
+  "184": {
+   "name": "khaprehalfdeva",
+   "role": "half",
+   "value": "ख्",
+   "how": "half form of khadeva",
+   "evidence": [
+    "ख्क → [khaprehalfdeva, kadeva]",
+    "ख्ख → [khaprehalfdeva, khadeva]",
+    "ख्ग → [khaprehalfdeva, gadeva]"
+   ],
+   "count_in_book": 519,
+   "pdf_tounicode": "�"
+  },
+  "185": {
+   "name": "gaprehalfdeva",
+   "role": "half",
+   "value": "ग्",
+   "how": "half form of gadeva",
+   "evidence": [
+    "ग्क → [gaprehalfdeva, kadeva]",
+    "ग्ख → [gaprehalfdeva, khadeva]",
+    "ग्ग → [gaprehalfdeva, gadeva]"
+   ],
+   "count_in_book": 1779,
+   "pdf_tounicode": "�"
+  },
+  "186": {
+   "name": "ghaprehalfdeva",
+   "role": "half",
+   "value": "घ्",
+   "how": "half form of ghadeva",
+   "evidence": [
+    "घ्क → [ghaprehalfdeva, kadeva]",
+    "घ्ख → [ghaprehalfdeva, khadeva]",
+    "घ्ग → [ghaprehalfdeva, gadeva]"
+   ],
+   "count_in_book": 461,
+   "pdf_tounicode": "�"
+  },
+  "188": {
+   "name": "caprehalfdeva",
+   "role": "half",
+   "value": "च्",
+   "how": "half form of cadeva",
+   "evidence": [
+    "च्क → [caprehalfdeva, kadeva]",
+    "च्ख → [caprehalfdeva, khadeva]",
+    "च्ग → [caprehalfdeva, gadeva]"
+   ],
+   "count_in_book": 45,
+   "pdf_tounicode": "�"
+  },
+  "189": {
+   "name": "chaprehalfdeva",
+   "role": "half",
+   "value": "छ्",
+   "how": "half form of chadeva",
+   "evidence": [
+    "छ्क → [chaprehalfdeva, kadeva]",
+    "छ्ख → [chaprehalfdeva, khadeva]",
+    "छ्ग → [chaprehalfdeva, gadeva]"
+   ],
+   "count_in_book": 10,
+   "pdf_tounicode": "�"
+  },
+  "190": {
+   "name": "japrehalfdeva",
+   "role": "half",
+   "value": "ज्",
+   "how": "half form of jadeva",
+   "evidence": [
+    "ज्क → [japrehalfdeva, kadeva]",
+    "ज्ख → [japrehalfdeva, khadeva]",
+    "ज्ग → [japrehalfdeva, gadeva]"
+   ],
+   "count_in_book": 1466,
+   "pdf_tounicode": "�"
+  },
+  "192": {
+   "name": "nyaprehalfdeva",
+   "role": "half",
+   "value": "ञ्",
+   "how": "half form of nyadeva",
+   "evidence": [
+    "ञ्क → [nyaprehalfdeva, kadeva]",
+    "ञ्ख → [nyaprehalfdeva, khadeva]",
+    "ञ्ग → [nyaprehalfdeva, gadeva]"
+   ],
+   "count_in_book": 363,
+   "pdf_tounicode": "�"
+  },
+  "195": {
+   "name": "ddaprehalfdeva",
+   "role": "half",
+   "value": "ड्",
+   "how": "half form of ddadeva",
+   "evidence": [
+    "ड्डु → [ddaprehalfdeva, ddadeva, uvowelsigndeva]",
+    "ड्डृ → [ddaprehalfdeva, ddadeva, rvocalicvowelsigndeva]",
+    "ड्डॄ → [ddaprehalfdeva, ddadeva, rrvocalicvowelsigndeva]"
+   ],
+   "count_in_book": 1,
+   "pdf_tounicode": "�"
+  },
+  "197": {
+   "name": "nnaprehalfdeva",
+   "role": "half",
+   "value": "ण्",
+   "how": "half form of nnadeva",
+   "evidence": [
+    "ण्क → [nnaprehalfdeva, kadeva]",
+    "ण्ख → [nnaprehalfdeva, khadeva]",
+    "ण्ग → [nnaprehalfdeva, gadeva]"
+   ],
+   "count_in_book": 2418,
+   "pdf_tounicode": "�"
+  },
+  "198": {
+   "name": "taprehalfdeva",
+   "role": "half",
+   "value": "त्",
+   "how": "half form of tadeva",
+   "evidence": [
+    "त्क → [taprehalfdeva, kadeva]",
+    "त्ख → [taprehalfdeva, khadeva]",
+    "त्ग → [taprehalfdeva, gadeva]"
+   ],
+   "count_in_book": 8013,
+   "pdf_tounicode": "�"
+  },
+  "199": {
+   "name": "thaprehalfdeva",
+   "role": "half",
+   "value": "थ्",
+   "how": "half form of thadeva",
+   "evidence": [
+    "थ्क → [thaprehalfdeva, kadeva]",
+    "थ्ख → [thaprehalfdeva, khadeva]",
+    "थ्ग → [thaprehalfdeva, gadeva]"
+   ],
+   "count_in_book": 878,
+   "pdf_tounicode": "�"
+  },
+  "201": {
+   "name": "dhaprehalfdeva",
+   "role": "half",
+   "value": "ध्",
+   "how": "half form of dhadeva",
+   "evidence": [
+    "ध्क → [dhaprehalfdeva, kadeva]",
+    "ध्ख → [dhaprehalfdeva, khadeva]",
+    "ध्ग → [dhaprehalfdeva, gadeva]"
+   ],
+   "count_in_book": 1531,
+   "pdf_tounicode": "�"
+  },
+  "202": {
+   "name": "naprehalfdeva",
+   "role": "half",
+   "value": "न्",
+   "how": "half form of nadeva",
+   "evidence": [
+    "न्क → [naprehalfdeva, kadeva]",
+    "न्ख → [naprehalfdeva, khadeva]",
+    "न्ग → [naprehalfdeva, gadeva]"
+   ],
+   "count_in_book": 17023,
+   "pdf_tounicode": "�"
+  },
+  "203": {
+   "name": "paprehalfdeva",
+   "role": "half",
+   "value": "प्",
+   "how": "half form of padeva",
+   "evidence": [
+    "प्क → [paprehalfdeva, kadeva]",
+    "प्ख → [paprehalfdeva, khadeva]",
+    "प्ग → [paprehalfdeva, gadeva]"
+   ],
+   "count_in_book": 2134,
+   "pdf_tounicode": "�"
+  },
+  "204": {
+   "name": "phaprehalfdeva",
+   "role": "half",
+   "value": "फ्",
+   "how": "half form of phadeva",
+   "evidence": [
+    "फ्क → [phaprehalfdeva, kadeva]",
+    "फ्ख → [phaprehalfdeva, khadeva]",
+    "फ्ग → [phaprehalfdeva, gadeva]"
+   ],
+   "count_in_book": 1,
+   "pdf_tounicode": "�"
+  },
+  "205": {
+   "name": "baprehalfdeva",
+   "role": "half",
+   "value": "ब्",
+   "how": "half form of badeva",
+   "evidence": [
+    "ब्क → [baprehalfdeva, kadeva]",
+    "ब्ख → [baprehalfdeva, khadeva]",
+    "ब्ग → [baprehalfdeva, gadeva]"
+   ],
+   "count_in_book": 306,
+   "pdf_tounicode": "�"
+  },
+  "206": {
+   "name": "bhaprehalfdeva",
+   "role": "half",
+   "value": "भ्",
+   "how": "half form of bhadeva",
+   "evidence": [
+    "भ्क → [bhaprehalfdeva, kadeva]",
+    "भ्ख → [bhaprehalfdeva, khadeva]",
+    "भ्ग → [bhaprehalfdeva, gadeva]"
+   ],
+   "count_in_book": 153,
+   "pdf_tounicode": "�"
+  },
+  "207": {
+   "name": "maprehalfdeva",
+   "role": "half",
+   "value": "म्",
+   "how": "half form of madeva",
+   "evidence": [
+    "म्क → [maprehalfdeva, kadeva]",
+    "म्ख → [maprehalfdeva, khadeva]",
+    "म्ग → [maprehalfdeva, gadeva]"
+   ],
+   "count_in_book": 3466,
+   "pdf_tounicode": "�"
+  },
+  "208": {
+   "name": "yaprehalfdeva",
+   "role": "half",
+   "value": "य्",
+   "how": "half form of yadeva",
+   "evidence": [
+    "य्क → [yaprehalfdeva, kadeva]",
+    "य्ख → [yaprehalfdeva, khadeva]",
+    "य्ग → [yaprehalfdeva, gadeva]"
+   ],
+   "count_in_book": 88,
+   "pdf_tounicode": "�"
+  },
+  "210": {
+   "name": "laprehalfdeva",
+   "role": "half",
+   "value": "ल्",
+   "how": "half form of ladeva",
+   "evidence": [
+    "ल्क → [laprehalfdeva, kadeva]",
+    "ल्ख → [laprehalfdeva, khadeva]",
+    "ल्ग → [laprehalfdeva, gadeva]"
+   ],
+   "count_in_book": 2481,
+   "pdf_tounicode": "�"
+  },
+  "212": {
+   "name": "vaprehalfdeva",
+   "role": "half",
+   "value": "व्",
+   "how": "half form of vadeva",
+   "evidence": [
+    "व्क → [vaprehalfdeva, kadeva]",
+    "व्ख → [vaprehalfdeva, khadeva]",
+    "व्ग → [vaprehalfdeva, gadeva]"
+   ],
+   "count_in_book": 1,
+   "pdf_tounicode": "�"
+  },
+  "213": {
+   "name": "shaprehalfdeva",
+   "role": "half",
+   "value": "श्",
+   "how": "half form of shadeva",
+   "evidence": [
+    "श्क → [shaprehalfdeva, kadeva]",
+    "श्ख → [shaprehalfdeva, khadeva]",
+    "श्ग → [shaprehalfdeva, gadeva]"
+   ],
+   "count_in_book": 742,
+   "pdf_tounicode": "�"
+  },
+  "214": {
+   "name": "ssaprehalfdeva",
+   "role": "half",
+   "value": "ष्",
+   "how": "half form of ssadeva",
+   "evidence": [
+    "ष्क → [ssaprehalfdeva, kadeva]",
+    "ष्ख → [ssaprehalfdeva, khadeva]",
+    "ष्ग → [ssaprehalfdeva, gadeva]"
+   ],
+   "count_in_book": 1951,
+   "pdf_tounicode": "�"
+  },
+  "215": {
+   "name": "saprehalfdeva",
+   "role": "half",
+   "value": "स्",
+   "how": "half form of sadeva",
+   "evidence": [
+    "स्क → [saprehalfdeva, kadeva]",
+    "स्ख → [saprehalfdeva, khadeva]",
+    "स्ग → [saprehalfdeva, gadeva]"
+   ],
+   "count_in_book": 9967,
+   "pdf_tounicode": "�"
+  },
+  "219": {
+   "name": "kassaprehalfdeva",
+   "role": "half",
+   "value": "क्ष्",
+   "how": "half form of kassadeva",
+   "evidence": [
+    "क्ष्क → [kassaprehalfdeva, kadeva]",
+    "क्ष्ख → [kassaprehalfdeva, khadeva]",
+    "क्ष्ग → [kassaprehalfdeva, gadeva]"
+   ],
+   "count_in_book": 2490,
+   "pdf_tounicode": "�"
+  },
+  "254": {
+   "name": "karadeva",
+   "role": "base",
+   "value": "क्र",
+   "how": "single glyph",
+   "evidence": [
+    "क्र → [karadeva]",
+    "क्रँ → [karadeva, candrabindudeva]",
+    "क्रं → [karadeva, anusvaradeva]"
+   ],
+   "count_in_book": 2675,
+   "pdf_tounicode": "�"
+  },
+  "256": {
+   "name": "garadeva",
+   "role": "base",
+   "value": "ग्र",
+   "how": "single glyph",
+   "evidence": [
+    "ग्र → [garadeva]",
+    "ग्रँ → [garadeva, candrabindudeva]",
+    "ग्रं → [garadeva, anusvaradeva]"
+   ],
+   "count_in_book": 2473,
+   "pdf_tounicode": "�"
+  },
+  "257": {
+   "name": "gharadeva",
+   "role": "base",
+   "value": "घ्र",
+   "how": "single glyph",
+   "evidence": [
+    "घ्र → [gharadeva]",
+    "घ्रँ → [gharadeva, candrabindudeva]",
+    "घ्रं → [gharadeva, anusvaradeva]"
+   ],
+   "count_in_book": 718,
+   "pdf_tounicode": "�"
+  },
+  "261": {
+   "name": "jaradeva",
+   "role": "base",
+   "value": "ज्र",
+   "how": "single glyph",
+   "evidence": [
+    "ज्र → [jaradeva]",
+    "ज्रँ → [jaradeva, candrabindudeva]",
+    "ज्रं → [jaradeva, anusvaradeva]"
+   ],
+   "count_in_book": 309,
+   "pdf_tounicode": "�"
+  },
+  "264": {
+   "name": "ttaradeva",
+   "role": "base",
+   "value": "ट्र",
+   "how": "single glyph",
+   "evidence": [
+    "ट्र → [ttaradeva]",
+    "ट्रँ → [ttaradeva, candrabindudeva]",
+    "ट्रं → [ttaradeva, anusvaradeva]"
+   ],
+   "count_in_book": 1,
+   "pdf_tounicode": "�"
+  },
+  "266": {
+   "name": "ddaradeva",
+   "role": "base",
+   "value": "ड्र",
+   "how": "single glyph",
+   "evidence": [
+    "ड्र → [ddaradeva]",
+    "ड्रँ → [ddaradeva, candrabindudeva]",
+    "ड्रं → [ddaradeva, anusvaradeva]"
+   ],
+   "count_in_book": 3,
+   "pdf_tounicode": "�"
+  },
+  "267": {
+   "name": "ddharadeva",
+   "role": "base",
+   "value": "ढ्र",
+   "how": "single glyph",
+   "evidence": [
+    "ढ्र → [ddharadeva]",
+    "ढ्रँ → [ddharadeva, candrabindudeva]",
+    "ढ्रं → [ddharadeva, anusvaradeva]"
+   ],
+   "count_in_book": 1,
+   "pdf_tounicode": "�"
+  },
+  "269": {
+   "name": "taradeva",
+   "role": "base",
+   "value": "त्र",
+   "how": "single glyph",
+   "evidence": [
+    "त्र → [taradeva]",
+    "त्रँ → [taradeva, candrabindudeva]",
+    "त्रं → [taradeva, anusvaradeva]"
+   ],
+   "count_in_book": 9716,
+   "pdf_tounicode": "�"
+  },
+  "271": {
+   "name": "daradeva",
+   "role": "base",
+   "value": "द्र",
+   "how": "single glyph",
+   "evidence": [
+    "द्र → [daradeva]",
+    "द्रँ → [daradeva, candrabindudeva]",
+    "द्रं → [daradeva, anusvaradeva]"
+   ],
+   "count_in_book": 4474,
+   "pdf_tounicode": "�"
+  },
+  "272": {
+   "name": "dharadeva",
+   "role": "base",
+   "value": "ध्र",
+   "how": "single glyph",
+   "evidence": [
+    "ध्र → [dharadeva]",
+    "ध्रँ → [dharadeva, candrabindudeva]",
+    "ध्रं → [dharadeva, anusvaradeva]"
+   ],
+   "count_in_book": 71,
+   "pdf_tounicode": "�"
+  },
+  "273": {
+   "name": "naradeva",
+   "role": "base",
+   "value": "न्र",
+   "how": "single glyph",
+   "evidence": [
+    "न्र → [naradeva]",
+    "न्रँ → [naradeva, candrabindudeva]",
+    "न्रं → [naradeva, anusvaradeva]"
+   ],
+   "count_in_book": 1,
+   "pdf_tounicode": "�"
+  },
+  "274": {
+   "name": "paradeva",
+   "role": "base",
+   "value": "प्र",
+   "how": "single glyph",
+   "evidence": [
+    "प्र → [paradeva]",
+    "प्रँ → [paradeva, candrabindudeva]",
+    "प्रं → [paradeva, anusvaradeva]"
+   ],
+   "count_in_book": 15260,
+   "pdf_tounicode": "�"
+  },
+  "275": {
+   "name": "pharadeva",
+   "role": "base",
+   "value": "फ्र",
+   "how": "single glyph",
+   "evidence": [
+    "फ्र → [pharadeva]",
+    "फ्रँ → [pharadeva, candrabindudeva]",
+    "फ्रं → [pharadeva, anusvaradeva]"
+   ],
+   "count_in_book": 1,
+   "pdf_tounicode": "�"
+  },
+  "276": {
+   "name": "baradeva",
+   "role": "base",
+   "value": "ब्र",
+   "how": "single glyph",
+   "evidence": [
+    "ब्र → [baradeva]",
+    "ब्रँ → [baradeva, candrabindudeva]",
+    "ब्रं → [baradeva, anusvaradeva]"
+   ],
+   "count_in_book": 1283,
+   "pdf_tounicode": "�"
+  },
+  "277": {
+   "name": "bharadeva",
+   "role": "base",
+   "value": "भ्र",
+   "how": "single glyph",
+   "evidence": [
+    "भ्र → [bharadeva]",
+    "भ्रँ → [bharadeva, candrabindudeva]",
+    "भ्रं → [bharadeva, anusvaradeva]"
+   ],
+   "count_in_book": 238,
+   "pdf_tounicode": "�"
+  },
+  "278": {
+   "name": "maradeva",
+   "role": "base",
+   "value": "म्र",
+   "how": "single glyph",
+   "evidence": [
+    "म्र → [maradeva]",
+    "म्रँ → [maradeva, candrabindudeva]",
+    "म्रं → [maradeva, anusvaradeva]"
+   ],
+   "count_in_book": 99,
+   "pdf_tounicode": "�"
+  },
+  "283": {
+   "name": "varadeva",
+   "role": "base",
+   "value": "व्र",
+   "how": "single glyph",
+   "evidence": [
+    "व्र → [varadeva]",
+    "व्रँ → [varadeva, candrabindudeva]",
+    "व्रं → [varadeva, anusvaradeva]"
+   ],
+   "count_in_book": 336,
+   "pdf_tounicode": "�"
+  },
+  "284": {
+   "name": "sharadeva",
+   "role": "base",
+   "value": "श्र",
+   "how": "single glyph",
+   "evidence": [
+    "श्र → [sharadeva]",
+    "श्रँ → [sharadeva, candrabindudeva]",
+    "श्रं → [sharadeva, anusvaradeva]"
+   ],
+   "count_in_book": 10063,
+   "pdf_tounicode": "�"
+  },
+  "286": {
+   "name": "saradeva",
+   "role": "base",
+   "value": "स्र",
+   "how": "single glyph",
+   "evidence": [
+    "स्र → [saradeva]",
+    "स्रँ → [saradeva, candrabindudeva]",
+    "स्रं → [saradeva, anusvaradeva]"
+   ],
+   "count_in_book": 349,
+   "pdf_tounicode": "�"
+  },
+  "287": {
+   "name": "haradeva",
+   "role": "base",
+   "value": "ह्र",
+   "how": "single glyph",
+   "evidence": [
+    "ह्र → [haradeva]",
+    "ह्रँ → [haradeva, candrabindudeva]",
+    "ह्रं → [haradeva, anusvaradeva]"
+   ],
+   "count_in_book": 21,
+   "pdf_tounicode": "�"
+  },
+  "347": {
+   "name": "taraprehalfdeva",
+   "role": "half",
+   "value": "त्र्",
+   "how": "half form of taradeva",
+   "evidence": [
+    "त्र्क → [taraprehalfdeva, kadeva]",
+    "त्र्ख → [taraprehalfdeva, khadeva]",
+    "त्र्ग → [taraprehalfdeva, gadeva]"
+   ],
+   "count_in_book": 14,
+   "pdf_tounicode": "�"
+  },
+  "355": {
+   "name": "bharaprehalfdeva",
+   "role": "half",
+   "value": "भ्र्",
+   "how": "half form of bharadeva",
+   "evidence": [
+    "भ्र्क → [bharaprehalfdeva, kadeva]",
+    "भ्र्ख → [bharaprehalfdeva, khadeva]",
+    "भ्र्ग → [bharaprehalfdeva, gadeva]"
+   ],
+   "count_in_book": 1,
+   "pdf_tounicode": "�"
+  },
+  "403": {
+   "name": "haudeva",
+   "role": "base",
+   "value": "हु",
+   "how": "single glyph",
+   "evidence": [
+    "हु → [haudeva]",
+    "हुँ → [haudeva, candrabindudeva]",
+    "हुं → [haudeva, anusvaradeva]"
+   ],
+   "count_in_book": 13299,
+   "pdf_tounicode": "�"
+  },
+  "405": {
+   "name": "hauudeva",
+   "role": "base",
+   "value": "हू",
+   "how": "single glyph",
+   "evidence": [
+    "हू → [hauudeva]",
+    "हूँ → [hauudeva, candrabindudeva]",
+    "हूं → [hauudeva, anusvaradeva]"
+   ],
+   "count_in_book": 1847,
+   "pdf_tounicode": "�"
+  },
+  "407": {
+   "name": "harvocalicdeva",
+   "role": "base",
+   "value": "हृ",
+   "how": "single glyph",
+   "evidence": [
+    "हृ → [harvocalicdeva]",
+    "हृँ → [harvocalicdeva, candrabindudeva]",
+    "हृं → [harvocalicdeva, anusvaradeva]"
+   ],
+   "count_in_book": 645,
+   "pdf_tounicode": "�"
+  },
+  "417": {
+   "name": "raudeva",
+   "role": "base",
+   "value": "रु",
+   "how": "single glyph",
+   "evidence": [
+    "रु → [raudeva]",
+    "रुँ → [raudeva, candrabindudeva]",
+    "रुं → [raudeva, anusvaradeva]"
+   ],
+   "count_in_book": 2606,
+   "pdf_tounicode": "�"
+  },
+  "418": {
+   "name": "rauudeva",
+   "role": "base",
+   "value": "रू",
+   "how": "single glyph",
+   "evidence": [
+    "रू → [rauudeva]",
+    "रूँ → [rauudeva, candrabindudeva]",
+    "रूं → [rauudeva, anusvaradeva]"
+   ],
+   "count_in_book": 2313,
+   "pdf_tounicode": "�"
+  },
+  "419": {
+   "name": "daudeva",
+   "role": "base",
+   "value": "दु",
+   "how": "single glyph",
+   "evidence": [
+    "दु → [daudeva]",
+    "दुँ → [daudeva, candrabindudeva]",
+    "दुं → [daudeva, anusvaradeva]"
+   ],
+   "count_in_book": 2236,
+   "pdf_tounicode": "�"
+  },
+  "420": {
+   "name": "dauudeva",
+   "role": "base",
+   "value": "दू",
+   "how": "single glyph",
+   "evidence": [
+    "दू → [dauudeva]",
+    "दूँ → [dauudeva, candrabindudeva]",
+    "दूं → [dauudeva, anusvaradeva]"
+   ],
+   "count_in_book": 2087,
+   "pdf_tounicode": "�"
+  },
+  "421": {
+   "name": "darvocalicdeva",
+   "role": "base",
+   "value": "दृ",
+   "how": "single glyph",
+   "evidence": [
+    "दृ → [darvocalicdeva]",
+    "दृँ → [darvocalicdeva, candrabindudeva]",
+    "दृं → [darvocalicdeva, anusvaradeva]"
+   ],
+   "count_in_book": 769,
+   "pdf_tounicode": "�"
+  },
+  "422": {
+   "name": "daraudeva",
+   "role": "base",
+   "value": "द्रु",
+   "how": "single glyph",
+   "evidence": [
+    "द्रु → [daraudeva]",
+    "र्द्रु → [daraudeva, rephdeva]"
+   ],
+   "count_in_book": 7,
+   "pdf_tounicode": "�"
+  },
+  "423": {
+   "name": "darauudeva",
+   "role": "base",
+   "value": "द्रू",
+   "how": "single glyph",
+   "evidence": [
+    "द्रू → [darauudeva]",
+    "र्द्रू → [darauudeva, rephdeva]"
+   ],
+   "count_in_book": 5,
+   "pdf_tounicode": "�"
+  },
+  "431": {
+   "name": "dddhauudeva",
+   "role": "base",
+   "value": "ड़ू",
+   "how": "single glyph",
+   "evidence": [
+    "ड़ू → [dddhauudeva]",
+    "ड़ूँ → [dddhauudeva, candrabindudeva]",
+    "ड़ूं → [dddhauudeva, anusvaradeva]"
+   ],
+   "count_in_book": 12,
+   "pdf_tounicode": "�"
+  },
+  "433": {
+   "name": "rhauudeva",
+   "role": "base",
+   "value": "ढ़ू",
+   "how": "single glyph",
+   "evidence": [
+    "ढ़ू → [rhauudeva]",
+    "ढ़ूँ → [rhauudeva, candrabindudeva]",
+    "ढ़ूं → [rhauudeva, anusvaradeva]"
+   ],
+   "count_in_book": 2,
+   "pdf_tounicode": "�"
+  },
+  "440": {
+   "name": "iivowelsignanusvaradeva",
+   "role": "post",
+   "value": "ीं",
+   "how": "vowel sign",
+   "reph": false,
+   "evidence": [
+    "खीं → [khadeva, iivowelsignanusvaradeva]",
+    "गीं → [gadeva, iivowelsignanusvaradeva]",
+    "घीं → [ghadeva, iivowelsignanusvaradeva]"
+   ],
+   "count_in_book": 7401,
+   "pdf_tounicode": "�"
+  },
+  "441": {
+   "name": "iivowelsignrephdeva",
+   "role": "post",
+   "value": "ी",
+   "how": "vowel sign",
+   "reph": true,
+   "evidence": [
+    "र्खी → [khadeva, iivowelsignrephdeva]",
+    "र्गी → [gadeva, iivowelsignrephdeva]",
+    "र्घी → [ghadeva, iivowelsignrephdeva]"
+   ],
+   "count_in_book": 266,
+   "pdf_tounicode": "�"
+  },
+  "449": {
+   "name": "evowelsignanusvaradeva",
+   "role": "post",
+   "value": "ें",
+   "how": "vowel sign",
+   "reph": false,
+   "evidence": [
+    "कें → [kadeva, evowelsignanusvaradeva]",
+    "खें → [khadeva, evowelsignanusvaradeva]",
+    "गें → [gadeva, evowelsignanusvaradeva]"
+   ],
+   "count_in_book": 21349,
+   "pdf_tounicode": "�"
+  },
+  "450": {
+   "name": "evowelsignrephdeva",
+   "role": "post",
+   "value": "े",
+   "how": "vowel sign",
+   "reph": true,
+   "evidence": [
+    "र्ऐ → [edeva, evowelsignrephdeva]",
+    "र्ओ → [aadeva, evowelsignrephdeva]",
+    "र्ऐः → [edeva, evowelsignrephdeva, visargadeva]"
+   ],
+   "count_in_book": 113,
+   "pdf_tounicode": "�"
+  },
+  "451": {
+   "name": "evowelsignrephanusvaradeva",
+   "role": "post",
+   "value": "ें",
+   "how": "vowel sign",
+   "reph": true,
+   "evidence": [
+    "र्ऐं → [edeva, evowelsignrephanusvaradeva]",
+    "र्ओं → [aadeva, evowelsignrephanusvaradeva]",
+    "र्कें → [kadeva, evowelsignrephanusvaradeva]"
+   ],
+   "count_in_book": 1,
+   "pdf_tounicode": "�"
+  },
+  "452": {
+   "name": "aivowelsignanusvaradeva",
+   "role": "post",
+   "value": "ैं",
+   "how": "vowel sign",
+   "reph": false,
+   "evidence": [
+    "कैं → [kadeva, aivowelsignanusvaradeva]",
+    "खैं → [khadeva, aivowelsignanusvaradeva]",
+    "गैं → [gadeva, aivowelsignanusvaradeva]"
+   ],
+   "count_in_book": 10047,
+   "pdf_tounicode": "�"
+  },
+  "453": {
+   "name": "aivowelsignrephdeva",
+   "role": "post",
+   "value": "ै",
+   "how": "vowel sign",
+   "reph": true,
+   "evidence": [
+    "र्औ → [aadeva, aivowelsignrephdeva]",
+    "र्औः → [aadeva, aivowelsignrephdeva, visargadeva]",
+    "र्कै → [kadeva, aivowelsignrephdeva]"
+   ],
+   "count_in_book": 5,
+   "pdf_tounicode": "�"
+  },
+  "461": {
+   "name": "ovowelsignanusvaradeva",
+   "role": "post",
+   "value": "ों",
+   "how": "vowel sign",
+   "reph": false,
+   "evidence": [
+    "कों → [kadeva, ovowelsignanusvaradeva]",
+    "खों → [khadeva, ovowelsignanusvaradeva]",
+    "गों → [gadeva, ovowelsignanusvaradeva]"
+   ],
+   "count_in_book": 23071,
+   "pdf_tounicode": "�"
+  },
+  "462": {
+   "name": "ovowelsignrephdeva",
+   "role": "post",
+   "value": "ो",
+   "how": "vowel sign",
+   "reph": true,
+   "evidence": [
+    "र्को → [kadeva, ovowelsignrephdeva]",
+    "र्खो → [khadeva, ovowelsignrephdeva]",
+    "र्गो → [gadeva, ovowelsignrephdeva]"
+   ],
+   "count_in_book": 173,
+   "pdf_tounicode": "�"
+  },
+  "463": {
+   "name": "ovowelsignrephanusvaradeva",
+   "role": "post",
+   "value": "ों",
+   "how": "vowel sign",
+   "reph": true,
+   "evidence": [
+    "र्कों → [kadeva, ovowelsignrephanusvaradeva]",
+    "र्खों → [khadeva, ovowelsignrephanusvaradeva]",
+    "र्गों → [gadeva, ovowelsignrephanusvaradeva]"
+   ],
+   "count_in_book": 585,
+   "pdf_tounicode": "�"
+  },
+  "464": {
+   "name": "auvowelsignanusvaradeva",
+   "role": "post",
+   "value": "ौं",
+   "how": "vowel sign",
+   "reph": false,
+   "evidence": [
+    "कौं → [kadeva, auvowelsignanusvaradeva]",
+    "खौं → [khadeva, auvowelsignanusvaradeva]",
+    "गौं → [gadeva, auvowelsignanusvaradeva]"
+   ],
+   "count_in_book": 154,
+   "pdf_tounicode": "�"
+  },
+  "465": {
+   "name": "auvowelsignrephdeva",
+   "role": "post",
+   "value": "ौ",
+   "how": "vowel sign",
+   "reph": true,
+   "evidence": [
+    "र्कौ → [kadeva, auvowelsignrephdeva]",
+    "र्खौ → [khadeva, auvowelsignrephdeva]",
+    "र्गौ → [gadeva, auvowelsignrephdeva]"
+   ],
+   "count_in_book": 1,
+   "pdf_tounicode": "�"
+  },
+  "470": {
+   "name": "rephanusvaradeva",
+   "role": "reph",
+   "value": "र्",
+   "how": "'र्अं' → [adeva, rephanusvaradeva]: reph + ं",
+   "post": "ं",
+   "evidence": [
+    "र्अं → [adeva, rephanusvaradeva]",
+    "र्आं → [aadeva, rephanusvaradeva]",
+    "र्ईं → [ideva, rephdeva, rephanusvaradeva]"
+   ],
+   "count_in_book": 24,
+   "pdf_tounicode": "�"
+  },
+  "478": {
+   "name": "oanusvaradeva",
+   "role": "base",
+   "value": "ओं",
+   "how": "single glyph",
+   "evidence": [
+    "ओं → [oanusvaradeva]"
+   ],
+   "count_in_book": 2943,
+   "pdf_tounicode": "�"
+  },
+  "494": {
+   "name": "katadeva",
+   "role": "base",
+   "value": "क्त",
+   "how": "single glyph",
+   "evidence": [
+    "क्त → [katadeva]",
+    "क्तँ → [katadeva, candrabindudeva]",
+    "क्तं → [katadeva, anusvaradeva]"
+   ],
+   "count_in_book": 2366,
+   "pdf_tounicode": "�"
+  },
+  "495": {
+   "name": "kashadeva",
+   "role": "base",
+   "value": "क्श",
+   "how": "single glyph",
+   "evidence": [
+    "क्श → [kashadeva]",
+    "क्शँ → [kashadeva, candrabindudeva]",
+    "क्शं → [kashadeva, anusvaradeva]"
+   ],
+   "count_in_book": 2,
+   "pdf_tounicode": "�"
+  },
+  "497": {
+   "name": "ngagadeva",
+   "role": "base",
+   "value": "ङ्ग",
+   "how": "single glyph",
+   "evidence": [
+    "ङ्ग → [ngagadeva]",
+    "ङ्गँ → [ngagadeva, candrabindudeva]",
+    "ङ्गं → [ngagadeva, anusvaradeva]"
+   ],
+   "count_in_book": 1573,
+   "pdf_tounicode": "�"
+  },
+  "498": {
+   "name": "ngamadeva",
+   "role": "base",
+   "value": "ङ्म",
+   "how": "single glyph",
+   "evidence": [
+    "ङ्म → [ngamadeva]",
+    "ङ्मँ → [ngamadeva, candrabindudeva]",
+    "ङ्मं → [ngamadeva, anusvaradeva]"
+   ],
+   "count_in_book": 4,
+   "pdf_tounicode": "�"
+  },
+  "500": {
+   "name": "cacadeva",
+   "role": "base",
+   "value": "च्च",
+   "how": "single glyph",
+   "evidence": [
+    "च्च → [cacadeva]",
+    "च्चँ → [cacadeva, candrabindudeva]",
+    "च्चं → [cacadeva, anusvaradeva]"
+   ],
+   "count_in_book": 188,
+   "pdf_tounicode": "�"
+  },
+  "501": {
+   "name": "cachadeva",
+   "role": "base",
+   "value": "च्छ",
+   "how": "single glyph",
+   "evidence": [
+    "च्छ → [cachadeva]",
+    "च्छँ → [cachadeva, candrabindudeva]",
+    "च्छं → [cachadeva, anusvaradeva]"
+   ],
+   "count_in_book": 1486,
+   "pdf_tounicode": "�"
+  },
+  "502": {
+   "name": "cacharadeva",
+   "role": "base",
+   "value": "च्छ्र",
+   "how": "single glyph",
+   "evidence": [
+    "च्छ्र → [cacharadeva]",
+    "च्छ्रि → [ivowelsign00deva, cacharadeva]"
+   ],
+   "count_in_book": 2,
+   "pdf_tounicode": "�"
+  },
+  "504": {
+   "name": "jajadeva",
+   "role": "base",
+   "value": "ज्ज",
+   "how": "single glyph",
+   "evidence": [
+    "ज्ज → [jajadeva]",
+    "ज्जँ → [jajadeva, candrabindudeva]",
+    "ज्जं → [jajadeva, anusvaradeva]"
+   ],
+   "count_in_book": 158,
+   "pdf_tounicode": "�"
+  },
+  "506": {
+   "name": "nyajadeva",
+   "role": "base",
+   "value": "ञ्ज",
+   "how": "single glyph",
+   "evidence": [
+    "ञ्ज → [nyajadeva]",
+    "ञ्जँ → [nyajadeva, candrabindudeva]",
+    "ञ्जं → [nyajadeva, anusvaradeva]"
+   ],
+   "count_in_book": 197,
+   "pdf_tounicode": "�"
+  },
+  "507": {
+   "name": "ttattadeva",
+   "role": "base",
+   "value": "ट्ट",
+   "how": "single glyph",
+   "evidence": [
+    "ट्ट → [ttattadeva]",
+    "ट्टँ → [ttattadeva, candrabindudeva]",
+    "ट्टं → [ttattadeva, anusvaradeva]"
+   ],
+   "count_in_book": 116,
+   "pdf_tounicode": "�"
+  },
+  "508": {
+   "name": "ttattauudeva",
+   "role": "base",
+   "value": "ट्टू",
+   "how": "single glyph",
+   "evidence": [
+    "ट्टू → [ttattauudeva]",
+    "र्ट्टू → [ttattauudeva, rephdeva]"
+   ],
+   "count_in_book": 2,
+   "pdf_tounicode": "�"
+  },
+  "509": {
+   "name": "ttatthadeva",
+   "role": "base",
+   "value": "ट्ठ",
+   "how": "single glyph",
+   "evidence": [
+    "ट्ठ → [ttatthadeva]",
+    "ट्ठँ → [ttatthadeva, candrabindudeva]",
+    "ट्ठं → [ttatthadeva, anusvaradeva]"
+   ],
+   "count_in_book": 67,
+   "pdf_tounicode": "�"
+  },
+  "511": {
+   "name": "ttayadeva",
+   "role": "base",
+   "value": "ट्य",
+   "how": "single glyph",
+   "evidence": [
+    "ट्य → [ttayadeva]",
+    "ट्यँ → [ttayadeva, candrabindudeva]",
+    "ट्यं → [ttayadeva, anusvaradeva]"
+   ],
+   "count_in_book": 7,
+   "pdf_tounicode": "�"
+  },
+  "514": {
+   "name": "ddaddhadeva",
+   "role": "base",
+   "value": "ड्ढ",
+   "how": "single glyph",
+   "evidence": [
+    "ड्ढ → [ddaddhadeva]",
+    "ड्ढँ → [ddaddhadeva, candrabindudeva]",
+    "ड्ढं → [ddaddhadeva, anusvaradeva]"
+   ],
+   "count_in_book": 42,
+   "pdf_tounicode": "�"
+  },
+  "515": {
+   "name": "ddaddadeva",
+   "role": "base",
+   "value": "ड्ड",
+   "how": "single glyph",
+   "evidence": [
+    "ड्ड → [ddaddadeva]",
+    "ड्डँ → [ddaddadeva, candrabindudeva]",
+    "ड्डं → [ddaddadeva, anusvaradeva]"
+   ],
+   "count_in_book": 19,
+   "pdf_tounicode": "�"
+  },
+  "517": {
+   "name": "ddayadeva",
+   "role": "base",
+   "value": "ड्य",
+   "how": "single glyph",
+   "evidence": [
+    "ड्य → [ddayadeva]",
+    "ड्यँ → [ddayadeva, candrabindudeva]",
+    "ड्यं → [ddayadeva, anusvaradeva]"
+   ],
+   "count_in_book": 30,
+   "pdf_tounicode": "�"
+  },
+  "520": {
+   "name": "ddhayadeva",
+   "role": "base",
+   "value": "ढ्य",
+   "how": "single glyph",
+   "evidence": [
+    "ढ्य → [ddhayadeva]",
+    "ढ्यँ → [ddhayadeva, candrabindudeva]",
+    "ढ्यं → [ddhayadeva, anusvaradeva]"
+   ],
+   "count_in_book": 1,
+   "pdf_tounicode": "�"
+  },
+  "521": {
+   "name": "tatadeva",
+   "role": "base",
+   "value": "त्त",
+   "how": "single glyph",
+   "evidence": [
+    "त्त → [tatadeva]",
+    "त्तँ → [tatadeva, candrabindudeva]",
+    "त्तं → [tatadeva, anusvaradeva]"
+   ],
+   "count_in_book": 2741,
+   "pdf_tounicode": "�"
+  },
+  "522": {
+   "name": "tataprehalfdeva",
+   "role": "half",
+   "value": "त्त्",
+   "how": "half form of tatadeva",
+   "evidence": [
+    "त्त्क → [tataprehalfdeva, kadeva]",
+    "त्त्ख → [tataprehalfdeva, khadeva]",
+    "त्त्ग → [tataprehalfdeva, gadeva]"
+   ],
+   "count_in_book": 97,
+   "pdf_tounicode": "�"
+  },
+  "523": {
+   "name": "tathadeva",
+   "role": "base",
+   "value": "त्थ",
+   "how": "single glyph",
+   "evidence": [
+    "त्थ → [tathadeva]",
+    "त्थँ → [tathadeva, candrabindudeva]",
+    "त्थं → [tathadeva, anusvaradeva]"
+   ],
+   "count_in_book": 57,
+   "pdf_tounicode": "�"
+  },
+  "526": {
+   "name": "dagadeva",
+   "role": "base",
+   "value": "द्ग",
+   "how": "single glyph",
+   "evidence": [
+    "द्ग → [dagadeva]",
+    "द्गँ → [dagadeva, candrabindudeva]",
+    "द्गं → [dagadeva, anusvaradeva]"
+   ],
+   "count_in_book": 194,
+   "pdf_tounicode": "�"
+  },
+  "527": {
+   "name": "dabadeva",
+   "role": "base",
+   "value": "द्ब",
+   "how": "single glyph",
+   "evidence": [
+    "द्ब → [dabadeva]",
+    "द्बँ → [dabadeva, candrabindudeva]",
+    "द्बं → [dabadeva, anusvaradeva]"
+   ],
+   "count_in_book": 1,
+   "pdf_tounicode": "�"
+  },
+  "528": {
+   "name": "dabhadeva",
+   "role": "base",
+   "value": "द्भ",
+   "how": "single glyph",
+   "evidence": [
+    "द्भ → [dabhadeva]",
+    "द्भँ → [dabhadeva, candrabindudeva]",
+    "द्भं → [dabhadeva, anusvaradeva]"
+   ],
+   "count_in_book": 248,
+   "pdf_tounicode": "�"
+  },
+  "529": {
+   "name": "davadeva",
+   "role": "base",
+   "value": "द्व",
+   "how": "single glyph",
+   "evidence": [
+    "द्व → [davadeva]",
+    "द्वँ → [davadeva, candrabindudeva]",
+    "द्वं → [davadeva, anusvaradeva]"
+   ],
+   "count_in_book": 2927,
+   "pdf_tounicode": "�"
+  },
+  "530": {
+   "name": "davayadeva",
+   "role": "base",
+   "value": "द्व्य",
+   "how": "single glyph",
+   "evidence": [
+    "द्व्य → [davayadeva]",
+    "द्व्यि → [ivowelsign00deva, davayadeva]"
+   ],
+   "count_in_book": 1,
+   "pdf_tounicode": "�"
+  },
+  "531": {
+   "name": "dadhadeva",
+   "role": "base",
+   "value": "द्ध",
+   "how": "single glyph",
+   "evidence": [
+    "द्ध → [dadhadeva]",
+    "द्धँ → [dadhadeva, candrabindudeva]",
+    "द्धं → [dadhadeva, anusvaradeva]"
+   ],
+   "count_in_book": 3578,
+   "pdf_tounicode": "�"
+  },
+  "533": {
+   "name": "dadadeva",
+   "role": "base",
+   "value": "द्द",
+   "how": "single glyph",
+   "evidence": [
+    "द्द → [dadadeva]",
+    "द्दँ → [dadadeva, candrabindudeva]",
+    "द्दं → [dadadeva, anusvaradeva]"
+   ],
+   "count_in_book": 191,
+   "pdf_tounicode": "�"
+  },
+  "535": {
+   "name": "damadeva",
+   "role": "base",
+   "value": "द्म",
+   "how": "single glyph",
+   "evidence": [
+    "द्म → [damadeva]",
+    "द्मँ → [damadeva, candrabindudeva]",
+    "द्मं → [damadeva, anusvaradeva]"
+   ],
+   "count_in_book": 60,
+   "pdf_tounicode": "�"
+  },
+  "536": {
+   "name": "dayadeva",
+   "role": "base",
+   "value": "द्य",
+   "how": "single glyph",
+   "evidence": [
+    "द्य → [dayadeva]",
+    "द्यँ → [dayadeva, candrabindudeva]",
+    "द्यं → [dayadeva, anusvaradeva]"
+   ],
+   "count_in_book": 740,
+   "pdf_tounicode": "�"
+  },
+  "540": {
+   "name": "nathadeva",
+   "role": "base",
+   "value": "न्थ",
+   "how": "single glyph",
+   "evidence": [
+    "न्थ → [nathadeva]",
+    "न्थँ → [nathadeva, candrabindudeva]",
+    "न्थं → [nathadeva, anusvaradeva]"
+   ],
+   "count_in_book": 94,
+   "pdf_tounicode": "�"
+  },
+  "542": {
+   "name": "nadhadeva",
+   "role": "base",
+   "value": "न्ध",
+   "how": "single glyph",
+   "evidence": [
+    "न्ध → [nadhadeva]",
+    "न्धँ → [nadhadeva, candrabindudeva]",
+    "न्धं → [nadhadeva, anusvaradeva]"
+   ],
+   "count_in_book": 1495,
+   "pdf_tounicode": "�"
+  },
+  "543": {
+   "name": "nadhaprehalfdeva",
+   "role": "half",
+   "value": "न्ध्",
+   "how": "half form of nadhadeva",
+   "evidence": [
+    "न्ध्क → [nadhaprehalfdeva, kadeva]",
+    "न्ध्ख → [nadhaprehalfdeva, khadeva]",
+    "न्ध्ग → [nadhaprehalfdeva, gadeva]"
+   ],
+   "count_in_book": 59,
+   "pdf_tounicode": "�"
+  },
+  "544": {
+   "name": "nadharadeva",
+   "role": "base",
+   "value": "न्ध्र",
+   "how": "single glyph",
+   "evidence": [
+    "न्ध्र → [nadharadeva]",
+    "न्ध्रि → [ivowelsign10deva, nadharadeva]"
+   ],
+   "count_in_book": 1,
+   "pdf_tounicode": "�"
+  },
+  "545": {
+   "name": "nanadeva",
+   "role": "base",
+   "value": "न्न",
+   "how": "single glyph",
+   "evidence": [
+    "न्न → [nanadeva]",
+    "न्नँ → [nanadeva, candrabindudeva]",
+    "न्नं → [nanadeva, anusvaradeva]"
+   ],
+   "count_in_book": 2383,
+   "pdf_tounicode": "�"
+  },
+  "546": {
+   "name": "nashadeva",
+   "role": "base",
+   "value": "न्श",
+   "how": "single glyph",
+   "evidence": [
+    "न्श → [nashadeva]",
+    "न्शँ → [nashadeva, candrabindudeva]",
+    "न्शं → [nashadeva, anusvaradeva]"
+   ],
+   "count_in_book": 1,
+   "pdf_tounicode": "�"
+  },
+  "547": {
+   "name": "panadeva",
+   "role": "base",
+   "value": "प्न",
+   "how": "single glyph",
+   "evidence": [
+    "प्न → [panadeva]",
+    "प्नँ → [panadeva, candrabindudeva]",
+    "प्नं → [panadeva, anusvaradeva]"
+   ],
+   "count_in_book": 54,
+   "pdf_tounicode": "�"
+  },
+  "548": {
+   "name": "badhadeva",
+   "role": "base",
+   "value": "ब्ध",
+   "how": "single glyph",
+   "evidence": [
+    "ब्ध → [badhadeva]",
+    "ब्धँ → [badhadeva, candrabindudeva]",
+    "ब्धं → [badhadeva, anusvaradeva]"
+   ],
+   "count_in_book": 103,
+   "pdf_tounicode": "�"
+  },
+  "549": {
+   "name": "mapadeva",
+   "role": "base",
+   "value": "म्प",
+   "how": "single glyph",
+   "evidence": [
+    "म्प → [mapadeva]",
+    "म्पँ → [mapadeva, candrabindudeva]",
+    "म्पं → [mapadeva, anusvaradeva]"
+   ],
+   "count_in_book": 1458,
+   "pdf_tounicode": "�"
+  },
+  "550": {
+   "name": "maparadeva",
+   "role": "base",
+   "value": "म्प्र",
+   "how": "single glyph",
+   "evidence": [
+    "म्प्र → [maparadeva]",
+    "म्प्रि → [ivowelsign10deva, maparadeva]"
+   ],
+   "count_in_book": 6,
+   "pdf_tounicode": "�"
+  },
+  "551": {
+   "name": "mapaprehalfdeva",
+   "role": "half",
+   "value": "म्प्",
+   "how": "half form of mapadeva",
+   "evidence": [
+    "म्प्क → [mapaprehalfdeva, kadeva]",
+    "म्प्ख → [mapaprehalfdeva, khadeva]",
+    "म्प्ग → [mapaprehalfdeva, gadeva]"
+   ],
+   "count_in_book": 1,
+   "pdf_tounicode": "�"
+  },
+  "553": {
+   "name": "mabhadeva",
+   "role": "base",
+   "value": "म्भ",
+   "how": "single glyph",
+   "evidence": [
+    "म्भ → [mabhadeva]",
+    "म्भँ → [mabhadeva, candrabindudeva]",
+    "म्भं → [mabhadeva, anusvaradeva]"
+   ],
+   "count_in_book": 1180,
+   "pdf_tounicode": "�"
+  },
+  "556": {
+   "name": "lathadeva",
+   "role": "base",
+   "value": "ल्थ",
+   "how": "single glyph",
+   "evidence": [
+    "ल्थ → [lathadeva]",
+    "ल्थँ → [lathadeva, candrabindudeva]",
+    "ल्थं → [lathadeva, anusvaradeva]"
+   ],
+   "count_in_book": 1,
+   "pdf_tounicode": "�"
+  },
+  "557": {
+   "name": "vayadeva",
+   "role": "base",
+   "value": "व्य",
+   "how": "single glyph",
+   "evidence": [
+    "व्य → [vayadeva]",
+    "व्यँ → [vayadeva, candrabindudeva]",
+    "व्यं → [vayadeva, anusvaradeva]"
+   ],
+   "count_in_book": 2441,
+   "pdf_tounicode": "�"
+  },
+  "558": {
+   "name": "shacadeva",
+   "role": "base",
+   "value": "श्च",
+   "how": "single glyph",
+   "evidence": [
+    "श्च → [shacadeva]",
+    "श्चँ → [shacadeva, candrabindudeva]",
+    "श्चं → [shacadeva, anusvaradeva]"
+   ],
+   "count_in_book": 1346,
+   "pdf_tounicode": "�"
+  },
+  "559": {
+   "name": "shavadeva",
+   "role": "base",
+   "value": "श्व",
+   "how": "single glyph",
+   "evidence": [
+    "श्व → [shavadeva]",
+    "श्वँ → [shavadeva, candrabindudeva]",
+    "श्वं → [shavadeva, anusvaradeva]"
+   ],
+   "count_in_book": 1541,
+   "pdf_tounicode": "�"
+  },
+  "560": {
+   "name": "shaladeva",
+   "role": "base",
+   "value": "श्ल",
+   "how": "single glyph",
+   "evidence": [
+    "श्ल → [shaladeva]",
+    "श्लँ → [shaladeva, candrabindudeva]",
+    "श्लं → [shaladeva, anusvaradeva]"
+   ],
+   "count_in_book": 82,
+   "pdf_tounicode": "�"
+  },
+  "561": {
+   "name": "shanadeva",
+   "role": "base",
+   "value": "श्न",
+   "how": "single glyph",
+   "evidence": [
+    "श्न → [shanadeva]",
+    "श्नँ → [shanadeva, candrabindudeva]",
+    "श्नं → [shanadeva, anusvaradeva]"
+   ],
+   "count_in_book": 42,
+   "pdf_tounicode": "�"
+  },
+  "562": {
+   "name": "ssattadeva",
+   "role": "base",
+   "value": "ष्ट",
+   "how": "single glyph",
+   "evidence": [
+    "ष्ट → [ssattadeva]",
+    "ष्टँ → [ssattadeva, candrabindudeva]",
+    "ष्टं → [ssattadeva, anusvaradeva]"
+   ],
+   "count_in_book": 2094,
+   "pdf_tounicode": "�"
+  },
+  "564": {
+   "name": "ssattaradeva",
+   "role": "base",
+   "value": "ष्ट्र",
+   "how": "single glyph",
+   "evidence": [
+    "ष्ट्र → [ssattaradeva]",
+    "ष्ट्रि → [ivowelsign04deva, ssattaradeva]"
+   ],
+   "count_in_book": 78,
+   "pdf_tounicode": "�"
+  },
+  "565": {
+   "name": "ssatthadeva",
+   "role": "base",
+   "value": "ष्ठ",
+   "how": "single glyph",
+   "evidence": [
+    "ष्ठ → [ssatthadeva]",
+    "ष्ठँ → [ssatthadeva, candrabindudeva]",
+    "ष्ठं → [ssatthadeva, anusvaradeva]"
+   ],
+   "count_in_book": 2217,
+   "pdf_tounicode": "�"
+  },
+  "568": {
+   "name": "sathadeva",
+   "role": "base",
+   "value": "स्थ",
+   "how": "single glyph",
+   "evidence": [
+    "स्थ → [sathadeva]",
+    "स्थँ → [sathadeva, candrabindudeva]",
+    "स्थं → [sathadeva, anusvaradeva]"
+   ],
+   "count_in_book": 2616,
+   "pdf_tounicode": "�"
+  },
+  "569": {
+   "name": "sathaprehalfdeva",
+   "role": "half",
+   "value": "स्थ्",
+   "how": "half form of sathadeva",
+   "evidence": [
+    "स्थ्क → [sathaprehalfdeva, kadeva]",
+    "स्थ्ख → [sathaprehalfdeva, khadeva]",
+    "स्थ्ग → [sathaprehalfdeva, gadeva]"
+   ],
+   "count_in_book": 3,
+   "pdf_tounicode": "�"
+  },
+  "570": {
+   "name": "sapadeva",
+   "role": "base",
+   "value": "स्प",
+   "how": "single glyph",
+   "evidence": [
+    "स्प → [sapadeva]",
+    "स्पँ → [sapadeva, candrabindudeva]",
+    "स्पं → [sapadeva, anusvaradeva]"
+   ],
+   "count_in_book": 436,
+   "pdf_tounicode": "�"
+  },
+  "573": {
+   "name": "saphadeva",
+   "role": "base",
+   "value": "स्फ",
+   "how": "single glyph",
+   "evidence": [
+    "स्फ → [saphadeva]",
+    "स्फँ → [saphadeva, candrabindudeva]",
+    "स्फं → [saphadeva, anusvaradeva]"
+   ],
+   "count_in_book": 28,
+   "pdf_tounicode": "�"
+  },
+  "574": {
+   "name": "hannadeva",
+   "role": "base",
+   "value": "ह्ण",
+   "how": "single glyph",
+   "evidence": [
+    "ह्ण → [hannadeva]",
+    "ह्णँ → [hannadeva, candrabindudeva]",
+    "ह्णं → [hannadeva, anusvaradeva]"
+   ],
+   "count_in_book": 18,
+   "pdf_tounicode": "�"
+  },
+  "575": {
+   "name": "hanadeva",
+   "role": "base",
+   "value": "ह्न",
+   "how": "single glyph",
+   "evidence": [
+    "ह्न → [hanadeva]",
+    "ह्नँ → [hanadeva, candrabindudeva]",
+    "ह्नं → [hanadeva, anusvaradeva]"
+   ],
+   "count_in_book": 120,
+   "pdf_tounicode": "�"
+  },
+  "576": {
+   "name": "hamadeva",
+   "role": "base",
+   "value": "ह्म",
+   "how": "single glyph",
+   "evidence": [
+    "ह्म → [hamadeva]",
+    "ह्मँ → [hamadeva, candrabindudeva]",
+    "ह्मं → [hamadeva, anusvaradeva]"
+   ],
+   "count_in_book": 1277,
+   "pdf_tounicode": "�"
+  },
+  "577": {
+   "name": "hayadeva",
+   "role": "base",
+   "value": "ह्य",
+   "how": "single glyph",
+   "evidence": [
+    "ह्य → [hayadeva]",
+    "ह्यँ → [hayadeva, candrabindudeva]",
+    "ह्यं → [hayadeva, anusvaradeva]"
+   ],
+   "count_in_book": 64,
+   "pdf_tounicode": "�"
+  },
+  "578": {
+   "name": "haladeva",
+   "role": "base",
+   "value": "ह्ल",
+   "how": "single glyph",
+   "evidence": [
+    "ह्ल → [haladeva]",
+    "ह्लँ → [haladeva, candrabindudeva]",
+    "ह्लं → [haladeva, anusvaradeva]"
+   ],
+   "count_in_book": 37,
+   "pdf_tounicode": "�"
+  },
+  "579": {
+   "name": "havadeva",
+   "role": "base",
+   "value": "ह्व",
+   "how": "single glyph",
+   "evidence": [
+    "ह्व → [havadeva]",
+    "ह्वँ → [havadeva, candrabindudeva]",
+    "ह्वं → [havadeva, anusvaradeva]"
+   ],
+   "count_in_book": 53,
+   "pdf_tounicode": "�"
+  },
+  "604": {
+   "name": "ivowelsign00deva",
+   "role": "pre",
+   "value": "ि",
+   "how": "pre-base ि (width variant 00)",
+   "post": "",
+   "reph": false,
+   "evidence": [
+    "क्कि → [ivowelsign00deva, kaprehalfdeva, kadeva]",
+    "क्खि → [ivowelsign00deva, kaprehalfdeva, khadeva]",
+    "क्गि → [ivowelsign00deva, kaprehalfdeva, gadeva]"
+   ],
+   "count_in_book": 1046,
+   "pdf_tounicode": "�"
+  },
+  "605": {
+   "name": "ivowelsign01deva",
+   "role": "pre",
+   "value": "ि",
+   "how": "pre-base ि (width variant 01)",
+   "post": "",
+   "reph": false,
+   "evidence": [
+    "रि → [ivowelsign01deva, radeva]",
+    "ऱि → [ivowelsign01deva, rradeva]",
+    "ऱि → [ivowelsign01deva, rradeva]"
+   ],
+   "count_in_book": 1793,
+   "pdf_tounicode": "�"
+  },
+  "606": {
+   "name": "ivowelsign02deva",
+   "role": "pre",
+   "value": "ि",
+   "how": "pre-base ि (width variant 02)",
+   "post": "",
+   "reph": false,
+   "evidence": [
+    "टि → [ivowelsign02deva, ttadeva]",
+    "ठि → [ivowelsign02deva, tthadeva]",
+    "ढि → [ivowelsign02deva, ddhadeva]"
+   ],
+   "count_in_book": 8087,
+   "pdf_tounicode": "�"
+  },
+  "607": {
+   "name": "ivowelsign03deva",
+   "role": "pre",
+   "value": "ि",
+   "how": "pre-base ि (width variant 03)",
+   "post": "",
+   "reph": false,
+   "evidence": [
+    "कि → [ivowelsign03deva, kadeva]",
+    "गि → [ivowelsign03deva, gadeva]",
+    "ङि → [ivowelsign03deva, ngadeva]"
+   ],
+   "count_in_book": 41541,
+   "pdf_tounicode": "�"
+  },
+  "608": {
+   "name": "ivowelsign04deva",
+   "role": "pre",
+   "value": "ि",
+   "how": "pre-base ि (width variant 04)",
+   "post": "",
+   "reph": false,
+   "evidence": [
+    "घि → [ivowelsign04deva, ghadeva]",
+    "धि → [ivowelsign04deva, dhadeva]",
+    "मि → [ivowelsign04deva, madeva]"
+   ],
+   "count_in_book": 5188,
+   "pdf_tounicode": "�"
+  },
+  "609": {
+   "name": "ivowelsign05deva",
+   "role": "pre",
+   "value": "ि",
+   "how": "pre-base ि (width variant 05)",
+   "post": "",
+   "reph": false,
+   "evidence": [
+    "चि → [ivowelsign05deva, cadeva]",
+    "छि → [ivowelsign05deva, chadeva]",
+    "थि → [ivowelsign05deva, thadeva]"
+   ],
+   "count_in_book": 14012,
+   "pdf_tounicode": "�"
+  },
+  "610": {
+   "name": "ivowelsign06deva",
+   "role": "pre",
+   "value": "ि",
+   "how": "pre-base ि (width variant 06)",
+   "post": "",
+   "reph": false,
+   "evidence": [
+    "णि → [ivowelsign06deva, nnadeva]",
+    "भि → [ivowelsign06deva, bhadeva]",
+    "ळि → [ivowelsign06deva, lladeva]"
+   ],
+   "count_in_book": 3409,
+   "pdf_tounicode": "�"
+  },
+  "611": {
+   "name": "ivowelsign07deva",
+   "role": "pre",
+   "value": "ि",
+   "how": "pre-base ि (width variant 07)",
+   "post": "",
+   "reph": false,
+   "evidence": [
+    "जि → [ivowelsign07deva, jadeva]",
+    "झि → [ivowelsign07deva, jhadeva]",
+    "ञि → [ivowelsign07deva, nyadeva]"
+   ],
+   "count_in_book": 4762,
+   "pdf_tounicode": "�"
+  },
+  "612": {
+   "name": "ivowelsign08deva",
+   "role": "pre",
+   "value": "ि",
+   "how": "pre-base ि (width variant 08)",
+   "post": "",
+   "reph": false,
+   "evidence": [
+    "खि → [ivowelsign08deva, khadeva]",
+    "ख़ि → [ivowelsign08deva, khhadeva]",
+    "खिः → [ivowelsign08deva, khadeva, visargadeva]"
+   ],
+   "count_in_book": 1013,
+   "pdf_tounicode": "�"
+  },
+  "613": {
+   "name": "ivowelsign09deva",
+   "role": "pre",
+   "value": "ि",
+   "how": "pre-base ि (width variant 09)",
+   "post": "",
+   "reph": false,
+   "evidence": [
+    "ग्गि → [ivowelsign09deva, gaprehalfdeva, gadeva]",
+    "ग्घि → [ivowelsign09deva, gaprehalfdeva, ghadeva]",
+    "ग्ङि → [ivowelsign09deva, gaprehalfdeva, ngadeva]"
+   ],
+   "count_in_book": 1065,
+   "pdf_tounicode": "�"
+  },
+  "614": {
+   "name": "ivowelsign10deva",
+   "role": "pre",
+   "value": "ि",
+   "how": "pre-base ि (width variant 10)",
+   "post": "",
+   "reph": false,
+   "evidence": [
+    "ग्चि → [ivowelsign10deva, gaprehalfdeva, cadeva]",
+    "ग्छि → [ivowelsign10deva, gaprehalfdeva, chadeva]",
+    "ग्थि → [ivowelsign10deva, gaprehalfdeva, thadeva]"
+   ],
+   "count_in_book": 769,
+   "pdf_tounicode": "�"
+  },
+  "615": {
+   "name": "ivowelsign11deva",
+   "role": "pre",
+   "value": "ि",
+   "how": "pre-base ि (width variant 11)",
+   "post": "",
+   "reph": false,
+   "evidence": [
+    "ग्भि → [ivowelsign11deva, gaprehalfdeva, bhadeva]",
+    "ग्लि → [ivowelsign11deva, gaprehalfdeva, ladeva]",
+    "ग्ळि → [ivowelsign11deva, gaprehalfdeva, lladeva]"
+   ],
+   "count_in_book": 302,
+   "pdf_tounicode": "�"
+  },
+  "618": {
+   "name": "ivowelsignanusvara02deva",
+   "role": "pre",
+   "value": "ि",
+   "how": "pre-base ि (width variant 02)",
+   "post": "ं",
+   "reph": false,
+   "evidence": [
+    "टिं → [ivowelsignanusvara02deva, ttadeva, dummymarkdeva]",
+    "ठिं → [ivowelsignanusvara02deva, tthadeva, dummymarkdeva]",
+    "ढिं → [ivowelsignanusvara02deva, ddhadeva, dummymarkdeva]"
+   ],
+   "count_in_book": 2,
+   "pdf_tounicode": "�"
+  },
+  "619": {
+   "name": "ivowelsignanusvara03deva",
+   "role": "pre",
+   "value": "ि",
+   "how": "pre-base ि (width variant 03)",
+   "post": "ं",
+   "reph": false,
+   "evidence": [
+    "किं → [ivowelsignanusvara03deva, kadeva, dummymarkdeva]",
+    "गिं → [ivowelsignanusvara03deva, gadeva, dummymarkdeva]",
+    "ङिं → [ivowelsignanusvara03deva, ngadeva, dummymarkdeva]"
+   ],
+   "count_in_book": 507,
+   "pdf_tounicode": "�"
+  },
+  "620": {
+   "name": "ivowelsignanusvara04deva",
+   "role": "pre",
+   "value": "ि",
+   "how": "pre-base ि (width variant 04)",
+   "post": "ं",
+   "reph": false,
+   "evidence": [
+    "घिं → [ivowelsignanusvara04deva, ghadeva, dummymarkdeva]",
+    "धिं → [ivowelsignanusvara04deva, dhadeva, dummymarkdeva]",
+    "मिं → [ivowelsignanusvara04deva, madeva, dummymarkdeva]"
+   ],
+   "count_in_book": 2,
+   "pdf_tounicode": "�"
+  },
+  "621": {
+   "name": "ivowelsignanusvara05deva",
+   "role": "pre",
+   "value": "ि",
+   "how": "pre-base ि (width variant 05)",
+   "post": "ं",
+   "reph": false,
+   "evidence": [
+    "चिं → [ivowelsignanusvara05deva, cadeva, dummymarkdeva]",
+    "छिं → [ivowelsignanusvara05deva, chadeva, dummymarkdeva]",
+    "थिं → [ivowelsignanusvara05deva, thadeva, dummymarkdeva]"
+   ],
+   "count_in_book": 572,
+   "pdf_tounicode": "�"
+  },
+  "623": {
+   "name": "ivowelsignanusvara07deva",
+   "role": "pre",
+   "value": "ि",
+   "how": "pre-base ि (width variant 07)",
+   "post": "ं",
+   "reph": false,
+   "evidence": [
+    "जिं → [ivowelsignanusvara07deva, jadeva, dummymarkdeva]",
+    "झिं → [ivowelsignanusvara07deva, jhadeva, dummymarkdeva]",
+    "ञिं → [ivowelsignanusvara07deva, nyadeva, dummymarkdeva]"
+   ],
+   "count_in_book": 2,
+   "pdf_tounicode": "�"
+  },
+  "624": {
+   "name": "ivowelsignanusvara08deva",
+   "role": "pre",
+   "value": "ि",
+   "how": "pre-base ि (width variant 08)",
+   "post": "ं",
+   "reph": false,
+   "evidence": [
+    "खिं → [ivowelsignanusvara08deva, khadeva, dummymarkdeva]",
+    "ख़िं → [ivowelsignanusvara08deva, khhadeva, dummymarkdeva]",
+    "ख्रिं → [ivowelsignanusvara08deva, kharadeva, dummymarkdeva]"
+   ],
+   "count_in_book": 2,
+   "pdf_tounicode": "�"
+  },
+  "628": {
+   "name": "ivowelsignrephdeva",
+   "role": "pre",
+   "value": "ि",
+   "how": "pre-base ि (width variant default)",
+   "post": "",
+   "reph": true,
+   "evidence": [
+    "र्च्चि → [ivowelsignrephdeva, cacadeva, dummymarkdeva]",
+    "र्च्छि → [ivowelsignrephdeva, cachadeva, dummymarkdeva]",
+    "र्ज्डि → [ivowelsignrephdeva, jaddadeva, dummymarkdeva]"
+   ],
+   "count_in_book": 90,
+   "pdf_tounicode": "�"
+  },
+  "629": {
+   "name": "ivowelsignreph01deva",
+   "role": "pre",
+   "value": "ि",
+   "how": "pre-base ि (width variant 01)",
+   "post": "",
+   "reph": true,
+   "evidence": [
+    "र्रि → [ivowelsignreph01deva, radeva, dummymarkdeva]",
+    "र्ऱि → [ivowelsignreph01deva, rradeva, dummymarkdeva]",
+    "र्ऱि → [ivowelsignreph01deva, rradeva, dummymarkdeva]"
+   ],
+   "count_in_book": 3,
+   "pdf_tounicode": "�"
+  },
+  "630": {
+   "name": "ivowelsignreph02deva",
+   "role": "pre",
+   "value": "ि",
+   "how": "pre-base ि (width variant 02)",
+   "post": "",
+   "reph": true,
+   "evidence": [
+    "र्टि → [ivowelsignreph02deva, ttadeva, dummymarkdeva]",
+    "र्ठि → [ivowelsignreph02deva, tthadeva, dummymarkdeva]",
+    "र्ढि → [ivowelsignreph02deva, ddhadeva, dummymarkdeva]"
+   ],
+   "count_in_book": 23,
+   "pdf_tounicode": "�"
+  },
+  "631": {
+   "name": "ivowelsignreph03deva",
+   "role": "pre",
+   "value": "ि",
+   "how": "pre-base ि (width variant 03)",
+   "post": "",
+   "reph": true,
+   "evidence": [
+    "र्कि → [ivowelsignreph03deva, kadeva, dummymarkdeva]",
+    "र्गि → [ivowelsignreph03deva, gadeva, dummymarkdeva]",
+    "र्ङि → [ivowelsignreph03deva, ngadeva, dummymarkdeva]"
+   ],
+   "count_in_book": 1001,
+   "pdf_tounicode": "�"
+  },
+  "632": {
+   "name": "ivowelsignreph04deva",
+   "role": "pre",
+   "value": "ि",
+   "how": "pre-base ि (width variant 04)",
+   "post": "",
+   "reph": true,
+   "evidence": [
+    "र्घि → [ivowelsignreph04deva, ghadeva, dummymarkdeva]",
+    "र्धि → [ivowelsignreph04deva, dhadeva, dummymarkdeva]",
+    "र्मि → [ivowelsignreph04deva, madeva, dummymarkdeva]"
+   ],
+   "count_in_book": 743,
+   "pdf_tounicode": "�"
+  },
+  "633": {
+   "name": "ivowelsignreph05deva",
+   "role": "pre",
+   "value": "ि",
+   "how": "pre-base ि (width variant 05)",
+   "post": "",
+   "reph": true,
+   "evidence": [
+    "र्चि → [ivowelsignreph05deva, cadeva, dummymarkdeva]",
+    "र्छि → [ivowelsignreph05deva, chadeva, dummymarkdeva]",
+    "र्थि → [ivowelsignreph05deva, thadeva, dummymarkdeva]"
+   ],
+   "count_in_book": 33,
+   "pdf_tounicode": "�"
+  },
+  "634": {
+   "name": "ivowelsignreph06deva",
+   "role": "pre",
+   "value": "ि",
+   "how": "pre-base ि (width variant 06)",
+   "post": "",
+   "reph": true,
+   "evidence": [
+    "र्णि → [ivowelsignreph06deva, nnadeva, dummymarkdeva]",
+    "र्भि → [ivowelsignreph06deva, bhadeva, dummymarkdeva]",
+    "र्ळि → [ivowelsignreph06deva, lladeva, dummymarkdeva]"
+   ],
+   "count_in_book": 57,
+   "pdf_tounicode": "�"
+  },
+  "635": {
+   "name": "ivowelsignreph07deva",
+   "role": "pre",
+   "value": "ि",
+   "how": "pre-base ि (width variant 07)",
+   "post": "",
+   "reph": true,
+   "evidence": [
+    "र्जि → [ivowelsignreph07deva, jadeva, dummymarkdeva]",
+    "र्झि → [ivowelsignreph07deva, jhadeva, dummymarkdeva]",
+    "र्ञि → [ivowelsignreph07deva, nyadeva, dummymarkdeva]"
+   ],
+   "count_in_book": 17,
+   "pdf_tounicode": "�"
+  },
+  "643": {
+   "name": "ivowelsignrephanusvara03deva",
+   "role": "pre",
+   "value": "ि",
+   "how": "pre-base ि (width variant 03)",
+   "post": "ं",
+   "reph": true,
+   "evidence": [
+    "र्किं → [ivowelsignrephanusvara03deva, kadeva, dummymarkdeva]",
+    "र्गिं → [ivowelsignrephanusvara03deva, gadeva, dummymarkdeva]",
+    "र्ङिं → [ivowelsignrephanusvara03deva, ngadeva, dummymarkdeva]"
+   ],
+   "count_in_book": 1,
+   "pdf_tounicode": "�"
+  },
+  "652": {
+   "name": "dummymarkdeva",
+   "role": "dummy",
+   "value": "",
+   "how": "zero-width placeholder emitted after a combined ि+ं/ँ/reph glyph, e.g. 'किं' → [ivowelsignanusvara03, ka, dummymark]",
+   "evidence": [
+    "किँ → [ivowelsigncandrabindu03deva, kadeva, dummymarkdeva]",
+    "किं → [ivowelsignanusvara03deva, kadeva, dummymarkdeva]",
+    "खिँ → [ivowelsigncandrabindu08deva, khadeva, dummymarkdeva]"
+   ],
+   "count_in_book": 3055,
+   "pdf_tounicode": "�"
+  },
+  "653": {
+   "name": "iivowelsign1deva",
+   "role": "post",
+   "value": "ी",
+   "how": "vowel sign",
+   "reph": false,
+   "evidence": [
+    "ङी → [ngadeva, iivowelsign1deva]",
+    "छी → [chadeva, iivowelsign1deva]",
+    "टी → [ttadeva, iivowelsign1deva]"
+   ],
+   "count_in_book": 2594,
+   "pdf_tounicode": "�"
+  },
+  "654": {
+   "name": "iivowelsign2deva",
+   "role": "post",
+   "value": "ी",
+   "how": "vowel sign",
+   "reph": false,
+   "evidence": [
+    "ठी → [tthadeva, iivowelsign2deva]",
+    "ठ़ी → [tthanuktadeva, iivowelsign2deva]",
+    "ठीः → [tthadeva, iivowelsign2deva, visargadeva]"
+   ],
+   "count_in_book": 569,
+   "pdf_tounicode": "�"
+  },
+  "655": {
+   "name": "iivowelsign3deva",
+   "role": "post",
+   "value": "ी",
+   "how": "vowel sign",
+   "reph": false,
+   "evidence": [
+    "की → [kadeva, iivowelsign3deva]",
+    "फी → [phadeva, iivowelsign3deva]",
+    "क़ी → [qadeva, iivowelsign3deva]"
+   ],
+   "count_in_book": 15195,
+   "pdf_tounicode": "�"
+  },
+  "656": {
+   "name": "iivowelsignanusvara1deva",
+   "role": "post",
+   "value": "ीं",
+   "how": "vowel sign",
+   "reph": false,
+   "evidence": [
+    "ङीं → [ngadeva, iivowelsignanusvara1deva]",
+    "छीं → [chadeva, iivowelsignanusvara1deva]",
+    "टीं → [ttadeva, iivowelsignanusvara1deva]"
+   ],
+   "count_in_book": 48,
+   "pdf_tounicode": "�"
+  },
+  "657": {
+   "name": "iivowelsignanusvara2deva",
+   "role": "post",
+   "value": "ीं",
+   "how": "vowel sign",
+   "reph": false,
+   "evidence": [
+    "ठीं → [tthadeva, iivowelsignanusvara2deva]",
+    "ठ़ीं → [tthanuktadeva, iivowelsignanusvara2deva]",
+    "क्ठीं → [kaprehalfdeva, tthadeva, iivowelsignanusvara2deva]"
+   ],
+   "count_in_book": 51,
+   "pdf_tounicode": "�"
+  },
+  "658": {
+   "name": "iivowelsignanusvara3deva",
+   "role": "post",
+   "value": "ीं",
+   "how": "vowel sign",
+   "reph": false,
+   "evidence": [
+    "कीं → [kadeva, iivowelsignanusvara3deva]",
+    "फीं → [phadeva, iivowelsignanusvara3deva]",
+    "क़ीं → [qadeva, iivowelsignanusvara3deva]"
+   ],
+   "count_in_book": 25,
+   "pdf_tounicode": "�"
+  },
+  "659": {
+   "name": "iivowelsignreph1deva",
+   "role": "post",
+   "value": "ी",
+   "how": "vowel sign",
+   "reph": true,
+   "evidence": [
+    "र्ङी → [ngadeva, iivowelsignreph1deva]",
+    "र्छी → [chadeva, iivowelsignreph1deva]",
+    "र्टी → [ttadeva, iivowelsignreph1deva]"
+   ],
+   "count_in_book": 5,
+   "pdf_tounicode": "�"
+  },
+  "661": {
+   "name": "iivowelsignreph3deva",
+   "role": "post",
+   "value": "ी",
+   "how": "vowel sign",
+   "reph": true,
+   "evidence": [
+    "र्की → [kadeva, iivowelsignreph3deva]",
+    "र्फी → [phadeva, iivowelsignreph3deva]",
+    "र्क़ी → [qadeva, iivowelsignreph3deva]"
+   ],
+   "count_in_book": 1,
+   "pdf_tounicode": "�"
+  },
+  "706": {
+   "name": "vattuuulowdeva",
+   "role": "post",
+   "value": "्रू",
+   "how": "rakar+ू below a consonant",
+   "evidence": [
+    "ङ्रू → [ngadeva, vattuuulowdeva]",
+    "छ्रू → [chadeva, vattuuulowdeva]",
+    "ट्रू → [ttadeva, vattuuulowdeva]"
+   ],
+   "count_in_book": 2,
+   "pdf_tounicode": "�"
+  },
+  "721": {
+   "name": "uvowelsignlowdeva",
+   "role": "post",
+   "value": "ु",
+   "how": "vowel sign",
+   "reph": false,
+   "evidence": [
+    "ङ्गु → [ngagadeva, uvowelsignlowdeva]",
+    "ङ्मु → [ngamadeva, uvowelsignlowdeva]",
+    "द्गु → [dagadeva, uvowelsignlowdeva]"
+   ],
+   "count_in_book": 291,
+   "pdf_tounicode": "�"
+  },
+  "722": {
+   "name": "uuvowelsignlowdeva",
+   "role": "post",
+   "value": "ू",
+   "how": "vowel sign",
+   "reph": false,
+   "evidence": [
+    "ङ्गू → [ngagadeva, uuvowelsignlowdeva]",
+    "ङ्मू → [ngamadeva, uuvowelsignlowdeva]",
+    "द्गू → [dagadeva, uuvowelsignlowdeva]"
+   ],
+   "count_in_book": 2,
+   "pdf_tounicode": "�"
+  },
+  "723": {
+   "name": "rvocalicvowelsignlowdeva",
+   "role": "post",
+   "value": "ृ",
+   "how": "vowel sign",
+   "reph": false,
+   "evidence": [
+    "ङ्गृ → [ngagadeva, rvocalicvowelsignlowdeva]",
+    "ङ्मृ → [ngamadeva, rvocalicvowelsignlowdeva]",
+    "द्गृ → [dagadeva, rvocalicvowelsignlowdeva]"
+   ],
+   "count_in_book": 1,
+   "pdf_tounicode": "�"
+  }
+ }
+}
