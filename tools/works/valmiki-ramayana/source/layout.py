@@ -56,5 +56,6 @@ def lines(page):
             raw = ''.join(t for _, t in pieces)
             text = ''.join(K.decode(t) if 'Chanakya' in f else t for f, t in pieces)
         res.append({'col': ln['col'], 'y': ln['y'], 'kind': kind, 'text': text, 'raw': raw,
-                    'size': max(r[5] for r in sp), 'fonts': sorted({r[4] for r in sp})})
+                    'size': max(r[5] for r in sp), 'fonts': sorted({r[4] for r in sp}),
+                    'en_size': max([r[5] for r in sp if 'Chanakya' not in r[4] and r[6].strip()] or [0])})
     return res

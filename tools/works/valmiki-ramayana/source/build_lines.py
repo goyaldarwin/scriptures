@@ -4,7 +4,7 @@ P=pickle.load(open(sys.argv[2],'rb'))
 stream=[];bad=collections.Counter();ex=collections.defaultdict(list)
 for pi in range(len(P)):
     for l in layout.lines(P[pi]):
-        l['page']=pi+1; stream.append({k:l[k] for k in ('page','col','y','kind','text','size','fonts')})
+        l['page']=pi+1; stream.append({k:l[k] for k in ('page','col','y','kind','text','size','fonts','en_size')})
         if l['kind']=='sa' and pi>=58:
             for w in l['text'].split():
                 for r in K.problems(w):

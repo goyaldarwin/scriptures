@@ -140,7 +140,14 @@ def parse(L):
                         cur['verses'].append({'n': int(m[1].translate(DIG)), 'lines': sa_buf, 'page': p})
                         sa_buf = []
                     continue
-                if l['kind'] == 'en' and 10.5 <= l['size'] <= 11.5 and l['col'] != 2 and 'Nalandahel' in l['fonts'][0]:
+                # English body text: Nalanda at 10.3–12.5 pt in a column, also a line that mixes in Devanagari words
+                # or starts in another font (Helvetica); footnotes (10 pt) and superscripts (6 pt) are not body text
+                if l['kind'] in ('en', 'mix') and l['col'] != 2 and (l['text'].strip() in ('*', '†', '‡', '•')
+                        or re.match(r'\s*(?:[*†‡]\s|\d\.\s)', l['text'])):
+                    cur['other'].append((p, l['col'], l['kind'], l['size'], l['text'][:120]))   # a stray mark, a footnote's head
+                    continue
+                if (l['kind'] in ('en', 'mix') and 10.3 <= l.get('en_size', l['size']) <= 12.5
+                        and l['col'] != 2 and any('Nalanda' in f for f in l['fonts'])):
                     cur.setdefault('en_lines', []).append((p, l['text']))
                     continue
                 if not cur['verses'] and l['kind'] == 'en' and l['size'] >= 11.5:
