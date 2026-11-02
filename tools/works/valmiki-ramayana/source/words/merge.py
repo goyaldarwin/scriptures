@@ -1,0 +1,26 @@
+"""Merge the written word batches (source/words/out/*.json) into the work's own dictionary, glossary/sa.json.
+
+Every entry must have en, hi, r and g (p for joined words); a word already in the dictionary keeps its entry
+(a later batch never overwrites an earlier, checked one); the result is written one word per line, sorted
+(tools/jsonio.py), so additions from different branches merge.
+
+    python3 merge.py
+"""
+import json, os, sys, glob
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.abspath(os.path.join(HERE, '..', '..', '..', '..', '..'))
+sys.path.insert(0, os.path.join(ROOT, 'tools'))
+import jsonio
+G = os.path.join(HERE, '..', '..', 'glossary', 'sa.json')
+gl = json.load(open(G)) if os.path.exists(G) else {}
+bad, added = [], 0
+for f in sorted(glob.glob(os.path.join(HERE, 'out', '*.json'))):
+    for w, e in json.load(open(f)).items():
+        if not all(isinstance(e.get(k), str) and e[k].strip() for k in ('en', 'hi', 'r', 'g')):
+            bad.append((os.path.basename(f), w)); continue
+        if 'p' in e and not (isinstance(e['p'], list) and all(isinstance(x, list) and len(x) == 2 for x in e['p'])):
+            bad.append((os.path.basename(f), w)); continue
+        if w not in gl:
+            gl[w] = {k: e[k] for k in ('hi', 'en', 'r', 'g', 'p') if k in e}; added += 1
+jsonio.dump_glossary(G, gl)
+print(added, 'added;', len(gl), 'words in glossary/sa.json;', len(bad), 'incomplete entries skipped', bad[:10])
