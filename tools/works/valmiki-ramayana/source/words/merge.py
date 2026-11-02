@@ -27,10 +27,11 @@ for f in sorted(glob.glob(os.path.join(HERE, 'out', '*.json'))):
             gl[w] = {k: e[k] for k in ('hi', 'en', 'r', 'g', 'p') if k in e}; added += 1
         src[w] = e.get('src', 'ours-reworded')      # where en comes from; batches written before the owner's rule
                                                      # (glosses copied as they are) say ours-reworded: to redo
+SRCS = ('iitk', 'vr', 'iitk+vr', 'ours', 'iitk+ours', 'vr+ours', 'iitk+vr+ours')   # every origin of en's words
 redone = 0
 for f in sorted(glob.glob(os.path.join(HERE, 'out-en', '*.json'))):
     for w, e in json.load(open(f)).items():
-        if w not in gl or not (isinstance(e.get('en'), str) and e['en'].strip()) or e.get('src') not in ('iitk', 'vr', 'iitk+vr', 'ours'):
+        if w not in gl or not (isinstance(e.get('en'), str) and e['en'].strip()) or e.get('src') not in SRCS:
             bad.append((os.path.basename(f), w)); continue
         gl[w]['en'] = e['en'].strip(); src[w] = e['src']; redone += 1
 jsonio.dump_glossary(G, gl)

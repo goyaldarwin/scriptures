@@ -1,8 +1,9 @@
 """Word packets for writing the Sanskrit word meanings of a kāṇḍa: for every distinct word of the kāṇḍa (by the
 app's lookup key, folded) not yet in the work's glossary, up to three verses it occurs in and the word-by-word
 glosses the two witnesses give for those verses (IIT Kanpur in Devanagari; valmikiramayan.net converted from
-ITRANS). The glosses are aids to check against, never copied: the entry is written from them, Monier-Williams and
-Apte (style.md §11).
+ITRANS), pre-selected to the glosses that look like the word. Every gloss of each verse, by witness, goes to
+<out dir>/verse_glosses.json, printed by glosses.py when the pre-selection misses. An entry's English is the
+witnesses' gloss as they give it (BRIEF.md; docs/PLAYBOOK.md §4).
 
     python3 packets.py <kāṇḍa> <iitk scrape> <valmikiramayan.net scrape> <out dir> [--size 250]
 """
@@ -112,6 +113,9 @@ def main():
                 if len(e['contexts']) < 3:
                     e['contexts'].append({'id': it['id'], 'verse': ' / '.join(std), 'glosses': candidates(k, gl)})
     os.makedirs(out, exist_ok=True)
+    json.dump({it['id']: {'iitk': [g for j in mi.get(it['id'], []) for g in I[j]['gl']],
+                          'vr': [g for j in mv.get(it['id'], []) for g in V[j]['gl']]} for it in items},
+              open(os.path.join(out, 'verse_glosses.json'), 'w'), ensure_ascii=False)
     W = list(words.values())
     for b in range(0, len(W), size):
         json.dump(W[b:b + size], open(os.path.join(out, f'{kd}-{b // size + 1:03d}.json'), 'w'), ensure_ascii=False, indent=0)
