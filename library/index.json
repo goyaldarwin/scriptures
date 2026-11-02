@@ -270,8 +270,8 @@
        "en": "Śrī Hanumān"
       },
       "desc": {
-       "hi": "श्रीहनुमानजीकी आरती",
-       "en": "Śrī Hanumānjī kī Āratī"
+       "hi": "आरती कीजै हनुमान लला की",
+       "en": "Āratī Kījai Hanumāna Lalā Kī"
       },
       "children": [
        {
@@ -279,12 +279,12 @@
         "work": "hanuman-aarti",
         "path": "hinduism/aarti/hanuman/hanuman-aarti",
         "title": {
-         "hi": "श्रीहनुमानजीकी आरती",
-         "en": "Śrī Hanumānjī kī Āratī"
+         "hi": "आरती कीजै हनुमान लला की",
+         "en": "Āratī Kījai Hanumāna Lalā Kī"
         },
         "desc": {
-         "hi": "आरती कीजै हनुमान लला की",
-         "en": "Āratī kījai Hanumāna lalā kī"
+         "hi": "श्रीहनुमानजीकी आरती",
+         "en": "The āratī of Śrī Hanumān"
         },
         "salute": "॥ जय बजरंगबली ॥"
        }
@@ -351,8 +351,8 @@
        "en": "Mother Gaṅgā"
       },
       "desc": {
-       "hi": "श्रीगंगाजीकी आरती",
-       "en": "Śrī Gaṅgājī kī Āratī"
+       "hi": "ॐ जय गंगे माता",
+       "en": "Om Jaya Gaṅge Mātā"
       },
       "children": [
        {
@@ -360,12 +360,12 @@
         "work": "ganga-aarti",
         "path": "hinduism/aarti/ganga/ganga-aarti",
         "title": {
-         "hi": "श्रीगंगाजीकी आरती",
-         "en": "Śrī Gaṅgājī kī Āratī"
-        },
-        "desc": {
          "hi": "ॐ जय गंगे माता",
          "en": "Om Jaya Gaṅge Mātā"
+        },
+        "desc": {
+         "hi": "श्रीगंगाजीकी आरती",
+         "en": "The āratī of Mother Gaṅgā"
         },
         "salute": "॥ हर हर गंगे ॥"
        }

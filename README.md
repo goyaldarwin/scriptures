@@ -9,7 +9,7 @@ A personal, ad-free library for studying scriptures. Each work has the same read
 | Granthas › Gosvāmī Tulasīdāsa | Śrī Rāmacaritamānasa: 7 kāṇḍas, 30-day and 9-day pārāyaṇa | Gita Press, Gorakhpur |
 | Granthas › Gosvāmī Tulasīdāsa | Sundarakāṇḍa, with the Hanumān Chālīsā and the āratī | Gita Press (generated from the Mānas) |
 | Stotras › Śrī Rāma | Śrī Rāma Rakṣā Stotram (Budha Kauśika): viniyoga, dhyāna, 38 ślokas | Vande Guru Paramparaam (video) |
-| Āratī › Śrī Rāma, Śrī Hanumān, Bhagavān Viṣṇu, Bhagavān Śiva, Mother Gaṅgā | Śrī Rāmacandra Kṛpālu, Āratī Kīje Śrī Rāmalalā Kī, Āratī Kījai Rāmacandra Jī Kī, Śrī Hanumānjī kī Āratī, Om Jaya Jagadīśa Hare, Om Jaya Śiva Oṅkārā, Śrī Gaṅgājī kī Āratī | the owner's printouts and screenshots |
+| Āratī › Śrī Rāma, Śrī Hanumān, Bhagavān Viṣṇu, Bhagavān Śiva, Mother Gaṅgā | Śrī Rāmacandra Kṛpālu, Āratī Kīje Śrī Rāmalalā Kī, Āratī Kījai Rāmacandra Jī Kī, Āratī Kījai Hanumāna Lalā Kī, Om Jaya Jagadīśa Hare, Om Jaya Śiva Oṅkārā, Om Jaya Gaṅge Mātā | the owner's printouts and screenshots |
 | Āratī › Shirdi Sāī Bābā | Dhūpa Āratī (evening āratī): Marathi, Sanskrit, Hindi | Shirdi tradition |
 | Veda › Kṛṣṇa Yajurveda › Saṃhitā | Śrī Rudram: Namakam and Chamakam, 11 + 11 anuvākas, with svaras | shlokam.org (printout) |
 | Veda › Kṛṣṇa Yajurveda › Upaniṣads | Kaṭha Upaniṣad: 2 adhyāyas, 6 vallīs, 119 mantras | Swami Gurubhaktananda (Sandeepany) |

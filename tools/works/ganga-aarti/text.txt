@@ -1,8 +1,8 @@
-# श्रीगंगाजीकी आरती (Śrī Gaṅgājī kī Āratī): the verse text. The source and every choice: reconciliation.md.
+# ॐ जय गंगे माता (Om Jaya Gaṅge Mātā): the verse text. The source and every choice: reconciliation.md.
 
 @part aarti
 @section aarti
-@topic आरती श्री गंगाजी | Āratī Śrī Gaṅgājī
+@topic ॐ जय गंगे माता | Om Jaya Gaṅge Mātā
 [aarti.tek tek]
 ॐ जय गंगे माता, मैया जय गंगे माता ।
 जो नर तुमको ध्याता, मनवांछित फल पाता ॥

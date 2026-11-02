@@ -3,16 +3,12 @@
  "path": "hinduism/aarti/ganga/ganga-aarti",
  "lang": "hi",
  "title": {
-  "hi": "श्रीगंगाजीकी आरती",
-  "en": "Śrī Gaṅgājī kī Āratī"
+  "hi": "ॐ जय गंगे माता",
+  "en": "Om Jaya Gaṅge Mātā"
  },
  "by": {
   "hi": "माँ गंगा",
   "en": "Mother Gaṅgā"
- },
- "from": {
-  "hi": "ॐ जय गंगे माता",
-  "en": "Om Jaya Gaṅge Mātā"
  },
  "parts": {
   "name": {
@@ -22,8 +18,8 @@
   "list": [
    {
     "key": "aarti",
-    "hi": "श्रीगंगाजीकी आरती",
-    "en": "Śrī Gaṅgājī kī Āratī"
+    "hi": "ॐ जय गंगे माता",
+    "en": "Om Jaya Gaṅge Mātā"
    }
   ]
  },

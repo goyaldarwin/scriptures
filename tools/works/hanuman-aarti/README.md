@@ -1,6 +1,6 @@
-# श्रीहनुमानजीकी आरती (Śrī Hanumānjī kī Āratī)
+# आरती कीजै हनुमान लला की (Āratī Kījai Hanumāna Lalā Kī)
 
-आरती कीजै हनुमान लला की, in Hindi (`hi`): the āratī of the Sundarakāṇḍa work, taken from it unchanged (`[take sundarkand …]`), so a correction there reaches this work at the next export.
+The āratī of Śrī Hanumān, in Hindi (`hi`): the āratī of the Sundarakāṇḍa work, taken from it unchanged (`[take sundarkand …]`), so a correction there reaches this work at the next export.
 
 - **Text** (`text.txt`): The Sundarakāṇḍa work (`tools/works/sundarkand/reconciliation.md`).
 - **Meanings:** The Sundarakāṇḍa's own (`meanings/<lang>/scriptures.json` takes them).

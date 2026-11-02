@@ -1,5 +1,5 @@
 # The āratī of the Sundarakāṇḍa work, taken from it unchanged (its text, meanings and recording's timings).
 
 @part aarti
-@topic श्रीहनुमानजीकी आरती | Śrī Hanumānjī kī Āratī
+@topic आरती कीजै हनुमान लला की | Āratī Kījai Hanumāna Lalā Kī
 [take sundarkand aarti.tek .. aarti.pad6]

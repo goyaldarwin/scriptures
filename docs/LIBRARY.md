@@ -60,6 +60,7 @@ The work node itself:
 | `id` | same as `work` in the shelf |
 | `lang` | the language most of its verses are in (a code from `glossary/languages.json`, e.g. `awa`) |
 | `title`, `by`, `edition`, `colophon` | bilingual labels. `edition` names the edition or source (found by the library search; not shown under the title) |
+| `named` | optional, `true`: an āratī known by a name of its own (the Dhūpa Āratī); without it an āratī's Hindi title must be how its first verse begins (`docs/PLAYBOOK.md` §6) |
 | `from` | optional, bilingual: the parent text or context, shown under the title after the author (`by · from`), e.g. the Sundarakāṇḍa's “Śrī Rāmacaritamānasa”, the Sukhmani Sahib's “Sri Guru Granth Sahib, Ang 262–296”. Never a publisher. |
 | `parts` | the top division: `{"name": {"hi":"काण्ड","en":"Kāṇḍa"}, "list": [{"hi":…,"en":…}, …]}` |
 | `load` | optional: `"parts"` for a big work (the Vālmīki Rāmāyaṇa): its meanings (§3) and its own word senses (§5) are one file per part, and the app fetches a part only when a verse of it is shown or used, keeping it in memory and, through the service worker, on the phone. Search reads the verses at once and fetches every part's meanings, one part at a time. The verses (`work.json`) stay one file. Without it, a work loads whole. |

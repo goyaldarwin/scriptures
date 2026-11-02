@@ -79,6 +79,12 @@ def check_work(lib, leaf, LANGS):
     w = json.load(open(wp)); name = path
     _need(w.get('id') == leaf['work'], f"{name}: work.json id {w.get('id')!r} ≠ shelf work {leaf['work']!r}")
     items = w['items']; ids = [x['id'] for x in items]; ID = set(ids)
+    _need('title' not in leaf or leaf['title'] == w.get('title'), f"{name}: the shelf title {leaf.get('title')} ≠ work.json title {w.get('title')}")
+    # an āratī is titled by its opening words (docs/PLAYBOOK.md §6), unless it is known by a name of its own ("named": true, e.g. Dhūpa Āratī)
+    if '/aarti/' in path and not w.get('named'):
+        fold = lambda s: re.sub(r'[\s\-–,।॥.;:!?\'"‘’“”()]', '', s)
+        _need(fold(''.join(items[0]['v'])).startswith(fold(w['title']['hi'])),
+              f"{name}: an āratī's title is its opening words: {w['title']['hi']!r} is not how {items[0]['v'][0]!r} begins (a name of its own: \"named\": true in work.json)")
     _need(w.get('lang') in LANGS, f"{name}: work.json lang {w.get('lang')!r} is not in glossary/languages.json")
     bad = sorted({x['l'] for x in items if 'l' in x} - set(LANGS)); _need(not bad, f"{name}: verse languages {bad} are not in glossary/languages.json")
     # "load": "parts": the meanings and the work's own senses come one file per part (the app fetches a part when it opens it)
