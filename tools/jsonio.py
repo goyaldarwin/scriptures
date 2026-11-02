@@ -42,3 +42,33 @@ def dump_meanings(path, obj):
         lines.append(json.dumps(k) + ': {'); lines.append(',\n'.join(rows)); lines.append('}' + (',' if b < len(blocks) - 1 else ''))
     if not blocks: lines[-1] = lines[-1].rstrip(',')
     open(path, 'w', encoding='utf-8').write('\n'.join(lines) + '\n}\n')
+
+# ---- a work loaded by part (work.json "load": "parts", docs/LIBRARY.md §3 and §5) ----
+# Its meaning sources are each a header (library/<work>/meanings/<id>.json: the source's fields, "load": "parts" and an
+# empty "m") and one file per part (meanings/<id>/<part index>.json: the same fields, "part" and only that part's "m"
+# and "p"); its own word senses are one file per part (glossary/<part index>.json). These read them whole.
+
+def read_meanings(path):
+    """A meaning source of the library (library/<work>/meanings/<id>.json), whole: the parts of a source loaded by part
+    are joined (its header's "load" and "m" give way to them)."""
+    import os
+    with open(path, encoding='utf-8') as f: s = json.load(f)
+    if s.get('load') != 'parts': return s
+    d = path[:-5]; s = {k: v for k, v in s.items() if k != 'load'}; s['m'] = {}; p = {}
+    for k in sorted((int(f[:-5]) for f in os.listdir(d) if f.endswith('.json')) if os.path.isdir(d) else []):
+        with open(os.path.join(d, f'{k}.json'), encoding='utf-8') as f: x = json.load(f)
+        s['m'].update(x.get('m', {})); p.update(x.get('p', {}))
+    if p: s['p'] = p
+    return s
+
+def read_work_glossary(workdir):
+    """A work's own senses of words (library/<work>/glossary.json, or glossary/<part>.json for a work loaded by part),
+    whole: {lang: {word: entry}}; {} when it has none."""
+    import os
+    one = os.path.join(workdir, 'glossary.json'); d = os.path.join(workdir, 'glossary')
+    files = [one] if os.path.exists(one) else sorted(os.path.join(d, f) for f in os.listdir(d) if f.endswith('.json')) if os.path.isdir(d) else []
+    out = {}
+    for fn in files:
+        with open(fn, encoding='utf-8') as f:
+            for lg, words in json.load(f).items(): out.setdefault(lg, {}).update(words)
+    return out

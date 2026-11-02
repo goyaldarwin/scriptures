@@ -62,6 +62,8 @@ The work node itself:
 | `title`, `by`, `edition`, `colophon` | bilingual labels. `edition` names the edition or source (found by the library search; not shown under the title) |
 | `from` | optional, bilingual: the parent text or context, shown under the title after the author (`by · from`), e.g. the Sundarakāṇḍa's “Śrī Rāmacaritamānasa”, the Sukhmani Sahib's “Sri Guru Granth Sahib, Ang 262–296”. Never a publisher. |
 | `parts` | the top division: `{"name": {"hi":"काण्ड","en":"Kāṇḍa"}, "list": [{"hi":…,"en":…}, …]}` |
+| `load` | optional: `"parts"` for a big work (the Vālmīki Rāmāyaṇa): its meanings (§3) and its own word senses (§5) are one file per part, and the app fetches a part only when a verse of it is shown or used, keeping it in memory and, through the service worker, on the phone. Search reads the verses at once and fetches every part's meanings, one part at a time. The verses (`work.json`) stay one file. Without it, a work loads whole. |
+| `sections` | optional: a label for each section id, `{"bala.1": {"hi": "सर्ग १", "en": "Sarga 1"}}`, shown in the reader's footer, the section picker (which lists the sections when the part has no topics), the work's home and a verse's place (“Sarga 1 · Śloka 5”). A range of sections whose labels differ only in their last number is written once (“Sarga 1–3”); the numbers show as 1 2 3 (`docs/PLAYBOOK.md` §7). Without it, a numeric section is “Dohā N” and others are labelled by their verses. |
 | `items` | every verse, in reading order (below) |
 | `topics` | section headings: `[{"id": <first item id>, "hi": …, "en": …}]` |
 | `plans` | reading plans: `[{"id":"M","name":…,"long":…,"unit":…,"before":["vidhi"],"after":["aarti"],"n":30,"end":[<last item id of each day>]}]`. `before` / `after` (optional; the pūrvāṅga and uttarāṅga) name pages listed before the first day and after the last: `vidhi` (the procedure in `vidhi.hi/en`), `aarti` (`vidhi.aarti`) and `visarjan` (`vidhi.visarjan`: `{title, when, verses: [{v: [lines], hi, en}]}`, recited at the end of a pārāyaṇa). `build.py` refuses a page the work lacks. |
@@ -75,7 +77,7 @@ The work node itself:
 
 An item: `{"id": "bal.86.cau4", "p": 0, "s": "86", "y": "cau", "n": "4", "v": [verse lines, in the work's script], "t": [transliteration lines]}`
 - `l` (only when it differs from the work's `lang`): the verse's language. In the Mānas, `sa` marks the ślokas and the Sanskrit stutis; every other verse is `awa`.
-- `p`: index into `parts.list`. `s`: the section (book page heading, e.g. the dohā number the item belongs to). `y`: type (`shloka`, `cau`, `do`, `so`, `cha`, or one of the work's `types`). A numeric `s` is shown as “Dohā N” (the Mānas); other works use non-numeric sections (e.g. `sh4`), which are labelled by their verses. `n`: the number printed in the book.
+- `p`: index into `parts.list`. `s`: the section (book page heading, e.g. the dohā number the item belongs to). `y`: type (`shloka`, `cau`, `do`, `so`, `cha`, or one of the work's `types`). A section named in `sections` shows that label; otherwise a numeric `s` is shown as “Dohā N” (the Mānas) and a non-numeric one (e.g. `sh4`) is labelled by its verses. `n`: the number printed in the book.
 - `v` (the verse) and its number are the core of the work. Meanings are never stored here.
 - `v` and `t` are written by the standard (`docs/PLAYBOOK.md` §3, `tools/text/standard.py`): `t` is the ISO 15919 transliteration of `v` (Devanagari and Gurmukhi).
 
@@ -91,6 +93,14 @@ An item: `{"id": "bal.86.cau4", "p": 0, "s": "86", "y": "cau", "n": "4", "v": [v
 - `order` (optional): the lowest is the default for new readers. Without it, sources sort by id.
 - `p` (optional): the meaning **line by line**, `{item id: [one piece per verse line]}`. The reader shows each piece under its line. A piece is `""` where a line has no meaning of its own (a heading line such as ਸਲੋਕੁ ॥), and at least one piece is not empty. The list has exactly as many pieces as the verse has lines, and the item also has its whole meaning in `m` (used for search, copy and a reader's own correction). A source without `p` is shown whole after the verse. `tools/site/library.py` checks it.
 - `m` maps item ids to `[meaning, footnotes]`. The footnotes list is optional. A source may cover only some verses. A verse the reader's chosen source doesn't cover is filled in from the work's other sources of the same language, in `order`, with a small tag naming that source.
+
+**A work loaded by part** (`work.json` → `"load": "parts"`, §2): each source is a header and one file per part, all written by the exporter.
+```
+meanings/hi-gitapress.json        {"id", "lang", "order", "title", "load": "parts", "m": {}}
+meanings/hi-gitapress/0.json      {"id", "lang", "order", "title", "part": 0, "m": {…the verses of part 0…}, "p": {…}}
+meanings/hi-gitapress/1.json      … one per part, every part (an empty "m" where the source has none there)
+```
+The header's empty `m` keeps a release of the app that does not know parts working (it shows the verses without meanings). `tools/site/library.py` checks that every part file is there, carries the header's fields and holds only its part's verses, and runs the checks above on the parts joined (`tools/jsonio.py` → `read_meanings` reads a source whole).
 
 **Where meanings come from (the owner's rules; `docs/PLAYBOOK.md` §4):**
 1. **A publisher's meaning is copied faithfully** from the source the owner gives (a book, a web page, a video's on-screen text). Fix only plain typos and broken text layers, and list the fixes in the work's `reconciliation.md`.
@@ -158,7 +168,7 @@ A dictionary (`<lang>.json`): `{"राम": {"hi": "भगवान श्र�
 3. If nothing matches exactly, it tries the suffix rules of each language in the chain.
 The word sheet shows which language's meaning it is showing.
 
-**A work's own senses** (optional), `library/<path>/glossary.json`: `{"sa": {"word": {…}}, "awa": {…}}`, made from the work's `tools/works/<work>/glossary/<lang>.json`. Use it when a word means something particular in one work. Never use it for a general correction; that belongs in the shared dictionary.
+**A work's own senses** (optional), `library/<path>/glossary.json`: `{"sa": {"word": {…}}, "awa": {…}}`, made from the work's `tools/works/<work>/glossary/<lang>.json`. Use it when a word means something particular in one work. Never use it for a general correction; that belongs in the shared dictionary. A work loaded by part has `glossary/<part index>.json` instead, one per part, in the same form: each holds the senses of the words of that part's verses and the hard words of that part's meanings (a word in two parts is in both), so the app has a verse's senses once its part is in, and `library.py` checks each verse's words against its own part's file (`tools/jsonio.py` → `read_work_glossary` reads them whole).
 
 **Maintenance:** the files in `glossary/` are the master copies, so correct a word there directly. A work's exporter files each new word by the language of the verses it occurs in, and only adds words that aren't there yet. A word that occurs in two languages is added to both, so check that each sense fits its language.
 
@@ -168,5 +178,5 @@ The word sheet shows which language's meaning it is showing.
 - The verse text (`work.json`) never contains meanings, and a source never contains verse text.
 - Every verse has a language, and every language has an entry in `languages.json`. A new language means a new dictionary file; never mix languages in one dictionary.
 - Every label shown to readers is bilingual: `{"hi", "en"}`.
-- Generated files (`index.html`, `app/`, `work.json` → `sources`/`glossary`, `audio/*.json`, and every file `tools/works/export.py` writes) are rebuilt, never edited. `tools/site/regen_check.py` fails on any hand edit.
+- Generated files (`index.html`, `app/`, `work.json` → `sources`/`glossary`, `audio/*.json`, and every file `tools/works/export.py` writes, the part files of a work loaded by part included) are rebuilt, never edited. `tools/site/regen_check.py` fails on any hand edit.
 - Files that many works add to are written **one entry per line, sorted** (`tools/jsonio.py`): `glossary/<lang>.json` and `index.json`. `build.py` re-writes them in that form, so two branches that add different words usually merge without conflict. If two branches add words that sort next to each other, git asks; keep both lines.

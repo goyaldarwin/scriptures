@@ -88,7 +88,7 @@ files = list(dict.fromkeys(['./', 'index.html', 'manifest.json', 'app/icon.svg',
 ver = hashlib.sha1((VJS + VCSS + VF).encode()).hexdigest()[:10]
 # The service worker (offline reading). Two caches: V holds the app shell (CORE) and is renewed on every
 # build; LIB holds the library's files (texts, meanings, word lists, audio times) and survives every deploy, so a work opened
-# once stays readable offline. Library files are network-first with a short wait — fresh text whenever the phone is online
+# once stays readable offline (a work loaded by part: each part file as it is fetched). Library files are network-first with a short wait — fresh text whenever the phone is online
 # (accuracy first; a published correction is seen at the next open) — and from the cache when offline or the network is slow.
 open(os.path.join(SITE, 'sw.js'), 'w').write("""const V='s-%s';const LIB='lib-v1';const CORE=%s;
 self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(CORE)));self.skipWaiting();});
@@ -120,7 +120,7 @@ _apps = json.load(open(os.path.join(ROOT, 'apps', 'app.json')))['apps']
 os.makedirs(os.path.join(SITE, '.well-known'), exist_ok=True)
 json.dump([{'relation': ['delegate_permission/common.handle_all_urls'], 'target': {'namespace': 'android_app', 'package_name': a['packageId'], 'sha256_cert_fingerprints': a['sha256']}}
            for a in _apps.values() if a.get('sha256')], open(os.path.join(SITE, '.well-known', 'assetlinks.json'), 'w'), indent=1)
-# ---------- single-file bundle ----------
+# ---------- single-file bundle ---------- (every library file, the part files of a work loaded by part included: the app's getJSON reads them by path)
 LIBD = os.path.join(SITE, 'library')
 bundle = {'files': {}}
 for f in glob.glob(LIBD + '/**/*.json', recursive=True): bundle['files'][os.path.relpath(f, LIBD)[:-5]] = json.load(open(f))

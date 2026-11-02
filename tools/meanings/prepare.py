@@ -36,8 +36,8 @@ def main():
     def gloss(lg):
         if lg not in G: G[lg] = json.load(open(os.path.join(lib, 'glossary', lg + '.json'), encoding='utf-8'))
         return G[lg]
-    own = os.path.join(lib, path, 'glossary.json')
-    OWN = json.load(open(own, encoding='utf-8')) if os.path.exists(own) else {}
+    sys.path.insert(0, os.path.join(REPO, 'tools')); import jsonio
+    OWN = jsonio.read_work_glossary(os.path.join(lib, path))   # the work's own senses (glossary.json, or one file per part)
     mine = lambda lg: os.path.join(folder, 'meanings', lg, 'scriptures.json')   # our own meanings (tools/works/README.md)
     ours = {lg: json.load(open(mine(lg), encoding='utf-8')).get('m', {}) if os.path.exists(mine(lg)) else {} for lg in ('hi', 'en')}
 

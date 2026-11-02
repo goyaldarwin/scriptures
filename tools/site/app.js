@@ -209,7 +209,7 @@ async function loadGlossaries(){
   if (!Object.keys(LANGS).length) LANGS = await getJSON('glossary/languages');
   const need = new Set(['hi', 'en']); [W.lang].concat(IT.map(x => x.l).filter(Boolean)).forEach(l => langChain(l).forEach(c => need.add(c)));   // hi, en: the hard words of the meanings
   await Promise.all([...need].filter(c => !GL[c]).map(async c => { try { GL[c] = await getJSON('glossary/' + c); } catch (e) { GL[c] = {}; } }));
-  WG = {}; if (W.glossary){ try { WG = await getJSON(W.path + '/glossary'); } catch (e) {} }
+  WG = {}; if (W.glossary && !BYPART()){ try { WG = await getJSON(W.path + '/glossary'); } catch (e) {} }   // a work loaded by part: glossary/<part> (loadPart)
 }
 // a word's lookup form (fold() in tools/text/standard.py): a class nasal before its stop, ꣳ (also as typed, ग्ं) and a
 // word-final म् are ं, so गङ्गा finds गंगा and इदम् finds इदं
@@ -301,15 +301,21 @@ const PNAME = id => TT(PLAN[id].long);
 function vNum(n){ return n && !/^u/.test(n) ? DEV(n) : ''; }
 function vLabel(it){ const n = vNum(it.n); return TYPE[it.y] + (n ? ' ' + n : ''); }
 const isNum = s => /^[1-9]\d*$/.test(s);
-function secLabel(p){ if (isNum(p.s)) return T('दोहा ', 'Dohā ') + DEV(p.s); const a = IT[p.from], z = IT[p.to]; if (a.y === z.y && vNum(a.n) && vNum(z.n)) return TYPE[a.y] + ' ' + vNum(a.n) + (z.n !== a.n ? '–' + vNum(z.n) : ''); return vLabel(a) === vLabel(z) ? vLabel(a) : vLabel(a) + ' – ' + vLabel(z); }
-function posLabel(i){ const it = IT[i], p = PAGES[itemPage[i]]; if (!isNum(p.s) || it.y === 'do' || it.y === 'so') return vLabel(it); return secLabel(p) + ' · ' + vLabel(it); }
+// a work may name its sections (work.json → "sections": {section id: {hi, en}}, e.g. bala.1 → सर्ग १ / Sarga 1)
+const SECN = s => W && W.sections && W.sections[s] ? TT(W.sections[s]) : '';
+const hasSec = p => isNum(p.s) || !!SECN(p.s);
+// two section labels as one range: the same words before a number are written once (Sarga 1–3, सर्ग १–३)
+function secSpan(la, lb){ if (la === lb) return la; const x = /^(.*?)([0-9०-९੦-੯]+)$/.exec(la), y = /^(.*?)([0-9०-९੦-੯]+)$/.exec(lb); return x && y && x[1] === y[1] ? la + '–' + y[2] : la + ' – ' + lb; }
+function secLabel(p){ if (SECN(p.s)) return SECN(p.s); if (isNum(p.s)) return T('दोहा ', 'Dohā ') + DEV(p.s); const a = IT[p.from], z = IT[p.to]; if (a.y === z.y && vNum(a.n) && vNum(z.n)) return TYPE[a.y] + ' ' + vNum(a.n) + (z.n !== a.n ? '–' + vNum(z.n) : ''); return vLabel(a) === vLabel(z) ? vLabel(a) : vLabel(a) + ' – ' + vLabel(z); }
+function posLabel(i){ const it = IT[i], p = PAGES[itemPage[i]]; if (SECN(p.s)) return secLabel(p) + ' · ' + vLabel(it); if (!isNum(p.s) || it.y === 'do' || it.y === 'so') return vLabel(it); return secLabel(p) + ' · ' + vLabel(it); }
 function itemLabel(i){ return KNAME(IT[i].p) + ' · ' + posLabel(i); }
 function spanLabel(a, b){
   const pa = PAGES[itemPage[a]], pb = PAGES[itemPage[b]];
+  if (SECN(pa.s) && SECN(pb.s)) return secSpan(secLabel(pa), secLabel(pb));
   if (isNum(pa.s) && isNum(pb.s)) return T('दोहा ', 'Dohā ') + DEV(pa.s) + (pb.s !== pa.s ? '–' + DEV(pb.s) : '');
-  const la = isNum(pa.s) ? secLabel(pa) : vLabel(IT[a]), lb = isNum(pb.s) ? secLabel(pb) : vLabel(IT[b]);
+  const la = hasSec(pa) ? secLabel(pa) : vLabel(IT[a]), lb = hasSec(pb) ? secLabel(pb) : vLabel(IT[b]);
   if (la === lb) return la;
-  if (IT[a].y === IT[b].y && !isNum(pa.s) && !isNum(pb.s) && vNum(IT[a].n) && vNum(IT[b].n)) return TYPE[IT[a].y] + ' ' + vNum(IT[a].n) + '–' + vNum(IT[b].n);
+  if (IT[a].y === IT[b].y && !hasSec(pa) && !hasSec(pb) && vNum(IT[a].n) && vNum(IT[b].n)) return TYPE[IT[a].y] + ' ' + vNum(IT[a].n) + '–' + vNum(IT[b].n);
   return la + ' – ' + lb;
 }
 function rangeDesc(a, b){ const ka = KNAME(IT[a].p), kb = KNAME(IT[b].p); if (ka === kb) return esc(ka + ': ' + spanLabel(a, b)); let h = '', p = IT[a].p; while (p <= IT[b].p){ const x = Math.max(a, PARTS[p].a), y = Math.min(b, PARTS[p].b); h += (h ? '<br>' : '') + esc(KNAME(p) + ': ' + spanLabel(x, y)); p++; } return h; }
@@ -319,11 +325,47 @@ function srcList(kind){ return ((W.sources || {})[kind] || []).filter(s => !s.dr
 function srcChoice(kind){ const list = srcList(kind); const sel = ((S.src[W.id] || {})[kind]); if (sel === 'off') return null; return (list.find(s => s.id === sel) || list[0] || null); }
 async function loadSources(){
   if (!Object.keys(LANGS).length) LANGS = await getJSON('glossary/languages');   // the meaning languages are listed there
-  for (const kind of MK().concat('au')){ const c = srcChoice(kind); SRC[kind] = null; if (c){ try { SRC[kind] = Object.assign({meta: c}, await getJSON(W.path + '/' + c.file)); } catch (e) {} } }
+  // a work loaded by part starts each meaning source empty; loadPart fills in each part it opens
+  const get = async c => BYPART() ? {meta: c, id: c.id, title: c.title, m: {}, p: {}, got: new Set()} : Object.assign({meta: c}, await getJSON(W.path + '/' + c.file));
+  for (const kind of MK().concat('au')){ const c = srcChoice(kind); SRC[kind] = null; if (c){ try { SRC[kind] = kind === 'au' ? Object.assign({meta: c}, await getJSON(W.path + '/' + c.file)) : await get(c); } catch (e) {} } }
   // the other meaning sources of a kind fill in verses the chosen one doesn't cover (e.g. a stotra appended to a kāṇḍa)
   for (const kind of MK()){ ALT[kind] = []; const c = SRC[kind] && SRC[kind].meta;
-    for (const s of ((W.sources || {})[kind] || [])) if (c && s.id !== c.id){ try { ALT[kind].push(Object.assign({meta: s}, await getJSON(W.path + '/' + s.file))); } catch (e) {} } }
+    for (const s of ((W.sources || {})[kind] || [])) if (c && s.id !== c.id){ try { ALT[kind].push(await get(s)); } catch (e) {} } }
+  for (let n = 0; n < 2 && BYPART(); n++) await Promise.all([...PWANT].map(loadPart));   // the parts already open, from the sources now chosen
   buildAudio(); syncLayers();
+}
+/* A big work is loaded by part (work.json "load": "parts"): each meaning source is meanings/<source>/<part>.json and its own
+   word senses glossary/<part>.json. A part is fetched when a verse of it is shown (pageHTML) or touched (a word, ⋮, copy,
+   a correction), and kept in memory; search fetches every part, one at a time. The service worker keeps each part fetched,
+   so a part opened once is readable offline. Other works load whole, as before. */
+const BYPART = () => !!W && W.load === 'parts';
+let PWANT = new Set(), PLOAD = {}, WGOT = new Set(), SLOADING = false, SFAIL = 0;   // the parts opened in this work; the loads under way; the parts of WG in
+function partReset(){ PWANT = new Set(); PLOAD = {}; WGOT = new Set(); }
+function partObjs(){ return MK().flatMap(k => [SRC[k]].concat(ALT[k] || [])).filter(Boolean); }
+function partReady(k){ return !BYPART() || k == null || (partObjs().every(o => !o.got || o.got.has(k)) && (!W.glossary || WGOT.has(k))); }
+// resolves true when something new came in (then the page is drawn again); false when nothing was needed or nothing could be fetched
+function loadPart(k){
+  if (partReady(k)) return Promise.resolve(false);
+  if (PLOAD[k]) return PLOAD[k];
+  const w = W, objs = partObjs().filter(o => o.got && !o.got.has(k)), gl = W.glossary && !WGOT.has(k), get = f => getJSON(W.path + '/' + f).catch(() => null);
+  return PLOAD[k] = Promise.all([Promise.all(objs.map(o => get(o.meta.file + '/' + k))), gl ? get('glossary/' + k) : null]).then(([ms, g]) => {
+    if (W !== w) return false; delete PLOAD[k]; let got = false;
+    objs.forEach((o, n) => { const x = ms[n]; if (!x) return; Object.assign(o.m, x.m || {}); if (x.p) Object.assign(o.p, x.p); o.got.add(k); got = true; });
+    if (g){ for (const lg in g) WG[lg] = Object.assign({}, WG[lg] || {}, g[lg]); WGOT.add(k); got = true; }   // a new object: its fold index is made again
+    if (got){ PWANT.add(k); IDX = null; }
+    return got;
+  });
+}
+// a page drawn before its part is in shows the verses at once; the meanings and word meanings follow, without moving the page
+function needPart(k){ if (!partReady(k)) loadPart(k).then(got => { if (got && CURVIEW === 'reader') refreshReader(); }); }
+// search: every part's meanings, one part at a time; the verses (work.json) are searched at once, the meanings as each part comes
+async function searchParts(){
+  if (!BYPART() || SLOADING || Date.now() - SFAIL < 30000) return; SLOADING = true; const w = W;   // after a part could not be fetched (offline), tried again 30 s later
+  let left = false;
+  try { for (const P of PARTS){ if (W !== w || CURVIEW !== 'search' || SCOPE === 'lib'){ left = true; break; } if (await loadPart(P.k) && W === w && CURVIEW === 'search' && SCOPE !== 'lib') runSearch(); } }
+  finally { SLOADING = false; }
+  if (W !== w) return; if (!left && PARTS.some(P => !partReady(P.k))) SFAIL = Date.now();
+  if (CURVIEW === 'search' && SCOPE !== 'lib' && $('#sRes .sload')) runSearch();   // the note goes: every part is searched, or what could be fetched
 }
 function verseOf(i){ const id = IT[i].id; for (const p of S.profiles){ const f = p.fix[KEY(id)]; if (f && f.v) return {v: f.v, edited: true}; } return {v: IT[i].v, edited: false}; }
 function mean(kind, i){
@@ -417,6 +459,7 @@ function typeHead(i){
 }
 function pageHTML(pg){
   const p = PAGES[pg], a = Math.max(p.from, R.a), b = Math.min(p.to, R.b); let h = '<div class="pg" data-pg="' + pg + '">';
+  needPart(p.k);   // a work loaded by part: this page's part (a page never spans two)
   for (let i = a; i <= b; i++){
     if (i === PARTS[IT[i].p].a) h += '<div class="part-h"><b>' + esc(KNAME(IT[i].p)) + '</b></div>';
     const t = topicAt.get(i); if (t) h += '<div class="topic-h" id="t' + i + '"><b>' + esc(TNAME(t)) + '</b></div>';
@@ -539,16 +582,17 @@ function rerenderItem(i){ const el = document.getElementById('v' + i); if (!el) 
 // The section picker: the row of kāṇḍas (or plan days) on top only chooses which list shows below; nothing opens until a
 // section is tapped — the current one too.
 function sectionSheet(n){
-  const cur = curSection(topVisibleItem()), plan = R.org !== 'k';
+  const ti = topVisibleItem(), cur = curSection(ti), plan = R.org !== 'k';
   if (n == null) n = R.n;
   const [A, B] = plan ? dayRange(R.org, n) : [PARTS[n].a, PARTS[n].b];
   let h = '';
   if (!plan) h += '<div class="pick">' + PARTS.map(p => '<button data-pick="' + p.k + '" class="' + (p.k === n ? 'on' : '') + '">' + esc(KNAME(p.k)) + '</button>').join('') + '</div>';
   else { const P = PLAN[R.org]; h += '<div class="pick days">' + Array.from({length: P.n}, (_, x) => x + 1).map(d => '<button data-pick="' + d + '" class="' + (d === n ? 'on' : '') + (DONE(ME(), R.org)[d] ? ' done' : '') + '">' + DEV(d) + '</button>').join('') + '</div>'; }
-  const secs = TOPICS.filter(t => t.i <= B && t.end >= A);
+  let secs = TOPICS.filter(t => t.i <= B && t.end >= A);
+  if (!secs.length && W.sections) secs = PAGES.filter(p => p.to >= A && p.from <= B && SECN(p.s)).map(p => ({i: p.from, end: p.to, hi: '', en: '', sec: true}));   // its named sections (Sarga 1 …)
   const rows = []; if (!secs.length || secs[0].i > A) rows.push({i: A, end: (secs[0] ? secs[0].i - 1 : B), name: plan ? VN(n) : KNAME(n)});
   secs.forEach(t => rows.push({i: Math.max(t.i, A), end: Math.min(t.end, B), name: TNAME(t), t}));
-  h += '<h2>' + (plan ? PNAME(R.org) + ' · ' + VN(n) : esc(KNAME(n))) + '</h2><div class="secs">' + rows.map(r => '<button data-to="' + r.i + '" class="' + (cur && r.t === cur && n === R.n ? 'on' : '') + '"><span class="sr">' + spanLabel(r.i, r.end) + '</span><span class="sn">' + esc(r.name) + '</span></button>').join('') + '</div>';
+  h += '<h2>' + (plan ? PNAME(R.org) + ' · ' + VN(n) : esc(KNAME(n))) + '</h2><div class="secs">' + rows.map(r => '<button data-to="' + r.i + '" class="' + ((cur && r.t === cur || r.t && r.t.sec && ti >= r.i && ti <= r.end) && n === R.n ? 'on' : '') + '"><span class="sr">' + spanLabel(r.i, r.end) + '</span><span class="sn">' + esc(r.name) + '</span></button>').join('') + '</div>';
   if ($('#sheet').classList.contains('on') && $('#sheetBody .pick')){ $('#sheetBody').innerHTML = h; $('#sheet').scrollTop = 0; } else openSheet(h);
   $$('#sheetBody [data-pick]').forEach(b => b.onclick = () => sectionSheet(+b.dataset.pick));
   $$('#sheetBody [data-to]').forEach(b => b.onclick = () => { closeSheet(); jumpTo(+b.dataset.to); });
@@ -623,6 +667,12 @@ function setSize(d){
 }
 $$('.szm').forEach(b => b.onclick = () => setSize(-2)); $$('.szp').forEach(b => b.onclick = () => setSize(2));
 $('#rBody').addEventListener('click', ev => {
+  // a work loaded by part: a tap on a verse whose part is not in yet (a word, ⋮, copy, a correction) waits for it
+  const v0 = ev.target.closest('.verse'), k0 = v0 ? IT[+v0.dataset.i].p : null;
+  if (!partReady(k0)){ loadPart(k0).then(() => readerTap(ev)); return; }
+  readerTap(ev);
+});
+function readerTap(ev){
   const nx = ev.target.closest('[data-next]'); if (nx){ openReader(R.org, +nx.dataset.next); return; }
   const mw = ev.target.closest('.mw'); if (mw){ mw.classList.add('sel'); wordSheet(mw.dataset.mw, null, mw.dataset.ml); return; }   // a hard word of a meaning
   const v = ev.target.closest('.verse'), i = v ? +v.dataset.i : null;
@@ -646,7 +696,7 @@ $('#rBody').addEventListener('click', ev => {
     return;
   }
   const w = ev.target.closest('.w'); if (w){ w.classList.add('sel'); const vb = w.closest('.verse'); wordSheet(w.dataset.w || w.textContent, null, vb ? langOf(+vb.dataset.i) : W.lang); }
-});
+}
 function noteSheet(i, k){
   const me = ME(), key = KEY(IT[i].id), arr = me.notes[key] || [], cur = k != null ? arr[k] : null;
   openSheet('<h2>' + (cur ? T('टिप्पणी बदलें', 'Edit note') : T('अपनी टिप्पणी लिखें', 'Write a note')) + '</h2><p class="small muted">' + esc(itemLabel(i)) + '</p><textarea id="nt" placeholder="' + T('अपने विचार, भाव या कथा यहाँ लिखें…', 'Your thoughts or the story behind this verse…') + '">' + esc(cur ? cur.t : '') + '</textarea><div class="acts"><button class="btn" id="nSave">' + T('सेव करें', 'Save') + '</button>' + (cur ? '<button class="btn ghost" id="nDel">' + T('हटाएँ', 'Delete') + '</button>' : '') + '</div>');
@@ -1165,7 +1215,8 @@ async function openWork(id, noShow){
   greeted = !noShow; showSalute(greeted ? saluteOf(id) : '');
   if (greeted || W === null || W.id !== id){ if ($('#loading').hidden){ $('#loading').hidden = false; } saluteAt = performance.now(); }
   try {
-    if (!W || W.id !== id){ const path = workPath(id); W = await getJSON(path + '/work'); W.path = path; buildWork(); moveRenamed(); fixLast(); await Promise.all([loadSources(), loadGlossaries()]); }
+    if (!W || W.id !== id){ const path = workPath(id); W = await getJSON(path + '/work'); W.path = path; partReset(); buildWork(); moveRenamed(); fixLast(); await Promise.all([loadSources(), loadGlossaries()]);
+      if (BYPART()){ const l = WS().last; loadPart(l && IT[l.i] ? IT[l.i].p : 0); } }   // the part “Continue” opens, while the home page shows
     S.work = id; WS().at = Date.now(); save();   // when it was last used: the shelf lists recent works first
   } catch (e) { const off = navigator.onLine === false || await fetch('library/.ping?' + Date.now(), {cache: 'no-store'}).then(() => false, () => true);   // offline: not even a probe gets through
     toast(off ? T('इंटरनेट नहीं है — यह ग्रन्थ इस फ़ोनपर पहले खोला नहीं गया', 'No internet — this work has not been opened on this phone yet') : T('यह ग्रन्थ नहीं खुल सका', 'Could not open this work')); $('#loading').hidden = true; return; }
@@ -1200,10 +1251,10 @@ function renderHome(){
   let h = '';
   $('#orgSeg').hidden = !PLANS.length;   // a work without reading plans needs no switch
   if (org === 'k' && PARTS.length === 1){   // a single-part work (an āratī, a stotra): list its sections straight away
-    const P = PARTS[0], ts = TOPICS.slice(); if (!ts.length || ts[0].i > P.a) ts.unshift({i: P.a, end: ts.length ? ts[0].i - 1 : P.b});
+    const P = PARTS[0], ts = TOPICS.length || !W.sections ? TOPICS.slice() : PAGES.filter(p => SECN(p.s)).map(p => ({i: p.from, end: p.to})); if (!ts.length || ts[0].i > P.a) ts.unshift({i: P.a, end: ts.length ? ts[0].i - 1 : P.b});
     ts.forEach((t, n) => { const name = t.hi || t.en ? TNAME(t) : KNAME(P.k); h += '<li class="rowp">' + play('k', t.i, t.end) + '<button class="it" data-open="' + t.i + '"><span class="no">' + DEV(n + 1) + '</span><span class="grow"><span class="ti">' + esc(name) + '</span><br><span class="ds">' + esc(spanLabel(t.i, t.end)) + '</span></span><span class="chev">›</span></button></li>'; });
   }
-  else if (org === 'k') PARTS.forEach(p => { const tps = TOPICS.filter(t => IT[t.i].p === p.k).length; h += '<li class="rowp">' + play('k', p.a, p.b) + '<button class="it" data-open="' + p.a + '"><span class="no">' + DEV(p.k + 1) + '</span><span class="grow"><span class="ti">' + esc(KNAME(p.k)) + '</span><br><span class="ds">' + DEV(tps) + T(' प्रसंग', tps === 1 ? ' section' : ' sections') + '</span></span><span class="chev">›</span></button></li>'; });
+  else if (org === 'k') PARTS.forEach(p => { const tps = TOPICS.filter(t => IT[t.i].p === p.k).length || (W.sections ? PAGES.filter(g => g.k === p.k && SECN(g.s)).length : 0);   /* its topics, else its named sections */ h += '<li class="rowp">' + play('k', p.a, p.b) + '<button class="it" data-open="' + p.a + '"><span class="no">' + DEV(p.k + 1) + '</span><span class="grow"><span class="ti">' + esc(KNAME(p.k)) + '</span><br><span class="ds">' + DEV(tps) + T(' प्रसंग', tps === 1 ? ' section' : ' sections') + '</span></span><span class="chev">›</span></button></li>'; });
   else { const P = PLAN[org]; const dn = Object.keys(DONE(ME(), org)).length; h += '<li class="small muted" style="padding:6px 2px;border:0">' + DEV(dn) + ' / ' + DEV(P.n) + T(' विश्राम पूर्ण · विश्रामके अन्तमें “विश्राम पूर्ण करें” दबाएँ', ' vishrams completed · tap “Mark vishram complete” at the end of each') + '</li>';
     // pages read before the first day and after the reading (pūrvāṅga / uttarāṅga), when the plan names them
     const page = (pg, when) => { const t = pg === 'aarti' ? T('श्रीरामायणजीकी आरती', 'Śrī Rāmāyaṇajī kī Āratī') : pg === 'visarjan' ? TT(W.vidhi.visarjan.title) : T('पारायण-विधि', 'Pārāyaṇa vidhi'); if (pg === 'visarjan') when = T('पारायणके अन्तिम दिन', 'On the last day of the pārāyaṇa'); return '<li class="rowp"><button class="it" data-page="' + pg + '"><span class="no pg"><svg><use href="#i-lamp"/></svg></span><span class="grow"><span class="ti">' + t + '</span><br><span class="ds">' + when + '</span></span><span class="chev">›</span></button></li>'; };
@@ -1264,6 +1315,7 @@ function runSearch(){
   const q = $('#q').value.trim(), box = $('#sRes');
   if (q.length < 2){ box.innerHTML = '<div class="empty">' + T('कम-से-कम दो अक्षर लिखें।', 'Type at least two letters.') + '</div>'; return; }
   if (!IDX || IDX.w !== idxKey()) buildIdx();
+  if (BYPART() && PARTS.some(P => !partReady(P.k))) searchParts(); const loading = SLOADING;   // the meanings of the parts not in yet
   const latin = /[a-zA-Z]/.test(q), nq = latin ? normL(q) : normD(q);
   const qs = latin ? fL(q) : fD(q), qj = qs.join(''), k = Math.floor(qj.length / 6), need = qs.length >= 3 ? qs.length - Math.max(1, Math.floor(qs.length / 3)) : qs.length;   // most words: all of two, all but one of three to five, then two in three
   // verses whose letters hold what was typed (closest first), then meanings that do, then texts holding most of its words
@@ -1283,7 +1335,7 @@ function runSearch(){
   hits.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
   const res = hits.slice(0, 300).map(h => h.slice(1));
   if (scopes.has('n')) for (const p of SHOWN()) for (const k in p.notes){ if (!k.startsWith(W.id + ':')) continue; const i = ID[k.slice(W.id.length + 1)]; if (i == null) continue; p.notes[k].forEach(n => { if ((latin ? normL(n.t) : normD(n.t)).includes(nq)) res.push([i, T('टिप्पणी', 'Note'), n.t, latin]); }); }
-  box.innerHTML = res.length ? '<p class="small muted">' + DEV(res.length) + (res.length >= 300 ? '+' : '') + T(' परिणाम', ' results') + '</p>' + res.map(r => '<button class="res" data-i="' + r[0] + '"><div class="where">' + esc(itemLabel(r[0])) + ' · ' + esc(r[1]) + '</div><div class="snip' + (r[3] ? ' lat' : '') + '">' + snip(r[2], q, r[3]) + '</div></button>').join('') : '<div class="empty">' + T('कुछ नहीं मिला। दूसरा रूप लिखकर देखें।', 'Nothing found. Try another spelling.') + '</div>';
+  box.innerHTML = (loading ? '<p class="small muted sload">' + T('सभी भागोंके अर्थ खोजे जा रहे हैं…', 'Searching the meanings of every part…') + '</p>' : '') + (res.length ? '<p class="small muted">' + DEV(res.length) + (res.length >= 300 ? '+' : '') + T(' परिणाम', ' results') + '</p>' + res.map(r => '<button class="res" data-i="' + r[0] + '"><div class="where">' + esc(itemLabel(r[0])) + ' · ' + esc(r[1]) + '</div><div class="snip' + (r[3] ? ' lat' : '') + '">' + snip(r[2], q, r[3]) + '</div></button>').join('') : '<div class="empty">' + T('कुछ नहीं मिला। दूसरा रूप लिखकर देखें।', 'Nothing found. Try another spelling.') + '</div>');
   $$('#sRes .res').forEach(b => b.onclick = () => openReader(readOrg(), +b.dataset.i, true));
 }
 

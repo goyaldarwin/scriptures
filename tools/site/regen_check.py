@@ -8,7 +8,7 @@ tools/audio/make_timings.py (a recording that takes its timings from another wor
 both folders file by file. It fails on any difference, so:
   - a hand edit to a generated file (it would be undone by the next regeneration) is caught;
   - a generator changed without regenerating its output is caught;
-  - a file whose work, meaning source or recording is gone (an orphan) is caught;
+  - a file whose work, meaning source or recording is gone (an orphan) is caught, a part file of a work loaded by part too;
   - a work that takes verses or timings from another (the Sundarakāṇḍa, the Hanumān āratī) cannot drift from it;
   - a recording's timings cannot lag behind its text (the starts not set by ear are spread by the length of each verse,
     so a changed verse moves them).

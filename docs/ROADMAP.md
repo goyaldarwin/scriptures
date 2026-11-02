@@ -20,7 +20,7 @@ The owner's priorities, in order: **accuracy**, then unambiguity, clarity, consi
   - Transcription runs in the cloud, one machine per recording.
 - **Audio times set by ear, safely.** The app's Audio timing mode sends the owner's times as a GitHub issue; the `timing` workflow applies them to `owner.json`. The order rule that places the other verses around them is the same in the app and the builder (`tools/audio/order.py`), and `ux_test.py` checks that they agree.
 - **Copying is checked.** `tools/meanings/overlap.py` stops any meaning of ours that shares 10 or more words in a row with a copyrighted one.
-- **The hard words of our meanings can be tapped.** Every work's hard Hindi and English meaning words have an entry (`"hard": true`, `docs/LIBRARY.md` §5), written from the dictionaries and reviewed; `tools/meanings/hard_words.py report --reach` shows what the app underlines, and the senses still open are in `docs/reviews/dictionary-doubts.jsonl`.
+- **The hard words of our meanings can be tapped.** Every work's hard Hindi and English meaning words have an entry (`"hard": true`, `docs/LIBRARY.md` §5), written from the dictionaries and reviewed; `tools/meanings/hard_words.py report --reach` shows what the app underlines, and every word sense left open was settled from the dictionaries (Monier-Williams, Apte, Platts) and the Gurbani commentaries (`tools/meanings/platts.py`, `teeka.py`), so `docs/reviews/dictionary-doubts.jsonl` holds only new doubts.
 - **Rules are written down.** `docs/PLAYBOOK.md` holds preferences and rules, `docs/LIBRARY.md` the format, and `docs/HOW-TO.md` the procedures. Git holds the history.
 
 ## Next (highest value first)
@@ -32,13 +32,9 @@ The owner's priorities, in order: **accuracy**, then unambiguity, clarity, consi
    - every public `recordings.json` → `data` exists.
 3. **Make each audio source's state visible.** Generate a table per recording (transcribed / timed / verses covered / hand fixes / verses to check) from the data, so "what's left?" is answered by a file, not by memory.
 4. **Run the whole audio chain with one command.** A single command per source: transcribe in the cloud, wait, sync, time, build, open a pull request.
-5. **Settle the dictionary doubts** in `docs/reviews/dictionary-doubts.jsonl`, one by one with the owner.
-   - List words whose dictionary sense was written for one work but appears in another.
-   - Review them per language.
-   - Move work-specific senses into that work's `glossary.json`.
-6. **Settle uncertain readings with the owner's printed copy.** Where a text came from the web (Chālīsā, āratīs), compare it with a Gita Press print when the owner provides one. Record the outcome in the work's `reconciliation.md`.
-7. **Check audio against what is sung.** After timing, read each verse's transcript segment against its text, and flag verses where the reciter's wording differs. This catches both text errors and timing errors.
-8. **Finish the timings by ear.** The Sukhmani Sahib recording is published with every start not yet set by ear listed to check; the owner checks them under ☰ › More settings › Audio timing (`docs/HOW-TO.md` → "Time a recording by ear"). Helpers can mark too and send the owner a file. The Mānas recording still has verses to check, and one dohā (`aranya.46.do46ख`) without a time.
-9. **Player buttons for timing** (offered to the owner): "⏹ End" and "⏱ Next starts" beside play/pause, so marking needs no scrolling.
-10. **Punjabi word meanings.** Fill in `pa` in `library/glossary/pa.json` (`docs/design/languages.md` §2).
-11. **The Android app** (`docs/APPS.md`): the content-rights decision, then the Play release. The iPhone app is parked.
+5. **Settle uncertain readings with the owner's printed copy.** Where a text came from the web (Chālīsā, āratīs), compare it with a Gita Press print when the owner provides one. Record the outcome in the work's `reconciliation.md`.
+6. **Check audio against what is sung.** After timing, read each verse's transcript segment against its text, and flag verses where the reciter's wording differs. This catches both text errors and timing errors.
+7. **Finish the timings by ear.** The Sukhmani Sahib recording is published with every start not yet set by ear listed to check; the owner checks them under ☰ › More settings › Audio timing (`docs/HOW-TO.md` → "Time a recording by ear"). Helpers can mark too and send the owner a file. The Mānas recording still has verses to check, and one dohā (`aranya.46.do46ख`) without a time.
+8. **Player buttons for timing** (offered to the owner): "⏹ End" and "⏱ Next starts" beside play/pause, so marking needs no scrolling.
+9. **Punjabi word meanings.** Fill in `pa` in `library/glossary/pa.json` (`docs/design/languages.md` §2).
+10. **The Android app** (`docs/APPS.md`): the content-rights decision, then the Play release. The iPhone app is parked.

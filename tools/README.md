@@ -25,6 +25,8 @@ tools/
   meanings/                      our own meanings (style.md)
     prepare.py, apply_batches.py   batches of verses for writers and reviewers → a work's meanings/<lang>/scriptures.json
     overlap.py                     no sentence copied from a copyrighted meaning
+    platts.py                      look a Hindi, Awadhi or Braj word up in Platts (read from the private copy in scriptures-data)
+    teeka.py                       search Prof. Sahib Singh's Darpan and the Faridkot Teeka for a Gurbani word (private copies, converted to Unicode)
     hard_words.py                  the hard words of our meanings: candidates for a writer, apply written entries, report what the app underlines
     versenum.py                    the verse number at the end of each of our meanings
     sanskrit_dict.py               Monier-Williams and Apte look-ups
