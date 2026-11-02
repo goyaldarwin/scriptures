@@ -1,11 +1,14 @@
 """Smoke test before every push: the site starts, every work opens, the reader shows verses, no script errors, and the
-app looks words up by the same rule as tools/text/standard.py.
+app looks words up by the same rule as tools/text/standard.py. A work loaded by part (tools/site/split_fixture.py) opens
+in this release, with its meanings in its second part, and in the previous release (origin/main's app.js, as a phone
+with it cached runs it) without a script error.
 
 Usage:  python3 tools/site/smoke_test.py            (serves the repository root on a free port)
 Needs:  pip install playwright (Chromium; set CHROMIUM=/path/to/chrome if it is not found)
 """
-import asyncio, functools, glob, http.server, json, os, socketserver, sys, threading
+import asyncio, functools, glob, http.server, json, os, shutil, socketserver, subprocess, sys, tempfile, threading
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.join(ROOT, 'tools', 'site')); import split_fixture
 sys.path.insert(0, os.path.join(ROOT, 'tools', 'text')); import standard
 from playwright.async_api import async_playwright
 
@@ -44,6 +47,27 @@ async def main():
             n = await pg.evaluate("document.querySelectorAll('#reader .verse').length")
             print(f'{wid}: {n} verses in the reader'); ok &= n > 0
             await pg.evaluate("history.back()"); await pg.wait_for_timeout(500)
+        # a work loaded by part, in this release and in the previous one
+        tmp = tempfile.mkdtemp(); lib, path = split_fixture.make(tmp); srv2 = split_fixture.serve(lib, path); url2 = f'http://127.0.0.1:{srv2.server_address[1]}/'
+        old = subprocess.run(['git', 'show', 'origin/main:tools/site/app.js'], cwd=ROOT, capture_output=True, text=True)
+        for label, js in (('this release', None), ('the previous release', old.stdout if old.returncode == 0 else None)):
+            if label != 'this release' and js is None: print('split work, previous release: origin/main is not here; skipped'); continue
+            cx = await b.new_context(viewport={'width': 390, 'height': 844}); sp = await cx.new_page(); e2 = []
+            sp.on('pageerror', lambda e: e2.append(str(e))); await sp.add_init_script('window.__SALUTE_MS = 0')
+            if js is not None:
+                def serve_js(body):   # Playwright passes the request too when the handler takes two arguments
+                    async def h(route): await route.fulfill(status=200, content_type='application/javascript', body=body)
+                    return h
+                await sp.route('**/app/app.js*', serve_js(js))
+            await sp.goto(url2); await sp.wait_for_timeout(2000)
+            await sp.evaluate("(() => { S.settings.tour = 1; typeof closeTour === 'function' && closeTour(); S.settings.layers.h = true; S.settings.layers.e = true; save(); })()")
+            await sp.evaluate(f"openWork({json.dumps(split_fixture.WORK)})"); await sp.wait_for_timeout(1500)
+            await sp.evaluate("openReader('k', PARTS[1].a)"); await sp.wait_for_timeout(1500)
+            n, m = await sp.evaluate("[document.querySelectorAll('#reader .verse').length, document.querySelectorAll('#reader .layer').length]")
+            good = n > 0 and not e2 and (m > 0 or js is not None)   # the previous release shows the verses (its meanings need this release)
+            print(f'split work, {label}: {n} verses and {m} meanings in its second part' + (f'; errors: {e2[:2]}' if e2 else '')); ok &= good
+            await cx.close()
+        srv2.shutdown(); srv2.server_close(); shutil.rmtree(tmp, ignore_errors=True)
         await b.close()
     if errs: print('SCRIPT ERRORS:', *errs, sep='\n  ')
     sys.exit(0 if ok and not errs else 'SMOKE TEST FAILED')

@@ -8,6 +8,7 @@ Each check prints PASS/FAIL with what it saw; the run fails if any check fails o
 """
 import asyncio, functools, http.server, json, os, random, shutil, socketserver, subprocess, sys, tempfile, threading
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.join(ROOT, 'tools', 'site')); import split_fixture   # a work loaded by part (the Kaṭha, exported again with "load": "parts")
 sys.path.insert(0, os.path.join(ROOT, 'tools', 'audio')); import order as ORDER   # the order rule, shared with make_timings.py
 from playwright.async_api import async_playwright
 
@@ -1065,7 +1066,104 @@ async def main():
         check('“Meaning line by line” is off by default and its switch turns it on', off0 and await ev("S.settings.lines === true"))
         await ev(f"(() => {{ S = JSON.parse({json.dumps(keep)}); save(); applyState(); }})()")
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
+        await split_work(b, SHOTS)
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')
     sys.exit(0 if all(results) else 'UX TEST FAILED')
+async def split_work(b, shots):
+    """A work loaded by part ("load": "parts", docs/LIBRARY.md §3): it opens without fetching any other part, shows the
+    meanings and word meanings of a second part once the reader goes there (the footer's section picker, tapped), finds
+    meanings across every part in search (the verses at once, the meanings as each part comes), shows its own section
+    labels ("sections"), and keeps a part opened once for reading offline."""
+    tmp = tempfile.mkdtemp(); lib, path = split_fixture.make(tmp); srv = split_fixture.serve(lib, path); url = f'http://127.0.0.1:{srv.server_address[1]}/'
+    W = split_fixture.WORK; base = f'library/{path}/'
+    G1 = json.load(open(os.path.join(lib, path, 'glossary', '1.json'), encoding='utf-8'))
+    ctx = await b.new_context(viewport={'width': 390, 'height': 844}, device_scale_factor=1, is_mobile=True, has_touch=True)
+    pg = await ctx.new_page(); errs = []; got = []; slow = {'on': False}
+    pg.on('pageerror', lambda e: errs.append(str(e)))
+    pg.on('request', lambda r: got.append(r.url.split(base, 1)[1].split('?')[0]) if base in r.url else None)
+    async def late(route):   # while "slow" is on, a part file takes 1.5 s, as on a phone
+        if slow['on'] and ('/meanings/' in route.request.url and route.request.url.split('?')[0].rsplit('/', 2)[-2] != 'meanings' or '/glossary/' in route.request.url): await asyncio.sleep(1.5)
+        await route.continue_()
+    await pg.route('**/library/**', late)
+    await pg.add_init_script('window.__SALUTE_MS = 0')
+    n = [0]
+    async def shot(tag):
+        if shots: n[0] += 1; os.makedirs(shots, exist_ok=True); await pg.screenshot(path=os.path.join(shots, f'split-{n[0]:02d}-{tag}.png'))
+    ev = pg.evaluate
+    await pg.goto(url); await pg.wait_for_timeout(1500)
+    await ev(f"""(async () => {{ S.settings.tour = 1; closeTour(); S.settings.ui = 'en'; S.settings.layers = {{h: true, e: true, w: false}}; S.settings.recite = false; save(); applyLang(); syncLayers();
+        await openWork({json.dumps(W)}); }})()"""); await pg.wait_for_timeout(1200)
+    await shot('home')
+    home = await ev("[W.load, [...document.querySelectorAll('#orgList .ds')].map(x => x.textContent)]")
+    first = sorted(set(got))
+    check('split work: it opens with the verses only and the first part’s meanings and word senses, never a whole source or another part',
+          home[0] == 'parts' and 'work.json' in first and any(f.startswith('meanings/hi-scriptures/0') for f in first) and 'glossary/0.json' in first
+          and not any(f.endswith('/1.json') for f in first) and 'glossary.json' not in first, first)
+    await (await pg.query_selector('#orgList [data-open]')).click(); await pg.wait_for_timeout(1200)
+    r0 = await ev("[R.n, document.querySelectorAll('#rBody .layer').length, document.querySelector('#rMid .ml').textContent]")
+    await shot('part1')
+    check('split work: the first part shows its meanings; the footer shows the work’s own section label', r0[0] == 0 and r0[1] > 4 and r0[2].startswith('Śānti Pāṭha'), r0)
+    # to the second part the way a finger does: the footer, the second part, its first section
+    slow['on'] = True; got.clear()
+    await pg.click('#rMid'); await pg.wait_for_timeout(400)
+    await pg.click('#sheetBody .pick [data-pick="1"]'); await pg.wait_for_timeout(300)
+    rows = await ev("[...document.querySelectorAll('#sheetBody .secs .sr')].map(x => x.textContent)")
+    await shot('picker')
+    await pg.click('#sheetBody .secs [data-to]'); await pg.wait_for_timeout(300)
+    early = await ev("[R.n, document.querySelectorAll('#rBody .verse').length, document.querySelectorAll('#rBody .layer').length, Math.round(document.getElementById('v' + R.a).getBoundingClientRect().top)]")
+    await pg.wait_for_timeout(2500)
+    r1 = await ev("""(() => { const i = R.a, v = document.getElementById('v' + i); return [R.n, document.querySelectorAll('#rBody .layer').length, IT[i].p, !!(v && v.querySelector('.layer')), document.querySelector('#rMid .ml').textContent, Math.round(v.getBoundingClientRect().top)]; })()""")
+    await shot('part2')
+    check('split work: the section picker lists the second part’s sections by their labels (Vallī 2.1 …)', rows[:3] == ['Vallī 2.1', 'Vallī 2.2', 'Vallī 2.3'], rows)
+    check('split work: the second part shows its verses at once and its meanings when its files come, the page kept in place',
+          early[0] == 1 and early[1] > 0 and early[2] == 0 and r1[0] == 1 and r1[1] > 4 and r1[2] == 1 and r1[3] and r1[4].startswith('Vallī 2.1') and abs(r1[5] - early[3]) <= 2 and
+          any(f.startswith('meanings/en-scriptures/1') for f in got) and 'glossary/1.json' in got, (early, r1, sorted(set(got))))
+    slow['on'] = False
+    # a word of the second part: the work's own sense, which only glossary/1.json has
+    wid = next(x['id'] for x in json.load(open(os.path.join(lib, path, 'work.json'), encoding='utf-8'))['items'] if 'विश्वे' in ' '.join(x['v']))
+    await ev(f"(() => {{ const i = ID[{json.dumps(wid)}]; jumpTo(i); }})()"); await pg.wait_for_timeout(600)
+    loc = pg.locator(f'#v{await ev(f"ID[{json.dumps(wid)}]")} .w', has_text='विश्वे').first
+    await loc.click(); await pg.wait_for_timeout(500)
+    sheet = await ev("$('#sheet').classList.contains('on') ? $('#sheetBody').innerText : ''")
+    await shot('word'); await ev("closeSheet()")
+    check('split work: a word of the second part opens the work’s own sense from that part', G1['sa']['विश्वे']['en'][:30] in sheet or G1['sa']['विश्वे']['hi'][:30] in sheet, sheet[:160])
+    hard = await ev("(() => { const v = document.getElementById('v' + ID['2.1.15']); return v ? [...v.querySelectorAll('.layer .mw')].map(x => x.dataset.mw) : null; })()")
+    if hard is None: await ev("jumpTo(ID['2.1.15'])"); await pg.wait_for_timeout(600); hard = await ev("[...document.getElementById('v' + ID['2.1.15']).querySelectorAll('.layer .mw')].map(x => x.dataset.mw)")
+    check('split work: a hard word of a second-part meaning is underlined from that part’s senses', 'गौतम' in hard, hard)
+    # labels in Hindi, numbers in Latin digits; a verse's place names its section
+    await ev("S.settings.ui = 'hi'; S.settings.layers.e = false; save(); applyLang(); syncLayers(); refreshReader()"); await pg.wait_for_timeout(500)
+    hi = await ev("[document.querySelector('#rMid .ml').textContent, itemLabel(ID['2.2.3'])]")
+    await shot('hindi')
+    await ev("S.settings.ui = 'en'; S.settings.layers.e = true; save(); applyLang(); syncLayers(); refreshReader()")
+    check('split work: the section labels in Hindi, with 1 2 3; a verse’s place names its section', hi[0].startswith('वल्ली 2.') and 'वल्ली ' in hi[1] and '२' not in hi[0], hi)
+    # search on a fresh start: the verses at once, then a meaning only the second part has, as that part comes
+    await ev("(() => { const ws = S.w[W.id]; ws.last = null; ws.pos = {}; save(); })()")   # no place in the second part: “Continue” does not fetch it
+    await pg.close(); pg = await ctx.new_page(); ev = pg.evaluate; pg.on('pageerror', lambda e: errs.append(str(e))); await pg.route('**/library/**', late)   # a fresh start, not back in the reader
+    await pg.goto(url); await pg.wait_for_timeout(1500); slow['on'] = True
+    await ev(f"(async () => {{ await openWork({json.dumps(W)}, true); show('home'); }})()"); await pg.wait_for_timeout(1500)
+    await pg.click('#hSearch'); await pg.wait_for_timeout(300)
+    await pg.fill('#q', 'devourer'); await pg.wait_for_timeout(700)
+    s0 = await ev("[!!document.querySelector('#sRes .sload'), [...document.querySelectorAll('#sRes .res .where')].map(w => w.textContent)]")
+    await pg.wait_for_timeout(4500)
+    s1 = await ev("[!!document.querySelector('#sRes .sload'), [...document.querySelectorAll('#sRes .res')].map(b => [IT[+b.dataset.i].id, IT[+b.dataset.i].p, b.querySelector('.where').textContent])]")
+    await shot('search')
+    check('split work: search shows “searching every part” at first, then finds a meaning only the second part has, with its section label',
+          s0[0] and not any('English meaning' in w for w in s0[1]) and not s1[0] and any(r[0] == '2.1.7' and r[1] == 1 and 'English meaning' in r[2] and 'Vallī 2.1' in r[2] for r in s1[1]), (s0, s1))
+    await pg.fill('#q', 'विश्वे देवा'); await pg.wait_for_timeout(600)
+    s2 = await ev("[...document.querySelectorAll('#sRes .res')].map(b => IT[+b.dataset.i].id)")
+    check('split work: the verse text is found at once', wid in s2, s2)
+    check('split work: no script errors', not errs, '; '.join(errs[:3]))
+    await ctx.close()
+    # offline: a part opened once is kept by the service worker
+    ctx2 = await b.new_context(viewport={'width': 390, 'height': 844}, is_mobile=True, has_touch=True); pg2 = await ctx2.new_page(); errs2 = []
+    pg2.on('pageerror', lambda e: errs2.append(str(e))); await pg2.add_init_script('window.__SALUTE_MS = 0; window.__SW_TEST = 1')
+    await pg2.goto(url); await pg2.wait_for_timeout(2500); await pg2.reload(); await pg2.wait_for_timeout(2000)
+    await pg2.evaluate(f"(async () => {{ S.settings.tour = 1; closeTour(); S.settings.layers = {{h: true, e: true, w: false}}; save(); await openWork({json.dumps(W)}, true); show('home'); openReader('k', PARTS[1].a + 3); }})()"); await pg2.wait_for_timeout(2500)
+    srv.shutdown(); srv.server_close()
+    await pg2.reload(); await pg2.wait_for_timeout(3000)
+    off = await pg2.evaluate(f"(async () => {{ if (!W || W.id !== {json.dumps(W)}) await openWork({json.dumps(W)}, true); show('home'); openReader('k', PARTS[1].a + 3); await new Promise(r => setTimeout(r, 1500)); return [W && W.id, document.querySelectorAll('#rBody .verse').length, document.querySelectorAll('#rBody .layer').length]; }})()")
+    check('split work offline: a part opened once is readable with its meanings', off[0] == W and off[1] > 0 and off[2] > 4 and not errs2, (off, errs2[:2]))
+    await ctx2.close(); shutil.rmtree(tmp, ignore_errors=True)
+
 asyncio.run(main())

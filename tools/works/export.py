@@ -7,13 +7,16 @@
 Writes   library/<path>/work.json                 the manifest's fields, the verses (text.txt) and the topics
          library/<path>/meanings/<lang>-<src>.json one per meaning source (meanings/<lang>/<src>.json)
          library/<path>/glossary.json             the work's own senses of words (glossary/<lang>.json), if any
+A work with "load": "parts" (a big work, read one part at a time) has each meaning source as a header
+meanings/<lang>-<src>.json plus meanings/<lang>-<src>/<part index>.json, and its own senses as glossary/<part index>.json
+(docs/LIBRARY.md §3, §5), so a phone fetches only the parts it opens.
 The recordings' timings (library/<path>/audio/<src>.json) are made by tools/audio/make_timings.py.
 Every file goes through the writing standard (tools/jsonio.py → tools/text/standard.py). It stops on anything wrong:
 an unknown verse, type, part or work; a verse without lines; a meaning for a verse the work does not have; our own
 meanings missing a verse (unless the source is `partial`) or sharing a run of 10+ words with a copied source.
 `sources` (and `glossary` in work.json) are added by tools/site/build.py.
 """
-import glob, json, os, re, sys
+import glob, json, os, re, shutil, sys
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.dirname(os.path.dirname(HERE))
 sys.path.insert(0, os.path.join(REPO, 'tools')); import jsonio
 sys.path.insert(0, HERE)
@@ -129,7 +132,7 @@ class Lib:
         return json.load(open(p, encoding='utf-8'))
     def meanings(self, wid):
         d = os.path.join(self.out, self.path(wid), 'meanings')
-        return {os.path.basename(f)[:-5]: json.load(open(f, encoding='utf-8')) for f in glob.glob(os.path.join(d, '*.json'))}
+        return {os.path.basename(f)[:-5]: jsonio.read_meanings(f) for f in glob.glob(os.path.join(d, '*.json'))}   # a source loaded by part, whole
     def headings(self, wid, choice):
         """A work's topic headings by first verse id when a taking work shows "ours" (the work's topics.json), else None."""
         if choice != 'ours': return None
@@ -138,8 +141,14 @@ class Lib:
 
 def export(wid, lib):
     M = manifest(wid); WP = M['path']
+    need(M.get('load') in (None, 'parts'), f'{wid}/work.json: load must be "parts" (meanings and own senses one file per part) or absent')
+    BYPART = M.get('load') == 'parts'; NP = len(M['parts']['list'])
+    need(not isinstance(M.get('sections'), dict) or all(isinstance(v, dict) and isinstance(v.get('hi'), str) and isinstance(v.get('en'), str) for v in M['sections'].values()),
+         f'{wid}/work.json: sections maps a section id to its label {{hi, en}}')
     items, topics, taken = read_text(wid, M, lib)
     ids = [x['id'] for x in items]; BYID = {x['id']: x for x in items}; own = [i for i in ids if i not in taken]
+    if 'sections' in M:
+        bad = sorted(set(M['sections']) - {x['s'] for x in items}); need(not bad, f'{wid}/work.json: sections names sections the text does not have: {bad[:5]}')
     work = {k: v for k, v in M.items() if k not in BYID and k not in BUILD_ONLY}
     work['parts'] = {**M['parts'], 'list': [{k: v for k, v in p.items() if k != 'key'} for p in M['parts']['list']]}
     work['items'] = items; work['topics'] = topics
@@ -191,30 +200,54 @@ def export(wid, lib):
             title = next((tf[sid]['title'] for tf in taken_from.values() if sid in tf), None)
         need(title, f'{wid}/meanings/{lg}/{src}.json: needs a title')
         need(m, f'{wid}/meanings/{lg}/{src}.json: no meaning for any verse')
-        out = {'id': sid, 'lang': lg, 'order': D['order'], 'title': title, 'm': m}
-        if p: out['p'] = p
-        lib.dump(f'{WP}/meanings/{sid}.json', out); have.add(sid + '.json')
+        head = {'id': sid, 'lang': lg, 'order': D['order'], 'title': title}
+        pdir = os.path.join(lib.out, WP, 'meanings', sid)
+        if os.path.isdir(pdir): shutil.rmtree(pdir)
+        if BYPART:   # a header (an empty "m", so an app that does not know parts shows no meaning rather than failing), then one file per part
+            lib.dump(f'{WP}/meanings/{sid}.json', {**head, 'load': 'parts', 'm': {}})
+            for k in range(NP):
+                part = {**head, 'part': k, 'm': {i: v for i, v in m.items() if BYID[i]['p'] == k}}
+                pk = {i: v for i, v in p.items() if BYID[i]['p'] == k}
+                if pk: part['p'] = pk
+                lib.dump(f'{WP}/meanings/{sid}/{k}.json', part)
+        else:
+            out = {**head, 'm': m}
+            if p: out['p'] = p
+            lib.dump(f'{WP}/meanings/{sid}.json', out)
+        have.add(sid + '.json')
     for f in glob.glob(os.path.join(lib.out, WP, 'meanings', '*.json')):   # a source removed from the folder leaves the library too
         if os.path.basename(f) not in have: os.remove(f)
+    for f in glob.glob(os.path.join(lib.out, WP, 'meanings', '*', '')):
+        if os.path.basename(os.path.dirname(f)) + '.json' not in have: shutil.rmtree(f)
 
     # ---- the work's own senses of words: glossary/<lang>.json ----
     senses = {os.path.basename(f)[:-5]: json.load(open(f, encoding='utf-8')) for f in sorted(glob.glob(os.path.join(HERE, wid, 'glossary', '*.json')))}
-    words = {}
+    words, pwords = {}, [{} for _ in range(NP)]   # the words of the verses (and of each part's verses), as looked up
     for x in items:
         for l in x['v']:
-            for t in l.split(): words.setdefault(x.get('l', M['lang']), set()).add(standard.fold(standard.SVARA.sub('', re.sub(r"[।॥|,.;:!?\-—‘’“”'\"()\[\]०-९੦-੯0-9]", '', t))))
+            for t in l.split():
+                f = standard.fold(standard.SVARA.sub('', re.sub(r"[।॥|,.;:!?\-—‘’“”'\"()\[\]०-९੦-੯0-9]", '', t)))
+                words.setdefault(x.get('l', M['lang']), set()).add(f); pwords[x['p']].setdefault(x.get('l', M['lang']), set()).add(f)
     # a hard word of the work's own meanings ("hard": true, tappable in the Hindi or English meaning) is reached from a word of
     # those meanings, as the app reaches it (tools/meanings/hard_words.py forms)
-    said = {}
+    said, psaid = {}, [{} for _ in range(NP)]
     for lg in senses:
-        text = json.dumps([json.load(open(f, encoding='utf-8')).get('m') for f in glob.glob(os.path.join(HERE, wid, 'meanings', lg, '*.json'))], ensure_ascii=False)
-        said[lg] = {f for w in hard_words.WORD[lg].findall(text) for f in hard_words.forms(w, lg)} if lg in hard_words.WORD else set()
+        ms = [json.load(open(f, encoding='utf-8')).get('m') or {} for f in glob.glob(os.path.join(HERE, wid, 'meanings', lg, '*.json'))]
+        heard = lambda text: {f for w in hard_words.WORD[lg].findall(text) for f in hard_words.forms(w, lg)} if lg in hard_words.WORD else set()
+        said[lg] = heard(json.dumps(ms, ensure_ascii=False))
+        if BYPART:
+            for k in range(NP): psaid[k][lg] = heard(json.dumps([{i: v for i, v in m_.items() if i in BYID and BYID[i]['p'] == k} for m_ in ms], ensure_ascii=False))
     for lg, D in senses.items():   # a word as the app looks it up (standard.fold: गङ्गा and गंगा are one word)
         bad = [k for k, v in D.items() if not (k in said[lg] if v.get('hard') else standard.fold(k) in words.get(lg, ())) or not (v.get('hi') and v.get('en'))]
         need(not bad, f'{wid}/glossary/{lg}.json: senses of words not in any {lg} verse (or, if hard, in its {lg} meanings), or without hi and en: {bad[:5]}')
-    gl = os.path.join(lib.out, WP, 'glossary.json')
-    if senses: lib.dump(WP + '/glossary.json', senses)
-    elif os.path.exists(gl): os.remove(gl)
+    gl, gd = os.path.join(lib.out, WP, 'glossary.json'), os.path.join(lib.out, WP, 'glossary')
+    if os.path.exists(gl): os.remove(gl)
+    if os.path.isdir(gd): shutil.rmtree(gd)
+    if senses and BYPART:   # each part: the senses of the words of its verses (and the hard words of its meanings); a word in two parts is in both
+        for k in range(NP):
+            lib.dump(f'{WP}/glossary/{k}.json', {lg: P for lg, D in senses.items()
+                for P in [{w: v for w, v in D.items() if (w in psaid[k].get(lg, ()) if v.get('hard') else standard.fold(w) in pwords[k].get(lg, ()))}] if P})
+    elif senses: lib.dump(WP + '/glossary.json', senses)
 
     print(f'{wid}: {len(items)} verses ({len(taken)} taken), {len(topics)} topics, {len(srcs)} meaning sources')
 

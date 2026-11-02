@@ -10,9 +10,13 @@ For each work on the shelf (library/index.json) this:
      dictionaries in glossary/, fallbacks, each store app's shelves in library/apps.json), and stops the build with
      a clear message if not.
 A source's file name must equal its "id". The source with the lowest "order" (then id) is the default.
+A work with "load": "parts" has each meaning source as a header plus one file per part (meanings/<id>/<part>.json) and its
+own senses as glossary/<part>.json (docs/LIBRARY.md §3, §5): every part file must be there, hold only its part's verses,
+and the checks below run on the parts joined (a verse's words on its own part's senses).
 """
 import glob, json, os, re, sys, unicodedata
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'text')); import standard
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__)))); import jsonio
 
 class LibraryError(Exception): pass
 
@@ -57,9 +61,12 @@ def _folded(D, lang):
 def check_words(lib, name, w, LANGS, G, clean):
     """Every word of every verse has a meaning in its language or a fallback (the work's own glossary.json first)."""
     wg = os.path.join(lib, name, 'glossary.json'); WG = json.load(open(wg, encoding='utf-8')) if os.path.exists(wg) else {}
+    # a work loaded by part: a verse's words are looked up in its own part's senses, as the app has only those
+    PG = [json.load(open(f, encoding='utf-8')) if os.path.exists(f) else {} for f in (os.path.join(lib, name, 'glossary', f'{k}.json') for k in range(len(w['parts']['list'])))] if w.get('load') == 'parts' else None
     miss = {}
     for x in w['items']:
         lg = x.get('l', w['lang']); chain = [lg] + LANGS[lg].get('fallback', [])
+        if PG is not None: WG = PG[x['p']]
         for line in x['v']:
             for t in line.split():
                 k = clean(t)
@@ -74,17 +81,30 @@ def check_work(lib, leaf, LANGS):
     items = w['items']; ids = [x['id'] for x in items]; ID = set(ids)
     _need(w.get('lang') in LANGS, f"{name}: work.json lang {w.get('lang')!r} is not in glossary/languages.json")
     bad = sorted({x['l'] for x in items if 'l' in x} - set(LANGS)); _need(not bad, f"{name}: verse languages {bad} are not in glossary/languages.json")
-    wg = os.path.join(lib, path, 'glossary.json')
-    if os.path.exists(wg):
-        for lg, words in json.load(open(wg)).items():
-            _need(lg in LANGS, f"{name}/glossary.json: unknown language {lg!r}")
-            for k, v in words.items(): _need(isinstance(v, dict) and ('hi' in v or 'en' in v), f"{name}/glossary.json: {lg}:{k} needs hi/en")
+    # "load": "parts": the meanings and the work's own senses come one file per part (the app fetches a part when it opens it)
+    _need(w.get('load') in (None, 'parts'), f"{name}: load must be \"parts\" or absent")
+    bypart = w.get('load') == 'parts'; NP = len(w['parts']['list'])
+    wg, gd = os.path.join(lib, path, 'glossary.json'), os.path.join(lib, path, 'glossary')
+    gfiles = sorted(glob.glob(os.path.join(gd, '*.json')))
+    if bypart:
+        _need(not os.path.exists(wg), f"{name}: a work loaded by part keeps its own senses in glossary/<part>.json, not glossary.json")
+        _need(not gfiles or [os.path.basename(f) for f in gfiles] == sorted(f'{k}.json' for k in range(NP)), f"{name}/glossary/: needs one file per part, 0.json … {NP - 1}.json")
+    else: _need(not gfiles, f"{name}/glossary/: only a work with \"load\": \"parts\" has its own senses by part")
+    for f in ([wg] if os.path.exists(wg) else []) + gfiles:
+        for lg, words in json.load(open(f)).items():
+            _need(lg in LANGS, f"{os.path.relpath(f, lib)}: unknown language {lg!r}")
+            for k, v in words.items(): _need(isinstance(v, dict) and ('hi' in v or 'en' in v), f"{os.path.relpath(f, lib)}: {lg}:{k} needs hi/en")
+    # "sections": a label for each section id ({hi, en}: सर्ग १ / Sarga 1), shown in the footer, the section picker and the home list
+    SEC = w.get('sections')
+    if SEC is not None:
+        _need(isinstance(SEC, dict) and all(_bi(v) for v in SEC.values()), f"{name}: sections maps a section id to its label {{hi, en}}")
+        bad = sorted(set(SEC) - {x['s'] for x in items}); _need(not bad, f"{name}: sections names sections no verse has: {bad[:5]}")
     _need(len(ID) == len(ids), f"{name}: item ids are not unique")
     # the writing standard (tools/text/standard.py, PLAYBOOK §3): every verse and transliteration is what it makes
     std = standard.apply(json.loads(json.dumps(items)), w['lang'], standard.yajur(path))
     bad = [a['id'] for a, b in zip(items, std) if a['v'] != b['v'] or a.get('t') != b.get('t')]
     _need(not bad, f"{name}: {len(bad)} items are not written by the standard (export through jsonio.dump_library): {bad[:5]}")
-    for f in [wp] + glob.glob(os.path.join(lib, path, 'meanings', '*.json')):
+    for f in [wp] + glob.glob(os.path.join(lib, path, 'meanings', '**', '*.json'), recursive=True):
         _need('।।' not in open(f, encoding='utf-8').read(), f"{os.path.relpath(f, lib)}: two daṇḍas ।। where the standard writes ॥")
     for x in items:
         _need(isinstance(x.get('v'), list) and x['v'], f"{name}: item {x['id']} has no verse lines")
@@ -112,9 +132,24 @@ def check_work(lib, leaf, LANGS):
     # hi, en and au are always listed, another only when the work has one
     ML = sorted((k for k, L in LANGS.items() if L.get('meaning')), key=lambda k: (LANGS[k]['meaning'].get('order', 100), k))
     src = {k: [] for k in ML}; src.setdefault('hi', []); src.setdefault('en', []); src['au'] = []
-    for f in sorted(glob.glob(os.path.join(lib, path, 'meanings', '*.json'))):
+    heads = sorted(glob.glob(os.path.join(lib, path, 'meanings', '*.json')))
+    stray = sorted(set(os.path.basename(d.rstrip(os.sep)) for d in glob.glob(os.path.join(lib, path, 'meanings', '*', ''))) - {os.path.basename(f)[:-5] for f in heads})
+    _need(not stray, f"{name}/meanings/: part folders without their source's header: {stray}")
+    PART = {i['id']: i['p'] for i in items}
+    for f in heads:
         s = json.load(open(f)); sid = os.path.basename(f)[:-5]; where = f"{name}/meanings/{sid}.json"
         _need(s.get('id') == sid, f"{where}: id {s.get('id')!r} must equal the file name")
+        pd = f[:-5]
+        if bypart:   # the header: the source's fields, "load": "parts" and an empty "m"; then a file per part holding only that part's verses
+            _need(s.get('load') == 'parts' and s.get('m') == {} and 'p' not in s, f"{where}: a source of a work loaded by part is a header: \"load\": \"parts\", \"m\": {{}}")
+            for k in range(NP):
+                pf = os.path.join(pd, f'{k}.json'); _need(os.path.exists(pf), f"{where}: no part file meanings/{sid}/{k}.json")
+                x = json.load(open(pf, encoding='utf-8')); pw = f"{name}/meanings/{sid}/{k}.json"
+                _need(all(x.get(a) == s.get(a) for a in ('id', 'lang', 'order', 'title')) and x.get('part') == k, f"{pw}: needs the header's id, lang, order and title, and \"part\": {k}")
+                bad = [i for i in list(x.get('m', {})) + list(x.get('p', {})) if PART.get(i, k) != k]; _need(not bad, f"{pw}: verses of another part: {bad[:3]}")
+            _need(sorted(os.listdir(pd)) == sorted(f'{k}.json' for k in range(NP)), f"{name}/meanings/{sid}/: only 0.json … {NP - 1}.json")
+            s = jsonio.read_meanings(f)
+        else: _need('load' not in s and not os.path.isdir(pd), f"{where}: only a work with \"load\": \"parts\" has its meanings by part")
         _need(s.get('lang') in ML, f"{where}: lang must be a meaning language of glossary/languages.json ({', '.join(ML)})")
         _need(_bi(s.get('title')), f"{where}: needs title {{hi, en}}")
         bad = [k for k in s['m'] if k not in ID]; _need(not bad, f"{where}: {len(bad)} unknown item ids, e.g. {bad[:3]}")
@@ -145,7 +180,7 @@ def check_work(lib, leaf, LANGS):
         src[k].sort(key=lambda x: (x['order'], x['id']))
         for x in src[k]: del x['order']
     src = {k: v for k, v in src.items() if v or k in ('hi', 'en', 'au')}
-    has_g = os.path.exists(wg)   # the app fetches <work>/glossary.json only when the work says it has one
+    has_g = os.path.exists(wg) or bool(gfiles)   # the app fetches <work>/glossary.json (or glossary/<part>.json) only when the work says it has one
     if w.get('sources') != src or bool(w.get('glossary')) != has_g:
         w['sources'] = src
         if has_g: w['glossary'] = True
