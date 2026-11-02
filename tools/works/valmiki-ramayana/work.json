@@ -1,0 +1,64 @@
+{
+ "id": "valmiki-ramayana",
+ "path": "hinduism/granth/valmiki/ramayana",
+ "lang": "sa",
+ "title": {
+  "hi": "श्रीमद्वाल्मीकीय रामायण",
+  "en": "Śrīmad Vālmīki Rāmāyaṇa"
+ },
+ "by": {
+  "hi": "महर्षि वाल्मीकि",
+  "en": "Maharṣi Vālmīki"
+ },
+ "edition": {
+  "hi": "गीताप्रेस, गोरखपुर (संस्कृत मूल, अंग्रेज़ी अनुवाद: कोड ४५२–४५३; हिन्दी अनुवाद: कोड ७७)",
+  "en": "Gita Press, Gorakhpur (Sanskrit text and English translation: codes 452–453; Hindi translation: code 77)"
+ },
+ "colophon": {
+  "hi": "समापन (पुष्पिका)",
+  "en": "Closing words (iti)"
+ },
+ "parts": {
+  "name": {
+   "hi": "काण्ड",
+   "en": "Kāṇḍa"
+  },
+  "list": [
+   {
+    "key": "bala",
+    "hi": "बालकाण्ड",
+    "en": "Bāla-kāṇḍa"
+   },
+   {
+    "key": "ayodhya",
+    "hi": "अयोध्याकाण्ड",
+    "en": "Ayodhyā-kāṇḍa"
+   },
+   {
+    "key": "aranya",
+    "hi": "अरण्यकाण्ड",
+    "en": "Araṇya-kāṇḍa"
+   },
+   {
+    "key": "kishkindha",
+    "hi": "किष्किन्धाकाण्ड",
+    "en": "Kiṣkindhā-kāṇḍa"
+   },
+   {
+    "key": "sundara",
+    "hi": "सुन्दरकाण्ड",
+    "en": "Sundara-kāṇḍa"
+   },
+   {
+    "key": "yuddha",
+    "hi": "युद्धकाण्ड",
+    "en": "Yuddha-kāṇḍa"
+   },
+   {
+    "key": "uttara",
+    "hi": "उत्तरकाण्ड",
+    "en": "Uttara-kāṇḍa"
+   }
+  ]
+ }
+}

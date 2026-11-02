@@ -1,0 +1,16 @@
+[
+ {
+  "id": "bala.7.21",
+  "from": "अवेक्ष्यमाणश्चारेण",
+  "to": "अवेक्षमाणश्चारेण",
+  "reason": "The king observes the people through spies, so the active middle participle अवेक्षमाणः is required (Gita Press's form elsewhere); passive अवेक्ष्यमाणः 'being observed' is wrong here.",
+  "check": "The king himself watches the subjects through spies (the edition's own translation: \"seeing everything with his eyes in the form of spies\"), which needs the active अवेक्षमाणः, the form the book uses some fifteen times; the passive participle cannot govern this sense."
+ },
+ {
+  "id": "ayodhya.68.19",
+  "from": "प्रेक्ष्यमाणा",
+  "to": "प्रेक्षमाणा",
+  "reason": "The messengers are the ones looking at Viṣṇupada, so the active participle prekṣamāṇāḥ is needed; the passive प्रेक्ष्यमाणा ('being looked at') is wrong for the construction.",
+  "check": "The messengers are the ones beholding Viṣṇu's footprint (the edition's translation: \"beholding\"), which needs the active प्रेक्षमाणाः, the book's usual form; the passive participle is an extra य्."
+ }
+]

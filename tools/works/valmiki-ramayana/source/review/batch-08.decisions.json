@@ -1,0 +1,630 @@
+[
+ {
+  "case": 666,
+  "id": "sundara.57.19",
+  "decision": "keep",
+  "from": "वायुनुन्नस्य",
+  "reason": "वायुनुन्नस्य 'driven by the wind' is a valid synonym of वातनुन्नस्य."
+ },
+ {
+  "case": 667,
+  "id": "sundara.57.53",
+  "decision": "keep",
+  "from": "तथाङ्गदेनाङ्गदनद्धबाहुना",
+  "reason": "अङ्गदनद्धबाहुना 'arms bound with armlets' is a valid synonym of अङ्गदबद्धबाहुना."
+ },
+ {
+  "case": 668,
+  "id": "sundara.58.10",
+  "decision": "keep",
+  "from": "नगमुत्तमम्",
+  "reason": "नगमुत्तमम् 'best of mountains' is a valid synonym of नगसत्तमम्."
+ },
+ {
+  "case": 669,
+  "id": "sundara.58.48",
+  "decision": "keep",
+  "from": "कल्पान्तघनसप्रभा",
+  "reason": "सप्रभा 'having the like lustre' with कल्पान्तघन is a valid compound, a synonym of सन्निभा."
+ },
+ {
+  "case": 670,
+  "id": "sundara.58.65",
+  "decision": "keep",
+  "from": "देशमनुसम्प्राप्तो",
+  "reason": "अनुसम्प्राप्तः is a valid form agreeing with the nearer subject रावणः, an epic usage; the others have a different word order, not a one-letter slip."
+ },
+ {
+  "case": 671,
+  "id": "sundara.58.67",
+  "decision": "correct",
+  "from": "कंचिदपश्यन्तीं",
+  "to": "किंचिदपश्यन्तीं",
+  "reason": "त्राणं is neuter, so the masculine कंचित् cannot qualify it; a dropped ि sign, restored as किंचित् by both sources and the grammar."
+ },
+ {
+  "case": 672,
+  "id": "sundara.58.71",
+  "decision": "keep",
+  "from": "इक्ष्वाकुवंशनाथस्य",
+  "reason": "इक्ष्वाकुवंशनाथस्य is a valid synonym of इक्ष्वाकुकुलनाथस्य."
+ },
+ {
+  "case": 673,
+  "id": "sundara.58.94",
+  "decision": "keep",
+  "from": "स्तुतो",
+  "reason": "स्तुतः 'praised' makes good sense (Hanumān praised the Ikṣvāku line to Sītā) and is a valid word."
+ },
+ {
+  "case": 674,
+  "id": "sundara.58.111",
+  "decision": "keep",
+  "from": "वनखण्डं",
+  "reason": "वनखण्ड 'a stretch of forest' is a valid word beside वनषण्ड."
+ },
+ {
+  "case": 675,
+  "id": "sundara.58.130",
+  "decision": "keep",
+  "from": "प्रहितो",
+  "reason": "प्रहितः 'sent' is a valid synonym of प्रेषितः."
+ },
+ {
+  "case": 676,
+  "id": "sundara.58.148",
+  "decision": "keep",
+  "from": "संलक्ष्यते",
+  "reason": "संलक्ष्यते 'is seen to be followed' is a valid form that makes sense."
+ },
+ {
+  "case": 677,
+  "id": "sundara.59.6",
+  "decision": "keep",
+  "from": "महाकपीन्",
+  "reason": "महाकपीन् is a valid synonym of महाहरीन्."
+ },
+ {
+  "case": 678,
+  "id": "sundara.59.10",
+  "decision": "keep",
+  "from": "दुर्निरीक्ष्याणि",
+  "reason": "दुर्निरीक्ष्य is a valid gerundive form beside दुर्निरीक्ष."
+ },
+ {
+  "case": 679,
+  "id": "sundara.59.15",
+  "decision": "keep",
+  "from": "प्लवगस्योरुवेगेन",
+  "reason": "प्लवगस्य 'of the monkey' is a valid word giving sense, not a letter slip of the name पनसस्य; nothing settles it."
+ },
+ {
+  "case": 680,
+  "id": "sundara.59.17",
+  "decision": "keep",
+  "from": "महावेगावेतौ",
+  "reason": "महावेगौ 'of great speed' is a valid epithet beside महाभागौ."
+ },
+ {
+  "case": 681,
+  "id": "sundara.59.22",
+  "decision": "keep",
+  "from": "मेघरेखापरिवृता",
+  "reason": "रेखा is a valid equivalent of लेखा 'streak'."
+ },
+ {
+  "case": 682,
+  "id": "sundara.59.22",
+  "decision": "keep",
+  "from": "चन्द्ररेखेव",
+  "reason": "चन्द्ररेखा is a valid equivalent of चन्द्रलेखा."
+ },
+ {
+  "case": 683,
+  "id": "sundara.61.7",
+  "decision": "keep",
+  "from": "द्रुमशतायुतम्",
+  "reason": "द्रुमशतायुतम् 'filled with hundreds of trees' is valid and makes sense."
+ },
+ {
+  "case": 684,
+  "id": "sundara.62.12",
+  "decision": "keep",
+  "from": "उन्मत्तवेगाः",
+  "reason": "उन्मत्तवेगाः 'with wild impetus' is a valid compound that fits the drunken monkeys."
+ },
+ {
+  "case": 685,
+  "id": "sundara.62.16",
+  "decision": "keep",
+  "from": "प्रघृष्टाश्च",
+  "reason": "प्रघृष्टाः 'scraped (on the knees)' from प्र-घृष् is a valid form that fits जानुभिः."
+ },
+ {
+  "case": 686,
+  "id": "sundara.62.33",
+  "decision": "keep",
+  "from": "नृपाज्ञापरिपन्थिनः",
+  "reason": "परिपन्थिन् 'opposing' is a valid synonym of परिभाविन् here."
+ },
+ {
+  "case": 687,
+  "id": "sundara.63.9",
+  "decision": "keep",
+  "from": "संरब्धतरास्तदा",
+  "reason": "तदा 'then' is a valid alternative to तथा."
+ },
+ {
+  "case": 688,
+  "id": "sundara.66.8",
+  "decision": "keep",
+  "from": "परासुमिव",
+  "reason": "परासुमिव 'as one nearly lifeless (revived) with water' is valid and makes good sense."
+ },
+ {
+  "case": 689,
+  "id": "sundara.67.9",
+  "decision": "keep",
+  "from": "समुदैक्षथाः",
+  "reason": "समुदैक्षथाः is the correct imperfect of सम्-उद्-ईक्ष्, a valid alternative to समवैक्षथाः."
+ },
+ {
+  "case": 690,
+  "id": "sundara.68.16",
+  "decision": "keep",
+  "from": "वाक्यमुत्तरमब्रवम्",
+  "reason": "अब्रवम् is the regular Pāṇinian imperfect 1st singular of ब्रू; अब्रुवम् is the epic variant."
+ },
+ {
+  "case": 691,
+  "id": "sundara.68.18",
+  "decision": "keep",
+  "from": "मनःसंकल्पसदृशा",
+  "reason": "मनःसंकल्पसदृशाः 'swift as thought' is a valid compound."
+ },
+ {
+  "case": 692,
+  "id": "sundara.68.25",
+  "decision": "keep",
+  "from": "धनुष्मन्तं",
+  "reason": "धनुष्मन्तं 'bearing a bow' is a valid synonym of धनुष्पाणिं."
+ },
+ {
+  "case": 693,
+  "id": "yuddha.1.18",
+  "decision": "keep",
+  "from": "किमिवोत्तरम्",
+  "reason": "किमिव 'what indeed' is a valid idiom beside किमिह."
+ },
+ {
+  "case": 694,
+  "id": "yuddha.2.13",
+  "decision": "keep",
+  "from": "सर्वार्थनाशिनीम्",
+  "reason": "नाशिनी is the regular feminine of नाशिन्, valid beside नाशनी."
+ },
+ {
+  "case": 695,
+  "id": "yuddha.4.51",
+  "decision": "keep",
+  "from": "नैर्ऋतं",
+  "reason": "नैर्ऋत is Gita Press's normal spelling of the same word, only an orthographic difference."
+ },
+ {
+  "case": 696,
+  "id": "yuddha.4.97",
+  "decision": "keep",
+  "from": "पूर्वमुपस्थिता",
+  "reason": "पूर्वमुपस्थिता 'which arose before' is valid and metrical."
+ },
+ {
+  "case": 697,
+  "id": "yuddha.6.18",
+  "decision": "keep",
+  "from": "तस्मिन्नेवंविधे",
+  "reason": "एवंविधे 'of this kind' is a valid synonym of एवंगते."
+ },
+ {
+  "case": 698,
+  "id": "yuddha.18.9",
+  "decision": "keep",
+  "from": "यथात्र",
+  "reason": "यथात्र प्रतिभाति 'as it appears to me here' is a valid construction."
+ },
+ {
+  "case": 699,
+  "id": "yuddha.18.30",
+  "decision": "correct",
+  "from": "आनाय",
+  "to": "आदाय",
+  "reason": "आनाय is only a noun ('net'), not the gerund needed with सुकृतं ... गच्छेत्; the sense 'taking his merit' requires आदाय, as both sources read."
+ },
+ {
+  "case": 700,
+  "id": "yuddha.22.55",
+  "decision": "keep",
+  "from": "पादपांस्तत्र",
+  "reason": "पादपान् 'trees' is a valid object of बभञ्जुः."
+ },
+ {
+  "case": 701,
+  "id": "yuddha.27.16",
+  "decision": "keep",
+  "from": "बलसंयुक्तो",
+  "reason": "बलसंयुक्तः is a valid synonym of बलसम्पन्नः."
+ },
+ {
+  "case": 702,
+  "id": "yuddha.28.17",
+  "decision": "keep",
+  "from": "मथितुमोजसा",
+  "reason": "मथितुम् 'to crush' is a valid synonym of मर्दितुम्."
+ },
+ {
+  "case": 703,
+  "id": "yuddha.36.20",
+  "decision": "correct",
+  "from": "अस्थापयद गल्मेबहभिः",
+  "to": "अस्थापयद् गुल्मे बहुभिः",
+  "reason": "अस्थापयद गल्मेबहभिः drops the virāma and two ु signs (17 syllables, non-words); गुल्मे बहुभिः restores grammar, sense and the 16-syllable metre as the sources read."
+ },
+ {
+  "case": 704,
+  "id": "yuddha.38.19",
+  "decision": "keep",
+  "from": "समतिवर्तत",
+  "reason": "समतिवर्तत, an augmentless imperfect of सम्-अति-वृत् 'passed on', is an accepted epic form."
+ },
+ {
+  "case": 705,
+  "id": "yuddha.41.11",
+  "decision": "keep",
+  "from": "तिष्ठाम",
+  "reason": "तिष्ठाम, imperative 1st plural 'let us stand', is valid beside optative तिष्ठेम."
+ },
+ {
+  "case": 706,
+  "id": "yuddha.41.14",
+  "decision": "keep",
+  "from": "परुषस्वराः",
+  "reason": "परुषस्वराः 'harsh-voiced' is a valid synonym of परुषस्वनाः."
+ },
+ {
+  "case": 707,
+  "id": "yuddha.51.28",
+  "decision": "keep",
+  "from": "कनकभूषितैः",
+  "reason": "कनकभूषितैः 'adorned with gold' is a valid synonym of कनकभूषणैः."
+ },
+ {
+  "case": 708,
+  "id": "yuddha.53.10",
+  "decision": "keep",
+  "from": "महोत्कटाः",
+  "reason": "महोत्कटाः 'very fierce' is a valid epithet of the elephants."
+ },
+ {
+  "case": 709,
+  "id": "yuddha.56.33",
+  "decision": "keep",
+  "from": "प्रस्रवद्भिर्विदुद्रुवुः",
+  "reason": "प्रस्रवद्भिर्विदुद्रुवुः 'fled with streaming limbs' is valid and metrical (8 syllables)."
+ },
+ {
+  "case": 710,
+  "id": "yuddha.56.37",
+  "decision": "keep",
+  "from": "चकृषुश्च",
+  "reason": "चकृषुः is the regular perfect 3rd plural of कृष्, valid beside चकर्षुः."
+ },
+ {
+  "case": 711,
+  "id": "yuddha.58.14",
+  "decision": "keep",
+  "from": "शूरैः",
+  "reason": "शूरैः 'by heroic rākṣasas' is valid and makes sense."
+ },
+ {
+  "case": 712,
+  "id": "yuddha.58.42",
+  "decision": "keep",
+  "from": "शरवर्षान्",
+  "reason": "वर्ष is masculine or neuter, so शरवर्षान् is a valid plural."
+ },
+ {
+  "case": 713,
+  "id": "yuddha.59.91",
+  "decision": "keep",
+  "from": "प्राणैर्वियुज्यत",
+  "reason": "वियुज्यत, an augmentless imperfect passive, is an accepted epic form for व्ययुज्यत."
+ },
+ {
+  "case": 714,
+  "id": "yuddha.60.16",
+  "decision": "keep",
+  "from": "कामोपहतचेतनः",
+  "reason": "कामोपहतचेतनः 'mind overcome by desire' is a valid compound that makes sense."
+ },
+ {
+  "case": 715,
+  "id": "yuddha.63.12",
+  "decision": "keep",
+  "from": "निषेवेतात्मवाँल्लोके",
+  "reason": "आत्मवाँल्लोके is the regular sandhi of आत्मवान् लोके, as Gita Press prints it."
+ },
+ {
+  "case": 716,
+  "id": "yuddha.65.28",
+  "decision": "keep",
+  "from": "काञ्चनाङ्गदकेयूरनिष्काभरणभूषितः",
+  "reason": "काञ्चनाङ्गदकेयूरनिष्काभरणभूषितः as one compound is valid and metrical."
+ },
+ {
+  "case": 717,
+  "id": "yuddha.67.60",
+  "decision": "keep",
+  "from": "विभिन्नं",
+  "reason": "विभिन्नं 'shattered' is a valid synonym of विकीर्णं."
+ },
+ {
+  "case": 718,
+  "id": "yuddha.67.136",
+  "decision": "keep",
+  "from": "परमदुर्जयैः",
+  "reason": "परमदुर्जयैः agrees validly with वानरगणैः."
+ },
+ {
+  "case": 719,
+  "id": "yuddha.68.12",
+  "decision": "keep",
+  "from": "सुरासुरात्",
+  "reason": "सुरासुरात् is a correct ablative (collective singular) with बिभेमि."
+ },
+ {
+  "case": 720,
+  "id": "yuddha.71.24",
+  "decision": "keep",
+  "from": "परिपूर्णो",
+  "reason": "परिपूर्णो निशाकरः is valid and metrical (8 syllables)."
+ },
+ {
+  "case": 721,
+  "id": "yuddha.71.51",
+  "decision": "keep",
+  "from": "कालसंकाशं",
+  "reason": "कालसंकाशं is a valid synonym of कालसदृशं."
+ },
+ {
+  "case": 722,
+  "id": "yuddha.71.106",
+  "decision": "keep",
+  "from": "सपुङ्खं",
+  "reason": "सपुङ्खं 'with its feathered shaft' is a valid word."
+ },
+ {
+  "case": 723,
+  "id": "yuddha.74.15",
+  "decision": "keep",
+  "from": "समभिसंक्रम्य",
+  "reason": "समभिसंक्रम्य 'approaching' is a valid compound verb form and metrical."
+ },
+ {
+  "case": 724,
+  "id": "yuddha.77.8",
+  "decision": "keep",
+  "from": "सतारागणनक्षत्रं",
+  "reason": "सतारागणनक्षत्रं 'with the hosts of stars' is valid."
+ },
+ {
+  "case": 725,
+  "id": "yuddha.80.5",
+  "decision": "keep",
+  "from": "जुहुवेन्द्रजित्",
+  "reason": "जुहुवे is the regular perfect of हु, valid."
+ },
+ {
+  "case": 726,
+  "id": "yuddha.82.1",
+  "decision": "keep",
+  "from": "वीक्ष्यमाणा",
+  "reason": "वीक्ष्यमाणा is valid and is Gita Press's own usage (cf. वीक्ष्यमाणाम् at 5.58.67)."
+ },
+ {
+  "case": 727,
+  "id": "yuddha.83.36",
+  "decision": "keep",
+  "from": "गुणाधिकः",
+  "reason": "गुणाधिकः 'excelling in virtues' is valid and metrical."
+ },
+ {
+  "case": 728,
+  "id": "yuddha.83.38",
+  "decision": "correct",
+  "from": "विचिन्विता",
+  "to": "विचिन्वता",
+  "reason": "विचिन्विता is no form; the instrumental of the participle विचिन्वत् (agreeing with अधनेन) is विचिन्वता, an extra ि sign."
+ },
+ {
+  "case": 729,
+  "id": "yuddha.84.20",
+  "decision": "keep",
+  "from": "पतत्त्रिण",
+  "reason": "पतत्त्रिण is Gita Press's usual spelling of पतत्रिन् (as at 1.14.34, 2.105.6)."
+ },
+ {
+  "case": 730,
+  "id": "yuddha.85.14",
+  "decision": "keep",
+  "from": "निकुम्भिलामसम्प्राप्तमकृताग्निं",
+  "reason": "अकृताग्निम् 'not having performed the fire-rite' is a valid synonym of अहुताग्निम्."
+ },
+ {
+  "case": 731,
+  "id": "yuddha.86.21",
+  "decision": "keep",
+  "from": "पट्टिशायुधाः",
+  "reason": "पट्टिश is a valid form of the weapon name beside पट्टस."
+ },
+ {
+  "case": 732,
+  "id": "yuddha.88.4",
+  "decision": "keep",
+  "from": "रावणस्यात्मजो",
+  "reason": "रावणस्यात्मजः (Indrajit) as subject is valid and makes sense."
+ },
+ {
+  "case": 733,
+  "id": "yuddha.90.27",
+  "decision": "keep",
+  "from": "रथसत्तमः",
+  "reason": "रथसत्तमः 'best of chariot-warriors' is valid and fits रथिनः."
+ },
+ {
+  "case": 734,
+  "id": "yuddha.90.56",
+  "decision": "correct",
+  "from": "तद्विहितं",
+  "to": "तद्विहतं",
+  "reason": "विहितं 'arranged' gives no sense; the Vāruṇa weapon was struck down, विहतं, an extra ि sign as the sources show."
+ },
+ {
+  "case": 735,
+  "id": "yuddha.92.24",
+  "decision": "keep",
+  "from": "मथ्नतो",
+  "reason": "मथ्नतः 'churning' is a valid participle and makes sense of the machine worked by dānavas."
+ },
+ {
+  "case": 736,
+  "id": "yuddha.94.34",
+  "decision": "keep",
+  "from": "प्रतोषितः",
+  "reason": "प्रतोषितः 'propitiated' is a valid synonym of प्रसादितः."
+ },
+ {
+  "case": 737,
+  "id": "yuddha.96.9",
+  "decision": "keep",
+  "from": "पोथयन्",
+  "reason": "पोथयन् 'crushing' is a valid word and fits."
+ },
+ {
+  "case": 738,
+  "id": "yuddha.98.14",
+  "decision": "keep",
+  "from": "वेगवत्",
+  "reason": "वेगवत् as an adverb 'swiftly' is valid."
+ },
+ {
+  "case": 739,
+  "id": "yuddha.111.89",
+  "decision": "keep",
+  "from": "रुदत्यो",
+  "reason": "रुदत्यः is the correct feminine plural of रुदत् (रुद् is of the second class, no nasal)."
+ },
+ {
+  "case": 740,
+  "id": "yuddha.111.91",
+  "decision": "keep",
+  "from": "स्नपयन्ती",
+  "reason": "स्नपयन्ती is a valid causative form of स्ना beside स्नापयन्ती."
+ },
+ {
+  "case": 741,
+  "id": "yuddha.113.51",
+  "decision": "keep",
+  "from": "पूर्णचन्द्रमुखं",
+  "reason": "पूर्णचन्द्रमुखं is a valid synonym of पूर्णचन्द्राननं."
+ },
+ {
+  "case": 742,
+  "id": "yuddha.114.27",
+  "decision": "keep",
+  "from": "प्राकारस्तिरस्क्रिया",
+  "reason": "प्राकारः singular is a valid reading."
+ },
+ {
+  "case": 743,
+  "id": "yuddha.117.6",
+  "decision": "keep",
+  "from": "ज्ञानविदां",
+  "reason": "ज्ञानविदां is a valid synonym of ज्ञानवतां."
+ },
+ {
+  "case": 744,
+  "id": "yuddha.119.32",
+  "decision": "keep",
+  "from": "ब्रह्मसम्मितम्",
+  "reason": "ब्रह्मसम्मितम् 'equal to Brahman' is valid and makes sense."
+ },
+ {
+  "case": 745,
+  "id": "yuddha.128.122",
+  "decision": "keep",
+  "from": "तृप्यन्ति",
+  "reason": "तृप्यन्ति 'are satisfied' is a valid synonym of तुष्यन्ति."
+ },
+ {
+  "case": 746,
+  "id": "uttara.5.27",
+  "decision": "keep",
+  "from": "अमरावतीं",
+  "reason": "A nine-syllable pāda with the name अमरावतीं is a known epic licence."
+ },
+ {
+  "case": 747,
+  "id": "uttara.6.35",
+  "decision": "keep",
+  "from": "यमलार्जुनौ",
+  "reason": "A nine-syllable pāda carrying the names यमलार्जुनौ is a known epic licence."
+ },
+ {
+  "case": 748,
+  "id": "uttara.21.14",
+  "decision": "keep",
+  "from": "संतार्यमाणान्",
+  "reason": "A nine-syllable pāda with संतार्यमाणान् is a known epic licence; the words are sound."
+ },
+ {
+  "case": 749,
+  "id": "uttara.49.19",
+  "decision": "keep",
+  "from": "अभिवादयामस्त्वां",
+  "reason": "A nine-syllable pāda with अभिवादयामः is a known epic licence."
+ },
+ {
+  "case": 750,
+  "id": "uttara.63.24",
+  "decision": "keep",
+  "from": "इति राम निवेदितं तु ते भयजं कारणमुत्थितं च यत्",
+  "reason": "The verse is in a closing aupacchandasika-type metre, not anuṣṭubh, so the count is regular."
+ },
+ {
+  "case": 751,
+  "id": "uttara.63.24",
+  "decision": "keep",
+  "from": "विनिवारयितुं भवान् क्षमः कुरु तं काममहीनविक्रम",
+  "reason": "The verse is in a closing aupacchandasika-type metre, not anuṣṭubh, so the count is regular."
+ },
+ {
+  "case": 752,
+  "id": "uttara.94.6",
+  "decision": "keep",
+  "from": "परिवेषणं",
+  "reason": "A nine-syllable pāda with परिवेषणं is a known epic licence."
+ },
+ {
+  "case": 753,
+  "id": "uttara.97.17",
+  "decision": "keep",
+  "from": "इति सम्प्रविचार्य राजसिंहः श्वोभूते शपथस्य निश्चयम्",
+  "reason": "The verse is in a closing aupacchandasika-type metre, not anuṣṭubh; the words are sound."
+ },
+ {
+  "case": 754,
+  "id": "uttara.113.11",
+  "decision": "keep",
+  "from": "प्रचेतसः",
+  "reason": "A nine-syllable pāda with प्रचेतसः is a known epic licence."
+ }
+]

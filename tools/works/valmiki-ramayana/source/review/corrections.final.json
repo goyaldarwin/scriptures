@@ -1,0 +1,471 @@
+[
+ {
+  "id": "bala.2.10",
+  "from": "पुमासं",
+  "to": "पुमांसं",
+  "reason": "पुमासं is not a form; the accusative of पुंस् is पुमांसम्, with the anusvāra dropped in print.",
+  "check": "पुमासं is no form of पुंस्; the accusative is पुमांसम्, so the anusvāra was dropped."
+ },
+ {
+  "id": "bala.3.26",
+  "from": "अङ्गलीयकदानं",
+  "to": "अङ्गुलीयकदानं",
+  "reason": "अङ्गलीयक is not a word; the ु of अङ्गुलीयक (ring), which Gita Press prints elsewhere, was dropped.",
+  "check": "अङ्गलीयक is no word; the ring is अङ्गुलीयक and the ु sign is missing in print."
+ },
+ {
+  "id": "bala.5.8",
+  "from": "मुक्तपुष्पावकीेर्णेन",
+  "to": "मुक्तपुष्पावकीर्णेन",
+  "reason": "The stray े on की is an extra sign that makes a non-word.",
+  "check": "The print has the correct मुक्तपुष्पावकीर्णेन (ी on क, reph and े on र्णे); the stray े exists only in our text layer."
+ },
+ {
+  "id": "bala.6.25",
+  "from": "भद्रैर्मद्रैर्मृगैश्चैव",
+  "to": "भद्रैर्मन्द्रैर्मृगैश्चैव",
+  "reason": "The verse lists the three classes of elephants (भद्र, मन्द्र, मृग) and their mixtures, so मद्रैः is a slip for मन्द्रैः.",
+  "check": "The verse names the elephant classes भद्र, मन्द्र, मृग and their mixtures (भद्रमन्द्र… in the same verse), so मद्रैः lacks the न्."
+ },
+ {
+  "id": "bala.15.15",
+  "from": "एतच्छ्रत्वा",
+  "to": "एतच्छ्रुत्वा",
+  "reason": "The ु of श्रुत्वा was dropped, giving a non-word.",
+  "check": "The print has छ्र without ु, which gives the non-word एतच्छ्रत्वा for एतच्छ्रुत्वा."
+ },
+ {
+  "id": "bala.18.54",
+  "from": "राजार्षिशब्देन",
+  "to": "राजर्षिशब्देन",
+  "reason": "राजार्षि is not a word; the compound is राजर्षि.",
+  "check": "राजन् + ऋषि gives राजर्षि; राजार्षि is not a word."
+ },
+ {
+  "id": "bala.26.2",
+  "from": "कौसिकस्येति",
+  "to": "कौशिकस्येति",
+  "reason": "Gita Press spells Viśvāmitra's name कौशिक everywhere else, so स is a slip.",
+  "check": "Viśvāmitra's patronymic is कौशिक, spelt so everywhere else in the book; कौसिक occurs only here."
+ },
+ {
+  "id": "bala.26.33",
+  "from": "ववनमब्रवीत्",
+  "to": "वचनमब्रवीत्",
+  "reason": "ववनम् is not a word; the formula is इदं वचनमब्रवीत्.",
+  "check": "ववनम् is no word; the formula is इदं वचनमब्रवीत्."
+ },
+ {
+  "id": "bala.28.6",
+  "from": "नैरास्यविमलावुभौ",
+  "to": "नैराश्यविमलावुभौ",
+  "reason": "The word is नैराश्य, which is Gita Press's spelling everywhere else; नैरास्य is a misspelling.",
+  "check": "The weapon's name is from नैराश्य (MW), which the book spells with श everywhere else; नैरास्य is a misspelling."
+ },
+ {
+  "id": "bala.30.4",
+  "from": "रक्षतां",
+  "to": "रक्षतं",
+  "reason": "With युवाम्, a second-person dual imperative (रक्षतम्) is required; रक्षताम् is third person.",
+  "check": "With vocative राघवौ and युवाम् the verb must be second-person dual रक्षतम्; रक्षताम् is third person."
+ },
+ {
+  "id": "bala.39.26",
+  "from": "यज्ञहनोऽस्माकमनेनाश्वोऽपनीयते",
+  "to": "यज्ञहरोऽस्माकमनेनाश्वोऽपनीयते",
+  "reason": "अयं needs a nominative noun, and यज्ञहनः (genitive/ablative of यज्ञहन्) does not fit; यज्ञहरः 'stealer of our sacrifice' matches the horse being carried off.",
+  "check": "यज्ञहनः (genitive or plural of यज्ञहन्) cannot stand as predicate of अयं; यज्ञहरः \"stealer of our sacrifice\" fits, and र/न is a one-letter slip."
+ },
+ {
+  "id": "bala.41.16",
+  "from": "सुपर्णमनिलोपम्",
+  "to": "सुपर्णमनिलोपमम्",
+  "reason": "The pāda has only 7 syllables and अनिलोपम् is not a form; the accusative is अनिलोपमम्.",
+  "check": "The pāda सुपर्णमनिलोपम् has only 7 syllables and अनिलोपम् is no form; the accusative is अनिलोपमम्."
+ },
+ {
+  "id": "bala.43.37",
+  "from": "जह्रुं",
+  "to": "जह्नुं",
+  "reason": "The sage is जह्नु, as Gita Press prints in the same sarga (verses 35 and 38), so र is a slip for न.",
+  "check": "The print's ligature is the same ह्रु glyph as in व्याजह्रुः (3.52.34), but the sage is जह्नु, as the book prints in verses 35 and 38 of this sarga."
+ },
+ {
+  "id": "bala.55.9",
+  "from": "भग्नद्रंष्ट्र",
+  "to": "भग्नदंष्ट्र",
+  "reason": "द्रंष्ट्र is not a word; the stray ् र makes it a misspelling of दंष्ट्रा (fang).",
+  "check": "द्रंष्ट्र is no word; the fang is दंष्ट्रा, so the र stroke under द is extra."
+ },
+ {
+  "id": "bala.73.40",
+  "from": "अथोपकार्यं",
+  "to": "अथोपकार्यां",
+  "reason": "The noun 'royal tent' is the feminine उपकार्या (as Gita Press prints elsewhere), so the accusative is उपकार्याम्; the dropped ा gives a non-noun.",
+  "check": "The royal tent is the feminine उपकार्या (MW; the book has उपकार्याः at 1.13.9 and in the Uttara), so the accusative is उपकार्याम्."
+ },
+ {
+  "id": "bala.76.11",
+  "from": "जामदग्नयोऽसौ",
+  "to": "जामदग्न्योऽसौ",
+  "reason": "जामदग्नय is not a word and gives the pāda 9 syllables; the patronymic is जामदग्न्यः.",
+  "check": "जामदग्नय is no word and makes the pāda 9 syllables; the patronymic is जामदग्न्यः."
+ },
+ {
+  "id": "bala.77.14",
+  "from": "सदिता",
+  "to": "सहिता",
+  "reason": "सदिता is not a word; the sense is भर्तृभिः सहिताः 'together with their husbands'.",
+  "check": "सदिता is no word; the sense is भर्तृभिः सहिताः \"together with their husbands\", so द is a slip for ह."
+ },
+ {
+  "id": "ayodhya.4.31",
+  "from": "चानयिता",
+  "to": "चानायिता",
+  "reason": "The sense 'Sītā had been brought' needs the causative participle आनायिता; आनयिता is an agent noun and does not fit.",
+  "check": "Sītā \"had been brought\" needs the causative participle आनायिता; the agent noun आनयिता gives no sense."
+ },
+ {
+  "id": "ayodhya.9.2",
+  "from": "यौवराज्ये भरतं",
+  "to": "यौवराज्ये च भरतं",
+  "reason": "The pāda यौवराज्ये भरतं has only 7 syllables; the च that both other editions have restores the metre.",
+  "check": "यौवराज्ये भरतं has only 7 syllables; the च of the other editions restores the 8-syllable pāda."
+ },
+ {
+  "id": "ayodhya.9.23",
+  "from": "प्रत्युदीक्षेया",
+  "to": "प्रत्युदीक्षेथा",
+  "reason": "With मा स्म, the second-person optative middle is प्रत्युदीक्षेथाः (written -था before म); प्रत्युदीक्षेया is not a form.",
+  "check": "प्रत्युदीक्षेया is no form; with मा स्म the second-person optative middle is प्रत्युदीक्षेथाः, written -था before मा."
+ },
+ {
+  "id": "ayodhya.9.63",
+  "from": "गताभितो",
+  "to": "गतामितो",
+  "reason": "मां … गताम् इतः 'me gone hence to Yama's realm' needs the accusative गताम्; the nominative गता does not agree with मां, so भ is a slip for म.",
+  "check": "Kaikeyī speaks of herself as मां … गताम् इतः \"me gone hence\"; the nominative गता cannot agree with मां, so भ is a slip for म."
+ },
+ {
+  "id": "ayodhya.24.20",
+  "from": "पितरपेक्षया",
+  "to": "पितुरपेक्षया",
+  "reason": "पितरपेक्षया is not a possible form; the compound needs the genitive पितुः, a dropped ु sign.",
+  "check": "पितरपेक्षया is no possible form; the genitive पितुः keeps the 8 syllables of the pāda and gives \"out of regard for your father\"."
+ },
+ {
+  "id": "ayodhya.30.10",
+  "from": "प्रस्थितुमर्हसि",
+  "to": "प्रस्थातुमर्हसि",
+  "reason": "प्रस्थितुम् is not a possible infinitive of स्था; the correct form is प्रस्थातुम्.",
+  "check": "The infinitive of प्र-√स्था is प्रस्थातुम्; प्रस्थितुम् is impossible."
+ },
+ {
+  "id": "ayodhya.43.16",
+  "from": "चामरप्रभाः",
+  "to": "चामरप्रभः",
+  "reason": "चामरप्रभाः is plural against the singular subject; the bahuvrīhi must be चामरप्रभः, an extra ा.",
+  "check": "The subject (Rāma, धर्मात्मा) is singular, so वयसा च अमरप्रभः → चामरप्रभः; the plural ending is an extra ा."
+ },
+ {
+  "id": "ayodhya.48.25",
+  "from": "सर्वमनालम्भमनायकम्",
+  "to": "सर्वमनालम्बमनायकम्",
+  "reason": "आलम्भ means 'seizing, killing', not 'support'; the sense 'without support' needs अनालम्बम्, a ब/भ slip.",
+  "check": "अनालम्भ is no word (आलम्भ is \"seizing, killing\"); \"without support\" is अनालम्ब (MW), a ब/भ slip."
+ },
+ {
+  "id": "ayodhya.52.86",
+  "from": "समक्षसे",
+  "to": "समीक्षसे",
+  "reason": "समक्षसे is not a verb form; a dropped ी, the verb is samīkṣase 'you look upon (Brahmaloka)'.",
+  "check": "समक्षसे is no verb form; the ी of समीक्षसे is missing."
+ },
+ {
+  "id": "ayodhya.56.1",
+  "from": "व्यातीतायामवसुप्तमनन्तरम्",
+  "to": "व्यतीतायामवसुप्तमनन्तरम्",
+  "reason": "vi+atīta gives vyatīta; व्यातीता is an impossible form with an extra ा.",
+  "check": "वि + अतीत gives व्यतीत; व्यातीता has an extra ा and is no form."
+ },
+ {
+  "id": "ayodhya.58.33",
+  "from": "प्रव्रज्य",
+  "to": "प्रव्राज्य",
+  "reason": "With the object रामं the sense 'having banished Rāma' needs the causative absolutive pravrājya, as Gita Press itself prints 'रामं प्रव्राज्य' at 2.79.2; intransitive pravrajya cannot take रामं.",
+  "check": "With object रामं the sense \"having banished Rāma\" needs the causative absolutive प्रव्राज्य, which the book prints in the same phrase at 2.79.2; प्रव्रज्य \"having gone forth\" cannot take an object."
+ },
+ {
+  "id": "ayodhya.65.20",
+  "from": "करेणेव इवारण्ये",
+  "to": "करेणव इवारण्ये",
+  "reason": "Followed by इव, the word must be the plural noun kareṇavaḥ (करेणव इव 'like she-elephants'); करेणेव would double the इव and is a slip of an extra े.",
+  "check": "Before इव the noun must be करेणवः → करेणव इव \"like she-elephants\"; करेणेव would double the इव."
+ },
+ {
+  "id": "ayodhya.69.14",
+  "from": "निषष्ण्णं",
+  "to": "निषण्णं",
+  "reason": "निषष्ण्णं is a non-word with a doubled ष्; the participle is niṣaṇṇa.",
+  "check": "The print really has निषष्ण्णं, with a doubled ष; the participle is निषण्ण."
+ },
+ {
+  "id": "ayodhya.73.3",
+  "from": "क्षारमिवाददाः",
+  "to": "क्षारमिवादधाः",
+  "reason": "Putting salt on a wound needs ā-dhā (ādadhāḥ 'you placed'); ā-dā means 'take', so द for ध is a slip.",
+  "check": "Rubbing salt into a wound is आ-√धा \"put\" (आदधाः); आददाः \"you took\" gives the wrong sense, a द/ध slip."
+ },
+ {
+  "id": "ayodhya.91.75",
+  "from": "समुद्रेष्ववतिष्ठतः",
+  "to": "समुद्गेष्ववतिष्ठतः",
+  "reason": "Sandal pastes kept 'in oceans' (samudra) makes no sense; the sense requires samudga 'caskets', as both sources read, so र is a typesetting slip for ग.",
+  "check": "Pastes are kept in caskets (समुद्ग), not oceans; र is a slip for ग."
+ },
+ {
+  "id": "ayodhya.104.23",
+  "from": "वाक्यमब्रतीत्",
+  "to": "वाक्यमब्रवीत्",
+  "reason": "अब्रतीत् is a non-word; the verb is अब्रवीत्, with त printed for व.",
+  "check": "अब्रतीत् is no word; the verb is अब्रवीत्."
+ },
+ {
+  "id": "ayodhya.107.9",
+  "from": "क्षिप्रमेवाभिषिञ्चनात्",
+  "to": "क्षिप्रमेवाभिषेचनात्",
+  "reason": "अभिषिञ्चन is not a Sanskrit noun (MW and Apte have no such headword); the noun is अभिषेचन, which Gita Press itself prints in the same phrase at Ayodhyā 4.15.",
+  "check": "अभिषिञ्चन is no noun (not in MW or Apte); the noun is अभिषेचन, and the edition's translation reads \"by getting yourself consecrated\"."
+ },
+ {
+  "id": "ayodhya.118.15",
+  "from": "चास्म्युचितां",
+  "to": "चास्म्युचितं",
+  "reason": "The feminine accusative उचितां has nothing to agree with; the sense 'what fitting and dear thing shall I do' (उचितं … प्रियं च किम्) needs neuter उचितं, as the other sources read.",
+  "check": "The feminine accusative उचिताम् agrees with nothing; \"what fitting and dear thing shall I do\" needs neuter उचितम् with प्रियं … किम्."
+ },
+ {
+  "id": "aranya.9.32",
+  "from": "त्रैलोक्यामपि",
+  "to": "त्रैलोक्यमपि",
+  "reason": "त्रैलोक्य is neuter only, so the accusative is त्रैलोक्यम्; त्रैलोक्याम् is an impossible form with an extra ा.",
+  "check": "त्रैलोक्य is neuter, so the accusative is त्रैलोक्यम्; त्रैलोक्याम् has an extra ा."
+ },
+ {
+  "id": "aranya.41.12",
+  "from": "भुज्यन्ते",
+  "to": "भज्यन्ते",
+  "reason": "The simile of chariots wrecked on rough ground requires भज्यन्ते 'are broken' (√भञ्ज्); भुज्यन्ते 'are eaten/enjoyed' gives no sense and is a one-vowel slip.",
+  "check": "Chariots on rough ground and ministers who share the king's fate \"are broken\", भज्यन्ते (√भञ्ज्); भुज्यन्ते gives no sense."
+ },
+ {
+  "id": "aranya.52.30",
+  "from": "प्रशोभयत",
+  "to": "प्राशोभयत",
+  "reason": "The imperfect of प्र-√शुभ् causative needs the augment (प्र+अ = प्रा), and Gita Press has no augmentless form of this verb elsewhere; the ा is dropped.",
+  "check": "The imperfect of प्र + causative √शुभ् needs the augment, प्राशोभयत, and the edition translates \"adorned\"; a dropped ा."
+ },
+ {
+  "id": "aranya.52.34",
+  "from": "उत्पातवाताभिरता",
+  "to": "उत्पातवाताभिहता",
+  "reason": "Trees 'struck' (अभिहता) by portent-winds is the sense; अभिरता 'delighting in' makes no sense here and is a र/ह slip.",
+  "check": "The trees are \"struck\" by portent-winds, अभिहताः; अभिरताः \"delighting in\" gives no sense, a र/ह slip."
+ },
+ {
+  "id": "aranya.54.28",
+  "from": "युस्माकं",
+  "to": "युष्माकं",
+  "reason": "युस्माकं is a non-word; the pronoun is युष्माकम् with retroflex ष.",
+  "check": "The pronoun is युष्माकम्, with retroflex ष; युस्माकं is a non-word."
+ },
+ {
+  "id": "aranya.55.1",
+  "from": "कृत्कृत्यममन्यत",
+  "to": "कृतकृत्यममन्यत",
+  "reason": "कृत्कृत्य is a non-word and leaves the half-verse at 15 syllables; कृतकृत्य mends both.",
+  "check": "कृत्कृत्य is no word and leaves the pāda at 7 syllables; कृतकृत्य mends both."
+ },
+ {
+  "id": "aranya.64.8",
+  "from": "नाभिपातः",
+  "to": "नाभिभातः",
+  "reason": "The two breasts are the subject, so the verb must be dual न अभिभातः 'do not shine'; नाभिपातः gives a singular noun with no construction, a भ/प slip.",
+  "check": "The two breasts are the subject, so the verb is the dual न अभिभातः \"do not shine\" (11 syllables kept); नाभिपातः has no construction, a भ/प slip."
+ },
+ {
+  "id": "aranya.69.27",
+  "from": "दिधक्ष्यामि",
+  "to": "दिधक्षामि",
+  "reason": "दिधक्ष्यामि is no valid form (the desiderative future would be दिधक्षिष्यामि); the present desiderative दिधक्षामि 'I wish to burn' is the intended word, with an intrusive य्.",
+  "check": "दिधक्ष्यामि is no form (desiderative future would be दिधक्षिष्यामि, the plain future धक्ष्यामि); the present desiderative दिधक्षामि keeps the 8 syllables and the sense \"I wish to burn\"."
+ },
+ {
+  "id": "aranya.70.5",
+  "from": "त्रिकोशं",
+  "to": "त्रिक्रोशं",
+  "reason": "The distance measure is क्रोश; कोश has no such sense in MW and Gita Press has त्रिकोश nowhere else, so the र is dropped.",
+  "check": "The distance is the क्रोश (the edition's translation: \"a distance of two leagues\"); कोश has no such sense, so the र is dropped."
+ },
+ {
+  "id": "aranya.70.14",
+  "from": "समालम्भत",
+  "to": "समालम्बत",
+  "reason": "The imperfect 'clung to' is from सम्-आ-√लम्ब्; √लभ् takes no nasal in the imperfect, so समालम्भत is a भ/ब slip.",
+  "check": "√लभ् takes no nasal in the imperfect, so समालम्भत is no form; \"she clung to Lakṣmaṇa\" is सम्-आ-√लम्ब्, समालम्बत."
+ },
+ {
+  "id": "aranya.71.8",
+  "from": "अच्छिन्दन्तां",
+  "to": "अच्छिन्दतां",
+  "reason": "The dual imperfect of √छिद् is अच्छिन्दताम्; अच्छिन्दन्तां is an impossible form with an extra nasal.",
+  "check": "अच्छिन्दन्ताम् is no dual form; the epic thematic dual imperfect is अच्छिन्दताम्, with the same 8 syllables."
+ },
+ {
+  "id": "kishkindha.7.16",
+  "from": "सुग्रीवचनात्",
+  "to": "सुग्रीववचनात्",
+  "reason": "सुग्रीवचनात् is a non-word with a dropped व, leaving the half-verse at 15 syllables.",
+  "check": "The print has सुग्रीवचनात् with one व; सुग्रीववचनात् restores the word and the 8-syllable pāda."
+ },
+ {
+  "id": "kishkindha.10.22",
+  "from": "विकान्तं",
+  "to": "विक्रान्तं",
+  "reason": "विकान्तं is a non-word; the र is dropped from विक्रान्त 'valiant'.",
+  "check": "विकान्त is no word; the र of विक्रान्त \"valiant\" is missing."
+ },
+ {
+  "id": "kishkindha.13.28",
+  "from": "जम्मुः",
+  "to": "जग्मुः",
+  "reason": "जम्मुः is a non-word; the perfect of √गम् is जग्मुः.",
+  "check": "जम्मुः is no form; the perfect of √गम् is जग्मुः."
+ },
+ {
+  "id": "kishkindha.20.22",
+  "from": "बाह्व्यो",
+  "to": "बह्व्यो",
+  "reason": "बाह्व्यो is a non-word; the feminine plural of बहु is बह्व्यः.",
+  "check": "बाह्व्यो is no word; the feminine plural of बहु is बह्व्यः, a minimal fix that drops the extra ा."
+ },
+ {
+  "id": "kishkindha.26.21",
+  "from": "वसुधायं",
+  "to": "वसुधायां",
+  "reason": "वसुधायं is an impossible form; the locative 'on the ground' is वसुधायाम्.",
+  "check": "वसुधायं is no form; the locative \"on the ground\" is वसुधायाम्."
+ },
+ {
+  "id": "kishkindha.26.36",
+  "from": "अभ्यषिञ्चत",
+  "to": "अभ्यषिञ्चन्त",
+  "reason": "The verb has the many monkeys named in verse 35 as its subject and must be plural; the singular drops न्.",
+  "check": "The subject is the eight monkeys named in verse 35, so the verb must be plural अभ्यषिञ्चन्त; the singular drops न्."
+ },
+ {
+  "id": "kishkindha.28.39",
+  "from": "दृतं",
+  "to": "द्रुतं",
+  "reason": "The rivers hasten to the ocean, so the adverb is द्रुतम् 'swiftly'; दृतं (only a lexicon word) is the common ृ/्रु slip.",
+  "check": "The rivers hasten to the ocean, द्रुतम् \"swiftly\"; दृत is only a rare lexicon word and gives no sense here, the common ृ/्रु slip."
+ },
+ {
+  "id": "kishkindha.31.5",
+  "from": "स्ववीक्षितं",
+  "to": "स्ववेक्षितं",
+  "reason": "सु+अवेक्षित gives स्ववेक्षितम् 'well-considered'; स्ववीक्षितं is broken sandhi with no sense.",
+  "check": "सु + अवेक्षित gives स्ववेक्षितम् \"well considered\" (the edition's translation: \"well thought out\"); स्ववीक्षितं is broken sandhi."
+ },
+ {
+  "id": "kishkindha.35.1",
+  "from": "ब्रूवाणं",
+  "to": "ब्रुवाणं",
+  "reason": "The participle of √ब्रू is ब्रुवाण with short ु; ब्रूवाणं is an impossible form.",
+  "check": "The participle of √ब्रू is ब्रुवाण with short ु."
+ },
+ {
+  "id": "kishkindha.39.18",
+  "from": "अनेकैर्बहुसास्रैर्वानराणां",
+  "to": "अनेकैर्बहुसाहस्रैर्वानराणां",
+  "reason": "बहुसास्रैः is a non-word with a dropped ह, leaving the half-verse at 15 syllables.",
+  "check": "बहुसास्र is no word and leaves the pāda at 7 syllables; बहुसाहस्रैः restores both."
+ },
+ {
+  "id": "sundara.1.69",
+  "from": "अभिध्नंस्तु",
+  "to": "अभिघ्नंस्तु",
+  "reason": "अभिध्नन् is a non-word; the participle of abhi-√han is अभिघ्नन्, a ध/घ glyph slip.",
+  "check": "अभिध्नन् is no form; the participle of अभि-√हन् is अभिघ्नन् (\"smashing with his breast\"), a ध/घ slip."
+ },
+ {
+  "id": "sundara.1.205",
+  "from": "विलोकयत्",
+  "to": "विलोकयन्",
+  "reason": "The verse depends on ददर्श of verse 204 and needs the participle agreeing with the subject (cf. परिलोकयन् in 203); विलोकयत् is a त/न slip.",
+  "check": "विलोकयत् is neither a participle nor an augmented imperfect; the verse continues ददर्श of verse 204, so विलोकयन् is needed, a त/न slip."
+ },
+ {
+  "id": "sundara.2.25",
+  "from": "दंष्ट्राभिर्बहुभिः",
+  "to": "दंष्ट्रिभिर्बहुभिः",
+  "reason": "Feminine दंष्ट्राभिः cannot agree with masculine बहुभिः शूरैः; the adjective दंष्ट्रिभिः \"fanged\" is required.",
+  "check": "Feminine दंष्ट्राभिः cannot agree with masculine बहुभिः शूरैः राक्षसैः; the edition's translation (\"ogres distinguished by tusks\") needs दंष्ट्रिभिः."
+ },
+ {
+  "id": "sundara.6.6",
+  "from": "दान्तकाञ्चनराजतीः",
+  "to": "दान्तकाञ्चनराजतैः",
+  "reason": "The compound qualifies the instrumental रथैः and must end in -ऐः; the feminine accusative -ईः agrees with nothing.",
+  "check": "The compound qualifies instrumental रथैः like the other adjectives, so it ends in -ऐः; the feminine accusative -ईः agrees with nothing."
+ },
+ {
+  "id": "sundara.9.33",
+  "from": "नानावेषबिभूषितम्",
+  "to": "नानावेषविभूषितम्",
+  "reason": "बिभूषित is a non-word (a ब/व slip); Gita Press prints विभूषित everywhere else (69 times).",
+  "check": "बिभूषित is no word; the book prints विभूषित everywhere else."
+ },
+ {
+  "id": "sundara.9.36",
+  "from": "संवृतदान्तानि",
+  "to": "संवृतदन्तानि",
+  "reason": "दान्त means \"tamed\", not \"teeth\"; the faces have closed teeth (दन्त), so the extra ा is a slip.",
+  "check": "The faces have closed teeth, दन्त (the edition's translation: \"teeth concealed\"); दान्त \"tamed / of ivory\" makes no sense."
+ },
+ {
+  "id": "sundara.10.42",
+  "from": "परिविद्ध्यांगैः",
+  "to": "परिपीड्यांगैः",
+  "reason": "परिविद्ध्य is not a possible absolutive of pari-√vyadh (that is परिविध्य); the sense \"pressing the drum with her limbs\" needs परिपीड्य, as the other sources read.",
+  "check": "परिविद्ध्य is no absolutive (that of परि-√व्यध् is परिविध्य, which also gives no sense with a drum); the edition's translation \"pressing a wooden tomtom to her bosom\" and the other editions need परिपीड्य."
+ },
+ {
+  "id": "yuddha.18.30",
+  "from": "आनाय",
+  "to": "आदाय",
+  "reason": "आनाय is only a noun ('net'), not the gerund needed with सुकृतं ... गच्छेत्; the sense 'taking his merit' requires आदाय, as both sources read.",
+  "check": "आनाय is only a noun (\"net\"); the gerund \"taking away his merit\" is आदाय (the edition's translation: \"takes away all his merit\")."
+ },
+ {
+  "id": "yuddha.36.20",
+  "from": "मध्यमेऽस्थापयद गल्मे बहभिः",
+  "to": "मध्यमेऽस्थापयद् गुल्मे बहुभिः",
+  "reason": "अस्थापयद गल्मेबहभिः drops the virāma and two ु signs (17 syllables, non-words); गुल्मे बहुभिः restores grammar, sense and the 16-syllable metre as the sources read.",
+  "check": "The print shows a space between गल्मे and बहभिः that our text lacks, and the marks below the line are missing or cut off at the page edge; अस्थापयद् गुल्मे बहुभिः restores the words, the sense and the 16 syllables."
+ },
+ {
+  "id": "yuddha.83.38",
+  "from": "विचिन्विता",
+  "to": "विचिन्वता",
+  "reason": "विचिन्विता is no form; the instrumental of the participle विचिन्वत् (agreeing with अधनेन) is विचिन्वता, an extra ि sign.",
+  "check": "विचिन्विता is no form; the instrumental of विचिन्वत् agreeing with अधनेन is विचिन्वता."
+ },
+ {
+  "id": "yuddha.90.56",
+  "from": "तद्विहितं",
+  "to": "तद्विहतं",
+  "reason": "विहितं 'arranged' gives no sense; the Vāruṇa weapon was struck down, विहतं, an extra ि sign as the sources show.",
+  "check": "The Vāruṇa weapon was \"rendered ineffectual\" (the edition's translation), विहतम्; विहितम् \"arranged\" gives no sense."
+ }
+]
