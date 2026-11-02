@@ -60,5 +60,2600 @@
     "en": "Uttara-kāṇḍa"
    }
   ]
+ },
+ "load": "parts",
+ "sections": {
+  "bala.1": {
+   "hi": "सर्ग 1",
+   "en": "Sarga 1"
+  },
+  "bala.2": {
+   "hi": "सर्ग 2",
+   "en": "Sarga 2"
+  },
+  "bala.3": {
+   "hi": "सर्ग 3",
+   "en": "Sarga 3"
+  },
+  "bala.4": {
+   "hi": "सर्ग 4",
+   "en": "Sarga 4"
+  },
+  "bala.5": {
+   "hi": "सर्ग 5",
+   "en": "Sarga 5"
+  },
+  "bala.6": {
+   "hi": "सर्ग 6",
+   "en": "Sarga 6"
+  },
+  "bala.7": {
+   "hi": "सर्ग 7",
+   "en": "Sarga 7"
+  },
+  "bala.8": {
+   "hi": "सर्ग 8",
+   "en": "Sarga 8"
+  },
+  "bala.9": {
+   "hi": "सर्ग 9",
+   "en": "Sarga 9"
+  },
+  "bala.10": {
+   "hi": "सर्ग 10",
+   "en": "Sarga 10"
+  },
+  "bala.11": {
+   "hi": "सर्ग 11",
+   "en": "Sarga 11"
+  },
+  "bala.12": {
+   "hi": "सर्ग 12",
+   "en": "Sarga 12"
+  },
+  "bala.13": {
+   "hi": "सर्ग 13",
+   "en": "Sarga 13"
+  },
+  "bala.14": {
+   "hi": "सर्ग 14",
+   "en": "Sarga 14"
+  },
+  "bala.15": {
+   "hi": "सर्ग 15",
+   "en": "Sarga 15"
+  },
+  "bala.16": {
+   "hi": "सर्ग 16",
+   "en": "Sarga 16"
+  },
+  "bala.17": {
+   "hi": "सर्ग 17",
+   "en": "Sarga 17"
+  },
+  "bala.18": {
+   "hi": "सर्ग 18",
+   "en": "Sarga 18"
+  },
+  "bala.19": {
+   "hi": "सर्ग 19",
+   "en": "Sarga 19"
+  },
+  "bala.20": {
+   "hi": "सर्ग 20",
+   "en": "Sarga 20"
+  },
+  "bala.21": {
+   "hi": "सर्ग 21",
+   "en": "Sarga 21"
+  },
+  "bala.22": {
+   "hi": "सर्ग 22",
+   "en": "Sarga 22"
+  },
+  "bala.23": {
+   "hi": "सर्ग 23",
+   "en": "Sarga 23"
+  },
+  "bala.24": {
+   "hi": "सर्ग 24",
+   "en": "Sarga 24"
+  },
+  "bala.25": {
+   "hi": "सर्ग 25",
+   "en": "Sarga 25"
+  },
+  "bala.26": {
+   "hi": "सर्ग 26",
+   "en": "Sarga 26"
+  },
+  "bala.27": {
+   "hi": "सर्ग 27",
+   "en": "Sarga 27"
+  },
+  "bala.28": {
+   "hi": "सर्ग 28",
+   "en": "Sarga 28"
+  },
+  "bala.29": {
+   "hi": "सर्ग 29",
+   "en": "Sarga 29"
+  },
+  "bala.30": {
+   "hi": "सर्ग 30",
+   "en": "Sarga 30"
+  },
+  "bala.31": {
+   "hi": "सर्ग 31",
+   "en": "Sarga 31"
+  },
+  "bala.32": {
+   "hi": "सर्ग 32",
+   "en": "Sarga 32"
+  },
+  "bala.33": {
+   "hi": "सर्ग 33",
+   "en": "Sarga 33"
+  },
+  "bala.34": {
+   "hi": "सर्ग 34",
+   "en": "Sarga 34"
+  },
+  "bala.35": {
+   "hi": "सर्ग 35",
+   "en": "Sarga 35"
+  },
+  "bala.36": {
+   "hi": "सर्ग 36",
+   "en": "Sarga 36"
+  },
+  "bala.37": {
+   "hi": "सर्ग 37",
+   "en": "Sarga 37"
+  },
+  "bala.38": {
+   "hi": "सर्ग 38",
+   "en": "Sarga 38"
+  },
+  "bala.39": {
+   "hi": "सर्ग 39",
+   "en": "Sarga 39"
+  },
+  "bala.40": {
+   "hi": "सर्ग 40",
+   "en": "Sarga 40"
+  },
+  "bala.41": {
+   "hi": "सर्ग 41",
+   "en": "Sarga 41"
+  },
+  "bala.42": {
+   "hi": "सर्ग 42",
+   "en": "Sarga 42"
+  },
+  "bala.43": {
+   "hi": "सर्ग 43",
+   "en": "Sarga 43"
+  },
+  "bala.44": {
+   "hi": "सर्ग 44",
+   "en": "Sarga 44"
+  },
+  "bala.45": {
+   "hi": "सर्ग 45",
+   "en": "Sarga 45"
+  },
+  "bala.46": {
+   "hi": "सर्ग 46",
+   "en": "Sarga 46"
+  },
+  "bala.47": {
+   "hi": "सर्ग 47",
+   "en": "Sarga 47"
+  },
+  "bala.48": {
+   "hi": "सर्ग 48",
+   "en": "Sarga 48"
+  },
+  "bala.49": {
+   "hi": "सर्ग 49",
+   "en": "Sarga 49"
+  },
+  "bala.50": {
+   "hi": "सर्ग 50",
+   "en": "Sarga 50"
+  },
+  "bala.51": {
+   "hi": "सर्ग 51",
+   "en": "Sarga 51"
+  },
+  "bala.52": {
+   "hi": "सर्ग 52",
+   "en": "Sarga 52"
+  },
+  "bala.53": {
+   "hi": "सर्ग 53",
+   "en": "Sarga 53"
+  },
+  "bala.54": {
+   "hi": "सर्ग 54",
+   "en": "Sarga 54"
+  },
+  "bala.55": {
+   "hi": "सर्ग 55",
+   "en": "Sarga 55"
+  },
+  "bala.56": {
+   "hi": "सर्ग 56",
+   "en": "Sarga 56"
+  },
+  "bala.57": {
+   "hi": "सर्ग 57",
+   "en": "Sarga 57"
+  },
+  "bala.58": {
+   "hi": "सर्ग 58",
+   "en": "Sarga 58"
+  },
+  "bala.59": {
+   "hi": "सर्ग 59",
+   "en": "Sarga 59"
+  },
+  "bala.60": {
+   "hi": "सर्ग 60",
+   "en": "Sarga 60"
+  },
+  "bala.61": {
+   "hi": "सर्ग 61",
+   "en": "Sarga 61"
+  },
+  "bala.62": {
+   "hi": "सर्ग 62",
+   "en": "Sarga 62"
+  },
+  "bala.63": {
+   "hi": "सर्ग 63",
+   "en": "Sarga 63"
+  },
+  "bala.64": {
+   "hi": "सर्ग 64",
+   "en": "Sarga 64"
+  },
+  "bala.65": {
+   "hi": "सर्ग 65",
+   "en": "Sarga 65"
+  },
+  "bala.66": {
+   "hi": "सर्ग 66",
+   "en": "Sarga 66"
+  },
+  "bala.67": {
+   "hi": "सर्ग 67",
+   "en": "Sarga 67"
+  },
+  "bala.68": {
+   "hi": "सर्ग 68",
+   "en": "Sarga 68"
+  },
+  "bala.69": {
+   "hi": "सर्ग 69",
+   "en": "Sarga 69"
+  },
+  "bala.70": {
+   "hi": "सर्ग 70",
+   "en": "Sarga 70"
+  },
+  "bala.71": {
+   "hi": "सर्ग 71",
+   "en": "Sarga 71"
+  },
+  "bala.72": {
+   "hi": "सर्ग 72",
+   "en": "Sarga 72"
+  },
+  "bala.73": {
+   "hi": "सर्ग 73",
+   "en": "Sarga 73"
+  },
+  "bala.74": {
+   "hi": "सर्ग 74",
+   "en": "Sarga 74"
+  },
+  "bala.75": {
+   "hi": "सर्ग 75",
+   "en": "Sarga 75"
+  },
+  "bala.76": {
+   "hi": "सर्ग 76",
+   "en": "Sarga 76"
+  },
+  "bala.77": {
+   "hi": "सर्ग 77",
+   "en": "Sarga 77"
+  },
+  "ayodhya.1": {
+   "hi": "सर्ग 1",
+   "en": "Sarga 1"
+  },
+  "ayodhya.2": {
+   "hi": "सर्ग 2",
+   "en": "Sarga 2"
+  },
+  "ayodhya.3": {
+   "hi": "सर्ग 3",
+   "en": "Sarga 3"
+  },
+  "ayodhya.4": {
+   "hi": "सर्ग 4",
+   "en": "Sarga 4"
+  },
+  "ayodhya.5": {
+   "hi": "सर्ग 5",
+   "en": "Sarga 5"
+  },
+  "ayodhya.6": {
+   "hi": "सर्ग 6",
+   "en": "Sarga 6"
+  },
+  "ayodhya.7": {
+   "hi": "सर्ग 7",
+   "en": "Sarga 7"
+  },
+  "ayodhya.8": {
+   "hi": "सर्ग 8",
+   "en": "Sarga 8"
+  },
+  "ayodhya.9": {
+   "hi": "सर्ग 9",
+   "en": "Sarga 9"
+  },
+  "ayodhya.10": {
+   "hi": "सर्ग 10",
+   "en": "Sarga 10"
+  },
+  "ayodhya.11": {
+   "hi": "सर्ग 11",
+   "en": "Sarga 11"
+  },
+  "ayodhya.12": {
+   "hi": "सर्ग 12",
+   "en": "Sarga 12"
+  },
+  "ayodhya.13": {
+   "hi": "सर्ग 13",
+   "en": "Sarga 13"
+  },
+  "ayodhya.14": {
+   "hi": "सर्ग 14",
+   "en": "Sarga 14"
+  },
+  "ayodhya.15": {
+   "hi": "सर्ग 15",
+   "en": "Sarga 15"
+  },
+  "ayodhya.16": {
+   "hi": "सर्ग 16",
+   "en": "Sarga 16"
+  },
+  "ayodhya.17": {
+   "hi": "सर्ग 17",
+   "en": "Sarga 17"
+  },
+  "ayodhya.18": {
+   "hi": "सर्ग 18",
+   "en": "Sarga 18"
+  },
+  "ayodhya.19": {
+   "hi": "सर्ग 19",
+   "en": "Sarga 19"
+  },
+  "ayodhya.20": {
+   "hi": "सर्ग 20",
+   "en": "Sarga 20"
+  },
+  "ayodhya.21": {
+   "hi": "सर्ग 21",
+   "en": "Sarga 21"
+  },
+  "ayodhya.22": {
+   "hi": "सर्ग 22",
+   "en": "Sarga 22"
+  },
+  "ayodhya.23": {
+   "hi": "सर्ग 23",
+   "en": "Sarga 23"
+  },
+  "ayodhya.24": {
+   "hi": "सर्ग 24",
+   "en": "Sarga 24"
+  },
+  "ayodhya.25": {
+   "hi": "सर्ग 25",
+   "en": "Sarga 25"
+  },
+  "ayodhya.26": {
+   "hi": "सर्ग 26",
+   "en": "Sarga 26"
+  },
+  "ayodhya.27": {
+   "hi": "सर्ग 27",
+   "en": "Sarga 27"
+  },
+  "ayodhya.28": {
+   "hi": "सर्ग 28",
+   "en": "Sarga 28"
+  },
+  "ayodhya.29": {
+   "hi": "सर्ग 29",
+   "en": "Sarga 29"
+  },
+  "ayodhya.30": {
+   "hi": "सर्ग 30",
+   "en": "Sarga 30"
+  },
+  "ayodhya.31": {
+   "hi": "सर्ग 31",
+   "en": "Sarga 31"
+  },
+  "ayodhya.32": {
+   "hi": "सर्ग 32",
+   "en": "Sarga 32"
+  },
+  "ayodhya.33": {
+   "hi": "सर्ग 33",
+   "en": "Sarga 33"
+  },
+  "ayodhya.34": {
+   "hi": "सर्ग 34",
+   "en": "Sarga 34"
+  },
+  "ayodhya.35": {
+   "hi": "सर्ग 35",
+   "en": "Sarga 35"
+  },
+  "ayodhya.36": {
+   "hi": "सर्ग 36",
+   "en": "Sarga 36"
+  },
+  "ayodhya.37": {
+   "hi": "सर्ग 37",
+   "en": "Sarga 37"
+  },
+  "ayodhya.38": {
+   "hi": "सर्ग 38",
+   "en": "Sarga 38"
+  },
+  "ayodhya.39": {
+   "hi": "सर्ग 39",
+   "en": "Sarga 39"
+  },
+  "ayodhya.40": {
+   "hi": "सर्ग 40",
+   "en": "Sarga 40"
+  },
+  "ayodhya.41": {
+   "hi": "सर्ग 41",
+   "en": "Sarga 41"
+  },
+  "ayodhya.42": {
+   "hi": "सर्ग 42",
+   "en": "Sarga 42"
+  },
+  "ayodhya.43": {
+   "hi": "सर्ग 43",
+   "en": "Sarga 43"
+  },
+  "ayodhya.44": {
+   "hi": "सर्ग 44",
+   "en": "Sarga 44"
+  },
+  "ayodhya.45": {
+   "hi": "सर्ग 45",
+   "en": "Sarga 45"
+  },
+  "ayodhya.46": {
+   "hi": "सर्ग 46",
+   "en": "Sarga 46"
+  },
+  "ayodhya.47": {
+   "hi": "सर्ग 47",
+   "en": "Sarga 47"
+  },
+  "ayodhya.48": {
+   "hi": "सर्ग 48",
+   "en": "Sarga 48"
+  },
+  "ayodhya.49": {
+   "hi": "सर्ग 49",
+   "en": "Sarga 49"
+  },
+  "ayodhya.50": {
+   "hi": "सर्ग 50",
+   "en": "Sarga 50"
+  },
+  "ayodhya.51": {
+   "hi": "सर्ग 51",
+   "en": "Sarga 51"
+  },
+  "ayodhya.52": {
+   "hi": "सर्ग 52",
+   "en": "Sarga 52"
+  },
+  "ayodhya.53": {
+   "hi": "सर्ग 53",
+   "en": "Sarga 53"
+  },
+  "ayodhya.54": {
+   "hi": "सर्ग 54",
+   "en": "Sarga 54"
+  },
+  "ayodhya.55": {
+   "hi": "सर्ग 55",
+   "en": "Sarga 55"
+  },
+  "ayodhya.56": {
+   "hi": "सर्ग 56",
+   "en": "Sarga 56"
+  },
+  "ayodhya.57": {
+   "hi": "सर्ग 57",
+   "en": "Sarga 57"
+  },
+  "ayodhya.58": {
+   "hi": "सर्ग 58",
+   "en": "Sarga 58"
+  },
+  "ayodhya.59": {
+   "hi": "सर्ग 59",
+   "en": "Sarga 59"
+  },
+  "ayodhya.60": {
+   "hi": "सर्ग 60",
+   "en": "Sarga 60"
+  },
+  "ayodhya.61": {
+   "hi": "सर्ग 61",
+   "en": "Sarga 61"
+  },
+  "ayodhya.62": {
+   "hi": "सर्ग 62",
+   "en": "Sarga 62"
+  },
+  "ayodhya.63": {
+   "hi": "सर्ग 63",
+   "en": "Sarga 63"
+  },
+  "ayodhya.64": {
+   "hi": "सर्ग 64",
+   "en": "Sarga 64"
+  },
+  "ayodhya.65": {
+   "hi": "सर्ग 65",
+   "en": "Sarga 65"
+  },
+  "ayodhya.66": {
+   "hi": "सर्ग 66",
+   "en": "Sarga 66"
+  },
+  "ayodhya.67": {
+   "hi": "सर्ग 67",
+   "en": "Sarga 67"
+  },
+  "ayodhya.68": {
+   "hi": "सर्ग 68",
+   "en": "Sarga 68"
+  },
+  "ayodhya.69": {
+   "hi": "सर्ग 69",
+   "en": "Sarga 69"
+  },
+  "ayodhya.70": {
+   "hi": "सर्ग 70",
+   "en": "Sarga 70"
+  },
+  "ayodhya.71": {
+   "hi": "सर्ग 71",
+   "en": "Sarga 71"
+  },
+  "ayodhya.72": {
+   "hi": "सर्ग 72",
+   "en": "Sarga 72"
+  },
+  "ayodhya.73": {
+   "hi": "सर्ग 73",
+   "en": "Sarga 73"
+  },
+  "ayodhya.74": {
+   "hi": "सर्ग 74",
+   "en": "Sarga 74"
+  },
+  "ayodhya.75": {
+   "hi": "सर्ग 75",
+   "en": "Sarga 75"
+  },
+  "ayodhya.76": {
+   "hi": "सर्ग 76",
+   "en": "Sarga 76"
+  },
+  "ayodhya.77": {
+   "hi": "सर्ग 77",
+   "en": "Sarga 77"
+  },
+  "ayodhya.78": {
+   "hi": "सर्ग 78",
+   "en": "Sarga 78"
+  },
+  "ayodhya.79": {
+   "hi": "सर्ग 79",
+   "en": "Sarga 79"
+  },
+  "ayodhya.80": {
+   "hi": "सर्ग 80",
+   "en": "Sarga 80"
+  },
+  "ayodhya.81": {
+   "hi": "सर्ग 81",
+   "en": "Sarga 81"
+  },
+  "ayodhya.82": {
+   "hi": "सर्ग 82",
+   "en": "Sarga 82"
+  },
+  "ayodhya.83": {
+   "hi": "सर्ग 83",
+   "en": "Sarga 83"
+  },
+  "ayodhya.84": {
+   "hi": "सर्ग 84",
+   "en": "Sarga 84"
+  },
+  "ayodhya.85": {
+   "hi": "सर्ग 85",
+   "en": "Sarga 85"
+  },
+  "ayodhya.86": {
+   "hi": "सर्ग 86",
+   "en": "Sarga 86"
+  },
+  "ayodhya.87": {
+   "hi": "सर्ग 87",
+   "en": "Sarga 87"
+  },
+  "ayodhya.88": {
+   "hi": "सर्ग 88",
+   "en": "Sarga 88"
+  },
+  "ayodhya.89": {
+   "hi": "सर्ग 89",
+   "en": "Sarga 89"
+  },
+  "ayodhya.90": {
+   "hi": "सर्ग 90",
+   "en": "Sarga 90"
+  },
+  "ayodhya.91": {
+   "hi": "सर्ग 91",
+   "en": "Sarga 91"
+  },
+  "ayodhya.92": {
+   "hi": "सर्ग 92",
+   "en": "Sarga 92"
+  },
+  "ayodhya.93": {
+   "hi": "सर्ग 93",
+   "en": "Sarga 93"
+  },
+  "ayodhya.94": {
+   "hi": "सर्ग 94",
+   "en": "Sarga 94"
+  },
+  "ayodhya.95": {
+   "hi": "सर्ग 95",
+   "en": "Sarga 95"
+  },
+  "ayodhya.96": {
+   "hi": "सर्ग 96",
+   "en": "Sarga 96"
+  },
+  "ayodhya.97": {
+   "hi": "सर्ग 97",
+   "en": "Sarga 97"
+  },
+  "ayodhya.98": {
+   "hi": "सर्ग 98",
+   "en": "Sarga 98"
+  },
+  "ayodhya.99": {
+   "hi": "सर्ग 99",
+   "en": "Sarga 99"
+  },
+  "ayodhya.100": {
+   "hi": "सर्ग 100",
+   "en": "Sarga 100"
+  },
+  "ayodhya.101": {
+   "hi": "सर्ग 101",
+   "en": "Sarga 101"
+  },
+  "ayodhya.102": {
+   "hi": "सर्ग 102",
+   "en": "Sarga 102"
+  },
+  "ayodhya.103": {
+   "hi": "सर्ग 103",
+   "en": "Sarga 103"
+  },
+  "ayodhya.104": {
+   "hi": "सर्ग 104",
+   "en": "Sarga 104"
+  },
+  "ayodhya.105": {
+   "hi": "सर्ग 105",
+   "en": "Sarga 105"
+  },
+  "ayodhya.106": {
+   "hi": "सर्ग 106",
+   "en": "Sarga 106"
+  },
+  "ayodhya.107": {
+   "hi": "सर्ग 107",
+   "en": "Sarga 107"
+  },
+  "ayodhya.108": {
+   "hi": "सर्ग 108",
+   "en": "Sarga 108"
+  },
+  "ayodhya.109": {
+   "hi": "सर्ग 109",
+   "en": "Sarga 109"
+  },
+  "ayodhya.110": {
+   "hi": "सर्ग 110",
+   "en": "Sarga 110"
+  },
+  "ayodhya.111": {
+   "hi": "सर्ग 111",
+   "en": "Sarga 111"
+  },
+  "ayodhya.112": {
+   "hi": "सर्ग 112",
+   "en": "Sarga 112"
+  },
+  "ayodhya.113": {
+   "hi": "सर्ग 113",
+   "en": "Sarga 113"
+  },
+  "ayodhya.114": {
+   "hi": "सर्ग 114",
+   "en": "Sarga 114"
+  },
+  "ayodhya.115": {
+   "hi": "सर्ग 115",
+   "en": "Sarga 115"
+  },
+  "ayodhya.116": {
+   "hi": "सर्ग 116",
+   "en": "Sarga 116"
+  },
+  "ayodhya.117": {
+   "hi": "सर्ग 117",
+   "en": "Sarga 117"
+  },
+  "ayodhya.118": {
+   "hi": "सर्ग 118",
+   "en": "Sarga 118"
+  },
+  "ayodhya.119": {
+   "hi": "सर्ग 119",
+   "en": "Sarga 119"
+  },
+  "aranya.1": {
+   "hi": "सर्ग 1",
+   "en": "Sarga 1"
+  },
+  "aranya.2": {
+   "hi": "सर्ग 2",
+   "en": "Sarga 2"
+  },
+  "aranya.3": {
+   "hi": "सर्ग 3",
+   "en": "Sarga 3"
+  },
+  "aranya.4": {
+   "hi": "सर्ग 4",
+   "en": "Sarga 4"
+  },
+  "aranya.5": {
+   "hi": "सर्ग 5",
+   "en": "Sarga 5"
+  },
+  "aranya.6": {
+   "hi": "सर्ग 6",
+   "en": "Sarga 6"
+  },
+  "aranya.7": {
+   "hi": "सर्ग 7",
+   "en": "Sarga 7"
+  },
+  "aranya.8": {
+   "hi": "सर्ग 8",
+   "en": "Sarga 8"
+  },
+  "aranya.9": {
+   "hi": "सर्ग 9",
+   "en": "Sarga 9"
+  },
+  "aranya.10": {
+   "hi": "सर्ग 10",
+   "en": "Sarga 10"
+  },
+  "aranya.11": {
+   "hi": "सर्ग 11",
+   "en": "Sarga 11"
+  },
+  "aranya.12": {
+   "hi": "सर्ग 12",
+   "en": "Sarga 12"
+  },
+  "aranya.13": {
+   "hi": "सर्ग 13",
+   "en": "Sarga 13"
+  },
+  "aranya.14": {
+   "hi": "सर्ग 14",
+   "en": "Sarga 14"
+  },
+  "aranya.15": {
+   "hi": "सर्ग 15",
+   "en": "Sarga 15"
+  },
+  "aranya.16": {
+   "hi": "सर्ग 16",
+   "en": "Sarga 16"
+  },
+  "aranya.17": {
+   "hi": "सर्ग 17",
+   "en": "Sarga 17"
+  },
+  "aranya.18": {
+   "hi": "सर्ग 18",
+   "en": "Sarga 18"
+  },
+  "aranya.19": {
+   "hi": "सर्ग 19",
+   "en": "Sarga 19"
+  },
+  "aranya.20": {
+   "hi": "सर्ग 20",
+   "en": "Sarga 20"
+  },
+  "aranya.21": {
+   "hi": "सर्ग 21",
+   "en": "Sarga 21"
+  },
+  "aranya.22": {
+   "hi": "सर्ग 22",
+   "en": "Sarga 22"
+  },
+  "aranya.23": {
+   "hi": "सर्ग 23",
+   "en": "Sarga 23"
+  },
+  "aranya.24": {
+   "hi": "सर्ग 24",
+   "en": "Sarga 24"
+  },
+  "aranya.25": {
+   "hi": "सर्ग 25",
+   "en": "Sarga 25"
+  },
+  "aranya.26": {
+   "hi": "सर्ग 26",
+   "en": "Sarga 26"
+  },
+  "aranya.27": {
+   "hi": "सर्ग 27",
+   "en": "Sarga 27"
+  },
+  "aranya.28": {
+   "hi": "सर्ग 28",
+   "en": "Sarga 28"
+  },
+  "aranya.29": {
+   "hi": "सर्ग 29",
+   "en": "Sarga 29"
+  },
+  "aranya.30": {
+   "hi": "सर्ग 30",
+   "en": "Sarga 30"
+  },
+  "aranya.31": {
+   "hi": "सर्ग 31",
+   "en": "Sarga 31"
+  },
+  "aranya.32": {
+   "hi": "सर्ग 32",
+   "en": "Sarga 32"
+  },
+  "aranya.33": {
+   "hi": "सर्ग 33",
+   "en": "Sarga 33"
+  },
+  "aranya.34": {
+   "hi": "सर्ग 34",
+   "en": "Sarga 34"
+  },
+  "aranya.35": {
+   "hi": "सर्ग 35",
+   "en": "Sarga 35"
+  },
+  "aranya.36": {
+   "hi": "सर्ग 36",
+   "en": "Sarga 36"
+  },
+  "aranya.37": {
+   "hi": "सर्ग 37",
+   "en": "Sarga 37"
+  },
+  "aranya.38": {
+   "hi": "सर्ग 38",
+   "en": "Sarga 38"
+  },
+  "aranya.39": {
+   "hi": "सर्ग 39",
+   "en": "Sarga 39"
+  },
+  "aranya.40": {
+   "hi": "सर्ग 40",
+   "en": "Sarga 40"
+  },
+  "aranya.41": {
+   "hi": "सर्ग 41",
+   "en": "Sarga 41"
+  },
+  "aranya.42": {
+   "hi": "सर्ग 42",
+   "en": "Sarga 42"
+  },
+  "aranya.43": {
+   "hi": "सर्ग 43",
+   "en": "Sarga 43"
+  },
+  "aranya.44": {
+   "hi": "सर्ग 44",
+   "en": "Sarga 44"
+  },
+  "aranya.45": {
+   "hi": "सर्ग 45",
+   "en": "Sarga 45"
+  },
+  "aranya.46": {
+   "hi": "सर्ग 46",
+   "en": "Sarga 46"
+  },
+  "aranya.47": {
+   "hi": "सर्ग 47",
+   "en": "Sarga 47"
+  },
+  "aranya.48": {
+   "hi": "सर्ग 48",
+   "en": "Sarga 48"
+  },
+  "aranya.49": {
+   "hi": "सर्ग 49",
+   "en": "Sarga 49"
+  },
+  "aranya.50": {
+   "hi": "सर्ग 50",
+   "en": "Sarga 50"
+  },
+  "aranya.51": {
+   "hi": "सर्ग 51",
+   "en": "Sarga 51"
+  },
+  "aranya.52": {
+   "hi": "सर्ग 52",
+   "en": "Sarga 52"
+  },
+  "aranya.53": {
+   "hi": "सर्ग 53",
+   "en": "Sarga 53"
+  },
+  "aranya.54": {
+   "hi": "सर्ग 54",
+   "en": "Sarga 54"
+  },
+  "aranya.55": {
+   "hi": "सर्ग 55",
+   "en": "Sarga 55"
+  },
+  "aranya.56": {
+   "hi": "सर्ग 56",
+   "en": "Sarga 56"
+  },
+  "aranya.p1": {
+   "hi": "प्रक्षिप्त सर्ग 1",
+   "en": "Interpolated sarga 1"
+  },
+  "aranya.57": {
+   "hi": "सर्ग 57",
+   "en": "Sarga 57"
+  },
+  "aranya.58": {
+   "hi": "सर्ग 58",
+   "en": "Sarga 58"
+  },
+  "aranya.59": {
+   "hi": "सर्ग 59",
+   "en": "Sarga 59"
+  },
+  "aranya.60": {
+   "hi": "सर्ग 60",
+   "en": "Sarga 60"
+  },
+  "aranya.61": {
+   "hi": "सर्ग 61",
+   "en": "Sarga 61"
+  },
+  "aranya.62": {
+   "hi": "सर्ग 62",
+   "en": "Sarga 62"
+  },
+  "aranya.63": {
+   "hi": "सर्ग 63",
+   "en": "Sarga 63"
+  },
+  "aranya.64": {
+   "hi": "सर्ग 64",
+   "en": "Sarga 64"
+  },
+  "aranya.65": {
+   "hi": "सर्ग 65",
+   "en": "Sarga 65"
+  },
+  "aranya.66": {
+   "hi": "सर्ग 66",
+   "en": "Sarga 66"
+  },
+  "aranya.67": {
+   "hi": "सर्ग 67",
+   "en": "Sarga 67"
+  },
+  "aranya.68": {
+   "hi": "सर्ग 68",
+   "en": "Sarga 68"
+  },
+  "aranya.69": {
+   "hi": "सर्ग 69",
+   "en": "Sarga 69"
+  },
+  "aranya.70": {
+   "hi": "सर्ग 70",
+   "en": "Sarga 70"
+  },
+  "aranya.71": {
+   "hi": "सर्ग 71",
+   "en": "Sarga 71"
+  },
+  "aranya.72": {
+   "hi": "सर्ग 72",
+   "en": "Sarga 72"
+  },
+  "aranya.73": {
+   "hi": "सर्ग 73",
+   "en": "Sarga 73"
+  },
+  "aranya.74": {
+   "hi": "सर्ग 74",
+   "en": "Sarga 74"
+  },
+  "aranya.75": {
+   "hi": "सर्ग 75",
+   "en": "Sarga 75"
+  },
+  "kishkindha.1": {
+   "hi": "सर्ग 1",
+   "en": "Sarga 1"
+  },
+  "kishkindha.2": {
+   "hi": "सर्ग 2",
+   "en": "Sarga 2"
+  },
+  "kishkindha.3": {
+   "hi": "सर्ग 3",
+   "en": "Sarga 3"
+  },
+  "kishkindha.4": {
+   "hi": "सर्ग 4",
+   "en": "Sarga 4"
+  },
+  "kishkindha.5": {
+   "hi": "सर्ग 5",
+   "en": "Sarga 5"
+  },
+  "kishkindha.6": {
+   "hi": "सर्ग 6",
+   "en": "Sarga 6"
+  },
+  "kishkindha.7": {
+   "hi": "सर्ग 7",
+   "en": "Sarga 7"
+  },
+  "kishkindha.8": {
+   "hi": "सर्ग 8",
+   "en": "Sarga 8"
+  },
+  "kishkindha.9": {
+   "hi": "सर्ग 9",
+   "en": "Sarga 9"
+  },
+  "kishkindha.10": {
+   "hi": "सर्ग 10",
+   "en": "Sarga 10"
+  },
+  "kishkindha.11": {
+   "hi": "सर्ग 11",
+   "en": "Sarga 11"
+  },
+  "kishkindha.12": {
+   "hi": "सर्ग 12",
+   "en": "Sarga 12"
+  },
+  "kishkindha.13": {
+   "hi": "सर्ग 13",
+   "en": "Sarga 13"
+  },
+  "kishkindha.14": {
+   "hi": "सर्ग 14",
+   "en": "Sarga 14"
+  },
+  "kishkindha.15": {
+   "hi": "सर्ग 15",
+   "en": "Sarga 15"
+  },
+  "kishkindha.16": {
+   "hi": "सर्ग 16",
+   "en": "Sarga 16"
+  },
+  "kishkindha.17": {
+   "hi": "सर्ग 17",
+   "en": "Sarga 17"
+  },
+  "kishkindha.18": {
+   "hi": "सर्ग 18",
+   "en": "Sarga 18"
+  },
+  "kishkindha.19": {
+   "hi": "सर्ग 19",
+   "en": "Sarga 19"
+  },
+  "kishkindha.20": {
+   "hi": "सर्ग 20",
+   "en": "Sarga 20"
+  },
+  "kishkindha.21": {
+   "hi": "सर्ग 21",
+   "en": "Sarga 21"
+  },
+  "kishkindha.22": {
+   "hi": "सर्ग 22",
+   "en": "Sarga 22"
+  },
+  "kishkindha.23": {
+   "hi": "सर्ग 23",
+   "en": "Sarga 23"
+  },
+  "kishkindha.24": {
+   "hi": "सर्ग 24",
+   "en": "Sarga 24"
+  },
+  "kishkindha.25": {
+   "hi": "सर्ग 25",
+   "en": "Sarga 25"
+  },
+  "kishkindha.26": {
+   "hi": "सर्ग 26",
+   "en": "Sarga 26"
+  },
+  "kishkindha.27": {
+   "hi": "सर्ग 27",
+   "en": "Sarga 27"
+  },
+  "kishkindha.28": {
+   "hi": "सर्ग 28",
+   "en": "Sarga 28"
+  },
+  "kishkindha.29": {
+   "hi": "सर्ग 29",
+   "en": "Sarga 29"
+  },
+  "kishkindha.30": {
+   "hi": "सर्ग 30",
+   "en": "Sarga 30"
+  },
+  "kishkindha.31": {
+   "hi": "सर्ग 31",
+   "en": "Sarga 31"
+  },
+  "kishkindha.32": {
+   "hi": "सर्ग 32",
+   "en": "Sarga 32"
+  },
+  "kishkindha.33": {
+   "hi": "सर्ग 33",
+   "en": "Sarga 33"
+  },
+  "kishkindha.34": {
+   "hi": "सर्ग 34",
+   "en": "Sarga 34"
+  },
+  "kishkindha.35": {
+   "hi": "सर्ग 35",
+   "en": "Sarga 35"
+  },
+  "kishkindha.36": {
+   "hi": "सर्ग 36",
+   "en": "Sarga 36"
+  },
+  "kishkindha.37": {
+   "hi": "सर्ग 37",
+   "en": "Sarga 37"
+  },
+  "kishkindha.38": {
+   "hi": "सर्ग 38",
+   "en": "Sarga 38"
+  },
+  "kishkindha.39": {
+   "hi": "सर्ग 39",
+   "en": "Sarga 39"
+  },
+  "kishkindha.40": {
+   "hi": "सर्ग 40",
+   "en": "Sarga 40"
+  },
+  "kishkindha.41": {
+   "hi": "सर्ग 41",
+   "en": "Sarga 41"
+  },
+  "kishkindha.42": {
+   "hi": "सर्ग 42",
+   "en": "Sarga 42"
+  },
+  "kishkindha.43": {
+   "hi": "सर्ग 43",
+   "en": "Sarga 43"
+  },
+  "kishkindha.44": {
+   "hi": "सर्ग 44",
+   "en": "Sarga 44"
+  },
+  "kishkindha.45": {
+   "hi": "सर्ग 45",
+   "en": "Sarga 45"
+  },
+  "kishkindha.46": {
+   "hi": "सर्ग 46",
+   "en": "Sarga 46"
+  },
+  "kishkindha.47": {
+   "hi": "सर्ग 47",
+   "en": "Sarga 47"
+  },
+  "kishkindha.48": {
+   "hi": "सर्ग 48",
+   "en": "Sarga 48"
+  },
+  "kishkindha.49": {
+   "hi": "सर्ग 49",
+   "en": "Sarga 49"
+  },
+  "kishkindha.50": {
+   "hi": "सर्ग 50",
+   "en": "Sarga 50"
+  },
+  "kishkindha.51": {
+   "hi": "सर्ग 51",
+   "en": "Sarga 51"
+  },
+  "kishkindha.52": {
+   "hi": "सर्ग 52",
+   "en": "Sarga 52"
+  },
+  "kishkindha.53": {
+   "hi": "सर्ग 53",
+   "en": "Sarga 53"
+  },
+  "kishkindha.54": {
+   "hi": "सर्ग 54",
+   "en": "Sarga 54"
+  },
+  "kishkindha.55": {
+   "hi": "सर्ग 55",
+   "en": "Sarga 55"
+  },
+  "kishkindha.56": {
+   "hi": "सर्ग 56",
+   "en": "Sarga 56"
+  },
+  "kishkindha.57": {
+   "hi": "सर्ग 57",
+   "en": "Sarga 57"
+  },
+  "kishkindha.58": {
+   "hi": "सर्ग 58",
+   "en": "Sarga 58"
+  },
+  "kishkindha.59": {
+   "hi": "सर्ग 59",
+   "en": "Sarga 59"
+  },
+  "kishkindha.60": {
+   "hi": "सर्ग 60",
+   "en": "Sarga 60"
+  },
+  "kishkindha.61": {
+   "hi": "सर्ग 61",
+   "en": "Sarga 61"
+  },
+  "kishkindha.62": {
+   "hi": "सर्ग 62",
+   "en": "Sarga 62"
+  },
+  "kishkindha.63": {
+   "hi": "सर्ग 63",
+   "en": "Sarga 63"
+  },
+  "kishkindha.64": {
+   "hi": "सर्ग 64",
+   "en": "Sarga 64"
+  },
+  "kishkindha.65": {
+   "hi": "सर्ग 65",
+   "en": "Sarga 65"
+  },
+  "kishkindha.66": {
+   "hi": "सर्ग 66",
+   "en": "Sarga 66"
+  },
+  "kishkindha.67": {
+   "hi": "सर्ग 67",
+   "en": "Sarga 67"
+  },
+  "sundara.1": {
+   "hi": "सर्ग 1",
+   "en": "Sarga 1"
+  },
+  "sundara.2": {
+   "hi": "सर्ग 2",
+   "en": "Sarga 2"
+  },
+  "sundara.3": {
+   "hi": "सर्ग 3",
+   "en": "Sarga 3"
+  },
+  "sundara.4": {
+   "hi": "सर्ग 4",
+   "en": "Sarga 4"
+  },
+  "sundara.5": {
+   "hi": "सर्ग 5",
+   "en": "Sarga 5"
+  },
+  "sundara.6": {
+   "hi": "सर्ग 6",
+   "en": "Sarga 6"
+  },
+  "sundara.7": {
+   "hi": "सर्ग 7",
+   "en": "Sarga 7"
+  },
+  "sundara.8": {
+   "hi": "सर्ग 8",
+   "en": "Sarga 8"
+  },
+  "sundara.9": {
+   "hi": "सर्ग 9",
+   "en": "Sarga 9"
+  },
+  "sundara.10": {
+   "hi": "सर्ग 10",
+   "en": "Sarga 10"
+  },
+  "sundara.11": {
+   "hi": "सर्ग 11",
+   "en": "Sarga 11"
+  },
+  "sundara.12": {
+   "hi": "सर्ग 12",
+   "en": "Sarga 12"
+  },
+  "sundara.13": {
+   "hi": "सर्ग 13",
+   "en": "Sarga 13"
+  },
+  "sundara.14": {
+   "hi": "सर्ग 14",
+   "en": "Sarga 14"
+  },
+  "sundara.15": {
+   "hi": "सर्ग 15",
+   "en": "Sarga 15"
+  },
+  "sundara.16": {
+   "hi": "सर्ग 16",
+   "en": "Sarga 16"
+  },
+  "sundara.17": {
+   "hi": "सर्ग 17",
+   "en": "Sarga 17"
+  },
+  "sundara.18": {
+   "hi": "सर्ग 18",
+   "en": "Sarga 18"
+  },
+  "sundara.19": {
+   "hi": "सर्ग 19",
+   "en": "Sarga 19"
+  },
+  "sundara.20": {
+   "hi": "सर्ग 20",
+   "en": "Sarga 20"
+  },
+  "sundara.21": {
+   "hi": "सर्ग 21",
+   "en": "Sarga 21"
+  },
+  "sundara.22": {
+   "hi": "सर्ग 22",
+   "en": "Sarga 22"
+  },
+  "sundara.23": {
+   "hi": "सर्ग 23",
+   "en": "Sarga 23"
+  },
+  "sundara.24": {
+   "hi": "सर्ग 24",
+   "en": "Sarga 24"
+  },
+  "sundara.25": {
+   "hi": "सर्ग 25",
+   "en": "Sarga 25"
+  },
+  "sundara.26": {
+   "hi": "सर्ग 26",
+   "en": "Sarga 26"
+  },
+  "sundara.27": {
+   "hi": "सर्ग 27",
+   "en": "Sarga 27"
+  },
+  "sundara.28": {
+   "hi": "सर्ग 28",
+   "en": "Sarga 28"
+  },
+  "sundara.29": {
+   "hi": "सर्ग 29",
+   "en": "Sarga 29"
+  },
+  "sundara.30": {
+   "hi": "सर्ग 30",
+   "en": "Sarga 30"
+  },
+  "sundara.31": {
+   "hi": "सर्ग 31",
+   "en": "Sarga 31"
+  },
+  "sundara.32": {
+   "hi": "सर्ग 32",
+   "en": "Sarga 32"
+  },
+  "sundara.33": {
+   "hi": "सर्ग 33",
+   "en": "Sarga 33"
+  },
+  "sundara.34": {
+   "hi": "सर्ग 34",
+   "en": "Sarga 34"
+  },
+  "sundara.35": {
+   "hi": "सर्ग 35",
+   "en": "Sarga 35"
+  },
+  "sundara.36": {
+   "hi": "सर्ग 36",
+   "en": "Sarga 36"
+  },
+  "sundara.37": {
+   "hi": "सर्ग 37",
+   "en": "Sarga 37"
+  },
+  "sundara.38": {
+   "hi": "सर्ग 38",
+   "en": "Sarga 38"
+  },
+  "sundara.39": {
+   "hi": "सर्ग 39",
+   "en": "Sarga 39"
+  },
+  "sundara.40": {
+   "hi": "सर्ग 40",
+   "en": "Sarga 40"
+  },
+  "sundara.41": {
+   "hi": "सर्ग 41",
+   "en": "Sarga 41"
+  },
+  "sundara.42": {
+   "hi": "सर्ग 42",
+   "en": "Sarga 42"
+  },
+  "sundara.43": {
+   "hi": "सर्ग 43",
+   "en": "Sarga 43"
+  },
+  "sundara.44": {
+   "hi": "सर्ग 44",
+   "en": "Sarga 44"
+  },
+  "sundara.45": {
+   "hi": "सर्ग 45",
+   "en": "Sarga 45"
+  },
+  "sundara.46": {
+   "hi": "सर्ग 46",
+   "en": "Sarga 46"
+  },
+  "sundara.47": {
+   "hi": "सर्ग 47",
+   "en": "Sarga 47"
+  },
+  "sundara.48": {
+   "hi": "सर्ग 48",
+   "en": "Sarga 48"
+  },
+  "sundara.49": {
+   "hi": "सर्ग 49",
+   "en": "Sarga 49"
+  },
+  "sundara.50": {
+   "hi": "सर्ग 50",
+   "en": "Sarga 50"
+  },
+  "sundara.51": {
+   "hi": "सर्ग 51",
+   "en": "Sarga 51"
+  },
+  "sundara.52": {
+   "hi": "सर्ग 52",
+   "en": "Sarga 52"
+  },
+  "sundara.53": {
+   "hi": "सर्ग 53",
+   "en": "Sarga 53"
+  },
+  "sundara.54": {
+   "hi": "सर्ग 54",
+   "en": "Sarga 54"
+  },
+  "sundara.55": {
+   "hi": "सर्ग 55",
+   "en": "Sarga 55"
+  },
+  "sundara.56": {
+   "hi": "सर्ग 56",
+   "en": "Sarga 56"
+  },
+  "sundara.57": {
+   "hi": "सर्ग 57",
+   "en": "Sarga 57"
+  },
+  "sundara.58": {
+   "hi": "सर्ग 58",
+   "en": "Sarga 58"
+  },
+  "sundara.59": {
+   "hi": "सर्ग 59",
+   "en": "Sarga 59"
+  },
+  "sundara.60": {
+   "hi": "सर्ग 60",
+   "en": "Sarga 60"
+  },
+  "sundara.61": {
+   "hi": "सर्ग 61",
+   "en": "Sarga 61"
+  },
+  "sundara.62": {
+   "hi": "सर्ग 62",
+   "en": "Sarga 62"
+  },
+  "sundara.63": {
+   "hi": "सर्ग 63",
+   "en": "Sarga 63"
+  },
+  "sundara.64": {
+   "hi": "सर्ग 64",
+   "en": "Sarga 64"
+  },
+  "sundara.65": {
+   "hi": "सर्ग 65",
+   "en": "Sarga 65"
+  },
+  "sundara.66": {
+   "hi": "सर्ग 66",
+   "en": "Sarga 66"
+  },
+  "sundara.67": {
+   "hi": "सर्ग 67",
+   "en": "Sarga 67"
+  },
+  "sundara.68": {
+   "hi": "सर्ग 68",
+   "en": "Sarga 68"
+  },
+  "yuddha.1": {
+   "hi": "सर्ग 1",
+   "en": "Sarga 1"
+  },
+  "yuddha.2": {
+   "hi": "सर्ग 2",
+   "en": "Sarga 2"
+  },
+  "yuddha.3": {
+   "hi": "सर्ग 3",
+   "en": "Sarga 3"
+  },
+  "yuddha.4": {
+   "hi": "सर्ग 4",
+   "en": "Sarga 4"
+  },
+  "yuddha.5": {
+   "hi": "सर्ग 5",
+   "en": "Sarga 5"
+  },
+  "yuddha.6": {
+   "hi": "सर्ग 6",
+   "en": "Sarga 6"
+  },
+  "yuddha.7": {
+   "hi": "सर्ग 7",
+   "en": "Sarga 7"
+  },
+  "yuddha.8": {
+   "hi": "सर्ग 8",
+   "en": "Sarga 8"
+  },
+  "yuddha.9": {
+   "hi": "सर्ग 9",
+   "en": "Sarga 9"
+  },
+  "yuddha.10": {
+   "hi": "सर्ग 10",
+   "en": "Sarga 10"
+  },
+  "yuddha.11": {
+   "hi": "सर्ग 11",
+   "en": "Sarga 11"
+  },
+  "yuddha.12": {
+   "hi": "सर्ग 12",
+   "en": "Sarga 12"
+  },
+  "yuddha.13": {
+   "hi": "सर्ग 13",
+   "en": "Sarga 13"
+  },
+  "yuddha.14": {
+   "hi": "सर्ग 14",
+   "en": "Sarga 14"
+  },
+  "yuddha.15": {
+   "hi": "सर्ग 15",
+   "en": "Sarga 15"
+  },
+  "yuddha.16": {
+   "hi": "सर्ग 16",
+   "en": "Sarga 16"
+  },
+  "yuddha.17": {
+   "hi": "सर्ग 17",
+   "en": "Sarga 17"
+  },
+  "yuddha.18": {
+   "hi": "सर्ग 18",
+   "en": "Sarga 18"
+  },
+  "yuddha.19": {
+   "hi": "सर्ग 19",
+   "en": "Sarga 19"
+  },
+  "yuddha.20": {
+   "hi": "सर्ग 20",
+   "en": "Sarga 20"
+  },
+  "yuddha.21": {
+   "hi": "सर्ग 21",
+   "en": "Sarga 21"
+  },
+  "yuddha.22": {
+   "hi": "सर्ग 22",
+   "en": "Sarga 22"
+  },
+  "yuddha.23": {
+   "hi": "सर्ग 23",
+   "en": "Sarga 23"
+  },
+  "yuddha.24": {
+   "hi": "सर्ग 24",
+   "en": "Sarga 24"
+  },
+  "yuddha.25": {
+   "hi": "सर्ग 25",
+   "en": "Sarga 25"
+  },
+  "yuddha.26": {
+   "hi": "सर्ग 26",
+   "en": "Sarga 26"
+  },
+  "yuddha.27": {
+   "hi": "सर्ग 27",
+   "en": "Sarga 27"
+  },
+  "yuddha.28": {
+   "hi": "सर्ग 28",
+   "en": "Sarga 28"
+  },
+  "yuddha.29": {
+   "hi": "सर्ग 29",
+   "en": "Sarga 29"
+  },
+  "yuddha.30": {
+   "hi": "सर्ग 30",
+   "en": "Sarga 30"
+  },
+  "yuddha.31": {
+   "hi": "सर्ग 31",
+   "en": "Sarga 31"
+  },
+  "yuddha.32": {
+   "hi": "सर्ग 32",
+   "en": "Sarga 32"
+  },
+  "yuddha.33": {
+   "hi": "सर्ग 33",
+   "en": "Sarga 33"
+  },
+  "yuddha.34": {
+   "hi": "सर्ग 34",
+   "en": "Sarga 34"
+  },
+  "yuddha.35": {
+   "hi": "सर्ग 35",
+   "en": "Sarga 35"
+  },
+  "yuddha.36": {
+   "hi": "सर्ग 36",
+   "en": "Sarga 36"
+  },
+  "yuddha.37": {
+   "hi": "सर्ग 37",
+   "en": "Sarga 37"
+  },
+  "yuddha.38": {
+   "hi": "सर्ग 38",
+   "en": "Sarga 38"
+  },
+  "yuddha.39": {
+   "hi": "सर्ग 39",
+   "en": "Sarga 39"
+  },
+  "yuddha.40": {
+   "hi": "सर्ग 40",
+   "en": "Sarga 40"
+  },
+  "yuddha.41": {
+   "hi": "सर्ग 41",
+   "en": "Sarga 41"
+  },
+  "yuddha.42": {
+   "hi": "सर्ग 42",
+   "en": "Sarga 42"
+  },
+  "yuddha.43": {
+   "hi": "सर्ग 43",
+   "en": "Sarga 43"
+  },
+  "yuddha.44": {
+   "hi": "सर्ग 44",
+   "en": "Sarga 44"
+  },
+  "yuddha.45": {
+   "hi": "सर्ग 45",
+   "en": "Sarga 45"
+  },
+  "yuddha.46": {
+   "hi": "सर्ग 46",
+   "en": "Sarga 46"
+  },
+  "yuddha.47": {
+   "hi": "सर्ग 47",
+   "en": "Sarga 47"
+  },
+  "yuddha.48": {
+   "hi": "सर्ग 48",
+   "en": "Sarga 48"
+  },
+  "yuddha.49": {
+   "hi": "सर्ग 49",
+   "en": "Sarga 49"
+  },
+  "yuddha.50": {
+   "hi": "सर्ग 50",
+   "en": "Sarga 50"
+  },
+  "yuddha.51": {
+   "hi": "सर्ग 51",
+   "en": "Sarga 51"
+  },
+  "yuddha.52": {
+   "hi": "सर्ग 52",
+   "en": "Sarga 52"
+  },
+  "yuddha.53": {
+   "hi": "सर्ग 53",
+   "en": "Sarga 53"
+  },
+  "yuddha.54": {
+   "hi": "सर्ग 54",
+   "en": "Sarga 54"
+  },
+  "yuddha.55": {
+   "hi": "सर्ग 55",
+   "en": "Sarga 55"
+  },
+  "yuddha.56": {
+   "hi": "सर्ग 56",
+   "en": "Sarga 56"
+  },
+  "yuddha.57": {
+   "hi": "सर्ग 57",
+   "en": "Sarga 57"
+  },
+  "yuddha.58": {
+   "hi": "सर्ग 58",
+   "en": "Sarga 58"
+  },
+  "yuddha.59": {
+   "hi": "सर्ग 59",
+   "en": "Sarga 59"
+  },
+  "yuddha.60": {
+   "hi": "सर्ग 60",
+   "en": "Sarga 60"
+  },
+  "yuddha.61": {
+   "hi": "सर्ग 61",
+   "en": "Sarga 61"
+  },
+  "yuddha.62": {
+   "hi": "सर्ग 62",
+   "en": "Sarga 62"
+  },
+  "yuddha.63": {
+   "hi": "सर्ग 63",
+   "en": "Sarga 63"
+  },
+  "yuddha.64": {
+   "hi": "सर्ग 64",
+   "en": "Sarga 64"
+  },
+  "yuddha.65": {
+   "hi": "सर्ग 65",
+   "en": "Sarga 65"
+  },
+  "yuddha.66": {
+   "hi": "सर्ग 66",
+   "en": "Sarga 66"
+  },
+  "yuddha.67": {
+   "hi": "सर्ग 67",
+   "en": "Sarga 67"
+  },
+  "yuddha.68": {
+   "hi": "सर्ग 68",
+   "en": "Sarga 68"
+  },
+  "yuddha.69": {
+   "hi": "सर्ग 69",
+   "en": "Sarga 69"
+  },
+  "yuddha.70": {
+   "hi": "सर्ग 70",
+   "en": "Sarga 70"
+  },
+  "yuddha.71": {
+   "hi": "सर्ग 71",
+   "en": "Sarga 71"
+  },
+  "yuddha.72": {
+   "hi": "सर्ग 72",
+   "en": "Sarga 72"
+  },
+  "yuddha.73": {
+   "hi": "सर्ग 73",
+   "en": "Sarga 73"
+  },
+  "yuddha.74": {
+   "hi": "सर्ग 74",
+   "en": "Sarga 74"
+  },
+  "yuddha.75": {
+   "hi": "सर्ग 75",
+   "en": "Sarga 75"
+  },
+  "yuddha.76": {
+   "hi": "सर्ग 76",
+   "en": "Sarga 76"
+  },
+  "yuddha.77": {
+   "hi": "सर्ग 77",
+   "en": "Sarga 77"
+  },
+  "yuddha.78": {
+   "hi": "सर्ग 78",
+   "en": "Sarga 78"
+  },
+  "yuddha.79": {
+   "hi": "सर्ग 79",
+   "en": "Sarga 79"
+  },
+  "yuddha.80": {
+   "hi": "सर्ग 80",
+   "en": "Sarga 80"
+  },
+  "yuddha.81": {
+   "hi": "सर्ग 81",
+   "en": "Sarga 81"
+  },
+  "yuddha.82": {
+   "hi": "सर्ग 82",
+   "en": "Sarga 82"
+  },
+  "yuddha.83": {
+   "hi": "सर्ग 83",
+   "en": "Sarga 83"
+  },
+  "yuddha.84": {
+   "hi": "सर्ग 84",
+   "en": "Sarga 84"
+  },
+  "yuddha.85": {
+   "hi": "सर्ग 85",
+   "en": "Sarga 85"
+  },
+  "yuddha.86": {
+   "hi": "सर्ग 86",
+   "en": "Sarga 86"
+  },
+  "yuddha.87": {
+   "hi": "सर्ग 87",
+   "en": "Sarga 87"
+  },
+  "yuddha.88": {
+   "hi": "सर्ग 88",
+   "en": "Sarga 88"
+  },
+  "yuddha.89": {
+   "hi": "सर्ग 89",
+   "en": "Sarga 89"
+  },
+  "yuddha.90": {
+   "hi": "सर्ग 90",
+   "en": "Sarga 90"
+  },
+  "yuddha.91": {
+   "hi": "सर्ग 91",
+   "en": "Sarga 91"
+  },
+  "yuddha.92": {
+   "hi": "सर्ग 92",
+   "en": "Sarga 92"
+  },
+  "yuddha.93": {
+   "hi": "सर्ग 93",
+   "en": "Sarga 93"
+  },
+  "yuddha.94": {
+   "hi": "सर्ग 94",
+   "en": "Sarga 94"
+  },
+  "yuddha.95": {
+   "hi": "सर्ग 95",
+   "en": "Sarga 95"
+  },
+  "yuddha.96": {
+   "hi": "सर्ग 96",
+   "en": "Sarga 96"
+  },
+  "yuddha.97": {
+   "hi": "सर्ग 97",
+   "en": "Sarga 97"
+  },
+  "yuddha.98": {
+   "hi": "सर्ग 98",
+   "en": "Sarga 98"
+  },
+  "yuddha.99": {
+   "hi": "सर्ग 99",
+   "en": "Sarga 99"
+  },
+  "yuddha.100": {
+   "hi": "सर्ग 100",
+   "en": "Sarga 100"
+  },
+  "yuddha.101": {
+   "hi": "सर्ग 101",
+   "en": "Sarga 101"
+  },
+  "yuddha.102": {
+   "hi": "सर्ग 102",
+   "en": "Sarga 102"
+  },
+  "yuddha.103": {
+   "hi": "सर्ग 103",
+   "en": "Sarga 103"
+  },
+  "yuddha.104": {
+   "hi": "सर्ग 104",
+   "en": "Sarga 104"
+  },
+  "yuddha.105": {
+   "hi": "सर्ग 105",
+   "en": "Sarga 105"
+  },
+  "yuddha.106": {
+   "hi": "सर्ग 106",
+   "en": "Sarga 106"
+  },
+  "yuddha.107": {
+   "hi": "सर्ग 107",
+   "en": "Sarga 107"
+  },
+  "yuddha.108": {
+   "hi": "सर्ग 108",
+   "en": "Sarga 108"
+  },
+  "yuddha.109": {
+   "hi": "सर्ग 109",
+   "en": "Sarga 109"
+  },
+  "yuddha.110": {
+   "hi": "सर्ग 110",
+   "en": "Sarga 110"
+  },
+  "yuddha.111": {
+   "hi": "सर्ग 111",
+   "en": "Sarga 111"
+  },
+  "yuddha.112": {
+   "hi": "सर्ग 112",
+   "en": "Sarga 112"
+  },
+  "yuddha.113": {
+   "hi": "सर्ग 113",
+   "en": "Sarga 113"
+  },
+  "yuddha.114": {
+   "hi": "सर्ग 114",
+   "en": "Sarga 114"
+  },
+  "yuddha.115": {
+   "hi": "सर्ग 115",
+   "en": "Sarga 115"
+  },
+  "yuddha.116": {
+   "hi": "सर्ग 116",
+   "en": "Sarga 116"
+  },
+  "yuddha.117": {
+   "hi": "सर्ग 117",
+   "en": "Sarga 117"
+  },
+  "yuddha.118": {
+   "hi": "सर्ग 118",
+   "en": "Sarga 118"
+  },
+  "yuddha.119": {
+   "hi": "सर्ग 119",
+   "en": "Sarga 119"
+  },
+  "yuddha.120": {
+   "hi": "सर्ग 120",
+   "en": "Sarga 120"
+  },
+  "yuddha.121": {
+   "hi": "सर्ग 121",
+   "en": "Sarga 121"
+  },
+  "yuddha.122": {
+   "hi": "सर्ग 122",
+   "en": "Sarga 122"
+  },
+  "yuddha.123": {
+   "hi": "सर्ग 123",
+   "en": "Sarga 123"
+  },
+  "yuddha.124": {
+   "hi": "सर्ग 124",
+   "en": "Sarga 124"
+  },
+  "yuddha.125": {
+   "hi": "सर्ग 125",
+   "en": "Sarga 125"
+  },
+  "yuddha.126": {
+   "hi": "सर्ग 126",
+   "en": "Sarga 126"
+  },
+  "yuddha.127": {
+   "hi": "सर्ग 127",
+   "en": "Sarga 127"
+  },
+  "yuddha.128": {
+   "hi": "सर्ग 128",
+   "en": "Sarga 128"
+  },
+  "uttara.1": {
+   "hi": "सर्ग 1",
+   "en": "Sarga 1"
+  },
+  "uttara.2": {
+   "hi": "सर्ग 2",
+   "en": "Sarga 2"
+  },
+  "uttara.3": {
+   "hi": "सर्ग 3",
+   "en": "Sarga 3"
+  },
+  "uttara.4": {
+   "hi": "सर्ग 4",
+   "en": "Sarga 4"
+  },
+  "uttara.5": {
+   "hi": "सर्ग 5",
+   "en": "Sarga 5"
+  },
+  "uttara.6": {
+   "hi": "सर्ग 6",
+   "en": "Sarga 6"
+  },
+  "uttara.7": {
+   "hi": "सर्ग 7",
+   "en": "Sarga 7"
+  },
+  "uttara.8": {
+   "hi": "सर्ग 8",
+   "en": "Sarga 8"
+  },
+  "uttara.9": {
+   "hi": "सर्ग 9",
+   "en": "Sarga 9"
+  },
+  "uttara.10": {
+   "hi": "सर्ग 10",
+   "en": "Sarga 10"
+  },
+  "uttara.11": {
+   "hi": "सर्ग 11",
+   "en": "Sarga 11"
+  },
+  "uttara.12": {
+   "hi": "सर्ग 12",
+   "en": "Sarga 12"
+  },
+  "uttara.13": {
+   "hi": "सर्ग 13",
+   "en": "Sarga 13"
+  },
+  "uttara.14": {
+   "hi": "सर्ग 14",
+   "en": "Sarga 14"
+  },
+  "uttara.15": {
+   "hi": "सर्ग 15",
+   "en": "Sarga 15"
+  },
+  "uttara.16": {
+   "hi": "सर्ग 16",
+   "en": "Sarga 16"
+  },
+  "uttara.17": {
+   "hi": "सर्ग 17",
+   "en": "Sarga 17"
+  },
+  "uttara.18": {
+   "hi": "सर्ग 18",
+   "en": "Sarga 18"
+  },
+  "uttara.19": {
+   "hi": "सर्ग 19",
+   "en": "Sarga 19"
+  },
+  "uttara.20": {
+   "hi": "सर्ग 20",
+   "en": "Sarga 20"
+  },
+  "uttara.21": {
+   "hi": "सर्ग 21",
+   "en": "Sarga 21"
+  },
+  "uttara.22": {
+   "hi": "सर्ग 22",
+   "en": "Sarga 22"
+  },
+  "uttara.23": {
+   "hi": "सर्ग 23",
+   "en": "Sarga 23"
+  },
+  "uttara.24": {
+   "hi": "सर्ग 24",
+   "en": "Sarga 24"
+  },
+  "uttara.25": {
+   "hi": "सर्ग 25",
+   "en": "Sarga 25"
+  },
+  "uttara.26": {
+   "hi": "सर्ग 26",
+   "en": "Sarga 26"
+  },
+  "uttara.27": {
+   "hi": "सर्ग 27",
+   "en": "Sarga 27"
+  },
+  "uttara.28": {
+   "hi": "सर्ग 28",
+   "en": "Sarga 28"
+  },
+  "uttara.29": {
+   "hi": "सर्ग 29",
+   "en": "Sarga 29"
+  },
+  "uttara.30": {
+   "hi": "सर्ग 30",
+   "en": "Sarga 30"
+  },
+  "uttara.31": {
+   "hi": "सर्ग 31",
+   "en": "Sarga 31"
+  },
+  "uttara.32": {
+   "hi": "सर्ग 32",
+   "en": "Sarga 32"
+  },
+  "uttara.33": {
+   "hi": "सर्ग 33",
+   "en": "Sarga 33"
+  },
+  "uttara.34": {
+   "hi": "सर्ग 34",
+   "en": "Sarga 34"
+  },
+  "uttara.35": {
+   "hi": "सर्ग 35",
+   "en": "Sarga 35"
+  },
+  "uttara.36": {
+   "hi": "सर्ग 36",
+   "en": "Sarga 36"
+  },
+  "uttara.37": {
+   "hi": "सर्ग 37",
+   "en": "Sarga 37"
+  },
+  "uttara.38": {
+   "hi": "सर्ग 38",
+   "en": "Sarga 38"
+  },
+  "uttara.39": {
+   "hi": "सर्ग 39",
+   "en": "Sarga 39"
+  },
+  "uttara.40": {
+   "hi": "सर्ग 40",
+   "en": "Sarga 40"
+  },
+  "uttara.41": {
+   "hi": "सर्ग 41",
+   "en": "Sarga 41"
+  },
+  "uttara.42": {
+   "hi": "सर्ग 42",
+   "en": "Sarga 42"
+  },
+  "uttara.43": {
+   "hi": "सर्ग 43",
+   "en": "Sarga 43"
+  },
+  "uttara.44": {
+   "hi": "सर्ग 44",
+   "en": "Sarga 44"
+  },
+  "uttara.45": {
+   "hi": "सर्ग 45",
+   "en": "Sarga 45"
+  },
+  "uttara.46": {
+   "hi": "सर्ग 46",
+   "en": "Sarga 46"
+  },
+  "uttara.47": {
+   "hi": "सर्ग 47",
+   "en": "Sarga 47"
+  },
+  "uttara.48": {
+   "hi": "सर्ग 48",
+   "en": "Sarga 48"
+  },
+  "uttara.49": {
+   "hi": "सर्ग 49",
+   "en": "Sarga 49"
+  },
+  "uttara.50": {
+   "hi": "सर्ग 50",
+   "en": "Sarga 50"
+  },
+  "uttara.51": {
+   "hi": "सर्ग 51",
+   "en": "Sarga 51"
+  },
+  "uttara.52": {
+   "hi": "सर्ग 52",
+   "en": "Sarga 52"
+  },
+  "uttara.53": {
+   "hi": "सर्ग 53",
+   "en": "Sarga 53"
+  },
+  "uttara.54": {
+   "hi": "सर्ग 54",
+   "en": "Sarga 54"
+  },
+  "uttara.55": {
+   "hi": "सर्ग 55",
+   "en": "Sarga 55"
+  },
+  "uttara.56": {
+   "hi": "सर्ग 56",
+   "en": "Sarga 56"
+  },
+  "uttara.57": {
+   "hi": "सर्ग 57",
+   "en": "Sarga 57"
+  },
+  "uttara.58": {
+   "hi": "सर्ग 58",
+   "en": "Sarga 58"
+  },
+  "uttara.59": {
+   "hi": "सर्ग 59",
+   "en": "Sarga 59"
+  },
+  "uttara.p1": {
+   "hi": "प्रक्षिप्त सर्ग 1",
+   "en": "Interpolated sarga 1"
+  },
+  "uttara.p2": {
+   "hi": "प्रक्षिप्त सर्ग 2",
+   "en": "Interpolated sarga 2"
+  },
+  "uttara.60": {
+   "hi": "सर्ग 60",
+   "en": "Sarga 60"
+  },
+  "uttara.61": {
+   "hi": "सर्ग 61",
+   "en": "Sarga 61"
+  },
+  "uttara.62": {
+   "hi": "सर्ग 62",
+   "en": "Sarga 62"
+  },
+  "uttara.63": {
+   "hi": "सर्ग 63",
+   "en": "Sarga 63"
+  },
+  "uttara.64": {
+   "hi": "सर्ग 64",
+   "en": "Sarga 64"
+  },
+  "uttara.65": {
+   "hi": "सर्ग 65",
+   "en": "Sarga 65"
+  },
+  "uttara.66": {
+   "hi": "सर्ग 66",
+   "en": "Sarga 66"
+  },
+  "uttara.67": {
+   "hi": "सर्ग 67",
+   "en": "Sarga 67"
+  },
+  "uttara.68": {
+   "hi": "सर्ग 68",
+   "en": "Sarga 68"
+  },
+  "uttara.69": {
+   "hi": "सर्ग 69",
+   "en": "Sarga 69"
+  },
+  "uttara.70": {
+   "hi": "सर्ग 70",
+   "en": "Sarga 70"
+  },
+  "uttara.71": {
+   "hi": "सर्ग 71",
+   "en": "Sarga 71"
+  },
+  "uttara.72": {
+   "hi": "सर्ग 72",
+   "en": "Sarga 72"
+  },
+  "uttara.73": {
+   "hi": "सर्ग 73",
+   "en": "Sarga 73"
+  },
+  "uttara.74": {
+   "hi": "सर्ग 74",
+   "en": "Sarga 74"
+  },
+  "uttara.75": {
+   "hi": "सर्ग 75",
+   "en": "Sarga 75"
+  },
+  "uttara.76": {
+   "hi": "सर्ग 76",
+   "en": "Sarga 76"
+  },
+  "uttara.77": {
+   "hi": "सर्ग 77",
+   "en": "Sarga 77"
+  },
+  "uttara.78": {
+   "hi": "सर्ग 78",
+   "en": "Sarga 78"
+  },
+  "uttara.79": {
+   "hi": "सर्ग 79",
+   "en": "Sarga 79"
+  },
+  "uttara.80": {
+   "hi": "सर्ग 80",
+   "en": "Sarga 80"
+  },
+  "uttara.81": {
+   "hi": "सर्ग 81",
+   "en": "Sarga 81"
+  },
+  "uttara.82": {
+   "hi": "सर्ग 82",
+   "en": "Sarga 82"
+  },
+  "uttara.83": {
+   "hi": "सर्ग 83",
+   "en": "Sarga 83"
+  },
+  "uttara.84": {
+   "hi": "सर्ग 84",
+   "en": "Sarga 84"
+  },
+  "uttara.85": {
+   "hi": "सर्ग 85",
+   "en": "Sarga 85"
+  },
+  "uttara.86": {
+   "hi": "सर्ग 86",
+   "en": "Sarga 86"
+  },
+  "uttara.87": {
+   "hi": "सर्ग 87",
+   "en": "Sarga 87"
+  },
+  "uttara.88": {
+   "hi": "सर्ग 88",
+   "en": "Sarga 88"
+  },
+  "uttara.89": {
+   "hi": "सर्ग 89",
+   "en": "Sarga 89"
+  },
+  "uttara.90": {
+   "hi": "सर्ग 90",
+   "en": "Sarga 90"
+  },
+  "uttara.91": {
+   "hi": "सर्ग 91",
+   "en": "Sarga 91"
+  },
+  "uttara.92": {
+   "hi": "सर्ग 92",
+   "en": "Sarga 92"
+  },
+  "uttara.93": {
+   "hi": "सर्ग 93",
+   "en": "Sarga 93"
+  },
+  "uttara.94": {
+   "hi": "सर्ग 94",
+   "en": "Sarga 94"
+  },
+  "uttara.95": {
+   "hi": "सर्ग 95",
+   "en": "Sarga 95"
+  },
+  "uttara.96": {
+   "hi": "सर्ग 96",
+   "en": "Sarga 96"
+  },
+  "uttara.97": {
+   "hi": "सर्ग 97",
+   "en": "Sarga 97"
+  },
+  "uttara.98": {
+   "hi": "सर्ग 98",
+   "en": "Sarga 98"
+  },
+  "uttara.99": {
+   "hi": "सर्ग 99",
+   "en": "Sarga 99"
+  },
+  "uttara.100": {
+   "hi": "सर्ग 100",
+   "en": "Sarga 100"
+  },
+  "uttara.101": {
+   "hi": "सर्ग 101",
+   "en": "Sarga 101"
+  },
+  "uttara.102": {
+   "hi": "सर्ग 102",
+   "en": "Sarga 102"
+  },
+  "uttara.103": {
+   "hi": "सर्ग 103",
+   "en": "Sarga 103"
+  },
+  "uttara.104": {
+   "hi": "सर्ग 104",
+   "en": "Sarga 104"
+  },
+  "uttara.105": {
+   "hi": "सर्ग 105",
+   "en": "Sarga 105"
+  },
+  "uttara.106": {
+   "hi": "सर्ग 106",
+   "en": "Sarga 106"
+  },
+  "uttara.107": {
+   "hi": "सर्ग 107",
+   "en": "Sarga 107"
+  },
+  "uttara.108": {
+   "hi": "सर्ग 108",
+   "en": "Sarga 108"
+  },
+  "uttara.109": {
+   "hi": "सर्ग 109",
+   "en": "Sarga 109"
+  },
+  "uttara.110": {
+   "hi": "सर्ग 110",
+   "en": "Sarga 110"
+  },
+  "uttara.111": {
+   "hi": "सर्ग 111",
+   "en": "Sarga 111"
+  }
  }
 }
