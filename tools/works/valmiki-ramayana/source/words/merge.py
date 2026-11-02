@@ -1,6 +1,6 @@
 """Merge the written word batches (source/words/out/*.json) into the work's own dictionary, glossary/sa.json.
 
-Every entry must have en, hi, r and g (p for joined words); a word already in the dictionary keeps its entry
+Every entry must have en, hi, r and g (p for joined words); `src` (iitk, vr, iitk+vr, ours) goes to source/words/src.json; a word already in the dictionary keeps its entry
 (a later batch never overwrites an earlier, checked one); the result is written one word per line, sorted
 (tools/jsonio.py), so additions from different branches merge.
 
@@ -14,6 +14,8 @@ import jsonio
 G = os.path.join(HERE, '..', '..', 'glossary', 'sa.json')
 gl = json.load(open(G)) if os.path.exists(G) else {}
 bad, added = [], 0
+SRC = os.path.join(HERE, 'src.json')
+src = json.load(open(SRC)) if os.path.exists(SRC) else {}
 for f in sorted(glob.glob(os.path.join(HERE, 'out', '*.json'))):
     for w, e in json.load(open(f)).items():
         if not all(isinstance(e.get(k), str) and e[k].strip() for k in ('en', 'hi', 'r', 'g')):
@@ -22,5 +24,8 @@ for f in sorted(glob.glob(os.path.join(HERE, 'out', '*.json'))):
             bad.append((os.path.basename(f), w)); continue
         if w not in gl:
             gl[w] = {k: e[k] for k in ('hi', 'en', 'r', 'g', 'p') if k in e}; added += 1
+        src[w] = e.get('src', 'ours-reworded')      # where en comes from; batches written before the owner's rule
+                                                     # (glosses copied as they are) say ours-reworded: to redo
 jsonio.dump_glossary(G, gl)
+jsonio.dump_glossary(SRC, src)
 print(added, 'added;', len(gl), 'words in glossary/sa.json;', len(bad), 'incomplete entries skipped', bad[:10])
