@@ -27,7 +27,7 @@ for f in [a for a in sys.argv[1:] if a != '--relabel']:
         if 'ours' in e.get('src', 'ours').split('+'):
             continue
         have = {clean(en) for c in w['contexts'] for i in near(c['id']) for k in ('iitk', 'vr') for _, en in G.get(i, {}).get(k, [])}
-        hit = [clean(p) in have for p in e['en'].split('; ')]
+        hit = [True] if clean(e['en']) in have else [clean(p) in have for p in e['en'].split('; ')]   # a gloss may hold '; ' itself
         if not all(hit):
             fails.append((f, w['word'], e['en']))
             if RELABEL: e['src'] = e['src'] + '+ours' if any(hit) else 'ours'
