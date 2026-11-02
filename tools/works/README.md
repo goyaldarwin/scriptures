@@ -49,6 +49,8 @@ Words go in the shared dictionaries, `library/glossary/<lang>.json`, edited dire
 - `title`, `by`, `edition`, `from` (shown under the title), `colophon`: bilingual labels.
 - `parts.list[].key`: the name `text.txt` uses for a part (`@part aarti`); it is not written to the library.
 - `types`: the work's verse types; the Mānas's own (`cau`, `do`, `so`, `cha`, `shloka`) need no entry.
+- `load: "parts"`: a big work (the Vālmīki Rāmāyaṇa) is written for loading one part at a time: each meaning source as a header and `meanings/<lang>-<src>/<part index>.json`, and the work's own senses as `glossary/<part index>.json` (`docs/LIBRARY.md` §2, §3, §5). The phone fetches a part's meanings and word senses only when it opens that part. Use it when a work's meanings would make a phone fetch more than a few MB at once; the verses stay one `work.json`.
+- `sections`: a label for each `@section` id, `{"bala.1": {"hi": "सर्ग १", "en": "Sarga 1"}}`, shown wherever the app names a section (footer, section picker, home, a verse's place). Every id must be a section of the text.
 - `prepended`, `removed`, `renamed`, `split`: keep readers' saved places when verses are added before the first, removed or split (`docs/LIBRARY.md`).
 - `include`: other files in the folder whose keys join the manifest (the Mānas's `book.json`: reading plans, vidhi).
 - `topics: "ours"`: a run taken from another work shows that work's `topics.json` headings instead of its own.
