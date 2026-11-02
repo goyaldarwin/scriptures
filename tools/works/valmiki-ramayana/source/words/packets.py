@@ -43,16 +43,15 @@ def witness_verses(W, kind, kd):
     return out
 
 def match_verses(items, WV):
-    """each verse id → indices of the witness verses whose text it shares (a sliding window, in order)"""
+    """each verse id → the witness verse it shares most text with (searched across the whole kāṇḍa), with the
+    verses either side (the witnesses divide verses differently)"""
     norms = [w['norm'] for w in WV]
-    res, pos = {}, 0
+    res = {}
     for it in items:
         q = align.norm_line(' '.join(it['v']))
-        lo, hi = max(0, pos - 30), min(len(norms), pos + 60)
-        m = process.extractOne(q, norms[lo:hi], scorer=fuzz.partial_ratio)
-        if m and m[1] >= 70:
-            j = lo + m[2]; res[it['id']] = [j] + ([j + 1] if j + 1 < len(norms) and fuzz.partial_ratio(q, norms[j + 1]) >= 70 else [])
-            pos = j
+        m = process.extractOne(q, norms, scorer=fuzz.partial_ratio)
+        if m and m[1] >= 65:
+            j = m[2]; res[it['id']] = [x for x in (j - 1, j, j + 1) if 0 <= x < len(norms)]
         else:
             res[it['id']] = []
     return res
@@ -69,7 +68,24 @@ def candidates(word, glosses):
                 out.append([sa, en]); break
     return out or [[sa, en] for sa, en in glosses]
 
+def refresh(kd, iitk, vr, files):
+    """rebuild the contexts' glosses of existing batch files (their words unchanged)"""
+    items = [i for i in textfile.read(os.path.join(HERE, '..', '..', 'text.txt')) if i['id'].startswith(kd + '.')]
+    byid = {i['id']: i for i in items}
+    I = witness_verses(json.load(open(iitk)), 'iitk', kd); V = witness_verses(json.load(open(vr)), 'vr', kd)
+    mi = match_verses(items, I); mv = match_verses(items, V)
+    for f in files:
+        W = json.load(open(f))
+        for w in W:
+            for c in w['contexts']:
+                gl = [g for j in mi.get(c['id'], []) for g in I[j]['gl']] + [g for j in mv.get(c['id'], []) for g in V[j]['gl']]
+                c['glosses'] = candidates(w['word'], gl)
+        json.dump(W, open(f, 'w'), ensure_ascii=False, indent=0)
+        print(f, sum(1 for w in W if any(c['glosses'] for c in w['contexts'])), 'of', len(W), 'with glosses')
+
 def main():
+    if sys.argv[1] == '--refresh':
+        return refresh(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5:])
     kd, iitk, vr, out = sys.argv[1:5]
     size = int(sys.argv[sys.argv.index('--size') + 1]) if '--size' in sys.argv else 250
     items = [i for i in textfile.read(os.path.join(HERE, '..', '..', 'text.txt')) if i['id'].startswith(kd + '.')]
