@@ -1188,7 +1188,7 @@ function renderLibrary(){
     // a shelf shows two works — the ones used most recently on this phone first (S.w[id].at: last opened, read or played) — then “+N” for the rest
     const at = w => (S.w[w.work] || {}).at || 0, ws = c.work ? [] : worksIn(c).map((w, k) => [w, k]).sort((x, y) => at(y[0]) - at(x[0]) || x[1] - y[1]).map(x => x[0]), MAX = 2;
     return '<li><button class="it" data-node="' + esc(key) + '"><span class="grow"><span class="ti">' + esc(TT(c.title)) + '</span>' + (ws.length ? '' : '<br><span class="ds">' + esc(TT(c.desc || c.by) || '') + '</span>') + '</span><span class="chev">›</span></button>' +
-      (ws.length ? '<div class="lworks">' + ws.slice(0, MAX).map(w => '<span class="wchip"><button data-open-work="' + esc(w.work) + '">' + esc(TT(w.title)) + '</button><button class="winfo" data-info-work="' + esc(w.work) + '" aria-label="' + T('इस ग्रन्थके बारेमें', 'About this work') + '"><svg><use href="#i-info"/></svg></button></span>').join('') + (ws.length > MAX ? '<button class="more" data-node="' + esc(key) + '">+' + DEV(ws.length - MAX) + '</button>' : '') + '</div>' : '') + '</li>';
+      (ws.length ? '<div class="lworks">' + ws.slice(0, MAX).map(w => '<button data-open-work="' + esc(w.work) + '">' + esc(TT(w.title)) + '</button>').join('') + (ws.length > MAX ? '<button class="more" data-node="' + esc(key) + '">+' + DEV(ws.length - MAX) + '</button>' : '') + '</div>' : '') + '</li>';
   };
   // the library itself is one row per genre, with no headings (the owner: no partitioning on the library screen). On a
   // shelf's page, a shelf that holds shelves is a heading over them and a shelf that holds only works is one row with its
@@ -1198,9 +1198,19 @@ function renderLibrary(){
     const ids = b.dataset.node.split('/'); let n = node, c = null; ids.forEach(id => { c = (n.children || []).find(x => x.id === id); n = c; });
     if (c.work) openWork(c.work); else { libPath.push(...ids); history.pushState(snap('library'), ''); renderLibrary(); window.scrollTo(0, 0); }
   });
-  $$('#libList [data-open-work]').forEach(b => b.onclick = () => openWork(b.dataset.openWork));
-  $$('#libList [data-info-work]').forEach(b => b.onclick = () => aboutWork(b.dataset.infoWork));   // ⓘ: about the work, before opening it
+  $$('#libList [data-open-work]').forEach(b => { b.onclick = () => { if (b.dataset.held){ delete b.dataset.held; return; } openWork(b.dataset.openWork); }; holdFor(b, () => aboutWork(b.dataset.openWork)); });
   $$('#libCrumbs [data-lp]').forEach(b => b.onclick = () => { libPath = libPath.slice(0, +b.dataset.lp + 1); history.pushState(snap('library'), ''); renderLibrary(); window.scrollTo(0, 0); });
+}
+// a long press (half a second, the finger kept still) on a work in the library opens About this work instead of the work;
+// the click that follows the press is then ignored (data-held). Right-click (contextmenu) does the same on a computer.
+function holdFor(el, fn){
+  let t = null, x = 0, y = 0;
+  const go = () => { t = null; el.dataset.held = 1; if (navigator.vibrate) try { navigator.vibrate(15); } catch (e) {} fn(); };
+  el.addEventListener('pointerdown', e => { if (e.button > 0) return; delete el.dataset.held; x = e.clientX; y = e.clientY; clearTimeout(t); t = setTimeout(go, 500); });
+  const stop = () => { clearTimeout(t); t = null; };
+  el.addEventListener('pointermove', e => { if (t && Math.hypot(e.clientX - x, e.clientY - y) > 10) stop(); });   // a scroll is not a press
+  ['pointerup', 'pointercancel', 'pointerleave'].forEach(k => el.addEventListener(k, stop));
+  el.addEventListener('contextmenu', e => { e.preventDefault(); if (t){ stop(); go(); } else if (!el.dataset.held){ el.dataset.held = 1; fn(); } });
 }
 /* library search: finds works and shelves by title, author, edition, description or id, in either script */
 const normQ = x => (x || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[\u093c]/g, '').normalize('NFC');
@@ -1314,7 +1324,7 @@ function renderHome(){
   $$('#orgList [data-page]').forEach(b => b.onclick = () => { vidTab = b.dataset.page === 'vidhi' ? 'v' : b.dataset.page; show('vidhi'); });
   $$('#orgList [data-pa]').forEach(b => b.onclick = ev => { ev.stopPropagation(); playRange(b.dataset.po, +b.dataset.pa, +b.dataset.pb); });
 }
-/* ⓘ About this work, under the title on the work's page and beside each work in the library: what the work is, so a reader
+/* ⓘ About this work, under the title on the work's page: what the work is, so a reader
    can decide to read it. The shelf entry's introduction (library/index.json "intro": {hi: [paragraphs], en: [paragraphs]},
    written from the work's sources) comes first, else its one line ("desc"). On the work's page, the facts the library holds
    follow: language, length, listening time and reciter, the edition; from the library, a button opens the work. */

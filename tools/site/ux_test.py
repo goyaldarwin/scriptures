@@ -1069,9 +1069,16 @@ async def main():
         # ⓘ About this work: under the title, with the work's language and length
         ab = await ev("(async () => { await openWork('ramraksha', true); show('home'); $('#hAbout').click(); await new Promise(r => setTimeout(r, 300)); const t = $('#sheetBody').innerText; closeSheet(); return t; })()")
         check('About this work shows the language and length', ('Sanskrit' in ab or 'संस्कृत' in ab) and ('verses' in ab or 'पद' in ab), ab[:120])
-        # ⓘ beside a work in the library: about it without loading it, with a button that opens it
-        lb = await ev("(async () => { libPath = []; show('library'); await new Promise(r => setTimeout(r, 300)); const b = $('#libList [data-info-work]'); const id = b.dataset.infoWork; b.click(); await new Promise(r => setTimeout(r, 300)); const r = [id, $('#sheet').classList.contains('on'), !!$('#abOpen'), $('#sheetBody h2').textContent === TT(workNode(id).title)]; $('#abOpen').click(); await new Promise(r => setTimeout(r, 1500)); r.push(CURVIEW, W && W.id === id); return r; })()")
-        check('ⓘ in the library tells about a work, and Open opens it', lb[1] and lb[2] and lb[3] and lb[4] == 'home' and lb[5], lb)
+        # the library lists works by name only (ⓘ About is on the work's own page)
+        nolib = await ev("(async () => { libPath = []; show('library'); await new Promise(r => setTimeout(r, 300)); return [$$('#libList [data-open-work]').length, $$('#libList .winfo, #libList [data-info-work]').length]; })()")
+        check('the library shows works by name, without ⓘ', nolib[0] > 0 and nolib[1] == 0, nolib)
+        # a long press on a work opens About this work (and not the work); a tap still opens the work
+        hold = await ev("""(async () => { libPath = []; show('library'); await new Promise(r => setTimeout(r, 300));
+            const b = $('#libList [data-open-work]'), id = b.dataset.openWork, ev = (k) => b.dispatchEvent(new PointerEvent(k, {bubbles: true, button: 0, clientX: 5, clientY: 5}));
+            ev('pointerdown'); await new Promise(r => setTimeout(r, 650)); ev('pointerup'); b.click(); await new Promise(r => setTimeout(r, 300));
+            const r = [id, $('#sheet').classList.contains('on'), CURVIEW, $('#sheetBody h2') ? $('#sheetBody h2').textContent === TT(workNode(id).title) : false];
+            closeSheet(); ev('pointerdown'); ev('pointerup'); b.click(); await new Promise(r => setTimeout(r, 1500)); r.push(CURVIEW, W && W.id === id); return r; })()""")
+        check('a long press on a work in the library opens About this work; a tap opens the work', hold[1] and hold[2] == 'library' and hold[3] and hold[4] == 'home' and hold[5], hold)
         # a saved file: “Add them to this phone” shows them at once; “Replace everything” with an older file (no timing) keeps the app working
         f = {'kind': 'manas-personal', 'v': 3, 'settings': {'ui': 'en', 'layers': {'h': False, 'e': True, 'w': False}, 'tr': False, 'size': 21, 'theme': 'light', 'tour': 1}, 'src': {}, 'w': {},
              'profiles': [{'id': 'px', 'name': 'Me', 'notes': {'manas:bal.1.cau1': [{'t': 'a note', 'ts': 1}]}, 'bm': {'manas:bal.1.cau2': 1}, 'done': {}, 'gloss': {}, 'fix': {}}], 'active': 'px', 'show': ['px']}

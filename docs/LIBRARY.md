@@ -48,7 +48,7 @@ The work node itself:
 ```
 - `work` is the work's **permanent id**. Readers' bookmarks, notes, progress and choices are stored under it, so it never changes, even if the work moves on the shelf. It must be unique across the library. For a new work, use the same value as its shelf `id` unless that is already taken. The tools folder is `tools/works/<work id>/`.
 - `by`, `edition` (optional, bilingual): shown in the library and searched.
-- `intro` (optional): the readers' introduction, `{"hi": [paragraphs], "en": [paragraphs]}`: what the work is, who composed it and when, what it contains, why it is recited. Written from the work's sources (each fact traceable to one named in the work's `README.md`), never from memory. Shown in ⓘ About this work, beside the work in the library and under its title on its page; without it the sheet shows `desc`. On the work's page the sheet then lists language, length, listening time with reciter, and `edition`.
+- `intro` (optional): the readers' introduction, `{"hi": [paragraphs], "en": [paragraphs]}`: what the work is, who composed it and when, what it contains, why it is recited. Written from the work's sources (each fact traceable to one named in the work's `README.md`), never from memory. Shown in ⓘ About this work, under the title on the work's page; without it the sheet shows `desc`. On the work's page the sheet then lists language, length, listening time with reciter, and `edition`.
 - `salute` (optional): the salutation on the opening screen while the work loads. Without it the app shows ॥ ॐ श्री परमात्मने नमः ॥.
 - Moving a work to another shelf is safe: change `path`, move the folder, and nothing readers saved is lost.
 
