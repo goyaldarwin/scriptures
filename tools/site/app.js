@@ -989,8 +989,13 @@ window.addEventListener('message', e => {
   if (d.event === 'onStateChange' && typeof d.info === 'number'){ ytInfo.st = d.info; syncPlayer(); if (d.info === 0) onEnded(); }
 });
 /* what is playing, in the app's own words: the reading (kāṇḍa or plan day) and the reciter — never the recording's title */
-// the player's small line: outside the reader it says the label can be tapped (“Go to verse ›”); in the reader, what is playing
-function pSub(){ const out = CURVIEW !== 'reader'; $('#pTrack').textContent = out ? T('पदपर जाएँ ›', 'Go to verse ›') : (PL.on && SRC.au ? playingName() : ''); $('#pInfo').classList.toggle('go', out);
+// the player's label: in a work counted by dohas, a verse under a doha is “Verse 106.3” (Doha 106, its third verse) and the
+// doha itself “Doha 106”; elsewhere the verse's own short label (Shloka 1, Mantra 2.1)
+function playLabel(i){ const it = IT[i], p = PAGES[itemPage[i]], n = parseInt(it.n, 10);
+  if (isNum(p.s) && !SECN(p.s) && it.y !== 'do' && it.y !== 'so' && n) return T('पद ', 'Verse ') + DEV(p.s) + '.' + DEV(n);
+  return posLabel(i); }
+// the player's small line: outside the reader it says the label can be tapped (“Go to verse ›”); in the reader, nothing
+function pSub(){ const out = CURVIEW !== 'reader'; $('#pTrack').textContent = out ? T('पदपर जाएँ ›', 'Go to verse ›') : ''; $('#pInfo').classList.toggle('go', out);
   $('#pInfo').setAttribute('aria-label', T('चल रहे पदपर जाएँ', 'Go to the verse playing')); }
 function playingName(){ return (R.org === 'k' ? KNAME(R.n) : TT(PLAN[R.org].name) + ' · ' + VN(R.n)) + ' · ' + TT(SRC.au.meta.title); }   // the speed has its own button in the bar
 // Fine-tuning preview: after − / + on a start, the first 2 s of the verse play from the new start; on an
@@ -1111,7 +1116,7 @@ function followLines(i, time){
 function setCur(i){
   if (PL.cur === i) return; PL.cur = i; PL.line = null;
   $$('#rBody .verse.now').forEach(v => v.classList.remove('now'));
-  $('#pVerse').textContent = posLabel(i); pSub();   // only the place in the text (Doha 45 · Chaupai 3, Shloka 1), so it is seen to move verse by verse
+  $('#pVerse').textContent = playLabel(i); pSub();   // only the place in the text, short enough for the narrow player, so it is seen to move verse by verse
   anchorPlay(i);
   if (!$('#reader').classList.contains('on')) return;
   if (i < R.a || i > R.b){ R.org = R.org; [R.a, R.b, R.n] = rangeFor(R.org, i); renderAround(i); }
