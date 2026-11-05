@@ -2,7 +2,7 @@
  "id": "./",
  "name": "शास्त्र · Scriptures",
  "short_name": "Scriptures",
- "description": "Read and listen to the scriptures: Rāmacaritamānasa, Sundarakāṇḍa, Śrī Rudram and more, with Hindi and English meanings and word-by-word meanings.",
+ "description": "Read and listen to the scriptures: Ramcharitmanas, Sundarkand, Shri Rudram and more, with Hindi and English meanings and word-by-word meanings.",
  "lang": "hi",
  "start_url": "./",
  "scope": "./",
@@ -40,8 +40,8 @@
  ],
  "shortcuts": [
   {
-   "name": "Śrī Rāmacaritamānasa",
-   "short_name": "Śrī Rāmacari",
+   "name": "Shri Ramcharitmanas",
+   "short_name": "Shri Ramchar",
    "url": "./?w=manas",
    "icons": [
     {
@@ -51,8 +51,8 @@
    ]
   },
   {
-   "name": "Sundarakāṇḍa",
-   "short_name": "Sundarakāṇḍa",
+   "name": "Sundarkand",
+   "short_name": "Sundarkand",
    "url": "./?w=sundarkand",
    "icons": [
     {
@@ -62,8 +62,8 @@
    ]
   },
   {
-   "name": "Śrī Rāma Rakṣā Stotram",
-   "short_name": "Śrī Rāma Rak",
+   "name": "Shri Ram Raksha Stotram",
+   "short_name": "Shri Ram Rak",
    "url": "./?w=ramraksha",
    "icons": [
     {
@@ -73,8 +73,8 @@
    ]
   },
   {
-   "name": "Bilvāṣṭakam",
-   "short_name": "Bilvāṣṭakam",
+   "name": "Bilvashtakam",
+   "short_name": "Bilvashtakam",
    "url": "./?w=bilvashtakam",
    "icons": [
     {

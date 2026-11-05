@@ -4,7 +4,7 @@
  "lang": "sa",
  "title": {
   "hi": "माण्डूक्योपनिषद्",
-  "en": "Māṇḍūkya Upaniṣad"
+  "en": "Mandukya Upanishad"
  },
  "by": {
   "hi": "अथर्ववेद",
@@ -17,13 +17,13 @@
  "parts": {
   "name": {
    "hi": "उपनिषद्",
-   "en": "Upaniṣad"
+   "en": "Upanishad"
   },
   "list": [
    {
     "key": "mandukya",
     "hi": "माण्डूक्योपनिषद्",
-    "en": "Māṇḍūkya Upaniṣad"
+    "en": "Mandukya Upanishad"
    }
   ]
  },
@@ -31,11 +31,11 @@
   "shanti": {
    "name": {
     "hi": "शान्तिमन्त्र",
-    "en": "Śānti Mantra"
+    "en": "Shanti Mantra"
    },
    "short": {
     "hi": "शा॰",
-    "en": "Śā."
+    "en": "Shan."
    }
   },
   "mantra": {

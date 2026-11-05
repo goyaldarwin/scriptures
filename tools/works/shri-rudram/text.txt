@@ -3,7 +3,7 @@
 
 @part namakam
 @section nam-purva
-@topic अथ श्रीरुद्रप्रश्नः — मङ्गलाचरण | Śrī Rudra Praśna — the opening
+@topic अथ श्रीरुद्रप्रश्नः — मङ्गलाचरण | Shri Rudra Prashna — the opening
 [namakam.purva.guru mangala 1]
 श्री गुरुभ्यो नमः । हरिः ओ३म् ।
 [namakam.purva.ganapati mangala 2]
@@ -15,7 +15,7 @@
 [namakam.purva.rudraya mangala 3]
 ओ-न्नमो भगवते॑ रुद्रा॒य ॥
 @section nam-a01
-@topic प्रथम अनुवाक — धनुष-बाण शान्त हों | Anuvāka 1 — Rudra’s bow and arrows made gracious
+@topic प्रथम अनुवाक — धनुष-बाण शान्त हों | Anuvak 1 — Rudra’s bow and arrows made gracious
 [namakam.a01.m01 mantra 1.1]
 नम॑स्ते रुद्र म॒न्यव॑ उ॒तोत॒ इष॑वे॒ नमः॑ ।
 नम॑स्ते अस्तु॒ धन्व॑ने बा॒हुभ्या॑मु॒त ते॒ नमः॑ ॥
@@ -69,7 +69,7 @@
 त्रिकाग्निका॒लाय॑ कालाग्निरु॒द्राय॑ नीलक॒ण्ठाय॑
 मृत्युञ्ज॒याय॑ सर्वेश्व॒राय॑ सदाशि॒वाय॑ [शङ्क॒राय॑] श्रीम-न्महादे॒वाय॒ नमः॑ ।
 @section nam-a02
-@topic द्वितीय अनुवाक — सबके स्वामी | Anuvāka 2 — Lord of all: armies, trees, paths, fields
+@topic द्वितीय अनुवाक — सबके स्वामी | Anuvak 2 — Lord of all: armies, trees, paths, fields
 [namakam.a02.m01 mantra 2.1]
 नमो॒ हिर॑ण्य बाहवे सेना॒न्ये॑ दि॒शा-ञ्च॒ पत॑ये॒ नमो॒
 [namakam.a02.m02 mantra 2.2]
@@ -97,7 +97,7 @@
 [namakam.a02.m13 mantra 2.13]
 नमः॑ कृत्स्नवी॒ताय॒ धाव॑ते॒ सत्त्व॑ना॒-म्पत॑ये॒ नमः॑ ॥२॥
 @section nam-a03
-@topic तृतीय अनुवाक — चोरों-डाकुओंमें भी वही | Anuvāka 3 — Present even in thieves and robbers
+@topic तृतीय अनुवाक — चोरों-डाकुओंमें भी वही | Anuvak 3 — Present even in thieves and robbers
 [namakam.a03.m01 mantra 3.1]
 नम॒-स्सह॑मानाय निव्या॒धिन॑ आव्या॒धिनी॑ना॒-म्पत॑ये नमो॒
 [namakam.a03.m02 mantra 3.2]
@@ -133,7 +133,7 @@
 [namakam.a03.m17 mantra 3.17]
 नमो॒ अश्वे॒भ्यो-ऽश्व॑पतिभ्यश्च वो॒ नमः॑ ॥३॥
 @section nam-a04
-@topic चतुर्थ अनुवाक — गण, शिल्पी और शिकारी | Anuvāka 4 — Hosts, craftsmen and hunters
+@topic चतुर्थ अनुवाक — गण, शिल्पी और शिकारी | Anuvak 4 — Hosts, craftsmen and hunters
 [namakam.a04.m01 mantra 4.1]
 नम॑ आव्या॒धिनी᳚भ्यो वि॒विध्य॑न्तीभ्यश्च वो॒ नमो॒
 [namakam.a04.m02 mantra 4.2]
@@ -169,7 +169,7 @@
 [namakam.a04.m17 mantra 4.17]
 नम॒-श्श्वभ्य॒-श्श्वप॑तिभ्यश्च वो॒ नमः॑ ॥४॥
 @section nam-a05
-@topic पञ्चम अनुवाक — रुद्रके नाम और रूप | Anuvāka 5 — Rudra’s own names and forms
+@topic पञ्चम अनुवाक — रुद्रके नाम और रूप | Anuvak 5 — Rudra’s own names and forms
 [namakam.a05.m01 mantra 5.1]
 नमो॑ भ॒वाय॑ च रु॒द्राय॑ च॒
 [namakam.a05.m02 mantra 5.2]
@@ -201,7 +201,7 @@
 [namakam.a05.m15 mantra 5.15]
 नमः॑ स्रोत॒स्या॑य च॒ द्वीप्या॑य च ॥५॥
 @section nam-a06
-@topic षष्ठ अनुवाक — ज्येष्ठ-कनिष्ठ, सर्वत्र | Anuvāka 6 — Eldest and youngest, everywhere
+@topic षष्ठ अनुवाक — ज्येष्ठ-कनिष्ठ, सर्वत्र | Anuvak 6 — Eldest and youngest, everywhere
 [namakam.a06.m01 mantra 6.1]
 नमो᳚ ज्ये॒ष्ठाय॑ च कनि॒ष्ठाय॑ च॒
 [namakam.a06.m02 mantra 6.2]
@@ -233,7 +233,7 @@
 [namakam.a06.m15 mantra 6.15]
 नमः॑ श्रु॒ताय॑ च श्रुतसे॒नाय॑ च ॥६॥
 @section nam-a07
-@topic सप्तम अनुवाक — जल, मेघ और घरमें | Anuvāka 7 — In waters, clouds and dwellings
+@topic सप्तम अनुवाक — जल, मेघ और घरमें | Anuvak 7 — In waters, clouds and dwellings
 [namakam.a07.m01 mantra 7.1]
 नमो॑ दुन्दु॒भ्या॑य चाहन॒न्या॑य च॒
 [namakam.a07.m02 mantra 7.2]
@@ -267,7 +267,7 @@
 [namakam.a07.m16 mantra 7.16]
 नमो॑ वास्त॒व्या॑य च वास्तु॒पाय॑ च ॥७॥
 @section nam-a08
-@topic अष्टम अनुवाक — नमः शिवाय | Anuvāka 8 — Namaḥ Śivāya
+@topic अष्टम अनुवाक — नमः शिवाय | Anuvak 8 — Namah Shivaya
 [namakam.a08.m01 mantra 8.1]
 नम॒-स्सोमा॑य च रु॒द्राय॑ च॒
 [namakam.a08.m02 mantra 8.2]
@@ -303,7 +303,7 @@
 [namakam.a08.m17 mantra 8.17]
 नमः॑ सिक॒त्या॑य च प्रवा॒ह्या॑य च ॥८॥
 @section nam-a09
-@topic नवम अनुवाक — भूमि, घर और देवहृदय | Anuvāka 9 — In the earth, the home and the gods’ hearts
+@topic नवम अनुवाक — भूमि, घर और देवहृदय | Anuvak 9 — In the earth, the home and the gods’ hearts
 [namakam.a09.m01 mantra 9.1]
 नम॑ इरि॒ण्या॑य च प्रप॒थ्या॑य च॒
 [namakam.a09.m02 mantra 9.2]
@@ -339,7 +339,7 @@
 [namakam.a09.m17 mantra 9.17]
 नम॑ आनिर् ह॒तेभ्यो॒ नम॑ आमीव॒त्केभ्यः॑ ॥९॥
 @section nam-a10
-@topic दशम अनुवाक — रक्षा और कृपाकी प्रार्थना | Anuvāka 10 — Prayer for protection and grace
+@topic दशम अनुवाक — रक्षा और कृपाकी प्रार्थना | Anuvak 10 — Prayer for protection and grace
 [namakam.a10.m01 mantra 10.1]
 द्रापे॒ अन्ध॑सस्पते॒ दरि॑द्र॒न्नील॑लोहित ।
 ए॒षा-म्पुरु॑षाणामे॒षा-म्प॑शू॒ना-म्मा भेर्मा-ऽरो॒ मो ए॑षा॒-ङ्किञ्च॒नाम॑मत् ।
@@ -377,7 +377,7 @@
 स॒हस्रा॑णि सहस्र॒धा बा॑हु॒वोस्तव॑ हे॒तयः॑ ।
 तासा॒मीशा॑नो भगवः परा॒चीना॒ मुखा॑ कृधि ॥१०॥
 @section nam-a11
-@topic एकादश अनुवाक — सब रुद्रोंके धनुष दूर | Anuvāka 11 — The bows of all the Rudras laid away
+@topic एकादश अनुवाक — सब रुद्रोंके धनुष दूर | Anuvak 11 — The bows of all the Rudras laid away
 [namakam.a11.m01 mantra 11.1]
 स॒हस्रा॑णि सहस्र॒शो ये रु॒द्रा अधि॒ भूम्या᳚म् ।
 तेषाग्ं॑ सहस्रयोज॒ने-ऽव॒धन्वा॑नि तन्मसि ।
@@ -404,7 +404,7 @@
 व॒र्ष॒मिष॑व॒स्तेभ्यो॒ दश॒ प्राची॒र्दश॑ दक्षि॒णा दश॑ प्र॒तीची॒-र्दशो-दी॑ची॒-र्दशो॒र्ध्वास्तेभ्यो॒
 नम॒स्ते नो॑ मृडयन्तु॒ ते य-न्द्वि॒ष्मो यश्च॑ नो॒ द्वेष्टि॒ तं-वोँ॒ जम्भे॑ दधामि ॥११॥
 @section nam-uttara
-@topic उत्तर मन्त्र और शान्ति | Closing mantras and śānti
+@topic उत्तर मन्त्र और शान्ति | Closing mantras and shanti
 [namakam.uttara.u1 uttara 1]
 त्र्य॑म्बकं-यँजामहे सुग॒न्धि-म्पु॑ष्टि॒वर्ध॑नम् ।
 उ॒र्वा॒रु॒कमि॑व॒ बन्ध॑नान्मृत्यो॑र्मुक्षीय॒ मा-ऽमृता᳚त् ।
@@ -433,7 +433,7 @@
 
 @part chamakam
 @section cha-a01
-@topic प्रथम अनुवाक — प्राण, इन्द्रियाँ और शरीर | Anuvāka 1 — Life, senses and body
+@topic प्रथम अनुवाक — प्राण, इन्द्रियाँ और शरीर | Anuvak 1 — Life, senses and body
 [chamakam.a01.m01 mantra 1.1]
 ॐ अग्ना॑विष्णो स॒जोष॑से॒माव॑र्धन्तु वा॒-ङ्गिरः॑ ।
 द्यु॒म्नैर्वाजे॑भि॒राग॑तम् ।
@@ -472,7 +472,7 @@
 [chamakam.a01.m18 mantra 1.18]
 परूग्ं॑षि च मे॒ शरी॑राणि च मे ॥१॥
 @section cha-a02
-@topic द्वितीय अनुवाक — प्रतिष्ठा, सत्य और समृद्धि | Anuvāka 2 — Standing, truth and growth
+@topic द्वितीय अनुवाक — प्रतिष्ठा, सत्य और समृद्धि | Anuvak 2 — Standing, truth and growth
 [chamakam.a02.m01 mantra 2.1]
 जैष्ठ्य॑-ञ्च म॒ आधि॑पत्य-ञ्च मे
 [chamakam.a02.m02 mantra 2.2]
@@ -510,7 +510,7 @@
 [chamakam.a02.m18 mantra 2.18]
 म॒तिश्च॑ मे सुम॒तिश्च॑ मे ॥२॥
 @section cha-a03
-@topic तृतीय अनुवाक — सुख, कल्याण और अभय | Anuvāka 3 — Happiness, welfare and fearlessness
+@topic तृतीय अनुवाक — सुख, कल्याण और अभय | Anuvak 3 — Happiness, welfare and fearlessness
 [chamakam.a03.m01 mantra 3.1]
 श-ञ्च॑ मे॒ मय॑श्च मे
 [chamakam.a03.m02 mantra 3.2]
@@ -542,7 +542,7 @@
 [chamakam.a03.m15 mantra 3.15]
 सू॒षा च॑ मे सु॒दिन॑-ञ्च मे ॥३॥
 @section cha-a04
-@topic चतुर्थ अनुवाक — अन्न और धान्य | Anuvāka 4 — Food and grains
+@topic चतुर्थ अनुवाक — अन्न और धान्य | Anuvak 4 — Food and grains
 [chamakam.a04.m01 mantra 4.1]
 ऊर्क्च॑ मे सू॒नृता॑ च मे॒
 [chamakam.a04.m02 mantra 4.2]
@@ -578,7 +578,7 @@
 [chamakam.a04.m17 mantra 4.17]
 श्या॒माका᳚श्च मे नी॒वारा᳚श्च मे ॥४॥
 @section cha-a05
-@topic पञ्चम अनुवाक — पृथ्वीकी सम्पदा | Anuvāka 5 — The wealth of the earth
+@topic पञ्चम अनुवाक — पृथ्वीकी सम्पदा | Anuvak 5 — The wealth of the earth
 [chamakam.a05.m01 mantra 5.1]
 अश्मा॑ च मे॒ मृत्ति॑का च मे
 [chamakam.a05.m02 mantra 5.2]
@@ -608,7 +608,7 @@
 [chamakam.a05.m14 mantra 5.14]
 एम॑श्च म इति॑श्च मे॒ गति॑श्च मे ॥५॥
 @section cha-a06
-@topic षष्ठ अनुवाक — इन्द्रके साथ देवता | Anuvāka 6 — The gods together with Indra
+@topic षष्ठ अनुवाक — इन्द्रके साथ देवता | Anuvak 6 — The gods together with Indra
 [chamakam.a06.m01 mantra 6.1]
 अ॒ग्निश्च॑ म॒ इन्द्र॑श्च मे॒
 [chamakam.a06.m02 mantra 6.2]
@@ -646,7 +646,7 @@
 [chamakam.a06.m18 mantra 6.18]
 प्र॒जाप॑तिश्च म॒ इन्द्र॑श्च मे ॥६॥
 @section cha-a07
-@topic सप्तम अनुवाक — सोमयागके ग्रह | Anuvāka 7 — The soma cups
+@topic सप्तम अनुवाक — सोमयागके ग्रह | Anuvak 7 — The soma cups
 [chamakam.a07.m01 mantra 7.1]
 अ॒ग्ं॒शुश्च॑ मे र॒श्मिश्च॒ मे-ऽदा᳚भ्यश्च॒ मे-ऽधि॑पतिश्च म
 [chamakam.a07.m02 mantra 7.2]
@@ -674,7 +674,7 @@
 [chamakam.a07.m13 mantra 7.13]
 पात्नीव॒तश्च॑ मे हारियोज॒नश्च॑ मे ॥७॥
 @section cha-a08
-@topic अष्टम अनुवाक — यज्ञकी सामग्री | Anuvāka 8 — The things of the sacrifice
+@topic अष्टम अनुवाक — यज्ञकी सामग्री | Anuvak 8 — The things of the sacrifice
 [chamakam.a08.m01 mantra 8.1]
 इ॒ध्मश्च॑ मे ब॒र्हिश्च॑ मे॒
 [chamakam.a08.m02 mantra 8.2]
@@ -696,7 +696,7 @@
 [chamakam.a08.m10 mantra 8.10]
 पच॒ताश्च॑ मे-ऽवभृथश्च॑ मे स्वगाका॒रश्च॑ मे ॥८॥
 @section cha-a09
-@topic नवम अनुवाक — महायज्ञ और वेद | Anuvāka 9 — The great rites and the Vedas
+@topic नवम अनुवाक — महायज्ञ और वेद | Anuvak 9 — The great rites and the Vedas
 [chamakam.a09.m01 mantra 9.1]
 अ॒ग्निश्च॑ मे घ॒र्मश्च॑ मे॒-ऽर्कश्च॑ मे॒
 [chamakam.a09.m02 mantra 9.2]
@@ -718,7 +718,7 @@
 [chamakam.a09.m10 mantra 9.10]
 य॒ज्ञेन॑ कल्पेताम् ॥९॥
 @section cha-a10
-@topic दशम अनुवाक — पशुधन और प्राण यज्ञमें | Anuvāka 10 — Cattle, and life offered in the yajña
+@topic दशम अनुवाक — पशुधन और प्राण यज्ञमें | Anuvak 10 — Cattle, and life offered in the yajña
 [chamakam.a10.m01 mantra 10.1]
 गर्भा᳚श्च मे व॒त्साश्च॑ मे॒
 [chamakam.a10.m02 mantra 10.2]
@@ -752,7 +752,7 @@
 [chamakam.a10.m16 mantra 10.16]
 य॒ज्ञो य॒ज्ञेन॑ कल्पताम् ॥१०॥
 @section cha-a11
-@topic एकादश अनुवाक — संख्याएँ और लोकोंके स्वामी | Anuvāka 11 — The numbers, and the lords of the worlds
+@topic एकादश अनुवाक — संख्याएँ और लोकोंके स्वामी | Anuvak 11 — The numbers, and the lords of the worlds
 [chamakam.a11.m01 mantra 11.1]
 एका॑ च मे ति॒स्रश्च॑ मे॒
 [chamakam.a11.m02 mantra 11.2]
@@ -788,7 +788,7 @@
 [chamakam.a11.m17 mantra 11.17]
 भौव॒नश्च॒ भुव॑न॒श्चाधि॑पतिश्च ॥११॥
 @section cha-shanti
-@topic शान्ति मन्त्र | Śānti mantra
+@topic शान्ति मन्त्र | Shanti mantra
 [chamakam.shanti.shanti shanti]
 ॐ इडा॑ देव॒हू-र्मनु॑र्यज्ञ॒नी-र्बृह॒स्पति॑रुक्थाम॒दानि
 शग्ंसिष॒द्विश्वे॑ दे॒वा-स्सू᳚क्त॒वाचः॒ पृथि॑विमात॒र्मा

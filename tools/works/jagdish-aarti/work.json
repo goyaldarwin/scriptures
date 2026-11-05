@@ -4,22 +4,22 @@
  "lang": "hi",
  "title": {
   "hi": "ॐ जय जगदीश हरे",
-  "en": "Om Jaya Jagadīśa Hare"
+  "en": "Om Jai Jagdish Hare"
  },
  "by": {
   "hi": "भगवान विष्णु (जगदीश)",
-  "en": "Bhagavān Viṣṇu (Jagadīśa)"
+  "en": "Bhagwan Vishnu (Jagdish)"
  },
  "parts": {
   "name": {
    "hi": "आरती",
-   "en": "Āratī"
+   "en": "Aarti"
   },
   "list": [
    {
     "key": "aarti",
     "hi": "ॐ जय जगदीश हरे",
-    "en": "Om Jaya Jagadīśa Hare"
+    "en": "Om Jai Jagdish Hare"
    }
   ]
  },
@@ -27,7 +27,7 @@
   "tek": {
    "name": {
     "hi": "टेक",
-    "en": "Refrain (ṭeka)"
+    "en": "Refrain (tek)"
    },
    "short": {
     "hi": "टेक",

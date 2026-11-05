@@ -7,7 +7,7 @@
   },
   "desc": {
    "hi": "सनातन धर्म",
-   "en": "Sanātana Dharma"
+   "en": "Sanatan Dharma"
   },
   "children": [
    {
@@ -25,11 +25,11 @@
       "id": "tulsidas",
       "title": {
        "hi": "गोस्वामी तुलसीदास",
-       "en": "Gosvāmī Tulasīdāsa"
+       "en": "Goswami Tulsidas"
       },
       "desc": {
        "hi": "श्रीरामचरितमानस · सुन्दरकाण्ड",
-       "en": "Śrī Rāmacaritamānasa · Sundarakāṇḍa"
+       "en": "Shri Ramcharitmanas · Sundarkand"
       },
       "children": [
        {
@@ -38,11 +38,11 @@
         "path": "hinduism/granth/tulsidas/ramcharitmanas",
         "title": {
          "hi": "श्रीरामचरितमानस",
-         "en": "Śrī Rāmacaritamānasa"
+         "en": "Shri Ramcharitmanas"
         },
         "by": {
          "hi": "गोस्वामी तुलसीदास",
-         "en": "Gosvāmī Tulasīdāsa"
+         "en": "Goswami Tulsidas"
         },
         "edition": {
          "hi": "गीताप्रेस, गोरखपुर",
@@ -50,7 +50,7 @@
         },
         "desc": {
          "hi": "७ काण्ड · मासपारायण · नवाह्नपारायण",
-         "en": "7 Kāṇḍas · 30-day and 9-day pārāyaṇa"
+         "en": "7 Kands · 30-day and 9-day parayan"
         },
         "salute": "॥ जय श्रीराम ॥"
        },
@@ -60,11 +60,11 @@
         "path": "hinduism/granth/tulsidas/sundarkand",
         "title": {
          "hi": "सुन्दरकाण्ड",
-         "en": "Sundarakāṇḍa"
+         "en": "Sundarkand"
         },
         "by": {
          "hi": "गोस्वामी तुलसीदास",
-         "en": "Gosvāmī Tulasīdāsa"
+         "en": "Goswami Tulsidas"
         },
         "edition": {
          "hi": "गीताप्रेस, गोरखपुर",
@@ -72,7 +72,7 @@
         },
         "desc": {
          "hi": "सुन्दरकाण्ड · हनुमानचालीसा · आरती",
-         "en": "Sundarakāṇḍa · Hanumān Chālīsā · Āratī"
+         "en": "Sundarkand · Hanuman Chalisa · Aarti"
         },
         "salute": "॥ जय बजरंगबली ॥"
        }
@@ -95,11 +95,11 @@
       "id": "rama",
       "title": {
        "hi": "श्रीराम",
-       "en": "Śrī Rāma"
+       "en": "Shri Ram"
       },
       "desc": {
        "hi": "श्रीरामरक्षास्तोत्रम्",
-       "en": "Śrī Rāma Rakṣā Stotram"
+       "en": "Shri Ram Raksha Stotram"
       },
       "children": [
        {
@@ -108,11 +108,11 @@
         "path": "hinduism/stotra/rama/ramraksha",
         "title": {
          "hi": "श्रीरामरक्षास्तोत्रम्",
-         "en": "Śrī Rāma Rakṣā Stotram"
+         "en": "Shri Ram Raksha Stotram"
         },
         "by": {
          "hi": "बुधकौशिक ऋषि",
-         "en": "Budha Kauśika Ṛṣi"
+         "en": "Budha Kaushik Rishi"
         },
         "edition": {
          "hi": "वन्दे गुरु परम्पराम्",
@@ -120,7 +120,7 @@
         },
         "desc": {
          "hi": "विनियोग · ध्यान · ३८ श्लोक",
-         "en": "Viniyoga · Dhyāna · 38 ślokas"
+         "en": "Viniyoga · Dhyan · 38 shlokas"
         }
        }
       ]
@@ -129,11 +129,11 @@
       "id": "shiva",
       "title": {
        "hi": "भगवान शिव",
-       "en": "Bhagavān Śiva"
+       "en": "Bhagwan Shiv"
       },
       "desc": {
        "hi": "बिल्वाष्टकम्",
-       "en": "Bilvāṣṭakam"
+       "en": "Bilvashtakam"
       },
       "children": [
        {
@@ -142,7 +142,7 @@
         "path": "hinduism/stotra/shiva/bilvashtakam",
         "title": {
          "hi": "बिल्वाष्टकम्",
-         "en": "Bilvāṣṭakam"
+         "en": "Bilvashtakam"
         },
         "by": {
          "hi": "पारम्परिक स्तोत्र",
@@ -154,7 +154,7 @@
         },
         "desc": {
          "hi": "बिल्वपत्रकी महिमा · ९ श्लोक · फलश्रुति",
-         "en": "The glory of the bilva leaf · 9 ślokas · phalaśruti"
+         "en": "The glory of the bilva leaf · 9 shlokas · phalashruti"
         },
         "salute": "॥ ॐ नमः शिवाय ॥"
        }
@@ -164,7 +164,7 @@
       "id": "krishna",
       "title": {
        "hi": "भगवान श्रीकृष्ण",
-       "en": "Bhagavān Śrī Kṛṣṇa"
+       "en": "Bhagwan Shri Krishna"
       },
       "desc": {
        "hi": "भज गोविन्दम्",
@@ -181,7 +181,7 @@
         },
         "by": {
          "hi": "आदि शंकराचार्य",
-         "en": "Ādi Śaṅkarācārya"
+         "en": "Adi Shankaracharya"
         },
         "edition": {
          "hi": "sanskritdocuments.org",
@@ -189,7 +189,7 @@
         },
         "desc": {
          "hi": "मोहमुद्गर · ३१ श्लोक",
-         "en": "Moha-mudgara · 31 ślokas"
+         "en": "Moha-mudgara · 31 shlokas"
         },
         "salute": "॥ ॐ नमो भगवते वासुदेवाय ॥"
        }
@@ -201,22 +201,22 @@
     "id": "aarti",
     "title": {
      "hi": "आरती",
-     "en": "Āratī"
+     "en": "Aarti"
     },
     "desc": {
      "hi": "आरतियाँ",
-     "en": "Āratīs"
+     "en": "Aartis"
     },
     "children": [
      {
       "id": "rama",
       "title": {
        "hi": "श्रीराम",
-       "en": "Śrī Rāma"
+       "en": "Shri Ram"
       },
       "desc": {
        "hi": "श्रीरामचन्द्र कृपालु · आरती कीजे श्रीरामलला की · आरती कीजै रामचन्द्र जी की",
-       "en": "Śrī Rāmacandra Kṛpālu · Āratī Kīje Śrī Rāmalalā Kī · Āratī Kījai Rāmacandra Jī Kī"
+       "en": "Shri Ramchandra Kripalu · Aarti Kije Shri Ramlala Ki · Aarti Kijai Ramchandra Ji Ki"
       },
       "children": [
        {
@@ -225,11 +225,11 @@
         "path": "hinduism/aarti/rama/shri-ramchandra-kripalu",
         "title": {
          "hi": "श्रीरामचन्द्र कृपालु",
-         "en": "Śrī Rāmacandra Kṛpālu"
+         "en": "Shri Ramchandra Kripalu"
         },
         "desc": {
          "hi": "गोस्वामी तुलसीदास · श्रीराम-स्तुति",
-         "en": "Gosvāmī Tulasīdāsa · Śrī Rāma Stuti"
+         "en": "Goswami Tulsidas · Shri Ram Stuti"
         },
         "salute": "॥ जय श्रीराम ॥"
        },
@@ -239,11 +239,11 @@
         "path": "hinduism/aarti/rama/ramlala-aarti",
         "title": {
          "hi": "आरती कीजे श्रीरामलला की",
-         "en": "Āratī Kīje Śrī Rāmalalā Kī"
+         "en": "Aarti Kije Shri Ramlala Ki"
         },
         "desc": {
          "hi": "पूरण निपुण धनुवेद कला की",
-         "en": "Pūraṇa nipuṇa dhanuveda kalā kī"
+         "en": "Puran nipun dhanuved kala ki"
         },
         "salute": "॥ जय श्रीराम ॥"
        },
@@ -253,11 +253,11 @@
         "path": "hinduism/aarti/rama/ramchandra-aarti",
         "title": {
          "hi": "आरती कीजै रामचन्द्र जी की",
-         "en": "Āratī Kījai Rāmacandra Jī Kī"
+         "en": "Aarti Kijai Ramchandra Ji Ki"
         },
         "desc": {
          "hi": "संत नामदेव",
-         "en": "Saint Nāmadeva"
+         "en": "Saint Namdev"
         },
         "salute": "॥ जय श्रीराम ॥"
        }
@@ -267,11 +267,11 @@
       "id": "hanuman",
       "title": {
        "hi": "श्रीहनुमान",
-       "en": "Śrī Hanumān"
+       "en": "Shri Hanuman"
       },
       "desc": {
        "hi": "आरती कीजै हनुमान लला की",
-       "en": "Āratī Kījai Hanumāna Lalā Kī"
+       "en": "Aarti Kijai Hanuman Lala Ki"
       },
       "children": [
        {
@@ -280,11 +280,11 @@
         "path": "hinduism/aarti/hanuman/hanuman-aarti",
         "title": {
          "hi": "आरती कीजै हनुमान लला की",
-         "en": "Āratī Kījai Hanumāna Lalā Kī"
+         "en": "Aarti Kijai Hanuman Lala Ki"
         },
         "desc": {
          "hi": "श्रीहनुमानजीकी आरती",
-         "en": "The āratī of Śrī Hanumān"
+         "en": "The aarti of Shri Hanuman"
         },
         "salute": "॥ जय बजरंगबली ॥"
        }
@@ -294,11 +294,11 @@
       "id": "vishnu",
       "title": {
        "hi": "भगवान विष्णु",
-       "en": "Bhagavān Viṣṇu"
+       "en": "Bhagwan Vishnu"
       },
       "desc": {
        "hi": "ॐ जय जगदीश हरे",
-       "en": "Om Jaya Jagadīśa Hare"
+       "en": "Om Jai Jagdish Hare"
       },
       "children": [
        {
@@ -307,11 +307,11 @@
         "path": "hinduism/aarti/vishnu/jagdish-aarti",
         "title": {
          "hi": "ॐ जय जगदीश हरे",
-         "en": "Om Jaya Jagadīśa Hare"
+         "en": "Om Jai Jagdish Hare"
         },
         "desc": {
          "hi": "आरती श्रीजगदीशजीकी",
-         "en": "The āratī of Śrī Jagadīśa"
+         "en": "The aarti of Shri Jagdish"
         },
         "salute": "॥ ॐ नमो भगवते वासुदेवाय ॥"
        }
@@ -321,11 +321,11 @@
       "id": "shiva",
       "title": {
        "hi": "भगवान शिव",
-       "en": "Bhagavān Śiva"
+       "en": "Bhagwan Shiv"
       },
       "desc": {
        "hi": "ॐ जय शिव ओंकारा",
-       "en": "Om Jaya Śiva Oṅkārā"
+       "en": "Om Jai Shiv Omkara"
       },
       "children": [
        {
@@ -334,11 +334,11 @@
         "path": "hinduism/aarti/shiva/shiv-aarti",
         "title": {
          "hi": "ॐ जय शिव ओंकारा",
-         "en": "Om Jaya Śiva Oṅkārā"
+         "en": "Om Jai Shiv Omkara"
         },
         "desc": {
          "hi": "आरती श्रीशिवजीकी",
-         "en": "The āratī of Śrī Śiva"
+         "en": "The aarti of Shri Shiv"
         },
         "salute": "॥ ॐ नमः शिवाय ॥"
        }
@@ -348,11 +348,11 @@
       "id": "ganga",
       "title": {
        "hi": "माँ गंगा",
-       "en": "Mother Gaṅgā"
+       "en": "Mother Ganga"
       },
       "desc": {
        "hi": "ॐ जय गंगे माता",
-       "en": "Om Jaya Gaṅge Mātā"
+       "en": "Om Jai Gange Mata"
       },
       "children": [
        {
@@ -361,11 +361,11 @@
         "path": "hinduism/aarti/ganga/ganga-aarti",
         "title": {
          "hi": "ॐ जय गंगे माता",
-         "en": "Om Jaya Gaṅge Mātā"
+         "en": "Om Jai Gange Mata"
         },
         "desc": {
          "hi": "श्रीगंगाजीकी आरती",
-         "en": "The āratī of Mother Gaṅgā"
+         "en": "The aarti of Mother Ganga"
         },
         "salute": "॥ हर हर गंगे ॥"
        }
@@ -375,11 +375,11 @@
       "id": "shirdi-sai",
       "title": {
        "hi": "शिरडी साईबाबा",
-       "en": "Shirdi Sāī Bābā"
+       "en": "Shirdi Sai Baba"
       },
       "desc": {
        "hi": "धूप आरती",
-       "en": "Dhūpa Āratī"
+       "en": "Dhoop Aarti"
       },
       "children": [
        {
@@ -388,19 +388,19 @@
         "path": "hinduism/aarti/shirdi-sai/dhoop-aarti",
         "title": {
          "hi": "धूप आरती",
-         "en": "Dhūpa Āratī"
+         "en": "Dhoop Aarti"
         },
         "by": {
          "hi": "श्री साईबाबा, शिरडी",
-         "en": "Śrī Sāī Bābā of Shirdi"
+         "en": "Shri Sai Baba of Shirdi"
         },
         "edition": {
          "hi": "शिरडीकी सायंकालीन आरती",
-         "en": "The evening āratī of Shirdi"
+         "en": "The evening aarti of Shirdi"
         },
         "desc": {
          "hi": "सायंकालीन आरती · मराठी, संस्कृत, हिन्दी",
-         "en": "Evening āratī · Marathi, Sanskrit, Hindi"
+         "en": "Evening aarti · Marathi, Sanskrit, Hindi"
         },
         "salute": "॥ ॐ श्री साईं राम ॥"
        }
@@ -426,14 +426,14 @@
         "id": "krishna-yajurveda",
         "title": {
          "hi": "कृष्ण यजुर्वेद",
-         "en": "Kṛṣṇa Yajurveda"
+         "en": "Krishna Yajurveda"
         },
         "children": [
          {
           "id": "samhita",
           "title": {
            "hi": "संहिता",
-           "en": "Saṃhitā"
+           "en": "Samhita"
           },
           "children": [
            {
@@ -442,11 +442,11 @@
             "path": "hinduism/veda/yajurveda/krishna-yajurveda/samhita/shri-rudram",
             "title": {
              "hi": "श्रीरुद्रम्",
-             "en": "Śrī Rudram"
+             "en": "Shri Rudram"
             },
             "by": {
              "hi": "कृष्ण यजुर्वेद, तैत्तिरीय संहिता",
-             "en": "Kṛṣṇa Yajurveda, Taittirīya Saṃhitā"
+             "en": "Krishna Yajurveda, Taittiriya Samhita"
             },
             "edition": {
              "hi": "श्लोकम् (shlokam.org)",
@@ -454,7 +454,7 @@
             },
             "desc": {
              "hi": "नमकम् और चमकम् · ११ + ११ अनुवाक",
-             "en": "Namakam and Chamakam · 11 + 11 anuvākas"
+             "en": "Namakam and Chamakam · 11 + 11 anuvakas"
             },
             "salute": "॥ ॐ श्री परमात्मने नमः ॥"
            }
@@ -464,7 +464,7 @@
           "id": "upanishad",
           "title": {
            "hi": "उपनिषद्",
-           "en": "Upaniṣads"
+           "en": "Upanishads"
           },
           "children": [
            {
@@ -473,11 +473,11 @@
             "path": "hinduism/veda/yajurveda/krishna-yajurveda/upanishad/katha-upanishad",
             "title": {
              "hi": "कठोपनिषद्",
-             "en": "Kaṭha Upaniṣad"
+             "en": "Katha Upanishad"
             },
             "by": {
              "hi": "कृष्ण यजुर्वेद, कठ शाखा",
-             "en": "Kṛṣṇa Yajurveda, Kaṭha śākhā"
+             "en": "Krishna Yajurveda, Katha shakha"
             },
             "edition": {
              "hi": "सन्दीपनी (स्वामी गुरुभक्तानन्द); shlokam.org",
@@ -485,7 +485,7 @@
             },
             "desc": {
              "hi": "नचिकेता और यम का संवाद · २ अध्याय · ६ वल्ली · ११९ मन्त्र",
-             "en": "Naciketā and Yama · 2 adhyāyas · 6 vallīs · 119 mantras"
+             "en": "Nachiketa and Yama · 2 adhyays · 6 vallis · 119 mantras"
             },
             "salute": "॥ ॐ श्री परमात्मने नमः ॥"
            }
@@ -497,14 +497,14 @@
         "id": "shukla-yajurveda",
         "title": {
          "hi": "शुक्ल यजुर्वेद",
-         "en": "Śukla Yajurveda"
+         "en": "Shukla Yajurveda"
         },
         "children": [
          {
           "id": "upanishad",
           "title": {
            "hi": "उपनिषद्",
-           "en": "Upaniṣads"
+           "en": "Upanishads"
           },
           "children": [
            {
@@ -513,11 +513,11 @@
             "path": "hinduism/veda/yajurveda/shukla-yajurveda/upanishad/isha-upanishad",
             "title": {
              "hi": "ईशावास्योपनिषद्",
-             "en": "Īśāvāsya Upaniṣad"
+             "en": "Ishavasya Upanishad"
             },
             "by": {
              "hi": "शुक्ल यजुर्वेद, काण्व संहिता — अध्याय ४०",
-             "en": "Śukla Yajurveda, Kāṇva Saṃhitā — chapter 40"
+             "en": "Shukla Yajurveda, Kanva Samhita — chapter 40"
             },
             "edition": {
              "hi": "shlokam.org",
@@ -525,7 +525,7 @@
             },
             "desc": {
              "hi": "शान्तिपाठ · १८ मन्त्र",
-             "en": "Śānti Pāṭha · 18 mantras"
+             "en": "Shanti Paath · 18 mantras"
             },
             "salute": "॥ ॐ श्री परमात्मने नमः ॥"
            }
@@ -546,7 +546,7 @@
         "id": "upanishad",
         "title": {
          "hi": "उपनिषद्",
-         "en": "Upaniṣads"
+         "en": "Upanishads"
         },
         "children": [
          {
@@ -555,7 +555,7 @@
           "path": "hinduism/veda/atharvaveda/upanishad/mandukya-upanishad",
           "title": {
            "hi": "माण्डूक्योपनिषद्",
-           "en": "Māṇḍūkya Upaniṣad"
+           "en": "Mandukya Upanishad"
           },
           "by": {
            "hi": "अथर्ववेद",
@@ -567,7 +567,7 @@
           },
           "desc": {
            "hi": "शान्तिपाठ · १२ मन्त्र",
-           "en": "Śānti Pāṭha · 12 mantras"
+           "en": "Shanti Paath · 12 mantras"
           },
           "salute": "॥ ॐ श्री परमात्मने नमः ॥"
          }
@@ -594,7 +594,7 @@
     "id": "gurbani",
     "title": {
      "hi": "गुरबाणी",
-     "en": "Gurbāṇī"
+     "en": "Gurbani"
     },
     "desc": {
      "hi": "गुरुओंकी वाणी",

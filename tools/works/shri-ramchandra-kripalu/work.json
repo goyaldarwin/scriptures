@@ -4,26 +4,26 @@
  "lang": "bra",
  "title": {
   "hi": "श्रीरामचन्द्र कृपालु",
-  "en": "Śrī Rāmacandra Kṛpālu"
+  "en": "Shri Ramchandra Kripalu"
  },
  "by": {
   "hi": "गोस्वामी तुलसीदास",
-  "en": "Gosvāmī Tulasīdāsa"
+  "en": "Goswami Tulsidas"
  },
  "from": {
   "hi": "विनय-पत्रिका",
-  "en": "Vinaya-patrikā"
+  "en": "Vinay Patrika"
  },
  "parts": {
   "name": {
    "hi": "आरती",
-   "en": "Āratī"
+   "en": "Aarti"
   },
   "list": [
    {
     "key": "aarti",
     "hi": "श्रीरामचन्द्र कृपालु",
-    "en": "Śrī Rāmacandra Kṛpālu"
+    "en": "Shri Ramchandra Kripalu"
    }
   ]
  },

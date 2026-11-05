@@ -470,7 +470,7 @@ async def main():
         foot = await ev("(async () => { await openWork('sundarkand', true); show('home'); openReader('k', ID['kishkindha.29.do29']); await new Promise(r => setTimeout(r, 600)); return document.querySelector('#rMid small').textContent; })()")
         check('the reader footer names only the part, not the topic', foot == await ev("KNAME(R.n)"), foot)
         subs = await ev("""(async () => { const r = {}; for (const id of ['manas', 'sundarkand', 'ramraksha']){ await openWork(id, true); S.settings.ui = 'en'; applyLang(); show('home'); r[id] = document.querySelector('#hSub').textContent; } return r; })()""")
-        check('under the title: the author and parent text, no publisher', subs == {'manas': 'Gosvāmī Tulasīdāsa', 'sundarkand': 'Gosvāmī Tulasīdāsa · Śrī Rāmacaritamānasa', 'ramraksha': 'Budha Kauśika Ṛṣi'}, subs)
+        check('under the title: the author and parent text, no publisher', subs == {'manas': 'Goswami Tulsidas', 'sundarkand': 'Goswami Tulsidas · Shri Ramcharitmanas', 'ramraksha': 'Budha Kaushik Rishi'}, subs)
         pk = await ev("""(async () => { await openWork('manas', true); show('home'); openReader('k', 0); await new Promise(r => setTimeout(r, 500)); sectionSheet();
             const a0 = R.a; document.querySelector('#sheetBody [data-pick="1"]').click(); await new Promise(r => setTimeout(r, 300));
             const stillOpen = document.querySelector('#sheet').classList.contains('on'), same = R.a === a0, first = +document.querySelector('#sheetBody .secs [data-to]').dataset.to;
@@ -1029,7 +1029,7 @@ async def main():
         ls = await ev("[...document.querySelectorAll('#sRes .snip')].map(x => x.textContent)")
         await pg.fill('#q', 'Sunderkand'); await pg.wait_for_timeout(600)
         ls2 = await ev("[...document.querySelectorAll('#sRes .snip')].map(x => x.textContent)")
-        check('library search: “सुंदरकांड” and “Sunderkand” find the Sundarakāṇḍa', any(t in x for x in ls for t in ('सुन्दरकाण्ड', 'Sundarakāṇḍa')) and any(t in x for x in ls2 for t in ('सुन्दरकाण्ड', 'Sundarakāṇḍa')), [ls[:3], ls2[:3]])
+        check('library search: “सुंदरकांड” and “Sunderkand” find the Sundarkand', any(t in x for x in ls for t in ('सुन्दरकाण्ड', 'Sundarkand')) and any(t in x for x in ls2 for t in ('सुन्दरकाण्ड', 'Sundarkand')), [ls[:3], ls2[:3]])
         # a shelf that holds only works is one row with its works as buttons (Āratī › Śrī Rāma like Vedas › Yajurveda)
         sv = await ev("""(async () => { libPath = ['aarti']; show('library'); await new Promise(r => setTimeout(r, 300));
             const rama = document.querySelector('#libList button.it[data-node="rama"]'); return [document.querySelectorAll('#libList .lhead').length, !!rama, rama ? rama.closest('li').querySelectorAll('[data-open-work], .more').length : 0, document.querySelectorAll('#libList [data-node="rama/shri-ramchandra-kripalu"]').length]; })()""")
@@ -1052,6 +1052,9 @@ async def main():
         # ⓘ About this work: under the title, with the work's language and length
         ab = await ev("(async () => { await openWork('ramraksha', true); show('home'); $('#hAbout').click(); await new Promise(r => setTimeout(r, 300)); const t = $('#sheetBody').innerText; closeSheet(); return t; })()")
         check('About this work shows the language and length', ('Sanskrit' in ab or 'संस्कृत' in ab) and ('verses' in ab or 'पद' in ab), ab[:120])
+        # ⓘ beside a work in the library: about it without loading it, with a button that opens it
+        lb = await ev("(async () => { libPath = []; show('library'); await new Promise(r => setTimeout(r, 300)); const b = $('#libList [data-info-work]'); const id = b.dataset.infoWork; b.click(); await new Promise(r => setTimeout(r, 300)); const r = [id, $('#sheet').classList.contains('on'), !!$('#abOpen'), $('#sheetBody h2').textContent === TT(workNode(id).title)]; $('#abOpen').click(); await new Promise(r => setTimeout(r, 1500)); r.push(CURVIEW, W && W.id === id); return r; })()")
+        check('ⓘ in the library tells about a work, and Open opens it', lb[1] and lb[2] and lb[3] and lb[4] == 'home' and lb[5], lb)
         # a saved file: “Add them to this phone” shows them at once; “Replace everything” with an older file (no timing) keeps the app working
         f = {'kind': 'manas-personal', 'v': 3, 'settings': {'ui': 'en', 'layers': {'h': False, 'e': True, 'w': False}, 'tr': False, 'size': 21, 'theme': 'light', 'tour': 1}, 'src': {}, 'w': {},
              'profiles': [{'id': 'px', 'name': 'Me', 'notes': {'manas:bal.1.cau1': [{'t': 'a note', 'ts': 1}]}, 'bm': {'manas:bal.1.cau2': 1}, 'done': {}, 'gloss': {}, 'fix': {}}], 'active': 'px', 'show': ['px']}
@@ -1119,7 +1122,7 @@ async def split_work(b, shots):
     await (await pg.query_selector('#orgList [data-open]')).click(); await pg.wait_for_timeout(1200)
     r0 = await ev("[R.n, document.querySelectorAll('#rBody .layer').length, document.querySelector('#rMid .ml').textContent]")
     await shot('part1')
-    check('split work: the first part shows its meanings; the footer shows the work’s own section label', r0[0] == 0 and r0[1] > 4 and r0[2].startswith('Śānti Pāṭha'), r0)
+    check('split work: the first part shows its meanings; the footer shows the work’s own section label', r0[0] == 0 and r0[1] > 4 and r0[2].startswith('Shanti Paath'), r0)
     # to the second part the way a finger does: the footer, the second part, its first section
     slow['on'] = True; got.clear()
     await pg.click('#rMid'); await pg.wait_for_timeout(400)
@@ -1131,9 +1134,9 @@ async def split_work(b, shots):
     await pg.wait_for_timeout(2500)
     r1 = await ev("""(() => { const i = R.a, v = document.getElementById('v' + i); return [R.n, document.querySelectorAll('#rBody .layer').length, IT[i].p, !!(v && v.querySelector('.layer')), document.querySelector('#rMid .ml').textContent, Math.round(v.getBoundingClientRect().top)]; })()""")
     await shot('part2')
-    check('split work: the section picker lists the second part’s sections by their labels (Vallī 2.1 …)', rows[:3] == ['Vallī 2.1', 'Vallī 2.2', 'Vallī 2.3'], rows)
+    check('split work: the section picker lists the second part’s sections by their labels (Valli 2.1 …)', rows[:3] == ['Valli 2.1', 'Valli 2.2', 'Valli 2.3'], rows)
     check('split work: the second part shows its verses at once and its meanings when its files come, the page kept in place',
-          early[0] == 1 and early[1] > 0 and early[2] == 0 and r1[0] == 1 and r1[1] > 4 and r1[2] == 1 and r1[3] and r1[4].startswith('Vallī 2.1') and abs(r1[5] - early[3]) <= 2 and
+          early[0] == 1 and early[1] > 0 and early[2] == 0 and r1[0] == 1 and r1[1] > 4 and r1[2] == 1 and r1[3] and r1[4].startswith('Valli 2.1') and abs(r1[5] - early[3]) <= 2 and
           any(f.startswith('meanings/en-scriptures/1') for f in got) and 'glossary/1.json' in got, (early, r1, sorted(set(got))))
     slow['on'] = False
     # a word of the second part: the work's own sense, which only glossary/1.json has
@@ -1165,7 +1168,7 @@ async def split_work(b, shots):
     s1 = await ev("[!!document.querySelector('#sRes .sload'), [...document.querySelectorAll('#sRes .res')].map(b => [IT[+b.dataset.i].id, IT[+b.dataset.i].p, b.querySelector('.where').textContent])]")
     await shot('search')
     check('split work: search shows “searching every part” at first, then finds a meaning only the second part has, with its section label',
-          s0[0] and not any('English meaning' in w for w in s0[1]) and not s1[0] and any(r[0] == '2.1.7' and r[1] == 1 and 'English meaning' in r[2] and 'Vallī 2.1' in r[2] for r in s1[1]), (s0, s1))
+          s0[0] and not any('English meaning' in w for w in s0[1]) and not s1[0] and any(r[0] == '2.1.7' and r[1] == 1 and 'English meaning' in r[2] and 'Valli 2.1' in r[2] for r in s1[1]), (s0, s1))
     await pg.fill('#q', 'विश्वे देवा'); await pg.wait_for_timeout(600)
     s2 = await ev("[...document.querySelectorAll('#sRes .res')].map(b => IT[+b.dataset.i].id)")
     check('split work: the verse text is found at once', wid in s2, s2)

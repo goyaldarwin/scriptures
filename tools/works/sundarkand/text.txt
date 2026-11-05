@@ -5,7 +5,7 @@
 @part mangal
 @section mangal
 @lang sa
-@topic गणेशजी और हनुमान्‌जीकी वन्दना | Prayers to Gaṇeśa and Hanumān
+@topic गणेशजी और हनुमान्‌जीकी वन्दना | Prayers to Ganesh and Hanuman
 [mangal.mantra1 mantra]
 ॐ श्री परमात्मने नमः ॥
 [mangal.shloka1 shloka 1]
@@ -29,7 +29,7 @@
 @part chalisa
 @section chalisa-do
 @lang awa
-@topic आरम्भके दोहे | The opening dohās
+@topic आरम्भके दोहे | The opening dohas
 [chalisa.do1 do]
 श्रीगुरु चरन सरोज रज निज मनु मुकुरु सुधारि ।
 बरनउँ रघुबर बिमल जसु जो दायकु फल चारि ॥
@@ -37,7 +37,7 @@
 बुद्धिहीन तनु जानिके सुमिरौं पवनकुमार ।
 बल बुधि बिद्या देहु मोहिं हरहु कलेस बिकार ॥
 @section chalisa-cau
-@topic चालीसा | The forty caupāīs
+@topic चालीसा | The forty chaupais
 [chalisa.cau1 cau 1]
 जय हनुमान ज्ञान गुन सागर । जय कपीस तिहुँ लोक उजागर ॥
 [chalisa.cau2 cau 2]
@@ -119,7 +119,7 @@
 [chalisa.cau40 cau 40]
 तुलसीदास सदा हरि चेरा । कीजै नाथ हृदय महँ डेरा ॥
 @section chalisa-ant
-@topic समापनका दोहा | The closing dohā
+@topic समापनका दोहा | The closing doha
 [chalisa.do3 do]
 पवनतनय संकट हरन मंगल मूरति रूप ।
 राम लखन सीता सहित हृदय बसहु सुर भूप ॥
@@ -127,7 +127,7 @@
 @part aarti
 @section aarti
 @lang hi
-@topic श्रीहनुमानजीकी आरती | The āratī of Śrī Hanumān
+@topic श्रीहनुमानजीकी आरती | The aarti of Shri Hanuman
 [aarti.tek tek]
 आरती कीजै हनुमान लला की ।
 दुष्ट दलन रघुनाथ कला की ॥

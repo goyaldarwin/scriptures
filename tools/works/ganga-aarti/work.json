@@ -4,22 +4,22 @@
  "lang": "hi",
  "title": {
   "hi": "ॐ जय गंगे माता",
-  "en": "Om Jaya Gaṅge Mātā"
+  "en": "Om Jai Gange Mata"
  },
  "by": {
   "hi": "माँ गंगा",
-  "en": "Mother Gaṅgā"
+  "en": "Mother Ganga"
  },
  "parts": {
   "name": {
    "hi": "आरती",
-   "en": "Āratī"
+   "en": "Aarti"
   },
   "list": [
    {
     "key": "aarti",
     "hi": "ॐ जय गंगे माता",
-    "en": "Om Jaya Gaṅge Mātā"
+    "en": "Om Jai Gange Mata"
    }
   ]
  },
@@ -27,7 +27,7 @@
   "tek": {
    "name": {
     "hi": "टेक",
-    "en": "Refrain (ṭeka)"
+    "en": "Refrain (tek)"
    },
    "short": {
     "hi": "टेक",

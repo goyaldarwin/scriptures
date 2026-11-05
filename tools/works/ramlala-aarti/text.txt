@@ -2,7 +2,7 @@
 
 @part aarti
 @section ramlala
-@topic आरती कीजे श्रीरामलला की | Āratī Kīje Śrī Rāmalalā Kī
+@topic आरती कीजे श्रीरामलला की | Aarti Kije Shri Ramlala Ki
 [ramlala.tek tek]
 आरती कीजे श्रीरामलला की । पूरण निपुण धनुवेद कला की ॥
 [ramlala.cau1 cau 1]

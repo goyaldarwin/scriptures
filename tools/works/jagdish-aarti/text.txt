@@ -2,7 +2,7 @@
 
 @part aarti
 @section aarti
-@topic ॐ जय जगदीश हरे | Om Jaya Jagadīśa Hare
+@topic ॐ जय जगदीश हरे | Om Jai Jagdish Hare
 [aarti.tek tek]
 ॐ जय जगदीश हरे,
 स्वामी जय जगदीश हरे ।

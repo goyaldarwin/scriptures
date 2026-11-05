@@ -4,11 +4,11 @@
  "lang": "sa",
  "title": {
   "hi": "श्रीरुद्रम्",
-  "en": "Śrī Rudram"
+  "en": "Shri Rudram"
  },
  "by": {
   "hi": "कृष्ण यजुर्वेद, तैत्तिरीय संहिता ४.५ और ४.७",
-  "en": "Kṛṣṇa Yajurveda, Taittirīya Saṃhitā 4.5 and 4.7"
+  "en": "Krishna Yajurveda, Taittiriya Samhita 4.5 and 4.7"
  },
  "edition": {
   "hi": "श्लोकम् (shlokam.org)",
@@ -36,11 +36,11 @@
   "mangala": {
    "name": {
     "hi": "मङ्गल मन्त्र",
-    "en": "Maṅgala mantra"
+    "en": "Mangal mantra"
    },
    "short": {
     "hi": "मङ्ग॰",
-    "en": "Maṅg."
+    "en": "Mang."
    }
   },
   "shirsha": {
@@ -76,11 +76,11 @@
   "shanti": {
    "name": {
     "hi": "शान्ति मन्त्र",
-    "en": "Śānti mantra"
+    "en": "Shanti mantra"
    },
    "short": {
     "hi": "शा॰",
-    "en": "Śā."
+    "en": "Shan."
    }
   }
  }

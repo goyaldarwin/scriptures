@@ -22,7 +22,7 @@ function latNode(root){
 new MutationObserver(ms => ms.forEach(m => m.type === 'characterData' ? latNode(m.target) : m.addedNodes.forEach(latNode))).observe(document.documentElement, {childList: true, subtree: true, characterData: true});
 latNode(document.body);
 const ORDH = ['', 'पहला', 'दूसरा', 'तीसरा', 'चौथा', 'पाँचवाँ', 'छठा', 'सातवाँ', 'आठवाँ', 'नवाँ', 'दसवाँ', 'ग्यारहवाँ', 'बारहवाँ', 'तेरहवाँ', 'चौदहवाँ', 'पंद्रहवाँ', 'सोलहवाँ', 'सत्रहवाँ', 'अठारहवाँ', 'उन्नीसवाँ', 'बीसवाँ', 'इक्कीसवाँ', 'बाईसवाँ', 'तेईसवाँ', 'चौबीसवाँ', 'पचीसवाँ', 'छब्बीसवाँ', 'सत्ताईसवाँ', 'अट्ठाईसवाँ', 'उनतीसवाँ', 'तीसवाँ'];
-const TYPEN = {do: ['दोहा', 'Dohā'], so: ['सोरठा', 'Sorathā'], cha: ['छंद', 'Chhand'], shloka: ['श्लोक', 'Śloka'], cau: ['चौपाई', 'Chaupāī']};
+const TYPEN = {do: ['दोहा', 'Doha'], so: ['सोरठा', 'Soratha'], cha: ['छंद', 'Chhand'], shloka: ['श्लोक', 'Shloka'], cau: ['चौपाई', 'Chaupai']};
 const TYPE = new Proxy({}, {get: (o, k) => TYPEN[k] ? T(TYPEN[k][0], TYPEN[k][1]) : ''});
 const TT = o => o ? (typeof o === 'string' ? o : T(o.hi, o.en || o.hi)) : '';
 
@@ -142,7 +142,7 @@ const LB = {
   size: () => T('अक्षरका आकार', 'Letter size'), theme: () => T('रंग', 'Theme'), more: () => T('और सेटिंग', 'More settings'), tour: () => T('परिचय (टूर)', 'Take the tour'),
   sections: () => T('प्रसंग', 'Sections'), search: () => T('खोजें', 'Search'),
   bm: () => T('बुकमार्क और टिप्पणियाँ', 'Bookmarks & notes'), verses: () => T('मूल पाठ', 'Verses'),
-  lib: () => T('पुस्तकालय', 'Library'), src: () => T('स्रोत', 'Sources'), vidhi: () => T('पारायण-विधि', 'Pārāyaṇa vidhi')
+  lib: () => T('पुस्तकालय', 'Library'), src: () => T('स्रोत', 'Sources'), vidhi: () => T('पारायण-विधि', 'Parayan vidhi')
 };
 
 /* ---------------- ui helpers ---------------- */
@@ -306,13 +306,13 @@ const SECN = s => W && W.sections && W.sections[s] ? TT(W.sections[s]) : '';
 const hasSec = p => isNum(p.s) || !!SECN(p.s);
 // two section labels as one range: the same words before a number are written once (Sarga 1–3, सर्ग १–३)
 function secSpan(la, lb){ if (la === lb) return la; const x = /^(.*?)([0-9०-९੦-੯]+)$/.exec(la), y = /^(.*?)([0-9०-९੦-੯]+)$/.exec(lb); return x && y && x[1] === y[1] ? la + '–' + y[2] : la + ' – ' + lb; }
-function secLabel(p){ if (SECN(p.s)) return SECN(p.s); if (isNum(p.s)) return T('दोहा ', 'Dohā ') + DEV(p.s); const a = IT[p.from], z = IT[p.to]; if (a.y === z.y && vNum(a.n) && vNum(z.n)) return TYPE[a.y] + ' ' + vNum(a.n) + (z.n !== a.n ? '–' + vNum(z.n) : ''); return vLabel(a) === vLabel(z) ? vLabel(a) : vLabel(a) + ' – ' + vLabel(z); }
+function secLabel(p){ if (SECN(p.s)) return SECN(p.s); if (isNum(p.s)) return T('दोहा ', 'Doha ') + DEV(p.s); const a = IT[p.from], z = IT[p.to]; if (a.y === z.y && vNum(a.n) && vNum(z.n)) return TYPE[a.y] + ' ' + vNum(a.n) + (z.n !== a.n ? '–' + vNum(z.n) : ''); return vLabel(a) === vLabel(z) ? vLabel(a) : vLabel(a) + ' – ' + vLabel(z); }
 function posLabel(i){ const it = IT[i], p = PAGES[itemPage[i]]; if (SECN(p.s)) return secLabel(p) + ' · ' + vLabel(it); if (!isNum(p.s) || it.y === 'do' || it.y === 'so') return vLabel(it); return secLabel(p) + ' · ' + vLabel(it); }
 function itemLabel(i){ return KNAME(IT[i].p) + ' · ' + posLabel(i); }
 function spanLabel(a, b){
   const pa = PAGES[itemPage[a]], pb = PAGES[itemPage[b]];
   if (SECN(pa.s) && SECN(pb.s)) return secSpan(secLabel(pa), secLabel(pb));
-  if (isNum(pa.s) && isNum(pb.s)) return T('दोहा ', 'Dohā ') + DEV(pa.s) + (pb.s !== pa.s ? '–' + DEV(pb.s) : '');
+  if (isNum(pa.s) && isNum(pb.s)) return T('दोहा ', 'Doha ') + DEV(pa.s) + (pb.s !== pa.s ? '–' + DEV(pb.s) : '');
   const la = hasSec(pa) ? secLabel(pa) : vLabel(IT[a]), lb = hasSec(pb) ? secLabel(pb) : vLabel(IT[b]);
   if (la === lb) return la;
   if (IT[a].y === IT[b].y && !hasSec(pa) && !hasSec(pb) && vNum(IT[a].n) && vNum(IT[b].n)) return TYPE[IT[a].y] + ' ' + vNum(IT[a].n) + '–' + vNum(IT[b].n);
@@ -381,7 +381,7 @@ const shownKinds = () => capKinds().filter(k => layerOn(LK(k)));   // the meanin
 
 /* ---------------- reader: continuous scroll over a kāṇḍa or a day's pāṭh ---------------- */
 let R = {org: 'k', a: 0, b: 0, n: 0, pf: -1, pt: -1};
-const VSHORT = {cau: ['चौ॰', 'Cau.'], do: ['दो॰', 'Do.'], so: ['सो॰', 'So.'], cha: ['छं॰', 'Cha.'], shloka: ['श्लो॰', 'Śl.']};
+const VSHORT = {cau: ['चौ॰', 'Chau.'], do: ['दो॰', 'Do.'], so: ['सो॰', 'So.'], cha: ['छं॰', 'Cha.'], shloka: ['श्लो॰', 'Shl.']};
 // A work may name its own verse types (work.json → "types": {type: {name, short}}); they add to or replace the built-in ones while it is open.
 const TYPES0 = [[TYPEN, Object.assign({}, TYPEN)], [VSHORT, Object.assign({}, VSHORT)]];
 function applyTypes(){
@@ -1182,7 +1182,7 @@ function renderLibrary(){
     // a shelf shows two works — the ones used most recently on this phone first (S.w[id].at: last opened, read or played) — then “+N” for the rest
     const at = w => (S.w[w.work] || {}).at || 0, ws = c.work ? [] : worksIn(c).map((w, k) => [w, k]).sort((x, y) => at(y[0]) - at(x[0]) || x[1] - y[1]).map(x => x[0]), MAX = 2;
     return '<li><button class="it" data-node="' + esc(key) + '"><span class="grow"><span class="ti">' + esc(TT(c.title)) + '</span>' + (ws.length ? '' : '<br><span class="ds">' + esc(TT(c.desc || c.by) || '') + '</span>') + '</span><span class="chev">›</span></button>' +
-      (ws.length ? '<div class="lworks">' + ws.slice(0, MAX).map(w => '<button data-open-work="' + esc(w.work) + '">' + esc(TT(w.title)) + '</button>').join('') + (ws.length > MAX ? '<button class="more" data-node="' + esc(key) + '">+' + DEV(ws.length - MAX) + '</button>' : '') + '</div>' : '') + '</li>';
+      (ws.length ? '<div class="lworks">' + ws.slice(0, MAX).map(w => '<span class="wchip"><button data-open-work="' + esc(w.work) + '">' + esc(TT(w.title)) + '</button><button class="winfo" data-info-work="' + esc(w.work) + '" aria-label="' + T('इस ग्रन्थके बारेमें', 'About this work') + '"><svg><use href="#i-info"/></svg></button></span>').join('') + (ws.length > MAX ? '<button class="more" data-node="' + esc(key) + '">+' + DEV(ws.length - MAX) + '</button>' : '') + '</div>' : '') + '</li>';
   };
   // the library itself is one row per genre, with no headings (the owner: no partitioning on the library screen). On a
   // shelf's page, a shelf that holds shelves is a heading over them and a shelf that holds only works is one row with its
@@ -1193,6 +1193,7 @@ function renderLibrary(){
     if (c.work) openWork(c.work); else { libPath.push(...ids); history.pushState(snap('library'), ''); renderLibrary(); window.scrollTo(0, 0); }
   });
   $$('#libList [data-open-work]').forEach(b => b.onclick = () => openWork(b.dataset.openWork));
+  $$('#libList [data-info-work]').forEach(b => b.onclick = () => aboutWork(b.dataset.infoWork));   // ⓘ: about the work, before opening it
   $$('#libCrumbs [data-lp]').forEach(b => b.onclick = () => { libPath = libPath.slice(0, +b.dataset.lp + 1); history.pushState(snap('library'), ''); renderLibrary(); window.scrollTo(0, 0); });
 }
 /* library search: finds works and shelves by title, author, edition, description or id, in either script */
@@ -1284,7 +1285,7 @@ function renderHome(){
   else if (org === 'k') PARTS.forEach(p => { const tps = TOPICS.filter(t => IT[t.i].p === p.k).length || (W.sections ? PAGES.filter(g => g.k === p.k && SECN(g.s)).length : 0);   /* its topics, else its named sections */ h += '<li class="rowp">' + play('k', p.a, p.b) + '<button class="it" data-open="' + p.a + '"><span class="no">' + DEV(p.k + 1) + '</span><span class="grow"><span class="ti">' + esc(KNAME(p.k)) + '</span><br><span class="ds">' + DEV(tps) + T(' प्रसंग', tps === 1 ? ' section' : ' sections') + '</span></span><span class="chev">›</span></button></li>'; });
   else { const P = PLAN[org]; const dn = Object.keys(DONE(ME(), org)).length; h += '<li class="small muted" style="padding:6px 2px;border:0">' + DEV(dn) + ' / ' + DEV(P.n) + T(' विश्राम पूर्ण · विश्रामके अन्तमें “विश्राम पूर्ण करें” दबाएँ', ' vishrams completed · tap “Mark vishram complete” at the end of each') + '</li>';
     // pages read before the first day and after the reading (pūrvāṅga / uttarāṅga), when the plan names them
-    const page = (pg, when) => { const t = pg === 'aarti' ? T('श्रीरामायणजीकी आरती', 'Śrī Rāmāyaṇajī kī Āratī') : pg === 'visarjan' ? TT(W.vidhi.visarjan.title) : T('पारायण-विधि', 'Pārāyaṇa vidhi'); if (pg === 'visarjan') when = T('पारायणके अन्तिम दिन', 'On the last day of the pārāyaṇa'); return '<li class="rowp"><button class="it" data-page="' + pg + '"><span class="no pg"><svg><use href="#i-lamp"/></svg></span><span class="grow"><span class="ti">' + t + '</span><br><span class="ds">' + when + '</span></span><span class="chev">›</span></button></li>'; };
+    const page = (pg, when) => { const t = pg === 'aarti' ? T('श्रीरामायणजीकी आरती', 'Shri Ramayanji ki Aarti') : pg === 'visarjan' ? TT(W.vidhi.visarjan.title) : T('पारायण-विधि', 'Parayan vidhi'); if (pg === 'visarjan') when = T('पारायणके अन्तिम दिन', 'On the last day of the parayan'); return '<li class="rowp"><button class="it" data-page="' + pg + '"><span class="no pg"><svg><use href="#i-lamp"/></svg></span><span class="grow"><span class="ti">' + t + '</span><br><span class="ds">' + when + '</span></span><span class="chev">›</span></button></li>'; };
     (P.before || []).forEach(pg => h += page(pg, T('पाठसे पहले', 'Before the reading')));
     for (let n = 1; n <= P.n; n++){ const [a, b] = dayRange(org, n), d = DONE(ME(), org)[n], t = firstAu(a, b) != null ? durLabel(spanSecs(a, b)) : ''; h += '<li class="rowp">' + (t ? play(org, a, b).replace('class="lplay"', 'class="lplay timed"') + '<span class="ldur">' + t + '</span>' : play(org, a, b)) + '<button class="it" data-open="' + a + '"><span class="no' + (d ? ' done' : '') + '">' + (d ? '✓' : DEV(n)) + '</span><span class="grow"><span class="ti">' + VN(n) + '</span><br><span class="ds">' + rangeDesc(a, b) + '</span></span><span class="chev">›</span></button></li>'; }
     (P.after || []).forEach(pg => h += page(pg, T('पाठके बाद', 'After the reading'))); }
@@ -1293,21 +1294,28 @@ function renderHome(){
   $$('#orgList [data-page]').forEach(b => b.onclick = () => { vidTab = b.dataset.page === 'vidhi' ? 'v' : b.dataset.page; show('vidhi'); });
   $$('#orgList [data-pa]').forEach(b => b.onclick = ev => { ev.stopPropagation(); playRange(b.dataset.po, +b.dataset.pa, +b.dataset.pb); });
 }
-/* ⓘ About this work (under the title): what the work is, so a reader can decide to read it. The work's own introduction
-   (work.json "intro": {hi: [paragraphs], en: [paragraphs]}, written from the work's sources) comes first, else the shelf's one
-   line ("desc"); then the facts the library itself holds: language, length, listening time and reciter, the edition. */
+/* ⓘ About this work, under the title on the work's page and beside each work in the library: what the work is, so a reader
+   can decide to read it. The shelf entry's introduction (library/index.json "intro": {hi: [paragraphs], en: [paragraphs]},
+   written from the work's sources) comes first, else its one line ("desc"). On the work's page, the facts the library holds
+   follow: language, length, listening time and reciter, the edition; from the library, a button opens the work. */
 function workNode(id){ let r = null; (function walk(n){ (n || []).forEach(c => { if (c.work === id) r = c; else walk(c.children); }); })(LIB); return r || {}; }
-function aboutWork(){
-  if (!W) return; const nd = workNode(W.id);
-  const intro = W.intro ? [].concat(TT(W.intro) || []) : nd.desc ? [TT(nd.desc)] : [];
-  const row = (k, v) => v ? '<dt>' + k + '</dt><dd>' + esc(v) + '</dd>' : '';
-  const n = BYPART() ? 0 : IT.length, len = n ? DEV(n) + T(' पद', ' verses') : '';
-  const au = SRC.au && firstAu(0, IT.length - 1) != null ? durLabel(spanSecs(0, IT.length - 1)) + ' · ' + TT(SRC.au.meta.title) : '';
-  openSheet('<div class="about"><h2>' + esc(TT(W.title)) + '</h2>' + (W.by || W.from ? '<p class="muted small">' + esc([TT(W.by), TT(W.from)].filter(Boolean).join(' · ')) + '</p>' : '')
-    + intro.map(p => '<p>' + esc(p) + '</p>').join('')
-    + '<dl>' + row(T('भाषा', 'Language'), LANGS[W.lang] ? TT(LANGS[W.lang].name) : '') + row(T('विस्तार', 'Length'), len) + row(T('सुनें', 'Listen'), au) + row(T('पाठ', 'Text'), TT(W.edition)) + '</dl></div>');
+function aboutWork(id){
+  id = id || (W && W.id); if (!id) return; const nd = workNode(id), here = !!W && W.id === id && CURVIEW !== 'library';
+  const intro = nd.intro ? [].concat(TT(nd.intro) || []) : nd.desc ? [TT(nd.desc)] : [];
+  const by = here ? [TT(W.by), TT(W.from)] : [TT(nd.by)];
+  let facts = '';
+  if (here){
+    const row = (k, v) => v ? '<dt>' + k + '</dt><dd>' + esc(v) + '</dd>' : '';
+    const n = BYPART() ? 0 : IT.length, len = n ? DEV(n) + T(' पद', ' verses') : '';
+    const au = SRC.au && firstAu(0, IT.length - 1) != null ? durLabel(spanSecs(0, IT.length - 1)) + ' · ' + TT(SRC.au.meta.title) : '';
+    facts = '<dl>' + row(T('भाषा', 'Language'), LANGS[W.lang] ? TT(LANGS[W.lang].name) : '') + row(T('विस्तार', 'Length'), len) + row(T('सुनें', 'Listen'), au) + row(T('पाठ', 'Text'), TT(W.edition)) + '</dl>';
+  }
+  openSheet('<div class="about"><h2>' + esc(TT(nd.title || (W && W.title))) + '</h2>' + (by.some(Boolean) ? '<p class="muted small">' + esc(by.filter(Boolean).join(' · ')) + '</p>' : '')
+    + intro.map(p => '<p>' + esc(p) + '</p>').join('') + facts
+    + (here ? '' : '<div class="acts"><button class="btn" id="abOpen">' + T('पढ़ें', 'Open') + ' ›</button></div>') + '</div>');
+  if ($('#abOpen')) $('#abOpen').onclick = () => { closeSheet(); openWork(id); };
 }
-$('#hAbout').onclick = aboutWork;
+$('#hAbout').onclick = () => aboutWork();
 $('#hLib').onclick = () => { libPath = []; show('library'); };   // “‹ Library” goes to the library itself, not the shelf last visited
 $('#hMenu').onclick = mainMenu;
 
@@ -1549,7 +1557,7 @@ function renderVidhi(){
   $$('#vidSeg button').forEach(b => { b.classList.toggle('on', b.dataset.v === vidTab); if (b.dataset.v === 'visarjan') b.hidden = !W.vidhi.visarjan; });
   const en = LANG() === 'en'; $$('#vidLang button').forEach(b => b.classList.toggle('on', (b.dataset.l === 'e') === en));
   const V = W.vidhi, L = en ? ' lat' : ''; let h = '';
-  if (vidTab === 'aarti') h = '<div class="h' + L + '">' + T('श्रीरामायणजीकी आरती', 'Śrī Rāmāyaṇajī kī Āratī') + '</div>' + V.aarti.map(l => '<div class="v">' + vW(l) + '</div>').join('');
+  if (vidTab === 'aarti') h = '<div class="h' + L + '">' + T('श्रीरामायणजीकी आरती', 'Shri Ramayanji ki Aarti') + '</div>' + V.aarti.map(l => '<div class="v">' + vW(l) + '</div>').join('');
   else if (vidTab === 'visarjan'){ const X = V.visarjan; h = '<div class="h' + L + '">' + esc(TT(X.title)) + '</div><div class="vtip' + L + '">' + esc(TT(X.when)) + '</div>' + X.verses.map(x => '<div class="vcard"><div class="vcv">' + x.v.map(l => '<div>' + vW(l) + '</div>').join('') + '</div><div class="vce' + L + '">' + esc(en ? x.en : x.hi) + '</div></div>').join(''); }
   else (V[en ? 'en' : 'hi'] || []).forEach(([k, s]) => {
     if (k === 'h') h += Array.isArray(s) ? '<div class="h lat">' + esc(s[0]) + ' <span class="hh">' + esc(s[1]) + '</span></div>' : '<div class="h' + L + '">' + esc(s) + '</div>';
@@ -1572,9 +1580,10 @@ let TOUR = null;   // {k: step, t0, base}
 function tourWork(){ const leafs = []; (function walk(n){ (n || []).forEach(c => c.work ? leafs.push(c.work) : walk(c.children)); })(LIB); return leafs.includes('sundarkand') ? 'sundarkand' : leafs[0]; }
 function inView(el){ const r = el.getBoundingClientRect(); return r.width && r.top > 70 && r.bottom < innerHeight - 90; }
 function firstVisible(sel){ const all = $$(sel); return all.find(inView) || all[0] || null; }
+// the tour's first step finds the Sundarakāṇḍa part by its Hindi name, which does not change with the English spelling
 function tourSteps(){
   return [
-    {t: () => { const rows = $$('#orgList [data-open]'), k = PARTS.findIndex(p => /^Sundara/.test(p.en || '')); return (W && W.id === 'sundarkand' && k >= 0 && rows[k]) || rows[0]; }, allow: '#orgList .it', p: T('पढ़ना शुरू करनेके लिये यहाँ छुएँ।', 'Tap here to start reading.'), done: () => CURVIEW === 'reader' && !!$('#rBody .verse')},
+    {t: () => { const rows = $$('#orgList [data-open]'), k = PARTS.findIndex(p => (p.hi || '') === 'सुन्दरकाण्ड'); return (W && W.id === 'sundarkand' && k >= 0 && rows[k]) || rows[0]; }, allow: '#orgList .it', p: T('पढ़ना शुरू करनेके लिये यहाँ छुएँ।', 'Tap here to start reading.'), done: () => CURVIEW === 'reader' && !!$('#rBody .verse')},
     {t: () => firstVisible('#rBody .verse .vtext .w'), allow: '#rBody .vtext .w', p: T('किसी भी शब्दको छुएँ — उसका अर्थ दिखेगा।', 'Tap any word to see its meaning.'), done: () => $('#sheet').classList.contains('on')},
     {t: () => $('#sheet'), allow: '#sheet', p: T('इस पट्टीको नीचे खींचकर बंद करें।', 'Drag the drawer down to close it.'), done: () => !$('#sheet').classList.contains('on'), top: true},
     {t: () => $('#reader .szp'), allow: '#reader .szp', p: T('A+ छूकर अक्षर बड़े करें।', 'Tap A+ to make the letters larger.'), enter: () => { TOUR.base = S.settings.size; }, done: () => S.settings.size > TOUR.base || (TOUR.tap && TOUR.base >= 34)},   // already at the largest: the tap is enough

@@ -4,22 +4,22 @@
  "lang": "hi",
  "title": {
   "hi": "आरती कीजै हनुमान लला की",
-  "en": "Āratī Kījai Hanumāna Lalā Kī"
+  "en": "Aarti Kijai Hanuman Lala Ki"
  },
  "by": {
   "hi": "श्रीहनुमानजी",
-  "en": "Śrī Hanumān"
+  "en": "Shri Hanuman"
  },
  "parts": {
   "name": {
    "hi": "आरती",
-   "en": "Āratī"
+   "en": "Aarti"
   },
   "list": [
    {
     "key": "aarti",
     "hi": "आरती कीजै हनुमान लला की",
-    "en": "Āratī Kījai Hanumāna Lalā Kī"
+    "en": "Aarti Kijai Hanuman Lala Ki"
    }
   ]
  },
@@ -27,7 +27,7 @@
   "tek": {
    "name": {
     "hi": "टेक",
-    "en": "Refrain (ṭeka)"
+    "en": "Refrain (tek)"
    },
    "short": {
     "hi": "टेक",

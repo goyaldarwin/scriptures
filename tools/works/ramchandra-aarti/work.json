@@ -4,26 +4,26 @@
  "lang": "hi",
  "title": {
   "hi": "आरती कीजै रामचन्द्र जी की",
-  "en": "Āratī Kījai Rāmacandra Jī Kī"
+  "en": "Aarti Kijai Ramchandra Ji Ki"
  },
  "by": {
   "hi": "भगवान श्रीराम",
-  "en": "Bhagavān Śrī Rāma"
+  "en": "Bhagwan Shri Ram"
  },
  "from": {
   "hi": "संत नामदेव",
-  "en": "Saint Nāmadeva"
+  "en": "Saint Namdev"
  },
  "parts": {
   "name": {
    "hi": "आरती",
-   "en": "Āratī"
+   "en": "Aarti"
   },
   "list": [
    {
     "key": "aarti",
     "hi": "आरती कीजै रामचन्द्र जी की",
-    "en": "Āratī Kījai Rāmacandra Jī Kī"
+    "en": "Aarti Kijai Ramchandra Ji Ki"
    }
   ]
  },
@@ -31,7 +31,7 @@
   "tek": {
    "name": {
     "hi": "टेक",
-    "en": "Refrain (ṭeka)"
+    "en": "Refrain (tek)"
    },
    "short": {
     "hi": "टेक",

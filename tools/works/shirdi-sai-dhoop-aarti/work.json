@@ -4,31 +4,31 @@
  "lang": "mr",
  "title": {
   "hi": "धूप आरती",
-  "en": "Dhūpa Āratī"
+  "en": "Dhoop Aarti"
  },
  "named": true,
  "by": {
   "hi": "श्री साईबाबा, शिरडी",
-  "en": "Śrī Sāī Bābā of Shirdi"
+  "en": "Shri Sai Baba of Shirdi"
  },
  "edition": {
   "hi": "शिरडीकी सायंकालीन आरती",
-  "en": "The evening āratī of Shirdi"
+  "en": "The evening aarti of Shirdi"
  },
  "from": {
   "hi": "शिरडीकी सायंकालीन आरती",
-  "en": "The evening āratī of Shirdi"
+  "en": "The evening aarti of Shirdi"
  },
  "parts": {
   "name": {
    "hi": "आरती",
-   "en": "Āratī"
+   "en": "Aarti"
   },
   "list": [
    {
     "key": "aarti",
     "hi": "धूप आरती",
-    "en": "Dhūpa Āratī"
+    "en": "Dhoop Aarti"
    }
   ]
  },
@@ -56,7 +56,7 @@
   "abhang": {
    "name": {
     "hi": "अभंग",
-    "en": "Abhaṅga"
+    "en": "Abhang"
    },
    "short": {
     "hi": "अभं॰",
@@ -66,11 +66,11 @@
   "shloka": {
    "name": {
     "hi": "श्लोक",
-    "en": "Śloka"
+    "en": "Shloka"
    },
    "short": {
     "hi": "श्लो॰",
-    "en": "Śl."
+    "en": "Shl."
    }
   },
   "mantra": {
@@ -86,7 +86,7 @@
   "jay": {
    "name": {
     "hi": "जयघोष",
-    "en": "Jayaghoṣa"
+    "en": "Jayghosh"
    },
    "short": {
     "hi": "जय",

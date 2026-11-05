@@ -67,7 +67,7 @@
 [bal.2.cau1 cau 1]
 गुरु पद रज मृदु मंजुल अंजन । नयन अमिअ दृग दोष बिभंजन ।।
 तेहिंकरि बिमल बिबेक बिलोचन । बरनउँ राम चरित भव मोचन ।।
-@topic ब्राह्मण-संत-वन्दना | Salutations to Brāhmaṇas and saints
+@topic ब्राह्मण-संत-वन्दना | Salutations to Brahmins and saints
 [bal.2.cau2 cau 2]
 बंदउँ प्रथम महीसुर चरना । मोह जनित संसय सब हरना ।।
 सुजन समाज सकल गुन खानी । करउँ प्रनाम सप्रेम सुबानी ।।
@@ -197,7 +197,7 @@
 [bal.7.do7ख do 7ख]
 सम प्रकास तम पाख दुहुँ नाम भेद बिधि कीन्ह ।
 ससि सोषक पोषक समुझि जग जस अपजस दीन्ह ।।७ (ख)।।
-@topic रामरूपसे जीवमात्रकी वन्दना | Salutations to all living beings as so many images of Śrī Rāma
+@topic रामरूपसे जीवमात्रकी वन्दना | Salutations to all living beings as so many images of Shri Ram
 [bal.7.do7ग do 7ग]
 जड़ चेतन जग जीव जत सकल राममय जानि ।
 बंदउँ सब के पद कमल सदा जोरि जुग पानि ।।७ (ग)।।
@@ -208,7 +208,7 @@
 [bal.8.cau1 cau 1]
 आकर चारि लाख चौरासी । जाति जीव जल थल नभ बासी ।।
 सीय राममय सब जग जानी । करउँ प्रनाम जोरि जुग पानी ।।
-@topic तुलसीदासजीकी दीनता और रामभक्तिमयी कविताकी महिमा | Tulasīdāsa’s humility and the glory of poetry describing Śrī Rāma’s greatness
+@topic तुलसीदासजीकी दीनता और रामभक्तिमयी कविताकी महिमा | Tulsidas’s humility and the glory of poetry describing Shri Ram’s greatness
 [bal.8.cau2 cau 2]
 जानि कृपाकर किंकर मोहू । सब मिलि करहु छाड़ि छल छोहू ।।
 निज बुधि बल भरोस मोहि नाहीं । तातें बिनय करउँ सब पाहीं ।।
@@ -365,7 +365,7 @@
 [bal.14.do14ग do 14ग]
 कबि कोबिद रघुबर चरित मानस मंजु मराल ।
 बालबिनय सुनि सुरुचि लखि मो पर होहु कृपाल ।।१४ (ग)।।
-@topic वाल्मीकि, वेद, ब्रह्मा, देवता, शिव, पार्वती आदिकी वन्दना | Salutations to the sage Vālmīki, the Vedas, Brahmā, Śiva, Pārvatī and other gods and goddesses
+@topic वाल्मीकि, वेद, ब्रह्मा, देवता, शिव, पार्वती आदिकी वन्दना | Salutations to the sage Valmiki, the Vedas, Brahma, Shiv, Parvati and other gods and goddesses
 [bal.14.so14घ so 14घ]
 बंदउँ मुनि पद कंजु रामायन जेहिं निरमयउ ।
 सखर सुकोमल मंजु दोष रहित दूषन सहित ।।१४ (घ)।।
@@ -400,7 +400,7 @@
 सपनेहुँ साचेहुँ मोहि पर जौं हर गौरि पसाउ ।
 तौ फुर होउ जो कहेउँ सब भाषा भनिति प्रभाउ ।।१५।।
 @section 16
-@topic श्रीसीताराम-धाम-परिकर-वन्दना | Salutations to the abode and companions of Sītā and Rāma
+@topic श्रीसीताराम-धाम-परिकर-वन्दना | Salutations to the abode and companions of Sita and Ram
 [bal.16.cau1 cau 1]
 बंदउँ अवध पुरी अति पावनि । सरजू सरि कलि कलुष नसावनि ।।
 प्रनवउँ पुर नर नारि बहोरी । ममता जिन्ह पर प्रभुहि न थोरी ।।
@@ -603,7 +603,7 @@
 [bal.28.cau1 cau 1]
 भायँ कुभायँ अनख आलसहूँ । नाम जपत मंगल दिसि दसहूँ ।।
 सुमिरि सो नाम राम गुन गाथा । करउँ नाइ रघुनाथहि माथा ।।
-@topic श्रीरामगुण और श्रीरामचरितकी महिमा | The excellences of Śrī Rāma and the greatness of His story
+@topic श्रीरामगुण और श्रीरामचरितकी महिमा | The excellences of Shri Ram and the greatness of His story
 [bal.28.cau2 cau 2]
 मोरि सुधारिहि सो सब भाँती । जासु कृपा नहिं कृपाँ अघाती ।।
 राम सुस्वामि कुसेवकु मोसो । निज दिसि देखि दयानिधि पोसो ।।
@@ -738,7 +738,7 @@
 [bal.34.cau1 cau 1]
 एहि बिधि सब संसय करि दूरी । सिर धरि गुर पद पंकज धूरी ।।
 पुनि सबही बिनवउँ कर जोरी । करत कथा जेहिं लाग न खोरी ।।
-@topic मानसनिर्माणकी तिथि | The date of composition of the Rāmacaritamānasa
+@topic मानसनिर्माणकी तिथि | The date of composition of the Ramcharitmanas
 [bal.34.cau2 cau 2]
 सादर सिवहि नाइ अब माथा । बरनउँ बिसद राम गुन गाथा ।।
 संबत सोरह सै एकतीसा । करउँ कथा हरि पद धरि सीसा ।।
@@ -772,7 +772,7 @@
 तातें रामचरितमानस बर । धरेउ नाम हियँ हेरि हरषि हर ।।
 [bal.35.cau7 cau 7]
 कहउँ कथा सोइ सुखद सुहाई । सादर सुनहु सुजन मन लाई ।।
-@topic मानसका रूप और माहात्म्य | The metaphorical representation of the Mānasa as a lake and its glory
+@topic मानसका रूप और माहात्म्य | The metaphorical representation of the Manas as a lake and its glory
 [bal.35.do35 do 35]
 जस मानस जेहि बिधि भयउ जग प्रचार जेहि हेतु ।
 अब सोइ कहउँ प्रसंग सब सुमिरि उमा बृषकेतु ।।३५।।
@@ -931,7 +931,7 @@
 अब रघुपति पद पंकरुह हियँ धरि पाइ प्रसाद ।
 कहउँ जुगल मुनिबर्ज कर मिलन सुभग संबाद ।।४३ (ख)।।
 @section 44
-@topic याज्ञवल्क्य-भरद्वाज-संवाद तथा प्रयाग-माहात्म्य | Dialogue between the sages— Yājñavalkya and Bharadvāja and the greatness of Prayāg a
+@topic याज्ञवल्क्य-भरद्वाज-संवाद तथा प्रयाग-माहात्म्य | Dialogue between the sages— Yajnavalkya and Bharadwaj and the greatness of Prayag a
 [bal.44.cau1 cau 1]
 भरद्वाज मुनि बसहिं प्रयागा । तिन्हहि राम पद अति अनुरागा ।।
 तापस सम दम दया निधाना । परमारथ पथ परम सुजाना ।।
@@ -996,7 +996,7 @@
 कहउँ सो मति अनुहारि अब उमा संभु संबाद ।
 भयउ समय जेहि हेतु जेहि सुनु मुनि मिटिहि बिषाद ।।४७।।
 @section 48
-@topic सतीका भ्रम, श्रीरामजीका ऐश्वर्य और सतीका खेद | Satī’s bewilderment, Śrī Rāma’s divine glory and Satī’s remorse
+@topic सतीका भ्रम, श्रीरामजीका ऐश्वर्य और सतीका खेद | Sati’s bewilderment, Shri Ram’s divine glory and Sati’s remorse
 [bal.48.cau1 cau 1]
 एक बार त्रेता जुग माहीं । संभु गए कुंभज रिषि पाहीं ।।
 संग सती जगजननि भवानी । पूजे रिषि अखिलेस्वर जानी ।।
@@ -1145,7 +1145,7 @@
 [bal.56.cau4 cau 4]
 सतीं कीन्ह सीता कर बेषा । सिव उर भयउ बिषाद बिसेषा ।।
 जौं अब करउँ सती सन प्रीती । मिटइ भगति पथु होइ अनीती ।।
-@topic शिवजीद्वारा सतीका त्याग, शिवजीकी समाधि | Disowning of Satī by Śiva and Śiva’s tranc e
+@topic शिवजीद्वारा सतीका त्याग, शिवजीकी समाधि | Disowning of Sati by Shiv and Shiv’s tranc e
 [bal.56.do56 do 56]
 परम पुनीत न जाइ तजि किएँ प्रेम बड़ पापु ।
 प्रगटि न कहत महेसु कछु हृदयँ अधिक संतापु ।।५६।।
@@ -1213,7 +1213,7 @@
 [bal.60.cau4 cau 4]
 बड़ अधिकार दच्छ जब पावा । अति अभिमानु हृदयँ तब आवा ।।
 नहिं कोउ अस जनमा जग माहीं । प्रभुता पाइ जाहि मद नाहीं ।।
-@topic सतीका दक्ष-यज्ञमें जाना | Satī’s visit to Dakṣa’s sacrifice
+@topic सतीका दक्ष-यज्ञमें जाना | Sati’s visit to Daksha’s sacrifice
 [bal.60.do60 do 60]
 दच्छ लिए मुनि बोलि सब करन लगे बड़ जाग ।
 नेवते सादर सकल सुर जे पावत मख भाग ।।६०।।
@@ -1262,7 +1262,7 @@
 [bal.63.cau4 cau 4]
 जद्यपि जग दारुन दुख नाना । सब तें कठिन जाति अवमाना ।।
 समुझि सो सतिहि भयउ अति क्रोधा । बहु बिधि जननीं कीन्ह प्रबोधा ।।
-@topic पतिके अपमानसे दुःखी होकर सतीका योगाग्निसे जल जाना, दक्ष-यज्ञ-विध्वंस | Satī’s self-immolation through the fire of Yoga out of indignation at the slight offered to Her Spouse by Her father: destruction of Dakṣa’s sacrifice
+@topic पतिके अपमानसे दुःखी होकर सतीका योगाग्निसे जल जाना, दक्ष-यज्ञ-विध्वंस | Sati’s self-immolation through the fire of Yoga out of indignation at the slight offered to Her Spouse by Her father: destruction of Daksha’s sacrifice
 [bal.63.do63 do 63]
 सिव अपमानु न जाइ सहि हृदयँ न होइ प्रबोध ।
 सकल सभहि हठि हटकि तब बोलीं बचन सक्रोध ।।६३।।
@@ -1289,7 +1289,7 @@
 [bal.65.cau2 cau 2]
 भै जगबिदित दच्छ गति सोई । जसि कछु संभु बिमुख कै होई ।।
 यह इतिहास सकल जग जानी । ताते मैं संछेप बखानी ।।
-@topic पार्वतीका जन्म और तपस्या | Descent of Goddess Pārvatī and Her penance
+@topic पार्वतीका जन्म और तपस्या | Descent of Goddess Parvati and Her penance
 [bal.65.cau3 cau 3]
 सतीं मरत हरि सन बरु मागा । जनम जनम सिव पद अनुरागा ।।
 तेहि कारन हिमगिरि गृह जाई । जनमीं पारबती तनु पाई ।।
@@ -1472,7 +1472,7 @@
 [bal.76.cau4 cau 4]
 बहुबिधि राम सिवहि समुझावा । पारबती कर जन्मु सुनावा ।।
 अति पुनीत गिरिजा कै करनी । बिस्तर सहित कृपानिधि बरनी ।।
-@topic श्रीरामजीका शिवजीसे विवाहके लिये अनुरोध | Śrī Rāma’s intercession with Bhagavān Śiva for marriage
+@topic श्रीरामजीका शिवजीसे विवाहके लिये अनुरोध | Shri Ram’s intercession with Bhagwan Shiv for marriage
 [bal.76.do76 do 76]
 अब बिनती मम सुनहु सिव जौं मो पर निज नेहु ।
 जाइ बिबाहहु सैलजहि यह मोहि मागें देहु ।।७६।।
@@ -1493,7 +1493,7 @@
 पारबती पहिं जाइ तुम्ह प्रेम परिच्छा लेहु ।
 गिरिहि प्रेरि पठएहु भवन दूरि करेहु संदेहु ।।७७।।
 @section 78
-@topic सप्तर्षियोंकी परीक्षामें पार्वतीजीका महत्त्व | Pārvatī’s unique fidelity as revealed through Her test by the seven seers
+@topic सप्तर्षियोंकी परीक्षामें पार्वतीजीका महत्त्व | Parvati’s unique fidelity as revealed through Her test by the seven seers
 [bal.78.cau1 cau 1]
 रिषिन्ह गौरि देखी तहँ कैसी । मूरतिमंत तपस्या जैसी ।।
 बोले मुनि सुनु सैलकुमारी । करहु कवन कारन तपु भारी ।।
@@ -1670,7 +1670,7 @@
 रोदति बदति बहु भाँति करुना करति संकर पहिं गई ।।
 अति प्रेम करि बिनती बिबिध बिधि जोरि कर सन्मुख रही ।
 प्रभु आसुतोष कृपाल सिव अबला निरखि बोले सही ।।
-@topic रतिको वरदान | Śiva’s boon to Rati (Cuper’s consort)
+@topic रतिको वरदान | Shiv’s boon to Rati (Cuper’s consort)
 [bal.87.do87 do 87]
 अब तें रति तव नाथ कर होइहि नामु अनंगु ।
 बिनु बपु ब्यापिहि सबहि पुनि सुनु निज मिलन प्रसंगु ।।८७।।
@@ -1687,7 +1687,7 @@
 [bal.88.cau4 cau 4]
 बोले कृपासिंधु बृषकेतू । कहहु अमर आए केहि हेतू ।।
 कह बिधि तुम्ह प्रभु अंतरजामी । तदपि भगति बस बिनवउँ स्वामी ।।
-@topic देवताओंका शिवजीसे ब्याहके लिये प्रार्थना करना, सप्तर्षियोंका पार्वतीके पास जाना | The gods’ prayer to Śiva for marriage; the seven seers’ visit to Pārvatī
+@topic देवताओंका शिवजीसे ब्याहके लिये प्रार्थना करना, सप्तर्षियोंका पार्वतीके पास जाना | The gods’ prayer to Shiv for marriage; the seven seers’ visit to Parvati
 [bal.88.do88 do 88]
 सकल सुरन्ह के हृदयँ अस संकर परम उछाहु ।
 निज नयनन्हि देखा चहहिं नाथ तुम्हार बिबाहु ।।८८।।
@@ -1736,7 +1736,7 @@
 [bal.91.cau4 cau 4]
 लगन बाचि अज सबहि सुनाई । हरषे मुनि सब सुर समुदाई ।।
 सुमन बृष्टि नभ बाजन बाजे । मंगल कलस दसहुँ दिसि साजे ।।
-@topic शिवजीकी विचित्र बारात और विवाहकी तैयारी | Śiva’s peculiar marriage procession and preparations for the wedding (undertaken by the other party)
+@topic शिवजीकी विचित्र बारात और विवाहकी तैयारी | Shiv’s peculiar marriage procession and preparations for the wedding (undertaken by the other party)
 [bal.91.do91 do 91]
 लगे सँवारन सकल सुर बाहन बिबिध बिमान ।
 होहिं सगुन मंगल सुभद करहिं अपछरा गान ।।९१।।
@@ -1921,7 +1921,7 @@
 सकुचहिंकहतश्रुति सेष सारद मंदमति तुलसी कहा ।।
 छबिखानि मातु भवानि गवनीं मध्य मंडप सिव जहाँ ।
 अवलोकि सकहिं न सकुच पति पद कमल मनु मधुकरु तहाँ ।।
-@topic शिवजीका विवाह | Śiva’s nuptials
+@topic शिवजीका विवाह | Shiv’s nuptials
 [bal.100.do100 do 100]
 मुनि अनुसासन गनपतिहि पूजेउ संभु भवानि ।
 कोउ सुनि संसय करै जनि सुर अनादि जियँ जानि ।।१००।।
@@ -2033,7 +2033,7 @@
 [bal.106.cau4 cau 4]
 तरुन अरुन अंबुज सम चरना । नख दुति भगत हृदय तम हरना ।।
 भुजग भूति भूषन त्रिपुरारी । आननु सरद चंद छबि हारी ।।
-@topic शिव-पार्वती-संवाद | A dialogue between Śiva and Pārvatī
+@topic शिव-पार्वती-संवाद | A dialogue between Shiv and Parvati
 [bal.106.do106 do 106]
 जटा मुकुट सुरसरित सिर लोचन नलिन बिसाल ।
 नीलकंठ लावन्यनिधि सोह बालबिधु भाल ।।१०६।।
@@ -2261,7 +2261,7 @@
 [bal.120.do120क do 120क]
 हियँ हरषे कामारि तब संकर सहज सुजान ।
 बहु बिधि उमहि प्रसंसि पुनि बोले कृपानिधान ।।१२० (क)।।
-@topic अवतारके हेतु | Causes of Śrī Rāma’s Descent
+@topic अवतारके हेतु | Causes of Shri Ram’s Descent
 [bal.120.so120ख so 120ख]
 सुनु सुभ कथा भवानि रामचरितमानस बिमल ।
 कहा भुसुंडि बखानि सुना बिहग नायक गरुड़ ।।१२० (ख)।।
@@ -2382,7 +2382,7 @@
 [bal.127.cau4 cau 4]
 बार बार बिनवउँ मुनि तोही । जिमि यह कथा सुनायहु मोही ।।
 तिमि जनि हरिहि सुनावहु कबहूँ । चलेहुँ प्रसंग दुराएहु तबहूँ ।।
-@topic नारदका अभिमान और मायाका प्रभाव | Ego’s sway over Nārada and the effect of the Lord’s Māyā
+@topic नारदका अभिमान और मायाका प्रभाव | Ego’s sway over Narad and the effect of the Lord’s Maya
 [bal.127.do127 do 127]
 संभु दीन्ह उपदेस हित नहिं नारदहि सोहान ।
 भरद्वाज कौतुक सुनहु हरि इच्छा बलवान ।।१२७।।
@@ -2419,7 +2419,7 @@
 बिरचेउ मग महुँ नगर तेहिं सत जोजन बिस्तार ।
 श्रीनिवासपुर तें अधिक रचना बिबिध प्रकार ।।१२९।।
 @section 130
-@topic विश्वमोहिनीका स्वयंवर, शिवगणोंको तथा भगवान् को शाप और नारदका मोह-भंग | Princess Viśvamohinī’s self-election of a husband; Nārada’s pronouncing a curse on the attendants of Śiva as well as on the Lord Himself and his subsequent freedom from the spell of infatuation
+@topic विश्वमोहिनीका स्वयंवर, शिवगणोंको तथा भगवान् को शाप और नारदका मोह-भंग | Princess Vishwamohini’s self-election of a husband; Narad’s pronouncing a curse on the attendants of Shiv as well as on the Lord Himself and his subsequent freedom from the spell of infatuation
 [bal.130.cau1 cau 1]
 बसहिं नगर सुंदर नर नारी । जनु बहु मनसिज रति तनुधारी ।।
 तेहिं पुर बसइ सीलनिधि राजा । अगनित हय गय सेन समाजा ।।
@@ -2608,7 +2608,7 @@
 [bal.141.cau4 cau 4]
 भरद्वाज सुनि संकर बानी । सकुचि सप्रेम उमा मुसुकानी ।।
 लगे बहुरि बरनै बृषकेतू । सो अवतार भयउ जेहि हेतू ।।
-@topic मनु-शतरूपा-तप एवं वरदान | The austerities of Manu and Śatarūpā and their receiving a boon from the Lord
+@topic मनु-शतरूपा-तप एवं वरदान | The austerities of Manu and Shatarupa and their receiving a boon from the Lord
 [bal.141.do141 do 141]
 सो मैं तुम्ह सन कहउँ सबु सुनु मुनीस मन लाइ ।
 राम कथा कलि मल हरनि मंगल करनि सुहाइ ।।१४१।।
@@ -2789,7 +2789,7 @@
 यह इतिहास पुनीत अति उमहि कही बृषकेतु ।
 भरद्वाज सुनु अपर पुनि राम जनम कर हेतु ।।१५२।।
 @section 153
-@topic प्रतापभानुकी कथा | The story of king Pratāpabhānu
+@topic प्रतापभानुकी कथा | The story of king Pratapbhanu
 [bal.153.cau1 cau 1]
 सुनु मुनि कथा पुनीत पुरानी । जो गिरिजा प्रति संभु बखानी ।।
 बिस्व बिदित एक कैकय देसू । सत्यकेतु तहँ बसइ नरेसू ।।
@@ -3160,7 +3160,7 @@
 [bal.175.cau4 cau 4]
 सत्यकेतु कुल कोउ नहिं बाँचा । बिप्रश्राप किमि होइ असाँचा ।।
 रिपु जिति सब नृप नगर बसाई । निज पुर गवने जय जसु पाई ।।
-@topic रावणादिका जन्म, तपस्या और उनका ऐश्वर्य तथा अत्याचार | The birth of Rāvaṇa and his brothers, their austerities, opulence and tyranny
+@topic रावणादिका जन्म, तपस्या और उनका ऐश्वर्य तथा अत्याचार | The birth of Ravan and his brothers, their austerities, opulence and tyranny
 [bal.175.do175 do 175]
 भरद्वाज सुनु जाहि जब होइ बिधाता बाम ।
 धूरि मेरुसम जनक जम ताहि ब्यालसम दाम ।।१७५।।
@@ -3399,7 +3399,7 @@
 [bal.188.cau2 cau 2]
 बनचर देह धरी छिति माहीं । अतुलित बल प्रताप तिन्ह पाहीं ।।
 गिरि तरु नख आयुध सब बीरा । हरि मारग चितवहिं मतिधीरा ।।
-@topic राजा दशरथका पुत्रेष्टि यज्ञ, रानियोंका गर्भवती होना | King Daśaratha’s sacrifice for the birth of a son and his Queen’s pregnancy
+@topic राजा दशरथका पुत्रेष्टि यज्ञ, रानियोंका गर्भवती होना | King Dashrath’s sacrifice for the birth of a son and his Queen’s pregnancy
 [bal.188.cau3 cau 3]
 गिरि कानन जहँ तहँ भरि पूरी । रहे निज निज अनीक रचि रूरी ।।
 यह सब रुचिर चरित मैं भाषा । अब सो सुनहु जो बीचहिं राखा ।।
@@ -3695,7 +3695,7 @@
 [bal.205.cau4 cau 4]
 प्रातकाल उठि कै रघुनाथा । मातु पिता गुरु नावहिं माथा ।।
 आयसु मागि करहिं पुर काजा । देखि चरित हरषइ मन राजा ।।
-@topic विश्वामित्रका राजा दशरथसे राम-लक्ष्मणको माँगना | Viśvāmitra visits king Daśaratha and asks for Śrī Rāma and Lakṣmaṇa
+@topic विश्वामित्रका राजा दशरथसे राम-लक्ष्मणको माँगना | Vishwamitra visits king Dashrath and asks for Shri Ram and Lakshman
 [bal.205.do205 do 205]
 ब्यापक अकल अनीह अज निर्गुन नाम न रूप ।
 भगत हेतु नाना बिधि करत चरित्र अनूप ।।२०५।।
@@ -3769,7 +3769,7 @@
 [bal.209.cau4 cau 4]
 तब रिषि निज नाथहि जियँ चीन्ही । बिद्यानिधि कहुँ बिद्या दीन्ही ।।
 जाते लाग न छुधा पिपासा । अतुलित बल तनु तेज प्रकासा ।।
-@topic विश्वामित्र-यज्ञकी रक्षा | Protection of Viśvāmitra’s sacrifice
+@topic विश्वामित्र-यज्ञकी रक्षा | Protection of Vishwamitra’s sacrifice
 [bal.209.do209 do 209]
 आयुध सर्ब समर्पि कै प्रभु निज आश्रम आनि ।
 कंद मूल फल भोजन दीन्ह भगति हित जानि ।।२०९।।
@@ -3789,7 +3789,7 @@
 [bal.210.cau5 cau 5]
 तब मुनि सादर कहा बुझाई । चरित एक प्रभु देखिअ जाई ।।
 धनुषजग्य सुनि रघुकुल नाथा । हरषि चले मुनिबर के साथा ।।
-@topic अहल्या-उद्धार | Redemption of Ahalyā
+@topic अहल्या-उद्धार | Redemption of Ahalya
 [bal.210.cau6 cau 6]
 आश्रम एक दीख मग माहीं । खग मृग जीव जंतु तहँ नाहीं ।।
 पूछा मुनिहि सिला प्रभु देखी । सकल कथा मुनि कहा बिसेषी ।।
@@ -3821,7 +3821,7 @@
 अस प्रभु दीनबंधु हरि कारन रहित दयाल ।
 तुलसिदास सठ तेहि भजु छाड़ि कपट जंजाल ।।२११।।
 @section 212
-@topic श्रीराम-लक्ष्मणसहित विश्वामित्रका जनकपुरमें प्रवेश | Entry of Viśvāmitra with Rāma and Lakṣmaṇa into the precincts of Mithilā
+@topic श्रीराम-लक्ष्मणसहित विश्वामित्रका जनकपुरमें प्रवेश | Entry of Vishwamitra with Ram and Lakshman into the precincts of Mithila
 [bal.212.cau1 cau 1]
 चले राम लछिमन मुनि संगा । गए जहाँ जग पावनि गंगा ।।
 गाधिसूनु सब कथा सुनाई । जेहि प्रकार सुरसरि महि आई ।।
@@ -3882,7 +3882,7 @@
 [bal.215.cau4 cau 4]
 भए सब सुखी देखि दोउ भ्राता । बारि बिलोचन पुलकित गाता ।।
 मूरति मधुर मनोहर देखी । भयउ बिदेहु बिदेहु बिसेषी ।।
-@topic श्रीराम-लक्ष्मणको देखकर जनकजीकी प्रेम-मुग्धता | Janaka’s ecstasy of love at the sight of Rāma and Lakṣmaṇa
+@topic श्रीराम-लक्ष्मणको देखकर जनकजीकी प्रेम-मुग्धता | Janak’s ecstasy of love at the sight of Ram and Lakshman
 [bal.215.do215 do 215]
 प्रेम मगन मनु जानि नृपु करि बिबेकु धरि धीर ।
 बोलेउ मुनि पद नाइ सिरु गदगद गिरा गभीर ।।२१५।।
@@ -3931,7 +3931,7 @@
 [bal.218.cau4 cau 4]
 सुनि मुनीसु कह बचन सप्रीती । कस न राम तुम्ह राखहु नीती ।।
 धरम सेतु पालक तुम्ह ताता । प्रेम बिबस सेवक सुखदाता ।।
-@topic श्रीराम-लक्ष्मणका जनकपुर–निरीक्षण | A visit to the town by Rāma and Lakṣmaṇa
+@topic श्रीराम-लक्ष्मणका जनकपुर–निरीक्षण | A visit to the town by Ram and Lakshman
 [bal.218.do218 do 218]
 जाइ देखि आवहु नगरु सुख निधान दोउ भाइ ।
 करहु सुफल सब के नयन सुंदर बदन देखाइ ।।२१८।।
@@ -4060,7 +4060,7 @@
 [bal.226.cau4 cau 4]
 चापत चरन लखनु उर लाएँ । सभय सप्रेम परम सचु पाएँ ।।
 पुनि पुनि प्रभु कह सोवहु ताता । पौढ़े धरि उर पद जलजाता ।।
-@topic पुष्पवाटिका-निरीक्षण, सीताजीका प्रथम दर्शन, श्रीसीतारामजीका परस्पर दर्शन | Śrī Rāma’s visit to Janaka’s garden; Rāma and Sītā catch sight of each other
+@topic पुष्पवाटिका-निरीक्षण, सीताजीका प्रथम दर्शन, श्रीसीतारामजीका परस्पर दर्शन | Shri Ram’s visit to Janak’s garden; Ram and Sita catch sight of each other
 [bal.226.do226 do 226]
 उठे लखनु निसि बिगत सुनि अरुनसिखा धुनि कान ।
 गुर तें पहिलेहिं जगतपति जागे रामु सुजान ।।२२६।।
@@ -4189,7 +4189,7 @@
 [bal.234.cau4 cau 4]
 गूढ़ गिरा सुनि सिय सकुचानी । भयउ बिलंबु मातु भय मानी ।।
 धरि बड़ि धीर रामु उर आने । फिरी अपनपउ पितुबस जाने ।।
-@topic श्रीसीताजीका पार्वती-पूजन एवं वरदानप्राप्ति तथा राम-लक्ष्मण-संवाद | Worship of Goddess Pārvatī by Sītā, Her receiving blessing from the Goddess and a dialogue between Rāma and Lakṣmaṇa
+@topic श्रीसीताजीका पार्वती-पूजन एवं वरदानप्राप्ति तथा राम-लक्ष्मण-संवाद | Worship of Goddess Parvati by Sita, Her receiving blessing from the Goddess and a dialogue between Ram and Lakshman
 [bal.234.do234 do 234]
 देखन मिस मृग बिहग तरु फिरइ बहोरि बहोरि ।
 निरखि निरखि रघुबीर छबि बाढ़इ प्रीति न थोरि ।।२३४।।
@@ -4282,7 +4282,7 @@
 सतानंद पद बंदि प्रभु बैठे गुर पहिं जाइ ।
 चलहु तात मुनि कहेउ तब पठवा जनक बोलाइ ।।२३९।।
 @section 240
-@topic श्रीराम-लक्ष्मणसहित विश्वामित्रका यज्ञशालामें प्रवेश | Śrī Rāma’s entry into the pavilion erected for the Bow-Sacrifice along- with Lakṣmaṇa
+@topic श्रीराम-लक्ष्मणसहित विश्वामित्रका यज्ञशालामें प्रवेश | Shri Ram’s entry into the pavilion erected for the Bow-Sacrifice along- with Lakshman
 [bal.240.cau1 cau 1]
 सीय स्वयंबरु देखिअ जाई । ईसु काहि धौं देइ बड़ाई ।।
 लखन कहा जस भाजनु सोई । नाथ कृपा तव जापर होई ।।
@@ -4391,7 +4391,7 @@
 [bal.246.cau4 cau 4]
 अस कहि भले भूप अनुरागे । रूप अनूप बिलोकन लागे ।।
 देखहिं सुर नभ चढ़े बिमाना । बरषहिं सुमन करहिं कल गाना ।।
-@topic श्रीसीताजीका यज्ञशालामें प्रवेश | Sītā’s entry into the pavilion
+@topic श्रीसीताजीका यज्ञशालामें प्रवेश | Sita’s entry into the pavilion
 [bal.246.do246 do 246]
 जानि सुअवसरु सीय तब पठई जनक बोलाइ ।
 चतुर सखीं सुंदर सकल सादर चलीं लवाइ ।।२४६।।
@@ -4437,7 +4437,7 @@
 [bal.249.cau3 cau 3]
 जगु भल कहिहि भाव सब काहू । हठ कीन्हें अंतहुँ उर दाहू ।।
 एहिं लालसाँ मगन सब लोगू । बरु साँवरो जानकी जोगू ।।
-@topic बन्दीजनोंद्वारा जनकप्रतिज्ञाकी घोषणा | Proclamation of Janaka’s vow by his heralds
+@topic बन्दीजनोंद्वारा जनकप्रतिज्ञाकी घोषणा | Proclamation of Janak’s vow by his heralds
 [bal.249.cau4 cau 4]
 तब बंदीजन जनक बोलाए । बिरिदावली कहत चलि आए ।।
 कह नृपु जाइ कहहु पन मोरा । चले भाट हियँ हरषु न थोरा ।।
@@ -4454,7 +4454,7 @@
 [bal.250.cau3 cau 3]
 सुनि पन सकल भूप अभिलाषे । भटमानी अतिसय मन माखे ।।
 परिकर बाँधि उठे अकुलाई । चले इष्टदेवन्ह सिर नाई ।।
-@topic राजाओंसे धनुष न उठना, जनककी निराशाजनक वाणी | The princes’ failure to lift the bow and Janaka’s despondent utterance
+@topic राजाओंसे धनुष न उठना, जनककी निराशाजनक वाणी | The princes’ failure to lift the bow and Janak’s despondent utterance
 [bal.250.cau4 cau 4]
 तमकि ताकि तकि सिवधनु धरहीं । उठइ न कोटि भाँति बलु करहीं ।।
 जिन्ह के कछु बिचारु मन माहीं । चाप समीप महीप न जाहीं ।।
@@ -4487,7 +4487,7 @@
 [bal.252.cau3 cau 3]
 सुकृतु जाइ जौं पनु परिहरऊँ । कुअँरि कुआरि रहउ का करऊँ ।।
 जौं जनतेउँ बिनु भट भुबि भाई । तौ पनु करि होतेउँ न हँसाई ।।
-@topic श्रीलक्ष्मणजीका क्रोध | Lakṣmaṇa’s fulmination
+@topic श्रीलक्ष्मणजीका क्रोध | Lakshman’s fulmination
 [bal.252.cau4 cau 4]
 जनक बचन सुनि सब नर नारी । देखि जानकिहि भए दुखारी ।।
 माखे लखनु कुटिल भइँ भौंहें । रदपट फरकत नयन रिसौंहें ।।
@@ -4657,7 +4657,7 @@
 [bal.262.cau4 cau 4]
 रही भुवन भरि जय जय बानी । धनुषभंग धुनि जात न जानी ।।
 मुदित कहहिं जहँ तहँ नर नारी । भंजेउ राम संभुधनु भारी ।।
-@topic जयमाल पहनाना | Sītā places the wreath of victory round Rāma’s neck
+@topic जयमाल पहनाना | Sita places the wreath of victory round Ram’s neck
 [bal.262.do262 do 262]
 बंदी मागध सूतगन बिरुद बदहिं मतिधीर ।
 करहिं निछावरि लोग सब हय गय धन मनि चीर ।।२६२।।
@@ -4742,7 +4742,7 @@
 अरुन नयन भृकुटी कुटिल चितवत नृपन्ह सकोप ।
 मनहुँ मत्त गजगन निरखि सिंघकिसोरहि चोप ।।२६७।।
 @section 268
-@topic श्रीराम-लक्ष्मण और परशुराम-संवाद | Arrival of Paraśurāma, exchange of hot words between Lakṣmaṇa and Paraśurāma and Śrī Rāma’s triumph over the latter
+@topic श्रीराम-लक्ष्मण और परशुराम-संवाद | Arrival of Parshuram, exchange of hot words between Lakshman and Parshuram and Shri Ram’s triumph over the latter
 [bal.268.cau1 cau 1]
 खरभरु देखि बिकल पुर नारीं । सब मिलि देहिं महीपन्ह गारीं ।।
 तेहिं अवसर सुनि सिवधनु भंगा । आयउ भृगुकुल कमल पतंगा ।।
@@ -5043,7 +5043,7 @@
 [bal.286.cau4 cau 4]
 कह मुनि सुनु नरनाथ प्रबीना । रहा बिबाहु चाप आधीना ।।
 टूटतहीं धनु भयउ बिबाहू । सुर नर नाग बिदित सब काहू ।।
-@topic दशरथजीके पास जनकजीका दूत भेजना, अयोध्यासे बारातका प्रस्थान | Janaka’s despatching of messengers to Ayodhyā and departure of the marriage procession from there
+@topic दशरथजीके पास जनकजीका दूत भेजना, अयोध्यासे बारातका प्रस्थान | Janak’s despatching of messengers to Ayodhya and departure of the marriage procession from there
 [bal.286.do286 do 286]
 तदपि जाइ तुम्ह करहु अब जथा बंस ब्यवहारु ।
 बूझि बिप्र कुलबृद्ध गुर बेद बिदित आचारु ।।२८६।।
@@ -5459,7 +5459,7 @@
 [bal.312.cau2 cau 2]
 कहत राम जसु बिसद बिसाला । निज निज भवन गए महिपाला ।।
 गए बीति कछु दिन एहि भाँती । प्रमुदित पुरजन सकल बराती ।।
-@topic श्रीसीता-राम-विवाह | The wedding of Sītā and Rāma and Their farewell
+@topic श्रीसीता-राम-विवाह | The wedding of Sita and Ram and Their farewell
 [bal.312.cau3 cau 3]
 मंगल मूल लगन दिनु आवा । हिम रितु अगहनु मासु सुहावा ।।
 ग्रह तिथि नखतु जोगु बर बारू । लगन सोधि बिधि कीन्ह बिचारू ।।
@@ -6095,7 +6095,7 @@
 [bal.343.cau3 cau 3]
 सो सुखु सुजसु सुलभ मोहि स्वामी । सब सिधि तव दरसन अनुगामी ।।
 कीन्हि बिनय पुनि पुनि सिरु नाई । फिरे महीसु आसिषा पाई ।।
-@topic बारातका अयोध्या लौटना और अयोध्यामें आनन्द | Return of the marriage procession to Ayodhyā and rejoicing in the city
+@topic बारातका अयोध्या लौटना और अयोध्यामें आनन्द | Return of the marriage procession to Ayodhya and rejoicing in the city
 [bal.343.cau4 cau 4]
 चली बरात निसान बजाई । मुदित छोट बड़ सब समुदाई ।।
 रामहि निरखि ग्राम नर नारी । पाइ नयन फलु होहिं सुखारी ।।
@@ -6377,7 +6377,7 @@
 [bal.360.cau5 cau 5]
 दीन्हि असीस बिप्र बहु भाँती । चले न प्रीति रीति कहि जाती ।।
 रामु सप्रेम संग सब भाई । आयसु पाइ फिरे पहुँचाई ।।
-@topic श्रीरामचरित सुनने-गानेकी महिमा | The glory of hearing and singing the story of Śrī Rāma
+@topic श्रीरामचरित सुनने-गानेकी महिमा | The glory of hearing and singing the story of Shri Ram
 [bal.360.do360 do 360]
 राम रूपु भूपति भगति ब्याहु उछाहु अनंदु ।
 जात सराहत मनहिं मन मुदित गाधिकुलचंदु ।।३६०।।
@@ -6471,7 +6471,7 @@
 राजन राउर नामु जसु सब अभिमत दातार ।
 फल अनुगामी महिप मनि मन अभिलाषु तुम्हार ।।३।।
 @section 4
-@topic रामराज्याभिषेककी तैयारी, देवताओंकी व्याकुलता तथा सरस्वतीजीसे उनकी प्रार्थना | Preparations for Śrī Rāma’s installation as the Prince Regent of Ayodhyā; the god’s concern over the same and their approaching Goddess Sarasvatī for help
+@topic रामराज्याभिषेककी तैयारी, देवताओंकी व्याकुलता तथा सरस्वतीजीसे उनकी प्रार्थना | Preparations for Shri Ram’s installation as the Prince Regent of Ayodhya; the god’s concern over the same and their approaching Goddess Saraswati for help
 [ayodhya.4.cau1 cau 1]
 सब बिधि गुरु प्रसन्न जियँ जानी । बोलेउ राउ रहँसि मृदु बानी ।।
 नाथ रामु करिअहिं जुबराजू । कहिअ कृपा करि करिअ समाजू ।।
@@ -6598,7 +6598,7 @@
 बिपति हमारि बिलोकि बड़ि मातु करिअ सोइ आजु ।
 रामु जाहिं बन राजु तजि होइ सकल सुरकाजु ।।११।।
 @section 12
-@topic सरस्वतीका मन्थराकी बुद्धि फेरना, कैकेयी-मन्थरा-संवाद | Sarasvatī perverts the mind of Mantharā (a handmaid of queen Kaikeyī); a dialogue between Kaikeyī and Mantharā
+@topic सरस्वतीका मन्थराकी बुद्धि फेरना, कैकेयी-मन्थरा-संवाद | Saraswati perverts the mind of Manthara (a handmaid of queen Kaikeyi); a dialogue between Kaikeyi and Manthara
 [ayodhya.12.cau1 cau 1]
 सुनि सुर बिनय ठाढ़ि पछिताती । भइउँ सरोज बिपिन हिमराती ।।
 देखि देव पुनि कहहिं निहोरी । मातु तोहि नहिं थोरिउ खोरी ।।
@@ -6774,7 +6774,7 @@
 बड़ कुघातु करि पातकिनि कहेसि कोपगृहँ जाहु ।
 काजु सँवारेहु सजग सबु सहसा जनि पतिआहु ।।२२।।
 @section 23
-@topic कैकेयीका कोपभवनमें जाना | Kaikeyī enters the sulking-chamber
+@topic कैकेयीका कोपभवनमें जाना | Kaikeyi enters the sulking-chamber
 [ayodhya.23.cau1 cau 1]
 कुबरिहि रानि प्रानप्रिय जानी । बार बार बड़ि बुद्धि बखानी ।।
 तोहि सम हित न मोर संसारा । बहे जात कइ भइसि अधारा ।।
@@ -6807,7 +6807,7 @@
 साँझ समय सानंद नृपु गयउ कैकई गेहँ ।
 गवनु निठुरता निकट किय जनु धरि देह सनेहँ ।।२४।।
 @section 25
-@topic दशरथ-कैकेयी-संवाद और दशरथ-शोक, सुमन्त्रका महलमें जाना और वहाँसे लौटकर श्रीरामजीको महलमें भेजना | Dialogue between king Daśaratha and Kaikeyī; Daśaratha’s lamentation; Sumantra goes to the palace and, returning from it, sends Śrī Rāma to His father
+@topic दशरथ-कैकेयी-संवाद और दशरथ-शोक, सुमन्त्रका महलमें जाना और वहाँसे लौटकर श्रीरामजीको महलमें भेजना | Dialogue between king Dashrath and Kaikeyi; Dashrath’s lamentation; Sumantra goes to the palace and, returning from it, sends Shri Ram to His father
 [ayodhya.25.cau1 cau 1]
 कोपभवन सुनि सकुचेउ राऊ । भय बस अगहुड़ परइ न पाऊ ।।
 सुरपति बसइ बाहँबल जाकें । नरपति सकल रहहिं रुख ताकें ।।
@@ -7055,7 +7055,7 @@
 जाइ दीख रघुबंसमनि नरपति निपट कुसाजु ।
 सहमि परेउ लखि सिंघिनिहि मनहुँ बृद्ध गजराजु ।।३९।।
 @section 40
-@topic श्रीराम-कैकेयी-संवाद | Dialogue between Śrī Rāma and mother Kaikeyī
+@topic श्रीराम-कैकेयी-संवाद | Dialogue between Shri Ram and mother Kaikeyi
 [ayodhya.40.cau1 cau 1]
 सूखहिं अधर जरइ सबु अंगू । मनहुँ दीन मनिहीन भुअंगू ।।
 सरुष समीप दीखि कैकेई । मानहुँ मीचु घरीं गनि लेई ।।
@@ -7120,7 +7120,7 @@
 गइ मुरुछा रामहि सुमिरि नृप फिरि करवट लीन्ह ।
 सचिव राम आगमन कहि बिनय समय सम कीन्ह ।।४३।।
 @section 44
-@topic श्रीराम-दशरथ-संवाद, अवध-वासियोंका विषाद, कैकेयीको समझाना | Dialogue between Śrī Rāma and His father; the sadness of the people of Ayodhyā; their remonstrances with Kaikeyī
+@topic श्रीराम-दशरथ-संवाद, अवध-वासियोंका विषाद, कैकेयीको समझाना | Dialogue between Shri Ram and His father; the sadness of the people of Ayodhya; their remonstrances with Kaikeyi
 [ayodhya.44.cau1 cau 1]
 अवनिप अकनि रामु पगु धारे । धरि धीरजु तब नयन उघारे ।।
 सचिवँ सँभारि राउ बैठारे । चरन परत नृप रामु निहारे ।।
@@ -7250,7 +7250,7 @@
 [ayodhya.51.cau4 cau 4]
 अति बिषाद बस लोग लोगाईं । गए मातु पहिं रामु गोसाईं ।।
 मुख प्रसन्न चित चौगुन चाऊ । मिटा सोचु जनि राखै राऊ ।।
-@topic श्रीराम-कौसल्या-संवाद | Dialogue between Śrī Rāma and mother Kausalyā
+@topic श्रीराम-कौसल्या-संवाद | Dialogue between Shri Ram and mother Kaushalya
 [ayodhya.51.do51 do 51]
 नव गयंदु रघुबीर मनु राजु अलान समान ।
 छूट जानि बन गवनु सुनि उर अनंदु अधिकान ।।५१।।
@@ -7395,7 +7395,7 @@
 [ayodhya.60.cau4 cau 4]
 जौं सिय भवन रहै कह अंबा । मोहि कहँ होइ बहुत अवलंबा ।।
 सुनि रघुबीर मातु प्रिय बानी । सील सनेह सुधाँ जनु सानी ।।
-@topic श्रीसीता-राम-संवाद | Dialogue between Sītā and Śrī Rāma
+@topic श्रीसीता-राम-संवाद | Dialogue between Sita and Shri Ram
 [ayodhya.60.do60 do 60]
 कहि प्रिय बचन बिबेकमय कीन्हि मातु परितोष ।
 लगे प्रबोधन जानकिहि प्रगटि बिपिन गुन दोष ।।६०।।
@@ -7517,7 +7517,7 @@
 [ayodhya.68.cau2 cau 2]
 कहेउ कृपाल भानुकुलनाथा । परिहरि सोचु चलहु बन साथा ।।
 नहिं बिषाद कर अवसरु आजू । बेगि करहु बन गवन समाजू ।।
-@topic श्रीराम-कौसल्या-सीता-संवाद | Dialogue between Śrī Rāma, Kausalyā and Sītā
+@topic श्रीराम-कौसल्या-सीता-संवाद | Dialogue between Shri Ram, Kaushalya and Sita
 [ayodhya.68.cau3 cau 3]
 कहि प्रिय बचन प्रिया समुझाई । लगे मातु पद आसिष पाई ।।
 बेगि प्रजा दुख मेटब आई । जननी निठुर बिसरि जनि जाई ।।
@@ -7544,7 +7544,7 @@
 सीतहि सासु असीस सिख दीन्हि अनेक प्रकार ।
 चली नाइ पद पदुम सिरु अति हित बारहिं बार ।।६९।।
 @section 70
-@topic श्रीराम-लक्ष्मण-संवाद | Dialogue between Śrī Rāma and Lakṣmaṇa
+@topic श्रीराम-लक्ष्मण-संवाद | Dialogue between Shri Ram and Lakshman
 [ayodhya.70.cau1 cau 1]
 समाचार जब लछिमन पाए । ब्याकुल बिलख बदन उठि धाए ।।
 कंप पुलक तन नयन सनीरा । गहे चरन अति प्रेम अधीरा ।।
@@ -7596,7 +7596,7 @@
 [ayodhya.73.cau1 cau 1]
 मागहु बिदा मातु सन जाई । आवहु बेगि चलहु बन भाई ।।
 मुदित भए सुनि रघुबर बानी । भयउ लाभ बड़ गइ बड़ि हानी ।।
-@topic श्रीलक्ष्मण-सुमित्रा-संवाद | Dialogue between Lakṣmaṇa and mother Sumitrā
+@topic श्रीलक्ष्मण-सुमित्रा-संवाद | Dialogue between Lakshman and mother Sumitra
 [ayodhya.73.cau2 cau 2]
 हरषित हृदयँ मातु पहिं आए । मनहुँ अंध फिरि लोचन पाए ।।
 जाइ जननि पग नायउ माथा । मनु रघुनंदन जानकि साथा ।।
@@ -7647,7 +7647,7 @@
 मातु चरन सिरु नाइ चले तुरत संकित हृदयँ ।
 बागुर बिषम तोराइ मनहुँ भाग मृगु भाग बस ।।७५।।
 @section 76
-@topic श्रीरामजी, लक्ष्मणजी, सीताजीका महाराज दशरथके पास विदा माँगने जाना, दशरथजीका सीताजीको समझाना | Śrī Rāma, Lakṣmaṇa and Sītā call on king Daśaratha to take leave of him; Daśaratha’s advice to Sītā
+@topic श्रीरामजी, लक्ष्मणजी, सीताजीका महाराज दशरथके पास विदा माँगने जाना, दशरथजीका सीताजीको समझाना | Shri Ram, Lakshman and Sita call on king Dashrath to take leave of him; Dashrath’s advice to Sita
 [ayodhya.76.cau1 cau 1]
 गए लखनु जहँ जानकिनाथू । भे मन मुदित पाइ प्रिय साथू ।।
 बंदि राम सिय चरन सुहाए । चले संग नृपमंदिर आए ।।
@@ -7708,7 +7708,7 @@
 [ayodhya.79.cau4 cau 4]
 लोग बिकल मुरुछित नरनाहू । काह करिअ कछु सूझ न काहू ।।
 रामु तुरत मुनि बेषु बनाई । चले जनक जननिहि सिरु नाई ।।
-@topic श्रीराम-सीता-लक्ष्मणका वनगमन और नगर-निवासियोंको सोये छोड़कर आगे बढ़ना | Śrī Rāma, Sītā and Lakṣmaṇa proceed to the woods and slip past the citizens buried in slumber
+@topic श्रीराम-सीता-लक्ष्मणका वनगमन और नगर-निवासियोंको सोये छोड़कर आगे बढ़ना | Shri Ram, Sita and Lakshman proceed to the woods and slip past the citizens buried in slumber
 [ayodhya.79.do79 do 79]
 सजि बन साजु समाजु सबु बनिता बंधु समेत ।
 बंदि बिप्र गुर चरन प्रभु चले करि सबहि अचेत ।।७९।।
@@ -7825,7 +7825,7 @@
 राम दरस हित नेम ब्रत लगे करन नर नारि ।
 मनहुँ कोक कोकी कमल दीन बिहीन तमारि ।।८६।।
 @section 87
-@topic श्रीरामका शृङ्गवेरपुर पहुँचना, निषादके द्वारा सेवा | Śrī Rāma’s arrival at Śr̥ṅgaverapura; the Niṣāda chief’s services
+@topic श्रीरामका शृङ्गवेरपुर पहुँचना, निषादके द्वारा सेवा | Shri Ram’s arrival at Shringverpur; the Nishad chief’s services
 [ayodhya.87.cau1 cau 1]
 सीता सचिव सहित दोउ भाई । सृंगबेरपुर पहुँचे जाई ।।
 उतरे राम देवसरि देखी । कीन्ह दंडवत हरषु बिसेषी ।।
@@ -7874,7 +7874,7 @@
 सिय सुमंत्र भ्राता सहित कंद मूल फल खाइ ।
 सयन कीन्ह रघुबंसमनि पाय पलोटत भाइ ।।८९।।
 @section 90
-@topic लक्ष्मण-निषाद-संवाद, श्रीराम-सीतासे सुमन्त्रका संवाद, सुमन्त्रका लौटना | Dialogue between Lakṣmaṇa and the Niṣāda; Sumantra’s dialogue with Śrī Rāma and Sītā and his returning to Ayodhyā
+@topic लक्ष्मण-निषाद-संवाद, श्रीराम-सीतासे सुमन्त्रका संवाद, सुमन्त्रका लौटना | Dialogue between Lakshman and the Nishad; Sumantra’s dialogue with Shri Ram and Sita and his returning to Ayodhya
 [ayodhya.90.cau1 cau 1]
 उठे लखनु प्रभु सोवत जानी । कहि सचिवहि सोवन मृदु बानी ।।
 कछुक दूरि सजि बान सरासन । जागन लगे बैठि बीरासन ।।
@@ -8038,7 +8038,7 @@
 [ayodhya.100.cau1 cau 1]
 जासु बियोग बिकल पसु ऐसें । प्रजा मातु पितु जिइहहिं कैसें ।।
 बरबस राम सुमंत्रु पठाए । सुरसरि तीर आपु तब आए ।।
-@topic केवटका प्रेम और गङ्गा-पार जाना | The boatman’s love and the passage across the Gaṅgā
+@topic केवटका प्रेम और गङ्गा-पार जाना | The boatman’s love and the passage across the Ganga
 [ayodhya.100.cau2 cau 2]
 मागी नाव न केवटु आना । कहइ तुम्हार मरमु मैं जाना ।।
 चरन कमल रज कहुँ सबु कहई । मानुष करनि मूरि कछु अहई ।।
@@ -8121,7 +8121,7 @@
 तब गनपति सिव सुमिरि प्रभु नाइ सुरसरिहि माथ ।
 सखा अनुज सिय सहित बन गवनु कीन्ह रघुनाथ ।।१०४।।
 @section 105
-@topic प्रयाग पहुंचना, श्रीराम-भरद्वाज-संवाद, यमुनातीरनिवासियोंका प्रेम | Arrival at Prayāga and dialogue between Śrī Rāma and the sage Bharadvāja; the love of the people inhabiting the bank of the Yamunā
+@topic प्रयाग पहुंचना, श्रीराम-भरद्वाज-संवाद, यमुनातीरनिवासियोंका प्रेम | Arrival at Prayag and dialogue between Shri Ram and the sage Bharadwaj; the love of the people inhabiting the bank of the Yamuna
 [ayodhya.105.cau1 cau 1]
 तेहि दिन भयउ बिटप तर बासू । लखन सखाँ सब कीन्ह सुपासू ।।
 प्रात प्रातकृत करि रघुराई । तीरथराजु दीख प्रभु जाई ।।
@@ -8235,7 +8235,7 @@
 तब रघुबीर अनेक बिधि सखहि सिखावनु दीन्ह ।
 राम रजायसु सीस धरि भवन गवनु तेइँ कीन्ह ।।१११।।
 @section 112
-@topic यमुनाको प्रणाम, वनवासियोंका प्रेम | Śrī Rāma greets the Yamunā; love of the villagers
+@topic यमुनाको प्रणाम, वनवासियोंका प्रेम | Shri Ram greets the Yamuna; love of the villagers
 [ayodhya.112.cau1 cau 1]
 पुनि सियँ राम लखन कर जोरी । जमुनहि कीन्ह प्रनामु बहोरी ।।
 चले ससीय मुदित दोउ भाई । रबितनुजा कइ करत बड़ाई ।।
@@ -8434,7 +8434,7 @@
 [ayodhya.124.cau2 cau 2]
 तब रघुबीर श्रमित सिय जानी । देखि निकट बटु सीतल पानी ।।
 तहँ बसि कंद मूल फल खाई । प्रात नहाइ चले रघुराई ।।
-@topic श्रीराम-वाल्मीकि-संवाद | Dialogue between Śrī Rāma and the sage Vālmīki
+@topic श्रीराम-वाल्मीकि-संवाद | Dialogue between Shri Ram and the sage Valmiki
 [ayodhya.124.cau3 cau 3]
 देखत बन सर सैल सुहाए । बालमीकि आश्रम प्रभु आए ।।
 राम दीख मुनि बासु सुहावन । सुंदर गिरि काननु जलु पावन ।।
@@ -8574,7 +8574,7 @@
 [ayodhya.132.cau4 cau 4]
 अत्रि आदि मुनिबर बहु बसहीं । करहिं जोग जप तप तन कसहीं ।।
 चलहु सफल श्रम सब कर करहू । राम देहु गौरव गिरिबरहू ।।
-@topic चित्रकूटमें निवास, कोल-भीलोंके द्वारा सेवा | Śrī Rāma takes up His abode at Citrakūṭa; the services of the Kolas and Bhīlas
+@topic चित्रकूटमें निवास, कोल-भीलोंके द्वारा सेवा | Shri Ram takes up His abode at Chitrakoot; the services of the Kols and Bhils
 [ayodhya.132.do132 do 132]
 चित्रकूट महिमा अमित कही महामुनि गाइ ।
 आइ नहाए सरित बर सिय समेत दोउ भाइ ।।१३२।।
@@ -8804,7 +8804,7 @@
 हृदउ न बिदरेउ पंक जिमि बिछुरत प्रीतमु नीरु ।
 जानत हौं मोहि दीन्ह बिधि यहु जातना सरीरु ।।१४६।।
 @section 147
-@topic सुमन्त्रका अयोध्याको लौटना और सर्वत्र शोक देखना | Sumantra returns to Ayodhyā and finds the city a picture of grief
+@topic सुमन्त्रका अयोध्याको लौटना और सर्वत्र शोक देखना | Sumantra returns to Ayodhya and finds the city a picture of grief
 [ayodhya.147.cau1 cau 1]
 एहि बिधि करत पंथ पछितावा । तमसा तीर तुरत रथु आवा ।।
 बिदा किए करि बिनय निषादा । फिरे पायँ परि बिकल बिषादा ।।
@@ -8833,7 +8833,7 @@
 [ayodhya.148.cau4 cau 4]
 लेत सोच भरि छिनु छिनु छाती । जनु जरि पंख परेउ संपाती ।।
 राम राम कह राम सनेही । पुनि कह राम लखन बैदेही ।।
-@topic दशरथ-सुमन्त्र-संवाद, दशरथ-मरण | Dialogue between king Daśaratha and Sumantra, Daśaratha’s passing away
+@topic दशरथ-सुमन्त्र-संवाद, दशरथ-मरण | Dialogue between king Dashrath and Sumantra, Dashrath’s passing away
 [ayodhya.148.do148 do 148]
 देखि सचिवँ जय जीव कहि कीन्हेउ दंड प्रनामु ।
 सुनत उठेउ ब्याकुल नृपति कहु सुमंत्र कहँ रामु ।।१४८।।
@@ -8967,7 +8967,7 @@
 [ayodhya.156.cau4 cau 4]
 गारीं सकल कैकइहि देहीं । नयन बिहीन कीन्ह जग जेहीं ।।
 एहि बिधि बिलपत रैनि बिहानी । आए सकल महामुनि ग्यानी ।।
-@topic मुनि वसिष्ठका भरतजीको बुलानेके लिये दूत भेजना | The sage Vasiṣṭha sends envoys to call Bharata
+@topic मुनि वसिष्ठका भरतजीको बुलानेके लिये दूत भेजना | The sage Vashishtha sends envoys to call Bharat
 [ayodhya.156.do156 do 156]
 तब बसिष्ठ मुनि समय सम कहि अनेक इतिहास ।
 सोक नेवारेउ सबहि कर निज बिग्यान प्रकास ।।१५६।।
@@ -8978,7 +8978,7 @@
 [ayodhya.157.cau2 cau 2]
 एतनेइ कहेहु भरत सन जाई । गुर बोलाइ पठयउ दोउ भाई ।।
 सुनि मुनि आयसु धावन धाए । चले बेग बर बाजि लजाए ।।
-@topic श्रीभरत-शत्रुघ्नका आगमन और शोक | Arrival and lamentation of Bharata and Śatrughna
+@topic श्रीभरत-शत्रुघ्नका आगमन और शोक | Arrival and lamentation of Bharat and Shatrughna
 [ayodhya.157.cau3 cau 3]
 अनरथु अवध अरंभेउ जब तें । कुसगुन होहिं भरत कहुँ तब तें ।।
 देखहिं राति भयानक सपना । जागि करहिं कटु कोटि कलपना ।।
@@ -9081,7 +9081,7 @@
 [ayodhya.163.cau4 cau 4]
 सुनि रिपुहन लखि नख सिख खोटी । लगे घसीटन धरि धरि झोंटी ।।
 भरत दयानिधि दीन्हि छड़ाई । कौसल्या पहिं गे दोउ भाई ।।
-@topic भरत-कौसल्या-संवाद और दशरथजीकी अन्त्येष्टि क्रिया | Dialogue between Bharata and mother Kausalyā and king Daśaratha’s cremation
+@topic भरत-कौसल्या-संवाद और दशरथजीकी अन्त्येष्टि क्रिया | Dialogue between Bharat and mother Kaushalya and king Dashrath’s cremation
 [ayodhya.163.do163 do 163]
 मलिन बसन बिबरन बिकल कृस सरीर दुख भार ।
 कनक कलप बर बेलि बन मानहुँ हनी तुसार ।।१६३।।
@@ -9201,7 +9201,7 @@
 [ayodhya.171.cau1 cau 1]
 पितु हित भरत कीन्हि जसि करनी । सो मुख लाख जाइ नहिं बरनी ।।
 सुदिनु सोधि मुनिबर तब आए । सचिव महाजन सकल बोलाए ।।
-@topic वसिष्ठ-भरत-संवाद, श्रीरामजीको लानेके लिये चित्रकूट जानेकी तैयारी | Dialogue between the sage Vasiṣṭha and Bharata; Bharata prepares for a journey to Citrakūṭa in order to bring Śrī Rāma back to Ayodhyā
+@topic वसिष्ठ-भरत-संवाद, श्रीरामजीको लानेके लिये चित्रकूट जानेकी तैयारी | Dialogue between the sage Vashishtha and Bharat; Bharat prepares for a journey to Chitrakoot in order to bring Shri Ram back to Ayodhya
 [ayodhya.171.cau2 cau 2]
 बैठे राजसभाँ सब जाई । पठए बोलि भरत दोउ भाई ।।
 भरतु बसिष्ठ निकट बैठारे । नीति धरममय बचन उचारे ।।
@@ -9458,7 +9458,7 @@
 आरत जननी जानि सब भरत सनेह सुजान ।
 कहेउ बनावन पालकीं सजन सुखासन जान ।।१८६।।
 @section 187
-@topic अयोध्यावासियोंसहित श्रीभरत-शत्रुघ्न आदिका वनगमन | Departure of Bharata and Śatrughna with the citizens of Ayodhyā to the woods
+@topic अयोध्यावासियोंसहित श्रीभरत-शत्रुघ्न आदिका वनगमन | Departure of Bharat and Shatrughna with the citizens of Ayodhya to the woods
 [ayodhya.187.cau1 cau 1]
 चक्क चक्कि जिमि पुर नर नारी । चहत प्रात उर आरत भारी ।।
 जागत सब निसि भयउ बिहाना । भरत बोलाए सचिव सुजाना ।।
@@ -9491,7 +9491,7 @@
 पय अहार फल असन एक निसि भोजन एक लोग ।
 करत राम हित नेम ब्रत परिहरि भूषन भोग ।।१८८।।
 @section 189
-@topic निषादकी शङ्का और सावधानी | The Niṣāda’s suspicion and precautions
+@topic निषादकी शङ्का और सावधानी | The Nishad’s suspicion and precautions
 [ayodhya.189.cau1 cau 1]
 सई तीर बसि चले बिहाने । सृंगबेरपुर सब निअराने ।।
 समाचार सब सुने निषादा । हृदयँ बिचार करइ सबिषादा ।।
@@ -9556,7 +9556,7 @@
 गहहु घाट भट समिटि सब लेउँ मरम मिलि जाइ ।
 बूझि मित्र अरि मध्य गति तस तब करिहउँ आइ ।।१९२।।
 @section 193
-@topic भरत-निषाद-मिलन और संवाद एवं भरतजीका तथा नगरवासियोंका प्रेम | Bharata’s meeting and dialogue with the Niṣāda chief; the love of Bharata and the citizens of Ayodhyā for Śrī Rāma
+@topic भरत-निषाद-मिलन और संवाद एवं भरतजीका तथा नगरवासियोंका प्रेम | Bharat’s meeting and dialogue with the Nishad chief; the love of Bharat and the citizens of Ayodhya for Shri Ram
 [ayodhya.193.cau1 cau 1]
 लखब सनेहु सुभायँ सुहाएँ । बैरु प्रीति नहिं दुरइँ दुराएँ ।।
 अस कहि भेंट सँजोवन लागे । कंद मूल फल खग मृग मागे ।।
@@ -9720,7 +9720,7 @@
 गुरहि सुनावँ चढ़ाइ सुहाईं । नईं नाव सब मातु चढ़ाईं ।।
 [ayodhya.202.cau5 cau 5]
 दंड चारि महँ भा सबु पारा । उतरि भरत तब सबहि सँभारा ।।
-@topic भरतजीका प्रयाग जाना और भरत-भरद्वाज-संवाद | Bharata’s arrival at Prayāga and dialogue between Bharata and the sage Bharadvāja
+@topic भरतजीका प्रयाग जाना और भरत-भरद्वाज-संवाद | Bharat’s arrival at Prayag and dialogue between Bharat and the sage Bharadwaj
 [ayodhya.202.do202 do 202]
 प्रातक्रिया करि मातु पद बंदि गुरहि सिरु नाइ ।
 आगें किए निषाद गन दीन्हेउ कटकु चलाइ ।।२०२।।
@@ -9881,7 +9881,7 @@
 [ayodhya.212.cau4 cau 4]
 भरत बचन सुनि मुनि सुखु पाई । सबहिं कीन्हि बहु भाँति बड़ाई ।।
 तात करहु जनि सोचु बिसेषी । सब दुखु मिटिहि राम पग देखी ।।
-@topic भरद्वाजद्वारा भरतका सत्कार | Bharadvāja shows hospitality to Bharata
+@topic भरद्वाजद्वारा भरतका सत्कार | Bharadwaj shows hospitality to Bharat
 [ayodhya.212.do212 do 212]
 करि प्रबोधु मुनिबर कहेउ अतिथि पेमप्रिय होहु ।
 कंद मूल फल फूल हम देहिं लेहु करि छोहु ।।२१२।।
@@ -9959,7 +9959,7 @@
 [ayodhya.217.cau3 cau 3]
 भरतु राम प्रिय पुनि लघु भ्राता । कस न होइ मगु मंगलदाता ।।
 सिद्ध साधु मुनिबर अस कहहीं । भरतहि निरखि हरषु हियँ लहहीं ।।
-@topic इन्द्र-बृहस्पति-संवाद | Dialogue between Indra and his preceptor (the sage Br̥haspati)
+@topic इन्द्र-बृहस्पति-संवाद | Dialogue between Indra and his preceptor (the sage Brihaspati)
 [ayodhya.217.cau4 cau 4]
 देखि प्रभाउ सुरेसहि सोचू । जगु भल भलेहि पोच कहुँ पोचू ।।
 गुर सन कहेउ करिअ प्रभु सोई । रामहि भरतहि भेट न होई ।।
@@ -10004,7 +10004,7 @@
 [ayodhya.220.cau2 cau 2]
 सुनि सुरबर सुरगुर बर बानी । भा प्रमोदु मन मिटी गलानी ।।
 बरषि प्रसून हरषि सुरराऊ । लगे सराहन भरत सुभाऊ ।।
-@topic भरतजी चित्रकूटके मार्गमें | Bharata on his way to Citrakūṭa
+@topic भरतजी चित्रकूटके मार्गमें | Bharat on his way to Chitrakoot
 [ayodhya.220.cau3 cau 3]
 एहि बिधि भरत चले मग जाहीं । दसा देखि मुनि सिद्ध सिहाहीं ।।
 जबहिं रामु कहि लेहिं उसासा । उमगत पेमु मनहुँ चहु पासा ।।
@@ -10098,7 +10098,7 @@
 [ayodhya.226.cau1 cau 1]
 सकल सनेह सिथिल रघुबर कें । गए कोस दुइ दिनकर ढरकें ।।
 जलु थलु देखि बसे निसि बीतें । कीन्ह गवन रघुनाथ पिरीतें ।।
-@topic श्रीसीताजीका स्वप्न, श्रीरामजीको कोल-किरातोंद्वारा भरतजीके आगमनकी सूचना, रामजीका शोक, लक्ष्मणजीका क्रोध | Sītā’s dream; the Kolas and Kirātas bring news of Bharata’s arrival to Śrī Rāma; Śrī Rāma’s concern at the report; Lakṣmaṇa’s outburst of passion
+@topic श्रीसीताजीका स्वप्न, श्रीरामजीको कोल-किरातोंद्वारा भरतजीके आगमनकी सूचना, रामजीका शोक, लक्ष्मणजीका क्रोध | Sita’s dream; the Kols and Kiratas bring news of Bharat’s arrival to Shri Ram; Shri Ram’s concern at the report; Lakshman’s outburst of passion
 [ayodhya.226.cau2 cau 2]
 उहाँ रामु रजनी अवसेषा । जागे सीयँ सपन अस देखा ।।
 सहित समाज भरत जनु आए । नाथ बियोग ताप तन ताए ।।
@@ -10187,7 +10187,7 @@
 [ayodhya.231.cau2 cau 2]
 अनुचित उचित काजु किछु होऊ । समुझि करिअ भल कह सबु कोऊ ।।
 सहसा करि पाछें पछिताहीं । कहहिं बेद बुध ते बुध नाहीं ।।
-@topic श्रीरामजीका लक्ष्मणजीको समझाना एवं भरतजीकी महिमा कहना | Śrī Rāma admonishes Lakṣmaṇa and dwells on Bharata’s greatness
+@topic श्रीरामजीका लक्ष्मणजीको समझाना एवं भरतजीकी महिमा कहना | Shri Ram admonishes Lakshman and dwells on Bharat’s greatness
 [ayodhya.231.cau3 cau 3]
 सुनि सुर बचन लखन सकुचाने । राम सीयँ सादर सनमाने ।।
 कही तात तुम्ह नीति सुहाई । सब तें कठिन राजमदु भाई ।।
@@ -10217,7 +10217,7 @@
 [ayodhya.233.cau1 cau 1]
 जौं न होत जग जनम भरत को । सकल धरम धुर धरनि धरत को ।।
 कबि कुल अगम भरत गुन गाथा । को जानइ तुम्ह बिनु रघुनाथा ।।
-@topic भरतजीका मन्दाकिनी-स्नान, चित्रकूटमें पहुँचना, भरतादि सबका परस्पर मिलाप, पिताका शोक और श्राद्ध | Bharata takes a dip in the Mandākinī and arrives at Citrakūṭa; Bharata and others meet one another, mourn the king’s death and perform his Śrāddha (obsequies)
+@topic भरतजीका मन्दाकिनी-स्नान, चित्रकूटमें पहुँचना, भरतादि सबका परस्पर मिलाप, पिताका शोक और श्राद्ध | Bharat takes a dip in the Mandakini and arrives at Chitrakoot; Bharat and others meet one another, mourn the king’s death and perform his Shraddh (obsequies)
 [ayodhya.233.cau2 cau 2]
 लखन राम सियँ सुनि सुर बानी । अति सुखु लहेउ न जाइ बखानी ।।
 इहाँ भरतु सब सहित सहाए । मंदाकिनीं पुनीत नहाए ।।
@@ -10487,7 +10487,7 @@
 सरनि सरोरुह जल बिहग कूजत गुंजत भृंग ।
 बैर बिगत बिहरत बिपिन मृग बिहंग बहुरंग ।।२४९।।
 @section 250
-@topic वनवासियोंद्वारा भरतजीकी मण्डलीका सत्कार, कैकेयीका पश्चात्ताप | Hospitality of the foresters towards Bharata and his party; Kaikeyī’s remorse
+@topic वनवासियोंद्वारा भरतजीकी मण्डलीका सत्कार, कैकेयीका पश्चात्ताप | Hospitality of the foresters towards Bharat and his party; Kaikeyi’s remorse
 [ayodhya.250.cau1 cau 1]
 कोल किरात भिल्ल बनबासी । मधु सुचि सुंदर स्वादु सुधा सी ।।
 भरि भरि परन पुटीं रचि रूरी । कंद मूल फल अंकुर जूरी ।।
@@ -10553,7 +10553,7 @@
 [ayodhya.253.cau4 cau 4]
 एकउ जुगुति न मन ठहरानी । सोचत भरतहि रैनि बिहानी ।।
 प्रात नहाइ प्रभुहि सिर नाई । बैठत पठए रिषयँ बोलाई ।।
-@topic श्रीवसिष्ठजीका भाषण | Vasiṣṭha’s speech
+@topic श्रीवसिष्ठजीका भाषण | Vashishtha’s speech
 [ayodhya.253.do253 do 253]
 गुर पद कमल प्रनामु करि बैठे आयसु पाइ ।
 बिप्र महाजन सचिव सब जुरे सभासद आइ ।।२५३।।
@@ -10638,7 +10638,7 @@
 भरत बिनय सादर सुनिअ करिअ बिचारु बहोरि ।
 करब साधुमत लोकमत नृपनय निगम निचोरि ।।२५८।।
 @section 259
-@topic श्रीराम-भरतादिका संवाद | Dialogue between Śrī Rāma, Bharata and others
+@topic श्रीराम-भरतादिका संवाद | Dialogue between Shri Ram, Bharat and others
 [ayodhya.259.cau1 cau 1]
 गुर अनुरागु भरत पर देखी । राम हृदयँ आनंदु बिसेषी ।।
 भरतहि धरम धुरंधर जानी । निज सेवक तन मानस बानी ।।
@@ -10891,7 +10891,7 @@
 [ayodhya.274.cau4 cau 4]
 कहत राम गुन गन अनुरागे । सब निज भाग सराहन लागे ।।
 हम सम पुन्य पुंज जग थोरे । जिन्हहि रामु जानत करि मोरे ।।
-@topic जनकजीका पहुँचना, केला-किरातादिकी भेंट, सबका परस्पर मिलाप | King Janaka’s arrival at Citrakūṭa; the Kolas and Kirātas offer presents to the visitors and all meet one another
+@topic जनकजीका पहुँचना, केला-किरातादिकी भेंट, सबका परस्पर मिलाप | King Janak’s arrival at Chitrakoot; the Kols and Kiratas offer presents to the visitors and all meet one another
 [ayodhya.274.do274 do 274]
 प्रेम मगन तेहि समय सब सुनि आवत मिथिलेसु ।
 सहित सभा संभ्रम उठेउ रबिकुल कमल दिनेसु ।।२७४।।
@@ -11000,7 +11000,7 @@
 [ayodhya.281.cau1 cau 1]
 एहि बिधि सकल मनोरथ करहीं । बचन सप्रेम सुनत मन हरहीं ।।
 सीय मातु तेहि समय पठाईं । दासीं देखि सुअवसरु आईं ।।
-@topic कौसल्या-सुनयना-संवाद, श्रीसीताजीका शील | Dialogue between queens Kausalyā and Sunayanā (king Janaka’s wife); Sītā’s amiability
+@topic कौसल्या-सुनयना-संवाद, श्रीसीताजीका शील | Dialogue between queens Kaushalya and Sunayana (king Janak’s wife); Sita’s amiability
 [ayodhya.281.cau2 cau 2]
 सावकास सुनि सब सिय सासू । आयउ जनकराज रनिवासू ।।
 कौसल्याँ सादर सनमानी । आसन दिए समय सम आनी ।।
@@ -11106,7 +11106,7 @@
 [ayodhya.287.cau4 cau 4]
 कहति न सीय सकुचि मन माहीं । इहाँ बसब रजनीं भल नाहीं ।।
 लखि रुख रानि जनायउ राऊ । हृदयँ सराहत सीलु सुभाऊ ।।
-@topic जनक-सुनयना-संवाद, भरतजीकी महिमा | Dialogue between king Janaka and his wife; Bharata’s glory
+@topic जनक-सुनयना-संवाद, भरतजीकी महिमा | Dialogue between king Janak and his wife; Bharat’s glory
 [ayodhya.287.do287 do 287]
 बार बार मिलि भेंटि सिय बिदा कीन्हि सनमानि ।
 कही समय सिर भरत गति रानि सुबानि सयानि ।।२८७।।
@@ -11168,7 +11168,7 @@
 [ayodhya.291.cau3 cau 3]
 आपु आश्रमहि धारिअ पाऊ । भयउ सनेह सिथिल मुनिराऊ ।।
 करि प्रनामु तब रामु सिधाए । रिषि धरि धीर जनक पहिं आए ।।
-@topic जनक-वसिष्ठादि-संवाद, इन्द्रकी चिन्ता, सरस्वतीका इन्द्रको समझाना | Dialogue between king Janaka and Bharata; Indra’s anxiety; Goddess Sarasvatī’s admonition to Indra
+@topic जनक-वसिष्ठादि-संवाद, इन्द्रकी चिन्ता, सरस्वतीका इन्द्रको समझाना | Dialogue between king Janak and Bharat; Indra’s anxiety; Goddess Saraswati’s admonition to Indra
 [ayodhya.291.cau4 cau 4]
 राम बचन गुरु नृपहि सुनाए । सील सनेह सुभायँ सुहाए ।।
 महाराज अब कीजिअ सोई । सब कर धरम सहित हित होई ।।
@@ -11243,7 +11243,7 @@
 [ayodhya.296.cau1 cau 1]
 करि कुचालि सोचत सुरराजू । भरत हाथ सबु काजु अकाजू ।।
 गए जनकु रघुनाथ समीपा । सनमाने सब रबिकुल दीपा ।।
-@topic श्रीराम-भरत-संवाद | Dialogue between the sage Vasiṣṭha, Śrī Rāma and Bharata
+@topic श्रीराम-भरत-संवाद | Dialogue between the sage Vashishtha, Shri Ram and Bharat
 [ayodhya.296.cau2 cau 2]
 समय समाज धरम अबिरोधा । बोले तब रघुबंस पुरोधा ।।
 जनक भरत संबादु सुनाई । भरत कहाउति कही सुहाई ।।
@@ -11466,7 +11466,7 @@
 [ayodhya.309.cau4 cau 4]
 राम मातु दुखु सुखु सम जानी । कहि गुन राम प्रबोधीं रानी ।।
 एक कहहिं रघुबीर बड़ाई । एक सराहत भरत भलाई ।।
-@topic भरतजीका तीर्थ-जल-स्थापन तथा चित्रकूटभ्रमण | Bharata deposits the sacred waters; his perambulation through Citrakūṭa
+@topic भरतजीका तीर्थ-जल-स्थापन तथा चित्रकूटभ्रमण | Bharat deposits the sacred waters; his perambulation through Chitrakoot
 [ayodhya.309.do309 do 309]
 अत्रि कहेउ तब भरत सन सैल समीप सुकूप ।
 राखिअ तीरथ तोय तहँ पावन अमिअ अनूप ।।३०९।।
@@ -11519,7 +11519,7 @@
 देखे थल तीरथ सकल भरत पाँच दिन माझ ।
 कहत सुनत हरि हर सुजसु गयउ दिवसु भइ साँझ ।।३१२।।
 @section 313
-@topic श्रीराम-भरत-संवाद, पादुका-प्रदान, भरतजीकी विदाई | Dialogue between Śrī Rāma and Bharata; the gift of sandals; Bharata’s farewell
+@topic श्रीराम-भरत-संवाद, पादुका-प्रदान, भरतजीकी विदाई | Dialogue between Shri Ram and Bharat; the gift of sandals; Bharat’s farewell
 [ayodhya.313.cau1 cau 1]
 भोर न्हाइ सबु जुरा समाजू । भरत भूमिसुर तेरहुति राजू ।।
 भल दिन आजु जानि मन माहीं । रामु कृपाल कहत सकुचाहीं ।।
@@ -11664,7 +11664,7 @@
 सानुज सीय समेत प्रभु राजत परन कुटीर ।
 भगति ग्यानु बैराग्य जनु सोहत धरें सरीर ।।३२१।।
 @section 322
-@topic भरतजीका अयोध्या लौटना, भरतजीद्वारा पादुकाकी स्थापना, नन्दिग्राममें निवास और श्रीभरतजीके चरित्र-श्रवणकी महिमा | Returning to Ayodhyā, Bharata enthrones the sandals and takes up his residence at Nandigrāma; the virtue of listening to Bharata’s story
+@topic भरतजीका अयोध्या लौटना, भरतजीद्वारा पादुकाकी स्थापना, नन्दिग्राममें निवास और श्रीभरतजीके चरित्र-श्रवणकी महिमा | Returning to Ayodhya, Bharat enthrones the sandals and takes up his residence at Nandigram; the virtue of listening to Bharat’s story
 [ayodhya.322.cau1 cau 1]
 मुनि महिसुर गुर भरत भुआलू । राम बिरहँ सबु साजु बिहालू ।।
 प्रभु गुन ग्राम गनत मन माहीं । सब चुपचाप चले मग जाहीं ।।
@@ -11811,7 +11811,7 @@
 कीन्ह मोह बस द्रोह जद्यपि तेहि कर बध उचित ।
 प्रभु छाड़ेउ करि छोह को कृपाल रघुबीर सम ।।२।।
 @section 3
-@topic अत्रि-मिलन एवं स्तुति | Meeting with the sage Atri and his hymn of praise to Śrī Rāma
+@topic अत्रि-मिलन एवं स्तुति | Meeting with the sage Atri and his hymn of praise to Shri Ram
 [aranya.3.cau1 cau 1]
 रघुपति चित्रकूट बसि नाना । चरित किए श्रुति सुधा समाना ।।
 बहुरि राम अस मन अनुमाना । होइहि भीर सबहिं मोहि जाना ।।
@@ -11870,7 +11870,7 @@
 बिनती करि मुनि नाइ सिरु कह कर जोरि बहोरि ।
 चरन सरोरुह नाथ जनि कबहुँ तजै मति मोरि ।।४।।
 @section 5
-@topic श्रीसीता-अनसूया-मिलन और श्रीसीताजीको अनसूयाजीका पातिव्रतधर्म कहना | Sītā’s meeting with Anasūyā (Atri’s wife) and the latter’s discourse on the duties of a devoted wife
+@topic श्रीसीता-अनसूया-मिलन और श्रीसीताजीको अनसूयाजीका पातिव्रतधर्म कहना | Sita’s meeting with Anasuya (Atri’s wife) and the latter’s discourse on the duties of a devoted wife
 [aranya.5.cau1 cau 1]
 अनुसुइया के पद गहि सीता । मिली बहोरि सुसील बिनीता ।।
 रिषिपतिनी मन सुख अधिकाई । आसिष देइ निकट बैठाई ।।
@@ -11934,7 +11934,7 @@
 कठिन काल मल कोस धर्म न ग्यान न जोग जप ।
 परिहरि सकल भरोस रामहि भजहिं ते चतुर नर ।।६ (ख)।।
 @section 7
-@topic श्रीरामजीका आगे प्रस्थान, विराध-वध और शरभङ्ग-प्रसङ्ग | Śrī Rāma proceeds further and kill Virādha; the episode of the sage Śarabhaṅga
+@topic श्रीरामजीका आगे प्रस्थान, विराध-वध और शरभङ्ग-प्रसङ्ग | Shri Ram proceeds further and kill Viradh; the episode of the sage Sharbhang
 [aranya.7.cau1 cau 1]
 मुनि पद कमल नाइ करि सीसा । चले बनहि सुर नर मुनि ईसा ।।
 आगें राम अनुज पुनि पाछें । मुनि बर बेष बने अति काछें ।।
@@ -11973,7 +11973,7 @@
 [aranya.9.cau2 cau 2]
 रिषि निकाय मुनिबर गति देखी । सुखी भए निज हृदयँ बिसेषी ।।
 अस्तुति करहिं सकल मुनि बृंदा । जयति प्रनत हित करुना कंदा ।।
-@topic राक्षस-वधकी प्रतिज्ञा करना | Śrī Rāma takes a vow to kill the demons
+@topic राक्षस-वधकी प्रतिज्ञा करना | Shri Ram takes a vow to kill the demons
 [aranya.9.cau3 cau 3]
 पुनि रघुनाथ चले बन आगे । मुनिबर बृंद बिपुल सँग लागे ।।
 अस्थि समूह देखि रघुराया । पूछी मुनिन्ह लागि अति दाया ।।
@@ -11984,7 +11984,7 @@
 निसिचर हीन करउँ महि भुज उठाइ पन कीन्ह ।
 सकल मुनिन्ह के आश्रमन्हि जाइ जाइ सुख दीन्ह ।।९।।
 @section 10
-@topic सुतीक्ष्णजीका प्रेम, अगस्त्य-मिलन, अगस्त्य-संवाद, रामका दण्डक-वन-प्रवेश और जटायु-मिलन | Sutīkṣṇa’s love and Śrī Rāma’s meeting with the sage Agastya; dialogue with Agastya; Śrī Rāma’s entry into the Daṇḍaka forest and His meeting with Jaṭāyu
+@topic सुतीक्ष्णजीका प्रेम, अगस्त्य-मिलन, अगस्त्य-संवाद, रामका दण्डक-वन-प्रवेश और जटायु-मिलन | Sutikshna’s love and Shri Ram’s meeting with the sage Agastya; dialogue with Agastya; Shri Ram’s entry into the Dandak forest and His meeting with Jatayu
 [aranya.10.cau1 cau 1]
 मुनि अगस्ति कर सिष्य सुजाना । नाम सुतीछन रति भगवाना ।।
 मन क्रम बचन राम पद सेवक । सपनेहुँ आन भरोस न देवक ।।
@@ -12127,7 +12127,7 @@
 गीधराज सैं भेंट भइ बहु बिधि प्रीति बढ़ाइ ।
 गोदावरी निकट प्रभु रहे परन गृह छाइ ।।१३।।
 @section 14
-@topic पञ्चवटी-निवास और श्रीराम-लक्ष्मण-संवाद | Śrī Rāma takes up His abode at Pañcavaṭī; dialogue between Śrī Rāma and Lakṣmaṇa
+@topic पञ्चवटी-निवास और श्रीराम-लक्ष्मण-संवाद | Shri Ram takes up His abode at Panchavati; dialogue between Shri Ram and Lakshman
 [aranya.14.cau1 cau 1]
 जब ते राम कीन्ह तहँ बासा । सुखी भए मुनि बीती त्रासा ।।
 गिरि बन नदीं ताल छबि छाए । दिन दिन प्रति अति होहिं सुहाए ।।
@@ -12185,7 +12185,7 @@
 [aranya.17.cau1 cau 1]
 भगति जोग सुनि अति सुख पावा । लछिमन प्रभु चरनन्हि सिरु नावा ।।
 एहि बिधि गए कछुक दिन बीती । कहत बिराग ग्यान गुन नीती ।।
-@topic शूर्पणखाकी कथा, शूर्पणखाका खर-दूषणके पास जाना और खर-दूषणादिका वध | The story of Śūrpaṇakhā; her approaching Khara, Dūṣaṇa and Triśirā for redress and their subsequent death at Śrī Rāma’s hands
+@topic शूर्पणखाकी कथा, शूर्पणखाका खर-दूषणके पास जाना और खर-दूषणादिका वध | The story of Shurpanakha; her approaching Khar, Dushan and Trishira for redress and their subsequent death at Shri Ram’s hands
 [aranya.17.cau2 cau 2]
 सूपनखा रावन कै बहिनी । दुष्ट हृदय दारुन जस अहिनी ।।
 पंचबटी सो गइ एक बारा । देखि बिकल भइ जुगल कुमारा ।।
@@ -12332,7 +12332,7 @@
 [aranya.21.cau2 cau 2]
 सीता चितव स्याम मृदु गाता । परम प्रेम लोचन न अघाता ।।
 पंचबटीं बसि श्रीरघुनायक । करत चरित सुर मुनि सुखदायक ।।
-@topic शूर्पणखाका रावणके निकट जाना, श्रीसीताजीका अग्नि-प्रवेश और माया-सीता | Śūrpaṇakhā approaches Rāvaṇa; Sītā enters into the fire leaving Her shadow behind
+@topic शूर्पणखाका रावणके निकट जाना, श्रीसीताजीका अग्नि-प्रवेश और माया-सीता | Shurpanakha approaches Ravan; Sita enters into the fire leaving Her shadow behind
 [aranya.21.cau3 cau 3]
 धुआँ देखि खरदूषन केरा । जाइ सुपनखाँ रावन प्रेरा ।।
 बोली बचन क्रोध करि भारी । देस कोस कै सुरति बिसारी ।।
@@ -12395,7 +12395,7 @@
 [aranya.24.cau2 cau 2]
 जबहिं राम सब कहा बखानी । प्रभु पद धरि हियँ अनल समानी ।।
 निज प्रतिबिंब राखि तहँ सीता । तैसइ सील रूप सुबिनीता ।।
-@topic मारीचप्रसंग और स्वर्ण-मृगरूपमें मारीचका मारा जाना | The episode of Mārīca and how he was killed in the form of a gold deer
+@topic मारीचप्रसंग और स्वर्ण-मृगरूपमें मारीचका मारा जाना | The episode of Marich and how he was killed in the form of a gold deer
 [aranya.24.cau3 cau 3]
 लछिमनहूँ यह मरमु न जाना । जो कछु चरित रचा भगवाना ।।
 दसमुख गयउ जहाँ मारीचा । नाइ माथ स्वारथ रत नीचा ।।
@@ -12473,7 +12473,7 @@
 बिपुल सुमन सुर बरषहिं गावहिं प्रभु गुन गाथ ।
 निज पद दीन्ह असुर कहुँ दीनबंधु रघुनाथ ।।२७।।
 @section 28
-@topic श्रीसीताहरण और श्रीसीता-विलाप | Sītā’s abduction and Her wail
+@topic श्रीसीताहरण और श्रीसीता-विलाप | Sita’s abduction and Her wail
 [aranya.28.cau1 cau 1]
 खल बधि तुरत फिरे रघुबीरा । सोह चाप कर कटि तूनीरा ।।
 आरत गिरा सुनी जब सीता । कह लछिमन सन परम सभीता ।।
@@ -12511,7 +12511,7 @@
 [aranya.29.cau3 cau 3]
 बिपति मोरि को प्रभुहि सुनावा । पुरोडास चह रासभ खावा ।।
 सीता कै बिलाप सुनि भारी । भए चराचर जीव दुखारी ।।
-@topic जटायु-रावण-युद्ध | The combat of Jaṭāyu with Rāvaṇa
+@topic जटायु-रावण-युद्ध | The combat of Jatayu with Ravan
 [aranya.29.cau4 cau 4]
 गीधराज सुनि आरत बानी । रघुकुलतिलक नारि पहिचानी ।।
 अधम निसाचर लीन्हें जाई । जिमि मलेछ बस कपिला गाई ।।
@@ -12549,7 +12549,7 @@
 जेहि बिधि कपट कुरंग सँग धाइ चले श्रीराम ।
 सो छबि सीता राखि उर रटति रहति हरिनाम ।।२९ (ख)।।
 @section 30
-@topic श्रीरामजीका विलाप, जटायुका प्रसंग | Śrī Rāma’s lament; His meeting with Jaṭāyu
+@topic श्रीरामजीका विलाप, जटायुका प्रसंग | Shri Ram’s lament; His meeting with Jatayu
 [aranya.30.cau1 cau 1]
 रघुपति अनुजहि आवत देखी । बाहिज चिंता कीन्हि बिसेषी ।।
 जनकसुता परिहरिहु अकेली । आयहु तात बचन मम पेली ।।
@@ -12650,7 +12650,7 @@
 [aranya.34.cau2 cau 2]
 कहि निज धर्म ताहि समुझावा । निज पद प्रीति देखि मन भावा ।।
 रघुपति चरन कमल सिरु नाई । गयउ गगन आपनि गति पाई ।।
-@topic शबरीपर कृपा, नवधा भक्ति-उपदेश और पम्पासरकी ओर प्रस्थान | Grace on Śabarī; a discourse on the nine forms of Devotion and departure for the Pampā lake
+@topic शबरीपर कृपा, नवधा भक्ति-उपदेश और पम्पासरकी ओर प्रस्थान | Grace on Shabari; a discourse on the nine forms of Devotion and departure for the Pampa lake
 [aranya.34.cau3 cau 3]
 ताहि देइ गति राम उदारा । सबरी कें आश्रम पगु धारा ।।
 सबरी देखि राम गृहँ आए । मुनि के बचन समुझि जियँ भाए ।।
@@ -12799,7 +12799,7 @@
 [aranya.41.cau2 cau 2]
 तहँ पुनि सकल देव मुनि आए । अस्तुति करि निज धाम सिधाए ।।
 बैठे परम प्रसन्न कृपाला । कहत अनुज सन कथा रसाला ।।
-@topic नारद-राम-संवाद | A description of the spring; Nārada’s meeting with Śrī Rāma
+@topic नारद-राम-संवाद | A description of the spring; Narad’s meeting with Shri Ram
 [aranya.41.cau3 cau 3]
 बिरहवंत भगवंतहि देखी । नारद मन भा सोच बिसेषी ।।
 मोर साप करि अंगीकारा । सहत राम नाना दुख भारा ।।
@@ -12869,7 +12869,7 @@
 अवगुन मूल सूलप्रद प्रमदा सब दुख खानि ।
 ताते कीन्ह निवारन मुनि मैं यह जियँ जानि ।।४४।।
 @section 45
-@topic संतोंके लक्षण और सत्संग-भजनके लिये प्रेरणा | The glory of hearing the praises of Śrī Rāma and an exhortation to cultivate fellowship with saints and practise adoration
+@topic संतोंके लक्षण और सत्संग-भजनके लिये प्रेरणा | The glory of hearing the praises of Shri Ram and an exhortation to cultivate fellowship with saints and practise adoration
 [aranya.45.cau1 cau 1]
 सुनि रघुपति के बचन सुहाए । मुनि तन पुलक नयन भरि आए ।।
 कहहु कवन प्रभु कै असि रीती । सेवक पर ममता अरु प्रीती ।।
@@ -12934,7 +12934,7 @@
 जरत सकल सुर बृंद बिषम गरल जेहिं पान किय ।
 तेहि न भजसि मन मंद को कृपाल संकर सरिस ।।
 @section 1
-@topic श्रीरामजीसे हनुमान् जीका मिलना और श्रीराम-सुग्रीवकी मित्रता | Śrī Rāma’s meeting with Hanumān and the conclusion of an alliance between Śrī Rāma and Sugrīva
+@topic श्रीरामजीसे हनुमान् जीका मिलना और श्रीराम-सुग्रीवकी मित्रता | Shri Ram’s meeting with Hanuman and the conclusion of an alliance between Shri Ram and Sugriv
 [kishkindha.1.cau1 cau 1]
 आगें चले बहुरि रघुराया । रिष्यमूक पर्बत निअराया ।।
 तहँ रह सचिव सहित सुग्रीवा । आवत देखि अतुल बल सींवा ।।
@@ -13020,7 +13020,7 @@
 सखा बचन सुनि हरषे कृपासिंधु बलसींव ।
 कारन कवन बसहु बन मोहि कहहु सुग्रीव ।।५।।
 @section 6
-@topic सुग्रीवका दुःख सुनाना, बालिवधकी प्रतिज्ञा, श्रीरामजीका मित्र-लक्षण-वर्णन | Sugrīva apprizes Śrī Rāma of his woes; the latter’s vow to kill Vāli; Śrī Rāma expatiates on the characteristics of a friend
+@topic सुग्रीवका दुःख सुनाना, बालिवधकी प्रतिज्ञा, श्रीरामजीका मित्र-लक्षण-वर्णन | Sugriv apprizes Shri Ram of his woes; the latter’s vow to kill Bali; Shri Ram expatiates on the characteristics of a friend
 [kishkindha.6.cau1 cau 1]
 नाथ बालि अरु मैं द्वौ भाई । प्रीति रही कछु बरनि न जाई ।।
 मयसुत मायावी तेहि नाऊँ । आवा सो प्रभु हमरें गाऊँ ।।
@@ -13067,7 +13067,7 @@
 [kishkindha.7.cau7 cau 7]
 देखि अमित बल बाढ़ी प्रीती । बालि बधब इन्ह भइ परतीती ।।
 बार बार नावइ पद सीसा । प्रभुहि जानि मन हरष कपीसा ।।
-@topic सुग्रीवका वैराग्य | Sugrīva’s dispassion
+@topic सुग्रीवका वैराग्य | Sugriv’s dispassion
 [kishkindha.7.cau8 cau 8]
 उपजा ग्यान बचन तब बोला । नाथ कृपाँ मन भयउ अलोला ।।
 सुख संपति परिवार बड़ाई । सब परिहरि करिहउँ सेवकाई ।।
@@ -13083,7 +13083,7 @@
 [kishkindha.7.cau12 cau 12]
 जो कछु कहेहु सत्य सब सोई । सखा बचन मम मृषा न होई ।।
 नट मरकट इव सबहि नचावत । रामु खगेस बेद अस गावत ।।
-@topic बालि-सुग्रीव-युद्ध, बालि-उद्धार | Duel between Vāli and Sugrīva; deliverance of Vāli
+@topic बालि-सुग्रीव-युद्ध, बालि-उद्धार | Duel between Bali and Sugriv; deliverance of Bali
 [kishkindha.7.cau13 cau 13]
 लै सुग्रीव संग रघुनाथा । चले चाप सायक गहि हाथा ।।
 तब रघुपति सुग्रीव पठावा । गर्जेसि जाइ निकट बल पावा ।।
@@ -13153,7 +13153,7 @@
 राम चरन दृढ़ प्रीति करि बालि कीन्ह तनु त्याग ।
 सुमन माल जिमि कंठ ते गिरत न जानइ नाग ।।१०।।
 @section 11
-@topic ताराका विलाप, ताराको श्रीरामजी-द्वारा उपदेश और सुग्रीवका राज्याभिषेक तथा अंगदको युवराजपद | Tārā’s wail; Śrī Rāma’s advice to Tārā and Sugrīva’s coronation and Aṅgada’s installation as his Heir- Apparent
+@topic ताराका विलाप, ताराको श्रीरामजी-द्वारा उपदेश और सुग्रीवका राज्याभिषेक तथा अंगदको युवराजपद | Tara’s wail; Shri Ram’s advice to Tara and Sugriv’s coronation and Angad’s installation as his Heir- Apparent
 [kishkindha.11.cau1 cau 1]
 राम बालि निज धाम पठावा । नगर लोग सब ब्याकुल धावा ।।
 नाना बिधि बिलाप कर तारा । छूटे केस न देह सँभारा ।।
@@ -13286,7 +13286,7 @@
 भूमि जीव संकुल रहे गए सरद रितु पाइ ।
 सदगुर मिलें जाहिं जिमि संसय भ्रम समुदाइ ।।१७।।
 @section 18
-@topic श्रीरामकी सुग्रीवपर नाराजी, लक्ष्मणजीका कोप | Śrī Rāma’s show of displeasure towards Sugrīva and Lakṣmaṇa’s wrath
+@topic श्रीरामकी सुग्रीवपर नाराजी, लक्ष्मणजीका कोप | Shri Ram’s show of displeasure towards Sugriv and Lakshman’s wrath
 [kishkindha.18.cau1 cau 1]
 बरषा गत निर्मल रितु आई । सुधि न तात सीता कै पाई ।।
 एक बार कैसेहुँ सुधि जानौं । कालहु जीति निमिष महुँ आनौं ।।
@@ -13333,7 +13333,7 @@
 सुनत बिनीत बचन सुख पावा । लछिमन तेहि बहु बिधि समुझावा ।।
 [kishkindha.20.cau5 cau 5]
 पवन तनय सब कथा सुनाई । जेहि बिधि गए दूत समुदाई ।।
-@topic सुग्रीव-राम-संवाद और सीताजीकी खोजके लिये बंदरोंका प्रस्थान | Dialogue between Sugrīva and Śrī Rāma and the departure of the monkeys in quest of Sītā
+@topic सुग्रीव-राम-संवाद और सीताजीकी खोजके लिये बंदरोंका प्रस्थान | Dialogue between Sugriv and Shri Ram and the departure of the monkeys in quest of Sita
 [kishkindha.20.do20 do 20]
 हरषि चले सुग्रीव तब अंगदादि कपि साथ ।
 रामानुज आगें करि आए जहँ रघुनाथ ।।२०।।
@@ -13427,7 +13427,7 @@
 बदरीबन कहुँ सो गई प्रभु अग्या धरि सीस ।
 उर धरि राम चरन जुग जे बंदत अज ईस ।।२५।।
 @section 26
-@topic वानरोंका समुद्रतटपर आना, सम्पातीसे भेंट और बातचीत | The monkeys’ arrival at the seashore; their meeting and conversation with Sampātī (Jaṭāyu’s brother)
+@topic वानरोंका समुद्रतटपर आना, सम्पातीसे भेंट और बातचीत | The monkeys’ arrival at the seashore; their meeting and conversation with Sampati (Jatayu’s brother)
 [kishkindha.26.cau1 cau 1]
 इहाँ बिचारहिं कपि मन माहीं । बीती अवधि काजु कछु नाहीं ।।
 सब मिलि कहहिं परस्पर बाता । बिनु सुधि लएँ करब का भ्राता ।।
@@ -13495,7 +13495,7 @@
 मैं देखउँ तुम्ह नाहीं गीधहि दृष्टि अपार ।
 बूढ़ भयउँ न त करतेउँ कछुक सहाय तुम्हार ।।२८।।
 @section 29
-@topic समुद्र लाँघनेका परामर्श, जाम्बवन्तका हनुमान् जीको बल याद दिलाकर उत्साहित करना | Sampātī’s advice to the monkeys to leap across the ocean; Jāmbavān encourages Hanumān by reminding him of his strength
+@topic समुद्र लाँघनेका परामर्श, जाम्बवन्तका हनुमान् जीको बल याद दिलाकर उत्साहित करना | Sampati’s advice to the monkeys to leap across the ocean; Jambavan encourages Hanuman by reminding him of his strength
 [kishkindha.29.cau1 cau 1]
 जो नाघइ सत जोजन सागर । करइ सो राम काज मति आगर ।।
 मोहि बिलोकि धरहु मन धीरा । राम कृपाँ कस भयउ सरीरा ।।
@@ -13535,7 +13535,7 @@
 त्रैलोक पावन सुजसु सुर मुनि नारदादि बखानिहैं ।।
 जो सुनत गावत कहत समुझत परम पद नर पावई ।
 रघुबीर पद पाथोज मधुकर दास तुलसी गावई ।।
-@topic श्रीरामगुणका माहात्म्य | The greatness of Śrī Rāma’s praises
+@topic श्रीरामगुणका माहात्म्य | The greatness of Shri Ram’s praises
 [kishkindha.30.do30क do 30क]
 भव भेषज रघुनाथ जसु सुनहिंजे नर अरु नारि ।
 तिन्ह कर सकल मनोरथ सिद्ध करहिं त्रिसिरारि ।।३० (क)।।
@@ -13564,7 +13564,7 @@
 रघुपतिप्रियभक्तं वातजातं नमामि ।।३।।
 @section 1
 @lang awa
-@topic हनुमान् जीका लङ्काको प्रस्थान, सुरसासे भेंट, छाया पकड़नेवाली राक्षसीका वध | Hanumān leaves for Laṅkā, meets Surasā and kills the image-catching demoness
+@topic हनुमान् जीका लङ्काको प्रस्थान, सुरसासे भेंट, छाया पकड़नेवाली राक्षसीका वध | Hanuman leaves for Lanka, meets Surasa and kills the image-catching demoness
 [sundar.1.cau1 cau 1]
 जामवंत के बचन सुहाए । सुनि हनुमंत हृदय अति भाए ।।
 तब लगि मोहि परिखेहु तुम्ह भाई । सहि दुख कंद मूल फल खाई ।।
@@ -13611,7 +13611,7 @@
 [sundar.3.cau2 cau 2]
 गहइ छाहँ सक सो न उड़ाई । एहि बिधि सदा गगनचर खाई ।।
 सोइ छल हनूमान कहँ कीन्हा । तासु कपटु कपि तुरतहिं चीन्हा ।।
-@topic लङ्कावर्णन, लङ्किनीपर प्रहार, लङ्कामें प्रवेश | Description of Laṅkā; Hanumān strikes Laṅkinī and enters Laṅkā
+@topic लङ्कावर्णन, लङ्किनीपर प्रहार, लङ्कामें प्रवेश | Description of Lanka; Hanuman strikes Lankini and enters Lanka
 [sundar.3.cau3 cau 3]
 ताहि मारि मारुतसुत बीरा । बारिधि पार गयउ मतिधीरा ।।
 तहाँ जाइ देखी बन सोभा । गुंजत चंचरीक मधु लोभा ।।
@@ -13667,7 +13667,7 @@
 [sundar.5.cau3 cau 3]
 मंदिर मंदिर प्रति करि सोधा । देखे जहँ तहँ अगनित जोधा ।।
 गयउ दसानन मंदिर माहीं । अति बिचित्र कहि जात सो नाहीं ।।
-@topic हनुमान्-विभीषण-संवाद | Hanumān meets Vibhīṣaṇa
+@topic हनुमान्-विभीषण-संवाद | Hanuman meets Vibhishan
 [sundar.5.cau4 cau 4]
 सयन किएँ देखा कपि तेही । मंदिर महुँ न दीखि बैदेही ।।
 भवन एक पुनि दीख सुहावा । हरि मंदिर तहँ भिन्न बनावा ।।
@@ -13713,7 +13713,7 @@
 [sundar.8.cau2 cau 2]
 पुनि सब कथा बिभीषन कही । जेहि बिधि जनकसुता तहँ रही ।।
 तब हनुमंत कहा सुनु भ्राता । देखी चहउँ जानकी माता ।।
-@topic हनुमान् जीका अशोकवाटिकामें सीताको देखकर दुःखी होना और रावणका सीताजीको भय दिखलाना | Hanumān’s grief at the sight of Sītā in the Aśoka grove and Rāvaṇa’s threat to Sītā
+@topic हनुमान् जीका अशोकवाटिकामें सीताको देखकर दुःखी होना और रावणका सीताजीको भय दिखलाना | Hanuman’s grief at the sight of Sita in the Ashok grove and Ravan’s threat to Sita
 [sundar.8.cau3 cau 3]
 जुगुति बिभीषन सकल सुनाई । चलेउ पवनसुत बिदा कराई ।।
 करि सोइ रूप गयउ पुनि तहवाँ । बन असोक सीता रह जहवाँ ।।
@@ -13760,7 +13760,7 @@
 भवन गयउ दसकंधर इहाँ पिसाचिनि बृंद ।
 सीतहि त्रास देखावहिं धरहिं रूप बहु मंद ।।१०।।
 @section 11
-@topic श्रीसीता-त्रिजटा-संवाद | Trijaṭā’s dream; dialogue between Sītā and Trijaṭā
+@topic श्रीसीता-त्रिजटा-संवाद | Trijata’s dream; dialogue between Sita and Trijata
 [sundar.11.cau1 cau 1]
 त्रिजटा नाम राच्छसी एका । राम चरन रति निपुन बिबेका ।।
 सबन्हौ बोलि सुनाएसि सपना । सीतहि सेइ करहु हित अपना ।।
@@ -13795,7 +13795,7 @@
 [sundar.12.cau6 cau 6]
 नूतन किसलय अनल समाना । देहि अगिनि जनि करहि निदाना ।।
 देखि परम बिरहाकुल सीता । सो छन कपिहि कलप सम बीता ।।
-@topic श्रीसीता-हनुमान्-संवाद | Dialogue between Sītā and Hanumān
+@topic श्रीसीता-हनुमान्-संवाद | Dialogue between Sita and Hanuman
 [sundar.12.so12 so 12]
 कपि करि हृदयँ बिचार दीन्हि मुद्रिका डारि तब ।
 जनु असोक अंगार दीन्ह हरषि उठि कर गहेउ ।।१२।।
@@ -13886,7 +13886,7 @@
 [sundar.17.cau3 cau 3]
 बार बार नाएसि पद सीसा । बोला बचन जोरि कर कीसा ।।
 अब कृतकृत्य भयउँ मैं माता । आसिष तव अमोघ बिख्याता ।।
-@topic हनुमान् जीद्वारा अशोकवाटिका-विध्वंस, अक्षयकुमार-वध और मेघनादका हनुमान् जीको नागपाशमें बाँधकर सभामें ले जाना | Hanumān lays waste the Aśoka grove and kills prince Akṣaya; at last Meghanāda entangles Hanumān in a noose of serpents and carries him off to Rāvaṇa’s court
+@topic हनुमान् जीद्वारा अशोकवाटिका-विध्वंस, अक्षयकुमार-वध और मेघनादका हनुमान् जीको नागपाशमें बाँधकर सभामें ले जाना | Hanuman lays waste the Ashok grove and kills prince Akshay; at last Meghnad entangles Hanuman in a noose of serpents and carries him off to Ravan’s court
 [sundar.17.cau4 cau 4]
 सुनहु मातु मोहि अतिसय भूखा । लागि देखि सुंदर फल रूखा ।।
 सुनु सुत करहिं बिपिन रखवारी । परम सुभट रजनीचर भारी ।।
@@ -13942,7 +13942,7 @@
 [sundar.20.cau4 cau 4]
 कर जोरें सुर दिसिप बिनीता । भृकुटि बिलोकत सकल सभीता ।।
 देखि प्रताप न कपि मन संका । जिमि अहिगन महुँ गरुड़ असंका ।।
-@topic हनुमान्-रावण-संवाद | Dialogue between Hanumān and Rāvaṇa
+@topic हनुमान्-रावण-संवाद | Dialogue between Hanuman and Ravan
 [sundar.20.do20 do 20]
 कपिहि बिलोकि दसानन बिहसा कहि दुर्बाद ।
 सुत बध सुरति कीन्हि पुनि उपजा हृदयँ बिषाद ।।२०।।
@@ -14014,7 +14014,7 @@
 आन दंड कछु करिअ गोसाँई । सबहीं कहा मंत्र भल भाई ।।
 [sundar.24.cau5 cau 5]
 सुनत बिहसि बोला दसकंधर । अंग भंग करि पठइअ बंदर ।।
-@topic लङ्का-दहन | Burning of Laṅkā
+@topic लङ्का-दहन | Burning of Lanka
 [sundar.24.do24 do 24]
 कपि कें ममता पूँछ पर सबहि कहउँ समुझाइ ।
 तेल बोरि पट बाँधि पुनि पावक देहु लगाइ ।।२४।।
@@ -14049,7 +14049,7 @@
 [sundar.26.cau4 cau 4]
 ता कर दूत अनल जेहिं सिरिजा । जरा न सो तेहि कारन गिरिजा ।।
 उलटि पलटि लंका सब जारी । कूदि परा पुनि सिंधु मझारी ।।
-@topic लङ्का जलानेके बाद हनुमान् जीका सीताजीसे विदा माँगना और चूड़ामणि पाना | After burning Laṅkā Hanumān asks leave of Sītā and obtains the crest-jewel from Her
+@topic लङ्का जलानेके बाद हनुमान् जीका सीताजीसे विदा माँगना और चूड़ामणि पाना | After burning Lanka Hanuman asks leave of Sita and obtains the crest-jewel from Her
 [sundar.26.do26 do 26]
 पूँछ बुझाइ खोइ श्रम धरि लघु रूप बहोरि ।
 जनकसुता कें आगें ठाढ़ भयउ कर जोरि ।।२६।।
@@ -14070,7 +14070,7 @@
 जनकसुतहि समुझाइ करि बहु बिधि धीरजु दीन्ह ।
 चरन कमल सिरु नाइ कपि गवनु राम पहिं कीन्ह ।।२७।।
 @section 28
-@topic समुद्रके इस पार आना, सबका लौटना, मधुवन-प्रवेश, सुग्रीव-मिलन, श्रीराम- हनुमान्-संवाद | On Hanumān’s reaching the opposite shore all the monkeys return and enter Madhuvana; their meeting with Sugrīva and the dialogue between Śrī Rāma and Hanumān
+@topic समुद्रके इस पार आना, सबका लौटना, मधुवन-प्रवेश, सुग्रीव-मिलन, श्रीराम- हनुमान्-संवाद | On Hanuman’s reaching the opposite shore all the monkeys return and enter Madhuvana; their meeting with Sugriv and the dialogue between Shri Ram and Hanuman
 [sundar.28.cau1 cau 1]
 चलत महाधुनि गर्जेसि भारी । गर्भ स्रवहिं सुनि निसिचर नारी ।।
 नाघि सिंधु एहि पारहि आवा । सबद किलिकिला कपिन्ह सुनावा ।।
@@ -14177,7 +14177,7 @@
 [sundar.34.cau2 cau 2]
 उमा राम सुभाउ जेहिं जाना । ताहि भजनु तजि भाव न आना ।।
 यह संबाद जासु उर आवा । रघुपति चरन भगति सोइ पावा ।।
-@topic श्रीरामजीका वानरोंकी सेनाके साथ चलकर समुद्रतटपर पहुँचना | Śrī Rāma’s march to the beach alongwith the army of monkeys
+@topic श्रीरामजीका वानरोंकी सेनाके साथ चलकर समुद्रतटपर पहुँचना | Shri Ram’s march to the beach alongwith the army of monkeys
 [sundar.34.cau3 cau 3]
 सुनि प्रभु बचन कहहिं कपिबृंदा । जय जय जय कृपाल सुखकंदा ।।
 तब रघुपति कपिपतिहि बोलावा । कहा चलैं कर करहु बनावा ।।
@@ -14217,7 +14217,7 @@
 एहि बिधि जाइ कृपानिधि उतरे सागर तीर ।
 जहँ तहँ लागे खान फल भालु बिपुल कपि बीर ।।३५।।
 @section 36
-@topic मन्दोदरी-रावण-संवाद | Dialogue between Mandodarī and Rāvaṇa
+@topic मन्दोदरी-रावण-संवाद | Dialogue between Mandodari and Ravan
 [sundar.36.cau1 cau 1]
 उहाँ निसाचर रहहिं ससंका । जब तें जारि गयउ कपि लंका ।।
 निज निज गृहँ सब करहिं बिचारा । नहिं निसिचर कुल केर उबारा ।।
@@ -14246,7 +14246,7 @@
 [sundar.37.cau3 cau 3]
 अस कहि बिहसि ताहि उर लाई । चलेउ सभाँ ममता अधिकाई ।।
 मंदोदरी हृदयँ कर चिंता । भयउ कंत पर बिधि बिपरीता ।।
-@topic रावणको विभीषणका समझाना और विभीषणका अपमान | Vibhīṣaṇa offers advice to Rāvaṇa and meets with an affront at the latter’s hands
+@topic रावणको विभीषणका समझाना और विभीषणका अपमान | Vibhishan offers advice to Ravan and meets with an affront at the latter’s hands
 [sundar.37.cau4 cau 4]
 बैठेउ सभाँ खबरि असि पाई । सिंधु पार सेना सब आई ।।
 बूझेसि सचिव उचित मत कहहू । ते सब हँसे मष्ट करि रहहू ।।
@@ -14319,7 +14319,7 @@
 [sundar.41.cau4 cau 4]
 उमा संत कइ इहइ बड़ाई । मंद करत जो करइ भलाई ।।
 तुम्ह पितु सरिस भलेहिं मोहि मारा । रामु भजें हित नाथ तुम्हारा ।।
-@topic विभीषणका भगवान् श्रीरामजीकी शरणके लिये प्रस्थान और शरणप्राप्ति | Vibhīṣaṇa sallies forth to obtain Śrī Rāma’s protection and secures it
+@topic विभीषणका भगवान् श्रीरामजीकी शरणके लिये प्रस्थान और शरणप्राप्ति | Vibhishan sallies forth to obtain Shri Ram’s protection and secures it
 [sundar.41.cau5 cau 5]
 सचिव संग लै नभ पथ गयऊ । सबहि सुनाइ कहत अस भयऊ ।।
 [sundar.41.do41 do 41]
@@ -14465,7 +14465,7 @@
 [sundar.50.cau1 cau 1]
 अस प्रभु छाड़ि भजहिं जे आना । ते नर पसु बिनु पूँछ बिषाना ।।
 निज जन जानि ताहि अपनावा । प्रभु सुभाव कपि कुल मन भावा ।।
-@topic समुद्र पार करनेके लिये विचार, रावणदूत शुकका आना और लक्ष्मणजीके पत्रको लेकर लौटना | Deliberation over the question of crossing the sea; appearance of Śuka, a spy of Rāvaṇa, and his return with Lakṣmaṇa’s letter
+@topic समुद्र पार करनेके लिये विचार, रावणदूत शुकका आना और लक्ष्मणजीके पत्रको लेकर लौटना | Deliberation over the question of crossing the sea; appearance of Shuk, a spy of Ravan, and his return with Lakshman’s letter
 [sundar.50.cau2 cau 2]
 पुनि सर्बग्य सर्ब उर बासी । सर्बरूप सब रहित उदासी ।।
 बोले बचन नीति प्रतिपालक । कारन मनुज दनुज कुल घालक ।।
@@ -14514,7 +14514,7 @@
 [sundar.53.cau1 cau 1]
 तुरत नाइ लछिमन पद माथा । चले दूत बरनत गुन गाथा ।।
 कहत राम जसु लंकाँ आए । रावन चरन सीस तिन्ह नाए ।।
-@topic दूतका रावणको समझाना और लक्ष्मणजीका पत्र देना | The spy gives counsel to Rāvaṇa and delivers Lakṣmaṇa’s note to him
+@topic दूतका रावणको समझाना और लक्ष्मणजीका पत्र देना | The spy gives counsel to Ravan and delivers Lakshman’s note to him
 [sundar.53.cau2 cau 2]
 बिहसि दसानन पूँछी बाता । कहसि न सुक आपनि कुसलाता ।।
 पुनि कहु खबरि बिभीषन केरी । जाहि मृत्यु आई अति नेरी ।।
@@ -14600,7 +14600,7 @@
 [sundar.57.cau6 cau 6]
 रिषि अगस्ति कीं साप भवानी । राछस भयउ रहा मुनि ग्यानी ।।
 बंदि राम पद बारहिं बारा । मुनि निज आश्रम कहुँ पगु धारा ।।
-@topic समुद्रपर श्रीरामजीका क्रोध और समुद्रकी विनती | Śrī Rāma’s fury against the sea and the latter’s supplication
+@topic समुद्रपर श्रीरामजीका क्रोध और समुद्रकी विनती | Shri Ram’s fury against the sea and the latter’s supplication
 [sundar.57.do57 do 57]
 बिनय न मानत जलधि जड़ गए तीनि दिन बीति ।
 बोले राम सकोप तब भय बिनु होइ न प्रीति ।।५७।।
@@ -14654,7 +14654,7 @@
 यह चरित कलि मलहर जथामति दास तुलसी गायऊ ।।
 सुख भवन संसय समन दवन बिषाद रघुपति गुन गना ।
 तजि सकल आस भरोस गावहि सुनहि संतत सठ मना ।।
-@topic श्रीराम-गुणगानकी महिमा | Glory of hymning Śrī Rāma’s praises
+@topic श्रीराम-गुणगानकी महिमा | Glory of hymning Shri Ram’s praises
 [sundar.60.do60 do 60]
 सकल सुमंगल दायक रघुनायक गुन गान ।
 सादर सुनहिं ते तरहिं भव सिंधु बिना जलजान ।।६०।।
@@ -14680,7 +14680,7 @@
 [lanka.0.dou1 do u1]
 लव निमेष परमानु जुग बरष कलप सर चंड ।
 भजसि न मन तेहि राम को कालु जासु कोदंड ।।
-@topic नल-नीलद्वारा पुल बाँधना, श्रीरामजीद्वारा श्रीरामेश्वरकी स्थापना | Bridging of the ocean by Nala and Nīla; Śrī Rāma’s installation of Śrī Rāmeśvara
+@topic नल-नीलद्वारा पुल बाँधना, श्रीरामजीद्वारा श्रीरामेश्वरकी स्थापना | Bridging of the ocean by Nala and Neel; Shri Ram’s installation of Shri Rameshwaram
 [lanka.0.sou1 so u1]
 सिंधु बचन सुनि राम सचिव बोलि प्रभु अस कहेउ ।
 अब बिलंबु केहि काम करहु सेतु उतरै कटकु ।।
@@ -14741,7 +14741,7 @@
 श्री रघुबीर प्रताप ते सिंधु तरे पाषान ।
 ते मतिमंद जे राम तजि भजहिं जाइ प्रभु आन ।।३।।
 @section 4
-@topic श्रीरामजीका सेनासहित समुद्र पार उतरना, सुबेल पर्वतपर निवास, रावणकी व्याकुलता | Śrī Rāma crosses the ocean with the whole army and encamps on Mount Suvela; Rāvaṇa feels agitated at the news
+@topic श्रीरामजीका सेनासहित समुद्र पार उतरना, सुबेल पर्वतपर निवास, रावणकी व्याकुलता | Shri Ram crosses the ocean with the whole army and encamps on Mount Suvela; Ravan feels agitated at the news
 [lanka.4.cau1 cau 1]
 बाँधि सेतु अति सुदृढ़ बनावा । देखि कृपानिधि के मन भावा ।।
 चली सेन कछु बरनि न जाई । गर्जहिं मर्कट भट समुदाई ।।
@@ -14775,7 +14775,7 @@
 [lanka.5.cau5 cau 5]
 जिन्ह कर नासा कान निपाता । तिन्ह रावनहि कही सब बाता ।।
 सुनत श्रवन बारिधि बंधाना । दस मुख बोलि उठा अकुलाना ।।
-@topic रावणको मन्दोदरीका समझाना, रावण-प्रहस्त-संवाद | Mandodarī expostulates with Rāvaṇa; dialogue between Rāvaṇa and Prahasta (his son)
+@topic रावणको मन्दोदरीका समझाना, रावण-प्रहस्त-संवाद | Mandodari expostulates with Ravan; dialogue between Ravan and Prahasta (his son)
 [lanka.5.do5 do 5]
 बाँध्यो बननिधि नीरनिधि जलधि सिंधु बारीस ।
 सत्य तोयनिधि कंपति उदधि पयोधि नदीस ।।५।।
@@ -14869,7 +14869,7 @@
 सुनासीर सत सरिस सो संतत करइ बिलास ।
 परम प्रबल रिपु सीस पर तद्यपि सोच न त्रास ।।१०।।
 @section 11
-@topic सुबेलपर श्रीरामजीकी झाँकी और चन्द्रोदयवर्णन | A mental view of Śrī Rāma on Mount Suvela and a description of the rising moon
+@topic सुबेलपर श्रीरामजीकी झाँकी और चन्द्रोदयवर्णन | A mental view of Shri Ram on Mount Suvela and a description of the rising moon
 [lanka.11.cau1 cau 1]
 इहाँ सुबेल सैल रघुबीरा । उतरे सेन सहित अति भीरा ।।
 सिखर एक उतंग अति देखी । परम रम्य सम सुभ्र बिसेषी ।।
@@ -14907,7 +14907,7 @@
 [lanka.12.do12क do 12क]
 कह हनुमंत सुनहु प्रभु ससि तुम्हार प्रिय दास ।
 तव मूरति बिधु उर बसति सोइ स्यामता अभास ।।१२ (क)।।
-@topic श्रीरामजीके बाणसे रावणके मुकुट-छत्रादिका गिरना | An arrow from Śrī Rāma’s bow strikes down Rāvaṇa’s diadems and umbrella
+@topic श्रीरामजीके बाणसे रावणके मुकुट-छत्रादिका गिरना | An arrow from Shri Ram’s bow strikes down Ravan’s diadems and umbrella
 [lanka.12.do12ख do 12ख]
 पवन तनय के बचन सुनि बिहँसे रामु सुजान ।
 दच्छिन दिसि अवलोकि प्रभु बोले कृपा निधान ।।१२ (ख)।।
@@ -14937,7 +14937,7 @@
 [lanka.14.cau2 cau 2]
 दसमुख देखि सभा भय पाई । बिहसि बचन कह जुगुति बनाई ।।
 सिरउ गिरे संतत सुभ जाही । मुकुट परे कस असगुन ताही ।।
-@topic मन्दोदरीका फिर रावणको समझाना और श्रीरामकी महिमा कहना | Mandodarī makes remonstrance with Rāvaṇa again and dwells upon Śrī Rāma’s glory
+@topic मन्दोदरीका फिर रावणको समझाना और श्रीरामकी महिमा कहना | Mandodari makes remonstrance with Ravan again and dwells upon Shri Ram’s glory
 [lanka.14.cau3 cau 3]
 सयन करहु निज निज गृह जाई । गवने भवन सकल सिर नाई ।।
 मंदोदरी सोच उर बसेऊ । जब ते श्रवनपूर महि खसेऊ ।।
@@ -14986,7 +14986,7 @@
 फूलइ फरइ न बेत जदपि सुधा बरषहिं जलद ।
 मूरुख हृदयँ न चेत जौं गुर मिलहिं बिरंचि सम ।।१६ (ख)।।
 @section 17
-@topic अंगदजीका लंका जाना और रावणकी सभामें अंगद-रावण-संवाद | Aṅgada’s departure for Laṅkā and dialogue between Aṅgada and Rāvaṇa in the latter’s court
+@topic अंगदजीका लंका जाना और रावणकी सभामें अंगद-रावण-संवाद | Angad’s departure for Lanka and dialogue between Angad and Ravan in the latter’s court
 [lanka.17.cau1 cau 1]
 इहाँ प्रात जागे रघुराई । पूछा मत सब सचिव बोलाई ।।
 कहहु बेगि का करिअ उपाई । जामवंत कह पद सिरु नाई ।।
@@ -15369,7 +15369,7 @@
 [lanka.35.do35क do 35क]
 रिपु बल धरषि हरषि कपि बालितनय बल पुंज ।
 पुलक सरीर नयन जल गहे राम पद कंज ।।३५ (क)।।
-@topic रावणको पुनः मन्दोदरीका समझाना | Mandodarī offers advice to Rāvaṇa once more
+@topic रावणको पुनः मन्दोदरीका समझाना | Mandodari offers advice to Ravan once more
 [lanka.35.do35ख do 35ख]
 साँझ जानि दसकंधर भवन गयउ बिलखाइ ।
 मंदोदरीं रावनहि बहुरि कहा समुझाइ ।।३५ (ख)।।
@@ -15417,7 +15417,7 @@
 [lanka.38.cau1 cau 1]
 नारि बचन सुनि बिसिख समाना । सभाँ गयउ उठि होत बिहाना ।।
 बैठ जाइ सिंघासन फूली । अति अभिमान त्रास सब भूली ।।
-@topic अंगद-राम-संवाद | Dialogue between Aṅgada and Śrī Rāma; conflict actually begins
+@topic अंगद-राम-संवाद | Dialogue between Angad and Shri Ram; conflict actually begins
 [lanka.38.cau2 cau 2]
 इहाँ राम अंगदहि बोलावा । आइ चरन पंकज सिरु नावा ।।
 अति आदर समीप बैठारी । बोले बिहँसि कृपाल खरारी ।।
@@ -15597,7 +15597,7 @@
 [lanka.47.cau4 cau 4]
 भागत भट पटकहिं धरि धरनी । करहिं भालु कपि अद्भुत करनी ।।
 गहि पद डारहिं सागर माहीं । मकर उरग झष धरि धरि खाहीं ।।
-@topic माल्यवान् का रावणको समझाना | Mālyavān’s admonition to Rāvaṇa
+@topic माल्यवान् का रावणको समझाना | Malyavan’s admonition to Ravan
 [lanka.47.do47 do 47]
 कछु मारे कछु घायल कछु गढ़ चढ़े पराइ ।
 गर्जहिं भालु बलीमुख रिपु दल बल बिचलाइ ।।४७।।
@@ -15641,7 +15641,7 @@
 घहरात जिमि पबिपात गर्जत जनु प्रलय के बादले ।।
 मर्कट बिकट भट जुटत कटत न लटत तन जर्जर भए ।
 गहि सैल तेहि गढ़ पर चलावहिं जहँ सो तहँ निसिचर हए ।।
-@topic लक्ष्मण-मेघनाद-युद्ध, लक्ष्मणजीको शक्ति लगना | The battle recommences; encounter between Lakṣmaṇa and Meghanāda; a javelin thrown by the latter strikes Lakṣmaṇa in the breast
+@topic लक्ष्मण-मेघनाद-युद्ध, लक्ष्मणजीको शक्ति लगना | The battle recommences; encounter between Lakshman and Meghnad; a javelin thrown by the latter strikes Lakshman in the breast
 [lanka.49.do49 do 49]
 मेघनाद सुनि श्रवन अस गढ़ु पुनि छेंका आइ ।
 उतर्यो बीर दुर्ग तें सन्मुख चल्यो बजाइ ।।४९।।
@@ -15735,7 +15735,7 @@
 [lanka.55.cau3 cau 3]
 ब्यापक ब्रह्म अजित भुवनेस्वर । लछिमन कहाँ बूझ करुनाकर ।।
 तब लगि लै आयउ हनुमाना । अनुज देखि प्रभु अति दुख माना ।।
-@topic हनुमान् जीका सुषेण वैद्यको लाना एवं संजीवनीके लिये जाना, कालनेमि-रावण- संवाद, मकरी-उद्धार, कालनेमि-उद्धार | Hanumān fetches the physician Suṣeṇa and proceeds in quest of the life-giving herb; dialogue between Kālanemi and Rāvaṇa, redemption of the she-alligator; deliverance of Kālanemi
+@topic हनुमान् जीका सुषेण वैद्यको लाना एवं संजीवनीके लिये जाना, कालनेमि-रावण- संवाद, मकरी-उद्धार, कालनेमि-उद्धार | Hanuman fetches the physician Sushen and proceeds in quest of the life-giving herb; dialogue between Kalnemi and Ravan, redemption of the she-alligator; deliverance of Kalnemi
 [lanka.55.cau4 cau 4]
 जामवंत कह बैद सुषेना । लंकाँ रहइ को पठई लेना ।।
 धरि लघु रूप गयउ हनुमंता । आनेउ भवन समेत तुरंता ।।
@@ -15787,7 +15787,7 @@
 [lanka.58.cau4 cau 4]
 देखा सैल न औषध चीन्हा । सहसा कपि उपारि गिरि लीन्हा ।।
 गहि गिरि निसि नभ धावत भयऊ । अवधपुरी ऊपर कपि गयऊ ।।
-@topic भरतजीके बाणसे हनुमान् का मूर्च्छित होना, भरत-हनुमान्-संवाद | Struck by Bharata’s arrow, Hanumān drops down unconscious; dialogue between Bharata and Hanumān
+@topic भरतजीके बाणसे हनुमान् का मूर्च्छित होना, भरत-हनुमान्-संवाद | Struck by Bharat’s arrow, Hanuman drops down unconscious; dialogue between Bharat and Hanuman
 [lanka.58.do58 do 58]
 देखा भरत बिसाल अति निसिचर मन अनुमानि ।
 बिनु फर सायक मारेउ चाप श्रवन लगि तानि ।।५८।।
@@ -15827,7 +15827,7 @@
 भरत बाहुबल सील गुन प्रभु पद प्रीति अपार ।
 मन महुँ जात सराहत पुनि पुनि पवनकुमार ।।६० (ख)।।
 @section 61
-@topic श्रीरामजीकी प्रलापलीला, हनुमान् जीका लौटना, लक्ष्मणजीका उठ बैठना | Śrī Rāma’s sport of a frantic wail; Hanumān’s return; Lakṣmaṇa’s coming back to consciousness
+@topic श्रीरामजीकी प्रलापलीला, हनुमान् जीका लौटना, लक्ष्मणजीका उठ बैठना | Shri Ram’s sport of a frantic wail; Hanuman’s return; Lakshman’s coming back to consciousness
 [lanka.61.cau1 cau 1]
 उहाँ राम लछिमनहि निहारी । बोले बचन मनुज अनुसारी ।।
 अर्ध राति गइ कपि नहिं आयउ । राम उठाइ अनुज उर लायउ ।।
@@ -15865,7 +15865,7 @@
 [lanka.62.cau2 cau 2]
 हृदयँ लाइ प्रभु भेंटेउ भ्राता । हरषे सकल भालु कपि ब्राता ।।
 कपि पुनि बैद तहाँ पहुँचावा । जेहि बिधि तबहिं ताहि लइ आवा ।।
-@topic रावणका कुम्भकर्णको जगाना, कुम्भकर्णका रावणको उपदेश और विभीषण- कुम्भकर्ण-संवाद | Rāvaṇa awakes Kumbhakarṇa; Kumbhakarṇa’s exhortation to Rāvaṇa and dialogue between Vibhīṣaṇa and Kumbhakarṇa
+@topic रावणका कुम्भकर्णको जगाना, कुम्भकर्णका रावणको उपदेश और विभीषण- कुम्भकर्ण-संवाद | Ravan awakes Kumbhkaran; Kumbhkaran’s exhortation to Ravan and dialogue between Vibhishan and Kumbhkaran
 [lanka.62.cau3 cau 3]
 यह बृत्तांत दसानन सुनेऊ । अति बिषाद पुनि पुनि सिर धुनेऊ ।।
 ब्याकुल कुंभकरन पहिं आवा । बिबिध जतन करि ताहि जगावा ।।
@@ -15916,7 +15916,7 @@
 बचन कर्म मन कपट तजि भजेहु राम रनधीर ।
 जाहु न निज पर सूझ मोहि भयउँ कालबस बीर ।।६४।।
 @section 65
-@topic कुम्भकर्ण-युद्ध और उसकी परमगति | Kumbhakarṇa joins the beāle and attains final beatitude
+@topic कुम्भकर्ण-युद्ध और उसकी परमगति | Kumbhkaran joins the beale and attains final beatitude
 [lanka.65.cau1 cau 1]
 बंधु बचन सुनि चला बिभीषन । आयउ जहँ त्रैलोक बिभूषन ।।
 नाथ भूधराकार सरीरा । कुंभकरन आवत रनधीरा ।।
@@ -16069,7 +16069,7 @@
 इत कपि भालु काल सम बीरा । उत रजनीचर अति रनधीरा ।।
 [lanka.72.cau6 cau 6]
 लरहिं सुभट निज निज जय हेतू । बरनि न जाइ समर खगकेतू ।।
-@topic मेघनादका युद्ध, रामजीका लीलासे नागपाशमें बँधना | Meghanāda gives battle and Śrī Rāma sportfully allows Himself to be bound by a snare of serpents
+@topic मेघनादका युद्ध, रामजीका लीलासे नागपाशमें बँधना | Meghnad gives battle and Shri Ram sportfully allows Himself to be bound by a snare of serpents
 [lanka.72.do72 do 72]
 मेघनाद मायामय रथ चढ़ि गयउ अकास ।
 गर्जेउ अट्टहास करि भइ कपि कटकहि त्रास ।।७२।।
@@ -16120,7 +16120,7 @@
 गहि गिरि पादप उपल नख धाए कीस रिसाइ ।
 चले तमीचर बिकलतर गढ़ पर चढ़े पराइ ।।७४ (ख)।।
 @section 75
-@topic मेघनाद-यज्ञ-विध्वंस, युद्ध और मेघनाद-उद्धार | Destruction of Meghanāda’s sacrificial performance; his engagement on the battle-field and deliverance at the hands of Lakṣmaṇa
+@topic मेघनाद-यज्ञ-विध्वंस, युद्ध और मेघनाद-उद्धार | Destruction of Meghnad’s sacrificial performance; his engagement on the battle-field and deliverance at the hands of Lakshman
 [lanka.75.cau1 cau 1]
 मेघनाद कै मुरछा जागी । पितहि बिलोकि लाज अति लागी ।।
 तुरत गयउ गिरिबर कंदरा । करौं अजय मख अस मन धरा ।।
@@ -16193,7 +16193,7 @@
 [lanka.78.cau1 cau 1]
 तिन्हहि ग्यान उपदेसा रावन । आपुन मंद कथा सुभ पावन ।।
 पर उपदेस कुसल बहुतेरे । जे आचरहिं ते नर न घनेरे ।।
-@topic रावणका युद्धके लिये प्रस्थान और श्रीरामजीका विजय-रथ तथा वानर-राक्षसोंका युद्ध | Rāvaṇa’s march to the field of battle; Śrī Rāma’s victory-chariot and an encounter between the monkeys and the demons
+@topic रावणका युद्धके लिये प्रस्थान और श्रीरामजीका विजय-रथ तथा वानर-राक्षसोंका युद्ध | Ravan’s march to the field of battle; Shri Ram’s victory-chariot and an encounter between the monkeys and the demons
 [lanka.78.cau2 cau 2]
 निसा सिरानि भयउ भिनुसारा । लगे भालु कपि चारिहुँ द्वारा ।।
 सुभट बोलाइ दसानन बोला । रन सन्मुख जा कर मन डोला ।।
@@ -16313,7 +16313,7 @@
 रहे पूरि सर धरनी गगन दिसि बिदिसि कहँ कपि भागहीं ।।
 भयो अति कोलाहल बिकल कपि दल भालु बोलहिं आतुरे ।
 रघुबीर करुना सिंधु आरत बंधु जन रच्छक हरे ।।
-@topic लक्ष्मण-रावण-युद्ध | Encounter between Lakṣmaṇa and Rāvaṇa
+@topic लक्ष्मण-रावण-युद्ध | Encounter between Lakshman and Ravan
 [lanka.82.do82 do 82]
 निज दल बिकल देखि कटि कसि निषंग धनु हाथ ।
 लछिमन चले क्रुद्ध होइ नाइ राम पद माथ ।।८२।।
@@ -16351,7 +16351,7 @@
 [lanka.84.cau4 cau 4]
 सुनत बचन उठि बैठ कृपाला । गई गगन सो सकति कराला ।।
 पुनि कोदंड बान गहि धाए । रिपु सन्मुख अति आतुर आए ।।
-@topic रावण-मूर्च्छा, रावण-यज्ञ-विध्वंस, राम-रावण-युद्ध | Rāvaṇa’s swoon; destruction of his sacrificial performance; combat between Śrī Rāma and Rāvaṇa
+@topic रावण-मूर्च्छा, रावण-यज्ञ-विध्वंस, राम-रावण-युद्ध | Ravan’s swoon; destruction of his sacrificial performance; combat between Shri Ram and Ravan
 [lanka.84.cha1 cha 1]
 आतुर बहोरि बिभंजि स्यंदन सूत हति ब्याकुल कियो ।
 गिर्‌यो धरनि दसकंधर बिकलतर बान सत बेध्यो हियो ।।
@@ -16454,7 +16454,7 @@
 रावन हृदयँ बिचारा भा निसिचर संघार ।
 मैं अकेल कपि भालु बहु माया करौं अपार ।।८८।।
 @section 89
-@topic इन्द्रका श्रीरामजीके लिये रथ भेजना, राम-रावण-युद्ध | Indra (the lord of paradise) sends a chariot for the use of Śrī Rāma; encounter between Śrī Rāma and Rāvaṇa
+@topic इन्द्रका श्रीरामजीके लिये रथ भेजना, राम-रावण-युद्ध | Indra (the lord of paradise) sends a chariot for the use of Shri Ram; encounter between Shri Ram and Ravan
 [lanka.89.cau1 cau 1]
 देवन्ह प्रभुहि पयादें देखा । उपजा उर अति छोभ बिसेषा ।।
 सुरपति निज रथ तुरत पठावा । हरष सहित मातलि लै आवा ।।
@@ -16568,7 +16568,7 @@
 संधानि धनु रघुबंसमनि हँसि सरन्हि सिर बेधे भले ।।
 सिर मालिका कर कालिका गहि बृंद बृंदन्हि बहु मिलीं ।
 करि रुधिर सरि मज्जनु मनहुँ संग्राम बट पूजन चलीं ।।
-@topic रावणका विभीषणपर शक्ति छोड़ना, रामजीका शक्तिको अपने ऊपर लेना, विभीषण-रावण-युद्ध | Rāvaṇa hurls a lance at Vibhīṣaṇa : Śrī Rāma puts Vibhīṣaṇa behind Him and exposes Himself to its full force; encounter between Vibhīṣaṇa and Rāvaṇa
+@topic रावणका विभीषणपर शक्ति छोड़ना, रामजीका शक्तिको अपने ऊपर लेना, विभीषण-रावण-युद्ध | Ravan hurls a lance at Vibhishan : Shri Ram puts Vibhishan behind Him and exposes Himself to its full force; encounter between Vibhishan and Ravan
 [lanka.93.do93 do 93]
 पुनि दसकंठ क्रुद्ध होइ छाँड़ी सक्ति प्रचंड ।
 चली बिभीषन सन्मुख मनहुँ काल कर दंड ।।९३।।
@@ -16594,7 +16594,7 @@
 उमा बिभीषनु रावनहि सन्मुख चितव कि काउ ।
 सो अब भिरत काल ज्यों श्रीरघुबीर प्रभाउ ।।९४।।
 @section 95
-@topic रावण-हनुमान्-युद्ध, रावणका माया रचना, रामजीद्वारा माया-नाश | Combat of Rāvaṇa and Hanumān; Rāvaṇa creates phantoms and Śrī Rāma disperses the phantoms
+@topic रावण-हनुमान्-युद्ध, रावणका माया रचना, रामजीद्वारा माया-नाश | Combat of Ravan and Hanuman; Ravan creates phantoms and Shri Ram disperses the phantoms
 [lanka.95.cau1 cau 1]
 देखा श्रमित बिभीषनु भारी । धायउ हनूमान गिरि धारी ।।
 रथ तुरंग सारथी निपाता । हृदय माझ तेहि मारेसि लाता ।।
@@ -16640,7 +16640,7 @@
 [lanka.97.cau1 cau 1]
 प्रभु छन महुँ माया सब काटी । जिमि रबि उएँ जाहिं तम फाटी ।।
 रावनु एकु देखि सुर हरषे । फिरे सुमन बहु प्रभु पर बरषे ।।
-@topic घोर युद्ध, रावणकी मूर्च्छा | Fierce fighting; Rāvaṇa’s swoon
+@topic घोर युद्ध, रावणकी मूर्च्छा | Fierce fighting; Ravan’s swoon
 [lanka.97.cau2 cau 2]
 भुज उठाइ रघुपति कपि फेरे । फिरे एक एकन्ह तब टेरे ।।
 प्रभु बलु पाइ भालु कपि धाए । तरल तमकि संजुग महि आए ।।
@@ -16691,7 +16691,7 @@
 मुरुछा बिगत भालु कपि सब आए प्रभु पास ।
 निसिचर सकल रावनहि घेरि रहे अति त्रास ।।९८।।
 @section 99
-@topic त्रिजटा-सीता-संवाद | Dialogue between Sītā and Trijaṭā
+@topic त्रिजटा-सीता-संवाद | Dialogue between Sita and Trijata
 [lanka.99.cau1 cau 1]
 तेही निसि सीता पहिं जाई । त्रिजटा कहि सब कथा सुनाई ।।
 सिर भुज बाढ़ि सुनत रिपु केरी । सीता उर भइ त्रास घनेरी ।।
@@ -16784,7 +16784,7 @@
 [lanka.101.do101क do 101क]
 ताके गुन गन कछु कहे जड़मति तुलसीदास ।
 जिमि निज बल अनुरूप ते माछी उड़इ अकास ।।१०१ क।।
-@topic राम-रावण-युद्ध, रावण-वध, सर्वत्र जयध्वनि | Final encounter between Śrī Rāma and Rāvaṇa; end of Rāvaṇa; shouts of victory everywhere
+@topic राम-रावण-युद्ध, रावण-वध, सर्वत्र जयध्वनि | Final encounter between Shri Ram and Ravan; end of Ravan; shouts of victory everywhere
 [lanka.101.do101ख do 101ख]
 काटे सिर भुज बार बहु मरत न भट लंकेस ।
 प्रभु क्रीड़त सुर सिद्ध मुनि ब्याकुल देखि कलेस ।।१०१ ख।।
@@ -16844,7 +16844,7 @@
 कृपादृष्टि करि बृष्टि प्रभु अभय किए सुर बृंद ।
 भालु कीस सब हरषे जय सुख धाम मुकुंद ।।१०३।।
 @section 104
-@topic मन्दोदरी-विलाप, रावणकी अन्त्येष्टि-क्रिया | Mandodarī and other queens lament; Rāvaṇa’s funeral
+@topic मन्दोदरी-विलाप, रावणकी अन्त्येष्टि-क्रिया | Mandodari and other queens lament; Ravan’s funeral
 [lanka.104.cau1 cau 1]
 पति सिर देखत मंदोदरी । मुरुछित बिकल धरनि खसि परी ।।
 जुबति बृंद रोवत उठि धाईं । तेहि उठाइ रावन पहिं आईं ।।
@@ -16890,7 +16890,7 @@
 मंदोदरी आदि सब देइ तिलांजलि ताहि ।
 भवन गईं रघुपति गुन गन बरनत मन माहि ।।१०५।।
 @section 106
-@topic विभीषणका राज्याभिषेक | Vibhīṣaṇa’s installation
+@topic विभीषणका राज्याभिषेक | Vibhishan’s installation
 [lanka.106.cau1 cau 1]
 आइ बिभीषन पुनि सिरु नायो । कृपासिंधु तब अनुज बोलायो ।।
 तुम्ह कपीस अंगद नल नीला । जामवंत मारुति नयसीला ।।
@@ -16912,7 +16912,7 @@
 प्रभु के बचन श्रवन सुनि नहिं अघाहिं कपि पुंज ।
 बार बार सिर नावहिं गहहिं सकल पद कंज ।।१०६।।
 @section 107
-@topic हनुमान् जीका सीताजीको कुशल सुनाना, सीताजीका आगमन और अग्नि-परीक्षा | Hanumān carries the happy news to Sītā; Sītā rejoins Śrī Rāma and enters fire as a test of her purity
+@topic हनुमान् जीका सीताजीको कुशल सुनाना, सीताजीका आगमन और अग्नि-परीक्षा | Hanuman carries the happy news to Sita; Sita rejoins Shri Ram and enters fire as a test of her purity
 [lanka.107.cau1 cau 1]
 पुनि प्रभु बोलि लियउ हनुमाना । लंका जाहु कहेउ भगवाना ।।
 समाचार जानकिहि सुनावहु । तासु कुसल लै तुम्ह चलि आवहु ।।
@@ -17137,7 +17137,7 @@
 नाथ जबहिं कोसलपुरीं होइहि तिलक तुम्हार ।
 कृपासिंधु मैं आउब देखन चरित उदार ।।११५।।
 @section 116
-@topic विभीषणकी प्रार्थना, श्रीरामजीके द्वारा भरतजीके प्रेमदशाका वर्णन, शीघ्र अयोध्या पहुँचनेका अनुरोध | Vibhīṣaṇa’s entreaty; Sri Rama portrayal and Bharata’s condition by due to the excessive love he bore towards the Lord; Śrī Rāma urges Vibhīṣaṇa to arrange His speedy return to Ayodhyā
+@topic विभीषणकी प्रार्थना, श्रीरामजीके द्वारा भरतजीके प्रेमदशाका वर्णन, शीघ्र अयोध्या पहुँचनेका अनुरोध | Vibhishan’s entreaty; Shri Ram portrayal and Bharat’s condition by due to the excessive love he bore towards the Lord; Shri Ram urges Vibhishan to arrange His speedy return to Ayodhya
 [lanka.116.cau1 cau 1]
 करि बिनती जब संभु सिधाए । तब प्रभु निकट बिभीषनु आए ।।
 नाइ चरन सिरु कह मृदु बानी । बिनय सुनहु प्रभु सारँगपानी ।।
@@ -17166,7 +17166,7 @@
 [lanka.117.cau1 cau 1]
 सुनत बिभीषन बचन राम के । हरषि गहे पद कृपाधाम के ।।
 बानर भालु सकल हरषाने । गहि प्रभु पद गुन बिमल बखाने ।।
-@topic विभीषणका वस्त्राभूषण बरसाना और वानर-भालुओंका उन्हें पहनना | Vibhīṣaṇa rains down clothes and ornaments from the air and the monkeys and bears pick them up and adorn their person with them
+@topic विभीषणका वस्त्राभूषण बरसाना और वानर-भालुओंका उन्हें पहनना | Vibhishan rains down clothes and ornaments from the air and the monkeys and bears pick them up and adorn their person with them
 [lanka.117.cau2 cau 2]
 बहुरि बिभीषन भवन सिधायो । मनि गन बसन बिमान भरायो ।।
 लै पुष्पक प्रभु आगें राखा । हँसि करि कृपासिंधु तब भाषा ।।
@@ -17198,7 +17198,7 @@
 [lanka.118.cau5 cau 5]
 सुनि प्रभु बचन लाज हम मरहीं । मसक कहूँ खगपति हित करहीं ।।
 देखि राम रुख बानर रीछा । प्रेम मगन नहिं गृह कै ईछा ।।
-@topic पुष्पकविमानपर चढ़कर श्रीसीता-रामजीका अवधके लिये प्रस्थान | Śrī Rāma and Sītā leave for Ayodhyā on the aerial car, Puṣpaka
+@topic पुष्पकविमानपर चढ़कर श्रीसीता-रामजीका अवधके लिये प्रस्थान | Shri Ram and Sita leave for Ayodhya on the aerial car, Pushpak
 [lanka.118.do118क do 118क]
 प्रभु प्रेरित कपि भालु सब राम रूप उर राखि ।
 हरष बिषाद सहित चले बिनय बिबिध बिधि भाषि ।।११८ (क)।।
@@ -17282,7 +17282,7 @@
 मतिमंद तुलसीदास सो प्रभु मोह बस बिसराइयो ।।
 यह रावनारि चरित्र पावन राम पद रतिप्रद सदा ।
 कामादिहर बिग्यानकर सुर सिद्ध मुनि गावहिं मुदा ।।
-@topic श्रीरामचरितकी महिमा | The glory of Śrī Rāma’s story
+@topic श्रीरामचरितकी महिमा | The glory of Shri Ram’s story
 [lanka.121.do121क do 121क]
 समर बिजय रघुबीर के चरित जे सुनहिं सुजान ।
 बिजय बिबेक बिभूति नित तिन्हहि देहिं भगवान ।।१२१ (क)।।
@@ -17306,7 +17306,7 @@
 कुन्दइन्दुदरगौरसुन्दरं अम्बिकापतिमभीष्टसिद्धिदम् ।
 कारुणीककलकञ्जलोचनं नौमि शङ्करमनङ्गमोचनम् ।।३।।
 @lang awa
-@topic भरत-विरह तथा भरत-हनुमान्-मिलन, अयोध्यामें आनन्द | Bharata’s desolation; meeting of Bharata and Hanumān; rejoicing in Ayodhyā
+@topic भरत-विरह तथा भरत-हनुमान्-मिलन, अयोध्यामें आनन्द | Bharat’s desolation; meeting of Bharat and Hanuman; rejoicing in Ayodhya
 [uttar.0.dou1 do u1]
 रहा एक दिन अवधि कर अति आरत पुर लोग ।
 जहँ तहँ सोचहिं नारि नर कृस तन राम बियोग ।।
@@ -17400,7 +17400,7 @@
 राका ससि रघुपति पुर सिंधु देखि हरषान ।
 बढ़्यो कोलाहल करत जनु नारि तरंग समान ।।३ (ग)।।
 @section 4
-@topic श्रीरामजीका स्वागत, भरत-मिलाप, सबका मिलनानन्द | Śrī Rāma’s Reception; meeting with Bharata; universal rejoicing on meeting Śrī Rāma
+@topic श्रीरामजीका स्वागत, भरत-मिलाप, सबका मिलनानन्द | Shri Ram’s Reception; meeting with Bharat; universal rejoicing on meeting Shri Ram
 [uttar.4.cau1 cau 1]
 इहाँ भानुकुल कमल दिवाकर । कपिन्ह देखावत नगर मनोहर ।।
 सुनु कपीस अंगद लंकेसा । पावन पुरी रुचिर यह देसा ।।
@@ -17536,7 +17536,7 @@
 [uttar.10.cau2 cau 2]
 कृपासिंधु जब मंदिर गए । पुर नर नारि सुखी सब भए ।।
 गुर बसिष्ट द्विज लिए बुलाई । आजु सुघरी सुदिन समुदाई ।।
-@topic राम-राज्याभिषेक, वेदस्तुति, शिवस्तुति | Śrī Rāma’s Coronation; Vedas’ Alleluia; Lord Śiva’s Alleluia
+@topic राम-राज्याभिषेक, वेदस्तुति, शिवस्तुति | Shri Ram’s Coronation; Vedas’ Alleluia; Lord Shiv’s Alleluia
 [uttar.10.cau3 cau 3]
 सब द्विज देहु हरषि अनुसासन । रामचंद्र बैठहिं सिंघासन ।।
 मुनि बसिष्ट के बचन सुहाए । सुनत सकल बिप्रन्ह अति भाए ।।
@@ -17693,7 +17693,7 @@
 [uttar.15.cau5 cau 5]
 नित नइ प्रीति राम पद पंकज । सब कें जिन्हहि नमत सिव मुनि अज ।।
 मंगन बहु प्रकार पहिराए । द्विजन्ह दान नाना बिधि पाए ।।
-@topic वानरोंकी और निषादकी विदाई | Śrī Rāma bestows parting presents on the monkeys and the Niṣāda chief
+@topic वानरोंकी और निषादकी विदाई | Shri Ram bestows parting presents on the monkeys and the Nishad chief
 [uttar.15.do15 do 15]
 ब्रह्मानंद मगन कपि सब कें प्रभु पद प्रीति ।
 जात न जाने दिवस तिन्ह गए मास षट बीति ।।१५।।
@@ -17786,7 +17786,7 @@
 [uttar.20.cau3 cau 3]
 चरन नलिन उर धरि गृह आवा । प्रभु सुभाउ परिजनन्हि सुनावा ।।
 रघुपति चरित देखि पुरबासी । पुनि पुनि कहहिं धन्य सुखरासी ।।
-@topic रामराज्यका वर्णन | Account of Śrī Rāma’s Reign
+@topic रामराज्यका वर्णन | Account of Shri Ram’s Reign
 [uttar.20.cau4 cau 4]
 राम राज बैठें त्रैलोका । हरषित भए गए सब सोका ।।
 बयरु न कर काहू सन कोई । राम प्रताप बिषमता खोई ।।
@@ -17863,7 +17863,7 @@
 जासु कृपा कटाच्छु सुर चाहत चितव न सोइ ।
 राम पदारबिंद रति करति सुभावहि खोइ ।।२४।।
 @section 25
-@topic पुत्रोत्पत्ति, अयोध्याजीकी रमणीयता, सनकादिका आगमन और संवाद | Birth of sons to the four brothers; Ayodhyā’s loveliness; arrival of the sage Sanaka and his three brothers and their dialogue with Śrī Rāma
+@topic पुत्रोत्पत्ति, अयोध्याजीकी रमणीयता, सनकादिका आगमन और संवाद | Birth of sons to the four brothers; Ayodhya’s loveliness; arrival of the sage Sanaka and his three brothers and their dialogue with Shri Ram
 [uttar.25.cau1 cau 1]
 सेवहिं सानकूल सब भाई । राम चरन रति अति अधिकाई ।।
 प्रभु मुख कमल बिलोकत रहहीं । कबहुँ कृपाल हमहि कछु कहहीं ।।
@@ -18060,7 +18060,7 @@
 बार बार अस्तुति करि प्रेम सहित सिरु नाइ ।
 ब्रह्म भवन सनकादि गे अति अभीष्ट बर पाइ ।।३५।।
 @section 36
-@topic हनुमान् जीके द्वारा भरतजीका प्रश्न और श्रीरामजीका उपदेश | Hanumān’s introduction to Bharata’s question and Śrī Rāma’s discourse on the subject
+@topic हनुमान् जीके द्वारा भरतजीका प्रश्न और श्रीरामजीका उपदेश | Hanuman’s introduction to Bharat’s question and Shri Ram’s discourse on the subject
 [uttar.36.cau1 cau 1]
 सनकादिक बिधि लोक सिधाए । भ्रातन्ह राम चरन सिर नाए ।।
 पूछत प्रभुहि सकल सकुचाहीं । चितवहिं सब मारुतसुत पाहीं ।।
@@ -18173,7 +18173,7 @@
 जीवनमुक्त ब्रह्मपर चरित सुनहिं तजि ध्यान ।
 जे हरि कथाँ न करहिं रति तिन्ह के हिय पाषान ।।४२।।
 @section 43
-@topic श्रीरामजीका प्रजाको उपदेश (श्रीरामगीता), पुरवासियोंकी कृतज्ञता | Śrī Rāma’s exhortation to His subjects (Śrī Rāma-Gītā); the citizens’ acknowledgement
+@topic श्रीरामजीका प्रजाको उपदेश (श्रीरामगीता), पुरवासियोंकी कृतज्ञता | Shri Ram’s exhortation to His subjects (Shri Ram-Gita); the citizens’ acknowledgement
 [uttar.43.cau1 cau 1]
 एक बार रघुनाथ बोलाए । गुर द्विज पुरबासी सब आए ।।
 बैठे गुर मुनि अरु द्विज सज्जन । बोले बचन भगत भव भंजन ।।
@@ -18254,7 +18254,7 @@
 उमा अवधबासी नर नारि कृतारथ रूप ।
 ब्रह्म सच्चिदानंद घन रघुनायक जहँ भूप ।।४७।।
 @section 48
-@topic श्रीराम-वसिष्ठ-संवाद, श्रीरामजीका भाइयोंसहित अमराईमें जाना | Dialogue between Śrī Rāma and the sage Vasiṣṭha; Śrī Rāma’s excursion to a mango grove in the company of His brothers
+@topic श्रीराम-वसिष्ठ-संवाद, श्रीरामजीका भाइयोंसहित अमराईमें जाना | Dialogue between Shri Ram and the sage Vashishtha; Shri Ram’s excursion to a mango grove in the company of His brothers
 [uttar.48.cau1 cau 1]
 एक बार बसिष्ट मुनि आए । जहाँ राम सुखधाम सुहाए ।।
 अति आदर रघुनायक कीन्हा । पद पखारि पादोदक लीन्हा ।।
@@ -18301,7 +18301,7 @@
 हनूमान सम नहिं बड़भागी । नहिं कोउ राम चरन अनुरागी ।।
 [uttar.50.cau5 cau 5]
 गिरिजा जासु प्रीति सेवकाई । बार बार प्रभु निज मुख गाई ।।
-@topic नारदजीका आना और स्तुति करके ब्रह्मलोकको लौट जाना | Nārada’s visit and return to Brahmā’s abode after hymning the Lord’s praises
+@topic नारदजीका आना और स्तुति करके ब्रह्मलोकको लौट जाना | Narad’s visit and return to Brahma’s abode after hymning the Lord’s praises
 [uttar.50.do50 do 50]
 तेहिं अवसर मुनि नारद आए करतल बीन ।
 गावन लगे राम कल कीरति सदा नबीन ।।५०।।
@@ -18324,7 +18324,7 @@
 प्रेम सहित मुनि नारद बरनि राम गुन ग्राम ।
 सोभासिंधु हृदयँ धरि गए जहाँ बिधि धाम ।।५१।।
 @section 52
-@topic शिव-पार्वती-संवाद, गरुड़-मोह, गरुड़जीका काकभुशुण्डिसे रामकथा और राम- महिमा सुनना | Dialogue between Lord Śiva and Goddess Pārvatī; Garuḍa’s delusion; Garuḍa listens to Śrī Rāma’s story and to an account of His glory from Kākabhuśuṇḍi
+@topic शिव-पार्वती-संवाद, गरुड़-मोह, गरुड़जीका काकभुशुण्डिसे रामकथा और राम- महिमा सुनना | Dialogue between Lord Shiv and Goddess Parvati; Garud’s delusion; Garud listens to Shri Ram’s story and to an account of His glory from Kakbhushundi
 [uttar.52.cau1 cau 1]
 गिरिजा सुनहु बिसद यह कथा । मैं सब कही मोरि मति जथा ।।
 राम चरित सत कोटि अपारा । श्रुति सारदा न बरनै पारा ।।
@@ -19130,7 +19130,7 @@
 प्रभु तव आश्रम आएँ मोर मोह भ्रम भाग ।
 कारन कवन सो नाथ सब कहहु सहित अनुराग ।।९४ (ख)।।
 @section 95
-@topic काकभुशुण्डिका अपनी पूर्वजन्मकथा और कलिमहिमा कहना | Kākabhuśuṇḍi narrates the story of his previous lives and tells Garuḍa the glory of the Kali age
+@topic काकभुशुण्डिका अपनी पूर्वजन्मकथा और कलिमहिमा कहना | Kakbhushundi narrates the story of his previous lives and tells Garud the glory of the Kali age
 [uttar.95.cau1 cau 1]
 गरुड़ गिरा सुनि हरषेउ कागा । बोलेउ उमा परम अनुरागा ।।
 धन्य धन्य तव मति उरगारी । प्रस्न तुम्हारि मोहि अति प्यारी ।।
@@ -19333,7 +19333,7 @@
 तेहिं कलिकाल बरष बहु बसेउँ अवध बिहगेस ।
 परेउ दुकाल बिपति बस तब मैं गयउँ बिदेस ।।१०४ (ख)।।
 @section 105
-@topic गुरुजीका अपमान एवं शिवजीके शापकी बात सुनना | Insult offered by him to his preceptor in a previous birth and the curse pronounced on him by Lord Śiva
+@topic गुरुजीका अपमान एवं शिवजीके शापकी बात सुनना | Insult offered by him to his preceptor in a previous birth and the curse pronounced on him by Lord Shiv
 [uttar.105.cau1 cau 1]
 गयउँ उजेनी सुनु उरगारी । दीन मलीन दरिद्र दुखारी ।।
 गएँ काल कछु संपति पाई । तहँ पुनि करउँ संभु सेवकाई ।।
@@ -19404,7 +19404,7 @@
 बिनय करत गदगद स्वर समुझि घोर गति मोरि ।।१०७ (ख)।।
 @section 108
 @lang sa
-@topic रुद्राष्टक | A hymn of eight verses addressed to Lord Śiva
+@topic रुद्राष्टक | A hymn of eight verses addressed to Lord Shiv
 [uttar.108.cau1 cau 1]
 नमामीशमीशान निर्वाणरूपं । विभुं व्यापकं ब्रह्म वेदस्वरूपं ।।
 निजं निर्गुणं निर्विकल्पं निरीहं । चिदाकाशमाकाशवासं भजेऽहं ।।
@@ -19433,7 +19433,7 @@
 रुद्राष्टकमिदं प्रोक्तं विप्रेण हरतोषये ।
 ये पठन्ति नरा भक्त्या तेषां शम्भुः प्रसीदति ।।९।।
 @lang awa
-@topic गुरुजीका शिवजीसे अपराध-क्षमापन, शापानुग्रह और काकभुशुण्डिकी आगेकी कथा | Guru’s appeal to Lord Śiva for forgiving the wrong; mollification of the curse; continuation of Kākabhuśuṇḍi’s narrative
+@topic गुरुजीका शिवजीसे अपराध-क्षमापन, शापानुग्रह और काकभुशुण्डिकी आगेकी कथा | Guru’s appeal to Lord Shiv for forgiving the wrong; mollification of the curse; continuation of Kakbhushundi’s narrative
 [uttar.108.do108क do 108क]
 सुनि बिनती सर्बग्य सिव देखि बिप्र अनुरागु ।
 पुनि मंदिर नभबानी भइ द्विजबर बर मागु ।।१०८ (क)।।
@@ -19508,7 +19508,7 @@
 [uttar.110.cau8 cau 8]
 जेहि पूँछउँ सोइ मुनि अस कहई । ईस्वर सर्ब भूतमय अहई ।।
 निर्गुन मत नहिं मोहि सोहाई । सगुन ब्रह्म रति उर अधिकाई ।।
-@topic काकभुशुण्डिजीका लोमशजीके पास जाना और शाप तथा अनुग्रह पाना | Kākabhuśuṇḍi approaches the sage Lomaśa, who first pronounces a curse on him but later on showers his grace and bestows a boon on him
+@topic काकभुशुण्डिजीका लोमशजीके पास जाना और शाप तथा अनुग्रह पाना | Kakbhushundi approaches the sage Lomash, who first pronounces a curse on him but later on showers his grace and bestows a boon on him
 [uttar.110.do110क do 110क]
 गुर के बचन सुरति करि राम चरन मनु लाग ।
 रघुपति जस गावत फिरउँ छन छन नव अनुराग ।।११० (क)।।
@@ -19823,7 +19823,7 @@
 बिरति चर्म असि ग्यान मद लोभ मोह रिपु मारि ।
 जय पाइअ सो हरि भगति देखु खगेस बिचारि ।।१२० (ख)।।
 @section 121
-@topic गरुड़जीके सात प्रश्न तथा काकभुशुण्डिके उत्तर | Seven questions of Garuḍa and Kākabhuśuṇḍi’s replies to them
+@topic गरुड़जीके सात प्रश्न तथा काकभुशुण्डिके उत्तर | Seven questions of Garud and Kakbhushundi’s replies to them
 [uttar.121.cau1 cau 1]
 पुनि सप्रेम बोलेउ खगराऊ । जौं कृपाल मोहि ऊपर भाऊ ।।
 नाथ मोहि निज सेवक जानी । सप्त प्रस्न मम कहहु बखानी ।।
@@ -19929,7 +19929,7 @@
 विनिश्चितं वदामि ते न अन्यथा वचांसि मे ।
 हरिं नरा भजन्ति येऽतिदुस्तरं तरन्ति ते ।।१२२ (ग)।।
 @lang awa
-@topic रामायण-माहात्म्य, तुलसी-विनय और फलस्तुति | Greatness of the Rāmāyaṇa; Tulasīdāsa’s prayer and reward of reciting this poem
+@topic रामायण-माहात्म्य, तुलसी-विनय और फलस्तुति | Greatness of the Ramayan; Tulsidas’s prayer and reward of reciting this poem
 [uttar.123.cau1 cau 1]
 कहेउँ नाथ हरि चरित अनूपा । ब्यास समास स्वमति अनुरूपा ।।
 श्रुति सिद्धांत इहइ उरगारी । राम भजिअ सब काज बिसारी ।।

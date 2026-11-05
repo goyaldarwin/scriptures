@@ -10,7 +10,7 @@
 सम्प्राप्ते सन्निहिते काले
 नहि नहि रक्षति डुकृङ्करणे ॥१॥
 @section sh2
-@topic द्वादशमञ्जरिका | The twelve verses (Dvādaśa-mañjarikā)
+@topic द्वादशमञ्जरिका | The twelve verses (Dwadasha-manjarika)
 [sh2 shloka 2]
 मूढ जहीहि धनागमतृष्णां
 कुरु सद्बुद्धिं मनसि वितृष्णाम् ।
@@ -86,7 +86,7 @@
 उपदेशोऽभूद्विद्यानिपुणैः
 श्रीमच्छङ्करभगवच्छरणैः ॥१३अ॥
 @section sh14
-@topic चतुर्दशमञ्जरिका | The fourteen verses (Caturdaśa-mañjarikā)
+@topic चतुर्दशमञ्जरिका | The fourteen verses (Chaturdasha-manjarika)
 [sh14 shloka 14]
 जटिलो मुण्डी लुञ्छितकेशः
 काषायाम्बरबहुकृतवेषः ।

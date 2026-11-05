@@ -80,6 +80,13 @@ def check_work(lib, leaf, LANGS):
     _need(w.get('id') == leaf['work'], f"{name}: work.json id {w.get('id')!r} ≠ shelf work {leaf['work']!r}")
     items = w['items']; ids = [x['id'] for x in items]; ID = set(ids)
     _need('title' not in leaf or leaf['title'] == w.get('title'), f"{name}: the shelf title {leaf.get('title')} ≠ work.json title {w.get('title')}")
+    # English titles and labels are in plain, common Indian English (Shri Ram, Sundarkand, Hanuman Chalisa); the marks of IAST
+    # belong in the transliteration and the meanings (docs/PLAYBOOK.md)
+    MARK = re.compile('[Ā-ɏḀ-ỿ]')
+    labels = [w.get(k) for k in ('title', 'by', 'from', 'edition')] + [leaf.get(k) for k in ('title', 'desc', 'by', 'edition')] + [w['parts'].get('name')] + w['parts']['list'] \
+        + [x for t in (w.get('types') or {}).values() for x in (t.get('name'), t.get('short'))]
+    bad = sorted({l['en'] for l in labels if isinstance(l, dict) and isinstance(l.get('en'), str) and MARK.search(l['en'])})
+    _need(not bad, f"{name}: English titles and labels are in plain spelling (Shri Ram, Sundarkand), not IAST: {bad[:5]}")
     # an āratī is titled by its opening words (docs/PLAYBOOK.md §6), unless it is known by a name of its own ("named": true, e.g. Dhūpa Āratī)
     if '/aarti/' in path and not w.get('named'):
         fold = lambda s: re.sub(r'[\s\-–,।॥.;:!?\'"‘’“”()]', '', s)
