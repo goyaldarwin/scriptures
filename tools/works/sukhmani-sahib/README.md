@@ -50,3 +50,8 @@ Salok and of its first pauri (the traditional way to cite Gurbani), in Devanagar
 and in its ISO 15919 transliteration for the English one. Each item's `t` is the ISO 15919 transliteration of its
 Gurmukhi, made by the writing standard (`tools/text/standard.py`); the PDF's own phonetic transliteration is used only by
 `source/check.py`, as a witness of the conversion.
+
+## Introduction
+The readers' introduction (`intro` in `library/index.json`, shown in ⓘ About this work) states only what these support:
+- Wikipedia, "Sukhmani Sahib" (https://en.wikipedia.org/wiki/Sukhmani_Sahib): Guru Arjan, about 1602, Ramsar, Amritsar; Raag Gauri; Ang 262–296; 24 ashtapadis with saloks and eight padas; the name; themes; daily recitation of 60–90 minutes.
+- The text itself and our meanings.

@@ -15,3 +15,8 @@ Item ids look like `aarti.pad3` or `mahimna.shloka9` (section, type, number). Th
 
 Audio (Pramod Medhi):
 - `audio/pramod-medhi-times/`: the Times Music upload (YouTube `b_JJzjc2Rgk`), the live source (`order: 1`). Its starts are the owner's, set by ear in the app's timing mode (`owner.json`, written by `tools/audio/apply_owner_timing.py`); `source.json` → `checked`.
+
+## Introduction
+The readers' introduction (`intro` in `library/index.json`, shown in ⓘ About this work) states only what these support:
+- Shri Saibaba Sansthan Trust, Shirdi (https://sai.org.in/sites/default/files/2011e-pages-21-37.pdf): Madhavrao Adkar composed Aarti Saibaba at Shirdi in 1903–04; Baba's blessing.
+- The text itself: the sections and the signatures (Madhav, Ganu, Nama, Balkrishna Vishwanath Deo), our text from the owner's two printouts (tools/works/shirdi-sai-dhoop-aarti/reconciliation.md).

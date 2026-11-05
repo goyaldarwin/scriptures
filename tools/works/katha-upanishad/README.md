@@ -26,3 +26,8 @@ Rebuild: `python3 tools/works/katha-upanishad/source/settle.py && python3 tools/
 - **Types:** `shanti` (शा॰ / Śā.) and `mantra` (मं॰ / Man.).
 - **Topics:** one per vallī with its theme, plus the śānti pāṭha.
 - **Reading plans:** none; the Upaniṣad is read in one or two sittings.
+
+## Introduction
+The readers' introduction (`intro` in `library/index.json`, shown in ⓘ About this work) states only what these support:
+- The owner's book: Swami Gurubhaktananda, Katha Upanishad — A Leap into the Beyond (with Shankara's bhashya), scriptures-data …/katha-upanishad/books/sandeepany/: the story of Nachiketa, the three boons, preyas and shreyas, the structure.
+- The text itself and our valli headings (the chariot and "arise, awake" in 1.3).

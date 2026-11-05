@@ -7,3 +7,8 @@ The Rāma Rakṣā of Budha Kauśika, in Sanskrit (`sa`), as the Vande Guru Para
 - **Recordings:** `audio/vande-guru-paramparaam/` (YouTube `ZIDdE4SZAuw`): live; hand-checked starts in `fixes.md`.
 
 Verse types: मन्त्र (`mantra`), विनियोग (`viniyoga`), ध्यान (`dhyana`), श्लोक (`shloka`) and the closing words (`iti`). The folder's format: `tools/works/README.md`.
+
+## Introduction
+The readers' introduction (`intro` in `library/index.json`, shown in ⓘ About this work) states only what these support:
+- The text itself: the viniyoga, the dhyan (verse 2) and verse 15 (our text, checked against the Vande Guru Paramparaam recording).
+- shlokam.org, "Sri Rama Raksha Stotram" (https://shlokam.org/ramarakshastotram/): its structure, the name Ram Kavach, its use as a protective prayer.
