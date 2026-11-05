@@ -15,3 +15,8 @@ The folder's format: `tools/works/README.md`.
 
 ## Structure
 One part. Items `sh1`–`sh7`, `kashi`, `sh8` (type `shloka`), `phala` (`phalashruti`), `iti`. Each item is its own section. Topics: the bilva leaf (ślokas 1–5), the bilva tree (6–8), the phalaśruti. Item ids are permanent.
+
+## Introduction
+The readers' introduction (`intro` in `library/index.json`, shown in ⓘ About this work) states only what these support:
+- The owner's printout: N. Balasubramanian, सार्थ बिल्वाष्टकम्, sanskritdocuments.org (scriptures-data …/bilvashtakam/printouts/sanskritdocuments/bilva8mean.pdf): the leaf offered in threes, identified with the Lord; chanted in puja during archana; the closing verse on the benefit.
+- The text itself: the threes named in its verses, the Kashi verse and the phalashruti (our text and meanings).

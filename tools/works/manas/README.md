@@ -13,3 +13,8 @@ Verse ids look like `bal.86.cau4`: kāṇḍa, dohā section, type, number. Vers
 - `hinduism/granth/tulsidas/ramcharitmanas/books/gitapress/hindi.pdf`, `english.pdf`: the two Gita Press editions read by `source/` (set `HINDI_PDF`, `ENGLISH_PDF` to these).
 - `hinduism/granth/tulsidas/ramcharitmanas/books/visarjan-print/visarjan.jpg`: the owner's printed page of the Kathā-visarjana.
 - `hinduism/granth/tulsidas/ramcharitmanas/audio/kamlesh-upadhyay/`: the recordings transcribed into `audio/kamlesh-upadhyay/transcripts/` (set `DATA_DIR` to the clone of `scriptures-data`; `recordings.json` → `data` names each file).
+
+## Introduction
+The readers' introduction (`intro` in `library/index.json`, shown in ⓘ About this work) states only what these support:
+- The text itself: Bal Kand 34, the date and place it was begun (our text, from the Gita Press edition).
+- Wikipedia, "Ramcharitmanas" (https://en.wikipedia.org/wiki/Ramcharitmanas): Awadhi, structure and metres, the three dialogues, its relation to Valmiki, Ramlila and the parayans, UNESCO 2024.

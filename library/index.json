@@ -52,7 +52,19 @@
          "hi": "७ काण्ड · मासपारायण · नवाह्नपारायण",
          "en": "7 Kands · 30-day and 9-day parayan"
         },
-        "salute": "॥ जय श्रीराम ॥"
+        "salute": "॥ जय श्रीराम ॥",
+        "intro": {
+         "hi": [
+          "श्रीरामचरितमानस — 'श्रीरामके चरितोंका सरोवर' — गोस्वामी तुलसीदासजीकी रची श्रीरामकथा है। उन्होंने इसे संस्कृतमें नहीं, अयोध्या-अंचलकी लोकभाषा अवधीमें रचा, ताकि साधारण जन भी अपनी भाषामें यह कथा सुन सकें। तुलसीदासजी स्वयं मानसमें बताते हैं कि उन्होंने इसका आरम्भ संवत् १६३१ (सन् १५७४) में रामनवमीके दिन अयोध्यामें किया।",
+          "इसमें सात काण्ड हैं — बालकाण्डमें श्रीरामके जन्मसे लेकर उत्तरकाण्डमें उनके राज्य और अन्तिम उपदेशतक। कथा अधिकतर चौपाइयोंमें है, जिन्हें दोहे जोड़ते हैं; बीच-बीचमें सोरठे और छन्द हैं। यह कथा तीन संवादोंसे होकर आती है — शिव-पार्वती, याज्ञवल्क्य-भरद्वाज और काकभुशुण्डि-गरुड़ — इसलिए यह कथा भी है और भक्तिका उपदेश भी। इसका मुख्य आधार वाल्मीकि रामायण है, पर यह उसका अनुवाद नहीं, एक नया काव्य है।",
+          "चार सौ वर्षोंसे अधिक समयसे यह उत्तर भारतकी रामभक्तिका प्राण है। रामलीला इसीसे होती है; इसका तीस दिनोंमें मासपारायण और नौ दिनोंमें नवाह्नपारायण होता है, और अखण्ड पाठ भी। सन् २०२४ में इसकी पाण्डुलिपियाँ यूनेस्कोके एशिया-प्रशान्त 'मेमोरी ऑफ़ द वर्ल्ड' रजिस्टरमें सम्मिलित की गईं।"
+         ],
+         "en": [
+          "The Ramcharitmanas, \"the lake of Ram's deeds\", is Goswami Tulsidas's telling of the life of Shri Ram. He wrote it in Awadhi, the everyday speech of the Ayodhya region, rather than in Sanskrit, so that ordinary people could hear the story in their own language. Tulsidas records in the poem itself that he began it in Ayodhya on Ram Navami, Ram's birthday, in Vikram Samvat 1631 (1574 CE).",
+          "It has seven kands, from Ram's birth in Bal Kand to his reign and the teaching that closes Uttar Kand, told mostly in chaupais bound together by dohas, with sorathas and chhands. The story reaches us through three conversations: Shiv with Parvati, the sage Yajnavalkya with Bharadwaj, and the crow-sage Kakbhushundi with Garud. So it is at once a narrative and a teaching on devotion. Valmiki's Ramayana is its main source, but it is a new poem, not a translation.",
+          "For more than four centuries it has been the heart of Ram devotion in North India. It is the text of the Ramlila, it is read through in thirty days (Maas Parayan) or nine (Navahn Parayan), and it is recited without a break in the akhand path. Its manuscripts were added to UNESCO's Memory of the World Register for Asia and the Pacific in 2024."
+         ]
+        }
        },
        {
         "id": "sundarkand",
@@ -74,7 +86,17 @@
          "hi": "सुन्दरकाण्ड · हनुमानचालीसा · आरती",
          "en": "Sundarkand · Hanuman Chalisa · Aarti"
         },
-        "salute": "॥ जय बजरंगबली ॥"
+        "salute": "॥ जय बजरंगबली ॥",
+        "intro": {
+         "hi": [
+          "सुन्दरकाण्ड गोस्वामी तुलसीदासजीके श्रीरामचरितमानसका पाँचवाँ काण्ड है, और मानसका वह अंश जिसका पाठ सबसे अधिक अलगसे होता है। इसमें हनुमानजी समुद्र लाँघकर लंका जाते हैं, अशोकवाटिकामें सीताजीको खोजकर उन्हें श्रीरामकी मुद्रिका देते हैं, लंका जलाते हैं और सीताजीकी चूड़ामणि लेकर श्रीरामके पास लौटते हैं; फिर श्रीराम वानर-सेनाके साथ समुद्र-तटपर पहुँचते हैं, जहाँ विभीषण उनकी शरणमें आते हैं।",
+          "यहाँ इसका पाठ वैसे ही है जैसे प्रायः होता है, एक बैठकमें: आरम्भकी वन्दना, किष्किन्धाकाण्डकी अन्तिम पंक्तियाँ जो इसमें ले जाती हैं, स्वयं सुन्दरकाण्ड, फिर श्रीहनुमानचालीसा और हनुमानजीकी आरती। इसका विषय हनुमानजीकी भक्ति, पराक्रम और विनय है, और घरों तथा मन्दिरोंमें इसका पाठ उनकी प्रार्थनाके रूपमें होता है।"
+         ],
+         "en": [
+          "Sundarkand is the fifth kand of Goswami Tulsidas's Ramcharitmanas, and the part of it most often recited on its own. It tells how Hanuman leaps the ocean to Lanka, finds Sita in the Ashok grove and gives her Ram's ring, burns Lanka, and returns with her token to Shri Ram; then Ram marches with the monkey army to the shore, where Vibhishan comes to him for refuge.",
+          "Here it is read as it usually is in practice, in one sitting: the opening prayers, the last verses of Kishkindha Kand that lead into it, Sundarkand itself, and then the Shri Hanuman Chalisa and the aarti of Hanuman. Its theme is Hanuman's devotion, courage and humility, and it is recited in homes and temples as a prayer to him."
+         ]
+        }
        }
       ]
      }
@@ -121,6 +143,16 @@
         "desc": {
          "hi": "विनियोग · ध्यान · ३८ श्लोक",
          "en": "Viniyoga · Dhyan · 38 shlokas"
+        },
+        "intro": {
+         "hi": [
+          "श्रीरामरक्षास्तोत्र — 'श्रीरामकी रक्षाका स्तोत्र' — संस्कृतकी वह प्रार्थना है जिसमें पाठ करनेवालेके एक-एक अंगकी रक्षा श्रीरामसे कवचकी भाँति माँगी जाती है; इसे रामकवच भी कहते हैं। इसका पन्द्रहवाँ श्लोक बताता है कि भगवान शंकरने बुधकौशिक ऋषिको यह स्वप्नमें बताया, और उन्होंने प्रातः जागकर इसे लिख लिया।",
+          "आरम्भमें विनियोग है, जो इसके ऋषि (बुधकौशिक), देवता (श्रीसीतारामचन्द्र), छन्द (अनुष्टुप्), शक्ति (सीता) और कीलक (हनुमान) बताता है, और ध्यान है, जिसमें नीलकमलके समान श्याम श्रीरामका जानकी और लक्ष्मणके साथ ध्यान किया जाता है। फिर शरीरका एक-एक अंग श्रीरामके एक-एक नामको सौंपा जाता है। उसके बाद पाठके फलके श्लोक हैं, और स्तुति तथा शरणागतिके श्लोकोंकी लम्बी माला। यह श्रीरामकी सबसे अधिक पढ़ी जानेवाली प्रार्थनाओंमें है।"
+         ],
+         "en": [
+          "The Shri Ram Raksha Stotram, \"the hymn of Ram's protection\", is a Sanskrit prayer asking Shri Ram to guard the one who recites it, part by part, like armour; it is also known as the Ram Kavach. Its fifteenth verse says that Shiv taught it to the sage Budha Kaushik in a dream, and that he wrote it down on waking at dawn.",
+          "It opens with the viniyoga, which names its seer (Budha Kaushik), its deity (Sita with Ramchandra), its metre (anushtubh), its power (Sita) and the pin that holds it fast (Hanuman), and with a dhyan that pictures Ram, dark as a blue lotus, with Janaki and Lakshman. Then each part of the body is placed under one of Ram's names. Verses on the fruit of reciting it follow, and a long garland of verses of praise and surrender. It is one of the most widely recited prayers to Ram."
+         ]
         }
        }
       ]
@@ -156,7 +188,17 @@
          "hi": "बिल्वपत्रकी महिमा · ९ श्लोक · फलश्रुति",
          "en": "The glory of the bilva leaf · 9 shlokas · phalashruti"
         },
-        "salute": "॥ ॐ नमः शिवाय ॥"
+        "salute": "॥ ॐ नमः शिवाय ॥",
+        "intro": {
+         "hi": [
+          "बिल्वाष्टकम् — 'बिल्वके आठ श्लोक' — भगवान शिवको प्रिय बिल्वपत्रकी महिमाका छोटा-सा संस्कृत स्तोत्र है। बिल्वपत्र तीन-तीन पत्तोंमें होता है, और यह स्तोत्र उन तीन पत्तोंमें तीन गुण, शिवके तीन नेत्र, त्रिशूल आदि देखता है, जिससे एक बिल्वपत्र चढ़ाना मानो भगवानका ही अंश उन्हें अर्पित करना है।",
+          "शिवपूजामें बिल्वपत्र अर्पित करते समय, अर्चनामें, इसका पाठ होता है। बिल्वकी महिमाके आठ श्लोकोंके बाद काशीकी महिमाका एक श्लोक है, और अन्तमें फलश्रुति, जो इसके पाठका फल बताती है। इसके रचयिता ज्ञात नहीं हैं; यह शिव-उपासनाकी परम्परासे चला आया है।"
+         ],
+         "en": [
+          "The Bilvashtakam, \"eight verses on the bilva\", is a short Sanskrit hymn on the leaf of the bilva tree, which is sacred to Shiv. The bilva leaf grows in threes, and the hymn sees in its three leaves the three gunas, the three eyes of Shiv, his trident and other threes, so that offering one leaf is offering something of the Lord himself.",
+          "It is chanted in Shiv puja while bilva leaves are offered, one by one, in archana. After its eight verses on the glory of the leaf comes a verse in praise of Kashi, and a closing verse (the phalashruti) on the merit of reciting it. Its author is not known; it comes down in the tradition of Shiv worship."
+         ]
+        }
        }
       ]
      },
@@ -191,7 +233,17 @@
          "hi": "मोहमुद्गर · ३१ श्लोक",
          "en": "Moha-mudgara · 31 shlokas"
         },
-        "salute": "॥ ॐ नमो भगवते वासुदेवाय ॥"
+        "salute": "॥ ॐ नमो भगवते वासुदेवाय ॥",
+        "intro": {
+         "hi": [
+          "भज गोविन्दम् — 'गोविन्दको भजो' — आदि शंकराचार्यका संस्कृत स्तोत्र है, जिसे मोहमुद्गर, 'मोहका हथौड़ा', भी कहते हैं। भजनकी तरह गाया जानेवाला यह सरल स्तोत्र वेदान्तका सार कहता है: धन, परिवार, यौवन और विद्या सब बीत जाते हैं; जीवन भगवानकी ओर मुड़नेमें ही सार्थक है।",
+          "परम्परा बताती है कि काशीमें शंकराचार्यने एक वृद्धको संस्कृत व्याकरणके सूत्र रटते देखा, और उनके मुखसे पहला श्लोक निकल पड़ा — 'गोविन्दको भजो, गोविन्दको भजो, हे मूढ़ मन; मृत्यु आनेपर व्याकरणके सूत्र रक्षा नहीं करेंगे।' उसके बाद बारह श्लोक आए (द्वादशमञ्जरिका)। परम्परा यह भी कहती है कि फिर उनके चौदह शिष्योंने एक-एक श्लोक जोड़ा (चतुर्दशमञ्जरिका) — कौन-सा श्लोक किसका है, यह केवल अनुश्रुति है — और शंकराचार्यने अपने श्लोकोंसे इसे पूर्ण किया; कुल ३१ श्लोक।"
+         ],
+         "en": [
+          "Bhaja Govindam, \"worship Govind\", is a Sanskrit hymn by Adi Shankaracharya, also called Moha Mudgar, \"the hammer of delusion\". Simple enough to be sung as a bhajan, it carries the heart of Vedanta: wealth, family, youth and learning pass away, and only turning to God is worth a lifetime.",
+          "Tradition tells that in Kashi Shankara saw an old man labouring over the rules of Sanskrit grammar, and the first verse burst from him: \"Worship Govind, worship Govind, O foolish mind; when death comes, the rules of grammar will not save you.\" Twelve verses followed (the Dwadasha-manjarika). Tradition adds that his fourteen disciples then gave a verse each (the Chaturdasha-manjarika), though which disciple gave which verse rests on hearsay, and that Shankara closed the hymn with verses of his own, 31 in all."
+         ]
+        }
        }
       ]
      }
@@ -231,7 +283,17 @@
          "hi": "गोस्वामी तुलसीदास · श्रीराम-स्तुति",
          "en": "Goswami Tulsidas · Shri Ram Stuti"
         },
-        "salute": "॥ जय श्रीराम ॥"
+        "salute": "॥ जय श्रीराम ॥",
+        "intro": {
+         "hi": [
+          "'श्रीरामचन्द्र कृपालु भजु मन' — 'हे मन, कृपालु श्रीरामचन्द्रको भज' — गोस्वामी तुलसीदासजीकी विनयपत्रिकाकी स्तुति है; विनयपत्रिका ब्रजभाषामें उनकी प्रार्थनाओंका संग्रह है। पाँच छन्दोंमें यह स्तुति कमल-नयनोंसे चरणोंतक श्रीरामका, नवीन मेघके समान श्याम-सुन्दर रूपका, चित्र खींचती है, और अन्तमें तुलसीदासजी उनसे हृदय-कमलमें निवास करनेकी प्रार्थना करते हैं।",
+          "यह श्रीरामकी सबसे प्रिय स्तुतियोंमें है; मन्दिरों और घरोंमें, आरतीमें, भजनोंमें और रामनवमीपर गाई जाती है। यहाँ, जैसे प्रायः होता है, इसके बाद श्रीरामचरितमानसका एक छन्द और सोरठा (बालकाण्ड २३६) है।"
+         ],
+         "en": [
+          "\"Shri Ramchandra Kripalu Bhaju Man\", \"O mind, worship the gracious Shri Ramchandra\", is a stuti by Goswami Tulsidas from his Vinay Patrika, a book of prayers in Braj. In five stanzas it paints Ram from his lotus eyes to his feet, as dark and lovely as a rain cloud, and ends with Tulsidas asking him to make his home in the lotus of the heart.",
+          "It is one of the best-loved prayers to Ram, sung in temples and homes, at aarti, at bhajans and on Ram Navami. Here it is followed, as it often is, by a chhand and soratha of the Ramcharitmanas (Bal Kand 236)."
+         ]
+        }
        },
        {
         "id": "ramlala-aarti",
@@ -245,7 +307,17 @@
          "hi": "पूरण निपुण धनुवेद कला की",
          "en": "Puran nipun dhanuved kala ki"
         },
-        "salute": "॥ जय श्रीराम ॥"
+        "salute": "॥ जय श्रीराम ॥",
+        "intro": {
+         "hi": [
+          "'आरती कीजे श्रीरामलला की' श्रीरामकी अवधीमें आरती है, सत्रह चौपाइयोंमें। इसमें सिंहासनपर विराजमान श्रीराम हैं, उनके वाम भागमें सीताजी; भरत, लक्ष्मण, शत्रुघ्न और हनुमान उनकी सेवामें हैं, और शिव, ब्रह्मा तथा नारद उनका गुणगान करते हैं।",
+          "अधिकांश आरती उनकी करुणा गाती है: कैसे उन्होंने सुग्रीवको राजा बनाया और विभीषणको राज्य दिया, समुद्रपर सेतु बँधवाया, लंकापतिको मारा, और वानरों, केवट, जटायु और शरणमें आए राक्षसके दुःख हर लिए। अन्तमें यह कहती है कि जो इसे गाता है, वह श्रीरामकी कृपासे मनचाहा फल पाता है। इसमें रचयिताका नाम नहीं है।"
+         ],
+         "en": [
+          "\"Aarti Kije Shri Ramlala Ki\" is an aarti of Shri Ram in Awadhi, in seventeen chaupais. It pictures Ram enthroned with Sita at his side, Bharat, Lakshman, Shatrughna and Hanuman serving him, and Shiv, Brahma and Narad singing his praise.",
+          "Most of it recalls his compassion: how he made Sugriv king and gave Vibhishan a kingdom, bridged the ocean, overthrew the lord of Lanka, and took away the sorrows of the monkeys, the boatman, the vulture Jatayu and the demon who sought his refuge. It closes by saying that whoever sings it gains, by Ram's grace, what the heart longs for. Its author is not named."
+         ]
+        }
        },
        {
         "id": "ramchandra-aarti",
@@ -259,7 +331,17 @@
          "hi": "संत नामदेव",
          "en": "Saint Namdev"
         },
-        "salute": "॥ जय श्रीराम ॥"
+        "salute": "॥ जय श्रीराम ॥",
+        "intro": {
+         "hi": [
+          "'आरती कीजै रामचन्द्र जी की' श्रीरामकी पाँच पदोंकी आरती है, दीपककी हर आवृत्तिके लिए एक पद। हर आवृत्ति एक ही भगवानके एक रूपको अर्पित है: पहली कालिय नागको नाथनेवाले गोपालको, दूसरी कंसको मारनेवाले देवकीनन्दनको, तीसरी रत्न-सिंहासनपर विराजमान सीता-रामको, और चौथी चारों युगोंके उस निरंजन भगवानको, जिसके सिवा कोई दूसरा नहीं।",
+          "पाँचवाँ पद कहता है कि यह आरती श्रीरामको प्रिय है, और गानेवालेका नाम नामदेव बताता है।"
+         ],
+         "en": [
+          "\"Aarti Kijai Ramchandra Ji Ki\" is an aarti of Shri Ram in five stanzas, one for each wave of the lamp. Each wave is offered to a form of the one Lord: the first to Gopal, who tamed the serpent Kaliya; the second to Devaki's son, the slayer of Kans; the third to Sita and Ram on their jewelled throne; the fourth to the stainless God of all four ages, beside whom there is no other.",
+          "The fifth stanza says that this wave is dear to Ram, and names its singer as Namdev."
+         ]
+        }
        }
       ]
      },
@@ -286,7 +368,17 @@
          "hi": "श्रीहनुमानजीकी आरती",
          "en": "The aarti of Shri Hanuman"
         },
-        "salute": "॥ जय बजरंगबली ॥"
+        "salute": "॥ जय बजरंगबली ॥",
+        "intro": {
+         "hi": [
+          "'आरती कीजै हनुमान लला की' हनुमानजीकी आरती है, जो हनुमानचालीसाके बाद और सुन्दरकाण्डके पाठके अन्तमें गाई जाती है। यह उन्हें अंजनीके दुलारे, श्रीरामकी शक्तिके अंश कहकर पुकारती है, जिनके बलसे पर्वत काँपते हैं और रोग-दोष पास नहीं आते।",
+          "इसके पद उनके महान कार्य गाते हैं: श्रीरामका बीड़ा लेकर समुद्र पार जाना, लंका जलाकर सीताजीकी सुधि लाना, भोर होनेसे पहले संजीवनी लाकर लक्ष्मणजीके प्राण बचाना, और पातालमें अहिरावणकी भुजाएँ उखाड़ना। देवता, मनुष्य और मुनि आरती उतारते हैं, और माता अंजनी आरती करती हैं। अन्तिम पद तुलसीदासका नाम लेता है, जिन्होंने अपने प्रभुका यश गाया।"
+         ],
+         "en": [
+          "\"Aarti Kijai Hanuman Lala Ki\" is the aarti of Hanuman, sung after the Hanuman Chalisa and at the close of a Sundarkand path. It hails him as Anjani's beloved son, a portion of Ram's own power, before whose strength mountains tremble and disease and fault dare not come near.",
+          "Its stanzas tell his great deeds: taking Ram's task across the sea, burning Lanka and bringing news of Sita, carrying the life-giving herb before dawn to save Lakshman, and going down into the netherworld to tear off Ahiravan's arms. Gods, men and sages wave the lamp, and his mother Anjani performs the aarti. The last stanza names Tulsidas as the one who sang his Lord's glory."
+         ]
+        }
        }
       ]
      },
@@ -313,7 +405,17 @@
          "hi": "आरती श्रीजगदीशजीकी",
          "en": "The aarti of Shri Jagdish"
         },
-        "salute": "॥ ॐ नमो भगवते वासुदेवाय ॥"
+        "salute": "॥ ॐ नमो भगवते वासुदेवाय ॥",
+        "intro": {
+         "hi": [
+          "'ॐ जय जगदीश हरे' — 'हे जगदीश्वर हरि, आपकी जय हो' — भगवान विष्णुकी आरती है, जो पूरे भारतमें घरों और मन्दिरोंमें पूजाके अन्तमें गाई जाती है। इसकी रचना प्रायः पंजाबके फिल्लौरके पण्डित श्रद्धाराम फिल्लौरी (१८३७–१८८१), लेखक और समाज-सुधारक, की मानी जाती है, जिन्होंने इसे लगभग १८७० में लिखा बताया जाता है।",
+          "यह सीधी-सरल शरणागतिकी प्रार्थना है: तुम ही माता-पिता हो, तुम्हारे सिवा और कोई आस नहीं; तुम सबके भीतर बसनेवाले परमात्मा हो, करुणाके सागर; मैं तुम्हारा दास, तुम्हारे द्वारपर पड़ा हूँ। अन्तमें यह प्रार्थना करती है कि भगवान विषय-विकार मिटाएँ और श्रद्धा, भक्ति और सन्तोंकी सेवा बढ़ाएँ।"
+         ],
+         "en": [
+          "\"Om Jai Jagdish Hare\", \"victory to you, Hari, Lord of the universe\", is an aarti of Vishnu, sung at the close of worship in homes and temples across India. It is commonly attributed to Pandit Shardha Ram Phillauri (1837–1881) of Phillaur in Punjab, a writer and social reformer, who is said to have written it around 1870.",
+          "It is a prayer of simple surrender: you are my mother and father, there is no one else to hope in; you are the Supreme Self within all, an ocean of compassion; I am your servant at your door. It ends by asking the Lord to wipe away the troubles born of the senses and to increase faith, devotion and service to the saints."
+         ]
+        }
        }
       ]
      },
@@ -340,7 +442,17 @@
          "hi": "आरती श्रीशिवजीकी",
          "en": "The aarti of Shri Shiv"
         },
-        "salute": "॥ ॐ नमः शिवाय ॥"
+        "salute": "॥ ॐ नमः शिवाय ॥",
+        "intro": {
+         "hi": [
+          "'ॐ जय शिव ओंकारा' भगवान शिवकी आरती है, जो कई पाठोंमें गाई जाती है; यहाँ यह अनुराधा पौडवालके गाए पाठमें है। यह शिवको ओंकार — स्वयं ॐ — कहकर पुकारती है, जिनमें ब्रह्मा, विष्णु और सदाशिव एक हैं, और पार्वती जिनकी अर्धांगिनी हैं।",
+          "इसके पद एकानन, चतुरानन और पंचानन तीनों रूपोंका, हंस, गरुड़ और नन्दीपर उनके आसनका, रुद्राक्ष, वनमाला और मुण्डमालाका, मस्तकपर चन्द्रमा और बाघम्बरका, और हाथोंमें कमण्डलु, चक्र और त्रिशूलका वर्णन करते हैं। यह कहती है कि अविवेकी ही इन तीनोंको अलग मानते हैं; ॐमें तीनों एक हैं। अन्तिम पद गानेवालेका नाम शिवानन्द स्वामी बताता है।"
+         ],
+         "en": [
+          "\"Om Jai Shiv Omkara\" is the aarti of Shiv, sung in many versions; this one is as Anuradha Paudwal sings it. It hails Shiv as Omkara, the sacred syllable Om itself, in whom Brahma, Vishnu and Sadashiv are one, with Parvati as half of his body.",
+          "Its stanzas picture the three forms with one, four and five faces, on the swan, Garud and the bull; their garlands of beads, forest flowers and skulls; the moon on Shiv's brow and the tiger skin; the water pot, discus and trident in their hands. Only the undiscerning, it says, see the three as separate: within Om they are one. The last stanza names its singer as Shivanand Swami."
+         ]
+        }
        }
       ]
      },
@@ -367,7 +479,17 @@
          "hi": "श्रीगंगाजीकी आरती",
          "en": "The aarti of Mother Ganga"
         },
-        "salute": "॥ हर हर गंगे ॥"
+        "salute": "॥ हर हर गंगे ॥",
+        "intro": {
+         "hi": [
+          "'ॐ जय गंगे माता' माँ गंगाकी आरती है। चार छोटे पदोंमें यह उनकी चन्द्रमाके समान आभा और निर्मल जलकी स्तुति करती है, और याद करती है कि उन्होंने राजा सगरके पुत्रोंका उद्धार किया।",
+          "यह कहती है कि जो एक बार भी उनकी शरणमें आता है, वह यमके भयसे छूटकर भवसागर पार कर जाता है, और जो प्रतिदिन उनकी आरती गाता है, वह सहज ही मुक्ति पाता है। इसमें रचयिताका नाम नहीं है।"
+         ],
+         "en": [
+          "\"Om Jai Gange Mata\" is the aarti of Mother Ganga. In four short stanzas it praises her moon-bright radiance and pure waters, and recalls how she delivered the sons of King Sagara.",
+          "It promises that whoever comes to her refuge even once is freed from the fear of Yama and crosses the ocean of worldly life, and that whoever sings her aarti every day easily attains liberation. Its author is not named."
+         ]
+        }
        }
       ]
      },
@@ -402,7 +524,17 @@
          "hi": "सायंकालीन आरती · मराठी, संस्कृत, हिन्दी",
          "en": "Evening aarti · Marathi, Sanskrit, Hindi"
         },
-        "salute": "॥ ॐ श्री साईं राम ॥"
+        "salute": "॥ ॐ श्री साईं राम ॥",
+        "intro": {
+         "hi": [
+          "धूप आरती शिरडीके साईंबाबाकी सन्ध्या-आरती है, जो शिरडीमें और उनके भक्तों द्वारा सर्वत्र गाई जाती है। यह एक गीत नहीं, एक क्रम है, अधिकतर मराठीमें, कुछ संस्कृत और हिन्दीमें: 'आरती साईबाबा', दासगणुका अभंग 'शिरडी माझे पंढरपुर', नमन 'घालीन लोटांगण', नामस्मरण, नमस्काराष्टक, प्रार्थना 'ऐसा येई बा', श्रीसाईनाथ महिम्न स्तोत्र, गुरुप्रसाद-याचना-दशक, पुष्पांजलि और अन्तिम प्रार्थना।",
+          "'आरती साईबाबा' माधवराव अडकरने १९०३–०४ में शिरडीमें रची; यह उनके नाम 'माधव' पर समाप्त होती है, और कहा जाता है कि स्वयं बाबाने इसे आशीर्वाद दिया। दूसरे अंशोंमें भी कवियोंके नाम हैं: अभंगमें दासगणु, नमनमें नामा, और गुरुप्रसाद-याचना-दशकके रचयिता बाळकृष्ण विश्वनाथ देव (बाळासाहेब देव)।"
+         ],
+         "en": [
+          "The Dhoop Aarti is the evening aarti of Shirdi Sai Baba, sung at Shirdi and by his devotees everywhere. It is not one song but a sequence, mostly in Marathi with Sanskrit and Hindi: the aarti \"Aarti Saibaba\", Das Ganu's abhang \"Shirdi Majhe Pandharpur\", the namana \"Ghalin Lotangan\", the Namasmaran, the Namaskarashtak, the prayer \"Aisa Yei Ba\", the Shri Sainath Mahimna Stotram, the Guru-prasad-yachana-dashak, the Pushpanjali and a closing prayer.",
+          "\"Aarti Saibaba\" was composed by Madhavrao Adkar at Shirdi in 1903–04; it ends with his name, Madhav, and Baba himself is said to have blessed it. Other parts carry their poets' names too: Das Ganu in the abhang, Nama in the namana, and Balkrishna Vishwanath Deo (Balasaheb Deo) for the Guru-prasad-yachana-dashak."
+         ]
+        }
        }
       ]
      }
@@ -456,7 +588,17 @@
              "hi": "नमकम् और चमकम् · ११ + ११ अनुवाक",
              "en": "Namakam and Chamakam · 11 + 11 anuvakas"
             },
-            "salute": "॥ ॐ श्री परमात्मने नमः ॥"
+            "salute": "॥ ॐ श्री परमात्मने नमः ॥",
+            "intro": {
+             "hi": [
+              "श्रीरुद्रम् भगवान रुद्र — शिवके उग्र और सौम्य दोनों रूपों — का वैदिक स्तोत्र है, कृष्ण यजुर्वेदकी तैत्तिरीय संहिता (४.५ और ४.७) से। इसके दो भाग हैं, ग्यारह-ग्यारह अनुवाकोंके। नमकम् रुद्रको बार-बार 'नमः' कहता है और उन्हें सर्वत्र देखता है: सेनाओं और वनोंमें, शिल्पियों और शिकारियोंमें, चोरोंतकमें, जलमें, मेघोंमें और घरोंमें। इसके आठवें अनुवाकमें 'नमः शिवाय', शिवका पञ्चाक्षर मन्त्र, आता है।",
+              "चमकम् 'च मे' ('और मेरे लिए') की टेकके साथ हर आशीर्वाद माँगता है — अन्न, स्वास्थ्य और बलसे लेकर ज्ञान और यज्ञके कर्मोंतक। दोनोंका पाठ साथ होता है, बड़े वैदिक अनुष्ठानोंमें, और रुद्राभिषेकका यही केन्द्र है।"
+             ],
+             "en": [
+              "The Shri Rudram is a Vedic hymn to Rudra, Shiv in his fierce and his gracious forms, from the Taittiriya Samhita of the Krishna Yajurveda (4.5 and 4.7). It has two halves of eleven anuvakas each. The Namakam bows to Rudra again and again (\"namah\"), seeing him everywhere: in armies and forests, in craftsmen and hunters, even in thieves, in waters, clouds and homes. In its eighth anuvaka comes \"Namah Shivaya\", the five-syllable mantra of Shiv.",
+              "The Chamakam asks, with the refrain \"cha me\" (\"and for me\"), for every blessing, from food, health and strength to wisdom and the rites of the yajna. The two are recited together in great Vedic rites and are at the heart of the Rudrabhishek."
+             ]
+            }
            }
           ]
          },
@@ -487,7 +629,17 @@
              "hi": "नचिकेता और यम का संवाद · २ अध्याय · ६ वल्ली · ११९ मन्त्र",
              "en": "Nachiketa and Yama · 2 adhyays · 6 vallis · 119 mantras"
             },
-            "salute": "॥ ॐ श्री परमात्मने नमः ॥"
+            "salute": "॥ ॐ श्री परमात्मने नमः ॥",
+            "intro": {
+             "hi": [
+              "कठोपनिषद् कृष्ण यजुर्वेदकी कठ शाखाका और प्रमुख उपनिषदोंमें एक है। यह एक कथाके रूपमें है। बालक नचिकेता, जिसे क्रोधित पिताने मृत्युको दे दिया, तीन रात यमराजके द्वारपर प्रतीक्षा करता है; यम उसे तीन वर देते हैं, और तीसरे वरमें नचिकेता पूछता है कि मृत्युके बाद मनुष्यका क्या होता है। यम लम्बी आयु, धन और भोगोंसे उसे बहलाना चाहते हैं, पर वह नहीं डिगता।",
+              "तब यम उसे उपदेश देते हैं: श्रेय और प्रेयका चुनाव, ॐका अर्थ, अजन्मा और अमर आत्मा, शरीर रथ है, इन्द्रियाँ घोड़े और मन लगाम, और 'उठो, जागो' की पुकार। इसके दो अध्याय, तीन-तीन वल्लियोंके, आदि शंकराचार्यके भाष्यके साथ वेदान्तके सबसे अधिक पढ़े जानेवाले अंशोंमें हैं।"
+             ],
+             "en": [
+              "The Katha Upanishad belongs to the Katha branch of the Krishna Yajurveda and is one of the principal Upanishads. It is told as a story. The boy Nachiketa, sent to Death by his angry father, waits three nights at Yama's door; Yama offers him three boons, and for the third Nachiketa asks what becomes of a person after death. Yama tries to turn him aside with long life, wealth and pleasures, but he will not be moved.",
+              "So Yama teaches him: the choice between the good and the merely pleasant, the meaning of Om, the deathless Self that is not born and does not die, the body as a chariot with the senses as its horses and the mind as its reins, and the call \"arise, awake\". Its two adhyayas of three vallis each are among the most read passages of Vedanta, with Adi Shankaracharya's commentary."
+             ]
+            }
            }
           ]
          }
@@ -527,7 +679,17 @@
              "hi": "शान्तिपाठ · १८ मन्त्र",
              "en": "Shanti Paath · 18 mantras"
             },
-            "salute": "॥ ॐ श्री परमात्मने नमः ॥"
+            "salute": "॥ ॐ श्री परमात्मने नमः ॥",
+            "intro": {
+             "hi": [
+              "ईशावास्य उपनिषद् शुक्ल यजुर्वेदका अन्तिम, चालीसवाँ अध्याय है, और इसी कारण अनोखा है: यह स्वयं वेदकी संहिताका भाग है। इसका नाम इसके आरम्भके शब्दों 'ईशा वास्यम्' से है: जगत्में जो कुछ भी चलता है, वह सब ईश्वरसे व्याप्त है। १०८ उपनिषदोंमें यह पहला है, और उन दसमें है जिनपर आदि शंकराचार्यने भाष्य लिखा।",
+              "अठारह मन्त्रोंमें (यह काण्व पाठ है) यह संसारमें रहनेकी कला सिखाता है: त्यागपूर्वक भोग करो, किसीके धनका लोभ न करो, और कर्म करते रहो, क्योंकि ठीकसे किया कर्म बाँधता नहीं। यह ज्ञान और कर्म, विद्या और अविद्या, दोनोंको साथ रखता है, एकको दूसरेसे नीचा नहीं करता, और अन्तमें सूर्यसे प्रार्थना करता है कि स्वर्णिम पात्रसे ढके सत्यके मुखको खोल दें।"
+             ],
+             "en": [
+              "The Ishavasya Upanishad is the last chapter, the fortieth, of the Shukla Yajurveda, which makes it unusual: it belongs to the Samhita of the Veda itself. Its name comes from its opening words, \"isha vasyam\": all this, whatever moves in the world, is pervaded by the Lord. It stands first among the 108 Upanishads and is one of the ten on which Adi Shankaracharya wrote a commentary.",
+              "In eighteen verses (this is the Kanva recension) it teaches how to live in the world: enjoy through renunciation, covet no one's wealth, and do your work, for action rightly done does not bind. It holds knowledge and action, vidya and avidya, together rather than setting one above the other, and closes with a prayer to the Sun to uncover the face of Truth, hidden by a golden vessel."
+             ]
+            }
            }
           ]
          }
@@ -569,7 +731,17 @@
            "hi": "शान्तिपाठ · १२ मन्त्र",
            "en": "Shanti Paath · 12 mantras"
           },
-          "salute": "॥ ॐ श्री परमात्मने नमः ॥"
+          "salute": "॥ ॐ श्री परमात्मने नमः ॥",
+          "intro": {
+           "hi": [
+            "माण्डूक्य उपनिषद्, अथर्ववेदका, प्रमुख उपनिषदोंमें सबसे छोटा है: केवल बारह छोटे गद्य मन्त्र। इसका विषय ॐ है। यह कहता है कि जो कुछ है, सब ॐ है, और ब्रह्म ही आत्मा है। यह ॐको तीन ध्वनियों और एक मौनके रूपमें पढ़ता है: अ जाग्रत् है, उ स्वप्न, म सुषुप्ति, और चौथा, तुरीय, तीनोंसे परे, स्वयं आत्मा है — शान्त और अद्वैत।",
+            "इसका महत्त्व इसके आकारसे कहीं बड़ा है। इसपर गौडपादाचार्यकी माण्डूक्य कारिका अद्वैत वेदान्तका सबसे पहला व्यवस्थित ग्रन्थ है, और आदि शंकराचार्यने दोनोंपर भाष्य लिखा। मुक्तिकोपनिषद्में श्रीराम कहते हैं कि मुक्तिके लिए अकेला माण्डूक्य ही पर्याप्त है।"
+           ],
+           "en": [
+            "The Mandukya Upanishad, of the Atharvaveda, is the shortest of the principal Upanishads: twelve short prose passages. Its subject is the syllable Om. All that is, it says, is Om, and Brahman is the Self. It reads Om as three sounds and a silence: A is the waking state, U is dream, M is deep sleep, and the fourth, turiya, beyond all three, is the Self itself, peaceful and one.",
+            "Its weight is far greater than its size. Gaudapada's Mandukya Karika, a verse commentary on it, is the earliest systematic statement of Advaita Vedanta, and Adi Shankaracharya commented on both. In the Muktika Upanishad, Ram says that the Mandukya alone is enough for liberation."
+           ]
+          }
          }
         ]
        }
@@ -633,7 +805,17 @@
          "hi": "ਸੁਖਮਨੀ ਸਾਹਿਬ · २४ अष्टपदियाँ",
          "en": "ਸੁਖਮਨੀ ਸਾਹਿਬ · 24 Ashtapadis"
         },
-        "salute": "ੴ"
+        "salute": "ੴ",
+        "intro": {
+         "hi": [
+          "सुखमनी साहिब — 'सुखकी मणि' — पाँचवें गुरु, श्री गुरु अर्जन देव जीकी बाणी है, जो लगभग १६०२ में अमृतसरके रामसरमें रची गई। यह राग गउड़ीमें है और श्री गुरु ग्रन्थ साहिबके अंग २६२ से २९६ तक है, जहाँ इसका शीर्षक 'गउड़ी सुखमनी' है।",
+          "इसमें २४ अष्टपदियाँ हैं; हर अष्टपदीके आरम्भमें एक सलोक है और फिर आठ पद। इसका विषय वह शान्ति है जो नाम-सिमरनसे, प्रभुके नामके स्मरणसे, मिलती है: नामकी महिमा, साध-संगत, सच्चा भक्त, चंचल मन, निन्दाकी मूर्खता, और वह एक प्रभु जो सगुण भी है और निर्गुण भी। सिख इसका पाठ प्रतिदिन करते हैं, अकेले या मिलकर, घरमें और गुरुद्वारेमें; पूरे पाठमें लगभग एक से डेढ़ घण्टा लगता है।"
+         ],
+         "en": [
+          "Sukhmani Sahib, \"the jewel of peace\", is a bani of Guru Arjan Dev Ji, the fifth Guru, composed around 1602 at Ramsar in Amritsar. It is in Raag Gauri and stands at Ang 262 to 296 of Sri Guru Granth Sahib, where it is titled Gauri Sukhmani.",
+          "It has 24 ashtapadis, each opened by a salok and made of eight stanzas. Its theme is the peace that comes from Naam Simran, remembering God's Name: the greatness of the Name, the company of the holy (Sadh Sangat), the true devotee, the restless mind, the folly of slander, and the One Lord who is both with and beyond form. Sikhs recite it daily, alone or together, at home and in the gurdwara; a full reading takes about an hour to an hour and a half."
+         ]
+        }
        }
       ]
      }

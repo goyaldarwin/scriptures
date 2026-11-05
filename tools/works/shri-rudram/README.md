@@ -37,3 +37,8 @@ Rebuild: `python3 tools/works/shri-rudram/source/settle.py && python3 tools/work
   - śānti mantra (शा॰ / Śā.).
 - **Topics:** one per anuvāka, with a short theme (e.g. "Anuvāka 8 — Namaḥ Śivāya"), plus the opening, नमस्ते अस्तु भगवन्, the closing mantras and the Chamakam śānti.
 - **Reading plans:** none. The Rudram is recited in one sitting.
+
+## Introduction
+The readers' introduction (`intro` in `library/index.json`, shown in ⓘ About this work) states only what these support:
+- The owner's printouts of shlokam.org, Rudram Namakam and Rudram Chamakam (scriptures-data …/shri-rudram/printouts/shlokam/): Taittiriya Samhita, eleven anuvakas each, "namah" and "cha me", recited together and central to Rudra Abhishekam.
+- The text itself and our anuvaka headings (the Panchakshari in anuvaka 8).
