@@ -116,13 +116,30 @@ async def main():
         await pg2.wait_for_function("document.querySelector('#loading').hidden", timeout=10000); await pg2.reload(); await pg2.wait_for_timeout(200)
         t2 = await pg2.evaluate("document.querySelector('#loading').textContent")
         check('no greeting when the app starts or is refreshed', t1 == '' and t2 == '', [t1, t2])
-        # stepping into a work from the library: the greeting stays 0.4 s even when loading is quicker, and no longer
+        # stepping into a work from the library: a quick open goes straight to the work's page, with no greeting screen
         await pg2.wait_for_function("document.querySelector('#loading').hidden", timeout=10000)
-        shown = await pg2.evaluate("(async () => { W = null; const t0 = performance.now(); await openWork('ramraksha'); return performance.now() - t0; })()")
-        check('the greeting stays about 0.4 s', 380 <= shown < 1000, round(shown))
+        quick = await pg2.evaluate("(async () => { W = null; let seen = false; const o = new MutationObserver(() => { if (!$('#loading').hidden) seen = true; }); o.observe($('#loading'), {attributes: true}); const t0 = performance.now(); await openWork('ramraksha'); o.disconnect(); return [seen, performance.now() - t0, CURVIEW]; })()")
+        check('a quick open shows no greeting screen', not quick[0] and quick[1] < 400 and quick[2] == 'home', quick)
+        # a slow open (the work takes 0.8 s to arrive): the greeting shows while it loads, and goes when it is here
+        async def late(route): await asyncio.sleep(0.8); await route.continue_()
+        await pg2.route('**/hinduism/stotra/shiva/bilvashtakam/work.json*', late)
+        slow = await pg2.evaluate("(async () => { const p = openWork('bilvashtakam'); await new Promise(r => setTimeout(r, 500)); const r = [!$('#loading').hidden, $('#loading').textContent]; await p; r.push($('#loading').hidden, CURVIEW); return r; })()")
+        await pg2.unroute('**/hinduism/stotra/shiva/bilvashtakam/work.json*')
+        check('a slow open greets the work while it loads, then shows its page', slow[0] and slow[1] == await pg2.evaluate("saluteOf('bilvashtakam')") and slow[2] and slow[3] == 'home', slow)
         # opening the work that is already open: no greeting, no wait
-        again = await pg2.evaluate("(async () => { const t0 = performance.now(); const p = openWork('ramraksha'); const t = document.querySelector('#loading').hidden; await p; return [t, performance.now() - t0]; })()")
-        check('no greeting for the work already open', again[0] and again[1] < 200, again); await pg2.close()
+        again = await pg2.evaluate("(async () => { const t0 = performance.now(); const p = openWork('bilvashtakam'); const t = document.querySelector('#loading').hidden; await p; return [t, performance.now() - t0]; })()")
+        check('no greeting for the work already open', again[0] and again[1] < 200, again)
+        # the work's page shows before the meanings and dictionaries arrive (here the Awadhi dictionary takes 1.5 s); the reader, opened
+        # in the meantime, waits for them and then shows the verses with their meanings
+        async def slowdict(route): await asyncio.sleep(1.5); await route.continue_()
+        await pg2.route('**/glossary/awa.json*', slowdict)
+        early = await pg2.evaluate("""(async () => { show('library'); const t0 = performance.now(); const p = openWork('sundarkand');
+            while (!(CURVIEW === 'home' && W && W.id === 'sundarkand')) await new Promise(r => setTimeout(r, 20)); const t = performance.now() - t0, ready = wReady;
+            openReader('k', PARTS[2].a); const before = CURVIEW; await p; await new Promise(r => setTimeout(r, 500));
+            return [t, ready, before, CURVIEW, document.querySelectorAll('#rBody .verse').length, !!SRC.hi, !!GL.awa && Object.keys(GL.awa).length > 0]; })()""")
+        await pg2.unroute('**/glossary/awa.json*')
+        check("the work's page shows before its meanings and dictionaries; the reader waits for them", early[0] < 1200 and not early[1] and early[2] == 'home' and early[3] == 'reader' and early[4] > 0 and early[5] and early[6], early)
+        await pg2.close()
         # a store app shows only its shelves (?app=<id>, library/apps.json)
         apps = json.load(open(os.path.join(ROOT, 'library', 'apps.json')))
         for aid, a in apps.items():
@@ -1043,8 +1060,8 @@ async def main():
         slow = await ev("(() => { ytLoad('QjSpUgnEPLU', 0); ytBlocked(); const r = [!!$('#ytf'), $$('#ytBox .ytno').length, $('#ytBox').innerText]; ytNoteOff(); r.push($$('#ytBox .ytno').length); return r; })()")
         check('a slow YouTube start keeps the player under a note that can go', slow[0] and slow[1] == 1 and 'allowed' not in slow[2] and slow[3] == 0, slow)
         # a work that is a slice of a longer video (the Hanumān āratī at the end of the Sundarakāṇḍa's) plays from its own first verse, not the video's start
-        ha = await ev("(async () => { await openWork('hanuman-aarti', true); show('home'); playRange('k', 0, IT.length - 1); await new Promise(r => setTimeout(r, 300)); const r = [ytInfo.t, SRC.au.at[IT[0].id][1]]; stopAudio(); return r; })()")
-        check('the Hanumān āratī plays from the āratī, not from the start of the Sundarakāṇḍa', abs(ha[0] - ha[1]) < 1, ha)
+        ha = await ev("(async () => { await openWork('hanuman-aarti', true); show('home'); playRange('k', 0, IT.length - 1); const r = [Math.floor(PL.seekT), Math.floor(SRC.au.at[IT[0].id][1])]; stopAudio(); return r; })()")   # the time the app seeks to, whether it loads a player or reuses one (a live player reports 0 for a moment)
+        check('the Hanumān āratī plays from the āratī, not from the start of the Sundarakāṇḍa', ha[0] == ha[1] and ha[0] > 6000, ha)
         # while playing, the work's page scrolls its last row clear of the player
         clr = await ev("""(async () => { await openWork('sundarkand', true); show('home'); playRange('k', 0, IT.length - 1); await new Promise(r => setTimeout(r, 400)); show('home'); await new Promise(r => setTimeout(r, 300));
             window.scrollTo(0, 1e6); await new Promise(r => setTimeout(r, 200)); const rows = $$('#orgList li').filter(x => x.offsetHeight); const r = [rows[rows.length - 1].getBoundingClientRect().bottom, $('#player').getBoundingClientRect().top]; stopAudio(); return r; })()""")

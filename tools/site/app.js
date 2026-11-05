@@ -323,16 +323,21 @@ function rangeDesc(a, b){ const ka = KNAME(IT[a].p), kb = KNAME(IT[b].p); if (ka
 /* ---------------- sources: meanings and audio ---------------- */
 function srcList(kind){ return ((W.sources || {})[kind] || []).filter(s => !s.draft || S.timing.on); }   // a draft recording is heard only while reviewing timings
 function srcChoice(kind){ const list = srcList(kind); const sel = ((S.src[W.id] || {})[kind]); if (sel === 'off') return null; return (list.find(s => s.id === sel) || list[0] || null); }
-async function loadSources(){
+// only: 'au' the recording alone (all the work's page needs), 'meanings' the meaning sources alone; nothing: both. The
+// sources are fetched together, not one after another; ALT keeps each kind's sources in their listed order.
+async function loadSources(only){
   if (!Object.keys(LANGS).length) LANGS = await getJSON('glossary/languages');   // the meaning languages are listed there
   // a work loaded by part starts each meaning source empty; loadPart fills in each part it opens
   const get = async c => BYPART() ? {meta: c, id: c.id, title: c.title, m: {}, p: {}, got: new Set()} : Object.assign({meta: c}, await getJSON(W.path + '/' + c.file));
-  for (const kind of MK().concat('au')){ const c = srcChoice(kind); SRC[kind] = null; if (c){ try { SRC[kind] = kind === 'au' ? Object.assign({meta: c}, await getJSON(W.path + '/' + c.file)) : await get(c); } catch (e) {} } }
+  if (only !== 'meanings'){ const c = srcChoice('au'); SRC.au = null; if (c){ try { SRC.au = Object.assign({meta: c}, await getJSON(W.path + '/' + c.file)); } catch (e) {} } buildAudio(); }
+  if (only === 'au') return;
+  await Promise.all(MK().map(async kind => { const c = srcChoice(kind); SRC[kind] = null; if (c){ try { SRC[kind] = await get(c); } catch (e) {} } }));
   // the other meaning sources of a kind fill in verses the chosen one doesn't cover (e.g. a stotra appended to a kāṇḍa)
-  for (const kind of MK()){ ALT[kind] = []; const c = SRC[kind] && SRC[kind].meta;
-    for (const s of ((W.sources || {})[kind] || [])) if (c && s.id !== c.id){ try { ALT[kind].push(await get(s)); } catch (e) {} } }
+  await Promise.all(MK().map(async kind => { const c = SRC[kind] && SRC[kind].meta;
+    const got = await Promise.all(((W.sources || {})[kind] || []).filter(s => c && s.id !== c.id).map(s => get(s).catch(() => null)));
+    ALT[kind] = got.filter(Boolean); }));
   for (let n = 0; n < 2 && BYPART(); n++) await Promise.all([...PWANT].map(loadPart));   // the parts already open, from the sources now chosen
-  buildAudio(); syncLayers();
+  syncLayers();
 }
 /* A big work is loaded by part (work.json "load": "parts"): each meaning source is meanings/<source>/<part>.json and its own
    word senses glossary/<part>.json. A part is fetched when a verse of it is shown (pageHTML) or touched (a word, ⋮, copy,
@@ -555,6 +560,7 @@ function fixLast(){
   for (const o in ws.pos) ws.pos[o] += sh(ws.pos[o]);
 }
 function openReader(org, i, flash){
+  if (!wReady){ whenReady().then(() => openReader(org, i, flash)); return; }   // the meanings are still on their way (openWork)
   if (!S.hinted && !TOUR){ S.hinted = 1; save(); setTimeout(() => toast(T('किसी शब्दको छूकर अर्थ देखें · नीचेसे प्रसंग चुनें', 'Tap any word for its meaning · choose a section at the bottom')), 900); }
   R.org = org; [R.a, R.b, R.n] = rangeFor(org, i);
   if (!$('#reader').classList.contains('on')) show('reader');
@@ -1233,23 +1239,37 @@ function workPath(id){ let r = null; (function walk(n){ (n || []).forEach(c => {
 const SALUTE = '॥ ॐ श्री परमात्मने नमः ॥';
 function saluteOf(id){ let r = null; (function walk(n){ (n || []).forEach(c => { if (c.work === id) r = c.salute; else walk(c.children); }); })(LIB); return r || SALUTE; }
 function showSalute(text){ $('#loading').textContent = text; }
-// the greeting stays at least 0.4 s, so it does not flicker; the time spent loading counts towards it, so it never holds up a slow load
-const SALUTE_MS = typeof window.__SALUTE_MS === 'number' ? window.__SALUTE_MS : 400;
-// The greeting is only for stepping into a work from the library (or the tour) that has to be loaded: never when the app
-// starts, on a refresh, on Back, or for the work already open. Then the screen just waits, blank, for as long as loading takes.
-let saluteAt = 0, greeted = false;
-async function hideSalute(){ const left = greeted ? SALUTE_MS - (performance.now() - saluteAt) : 0; if (left > 0) await new Promise(r => setTimeout(r, left)); $('#loading').hidden = true; greeted = false; }
+// The greeting (the work's salutation) shows only when opening a work takes more than 0.2 s, so a quick open goes straight
+// to the work's page; once shown it stays 0.3 s, so it does not flicker. Only for stepping into a work from the library (or
+// the tour): never when the app starts, on a refresh, on Back, or for the work already open, when the screen just waits, blank.
+const SALUTE_AFTER = typeof window.__SALUTE_MS === 'number' ? window.__SALUTE_MS : 200, SALUTE_HOLD = SALUTE_AFTER ? 300 : 0;
+let saluteAt = 0, saluteT = null, greeted = false;
+function coverOn(text, after){ clearTimeout(saluteT); showSalute(text); const on = () => { $('#loading').hidden = false; saluteAt = performance.now(); };
+  if (after > 0) saluteT = setTimeout(on, after); else on(); }
+async function coverOff(){ clearTimeout(saluteT); saluteT = null; if (!$('#loading').hidden && greeted){ const left = SALUTE_HOLD - (performance.now() - saluteAt); if (left > 0) await new Promise(r => setTimeout(r, left)); }
+  $('#loading').hidden = true; greeted = false; }
+const hideSalute = coverOff;
+// The work's page needs only the work and its recording: it shows as soon as they are here. The meanings and the
+// dictionaries (megabytes for the Manas) load behind it; the reader and search wait for them (WREADY) when opened sooner.
+let WREADY = Promise.resolve(), wReady = true;
+async function whenReady(){ if (wReady) return; coverOn('', 200); await WREADY; await coverOff(); }
 async function openWork(id, noShow){
-  greeted = !noShow && !(W && W.id === id); showSalute(greeted ? saluteOf(id) : '');
-  if (greeted || W === null || W.id !== id){ if ($('#loading').hidden){ $('#loading').hidden = false; } saluteAt = performance.now(); }
+  greeted = !noShow && !(W && W.id === id);
+  if (greeted) coverOn(saluteOf(id), SALUTE_AFTER);
+  else if (W === null || W.id !== id) coverOn('', $('#loading').hidden ? 200 : 0);   // a quiet open: blank, and only if it is slow
   try {
-    if (!W || W.id !== id){ const path = workPath(id); W = await getJSON(path + '/work'); W.path = path; partReset(); buildWork(); moveRenamed(); fixLast(); await Promise.all([loadSources(), loadGlossaries()]);
-      if (BYPART()){ const l = WS().last; loadPart(l && IT[l.i] ? IT[l.i].p : 0); } }   // the part “Continue” opens, while the home page shows
+    if (!W || W.id !== id){ const path = workPath(id); W = await getJSON(path + '/work'); W.path = path; partReset(); buildWork(); moveRenamed(); fixLast();
+      await loadSources('au');
+      wReady = false; const w = W;
+      WREADY = Promise.all([loadSources('meanings'), loadGlossaries()]).then(() => { if (W !== w) return; if (BYPART()){ const l = WS().last; loadPart(l && IT[l.i] ? IT[l.i].p : 0); } })   // the part “Continue” opens
+        .finally(() => { if (W === w) wReady = true; });
+    }
     S.work = id; WS().at = Date.now(); save();   // when it was last used: the shelf lists recent works first
   } catch (e) { const off = navigator.onLine === false || await fetch('library/.ping?' + Date.now(), {cache: 'no-store'}).then(() => false, () => true);   // offline: not even a probe gets through
-    toast(off ? T('इंटरनेट नहीं है — यह ग्रन्थ इस फ़ोनपर पहले खोला नहीं गया', 'No internet — this work has not been opened on this phone yet') : T('यह ग्रन्थ नहीं खुल सका', 'Could not open this work')); $('#loading').hidden = true; return; }
-  await hideSalute();
+    toast(off ? T('इंटरनेट नहीं है — यह ग्रन्थ इस फ़ोनपर पहले खोला नहीं गया', 'No internet — this work has not been opened on this phone yet') : T('यह ग्रन्थ नहीं खुल सका', 'Could not open this work')); await coverOff(); return; }
+  await coverOff();
   if (!noShow) show('home');
+  await WREADY;   // a caller that awaits openWork gets the whole work
 }
 
 /* ---------------- work home ---------------- */
@@ -1362,6 +1382,7 @@ let sT; $('#q').addEventListener('input', () => { clearTimeout(sT); sT = setTime
 function snip(text, q, latin){ const src = text; const low = latin ? normL(src) : normD(src); const nq = latin ? normL(q) : normD(q); let p = low.indexOf(nq); if (p < 0) return esc(src.slice(0, 160)) + (src.length > 160 ? '…' : ''); let a = Math.max(0, p - 60), b = Math.min(src.length, p + nq.length + 80); if (a > 0){ const sp = src.indexOf(' ', a); if (sp > -1 && sp < p) a = sp + 1; } const s = src.slice(a, b); const pp = (latin ? normL(s) : normD(s)).indexOf(nq); let out; if (pp >= 0 && (latin ? normL(s) : normD(s)).length === s.length) out = esc(s.slice(0, pp)) + '<mark>' + esc(s.slice(pp, pp + nq.length)) + '</mark>' + esc(s.slice(pp + nq.length)); else out = esc(s); return (a > 0 ? '…' : '') + out + (b < src.length ? '…' : ''); }
 function runSearch(){
   if (SCOPE === 'lib'){ const q = $('#q').value; if (q.trim()) libSearch(q); else openSearch('lib', true); return; }
+  if (!wReady){ WREADY.then(runSearch); return; }   // searching a work needs its meanings
   const q = $('#q').value.trim(), box = $('#sRes');
   if (q.length < 2){ box.innerHTML = '<div class="empty">' + T('कम-से-कम दो अक्षर लिखें।', 'Type at least two letters.') + '</div>'; return; }
   if (!IDX || IDX.w !== idxKey()) buildIdx();
