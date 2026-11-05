@@ -1108,7 +1108,7 @@ async def main():
             $('#rAnchor').click(); await new Promise(r => setTimeout(r, 400)); const el = document.getElementById('v' + read).getBoundingClientRect(); const back = el.top < innerHeight && el.bottom > 0, pillGone = $('#rAnchor').hidden;
             openReader('k', PARTS[3].a); await new Promise(r => setTimeout(r, 300)); tick(5); const notYet = anchorOf().i === read;
             for (let x = 0; x < 22; x++){ await step(60); tick(1); } const moved = anchorOf().i >= PARTS[3].a, before = (WS().prev || [])[0] && ID[WS().prev[0].id] === read;
-            show('home'); const resume = $('#cGo') && $('#cGo').textContent.includes('Resume'), named = $('#contAt').textContent.includes(posLabel(anchorOf().i)), earlier = !!$('#cPrev');
+            show('home'); const resume = $('#cGo') && $('#cGo').textContent.includes('Resume'), named = $('#cGo').textContent.includes(playLabel(anchorOf().i)), earlier = !$('#cPrev') && $('#contAt').hidden;
             PL.on = true; PL.cur = -1; setCur(PARTS[4].a + 1); const byAudio = anchorOf().i === PARTS[4].a + 1; PL.on = false;   // pressing play is reading: at once
             openReader('k', PARTS[2].a); await new Promise(r => setTimeout(r, 200)); backPill(); const pillAgain = !$('#rAnchor').hidden;
             S.timing.on = true; backPill(); const noPillTiming = $('#rAnchor').hidden; S.timing.on = false;
@@ -1136,6 +1136,18 @@ async def main():
             const inR = $('#pTrack').textContent; show('home'); await new Promise(r => setTimeout(r, 200)); const lab = $('#pVerse').textContent, sub = $('#pTrack').textContent;
             $('#pInfo').click(); await new Promise(r => setTimeout(r, 400)); const r = [lab, sub, inR, CURVIEW, !!document.querySelector('#v' + (PARTS[2].a + 5) + '.now')]; stopAudio(); return r; })()""")
         check('the player outside the reader shows only the place and "Go to verse", which opens the verse playing', pg_[0] == 'Verse 1.3' and pg_[1] == 'Go to verse ›' and pg_[2] == '' and pg_[3] == 'reader' and pg_[4], pg_)
+        # ⏭ after a single verse was played: the next verse alone plays and stops (it stopped at once before); within a section, playing goes on
+        stp = await ev("""(async () => { await openWork('sundarkand', true); show('home'); const i = PARTS[2].a + 4; openReader('k', i); await new Promise(r => setTimeout(r, 200));
+            playFrom(i, i); PL.cur = -1; setCur(i); stepVerse(1); const one = [PL.on, PL.end === i + 1, PL.one];
+            stepVerse(1); one.push(PL.end === i + 2);
+            playFrom(i, i + 6); PL.cur = -1; setCur(i); stepVerse(1); const range = [PL.on, PL.end === i + 6, !PL.one]; stopAudio(); return one.concat(range); })()""")
+        check('after a single verse, ⏭ plays the next verse alone (and again); within a section it keeps playing to the end', all(stp), stp)
+        # "Back to …" never outlives its reader: leaving the reader hides it, and another work never shows the last one's place
+        xw = await ev("""(async () => { AN.manual = true; await openWork('katha-upanishad', true); const ws = WS(); delete ws.anchor; openReader('k', PARTS[1].a); await new Promise(r => setTimeout(r, 200)); anchorTick(true);
+            openReader('k', 0); await new Promise(r => setTimeout(r, 200)); backPill(); const up = !$('#rAnchor').hidden;
+            show('home'); const goneHome = $('#rAnchor').hidden; libPath = []; show('library'); await openWork('manas'); await new Promise(r => setTimeout(r, 200));
+            const goneOther = $('#rAnchor').hidden && !$('#rAnchor').textContent.includes('Mantra'); AN.manual = false; return [up, goneHome, goneOther]; })()""")
+        check('"Back to" hides on leaving the reader, and another work never shows the last one\'s place', all(xw), xw)
         # the library lists works by name only (ⓘ About is on the work's own page)
         nolib = await ev("(async () => { libPath = []; show('library'); await new Promise(r => setTimeout(r, 300)); return [$$('#libList [data-open-work]').length, $$('#libList .winfo, #libList [data-info-work]').length]; })()")
         check('the library shows works by name, without ⓘ', nolib[0] > 0 and nolib[1] == 0, nolib)

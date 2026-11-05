@@ -177,7 +177,7 @@ async function restore(st){
 function back(){ history.back(); }
 // Back with a drawer open closes the drawer and stays on the page (its entry is put back)
 window.addEventListener('popstate', e => { if ($('#sheet').classList.contains('on')){ closeSheet(); history.pushState(snap(CURVIEW), ''); return; } const st = e.state; popping = popping.then(() => restore(st)); });
-function onView(id){ if (PL.on) pSub(); if (id === 'library') renderLibrary(); if (id === 'home') renderHome(); if (id === 'bookmarks') renderBookmarks(); if (id === 'settings') renderSettings(); if (id === 'vidhi') renderVidhi(); wake(id === 'reader'); if (id === 'search') setTimeout(() => $('#q').focus(), 50); }
+function onView(id){ if (PL.on) pSub(); backPill();   /* “Back to …” belongs to the reader of the work open: drawn again (or hidden) on every screen */ if (id === 'library') renderLibrary(); if (id === 'home') renderHome(); if (id === 'bookmarks') renderBookmarks(); if (id === 'settings') renderSettings(); if (id === 'vidhi') renderVidhi(); wake(id === 'reader'); if (id === 'search') setTimeout(() => $('#q').focus(), 50); }
 $$('[data-back]').forEach(b => b.onclick = back);
 $$('[data-go]').forEach(b => b.onclick = () => show(b.dataset.go));
 function openSheet(html){ $('#sheetBody').innerHTML = html; $$('#sheetBody [data-tour]').forEach(b => b.onclick = () => { closeSheet(); startTour(); }); $('#sheet').classList.add('on'); $('#scrim').classList.add('on'); $('#sheet').scrollTop = 0; }
@@ -549,7 +549,7 @@ function anchorJump(i){
 }
 function anchorTick(force){
   if (AN.manual && !force) return;
-  if (!W || CURVIEW !== 'reader' || document.hidden || S.timing.on) return;
+  if (!W || CURVIEW !== 'reader' || document.hidden || S.timing.on){ if (CURVIEW !== 'reader') $('#rAnchor').hidden = true; return; }
   const y = scrollY, dy = Math.abs(y - AN.lastY), top = topVisibleItem(); AN.lastY = y;
   if (PL.on && playing()){ backPill(); return; }   // a recording: setCur keeps the anchor
   if (dy > 1.5 * innerHeight){ anchorJump(top); backPill(); return; }   // a fling
@@ -1007,7 +1007,7 @@ function livePlay(){ return PL.on && playing() && PL.snip == null; }
 function snippet(i, k){
   const x = SRC.au.at[IT[i].id]; if (!x) return; const tr = SRC.au.tracks[x[0]];
   const t0 = k === 1 ? x[1] : Math.max(x[1], x[2] - 2), t1 = k === 1 ? (x[2] != null ? Math.min(x[2], x[1] + 2) : x[1] + 2) : x[2];
-  PL.on = true; PL.t = x[0]; PL.end = null; PL.snip = t1; PL.whole = false; PL.endMsg = '';
+  PL.on = true; PL.t = x[0]; PL.end = null; PL.one = false; PL.snip = t1; PL.whole = false; PL.endMsg = '';
   $('#player').hidden = false; document.body.classList.add('playing');
   seekGuard(t0);
   if (ytVid !== tr.yt || !ytFrame()) ytLoad(tr.yt, t0); else { ytPost('seekTo', [t0, true]); ytPost('playVideo'); ytInfo.t = t0; ytInfo.at = performance.now(); }
@@ -1024,7 +1024,7 @@ function playFrom(i, end){
   if (!hasAu(i)){ const j = firstAu(i, Math.min(IT.length - 1, i + 80)); if (j == null) return; i = j; }
   const [t, st0] = SRC.au.at[IT[i].id], tr = SRC.au.tracks[t];
   const st = (end != null && i === tr.fi) ? trStart(tr) : st0;
-  PL.on = true; PL.t = t; PL.end = end; PL.cur = -1; PL.whole = false; PL.endMsg = ''; AN.playT0 = Date.now();
+  PL.on = true; PL.t = t; PL.end = end; PL.one = end === i; PL.cur = -1; PL.whole = false; PL.endMsg = ''; AN.playT0 = Date.now();   // PL.one: a single verse
   $('#player').hidden = false; document.body.classList.add('playing'); wake(true);
   seekGuard(st);
   if (ytVid !== tr.yt || !ytFrame()) ytLoad(tr.yt, st); else { ytPost('seekTo', [st, true]); ytPost('playVideo'); ytInfo.t = st; ytInfo.at = performance.now(); }
@@ -1133,7 +1133,11 @@ function playing(){ return ytInfo.st === 1 || ytInfo.st === 3; }
 function syncPlayer(){ $('#pPlay').innerHTML = '<svg><use href="#i-' + (playing() ? 'pause' : 'play') + '"/></svg>'; $('#pRate').textContent = RATE() + '×'; syncStep(); }
 $('#pPlay').onclick = () => { if (playing()) ytPost('pauseVideo'); else ytPost('playVideo'); setTimeout(syncPlayer, 400); };
 $('#pClose').onclick = stopAudio;
-function stepVerse(d){ PL.snip = null; const a = AUT[PL.t]; const k = a.findIndex(x => x[0] === PL.cur); const n = k + d; if (k >= 0 && n >= 0 && n < a.length){ seekGuard(a[n][1]); ytPost('seekTo', [a[n][1], true]); ytInfo.t = a[n][1]; ytInfo.at = performance.now(); PL.cur = -1; tick(); } }
+// ⏮ ⏭: one verse back or on. After a single verse was played (▶ beside it), that verse alone is played and stops, as each
+// further press plays one more; past the end of a section being played, the same. Within it, playing goes on.
+function stepVerse(d){ PL.snip = null; const a = AUT[PL.t]; const k = a.findIndex(x => x[0] === PL.cur); const n = k + d; if (k >= 0 && n >= 0 && n < a.length){
+    const to = a[n][0]; if (PL.one || (PL.end != null && to > PL.end)){ playFrom(to, to); return; }
+    seekGuard(a[n][1]); ytPost('seekTo', [a[n][1], true]); ytInfo.t = a[n][1]; ytInfo.at = performance.now(); PL.cur = -1; tick(); } }
 /* timing review: set a verse's start by ear. The player reports its time a few times a second, so the moment of the tap is
    worked out from the last report; 0.3 s is taken off for the time it takes to hear the word and tap. */
 function nowAt(){ const t = playTime(), since = PL.seekT != null ? PL.seekAt : ytInfo.at; return Math.max(0, t + (playing() && since ? RATE() * (performance.now() - since) / 1000 : 0) - 0.3 * RATE()); }   // right after a seek, the player may still report its old time: the asked-for time is used (playTime)
@@ -1338,7 +1342,7 @@ async function openWork(id, noShow){
   if (greeted) coverOn(saluteOf(id), SALUTE_AFTER);
   else if (W === null || W.id !== id) coverOn('', $('#loading').hidden ? 200 : 0);   // a quiet open: blank, and only if it is slow
   try {
-    if (!W || W.id !== id){ const path = workPath(id); W = await getJSON(path + '/work'); W.path = path; partReset(); buildWork(); moveRenamed(); fixLast();
+    if (!W || W.id !== id){ $('#rAnchor').hidden = true; $('#rAnchor').innerHTML = ''; AN.cand = null; AN.calm = 0; const path = workPath(id); W = await getJSON(path + '/work'); W.path = path;   /* another work: nothing of the last one's reading stays */ partReset(); buildWork(); moveRenamed(); fixLast();
       await loadSources('au');
       wReady = false; const w = W;
       WREADY = Promise.all([loadSources('meanings'), loadGlossaries()]).then(() => { if (W !== w) return; if (BYPART()){ const l = WS().last; loadPart(l && IT[l.i] ? IT[l.i].p : 0); } })   // the part “Continue” opens
@@ -1370,18 +1374,17 @@ function renderHome(){
   $('#hTitle').textContent = TT(W.title); fitTitle(); $('#hSub').textContent = [TT(W.by), TT(W.from)].filter(Boolean).join(' · ');   // the author and, where there is one, the parent text — never the publisher or source
   // ▶ the whole work, start to end, across every part and recording
   const pa = $('#hPlayAll'), fa = firstAu(0, IT.length - 1); pa.hidden = fa == null; pa.onclick = () => playRange('k', 0, IT.length - 1);
+  $('#hPlayT').textContent = fa != null ? durLabel(spanSecs(0, IT.length - 1)) : '';   // the whole recording's time, under it
   fixLast(); const L = WS().last, A = anchorOf() || (L && IT[L.i] ? {org: L.org, i: L.i} : null);
-  // Resume: where you were reading (the reading anchor), named under the buttons; and the place before it, if you moved on
-  $('#contCard').innerHTML = A ? '<button class="btn ghost cont" id="cGo">' + T('आगे पढ़ें', 'Resume') + ' ›</button>' : '';
+  // Resume: where you were reading (the reading anchor), named inside it in the player's short form, as large as Play all
+  const shortAt = i => (PARTS.length > 1 ? KNAME(IT[i].p) + ' · ' : '') + playLabel(i);
+  $('#contCard').innerHTML = A ? '<button class="btn ghost cont" id="cGo"><span>' + T('आगे पढ़ें', 'Resume') + ' ›</span><small>' + esc(shortAt(A.i)) + '</small></button>' : '';
   if ($('#cGo')) $('#cGo').onclick = () => { AN.going = true; openReader(A.org, A.i, true); };
-  const prev = ((WS().prev || []).map(p => ID[p.id] != null && (p.org === 'k' || PLAN[p.org]) ? {org: p.org, i: ID[p.id]} : null).filter(p => p && (!A || p.i !== A.i)))[0];
-  $('#contAt').innerHTML = A ? esc(T('पढ़ रहे थे: ', 'Reading: ') + itemLabel(A.i)) + (prev ? ' · <button class="lnk" id="cPrev">' + esc(T('उससे पहले: ', 'Before that: ') + itemLabel(prev.i)) + '</button>' : '') : '';
-  $('#contAt').hidden = !A;
-  if ($('#cPrev')) $('#cPrev').onclick = () => { AN.going = true; openReader(prev.org, prev.i, true); };
   const org = homeOrg();
   $('#orgSeg').innerHTML = '<button data-org="k">' + esc(TT(W.parts.name)) + '</button>' + PLANS.map(p => '<button data-org="' + p.id + '">' + esc(TT(p.name)) + '</button>').join('');
   $$('#orgSeg button').forEach(b => { b.classList.toggle('on', b.dataset.org === org); b.onclick = () => { WS().org = b.dataset.org; save(); renderHome(); }; });
-  const play = (o, a, b) => firstAu(a, b) != null ? '<button class="lplay" data-po="' + o + '" data-pa="' + a + '" data-pb="' + b + '" aria-label="play"><svg><use href="#i-play"/></svg></button>' : '';
+  // ▶ with its time under it, on every row that has a recording (parts, sections, reading days alike)
+  const play = (o, a, b) => firstAu(a, b) != null ? '<button class="lplay timed" data-po="' + o + '" data-pa="' + a + '" data-pb="' + b + '" aria-label="play"><svg><use href="#i-play"/></svg></button><span class="ldur">' + durLabel(spanSecs(a, b)) + '</span>' : '';
   let h = '';
   $('#orgSeg').hidden = !PLANS.length;   // a work without reading plans needs no switch
   if (org === 'k' && PARTS.length === 1){   // a single-part work (an āratī, a stotra): list its sections straight away
@@ -1393,7 +1396,7 @@ function renderHome(){
     // pages read before the first day and after the reading (pūrvāṅga / uttarāṅga), when the plan names them
     const page = (pg, when) => { const t = pg === 'aarti' ? T('श्रीरामायणजीकी आरती', 'Shri Ramayanji ki Aarti') : pg === 'visarjan' ? TT(W.vidhi.visarjan.title) : T('पारायण-विधि', 'Parayan vidhi'); if (pg === 'visarjan') when = T('पारायणके अन्तिम दिन', 'On the last day of the parayan'); return '<li class="rowp"><button class="it" data-page="' + pg + '"><span class="no pg"><svg><use href="#i-lamp"/></svg></span><span class="grow"><span class="ti">' + t + '</span><br><span class="ds">' + when + '</span></span><span class="chev">›</span></button></li>'; };
     (P.before || []).forEach(pg => h += page(pg, T('पाठसे पहले', 'Before the reading')));
-    for (let n = 1; n <= P.n; n++){ const [a, b] = dayRange(org, n), d = DONE(ME(), org)[n], t = firstAu(a, b) != null ? durLabel(spanSecs(a, b)) : ''; h += '<li class="rowp"><button class="lmark" data-mark="' + n + '" aria-label="' + VN(n) + (d ? T(': पूर्ण — अपूर्ण करें', ': complete — mark not complete') : T(': पूर्ण करें', ': mark complete')) + '"></button>' + (t ? play(org, a, b).replace('class="lplay"', 'class="lplay timed"') + '<span class="ldur">' + t + '</span>' : play(org, a, b)) + '<button class="it" data-open="' + a + '"><span class="no' + (d ? ' done' : '') + '">' + (d ? '✓' : DEV(n)) + '</span><span class="grow"><span class="ti">' + VN(n) + '</span><br><span class="ds">' + rangeDesc(a, b) + '</span></span><span class="chev">›</span></button></li>'; }
+    for (let n = 1; n <= P.n; n++){ const [a, b] = dayRange(org, n), d = DONE(ME(), org)[n], t = firstAu(a, b) != null ? durLabel(spanSecs(a, b)) : ''; h += '<li class="rowp"><button class="lmark" data-mark="' + n + '" aria-label="' + VN(n) + (d ? T(': पूर्ण — अपूर्ण करें', ': complete — mark not complete') : T(': पूर्ण करें', ': mark complete')) + '"></button>' + play(org, a, b) + '<button class="it" data-open="' + a + '"><span class="no' + (d ? ' done' : '') + '">' + (d ? '✓' : DEV(n)) + '</span><span class="grow"><span class="ti">' + VN(n) + '</span><br><span class="ds">' + rangeDesc(a, b) + '</span></span><span class="chev">›</span></button></li>'; }
     (P.after || []).forEach(pg => h += page(pg, T('पाठके बाद', 'After the reading'))); }
   $('#orgList').innerHTML = h;
   $$('#orgList [data-open]').forEach(b => b.onclick = () => openReader(org, +b.dataset.open));
