@@ -177,7 +177,7 @@ async function restore(st){
 function back(){ history.back(); }
 // Back with a drawer open closes the drawer and stays on the page (its entry is put back)
 window.addEventListener('popstate', e => { if ($('#sheet').classList.contains('on')){ closeSheet(); history.pushState(snap(CURVIEW), ''); return; } const st = e.state; popping = popping.then(() => restore(st)); });
-function onView(id){ if (id === 'library') renderLibrary(); if (id === 'home') renderHome(); if (id === 'bookmarks') renderBookmarks(); if (id === 'settings') renderSettings(); if (id === 'vidhi') renderVidhi(); wake(id === 'reader'); if (id === 'search') setTimeout(() => $('#q').focus(), 50); }
+function onView(id){ if (PL.on) pSub(); if (id === 'library') renderLibrary(); if (id === 'home') renderHome(); if (id === 'bookmarks') renderBookmarks(); if (id === 'settings') renderSettings(); if (id === 'vidhi') renderVidhi(); wake(id === 'reader'); if (id === 'search') setTimeout(() => $('#q').focus(), 50); }
 $$('[data-back]').forEach(b => b.onclick = back);
 $$('[data-go]').forEach(b => b.onclick = () => show(b.dataset.go));
 function openSheet(html){ $('#sheetBody').innerHTML = html; $$('#sheetBody [data-tour]').forEach(b => b.onclick = () => { closeSheet(); startTour(); }); $('#sheet').classList.add('on'); $('#scrim').classList.add('on'); $('#sheet').scrollTop = 0; }
@@ -529,9 +529,10 @@ function savePos(i){ if (i == null) i = topVisibleItem(); const ws = WS(); ws.po
    follows the top verse. A big move (more than 1.5 screens in a second, a fling) or a navigation (another section or day,
    search, a bookmark, the plan switch, Back) is a jump: the anchor stays where the reading was, and the new place is only a
    candidate. It becomes the anchor once it is read there: 20 calm seconds with two verses read forward, or 45 calm seconds
-   (a page that fits on the screen), or 10 s of the recording playing there. While a recording plays on, the verse being
-   recited is the anchor. Resume (on the work's page) and “↩ Back to …” (in the reader, when the anchor is off the screen and
-   no recording plays) go to it. ws.anchor = {org, id, t}; ws.prev: anchors left for a new place, latest first, three kept. */
+   (a page that fits on the screen), or as soon as a recording plays there: pressing play is reading, and while it plays the
+   verse being recited is the anchor. Resume (on the work's page) goes to it; in the reader, “Back to …” (laid out like the
+   recording's “Go to …”) shows when it is off the screen, was read in the last 15 minutes, no recording plays and Audio
+   timing is off (marking timings jumps about by design). ws.anchor = {org, id, t}; ws.prev: anchors left for a new place, latest first, three kept. */
 const AN = {cand: null, calm: 0, lastY: 0, going: false, playT0: 0, manual: false};
 function anchorOf(){ const a = W && WS().anchor; return a && ID[a.id] != null && (a.org === 'k' || PLAN[a.org]) ? Object.assign({}, a, {i: ID[a.id]}) : null; }
 function setAnchor(org, i, moved){
@@ -548,7 +549,7 @@ function anchorJump(i){
 }
 function anchorTick(force){
   if (AN.manual && !force) return;
-  if (!W || CURVIEW !== 'reader' || document.hidden) return;
+  if (!W || CURVIEW !== 'reader' || document.hidden || S.timing.on) return;
   const y = scrollY, dy = Math.abs(y - AN.lastY), top = topVisibleItem(); AN.lastY = y;
   if (PL.on && playing()){ backPill(); return; }   // a recording: setCur keeps the anchor
   if (dy > 1.5 * innerHeight){ anchorJump(top); backPill(); return; }   // a fling
@@ -561,18 +562,18 @@ function anchorTick(force){
   backPill();
 }
 setInterval(anchorTick, 1000);
-// the recording: once it has played 10 s from where it was started, the verse being recited is the anchor
-function anchorPlay(i){ if (!W || !PL.on || Date.now() - AN.playT0 < 10000) return; const org = CURVIEW === 'reader' ? R.org : ((WS().anchor || {}).org || 'k');
+// the recording: the verse being recited is the anchor (not while marking timings)
+function anchorPlay(i){ if (!W || !PL.on || S.timing.on) return; const org = CURVIEW === 'reader' ? R.org : ((WS().anchor || {}).org || 'k');
   const moved = !!AN.cand || !anchorOf() || Math.abs(anchorOf().i - i) > 3; AN.cand = null; setAnchor(org, i, moved); }
 // “↩ Back to …”: in the reader, when the anchor is off the screen (and no recording plays: then ▸ jumps to the recited verse)
 function backPill(){
   const b = $('#rAnchor'), a = anchorOf(); let show = false;
-  if (a && CURVIEW === 'reader' && !(PL.on && playing())){
+  if (a && CURVIEW === 'reader' && !(PL.on && playing()) && !S.timing.on && Date.now() - (a.t || 0) < 15 * 60e3){
     const el = document.getElementById('v' + a.i), r = el && el.getBoundingClientRect();
     show = !(r && r.bottom > 70 && r.top < innerHeight - 90);
   }
   if (show){ const where = a.org === 'k' ? (PARTS.length > 1 ? KNAME(IT[a.i].p) : '') : VN(rangeFor(a.org, a.i)[2]);
-    const h = '<b><span class="arr">↩</span>' + T('', 'Back to ') + esc(posLabel(a.i)) + T(' पर लौटें', '') + '</b><small>' + esc(T('जहाँ आप पढ़ रहे थे', 'where you were reading') + (where ? ' · ' + where : '')) + '</small>';
+    const h = '<b><span class="arr">' + (a.i >= topVisibleItem() ? '↓' : '↑') + '</span>' + T('', 'Back to ') + esc(posLabel(a.i)) + T(' पर लौटें', '') + '</b>' + (where ? '<small>' + esc(where) + '</small>' : '');   // as “Go to …”: an arrow pointing the way, the place, the part or day
     if (b.innerHTML !== h) b.innerHTML = h;
     // above the reader's bottom bar (the sections) and the player, never over them
     const nb = $('#reader .navbar'), pl = $('#player'), tops = [innerHeight];
@@ -956,7 +957,7 @@ function spanSecs(a, b){
 // 48 m · 4 h 58 m (४ घं ५८ मि), to the nearest minute: a listening time, so it is shown with ▶, never as the time to read
 function durLabel(sec){ if (!sec) return ''; const m = Math.max(1, Math.round(sec / 60)), h = Math.floor(m / 60), r = m % 60;
   return h ? DEV(h) + T(' घं', ' h') + (r ? ' ' + DEV(r) + T(' मि', ' m') : '') : DEV(m) + T(' मि', ' m'); }
-function applyRate(){ if (ytOK) ytPost('setPlaybackRate', [RATE()]); if (PL.on) $('#pTrack').textContent = playingName(); $('#pRate').textContent = RATE() + '×'; }
+function applyRate(){ if (ytOK) ytPost('setPlaybackRate', [RATE()]); if (PL.on) pSub(); $('#pRate').textContent = RATE() + '×'; }
 // the speed button in the player bar: one tap moves to the next speed, round and round
 $('#pRate').onclick = () => { S.settings.rate = RATES[(RATES.indexOf(RATE()) + 1) % RATES.length]; save(); applyRate(); toast(T('गति ', 'Speed ') + RATE() + '×'); };
 /* outside the website (e.g. a claude.ai artifact) YouTube cannot be embedded: open YouTube's own player page, which can stop at the end of what was asked */
@@ -979,7 +980,7 @@ window.addEventListener('message', e => {
   let d; try { d = typeof e.data === 'string' ? JSON.parse(e.data) : e.data; } catch (x) { return; }
   if (!d) return;
   if (d.event === 'onError'){ const c = +d.info; clearTimeout(ytWait); if (PL.on) ytBlocked(c === 101 || c === 150 || c === 153 ? 'refused' : c === 100 ? 'gone' : ''); return; }
-  if (d.event === 'onReady' || d.event === 'initialDelivery' || d.event === 'infoDelivery'){ if (!ytOK){ ytOK = true; ytNoteOff(); clearTimeout(ytWait);if (RATE() !== 1) ytPost('setPlaybackRate', [RATE()]); if (PL.on) $('#pTrack').textContent = playingName(); if (PL.on && PL.snip != null && PL.seekT != null) ytPost('seekTo', [PL.seekT, true]); } }   // a preview in a freshly loaded player: the page can only start it at a whole second, so seek to the exact time
+  if (d.event === 'onReady' || d.event === 'initialDelivery' || d.event === 'infoDelivery'){ if (!ytOK){ ytOK = true; ytNoteOff(); clearTimeout(ytWait);if (RATE() !== 1) ytPost('setPlaybackRate', [RATE()]); if (PL.on) pSub(); if (PL.on && PL.snip != null && PL.seekT != null) ytPost('seekTo', [PL.seekT, true]); } }   // a preview in a freshly loaded player: the page can only start it at a whole second, so seek to the exact time
   const info = d.info || {};
   if (typeof info.currentTime === 'number'){ ytInfo.t = info.currentTime; ytInfo.at = performance.now(); }
   if (typeof info.playbackRate === 'number' && info.playbackRate !== RATE() && ytOK && PL.on) ytPost('setPlaybackRate', [RATE()]);
@@ -988,6 +989,9 @@ window.addEventListener('message', e => {
   if (d.event === 'onStateChange' && typeof d.info === 'number'){ ytInfo.st = d.info; syncPlayer(); if (d.info === 0) onEnded(); }
 });
 /* what is playing, in the app's own words: the reading (kāṇḍa or plan day) and the reciter — never the recording's title */
+// the player's small line: outside the reader it says the label can be tapped (“Go to verse ›”); in the reader, what is playing
+function pSub(){ const out = CURVIEW !== 'reader'; $('#pTrack').textContent = out ? T('पदपर जाएँ ›', 'Go to verse ›') : (PL.on && SRC.au ? playingName() : ''); $('#pInfo').classList.toggle('go', out);
+  $('#pInfo').setAttribute('aria-label', T('चल रहे पदपर जाएँ', 'Go to the verse playing')); }
 function playingName(){ return (R.org === 'k' ? KNAME(R.n) : TT(PLAN[R.org].name) + ' · ' + VN(R.n)) + ' · ' + TT(SRC.au.meta.title); }   // the speed has its own button in the bar
 // Fine-tuning preview: after − / + on a start, the first 2 s of the verse play from the new start; on an
 // end, the last 2 s up to the new end. Then the player pauses, so the next tap can follow at once.
@@ -1002,7 +1006,7 @@ function snippet(i, k){
   $('#player').hidden = false; document.body.classList.add('playing');
   seekGuard(t0);
   if (ytVid !== tr.yt || !ytFrame()) ytLoad(tr.yt, t0); else { ytPost('seekTo', [t0, true]); ytPost('playVideo'); ytInfo.t = t0; ytInfo.at = performance.now(); }
-  setCur(i); $('#pTrack').textContent = playingName(); syncPlayer();
+  setCur(i); pSub(); syncPlayer();
   clearInterval(snipT); snipT = setInterval(() => {   // checked often, from the player's last report and the time since
     if (PL.snip == null){ clearInterval(snipT); return; }
     const now = playTime() + (playing() && ytInfo.at && PL.seekT == null ? RATE() * (performance.now() - ytInfo.at) / 1000 : 0);
@@ -1019,7 +1023,7 @@ function playFrom(i, end){
   $('#player').hidden = false; document.body.classList.add('playing'); wake(true);
   seekGuard(st);
   if (ytVid !== tr.yt || !ytFrame()) ytLoad(tr.yt, st); else { ytPost('seekTo', [st, true]); ytPost('playVideo'); ytInfo.t = st; ytInfo.at = performance.now(); }
-  setCur(i); $('#pTrack').textContent = playingName(); syncPlayer();
+  setCur(i); pSub(); syncPlayer();
 }
 // Right after a seek the player still reports its old time (or a moment before the asked-for one), which would light the
 // previous verse for a beat. Until it reports a time at the asked-for start (at most 4 s), use that start.
@@ -1107,7 +1111,7 @@ function followLines(i, time){
 function setCur(i){
   if (PL.cur === i) return; PL.cur = i; PL.line = null;
   $$('#rBody .verse.now').forEach(v => v.classList.remove('now'));
-  $('#pVerse').textContent = KNAME(IT[i].p) + ' · ' + posLabel(i); $('#pTrack').textContent = playingName();
+  $('#pVerse').textContent = posLabel(i); pSub();   // only the place in the text (Doha 45 · Chaupai 3, Shloka 1), so it is seen to move verse by verse
   anchorPlay(i);
   if (!$('#reader').classList.contains('on')) return;
   if (i < R.a || i > R.b){ R.org = R.org; [R.a, R.b, R.n] = rangeFor(R.org, i); renderAround(i); }
@@ -1553,15 +1557,15 @@ function renderSettings(){   // the "More settings" page: the rare things only �
 function pendingStarts(){ if (!SRC.au) return {}; const fx = myStarts(), sent = S.timing.sent[tkey()] || {}, out = {}; for (const id in fx) if (ID[id] != null && !fromOf(id) && JSON.stringify(sent[id]) !== JSON.stringify(fx[id])) out[id] = fx[id]; return out; }
 function timingHTML(){
   if (!W) return '';
-  let h = '<h2>' + T('ऑडियोका समय', 'Audio timing') + '</h2><p class="small muted">' + T('जहाँ पद और आवाज़ मेल न खाएँ, वहाँ ठीक करनेके लिये।', 'For fixing places where the lit verse and the voice do not match.') + '</p>' + sw('stm', T('ऑडियोका समय', 'Audio timing'), '', S.timing.on) +
+  let h = '<h2>' + T('ऑडियोका समय', 'Audio timing') + '</h2>' + sw('stm', T('ऑडियोका समय', 'Audio timing'), T('ऑडियो और पदका मेल ठीक करें', 'Fix audio and verse mismatches'), S.timing.on) +
     sw('stf', T('समय जाँचें', 'Review timing'), T('झंडा दबानेसे पद जाँच-सूचीमें जुड़ता है', 'Tapping the flag adds a verse to the checklist'), !!S.timing.flagsOn);
   if (S.timing.on && SRC.au){
     const n = Object.keys(myStarts()).filter(id => ID[id] != null).length, p = Object.keys(pendingStarts()).length;
     h += (SRC.au.meta.draft ? sw('stp', T('यह रिकॉर्डिंग जाँच ली — सबके लिये चालू करें', 'This recording is checked: publish it for everyone'), (Object.keys(pendingStarts()).length > SEND_MAX ? T('भेजनेके अन्तिम भागके साथ जाएगा', 'Goes with the last part of the send') : T('भेजनेके साथ जाएगा', 'Goes with the next send')), !!(S.timing.publish || {})[tkey()]) : '') +
       checkList() + helperList() +
-      '<p class="small" style="margin:14px 0 8px">' + esc(TT(SRC.au.meta.title)) + ': ' + DEV(n) + T(' पद आपने ठीक किये', ' verses set by you') + (p ? ' · ' + DEV(p) + T(' भेजने बाकी', ' not sent yet') : '') + '</p>' +
-      '<div class="acts"><button class="btn" id="tSend"' + (p || (S.timing.publish || {})[tkey()] ? '' : ' disabled') + '>' + T('लाइब्रेरीमें भेजें', 'Send to library') + (p > SEND_MAX ? '<br><small>' + T('भाग १, कुल ', 'part 1 of ') + DEV(Math.ceil(p / SEND_MAX)) + T(' — फिर दोबारा दबाएँ', ' — then tap again') + '</small>' : '') + '</button><button class="btn ghost" id="tSave"' + (n ? '' : ' disabled') + '>' + T('फ़ाइलमें सेव करें', 'Save timings as a file') + '</button><button class="btn ghost" id="tOpen">' + T('फ़ाइल खोलें', 'Open a file') + '</button>' + (n ? '<button class="btn ghost" id="tClear">' + T('मेरे बदलाव हटाएँ', 'Clear adjustments') + '</button>' : '') + '</div>' +
-      '<p class="small muted">' + T('सहायता कर रहे हैं? “फ़ाइलमें सेव करें” दबाकर फ़ाइल साइटके मालिकको भेजें; वे जाँचकर लाइब्रेरीमें जोड़ेंगे। लाइब्रेरीमें सीधे केवल मालिक भेज सकते हैं।', 'Helping? Tap “Save timings as a file” and send the file to the site’s owner, who checks it and adds it to the library. Only the owner can send to the library directly.') + '</p>';
+      '<p class="small" style="margin:14px 0 8px">' + esc(TT(SRC.au.meta.title)) + ': ' + (n ? DEV(n) + T(' पदोंका समय आपने रखा', ' verses timed by you') : T('अभी आपने कोई समय नहीं रखा', 'none timed by you yet')) + (p ? ' · ' + DEV(p) + T(' प्रकाशित करने बाकी', ' to publish') : '') + '</p>' +
+      '<div class="acts"><button class="btn" id="tSend"' + (p || (S.timing.publish || {})[tkey()] ? '' : ' disabled') + '>' + T('बदलाव प्रकाशित करें', 'Publish changes') + (p > SEND_MAX ? '<br><small>' + T('भाग १, कुल ', 'part 1 of ') + DEV(Math.ceil(p / SEND_MAX)) + T(' — फिर दोबारा दबाएँ', ' — then tap again') + '</small>' : '') + '</button><button class="btn ghost" id="tSave"' + (n ? '' : ' disabled') + '>' + T('सेव करें', 'Save') + '</button><button class="btn ghost" id="tOpen">' + T('खोलें', 'Open') + '</button>' + (n ? '<button class="btn ghost" id="tClear">' + T('रीसेट', 'Reset') + '</button>' : '') + '</div>' +
+      '<p class="small muted">' + T('सहायता कर रहे हैं? “सेव करें” दबाकर फ़ाइल साइटके मालिकको भेजें; वे जाँचकर लाइब्रेरीमें जोड़ेंगे। सीधे प्रकाशित केवल मालिक कर सकते हैं।', 'Helping? Tap “Save” and send the file to the site’s owner, who checks it and adds it to the library. Only the owner can publish directly.') + '</p>';
   }
   return h;
 }

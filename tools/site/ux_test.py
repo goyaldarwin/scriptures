@@ -1109,9 +1109,12 @@ async def main():
             openReader('k', PARTS[3].a); await new Promise(r => setTimeout(r, 300)); tick(5); const notYet = anchorOf().i === read;
             for (let x = 0; x < 22; x++){ await step(60); tick(1); } const moved = anchorOf().i >= PARTS[3].a, before = (WS().prev || [])[0] && ID[WS().prev[0].id] === read;
             show('home'); const resume = $('#cGo') && $('#cGo').textContent.includes('Resume'), named = $('#contAt').textContent.includes(posLabel(anchorOf().i)), earlier = !!$('#cPrev');
-            PL.on = true; AN.playT0 = Date.now() - 11000; PL.cur = -1; setCur(PARTS[4].a + 1); const byAudio = anchorOf().i === PARTS[4].a + 1; PL.on = false;
-            AN.manual = false; return [read >= k.a, afterFling === read, cand, pill, back, pillGone, notYet, moved, before, resume, named, earlier, byAudio]; })()""")
-        check('the reading anchor: reading moves it, a fling does not; Back to returns; a new place takes over once read; Resume names it; audio leads it', all(an), an)
+            PL.on = true; PL.cur = -1; setCur(PARTS[4].a + 1); const byAudio = anchorOf().i === PARTS[4].a + 1; PL.on = false;   // pressing play is reading: at once
+            openReader('k', PARTS[2].a); await new Promise(r => setTimeout(r, 200)); backPill(); const pillAgain = !$('#rAnchor').hidden;
+            S.timing.on = true; backPill(); const noPillTiming = $('#rAnchor').hidden; S.timing.on = false;
+            WS().anchor.t = Date.now() - 16 * 60e3; backPill(); const noPillStale = $('#rAnchor').hidden; WS().anchor.t = Date.now();
+            AN.manual = false; return [read >= k.a, afterFling === read, cand, pill, back, pillGone, notYet, moved, before, resume, named, earlier, byAudio, pillAgain, noPillTiming, noPillStale]; })()""")
+        check('the reading anchor: reading moves it, a fling does not; Back to returns; a new place takes over once read; Resume names it; playing moves it at once; no Back to in timing mode or after 15 minutes', all(an), an)
         # a number in a work's search finds by doha: "45" the doha 45 of each kand, "45.3" chaupai 3 under it, "दोहा ४५" too;
         # in a work without dohas, the verse of that number
         nums = await ev("""(async () => { const find = async (w, q) => { await openWork(w, true); setScope('text'); $('#q').value = q; runSearch(); await new Promise(r => setTimeout(r, 400)); return $$('#sRes .res').map(b => +b.dataset.i); };
@@ -1128,6 +1131,11 @@ async def main():
             const sb = $('#sheetBody'); out.push([+getComputedStyle(sb).zoom, sb.scrollWidth <= sb.clientWidth + 1, +getComputedStyle($('#sRes')).zoom]); closeSheet(); }
             S.settings.size = was; applyTheme(); return out; })()""")
         check('A−/A+ scale the sheets and search results; nothing spills sideways at the largest size', zs[0][0] == 1 and zs[1][0] > 1.3 and zs[1][1] and zs[1][2] > 1.3, zs)
+        # the player outside the reader: only the place ("Doha 1 · Chaupai 3") and "Go to verse ›"; a tap opens the verse playing
+        pg_ = await ev("""(async () => { await openWork('sundarkand', true); show('home'); playRange('k', PARTS[2].a, PARTS[2].b); await new Promise(r => setTimeout(r, 300)); PL.cur = -1; setCur(PARTS[2].a + 5);
+            const inR = $('#pTrack').textContent; show('home'); await new Promise(r => setTimeout(r, 200)); const lab = $('#pVerse').textContent, sub = $('#pTrack').textContent;
+            $('#pInfo').click(); await new Promise(r => setTimeout(r, 400)); const r = [lab, sub, inR, CURVIEW, !!document.querySelector('#v' + (PARTS[2].a + 5) + '.now')]; stopAudio(); return r; })()""")
+        check('the player outside the reader shows only the place and "Go to verse", which opens the verse playing', pg_[0] == 'Doha 1 · Chaupai 3' and pg_[1] == 'Go to verse ›' and 'Go to verse' not in pg_[2] and pg_[3] == 'reader' and pg_[4], pg_)
         # the library lists works by name only (ⓘ About is on the work's own page)
         nolib = await ev("(async () => { libPath = []; show('library'); await new Promise(r => setTimeout(r, 300)); return [$$('#libList [data-open-work]').length, $$('#libList .winfo, #libList [data-info-work]').length]; })()")
         check('the library shows works by name, without ⓘ', nolib[0] > 0 and nolib[1] == 0, nolib)
