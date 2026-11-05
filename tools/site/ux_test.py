@@ -1096,6 +1096,33 @@ async def main():
             $('#orgList [data-mark="2"]').click(); const off = !DONE(ME(), 'M')[2];
             for (const k in d) delete d[k]; Object.assign(d, had); save(); renderHome(); return [inRow, bar, w0, on, bar2, view, off]; })()""")
         check("work page: About beside the author, a progress bar, and a vishram's number marks it done and not done", wp[0] and wp[1] == '1 / 30' and wp[2] == '3%' and wp[3] and wp[4] == '2 / 30' and wp[5] == 'home' and wp[6], wp)
+        # the reading anchor (Resume, Back to): calm reading moves it; a fling or a jump does not; reading the new place for a while
+        # does (the old place is kept as "before that"); a recording playing 10 s makes the recited verse the anchor
+        an = await ev("""(async () => { AN.manual = true; await openWork('sundarkand', true); const ws = WS(); delete ws.anchor; delete ws.prev; AN.cand = null; AN.calm = 0;
+            const k = PARTS[2]; openReader('k', k.a); await new Promise(r => setTimeout(r, 300)); const tick = n => { for (let x = 0; x < n; x++) anchorTick(true); };
+            const step = async dy => { window.scrollBy(0, dy); await new Promise(r => setTimeout(r, 30)); };
+            tick(1); for (let x = 0; x < 6; x++){ await step(80); tick(1); }
+            const read = anchorOf().i, readTop = topVisibleItem();
+            await step(4 * innerHeight); tick(1); const afterFling = anchorOf().i, cand = !!AN.cand; await new Promise(r => setTimeout(r, 50)); backPill();
+            const pill = !$('#rAnchor').hidden && $('#rAnchor').textContent.includes(posLabel(read)) && $('#rAnchor').getBoundingClientRect().bottom <= $('#reader .navbar').getBoundingClientRect().top;   // above the bottom bar, not over it
+            $('#rAnchor').click(); await new Promise(r => setTimeout(r, 400)); const el = document.getElementById('v' + read).getBoundingClientRect(); const back = el.top < innerHeight && el.bottom > 0, pillGone = $('#rAnchor').hidden;
+            openReader('k', PARTS[3].a); await new Promise(r => setTimeout(r, 300)); tick(5); const notYet = anchorOf().i === read;
+            for (let x = 0; x < 22; x++){ await step(60); tick(1); } const moved = anchorOf().i >= PARTS[3].a, before = (WS().prev || [])[0] && ID[WS().prev[0].id] === read;
+            show('home'); const resume = $('#cGo') && $('#cGo').textContent.includes('Resume'), named = $('#contAt').textContent.includes(posLabel(anchorOf().i)), earlier = !!$('#cPrev');
+            PL.on = true; AN.playT0 = Date.now() - 11000; PL.cur = -1; setCur(PARTS[4].a + 1); const byAudio = anchorOf().i === PARTS[4].a + 1; PL.on = false;
+            AN.manual = false; return [read >= k.a, afterFling === read, cand, pill, back, pillGone, notYet, moved, before, resume, named, earlier, byAudio]; })()""")
+        check('the reading anchor: reading moves it, a fling does not; Back to returns; a new place takes over once read; Resume names it; audio leads it', all(an), an)
+        # a number in a work's search finds by doha: "45" the doha 45 of each kand, "45.3" chaupai 3 under it, "दोहा ४५" too;
+        # in a work without dohas, the verse of that number
+        nums = await ev("""(async () => { const find = async (w, q) => { await openWork(w, true); setScope('text'); $('#q').value = q; runSearch(); await new Promise(r => setTimeout(r, 400)); return $$('#sRes .res').map(b => +b.dataset.i); };
+            const m = await find('manas', '45'), mOk = m.length > 3 && m.every(i => ['do', 'so'].includes(IT[i].y) && IT[i].s === '45');
+            const kands = new Set(m.map(i => IT[i].p)).size === m.length;
+            const c = await find('manas', '45.3'), cOk = c.length > 3 && c.every(i => IT[i].y === 'cau' && IT[i].s === '45' && parseInt(IT[i].n) === 3);
+            const h = await find('manas', 'दोहा ४५'), hOk = h.join() === m.join();
+            const s = await find('sundarkand', '2'), sOk = s.length === 1 && IT[s[0]].id === 'sundar.2.do2';
+            const r = await find('ramraksha', '5'), rOk = r.length >= 1 && r.every(i => parseInt(IT[i].n) === 5);
+            return [mOk, kands, cOk, hOk, sOk, rOk, m.length, c.length]; })()""")
+        check('a number in a work search finds that doha in each kand, N.M a chaupai under it; elsewhere the verse of that number', all(nums[:6]), nums)
         # the library lists works by name only (ⓘ About is on the work's own page)
         nolib = await ev("(async () => { libPath = []; show('library'); await new Promise(r => setTimeout(r, 300)); return [$$('#libList [data-open-work]').length, $$('#libList .winfo, #libList [data-info-work]').length]; })()")
         check('the library shows works by name, without ⓘ', nolib[0] > 0 and nolib[1] == 0, nolib)

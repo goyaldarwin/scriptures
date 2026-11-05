@@ -523,6 +523,65 @@ let scT;
 window.addEventListener('scroll', () => { if (!$('#reader').classList.contains('on')) return; ensure(); clearTimeout(scT); scT = setTimeout(() => { updateHeader(); savePos(); }, 200); }, {passive: true});
 function savePos(i){ if (i == null) i = topVisibleItem(); const ws = WS(); ws.pos[R.org] = i; ws.last = {org: R.org, i, id: IT[i].id}; save();
   R.at = {org: R.org, id: IT[i].id}; if (CURVIEW === 'reader' && history.state && history.state.v === 'reader') history.replaceState(snap('reader'), ''); }   // Back and a refresh return here
+/* ---------------- the reading anchor: Resume and “Back to” ----------------
+   Where you were reading, not merely where the screen is. Each second while the reader is open and seen, the verse at the top
+   of the screen is looked at. Calm movement (under half a screen in a second) is reading: after 3 calm seconds the anchor
+   follows the top verse. A big move (more than 1.5 screens in a second, a fling) or a navigation (another section or day,
+   search, a bookmark, the plan switch, Back) is a jump: the anchor stays where the reading was, and the new place is only a
+   candidate. It becomes the anchor once it is read there: 20 calm seconds with two verses read forward, or 45 calm seconds
+   (a page that fits on the screen), or 10 s of the recording playing there. While a recording plays on, the verse being
+   recited is the anchor. Resume (on the work's page) and “↩ Back to …” (in the reader, when the anchor is off the screen and
+   no recording plays) go to it. ws.anchor = {org, id, t}; ws.prev: anchors left for a new place, latest first, three kept. */
+const AN = {cand: null, calm: 0, lastY: 0, going: false, playT0: 0, manual: false};
+function anchorOf(){ const a = W && WS().anchor; return a && ID[a.id] != null && (a.org === 'k' || PLAN[a.org]) ? Object.assign({}, a, {i: ID[a.id]}) : null; }
+function setAnchor(org, i, moved){
+  const ws = WS(), a = ws.anchor; if (!IT[i]) return;
+  if (a && a.id === IT[i].id && a.org === org){ a.t = Date.now(); return; }
+  if (moved && a && a.id) ws.prev = [a].concat((ws.prev || []).filter(p => p.id !== a.id && p.id !== IT[i].id)).slice(0, 3);   // the place left behind
+  ws.anchor = {org, id: IT[i].id, t: Date.now()}; save();
+}
+// a navigation to verse i: the reading may be elsewhere, so the anchor waits (with no anchor yet, this is where reading starts)
+function anchorJump(i){
+  if (AN.going){ AN.going = false; AN.cand = null; AN.calm = 0; return; }   // going back to the anchor itself
+  if (!anchorOf()){ setAnchor(R.org, i); return; }
+  AN.cand = {calm: 0, fwd: 0, top: i}; AN.calm = 0; AN.lastY = scrollY;
+}
+function anchorTick(force){
+  if (AN.manual && !force) return;
+  if (!W || CURVIEW !== 'reader' || document.hidden) return;
+  const y = scrollY, dy = Math.abs(y - AN.lastY), top = topVisibleItem(); AN.lastY = y;
+  if (PL.on && playing()){ backPill(); return; }   // a recording: setCur keeps the anchor
+  if (dy > 1.5 * innerHeight){ anchorJump(top); backPill(); return; }   // a fling
+  if (dy >= 0.5 * innerHeight){ AN.calm = 0; if (AN.cand){ AN.cand.calm = 0; AN.cand.top = top; } backPill(); return; }   // moving fast: looking, not reading
+  AN.calm++;
+  const c = AN.cand;
+  if (c){ c.calm++; if (top > c.top) c.fwd += top - c.top; c.top = top;
+    if ((c.calm >= 20 && c.fwd >= 2) || c.calm >= 45){ AN.cand = null; setAnchor(R.org, top, true); } }
+  else if (AN.calm >= 3) setAnchor(R.org, top);
+  backPill();
+}
+setInterval(anchorTick, 1000);
+// the recording: once it has played 10 s from where it was started, the verse being recited is the anchor
+function anchorPlay(i){ if (!W || !PL.on || Date.now() - AN.playT0 < 10000) return; const org = CURVIEW === 'reader' ? R.org : ((WS().anchor || {}).org || 'k');
+  const moved = !!AN.cand || !anchorOf() || Math.abs(anchorOf().i - i) > 3; AN.cand = null; setAnchor(org, i, moved); }
+// “↩ Back to …”: in the reader, when the anchor is off the screen (and no recording plays: then ▸ jumps to the recited verse)
+function backPill(){
+  const b = $('#rAnchor'), a = anchorOf(); let show = false;
+  if (a && CURVIEW === 'reader' && !(PL.on && playing())){
+    const el = document.getElementById('v' + a.i), r = el && el.getBoundingClientRect();
+    show = !(r && r.bottom > 70 && r.top < innerHeight - 90);
+  }
+  if (show){ const where = a.org === 'k' ? (PARTS.length > 1 ? KNAME(IT[a.i].p) : '') : VN(rangeFor(a.org, a.i)[2]);
+    const h = '<b><span class="arr">↩</span>' + T('', 'Back to ') + esc(posLabel(a.i)) + T(' पर लौटें', '') + '</b><small>' + esc(T('जहाँ आप पढ़ रहे थे', 'where you were reading') + (where ? ' · ' + where : '')) + '</small>';
+    if (b.innerHTML !== h) b.innerHTML = h;
+    // above the reader's bottom bar (the sections) and the player, never over them
+    const nb = $('#reader .navbar'), pl = $('#player'), tops = [innerHeight];
+    if (nb && nb.offsetHeight) tops.push(nb.getBoundingClientRect().top); if (!pl.hidden) tops.push(pl.getBoundingClientRect().top);
+    b.style.bottom = (innerHeight - Math.min(...tops) + 10) + 'px'; }
+  b.hidden = !show;
+}
+function goAnchor(){ const a = anchorOf(); if (!a) return; AN.going = true; openReader(a.org, a.i, true); backPill(); }
+$('#rAnchor').onclick = goAnchor;
 // a verse opened from search or a bookmark opens in the reading plan chosen on the work's home, on the day that holds it
 function readOrg(){ const o = homeOrg(); return o !== 'k' && PLAN[o] ? o : 'k'; }
 // A place is found again by its item id. Places saved before ids were kept are item positions; when a work later had
@@ -566,14 +625,14 @@ function openReader(org, i, flash){
   R.org = org; [R.a, R.b, R.n] = rangeFor(org, i);
   if (!$('#reader').classList.contains('on')) show('reader');
   renderAround(i); if (flash){ const el = document.getElementById('v' + i); if (el) el.classList.add('flash'); }
-  savePos(i);
+  savePos(i); anchorJump(i); setTimeout(backPill, 80);
 }
 function reopenReader(){ fixLast(); const l = WS().last; if (l && IT[l.i]) openReader(l.org, l.i); else show('home', false); }
 function jumpTo(i){
   if (i < R.a || i > R.b){ openReader(R.org, i); return; }
   const pg = itemPage[i];
   if (pg >= R.pf && pg <= R.pt) scrollToItem(i, false); else renderAround(i);
-  setTimeout(() => { updateHeader(); savePos(i); }, 60);
+  setTimeout(() => { updateHeader(); savePos(i); anchorJump(i); backPill(); }, 60);
 }
 function refreshReader(){
   if (!$('#reader').classList.contains('on')) return;
@@ -956,7 +1015,7 @@ function playFrom(i, end){
   if (!hasAu(i)){ const j = firstAu(i, Math.min(IT.length - 1, i + 80)); if (j == null) return; i = j; }
   const [t, st0] = SRC.au.at[IT[i].id], tr = SRC.au.tracks[t];
   const st = (end != null && i === tr.fi) ? trStart(tr) : st0;
-  PL.on = true; PL.t = t; PL.end = end; PL.cur = -1; PL.whole = false; PL.endMsg = '';
+  PL.on = true; PL.t = t; PL.end = end; PL.cur = -1; PL.whole = false; PL.endMsg = ''; AN.playT0 = Date.now();
   $('#player').hidden = false; document.body.classList.add('playing'); wake(true);
   seekGuard(st);
   if (ytVid !== tr.yt || !ytFrame()) ytLoad(tr.yt, st); else { ytPost('seekTo', [st, true]); ytPost('playVideo'); ytInfo.t = st; ytInfo.at = performance.now(); }
@@ -1049,6 +1108,7 @@ function setCur(i){
   if (PL.cur === i) return; PL.cur = i; PL.line = null;
   $$('#rBody .verse.now').forEach(v => v.classList.remove('now'));
   $('#pVerse').textContent = KNAME(IT[i].p) + ' · ' + posLabel(i); $('#pTrack').textContent = playingName();
+  anchorPlay(i);
   if (!$('#reader').classList.contains('on')) return;
   if (i < R.a || i > R.b){ R.org = R.org; [R.a, R.b, R.n] = rangeFor(R.org, i); renderAround(i); }
   else if (!document.getElementById('v' + i)) renderAround(i, false);
@@ -1301,10 +1361,14 @@ function renderHome(){
   $('#hTitle').textContent = TT(W.title); fitTitle(); $('#hSub').textContent = [TT(W.by), TT(W.from)].filter(Boolean).join(' · ');   // the author and, where there is one, the parent text — never the publisher or source
   // ▶ the whole work, start to end, across every part and recording
   const pa = $('#hPlayAll'), fa = firstAu(0, IT.length - 1); pa.hidden = fa == null; pa.onclick = () => playRange('k', 0, IT.length - 1);
-  fixLast(); const L = WS().last;
-  // one short button: continue where you left off (the reader shows where you are)
-  $('#contCard').innerHTML = L && IT[L.i] ? '<button class="btn ghost cont" id="cGo">' + T('आगे पढ़ें', 'Continue') + ' ›</button>' : '';
-  if ($('#cGo')) $('#cGo').onclick = () => openReader(L.org, L.i);
+  fixLast(); const L = WS().last, A = anchorOf() || (L && IT[L.i] ? {org: L.org, i: L.i} : null);
+  // Resume: where you were reading (the reading anchor), named under the buttons; and the place before it, if you moved on
+  $('#contCard').innerHTML = A ? '<button class="btn ghost cont" id="cGo">' + T('आगे पढ़ें', 'Resume') + ' ›</button>' : '';
+  if ($('#cGo')) $('#cGo').onclick = () => { AN.going = true; openReader(A.org, A.i, true); };
+  const prev = ((WS().prev || []).map(p => ID[p.id] != null && (p.org === 'k' || PLAN[p.org]) ? {org: p.org, i: ID[p.id]} : null).filter(p => p && (!A || p.i !== A.i)))[0];
+  $('#contAt').innerHTML = A ? esc(T('पढ़ रहे थे: ', 'Reading: ') + itemLabel(A.i)) + (prev ? ' · <button class="lnk" id="cPrev">' + esc(T('उससे पहले: ', 'Before that: ') + itemLabel(prev.i)) + '</button>' : '') : '';
+  $('#contAt').hidden = !A;
+  if ($('#cPrev')) $('#cPrev').onclick = () => { AN.going = true; openReader(prev.org, prev.i, true); };
   const org = homeOrg();
   $('#orgSeg').innerHTML = '<button data-org="k">' + esc(TT(W.parts.name)) + '</button>' + PLANS.map(p => '<button data-org="' + p.id + '">' + esc(TT(p.name)) + '</button>').join('');
   $$('#orgSeg button').forEach(b => { b.classList.toggle('on', b.dataset.org === org); b.onclick = () => { WS().org = b.dataset.org; save(); renderHome(); }; });
@@ -1396,11 +1460,27 @@ const scopes = new Set(['v', 'h', 'e', 'n', 'pa']);
 $$('#scope .chip').forEach(c => c.onclick = () => { const s = c.dataset.s; if (scopes.has(s)) scopes.delete(s); else scopes.add(s); c.classList.toggle('on'); runSearch(); });
 let sT; $('#q').addEventListener('input', () => { clearTimeout(sT); sT = setTimeout(runSearch, 250); });
 function snip(text, q, latin){ const src = text; const low = latin ? normL(src) : normD(src); const nq = latin ? normL(q) : normD(q); let p = low.indexOf(nq); if (p < 0) return esc(src.slice(0, 160)) + (src.length > 160 ? '…' : ''); let a = Math.max(0, p - 60), b = Math.min(src.length, p + nq.length + 80); if (a > 0){ const sp = src.indexOf(' ', a); if (sp > -1 && sp < p) a = sp + 1; } const s = src.slice(a, b); const pp = (latin ? normL(s) : normD(s)).indexOf(nq); let out; if (pp >= 0 && (latin ? normL(s) : normD(s)).length === s.length) out = esc(s.slice(0, pp)) + '<mark>' + esc(s.slice(pp, pp + nq.length)) + '</mark>' + esc(s.slice(pp + nq.length)); else out = esc(s); return (a > 0 ? '…' : '') + out + (b < src.length ? '…' : ''); }
+// A number typed into a work's search finds by number. In a work counted by dohas (the Manas, its kands), the doha is the main
+// counter and the chaupais count again under each: "45" (or "दोहा ४५") finds Doha 45 in each part, "45.3" (or "45 3") Chaupai 3
+// under Doha 45. In a work without dohas (a stotra, an Upanishad), a number finds the verse of that number.
+function numQuery(q){
+  const d = q.replace(/[०-९]/g, c => '०१२३४५६७८९'.indexOf(c)).toLowerCase().replace(/^(dohā|doha|dohe|दोहा|दोहे|soraṭhā|soratha|सोरठा)\s*/, '').trim();
+  const m = /^(\d{1,4})(?:\s*[.\/:,\s]\s*(\d{1,3}))?$/.exec(d); return m ? [+m[1], m[2] ? +m[2] : null] : null;
+}
+function numHits([N, M], hits){
+  const v = i => (IT[i].v || []).map(l => l.trim()).join(' '), add = i => hits.push([hits.length, i, LB.verses(), v(i), false]);
+  if (PAGES.some(p => isNum(p.s))){
+    for (const p of PAGES){ if (!isNum(p.s) || +p.s !== N) continue; let i = -1;
+      if (M != null){ for (let j = p.from; j <= p.to; j++) if (IT[j].y === 'cau' && parseInt(IT[j].n, 10) === M){ i = j; break; } }
+      else { for (let j = p.to; j >= p.from; j--) if (IT[j].y === 'do' || IT[j].y === 'so'){ i = j; break; } if (i < 0) i = p.to; }
+      if (i >= 0) add(i); }
+  } else IT.forEach((it, i) => { if (parseInt(it.n, 10) === N) add(i); });
+}
 function runSearch(){
   if (SCOPE === 'lib'){ const q = $('#q').value; if (q.trim()) libSearch(q); else openSearch('lib', true); return; }
   if (!wReady){ WREADY.then(runSearch); return; }   // searching a work needs its meanings
-  const q = $('#q').value.trim(), box = $('#sRes');
-  if (q.length < 2){ box.innerHTML = '<div class="empty">' + T('कम-से-कम दो अक्षर लिखें।', 'Type at least two letters.') + '</div>'; return; }
+  const q = $('#q').value.trim(), box = $('#sRes'), num = numQuery(q);
+  if (q.length < 2 && !num){ box.innerHTML = '<div class="empty">' + T('कम-से-कम दो अक्षर लिखें।', 'Type at least two letters.') + '</div>'; return; }
   if (!IDX || IDX.w !== idxKey()) buildIdx();
   if (BYPART() && PARTS.some(P => !partReady(P.k))) searchParts(); const loading = SLOADING;   // the meanings of the parts not in yet
   const latin = /[a-zA-Z]/.test(q), nq = latin ? normL(q) : normD(q);
@@ -1411,7 +1491,8 @@ function runSearch(){
       for (const m of meanK) if (x[m] && (words ? wordsIn(qs, x[m].split(' ')) >= need : x[m].includes(qm))) return [m, LBM(m), SRC[m].m[IT[x.i].id][0], false]; }
     else if (scopes.has('e') && x.e && (words ? ew.every(w => x.e.includes(w)) : x.e.includes(nq))) return ['e', LB.e(), SRC.en.m[IT[x.i].id][0], true];
     return null; };
-  if (qj) for (let i = 0; i < IT.length; i++){
+  if (num){ numHits(num, hits); }   // a number: the doha of that number (or a chaupai under it), not the digits in the text
+  else if (qj) for (let i = 0; i < IT.length; i++){
     const x = IDX[i]; x.i = i; const vt = latin ? x.t : x.v, vw = latin ? x.tw : x.vw;
     // a near match that holds few of the words typed is chance; among matches as near, the one holding more words comes first
     if (scopes.has('v') && vt){ const d = near(qj, vt, k), sc = d <= k && qs.length > 1 ? wordsIn(qs, vw) : 1; if (d <= k && (d === 0 || qs.length < 2 || sc >= qs.length / 2)){ hits.push([d - sc / 100, i, LB.verses(), IT[i].v.join(' । '), false]); continue; } }
