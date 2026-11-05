@@ -22,6 +22,11 @@ def mine(works):
     return [w for k, w in enumerate(works) if SHARD and k % (NSHARD - 1) == SHARD - 1]
 results = []
 
+def YT_ERR(e):
+    """An error thrown inside YouTube's own player scripts, not the app's (its stack names only YouTube's files)."""
+    st = getattr(e, 'stack', '') or ''
+    return ('youtube.com' in st or 'ytimg.com' in st) and '/app/app.js' not in st
+
 def check(name, ok, seen=''):
     results.append(bool(ok)); print(('PASS ' if ok else 'FAIL ') + name + (f'  [{seen}]' if seen != '' else ''), flush=True)
 
@@ -44,7 +49,7 @@ async def main():
         ctx = await b.new_context(viewport={'width': 390, 'height': 844}, device_scale_factor=1, is_mobile=True, has_touch=True)
         pg = await ctx.new_page(); errs = []
         await pg.add_init_script('window.__SALUTE_MS = 0')   # the 1.5 s greeting is tested on its own
-        pg.on('pageerror', lambda e: errs.append(str(e)))
+        pg.on('pageerror', lambda e: None if YT_ERR(e) else errs.append(str(e)))   # YouTube's own script errors (the real player on the CI runner) are not the app's
         n = 0
         async def shot(tag):
             nonlocal n
@@ -1175,7 +1180,9 @@ async def main():
             S.settings.size = was; applyTheme(); return out; })()""")
         check('A−/A+ scale the sheets and search results; nothing spills sideways at the largest size', zs[0][0] == 1 and zs[1][0] > 1.3 and zs[1][1] and zs[1][2] > 1.3, zs)
         # the player: only the place, short ("Verse 1.3": the third verse under Doha 1); outside the reader "Go to verse ›" under it, and a tap opens the verse playing; in the reader nothing under it
-        pg_ = await ev("""(async () => { await openWork('sundarkand', true); show('home'); playRange('k', PARTS[2].a, PARTS[2].b); await new Promise(r => setTimeout(r, 300)); PL.cur = -1; setCur(PARTS[2].a + 5);
+        pg_ = await ev("""(async () => { await openWork('sundarkand', true); show('home'); playRange('k', PARTS[2].a, PARTS[2].b); await new Promise(r => setTimeout(r, 300));
+            const yf = ytFrame(); if (yf) yf.src = 'about:blank'; ytOK = false;   // a quiet player: on the CI runner YouTube plays for real and would move the lit verse
+            PL.cur = -1; setCur(PARTS[2].a + 5);
             const inR = $('#pTrack').textContent; show('home'); await new Promise(r => setTimeout(r, 200)); const lab = $('#pVerse').textContent, sub = $('#pTrack').textContent;
             $('#pInfo').click(); await new Promise(r => setTimeout(r, 400)); const r = [lab, sub, inR, CURVIEW, !!document.querySelector('#v' + (PARTS[2].a + 5) + '.now')]; stopAudio(); return r; })()""")
         check('the player outside the reader shows only the place and "Go to verse", which opens the verse playing', pg_[0] == 'Verse 1.3' and pg_[1] == 'Go to verse ›' and pg_[2] == '' and pg_[3] == 'reader' and pg_[4], pg_)
