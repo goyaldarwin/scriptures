@@ -47,6 +47,7 @@ Words go in the shared dictionaries, `library/glossary/<lang>.json`, edited dire
 
 - `id` equals the folder's name; `path` is the work's place on the shelf (`library/<path>/`); `lang` the language of its verses (an ISO 639 code in `library/glossary/languages.json`).
 - `title`, `by`, `edition`, `from` (shown under the title), `colophon`: bilingual labels.
+- `intro`: the readers' introduction, `{"hi": [paragraphs], "en": [paragraphs]}` (`docs/LIBRARY.md` §2), shown in ⓘ About this work.
 - `parts.list[].key`: the name `text.txt` uses for a part (`@part aarti`); it is not written to the library.
 - `types`: the work's verse types; the Mānas's own (`cau`, `do`, `so`, `cha`, `shloka`) need no entry.
 - `load: "parts"`: a big work (the Vālmīki Rāmāyaṇa) is written for loading one part at a time: each meaning source as a header and `meanings/<lang>-<src>/<part index>.json`, and the work's own senses as `glossary/<part index>.json` (`docs/LIBRARY.md` §2, §3, §5). The phone fetches a part's meanings and word senses only when it opens that part. Use it when a work's meanings would make a phone fetch more than a few MB at once; the verses stay one `work.json`.

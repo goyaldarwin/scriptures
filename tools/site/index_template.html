@@ -193,10 +193,12 @@ body.playing #rBody{padding-bottom:150px}
 .vbm{position:absolute;right:-25px;top:0;height:calc(var(--verse-size) * 1.6)}
 .vtext p.one{padding:calc(var(--verse-size) * .8) 0}
 .rowp{position:relative}
+.habout{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:4px 10px;border-radius:999px;color:var(--indigo);font-size:14.5px}.habout svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}   /* ⓘ About this work, under the title: what the work is, before reading it */
+.about p{line-height:1.6;margin:0 0 10px}.about dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:12px 0 4px;font-size:15px}.about dt{color:var(--muted)}.about dd{margin:0}
 .heroacts{display:flex;flex-wrap:nowrap;justify-content:center;gap:8px;margin-top:14px}.heroacts .btn{white-space:nowrap;min-width:0;padding-left:16px;padding-right:16px}
 .no.pg{background:transparent;border:1px solid var(--rule)}.no.pg svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8}.heroacts:empty{display:none}.btn.cont{font-size:14.5px}.playall svg{width:16px;height:16px;fill:currentColor;stroke:none}
 .list .lhead{font-size:13px;font-weight:700;color:var(--saffron);letter-spacing:.02em;padding:18px 2px 4px;border:0}
-.ytno{width:200px;height:200px;display:flex;flex-direction:column;justify-content:center;gap:10px;padding:10px;box-sizing:border-box;font-size:13px;text-align:center;background:var(--card,#fff);border:1px solid var(--line,#ddd);border-radius:12px}.ytno .btn{display:block;padding:9px 8px;border-radius:10px;background:var(--accent,#2b3990);color:#fff;text-decoration:none;font-size:13px}
+#ytBox{position:relative;width:200px;height:200px}.ytno{position:absolute;inset:0;z-index:1;width:200px;height:200px;display:flex;flex-direction:column;justify-content:center;gap:10px;padding:10px;box-sizing:border-box;font-size:13px;text-align:center;background:var(--card,#fff);border:1px solid var(--line,#ddd);border-radius:12px}.ytno .btn{display:block;padding:9px 8px;border-radius:10px;background:var(--accent,#2b3990);color:#fff;text-decoration:none;font-size:13px}
 .rowp .lplay ~ .it .grow{padding-right:46px}.lworks{display:flex;flex-wrap:wrap;gap:8px;padding:0 2px 14px;margin-top:-4px}.lworks button{padding:7px 13px;border:1px solid color-mix(in srgb,var(--indigo) 30%,var(--rule));border-radius:999px;font-size:15px;color:var(--indigo);background:var(--surface);font-weight:600;text-align:left}.lworks button.more{color:var(--muted);font-weight:400}
 .lplay{position:absolute;right:30px;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:var(--indigo-soft);color:var(--indigo);display:grid;place-items:center;z-index:2}
 /* a plan day's ▶ with how long it plays under it: the two centred together in the row */
@@ -336,6 +338,8 @@ body.playing #reader .navbar{display:none}
 .pstep{font-family:var(--lat);font-size:12.5px;font-weight:700;color:var(--saffron);border:1px solid var(--saffron);border-radius:12px;padding:3px 8px;line-height:1.2;white-space:nowrap}   /* how far − / + move a time, while Audio timing is on: saffron like the timing row */.pcheck{font-family:var(--lat);font-size:12.5px;font-weight:700;color:#fff;background:var(--saffron);border:1px solid var(--saffron);border-radius:12px;padding:3px 9px;line-height:1.2;white-space:nowrap}   /* Next ▸: the next verse still to check, while Audio timing is on */.ptop .ib{width:34px;height:34px}   /* ✕ in the top right corner; the speed sits after ⏭ */
 .prate{flex:none;font-family:var(--lat);font-size:12.5px;font-weight:700;color:var(--indigo);border:1px solid var(--indigo);border-radius:12px;padding:3px 8px;margin:0 0 0 4px;line-height:1.2;white-space:nowrap}   /* playing speed, after ⏭ in the controls: a tap moves to the next speed */
 body.playing #rBody{padding-bottom:240px}
+body.playing .toast{bottom:calc(236px + env(safe-area-inset-bottom,0px))}   /* above the player, never over its video or buttons */
+body.playing .view.on:not(#reader){padding-bottom:calc(240px + env(safe-area-inset-bottom,0px))}   /* the player stays open over the other screens: their last rows scroll up clear of it */
 </style>
 </head>
 <body>
@@ -348,6 +352,7 @@ body.playing #rBody{padding-bottom:240px}
  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M4 22V15"/><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" style="fill:var(--flag-fill,none)"/></symbol>
  <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/></symbol>
  <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+ <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.4"/></symbol>
  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></symbol>
  <symbol id="i-more" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.1" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="2.1" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="2.1" fill="currentColor" stroke="none"/></symbol>
@@ -395,7 +400,7 @@ body.playing #rBody{padding-bottom:240px}
   <button class="ib hmenu" id="hMenu" aria-label="मेनू"><svg><use href="#i-menu"/></svg></button>
  </div></div>
  <div class="wrap zoomable">
-  <div class="hero"><h1 id="hTitle"></h1><p id="hSub"></p><div class="heroacts"><span id="contCard"></span><button class="btn playall" id="hPlayAll" hidden><svg><use href="#i-play"/></svg><span data-en="Play all">सम्पूर्ण पाठ सुनें</span></button></div></div>
+  <div class="hero"><h1 id="hTitle"></h1><p id="hSub"></p><button class="habout" id="hAbout"><svg><use href="#i-info"/></svg><span data-en="About this work">इस ग्रन्थके बारेमें</span></button><div class="heroacts"><span id="contCard"></span><button class="btn playall" id="hPlayAll" hidden><svg><use href="#i-play"/></svg><span data-en="Play all">सम्पूर्ण पाठ सुनें</span></button></div></div>
   <div class="seg" id="orgSeg"></div>
   <ul class="list" id="orgList"></ul>
   <div style="height:40px"></div>

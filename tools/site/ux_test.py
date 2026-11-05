@@ -116,10 +116,13 @@ async def main():
         await pg2.wait_for_function("document.querySelector('#loading').hidden", timeout=10000); await pg2.reload(); await pg2.wait_for_timeout(200)
         t2 = await pg2.evaluate("document.querySelector('#loading').textContent")
         check('no greeting when the app starts or is refreshed', t1 == '' and t2 == '', [t1, t2])
-        # stepping into a work from the library: the greeting stays 1.5 s even when loading is quicker
+        # stepping into a work from the library: the greeting stays 0.4 s even when loading is quicker, and no longer
         await pg2.wait_for_function("document.querySelector('#loading').hidden", timeout=10000)
         shown = await pg2.evaluate("(async () => { W = null; const t0 = performance.now(); await openWork('ramraksha'); return performance.now() - t0; })()")
-        check('the greeting stays about 1.5 s', shown >= 1450, round(shown)); await pg2.close()
+        check('the greeting stays about 0.4 s', 380 <= shown < 1000, round(shown))
+        # opening the work that is already open: no greeting, no wait
+        again = await pg2.evaluate("(async () => { const t0 = performance.now(); const p = openWork('ramraksha'); const t = document.querySelector('#loading').hidden; await p; return [t, performance.now() - t0]; })()")
+        check('no greeting for the work already open', again[0] and again[1] < 200, again); await pg2.close()
         # a store app shows only its shelves (?app=<id>, library/apps.json)
         apps = json.load(open(os.path.join(ROOT, 'library', 'apps.json')))
         for aid, a in apps.items():
@@ -1036,6 +1039,19 @@ async def main():
         off = await ev("(() => { ytBlocked(); return $('#ytBox').innerText; })()")
         await ctx.set_offline(False)
         check('offline: playing says it needs the internet', 'internet' in off.lower() or 'इंटरनेट' in off, off)
+        # YouTube slow to answer: a note with "Play on YouTube" lies over the player, which is kept (it may still start)
+        slow = await ev("(() => { ytLoad('QjSpUgnEPLU', 0); ytBlocked(); const r = [!!$('#ytf'), $$('#ytBox .ytno').length, $('#ytBox').innerText]; ytNoteOff(); r.push($$('#ytBox .ytno').length); return r; })()")
+        check('a slow YouTube start keeps the player under a note that can go', slow[0] and slow[1] == 1 and 'allowed' not in slow[2] and slow[3] == 0, slow)
+        # a work that is a slice of a longer video (the Hanumān āratī at the end of the Sundarakāṇḍa's) plays from its own first verse, not the video's start
+        ha = await ev("(async () => { await openWork('hanuman-aarti', true); show('home'); playRange('k', 0, IT.length - 1); await new Promise(r => setTimeout(r, 300)); const r = [ytInfo.t, SRC.au.at[IT[0].id][1]]; stopAudio(); return r; })()")
+        check('the Hanumān āratī plays from the āratī, not from the start of the Sundarakāṇḍa', abs(ha[0] - ha[1]) < 1, ha)
+        # while playing, the work's page scrolls its last row clear of the player
+        clr = await ev("""(async () => { await openWork('sundarkand', true); show('home'); playRange('k', 0, IT.length - 1); await new Promise(r => setTimeout(r, 400)); show('home'); await new Promise(r => setTimeout(r, 300));
+            window.scrollTo(0, 1e6); await new Promise(r => setTimeout(r, 200)); const rows = $$('#orgList li').filter(x => x.offsetHeight); const r = [rows[rows.length - 1].getBoundingClientRect().bottom, $('#player').getBoundingClientRect().top]; stopAudio(); return r; })()""")
+        check('while playing, the last section scrolls clear of the player', clr[0] <= clr[1], clr)
+        # ⓘ About this work: under the title, with the work's language and length
+        ab = await ev("(async () => { await openWork('ramraksha', true); show('home'); $('#hAbout').click(); await new Promise(r => setTimeout(r, 300)); const t = $('#sheetBody').innerText; closeSheet(); return t; })()")
+        check('About this work shows the language and length', ('Sanskrit' in ab or 'संस्कृत' in ab) and ('verses' in ab or 'पद' in ab), ab[:120])
         # a saved file: “Add them to this phone” shows them at once; “Replace everything” with an older file (no timing) keeps the app working
         f = {'kind': 'manas-personal', 'v': 3, 'settings': {'ui': 'en', 'layers': {'h': False, 'e': True, 'w': False}, 'tr': False, 'size': 21, 'theme': 'light', 'tour': 1}, 'src': {}, 'w': {},
              'profiles': [{'id': 'px', 'name': 'Me', 'notes': {'manas:bal.1.cau1': [{'t': 'a note', 'ts': 1}]}, 'bm': {'manas:bal.1.cau2': 1}, 'done': {}, 'gloss': {}, 'fix': {}}], 'active': 'px', 'show': ['px']}

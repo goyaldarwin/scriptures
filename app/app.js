@@ -843,6 +843,10 @@ function buildAudio(){
     a.sort((x, y) => x[1] - y[1]);
   });
 }
+// Where a recording begins for this work: at 0, so the opening music is heard, when the first verse follows a short
+// opening; at the first verse when the work is a part of a longer video (the Hanumān āratī at the end of a Sundarakāṇḍa video)
+const INTRO_MAX = 90;
+function trStart(tr){ const a = SRC.au && SRC.au.at[(IT[tr.fi] || {}).id]; const s = a ? a[1] : 0; return s <= INTRO_MAX ? 0 : s; }
 function hasAu(i){ return !!(SRC.au && SRC.au.at[IT[i].id]); }
 function firstAu(a, b){ for (let i = a; i <= b; i++) if (hasAu(i)) return i; return null; }
 /* YouTube embed driven by postMessage (no external script needed) */
@@ -850,12 +854,27 @@ function ytFrame(){ return $('#ytf'); }
 function ytPost(func, args){ const f = ytFrame(); if (f && f.contentWindow) f.contentWindow.postMessage(JSON.stringify({event: 'command', func, args: args || []}), '*'); }
 function ytLoad(vid, start){
   ytVid = vid; ytOK = false; ytInfo = {t: start, st: -1, d: 0};
-  $('#ytBox').innerHTML = '<iframe id="ytf" width="200" height="200" src="https://www.youtube.com/embed/' + vid + '?enablejsapi=1&autoplay=1&playsinline=1&rel=0&modestbranding=1&start=' + Math.floor(start) + (location.origin && location.origin !== 'null' ? '&origin=' + encodeURIComponent(location.origin) : '') + '" title="YouTube" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+  // the page's address goes with the request (YouTube refuses an embed that comes without one: its error 153)
+  $('#ytBox').innerHTML = '<iframe id="ytf" width="200" height="200" src="https://www.youtube.com/embed/' + vid + '?enablejsapi=1&autoplay=1&playsinline=1&rel=0&modestbranding=1&start=' + Math.floor(start) + (location.origin && location.origin !== 'null' ? '&origin=' + encodeURIComponent(location.origin) : '') + '" title="YouTube" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
   const f = ytFrame(); let n = 0;
-  const hello = () => { if (ytOK || n++ > 20) return; try { f.contentWindow.postMessage(JSON.stringify({event: 'listening', id: 'manas', channel: 'widget'}), '*'); } catch (e) {} setTimeout(hello, 500); };
+  // knock until the player answers: every 0.5 s, then every second, for up to two minutes (a slow phone network)
+  const hello = () => { if (ytOK || f !== ytFrame() || n++ > 130) return; try { f.contentWindow.postMessage(JSON.stringify({event: 'listening', id: 'manas', channel: 'widget'}), '*'); } catch (e) {} setTimeout(hello, n < 20 ? 500 : 1000); };
   f.addEventListener('load', hello);
-  clearTimeout(ytWait); ytWait = setTimeout(() => { if (!ytOK && PL.on) ytBlocked(); }, 5000);
+  ytWatch(10000);
 }
+// YouTube has not answered yet: it may still be loading on a slow network, or the phone was locked as it started. The player
+// is never taken away for that: a note with "Play on YouTube" is laid over it, and goes as soon as the player answers. Only
+// YouTube's own refusal (onError) says a recording may not be played here.
+function ytWatch(ms){
+  clearTimeout(ytWait);
+  ytWait = setTimeout(() => {
+    if (ytOK || !PL.on) return;
+    if (document.hidden){ document.addEventListener('visibilitychange', () => ytWatch(6000), {once: true}); return; }   // in the background: wait until the app is seen again
+    ytBlocked();
+  }, ms);
+}
+function ytNote(html){ ytNoteOff(); const d = document.createElement('div'); d.className = 'ytno'; d.innerHTML = html; $('#ytBox').appendChild(d); }
+function ytNoteOff(){ $$('#ytBox .ytno').forEach(x => x.remove()); }
 // Playing speed: 0.5× to 2× — YouTube's own speed, so the verse times (in the recording's
 // time) stay right; the light follows the recording. Chosen with the speed button in the player bar; kept for next time.
 const RATES = [0.5, 0.75, 1, 1.25, 1.5, 2];
@@ -880,15 +899,21 @@ function ytWatchURL(){
   if (PL.end != null){ const nx = A.at[(IT[PL.end + 1] || {}).id]; if (nx && nx[0] === PL.t) end = '&end=' + Math.ceil(nx[1]); }
   return 'https://www.youtube.com/embed/' + ytVid + '?autoplay=1&start=' + st + end;
 }
-function ytBlocked(){
-  if (navigator.onLine === false){ $('#ytBox').innerHTML = '<div class="ytno"><p>' + T('सुननेके लिए इंटरनेट चाहिए।', 'Playing needs the internet.') + '</p></div>'; return; }   // offline: not a blocked page
-  $('#ytBox').innerHTML = '<div class="ytno"><p>' + T('यह पन्ना YouTube वीडियो नहीं चला पा रहा।', 'This page is not allowed to play YouTube here.') + '</p><a class="btn" target="_blank" rel="noopener" href="' + ytWatchURL() + '">' + T('YouTube पर इसी दोहे से सुनें ↗', 'Play on YouTube from this verse ↗') + '</a></div>';
+// why: 'refused' (YouTube error 101 / 150 / 153: the recording may not be played outside YouTube), 'gone' (100: removed or
+// private), otherwise slow to start. Offline: it needs the internet.
+function ytBlocked(why){
+  if (navigator.onLine === false){ ytNote('<p>' + T('सुननेके लिए इंटरनेट चाहिए।', 'Playing needs the internet.') + '</p>'); return; }   // offline: not a blocked page
+  const msg = why === 'refused' ? T('यह रिकॉर्डिंग YouTube के बाहर नहीं चलती।', 'This recording plays only on YouTube.')
+    : why === 'gone' ? T('यह रिकॉर्डिंग YouTube पर अब नहीं मिलती।', 'This recording is no longer on YouTube.')
+    : T('YouTube शुरू होनेमें समय ले रहा है…', 'YouTube is taking a while to start…');
+  ytNote('<p>' + msg + '</p>' + (why === 'gone' ? '' : '<a class="btn" target="_blank" rel="noopener" href="' + ytWatchURL() + '">' + T('YouTube पर इसी पदसे सुनें ↗', 'Play on YouTube from this verse ↗') + '</a>'));
 }
 window.addEventListener('message', e => {
   if (!/youtube(-nocookie)?\.com$/.test((e.origin || '').replace(/^https?:\/\/(www\.)?/, ''))) return;
   let d; try { d = typeof e.data === 'string' ? JSON.parse(e.data) : e.data; } catch (x) { return; }
   if (!d) return;
-  if (d.event === 'onReady' || d.event === 'initialDelivery' || d.event === 'infoDelivery'){ if (!ytOK){ ytOK = true; if (RATE() !== 1) ytPost('setPlaybackRate', [RATE()]); if (PL.on) $('#pTrack').textContent = playingName(); if (PL.on && PL.snip != null && PL.seekT != null) ytPost('seekTo', [PL.seekT, true]); } }   // a preview in a freshly loaded player: the page can only start it at a whole second, so seek to the exact time
+  if (d.event === 'onError'){ const c = +d.info; clearTimeout(ytWait); if (PL.on) ytBlocked(c === 101 || c === 150 || c === 153 ? 'refused' : c === 100 ? 'gone' : ''); return; }
+  if (d.event === 'onReady' || d.event === 'initialDelivery' || d.event === 'infoDelivery'){ if (!ytOK){ ytOK = true; ytNoteOff(); clearTimeout(ytWait);if (RATE() !== 1) ytPost('setPlaybackRate', [RATE()]); if (PL.on) $('#pTrack').textContent = playingName(); if (PL.on && PL.snip != null && PL.seekT != null) ytPost('seekTo', [PL.seekT, true]); } }   // a preview in a freshly loaded player: the page can only start it at a whole second, so seek to the exact time
   const info = d.info || {};
   if (typeof info.currentTime === 'number'){ ytInfo.t = info.currentTime; ytInfo.at = performance.now(); }
   if (typeof info.playbackRate === 'number' && info.playbackRate !== RATE() && ytOK && PL.on) ytPost('setPlaybackRate', [RATE()]);
@@ -923,7 +948,7 @@ function playFrom(i, end){
   PL.snip = null;
   if (!hasAu(i)){ const j = firstAu(i, Math.min(IT.length - 1, i + 80)); if (j == null) return; i = j; }
   const [t, st0] = SRC.au.at[IT[i].id], tr = SRC.au.tracks[t];
-  const st = (end != null && i === tr.fi) ? 0 : st0;
+  const st = (end != null && i === tr.fi) ? trStart(tr) : st0;
   PL.on = true; PL.t = t; PL.end = end; PL.cur = -1; PL.whole = false; PL.endMsg = '';
   $('#player').hidden = false; document.body.classList.add('playing'); wake(true);
   seekGuard(st);
@@ -978,7 +1003,9 @@ function tick(anchor){
   const m = at(show), e2 = endOf(show);
   if (e2 != null && time >= e2 && m >= 0 && m + 1 < a.length) show = a[m + 1][0];
   setCur(show); followLines(show, time);
-  const d = ytInfo.d || SRC.au.tracks[PL.t].dur; $('#pProg').style.width = (100 * time / d) + '%';
+  // the bar runs over this work's part of the recording only (a work that is a slice of a longer video starts at 0%)
+  const tr = SRC.au.tracks[PL.t], d = ytInfo.d || tr.dur, s0 = trStart(tr);
+  $('#pProg').style.width = Math.max(0, Math.min(100, 100 * (time - s0) / Math.max(1, d - s0))) + '%';
 }
 setInterval(tick, 300);
 /* place the verse being recited in the space between the top bar and the player:
@@ -1205,14 +1232,14 @@ function workPath(id){ let r = null; (function walk(n){ (n || []).forEach(c => {
 const SALUTE = '॥ ॐ श्री परमात्मने नमः ॥';
 function saluteOf(id){ let r = null; (function walk(n){ (n || []).forEach(c => { if (c.work === id) r = c.salute; else walk(c.children); }); })(LIB); return r || SALUTE; }
 function showSalute(text){ $('#loading').textContent = text; }
-// the greeting stays at least 1.5 s so it can be read; the time spent loading counts towards it
-const SALUTE_MS = typeof window.__SALUTE_MS === 'number' ? window.__SALUTE_MS : 1500;
-// The greeting is only for stepping into a work from the library (or the tour): never when the app starts, on a refresh
-// or on Back. Then the screen just waits, blank, for as long as loading takes.
+// the greeting stays at least 0.4 s, so it does not flicker; the time spent loading counts towards it, so it never holds up a slow load
+const SALUTE_MS = typeof window.__SALUTE_MS === 'number' ? window.__SALUTE_MS : 400;
+// The greeting is only for stepping into a work from the library (or the tour) that has to be loaded: never when the app
+// starts, on a refresh, on Back, or for the work already open. Then the screen just waits, blank, for as long as loading takes.
 let saluteAt = 0, greeted = false;
 async function hideSalute(){ const left = greeted ? SALUTE_MS - (performance.now() - saluteAt) : 0; if (left > 0) await new Promise(r => setTimeout(r, left)); $('#loading').hidden = true; greeted = false; }
 async function openWork(id, noShow){
-  greeted = !noShow; showSalute(greeted ? saluteOf(id) : '');
+  greeted = !noShow && !(W && W.id === id); showSalute(greeted ? saluteOf(id) : '');
   if (greeted || W === null || W.id !== id){ if ($('#loading').hidden){ $('#loading').hidden = false; } saluteAt = performance.now(); }
   try {
     if (!W || W.id !== id){ const path = workPath(id); W = await getJSON(path + '/work'); W.path = path; partReset(); buildWork(); moveRenamed(); fixLast(); await Promise.all([loadSources(), loadGlossaries()]);
@@ -1266,6 +1293,21 @@ function renderHome(){
   $$('#orgList [data-page]').forEach(b => b.onclick = () => { vidTab = b.dataset.page === 'vidhi' ? 'v' : b.dataset.page; show('vidhi'); });
   $$('#orgList [data-pa]').forEach(b => b.onclick = ev => { ev.stopPropagation(); playRange(b.dataset.po, +b.dataset.pa, +b.dataset.pb); });
 }
+/* ⓘ About this work (under the title): what the work is, so a reader can decide to read it. The work's own introduction
+   (work.json "intro": {hi: [paragraphs], en: [paragraphs]}, written from the work's sources) comes first, else the shelf's one
+   line ("desc"); then the facts the library itself holds: language, length, listening time and reciter, the edition. */
+function workNode(id){ let r = null; (function walk(n){ (n || []).forEach(c => { if (c.work === id) r = c; else walk(c.children); }); })(LIB); return r || {}; }
+function aboutWork(){
+  if (!W) return; const nd = workNode(W.id);
+  const intro = W.intro ? [].concat(TT(W.intro) || []) : nd.desc ? [TT(nd.desc)] : [];
+  const row = (k, v) => v ? '<dt>' + k + '</dt><dd>' + esc(v) + '</dd>' : '';
+  const n = BYPART() ? 0 : IT.length, len = n ? DEV(n) + T(' पद', ' verses') : '';
+  const au = SRC.au && firstAu(0, IT.length - 1) != null ? durLabel(spanSecs(0, IT.length - 1)) + ' · ' + TT(SRC.au.meta.title) : '';
+  openSheet('<div class="about"><h2>' + esc(TT(W.title)) + '</h2>' + (W.by || W.from ? '<p class="muted small">' + esc([TT(W.by), TT(W.from)].filter(Boolean).join(' · ')) + '</p>' : '')
+    + intro.map(p => '<p>' + esc(p) + '</p>').join('')
+    + '<dl>' + row(T('भाषा', 'Language'), LANGS[W.lang] ? TT(LANGS[W.lang].name) : '') + row(T('विस्तार', 'Length'), len) + row(T('सुनें', 'Listen'), au) + row(T('पाठ', 'Text'), TT(W.edition)) + '</dl></div>');
+}
+$('#hAbout').onclick = aboutWork;
 $('#hLib').onclick = () => { libPath = []; show('library'); };   // “‹ Library” goes to the library itself, not the shelf last visited
 $('#hMenu').onclick = mainMenu;
 
