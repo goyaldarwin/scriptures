@@ -192,8 +192,9 @@ body.playing #rBody{padding-bottom:150px}
 .menu button .revd{margin-left:auto;box-shadow:none}
 .vbm{position:absolute;right:-25px;top:0;height:calc(var(--verse-size) * 1.6)}
 .vtext p.one{padding:calc(var(--verse-size) * .8) 0}
-.rowp{position:relative}
-.habout{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:4px 10px;border-radius:999px;color:var(--indigo);font-size:14.5px}.habout svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}   /* ⓘ About this work, under the title: what the work is, before reading it */
+.rowp{position:relative}.lmark{position:absolute;left:-3px;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;z-index:2;background:transparent}   /* over a vishram’s number: tap to mark it complete or not */
+.pdone{display:flex;align-items:center;gap:10px;padding:4px 2px 8px;border:0}.pdbar{flex:1;height:6px;border-radius:3px;background:var(--rule);overflow:hidden}.pdbar span{display:block;height:100%;background:var(--ok);border-radius:3px}.pdn{font-size:13.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.habout{display:inline-flex;align-items:center;gap:4px;padding:2px 4px;border-radius:999px;color:var(--indigo);font-size:inherit;vertical-align:baseline}#hSub:not(:empty)::after{content:" · "}.hsubrow{margin:6px 0 0;color:var(--muted);font-size:14px}.habout svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}   /* ⓘ About this work, under the title: what the work is, before reading it */
 .about p{line-height:1.6;margin:0 0 10px}.about dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:12px 0 4px;font-size:15px}.about dt{color:var(--muted)}.about dd{margin:0}
 .heroacts{display:flex;flex-wrap:nowrap;justify-content:center;gap:8px;margin-top:14px}.heroacts .btn{white-space:nowrap;min-width:0;padding-left:16px;padding-right:16px}
 .no.pg{background:transparent;border:1px solid var(--rule)}.no.pg svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8}.heroacts:empty{display:none}.btn.cont{font-size:14.5px}.playall svg{width:16px;height:16px;fill:currentColor;stroke:none}
@@ -312,7 +313,7 @@ input[type=checkbox],input[type=radio],input[type=range]{accent-color:var(--indi
 .sz{display:flex;border:1px solid var(--rule);border-radius:999px;overflow:hidden}.sz button{padding:0 11px;min-height:32px;font-weight:700;color:var(--indigo);font-size:15px}.sz button+button{border-left:1px solid var(--rule);font-size:19px}.sz sup{font-size:.6em}
 .libbtn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
 .crumbs{font-size:14px;color:var(--muted);margin:0 0 6px}.crumbs button{color:var(--indigo)}
-.loading{position:fixed;inset:0;z-index:70;background:var(--bg);display:grid;place-items:center;color:var(--saffron);font-size:30px;text-align:center;padding:0 16px}
+.loading{position:fixed;inset:0;z-index:70;background:var(--bg);display:grid;place-items:center;color:var(--saffron);font-size:30px;text-align:center;padding:0 16px}.loading:empty::after{content:"";width:30px;height:30px;border-radius:50%;border:3px solid var(--rule);border-top-color:var(--saffron);opacity:0;animation:spin .8s linear infinite,show .2s .3s forwards}@keyframes spin{to{transform:rotate(360deg)}}@keyframes show{to{opacity:1}}   /* the blank screen while loading: a spinner, after 0.3 s */
 .part-h{margin:30px 0 6px;text-align:center}.part-h b{font-size:calc(var(--verse-size) * 1.15);color:var(--indigo)}   /* headings follow the text size: 24 / 18 / 13 px at the default 21 px */
 .navbar .mid{display:flex;flex-direction:column;align-items:center}
 .navbar .mid .ml{font-size:15px}
@@ -400,7 +401,7 @@ body.playing .view.on:not(#reader){padding-bottom:calc(240px + env(safe-area-ins
   <button class="ib hmenu" id="hMenu" aria-label="मेनू"><svg><use href="#i-menu"/></svg></button>
  </div></div>
  <div class="wrap zoomable">
-  <div class="hero"><h1 id="hTitle"></h1><p id="hSub"></p><button class="habout" id="hAbout"><svg><use href="#i-info"/></svg><span data-en="About this work">इस ग्रन्थके बारेमें</span></button><div class="heroacts"><span id="contCard"></span><button class="btn playall" id="hPlayAll" hidden><svg><use href="#i-play"/></svg><span data-en="Play all">सम्पूर्ण पाठ सुनें</span></button></div></div>
+  <div class="hero"><h1 id="hTitle"></h1><p class="hsubrow"><span id="hSub"></span><button class="habout" id="hAbout"><svg><use href="#i-info"/></svg><span data-en="About">परिचय</span></button></p><div class="heroacts"><span id="contCard"></span><button class="btn playall" id="hPlayAll" hidden><svg><use href="#i-play"/></svg><span data-en="Play all">सम्पूर्ण पाठ सुनें</span></button></div></div>
   <div class="seg" id="orgSeg"></div>
   <ul class="list" id="orgList"></ul>
   <div style="height:40px"></div>

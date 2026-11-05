@@ -157,6 +157,7 @@ function applyLang(){ const en = LANG() === 'en'; document.documentElement.lang 
   $$('[data-en-ph]').forEach(el => { if (el.dataset.hiPh == null) el.dataset.hiPh = el.placeholder; el.placeholder = en ? el.dataset.enPh : el.dataset.hiPh; }); }
 function applyTheme(){ const r = document.documentElement; if (S.settings.theme === 'auto') r.removeAttribute('data-theme'); else r.setAttribute('data-theme', S.settings.theme); r.style.setProperty('--verse-size', S.settings.size + 'px'); r.style.setProperty('--mean-size', Math.round(S.settings.size * 0.78 * 10) / 10 + 'px'); r.style.setProperty('--ui-zoom', (1 + (S.settings.size - 21) * 0.025).toFixed(3)); }   // A−/A+ also scale the library and work pages
 function show(id, push = true){ { const was = LANG(); CURVIEW = id; if (LANG() !== was) applyLang(); }
+  if ((id === 'library' || id === 'home' || id === 'reader') && S.view !== id){ S.view = id; save(); }   // where the app opens next time
   $$('.view').forEach(v => v.classList.toggle('on', v.id === id)); if (push) history.pushState(snap(id), ''); else history.replaceState(snap(id), ''); if (id !== 'reader') window.scrollTo(0, 0); onView(id); }
 // Every page is an entry in the browser's history that carries where you are: the page, the open work and the library
 // shelf. Back (the button or the phone's gesture) returns to exactly the previous one — a shelf
@@ -1277,8 +1278,10 @@ async function openWork(id, noShow){
     S.work = id; WS().at = Date.now(); save();   // when it was last used: the shelf lists recent works first
   } catch (e) { const off = navigator.onLine === false || await fetch('library/.ping?' + Date.now(), {cache: 'no-store'}).then(() => false, () => true);   // offline: not even a probe gets through
     toast(off ? T('इंटरनेट नहीं है — यह ग्रन्थ इस फ़ोनपर पहले खोला नहीं गया', 'No internet — this work has not been opened on this phone yet') : T('यह ग्रन्थ नहीं खुल सका', 'Could not open this work')); await coverOff(); return; }
-  await coverOff();
-  if (!noShow) show('home');
+  // from the library: the page shows now and the rest loads behind it. A quiet open (start, refresh, Back) keeps the cover until
+  // the whole work is here, so the screen underneath (the library) never shows in between
+  if (noShow){ await WREADY; await coverOff(); return; }
+  await coverOff(); show('home');
   await WREADY;   // a caller that awaits openWork gets the whole work
 }
 
@@ -1313,16 +1316,19 @@ function renderHome(){
     ts.forEach((t, n) => { const name = t.hi || t.en ? TNAME(t) : KNAME(P.k); h += '<li class="rowp">' + play('k', t.i, t.end) + '<button class="it" data-open="' + t.i + '"><span class="no">' + DEV(n + 1) + '</span><span class="grow"><span class="ti">' + esc(name) + '</span><br><span class="ds">' + esc(spanLabel(t.i, t.end)) + '</span></span><span class="chev">›</span></button></li>'; });
   }
   else if (org === 'k') PARTS.forEach(p => { const tps = TOPICS.filter(t => IT[t.i].p === p.k).length || (W.sections ? PAGES.filter(g => g.k === p.k && SECN(g.s)).length : 0);   /* its topics, else its named sections */ h += '<li class="rowp">' + play('k', p.a, p.b) + '<button class="it" data-open="' + p.a + '"><span class="no">' + DEV(p.k + 1) + '</span><span class="grow"><span class="ti">' + esc(KNAME(p.k)) + '</span><br><span class="ds">' + DEV(tps) + T(' प्रसंग', tps === 1 ? ' section' : ' sections') + '</span></span><span class="chev">›</span></button></li>'; });
-  else { const P = PLAN[org]; const dn = Object.keys(DONE(ME(), org)).length; h += '<li class="small muted" style="padding:6px 2px;border:0">' + DEV(dn) + ' / ' + DEV(P.n) + T(' विश्राम पूर्ण · विश्रामके अन्तमें “विश्राम पूर्ण करें” दबाएँ', ' vishrams completed · tap “Mark vishram complete” at the end of each') + '</li>';
+  else { const P = PLAN[org]; const dn = Object.keys(DONE(ME(), org)).length; h += '<li class="pdone" aria-label="' + DEV(dn) + ' / ' + DEV(P.n) + T(' विश्राम पूर्ण', ' vishrams completed') + '"><span class="pdbar"><span style="width:' + Math.round(100 * dn / P.n) + '%"></span></span><span class="pdn">' + DEV(dn) + ' / ' + DEV(P.n) + '</span></li>';   // how much of the plan is done; a vishram's number marks it done
     // pages read before the first day and after the reading (pūrvāṅga / uttarāṅga), when the plan names them
     const page = (pg, when) => { const t = pg === 'aarti' ? T('श्रीरामायणजीकी आरती', 'Shri Ramayanji ki Aarti') : pg === 'visarjan' ? TT(W.vidhi.visarjan.title) : T('पारायण-विधि', 'Parayan vidhi'); if (pg === 'visarjan') when = T('पारायणके अन्तिम दिन', 'On the last day of the parayan'); return '<li class="rowp"><button class="it" data-page="' + pg + '"><span class="no pg"><svg><use href="#i-lamp"/></svg></span><span class="grow"><span class="ti">' + t + '</span><br><span class="ds">' + when + '</span></span><span class="chev">›</span></button></li>'; };
     (P.before || []).forEach(pg => h += page(pg, T('पाठसे पहले', 'Before the reading')));
-    for (let n = 1; n <= P.n; n++){ const [a, b] = dayRange(org, n), d = DONE(ME(), org)[n], t = firstAu(a, b) != null ? durLabel(spanSecs(a, b)) : ''; h += '<li class="rowp">' + (t ? play(org, a, b).replace('class="lplay"', 'class="lplay timed"') + '<span class="ldur">' + t + '</span>' : play(org, a, b)) + '<button class="it" data-open="' + a + '"><span class="no' + (d ? ' done' : '') + '">' + (d ? '✓' : DEV(n)) + '</span><span class="grow"><span class="ti">' + VN(n) + '</span><br><span class="ds">' + rangeDesc(a, b) + '</span></span><span class="chev">›</span></button></li>'; }
+    for (let n = 1; n <= P.n; n++){ const [a, b] = dayRange(org, n), d = DONE(ME(), org)[n], t = firstAu(a, b) != null ? durLabel(spanSecs(a, b)) : ''; h += '<li class="rowp"><button class="lmark" data-mark="' + n + '" aria-label="' + VN(n) + (d ? T(': पूर्ण — अपूर्ण करें', ': complete — mark not complete') : T(': पूर्ण करें', ': mark complete')) + '"></button>' + (t ? play(org, a, b).replace('class="lplay"', 'class="lplay timed"') + '<span class="ldur">' + t + '</span>' : play(org, a, b)) + '<button class="it" data-open="' + a + '"><span class="no' + (d ? ' done' : '') + '">' + (d ? '✓' : DEV(n)) + '</span><span class="grow"><span class="ti">' + VN(n) + '</span><br><span class="ds">' + rangeDesc(a, b) + '</span></span><span class="chev">›</span></button></li>'; }
     (P.after || []).forEach(pg => h += page(pg, T('पाठके बाद', 'After the reading'))); }
   $('#orgList').innerHTML = h;
   $$('#orgList [data-open]').forEach(b => b.onclick = () => openReader(org, +b.dataset.open));
   $$('#orgList [data-page]').forEach(b => b.onclick = () => { vidTab = b.dataset.page === 'vidhi' ? 'v' : b.dataset.page; show('vidhi'); });
   $$('#orgList [data-pa]').forEach(b => b.onclick = ev => { ev.stopPropagation(); playRange(b.dataset.po, +b.dataset.pa, +b.dataset.pb); });
+  // a vishram's number: tap to mark it complete, tap again to mark it not complete (as “Mark vishram complete” at its end does)
+  $$('#orgList [data-mark]').forEach(b => b.onclick = ev => { ev.stopPropagation(); const n = +b.dataset.mark, d = DONE(ME(), org); if (d[n]) delete d[n]; else d[n] = Date.now(); save(); renderHome();
+    toast(VN(n) + (d[n] ? T(' पूर्ण — जय श्रीराम', ' complete — Jai Shri Ram') : T(' अपूर्ण किया', ' marked not complete'))); });
 }
 /* ⓘ About this work, under the title on the work's page: what the work is, so a reader
    can decide to read it. The shelf entry's introduction (library/index.json "intro": {hi: [paragraphs], en: [paragraphs]},
@@ -1715,7 +1721,8 @@ function pruneLib(nodes, shelves){
   const nav = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || {};
   const was = !asked && (nav.type === 'reload' || nav.type === 'back_forward') && history.state && history.state.v ? history.state : null;
   if (was){ await restore(was); if (!W) await hideSalute(); }   // a refresh: the same page, with the same way back
-  else if (start){ await openWork(start, true); history.replaceState(snap('library'), ''); show('home'); }
+  // opened again: the screen last used — the library, or the work's page, or the reader at your place (S.view); a link to a work opens it
+  else if (start && (asked || S.view !== 'library')){ const lastView = S.view; await openWork(start, true); history.replaceState(snap('library'), ''); show('home'); if (!asked && lastView === 'reader') reopenReader(); }
   else { history.replaceState(snap('library'), ''); renderLibrary(); await hideSalute(); }
   cloudInit();
   if (!S.settings.tour) startTour();

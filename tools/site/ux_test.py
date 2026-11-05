@@ -139,6 +139,25 @@ async def main():
             return [t, ready, before, CURVIEW, document.querySelectorAll('#rBody .verse').length, !!SRC.hi, !!GL.awa && Object.keys(GL.awa).length > 0]; })()""")
         await pg2.unroute('**/glossary/awa.json*')
         check("the work's page shows before its meanings and dictionaries; the reader waits for them", early[0] < 1200 and not early[1] and early[2] == 'home' and early[3] == 'reader' and early[4] > 0 and early[5] and early[6], early)
+        # a refresh on a work's page, with the dictionaries slow: the cover stays (blank, no greeting) until the page is back;
+        # the library underneath never shows in between
+        await pg2.evaluate("(async () => { await openWork('sundarkand'); })()"); await pg2.wait_for_timeout(500)
+        await pg2.route('**/glossary/awa.json*', slowdict)
+        await pg2.reload(wait_until='commit'); seen = []
+        for _ in range(60):
+            try: seen.append(await pg2.evaluate("[typeof CURVIEW === 'string' ? CURVIEW : '', !!document.querySelector('#loading') && document.querySelector('#loading').hidden]"))
+            except Exception: pass
+            await pg2.wait_for_timeout(50)
+        await pg2.unroute('**/glossary/awa.json*')
+        flash = [x for x in seen if x[1] and x[0] != 'home']
+        check('a refresh on a work page shows no library in between, and ends on the work page', not flash and seen and seen[-1] == ['home', True], [flash[:3], seen[-1:] if seen else None])
+        # opened again (not a refresh): the screen last used — the library after going back to it, else the work's page or the reader
+        res = []
+        for last in ('library', 'home', 'reader'):
+            await pg2.evaluate(f"""(async () => {{ await openWork('sundarkand', true); if ('{last}' === 'library') show('library'); else if ('{last}' === 'reader') openReader('k', PARTS[2].a); else show('home'); }})()""")
+            await pg2.wait_for_timeout(700); await pg2.goto(url); await pg2.wait_for_timeout(2500)
+            res.append(await pg2.evaluate("CURVIEW"))
+        check('opening the app again returns to the screen last used (library, work page, reader)', res == ['library', 'home', 'reader'], res)
         await pg2.close()
         # a store app shows only its shelves (?app=<id>, library/apps.json)
         apps = json.load(open(os.path.join(ROOT, 'library', 'apps.json')))
@@ -1069,6 +1088,14 @@ async def main():
         # ⓘ About this work: under the title, with the work's language and length
         ab = await ev("(async () => { await openWork('ramraksha', true); show('home'); $('#hAbout').click(); await new Promise(r => setTimeout(r, 300)); const t = $('#sheetBody').innerText; closeSheet(); return t; })()")
         check('About this work shows the language and length', ('Sanskrit' in ab or 'संस्कृत' in ab) and ('verses' in ab or 'पद' in ab), ab[:120])
+        # the work's page: About on the author's line; a plan shows its progress as a bar; a vishram's number marks it done and back
+        wp = await ev("""(async () => { await openWork('manas', true); WS().org = 'M'; show('home'); await new Promise(r => setTimeout(r, 300));
+            const d = DONE(ME(), 'M'), had = Object.assign({}, d); for (const k in d) delete d[k]; d[1] = 1; save(); renderHome();
+            const inRow = !!$('.hsubrow #hAbout'), bar = $('.pdn') && $('.pdn').textContent, w0 = $('.pdbar span').style.width;
+            const m = $('#orgList [data-mark="2"]'); m.click(); const on = !!DONE(ME(), 'M')[2], bar2 = $('.pdn').textContent, view = CURVIEW;
+            $('#orgList [data-mark="2"]').click(); const off = !DONE(ME(), 'M')[2];
+            for (const k in d) delete d[k]; Object.assign(d, had); save(); renderHome(); return [inRow, bar, w0, on, bar2, view, off]; })()""")
+        check("work page: About beside the author, a progress bar, and a vishram's number marks it done and not done", wp[0] and wp[1] == '1 / 30' and wp[2] == '3%' and wp[3] and wp[4] == '2 / 30' and wp[5] == 'home' and wp[6], wp)
         # the library lists works by name only (ⓘ About is on the work's own page)
         nolib = await ev("(async () => { libPath = []; show('library'); await new Promise(r => setTimeout(r, 300)); return [$$('#libList [data-open-work]').length, $$('#libList .winfo, #libList [data-info-work]').length]; })()")
         check('the library shows works by name, without ⓘ', nolib[0] > 0 and nolib[1] == 0, nolib)
