@@ -61,6 +61,41 @@
    }
   ]
  },
+ "cite": {
+  "by": [
+   "sec",
+   "n"
+  ],
+  "types": {
+   "do": [
+    "n"
+   ],
+   "so": [
+    "n"
+   ]
+  },
+  "sec": {
+   "hi": "दोहा",
+   "en": "Doha"
+  },
+  "word": {
+   "cau": {
+    "hi": "पद",
+    "en": "Verse"
+   }
+  },
+  "repeat": [
+   "aranya.20.cha1_2",
+   "lanka.101.cha1_2",
+   "lanka.101.cha2_2"
+  ]
+ },
+ "sections": {
+  "end": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ },
  "include": [
   "book.json"
  ]

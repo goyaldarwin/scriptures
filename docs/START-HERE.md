@@ -77,5 +77,6 @@ library/ ─ tools/site/build.py (checks everything first) ─► index.html, ap
 - Māṇḍūkya m06: the visarga in एष सर्वेश्वरः एष kept as printed (`tools/works/mandukya-upanishad/reconciliation.md`).
 - Private copies not yet in `scriptures-data`: the Gaṅgā āratī screenshot, the jansatta.com printout of the Rāma āratīs, the Māṇḍūkya's sanskritdocuments.org and freepressjournal.in printouts and its recording.
 - The Mānas timings: the owner is setting by ear the 136 starts MMS doubts (`tools/works/manas/audio/kamlesh-upadhyay/check.json`). Then compare his times with MMS's and the library's to decide whether MMS retimes, or lists for checking, the 1,108 verses where the two differ by more than 2 s (the experiment and its figures: `experiments/align/README.md` in `scriptures-data`).
+- Names to confirm: the Dhūpa Āratī's section names (Aarti, Shirdi Majhe, Naman, Namasmaran, Namaskarashtak, Aisa Yei Ba, Mahimna, Dashak, Pushpanjali, Prarthana; `tools/works/shirdi-sai-dhoop-aarti/work.json` → `sections`), its padas called Stanza like every other āratī's, and the Mānas's closing ślokas as "Closing".
 - Offered, not built: "⏹ End / ⏱ Next starts" buttons in the player for audio timing.
 - Offered, not built: sending a listener's "Review audio timing" marks to the owner, as times are sent (marks stay on the phone they were made on).

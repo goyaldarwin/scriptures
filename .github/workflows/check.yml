@@ -36,10 +36,8 @@ jobs:
         run: |
           base="${{ github.event.pull_request.base.sha || github.event.before }}"
           if git fetch -q --depth=1 origin "$base" 2>/dev/null; then python tools/site/history_check.py "$base"; else echo "no earlier commit to compare with"; fi
-      - name: smoke test (every work opens in a browser)
-        run: python tools/site/smoke_test.py
-      - name: navigation and reading experience (every work, phone size)
+      - name: smoke test and navigation and reading experience (every work, phone size), side by side in shards
         # every failed check becomes an annotation, readable through the API (the raw log is not reachable from a Claude session)
         run: |
-          python tools/site/ux_test.py 2>&1 | tee /tmp/ux.txt; rc=${PIPESTATUS[0]}
-          grep -E '^FAIL|Error|error' /tmp/ux.txt | head -20 | sed 's/^/::error::/'; tail -n 3 /tmp/ux.txt | sed 's/^/::notice::/'; exit $rc
+          python tools/site/check.py --browser 2>&1 | tee /tmp/ux.txt; rc=${PIPESTATUS[0]}
+          grep -hE '^FAIL|Error|error' /tmp/ux.txt /tmp/check-*.log | head -20 | sed 's/^/::error::/'; tail -n 8 /tmp/ux.txt | sed 's/^/::notice::/'; exit $rc

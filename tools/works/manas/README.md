@@ -14,6 +14,11 @@ Verse ids look like `bal.86.cau4`: kāṇḍa, dohā section, type, number. Vers
 - `hinduism/granth/tulsidas/ramcharitmanas/books/visarjan-print/visarjan.jpg`: the owner's printed page of the Kathā-visarjana.
 - `hinduism/granth/tulsidas/ramcharitmanas/audio/kamlesh-upadhyay/`: the recordings transcribed into `audio/kamlesh-upadhyay/transcripts/` (set `DATA_DIR` to the clone of `scriptures-data`; `recordings.json` → `data` names each file).
 
+## Structure
+- **Hierarchy:** seven kāṇḍas (parts) › dohā sections › verses. A section is a dohā with the caupāīs, chhandas and ślokas before it ("Dohā 2" = the caupāīs before dohā 2 and dohā 2); the opening ślokas and sorathās of a kāṇḍa are section `0`, the closing ślokas of the Uttara-kāṇḍa the section `end` ("Closing", `work.json` → `sections`).
+- **Numbering:** (`work.json` → `cite`) a verse's `n` is its number in its section as Gita Press prints it (a caupāī's number the app shows at its end); a verse is cited dohā.verse ("Verse 106.3", a chhanda "Chhand 10.1"), a dohā or sorathā by its own number ("Doha 106", "Doha 3क"), the ślokas of section 0 and `end` by theirs ("Shloka 1"). Where Gita Press numbers a second run of chhandas under one dohā from 1 again, `cite.repeat` lists it (Araṇya 20, Laṅkā 101).
+- **Types:** `cau`, `do`, `so`, `cha`, `shloka`. **Topics:** Gita Press's headings. **Reading plans:** the 30-day Māsa-pārāyaṇa and the 9-day Navāhna (`book.json`).
+
 ## Introduction
 The readers' introduction (`intro` in `library/index.json`, shown in ⓘ About this work) states only what these support:
 - The text itself: Bal Kand 34, the date and place it was begun (our text, from the Gita Press edition).

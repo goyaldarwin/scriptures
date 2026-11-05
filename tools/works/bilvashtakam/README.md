@@ -14,6 +14,8 @@ The folder's format: `tools/works/README.md`.
 - `source/owner-text.txt`: the owner's text as pasted.
 
 ## Structure
+- **Hierarchy:** one part › each verse its own section › the verse.
+- **Numbering:** a śloka's `n` is its printed number, and it is cited by it (Shloka 5); `kashi`, the phalaśruti and the closing words have none and are named by their type.
 One part. Items `sh1`–`sh7`, `kashi`, `sh8` (type `shloka`), `phala` (`phalashruti`), `iti`. Each item is its own section. Topics: the bilva leaf (ślokas 1–5), the bilva tree (6–8), the phalaśruti. Item ids are permanent.
 
 ## Introduction

@@ -2,11 +2,12 @@
 
 Each procedure ends with the same three steps: **build, test, publish**.
 ```bash
-python3 tools/site/build.py        # registers sources, checks the library, builds the site
-python3 tools/site/regen_check.py  # library/ is exactly what the exporters and make_timings.py make
-python3 tools/site/history_check.py  # no work or verse id that readers' data points at has disappeared
-python3 tools/site/smoke_test.py   # every work opens in a browser without script errors
-python3 tools/site/ux_test.py      # navigation and reading, every work, at phone size
+python3 tools/site/check.py        # every check below, side by side (about 5 minutes); --fast: the first three only (about 20 s)
+  # tools/site/build.py          registers sources, checks the library, builds the site
+  # tools/site/regen_check.py    the text generators make the committed texts; library/ is exactly what the exporters and make_timings.py make
+  # tools/site/history_check.py  no work or verse id that readers' data points at has disappeared
+  # tools/site/smoke_test.py     every work opens in a browser without script errors
+  # tools/site/ux_test.py        navigation and reading, every work, at phone size (in shards: --shard K/N)
 python3 -m http.server 8000        # open http://localhost:8000 at phone size (390×844) and look
 git pull && git add -A && git commit -m "…" && git push   # GitHub Pages updates in about a minute
 ```
@@ -80,6 +81,7 @@ Use this when automatic timing is weak (kīrtan, chant) or a recording has no tr
 1. Place it on the shelf at its address, `<tradition>/<genre>/<group…>/<work>` (`docs/LIBRARY.md` §1), reusing existing levels: e.g. a Hanumān Chālīsā goes to `hinduism/chalisa/hanuman/hanuman-chalisa`, the Kena Upaniṣad to `hinduism/veda/samaveda/upanishad/kena`, Japji Sahib to `sikhism/gurbani/guru-nanak-dev/japji-sahib`. Add the missing shelves to `library/index.json`, ending in `{"id", "work", "path", "title", "by", "edition", "desc"}` (and `salute` if the work has its own). The work id is the shelf id unless that is taken.
 2. Create `tools/works/<work id>/` (`tools/works/README.md`): `work.json` (the manifest, with the work's `path`), `text.txt` (the verses, with each verse's language), `README.md`, `reconciliation.md` (the source and every choice), the meanings in `meanings/<lang>/`, and any scripts that make the text from PDFs or pages in `source/`. Add the new words to `library/glossary/<lang>.json` (`docs/LIBRARY.md` §5). `python3 tools/works/export.py <work id>` writes it through the writing standard (PLAYBOOK §3) and makes the transliteration. A new language needs its own entry first (below).
 3. Choose the natural divisions for `parts`, the `topics`, and any `plans` (e.g. daily pāṭha). Ask the owner which plans they want. Pages follow the item's section `s`; use a name (e.g. `aarti`), not a number, unless sections are dohā numbers. Verse types the app doesn't know (viniyoga, dhyāna, pada, abhaṅga …) go in the work's `types` (`docs/LIBRARY.md` §2).
+   **Write down the hierarchy and its numbering** (part › section › verse) in the work's `README.md`, and give each verse in `text.txt` its own number as the book prints it (`[1.1.1 mantra 1]`, never the full `1.1.1`). If numbers restart in each section or part, say how a verse is cited in `work.json` → `cite` (`docs/LIBRARY.md` §2: the Kaṭha `{"by": ["part", "sec", "n"]}`), or name the sections (`sections`) when they are separate compositions (the Dhūpa Āratī). The build refuses a number printed at a verse's end that is not its `n`, and two verses cited alike.
 4. Models: `tools/works/katha-upanishad/` (a Sanskrit text from a book, checked against witnesses), `tools/works/shiv-aarti/` (a short text from printouts and pages), `tools/works/shirdi-sai-dhoop-aarti/` (a multilingual āratī from two printouts), `tools/works/sukhmani-sahib/` (Gurmukhi, line-by-line meanings), `tools/works/sundarkand/` (a work that takes its verses from another).
 5. Add audio as above if there is a recording.
 6. Give the hard words of its meanings an entry (`docs/LIBRARY.md` §5, "hard"): `python3 tools/meanings/hard_words.py candidates OUT` lists the words of every meaning without one; a writer chooses the hard ones and writes each entry from the dictionaries (`tools/meanings/style.md` §11), a reviewer checks them against their places, then `hard_words.py apply OUT/*.out.json` and `hard_words.py report --reach` (every key reaches only its own word). A sense nobody can confirm goes to `docs/reviews/dictionary-doubts.jsonl`, not to a reader.

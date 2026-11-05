@@ -55,6 +55,30 @@
    }
   ]
  },
+ "cite": {
+  "by": [
+   "sec",
+   "n"
+  ],
+  "types": {
+   "do": [
+    "n"
+   ],
+   "so": [
+    "n"
+   ]
+  },
+  "sec": {
+   "hi": "दोहा",
+   "en": "Doha"
+  },
+  "word": {
+   "cau": {
+    "hi": "पद",
+    "en": "Verse"
+   }
+  }
+ },
  "types": {
   "tek": {
    "name": {

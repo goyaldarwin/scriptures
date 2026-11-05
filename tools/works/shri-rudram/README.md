@@ -24,9 +24,11 @@ The folder's format: `tools/works/README.md`.
 Rebuild: `python3 tools/works/shri-rudram/source/settle.py && python3 tools/works/export.py shri-rudram && python3 tools/audio/make_timings.py tools/works/shri-rudram/audio/sri-sathya-sai && python3 tools/site/build.py`. Run `extract.py` again only if the printouts change.
 
 ## Structure
+- **Hierarchy:** two parts (Namakam, Chamakam) › anuvākas and the opening and closing pages (sections) › mantras.
+- **Numbering:** see Items: cited anuvāka.mantra (Mantra 11.17), the invocations and closing mantras by their own numbers.
 - **Parts:** नमकम् and चमकम्.
 - **Sections (pages):** each anuvāka is a page (`nam-a01` … `nam-a11`, `cha-a01` … `cha-a11`). There are also an opening page (`nam-purva`), the hymn of names after anuvāka 1 (`nam-bhagavan`), the closing mantras and śānti (`nam-uttara`) and the Chamakam śānti (`cha-shanti`).
-- **Items:** one per mantra, ids like `namakam.a08.m11` and `chamakam.a04.m12`, numbered `n` = "anuvāka.mantra" (8.11). The page's numbering stops at the anuvāka, so mantras are split as `reconciliation.md` describes. Ids are permanent.
+- **Items:** one per mantra, ids like `namakam.a08.m11` and `chamakam.a04.m12`, with `n` the mantra's number in its anuvāka, cited anuvāka.mantra (Mantra 8.11; `work.json` → `cite`, whose `mark: "sec"` says the ॥८॥ the text prints at an anuvāka's end is the anuvāka's number). The page's numbering stops at the anuvāka, so mantras are split as `reconciliation.md` describes. Ids are permanent.
   - Namakam: 178 items, of which 164 are mantras in anuvākas 1–11.
   - Chamakam: 167 items, of which 166 are mantras.
 - **Types** (`work.json` → `types`):
@@ -35,7 +37,7 @@ Rebuild: `python3 tools/works/shri-rudram/source/settle.py && python3 tools/work
   - heading, the Taittirīya Saṃhitā heading (शी॰ / Hd.);
   - closing mantra (उ॰ / Cl.);
   - śānti mantra (शा॰ / Śā.).
-- **Topics:** one per anuvāka, with a short theme (e.g. "Anuvāka 8 — Namaḥ Śivāya"), plus the opening, नमस्ते अस्तु भगवन्, the closing mantras and the Chamakam śānti.
+- **Topics:** one per anuvāka, with a short theme (e.g. "Anuvak 8 — Namah Shivaya"), plus the opening, नमस्ते अस्तु भगवन्, the closing mantras and the Chamakam śānti.
 - **Reading plans:** none. The Rudram is recited in one sitting.
 
 ## Introduction
