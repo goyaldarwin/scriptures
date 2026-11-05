@@ -137,7 +137,7 @@ const DONE = (p, plan) => ((p.done[W.id] = p.done[W.id] || {})[plan] = p.done[W.
 const LB = {
   h: () => T('हिंदी अर्थ', 'Hindi meaning'), e: () => T('अंग्रेज़ी अर्थ', 'English meaning'), w: () => T('शब्दार्थ', 'Word meanings'), au: () => T('ऑडियो', 'Audio'),
   tr: () => T('रोमन लिप्यन्तरण', 'Transliteration'), trSub: () => T('पदके नीचे रोमन अक्षरोंमें', 'The verse in Roman letters, under it'),
-  lines: () => T('पंक्ति-पंक्ति अर्थ', 'Meaning line by line'), linesSub: () => T('हमारे अर्थमें हर पंक्तिके नीचे उसका अर्थ; बंद हो तो पूरा अर्थ पदके बाद', 'Our meaning under each line of the verse; off, the whole meaning after the verse'),
+  lines: () => T('हर पंक्तिका अर्थ', 'Meaning per line'), linesSub: () => T('अर्थको पंक्ति-अनुसार बाँटें', 'Split the meanings by line'),
   rc: () => T('पाठ मोड', 'Recitation mode'), rcSub: () => T('केवल मूल पाठ, बड़े अक्षर', 'Verses only, larger letters'),
   size: () => T('अक्षरका आकार', 'Letter size'), theme: () => T('रंग', 'Theme'), more: () => T('और सेटिंग', 'More settings'), tour: () => T('परिचय (टूर)', 'Take the tour'),
   sections: () => T('प्रसंग', 'Sections'), search: () => T('खोजें', 'Search'),
@@ -411,7 +411,7 @@ function verseHTML(i){
     // bookmark (top right), ⋮ (bottom right). A one-line verse is given a second line's height so the corners stay apart.
     const top = y === 0 ? (hasAu(i) ? '<button class="vb vplay" data-a="play" aria-label="play"><svg><use href="#i-play"/></svg>' + (SRC.au && flagsNow()[id] && !(S.timing.flagsOn && !S.timing.on) ? REVB : '') + '</button>' : '') + '<button class="vb vbm' + (bm ? ' bm-on' : '') + '" data-a="bm" aria-label="bookmark"><svg><use href="#i-bm"/></svg></button>' : '';
     const undo = last && S.timing.on && SRC.au && myStarts()[id] ? '<span class="vundo"><button class="vb" data-a="tundo" aria-label="' + T('पहले जैसा', 'Undo') + '" title="' + T('पहले जैसा', 'Undo') + '"><svg><use href="#i-undo"/></svg></button></span>' : '';   // ↶ (bottom left) in timing mode, on a verse you set
-    // ⚑ (bottom left) for the reader who turned on "A flag on each verse" (☰ › More settings › Audio timing), outside timing
+    // ⚑ (bottom left) for the reader who turned on "Review timing" (☰ › More settings › Audio timing), outside timing
     // mode (where ↶ has that corner): shown while playing on the verse being recited and the verses just before and after it
     // (the light may already have moved on), and always once marked "Review audio timing" (filled blue; ▶ then needs no dot)
     const flagOn = S.timing.flagsOn && !S.timing.on, flag = last && flagOn && hasAu(i) ? '<span class="vflag"><button class="vb' + (SRC.au && flagsNow()[id] ? ' on' : '') + '" data-a="tflag" aria-label="' + T('ऑडियोका समय जाँचें', 'Review audio timing') + '"><svg><use href="#i-flag"/></svg></button></span>' : '';
@@ -424,7 +424,7 @@ function verseHTML(i){
   const lay = (kind, m, x, fn) => '<div class="layer ' + LCLS(kind) + '">' + hardWords(kind !== 'en' || m.p ? num(x) : esc(x), kind) + (m.edited ? '<span class="tag">' + (kind === 'en' ? 'edited' : T('संशोधित', 'edited')) + '</span>' : '') + (fn && m.f ? '<div class="fn">' + m.f.map(esc).join('<br>') + '</div>' : '') + '</div>';
   const ks = shownKinds(), MS = {}; ks.forEach(k => { const m = mean(k, i); if (m) MS[k] = m; });
   const on = ks.filter(k => MS[k]);
-  // line by line (☰ › More settings › "Meaning line by line", off by default): a source that gives one piece per verse line
+  // line by line (☰ › More settings › "Meaning per line", off by default): a source that gives one piece per verse line
   // shows each piece under its line; otherwise, and for a source without pieces (or a reader's own correction of the verse or
   // the meaning), the meaning is shown whole after the verse
   const lines = m => S.settings.lines && m && !m.edited && !vv.edited && Array.isArray(m.p) && m.p.length === vv.v.length ? m.p : null;
@@ -1554,20 +1554,20 @@ function pendingStarts(){ if (!SRC.au) return {}; const fx = myStarts(), sent = 
 function timingHTML(){
   if (!W) return '';
   let h = '<h2>' + T('ऑडियोका समय', 'Audio timing') + '</h2><p class="small muted">' + T('जहाँ पद और आवाज़ मेल न खाएँ, वहाँ ठीक करनेके लिये।', 'For fixing places where the lit verse and the voice do not match.') + '</p>' + sw('stm', T('ऑडियोका समय', 'Audio timing'), '', S.timing.on) +
-    sw('stf', T('हर पदपर समय जाँचनेका झंडा', 'A flag on each verse to review its timing'), T('नीचे बाईं ओर; दबानेसे पद जाँचनेकी सूचीमें', 'Bottom left; a tap puts the verse on the to-check list'), !!S.timing.flagsOn);
+    sw('stf', T('समय जाँचें', 'Review timing'), T('झंडा दबानेसे पद जाँच-सूचीमें जुड़ता है', 'Tapping the flag adds a verse to the checklist'), !!S.timing.flagsOn);
   if (S.timing.on && SRC.au){
     const n = Object.keys(myStarts()).filter(id => ID[id] != null).length, p = Object.keys(pendingStarts()).length;
     h += (SRC.au.meta.draft ? sw('stp', T('यह रिकॉर्डिंग जाँच ली — सबके लिये चालू करें', 'This recording is checked: publish it for everyone'), (Object.keys(pendingStarts()).length > SEND_MAX ? T('भेजनेके अन्तिम भागके साथ जाएगा', 'Goes with the last part of the send') : T('भेजनेके साथ जाएगा', 'Goes with the next send')), !!(S.timing.publish || {})[tkey()]) : '') +
       checkList() + helperList() +
       '<p class="small" style="margin:14px 0 8px">' + esc(TT(SRC.au.meta.title)) + ': ' + DEV(n) + T(' पद आपने ठीक किये', ' verses set by you') + (p ? ' · ' + DEV(p) + T(' भेजने बाकी', ' not sent yet') : '') + '</p>' +
-      '<div class="acts"><button class="btn" id="tSend"' + (p || (S.timing.publish || {})[tkey()] ? '' : ' disabled') + '>' + T('लाइब्रेरीमें भेजें (GitHub)', 'Send to the library (GitHub)') + (p > SEND_MAX ? '<br><small>' + T('भाग १, कुल ', 'part 1 of ') + DEV(Math.ceil(p / SEND_MAX)) + T(' — फिर दोबारा दबाएँ', ' — then tap again') + '</small>' : '') + '</button><button class="btn ghost" id="tSave"' + (n ? '' : ' disabled') + '>' + T('फ़ाइलमें सेव करें', 'Save timings as a file') + '</button><button class="btn ghost" id="tOpen">' + T('फ़ाइल खोलें', 'Open a file') + '</button>' + (n ? '<button class="btn ghost" id="tClear">' + T('मेरे बदलाव हटाएँ', 'Clear adjustments') + '</button>' : '') + '</div>' +
+      '<div class="acts"><button class="btn" id="tSend"' + (p || (S.timing.publish || {})[tkey()] ? '' : ' disabled') + '>' + T('लाइब्रेरीमें भेजें', 'Send to library') + (p > SEND_MAX ? '<br><small>' + T('भाग १, कुल ', 'part 1 of ') + DEV(Math.ceil(p / SEND_MAX)) + T(' — फिर दोबारा दबाएँ', ' — then tap again') + '</small>' : '') + '</button><button class="btn ghost" id="tSave"' + (n ? '' : ' disabled') + '>' + T('फ़ाइलमें सेव करें', 'Save timings as a file') + '</button><button class="btn ghost" id="tOpen">' + T('फ़ाइल खोलें', 'Open a file') + '</button>' + (n ? '<button class="btn ghost" id="tClear">' + T('मेरे बदलाव हटाएँ', 'Clear adjustments') + '</button>' : '') + '</div>' +
       '<p class="small muted">' + T('सहायता कर रहे हैं? “फ़ाइलमें सेव करें” दबाकर फ़ाइल साइटके मालिकको भेजें; वे जाँचकर लाइब्रेरीमें जोड़ेंगे। लाइब्रेरीमें सीधे केवल मालिक भेज सकते हैं।', 'Helping? Tap “Save timings as a file” and send the file to the site’s owner, who checks it and adds it to the library. Only the owner can send to the library directly.') + '</p>';
   }
   return h;
 }
 function checkList(){
   const ids = [...new Set([...[...((SRC.au && SRC.au.checkSet) || [])].filter(id => !myStarts()[id]), ...FLAGGED])].filter(id => ID[id] != null).sort((a, b) => ID[a] - ID[b]); if (!ids.length) return '<p class="small muted">' + T('जाँचने लायक कोई पद नहीं बचा।', 'Nothing left to check.') + '</p>';
-  return '<details class="tcheck"><summary>' + T('जाँचने हैं: ', 'To check: ') + DEV(ids.length) + T(' पद — इनकी शुरुआत अनुमानसे रखी गयी है', ' verses — their starts are estimated') + '</summary><div class="tlist">' + ids.slice(0, 400).map(id => '<button data-go-i="' + ID[id] + '">' + esc(itemLabel(ID[id])) + ' <span class="muted">' + fmtT(SRC.au.at[id][1]) + '</span></button>').join('') + '</div></details>';
+  return '<details class="tcheck"><summary>' + T('जाँचने हैं: ', 'To check: ') + DEV(ids.length) + T(' पद', ' verses') + '</summary><div class="tlist">' + ids.slice(0, 400).map(id => '<button data-go-i="' + ID[id] + '">' + esc(itemLabel(ID[id])) + ' <span class="muted">' + fmtT(SRC.au.at[id][1]) + '</span></button>').join('') + '</div></details>';
 }
 // marks loaded from helpers' files that you have not checked yet
 function helperList(){

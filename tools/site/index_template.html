@@ -452,7 +452,7 @@ body.playing .view.on:not(#reader){padding-bottom:calc(240px + env(safe-area-ins
   <div class="scope" id="scope">
    <button class="chip on" data-s="v" data-en="Verses">मूल पाठ</button><button class="chip on" data-s="h" data-en="Hindi meaning">हिंदी अर्थ</button><button class="chip on" data-s="e" data-en="English meaning">अंग्रेज़ी अर्थ</button><button class="chip on" data-s="pa" data-en="Punjabi meaning" hidden>पंजाबी अर्थ</button><button class="chip on" data-s="n" data-en="My notes">मेरी टिप्पणियाँ</button>
   </div>
-  <div id="sRes"><div class="empty" data-en="Type any word from a verse, its Hindi meaning or its English meaning.">चौपाई, दोहे या अर्थका कोई भी शब्द लिखें।</div></div>
+  <div id="sRes" class="zoomable"><div class="empty" data-en="Type any word from a verse, its Hindi meaning or its English meaning.">चौपाई, दोहे या अर्थका कोई भी शब्द लिखें।</div></div>
  </div>
 </section>
 
@@ -481,7 +481,7 @@ body.playing .view.on:not(#reader){padding-bottom:calc(240px + env(safe-area-ins
 <div class="scrim" id="scrim"></div>
 <div class="coach" id="coach" hidden><div class="cspot" id="cspot"></div><div class="cbub" id="cbub"><p id="cbText"></p><div class="cbrow"><button id="cbBack" hidden><span data-en="‹ Back">‹ पीछे</span></button><span id="cbStep" class="muted"></span><button id="cbSkip"><span data-en="Skip tour">परिचय छोड़ें</span></button></div></div></div>
 <div class="tour" id="tour" hidden role="dialog" aria-modal="true"><div class="tcard"><div class="tart" id="tourArt"></div><h2 id="tourT"></h2><p id="tourP"></p><div class="tdots" id="tourDots"></div><div class="tbtns"><button class="btn ghost" id="tourSkip"></button><button class="btn" id="tourNext"></button></div></div></div>
-<div class="sheet" id="sheet"><div class="grab"></div><div class="wrap" id="sheetBody"></div></div>
+<div class="sheet" id="sheet"><div class="grab"></div><div class="wrap zoomable" id="sheetBody"></div></div>
 <div class="toast" id="toast"></div>
 <input type="file" id="fileIn" accept="application/json,.json" style="display:none">
 

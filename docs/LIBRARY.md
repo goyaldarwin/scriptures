@@ -87,7 +87,7 @@ An item: `{"id": "bal.86.cau4", "p": 0, "s": "86", "y": "cau", "n": "4", "v": [v
 
 ```json
 {"id": "hi-gitapress", "lang": "hi", "order": 1,
- "title": {"hi": "गीताप्रेस — भावार्थ (हनुमानप्रसाद पोद्दार)", "en": "Gita Press — Hindi bhāvārtha (Hanumānprasād Poddār)"},
+ "title": {"hi": "गीताप्रेस — भावार्थ (हनुमानप्रसाद पोद्दार)", "en": "Gita Press — Hindi bhavarth (Hanuman Prasad Poddar)"},
  "m": {"bal.0.shloka1": ["meaning text", ["footnote", "…"]]}}
 ```
 - `id` = the file name. Name it `<lang>-<publisher or translator>`, lowercase with hyphens, e.g. `en-gitapress`, `hi-swami-ramsukhdas`.

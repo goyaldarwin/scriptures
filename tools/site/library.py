@@ -193,6 +193,9 @@ def check_work(lib, leaf, LANGS):
         src[k].sort(key=lambda x: (x['order'], x['id']))
         for x in src[k]: del x['order']
     src = {k: v for k, v in src.items() if v or k in ('hi', 'en', 'au')}
+    # the meaning and recording names in Sources are labels too: plain spelling
+    marked = sorted({x['title']['en'] for lst in src.values() for x in lst if isinstance(x.get('title'), dict) and re.search('[\u0100-\u024f\u1e00-\u1eff]', x['title'].get('en') or '')})
+    _need(not marked, f"{name}: source names are in plain spelling, not IAST: {marked[:3]}")
     has_g = os.path.exists(wg) or bool(gfiles)   # the app fetches <work>/glossary.json (or glossary/<part>.json) only when the work says it has one
     if w.get('sources') != src or bool(w.get('glossary')) != has_g:
         w['sources'] = src

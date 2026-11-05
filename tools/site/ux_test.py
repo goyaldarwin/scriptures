@@ -990,7 +990,7 @@ async def main():
             S.timing.flags = JSON.parse(k0); syncFlags(); save();
             return [menu.slice(0, 5).join() === 'play,note,flag,copy,edit', added.length === 1 && added[0] === i, off, gone]; })()""")
         check('timing flag in ⋮: “Review audio timing” (third in ⋮) puts only that verse on the check list; one blue dot on ▶ and in ⋮ shows it; it leaves once set', all(fg), fg)
-        # "A flag on each verse" (Audio timing settings): off, no flag; on, while playing, a blue ⚑ bottom left of the verse recited and
+        # "Review timing" (Audio timing settings): off, no flag; on, while playing, a blue ⚑ bottom left of the verse recited and
         # its neighbours, outside timing mode; a tap fills it, marks the verse (on the settings' to-check list too, and ▶ needs no dot); timing mode hides it
         vf = await ev("""(async () => { const k0 = JSON.stringify(S.timing.flags), f0 = S.timing.flagsOn; await openWork('manas', true); await loadSources(); show('home');
             const i = IT.findIndex(x => x.id === 'bal.1.cau2'); S.timing.flagsOn = false; openReader('k', i); await new Promise(r => setTimeout(r, 400)); const none = !document.querySelector('#v' + i + ' .vflag');
@@ -1005,7 +1005,7 @@ async def main():
             S.timing.on = true; refreshReader(); await new Promise(r => setTimeout(r, 300)); const hidden = !document.querySelector('#v' + i + ' .vflag'); S.timing.on = false;
             S.timing.flags = JSON.parse(k0); S.timing.flagsOn = f0; syncFlags(); save(); refreshReader();
             return [none, idle, shown, kept, filled, listed, hidden]; })()""")
-        check('“A flag on each verse”: while playing, a blue ⚑ on the verse recited and its neighbours; a tap fills it (shown after playing too) and lists the verse; hidden in timing mode', all(vf), vf)
+        check('“Review timing”: while playing, a blue ⚑ on the verse recited and its neighbours; a tap fills it (shown after playing too) and lists the verse; hidden in timing mode', all(vf), vf)
         # every number is shown as 1 2 3, in Hindi too; a digit inside a word (ओ३म्) and what a textarea holds stay as written
         nm = await ev("""(async () => { const ui = S.settings.ui, ly = JSON.stringify(S.settings.layers); S.settings.ui = 'hi'; applyLang(); await openWork('manas', true); await loadSources(); S.settings.layers = {h: true, e: false, w: false}; syncLayers();
             show('home'); renderHome(); await new Promise(r => setTimeout(r, 300)); const home = document.querySelector('#home').innerText;
@@ -1123,6 +1123,11 @@ async def main():
             const r = await find('ramraksha', '5'), rOk = r.length >= 1 && r.every(i => parseInt(IT[i].n) === 5);
             return [mOk, kands, cOk, hOk, sOk, rOk, m.length, c.length]; })()""")
         check('a number in a work search finds that doha in each kand, N.M a chaupai under it; elsewhere the verse of that number', all(nums[:6]), nums)
+        # A−/A+ scale the sheets and search results too, with nothing spilling sideways at the largest size
+        zs = await ev("""(async () => { const was = S.settings.size, out = []; for (const sz of [21, 34]){ S.settings.size = sz; applyTheme(); await openWork('manas', true); openReader('M', dayRange('M', 27)[0]); await new Promise(r => setTimeout(r, 300)); $('#rMid').click(); await new Promise(r => setTimeout(r, 400));
+            const sb = $('#sheetBody'); out.push([+getComputedStyle(sb).zoom, sb.scrollWidth <= sb.clientWidth + 1, +getComputedStyle($('#sRes')).zoom]); closeSheet(); }
+            S.settings.size = was; applyTheme(); return out; })()""")
+        check('A−/A+ scale the sheets and search results; nothing spills sideways at the largest size', zs[0][0] == 1 and zs[1][0] > 1.3 and zs[1][1] and zs[1][2] > 1.3, zs)
         # the library lists works by name only (ⓘ About is on the work's own page)
         nolib = await ev("(async () => { libPath = []; show('library'); await new Promise(r => setTimeout(r, 300)); return [$$('#libList [data-open-work]').length, $$('#libList .winfo, #libList [data-info-work]').length]; })()")
         check('the library shows works by name, without ⓘ', nolib[0] > 0 and nolib[1] == 0, nolib)
@@ -1156,11 +1161,11 @@ async def main():
         sheet = await ev("$('#sheet').classList.contains('on') ? $('#sheetBody').innerText : ''")
         await ev("closeSheet()")
         check('hard words of a meaning are underlined and open their meaning (the work’s own sense first); other words are plain', 'अविद्या' in hw[0] and 'avidyā' in hw[0] and 'उपासना' in hw[0] and hw[1] and 'ritual works' in sheet, [hw, sheet[:120]])
-        # ☰ › More settings › "Meaning line by line": off by default; the switch turns it on
+        # ☰ › More settings › "Meaning per line": off by default; the switch turns it on
         await ev("delete S.settings.lines; save(); show('settings')"); await pg.wait_for_timeout(300)
         off0 = await ev("!document.querySelector('#slines').checked")
         await (await pg.query_selector('label:has(#slines)')).click(); await pg.wait_for_timeout(200)
-        check('“Meaning line by line” is off by default and its switch turns it on', off0 and await ev("S.settings.lines === true"))
+        check('“Meaning per line” is off by default and its switch turns it on', off0 and await ev("S.settings.lines === true"))
         await ev(f"(() => {{ S = JSON.parse({json.dumps(keep)}); save(); applyState(); }})()")
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await split_work(b, SHOTS)
