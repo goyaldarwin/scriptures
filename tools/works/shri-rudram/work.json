@@ -32,6 +32,13 @@
    }
   ]
  },
+ "cite": {
+  "by": [
+   "sec",
+   "n"
+  ],
+  "mark": "sec"
+ },
  "types": {
   "mangala": {
    "name": {
@@ -75,8 +82,8 @@
   },
   "shanti": {
    "name": {
-    "hi": "शान्ति मन्त्र",
-    "en": "Shanti mantra"
+    "hi": "शान्तिमन्त्र",
+    "en": "Shanti Mantra"
    },
    "short": {
     "hi": "शा॰",

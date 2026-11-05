@@ -8,6 +8,11 @@ The Rāma Rakṣā of Budha Kauśika, in Sanskrit (`sa`), as the Vande Guru Para
 
 Verse types: मन्त्र (`mantra`), विनियोग (`viniyoga`), ध्यान (`dhyana`), श्लोक (`shloka`) and the closing words (`iti`). The folder's format: `tools/works/README.md`.
 
+## Structure
+- **Hierarchy:** one part › each verse its own section (page) › the verse: the opening mantra (`mangal`), the viniyoga, the dhyāna, ślokas 1–38 (`sh1` … `sh38`) and the closing words (`iti`).
+- **Numbering:** a śloka's `n` is its printed number (॥१॥ …), and it is cited by it (Shloka 5); the opening and closing verses have none and are named by their type.
+- **Topics:** the viniyoga, the dhyāna and the stotra. **Reading plans:** none.
+
 ## Introduction
 The readers' introduction (`intro` in `library/index.json`, shown in ⓘ About this work) states only what these support:
 - The text itself: the viniyoga, the dhyan (verse 2) and verse 15 (our text, checked against the Vande Guru Paramparaam recording).

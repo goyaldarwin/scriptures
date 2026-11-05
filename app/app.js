@@ -149,7 +149,10 @@ const LB = {
 let toastT;
 // a toast with one action (e.g. “Continue ▶” after a verse has been played); it stays a little longer and can be tapped
 function toastAct(msg, label, fn){ const t = $('#toast'); t.innerHTML = esc(msg) + ' <button class="tact">' + esc(label) + '</button>'; t.classList.add('on', 'act'); t.querySelector('.tact').onclick = () => { t.classList.remove('on', 'act'); fn(); }; clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on', 'act'), 8000); }
-// a message in the light card of "Finished · ▶ Play on" (white and blue), without a button
+// The two capsules (docs/PLAYBOOK.md §7): the dark one (toast) answers a tap — what was just done, or why it could not be —
+// and goes by itself; the white one is the reading speaking: where playing ended or the reader is (Finished · ▶ Play on,
+// Recitation complete, Tour complete, ↑ Go to …, ↓ Back to …), with a way on where there is one.
+// a message in the white capsule of "Finished · ▶ Play on", without a button
 function toastLight(msg, ms){ const t = $('#toast'); t.textContent = msg; t.classList.add('on', 'act'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on', 'act'), ms || 4000); }
 function toast(msg){ $('#toast').classList.remove('act'); const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), 2600); }
 function applyLang(){ const en = LANG() === 'en'; document.documentElement.lang = en ? 'en' : 'hi';
@@ -299,24 +302,33 @@ const VN = n => T(ORDH[n] + ' विश्राम', 'Vishram ' + n);
 const PNAME = id => TT(PLAN[id].long);
 
 /* ---------------- labels ---------------- */
+// A verse's number is its citation `c` (work.json → cite; tools/text/cite.py): "106.3", "2.1.1", "1.15", "3क". The exporter
+// writes it into every verse, so the reader, the player, Resume, the footer and the number search show and find one number.
+const CIT = it => it.c != null ? it.c : (it.n || '');
 function vNum(n){ return n && !/^u/.test(n) ? DEV(n) : ''; }
-function vLabel(it){ const n = vNum(it.n); return TYPE[it.y] + (n ? ' ' + n : ''); }
-const isNum = s => /^[1-9]\d*$/.test(s);
+function vLabel(it){ const n = vNum(CIT(it)); return TYPE[it.y] + (n ? ' ' + n : ''); }
+// a section counted by number has a name only where the work gives one (the Mānas: work.json → cite.sec, "Doha")
+const SECW = () => W && W.cite && W.cite.sec ? TT(W.cite.sec) : '';
+const isNum = s => !!SECW() && /^[1-9]\d*$/.test(s);
+// a verse cited by its own number alone (the Mānas's dohā: cite.types.do = ["n"]), not by its section's
+const ALONE = it => { const t = W && W.cite && W.cite.types && W.cite.types[it.y]; return !!t && t.length === 1; };
 // a work may name its sections (work.json → "sections": {section id: {hi, en}}, e.g. bala.1 → सर्ग १ / Sarga 1)
 const SECN = s => W && W.sections && W.sections[s] ? TT(W.sections[s]) : '';
 const hasSec = p => isNum(p.s) || !!SECN(p.s);
 // two section labels as one range: the same words before a number are written once (Sarga 1–3, सर्ग १–३)
 function secSpan(la, lb){ if (la === lb) return la; const x = /^(.*?)([0-9०-९੦-੯]+)$/.exec(la), y = /^(.*?)([0-9०-९੦-੯]+)$/.exec(lb); return x && y && x[1] === y[1] ? la + '–' + y[2] : la + ' – ' + lb; }
-function secLabel(p){ if (SECN(p.s)) return SECN(p.s); if (isNum(p.s)) return T('दोहा ', 'Doha ') + DEV(p.s); const a = IT[p.from], z = IT[p.to]; if (a.y === z.y && vNum(a.n) && vNum(z.n)) return TYPE[a.y] + ' ' + vNum(a.n) + (z.n !== a.n ? '–' + vNum(z.n) : ''); return vLabel(a) === vLabel(z) ? vLabel(a) : vLabel(a) + ' – ' + vLabel(z); }
-function posLabel(i){ const it = IT[i], p = PAGES[itemPage[i]]; if (SECN(p.s)) return secLabel(p) + ' · ' + vLabel(it); if (!isNum(p.s) || it.y === 'do' || it.y === 'so') return vLabel(it); return secLabel(p) + ' · ' + vLabel(it); }
+function secLabel(p){ if (SECN(p.s)) return SECN(p.s); if (isNum(p.s)) return SECW() + ' ' + DEV(p.s); const a = IT[p.from], z = IT[p.to]; if (a.y === z.y && vNum(CIT(a)) && vNum(CIT(z))) return TYPE[a.y] + ' ' + vNum(CIT(a)) + (CIT(z) !== CIT(a) ? '–' + vNum(CIT(z)) : ''); return vLabel(a) === vLabel(z) ? vLabel(a) : vLabel(a) + ' – ' + vLabel(z); }
+// a verse's place: its section's label and its own number under it ("Doha 106 · Chaupai 3", "Namaskarashtak · Stanza 1"), or its citation
+function posLabel(i){ const it = IT[i], p = PAGES[itemPage[i]], own = n => TYPE[it.y] + (vNum(n) ? ' ' + vNum(n) : '');
+  if (SECN(p.s)) return secLabel(p) + ' · ' + own(it.n); if (!isNum(p.s) || ALONE(it)) return vLabel(it); return secLabel(p) + ' · ' + own(it.n); }
 function itemLabel(i){ return KNAME(IT[i].p) + ' · ' + posLabel(i); }
 function spanLabel(a, b){
   const pa = PAGES[itemPage[a]], pb = PAGES[itemPage[b]];
   if (SECN(pa.s) && SECN(pb.s)) return secSpan(secLabel(pa), secLabel(pb));
-  if (isNum(pa.s) && isNum(pb.s)) return T('दोहा ', 'Doha ') + DEV(pa.s) + (pb.s !== pa.s ? '–' + DEV(pb.s) : '');
+  if (isNum(pa.s) && isNum(pb.s)) return SECW() + ' ' + DEV(pa.s) + (pb.s !== pa.s ? '–' + DEV(pb.s) : '');
   const la = hasSec(pa) ? secLabel(pa) : vLabel(IT[a]), lb = hasSec(pb) ? secLabel(pb) : vLabel(IT[b]);
   if (la === lb) return la;
-  if (IT[a].y === IT[b].y && !hasSec(pa) && !hasSec(pb) && vNum(IT[a].n) && vNum(IT[b].n)) return TYPE[IT[a].y] + ' ' + vNum(IT[a].n) + '–' + vNum(IT[b].n);
+  if (IT[a].y === IT[b].y && !hasSec(pa) && !hasSec(pb) && vNum(CIT(IT[a])) && vNum(CIT(IT[b]))) return TYPE[IT[a].y] + ' ' + vNum(CIT(IT[a])) + '–' + vNum(CIT(IT[b]));
   return la + ' – ' + lb;
 }
 function rangeDesc(a, b){ const ka = KNAME(IT[a].p), kb = KNAME(IT[b].p); if (ka === kb) return esc(ka + ': ' + spanLabel(a, b)); let h = '', p = IT[a].p; while (p <= IT[b].p){ const x = Math.max(a, PARTS[p].a), y = Math.min(b, PARTS[p].b); h += (h ? '<br>' : '') + esc(KNAME(p) + ': ' + spanLabel(x, y)); p++; } return h; }
@@ -480,8 +492,10 @@ function endHTML(){
   if (canNext()) return '';
   let h = '<div class="endb">';
   if (R.b === IT.length - 1) h += '<div class="colo">' + esc(TT(W.colophon) || '') + '</div>';
-  if (R.org === 'k'){ const nx = PARTS[R.n + 1]; if (nx) h += '<button class="btn" data-next="' + nx.a + '">' + esc(KNAME(nx.k)) + ' ›</button>'; }
-  else { const P = PLAN[R.org]; if (R.n < P.n){ const [na, nb] = dayRange(R.org, R.n + 1), d = durLabel(spanSecs(na, nb)); h += '<button class="btn" data-next="' + na + '">' + VN(R.n + 1) + ' ›</button>' + (d ? '<div class="ndur">▶ ' + d + '</div>' : ''); } }   // the next vishram, and how long it plays
+  // the button to what comes next (the next part, or the next vishram of a plan), and under it how long that plays: the same in every work
+  const next = (a, b, name) => { const d = durLabel(spanSecs(a, b)); h += '<button class="btn" data-next="' + a + '">' + esc(name) + ' ›</button>' + (d ? '<div class="ndur">▶ ' + d + '</div>' : ''); };
+  if (R.org === 'k'){ const nx = PARTS[R.n + 1]; if (nx) next(nx.a, nx.b, KNAME(nx.k)); }
+  else { const P = PLAN[R.org]; if (R.n < P.n){ const [na, nb] = dayRange(R.org, R.n + 1); next(na, nb, VN(R.n + 1)); } }
   return h + '</div>';
 }
 function renderAround(i, focus){
@@ -572,8 +586,8 @@ function backPill(){
     const el = document.getElementById('v' + a.i), r = el && el.getBoundingClientRect();
     show = !(r && r.bottom > 70 && r.top < innerHeight - 90);
   }
-  if (show){ const where = a.org === 'k' ? (PARTS.length > 1 ? KNAME(IT[a.i].p) : '') : VN(rangeFor(a.org, a.i)[2]);
-    const h = '<b><span class="arr">' + (a.i >= topVisibleItem() ? '↓' : '↑') + '</span>' + T('', 'Back to ') + esc(posLabel(a.i)) + T(' पर लौटें', '') + '</b>' + (where ? '<small>' + esc(where) + '</small>' : '');   // as “Go to …”: an arrow pointing the way, the place, the part or day
+  if (show){ const where = a.org === 'k' ? placeOf(a.i) : [VN(rangeFor(a.org, a.i)[2]), SECN(PAGES[itemPage[a.i]].s)].filter(Boolean).join(' · ');
+    const h = '<b><span class="arr">' + (a.i >= topVisibleItem() ? '↓' : '↑') + '</span>' + T('', 'Back to ') + esc(playLabel(a.i)) + T(' पर लौटें', '') + '</b>' + (where ? '<small>' + esc(where) + '</small>' : '');   // as “Go to …”: an arrow pointing the way, the place, the part or day
     if (b.innerHTML !== h) b.innerHTML = h;
     // above the reader's bottom bar (the sections) and the player, never over them
     const nb = $('#reader .navbar'), pl = $('#player'), tops = [innerHeight];
@@ -991,9 +1005,14 @@ window.addEventListener('message', e => {
 /* what is playing, in the app's own words: the reading (kāṇḍa or plan day) and the reciter — never the recording's title */
 // the player's label: in a work counted by dohas, a verse under a doha is “Verse 106.3” (Doha 106, its third verse) and the
 // doha itself “Doha 106”; elsewhere the verse's own short label (Shloka 1, Mantra 2.1)
-function playLabel(i){ const it = IT[i], p = PAGES[itemPage[i]], n = parseInt(it.n, 10);
-  if (isNum(p.s) && !SECN(p.s) && it.y !== 'do' && it.y !== 'so' && n) return T('पद ', 'Verse ') + DEV(p.s) + '.' + DEV(n);
-  return posLabel(i); }
+// the player's label (and Resume's, Go to's and Back to's): the citation, with the word the work gives a type where its name
+// would not fit ("Verse 106.3": the third verse under Doha 106; "Mantra 2.1.1"; "Chhand 10.1"). Like the part, a named section
+// is not in it (the narrow player); placeOf names them where there is room
+function playLabel(i){ const it = IT[i], c = CIT(it), wd = W.cite && W.cite.word && W.cite.word[it.y];
+  if (!vNum(c)) return vLabel(it);
+  return (wd ? TT(wd) : TYPE[it.y]) + ' ' + vNum(c); }
+// where a verse is, around its label: the part (in a work of several) and a named section ("Uttar Kand · Closing", "Namaskarashtak")
+function placeOf(i){ const p = PAGES[itemPage[i]]; return [PARTS.length > 1 ? KNAME(IT[i].p) : '', SECN(p.s)].filter(Boolean).join(' · '); }
 // the player's small line: outside the reader it says the label can be tapped (“Go to verse ›”); in the reader, nothing
 function pSub(){ const out = CURVIEW !== 'reader'; $('#pTrack').textContent = out ? T('पदपर जाएँ ›', 'Go to verse ›') : ''; $('#pInfo').classList.toggle('go', out);
   $('#pInfo').setAttribute('aria-label', T('चल रहे पदपर जाएँ', 'Go to the verse playing')); }
@@ -1060,7 +1079,7 @@ function tick(anchor){
     const last = PL.end, whole = PL.whole, msg = whole ? T('पाठ पूर्ण', 'Recitation complete') : PL.endMsg || T('पूर्ण', 'Finished');
     stopAudio(); const nx = whole ? null : firstAu(last + 1, Math.min(IT.length - 1, last + 80));
     if (TOUR && TOUR.waiting) return;   // the tour's verse has been heard: the tour finishes (no "Play on")
-    if (nx == null) toast(msg); else toastAct(msg, T('▶ आगे सुनें', '▶ Play on'), () => { if (!$('#reader').classList.contains('on')) openReader(R.org, nx); playFrom(nx); });
+    if (nx == null) toastLight(msg); else toastAct(msg, T('▶ आगे सुनें', '▶ Play on'), () => { if (!$('#reader').classList.contains('on')) openReader(R.org, nx); playFrom(nx); });
     return;
   }
   // a verse's end matters only where playing stops (one verse, or the last verse of a reading): never skipped. While timings
@@ -1215,8 +1234,8 @@ function jumpPill(){
   const el = document.getElementById('v' + PL.cur), r = el && el.getBoundingClientRect(), top = $('#reader .bar').getBoundingClientRect().bottom, pl = $('#player').hidden ? {top: innerHeight} : $('#player').getBoundingClientRect();
   const seen = r && r.bottom > top + 24 && r.top < pl.top - 24;   // some of the verse is on the screen
   if (seen){ b.hidden = true; return; }
-  const i = PL.cur, where = R.org === 'k' ? (PARTS.length > 1 ? KNAME(IT[i].p) : '') : VN(R.n);
-  const h = '<b><span class="arr">' + (i >= topVisibleItem() ? '↓' : '↑') + '</span>' + T('', 'Go to ') + esc(posLabel(i)) + T(' पर जाएँ', '') + '</b>' + (where ? '<small>' + esc(where) + '</small>' : '');   // "Go to <verse>", a big arrow pointing the way
+  const i = PL.cur, where = R.org === 'k' ? placeOf(i) : [VN(R.n), SECN(PAGES[itemPage[i]].s)].filter(Boolean).join(' · ');
+  const h = '<b><span class="arr">' + (i >= topVisibleItem() ? '↓' : '↑') + '</span>' + T('', 'Go to ') + esc(playLabel(i)) + T(' पर जाएँ', '') + '</b>' + (where ? '<small>' + esc(where) + '</small>' : '');   // "Go to <verse>", a big arrow pointing the way
   if (b.innerHTML !== h) b.innerHTML = h; b.style.bottom = (innerHeight - pl.top + 10) + 'px'; b.hidden = false;
 }
 setInterval(jumpPill, 300);
@@ -1369,6 +1388,8 @@ function fitTitle() {
 }
 addEventListener('resize', () => { if ($('#hTitle') && $('#hTitle').offsetParent) fitTitle(); });
 const VEDIC = /[\u0951\u0952\u1CD0-\u1CFF\uA8E0-\uA8FF]/;   // verses with svara marks are set in the Vedic font
+// a plan's page before or after the reading, titled by the work (work.json → vidhi.titles; the visarjana by its own title)
+function pageTitle(pg){ const V = W.vidhi || {}, t = pg === 'visarjan' ? V.visarjan && V.visarjan.title : (V.titles || {})[pg]; return t ? TT(t) : pg === 'vidhi' ? LB.vidhi() : pg; }
 function renderHome(){
   if (!W) return;
   $('#hTitle').textContent = TT(W.title); fitTitle(); $('#hSub').textContent = [TT(W.by), TT(W.from)].filter(Boolean).join(' · ');   // the author and, where there is one, the parent text — never the publisher or source
@@ -1377,7 +1398,7 @@ function renderHome(){
   $('#hPlayT').textContent = fa != null ? durLabel(spanSecs(0, IT.length - 1)) : '';   // the whole recording's time, under it
   fixLast(); const L = WS().last, A = anchorOf() || (L && IT[L.i] ? {org: L.org, i: L.i} : null);
   // Resume: where you were reading (the reading anchor), named inside it in the player's short form, as large as Play all
-  const shortAt = i => (PARTS.length > 1 ? KNAME(IT[i].p) + ' · ' : '') + playLabel(i);
+  const shortAt = i => [placeOf(i), playLabel(i)].filter(Boolean).join(' · ');
   $('#contCard').innerHTML = A ? '<button class="btn ghost cont" id="cGo"><span>' + T('आगे पढ़ें', 'Resume') + ' ›</span><small>' + esc(shortAt(A.i)) + '</small></button>' : '';
   if ($('#cGo')) $('#cGo').onclick = () => { AN.going = true; openReader(A.org, A.i, true); };
   const org = homeOrg();
@@ -1394,7 +1415,7 @@ function renderHome(){
   else if (org === 'k') PARTS.forEach(p => { const tps = TOPICS.filter(t => IT[t.i].p === p.k).length || (W.sections ? PAGES.filter(g => g.k === p.k && SECN(g.s)).length : 0);   /* its topics, else its named sections */ h += '<li class="rowp">' + play('k', p.a, p.b) + '<button class="it" data-open="' + p.a + '"><span class="no">' + DEV(p.k + 1) + '</span><span class="grow"><span class="ti">' + esc(KNAME(p.k)) + '</span><br><span class="ds">' + DEV(tps) + T(' प्रसंग', tps === 1 ? ' section' : ' sections') + '</span></span><span class="chev">›</span></button></li>'; });
   else { const P = PLAN[org]; const dn = Object.keys(DONE(ME(), org)).length; h += '<li class="pdone" aria-label="' + DEV(dn) + ' / ' + DEV(P.n) + T(' विश्राम पूर्ण', ' vishrams completed') + '"><span class="pdbar"><span style="width:' + Math.round(100 * dn / P.n) + '%"></span></span><span class="pdn">' + DEV(dn) + ' / ' + DEV(P.n) + '</span></li>';   // how much of the plan is done; a vishram's number marks it done
     // pages read before the first day and after the reading (pūrvāṅga / uttarāṅga), when the plan names them
-    const page = (pg, when) => { const t = pg === 'aarti' ? T('श्रीरामायणजीकी आरती', 'Shri Ramayanji ki Aarti') : pg === 'visarjan' ? TT(W.vidhi.visarjan.title) : T('पारायण-विधि', 'Parayan vidhi'); if (pg === 'visarjan') when = T('पारायणके अन्तिम दिन', 'On the last day of the parayan'); return '<li class="rowp"><button class="it" data-page="' + pg + '"><span class="no pg"><svg><use href="#i-lamp"/></svg></span><span class="grow"><span class="ti">' + t + '</span><br><span class="ds">' + when + '</span></span><span class="chev">›</span></button></li>'; };
+    const page = (pg, when) => { const t = pageTitle(pg); if (pg === 'visarjan') when = T('पारायणके अन्तिम दिन', 'On the last day of the parayan'); return '<li class="rowp"><button class="it" data-page="' + pg + '"><span class="no pg"><svg><use href="#i-lamp"/></svg></span><span class="grow"><span class="ti">' + t + '</span><br><span class="ds">' + when + '</span></span><span class="chev">›</span></button></li>'; };
     (P.before || []).forEach(pg => h += page(pg, T('पाठसे पहले', 'Before the reading')));
     for (let n = 1; n <= P.n; n++){ const [a, b] = dayRange(org, n), d = DONE(ME(), org)[n], t = firstAu(a, b) != null ? durLabel(spanSecs(a, b)) : ''; h += '<li class="rowp"><button class="lmark" data-mark="' + n + '" aria-label="' + VN(n) + (d ? T(': पूर्ण — अपूर्ण करें', ': complete — mark not complete') : T(': पूर्ण करें', ': mark complete')) + '"></button>' + play(org, a, b) + '<button class="it" data-open="' + a + '"><span class="no' + (d ? ' done' : '') + '">' + (d ? '✓' : DEV(n)) + '</span><span class="grow"><span class="ti">' + VN(n) + '</span><br><span class="ds">' + rangeDesc(a, b) + '</span></span><span class="chev">›</span></button></li>'; }
     (P.after || []).forEach(pg => h += page(pg, T('पाठके बाद', 'After the reading'))); }
@@ -1475,18 +1496,35 @@ function snip(text, q, latin){ const src = text; const low = latin ? normL(src) 
 // A number typed into a work's search finds by number. In a work counted by dohas (the Manas, its kands), the doha is the main
 // counter and the chaupais count again under each: "45" (or "दोहा ४५") finds Doha 45 in each part, "45.3" (or "45 3") Chaupai 3
 // under Doha 45. In a work without dohas (a stotra, an Upanishad), a number finds the verse of that number.
+// A number typed in a work's search finds the verses cited so (CIT): "45" Doha 45 of each kand (and 45क, 45ख), "45.3"
+// the verse cited 45.3 (a chaupai before a chhand of the same number), "2.1.1" the Katha's mantra, "दोहा ४५" or "chhand 10.1"
+// with the type's name; a number that only begins citations ("2.1" in the Katha) opens the first verse under it in each part
+const CKEY = s => String(s).replace(/[०-९]/g, c => '०१२३४५६७८९'.indexOf(c)).replace(/[੦-੯]/g, c => '੦੧੨੩੪੫੬੭੮੯'.indexOf(c)).toLowerCase().replace(/[\s()]/g, '');
 function numQuery(q){
-  const d = q.replace(/[०-९]/g, c => '०१२३४५६७८९'.indexOf(c)).toLowerCase().replace(/^(dohā|doha|dohe|दोहा|दोहे|soraṭhā|soratha|सोरठा)\s*/, '').trim();
-  const m = /^(\d{1,4})(?:\s*[.\/:,\s]\s*(\d{1,3}))?$/.exec(d); return m ? [+m[1], m[2] ? +m[2] : null] : null;
+  const d = CKEY(q.trim().replace(/\s*[\/:,]\s*|\s+(?=\d)/g, m => /\d/.test(m) ? m : '.')), m = /^([^\d.]*?)\.?(\d{1,4}(?:\.\d{1,3}){0,3})([^\d.]{0,2})$/.exec(d);
+  if (!m) return null; const word = m[1].replace(/\.+$/, '');
+  const f = x => fold(String(x || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()).replace(/\s/g, '');
+  const w = f(word), is = nm => (nm || []).some(x => x && (f(x) === w || f(x) === w.replace(/e$/, 'a')));
+  let ty = null; const C = W.cite || {};
+  if (word){ ty = Object.keys(TYPEN).filter(k => is(TYPEN[k]) || is(VSHORT[k]) || (C.word && C.word[k] && is([C.word[k].hi, C.word[k].en])));
+    if (C.sec && is([C.sec.hi, C.sec.en])) ty = ty.concat(Object.keys(C.types || {}));
+    if (!ty.length) return null; }
+  else if (C.sec && !m[2].includes('.')) ty = Object.keys(C.types || {});   // a bare number in a work counted by dohā is the dohā
+  return {c: m[2] + m[3], base: m[2], ty, word: !!word};
 }
-function numHits([N, M], hits){
+function numHits(Q, hits){
   const v = i => (IT[i].v || []).map(l => l.trim()).join(' '), add = i => hits.push([hits.length, i, LB.verses(), v(i), false]);
-  if (PAGES.some(p => isNum(p.s))){
-    for (const p of PAGES){ if (!isNum(p.s) || +p.s !== N) continue; let i = -1;
-      if (M != null){ for (let j = p.from; j <= p.to; j++) if (IT[j].y === 'cau' && parseInt(IT[j].n, 10) === M){ i = j; break; } }
-      else { for (let j = p.to; j >= p.from; j--) if (IT[j].y === 'do' || IT[j].y === 'so'){ i = j; break; } if (i < 0) i = p.to; }
-      if (i >= 0) add(i); }
-  } else IT.forEach((it, i) => { if (parseInt(it.n, 10) === N) add(i); });
+  const all = IT.map((it, i) => i).filter(i => vNum(CIT(IT[i]))), K = {}; all.forEach(i => { K[i] = CKEY(CIT(IT[i])); });
+  const find = ty => { const ok = i => !ty || ty.includes(IT[i].y);
+    // the number itself, and where only digits were typed its lettered forms too (3 → 3क, 3ख); 13a → 13अ
+    let got = all.filter(i => ok(i) && (K[i] === Q.c || (Q.c === Q.base && K[i].startsWith(Q.base) && /^[^\d.]/.test(K[i].slice(Q.base.length)))));
+    if (!got.length) got = all.filter(i => ok(i) && K[i].startsWith(Q.base) && /^[^\d.]/.test(K[i].slice(Q.base.length)));
+    if (!got.length){ const seen = new Set(); got = all.filter(i => ok(i) && K[i].startsWith(Q.c + '.') && !seen.has(IT[i].p) && seen.add(IT[i].p)); }   // 2.1 → the first of 2.1.x
+    return got; };
+  // a bare number in a work counted by dohā: the dohā of that number in each part (not an opening soratha of the same number)
+  const bare = !Q.word && Q.ty, inSec = bare ? all.filter(i => isNum(IT[i].s)) : null;
+  let got = bare ? find(Q.ty).filter(i => inSec.includes(i)) : find(Q.ty); if (!got.length && bare) got = find(null);
+  got.forEach(add);
 }
 function runSearch(){
   if (SCOPE === 'lib'){ const q = $('#q').value; if (q.trim()) libSearch(q); else openSearch('lib', true); return; }
@@ -1687,7 +1725,7 @@ function renderVidhi(){
   $$('#vidSeg button').forEach(b => { b.classList.toggle('on', b.dataset.v === vidTab); if (b.dataset.v === 'visarjan') b.hidden = !W.vidhi.visarjan; });
   const en = LANG() === 'en'; $$('#vidLang button').forEach(b => b.classList.toggle('on', (b.dataset.l === 'e') === en));
   const V = W.vidhi, L = en ? ' lat' : ''; let h = '';
-  if (vidTab === 'aarti') h = '<div class="h' + L + '">' + T('श्रीरामायणजीकी आरती', 'Shri Ramayanji ki Aarti') + '</div>' + V.aarti.map(l => '<div class="v">' + vW(l) + '</div>').join('');
+  if (vidTab === 'aarti') h = '<div class="h' + L + '">' + esc(pageTitle('aarti')) + '</div>' + V.aarti.map(l => '<div class="v">' + vW(l) + '</div>').join('');
   else if (vidTab === 'visarjan'){ const X = V.visarjan; h = '<div class="h' + L + '">' + esc(TT(X.title)) + '</div><div class="vtip' + L + '">' + esc(TT(X.when)) + '</div>' + X.verses.map(x => '<div class="vcard"><div class="vcv">' + x.v.map(l => '<div>' + vW(l) + '</div>').join('') + '</div><div class="vce' + L + '">' + esc(en ? x.en : x.hi) + '</div></div>').join(''); }
   else (V[en ? 'en' : 'hi'] || []).forEach(([k, s]) => {
     if (k === 'h') h += Array.isArray(s) ? '<div class="h lat">' + esc(s[0]) + ' <span class="hh">' + esc(s[1]) + '</span></div>' : '<div class="h' + L + '">' + esc(s) + '</div>';

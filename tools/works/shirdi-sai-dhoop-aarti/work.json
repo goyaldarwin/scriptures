@@ -32,6 +32,48 @@
    }
   ]
  },
+ "sections": {
+  "aarti": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "shirdi-majhe": {
+   "hi": "शिर्डी माझे",
+   "en": "Shirdi Majhe"
+  },
+  "naman": {
+   "hi": "नमन",
+   "en": "Naman"
+  },
+  "namasmaran": {
+   "hi": "नामस्मरण",
+   "en": "Namasmaran"
+  },
+  "namaskarashtak": {
+   "hi": "नमस्काराष्टक",
+   "en": "Namaskarashtak"
+  },
+  "aisa-yei-ba": {
+   "hi": "ऐसा येई बा",
+   "en": "Aisa Yei Ba"
+  },
+  "mahimna": {
+   "hi": "महिम्न",
+   "en": "Mahimna"
+  },
+  "dashak": {
+   "hi": "दशक",
+   "en": "Dashak"
+  },
+  "pushpanjali": {
+   "hi": "पुष्पांजलि",
+   "en": "Pushpanjali"
+  },
+  "prarthana": {
+   "hi": "प्रार्थना",
+   "en": "Prarthana"
+  }
+ },
  "types": {
   "dhru": {
    "name": {
@@ -46,11 +88,11 @@
   "pad": {
    "name": {
     "hi": "पद",
-    "en": "Pada"
+    "en": "Stanza"
    },
    "short": {
     "hi": "पद",
-    "en": "Pada"
+    "en": "St."
    }
   },
   "abhang": {

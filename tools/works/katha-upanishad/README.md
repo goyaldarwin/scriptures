@@ -22,7 +22,9 @@ Rebuild: `python3 tools/works/katha-upanishad/source/settle.py && python3 tools/
 ## Structure
 - **Parts:** प्रथम अध्याय, द्वितीय अध्याय.
 - **Sections (pages):** the six vallīs (`v1.1` … `v2.3`), plus `shanti` (opening).
-- **Items:** `shanti.1`; `1.1.1` … `2.3.18` (adhyāya.vallī.mantra, the standard numbering, also in `n`; each verse ends with its number within the vallī, ॥१॥). The book and sanskritdocuments.org print the closing śānti as “2.3.19”; the work ends with 2.3.18 (the owner's decision; the recording ends there too). Ids are permanent.
+- **Hierarchy:** two adhyāyas (parts) › three vallīs each (sections) › mantras.
+- **Items:** `shanti.1`; `1.1.1` … `2.3.18`.
+- **Numbering:** a mantra's `n` is its number within the vallī, as the book prints it at its end (॥१॥); it is cited adhyāya.vallī.mantra, the standard numbering (`work.json` → `cite`: Mantra 2.1.1, in the reader's places, the player and search). The book and sanskritdocuments.org print the closing śānti as “2.3.19”; the work ends with 2.3.18 (the owner's decision; the recording ends there too). Ids are permanent.
 - **Types:** `shanti` (शा॰ / Śā.) and `mantra` (मं॰ / Man.).
 - **Topics:** one per vallī with its theme, plus the śānti pāṭha.
 - **Reading plans:** none; the Upaniṣad is read in one or two sittings.

@@ -15,6 +15,8 @@ The folder's format: `tools/works/README.md`.
 - `glossary/sa.json`: the work's own senses of three words.
 
 ## Structure
+- **Hierarchy:** one part › each verse its own section › the verse.
+- **Numbering:** a mantra's `n` is its printed number, and it is cited by it (Mantra 7); the śānti and the closing words have none.
 One part. Items `shanti.1`, `m01`–`m12` (type `mantra`), `iti`. Each item is its own section. Topics: Śānti Pāṭha and the recording's four khaṇḍas (mantras 1–2, 3–7, 8–11, 12). Item ids are permanent.
 
 ## Introduction

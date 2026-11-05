@@ -10,7 +10,8 @@ tools/
     library.py                     registers each work's sources and checks the whole library
     build.py                       runs library.py, then builds the website and dist/
     privacy.html                   the privacy policy → privacy.html
-    regen_check.py                 library/ must be exactly what tools/works/export.py and make_timings.py make
+    check.py                       every check before a commit, side by side (build, then regen, history, smoke, UX in shards)
+    regen_check.py                 the text generators make the committed texts; library/ is exactly what export.py and make_timings.py make
     history_check.py               no work or verse id that readers' data points at has disappeared
     smoke_test.py, ux_test.py      every work in a browser; navigation and reading at phone size
     fixtures/                      data only the tests use (its README)
@@ -34,6 +35,7 @@ tools/
   fonts/                         Noto Serif Devanagari and Gurmukhi, Tiro Devanagari Sanskrit (svaras), Literata, Gentium (transliteration subset)
   jsonio.py                      writes library files: shared ones one entry per line; a work's through the standard
   text/standard.py               the writing standard for verses (PLAYBOOK §3): ॥, Pāṇini's spelling for Sanskrit, ISO 15919
+  text/cite.py                   a verse's number as cited (work.json → cite): the one source of every number the app shows or finds
   works/                         one folder per work, named by its id; the format: works/README.md
     export.py                      every work folder → library/<path>/ (work.json, meanings/, glossary.json)
     textfile.py                    the format of text.txt; source scripts write it with textfile.write

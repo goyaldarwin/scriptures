@@ -16,6 +16,8 @@ The folder's format: `tools/works/README.md`.
 - `glossary/sa.json`: two words whose shared sense doesn't fit here (कृतं “what has been done”, देव “O god”); every other word is in `library/glossary/sa.json`.
 
 ## Structure
+- **Hierarchy:** one part › each verse its own section › the verse.
+- **Numbering:** a mantra's `n` is its printed number, and it is cited by it (Mantra 15); the śānti has none.
 One part (the Upaniṣad). Items: `shanti.1` (type `shanti`) and `m01`–`m18` (type `mantra`, with the printed number in `n`). Both types are declared in `work.json` → `types`. Each item is its own section. The topics follow the printout's sections: Śānti Pāṭha (`shanti.1`), mantras 1–2, 3–8, 9–14 and 15–18. Item ids are permanent.
 
 ## Introduction

@@ -13,6 +13,8 @@ The folder's format: `tools/works/README.md`.
 - `text.txt`: the settled text, one item per verse, in the recording's order.
 
 ## Structure
+- **Hierarchy:** one part › each śloka its own section › the śloka.
+- **Numbering:** a śloka's `n` is its printed number (॥१॥, ॥१३अ॥), and it is cited by it (Shloka 13अ; search finds it as 13a).
 One part. Items `sh1`–`sh13`, `sh13a`, `sh14`–`sh31` (type `shloka`), each its own section; 13a is not sung in the recording and has no time. Topics: the refrain (1), the Dvādaśa-mañjarikā (2–13), the Caturdaśa-mañjarikā (14–27), the closing verses (28–31). Item ids are permanent.
 
 ## Introduction

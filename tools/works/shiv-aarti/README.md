@@ -8,6 +8,11 @@ The āratī of Śiva, in Hindi (`hi`), in Anuradha Paudwal's version.
 
 Verse types: टेक (refrain, `tek`, shown at the start and, as she sings it differently at the end, once more there as `aarti.tek2`, although it is also sung after every stanza) and पद (stanza, `pad`); the Mānas's own types (`cau`, `cha`, `do`, `so`) where a text uses them. The folder's format: `tools/works/README.md`.
 
+## Structure
+- **Hierarchy:** one part (Om Jai Shiv Omkara) › one section (`aarti`) › verses: the refrain (`aarti.tek`, and the closing refrain `aarti.tek2` the recording sings; type `tek`) and 7 stanzas.
+- **Numbering:** each stanza's `n` is its printed number (॥१॥ …), and it is cited by it ("Stanza 3"); the refrain has none.
+- **Topics:** one, the āratī's title. **Reading plans:** none.
+
 ## Introduction
 The readers' introduction (`intro` in `library/index.json`, shown in ⓘ About this work) states only what these support:
 - The text itself and its signature in stanza 7 (our text and meanings).

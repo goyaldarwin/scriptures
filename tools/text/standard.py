@@ -23,7 +23,7 @@ tools/site/library.py refuses an item that does not already equal what `apply` m
    Gurmukhi is transliterated the same way, letter for letter (`gurmukhi`: each Gurmukhi letter is its Devanagari twin;
    tippi and bindi ṁ, addak doubles the next consonant, yakash y, ੴ ik oaṅkār).
 """
-import re
+import re, unicodedata
 
 SVARA = re.compile('[॑-॔᳐-᳿꣠-꣱]')
 DEV_DIG = '०१२३४५६७८९'
@@ -36,10 +36,14 @@ MARKS = SVARA.pattern[1:-1]
 
 # ---- 1. daṇḍas (every language) ----
 def dandas(line):
-    """।। → ॥; a number inside the double daṇḍa without spaces; one space before a daṇḍa that follows a word."""
-    l = line.replace('।।', '॥')
+    """Unicode NFC (ड़ is ड + ़, as a keyboard types it, never the single letter U+095C); ।। → ॥; a number inside the double
+    daṇḍa without spaces; one space before a daṇḍa that follows a word."""
+    l = unicodedata.normalize('NFC', line).replace('।।', '॥')
     l = re.sub(r'॥[ \t]*([०-९0-9੦-੯][^॥]*?)[ \t]*॥', r'॥\1॥', l)
-    l = re.sub(r'(?<=[^\s०-९0-9੦-੯॥)])[ \t]*(॥|।)', r' \1', l)   # not inside a number (॥१॥, ॥३ (क)॥)
+    nums = []   # a number mark (॥१॥, ॥३ (क)॥, ॥१३अ॥) is kept whole while a space is put before the daṇḍas after words
+    l = re.sub(r'॥(?:[०-९0-9੦-੯][^॥]*॥)+', lambda m: nums.append(m.group(0)) or chr(0xE000 + len(nums) - 1), l)
+    l = re.sub(r'(?<=[^\s०-९0-9੦-੯॥)])[ \t]*(॥|।|[\uE000-\uE0FF])', r' \1', l)
+    l = re.sub(r'[\uE000-\uE0FF]', lambda m: nums[ord(m.group(0)) - 0xE000], l)
     return re.sub(r'[ \t]+', ' ', l).strip()
 
 
@@ -168,8 +172,8 @@ def iso(lines, n=None):
 
 # ---- applying the standard to a work's files ----
 def double(s):
-    """Any text (a meaning, a heading): ।। → ॥, and a number inside the double daṇḍa without spaces."""
-    return re.sub(r'॥[ \t]*([०-९0-9੦-੯][^॥]*?)[ \t]*॥', r'॥\1॥', s.replace('।।', '॥'))
+    """Any text (a meaning, a heading): Unicode NFC, ।। → ॥, and a number inside the double daṇḍa without spaces."""
+    return re.sub(r'॥[ \t]*([०-९0-9੦-੯][^॥]*?)[ \t]*॥', r'॥\1॥', unicodedata.normalize('NFC', s).replace('।।', '॥'))
 
 def _texts(o):
     if isinstance(o, str): return double(o)
@@ -210,6 +214,10 @@ def apply(items, work_lang, yajur=False):
 CASES = [
     (dandas, ('राम ।। १२ ।।',), 'राम ॥१२॥'),
     (dandas, ('दोइ ।।३ (क)।।',), 'दोइ ॥३ (क)॥'),                                         # a lettered number stays whole
+    (dandas, ('छरणैः ॥१३अ ॥',), 'छरणैः ॥१३अ॥'),
+    (double, ('छो\u095cकर ब\u095dना',), 'छो\u0921\u093cकर ब\u0922\u093cना'),                              # ड़ ढ़ as ड + ़, ढ + ़ (NFC), so search and look-up see one word
+    (dandas, ('राम॥ सीता।',), 'राम ॥ सीता ।'),
+    (dandas, ('राम॥१॥२॥',), 'राम ॥१॥२॥'),
     (sanskrit, ('ओं शान्तिः',), 'ॐ शान्तिः'),
     (sanskrit, ('संकल्प पंच दंड अंत कंप',), 'सङ्कल्प पञ्च दण्ड अन्त कम्प'),
     (sanskrit, ('दारुणं । रामं वन्दे अलक्षणं अचिन्त्यं',), 'दारुणम् । रामं वन्दे अलक्षणम् अचिन्त्यं'),   # a line's end without a daṇḍa is left
