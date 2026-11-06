@@ -34,7 +34,7 @@ python3 $S/build_lines.py $S <spans> <lines>          # every line decoded, well
 python3 $S/parse.py <lines> <book>                    # kāṇḍa → sarga → verses and English paragraphs
 python3 $S/run_wit.py $S <book> <iitk scrape> <diffs> iitk   # and the same for valmikiramayan.net (vr)
 python3 $S/settle.py <book> $S/review/corrections.final.json <verses> <english>   # the settled verses and the copied English
-python3 $S/plain_en.py                                # the headings' English in plain spelling (Shri Ram, Lakshman), in text.txt
+python3 $S/make_text.py <book>                       # text.txt: the settled verses, the sarga titles (Hindi: source/topics_hi.json; English: the book's heading in plain spelling, plain_en.py)
 ```
-`text.txt` was assembled once from `settle.py`'s verses and the two books' sarga titles; no script in the repository writes it, so `text.txt` is the work's source from here on, every change to it recorded in `reconciliation.md`.
+`make_text.py` writes `text.txt`; a change to the text goes in the scripts (a correction in `review/corrections.final.json`, a print slip in `settle.py`), never in `text.txt` alone. The first steps read the owner's PDF from `scriptures-data`, so `regen_check.py` cannot run them: after changing any of these scripts, run the steps above and diff `text.txt`. The Hindi sarga titles (`source/topics_hi.json`) are the Hindi edition's, decoded by `hindi/decode.py`; the steps that took them from its pages are not kept, so that file is their source.
 `reconciliation.md` lists every difference from the book and why.

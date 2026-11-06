@@ -40,6 +40,17 @@
  ],
  "shortcuts": [
   {
+   "name": "Shrimad Valmiki Ramayan",
+   "short_name": "Shrimad Valm",
+   "url": "./?w=valmiki-ramayana",
+   "icons": [
+    {
+     "src": "app/icon-192.png",
+     "sizes": "192x192"
+    }
+   ]
+  },
+  {
    "name": "Shri Ramcharitmanas",
    "short_name": "Shri Ramchar",
    "url": "./?w=manas",
@@ -65,17 +76,6 @@
    "name": "Shri Ram Raksha Stotram",
    "short_name": "Shri Ram Rak",
    "url": "./?w=ramraksha",
-   "icons": [
-    {
-     "src": "app/icon-192.png",
-     "sizes": "192x192"
-    }
-   ]
-  },
-  {
-   "name": "Bilvashtakam",
-   "short_name": "Bilvashtakam",
-   "url": "./?w=bilvashtakam",
    "icons": [
     {
      "src": "app/icon-192.png",
