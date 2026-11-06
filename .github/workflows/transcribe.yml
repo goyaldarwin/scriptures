@@ -68,8 +68,8 @@ jobs:
           sparse-checkout-cone-mode: false
           persist-credentials: false
       - run: mkdir -p "pub/$(dirname '${{ inputs.source }}')" && cp -r "src/${{ inputs.source }}" "pub/${{ inputs.source }}"
-      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
-        timeout-minutes: 15
+      - name: ffmpeg (an apt mirror sometimes hangs, so each try stops after 4 minutes; at most 3 tries)
+        run: for i in 1 2 3; do sudo timeout 240 apt-get update -qq && sudo timeout 240 apt-get install -y -qq --no-install-recommends ffmpeg && exit 0; sleep 5; done; exit 1
       - run: pip install -q faster-whisper numpy
       - name: transcribe ${{ matrix.id }}
         working-directory: pub
