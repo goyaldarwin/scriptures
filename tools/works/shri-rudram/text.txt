@@ -718,7 +718,7 @@
 [chamakam.a09.m10 mantra 10]
 य॒ज्ञेन॑ कल्पेताम् ॥९॥
 @section cha-a10
-@topic दशम अनुवाक — पशुधन और प्राण यज्ञमें | Anuvak 10 — Cattle, and life offered in the yajña
+@topic दशम अनुवाक — पशुधन और प्राण यज्ञमें | Anuvak 10 — Cattle, and life offered in the yajna
 [chamakam.a10.m01 mantra 1]
 गर्भा᳚श्च मे व॒त्साश्च॑ मे॒
 [chamakam.a10.m02 mantra 2]

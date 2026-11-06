@@ -309,7 +309,9 @@ function vNum(n){ return n && !/^u/.test(n) ? DEV(n) : ''; }
 function vLabel(it){ const n = vNum(CIT(it)); return TYPE[it.y] + (n ? ' ' + n : ''); }
 // a section counted by number has a name only where the work gives one (the Mānas: work.json → cite.sec, "Doha")
 const SECW = () => W && W.cite && W.cite.sec ? TT(W.cite.sec) : '';
-const isNum = s => !!SECW() && /^[1-9]\d*$/.test(s);
+// a numbered section's number: the number its id ends with ("106"; the Valmiki's "sundara.15" → 15), none for a named section
+const SNUM = s => { const m = /(\d+)$/.exec(s || ''); return m && +m[1] && !SECN(s) ? String(+m[1]) : ''; };
+const isNum = s => !!SECW() && !!SNUM(s);
 // a verse cited by its own number alone (the Mānas's dohā: cite.types.do = ["n"]), not by its section's
 const ALONE = it => { const t = W && W.cite && W.cite.types && W.cite.types[it.y]; return !!t && t.length === 1; };
 // a work may name its sections (work.json → "sections": {section id: {hi, en}}, e.g. bala.1 → सर्ग १ / Sarga 1)
@@ -317,7 +319,7 @@ const SECN = s => W && W.sections && W.sections[s] ? TT(W.sections[s]) : '';
 const hasSec = p => isNum(p.s) || !!SECN(p.s);
 // two section labels as one range: the same words before a number are written once (Sarga 1–3, सर्ग १–३)
 function secSpan(la, lb){ if (la === lb) return la; const x = /^(.*?)([0-9०-९੦-੯]+)$/.exec(la), y = /^(.*?)([0-9०-९੦-੯]+)$/.exec(lb); return x && y && x[1] === y[1] ? la + '–' + y[2] : la + ' – ' + lb; }
-function secLabel(p){ if (SECN(p.s)) return SECN(p.s); if (isNum(p.s)) return SECW() + ' ' + DEV(p.s); const a = IT[p.from], z = IT[p.to]; if (a.y === z.y && vNum(CIT(a)) && vNum(CIT(z))) return TYPE[a.y] + ' ' + vNum(CIT(a)) + (CIT(z) !== CIT(a) ? '–' + vNum(CIT(z)) : ''); return vLabel(a) === vLabel(z) ? vLabel(a) : vLabel(a) + ' – ' + vLabel(z); }
+function secLabel(p){ if (SECN(p.s)) return SECN(p.s); if (isNum(p.s)) return SECW() + ' ' + DEV(SNUM(p.s)); const a = IT[p.from], z = IT[p.to]; if (a.y === z.y && vNum(CIT(a)) && vNum(CIT(z))) return TYPE[a.y] + ' ' + vNum(CIT(a)) + (CIT(z) !== CIT(a) ? '–' + vNum(CIT(z)) : ''); return vLabel(a) === vLabel(z) ? vLabel(a) : vLabel(a) + ' – ' + vLabel(z); }
 // a verse's place: its section's label and its own number under it ("Doha 106 · Chaupai 3", "Namaskarashtak · Stanza 1"), or its citation
 function posLabel(i){ const it = IT[i], p = PAGES[itemPage[i]], own = n => TYPE[it.y] + (vNum(n) ? ' ' + vNum(n) : '');
   if (SECN(p.s)) return secLabel(p) + ' · ' + own(it.n); if (!isNum(p.s) || ALONE(it)) return vLabel(it); return secLabel(p) + ' · ' + own(it.n); }
@@ -325,7 +327,7 @@ function itemLabel(i){ return KNAME(IT[i].p) + ' · ' + posLabel(i); }
 function spanLabel(a, b){
   const pa = PAGES[itemPage[a]], pb = PAGES[itemPage[b]];
   if (SECN(pa.s) && SECN(pb.s)) return secSpan(secLabel(pa), secLabel(pb));
-  if (isNum(pa.s) && isNum(pb.s)) return SECW() + ' ' + DEV(pa.s) + (pb.s !== pa.s ? '–' + DEV(pb.s) : '');
+  if (isNum(pa.s) && isNum(pb.s)) return SECW() + ' ' + DEV(SNUM(pa.s)) + (pb.s !== pa.s ? '–' + DEV(SNUM(pb.s)) : '');
   const la = hasSec(pa) ? secLabel(pa) : vLabel(IT[a]), lb = hasSec(pb) ? secLabel(pb) : vLabel(IT[b]);
   if (la === lb) return la;
   if (IT[a].y === IT[b].y && !hasSec(pa) && !hasSec(pb) && vNum(CIT(IT[a])) && vNum(CIT(IT[b]))) return TYPE[IT[a].y] + ' ' + vNum(CIT(IT[a])) + '–' + vNum(CIT(IT[b]));
@@ -1520,6 +1522,8 @@ function numQuery(q){
   const w = f(word), is = nm => (nm || []).some(x => x && (f(x) === w || f(x) === w.replace(/e$/, 'a')));
   let ty = null; const C = W.cite || {};
   if (word){ ty = Object.keys(TYPEN).filter(k => is(TYPEN[k]) || is(VSHORT[k]) || (C.word && C.word[k] && is([C.word[k].hi, C.word[k].en])));
+    // the section's own name ("दोहा ४५", "Sarga 15"): as the bare number, in the numbered sections
+    if (C.sec && is([C.sec.hi, C.sec.en]) && !ty.length && !m[2].includes('.')) return {c: m[2] + m[3], base: m[2], ty: Object.keys(C.types || {}), word: false};
     if (C.sec && is([C.sec.hi, C.sec.en])) ty = ty.concat(Object.keys(C.types || {}));
     if (!ty.length) return null; }
   else if (C.sec && !m[2].includes('.')) ty = Object.keys(C.types || {});   // a bare number in a work counted by dohā is the dohā
@@ -1536,7 +1540,10 @@ function numHits(Q, hits){
     return got; };
   // a bare number in a work counted by dohā: the dohā of that number in each part (not an opening soratha of the same number)
   const bare = !Q.word && Q.ty, inSec = bare ? all.filter(i => isNum(IT[i].s)) : null;
-  let got = bare ? find(Q.ty).filter(i => inSec.includes(i)) : find(Q.ty); if (!got.length && bare) got = find(null);
+  let got = bare ? find(Q.ty).filter(i => inSec.includes(i)) : find(Q.ty);
+  // a work counted by sections with no verse cited alone (the Valmiki: Sarga 15): a bare number opens that section in each part
+  if (!got.length && bare && !Q.ty.length){ const seen = new Set(); got = inSec.filter(i => SNUM(IT[i].s) === Q.base && !seen.has(IT[i].p) && seen.add(IT[i].p)); }
+  if (!got.length && bare) got = find(null);
   got.forEach(add);
 }
 function runSearch(){

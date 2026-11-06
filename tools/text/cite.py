@@ -12,12 +12,14 @@ levels the work names, with ".":
     work.json → "cite": {
       "by":    ["part", "sec", "n"],     the levels, in order (default ["n"]):
                                          part: the part's key (the Kaṭha's adhyāyas are keyed "1", "2");
-                                         sec:  the number the section id ends with (v1.2 → 2, nam-a03 → 3), left out when
-                                               it has none or it is 0 (the Mānas's opening ślokas, section "0");
+                                         sec:  the number the section id ends with (v1.2 → 2, nam-a03 → 3, sundara.15 → 15),
+                                               left out when it has none, when it is 0 (the Mānas's opening ślokas, section
+                                               "0") and when the section has a name of its own (work.json → sections: the
+                                               Vālmīki Rāmāyaṇa's interpolated sargas, aranya.p1)
                                          n:    the verse's own number.
       "types": {"do": ["n"]},            per verse type, other levels (a dohā is cited by its own number)
-      "sec":   {"hi": "दोहा", "en": "Doha"},   the name of a numbered section (the Mānas counts by dohā); without it a
-                                         section is never called by a number of its own
+      "sec":   {"hi": "दोहा", "en": "Doha"},   the name of a numbered section (the Mānas counts by dohā, the Vālmīki
+                                         Rāmāyaṇa by sarga); without it a section is never called by a number of its own
       "word":  {"cau": {"hi": "पद", "en": "Verse"}},   the word the player and Resume use for a type instead of its
                                          name, where the name would not fit ("Verse 106.3": the third verse under Doha 106)
       "mark":  "sec"                     what the number printed at a verse's end counts: "n" (default) the verse, "sec"
@@ -54,17 +56,18 @@ def sec_num(s):
     m = re.search(r'(\d+)$', s or '')
     return str(int(m.group(1))) if m and int(m.group(1)) else ''
 
-def of(item, R, part_key):
-    """The citation of one item: '106.3', '2.1.1', '3क', '' (no number)."""
+def of(item, R, part_key, named=()):
+    """The citation of one item: '106.3', '2.1.1', '3क', '' (no number). named: the ids of the sections with names."""
     n = (item.get('n') or '').translate(DIGITS)
     if not n: return ''
-    val = {'part': str(part_key or ''), 'sec': sec_num(item.get('s')), 'n': n}
+    val = {'part': str(part_key or ''), 'sec': '' if item.get('s') in named else sec_num(item.get('s')), 'n': n}
     return '.'.join(val[lv] for lv in R['types'].get(item['y'], R['by']) if val[lv])
 
 def compute(items, M):
     """Write `c` into every item, by the work's rule."""
     R = rule(M); keys = [p.get('key') for p in M['parts']['list']]
-    for it in items: it['c'] = of(it, R, keys[it['p']] if it['p'] < len(keys) else '')
+    named = set(M.get('sections') or {})
+    for it in items: it['c'] = of(it, R, keys[it['p']] if it['p'] < len(keys) else '', named)
 
 def printed(item):
     """The number printed at the end of the verse's last line (॥२९॥ → '29', ॥३० (क)॥ → '30क', ॥१३अ॥ → '13अ', ॥੮॥੧॥ → '8'), or ''."""
@@ -105,6 +108,8 @@ CASES = [
     (_MANAS, {'p': 0, 's': 'end', 'y': 'shloka', 'n': '2'}, '2'),
     (_KATHA, {'p': 1, 's': 'v2.1', 'y': 'mantra', 'n': '1'}, '2.1.1'),   # adhyāya.vallī.mantra, from the part key and the section
     (_KATHA, {'p': 0, 's': 'shanti', 'y': 'shanti', 'n': ''}, ''),       # no number: no citation
+    ({'cite': {'by': ['sec', 'n']}, 'parts': {'list': [{}]}}, {'p': 0, 's': 'sundara.15', 'y': 'shloka', 'n': '30'}, '15.30'),   # a sarga in a dotted id
+    ({'cite': {'by': ['sec', 'n']}, 'sections': {'aranya.p1': {}}, 'parts': {'list': [{}]}}, {'p': 0, 's': 'aranya.p1', 'y': 'shloka', 'n': '3'}, '3'),   # a named section: no number of its own
     ({'cite': {'by': ['part', 'n']}, 'parts': {'list': [{'key': '1'}, {'key': '2'}]}}, {'p': 1, 's': 'a02.p8', 'y': 'pauri', 'n': '8'}, '2.8'),   # the Sukhmani: ashtapadi.pauri
     ({'parts': {'list': [{}]}}, {'p': 0, 's': 'sh13a', 'y': 'shloka', 'n': '13अ'}, '13अ'),   # the default: the verse's own number
 ]
@@ -112,7 +117,7 @@ CASES = [
 def selftest():
     bad = []
     for M, it, want in CASES:
-        got = of(dict(it), rule(M), M['parts']['list'][it['p']].get('key'))
+        got = of(dict(it), rule(M), M['parts']['list'][it['p']].get('key'), set(M.get('sections') or {}))
         if got != want: bad.append((f'{it}', want, got))
     w = {'parts': {'list': [{}]}, 'items': [{'id': 'a', 'p': 0, 's': 'x', 'y': 'pad', 'n': '1', 'c': '1', 'v': ['… ॥२॥']},
                                             {'id': 'b', 'p': 0, 's': 'y', 'y': 'pad', 'n': '1', 'c': '1', 'v': ['…']}]}

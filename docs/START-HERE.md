@@ -67,7 +67,7 @@ library/ ─ tools/site/build.py (checks everything first) ─► index.html, ap
 | Īśāvāsya Upaniṣad (`veda/yajurveda/shukla-yajurveda/upanishad/isha-upanishad`) | shlokam.org | ours | SMVedroad, live |
 | Māṇḍūkya Upaniṣad (`veda/atharvaveda/upanishad/mandukya-upanishad`) | sanskritdocuments.org; the svasti lines confirmed by shlokam.org | ours | SMVedroad, live |
 | Sukhmani Sahib (`gurbani/guru-arjan-dev/sukhmani-sahib`) | the owner's PDF (Gurmukhi) | ours (Hindi, English, Punjabi) | Parminder Singh, live; 207 starts not yet set by ear are listed for the owner to check (`review`) |
-| Śrīmad Vālmīki Rāmāyaṇa (`granth/valmiki/ramayana`, branch `valmiki-ramayana`, not on the shelf yet) | Gita Press (codes 452–453), read from the Chanakya font without OCR, checked against IIT Kanpur and valmikiramayan.net; 23,701 verses | Gita Press Hindi (code 77) and English, copied; the English footnotes, every word's meaning and the app's loading by kāṇḍa come before it goes on the shelf | none yet (the owner's list covers five kāṇḍas) |
+| Śrīmad Vālmīki Rāmāyaṇa (`granth/valmiki/ramayana`, branch `valmiki-ramayana`, not on the shelf yet) | Gita Press (codes 452–453), read from the Chanakya font without OCR, checked against IIT Kanpur and valmikiramayan.net; 23,701 verses | Gita Press Hindi (code 77) and English, copied; every word's meaning; loaded by kāṇḍa; checked by the build like every shelved work. Before the shelf: the English footnotes, the shelf entry (its desc and intro) | none yet (the owner's list covers five kāṇḍas) |
 
 ## Open with the owner
 - The questions in `docs/reviews/` (word senses; readings in the Rāma Rakṣā and the Sukhmani Sahib).

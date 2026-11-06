@@ -1,4 +1,4 @@
-# Śrīmad Vālmīki Rāmāyaṇa
+# Śrīmad Vālmīki Rāmāyaṇa (Shrimad Valmiki Ramayan)
 
 The Ādikāvya of Maharṣi Vālmīki in its seven kāṇḍas, as printed by Gita Press, Gorakhpur: 23,701 verses in 645 sargas and 3 later additions (प्रक्षिप्त सर्ग, one in the Araṇya-kāṇḍa after sarga 56, two in the Uttara-kāṇḍa after sarga 59), kept where the book prints them.
 
@@ -22,8 +22,8 @@ The Ādikāvya of Maharṣi Vālmīki in its seven kāṇḍas, as printed by Gi
 All the sources are the owner's copies, used for personal study: the Gita Press books (Sanskrit text, English and Hindi meanings, shown as printed) and the two websites' word-by-word glosses (shown as given in the word meanings). No permission has been requested from Gita Press, IIT Kanpur / Rashtriya Sanskrit Vidyapeetha, Tirupati, or valmikiramayan.net.
 
 ## Structure
-- **Hierarchy:** seven kāṇḍas (parts) › sargas (sections; `bala.1`, labelled "Sarga 1" / "सर्ग 1" in `work.json` → `sections`) › verses. The three later additions (प्रक्षिप्त सर्ग) are sections of their own where the book prints them: `aranya.p1` after Araṇya 56, `uttara.p1` and `uttara.p2` after Uttara 59 ("Interpolated sarga 1").
-- **Numbering:** a verse is `<kāṇḍa>.<sarga>.<verse>` with the book's numbers (`bala.1.1`, `sundara.15.30`, `aranya.p1.3`) and is cited sarga.verse within its kāṇḍa ("Sarga 15 · Śloka 30"). The verse number ends the verse's last line (॥१॥); long-metre verses keep the book's line per pāda.
+- **Hierarchy:** seven kāṇḍas (parts: Bal Kand … Uttar Kand) › sargas (sections `bala.1` … , numbered: `work.json` → `cite.sec` names them "Sarga" / "सर्ग") › verses. The three later additions (प्रक्षिप्त सर्ग) are sections of their own where the book prints them, with names (`work.json` → `sections`): `aranya.p1` after Araṇya 56, `uttara.p1` and `uttara.p2` after Uttara 59 ("Interpolated sarga 1").
+- **Numbering:** a verse's id is `<kāṇḍa>.<sarga>.<verse>` with the book's numbers (`bala.1.1`, `sundara.15.30`, `aranya.p1.3`); its `n` is its number in the sarga, the number that ends its last line (॥३०॥). It is cited sarga.verse within its kāṇḍa (`work.json` → `cite`: "Shloka 15.30" in the player, Resume and search; its place "Sarga 15 · Shloka 30"); a verse of an interpolated sarga by its own number, the sarga's name beside it. In search, "15.30" finds that verse in each kāṇḍa and "15" (or "Sarga 15") opens Sarga 15 of each. Long-metre verses keep the book's line per pāda.
 - **Types:** `shloka`. **Topics:** the book's Hindi and English sarga titles. **Meanings:** Gita Press's English under the verse it translates; where the book translates several verses together (its mark `(19—22)`), the meaning sits under the last of them, with the mark as printed. **Loading:** by kāṇḍa (`"load": "parts"`). **Reading plans:** none yet.
 
 ## How it is made
@@ -33,6 +33,8 @@ python3 $S/extract.py <scriptures-data>/hinduism/granth/valmiki/ramayana/books/g
 python3 $S/build_lines.py $S <spans> <lines>          # every line decoded, well-formedness checked
 python3 $S/parse.py <lines> <book>                    # kāṇḍa → sarga → verses and English paragraphs
 python3 $S/run_wit.py $S <book> <iitk scrape> <diffs> iitk   # and the same for valmikiramayan.net (vr)
-python3 $S/settle.py <book> $S/review/corrections.final.json …   # the text and the copied English
+python3 $S/settle.py <book> $S/review/corrections.final.json <verses> <english>   # the settled verses and the copied English
+python3 $S/plain_en.py                                # the headings' English in plain spelling (Shri Ram, Lakshman), in text.txt
 ```
+`text.txt` was assembled once from `settle.py`'s verses and the two books' sarga titles; no script in the repository writes it, so `text.txt` is the work's source from here on, every change to it recorded in `reconciliation.md`.
 `reconciliation.md` lists every difference from the book and why.

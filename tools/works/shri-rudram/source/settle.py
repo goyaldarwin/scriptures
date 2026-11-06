@@ -151,7 +151,7 @@ if __name__ == '__main__':
                ('सोमयागके ग्रह', 'The soma cups'),
                ('यज्ञकी सामग्री', 'The things of the sacrifice'),
                ('महायज्ञ और वेद', 'The great rites and the Vedas'),
-               ('पशुधन और प्राण यज्ञमें', 'Cattle, and life offered in the yajña'),
+               ('पशुधन और प्राण यज्ञमें', 'Cattle, and life offered in the yajna'),
                ('संख्याएँ और लोकोंके स्वामी', 'The numbers, and the lords of the worlds')]
     topics = [{'id': 'namakam.purva.guru', 'hi': 'अथ श्रीरुद्रप्रश्नः — मङ्गलाचरण', 'en': 'Shri Rudra Prashna — the opening'}]
     for a, (h, e) in enumerate(THEME_N, 1):

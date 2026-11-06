@@ -20,7 +20,7 @@ python3 tools/site/build.py
 | `README.md` | what the work is, where its text, meanings and recordings come from, its verse types | yes |
 | `reconciliation.md` | the witnesses of the text and every choice made between them | yes |
 | `meanings/<lang>/<source>.json` | one meaning source in one language (below) | |
-| `glossary/<lang>.json` | the work's own sense of a word whose shared entry (`library/glossary/<lang>.json`) carries another text's sense | |
+| `glossary/<lang>.json` | the work's own sense of a word whose shared entry (`library/glossary/<lang>.json`) carries another text's sense; for a big work loaded by part, also every word the shared dictionary lacks (loaded by part) | |
 | `audio/<source>/` | one recording source (`tools/audio/README.md`) | |
 | `topics.json` | our own topic headings `{first verse id: {hi, en}}`, for works that take this work's verses and show ours (`"topics": "ours"`) | |
 | `source/` | the scripts and data that make `text.txt` (or a copied meaning) from the owner's sources, and their checks | |

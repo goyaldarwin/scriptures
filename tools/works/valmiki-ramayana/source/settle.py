@@ -8,10 +8,10 @@ sys.path.insert(0, __file__.rsplit('/', 1)[0])
 import english
 
 KANDA = ['bala', 'ayodhya', 'aranya', 'kishkindha', 'sundara', 'yuddha', 'uttara']
-KANDA_NAME = {'bala': ('बालकाण्ड', 'Bāla-kāṇḍa'), 'ayodhya': ('अयोध्याकाण्ड', 'Ayodhyā-kāṇḍa'),
-              'aranya': ('अरण्यकाण्ड', 'Araṇya-kāṇḍa'), 'kishkindha': ('किष्किन्धाकाण्ड', 'Kiṣkindhā-kāṇḍa'),
-              'sundara': ('सुन्दरकाण्ड', 'Sundara-kāṇḍa'), 'yuddha': ('युद्धकाण्ड', 'Yuddha-kāṇḍa'),
-              'uttara': ('उत्तरकाण्ड', 'Uttara-kāṇḍa')}
+KANDA_NAME = {'bala': ('बालकाण्ड', 'Bal Kand'), 'ayodhya': ('अयोध्याकाण्ड', 'Ayodhya Kand'),   # English in plain spelling (docs/PLAYBOOK.md §6)
+              'aranya': ('अरण्यकाण्ड', 'Aranya Kand'), 'kishkindha': ('किष्किन्धाकाण्ड', 'Kishkindha Kand'),
+              'sundara': ('सुन्दरकाण्ड', 'Sundar Kand'), 'yuddha': ('युद्धकाण्ड', 'Yuddh Kand'),
+              'uttara': ('उत्तरकाण्ड', 'Uttar Kand')}
 DEV = str.maketrans('0123456789', '०१२३४५६७८९')
 
 # The book misnumbers three verses (the sequence and, in two, the English marks settle them).
@@ -31,7 +31,7 @@ def number_sargas(k):
     n = 0; p = 0
     for s in k['sargas']:
         if 'प्रक्षिप्त' in s['heading']:
-            p += 1; s['_key'] = f'p{p}'; s['_label'] = ('प्रक्षिप्त सर्ग ' + str(p).translate(DEV), f'Interpolated sarga {p}')
+            p += 1; s['_key'] = f'p{p}'; s['_label'] = (f'प्रक्षिप्त सर्ग {p}', f'Interpolated sarga {p}')   # as work.json → sections
         else:
             n += 1; s['_key'] = str(n); s['_label'] = None
 
