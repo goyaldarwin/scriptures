@@ -10,11 +10,11 @@ How it is read: the PDF's text layer (the page's own Unicode text), checked agai
 The rule (docs/PLAYBOOK.md §2): keep the source; correct it only where it is clearly wrong (a typing slip, a broken word, a sense that does not fit). Every correction is below. The library's writing standard (docs/PLAYBOOK.md §3) everywhere: ।/॥ for the daṇḍas, stanzas numbered (॥१॥); the refrain (टेक) shown once although it is sung after each stanza, hyphens only inside compounds (the page's spaced dashes " – " are written "-").
 
 ## 1. श्रीरामचन्द्र कृपालु (Tulasīdāsa's stuti, from the Vinaya-patrikā; language Braj, `bra`)
-The page prints five two-line stanzas. Corrections (one witness, so each is **open**: to confirm against a printed Vinaya-patrikā, e.g. Gita Press, when the owner can share one):
+The page prints five two-line stanzas. Every correction below is the reading of both sanskritdocuments.org's Bhajan Sangrah (https://sanskritdocuments.org/hindi/bhajans.html) and shlokam.org (https://shlokam.org/shloka/shri-ramachandra-kripalu.htm), which print the stuti as Vinaya-patrikā pada 45:
 
 | Stanza | Page | Ours | Why |
 |---|---|---|---|
-| 2 | जनक सुतवरं | जनक सुता वरं | "सुतवरं" (best of sons) does not fit: the line bows to the husband (वर) of Janaka's daughter (सुता). |
+| 2 | जनक सुतवरं | जनक सुतावरं | "सुतवरं" (best of sons) does not fit: the line bows to the husband (वर) of Janaka's daughter (सुता); one word, as both witnesses write it. |
 | 3 | निकन्दंन | निकंदनं | Broken word (anusvāra misplaced); the stanza's other lines end in -नं. |
 | 3 | रधुनन्द | रघुनंद | Typing slip (ध for घ). |
 | 3 | कौशलचन्द | कोशलचन्द | Kośala is Rāma's kingdom; कौशल means "skill", which does not fit. |

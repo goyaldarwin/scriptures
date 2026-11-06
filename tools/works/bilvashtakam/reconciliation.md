@@ -30,10 +30,10 @@ Kept as both witnesses write them: the spaced compounds अखण्ड बि�
 शिवसन्निधौ (unjoined; strict sandhi gives पठेच्छिवसन्निधौ); ह्येकबिल्वं in ślokas 2, 3, 6, the Kāśī śloka and 8 and
 एकबिल्वं in 1, 4, 5 and 7, as each witness has it verse by verse.
 
-## Numbering (open)
+## Numbering
 The owner's text numbers ślokas 1–7, leaves the Kāśī śloka without a number, numbers मूलतो ब्रह्मरूपाय… as 8 and leaves
 the phalaśruti unnumbered: eight numbered ślokas, an aṣṭaka. The printout numbers all ten, 1–10 (Kāśī 8, मूलतो 9,
-phalaśruti 10). The text follows the owner's text. **Open:** the owner may prefer the printout's 1–10; item ids would stay (`docs/reviews/bilvashtakam-doubts.jsonl`).
+phalaśruti 10). The text follows the owner's text. The owner's text is the base text, and an aṣṭaka is eight numbered ślokas with the Kāśī śloka and the phalaśruti added, so the owner's numbering stands; item ids do not depend on it.
 
 ## Title and closing words
 The owner's heading is बिल्वाष्टक; the title is बिल्वाष्टकम्, as the closing words (॥ इति बिल्वाष्टकम् ॥) and the
@@ -44,7 +44,8 @@ Our own Hindi and English, line by line, from the Sanskrit (tools/meanings/style
 rendered the same way each time it stands alone (“एक बिल्वपत्र शिवजीको अर्पण है” / “one bilva leaf is offered to Śiva”);
 in ślokas 4, 5, 7 and the Kāśī śloka the line reads it as what the gifts and pilgrimages are equal to, which the
 grammar gives (the bilva offering stands in apposition to the merits listed). Many read them as “surpasses”; our
-footnote says so, and the question is in `docs/reviews/bilvashtakam-doubts.jsonl`.
+footnote says so. नन्दिकेश्वर in śloka 3 is Śiva, the lord of Nandī: the stotra is the worship of Śiva with the
+bilva, and the printout reads it so.
 
 The copied English (`meanings/en/sanskritdocuments.json`) is each verse's “Meaning of the verse” in the printout (for
 śloka 1, the translation given after its word meanings). Fixed: “bila” → “bilva”, “uttereing” → “uttering”. Its

@@ -168,6 +168,13 @@
   "check": "The subject (Rāma, धर्मात्मा) is singular, so वयसा च अमरप्रभः → चामरप्रभः; the plural ending is an extra ा."
  },
  {
+  "id": "ayodhya.44.24",
+  "from": "दृष्यतेऽशिवम्",
+  "to": "दृश्यतेऽशिवम्",
+  "reason": "दृष्यते is no form; the passive of दृश् is दृश्यते, as IIT Kanpur reads.",
+  "check": "Found by the check of our word meanings (source/words/check_ours.py): the word meaning had already taken the corrected form."
+ },
+ {
   "id": "ayodhya.48.25",
   "from": "सर्वमनालम्भमनायकम्",
   "to": "सर्वमनालम्बमनायकम्",
@@ -250,6 +257,13 @@
   "to": "त्रैलोक्यमपि",
   "reason": "त्रैलोक्य is neuter only, so the accusative is त्रैलोक्यम्; त्रैलोक्याम् is an impossible form with an extra ा.",
   "check": "त्रैलोक्य is neuter, so the accusative is त्रैलोक्यम्; त्रैलोक्याम् has an extra ा."
+ },
+ {
+  "id": "aranya.26.8",
+  "from": "वीरश्चर्तुभिश्चतुरो",
+  "to": "वीरश्चतुर्भिश्चतुरो",
+  "reason": "चर्तुभिः is no form; with four (चतुरः) horses it is चतुर्भिः (with four arrows), as IIT Kanpur reads.",
+  "check": "Found by the check of our word meanings (source/words/check_ours.py): the word meaning had already taken the corrected form."
  },
  {
   "id": "aranya.41.12",
@@ -441,6 +455,13 @@
   "check": "परिविद्ध्य is no absolutive (that of परि-√व्यध् is परिविध्य, which also gives no sense with a drum); the edition's translation \"pressing a wooden tomtom to her bosom\" and the other editions need परिपीड्य."
  },
  {
+  "id": "yuddha.4.120",
+  "from": "प्रवलान्तमिवोर्मिभिः",
+  "to": "प्रवल्गन्तमिवोर्मिभिः",
+  "reason": "प्रवलान्त is no word; the sea leaping with its waves is प्रवल्गन्तम् (from वल्ग्), as valmikiramayan.net reads.",
+  "check": "Found by the check of our word meanings (source/words/check_ours.py): the word meaning had already taken the corrected form."
+ },
+ {
   "id": "yuddha.18.30",
   "from": "आनाय",
   "to": "आदाय",
@@ -467,5 +488,19 @@
   "to": "तद्विहतं",
   "reason": "विहितं 'arranged' gives no sense; the Vāruṇa weapon was struck down, विहतं, an extra ि sign as the sources show.",
   "check": "The Vāruṇa weapon was \"rendered ineffectual\" (the edition's translation), विहतम्; विहितम् \"arranged\" gives no sense."
+ },
+ {
+  "id": "uttara.18.6",
+  "from": "अन्वेष्वपि",
+  "to": "अन्येष्वपि",
+  "reason": "अन्वेषु is no form; with गतेषु … देवेषु the verse needs अन्येषु (the other gods), the य printed as व. Uttara is not in the witnesses; the sense and grammar settle it.",
+  "check": "Found by the check of our word meanings (source/words/check_ours.py): the word meaning had already taken the corrected form."
+ },
+ {
+  "id": "uttara.21.38",
+  "from": "निरुछ्वासमपोथयन्",
+  "to": "निरुच्छ्वासमपोथयन्",
+  "reason": "निरुछ्वास is no word; breathless is निरुच्छ्वास (निर् + उत् + श्वास), the च् printed short. Uttara is not in the witnesses; the word settles it.",
+  "check": "Found by the check of our word meanings (source/words/check_ours.py): the word meaning had already taken the corrected form."
  }
 ]
