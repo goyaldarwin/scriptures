@@ -1573,7 +1573,11 @@ function runSearch(){
   const kept = hits.filter(h => inSearch(h[1])); kept.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
   const res = kept.slice(0, 300).map(h => h.slice(1));
   if (scopes.has('n')) for (const p of SHOWN()) for (const k in p.notes){ if (!k.startsWith(W.id + ':')) continue; const i = ID[k.slice(W.id.length + 1)]; if (i == null || !inSearch(i)) continue; p.notes[k].forEach(n => { if ((latin ? normL(n.t) : normD(n.t)).includes(nq)) res.push([i, T('टिप्पणी', 'Note'), n.t, latin]); }); }
-  box.innerHTML = (loading ? '<p class="small muted sload">' + T('सभी भागोंके अर्थ खोजे जा रहे हैं…', 'Searching the meanings of every part…') + '</p>' : '') + (res.length ? '<p class="small muted">' + DEV(res.length) + (res.length >= 300 ? '+' : '') + T(' परिणाम', ' results') + '</p>' + res.map(r => '<button class="res" data-i="' + r[0] + '"><div class="where">' + esc(itemLabel(r[0])) + ' · ' + esc(r[1]) + '</div><div class="snip' + (r[3] ? ' lat' : '') + '">' + snip(r[2], q, r[3]) + '</div></button>').join('') : '<div class="empty">' + T('कुछ नहीं मिला। दूसरा रूप लिखकर देखें।', 'Nothing found. Try another spelling.') + '</div>');
+  const note = loading ? '<p class="small muted sload">' + T('सभी भागोंके अर्थ खोजे जा रहे हैं…', 'Searching the meanings of every part…') + '</p>' : '';
+  const list = res.length ? '<p class="small muted">' + DEV(res.length) + (res.length >= 300 ? '+' : '') + T(' परिणाम', ' results') + '</p>' + res.map(r => '<button class="res" data-i="' + r[0] + '"><div class="where">' + esc(itemLabel(r[0])) + ' · ' + esc(r[1]) + '</div><div class="snip' + (r[3] ? ' lat' : '') + '">' + snip(r[2], q, r[3]) + '</div></button>').join('') : '<div class="empty">' + T('कुछ नहीं मिला। दूसरा रूप लिखकर देखें।', 'Nothing found. Try another spelling.') + '</div>';
+  // a part's meanings arriving while the same results show: only the note changes, so a result being tapped stays in place
+  if (box._list === list && box._first && box.contains(box._first)){ const n = box.querySelector('.sload'); if (loading && !n) box.insertAdjacentHTML('afterbegin', note); else if (!loading && n) n.remove(); return; }
+  box.innerHTML = note + list; box._list = list; box._first = box.querySelector('.res, .empty');
   $$('#sRes .res').forEach(b => b.onclick = () => openReader(readOrg(), +b.dataset.i, true));
 }
 

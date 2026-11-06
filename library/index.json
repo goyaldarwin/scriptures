@@ -22,6 +22,52 @@
     },
     "children": [
      {
+      "id": "valmiki",
+      "title": {
+       "hi": "महर्षि वाल्मीकि",
+       "en": "Maharshi Valmiki"
+      },
+      "desc": {
+       "hi": "श्रीमद्वाल्मीकीय रामायण",
+       "en": "Shrimad Valmiki Ramayan"
+      },
+      "children": [
+       {
+        "id": "ramayana",
+        "work": "valmiki-ramayana",
+        "path": "hinduism/granth/valmiki/ramayana",
+        "title": {
+         "hi": "श्रीमद्वाल्मीकीय रामायण",
+         "en": "Shrimad Valmiki Ramayan"
+        },
+        "by": {
+         "hi": "महर्षि वाल्मीकि",
+         "en": "Maharshi Valmiki"
+        },
+        "edition": {
+         "hi": "गीताप्रेस, गोरखपुर",
+         "en": "Gita Press, Gorakhpur"
+        },
+        "desc": {
+         "hi": "७ काण्ड · २३,७०१ श्लोक",
+         "en": "7 Kands · 23,701 shlokas"
+        },
+        "intro": {
+         "hi": [
+          "श्रीमद्वाल्मीकीय रामायण महर्षि वाल्मीकिका रचा श्रीरामका संस्कृत चरित-काव्य है। इसके आरम्भके सर्ग स्वयं बताते हैं कि यह कैसे रचा गया: देवर्षि नारदने वाल्मीकि मुनिको संक्षेपमें श्रीरामचरित्र सुनाया; फिर तमसाके तटपर एक व्याधको क्रौञ्च पक्षियोंके जोड़ेमेंसे एकको मारते देखकर मुनिका शोक चार समान चरणोंवाले श्लोकके रूपमें प्रकट हुआ, और ब्रह्माजीने उन्हें इसी छन्दमें श्रीरामका सम्पूर्ण चरित्र रचनेका आदेश दिया। वाल्मीकिजीने यह काव्य लव और कुशको पढ़ाया, जिन्होंने इसे मुनियोंकी सभामें और फिर अयोध्यामें श्रीरामके दरबारमें गाया।",
+          "काव्य अपने विषयमें कहता है कि ऋषिने चौबीस हजार श्लोक कहे — छः काण्ड और उत्तरकाण्ड। गीताप्रेसके इस संस्करणमें बालकाण्डसे उत्तरकाण्डतक सात काण्डोंके ६४५ सर्गोंमें २३,७०१ श्लोक हैं; पुस्तक जिन तीन सर्गोंको प्रक्षिप्त बताती है, वे जहाँ छपे हैं वहीं रखे गये हैं। युद्धकाण्ड श्रीरामके राज्याभिषेक और इस ग्रन्थके माहात्म्यपर समाप्त होता है; उत्तरकाण्डमें उनके राज्यकालकी आगेकी कथा है, और अन्तमें भाइयोंसहित श्रीरामका विष्णुस्वरूपमें प्रवेश तथा रामायणकी महिमा।",
+          "यहाँ प्रत्येक श्लोक गीताप्रेसके छपे मूलसे है, उसके साथ गीताप्रेसका हिन्दी और अंग्रेज़ी अनुवाद; श्लोकके किसी भी शब्दको छूकर उसका अर्थ देखा जा सकता है।"
+         ],
+         "en": [
+          "The Shrimad Valmiki Ramayan is Maharshi Valmiki's Sanskrit poem of the life of Shri Ram. Its opening sargas tell how it came to be: the sage Narad told Valmiki the story of Ram in brief; then, on the bank of the Tamasa, Valmiki saw a hunter kill one of a pair of cranes, and his grief broke out as a verse of four equal feet; and Brahma bade him tell the whole story of Ram in that measure. Valmiki taught the poem to Lav and Kush, who sang it before the sages and then in Shri Ram's own court at Ayodhya.",
+          "The poem says of itself that the sage uttered twenty-four thousand verses, in six kands and the Uttar Kand. This Gita Press edition has 23,701 shlokas in 645 sargas across the seven kands, from Bal Kand to Uttar Kand, with three sargas that the book marks as interpolated kept where it prints them. Yuddh Kand ends with Ram's consecration as king and the glory of the epic; Uttar Kand tells of his later reign, and closes with Ram and his brothers entering the form of Vishnu and the praise of the Ramayan.",
+          "Here every shloka is as Gita Press prints it, with Gita Press's Hindi and English translations; tap any word of a verse to see its meaning."
+         ]
+        }
+       }
+      ]
+     },
+     {
       "id": "tulsidas",
       "title": {
        "hi": "गोस्वामी तुलसीदास",

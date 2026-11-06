@@ -1176,6 +1176,18 @@ async def main():
             return [chips, inP[0] > 0 && inP[1], d45, whole, homeHidden, sh, shHits.length > 0 && shHits.every(i => i >= sec.i && i <= sec.end)]; })()""")
         check('searched from the reader, the search stays in its part or section; Whole work widens it; from the home it searches everything',
               sin == [['Ayodhya Kand*', 'Whole work'], True, ['ayodhya.45.do45'], True, True, sin[5], True] and sin[5] != 'Whole work', sin)
+        # a work loaded by part (the Valmiki): as each part's meanings arrive the search runs again; when its results are the same
+        # the list stays put (the same buttons, so a result being tapped does not vanish) and only the "Searching…" note goes;
+        # a new query draws a new list
+        sp = await ev("""(async () => { await openWork('valmiki-ramayana', true); show('home'); openSearch('text'); $('#q').value = 'राम'; runSearch();
+            for (let k = 0; k < 150 && (SLOADING || $('#sRes .sload')); k++) await new Promise(r => setTimeout(r, 200));   // every part's meanings in
+            const box = $('#sRes'), first = box.querySelector('.res'), n0 = !!first;
+            box.insertAdjacentHTML('afterbegin', '<p class="small muted sload">x</p>'); runSearch(); const kept = !!first && box.contains(first) && box.querySelector('.res') === first;
+            const noteGone = !box.querySelector('.sload');
+            $('#q').value = 'सीता'; runSearch(); const redrawn = !box.contains(first);
+            let tapped = null; const f2 = box.querySelector('.res'); const oo = openReader; openReader = (o, i) => { tapped = i; }; runSearch(); f2.click(); openReader = oo;
+            return [n0, kept, noteGone, redrawn, tapped === +f2.dataset.i]; })()""")
+        check('a work loaded by part: the same search results stay in place as parts load (a tap still opens its verse); a new query redraws them', sp == [True, True, True, True, True], sp)
         # at the end of a part, the button to the next part shows how long it plays, as the button to the next day of a plan does
         nd = await ev("""(async () => { const out = []; for (const w of ['katha-upanishad', 'manas']){ await openWork(w, true); await loadSources(); show('home');
               openReader('k', PARTS[0].b); await new Promise(r => setTimeout(r, 300)); const e = document.querySelector('#reader .endb');

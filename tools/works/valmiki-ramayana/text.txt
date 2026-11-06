@@ -1,6 +1,6 @@
-# Śrīmad Vālmīki Rāmāyaṇa: 23,701 verses. Made by source/settle.py from the owner's Gita Press book (read from its
-# text layer, no OCR); do not edit here. Every correction and choice: reconciliation.md. Topics: the sarga titles
-# of the Gita Press Hindi (code 77) and English (codes 452–453) editions.
+# Śrīmad Vālmīki Rāmāyaṇa: 23,701 verses. Made by source/make_text.py from the owner's Gita Press book (read from its
+# text layer, no OCR); change it there, not here. Every correction and choice: reconciliation.md. Topics: the sarga
+# titles of the Gita Press Hindi (code 77) and English (codes 452–453) editions.
 
 @part bala
 @section bala.1
@@ -28027,7 +28027,7 @@
 नहि तस्यास्त्यविज्ञातं त्रिषु लोकेषु राघव।
 सर्वान् परिवृतो लोकान् पुरा वै कारणान्तरे॥ ३४॥
 @section aranya.72
-@topic श्रीराम और लक्ष्मणके द्वारा चिताकी आगमें कबन्धका दाह तथा उसका दिव्य रूपमें प्रकट होकर उन्हें सुग्रीवसे मित्रता करनेके लिये कहना | Canto LXXII Appearing in his ethereal form when cremated by Shri Ram and Lakshman, Kabandh counsels them to make an alliance with Sugriv
+@topic श्रीराम और लक्ष्मणके द्वारा चिताकी आगमें कबन्धका दाह तथा उसका दिव्य रूपमें प्रकट होकर उन्हें सुग्रीवसे मित्रता करनेके लिये कहना | Appearing in his ethereal form when cremated by Shri Ram and Lakshman, Kabandh counsels them to make an alliance with Sugriv
 [aranya.72.1 shloka 1]
 एवमुक्तौ तु तौ वीरौ कबन्धेन नरेश्वरौ।
 गिरिप्रदरमासाद्य पावकं विससर्जतुः॥ १॥
@@ -28112,7 +28112,7 @@
 प्लवङ्गमानामृषभस्तव प्रियां
 निहत्य रक्षांसि पुनः प्रदास्यति॥ २७॥
 @section aranya.73
-@topic दिव्य रूपधारी कबन्धका श्रीराम और लक्ष्मणको ऋष्यमूक और पम्पासरोवरका मार्ग बताना तथा मतङ्गमुनिके वन एवं आश्रमका परिचय देकर प्रस्थान करना | Canto LXXIII Appearing in an ethereal form, Kabandh shows to Shri Ram and Lakshman the way to Rishyamook Hill and the Pampa Lake and, giving them information about the grove of Sage Matanga and his hermitage, takes leave of them
+@topic दिव्य रूपधारी कबन्धका श्रीराम और लक्ष्मणको ऋष्यमूक और पम्पासरोवरका मार्ग बताना तथा मतङ्गमुनिके वन एवं आश्रमका परिचय देकर प्रस्थान करना | Appearing in an ethereal form, Kabandh shows to Shri Ram and Lakshman the way to Rishyamook Hill and the Pampa Lake and, giving them information about the grove of Sage Matanga and his hermitage, takes leave of them
 [aranya.73.1 shloka 1]
 दर्शयित्वा तु रामाय सीतायाः परिमार्गणे।
 वाक्यमन्वर्थमर्थज्ञः कबन्धः पुनरब्रवीत्॥ १॥
@@ -53791,7 +53791,7 @@
 गिरेः समीपानुगतं यथैव
 महन्महाम्भोधरजालमुग्रम्॥ ४०॥
 @section yuddha.62
-@topic कुम्भकर्णका रावणके भवनमें प्रवेश तथा रावणका रामसे भय बताकर उसे शत्रुसेनाके विनाशके लिये प्रेरित करना | Canto LXII Kumbhkaran enters the palace of Ravan, who warns him of the danger from Shri Ram and urges him to destroy the enemy’s army
+@topic कुम्भकर्णका रावणके भवनमें प्रवेश तथा रावणका रामसे भय बताकर उसे शत्रुसेनाके विनाशके लिये प्रेरित करना | Kumbhkaran enters the palace of Ravan, who warns him of the danger from Shri Ram and urges him to destroy the enemy’s army
 [yuddha.62.1 shloka 1]
 स तु राक्षसशार्दूलो निद्रामदसमाकुलः।
 राजमार्गं श्रिया जुष्टं ययौ विपुलविक्रमः॥ १॥

@@ -1,7 +1,7 @@
 """The English of the sarga headings (Gita Press's, IAST) in plain, common Indian English (docs/PLAYBOOK.md §6): Śrī Rāma →
 Shri Ram, Lakṣmaṇa → Lakshman, Brāhmaṇas → Brahmins. A name the Mānas already spells (tools/works/manas/source/plain_en.json)
 is spelt the same; OVR and UNM hold the rest by hand; any other marked word is transliterated plainly, a name's final short a
-dropped (Ravan) except after two consonants (Vashishtha). Run: python3 plain_en.py (rewrites ../text.txt's headings).
+dropped (Ravan) except after two consonants (Vashishtha). Used by make_text.py.
 """
 import json, os, re, collections, sys
 MARK=re.compile('[À-ÖØ-öø-ɏḀ-ỿ]')
@@ -52,15 +52,3 @@ def unm(w):
     return UNM[base]+pos if base in UNM else w
 def plain(s):
     return re.sub(r"[\wÀ-ÖØ-öø-ɏḀ-ỿ’'-]+", lambda m: word(m.group(0)) if MARK.search(m.group(0)) else unm(m.group(0)), s)
-if __name__ == '__main__':
-    # rewrites the English of every @topic line of ../text.txt in plain spelling, in place; running it again changes nothing
-    import os
-    TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'text.txt')
-    L = open(TXT, encoding='utf-8').read().split('\n'); n = 0
-    for k, l in enumerate(L):
-        if l.startswith('@topic') and '|' in l:
-            hi, en = l.split('|', 1); new = hi + '| ' + plain(en.strip())
-            n += new != l; L[k] = new
-    bad = [l for l in L if l.startswith('@topic') and MARK.search(l.split('|', 1)[1])]
-    assert not bad, bad[:3]
-    open(TXT, 'w', encoding='utf-8').write('\n'.join(L)); print(n, 'headings in plain spelling')
