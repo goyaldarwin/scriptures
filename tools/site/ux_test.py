@@ -1160,10 +1160,22 @@ async def main():
         cn = await ev("""(async () => { const find = async (w, q) => { await openWork(w, true); setScope('text'); $('#q').value = q; runSearch(); await new Promise(r => setTimeout(r, 50)); return $$('#sRes .res').map(b => IT[+b.dataset.i].id); };
             const k = await find('katha-upanishad', '2.1.1'), kl = playLabel(ID['2.1.1']), kv = IT[ID['2.1.1']].v.slice(-1)[0].includes('॥१॥');
             const k2 = await find('katha-upanishad', '1.2'), r = await find('shri-rudram', '11.17'), rl = playLabel(ID['chamakam.a11.m17']);
+            const s = await find('sukhmani-sahib', '3.5'), sl = playLabel(ID['a03.p5']);
             const c = await find('manas', 'chhand 10.1'), cl = playLabel(ID['bal.10.cha1']), ul = playLabel(ID['bal.10.cau1']), d = await find('manas', '3'), b = await find('bhaja-govindam', '13a');
-            return [k, kl, kv, k2, r, rl, c, cl, ul, d.includes('bal.3.do3क') && d.includes('bal.3.do3ख'), b]; })()""")
-        check('one number per verse: Katha 2.1.1 and Rudram 11.17 in the player and search; a Manas chhand is not the chaupai of its number; 3 finds 3क, 3ख',
-              cn == [['2.1.1'], 'Mantra 2.1.1', True, ['1.2.1'], ['chamakam.a11.m17'], 'Mantra 11.17', ['bal.10.cha1', 'kishkindha.10.cha1'], 'Chhand 10.1', 'Verse 10.1', True, ['sh13a']], cn)
+            return [k, kl, kv, k2, r, rl, s, sl, c, cl, ul, d.includes('bal.3.do3क') && d.includes('bal.3.do3ख'), b]; })()""")
+        check('one number per verse: Katha 2.1.1, Rudram 11.17 and Sukhmani 3.5 in the player and search; a Manas chhand is not the chaupai of its number; 3 finds 3क, 3ख',
+              cn == [['2.1.1'], 'Mantra 2.1.1', True, ['1.2.1'], ['chamakam.a11.m17'], 'Mantra 11.17', ['a03.p5'], 'Pauri 3.5', ['bal.10.cha1', 'kishkindha.10.cha1'], 'Chhand 10.1', 'Verse 10.1', True, ['sh13a']], cn)
+        # searched from the reader, a work's search stays in the part (or day, or the section of a one-part work) on screen; a chip widens it
+        sin = await ev("""(async () => { const go = async q => { $('#q').value = q; runSearch(); await new Promise(r => setTimeout(r, 80)); return $$('#sRes .res').map(b => +b.dataset.i); };
+            await openWork('manas', true); await loadSources(); show('home'); openReader('k', PARTS[1].a + 40); await new Promise(r => setTimeout(r, 400));
+            $('#rSearch').click(); const chips = $$('#sIn .chip').map(c => c.textContent + (c.classList.contains('on') ? '*' : ''));
+            const inPart = await go('राम'), inP = [inPart.length, inPart.every(i => IT[i].p === 1)], d45 = (await go('45')).map(i => IT[i].id); $$('#sIn .chip')[1].click(); await new Promise(r => setTimeout(r, 80)); const whole = $$('#sRes .res').map(b => +b.dataset.i).some(i => IT[i].p !== 1);
+            show('home'); $('#hSearch').click(); const homeHidden = $('#sIn').hidden;
+            await openWork('shirdi-sai-dhoop-aarti', true); await loadSources(); show('home'); openReader('k', ID['namaskarashtak.pad3']); await new Promise(r => setTimeout(r, 400));
+            $('#rSearch').click(); const sh = $$('#sIn .chip')[0].textContent, shHits = await go('साई'), sec = TOPICS.find(t => t.id.startsWith('namaskarashtak'));
+            return [chips, inP[0] > 0 && inP[1], d45, whole, homeHidden, sh, shHits.length > 0 && shHits.every(i => i >= sec.i && i <= sec.end)]; })()""")
+        check('searched from the reader, the search stays in its part or section; Whole work widens it; from the home it searches everything',
+              sin == [['Ayodhya Kand*', 'Whole work'], True, ['ayodhya.45.do45'], True, True, sin[5], True] and sin[5] != 'Whole work', sin)
         # at the end of a part, the button to the next part shows how long it plays, as the button to the next day of a plan does
         nd = await ev("""(async () => { const out = []; for (const w of ['katha-upanishad', 'manas']){ await openWork(w, true); await loadSources(); show('home');
               openReader('k', PARTS[0].b); await new Promise(r => setTimeout(r, 300)); const e = document.querySelector('#reader .endb');

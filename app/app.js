@@ -1322,18 +1322,31 @@ function libSearch(q){
 }
 // one search page for the whole app: opened from the library it finds works and shelves; from a work, its verses
 let SCOPE = 'text';
+// Searched from the reader, a work's search looks only in what the reader shows: its part (Bal Kand) or its day (Vishram 3),
+// or in a work read as one part, the section on screen (Namaskarashtak); a chip widens it to the whole work. From the
+// work's home it searches the whole work, as it always has.
+let SIN = null, SALL = false;
+function readerRange(){
+  if (R.a > 0 || R.b < IT.length - 1) return {a: R.a, b: R.b, name: R.org === 'k' ? KNAME(R.n) : VN(R.n)};
+  const t = TOPICS.length > 1 && curSection(topVisibleItem()); return t ? {a: t.i, b: t.end, name: TT(t)} : null;
+}
+function renderSIn(){ const el = $('#sIn'); el.hidden = !SIN || SCOPE === 'lib'; if (el.hidden) return;
+  el.innerHTML = '<button class="chip' + (SALL ? '' : ' on') + '" data-in="part">' + esc(SIN.name) + '</button><button class="chip' + (SALL ? ' on' : '') + '" data-in="all">' + T('पूरा ग्रन्थ', 'Whole work') + '</button>';
+  $$('#sIn .chip').forEach(c => c.onclick = () => { SALL = c.dataset.in === 'all'; renderSIn(); if ($('#q').value.trim()) runSearch(); }); }
+const inSearch = i => !SIN || SALL || (i >= SIN.a && i <= SIN.b);
 function setScope(scope){ SCOPE = scope; const lib = scope === 'lib'; $('#scope').hidden = lib;
   $$('#scope .chip').forEach(c => { if (!['v', 'h', 'e', 'n'].includes(c.dataset.s)) c.hidden = !workKinds().includes(c.dataset.s); });   // a third meaning language's chip, on works that have it
   $('#q').placeholder = lib ? T('ग्रन्थ, रचयिता या विषय खोजें', 'Search works, authors or shelves') : T('शब्द, अर्थ या English में खोजें', 'Search a verse or a meaning'); }
-function openSearch(scope, stay){   // stay: only reset the page (the box was cleared), without another history entry
+function openSearch(scope, stay, fromReader){   // stay: only reset the page (the box was cleared), without another history entry
   setScope(scope); const lib = scope === 'lib';
+  if (!stay){ SIN = fromReader && !lib ? readerRange() : null; SALL = false; } renderSIn();
   $('#q').value = '';
   $('#sRes').innerHTML = '<div class="empty">' + (lib ? T('ग्रन्थका नाम, रचयिता या विषय लिखें।', 'Type the name of a work, an author or a shelf.') : T('चौपाई, दोहे या अर्थका कोई भी शब्द लिखें।', 'Type any word from a verse, its Hindi meaning or its English meaning.')) + '</div>';
   if (!stay) show('search');
 }
 $('#libSearchBtn').onclick = () => openSearch('lib');
 $('#hSearch').onclick = () => openSearch('text');
-$('#rSearch').onclick = () => openSearch('text');
+$('#rSearch').onclick = () => openSearch('text', false, true);
 $('#libMenu').onclick = mainMenu;
 function workPath(id){ let r = null; (function walk(n){ (n || []).forEach(c => { if (c.work === id) r = c.path; else walk(c.children); }); })(LIB); return r || id; }
 // the salutation on the opening screen: the work's own (library/index.json "salute": जय श्रीराम for the
@@ -1550,9 +1563,9 @@ function runSearch(){
     const sc = qs.length >= 2 && scopes.has('v') && vw.length ? wordsIn(qs, vw) : 0; if (sc && sc >= need - .25){ hits.push([k + 3 - sc / 100, i, LB.verses(), IT[i].v.join(' । '), false]); continue; }
     const w = qs.length >= 2 && mean(x, true); if (w) hits.push([k + 4, i, w[1], w[2], w[3]]);
   }
-  hits.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
-  const res = hits.slice(0, 300).map(h => h.slice(1));
-  if (scopes.has('n')) for (const p of SHOWN()) for (const k in p.notes){ if (!k.startsWith(W.id + ':')) continue; const i = ID[k.slice(W.id.length + 1)]; if (i == null) continue; p.notes[k].forEach(n => { if ((latin ? normL(n.t) : normD(n.t)).includes(nq)) res.push([i, T('टिप्पणी', 'Note'), n.t, latin]); }); }
+  const kept = hits.filter(h => inSearch(h[1])); kept.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+  const res = kept.slice(0, 300).map(h => h.slice(1));
+  if (scopes.has('n')) for (const p of SHOWN()) for (const k in p.notes){ if (!k.startsWith(W.id + ':')) continue; const i = ID[k.slice(W.id.length + 1)]; if (i == null || !inSearch(i)) continue; p.notes[k].forEach(n => { if ((latin ? normL(n.t) : normD(n.t)).includes(nq)) res.push([i, T('टिप्पणी', 'Note'), n.t, latin]); }); }
   box.innerHTML = (loading ? '<p class="small muted sload">' + T('सभी भागोंके अर्थ खोजे जा रहे हैं…', 'Searching the meanings of every part…') + '</p>' : '') + (res.length ? '<p class="small muted">' + DEV(res.length) + (res.length >= 300 ? '+' : '') + T(' परिणाम', ' results') + '</p>' + res.map(r => '<button class="res" data-i="' + r[0] + '"><div class="where">' + esc(itemLabel(r[0])) + ' · ' + esc(r[1]) + '</div><div class="snip' + (r[3] ? ' lat' : '') + '">' + snip(r[2], q, r[3]) + '</div></button>').join('') : '<div class="empty">' + T('कुछ नहीं मिला। दूसरा रूप लिखकर देखें।', 'Nothing found. Try another spelling.') + '</div>');
   $$('#sRes .res').forEach(b => b.onclick = () => openReader(readOrg(), +b.dataset.i, true));
 }
