@@ -15,3 +15,5 @@
 | Kathā-visarjana (in the vidhi) | Not in either edition: typed from the owner's printed page; its readings kept as printed and its three corrected typesetting slips (settled: none is a word as printed) are in `source/visarjan.md`. |
 
 A new correction goes in `source/text_fixes.json` with the witness that supports it; then `source/README.md` → "Text corrections".
+
+**Readings of the meanings.** Where a line can be read two ways, our Hindi and English take the plain construction of the words, checked against Monier-Williams and Apte, the Awadhi usage and Gita Press's reading; Gita Press's reading is taken where the grammar bears it out (परिपोषे with बचन, ayodhyā 137.1: words full of love; सुररिपु and मनुज अहारी, laṅkā 62.6: Devāntaka and Narāntaka; the absolutive देखि in ayodhyā 276 chand 1). The words' own sense is kept where it differs from a Hindi gloss only in degree (बिसमय wonder, तरुन तिजारी a raging fever, नीलकंठ the Indian roller as Hindi usage has it) or where the verse names no one (the sage of the Daṇḍaka curse, Ananta in laṅkā 77.2).

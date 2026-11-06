@@ -42,7 +42,7 @@ How the pages are compared: the fetch tool does not return either text in full, 
 | 28 | जो कोइ लावै । सोइ अमित | कोई, सोई | | Metre: सोइ अमित जीवन फल पावै = 16; सोई makes 17. |
 | 30 | संत | सन्त | | Mānas spelling. |
 | 34 | अंत काल रघुबर पुर, हरिभक्त | अंत, रघुबरपुर, हरि-भक्त | | Mānas spelling: अंत, no hyphen, compound joined (हरिभगत in the Mānas). |
-| 37 | गुरु देव की नाईं | गुरुदेव | | Kept apart as in the printed text as we know it. **Open:** A joins it. |
+| 37 | गुरु देव की नाईं | गुरुदेव | | Kept apart as in the printed Gita Press text; the two are sung alike. |
 | 39 | **चालीसा** | चालीसा | चालीसा | Both sources. |
 | 40 | महँ | (different) | | Mānas spelling. |
 | closing dohā | as written | = | | |
@@ -61,12 +61,11 @@ The two sources share the popular modern text, and differ from each other in pla
 | 3 | सियारामजी … **लक्ष्मण** मूर्छित पड़े सकारे । आनि **संजीवन** **प्राण** उबारे | सियाराम जी, लक्ष्मण, प्राण | सिया रामजी, लक्ष्मण, संजीवन, प्राण | लक्ष्मण and प्राण: both sources. संजीवन: D. सियारामजी joined (house style). |
 | 4 | पैठि **पताल** तोरि **जमकारे** । अहिरावन … **बाईं** भुजा **असुरदल** मारे । दाहिने भुजा संतजन तारे | पताल, जमकारे, अहिरावण, बाईं, संतजन | पाताल, यम कारे, अहिरावन, बाँये, असुरदल, संत जन | पताल: metre (पाताल makes 17) and C. जमकारे: C, with ज as in the Mānas (जम). अहिरावन: D and house style. बाईं: C, and it agrees with the feminine भुजा. असुरदल: D. संतजन: C. |
 | 5 | सुर नर मुनि **जन** आरती उतारें । जय जय जय हनुमान उचारें … **आरती** करत अंजना माई | सुर-नर-मुनि जन, उचारें, आरती | मुनि जन, उतारे, उचारे | जन: both sources. उतारें / उचारें (plural): C. |
-| 6 | जो हनुमानजी की **आरती गावे** । बसि बैकुंठ परम पद **पावे** । लंक विध्वंस किए रघुराई । तुलसीदास स्वामी कीर्ति गाई | हनुमानजी, गावे, पावे, बैकुंठ, परम पद; has the last line (लंक विध्वंस किये … कीर्ति गाई) | हनुमान जी, गावे, पावे, बैकुण्ठ; no last line | गावे/पावे, आरती: both sources. The closing line is only in C; it is kept, with किए for किये (house style), so that the āratī ends in six full stanzas as C prints it. **Open** (below). |
+| 6 | जो हनुमानजी की **आरती गावे** । बसि बैकुंठ परम पद **पावे** | हनुमानजी, गावे, पावे, बैकुंठ, परम पद; adds लंक विध्वंस किये रघुराई । तुलसीदास स्वामी कीर्ति गाई | हनुमान जी, गावे, पावे, बैकुण्ठ | गावे/पावे, आरती: both sources. C's closing line is not sung in Pt. Ashwin Kumar Pathak's recording (the refrain follows पावे at 6156 s) and D does not have it, so the stanza ends at पावे. |
 
-## Still to do
+## The recording
 
-1. **The audio decides.** The owner wants the Chālīsā and āratī "as they appear in the audio" (Pt. Ashwin Kumar Pathak). The recording is transcribed (`audio/ashwin-pathak/transcripts/QjSpUgnEPLU.jsonl`) and timed; the sung words are still to be compared with `text.txt`, especially: the āratī's last line (in C, not in D); whether a śloka (C and D both print "मनोजवं मारुततुल्यवेगं …" before the āratī) or other prayers are sung around the Chālīsā and āratī; Chālīsā 5 (औ / अरु / और), 28 (कोइ … सोइ / कोई … सोई), 37 (गुरु देव / गुरुदेव).
-2. **A printed Gita Press text** (the Hanumān Chālīsā booklet, or the end pages of the Gita Press Sundarakāṇḍa booklet) would settle the spelling for good; the copy on archive.org cannot be read by machine (legacy font).
+Pt. Ashwin Kumar Pathak's recording (`audio/ashwin-pathak/transcripts/QjSpUgnEPLU.jsonl`) sings the Chālīsā and the āratī in this text's words and order. It sings no śloka before the āratī (C's and D's मनोजवं मारुततुल्यवेगं … is not sung), and not C's closing line of the āratī. Where the sources differ only in spelling that is sung alike (Chālīsā 5 औ / अरु, 28 कोइ / कोई, 37 गुरु देव / गुरुदेव), the metre and the Mānas spelling decide, as above. Around them it also sings, unshown: the jaikārās before the Chālīsā (बोलो सियावर रामचन्द्र भगवान की जय …), the Mānas's मंगल भवन अमंगल हारी … before the āratī, and after it कर्पूरगौरं करुणावतारं …, मङ्गलं भगवान् विष्णुः …, सर्वमङ्गलमाङ्गल्ये …, सर्वे भवन्तु सुखिनः … and ॐ शान्तिः.
 
 ## Opening prayers (part 0, "प्रारम्भिक वन्दना")
 

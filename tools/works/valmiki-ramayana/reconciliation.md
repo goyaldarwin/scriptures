@@ -25,7 +25,7 @@ The owner's Gita Press *Śrīmad Vālmīki-Rāmāyaṇa, with Sanskrit text and 
 ### A verse the book does not print
 - **sundara.1.154**: the book prints its English ("At the command of Śrī Rāma, I am going to seek her presence as his messenger …") but not its Sanskrit. Filled from IIT Kanpur (its 5.1.155): तस्याः सकाशं दूतोऽहं गमिष्ये रामशासनात्। कर्तुमर्हसि रामस्य साह्यं विषयवासिनि॥ — its रामशासनात् is the English's "at the command"; valmikiramayan.net has रामकारणात्.
 
-### Readings corrected against the witnesses (67)
+### Readings corrected against the witnesses (72)
 | Verse | Gita Press | Text | Why |
 |---|---|---|---|
 | bala.2.10 | पुमासं | पुमांसं | पुमासं is not a form; the accusative of पुंस् is पुमांसम्, with the anusvāra dropped in print. |
@@ -52,6 +52,7 @@ The owner's Gita Press *Śrīmad Vālmīki-Rāmāyaṇa, with Sanskrit text and 
 | ayodhya.24.20 | पितरपेक्षया | पितुरपेक्षया | पितरपेक्षया is not a possible form; the compound needs the genitive पितुः, a dropped ु sign. |
 | ayodhya.30.10 | प्रस्थितुमर्हसि | प्रस्थातुमर्हसि | प्रस्थितुम् is not a possible infinitive of स्था; the correct form is प्रस्थातुम्. |
 | ayodhya.43.16 | चामरप्रभाः | चामरप्रभः | चामरप्रभाः is plural against the singular subject; the bahuvrīhi must be चामरप्रभः, an extra ा. |
+| ayodhya.44.24 | दृष्यतेऽशिवम् | दृश्यतेऽशिवम् | दृष्यते is no form; the passive of दृश् is दृश्यते, as IIT Kanpur reads. |
 | ayodhya.48.25 | सर्वमनालम्भमनायकम् | सर्वमनालम्बमनायकम् | आलम्भ means 'seizing, killing', not 'support'; the sense 'without support' needs अनालम्बम्, a ब/भ slip. |
 | ayodhya.52.86 | समक्षसे | समीक्षसे | समक्षसे is not a verb form; a dropped ी, the verb is samīkṣase 'you look upon (Brahmaloka)'. |
 | ayodhya.56.1 | व्यातीतायामवसुप्तमनन्तरम् | व्यतीतायामवसुप्तमनन्तरम् | vi+atīta gives vyatīta; व्यातीता is an impossible form with an extra ा. |
@@ -64,6 +65,7 @@ The owner's Gita Press *Śrīmad Vālmīki-Rāmāyaṇa, with Sanskrit text and 
 | ayodhya.107.9 | क्षिप्रमेवाभिषिञ्चनात् | क्षिप्रमेवाभिषेचनात् | अभिषिञ्चन is not a Sanskrit noun (MW and Apte have no such headword); the noun is अभिषेचन, which Gita Press itself prints in the same phrase at Ayodhyā 4.15. |
 | ayodhya.118.15 | चास्म्युचितां | चास्म्युचितं | The feminine accusative उचितां has nothing to agree with; the sense 'what fitting and dear thing shall I do' (उचितं … प्रियं च किम्) needs neuter उचितं, as the other sources read. |
 | aranya.9.32 | त्रैलोक्यामपि | त्रैलोक्यमपि | त्रैलोक्य is neuter only, so the accusative is त्रैलोक्यम्; त्रैलोक्याम् is an impossible form with an extra ा. |
+| aranya.26.8 | वीरश्चर्तुभिश्चतुरो | वीरश्चतुर्भिश्चतुरो | चर्तुभिः is no form; with four (चतुरः) horses it is चतुर्भिः (with four arrows), as IIT Kanpur reads. |
 | aranya.41.12 | भुज्यन्ते | भज्यन्ते | The simile of chariots wrecked on rough ground requires भज्यन्ते 'are broken' (√भञ्ज्); भुज्यन्ते 'are eaten/enjoyed' gives no sense and is a one-vowel slip. |
 | aranya.52.30 | प्रशोभयत | प्राशोभयत | The imperfect of प्र-√शुभ् causative needs the augment (प्र+अ = प्रा), and Gita Press has no augmentless form of this verb elsewhere; the ा is dropped. |
 | aranya.52.34 | उत्पातवाताभिरता | उत्पातवाताभिहता | Trees 'struck' (अभिहता) by portent-winds is the sense; अभिरता 'delighting in' makes no sense here and is a र/ह slip. |
@@ -91,10 +93,13 @@ The owner's Gita Press *Śrīmad Vālmīki-Rāmāyaṇa, with Sanskrit text and 
 | sundara.9.33 | नानावेषबिभूषितम् | नानावेषविभूषितम् | बिभूषित is a non-word (a ब/व slip); Gita Press prints विभूषित everywhere else (69 times). |
 | sundara.9.36 | संवृतदान्तानि | संवृतदन्तानि | दान्त means "tamed", not "teeth"; the faces have closed teeth (दन्त), so the extra ा is a slip. |
 | sundara.10.42 | परिविद्ध्यांगैः | परिपीड्यांगैः | परिविद्ध्य is not a possible absolutive of pari-√vyadh (that is परिविध्य); the sense "pressing the drum with her limbs" needs परिपीड्य, as the other sources read. |
+| yuddha.4.120 | प्रवलान्तमिवोर्मिभिः | प्रवल्गन्तमिवोर्मिभिः | प्रवलान्त is no word; the sea leaping with its waves is प्रवल्गन्तम् (from वल्ग्), as valmikiramayan.net reads. |
 | yuddha.18.30 | आनाय | आदाय | आनाय is only a noun ('net'), not the gerund needed with सुकृतं ... गच्छेत्; the sense 'taking his merit' requires आदाय, as both sources read. |
 | yuddha.36.20 | मध्यमेऽस्थापयद गल्मे बहभिः | मध्यमेऽस्थापयद् गुल्मे बहुभिः | अस्थापयद गल्मेबहभिः drops the virāma and two ु signs (17 syllables, non-words); गुल्मे बहुभिः restores grammar, sense and the 16-syllable metre as the sources read. |
 | yuddha.83.38 | विचिन्विता | विचिन्वता | विचिन्विता is no form; the instrumental of the participle विचिन्वत् (agreeing with अधनेन) is विचिन्वता, an extra ि sign. |
 | yuddha.90.56 | तद्विहितं | तद्विहतं | विहितं 'arranged' gives no sense; the Vāruṇa weapon was struck down, विहतं, an extra ि sign as the sources show. |
+| uttara.18.6 | अन्वेष्वपि | अन्येष्वपि | अन्वेषु is no form; with गतेषु … देवेषु the verse needs अन्येषु (the other gods), the य printed as व. Uttara is not in the witnesses; the sense and grammar settle it. |
+| uttara.21.38 | निरुछ्वासमपोथयन् | निरुच्छ्वासमपोथयन् | निरुछ्वास is no word; breathless is निरुच्छ्वास (निर् + उत् + श्वास), the च् printed short. Uttara is not in the witnesses; the word settles it. |
 
 ### Proposed and kept as printed (valid readings of this edition)
 - **bala.2.12** पत्त्रिणा: पत्त्रिन् is a valid spelling (MW headword pattrin) and the book uses the same त्त्र in पतत्त्रिन् (1.14.34, 36) and तोत्त्र, so it is the edition's spelling, not a slip.

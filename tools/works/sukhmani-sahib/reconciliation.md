@@ -85,3 +85,44 @@ The PDF has no Hindi, no Punjabi and no word meanings, so they are written for t
 `pa-scriptures`; `library/glossary/pa.json`): 218 of 218 items and 2,536 of 2,536 distinct words. Our English
 (`en-scriptures`, the default) is also written for this library from the Gurmukhi; the PDF's English stays
 selectable (order 2), and the export stops if ours shares a run of 10 or more words with it.
+
+### Readings settled with the commentaries
+
+Our Hindi, English and Punjabi give one reading of every line. Where a line can be read more than one way, the
+grammar decides, then Prof. Sahib Singh's Darpan and the Faridkot Teeka (read to check the reading only; our wording
+is our own and the overlap check runs against the Darpan). Where both commentaries, or the grammar and one of them,
+agree with our reading, it stands. These lines take the reading below:
+
+| Line | Reading | Why |
+|---|---|---|
+| a01.p1 ਕੀਨੇ ਰਾਮ ਨਾਮ ਇਕ ਆਖੵਰ | the Vedas, Puranas and Simritis hold the one word of the Name the purest | ਸੁਧਾਖੵਰ is the predicate of ਕੀਨੇ; the Darpan |
+| a01.rahao ਮਨਿ ਬਿਸ੍ਰਾਮ | it dwells in the devotees' minds | ਬਿਸ੍ਰਾਮ = abode (Darpan's gloss) |
+| a02.salok ਨਾਨਕ ਕੇ … ਸਾਥ | O God, in Nanak's (the Guru's) company I have come to your refuge | no verb for "stay"; the Darpan |
+| a04.p6 ਨਾਨਕ ਤੁਮਰੀ ਕਿਰਪਾ ਤਰੈ | a statement: Nanak crosses over by your grace alone | ਤਰੈ indicative; our Hindi |
+| a04.p7 ਦ੍ਰਿੜੁ ਕਰਿ ਮਾਨੈ | he takes it all (his house of sand, Maya's games) to be lasting | the next line: death never comes to mind |
+| a06.p5 ਨੀਕੀ ਜਾਤਿ | good birth | the Darpan: a good (human) birth; not caste |
+| a07.p1 ਸਭੁ ਹੋਤ ਨਿਬੇਰਾ | everything is settled | ਸਭੁ; the Darpan |
+| a07.p3 ਪਰਮਾਨੰਦਾ; ਬਨਿ ਆਈ | God, the supreme bliss; a deep bond of love forms between the Saadh and God | the Darpan |
+| a07.p8 ਉਪਮਾ | likeness: the Saadh can be likened only to the all-pervading Lord | fits ਸਾਧ ਪ੍ਰਭ ਭੇਦੁ ਨ in line 10; the Darpan |
+| a08.p1 ਪਾਵਕ ਕਾ ਸਹਜ ਸੁਭਾਉ | fire's nature to burn away all impurity | the stanza's theme (untainted); the Darpan |
+| a10.p1 ਕਬਿ ਕਾਬਿ ਬੀਚਾਰਹਿ | poets reflect on poetry | both commentaries |
+| a10.p2, a15.p3, a16.p6, a17.p7, a22.p4 | second person, causative, ਕਰਮੁ = grace, singular, a relative clause | the Gurmukhi's grammar (our Hindi aligned) |
+| a02.p7, a16.p8, a21.p5 | through the Lord's glory; one (not I) is struck with awe; says Nanak, you alone know | the three languages on the English's reading |
+| a11.salok ਮਹੀਅਲਿ | the space between earth and sky | ਮਹੀ + ਤਲਿ |
+| a11.p8 ਬਸਹਿ | plural | the verb; the Darpan |
+| a12.p5 ਮਾਇਆ ਪਾਛੈ ਪਾਵੈ | he keeps storing up Maya | the Darpan |
+| a12.p8 ਸਚੁ … ਸਭੁ ਕੀਨਾ | all that he has made is true | the Darpan |
+| a13.p7 ਜੈਸਾ ਭਾਵੈ | as one's inclination is, so one becomes | the next line: past deeds cannot be erased; the Darpan |
+| a14.p3 ਹਰਿ ਮੁਖੀ | the eminent ones who utter the Lord | ਮੁਖੀ with the plural ਬੋਲਹਿ; the Darpan |
+| a14.p7 ਕ੍ਰਿਪਾ ਕਰਹਿ | God bestows grace | both commentaries |
+| a15.p5 ਮਨ ਮੋਲਿ | at the price of your mind | ਮੋਲਿ; the Darpan |
+| a16.p7 ਅਵਰ ਨ ਬੂਝਿ | know that no other takes thought for it | ਬੂਝਿ imperative after ਜਿਸ ਕੀ ਸ੍ਰਿਸਟਿ ਸੁ ਕਰਣੈਹਾਰੁ; the Darpan |
+| a18.p3 ਗੁਰ ਕਾ ਮਨੁ ਮਾਨੈ | one with whom the Guru's mind is wholly satisfied | both commentaries |
+| a18.p7 ਜਪਿ ਨਾਮੁ | by repeating the Name (stability is found) | parallel to ਸੁਨਿ in line 10; the Darpan |
+| a19.p4 ਤਤੁ ਬੀਚਾਰੁ ਕਹੈ ਜਨੁ ਸਾਚਾ | one who speaks reflection on the Essence is the true servant | both commentaries |
+| a20.p5 ਨਾਮੁ … ਗੁਨਤਾਸੁ | the Naam is the treasure of virtues | ਗੁਨਤਾਸੁ beside ਨਾਮੁ; the Darpan |
+| a21.p8 ਜਹ ਅਬਿਗਤੁ ਭਗਤੁ ਤਹ ਆਪਿ | where the Unmanifest is, there is his devotee; where the devotee, there he is | ਅਬਿਗਤੁ is nominative; the Darpan |
+| a24.p6 ਗੁਰ ਨਾਨਕ ਨਾਮ ਬਚਨ | O Nanak, the Guru's word and the Naam | ਗੁਰ with ਬਚਨ, ਨਾਨਕ the signature; the Darpan |
+| a24.salok | first person: I have worshipped, I have found | our Hindi; Faridkot |
+
+ਨਾਨਕ in the last line follows `tools/meanings/style.md` §12.
