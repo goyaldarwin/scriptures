@@ -21,10 +21,10 @@ The Ādikāvya of Maharṣi Vālmīki in its seven kāṇḍas, as printed by Gi
 ## Sources and permissions
 All the sources are the owner's copies, used for personal study: the Gita Press books (Sanskrit text, English and Hindi meanings, shown as printed) and the two websites' word-by-word glosses (shown as given in the word meanings). No permission has been requested from Gita Press, IIT Kanpur / Rashtriya Sanskrit Vidyapeetha, Tirupati, or valmikiramayan.net.
 
-## Ids and structure
-- A verse is `<kāṇḍa>.<sarga>.<verse>` with the book's numbers (`bala.1.1`, `sundara.15.30`); a later addition's sarga is `p1`, `p2` (`aranya.p1.3`, `uttara.p2.10`). Parts are the kāṇḍas; a section (page) is a sarga (`bala.1`).
-- The verse number ends the verse's last line (॥१॥). Long-metre verses keep the book's line per pāda.
-- The English is Gita Press's, under the verse it translates; where the book translates several verses together (its mark `(19—22)`), the meaning sits under the last of them, with the mark as printed.
+## Structure
+- **Hierarchy:** seven kāṇḍas (parts) › sargas (sections; `bala.1`, labelled "Sarga 1" / "सर्ग 1" in `work.json` → `sections`) › verses. The three later additions (प्रक्षिप्त सर्ग) are sections of their own where the book prints them: `aranya.p1` after Araṇya 56, `uttara.p1` and `uttara.p2` after Uttara 59 ("Interpolated sarga 1").
+- **Numbering:** a verse is `<kāṇḍa>.<sarga>.<verse>` with the book's numbers (`bala.1.1`, `sundara.15.30`, `aranya.p1.3`) and is cited sarga.verse within its kāṇḍa ("Sarga 15 · Śloka 30"). The verse number ends the verse's last line (॥१॥); long-metre verses keep the book's line per pāda.
+- **Types:** `shloka`. **Topics:** the book's Hindi and English sarga titles. **Meanings:** Gita Press's English under the verse it translates; where the book translates several verses together (its mark `(19—22)`), the meaning sits under the last of them, with the mark as printed. **Loading:** by kāṇḍa (`"load": "parts"`). **Reading plans:** none yet.
 
 ## How it is made
 ```bash
