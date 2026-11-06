@@ -22,8 +22,6 @@ on:
         default: main
 permissions:
   contents: write
-concurrency:
-  group: transcribe-${{ inputs.source }}-${{ inputs.ids }}
 jobs:
   plan:
     runs-on: ubuntu-latest
