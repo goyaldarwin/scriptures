@@ -313,8 +313,8 @@
        "en": "Shri Ram"
       },
       "desc": {
-       "hi": "श्रीरामचन्द्र कृपालु · आरती कीजे श्रीरामलला की · आरती कीजै रामचन्द्र जी की",
-       "en": "Shri Ramchandra Kripalu · Aarti Kije Shri Ramlala Ki · Aarti Kijai Ramchandra Ji Ki"
+       "hi": "श्रीरामचन्द्र कृपालु · आरती कीजे श्री रामलला की",
+       "en": "Shri Ramchandra Kripalu · Aarti Kije Shri Ramlala Ki"
       },
       "children": [
        {
@@ -346,46 +346,22 @@
         "work": "ramlala-aarti",
         "path": "hinduism/aarti/rama/ramlala-aarti",
         "title": {
-         "hi": "आरती कीजे श्रीरामलला की",
+         "hi": "आरती कीजे श्री रामलला की",
          "en": "Aarti Kije Shri Ramlala Ki"
         },
         "desc": {
-         "hi": "पूरण निपुण धनुवेद कला की",
-         "en": "Puran nipun dhanuved kala ki"
+         "hi": "रघुनंदन सम्पूर्ण कला की",
+         "en": "Raghunandan sampurna kala ki"
         },
         "salute": "॥ जय श्रीराम ॥",
         "intro": {
          "hi": [
-          "'आरती कीजे श्रीरामलला की' श्रीरामकी अवधीमें आरती है, सत्रह चौपाइयोंमें। इसमें सिंहासनपर विराजमान श्रीराम हैं, उनके वाम भागमें सीताजी; भरत, लक्ष्मण, शत्रुघ्न और हनुमान उनकी सेवामें हैं, और शिव, ब्रह्मा तथा नारद उनका गुणगान करते हैं।",
-          "अधिकांश आरती उनकी करुणा गाती है: कैसे उन्होंने सुग्रीवको राजा बनाया और विभीषणको राज्य दिया, समुद्रपर सेतु बँधवाया, लंकापतिको मारा, और वानरों, केवट, जटायु और शरणमें आए राक्षसके दुःख हर लिए। अन्तमें यह कहती है कि जो इसे गाता है, वह श्रीरामकी कृपासे मनचाहा फल पाता है। इसमें रचयिताका नाम नहीं है।"
+          "'आरती कीजे श्री रामलला की' श्रीरामकी सात पदोंकी आरती है, जो अयोध्याके राम मन्दिरमें रामललाकी प्राण-प्रतिष्ठा (२०२४) के समय सोहिनी मिश्राके स्वरमें आयी; शब्द सुरेश यशके हैं।",
+          "पद श्रीरामकी कथा क्रमसे गाते हैं: नारायणका मनुष्य बनकर अवधमें जन्म, गुरु वसिष्ठसे विद्या, विश्वामित्रके यज्ञकी रक्षा, अहल्याका उद्धार और सीताजीसे विवाह, पिताके वचनके लिये वनवास, रावण-वध और रामराज्य। अन्तिम पद कहता है कि जो श्रीरामके चरणोंमें मन लगाकर यह आरती गाता है, वह अक्षय सुख पाता है और संसारसे तर जाता है।"
          ],
          "en": [
-          "\"Aarti Kije Shri Ramlala Ki\" is an aarti of Shri Ram in Awadhi, in seventeen chaupais. It pictures Ram enthroned with Sita at his side, Bharat, Lakshman, Shatrughna and Hanuman serving him, and Shiv, Brahma and Narad singing his praise.",
-          "Most of it recalls his compassion: how he made Sugriv king and gave Vibhishan a kingdom, bridged the ocean, overthrew the lord of Lanka, and took away the sorrows of the monkeys, the boatman, the vulture Jatayu and the demon who sought his refuge. It closes by saying that whoever sings it gains, by Ram's grace, what the heart longs for. Its author is not named."
-         ]
-        }
-       },
-       {
-        "id": "ramchandra-aarti",
-        "work": "ramchandra-aarti",
-        "path": "hinduism/aarti/rama/ramchandra-aarti",
-        "title": {
-         "hi": "आरती कीजै रामचन्द्र जी की",
-         "en": "Aarti Kijai Ramchandra Ji Ki"
-        },
-        "desc": {
-         "hi": "संत नामदेव",
-         "en": "Saint Namdev"
-        },
-        "salute": "॥ जय श्रीराम ॥",
-        "intro": {
-         "hi": [
-          "'आरती कीजै रामचन्द्र जी की' श्रीरामकी पाँच पदोंकी आरती है, दीपककी हर आवृत्तिके लिए एक पद। हर आवृत्ति एक ही भगवानके एक रूपको अर्पित है: पहली कालिय नागको नाथनेवाले गोपालको, दूसरी कंसको मारनेवाले देवकीनन्दनको, तीसरी रत्न-सिंहासनपर विराजमान सीता-रामको, और चौथी चारों युगोंके उस निरंजन भगवानको, जिसके सिवा कोई दूसरा नहीं।",
-          "पाँचवाँ पद कहता है कि यह आरती श्रीरामको प्रिय है, और गानेवालेका नाम नामदेव बताता है।"
-         ],
-         "en": [
-          "\"Aarti Kijai Ramchandra Ji Ki\" is an aarti of Shri Ram in five stanzas, one for each wave of the lamp. Each wave is offered to a form of the one Lord: the first to Gopal, who tamed the serpent Kaliya; the second to Devaki's son, the slayer of Kans; the third to Sita and Ram on their jewelled throne; the fourth to the stainless God of all four ages, beside whom there is no other.",
-          "The fifth stanza says that this wave is dear to Ram, and names its singer as Namdev."
+          "\"Aarti Kije Shri Ramlala Ki\" is an aarti of Shri Ram in seven stanzas, sung by Sohini Mishra for the consecration of Ram Lalla at the Ram Mandir in Ayodhya (2024); its words are by Suresh Yash.",
+          "Its stanzas tell Ram's story in order: Narayan born as a man in Avadh, his learning from Guru Vasishtha, the guarding of Vishvamitra's sacrifice, Ahalya set free and the marriage to Sita, exile to keep his father's word, the slaying of Ravan and Ram Rajya. The last stanza says that whoever sings it with the heart on Ram's feet gains undying joy and crosses beyond worldly life."
          ]
         }
        }
