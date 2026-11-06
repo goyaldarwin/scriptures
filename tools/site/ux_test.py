@@ -1160,10 +1160,11 @@ async def main():
         cn = await ev("""(async () => { const find = async (w, q) => { await openWork(w, true); setScope('text'); $('#q').value = q; runSearch(); await new Promise(r => setTimeout(r, 50)); return $$('#sRes .res').map(b => IT[+b.dataset.i].id); };
             const k = await find('katha-upanishad', '2.1.1'), kl = playLabel(ID['2.1.1']), kv = IT[ID['2.1.1']].v.slice(-1)[0].includes('॥१॥');
             const k2 = await find('katha-upanishad', '1.2'), r = await find('shri-rudram', '11.17'), rl = playLabel(ID['chamakam.a11.m17']);
+            const s = await find('sukhmani-sahib', '3.5'), sl = playLabel(ID['a03.p5']);
             const c = await find('manas', 'chhand 10.1'), cl = playLabel(ID['bal.10.cha1']), ul = playLabel(ID['bal.10.cau1']), d = await find('manas', '3'), b = await find('bhaja-govindam', '13a');
-            return [k, kl, kv, k2, r, rl, c, cl, ul, d.includes('bal.3.do3क') && d.includes('bal.3.do3ख'), b]; })()""")
-        check('one number per verse: Katha 2.1.1 and Rudram 11.17 in the player and search; a Manas chhand is not the chaupai of its number; 3 finds 3क, 3ख',
-              cn == [['2.1.1'], 'Mantra 2.1.1', True, ['1.2.1'], ['chamakam.a11.m17'], 'Mantra 11.17', ['bal.10.cha1', 'kishkindha.10.cha1'], 'Chhand 10.1', 'Verse 10.1', True, ['sh13a']], cn)
+            return [k, kl, kv, k2, r, rl, s, sl, c, cl, ul, d.includes('bal.3.do3क') && d.includes('bal.3.do3ख'), b]; })()""")
+        check('one number per verse: Katha 2.1.1, Rudram 11.17 and Sukhmani 3.5 in the player and search; a Manas chhand is not the chaupai of its number; 3 finds 3क, 3ख',
+              cn == [['2.1.1'], 'Mantra 2.1.1', True, ['1.2.1'], ['chamakam.a11.m17'], 'Mantra 11.17', ['a03.p5'], 'Pauri 3.5', ['bal.10.cha1', 'kishkindha.10.cha1'], 'Chhand 10.1', 'Verse 10.1', True, ['sh13a']], cn)
         # at the end of a part, the button to the next part shows how long it plays, as the button to the next day of a plan does
         nd = await ev("""(async () => { const out = []; for (const w of ['katha-upanishad', 'manas']){ await openWork(w, true); await loadSources(); show('home');
               openReader('k', PARTS[0].b); await new Promise(r => setTimeout(r, 300)); const e = document.querySelector('#reader .endb');

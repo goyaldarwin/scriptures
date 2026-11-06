@@ -105,6 +105,7 @@ CASES = [
     (_MANAS, {'p': 0, 's': 'end', 'y': 'shloka', 'n': '2'}, '2'),
     (_KATHA, {'p': 1, 's': 'v2.1', 'y': 'mantra', 'n': '1'}, '2.1.1'),   # adhyāya.vallī.mantra, from the part key and the section
     (_KATHA, {'p': 0, 's': 'shanti', 'y': 'shanti', 'n': ''}, ''),       # no number: no citation
+    ({'cite': {'by': ['part', 'n']}, 'parts': {'list': [{'key': '1'}, {'key': '2'}]}}, {'p': 1, 's': 'a02.p8', 'y': 'pauri', 'n': '8'}, '2.8'),   # the Sukhmani: ashtapadi.pauri
     ({'parts': {'list': [{}]}}, {'p': 0, 's': 'sh13a', 'y': 'shloka', 'n': '13अ'}, '13अ'),   # the default: the verse's own number
 ]
 
