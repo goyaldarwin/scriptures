@@ -73,7 +73,6 @@ library/ ─ tools/site/build.py (checks everything first) ─► index.html, ap
 - Nothing open. A new work's or kāṇḍa's doubts go to `docs/reviews/` and are settled before its pull request is merged.
 
 ## Open with the owner
-- Recordings for आरती कीजे श्रीरामलला की and आरती कीजै रामचन्द्र जी की (the owner will share them).
+- Recordings for आरती कीजे श्रीरामलला की and आरती कीजै रामचन्द्र जी की: candidates found (Ramlala: Pamela Jain `aRnqPupR7OI`, Chetna Shukla `JC5I59S4nl0`; Ramchandra: `QPghQyOWQbo`); the owner listens, picks one whose words are this text's and adds its audio to `scriptures-data`.
 - The Mānas timings: the owner is setting by ear the 136 starts MMS doubts (`tools/works/manas/audio/kamlesh-upadhyay/check.json`). Then compare his times with MMS's and the library's to decide whether MMS retimes, or lists for checking, the 1,108 verses where the two differ by more than 2 s (the experiment and its figures: `experiments/align/README.md` in `scriptures-data`).
-- The Sundarakāṇḍa recording also sings, around the Chālīsā and the āratī, prayers the text does not show (`tools/works/sundarkand/reconciliation.md`, "The recording"); they are shown only if the owner asks.
-- Private copies that would complete `scriptures-data` (nothing depends on them): the Gaṅgā āratī screenshot, the jansatta.com printout of the Rāma āratīs, the Māṇḍūkya's sanskritdocuments.org and freepressjournal.in printouts and its recording.
+- Private copies that would complete `scriptures-data` (nothing depends on them; only the owner has them, from earlier chats): the Gaṅgā āratī screenshot, the jansatta.com printout of the Rāma āratīs, the Māṇḍūkya's sanskritdocuments.org and freepressjournal.in printouts and its recording.
