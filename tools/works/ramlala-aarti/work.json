@@ -1,9 +1,9 @@
 {
  "id": "ramlala-aarti",
  "path": "hinduism/aarti/rama/ramlala-aarti",
- "lang": "awa",
+ "lang": "hi",
  "title": {
-  "hi": "आरती कीजे श्रीरामलला की",
+  "hi": "आरती कीजे श्री रामलला की",
   "en": "Aarti Kije Shri Ramlala Ki"
  },
  "by": {
@@ -18,7 +18,7 @@
   "list": [
    {
     "key": "aarti",
-    "hi": "आरती कीजे श्रीरामलला की",
+    "hi": "आरती कीजे श्री रामलला की",
     "en": "Aarti Kije Shri Ramlala Ki"
    }
   ]
@@ -33,6 +33,36 @@
     "hi": "टेक",
     "en": "Ref."
    }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
   }
- }
+ },
+ "removed": [
+  "ramlala.tek",
+  "ramlala.cau1",
+  "ramlala.cau2",
+  "ramlala.cau3",
+  "ramlala.cau4",
+  "ramlala.cau5",
+  "ramlala.cau6",
+  "ramlala.cau7",
+  "ramlala.cau8",
+  "ramlala.cau9",
+  "ramlala.cau10",
+  "ramlala.cau11",
+  "ramlala.cau12",
+  "ramlala.cau13",
+  "ramlala.cau14",
+  "ramlala.cau15",
+  "ramlala.cau16",
+  "ramlala.cau17"
+ ]
 }

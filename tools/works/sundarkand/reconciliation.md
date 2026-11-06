@@ -65,7 +65,7 @@ The two sources share the popular modern text, and differ from each other in pla
 
 ## The recording
 
-Pt. Ashwin Kumar Pathak's recording (`audio/ashwin-pathak/transcripts/QjSpUgnEPLU.jsonl`) sings the Chālīsā and the āratī in this text's words and order. It sings no śloka before the āratī (C's and D's मनोजवं मारुततुल्यवेगं … is not sung), and not C's closing line of the āratī. Where the sources differ only in spelling that is sung alike (Chālīsā 5 औ / अरु, 28 कोइ / कोई, 37 गुरु देव / गुरुदेव), the metre and the Mānas spelling decide, as above. Around them it also sings, unshown: the jaikārās before the Chālīsā (बोलो सियावर रामचन्द्र भगवान की जय …), the Mānas's मंगल भवन अमंगल हारी … before the āratī, and after it कर्पूरगौरं करुणावतारं …, मङ्गलं भगवान् विष्णुः …, सर्वमङ्गलमाङ्गल्ये …, सर्वे भवन्तु सुखिनः … and ॐ शान्तिः.
+Pt. Ashwin Kumar Pathak's recording (`audio/ashwin-pathak/transcripts/QjSpUgnEPLU.jsonl`) sings the Chālīsā and the āratī in this text's words and order. It sings no śloka before the āratī (C's and D's मनोजवं मारुततुल्यवेगं … is not sung), and not C's closing line of the āratī. Where the sources differ only in spelling that is sung alike (Chālīsā 5 औ / अरु, 28 कोइ / कोई, 37 गुरु देव / गुरुदेव), the metre and the Mānas spelling decide, as above. Around them it also sings, and the text does not show (the owner's choice): the jaikārās before the Chālīsā (बोलो सियावर रामचन्द्र भगवान की जय …), the Mānas's मंगल भवन अमंगल हारी … before the āratī, and after it कर्पूरगौरं करुणावतारं …, मङ्गलं भगवान् विष्णुः …, सर्वमङ्गलमाङ्गल्ये …, सर्वे भवन्तु सुखिनः … and ॐ शान्तिः.
 
 ## Opening prayers (part 0, "प्रारम्भिक वन्दना")
 
