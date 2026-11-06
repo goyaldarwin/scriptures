@@ -8,5 +8,6 @@
   "en": "Sanatana Dharma Parayana"
  },
  "draft": "not yet transcribed and checked: starts spread by verse length",
- "estimate": true
+ "estimate": true,
+ "window": 6
 }
