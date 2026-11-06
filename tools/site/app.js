@@ -260,16 +260,24 @@ function wordList(lines){ const seen = new Set(), out = []; lines.forEach(l => l
 function wbHTML(lines, lang){
   return '<div class="wb">' + wordList(lines).map(w => { const g = lookup(w, lang); if (!g || g.none) return ''; const m = (g.pa && layerOn('pa') ? '<span class="gur">' + esc(g.pa) + '</span> · ' : '') + esc(g.hi || '') + (g.en ? ' <span class="en">· ' + esc(g.en) + '</span>' : '') + (g.possible ? ' <span class="q">(' + esc(g.possible) + ')</span>' : ''); return '<span class="ww w" data-w="' + esc(w) + '">' + esc(w) + '</span><span class="wm">' + m + '</span>'; }).join('') + '</div>';
 }
+// Editing a meaning (glossEdit, editSheet) stays in the code, but no button offers it (the owner: no one edits, and taking
+// readers' edits into the library is cumbersome); a reader's earlier edits still show and can still be removed
+const EDITS = false;
+// The word's sheet: the word with its language beside it, then what a reader looks for first (its parts, then its meaning in
+// Punjabi, Hindi, English), and last, for the advanced reader, its root and grammar
 function wordSheet(raw, alt, lang){
   const w = cleanWord(raw); if (!w) return; const g = (alt && alt[w]) || lookup(raw, lang);
-  let h = '<h2>' + esc(w) + '</h2>';
-  if (g && !g.none && g.lang && LANGS[g.lang]) h += '<p class="small muted">' + esc(TT(LANGS[g.lang].name)) + '</p>';
+  const ln = g && !g.none && g.lang && LANGS[g.lang] ? ' <span class="wlang">(' + esc(TT(LANGS[g.lang].name)) + ')</span>' : '';
+  let h = '<h2>' + esc(w) + ln + '</h2>';
   if (g && !g.none){
     if (g.possible) h += '<p class="small muted">' + T('मूल शब्द: ', 'Root: ') + '<b>' + esc(g.possible) + '</b></p>';
-    h += '<dl class="kv">' + (g.r && g.r !== w ? '<dt>' + T('मूल', 'Root') + '</dt><dd>' + esc(g.r) + '</dd>' : '') + (g.pa ? '<dt>' + T('पंजाबी', 'Punjabi') + '</dt><dd class="gur">' + esc(g.pa) + '</dd>' : '') + '<dt>' + T('हिंदी', 'Hindi') + '</dt><dd>' + esc(g.hi || '—') + '</dd><dt>English</dt><dd class="lat">' + esc(g.en || '—') + '</dd>' + (g.g ? '<dt>' + T('व्याकरण', 'Grammar') + '</dt><dd>' + esc(g.g) + '</dd>' : '') + (g.p && g.p.length ? '<dt>' + T('शब्द-खण्ड', 'Parts') + '</dt><dd>' + g.p.map(x => '<b>' + esc(x[0]) + '</b> (' + esc(x[1]) + ')').join(' + ') + '</dd>' : '') + '</dl>';
+    const row = (k, v, c) => '<dt>' + k + '</dt><dd' + (c ? ' class="' + c + '"' : '') + '>' + v + '</dd>';
+    h += '<dl class="kv">' + (g.p && g.p.length ? row(T('शब्द-खण्ड', 'Parts'), g.p.map(x => '<b>' + esc(x[0]) + '</b> (' + esc(x[1]) + ')').join(' + ')) : '')
+      + (g.pa ? row(T('पंजाबी', 'Punjabi'), esc(g.pa), 'gur') : '') + row(T('हिंदी', 'Hindi'), esc(g.hi || '—')) + row('English', esc(g.en || '—'), 'lat')
+      + (g.r && g.r !== w ? row(T('मूल', 'Root'), esc(g.r)) : '') + (g.g ? row(T('व्याकरण', 'Grammar'), esc(g.g)) : '') + '</dl>';
   }
-  h += '<div class="acts"><button class="btn small ghost" id="gEdit">' + (g && !g.none ? T('अर्थ बदलें / जोड़ें', 'Edit meaning') : T('अर्थ जोड़ें', 'Add meaning')) + '</button></div>';
-  openSheet(h); $('#gEdit').onclick = () => glossEdit(w, lang || W.lang);
+  if (EDITS) h += '<div class="acts"><button class="btn small ghost" id="gEdit">' + (g && !g.none ? T('अर्थ बदलें / जोड़ें', 'Edit meaning') : T('अर्थ जोड़ें', 'Add meaning')) + '</button></div>';
+  openSheet(h); if ($('#gEdit')) $('#gEdit').onclick = () => glossEdit(w, lang || W.lang);
 }
 function glossEdit(w, lang){
   const me = ME(), key = lang + ':' + w, cur = me.gloss[key] || {}, base = dictEntry(lang, w) || {};
@@ -789,7 +797,7 @@ function noteSheet(i, k){
 }
 function itemMenu(i){
   const id = IT[i].id, edited = verseOf(i).edited || MK().some(k => { const m = mean(k, i); return m && m.edited; });
-  openSheet('<p class="small muted">' + esc(itemLabel(i)) + '</p><div class="menu">' + (hasAu(i) ? '<button data-x="play"><svg><use href="#i-play"/></svg>' + T('यहाँसे सुनें', 'Play from here') + '</button>' : '') + '<button data-x="note"><svg><use href="#i-note"/></svg>' + T('टिप्पणी लिखें', 'Write a note') + '</button>' + (hasAu(i) ? '<button data-x="flag"' + (SRC.au && flagsNow()[id] ? ' class="on"' : '') + '><svg><use href="#i-clock"/></svg>' + T('ऑडियोका समय जाँचें', 'Review audio timing') + (SRC.au && flagsNow()[id] ? REVB : '') + '</button>' : '') + '<button data-x="copy"><svg><use href="#i-copy"/></svg>' + T('पद और अर्थ कॉपी करें', 'Copy verse and meaning') + '</button><button data-x="edit"><svg><use href="#i-edit"/></svg>' + T('पद या अर्थ सुधारें', 'Improve verse or meaning') + '</button>' + (edited ? '<button data-x="revert"><svg><use href="#i-edit"/></svg>' + T('मेरा सुधार हटाएँ (पद लौटाएँ)', 'Remove my correction (restore the verse)') + '</button>' : '') + '</div>');
+  openSheet('<p class="small muted">' + esc(itemLabel(i)) + '</p><div class="menu">' + (hasAu(i) ? '<button data-x="play"><svg><use href="#i-play"/></svg>' + T('यहाँसे सुनें', 'Play from here') + '</button>' : '') + '<button data-x="note"><svg><use href="#i-note"/></svg>' + T('टिप्पणी लिखें', 'Write a note') + '</button>' + (hasAu(i) ? '<button data-x="flag"' + (SRC.au && flagsNow()[id] ? ' class="on"' : '') + '><svg><use href="#i-clock"/></svg>' + T('ऑडियोका समय जाँचें', 'Review audio timing') + (SRC.au && flagsNow()[id] ? REVB : '') + '</button>' : '') + '<button data-x="copy"><svg><use href="#i-copy"/></svg>' + T('पद और अर्थ कॉपी करें', 'Copy verse and meaning') + '</button>' + (EDITS ? '<button data-x="edit"><svg><use href="#i-edit"/></svg>' + T('पद या अर्थ सुधारें', 'Improve verse or meaning') + '</button>' : '') + (edited ? '<button data-x="revert"><svg><use href="#i-edit"/></svg>' + T('मेरा सुधार हटाएँ (पद लौटाएँ)', 'Remove my correction (restore the verse)') + '</button>' : '') + '</div>');
   $$('#sheetBody [data-x]').forEach(b => b.onclick = () => {
     const x = b.dataset.x; closeSheet();
     if (x === 'play'){ playFrom(i, R.b); PL.whole = false; PL.endMsg = (R.org === 'k' ? KNAME(R.n) : VN(R.n)) + T(' पूर्ण', ' finished'); }   // to the end of what is open: the kāṇḍa, or the vishram

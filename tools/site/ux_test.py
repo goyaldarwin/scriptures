@@ -18,8 +18,16 @@ SHOTS = sys.argv[sys.argv.index('--shots') + 1] if '--shots' in sys.argv else No
 # processes run side by side: shard 0 runs every other check and none of them, shards 1 … N-1 a share of the works each
 SHARD, NSHARD = (map(int, sys.argv[sys.argv.index('--shard') + 1].split('/')) if '--shard' in sys.argv else (0, 1))
 def mine(works):
+    """This shard's share of the works, balanced by size: the biggest first, each to the shard with the least so far (a
+    work's checks take longer the more parts and verses it has: the Valmiki's alone are a shard's worth)."""
     if NSHARD == 1: return works
-    return [w for k, w in enumerate(works) if SHARD and k % (NSHARD - 1) == SHARD - 1]
+    if not SHARD: return []
+    size = lambda w: 1 + os.path.getsize(os.path.join(ROOT, 'library', w[0]['path'], 'work.json')) / 2e6   # a work's checks: ~15 s, and more with its size (the Valmiki's 11 MB: as 6 small works)
+    load, out = [0.0] * (NSHARD - 1), []
+    for k in sorted(range(len(works)), key=lambda k: -size(works[k])):
+        s = min(range(NSHARD - 1), key=lambda j: load[j]); load[s] += size(works[k])
+        if s == SHARD - 1: out.append(k)
+    return [works[k] for k in sorted(out)]
 results = []
 
 def YT_ERR(e):
@@ -932,7 +940,13 @@ async def main():
         check('labels: the template uses the app\'s vocabulary', not bad, bad)
         # ⋮ order: Play from here · Write a note · Copy verse and meaning · Correct …
         order = await ev("(async () => { await openWork('manas', true); show('home'); openReader('k', 0); await new Promise(r => setTimeout(r, 300)); itemMenu(0); await new Promise(r => setTimeout(r, 200)); const r = [...document.querySelectorAll('#sheetBody [data-x]')].map(b => b.dataset.x); closeSheet(); return r; })()")
-        check('⋮: Play from here · Write a note · Review audio timing · Copy verse and meaning · Improve', order[:5] == ['play', 'note', 'flag', 'copy', 'edit'], order)
+        check('⋮: Play from here · Write a note · Review audio timing · Copy verse and meaning, and no Improve (no editing in the app)', order[:4] == ['play', 'note', 'flag', 'copy'] and 'edit' not in order, order)
+        # a tapped word's sheet: its language in brackets beside it; parts, Hindi, English, then root and grammar; no Edit or Add meaning
+        ws = await ev("""(async () => { await openWork('valmiki-ramayana', true); await loadSources(); show('home'); openReader('k', ID['bala.1.1']); await new Promise(r => setTimeout(r, 1200));
+            wordSheet('वाग्विदां', null, 'sa'); await new Promise(r => setTimeout(r, 300)); const b = $('#sheetBody');
+            const r = [b.querySelector('h2 .wlang') && b.querySelector('h2 .wlang').textContent, $$('#sheetBody .kv dt').map(d => d.textContent), !b.querySelector('#gEdit'), !b.querySelector('p.small.muted:not(:has(b))')];
+            closeSheet(); return r; })()""")
+        check("a word's sheet: (Sanskrit) beside the word; Parts, Hindi, English, Root, Grammar; no Edit meaning", ws[0] in ('(Sanskrit)', '(संस्कृत)') and ws[1] in (['Parts', 'Hindi', 'English', 'Root', 'Grammar'], ['शब्द-खण्ड', 'हिंदी', 'English', 'मूल', 'व्याकरण']) and ws[2] and ws[3], ws)
         # line by line: a source with a piece per verse line shows each piece under its line; a source
         # without pieces, and a verse with no pieces at all, show the meaning whole after the verse
         lbl = await ev("""(async () => { await openWork('sukhmani-sahib', true); S.settings.layers = {h: true, e: true, w: false}; S.settings.pair = 'hi,en'; S.settings.recite = false; S.settings.lines = true; await loadSources();
@@ -1017,7 +1031,7 @@ async def main():
             itemMenu(i); await new Promise(r => setTimeout(r, 150)); const off = !!document.querySelector('#sheetBody [data-x=flag] .revd') && !!document.querySelector('#v' + i + ' .vplay .revd'); closeSheet();
             flagDone(IT[i].id); S.timing.on = true; const gone = !toCheckIds().includes(i) || before.has(i); S.timing.on = false;
             S.timing.flags = JSON.parse(k0); syncFlags(); save();
-            return [menu.slice(0, 5).join() === 'play,note,flag,copy,edit', added.length === 1 && added[0] === i, off, gone]; })()""")
+            return [menu.slice(0, 4).join() === 'play,note,flag,copy' && !menu.includes('edit'), added.length === 1 && added[0] === i, off, gone]; })()""")
         check('timing flag in ⋮: “Review audio timing” (third in ⋮) puts only that verse on the check list; one blue dot on ▶ and in ⋮ shows it; it leaves once set', all(fg), fg)
         # "Review timing" (Audio timing settings): off, no flag; on, while playing, a blue ⚑ bottom left of the verse recited and
         # its neighbours, outside timing mode; a tap fills it, marks the verse (on the settings' to-check list too, and ▶ needs no dot); timing mode hides it

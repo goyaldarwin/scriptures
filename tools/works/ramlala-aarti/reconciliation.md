@@ -17,7 +17,7 @@ The page prints 18 lines, each a caupāī (two half-lines of 16 mātrās). The f
 | टेक | पूण निपुण | पूरण निपुण | Broken word; पूरण makes the half-line 16 mātrās. |
 | 1 | धनुष वान | धनुष बान | Typing slip: बान (arrow); वान is not a word here. |
 | 5 | बखानैं (no end mark) | बखानैं ॥ | The line's closing dandas are missing. |
-| 16 | कवनव भेदा | कवनउ भेदा | कवनव is not a word; कवनउ ("any at all") gives the sense "keeping no distinction" and the same 16 mātrās. **Open.** |
+| 16 | कवनव भेदा | कवनउ भेदा | कवनव is not a word; कवनउ ("any at all") gives the sense "keeping no distinction" and the same 16 mātrās. Settled: the printed form is not a word, and the correction keeps the metre. |
 
 Kept as the page has them: कीजे, धनुवेद, शोभा, वाम, शिव, शेष, यश (the page mixes श and स, व and ब; we did not regularise them), महु, बधाये, नैवेदा, नहि, तिहुपुर, विभीषन, दुःख.
 

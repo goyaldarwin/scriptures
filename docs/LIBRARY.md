@@ -170,7 +170,7 @@ A dictionary (`<lang>.json`): `{"राम": {"hi": "भगवान श्र�
    - the work's own sense, from `<work>/glossary.json` if it has one;
    - the shared dictionary for that language.
 3. If nothing matches exactly, it tries the suffix rules of each language in the chain.
-The word sheet shows which language's meaning it is showing.
+The word sheet shows which language's meaning it is showing, in brackets beside the word.
 
 **A work's own senses** (optional), `library/<path>/glossary.json`: `{"sa": {"word": {…}}, "awa": {…}}`, made from the work's `tools/works/<work>/glossary/<lang>.json`. Use it when a word means something particular in one work. Never use it for a general correction; that belongs in the shared dictionary. A work loaded by part has `glossary/<part index>.json` instead, one per part, in the same form: each holds the senses of the words of that part's verses and the hard words of that part's meanings (a word in two parts is in both), so the app has a verse's senses once its part is in, and `library.py` checks each verse's words against its own part's file (`tools/jsonio.py` → `read_work_glossary` reads them whole).
 

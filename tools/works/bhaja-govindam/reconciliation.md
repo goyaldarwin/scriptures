@@ -31,7 +31,7 @@ Where the printout gives a variant and the recording sings it, the text follows 
 | 26 | त्यक्त्वाऽऽत्मानं भावय कोऽहम् | पश्यति सोऽहम् | "परश्वेटि सोबं" | त्यक्त्वाऽऽत्मानं पश्यति सोऽहम् |
 
 Corrected: नास्तिततः (29) is two words in the printout's own word list and in sense, नास्ति ततः ("there is not… in it"):
-a missing space. **Open** (one witness for the spelling; the recording cannot show a space).
+a missing space. Settled: the printout's own word list and the sense both make it two words.
 
 Kept as printed: the line ends where two pādas are printed on one line by sandhi (5, 8, 12, 16, 24, 26: e.g.
 यावद्वित्तोपार्जनसक्तस्तावन्निजपरिवारो रक्तः), so those verses have three lines; नित्यानित्य विवेकविचारम् (30) with its

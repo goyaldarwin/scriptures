@@ -69,13 +69,13 @@ library/ ─ tools/site/build.py (checks everything first) ─► index.html, ap
 | Sukhmani Sahib (`gurbani/guru-arjan-dev/sukhmani-sahib`) | the owner's PDF (Gurmukhi) | ours (Hindi, English, Punjabi) | Parminder Singh, live; 207 starts not yet set by ear are listed for the owner to check (`review`) |
 | Śrīmad Vālmīki Rāmāyaṇa (`granth/valmiki/ramayana`) | Gita Press (codes 452–453), read from the Chanakya font without OCR, checked against IIT Kanpur and valmikiramayan.net; 23,701 verses; `source/make_text.py` writes `text.txt` from the PDF | Gita Press Hindi (code 77) and English with its 240 footnotes, copied; every word's meaning (the English IIT Kanpur's or valmikiramayan.net's gloss as given, else ours: `source/words/src.json`); loaded by kāṇḍa. To do: a check of the meanings written by us (16,526, Uttara's all) | none yet (the owner's list covers five kāṇḍas) |
 
+## For a session to settle (PLAYBOOK §2: decide, never leave doubts for the owner)
+- The readings still listed in `docs/reviews/` (the Mānas's that no reviewer has passed, the Rāma Rakṣā's, the Bilvāṣṭakam's, the Sukhmani Sahib's): settle each with the dictionaries and the grammar, apply it, and take it off its list.
+- The Vālmīki Rāmāyaṇa's word meanings written by us (16,526 whole, about 8,600 in part; `tools/works/valmiki-ramayana/source/words/src.json`): a second check, Uttara first.
+
 ## Open with the owner
-- The questions in `docs/reviews/` (word senses; readings in the Rāma Rakṣā and the Sukhmani Sahib).
 - The āratīs: recordings for आरती कीजे श्रीरामलला की and आरती कीजै रामचन्द्र जी की (the owner will share them); the "open" corrections in each āratī's `reconciliation.md`.
-- The Sundarakāṇḍa's Hanumān Chālīsā and āratī: the sung words are still to be compared with the text (`tools/works/sundarkand/reconciliation.md`, "Open points for the owner").
-- The Kathā-visarjana: three typesetting slips corrected, for the owner to confirm (`tools/works/manas/source/visarjan.md`).
-- Bhaja Govindam verse 29: नास्ति ततः written as two words, on one witness (`tools/works/bhaja-govindam/reconciliation.md`).
-- Māṇḍūkya m06: the visarga in एष सर्वेश्वरः एष kept as printed (`tools/works/mandukya-upanishad/reconciliation.md`).
+- The Sundarakāṇḍa's Hanumān Chālīsā and āratī: the sung words are still to be compared with the text (`tools/works/sundarkand/reconciliation.md`, "Still to do").
 - Private copies not yet in `scriptures-data`: the Gaṅgā āratī screenshot, the jansatta.com printout of the Rāma āratīs, the Māṇḍūkya's sanskritdocuments.org and freepressjournal.in printouts and its recording.
 - The Mānas timings: the owner is setting by ear the 136 starts MMS doubts (`tools/works/manas/audio/kamlesh-upadhyay/check.json`). Then compare his times with MMS's and the library's to decide whether MMS retimes, or lists for checking, the 1,108 verses where the two differ by more than 2 s (the experiment and its figures: `experiments/align/README.md` in `scriptures-data`).
 - Names to confirm: the Dhūpa Āratī's section names (Aarti, Shirdi Majhe, Naman, Namasmaran, Namaskarashtak, Aisa Yei Ba, Mahimna, Dashak, Pushpanjali, Prarthana; `tools/works/shirdi-sai-dhoop-aarti/work.json` → `sections`), its padas called Stanza like every other āratī's, and the Mānas's closing ślokas as "Closing".
