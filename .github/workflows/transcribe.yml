@@ -1,0 +1,92 @@
+# Transcribe recordings on GitHub's machines, one job per recording, in parallel; free here, because this repository is public.
+# Started by hand only (Actions tab, or: gh api repos/goyaldarwin/scriptures/actions/workflows/transcribe.yml/dispatches
+#   -X POST -f ref=main -f inputs[source]=tools/works/<work>/audio/<source id> -f inputs[ids]=<id,id,…> -f inputs[ref]=<branch>).
+# The recordings stay private: each job fetches only its own speech-quality copy from goyaldarwin/scriptures-data
+# (recordings.json → "data") with the read-only token in the secret DATA_TOKEN, onto the job's own throwaway machine; the
+# audio is never committed, uploaded or printed here. Only the transcript is kept: it is committed to the branch `ref` at
+# <source>/transcripts/<video id>.jsonl (+ .done), where tools/audio/make_timings.py reads it.
+# The scripts (tools/audio) always come from main; the audio source folder (recordings.json, source.json, any partial
+# transcripts) from the branch `ref`. At most 256 ids per run (GitHub's matrix limit).
+name: transcribe
+on:
+  workflow_dispatch:
+    inputs:
+      source:
+        description: "audio source folder, e.g. tools/works/valmiki-ramayana/audio/sanatana-dharma-parayana"
+        required: true
+      ids:
+        description: "comma-separated YouTube video ids to transcribe (at most 256)"
+        required: true
+      ref:
+        description: "branch that holds the audio source folder; the transcripts are committed to it"
+        default: main
+permissions:
+  contents: write
+concurrency:
+  group: transcribe-${{ inputs.source }}-${{ inputs.ids }}
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      ids: ${{ steps.m.outputs.ids }}
+    steps:
+      - id: m
+        run: python3 -c "import json,os; ids=[x.strip() for x in os.environ['IDS'].split(',') if x.strip()]; assert 0 < len(ids) <= 256, len(ids); print('ids='+json.dumps(ids))" >> "$GITHUB_OUTPUT"
+        env:
+          IDS: ${{ inputs.ids }}
+  transcribe:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      matrix:
+        id: ${{ fromJSON(needs.plan.outputs.ids) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          path: pub
+          sparse-checkout: tools/audio
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+          path: src
+          sparse-checkout: ${{ inputs.source }}
+      - name: the recording's path in scriptures-data
+        id: rec
+        env:
+          SRC: src/${{ inputs.source }}
+          VID: ${{ matrix.id }}
+        run: python3 -c "import json,os; r=[x for x in json.load(open(os.environ['SRC']+'/recordings.json')) if x['yt']==os.environ['VID']]; assert len(r)==1 and r[0].get('data'), 'no data path for this id'; print('data='+r[0]['data'])" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@v4
+        with:
+          repository: goyaldarwin/scriptures-data
+          token: ${{ secrets.DATA_TOKEN }}
+          path: data
+          filter: blob:none
+          sparse-checkout: ${{ steps.rec.outputs.data }}
+          sparse-checkout-cone-mode: false
+          persist-credentials: false
+      - run: mkdir -p "pub/$(dirname '${{ inputs.source }}')" && cp -r "src/${{ inputs.source }}" "pub/${{ inputs.source }}"
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+        timeout-minutes: 15
+      - run: pip install -q faster-whisper numpy
+      - name: transcribe ${{ matrix.id }}
+        working-directory: pub
+        env:
+          DATA_DIR: ${{ github.workspace }}/data
+          WHISPER_MODEL: small
+          THREADS: "4"
+          ONLY: ${{ matrix.id }}
+        run: python3 tools/audio/transcribe.py "${{ inputs.source }}"
+      - name: commit the transcript to ${{ inputs.ref }}
+        if: always()
+        run: |
+          rm -rf data
+          ls pub/${{ inputs.source }}/transcripts/${{ matrix.id }}.jsonl* || exit 0
+          mkdir -p "src/${{ inputs.source }}/transcripts" && cp pub/${{ inputs.source }}/transcripts/${{ matrix.id }}.jsonl* "src/${{ inputs.source }}/transcripts/"
+          cd src && git config user.name "transcribe workflow" && git config user.email "actions@users.noreply.github.com"
+          git add -A "${{ inputs.source }}/transcripts" && git commit -q -m "Transcript ${{ matrix.id }} (${{ inputs.source }})" || exit 0
+          for i in $(seq 1 15); do git pull -q --rebase origin "${{ inputs.ref }}" && git push -q origin "HEAD:${{ inputs.ref }}" && exit 0; sleep $((RANDOM % 40 + 5)); done; exit 1

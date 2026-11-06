@@ -8,6 +8,7 @@ The website plays recordings from YouTube and highlights each verse as it is rec
    - Settings: Hindi mode for Hindi, Awadhi, Sanskrit and Punjabi (it writes Devanagari, which `align.py` needs), beam 1, no carry-over of earlier text (stops runaway repetition).
    - For chant and singing, `source.json` → `"window": 6` transcribes each 6-second stretch on its own, so the recogniser cannot skip long passages it takes for music.
    - Speed is about 1× real time per worker on 2 CPU cores. Run as many workers as you have cores.
+   - In the cloud it runs in this repository's `transcribe` workflow (`.github/workflows/transcribe.yml`), one free machine per recording; the recording comes from `scriptures-data` and stays on that machine.
    - Output is `transcripts/<video id>.jsonl`, plus `.done` when finished. A stopped run resumes from its last chunk.
    - `transcribe_onnx.py` does the same with Whisper's ONNX export from GitHub, for when the faster-whisper model can't be downloaded.
 2. **`align.py`**: the verses are split into half-lines. Both sides are reduced to a key that ignores the spelling slips speech recognition makes (vowel length, nasal marks, ब/व, श/ष/स, ण/न …). Gurmukhi is read by mapping it onto Devanagari (`gur2dev`), and Vedic svara marks are ignored.
