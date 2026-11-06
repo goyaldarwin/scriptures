@@ -63,7 +63,7 @@ The two sources share the popular modern text, and differ from each other in pla
 | 5 | सुर नर मुनि **जन** आरती उतारें । जय जय जय हनुमान उचारें … **आरती** करत अंजना माई | सुर-नर-मुनि जन, उचारें, आरती | मुनि जन, उतारे, उचारे | जन: both sources. उतारें / उचारें (plural): C. |
 | 6 | जो हनुमानजी की **आरती गावे** । बसि बैकुंठ परम पद **पावे** । लंक विध्वंस किए रघुराई । तुलसीदास स्वामी कीर्ति गाई | हनुमानजी, गावे, पावे, बैकुंठ, परम पद; has the last line (लंक विध्वंस किये … कीर्ति गाई) | हनुमान जी, गावे, पावे, बैकुण्ठ; no last line | गावे/पावे, आरती: both sources. The closing line is only in C; it is kept, with किए for किये (house style), so that the āratī ends in six full stanzas as C prints it. **Open** (below). |
 
-## Open points for the owner
+## Still to do
 
 1. **The audio decides.** The owner wants the Chālīsā and āratī "as they appear in the audio" (Pt. Ashwin Kumar Pathak). The recording is transcribed (`audio/ashwin-pathak/transcripts/QjSpUgnEPLU.jsonl`) and timed; the sung words are still to be compared with `text.txt`, especially: the āratī's last line (in C, not in D); whether a śloka (C and D both print "मनोजवं मारुततुल्यवेगं …" before the āratī) or other prayers are sung around the Chālīsā and āratī; Chālīsā 5 (औ / अरु / और), 28 (कोइ … सोइ / कोई … सोई), 37 (गुरु देव / गुरुदेव).
 2. **A printed Gita Press text** (the Hanumān Chālīsā booklet, or the end pages of the Gita Press Sundarakāṇḍa booklet) would settle the spelling for good; the copy on archive.org cannot be read by machine (legacy font).

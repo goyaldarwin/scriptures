@@ -43,7 +43,7 @@ The rules are `tools/meanings/style.md` (above all §1) and `docs/PLAYBOOK.md` �
 4. **Consistency pass** over the kāṇḍa — `manas-consistency.md`.
 5. **Dictionary:** each issue of `words-to-settle.jsonl` that is clearly right for the word goes into `library/glossary/<lang>.json` as an added sense (old senses stay: other verses use them); the rest into `docs/reviews/dictionary-doubts.jsonl`.
 6. **Copy check of the whole file:** `python3 tools/meanings/overlap.py tools/works/manas/meanings/hi/scriptures.json library/hinduism/granth/tulsidas/ramcharitmanas/meanings/hi-gitapress.json` and `python3 tools/meanings/overlap.py tools/works/manas/meanings/en/scriptures.json library/hinduism/granth/tulsidas/ramcharitmanas/meanings/en-gitapress.json`, 0 runs of 10+ for both.
-7. `python3 tools/works/export.py`, then every check of `CLAUDE.md`; diff the regenerated data; one pull request per kāṇḍa, with the doubts named for the owner. The owner's decisions on doubts are applied and removed from the doubts file (`docs/reviews/README.md`).
+7. `python3 tools/works/export.py`, then every check of `CLAUDE.md`; diff the regenerated data; one pull request per kāṇḍa. Before it merges, the session settles every doubt the writer or reviewer recorded (`docs/PLAYBOOK.md` §2): it applies the decision and removes the doubt from its file (`docs/reviews/README.md`).
 
 ## Add a new audio source (another reciter)
 

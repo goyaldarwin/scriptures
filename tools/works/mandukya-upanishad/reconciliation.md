@@ -37,7 +37,7 @@ No word changed. Written by the writing standard: इदꣳ, as printed, is writ
 
 Kept as printed:
 - हरिः ॐ । at the head of mantra 1 (the recording does not chant it there, but at the very end).
-- एष सर्वेश्वरः एष सर्वज्ञ (m06): the visarga before ए is kept as printed (strict sandhi would give सर्वेश्वर एष); the shlokam.org page has it too. **Open.**
+- एष सर्वेश्वरः एष सर्वज्ञ (m06): the visarga before ए is kept as printed (strict sandhi would give सर्वेश्वर एष); the shlokam.org page has it too. Settled: both witnesses agree, and where nothing proves the base wrong it stays as printed (PLAYBOOK §2).
 - अलक्षणं अचिन्त्यम्… (m07), भवद् भविष्यद्, …आदिमत्त्वाद् / वाऽऽप्नोति (m09), मात्रोत्कर्षात् / उभयत्वाद् (m10): the printout's
   line ends, where a word keeps its pausa form; the shlokam.org page joins them (भवद्भविष्यद्, मात्रोत्कर्षादुभयत्वाद्), the
   same words.

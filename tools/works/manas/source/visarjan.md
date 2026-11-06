@@ -6,7 +6,7 @@
 
 **Readings kept as printed:** दन्डवत, कहिं (= कहँ, "to"), मांगहु, अनपायनी, शरनन, शत्रुघन, करतु, ब्राह्मन, परणाम, कल्याण. These are the page's spellings and are left alone.
 
-**Three typesetting slips corrected (owner to confirm):**
+**Three typesetting slips corrected** (each not a word as printed; settled):
 1. Couplet 7: printed "भयेसब" (no space) → **भये सब**.
 2. Couplet 9: printed "शोश" → **शीश** ("head", as in शीश नवाय, "bowing the head"); शोश is not a word, and the printed ी and ो differ by one stroke.
 3. Couplet 9: printed "ईशर्हि" (a mark like a reph over ह) → **ईशहिं** ("to the Lord"); ईशर्हि is not a word, and the mark sits where this font puts the anusvāra of हिं.
