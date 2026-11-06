@@ -35,7 +35,7 @@ Rebuild: `python3 tools/works/sukhmani-sahib/source/make.py && python3 tools/wor
 
 ## Structure
 - **Hierarchy:** 24 Ashtapadis (parts) › each item its own section › the item: the heading, the salok, pauris 1–8 (and the rahāu after pauri 1 of Ashtapadi 1).
-- **Numbering:** a pauri's `n` is its number in its Ashtapadi, the first number of the ॥੮॥੧॥ that ends it; it is cited by it (Pauri 8), the Ashtapadi named beside it where the part is shown (Resume, a verse's place). The heading, the saloks and the rahāu have no number.
+- **Numbering:** a pauri's `n` is its number in its Ashtapadi, the first number of the ॥੮॥੧॥ that ends it; it is cited ashtapadi.pauri (`work.json` → `cite`: Pauri 1.8, the eighth pauri of Ashtapadi 1) in the player, Resume, Go to / Back to and search. The heading, the saloks and the rahāu have no number.
 
 
 Parts are the 24 Ashtapadis (अष्टपदी / Ashtapadi). Items, in reading order (ids are permanent):
