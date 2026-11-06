@@ -56,7 +56,8 @@ library/ ─ tools/site/build.py (checks everything first) ─► index.html, ap
 | Śrī Rāma Rakṣā Stotram (`stotra/rama/ramraksha`) | a video's on-screen text | ours | Vande Guru Paramparaam, live |
 | Bilvāṣṭakam (`stotra/shiva/bilvashtakam`) | the owner's pasted text, checked against sanskritdocuments.org | ours | Sounds of Isha, live (it does not sing śloka 2 or the phalaśruti) |
 | Bhaja Govindam (`stotra/krishna/bhaja-govindam`) | sanskritdocuments.org, checked against the recording | ours | Chinmaya Mission Boston, live (verse 13अ is not sung) |
-| Āratīs of Śrī Rāma: श्रीरामचन्द्र कृपालु, आरती कीजे श्रीरामलला की, आरती कीजै रामचन्द्र जी की (`aarti/rama/…`) | one printout; corrections open | ours | the stuti: Satya Adhikari, live; the other two: none yet |
+| श्रीरामचन्द्र कृपालु (`aarti/rama/shri-ramchandra-kripalu`) | the jansatta.com printout, its corrections confirmed by sanskritdocuments.org and shlokam.org | ours | Satya Adhikari, live |
+| आरती कीजे श्री रामलला की (`aarti/rama/ramlala-aarti`) | the words shown with Sohini Mishra's song (the owner's screenshot) | ours | Sohini Mishra, live |
 | Hanumān āratī (`aarti/hanuman/hanuman-aarti`) | from the Sundarakāṇḍa | ours | the Sundarakāṇḍa's, live |
 | ॐ जय जगदीश हरे (`aarti/vishnu/jagdish-aarti`) | the owner's pasted text | ours | Mahendra Kapoor, live |
 | ॐ जय शिव ओंकारा (`aarti/shiva/shiv-aarti`) | Anuradha Paudwal's version, from four written witnesses | ours | Anuradha Paudwal, live |
@@ -73,6 +74,5 @@ library/ ─ tools/site/build.py (checks everything first) ─► index.html, ap
 - Nothing open. A new work's or kāṇḍa's doubts go to `docs/reviews/` and are settled before its pull request is merged.
 
 ## Open with the owner
-- Recordings for आरती कीजे श्रीरामलला की and आरती कीजै रामचन्द्र जी की: candidates found (Ramlala: Pamela Jain `aRnqPupR7OI`, Chetna Shukla `JC5I59S4nl0`; Ramchandra: `QPghQyOWQbo`); the owner listens, picks one whose words are this text's and adds its audio to `scriptures-data`.
 - The Mānas timings: the owner is setting by ear the 136 starts MMS doubts (`tools/works/manas/audio/kamlesh-upadhyay/check.json`). Then compare his times with MMS's and the library's to decide whether MMS retimes, or lists for checking, the 1,108 verses where the two differ by more than 2 s (the experiment and its figures: `experiments/align/README.md` in `scriptures-data`).
-- Private copies that would complete `scriptures-data` (nothing depends on them; only the owner has them, from earlier chats): the Gaṅgā āratī screenshot, the jansatta.com printout of the Rāma āratīs, the Māṇḍūkya's sanskritdocuments.org and freepressjournal.in printouts and its recording.
+- Private copies that would complete `scriptures-data` (nothing depends on them; only the owner has them, from earlier chats): the Gaṅgā āratī screenshot, the jansatta.com printout of Śrī Rāmacandra Kṛpālu, the Māṇḍūkya's sanskritdocuments.org and freepressjournal.in printouts and its recording.
