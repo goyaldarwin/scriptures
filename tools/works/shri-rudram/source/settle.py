@@ -66,6 +66,8 @@ def house(l):
 
 # ---- items ----
 def item(part, sec, key_, y, n, lines, p):
+    # n: the mantra's number in its anuvāka; it is cited anuvāka.mantra (work.json → cite: sec, n), and the number the text
+    # prints at an anuvāka's end is the anuvāka's (cite → mark: sec)
     v = [house(l) for l in lines if l.strip()]
     return {'id': '%s.%s.%s' % (part, sec, key_), 'p': p, 's': '%s-%s' % (part[:3], sec), 'y': y, 'n': n,
             'v': v}
@@ -76,14 +78,14 @@ def namakam():
     I.append(item('namakam', 'purva', 'ganapati', 'mangala', '2', L[0][1:], P))
     I.append(item('namakam', 'purva', 'samhita', 'shirsha', '', L[1], P))
     I.append(item('namakam', 'purva', 'rudraya', 'mangala', '3', L[2], P))
-    for k, bi in enumerate(range(3, 18), 1): I.append(item('namakam', 'a01', 'm%02d' % k, 'mantra', '1.%d' % k, L[bi], P))
+    for k, bi in enumerate(range(3, 18), 1): I.append(item('namakam', 'a01', 'm%02d' % k, 'mantra', str(k), L[bi], P))
     # "श्री शम्भवे नमः" (L[18][:1]) is printed in the source but not recited: left out, as the owner asked
     I.append(item('namakam', 'bhagavan', 'namaste', 'mangala', '4', L[18][1:], P))
     for a, bi in zip(range(2, 10), range(19, 27)):
-        for k, l in enumerate(L[bi], 1): I.append(item('namakam', 'a%02d' % a, 'm%02d' % k, 'mantra', '%d.%d' % (a, k), [l], P))
-    for k, bi in enumerate(range(27, 39), 1): I.append(item('namakam', 'a10', 'm%02d' % k, 'mantra', '10.%d' % k, L[bi], P))
+        for k, l in enumerate(L[bi], 1): I.append(item('namakam', 'a%02d' % a, 'm%02d' % k, 'mantra', str(k), [l], P))
+    for k, bi in enumerate(range(27, 39), 1): I.append(item('namakam', 'a10', 'm%02d' % k, 'mantra', str(k), L[bi], P))
     g = [L[39], L[40], L[41]] + [[l] for l in L[42][:6]] + [L[42][6:]]
-    for k, ls in enumerate(g, 1): I.append(item('namakam', 'a11', 'm%02d' % k, 'mantra', '11.%d' % k, ls, P))
+    for k, ls in enumerate(g, 1): I.append(item('namakam', 'a11', 'm%02d' % k, 'mantra', str(k), ls, P))
     b = L[44]; g = [L[43], b[0:2], b[2:3], b[3:4], b[4:6], b[6:8], b[8:9], b[9:13]]
     for k, ls in enumerate(g, 1): I.append(item('namakam', 'uttara', 'u%d' % k, 'uttara', str(k), ls, P))
     I.append(item('namakam', 'uttara', 'shanti', 'shanti', '', L[45], P))
@@ -93,7 +95,7 @@ def chamakam():
     L, B = blocks('chamakam'); I = []; P = 1
     for a in range(1, 12):
         ls = L[a - 1]; g = [ls[:2]] + [[l] for l in ls[2:]] if a == 1 else [[l] for l in ls]
-        for k, x in enumerate(g, 1): I.append(item('chamakam', 'a%02d' % a, 'm%02d' % k, 'mantra', '%d.%d' % (a, k), x, P))
+        for k, x in enumerate(g, 1): I.append(item('chamakam', 'a%02d' % a, 'm%02d' % k, 'mantra', str(k), x, P))
     I.append(item('chamakam', 'shanti', 'shanti', 'shanti', '', L[11], P))
     return I, B
 
@@ -136,7 +138,7 @@ if __name__ == '__main__':
                ('रुद्रके नाम और रूप', 'Rudra’s own names and forms'),
                ('ज्येष्ठ-कनिष्ठ, सर्वत्र', 'Eldest and youngest, everywhere'),
                ('जल, मेघ और घरमें', 'In waters, clouds and dwellings'),
-               ('नमः शिवाय', 'Namaḥ Śivāya'),
+               ('नमः शिवाय', 'Namah Shivaya'),
                ('भूमि, घर और देवहृदय', 'In the earth, the home and the gods’ hearts'),
                ('रक्षा और कृपाकी प्रार्थना', 'Prayer for protection and grace'),
                ('सब रुद्रोंके धनुष दूर', 'The bows of all the Rudras laid away')]
@@ -151,14 +153,14 @@ if __name__ == '__main__':
                ('महायज्ञ और वेद', 'The great rites and the Vedas'),
                ('पशुधन और प्राण यज्ञमें', 'Cattle, and life offered in the yajña'),
                ('संख्याएँ और लोकोंके स्वामी', 'The numbers, and the lords of the worlds')]
-    topics = [{'id': 'namakam.purva.guru', 'hi': 'अथ श्रीरुद्रप्रश्नः — मङ्गलाचरण', 'en': 'Śrī Rudra Praśna — the opening'}]
+    topics = [{'id': 'namakam.purva.guru', 'hi': 'अथ श्रीरुद्रप्रश्नः — मङ्गलाचरण', 'en': 'Shri Rudra Prashna — the opening'}]
     for a, (h, e) in enumerate(THEME_N, 1):
-        topics.append({'id': 'namakam.a%02d.m01' % a, 'hi': '%s अनुवाक — %s' % (ORD[a - 1], h), 'en': 'Anuvāka %d — %s' % (a, e)})
+        topics.append({'id': 'namakam.a%02d.m01' % a, 'hi': '%s अनुवाक — %s' % (ORD[a - 1], h), 'en': 'Anuvak %d — %s' % (a, e)})
         if a == 1: topics.append({'id': 'namakam.bhagavan.namaste', 'hi': 'नमस्ते अस्तु भगवन्', 'en': 'Namaste astu bhagavan'})
-    topics.append({'id': 'namakam.uttara.u1', 'hi': 'उत्तर मन्त्र और शान्ति', 'en': 'Closing mantras and śānti'})
+    topics.append({'id': 'namakam.uttara.u1', 'hi': 'उत्तर मन्त्र और शान्ति', 'en': 'Closing mantras and shanti'})
     for a, (h, e) in enumerate(THEME_C, 1):
-        topics.append({'id': 'chamakam.a%02d.m01' % a, 'hi': '%s अनुवाक — %s' % (ORD[a - 1], h), 'en': 'Anuvāka %d — %s' % (a, e)})
-    topics.append({'id': 'chamakam.shanti.shanti', 'hi': 'शान्ति मन्त्र', 'en': 'Śānti mantra'})
+        topics.append({'id': 'chamakam.a%02d.m01' % a, 'hi': '%s अनुवाक — %s' % (ORD[a - 1], h), 'en': 'Anuvak %d — %s' % (a, e)})
+    topics.append({'id': 'chamakam.shanti.shanti', 'hi': 'शान्ति मन्त्र', 'en': 'Shanti mantra'})
     textfile.write(os.path.join(HERE, '..', 'text.txt'), items, topics, ['namakam', 'chamakam'], 'sa', [
         'Śrī Rudram (Namakam and Chamakam), shlokam.org. Made by source/settle.py from the owner\'s printouts; do not edit',
         'here. Every correction and choice: reconciliation.md.'])

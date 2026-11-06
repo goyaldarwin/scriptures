@@ -4,7 +4,7 @@
  "lang": "sa",
  "title": {
   "hi": "बिल्वाष्टकम्",
-  "en": "Bilvāṣṭakam"
+  "en": "Bilvashtakam"
  },
  "by": {
   "hi": "पारम्परिक स्तोत्र",
@@ -17,13 +17,13 @@
  "parts": {
   "name": {
    "hi": "पाठ",
-   "en": "Pāṭha"
+   "en": "Paath"
   },
   "list": [
    {
     "key": "bilvashtakam",
     "hi": "बिल्वाष्टकम्",
-    "en": "Bilvāṣṭakam"
+    "en": "Bilvashtakam"
    }
   ]
  },
@@ -31,17 +31,17 @@
   "shloka": {
    "name": {
     "hi": "श्लोक",
-    "en": "Śloka"
+    "en": "Shloka"
    },
    "short": {
     "hi": "श्लो॰",
-    "en": "Śl."
+    "en": "Shl."
    }
   },
   "phalashruti": {
    "name": {
     "hi": "फलश्रुति",
-    "en": "Phalaśruti"
+    "en": "Phalashruti"
    },
    "short": {
     "hi": "फल॰",

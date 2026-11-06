@@ -2,7 +2,10 @@
 
     python3 tools/site/regen_check.py
 
-Makes the library again in an empty folder that holds only what is edited by hand (index.json, removed.json,
+First runs every work's text generator that reads only files in this repository (GENERATORS: the scripts in
+tools/works/<work>/source/ that write its text.txt, book.json or copied meanings) in a copy of tools/, and fails if any
+file it writes differs from the committed one: a text edited by hand would be undone by the next run of its generator.
+Then makes the library again in an empty folder that holds only what is edited by hand (index.json, removed.json,
 apps.json and glossary/): every work with tools/works/export.py, then every recording's timings with
 tools/audio/make_timings.py (a recording that takes its timings from another work after that work's), then compares
 both folders file by file. It fails on any difference, so:
@@ -19,6 +22,27 @@ import glob, json, os, shutil, subprocess, sys, tempfile
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.dirname(os.path.dirname(HERE))
 sys.path.insert(0, HERE); import library
 
+# the scripts that make a work's text.txt (and its other source files) from data in its source/ folder, in the order they run
+GENERATORS = [('manas', ['make_appdata.py', 'make.py']), ('ramraksha', ['make.py']), ('sukhmani-sahib', ['make.py']),
+              ('katha-upanishad', ['settle.py']), ('shri-rudram', ['settle.py'])]
+
+def generators():
+    """Run each text generator in a copy of tools/; return the files it writes that differ from the committed ones."""
+    bad = []
+    with tempfile.TemporaryDirectory() as tmp:
+        tools = os.path.join(tmp, 'tools'); shutil.copytree(os.path.join(REPO, 'tools'), tools, ignore=shutil.ignore_patterns('__pycache__', 'transcripts'))
+        for wid, scripts in GENERATORS:
+            src = os.path.join(tools, 'works', wid, 'source'); before = {k: os.path.getmtime(v) for k, v in files(os.path.join(tools, 'works', wid)).items()}
+            for sc in scripts:
+                r = subprocess.run([sys.executable, sc], cwd=src, capture_output=True, text=True)
+                if r.returncode: bad.append(f'{wid}/source/{sc} failed: {(r.stdout + r.stderr)[-400:]}'); break
+            for k, v in files(os.path.join(tools, 'works', wid)).items():
+                orig = os.path.join(REPO, 'tools', 'works', wid, k)
+                if k.endswith('.pyc') or (k in before and os.path.getmtime(v) == before[k]): continue
+                if not os.path.exists(orig): bad.append(f'{wid}/{k}: written by its generator, not in the repository')
+                elif not same(v, orig): bad.append(f'{wid}/{k}: differs from what {wid}/source/{"+".join(scripts)} makes')
+    return bad
+
 BY_HAND = ['index.json', 'removed.json', 'apps.json', 'glossary']   # library/ files no generator makes
 
 def files(root):
@@ -29,6 +53,11 @@ def same(a, b):
     return open(a, 'rb').read() == open(b, 'rb').read()
 
 def main():
+    bad = generators()
+    if bad:
+        print("FAIL: a work's source file differs from what its generator makes (put the change in the generator, or run it):")
+        for k in bad[:30]: print('  ', k)
+        sys.exit(1)
     lib = os.path.join(REPO, 'library')
     with tempfile.TemporaryDirectory() as tmp:
         out = os.path.join(tmp, 'library'); os.makedirs(out)
@@ -51,6 +80,6 @@ def main():
             print('FAIL: library/ differs from what the generators make (regenerate, or put the change in the generator):')
             for k in diff[:30]: print('  ', k)
             sys.exit(1)
-    print(f'regen check: library/ equals the output of tools/works/export.py and of make_timings.py for {len(srcs)} recordings')
+    print(f'regen check: {len(GENERATORS)} works\' texts equal what their generators make; library/ equals the output of tools/works/export.py and of make_timings.py for {len(srcs)} recordings')
 
 if __name__ == '__main__': main()

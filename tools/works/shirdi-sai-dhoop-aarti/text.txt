@@ -5,7 +5,7 @@
 @part aarti
 @section aarti
 # by: माधव अडकर | Mādhava Aḍakara
-@topic आरती साईबाबा | Āratī Sāībābā
+@topic आरती साईबाबा | Aarti Saibaba
 [aarti.dhru dhru]
 आरती साईबाबा । सौख्यदातार जीवा ।
 चरणरजातळी । द्यावा दासा विसावा, भक्ता विसावा ॥ आ॰ ॥ ध्रु॰ ॥
@@ -32,7 +32,7 @@
 पाजावे माधवा या । सांभाळ आपुली भाक ॥ आ॰ ॥७॥
 @section shirdi-majhe
 # by: दासगणु महाराज | Dāsagaṇu Mahārāja
-@topic शिर्डी माझे पंढरपुर (अभंग) | Śirḍī Mājhe Paṇḍharapura (Abhaṅga)
+@topic शिर्डी माझे पंढरपुर (अभंग) | Shirdi Majhe Pandharpur (Abhang)
 [shirdi-majhe.abhang1 abhang 1]
 शिर्डी माझे पंढरपुर । साईबाबा रमावर ॥१॥
 [shirdi-majhe.abhang2 abhang 2]
@@ -43,7 +43,7 @@
 गणु म्हणे बाबा साई । धाव पाव माझे आई ॥४॥
 @section naman
 # by: संत नामदेव और पारम्परिक श्लोक | Saint Nāmadeva and traditional ślokas
-@topic घालीन लोटांगण (नमन) | Ghālīna Loṭāṅgaṇa (Namana)
+@topic घालीन लोटांगण (नमन) | Ghalina Lotangana (Namana)
 [naman.abhang1 abhang 1]
 घालीन लोटांगण, वंदीन चरण । डोळ्यांनी पाहीन रुप तुझें ।
 प्रेमें आलिंगन, आनंदे पूजिन । भावें ओवाळीन म्हणे नामा ॥१॥
@@ -59,14 +59,14 @@
 श्रीधरं माधवं गोपिकावल्लभं, जानकीनायकं रामचन्द्रं भजे ॥४॥
 @section namasmaran
 # by: महामन्त्र | the Mahāmantra
-@topic नामस्मरण | Nāmasmaraṇa
+@topic नामस्मरण | Namasmarana
 [namasmaran.mantra mantra]
 हरे राम हरे राम, राम राम हरे हरे ।
 हरे कृष्ण हरे कृष्ण, कृष्ण कृष्ण हरे हरे ॥
 @section namaskarashtak
 # by: मोहिनीराज पंडित | Mohinīrāja Paṇḍita
 @lang mr
-@topic नमस्काराष्टक | Namaskārāṣṭaka
+@topic नमस्काराष्टक | Namaskarashtak
 [namaskarashtak.pad1 pad 1]
 अनंता तुला ते कसे रे स्तवावे । अनंता तुला ते कसे रे नमावे ॥
 अनंत मुखांचा शिणे शेष गाता । नमस्कार साष्टांग श्रीसाईनाथा ॥१॥
@@ -93,7 +93,7 @@
 भवी मोहनीराज हा तारि आता । नमस्कार साष्टांग श्रीसाईनाथा ॥८॥
 @section aisa-yei-ba
 # by: कृष्ण जोगेश्वर भीष्म | Kṛṣṇa Jogeśvara Bhīṣma
-@topic ऐसा येई बा (प्रार्थना) | Aisā Yeī Bā (Prārthanā)
+@topic ऐसा येई बा (प्रार्थना) | Aisa Yei Ba (Prarthana)
 [aisa-yei-ba.dhru dhru]
 ऐसा येई बा । साई दिगंबरा । अक्षयरूप अवतारा । सर्वही व्यापक तू ।
 श्रुतिसारा । अनुसया त्रिकुमारा । बाबा येई बा ॥ ध्रु॰ ॥
@@ -115,7 +115,7 @@
 @section mahimna
 # by: उपासनी महाराज | Upāsanī Mahārāja
 @lang sa
-@topic श्रीसाईनाथमहिम्नस्तोत्रम् | Śrī Sāīnātha Mahimna Stotram
+@topic श्रीसाईनाथमहिम्नस्तोत्रम् | Shri Sainath Mahimna Stotram
 [mahimna.shloka1 shloka 1]
 सदा सत्स्वरूपं चिदानन्दकन्दं, जगत्सम्भवस्थानसंहारहेतुम् ।
 स्वभक्तेच्छया मानुषं दर्शयन्तं, नमामीश्वरं सदगुरुसाईनाथम् ॥१॥
@@ -166,7 +166,7 @@
 @section dashak
 # by: बाळकृष्ण विश्वनाथ देव | Bāḷakṛṣṇa Viśvanātha Deva
 @lang mr
-@topic श्रीगुरुप्रसाद-याचना-दशक | Śrī Guru-prasāda-yācanā-daśaka
+@topic श्रीगुरुप्रसाद-याचना-दशक | Shri Guru-prasad-yachana-dashaka
 [dashak.pad1 pad 1]
 रुसो मम प्रियांबिका, मजवरी पिताही रुसो ।
 रुसो मम प्रियांगना, प्रियसुतात्मजाही रुसो ॥
@@ -220,7 +220,7 @@
 @section pushpanjali
 # by: वैदिक मन्त्र | Vedic mantras
 @lang sa
-@topic पुष्पांजलि | Puṣpāñjali
+@topic पुष्पांजलि | Pushpanjali
 [pushpanjali.mantra1 mantra 1]
 ॐ यज्ञेन यज्ञमयजन्त देवास्तानि धर्माणि प्रथमान्यासन् ।
 ते ह नाकं महिमानः सचन्त यत्र पूर्वे साध्याः सन्ति देवाः ॥
@@ -241,7 +241,7 @@
 @section prarthana
 # by: पारम्परिक | traditional
 @lang sa
-@topic प्रार्थना (करचरणकृतं) | Prārthanā (Karacaraṇakṛtaṁ)
+@topic प्रार्थना (करचरणकृतं) | Prarthana (Karacharanakritam)
 [prarthana.shloka shloka]
 करचरणकृतं वाक्कायजं कर्मजं वा ।
 श्रवणनयनजं वा मानसं वाऽपराधम् ।

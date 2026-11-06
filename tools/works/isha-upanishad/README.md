@@ -16,4 +16,11 @@ The folder's format: `tools/works/README.md`.
 - `glossary/sa.json`: two words whose shared sense doesn't fit here (कृतं “what has been done”, देव “O god”); every other word is in `library/glossary/sa.json`.
 
 ## Structure
+- **Hierarchy:** one part › each verse its own section › the verse.
+- **Numbering:** a mantra's `n` is its printed number, and it is cited by it (Mantra 15); the śānti has none.
 One part (the Upaniṣad). Items: `shanti.1` (type `shanti`) and `m01`–`m18` (type `mantra`, with the printed number in `n`). Both types are declared in `work.json` → `types`. Each item is its own section. The topics follow the printout's sections: Śānti Pāṭha (`shanti.1`), mantras 1–2, 3–8, 9–14 and 15–18. Item ids are permanent.
+
+## Introduction
+The readers' introduction (`intro` in `library/index.json`, shown in ⓘ About this work) states only what these support:
+- The owner's printout of shlokam.org, Isha Upanishad (scriptures-data …/isha-upanishad/printouts/shlokam/isha-upanishad.pdf): chapter 40 of the Shukla Yajurveda, the name, first of the 108, one of Shankara's ten, 18 verses (Kanva), karma and jnana held together.
+- The text itself and our meanings (verses 1–2, the golden vessel in verse 15).

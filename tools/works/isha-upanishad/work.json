@@ -4,11 +4,11 @@
  "lang": "sa",
  "title": {
   "hi": "ईशावास्योपनिषद्",
-  "en": "Īśāvāsya Upaniṣad"
+  "en": "Ishavasya Upanishad"
  },
  "by": {
   "hi": "शुक्ल यजुर्वेद, काण्व संहिता — अध्याय ४०",
-  "en": "Śukla Yajurveda, Kāṇva Saṃhitā — chapter 40"
+  "en": "Shukla Yajurveda, Kanva Samhita — chapter 40"
  },
  "edition": {
   "hi": "shlokam.org",
@@ -17,13 +17,13 @@
  "parts": {
   "name": {
    "hi": "उपनिषद्",
-   "en": "Upaniṣad"
+   "en": "Upanishad"
   },
   "list": [
    {
     "key": "isha",
     "hi": "ईशावास्योपनिषद्",
-    "en": "Īśāvāsya Upaniṣad"
+    "en": "Ishavasya Upanishad"
    }
   ]
  },
@@ -31,11 +31,11 @@
   "shanti": {
    "name": {
     "hi": "शान्तिमन्त्र",
-    "en": "Śānti Mantra"
+    "en": "Shanti Mantra"
    },
    "short": {
     "hi": "शा॰",
-    "en": "Śā."
+    "en": "Shan."
    }
   },
   "mantra": {

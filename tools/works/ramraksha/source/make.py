@@ -38,7 +38,7 @@ for k in sorted(F):
 assert not buf and num == 38, (num, buf)
 add('iti', 'iti', '', [F[109], F[110]])
 
-TOPICS = [{'id': 'viniyoga', 'hi': 'विनियोग', 'en': 'Viniyoga'}, {'id': 'dhyana', 'hi': 'ध्यानम्', 'en': 'Dhyānam'},
+TOPICS = [{'id': 'viniyoga', 'hi': 'विनियोग', 'en': 'Viniyoga'}, {'id': 'dhyana', 'hi': 'ध्यानम्', 'en': 'Dhyanam'},
           {'id': 'sh1', 'hi': 'स्तोत्र', 'en': 'Stotra'}]
 textfile.write(os.path.join(WORK, 'text.txt'), items, TOPICS, ['ramraksha'], 'sa', [
     'Śrī Rāma Rakṣā Stotram, as the Vande Guru Paramparaam video shows it. Made by source/make.py from video_text.tsv;',

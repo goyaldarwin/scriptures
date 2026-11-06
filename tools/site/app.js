@@ -22,7 +22,7 @@ function latNode(root){
 new MutationObserver(ms => ms.forEach(m => m.type === 'characterData' ? latNode(m.target) : m.addedNodes.forEach(latNode))).observe(document.documentElement, {childList: true, subtree: true, characterData: true});
 latNode(document.body);
 const ORDH = ['', 'पहला', 'दूसरा', 'तीसरा', 'चौथा', 'पाँचवाँ', 'छठा', 'सातवाँ', 'आठवाँ', 'नवाँ', 'दसवाँ', 'ग्यारहवाँ', 'बारहवाँ', 'तेरहवाँ', 'चौदहवाँ', 'पंद्रहवाँ', 'सोलहवाँ', 'सत्रहवाँ', 'अठारहवाँ', 'उन्नीसवाँ', 'बीसवाँ', 'इक्कीसवाँ', 'बाईसवाँ', 'तेईसवाँ', 'चौबीसवाँ', 'पचीसवाँ', 'छब्बीसवाँ', 'सत्ताईसवाँ', 'अट्ठाईसवाँ', 'उनतीसवाँ', 'तीसवाँ'];
-const TYPEN = {do: ['दोहा', 'Dohā'], so: ['सोरठा', 'Sorathā'], cha: ['छंद', 'Chhand'], shloka: ['श्लोक', 'Śloka'], cau: ['चौपाई', 'Chaupāī']};
+const TYPEN = {do: ['दोहा', 'Doha'], so: ['सोरठा', 'Soratha'], cha: ['छंद', 'Chhand'], shloka: ['श्लोक', 'Shloka'], cau: ['चौपाई', 'Chaupai']};
 const TYPE = new Proxy({}, {get: (o, k) => TYPEN[k] ? T(TYPEN[k][0], TYPEN[k][1]) : ''});
 const TT = o => o ? (typeof o === 'string' ? o : T(o.hi, o.en || o.hi)) : '';
 
@@ -137,19 +137,22 @@ const DONE = (p, plan) => ((p.done[W.id] = p.done[W.id] || {})[plan] = p.done[W.
 const LB = {
   h: () => T('हिंदी अर्थ', 'Hindi meaning'), e: () => T('अंग्रेज़ी अर्थ', 'English meaning'), w: () => T('शब्दार्थ', 'Word meanings'), au: () => T('ऑडियो', 'Audio'),
   tr: () => T('रोमन लिप्यन्तरण', 'Transliteration'), trSub: () => T('पदके नीचे रोमन अक्षरोंमें', 'The verse in Roman letters, under it'),
-  lines: () => T('पंक्ति-पंक्ति अर्थ', 'Meaning line by line'), linesSub: () => T('हमारे अर्थमें हर पंक्तिके नीचे उसका अर्थ; बंद हो तो पूरा अर्थ पदके बाद', 'Our meaning under each line of the verse; off, the whole meaning after the verse'),
+  lines: () => T('हर पंक्तिका अर्थ', 'Meaning per line'), linesSub: () => T('अर्थको पंक्ति-अनुसार बाँटें', 'Split the meanings by line'),
   rc: () => T('पाठ मोड', 'Recitation mode'), rcSub: () => T('केवल मूल पाठ, बड़े अक्षर', 'Verses only, larger letters'),
   size: () => T('अक्षरका आकार', 'Letter size'), theme: () => T('रंग', 'Theme'), more: () => T('और सेटिंग', 'More settings'), tour: () => T('परिचय (टूर)', 'Take the tour'),
   sections: () => T('प्रसंग', 'Sections'), search: () => T('खोजें', 'Search'),
   bm: () => T('बुकमार्क और टिप्पणियाँ', 'Bookmarks & notes'), verses: () => T('मूल पाठ', 'Verses'),
-  lib: () => T('पुस्तकालय', 'Library'), src: () => T('स्रोत', 'Sources'), vidhi: () => T('पारायण-विधि', 'Pārāyaṇa vidhi')
+  lib: () => T('पुस्तकालय', 'Library'), src: () => T('स्रोत', 'Sources'), vidhi: () => T('पारायण-विधि', 'Parayan vidhi')
 };
 
 /* ---------------- ui helpers ---------------- */
 let toastT;
 // a toast with one action (e.g. “Continue ▶” after a verse has been played); it stays a little longer and can be tapped
 function toastAct(msg, label, fn){ const t = $('#toast'); t.innerHTML = esc(msg) + ' <button class="tact">' + esc(label) + '</button>'; t.classList.add('on', 'act'); t.querySelector('.tact').onclick = () => { t.classList.remove('on', 'act'); fn(); }; clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on', 'act'), 8000); }
-// a message in the light card of "Finished · ▶ Play on" (white and blue), without a button
+// The two capsules (docs/PLAYBOOK.md §7): the dark one (toast) answers a tap — what was just done, or why it could not be —
+// and goes by itself; the white one is the reading speaking: where playing ended or the reader is (Finished · ▶ Play on,
+// Recitation complete, Tour complete, ↑ Go to …, ↓ Back to …), with a way on where there is one.
+// a message in the white capsule of "Finished · ▶ Play on", without a button
 function toastLight(msg, ms){ const t = $('#toast'); t.textContent = msg; t.classList.add('on', 'act'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on', 'act'), ms || 4000); }
 function toast(msg){ $('#toast').classList.remove('act'); const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), 2600); }
 function applyLang(){ const en = LANG() === 'en'; document.documentElement.lang = en ? 'en' : 'hi';
@@ -157,6 +160,7 @@ function applyLang(){ const en = LANG() === 'en'; document.documentElement.lang 
   $$('[data-en-ph]').forEach(el => { if (el.dataset.hiPh == null) el.dataset.hiPh = el.placeholder; el.placeholder = en ? el.dataset.enPh : el.dataset.hiPh; }); }
 function applyTheme(){ const r = document.documentElement; if (S.settings.theme === 'auto') r.removeAttribute('data-theme'); else r.setAttribute('data-theme', S.settings.theme); r.style.setProperty('--verse-size', S.settings.size + 'px'); r.style.setProperty('--mean-size', Math.round(S.settings.size * 0.78 * 10) / 10 + 'px'); r.style.setProperty('--ui-zoom', (1 + (S.settings.size - 21) * 0.025).toFixed(3)); }   // A−/A+ also scale the library and work pages
 function show(id, push = true){ { const was = LANG(); CURVIEW = id; if (LANG() !== was) applyLang(); }
+  if ((id === 'library' || id === 'home' || id === 'reader') && S.view !== id){ S.view = id; save(); }   // where the app opens next time
   $$('.view').forEach(v => v.classList.toggle('on', v.id === id)); if (push) history.pushState(snap(id), ''); else history.replaceState(snap(id), ''); if (id !== 'reader') window.scrollTo(0, 0); onView(id); }
 // Every page is an entry in the browser's history that carries where you are: the page, the open work and the library
 // shelf. Back (the button or the phone's gesture) returns to exactly the previous one — a shelf
@@ -176,7 +180,7 @@ async function restore(st){
 function back(){ history.back(); }
 // Back with a drawer open closes the drawer and stays on the page (its entry is put back)
 window.addEventListener('popstate', e => { if ($('#sheet').classList.contains('on')){ closeSheet(); history.pushState(snap(CURVIEW), ''); return; } const st = e.state; popping = popping.then(() => restore(st)); });
-function onView(id){ if (id === 'library') renderLibrary(); if (id === 'home') renderHome(); if (id === 'bookmarks') renderBookmarks(); if (id === 'settings') renderSettings(); if (id === 'vidhi') renderVidhi(); wake(id === 'reader'); if (id === 'search') setTimeout(() => $('#q').focus(), 50); }
+function onView(id){ if (PL.on) pSub(); backPill();   /* “Back to …” belongs to the reader of the work open: drawn again (or hidden) on every screen */ if (id === 'library') renderLibrary(); if (id === 'home') renderHome(); if (id === 'bookmarks') renderBookmarks(); if (id === 'settings') renderSettings(); if (id === 'vidhi') renderVidhi(); wake(id === 'reader'); if (id === 'search') setTimeout(() => $('#q').focus(), 50); }
 $$('[data-back]').forEach(b => b.onclick = back);
 $$('[data-go]').forEach(b => b.onclick = () => show(b.dataset.go));
 function openSheet(html){ $('#sheetBody').innerHTML = html; $$('#sheetBody [data-tour]').forEach(b => b.onclick = () => { closeSheet(); startTour(); }); $('#sheet').classList.add('on'); $('#scrim').classList.add('on'); $('#sheet').scrollTop = 0; }
@@ -298,24 +302,33 @@ const VN = n => T(ORDH[n] + ' विश्राम', 'Vishram ' + n);
 const PNAME = id => TT(PLAN[id].long);
 
 /* ---------------- labels ---------------- */
+// A verse's number is its citation `c` (work.json → cite; tools/text/cite.py): "106.3", "2.1.1", "1.15", "3क". The exporter
+// writes it into every verse, so the reader, the player, Resume, the footer and the number search show and find one number.
+const CIT = it => it.c != null ? it.c : (it.n || '');
 function vNum(n){ return n && !/^u/.test(n) ? DEV(n) : ''; }
-function vLabel(it){ const n = vNum(it.n); return TYPE[it.y] + (n ? ' ' + n : ''); }
-const isNum = s => /^[1-9]\d*$/.test(s);
+function vLabel(it){ const n = vNum(CIT(it)); return TYPE[it.y] + (n ? ' ' + n : ''); }
+// a section counted by number has a name only where the work gives one (the Mānas: work.json → cite.sec, "Doha")
+const SECW = () => W && W.cite && W.cite.sec ? TT(W.cite.sec) : '';
+const isNum = s => !!SECW() && /^[1-9]\d*$/.test(s);
+// a verse cited by its own number alone (the Mānas's dohā: cite.types.do = ["n"]), not by its section's
+const ALONE = it => { const t = W && W.cite && W.cite.types && W.cite.types[it.y]; return !!t && t.length === 1; };
 // a work may name its sections (work.json → "sections": {section id: {hi, en}}, e.g. bala.1 → सर्ग १ / Sarga 1)
 const SECN = s => W && W.sections && W.sections[s] ? TT(W.sections[s]) : '';
 const hasSec = p => isNum(p.s) || !!SECN(p.s);
 // two section labels as one range: the same words before a number are written once (Sarga 1–3, सर्ग १–३)
 function secSpan(la, lb){ if (la === lb) return la; const x = /^(.*?)([0-9०-९੦-੯]+)$/.exec(la), y = /^(.*?)([0-9०-९੦-੯]+)$/.exec(lb); return x && y && x[1] === y[1] ? la + '–' + y[2] : la + ' – ' + lb; }
-function secLabel(p){ if (SECN(p.s)) return SECN(p.s); if (isNum(p.s)) return T('दोहा ', 'Dohā ') + DEV(p.s); const a = IT[p.from], z = IT[p.to]; if (a.y === z.y && vNum(a.n) && vNum(z.n)) return TYPE[a.y] + ' ' + vNum(a.n) + (z.n !== a.n ? '–' + vNum(z.n) : ''); return vLabel(a) === vLabel(z) ? vLabel(a) : vLabel(a) + ' – ' + vLabel(z); }
-function posLabel(i){ const it = IT[i], p = PAGES[itemPage[i]]; if (SECN(p.s)) return secLabel(p) + ' · ' + vLabel(it); if (!isNum(p.s) || it.y === 'do' || it.y === 'so') return vLabel(it); return secLabel(p) + ' · ' + vLabel(it); }
+function secLabel(p){ if (SECN(p.s)) return SECN(p.s); if (isNum(p.s)) return SECW() + ' ' + DEV(p.s); const a = IT[p.from], z = IT[p.to]; if (a.y === z.y && vNum(CIT(a)) && vNum(CIT(z))) return TYPE[a.y] + ' ' + vNum(CIT(a)) + (CIT(z) !== CIT(a) ? '–' + vNum(CIT(z)) : ''); return vLabel(a) === vLabel(z) ? vLabel(a) : vLabel(a) + ' – ' + vLabel(z); }
+// a verse's place: its section's label and its own number under it ("Doha 106 · Chaupai 3", "Namaskarashtak · Stanza 1"), or its citation
+function posLabel(i){ const it = IT[i], p = PAGES[itemPage[i]], own = n => TYPE[it.y] + (vNum(n) ? ' ' + vNum(n) : '');
+  if (SECN(p.s)) return secLabel(p) + ' · ' + own(it.n); if (!isNum(p.s) || ALONE(it)) return vLabel(it); return secLabel(p) + ' · ' + own(it.n); }
 function itemLabel(i){ return KNAME(IT[i].p) + ' · ' + posLabel(i); }
 function spanLabel(a, b){
   const pa = PAGES[itemPage[a]], pb = PAGES[itemPage[b]];
   if (SECN(pa.s) && SECN(pb.s)) return secSpan(secLabel(pa), secLabel(pb));
-  if (isNum(pa.s) && isNum(pb.s)) return T('दोहा ', 'Dohā ') + DEV(pa.s) + (pb.s !== pa.s ? '–' + DEV(pb.s) : '');
+  if (isNum(pa.s) && isNum(pb.s)) return SECW() + ' ' + DEV(pa.s) + (pb.s !== pa.s ? '–' + DEV(pb.s) : '');
   const la = hasSec(pa) ? secLabel(pa) : vLabel(IT[a]), lb = hasSec(pb) ? secLabel(pb) : vLabel(IT[b]);
   if (la === lb) return la;
-  if (IT[a].y === IT[b].y && !hasSec(pa) && !hasSec(pb) && vNum(IT[a].n) && vNum(IT[b].n)) return TYPE[IT[a].y] + ' ' + vNum(IT[a].n) + '–' + vNum(IT[b].n);
+  if (IT[a].y === IT[b].y && !hasSec(pa) && !hasSec(pb) && vNum(CIT(IT[a])) && vNum(CIT(IT[b]))) return TYPE[IT[a].y] + ' ' + vNum(CIT(IT[a])) + '–' + vNum(CIT(IT[b]));
   return la + ' – ' + lb;
 }
 function rangeDesc(a, b){ const ka = KNAME(IT[a].p), kb = KNAME(IT[b].p); if (ka === kb) return esc(ka + ': ' + spanLabel(a, b)); let h = '', p = IT[a].p; while (p <= IT[b].p){ const x = Math.max(a, PARTS[p].a), y = Math.min(b, PARTS[p].b); h += (h ? '<br>' : '') + esc(KNAME(p) + ': ' + spanLabel(x, y)); p++; } return h; }
@@ -323,16 +336,21 @@ function rangeDesc(a, b){ const ka = KNAME(IT[a].p), kb = KNAME(IT[b].p); if (ka
 /* ---------------- sources: meanings and audio ---------------- */
 function srcList(kind){ return ((W.sources || {})[kind] || []).filter(s => !s.draft || S.timing.on); }   // a draft recording is heard only while reviewing timings
 function srcChoice(kind){ const list = srcList(kind); const sel = ((S.src[W.id] || {})[kind]); if (sel === 'off') return null; return (list.find(s => s.id === sel) || list[0] || null); }
-async function loadSources(){
+// only: 'au' the recording alone (all the work's page needs), 'meanings' the meaning sources alone; nothing: both. The
+// sources are fetched together, not one after another; ALT keeps each kind's sources in their listed order.
+async function loadSources(only){
   if (!Object.keys(LANGS).length) LANGS = await getJSON('glossary/languages');   // the meaning languages are listed there
   // a work loaded by part starts each meaning source empty; loadPart fills in each part it opens
   const get = async c => BYPART() ? {meta: c, id: c.id, title: c.title, m: {}, p: {}, got: new Set()} : Object.assign({meta: c}, await getJSON(W.path + '/' + c.file));
-  for (const kind of MK().concat('au')){ const c = srcChoice(kind); SRC[kind] = null; if (c){ try { SRC[kind] = kind === 'au' ? Object.assign({meta: c}, await getJSON(W.path + '/' + c.file)) : await get(c); } catch (e) {} } }
+  if (only !== 'meanings'){ const c = srcChoice('au'); SRC.au = null; if (c){ try { SRC.au = Object.assign({meta: c}, await getJSON(W.path + '/' + c.file)); } catch (e) {} } buildAudio(); }
+  if (only === 'au') return;
+  await Promise.all(MK().map(async kind => { const c = srcChoice(kind); SRC[kind] = null; if (c){ try { SRC[kind] = await get(c); } catch (e) {} } }));
   // the other meaning sources of a kind fill in verses the chosen one doesn't cover (e.g. a stotra appended to a kāṇḍa)
-  for (const kind of MK()){ ALT[kind] = []; const c = SRC[kind] && SRC[kind].meta;
-    for (const s of ((W.sources || {})[kind] || [])) if (c && s.id !== c.id){ try { ALT[kind].push(await get(s)); } catch (e) {} } }
+  await Promise.all(MK().map(async kind => { const c = SRC[kind] && SRC[kind].meta;
+    const got = await Promise.all(((W.sources || {})[kind] || []).filter(s => c && s.id !== c.id).map(s => get(s).catch(() => null)));
+    ALT[kind] = got.filter(Boolean); }));
   for (let n = 0; n < 2 && BYPART(); n++) await Promise.all([...PWANT].map(loadPart));   // the parts already open, from the sources now chosen
-  buildAudio(); syncLayers();
+  syncLayers();
 }
 /* A big work is loaded by part (work.json "load": "parts"): each meaning source is meanings/<source>/<part>.json and its own
    word senses glossary/<part>.json. A part is fetched when a verse of it is shown (pageHTML) or touched (a word, ⋮, copy,
@@ -381,7 +399,7 @@ const shownKinds = () => capKinds().filter(k => layerOn(LK(k)));   // the meanin
 
 /* ---------------- reader: continuous scroll over a kāṇḍa or a day's pāṭh ---------------- */
 let R = {org: 'k', a: 0, b: 0, n: 0, pf: -1, pt: -1};
-const VSHORT = {cau: ['चौ॰', 'Cau.'], do: ['दो॰', 'Do.'], so: ['सो॰', 'So.'], cha: ['छं॰', 'Cha.'], shloka: ['श्लो॰', 'Śl.']};
+const VSHORT = {cau: ['चौ॰', 'Chau.'], do: ['दो॰', 'Do.'], so: ['सो॰', 'So.'], cha: ['छं॰', 'Cha.'], shloka: ['श्लो॰', 'Shl.']};
 // A work may name its own verse types (work.json → "types": {type: {name, short}}); they add to or replace the built-in ones while it is open.
 const TYPES0 = [[TYPEN, Object.assign({}, TYPEN)], [VSHORT, Object.assign({}, VSHORT)]];
 function applyTypes(){
@@ -405,7 +423,7 @@ function verseHTML(i){
     // bookmark (top right), ⋮ (bottom right). A one-line verse is given a second line's height so the corners stay apart.
     const top = y === 0 ? (hasAu(i) ? '<button class="vb vplay" data-a="play" aria-label="play"><svg><use href="#i-play"/></svg>' + (SRC.au && flagsNow()[id] && !(S.timing.flagsOn && !S.timing.on) ? REVB : '') + '</button>' : '') + '<button class="vb vbm' + (bm ? ' bm-on' : '') + '" data-a="bm" aria-label="bookmark"><svg><use href="#i-bm"/></svg></button>' : '';
     const undo = last && S.timing.on && SRC.au && myStarts()[id] ? '<span class="vundo"><button class="vb" data-a="tundo" aria-label="' + T('पहले जैसा', 'Undo') + '" title="' + T('पहले जैसा', 'Undo') + '"><svg><use href="#i-undo"/></svg></button></span>' : '';   // ↶ (bottom left) in timing mode, on a verse you set
-    // ⚑ (bottom left) for the reader who turned on "A flag on each verse" (☰ › More settings › Audio timing), outside timing
+    // ⚑ (bottom left) for the reader who turned on "Review timing" (☰ › More settings › Audio timing), outside timing
     // mode (where ↶ has that corner): shown while playing on the verse being recited and the verses just before and after it
     // (the light may already have moved on), and always once marked "Review audio timing" (filled blue; ▶ then needs no dot)
     const flagOn = S.timing.flagsOn && !S.timing.on, flag = last && flagOn && hasAu(i) ? '<span class="vflag"><button class="vb' + (SRC.au && flagsNow()[id] ? ' on' : '') + '" data-a="tflag" aria-label="' + T('ऑडियोका समय जाँचें', 'Review audio timing') + '"><svg><use href="#i-flag"/></svg></button></span>' : '';
@@ -418,7 +436,7 @@ function verseHTML(i){
   const lay = (kind, m, x, fn) => '<div class="layer ' + LCLS(kind) + '">' + hardWords(kind !== 'en' || m.p ? num(x) : esc(x), kind) + (m.edited ? '<span class="tag">' + (kind === 'en' ? 'edited' : T('संशोधित', 'edited')) + '</span>' : '') + (fn && m.f ? '<div class="fn">' + m.f.map(esc).join('<br>') + '</div>' : '') + '</div>';
   const ks = shownKinds(), MS = {}; ks.forEach(k => { const m = mean(k, i); if (m) MS[k] = m; });
   const on = ks.filter(k => MS[k]);
-  // line by line (☰ › More settings › "Meaning line by line", off by default): a source that gives one piece per verse line
+  // line by line (☰ › More settings › "Meaning per line", off by default): a source that gives one piece per verse line
   // shows each piece under its line; otherwise, and for a source without pieces (or a reader's own correction of the verse or
   // the meaning), the meaning is shown whole after the verse
   const lines = m => S.settings.lines && m && !m.edited && !vv.edited && Array.isArray(m.p) && m.p.length === vv.v.length ? m.p : null;
@@ -474,8 +492,10 @@ function endHTML(){
   if (canNext()) return '';
   let h = '<div class="endb">';
   if (R.b === IT.length - 1) h += '<div class="colo">' + esc(TT(W.colophon) || '') + '</div>';
-  if (R.org === 'k'){ const nx = PARTS[R.n + 1]; if (nx) h += '<button class="btn" data-next="' + nx.a + '">' + esc(KNAME(nx.k)) + ' ›</button>'; }
-  else { const P = PLAN[R.org]; if (R.n < P.n){ const [na, nb] = dayRange(R.org, R.n + 1), d = durLabel(spanSecs(na, nb)); h += '<button class="btn" data-next="' + na + '">' + VN(R.n + 1) + ' ›</button>' + (d ? '<div class="ndur">▶ ' + d + '</div>' : ''); } }   // the next vishram, and how long it plays
+  // the button to what comes next (the next part, or the next vishram of a plan), and under it how long that plays: the same in every work
+  const next = (a, b, name) => { const d = durLabel(spanSecs(a, b)); h += '<button class="btn" data-next="' + a + '">' + esc(name) + ' ›</button>' + (d ? '<div class="ndur">▶ ' + d + '</div>' : ''); };
+  if (R.org === 'k'){ const nx = PARTS[R.n + 1]; if (nx) next(nx.a, nx.b, KNAME(nx.k)); }
+  else { const P = PLAN[R.org]; if (R.n < P.n){ const [na, nb] = dayRange(R.org, R.n + 1); next(na, nb, VN(R.n + 1)); } }
   return h + '</div>';
 }
 function renderAround(i, focus){
@@ -517,6 +537,66 @@ let scT;
 window.addEventListener('scroll', () => { if (!$('#reader').classList.contains('on')) return; ensure(); clearTimeout(scT); scT = setTimeout(() => { updateHeader(); savePos(); }, 200); }, {passive: true});
 function savePos(i){ if (i == null) i = topVisibleItem(); const ws = WS(); ws.pos[R.org] = i; ws.last = {org: R.org, i, id: IT[i].id}; save();
   R.at = {org: R.org, id: IT[i].id}; if (CURVIEW === 'reader' && history.state && history.state.v === 'reader') history.replaceState(snap('reader'), ''); }   // Back and a refresh return here
+/* ---------------- the reading anchor: Resume and “Back to” ----------------
+   Where you were reading, not merely where the screen is. Each second while the reader is open and seen, the verse at the top
+   of the screen is looked at. Calm movement (under half a screen in a second) is reading: after 3 calm seconds the anchor
+   follows the top verse. A big move (more than 1.5 screens in a second, a fling) or a navigation (another section or day,
+   search, a bookmark, the plan switch, Back) is a jump: the anchor stays where the reading was, and the new place is only a
+   candidate. It becomes the anchor once it is read there: 20 calm seconds with two verses read forward, or 45 calm seconds
+   (a page that fits on the screen), or as soon as a recording plays there: pressing play is reading, and while it plays the
+   verse being recited is the anchor. Resume (on the work's page) goes to it; in the reader, “Back to …” (laid out like the
+   recording's “Go to …”) shows when it is off the screen, was read in the last 15 minutes, no recording plays and Audio
+   timing is off (marking timings jumps about by design). ws.anchor = {org, id, t}; ws.prev: anchors left for a new place, latest first, three kept. */
+const AN = {cand: null, calm: 0, lastY: 0, going: false, playT0: 0, manual: false};
+function anchorOf(){ const a = W && WS().anchor; return a && ID[a.id] != null && (a.org === 'k' || PLAN[a.org]) ? Object.assign({}, a, {i: ID[a.id]}) : null; }
+function setAnchor(org, i, moved){
+  const ws = WS(), a = ws.anchor; if (!IT[i]) return;
+  if (a && a.id === IT[i].id && a.org === org){ a.t = Date.now(); return; }
+  if (moved && a && a.id) ws.prev = [a].concat((ws.prev || []).filter(p => p.id !== a.id && p.id !== IT[i].id)).slice(0, 3);   // the place left behind
+  ws.anchor = {org, id: IT[i].id, t: Date.now()}; save();
+}
+// a navigation to verse i: the reading may be elsewhere, so the anchor waits (with no anchor yet, this is where reading starts)
+function anchorJump(i){
+  if (AN.going){ AN.going = false; AN.cand = null; AN.calm = 0; return; }   // going back to the anchor itself
+  if (!anchorOf()){ setAnchor(R.org, i); return; }
+  AN.cand = {calm: 0, fwd: 0, top: i}; AN.calm = 0; AN.lastY = scrollY;
+}
+function anchorTick(force){
+  if (AN.manual && !force) return;
+  if (!W || CURVIEW !== 'reader' || document.hidden || S.timing.on){ if (CURVIEW !== 'reader') $('#rAnchor').hidden = true; return; }
+  const y = scrollY, dy = Math.abs(y - AN.lastY), top = topVisibleItem(); AN.lastY = y;
+  if (PL.on && playing()){ backPill(); return; }   // a recording: setCur keeps the anchor
+  if (dy > 1.5 * innerHeight){ anchorJump(top); backPill(); return; }   // a fling
+  if (dy >= 0.5 * innerHeight){ AN.calm = 0; if (AN.cand){ AN.cand.calm = 0; AN.cand.top = top; } backPill(); return; }   // moving fast: looking, not reading
+  AN.calm++;
+  const c = AN.cand;
+  if (c){ c.calm++; if (top > c.top) c.fwd += top - c.top; c.top = top;
+    if ((c.calm >= 20 && c.fwd >= 2) || c.calm >= 45){ AN.cand = null; setAnchor(R.org, top, true); } }
+  else if (AN.calm >= 3) setAnchor(R.org, top);
+  backPill();
+}
+setInterval(anchorTick, 1000);
+// the recording: the verse being recited is the anchor (not while marking timings)
+function anchorPlay(i){ if (!W || !PL.on || S.timing.on) return; const org = CURVIEW === 'reader' ? R.org : ((WS().anchor || {}).org || 'k');
+  const moved = !!AN.cand || !anchorOf() || Math.abs(anchorOf().i - i) > 3; AN.cand = null; setAnchor(org, i, moved); }
+// “↩ Back to …”: in the reader, when the anchor is off the screen (and no recording plays: then ▸ jumps to the recited verse)
+function backPill(){
+  const b = $('#rAnchor'), a = anchorOf(); let show = false;
+  if (a && CURVIEW === 'reader' && !(PL.on && playing()) && !S.timing.on && Date.now() - (a.t || 0) < 15 * 60e3){
+    const el = document.getElementById('v' + a.i), r = el && el.getBoundingClientRect();
+    show = !(r && r.bottom > 70 && r.top < innerHeight - 90);
+  }
+  if (show){ const where = a.org === 'k' ? placeOf(a.i) : [VN(rangeFor(a.org, a.i)[2]), SECN(PAGES[itemPage[a.i]].s)].filter(Boolean).join(' · ');
+    const h = '<b><span class="arr">' + (a.i >= topVisibleItem() ? '↓' : '↑') + '</span>' + T('', 'Back to ') + esc(playLabel(a.i)) + T(' पर लौटें', '') + '</b>' + (where ? '<small>' + esc(where) + '</small>' : '');   // as “Go to …”: an arrow pointing the way, the place, the part or day
+    if (b.innerHTML !== h) b.innerHTML = h;
+    // above the reader's bottom bar (the sections) and the player, never over them
+    const nb = $('#reader .navbar'), pl = $('#player'), tops = [innerHeight];
+    if (nb && nb.offsetHeight) tops.push(nb.getBoundingClientRect().top); if (!pl.hidden) tops.push(pl.getBoundingClientRect().top);
+    b.style.bottom = (innerHeight - Math.min(...tops) + 10) + 'px'; }
+  b.hidden = !show;
+}
+function goAnchor(){ const a = anchorOf(); if (!a) return; AN.going = true; openReader(a.org, a.i, true); backPill(); }
+$('#rAnchor').onclick = goAnchor;
 // a verse opened from search or a bookmark opens in the reading plan chosen on the work's home, on the day that holds it
 function readOrg(){ const o = homeOrg(); return o !== 'k' && PLAN[o] ? o : 'k'; }
 // A place is found again by its item id. Places saved before ids were kept are item positions; when a work later had
@@ -555,18 +635,19 @@ function fixLast(){
   for (const o in ws.pos) ws.pos[o] += sh(ws.pos[o]);
 }
 function openReader(org, i, flash){
+  if (!wReady){ whenReady().then(() => openReader(org, i, flash)); return; }   // the meanings are still on their way (openWork)
   if (!S.hinted && !TOUR){ S.hinted = 1; save(); setTimeout(() => toast(T('किसी शब्दको छूकर अर्थ देखें · नीचेसे प्रसंग चुनें', 'Tap any word for its meaning · choose a section at the bottom')), 900); }
   R.org = org; [R.a, R.b, R.n] = rangeFor(org, i);
   if (!$('#reader').classList.contains('on')) show('reader');
   renderAround(i); if (flash){ const el = document.getElementById('v' + i); if (el) el.classList.add('flash'); }
-  savePos(i);
+  savePos(i); anchorJump(i); setTimeout(backPill, 80);
 }
 function reopenReader(){ fixLast(); const l = WS().last; if (l && IT[l.i]) openReader(l.org, l.i); else show('home', false); }
 function jumpTo(i){
   if (i < R.a || i > R.b){ openReader(R.org, i); return; }
   const pg = itemPage[i];
   if (pg >= R.pf && pg <= R.pt) scrollToItem(i, false); else renderAround(i);
-  setTimeout(() => { updateHeader(); savePos(i); }, 60);
+  setTimeout(() => { updateHeader(); savePos(i); anchorJump(i); backPill(); }, 60);
 }
 function refreshReader(){
   if (!$('#reader').classList.contains('on')) return;
@@ -843,6 +924,10 @@ function buildAudio(){
     a.sort((x, y) => x[1] - y[1]);
   });
 }
+// Where a recording begins for this work: at 0, so the opening music is heard, when the first verse follows a short
+// opening; at the first verse when the work is a part of a longer video (the Hanumān āratī at the end of a Sundarakāṇḍa video)
+const INTRO_MAX = 90;
+function trStart(tr){ const a = SRC.au && SRC.au.at[(IT[tr.fi] || {}).id]; const s = a ? a[1] : 0; return s <= INTRO_MAX ? 0 : s; }
 function hasAu(i){ return !!(SRC.au && SRC.au.at[IT[i].id]); }
 function firstAu(a, b){ for (let i = a; i <= b; i++) if (hasAu(i)) return i; return null; }
 /* YouTube embed driven by postMessage (no external script needed) */
@@ -850,12 +935,27 @@ function ytFrame(){ return $('#ytf'); }
 function ytPost(func, args){ const f = ytFrame(); if (f && f.contentWindow) f.contentWindow.postMessage(JSON.stringify({event: 'command', func, args: args || []}), '*'); }
 function ytLoad(vid, start){
   ytVid = vid; ytOK = false; ytInfo = {t: start, st: -1, d: 0};
-  $('#ytBox').innerHTML = '<iframe id="ytf" width="200" height="200" src="https://www.youtube.com/embed/' + vid + '?enablejsapi=1&autoplay=1&playsinline=1&rel=0&modestbranding=1&start=' + Math.floor(start) + (location.origin && location.origin !== 'null' ? '&origin=' + encodeURIComponent(location.origin) : '') + '" title="YouTube" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+  // the page's address goes with the request (YouTube refuses an embed that comes without one: its error 153)
+  $('#ytBox').innerHTML = '<iframe id="ytf" width="200" height="200" src="https://www.youtube.com/embed/' + vid + '?enablejsapi=1&autoplay=1&playsinline=1&rel=0&modestbranding=1&start=' + Math.floor(start) + (location.origin && location.origin !== 'null' ? '&origin=' + encodeURIComponent(location.origin) : '') + '" title="YouTube" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
   const f = ytFrame(); let n = 0;
-  const hello = () => { if (ytOK || n++ > 20) return; try { f.contentWindow.postMessage(JSON.stringify({event: 'listening', id: 'manas', channel: 'widget'}), '*'); } catch (e) {} setTimeout(hello, 500); };
+  // knock until the player answers: every 0.5 s, then every second, for up to two minutes (a slow phone network)
+  const hello = () => { if (ytOK || f !== ytFrame() || n++ > 130) return; try { f.contentWindow.postMessage(JSON.stringify({event: 'listening', id: 'manas', channel: 'widget'}), '*'); } catch (e) {} setTimeout(hello, n < 20 ? 500 : 1000); };
   f.addEventListener('load', hello);
-  clearTimeout(ytWait); ytWait = setTimeout(() => { if (!ytOK && PL.on) ytBlocked(); }, 5000);
+  ytWatch(10000);
 }
+// YouTube has not answered yet: it may still be loading on a slow network, or the phone was locked as it started. The player
+// is never taken away for that: a note with "Play on YouTube" is laid over it, and goes as soon as the player answers. Only
+// YouTube's own refusal (onError) says a recording may not be played here.
+function ytWatch(ms){
+  clearTimeout(ytWait);
+  ytWait = setTimeout(() => {
+    if (ytOK || !PL.on) return;
+    if (document.hidden){ document.addEventListener('visibilitychange', () => ytWatch(6000), {once: true}); return; }   // in the background: wait until the app is seen again
+    ytBlocked();
+  }, ms);
+}
+function ytNote(html){ ytNoteOff(); const d = document.createElement('div'); d.className = 'ytno'; d.innerHTML = html; $('#ytBox').appendChild(d); }
+function ytNoteOff(){ $$('#ytBox .ytno').forEach(x => x.remove()); }
 // Playing speed: 0.5× to 2× — YouTube's own speed, so the verse times (in the recording's
 // time) stay right; the light follows the recording. Chosen with the speed button in the player bar; kept for next time.
 const RATES = [0.5, 0.75, 1, 1.25, 1.5, 2];
@@ -871,7 +971,7 @@ function spanSecs(a, b){
 // 48 m · 4 h 58 m (४ घं ५८ मि), to the nearest minute: a listening time, so it is shown with ▶, never as the time to read
 function durLabel(sec){ if (!sec) return ''; const m = Math.max(1, Math.round(sec / 60)), h = Math.floor(m / 60), r = m % 60;
   return h ? DEV(h) + T(' घं', ' h') + (r ? ' ' + DEV(r) + T(' मि', ' m') : '') : DEV(m) + T(' मि', ' m'); }
-function applyRate(){ if (ytOK) ytPost('setPlaybackRate', [RATE()]); if (PL.on) $('#pTrack').textContent = playingName(); $('#pRate').textContent = RATE() + '×'; }
+function applyRate(){ if (ytOK) ytPost('setPlaybackRate', [RATE()]); if (PL.on) pSub(); $('#pRate').textContent = RATE() + '×'; }
 // the speed button in the player bar: one tap moves to the next speed, round and round
 $('#pRate').onclick = () => { S.settings.rate = RATES[(RATES.indexOf(RATE()) + 1) % RATES.length]; save(); applyRate(); toast(T('गति ', 'Speed ') + RATE() + '×'); };
 /* outside the website (e.g. a claude.ai artifact) YouTube cannot be embedded: open YouTube's own player page, which can stop at the end of what was asked */
@@ -880,15 +980,21 @@ function ytWatchURL(){
   if (PL.end != null){ const nx = A.at[(IT[PL.end + 1] || {}).id]; if (nx && nx[0] === PL.t) end = '&end=' + Math.ceil(nx[1]); }
   return 'https://www.youtube.com/embed/' + ytVid + '?autoplay=1&start=' + st + end;
 }
-function ytBlocked(){
-  if (navigator.onLine === false){ $('#ytBox').innerHTML = '<div class="ytno"><p>' + T('सुननेके लिए इंटरनेट चाहिए।', 'Playing needs the internet.') + '</p></div>'; return; }   // offline: not a blocked page
-  $('#ytBox').innerHTML = '<div class="ytno"><p>' + T('यह पन्ना YouTube वीडियो नहीं चला पा रहा।', 'This page is not allowed to play YouTube here.') + '</p><a class="btn" target="_blank" rel="noopener" href="' + ytWatchURL() + '">' + T('YouTube पर इसी दोहे से सुनें ↗', 'Play on YouTube from this verse ↗') + '</a></div>';
+// why: 'refused' (YouTube error 101 / 150 / 153: the recording may not be played outside YouTube), 'gone' (100: removed or
+// private), otherwise slow to start. Offline: it needs the internet.
+function ytBlocked(why){
+  if (navigator.onLine === false){ ytNote('<p>' + T('सुननेके लिए इंटरनेट चाहिए।', 'Playing needs the internet.') + '</p>'); return; }   // offline: not a blocked page
+  const msg = why === 'refused' ? T('यह रिकॉर्डिंग YouTube के बाहर नहीं चलती।', 'This recording plays only on YouTube.')
+    : why === 'gone' ? T('यह रिकॉर्डिंग YouTube पर अब नहीं मिलती।', 'This recording is no longer on YouTube.')
+    : T('YouTube शुरू होनेमें समय ले रहा है…', 'YouTube is taking a while to start…');
+  ytNote('<p>' + msg + '</p>' + (why === 'gone' ? '' : '<a class="btn" target="_blank" rel="noopener" href="' + ytWatchURL() + '">' + T('YouTube पर इसी पदसे सुनें ↗', 'Play on YouTube from this verse ↗') + '</a>'));
 }
 window.addEventListener('message', e => {
   if (!/youtube(-nocookie)?\.com$/.test((e.origin || '').replace(/^https?:\/\/(www\.)?/, ''))) return;
   let d; try { d = typeof e.data === 'string' ? JSON.parse(e.data) : e.data; } catch (x) { return; }
   if (!d) return;
-  if (d.event === 'onReady' || d.event === 'initialDelivery' || d.event === 'infoDelivery'){ if (!ytOK){ ytOK = true; if (RATE() !== 1) ytPost('setPlaybackRate', [RATE()]); if (PL.on) $('#pTrack').textContent = playingName(); if (PL.on && PL.snip != null && PL.seekT != null) ytPost('seekTo', [PL.seekT, true]); } }   // a preview in a freshly loaded player: the page can only start it at a whole second, so seek to the exact time
+  if (d.event === 'onError'){ const c = +d.info; clearTimeout(ytWait); if (PL.on) ytBlocked(c === 101 || c === 150 || c === 153 ? 'refused' : c === 100 ? 'gone' : ''); return; }
+  if (d.event === 'onReady' || d.event === 'initialDelivery' || d.event === 'infoDelivery'){ if (!ytOK){ ytOK = true; ytNoteOff(); clearTimeout(ytWait);if (RATE() !== 1) ytPost('setPlaybackRate', [RATE()]); if (PL.on) pSub(); if (PL.on && PL.snip != null && PL.seekT != null) ytPost('seekTo', [PL.seekT, true]); } }   // a preview in a freshly loaded player: the page can only start it at a whole second, so seek to the exact time
   const info = d.info || {};
   if (typeof info.currentTime === 'number'){ ytInfo.t = info.currentTime; ytInfo.at = performance.now(); }
   if (typeof info.playbackRate === 'number' && info.playbackRate !== RATE() && ytOK && PL.on) ytPost('setPlaybackRate', [RATE()]);
@@ -897,6 +1003,19 @@ window.addEventListener('message', e => {
   if (d.event === 'onStateChange' && typeof d.info === 'number'){ ytInfo.st = d.info; syncPlayer(); if (d.info === 0) onEnded(); }
 });
 /* what is playing, in the app's own words: the reading (kāṇḍa or plan day) and the reciter — never the recording's title */
+// the player's label: in a work counted by dohas, a verse under a doha is “Verse 106.3” (Doha 106, its third verse) and the
+// doha itself “Doha 106”; elsewhere the verse's own short label (Shloka 1, Mantra 2.1)
+// the player's label (and Resume's, Go to's and Back to's): the citation, with the word the work gives a type where its name
+// would not fit ("Verse 106.3": the third verse under Doha 106; "Mantra 2.1.1"; "Chhand 10.1"). Like the part, a named section
+// is not in it (the narrow player); placeOf names them where there is room
+function playLabel(i){ const it = IT[i], c = CIT(it), wd = W.cite && W.cite.word && W.cite.word[it.y];
+  if (!vNum(c)) return vLabel(it);
+  return (wd ? TT(wd) : TYPE[it.y]) + ' ' + vNum(c); }
+// where a verse is, around its label: the part (in a work of several) and a named section ("Uttar Kand · Closing", "Namaskarashtak")
+function placeOf(i){ const p = PAGES[itemPage[i]]; return [PARTS.length > 1 ? KNAME(IT[i].p) : '', SECN(p.s)].filter(Boolean).join(' · '); }
+// the player's small line: outside the reader it says the label can be tapped (“Go to verse ›”); in the reader, nothing
+function pSub(){ const out = CURVIEW !== 'reader'; $('#pTrack').textContent = out ? T('पदपर जाएँ ›', 'Go to verse ›') : ''; $('#pInfo').classList.toggle('go', out);
+  $('#pInfo').setAttribute('aria-label', T('चल रहे पदपर जाएँ', 'Go to the verse playing')); }
 function playingName(){ return (R.org === 'k' ? KNAME(R.n) : TT(PLAN[R.org].name) + ' · ' + VN(R.n)) + ' · ' + TT(SRC.au.meta.title); }   // the speed has its own button in the bar
 // Fine-tuning preview: after − / + on a start, the first 2 s of the verse play from the new start; on an
 // end, the last 2 s up to the new end. Then the player pauses, so the next tap can follow at once.
@@ -907,11 +1026,11 @@ function livePlay(){ return PL.on && playing() && PL.snip == null; }
 function snippet(i, k){
   const x = SRC.au.at[IT[i].id]; if (!x) return; const tr = SRC.au.tracks[x[0]];
   const t0 = k === 1 ? x[1] : Math.max(x[1], x[2] - 2), t1 = k === 1 ? (x[2] != null ? Math.min(x[2], x[1] + 2) : x[1] + 2) : x[2];
-  PL.on = true; PL.t = x[0]; PL.end = null; PL.snip = t1; PL.whole = false; PL.endMsg = '';
+  PL.on = true; PL.t = x[0]; PL.end = null; PL.one = false; PL.snip = t1; PL.whole = false; PL.endMsg = '';
   $('#player').hidden = false; document.body.classList.add('playing');
   seekGuard(t0);
   if (ytVid !== tr.yt || !ytFrame()) ytLoad(tr.yt, t0); else { ytPost('seekTo', [t0, true]); ytPost('playVideo'); ytInfo.t = t0; ytInfo.at = performance.now(); }
-  setCur(i); $('#pTrack').textContent = playingName(); syncPlayer();
+  setCur(i); pSub(); syncPlayer();
   clearInterval(snipT); snipT = setInterval(() => {   // checked often, from the player's last report and the time since
     if (PL.snip == null){ clearInterval(snipT); return; }
     const now = playTime() + (playing() && ytInfo.at && PL.seekT == null ? RATE() * (performance.now() - ytInfo.at) / 1000 : 0);
@@ -923,12 +1042,12 @@ function playFrom(i, end){
   PL.snip = null;
   if (!hasAu(i)){ const j = firstAu(i, Math.min(IT.length - 1, i + 80)); if (j == null) return; i = j; }
   const [t, st0] = SRC.au.at[IT[i].id], tr = SRC.au.tracks[t];
-  const st = (end != null && i === tr.fi) ? 0 : st0;
-  PL.on = true; PL.t = t; PL.end = end; PL.cur = -1; PL.whole = false; PL.endMsg = '';
+  const st = (end != null && i === tr.fi) ? trStart(tr) : st0;
+  PL.on = true; PL.t = t; PL.end = end; PL.one = end === i; PL.cur = -1; PL.whole = false; PL.endMsg = ''; AN.playT0 = Date.now();   // PL.one: a single verse
   $('#player').hidden = false; document.body.classList.add('playing'); wake(true);
   seekGuard(st);
   if (ytVid !== tr.yt || !ytFrame()) ytLoad(tr.yt, st); else { ytPost('seekTo', [st, true]); ytPost('playVideo'); ytInfo.t = st; ytInfo.at = performance.now(); }
-  setCur(i); $('#pTrack').textContent = playingName(); syncPlayer();
+  setCur(i); pSub(); syncPlayer();
 }
 // Right after a seek the player still reports its old time (or a moment before the asked-for one), which would light the
 // previous verse for a beat. Until it reports a time at the asked-for start (at most 4 s), use that start.
@@ -960,7 +1079,7 @@ function tick(anchor){
     const last = PL.end, whole = PL.whole, msg = whole ? T('पाठ पूर्ण', 'Recitation complete') : PL.endMsg || T('पूर्ण', 'Finished');
     stopAudio(); const nx = whole ? null : firstAu(last + 1, Math.min(IT.length - 1, last + 80));
     if (TOUR && TOUR.waiting) return;   // the tour's verse has been heard: the tour finishes (no "Play on")
-    if (nx == null) toast(msg); else toastAct(msg, T('▶ आगे सुनें', '▶ Play on'), () => { if (!$('#reader').classList.contains('on')) openReader(R.org, nx); playFrom(nx); });
+    if (nx == null) toastLight(msg); else toastAct(msg, T('▶ आगे सुनें', '▶ Play on'), () => { if (!$('#reader').classList.contains('on')) openReader(R.org, nx); playFrom(nx); });
     return;
   }
   // a verse's end matters only where playing stops (one verse, or the last verse of a reading): never skipped. While timings
@@ -978,7 +1097,9 @@ function tick(anchor){
   const m = at(show), e2 = endOf(show);
   if (e2 != null && time >= e2 && m >= 0 && m + 1 < a.length) show = a[m + 1][0];
   setCur(show); followLines(show, time);
-  const d = ytInfo.d || SRC.au.tracks[PL.t].dur; $('#pProg').style.width = (100 * time / d) + '%';
+  // the bar runs over this work's part of the recording only (a work that is a slice of a longer video starts at 0%)
+  const tr = SRC.au.tracks[PL.t], d = ytInfo.d || tr.dur, s0 = trStart(tr);
+  $('#pProg').style.width = Math.max(0, Math.min(100, 100 * (time - s0) / Math.max(1, d - s0))) + '%';
 }
 setInterval(tick, 300);
 /* place the verse being recited in the space between the top bar and the player:
@@ -1014,7 +1135,8 @@ function followLines(i, time){
 function setCur(i){
   if (PL.cur === i) return; PL.cur = i; PL.line = null;
   $$('#rBody .verse.now').forEach(v => v.classList.remove('now'));
-  $('#pVerse').textContent = KNAME(IT[i].p) + ' · ' + posLabel(i); $('#pTrack').textContent = playingName();
+  $('#pVerse').textContent = playLabel(i); pSub();   // only the place in the text, short enough for the narrow player, so it is seen to move verse by verse
+  anchorPlay(i);
   if (!$('#reader').classList.contains('on')) return;
   if (i < R.a || i > R.b){ R.org = R.org; [R.a, R.b, R.n] = rangeFor(R.org, i); renderAround(i); }
   else if (!document.getElementById('v' + i)) renderAround(i, false);
@@ -1030,7 +1152,11 @@ function playing(){ return ytInfo.st === 1 || ytInfo.st === 3; }
 function syncPlayer(){ $('#pPlay').innerHTML = '<svg><use href="#i-' + (playing() ? 'pause' : 'play') + '"/></svg>'; $('#pRate').textContent = RATE() + '×'; syncStep(); }
 $('#pPlay').onclick = () => { if (playing()) ytPost('pauseVideo'); else ytPost('playVideo'); setTimeout(syncPlayer, 400); };
 $('#pClose').onclick = stopAudio;
-function stepVerse(d){ PL.snip = null; const a = AUT[PL.t]; const k = a.findIndex(x => x[0] === PL.cur); const n = k + d; if (k >= 0 && n >= 0 && n < a.length){ seekGuard(a[n][1]); ytPost('seekTo', [a[n][1], true]); ytInfo.t = a[n][1]; ytInfo.at = performance.now(); PL.cur = -1; tick(); } }
+// ⏮ ⏭: one verse back or on. After a single verse was played (▶ beside it), that verse alone is played and stops, as each
+// further press plays one more; past the end of a section being played, the same. Within it, playing goes on.
+function stepVerse(d){ PL.snip = null; const a = AUT[PL.t]; const k = a.findIndex(x => x[0] === PL.cur); const n = k + d; if (k >= 0 && n >= 0 && n < a.length){
+    const to = a[n][0]; if (PL.one || (PL.end != null && to > PL.end)){ playFrom(to, to); return; }
+    seekGuard(a[n][1]); ytPost('seekTo', [a[n][1], true]); ytInfo.t = a[n][1]; ytInfo.at = performance.now(); PL.cur = -1; tick(); } }
 /* timing review: set a verse's start by ear. The player reports its time a few times a second, so the moment of the tap is
    worked out from the last report; 0.3 s is taken off for the time it takes to hear the word and tap. */
 function nowAt(){ const t = playTime(), since = PL.seekT != null ? PL.seekAt : ytInfo.at; return Math.max(0, t + (playing() && since ? RATE() * (performance.now() - since) / 1000 : 0) - 0.3 * RATE()); }   // right after a seek, the player may still report its old time: the asked-for time is used (playTime)
@@ -1108,8 +1234,8 @@ function jumpPill(){
   const el = document.getElementById('v' + PL.cur), r = el && el.getBoundingClientRect(), top = $('#reader .bar').getBoundingClientRect().bottom, pl = $('#player').hidden ? {top: innerHeight} : $('#player').getBoundingClientRect();
   const seen = r && r.bottom > top + 24 && r.top < pl.top - 24;   // some of the verse is on the screen
   if (seen){ b.hidden = true; return; }
-  const i = PL.cur, where = R.org === 'k' ? (PARTS.length > 1 ? KNAME(IT[i].p) : '') : VN(R.n);
-  const h = '<b><span class="arr">' + (i >= topVisibleItem() ? '↓' : '↑') + '</span>' + T('', 'Go to ') + esc(posLabel(i)) + T(' पर जाएँ', '') + '</b>' + (where ? '<small>' + esc(where) + '</small>' : '');   // "Go to <verse>", a big arrow pointing the way
+  const i = PL.cur, where = R.org === 'k' ? placeOf(i) : [VN(R.n), SECN(PAGES[itemPage[i]].s)].filter(Boolean).join(' · ');
+  const h = '<b><span class="arr">' + (i >= topVisibleItem() ? '↓' : '↑') + '</span>' + T('', 'Go to ') + esc(playLabel(i)) + T(' पर जाएँ', '') + '</b>' + (where ? '<small>' + esc(where) + '</small>' : '');   // "Go to <verse>", a big arrow pointing the way
   if (b.innerHTML !== h) b.innerHTML = h; b.style.bottom = (innerHeight - pl.top + 10) + 'px'; b.hidden = false;
 }
 setInterval(jumpPill, 300);
@@ -1165,8 +1291,19 @@ function renderLibrary(){
     const ids = b.dataset.node.split('/'); let n = node, c = null; ids.forEach(id => { c = (n.children || []).find(x => x.id === id); n = c; });
     if (c.work) openWork(c.work); else { libPath.push(...ids); history.pushState(snap('library'), ''); renderLibrary(); window.scrollTo(0, 0); }
   });
-  $$('#libList [data-open-work]').forEach(b => b.onclick = () => openWork(b.dataset.openWork));
+  $$('#libList [data-open-work]').forEach(b => { b.onclick = () => { if (b.dataset.held){ delete b.dataset.held; return; } openWork(b.dataset.openWork); }; holdFor(b, () => aboutWork(b.dataset.openWork)); });
   $$('#libCrumbs [data-lp]').forEach(b => b.onclick = () => { libPath = libPath.slice(0, +b.dataset.lp + 1); history.pushState(snap('library'), ''); renderLibrary(); window.scrollTo(0, 0); });
+}
+// a long press (half a second, the finger kept still) on a work in the library opens About this work instead of the work;
+// the click that follows the press is then ignored (data-held). Right-click (contextmenu) does the same on a computer.
+function holdFor(el, fn){
+  let t = null, x = 0, y = 0;
+  const go = () => { t = null; el.dataset.held = 1; if (navigator.vibrate) try { navigator.vibrate(15); } catch (e) {} fn(); };
+  el.addEventListener('pointerdown', e => { if (e.button > 0) return; delete el.dataset.held; x = e.clientX; y = e.clientY; clearTimeout(t); t = setTimeout(go, 500); });
+  const stop = () => { clearTimeout(t); t = null; };
+  el.addEventListener('pointermove', e => { if (t && Math.hypot(e.clientX - x, e.clientY - y) > 10) stop(); });   // a scroll is not a press
+  ['pointerup', 'pointercancel', 'pointerleave'].forEach(k => el.addEventListener(k, stop));
+  el.addEventListener('contextmenu', e => { e.preventDefault(); if (t){ stop(); go(); } else if (!el.dataset.held){ el.dataset.held = 1; fn(); } });
 }
 /* library search: finds works and shelves by title, author, edition, description or id, in either script */
 const normQ = x => (x || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[\u093c]/g, '').normalize('NFC');
@@ -1205,23 +1342,39 @@ function workPath(id){ let r = null; (function walk(n){ (n || []).forEach(c => {
 const SALUTE = '॥ ॐ श्री परमात्मने नमः ॥';
 function saluteOf(id){ let r = null; (function walk(n){ (n || []).forEach(c => { if (c.work === id) r = c.salute; else walk(c.children); }); })(LIB); return r || SALUTE; }
 function showSalute(text){ $('#loading').textContent = text; }
-// the greeting stays at least 1.5 s so it can be read; the time spent loading counts towards it
-const SALUTE_MS = typeof window.__SALUTE_MS === 'number' ? window.__SALUTE_MS : 1500;
-// The greeting is only for stepping into a work from the library (or the tour): never when the app starts, on a refresh
-// or on Back. Then the screen just waits, blank, for as long as loading takes.
-let saluteAt = 0, greeted = false;
-async function hideSalute(){ const left = greeted ? SALUTE_MS - (performance.now() - saluteAt) : 0; if (left > 0) await new Promise(r => setTimeout(r, left)); $('#loading').hidden = true; greeted = false; }
+// The greeting (the work's salutation) shows only when opening a work takes more than 0.2 s, so a quick open goes straight
+// to the work's page; once shown it stays 0.3 s, so it does not flicker. Only for stepping into a work from the library (or
+// the tour): never when the app starts, on a refresh, on Back, or for the work already open, when the screen just waits, blank.
+const SALUTE_AFTER = typeof window.__SALUTE_MS === 'number' ? window.__SALUTE_MS : 200, SALUTE_HOLD = SALUTE_AFTER ? 300 : 0;
+let saluteAt = 0, saluteT = null, greeted = false;
+function coverOn(text, after){ clearTimeout(saluteT); showSalute(text); const on = () => { $('#loading').hidden = false; saluteAt = performance.now(); };
+  if (after > 0) saluteT = setTimeout(on, after); else on(); }
+async function coverOff(){ clearTimeout(saluteT); saluteT = null; if (!$('#loading').hidden && greeted){ const left = SALUTE_HOLD - (performance.now() - saluteAt); if (left > 0) await new Promise(r => setTimeout(r, left)); }
+  $('#loading').hidden = true; greeted = false; }
+const hideSalute = coverOff;
+// The work's page needs only the work and its recording: it shows as soon as they are here. The meanings and the
+// dictionaries (megabytes for the Manas) load behind it; the reader and search wait for them (WREADY) when opened sooner.
+let WREADY = Promise.resolve(), wReady = true;
+async function whenReady(){ if (wReady) return; coverOn('', 200); await WREADY; await coverOff(); }
 async function openWork(id, noShow){
-  greeted = !noShow; showSalute(greeted ? saluteOf(id) : '');
-  if (greeted || W === null || W.id !== id){ if ($('#loading').hidden){ $('#loading').hidden = false; } saluteAt = performance.now(); }
+  greeted = !noShow && !(W && W.id === id);
+  if (greeted) coverOn(saluteOf(id), SALUTE_AFTER);
+  else if (W === null || W.id !== id) coverOn('', $('#loading').hidden ? 200 : 0);   // a quiet open: blank, and only if it is slow
   try {
-    if (!W || W.id !== id){ const path = workPath(id); W = await getJSON(path + '/work'); W.path = path; partReset(); buildWork(); moveRenamed(); fixLast(); await Promise.all([loadSources(), loadGlossaries()]);
-      if (BYPART()){ const l = WS().last; loadPart(l && IT[l.i] ? IT[l.i].p : 0); } }   // the part “Continue” opens, while the home page shows
+    if (!W || W.id !== id){ $('#rAnchor').hidden = true; $('#rAnchor').innerHTML = ''; AN.cand = null; AN.calm = 0; const path = workPath(id); W = await getJSON(path + '/work'); W.path = path;   /* another work: nothing of the last one's reading stays */ partReset(); buildWork(); moveRenamed(); fixLast();
+      await loadSources('au');
+      wReady = false; const w = W;
+      WREADY = Promise.all([loadSources('meanings'), loadGlossaries()]).then(() => { if (W !== w) return; if (BYPART()){ const l = WS().last; loadPart(l && IT[l.i] ? IT[l.i].p : 0); } })   // the part “Continue” opens
+        .finally(() => { if (W === w) wReady = true; });
+    }
     S.work = id; WS().at = Date.now(); save();   // when it was last used: the shelf lists recent works first
   } catch (e) { const off = navigator.onLine === false || await fetch('library/.ping?' + Date.now(), {cache: 'no-store'}).then(() => false, () => true);   // offline: not even a probe gets through
-    toast(off ? T('इंटरनेट नहीं है — यह ग्रन्थ इस फ़ोनपर पहले खोला नहीं गया', 'No internet — this work has not been opened on this phone yet') : T('यह ग्रन्थ नहीं खुल सका', 'Could not open this work')); $('#loading').hidden = true; return; }
-  await hideSalute();
-  if (!noShow) show('home');
+    toast(off ? T('इंटरनेट नहीं है — यह ग्रन्थ इस फ़ोनपर पहले खोला नहीं गया', 'No internet — this work has not been opened on this phone yet') : T('यह ग्रन्थ नहीं खुल सका', 'Could not open this work')); await coverOff(); return; }
+  // from the library: the page shows now and the rest loads behind it. A quiet open (start, refresh, Back) keeps the cover until
+  // the whole work is here, so the screen underneath (the library) never shows in between
+  if (noShow){ await WREADY; await coverOff(); return; }
+  await coverOff(); show('home');
+  await WREADY;   // a caller that awaits openWork gets the whole work
 }
 
 /* ---------------- work home ---------------- */
@@ -1235,19 +1388,24 @@ function fitTitle() {
 }
 addEventListener('resize', () => { if ($('#hTitle') && $('#hTitle').offsetParent) fitTitle(); });
 const VEDIC = /[\u0951\u0952\u1CD0-\u1CFF\uA8E0-\uA8FF]/;   // verses with svara marks are set in the Vedic font
+// a plan's page before or after the reading, titled by the work (work.json → vidhi.titles; the visarjana by its own title)
+function pageTitle(pg){ const V = W.vidhi || {}, t = pg === 'visarjan' ? V.visarjan && V.visarjan.title : (V.titles || {})[pg]; return t ? TT(t) : pg === 'vidhi' ? LB.vidhi() : pg; }
 function renderHome(){
   if (!W) return;
   $('#hTitle').textContent = TT(W.title); fitTitle(); $('#hSub').textContent = [TT(W.by), TT(W.from)].filter(Boolean).join(' · ');   // the author and, where there is one, the parent text — never the publisher or source
   // ▶ the whole work, start to end, across every part and recording
   const pa = $('#hPlayAll'), fa = firstAu(0, IT.length - 1); pa.hidden = fa == null; pa.onclick = () => playRange('k', 0, IT.length - 1);
-  fixLast(); const L = WS().last;
-  // one short button: continue where you left off (the reader shows where you are)
-  $('#contCard').innerHTML = L && IT[L.i] ? '<button class="btn ghost cont" id="cGo">' + T('आगे पढ़ें', 'Continue') + ' ›</button>' : '';
-  if ($('#cGo')) $('#cGo').onclick = () => openReader(L.org, L.i);
+  $('#hPlayT').textContent = fa != null ? durLabel(spanSecs(0, IT.length - 1)) : '';   // the whole recording's time, under it
+  fixLast(); const L = WS().last, A = anchorOf() || (L && IT[L.i] ? {org: L.org, i: L.i} : null);
+  // Resume: where you were reading (the reading anchor), named inside it in the player's short form, as large as Play all
+  const shortAt = i => [placeOf(i), playLabel(i)].filter(Boolean).join(' · ');
+  $('#contCard').innerHTML = A ? '<button class="btn ghost cont" id="cGo"><span>' + T('आगे पढ़ें', 'Resume') + ' ›</span><small>' + esc(shortAt(A.i)) + '</small></button>' : '';
+  if ($('#cGo')) $('#cGo').onclick = () => { AN.going = true; openReader(A.org, A.i, true); };
   const org = homeOrg();
   $('#orgSeg').innerHTML = '<button data-org="k">' + esc(TT(W.parts.name)) + '</button>' + PLANS.map(p => '<button data-org="' + p.id + '">' + esc(TT(p.name)) + '</button>').join('');
   $$('#orgSeg button').forEach(b => { b.classList.toggle('on', b.dataset.org === org); b.onclick = () => { WS().org = b.dataset.org; save(); renderHome(); }; });
-  const play = (o, a, b) => firstAu(a, b) != null ? '<button class="lplay" data-po="' + o + '" data-pa="' + a + '" data-pb="' + b + '" aria-label="play"><svg><use href="#i-play"/></svg></button>' : '';
+  // ▶ with its time under it, on every row that has a recording (parts, sections, reading days alike)
+  const play = (o, a, b) => firstAu(a, b) != null ? '<button class="lplay timed" data-po="' + o + '" data-pa="' + a + '" data-pb="' + b + '" aria-label="play"><svg><use href="#i-play"/></svg></button><span class="ldur">' + durLabel(spanSecs(a, b)) + '</span>' : '';
   let h = '';
   $('#orgSeg').hidden = !PLANS.length;   // a work without reading plans needs no switch
   if (org === 'k' && PARTS.length === 1){   // a single-part work (an āratī, a stotra): list its sections straight away
@@ -1255,17 +1413,42 @@ function renderHome(){
     ts.forEach((t, n) => { const name = t.hi || t.en ? TNAME(t) : KNAME(P.k); h += '<li class="rowp">' + play('k', t.i, t.end) + '<button class="it" data-open="' + t.i + '"><span class="no">' + DEV(n + 1) + '</span><span class="grow"><span class="ti">' + esc(name) + '</span><br><span class="ds">' + esc(spanLabel(t.i, t.end)) + '</span></span><span class="chev">›</span></button></li>'; });
   }
   else if (org === 'k') PARTS.forEach(p => { const tps = TOPICS.filter(t => IT[t.i].p === p.k).length || (W.sections ? PAGES.filter(g => g.k === p.k && SECN(g.s)).length : 0);   /* its topics, else its named sections */ h += '<li class="rowp">' + play('k', p.a, p.b) + '<button class="it" data-open="' + p.a + '"><span class="no">' + DEV(p.k + 1) + '</span><span class="grow"><span class="ti">' + esc(KNAME(p.k)) + '</span><br><span class="ds">' + DEV(tps) + T(' प्रसंग', tps === 1 ? ' section' : ' sections') + '</span></span><span class="chev">›</span></button></li>'; });
-  else { const P = PLAN[org]; const dn = Object.keys(DONE(ME(), org)).length; h += '<li class="small muted" style="padding:6px 2px;border:0">' + DEV(dn) + ' / ' + DEV(P.n) + T(' विश्राम पूर्ण · विश्रामके अन्तमें “विश्राम पूर्ण करें” दबाएँ', ' vishrams completed · tap “Mark vishram complete” at the end of each') + '</li>';
+  else { const P = PLAN[org]; const dn = Object.keys(DONE(ME(), org)).length; h += '<li class="pdone" aria-label="' + DEV(dn) + ' / ' + DEV(P.n) + T(' विश्राम पूर्ण', ' vishrams completed') + '"><span class="pdbar"><span style="width:' + Math.round(100 * dn / P.n) + '%"></span></span><span class="pdn">' + DEV(dn) + ' / ' + DEV(P.n) + '</span></li>';   // how much of the plan is done; a vishram's number marks it done
     // pages read before the first day and after the reading (pūrvāṅga / uttarāṅga), when the plan names them
-    const page = (pg, when) => { const t = pg === 'aarti' ? T('श्रीरामायणजीकी आरती', 'Śrī Rāmāyaṇajī kī Āratī') : pg === 'visarjan' ? TT(W.vidhi.visarjan.title) : T('पारायण-विधि', 'Pārāyaṇa vidhi'); if (pg === 'visarjan') when = T('पारायणके अन्तिम दिन', 'On the last day of the pārāyaṇa'); return '<li class="rowp"><button class="it" data-page="' + pg + '"><span class="no pg"><svg><use href="#i-lamp"/></svg></span><span class="grow"><span class="ti">' + t + '</span><br><span class="ds">' + when + '</span></span><span class="chev">›</span></button></li>'; };
+    const page = (pg, when) => { const t = pageTitle(pg); if (pg === 'visarjan') when = T('पारायणके अन्तिम दिन', 'On the last day of the parayan'); return '<li class="rowp"><button class="it" data-page="' + pg + '"><span class="no pg"><svg><use href="#i-lamp"/></svg></span><span class="grow"><span class="ti">' + t + '</span><br><span class="ds">' + when + '</span></span><span class="chev">›</span></button></li>'; };
     (P.before || []).forEach(pg => h += page(pg, T('पाठसे पहले', 'Before the reading')));
-    for (let n = 1; n <= P.n; n++){ const [a, b] = dayRange(org, n), d = DONE(ME(), org)[n], t = firstAu(a, b) != null ? durLabel(spanSecs(a, b)) : ''; h += '<li class="rowp">' + (t ? play(org, a, b).replace('class="lplay"', 'class="lplay timed"') + '<span class="ldur">' + t + '</span>' : play(org, a, b)) + '<button class="it" data-open="' + a + '"><span class="no' + (d ? ' done' : '') + '">' + (d ? '✓' : DEV(n)) + '</span><span class="grow"><span class="ti">' + VN(n) + '</span><br><span class="ds">' + rangeDesc(a, b) + '</span></span><span class="chev">›</span></button></li>'; }
+    for (let n = 1; n <= P.n; n++){ const [a, b] = dayRange(org, n), d = DONE(ME(), org)[n], t = firstAu(a, b) != null ? durLabel(spanSecs(a, b)) : ''; h += '<li class="rowp"><button class="lmark" data-mark="' + n + '" aria-label="' + VN(n) + (d ? T(': पूर्ण — अपूर्ण करें', ': complete — mark not complete') : T(': पूर्ण करें', ': mark complete')) + '"></button>' + play(org, a, b) + '<button class="it" data-open="' + a + '"><span class="no' + (d ? ' done' : '') + '">' + (d ? '✓' : DEV(n)) + '</span><span class="grow"><span class="ti">' + VN(n) + '</span><br><span class="ds">' + rangeDesc(a, b) + '</span></span><span class="chev">›</span></button></li>'; }
     (P.after || []).forEach(pg => h += page(pg, T('पाठके बाद', 'After the reading'))); }
   $('#orgList').innerHTML = h;
   $$('#orgList [data-open]').forEach(b => b.onclick = () => openReader(org, +b.dataset.open));
   $$('#orgList [data-page]').forEach(b => b.onclick = () => { vidTab = b.dataset.page === 'vidhi' ? 'v' : b.dataset.page; show('vidhi'); });
   $$('#orgList [data-pa]').forEach(b => b.onclick = ev => { ev.stopPropagation(); playRange(b.dataset.po, +b.dataset.pa, +b.dataset.pb); });
+  // a vishram's number: tap to mark it complete, tap again to mark it not complete (as “Mark vishram complete” at its end does)
+  $$('#orgList [data-mark]').forEach(b => b.onclick = ev => { ev.stopPropagation(); const n = +b.dataset.mark, d = DONE(ME(), org); if (d[n]) delete d[n]; else d[n] = Date.now(); save(); renderHome();
+    toast(VN(n) + (d[n] ? T(' पूर्ण — जय श्रीराम', ' complete — Jai Shri Ram') : T(' अपूर्ण किया', ' marked not complete'))); });
 }
+/* ⓘ About this work, under the title on the work's page: what the work is, so a reader
+   can decide to read it. The shelf entry's introduction (library/index.json "intro": {hi: [paragraphs], en: [paragraphs]},
+   written from the work's sources) comes first, else its one line ("desc"). On the work's page, the facts the library holds
+   follow: language, length, listening time and reciter, the edition; from the library, a button opens the work. */
+function workNode(id){ let r = null; (function walk(n){ (n || []).forEach(c => { if (c.work === id) r = c; else walk(c.children); }); })(LIB); return r || {}; }
+function aboutWork(id){
+  id = id || (W && W.id); if (!id) return; const nd = workNode(id), here = !!W && W.id === id && CURVIEW !== 'library';
+  const intro = nd.intro ? [].concat(TT(nd.intro) || []) : nd.desc ? [TT(nd.desc)] : [];
+  const by = here ? [TT(W.by), TT(W.from)] : [TT(nd.by)];
+  let facts = '';
+  if (here){
+    const row = (k, v) => v ? '<dt>' + k + '</dt><dd>' + esc(v) + '</dd>' : '';
+    const n = BYPART() ? 0 : IT.length, len = n ? DEV(n) + T(' पद', ' verses') : '';
+    const au = SRC.au && firstAu(0, IT.length - 1) != null ? durLabel(spanSecs(0, IT.length - 1)) + ' · ' + TT(SRC.au.meta.title) : '';
+    facts = '<dl>' + row(T('भाषा', 'Language'), LANGS[W.lang] ? TT(LANGS[W.lang].name) : '') + row(T('विस्तार', 'Length'), len) + row(T('सुनें', 'Listen'), au) + row(T('पाठ', 'Text'), TT(W.edition)) + '</dl>';
+  }
+  openSheet('<div class="about"><h2>' + esc(TT(nd.title || (W && W.title))) + '</h2>' + (by.some(Boolean) ? '<p class="muted small">' + esc(by.filter(Boolean).join(' · ')) + '</p>' : '')
+    + intro.map(p => '<p>' + esc(p) + '</p>').join('') + facts
+    + (here ? '' : '<div class="acts"><button class="btn" id="abOpen">' + T('पढ़ें', 'Open') + ' ›</button></div>') + '</div>');
+  if ($('#abOpen')) $('#abOpen').onclick = () => { closeSheet(); openWork(id); };
+}
+$('#hAbout').onclick = () => aboutWork();
 $('#hLib').onclick = () => { libPath = []; show('library'); };   // “‹ Library” goes to the library itself, not the shelf last visited
 $('#hMenu').onclick = mainMenu;
 
@@ -1310,10 +1493,44 @@ const scopes = new Set(['v', 'h', 'e', 'n', 'pa']);
 $$('#scope .chip').forEach(c => c.onclick = () => { const s = c.dataset.s; if (scopes.has(s)) scopes.delete(s); else scopes.add(s); c.classList.toggle('on'); runSearch(); });
 let sT; $('#q').addEventListener('input', () => { clearTimeout(sT); sT = setTimeout(runSearch, 250); });
 function snip(text, q, latin){ const src = text; const low = latin ? normL(src) : normD(src); const nq = latin ? normL(q) : normD(q); let p = low.indexOf(nq); if (p < 0) return esc(src.slice(0, 160)) + (src.length > 160 ? '…' : ''); let a = Math.max(0, p - 60), b = Math.min(src.length, p + nq.length + 80); if (a > 0){ const sp = src.indexOf(' ', a); if (sp > -1 && sp < p) a = sp + 1; } const s = src.slice(a, b); const pp = (latin ? normL(s) : normD(s)).indexOf(nq); let out; if (pp >= 0 && (latin ? normL(s) : normD(s)).length === s.length) out = esc(s.slice(0, pp)) + '<mark>' + esc(s.slice(pp, pp + nq.length)) + '</mark>' + esc(s.slice(pp + nq.length)); else out = esc(s); return (a > 0 ? '…' : '') + out + (b < src.length ? '…' : ''); }
+// A number typed into a work's search finds by number. In a work counted by dohas (the Manas, its kands), the doha is the main
+// counter and the chaupais count again under each: "45" (or "दोहा ४५") finds Doha 45 in each part, "45.3" (or "45 3") Chaupai 3
+// under Doha 45. In a work without dohas (a stotra, an Upanishad), a number finds the verse of that number.
+// A number typed in a work's search finds the verses cited so (CIT): "45" Doha 45 of each kand (and 45क, 45ख), "45.3"
+// the verse cited 45.3 (a chaupai before a chhand of the same number), "2.1.1" the Katha's mantra, "दोहा ४५" or "chhand 10.1"
+// with the type's name; a number that only begins citations ("2.1" in the Katha) opens the first verse under it in each part
+const CKEY = s => String(s).replace(/[०-९]/g, c => '०१२३४५६७८९'.indexOf(c)).replace(/[੦-੯]/g, c => '੦੧੨੩੪੫੬੭੮੯'.indexOf(c)).toLowerCase().replace(/[\s()]/g, '');
+function numQuery(q){
+  const d = CKEY(q.trim().replace(/\s*[\/:,]\s*|\s+(?=\d)/g, m => /\d/.test(m) ? m : '.')), m = /^([^\d.]*?)\.?(\d{1,4}(?:\.\d{1,3}){0,3})([^\d.]{0,2})$/.exec(d);
+  if (!m) return null; const word = m[1].replace(/\.+$/, '');
+  const f = x => fold(String(x || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()).replace(/\s/g, '');
+  const w = f(word), is = nm => (nm || []).some(x => x && (f(x) === w || f(x) === w.replace(/e$/, 'a')));
+  let ty = null; const C = W.cite || {};
+  if (word){ ty = Object.keys(TYPEN).filter(k => is(TYPEN[k]) || is(VSHORT[k]) || (C.word && C.word[k] && is([C.word[k].hi, C.word[k].en])));
+    if (C.sec && is([C.sec.hi, C.sec.en])) ty = ty.concat(Object.keys(C.types || {}));
+    if (!ty.length) return null; }
+  else if (C.sec && !m[2].includes('.')) ty = Object.keys(C.types || {});   // a bare number in a work counted by dohā is the dohā
+  return {c: m[2] + m[3], base: m[2], ty, word: !!word};
+}
+function numHits(Q, hits){
+  const v = i => (IT[i].v || []).map(l => l.trim()).join(' '), add = i => hits.push([hits.length, i, LB.verses(), v(i), false]);
+  const all = IT.map((it, i) => i).filter(i => vNum(CIT(IT[i]))), K = {}; all.forEach(i => { K[i] = CKEY(CIT(IT[i])); });
+  const find = ty => { const ok = i => !ty || ty.includes(IT[i].y);
+    // the number itself, and where only digits were typed its lettered forms too (3 → 3क, 3ख); 13a → 13अ
+    let got = all.filter(i => ok(i) && (K[i] === Q.c || (Q.c === Q.base && K[i].startsWith(Q.base) && /^[^\d.]/.test(K[i].slice(Q.base.length)))));
+    if (!got.length) got = all.filter(i => ok(i) && K[i].startsWith(Q.base) && /^[^\d.]/.test(K[i].slice(Q.base.length)));
+    if (!got.length){ const seen = new Set(); got = all.filter(i => ok(i) && K[i].startsWith(Q.c + '.') && !seen.has(IT[i].p) && seen.add(IT[i].p)); }   // 2.1 → the first of 2.1.x
+    return got; };
+  // a bare number in a work counted by dohā: the dohā of that number in each part (not an opening soratha of the same number)
+  const bare = !Q.word && Q.ty, inSec = bare ? all.filter(i => isNum(IT[i].s)) : null;
+  let got = bare ? find(Q.ty).filter(i => inSec.includes(i)) : find(Q.ty); if (!got.length && bare) got = find(null);
+  got.forEach(add);
+}
 function runSearch(){
   if (SCOPE === 'lib'){ const q = $('#q').value; if (q.trim()) libSearch(q); else openSearch('lib', true); return; }
-  const q = $('#q').value.trim(), box = $('#sRes');
-  if (q.length < 2){ box.innerHTML = '<div class="empty">' + T('कम-से-कम दो अक्षर लिखें।', 'Type at least two letters.') + '</div>'; return; }
+  if (!wReady){ WREADY.then(runSearch); return; }   // searching a work needs its meanings
+  const q = $('#q').value.trim(), box = $('#sRes'), num = numQuery(q);
+  if (q.length < 2 && !num){ box.innerHTML = '<div class="empty">' + T('कम-से-कम दो अक्षर लिखें।', 'Type at least two letters.') + '</div>'; return; }
   if (!IDX || IDX.w !== idxKey()) buildIdx();
   if (BYPART() && PARTS.some(P => !partReady(P.k))) searchParts(); const loading = SLOADING;   // the meanings of the parts not in yet
   const latin = /[a-zA-Z]/.test(q), nq = latin ? normL(q) : normD(q);
@@ -1324,7 +1541,8 @@ function runSearch(){
       for (const m of meanK) if (x[m] && (words ? wordsIn(qs, x[m].split(' ')) >= need : x[m].includes(qm))) return [m, LBM(m), SRC[m].m[IT[x.i].id][0], false]; }
     else if (scopes.has('e') && x.e && (words ? ew.every(w => x.e.includes(w)) : x.e.includes(nq))) return ['e', LB.e(), SRC.en.m[IT[x.i].id][0], true];
     return null; };
-  if (qj) for (let i = 0; i < IT.length; i++){
+  if (num){ numHits(num, hits); }   // a number: the doha of that number (or a chaupai under it), not the digits in the text
+  else if (qj) for (let i = 0; i < IT.length; i++){
     const x = IDX[i]; x.i = i; const vt = latin ? x.t : x.v, vw = latin ? x.tw : x.vw;
     // a near match that holds few of the words typed is chance; among matches as near, the one holding more words comes first
     if (scopes.has('v') && vt){ const d = near(qj, vt, k), sc = d <= k && qs.length > 1 ? wordsIn(qs, vw) : 1; if (d <= k && (d === 0 || qs.length < 2 || sc >= qs.length / 2)){ hits.push([d - sc / 100, i, LB.verses(), IT[i].v.join(' । '), false]); continue; } }
@@ -1385,21 +1603,21 @@ function renderSettings(){   // the "More settings" page: the rare things only �
 function pendingStarts(){ if (!SRC.au) return {}; const fx = myStarts(), sent = S.timing.sent[tkey()] || {}, out = {}; for (const id in fx) if (ID[id] != null && !fromOf(id) && JSON.stringify(sent[id]) !== JSON.stringify(fx[id])) out[id] = fx[id]; return out; }
 function timingHTML(){
   if (!W) return '';
-  let h = '<h2>' + T('ऑडियोका समय', 'Audio timing') + '</h2><p class="small muted">' + T('जहाँ पद और आवाज़ मेल न खाएँ, वहाँ ठीक करनेके लिये।', 'For fixing places where the lit verse and the voice do not match.') + '</p>' + sw('stm', T('ऑडियोका समय', 'Audio timing'), '', S.timing.on) +
-    sw('stf', T('हर पदपर समय जाँचनेका झंडा', 'A flag on each verse to review its timing'), T('नीचे बाईं ओर; दबानेसे पद जाँचनेकी सूचीमें', 'Bottom left; a tap puts the verse on the to-check list'), !!S.timing.flagsOn);
+  let h = '<h2>' + T('ऑडियोका समय', 'Audio timing') + '</h2>' + sw('stm', T('ऑडियोका समय', 'Audio timing'), T('ऑडियो और पदका मेल ठीक करें', 'Fix audio and verse mismatches'), S.timing.on) +
+    sw('stf', T('समय जाँचें', 'Review timing'), T('झंडा दबानेसे पद जाँच-सूचीमें जुड़ता है', 'Tapping the flag adds a verse to the checklist'), !!S.timing.flagsOn);
   if (S.timing.on && SRC.au){
     const n = Object.keys(myStarts()).filter(id => ID[id] != null).length, p = Object.keys(pendingStarts()).length;
     h += (SRC.au.meta.draft ? sw('stp', T('यह रिकॉर्डिंग जाँच ली — सबके लिये चालू करें', 'This recording is checked: publish it for everyone'), (Object.keys(pendingStarts()).length > SEND_MAX ? T('भेजनेके अन्तिम भागके साथ जाएगा', 'Goes with the last part of the send') : T('भेजनेके साथ जाएगा', 'Goes with the next send')), !!(S.timing.publish || {})[tkey()]) : '') +
       checkList() + helperList() +
-      '<p class="small" style="margin:14px 0 8px">' + esc(TT(SRC.au.meta.title)) + ': ' + DEV(n) + T(' पद आपने ठीक किये', ' verses set by you') + (p ? ' · ' + DEV(p) + T(' भेजने बाकी', ' not sent yet') : '') + '</p>' +
-      '<div class="acts"><button class="btn" id="tSend"' + (p || (S.timing.publish || {})[tkey()] ? '' : ' disabled') + '>' + T('लाइब्रेरीमें भेजें (GitHub)', 'Send to the library (GitHub)') + (p > SEND_MAX ? '<br><small>' + T('भाग १, कुल ', 'part 1 of ') + DEV(Math.ceil(p / SEND_MAX)) + T(' — फिर दोबारा दबाएँ', ' — then tap again') + '</small>' : '') + '</button><button class="btn ghost" id="tSave"' + (n ? '' : ' disabled') + '>' + T('फ़ाइलमें सेव करें', 'Save timings as a file') + '</button><button class="btn ghost" id="tOpen">' + T('फ़ाइल खोलें', 'Open a file') + '</button>' + (n ? '<button class="btn ghost" id="tClear">' + T('मेरे बदलाव हटाएँ', 'Clear adjustments') + '</button>' : '') + '</div>' +
-      '<p class="small muted">' + T('सहायता कर रहे हैं? “फ़ाइलमें सेव करें” दबाकर फ़ाइल साइटके मालिकको भेजें; वे जाँचकर लाइब्रेरीमें जोड़ेंगे। लाइब्रेरीमें सीधे केवल मालिक भेज सकते हैं।', 'Helping? Tap “Save timings as a file” and send the file to the site’s owner, who checks it and adds it to the library. Only the owner can send to the library directly.') + '</p>';
+      '<p class="small" style="margin:14px 0 8px">' + esc(TT(SRC.au.meta.title)) + ': ' + (n ? DEV(n) + T(' पदोंका समय आपने रखा', ' verses timed by you') : T('अभी आपने कोई समय नहीं रखा', 'none timed by you yet')) + (p ? ' · ' + DEV(p) + T(' प्रकाशित करने बाकी', ' to publish') : '') + '</p>' +
+      '<div class="acts"><button class="btn" id="tSend"' + (p || (S.timing.publish || {})[tkey()] ? '' : ' disabled') + '>' + T('बदलाव प्रकाशित करें', 'Publish changes') + (p > SEND_MAX ? '<br><small>' + T('भाग १, कुल ', 'part 1 of ') + DEV(Math.ceil(p / SEND_MAX)) + T(' — फिर दोबारा दबाएँ', ' — then tap again') + '</small>' : '') + '</button><button class="btn ghost" id="tSave"' + (n ? '' : ' disabled') + '>' + T('सेव करें', 'Save') + '</button><button class="btn ghost" id="tOpen">' + T('खोलें', 'Open') + '</button>' + (n ? '<button class="btn ghost" id="tClear">' + T('रीसेट', 'Reset') + '</button>' : '') + '</div>' +
+      '<p class="small muted">' + T('सहायता कर रहे हैं? “सेव करें” दबाकर फ़ाइल साइटके मालिकको भेजें; वे जाँचकर लाइब्रेरीमें जोड़ेंगे। सीधे प्रकाशित केवल मालिक कर सकते हैं।', 'Helping? Tap “Save” and send the file to the site’s owner, who checks it and adds it to the library. Only the owner can publish directly.') + '</p>';
   }
   return h;
 }
 function checkList(){
   const ids = [...new Set([...[...((SRC.au && SRC.au.checkSet) || [])].filter(id => !myStarts()[id]), ...FLAGGED])].filter(id => ID[id] != null).sort((a, b) => ID[a] - ID[b]); if (!ids.length) return '<p class="small muted">' + T('जाँचने लायक कोई पद नहीं बचा।', 'Nothing left to check.') + '</p>';
-  return '<details class="tcheck"><summary>' + T('जाँचने हैं: ', 'To check: ') + DEV(ids.length) + T(' पद — इनकी शुरुआत अनुमानसे रखी गयी है', ' verses — their starts are estimated') + '</summary><div class="tlist">' + ids.slice(0, 400).map(id => '<button data-go-i="' + ID[id] + '">' + esc(itemLabel(ID[id])) + ' <span class="muted">' + fmtT(SRC.au.at[id][1]) + '</span></button>').join('') + '</div></details>';
+  return '<details class="tcheck"><summary>' + T('जाँचने हैं: ', 'To check: ') + DEV(ids.length) + T(' पद', ' verses') + '</summary><div class="tlist">' + ids.slice(0, 400).map(id => '<button data-go-i="' + ID[id] + '">' + esc(itemLabel(ID[id])) + ' <span class="muted">' + fmtT(SRC.au.at[id][1]) + '</span></button>').join('') + '</div></details>';
 }
 // marks loaded from helpers' files that you have not checked yet
 function helperList(){
@@ -1507,7 +1725,7 @@ function renderVidhi(){
   $$('#vidSeg button').forEach(b => { b.classList.toggle('on', b.dataset.v === vidTab); if (b.dataset.v === 'visarjan') b.hidden = !W.vidhi.visarjan; });
   const en = LANG() === 'en'; $$('#vidLang button').forEach(b => b.classList.toggle('on', (b.dataset.l === 'e') === en));
   const V = W.vidhi, L = en ? ' lat' : ''; let h = '';
-  if (vidTab === 'aarti') h = '<div class="h' + L + '">' + T('श्रीरामायणजीकी आरती', 'Śrī Rāmāyaṇajī kī Āratī') + '</div>' + V.aarti.map(l => '<div class="v">' + vW(l) + '</div>').join('');
+  if (vidTab === 'aarti') h = '<div class="h' + L + '">' + esc(pageTitle('aarti')) + '</div>' + V.aarti.map(l => '<div class="v">' + vW(l) + '</div>').join('');
   else if (vidTab === 'visarjan'){ const X = V.visarjan; h = '<div class="h' + L + '">' + esc(TT(X.title)) + '</div><div class="vtip' + L + '">' + esc(TT(X.when)) + '</div>' + X.verses.map(x => '<div class="vcard"><div class="vcv">' + x.v.map(l => '<div>' + vW(l) + '</div>').join('') + '</div><div class="vce' + L + '">' + esc(en ? x.en : x.hi) + '</div></div>').join(''); }
   else (V[en ? 'en' : 'hi'] || []).forEach(([k, s]) => {
     if (k === 'h') h += Array.isArray(s) ? '<div class="h lat">' + esc(s[0]) + ' <span class="hh">' + esc(s[1]) + '</span></div>' : '<div class="h' + L + '">' + esc(s) + '</div>';
@@ -1530,9 +1748,10 @@ let TOUR = null;   // {k: step, t0, base}
 function tourWork(){ const leafs = []; (function walk(n){ (n || []).forEach(c => c.work ? leafs.push(c.work) : walk(c.children)); })(LIB); return leafs.includes('sundarkand') ? 'sundarkand' : leafs[0]; }
 function inView(el){ const r = el.getBoundingClientRect(); return r.width && r.top > 70 && r.bottom < innerHeight - 90; }
 function firstVisible(sel){ const all = $$(sel); return all.find(inView) || all[0] || null; }
+// the tour's first step finds the Sundarakāṇḍa part by its Hindi name, which does not change with the English spelling
 function tourSteps(){
   return [
-    {t: () => { const rows = $$('#orgList [data-open]'), k = PARTS.findIndex(p => /^Sundara/.test(p.en || '')); return (W && W.id === 'sundarkand' && k >= 0 && rows[k]) || rows[0]; }, allow: '#orgList .it', p: T('पढ़ना शुरू करनेके लिये यहाँ छुएँ।', 'Tap here to start reading.'), done: () => CURVIEW === 'reader' && !!$('#rBody .verse')},
+    {t: () => { const rows = $$('#orgList [data-open]'), k = PARTS.findIndex(p => (p.hi || '') === 'सुन्दरकाण्ड'); return (W && W.id === 'sundarkand' && k >= 0 && rows[k]) || rows[0]; }, allow: '#orgList .it', p: T('पढ़ना शुरू करनेके लिये यहाँ छुएँ।', 'Tap here to start reading.'), done: () => CURVIEW === 'reader' && !!$('#rBody .verse')},
     {t: () => firstVisible('#rBody .verse .vtext .w'), allow: '#rBody .vtext .w', p: T('किसी भी शब्दको छुएँ — उसका अर्थ दिखेगा।', 'Tap any word to see its meaning.'), done: () => $('#sheet').classList.contains('on')},
     {t: () => $('#sheet'), allow: '#sheet', p: T('इस पट्टीको नीचे खींचकर बंद करें।', 'Drag the drawer down to close it.'), done: () => !$('#sheet').classList.contains('on'), top: true},
     {t: () => $('#reader .szp'), allow: '#reader .szp', p: T('A+ छूकर अक्षर बड़े करें।', 'Tap A+ to make the letters larger.'), enter: () => { TOUR.base = S.settings.size; }, done: () => S.settings.size > TOUR.base || (TOUR.tap && TOUR.base >= 34)},   // already at the largest: the tap is enough
@@ -1633,7 +1852,8 @@ function pruneLib(nodes, shelves){
   const nav = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || {};
   const was = !asked && (nav.type === 'reload' || nav.type === 'back_forward') && history.state && history.state.v ? history.state : null;
   if (was){ await restore(was); if (!W) await hideSalute(); }   // a refresh: the same page, with the same way back
-  else if (start){ await openWork(start, true); history.replaceState(snap('library'), ''); show('home'); }
+  // opened again: the screen last used — the library, or the work's page, or the reader at your place (S.view); a link to a work opens it
+  else if (start && (asked || S.view !== 'library')){ const lastView = S.view; await openWork(start, true); history.replaceState(snap('library'), ''); show('home'); if (!asked && lastView === 'reader') reopenReader(); }
   else { history.replaceState(snap('library'), ''); renderLibrary(); await hideSalute(); }
   cloudInit();
   if (!S.settings.tour) startTour();

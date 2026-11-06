@@ -34,6 +34,9 @@ The folder's format: `tools/works/README.md`.
 Rebuild: `python3 tools/works/sukhmani-sahib/source/make.py && python3 tools/works/export.py sukhmani-sahib && python3 tools/site/build.py`.
 
 ## Structure
+- **Hierarchy:** 24 Ashtapadis (parts) › each item its own section › the item: the heading, the salok, pauris 1–8 (and the rahāu after pauri 1 of Ashtapadi 1).
+- **Numbering:** a pauri's `n` is its number in its Ashtapadi, the first number of the ॥੮॥੧॥ that ends it; it is cited by it (Pauri 8), the Ashtapadi named beside it where the part is shown (Resume, a verse's place). The heading, the saloks and the rahāu have no number.
+
 
 Parts are the 24 Ashtapadis (अष्टपदी / Ashtapadi). Items, in reading order (ids are permanent):
 
@@ -50,3 +53,8 @@ Salok and of its first pauri (the traditional way to cite Gurbani), in Devanagar
 and in its ISO 15919 transliteration for the English one. Each item's `t` is the ISO 15919 transliteration of its
 Gurmukhi, made by the writing standard (`tools/text/standard.py`); the PDF's own phonetic transliteration is used only by
 `source/check.py`, as a witness of the conversion.
+
+## Introduction
+The readers' introduction (`intro` in `library/index.json`, shown in ⓘ About this work) states only what these support:
+- Wikipedia, "Sukhmani Sahib" (https://en.wikipedia.org/wiki/Sukhmani_Sahib): Guru Arjan, about 1602, Ramsar, Amritsar; Raag Gauri; Ang 262–296; 24 ashtapadis with saloks and eight padas; the name; themes; daily recitation of 60–90 minutes.
+- The text itself and our meanings.

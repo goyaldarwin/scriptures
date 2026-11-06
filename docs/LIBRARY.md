@@ -48,6 +48,7 @@ The work node itself:
 ```
 - `work` is the work's **permanent id**. Readers' bookmarks, notes, progress and choices are stored under it, so it never changes, even if the work moves on the shelf. It must be unique across the library. For a new work, use the same value as its shelf `id` unless that is already taken. The tools folder is `tools/works/<work id>/`.
 - `by`, `edition` (optional, bilingual): shown in the library and searched.
+- `intro` (optional): the readers' introduction, `{"hi": [paragraphs], "en": [paragraphs]}`: what the work is, who composed it and when, what it contains, why it is recited. Written from the work's sources (each fact traceable to one named in the work's `README.md`), never from memory. Shown in ⓘ About this work, under the title on the work's page; without it the sheet shows `desc`. On the work's page the sheet then lists language, length, listening time with reciter, and `edition`.
 - `salute` (optional): the salutation on the opening screen while the work loads. Without it the app shows ॥ ॐ श्री परमात्मने नमः ॥.
 - Moving a work to another shelf is safe: change `path`, move the folder, and nothing readers saved is lost.
 
@@ -60,13 +61,15 @@ The work node itself:
 | `id` | same as `work` in the shelf |
 | `lang` | the language most of its verses are in (a code from `glossary/languages.json`, e.g. `awa`) |
 | `title`, `by`, `edition`, `colophon` | bilingual labels. `edition` names the edition or source (found by the library search; not shown under the title) |
+| `named` | optional, `true`: an āratī known by a name of its own (the Dhūpa Āratī); without it an āratī's Hindi title must be how its first verse begins (`docs/PLAYBOOK.md` §6) |
 | `from` | optional, bilingual: the parent text or context, shown under the title after the author (`by · from`), e.g. the Sundarakāṇḍa's “Śrī Rāmacaritamānasa”, the Sukhmani Sahib's “Sri Guru Granth Sahib, Ang 262–296”. Never a publisher. |
 | `parts` | the top division: `{"name": {"hi":"काण्ड","en":"Kāṇḍa"}, "list": [{"hi":…,"en":…}, …]}` |
 | `load` | optional: `"parts"` for a big work (the Vālmīki Rāmāyaṇa): its meanings (§3) and its own word senses (§5) are one file per part, and the app fetches a part only when a verse of it is shown or used, keeping it in memory and, through the service worker, on the phone. Search reads the verses at once and fetches every part's meanings, one part at a time. The verses (`work.json`) stay one file. Without it, a work loads whole. |
 | `sections` | optional: a label for each section id, `{"bala.1": {"hi": "सर्ग १", "en": "Sarga 1"}}`, shown in the reader's footer, the section picker (which lists the sections when the part has no topics), the work's home and a verse's place (“Sarga 1 · Śloka 5”). A range of sections whose labels differ only in their last number is written once (“Sarga 1–3”); the numbers show as 1 2 3 (`docs/PLAYBOOK.md` §7). Without it, a numeric section is “Dohā N” and others are labelled by their verses. |
 | `items` | every verse, in reading order (below) |
 | `topics` | section headings: `[{"id": <first item id>, "hi": …, "en": …}]` |
-| `plans` | reading plans: `[{"id":"M","name":…,"long":…,"unit":…,"before":["vidhi"],"after":["aarti"],"n":30,"end":[<last item id of each day>]}]`. `before` / `after` (optional; the pūrvāṅga and uttarāṅga) name pages listed before the first day and after the last: `vidhi` (the procedure in `vidhi.hi/en`), `aarti` (`vidhi.aarti`) and `visarjan` (`vidhi.visarjan`: `{title, when, verses: [{v: [lines], hi, en}]}`, recited at the end of a pārāyaṇa). `build.py` refuses a page the work lacks. |
+| `plans` | reading plans: `[{"id":"M","name":…,"long":…,"unit":…,"before":["vidhi"],"after":["aarti"],"n":30,"end":[<last item id of each day>]}]`. `before` / `after` (optional; the pūrvāṅga and uttarāṅga) name pages listed before the first day and after the last: `vidhi` (the procedure in `vidhi.hi/en`), `aarti` (`vidhi.aarti`) and `visarjan` (`vidhi.visarjan`: `{title, when, verses: [{v: [lines], hi, en}]}`, recited at the end of a pārāyaṇa). Each page is titled by the work: `vidhi.titles` → `{"vidhi": {hi, en}, "aarti": {hi, en}}` (the visarjana by its own `title`). `build.py` refuses a page the work lacks or a page without a title. |
+| `cite` | optional: how the work cites a verse, the one rule for every number the app shows or finds (`tools/text/cite.py`; `docs/PLAYBOOK.md` §3): `by` the levels joined with "." (`part` the part's key, `sec` the number its section id ends with, `n` the verse's own; default `["n"]`), `types` other levels for a type (the Mānas's dohā: `["n"]`), `sec` the name of a numbered section (`{"hi": "दोहा", "en": "Doha"}`; without it a section is never called by its number), `word` a shorter word the player uses for a type (`{"cau": {"hi": "पद", "en": "Verse"}}`), `mark` what the number printed at a verse's end counts (`"n"`, or `"sec"`: the Śrī Rudram prints the anuvāka's), `repeat` verses the book itself numbers again. Copied from the work's manifest. |
 | `types` | optional: the work's own verse types, `{"viniyoga": {"name": {hi,en}, "short": {hi,en}}}`. `name` is the full label (headers, search, ranges), `short` the tag at the left of the verse's first line. They add to or replace the built-in Mānas types (`cau`, `do`, `so`, `cha`, `shloka`) while the work is open. |
 | `renamed`, `split` | optional: `renamed` maps an old item id to its new one. In the Mānas, the 16 joint caupāīs Gita Press prints as one (`bal.6.cau3-5`) are one item per caupāī (`bal.6.cau3`, `cau4`, `cau5`), and each old id maps to the first part. The app moves readers' notes, bookmarks, timing marks and place on an old id to the new one (a meaning correction goes to the last part, where the joint Gita Press meaning is); `make_timings.py` reads old ids in its caches the same way. `split`: `[position, items added]` pairs, used to move a place saved as a position only (no id). |
 | `removed` | optional: ids of verses taken out on purpose (the Kaṭha's closing śānti `shanti.2`); an id is never used again. `tools/site/history_check.py` fails when a verse id of the previous version is gone and is neither here nor in `renamed`; a work gone from the shelf must be in `library/removed.json` → `works`. |
@@ -75,9 +78,9 @@ The work node itself:
 | `glossary` | **generated**: `true` when the work has its own `glossary.json` (§5) |
 | `sources` | **generated by `tools/site/build.py`**, never edited: the meaning and audio sources found in the work's `meanings/` and `audio/` folders, `{"hi":[…], "en":[…], "au":[…]}`, plus a list for any other meaning language the work has (`"pa"`). |
 
-An item: `{"id": "bal.86.cau4", "p": 0, "s": "86", "y": "cau", "n": "4", "v": [verse lines, in the work's script], "t": [transliteration lines]}`
+An item: `{"id": "bal.86.cau4", "p": 0, "s": "86", "y": "cau", "n": "4", "c": "86.4", "v": [verse lines, in the work's script], "t": [transliteration lines]}`
 - `l` (only when it differs from the work's `lang`): the verse's language. In the Mānas, `sa` marks the ślokas and the Sanskrit stutis; every other verse is `awa`.
-- `p`: index into `parts.list`. `s`: the section (book page heading, e.g. the dohā number the item belongs to). `y`: type (`shloka`, `cau`, `do`, `so`, `cha`, or one of the work's `types`). A section named in `sections` shows that label; otherwise a numeric `s` is shown as “Dohā N” (the Mānas) and a non-numeric one (e.g. `sh4`) is labelled by its verses. `n`: the number printed in the book.
+- `p`: index into `parts.list`. `s`: the section (book page heading, e.g. the dohā number the item belongs to). `y`: type (`shloka`, `cau`, `do`, `so`, `cha`, or one of the work's `types`). A section named in `sections` shows that label; otherwise a numeric `s` is shown as “Dohā N” (the Mānas) and a non-numeric one (e.g. `sh4`) is labelled by its verses. `n`: the verse's number at its own level, as the book prints it (where a verse ends with a number, `n` is that number: the Kaṭha's 1.1.1 ends ॥१॥, so its `n` is 1). `c` (**generated** by `tools/works/export.py` from `cite`): its citation, "86.4", "1.1.1", "11.17", "3क", or "" for a verse without a number; the app shows and finds verses only by it. A verse taken from another work keeps that work's `c`.
 - `v` (the verse) and its number are the core of the work. Meanings are never stored here.
 - `v` and `t` are written by the standard (`docs/PLAYBOOK.md` §3, `tools/text/standard.py`): `t` is the ISO 15919 transliteration of `v` (Devanagari and Gurmukhi).
 
@@ -85,7 +88,7 @@ An item: `{"id": "bal.86.cau4", "p": 0, "s": "86", "y": "cau", "n": "4", "v": [v
 
 ```json
 {"id": "hi-gitapress", "lang": "hi", "order": 1,
- "title": {"hi": "गीताप्रेस — भावार्थ (हनुमानप्रसाद पोद्दार)", "en": "Gita Press — Hindi bhāvārtha (Hanumānprasād Poddār)"},
+ "title": {"hi": "गीताप्रेस — भावार्थ (हनुमानप्रसाद पोद्दार)", "en": "Gita Press — Hindi bhavarth (Hanuman Prasad Poddar)"},
  "m": {"bal.0.shloka1": ["meaning text", ["footnote", "…"]]}}
 ```
 - `id` = the file name. Name it `<lang>-<publisher or translator>`, lowercase with hyphens, e.g. `en-gitapress`, `hi-swami-ramsukhdas`.

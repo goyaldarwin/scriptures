@@ -61,7 +61,7 @@ hv = lambda name: hashlib.sha1(open(os.path.join(APPD, name), 'rb').read()).hexd
 VJS, VCSS, VF = 'app/app.js?v=' + hv('app.js'), 'app/style.css?v=' + hv('style.css'), 'app/fonts.css?v=' + hv('fonts.css')
 # the card a chat app (WhatsApp …) shows under a shared link to the site: title, description and icon (Open Graph)
 HOST = json.load(open(os.path.join(ROOT, 'apps', 'app.json')))['host']
-SHARE_DESC = 'श्रीरामचरितमानस, सुन्दरकाण्ड, हनुमान चालीसा, उपनिषद्, आरती — मूल पाठ, अर्थ, शब्दार्थ और ऑडियो। निःशुल्क। · Śrī Rāmacaritamānasa, Sundarakāṇḍa, Hanumān Chālīsā, Upaniṣads, āratīs: the text, Hindi and English meanings, the meaning of every word, recitation audio. Free, no ads.'
+SHARE_DESC = 'श्रीरामचरितमानस, सुन्दरकाण्ड, हनुमान चालीसा, उपनिषद्, आरती — मूल पाठ, अर्थ, शब्दार्थ और ऑडियो। निःशुल्क। · Shri Ramcharitmanas, Sundarkand, Hanuman Chalisa, Upanishads, aartis: the text, Hindi and English meanings, the meaning of every word, recitation audio. Free, no ads.'
 OG = ('<meta property="og:type" content="website"><meta property="og:site_name" content="शास्त्र · Scriptures"><meta property="og:title" content="शास्त्र · Scriptures">'
       '<meta property="og:description" content="' + SHARE_DESC + '"><meta property="og:image" content="https://' + HOST + '/app/share-card.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">'
       '<meta property="og:url" content="https://' + HOST + '/"><meta name="description" content="' + SHARE_DESC + '">\n')
@@ -77,7 +77,7 @@ def _walk(ns):
         if 'work' in n: _works.append(n)
         else: _walk(n.get('children', []))
 _walk(json.load(open(os.path.join(SITE, 'library', 'index.json'))))
-json.dump({'id': './', 'name': 'शास्त्र · Scriptures', 'short_name': 'Scriptures', 'description': 'Read and listen to the scriptures: Rāmacaritamānasa, Sundarakāṇḍa, Śrī Rudram and more, with Hindi and English meanings and word-by-word meanings.',
+json.dump({'id': './', 'name': 'शास्त्र · Scriptures', 'short_name': 'Scriptures', 'description': 'Read and listen to the scriptures: Ramcharitmanas, Sundarkand, Shri Rudram and more, with Hindi and English meanings and word-by-word meanings.',
            'lang': 'hi', 'start_url': './', 'scope': './', 'display': 'standalone', 'orientation': 'portrait', 'background_color': '#F6F6F2', 'theme_color': '#2B3A8C', 'categories': ['books', 'education', 'lifestyle'],
            'icons': [{'src': 'app/icon-192.png', 'sizes': '192x192', 'type': 'image/png'}, {'src': 'app/icon-512.png', 'sizes': '512x512', 'type': 'image/png'},
                      {'src': 'app/maskable-512.png', 'sizes': '512x512', 'type': 'image/png', 'purpose': 'maskable'}, {'src': 'app/icon.svg', 'sizes': 'any', 'type': 'image/svg+xml'}],

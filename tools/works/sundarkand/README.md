@@ -27,3 +27,13 @@ Readers' bookmarks, notes and progress are stored per work id, so those made in 
 ## Audio
 
 `audio/ashwin-pathak/`: Pt. Ashwin Kumar Pathak's recording (YouTube `QjSpUgnEPLU`), transcribed (`transcripts/`) and timed by `tools/audio/make_timings.py` → `library/hinduism/granth/tulsidas/sundarkand/audio/ashwin-pathak.json` (all 408 verses; 8 placed by estimate, listed under `check`). `fixes.json` holds the hand-checked starts, with the evidence in `fixes.md`. The Chālīsā and āratī as sung are still to be compared with `text.txt` (the open points in `reconciliation.md`).
+
+## Structure
+- **Hierarchy:** five parts (Opening prayers, Kishkindha Kand (closing verses), Sundarkand, Shri Hanuman Chalisa, Aarti) › sections › verses. The two Mānas parts keep the Mānas's dohā sections (`kishkindha.30`, `sundar.1` …).
+- **Numbering:** as the Mānas (`work.json` → `cite`, the same rule): a verse under a dohā is cited dohā.verse (Verse 1.3), a dohā by its own number (Doha 1); the Chālīsā's caupāīs and dohās and the āratī's stanzas by their own numbers. Verses taken from the Mānas keep its citations.
+- **Topics:** ours (`tools/works/manas/topics.json`, `"topics": "ours"`). **Reading plans:** none.
+
+## Introduction
+The readers' introduction (`intro` in `library/index.json`, shown in ⓘ About this work) states only what these support:
+- The text itself (the Gita Press Mānas) and our topic headings for its story.
+- tools/works/sundarkand/README.md: how the work is put together (opening prayers, the Kishkindha lead-in, Chalisa and aarti), as recited in Pt. Ashwin Kumar Pathak's recording.

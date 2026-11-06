@@ -1,6 +1,7 @@
 """Śrī Rāmacaritamānasa: the Gita Press book data (app_data.json, made by make_appdata.py; README.md) → the work's files.
 
 Writes   ../text.txt                   every verse, with its kāṇḍa, dohā section, language and Gita Press's topic headings
+                                       (their English in plain spelling: plain_en.json, also for book.json)
          ../book.json                  the 30-day and 9-day plans, the pārāyaṇa vidhi (with visarjan.json), and
                                        `renamed` / `split` for the joint caupāīs (below); work.json includes it
          ../meanings/hi/gitapress.json Gita Press's Hindi bhāvārtha (Hanumānprasād Poddār), with its footnotes
@@ -55,7 +56,13 @@ for o in items: o.pop('t')
 assert len({x['id'] for x in items}) == len(items), 'duplicate ids after splitting'
 FIRST = {k: v[0] for k, v in JOINT.items()}; LAST = {k: v[-1] for k, v in JOINT.items()}
 ids = [x['id'] for x in IT]
-topics = [{'id': FIRST.get(ids[t['i']], ids[t['i']]), 'hi': t['hi'], 'en': t.get('en') or t['hi']} for t in d['topics']]
+# English labels in plain, common Indian English (docs/PLAYBOOK.md §6): plain_en.json maps the book's English to ours
+PLAIN = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'plain_en.json'), encoding='utf-8'))
+def plain(x):
+    if isinstance(x, dict): return {k: plain(v) if k != 'hi' else v for k, v in x.items()}
+    if isinstance(x, list): return [plain(v) for v in x]
+    return PLAIN.get(x, x) if isinstance(x, str) else x
+topics = [{'id': FIRST.get(ids[t['i']], ids[t['i']]), 'hi': t['hi'], 'en': plain(t.get('en') or t['hi'])} for t in d['topics']]
 textfile.write(os.path.join(WORK, 'text.txt'), items, topics, PART_KEYS, 'awa', [
     'Śrī Rāmacaritamānasa, Gita Press (Gorakhpur): every verse. Made by source/make.py from the book data; do not edit',
     'here (a fix goes in source/text_fixes.json, source/README.md). Topic headings are Gita Press\'s; ours are topics.json.'])
@@ -69,10 +76,11 @@ book = {
     'renamed': FIRST,
     # a reader's place saved as a bare item position (no id) counts the joint caupāīs as one: [position, items added there]
     'split': [[k, len(JOINT[x['id']]) - 1] for k, x in enumerate(IT) if x['id'] in JOINT],
-    'vidhi': {**d['vidhi'], 'visarjan': {k: v for k, v in json.load(open(os.path.join(HERE, 'visarjan.json'), encoding='utf-8')).items() if k != 'source'}},   # kathā-visarjana: visarjan.md
+    # the pages' titles are data, as every label shown is (docs/LIBRARY.md §2 → plans): the vidhi's and the āratī's
+    'vidhi': {**d['vidhi'], 'titles': {'vidhi': {'hi': 'पारायण-विधि', 'en': 'Parayan vidhi'}, 'aarti': {'hi': 'श्रीरामायणजीकी आरती', 'en': 'Shri Ramayanji ki Aarti'}}, 'visarjan': {k: v for k, v in json.load(open(os.path.join(HERE, 'visarjan.json'), encoding='utf-8')).items() if k != 'source'}},   # kathā-visarjana: visarjan.md
     'vg': d['vg'],
 }
-json.dump(book, open(os.path.join(WORK, 'book.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
+json.dump(plain(book), open(os.path.join(WORK, 'book.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
 
 # ---- Gita Press's meanings ----
 DEVA = str.maketrans('0123456789', '०१२३४५६७८९'); BY = {x['id']: x for x in items}
@@ -113,7 +121,7 @@ for x in IT:
     if not g: continue
     en[x['id']] = g['x']
     if g.get('f'): enn[x['id']] = note_lines(g['f'])
-for lg, m, notes, title in (('hi', hi, hin, {'hi': 'गीताप्रेस — भावार्थ (हनुमानप्रसाद पोद्दार)', 'en': 'Gita Press — Hindi bhāvārtha (Hanumānprasād Poddār)'}),
+for lg, m, notes, title in (('hi', hi, hin, {'hi': 'गीताप्रेस — भावार्थ (हनुमानप्रसाद पोद्दार)', 'en': 'Gita Press — Hindi bhavarth (Hanuman Prasad Poddar)'}),
                             ('en', en, enn, {'hi': 'गीताप्रेस — अंग्रेज़ी अनुवाद', 'en': 'Gita Press — English translation'})):
     m, notes = spread(m, notes, lg)
     jsonio.dump_meanings(os.path.join(WORK, 'meanings', lg, 'gitapress.json'), {'title': title, 'order': 1, 'copied': True, 'm': m, 'notes': notes})

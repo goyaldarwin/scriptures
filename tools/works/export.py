@@ -21,7 +21,7 @@ HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.dirname(os.pat
 sys.path.insert(0, os.path.join(REPO, 'tools')); import jsonio
 sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(REPO, 'tools', 'meanings')); import versenum, overlap, hard_words
-sys.path.insert(0, os.path.join(REPO, 'tools', 'text')); import standard
+sys.path.insert(0, os.path.join(REPO, 'tools', 'text')); import standard, cite
 
 # the title of our own meanings (source "scriptures") in each language, when its file gives none
 OUR_TITLE = {'hi': {'hi': 'भावार्थ — शास्त्र', 'en': 'Hindi meaning — Scriptures'},
@@ -90,7 +90,7 @@ def read_text(wid, M, lib):
             a = sid.index(m.group('a')); b = sid.index(m.group('b')) if m.group('b') else a
             run = S['items'][a:b + 1]
             for x in run:
-                it = {k: v for k, v in x.items() if k not in ('p', 'l', 't')}
+                it = {k: v for k, v in x.items() if k not in ('p', 'l', 't')}   # it keeps its citation c: its number is its place in its own work
                 it['p'] = part
                 if not m.group('b') and sec: it['s'] = sec   # a single verse joins this text's section; a run keeps its own
                 if x.get('l', S['lang']) != M['lang']: it['l'] = x.get('l', S['lang'])
@@ -146,6 +146,8 @@ def export(wid, lib):
     need(not isinstance(M.get('sections'), dict) or all(isinstance(v, dict) and isinstance(v.get('hi'), str) and isinstance(v.get('en'), str) for v in M['sections'].values()),
          f'{wid}/work.json: sections maps a section id to its label {{hi, en}}')
     items, topics, taken = read_text(wid, M, lib)
+    try: cite.compute([x for x in items if x['id'] not in taken], M)   # every verse's number as cited (tools/text/cite.py): the one source of every number shown
+    except AssertionError as e: need(False, f'{wid}/work.json: {e}')
     ids = [x['id'] for x in items]; BYID = {x['id']: x for x in items}; own = [i for i in ids if i not in taken]
     if 'sections' in M:
         bad = sorted(set(M['sections']) - {x['s'] for x in items}); need(not bad, f'{wid}/work.json: sections names sections the text does not have: {bad[:5]}')
@@ -167,6 +169,9 @@ def export(wid, lib):
     for w in set(taken.values()): taken_from[w] = lib.meanings(w)
     for (lg, src), D in srcs.items():
         sid = f'{lg}-{src}'; mine = D.get('m', {})
+        # our own meanings end with the verse's number (docs/PLAYBOOK.md §4): "verse" the number the verse ends with, "cite" its
+        # citation (tools/text/cite.py) where the verse prints another (the Kaṭha's ॥१॥ is mantra 1.1.1); a copied source keeps its own
+        need(D.get('copied') or not mine or D.get('numbers') in ('verse', 'cite'), f'{wid}/meanings/{lg}/{src}.json: "numbers" must be "verse" or "cite" (how the verse number ends each meaning)')
         unknown = [k for k in mine if k not in BYID or k in taken]
         need(not unknown, f'{wid}/meanings/{lg}/{src}.json: meanings for verses this work does not write itself: {unknown[:5]}')
         if mine and not D.get('partial') and not D.get('copied'):
@@ -190,7 +195,7 @@ def export(wid, lib):
             if i not in mine: continue
             v = mine[i]
             if D.get('numbers'):
-                t, pcs = versenum.text_and_pieces(v, BYID[i], lg, by_n=D['numbers'] == 'n')
+                t, pcs = versenum.text_and_pieces(v, BYID[i], lg, by_n=D['numbers'] == 'cite')
             else:
                 t, pcs = (v, None) if isinstance(v, str) else (versenum.joined(v), [x.strip() for x in v])
             m[i] = [t] + ([D['notes'][i]] if i in D.get('notes', {}) else [])
@@ -240,6 +245,9 @@ def export(wid, lib):
     for lg, D in senses.items():   # a word as the app looks it up (standard.fold: गङ्गा and गंगा are one word)
         bad = [k for k, v in D.items() if not (k in said[lg] if v.get('hard') else standard.fold(k) in words.get(lg, ())) or not (v.get('hi') and v.get('en'))]
         need(not bad, f'{wid}/glossary/{lg}.json: senses of words not in any {lg} verse (or, if hard, in its {lg} meanings), or without hi and en: {bad[:5]}')
+        shared = json.load(open(os.path.join(REPO, 'library', 'glossary', f'{lg}.json'), encoding='utf-8')) if os.path.exists(os.path.join(REPO, 'library', 'glossary', f'{lg}.json')) else {}
+        same = [k for k, v in D.items() if k in shared and shared[k].get('hi') == v.get('hi') and shared[k].get('en') == v.get('en')]
+        need(not same, f'{wid}/glossary/{lg}.json: these senses say what the shared dictionary (library/glossary/{lg}.json) already says; a work\'s own sense is only for a different one: {same[:5]}')
     gl, gd = os.path.join(lib.out, WP, 'glossary.json'), os.path.join(lib.out, WP, 'glossary')
     if os.path.exists(gl): os.remove(gl)
     if os.path.isdir(gd): shutil.rmtree(gd)

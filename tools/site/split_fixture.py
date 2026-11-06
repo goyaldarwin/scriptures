@@ -12,8 +12,8 @@ import functools, glob, http.server, json, os, shutil, socketserver, subprocess,
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(os.path.dirname(HERE))
 WORK = 'katha-upanishad'
 # the labels of its sections, in the form a big work gives them (सर्ग १ / Sarga 1): Devanagari digits, shown as 1 2 3
-SECTIONS = {'shanti': {'hi': 'शान्तिपाठ', 'en': 'Śānti Pāṭha'},
-            **{f'v{a}.{v}': {'hi': f'वल्ली {"०१२३"[a]}.{"०१२३"[v]}', 'en': f'Vallī {a}.{v}'} for a in (1, 2) for v in (1, 2, 3)}}
+SECTIONS = {'shanti': {'hi': 'शान्तिपाठ', 'en': 'Shanti Paath'},
+            **{f'v{a}.{v}': {'hi': f'वल्ली {"०१२३"[a]}.{"०१२३"[v]}', 'en': f'Valli {a}.{v}'} for a in (1, 2) for v in (1, 2, 3)}}
 
 def make(tmp):
     """Export the split fixture into tmp/library; returns (that library folder, the work's path)."""

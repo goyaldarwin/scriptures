@@ -5,7 +5,8 @@ therefore made from the transliteration (iast2deva: a letter-for-letter conversi
 library's daṇḍas (॥), and ../check.py compares it with the Devanagari witnesses in witness/,
 see ../reconciliation.md. The transliteration is made by the exporter (tools/text/standard.py).
 
-Items: shanti.1 (the opening śānti), 1.1.1 … 2.3.18 (adhyāya.vallī.mantra, the standard numbering: 29+25+17 and
+Items: shanti.1 (the opening śānti), 1.1.1 … 2.3.18 (ids and citations adhyāya.vallī.mantra, the standard numbering; n is the
+mantra's number in its vallī, as printed: 29+25+17 and
 15+15+18 = 119 mantras). The closing śānti the book prints as "2.3.19" is left out. Sections (pages) are the vallīs.
 Run: python3 settle.py   (then ../export.py)
 """
@@ -87,43 +88,43 @@ def main():
                 lines = [l.replace(wrong, right) for l in lines]
             assert lines and not lines[-1].endswith('।'), (vid, lines)   # the last line carries no bar: the number goes there
             lines[-1] += ' ॥%s॥' % DEV(m)
-            items.append(item(vid, int(a) - 1, 'v%s.%s' % (a, va), 'mantra', vid, lines))
+            items.append(item(vid, int(a) - 1, 'v%s.%s' % (a, va), 'mantra', str(m), lines))   # n: the mantra's number in its vallī, as printed; cited adhyāya.vallī.mantra (work.json → cite)
     assert len(items) == 120, len(items)   # the work ends with 2.3.18: no closing śānti
     TOPICS = [
      {
       "id": "shanti.1",
       "hi": "शान्तिपाठ",
-      "en": "Śānti Pāṭha"
+      "en": "Shanti Paath"
      },
      {
       "id": "1.1.1",
       "hi": "प्रथम अध्याय, प्रथमा वल्ली — नचिकेताकी कथा और तीन वर",
-      "en": "Adhyāya 1, Vallī 1 — The story of Naciketā and the three boons"
+      "en": "Adhyay 1, Valli 1 — The story of Nachiketa and the three boons"
      },
      {
       "id": "1.2.1",
       "hi": "प्रथम अध्याय, द्वितीया वल्ली — श्रेय और प्रेय; ॐ; अजर-अमर आत्मा",
-      "en": "Adhyāya 1, Vallī 2 — The good and the pleasant; Om; the deathless Self"
+      "en": "Adhyay 1, Valli 2 — The good and the pleasant; Om; the deathless Self"
      },
      {
       "id": "1.3.1",
       "hi": "प्रथम अध्याय, तृतीया वल्ली — रथका रूपक; उठो, जागो",
-      "en": "Adhyāya 1, Vallī 3 — The chariot; arise, awake"
+      "en": "Adhyay 1, Valli 3 — The chariot; arise, awake"
      },
      {
       "id": "2.1.1",
       "hi": "द्वितीय अध्याय, प्रथमा वल्ली — भीतर देखो; यही वह है",
-      "en": "Adhyāya 2, Vallī 1 — Look within; this indeed is that"
+      "en": "Adhyay 2, Valli 1 — Look within; this indeed is that"
      },
      {
       "id": "2.2.1",
       "hi": "द्वितीय अध्याय, द्वितीया वल्ली — ग्यारह द्वारोंका नगर; सबका अन्तरात्मा",
-      "en": "Adhyāya 2, Vallī 2 — The city of eleven gates; the inner Self of all"
+      "en": "Adhyay 2, Valli 2 — The city of eleven gates; the inner Self of all"
      },
      {
       "id": "2.3.1",
       "hi": "द्वितीय अध्याय, तृतीया वल्ली — ऊर्ध्वमूल अश्वत्थ; योग; अमरता",
-      "en": "Adhyāya 2, Vallī 3 — The inverted tree; yoga; immortality"
+      "en": "Adhyay 2, Valli 3 — The inverted tree; yoga; immortality"
      }
     ]
     textfile.write(os.path.join(HERE, '..', 'text.txt'), items, TOPICS, ['1', '2'], 'sa', [

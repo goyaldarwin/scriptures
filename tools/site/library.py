@@ -15,7 +15,7 @@ own senses as glossary/<part>.json (docs/LIBRARY.md §3, §5): every part file m
 and the checks below run on the parts joined (a verse's words on its own part's senses).
 """
 import glob, json, os, re, sys, unicodedata
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'text')); import standard
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'text')); import standard, cite
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__)))); import jsonio
 
 class LibraryError(Exception): pass
@@ -79,6 +79,19 @@ def check_work(lib, leaf, LANGS):
     w = json.load(open(wp)); name = path
     _need(w.get('id') == leaf['work'], f"{name}: work.json id {w.get('id')!r} ≠ shelf work {leaf['work']!r}")
     items = w['items']; ids = [x['id'] for x in items]; ID = set(ids)
+    _need('title' not in leaf or leaf['title'] == w.get('title'), f"{name}: the shelf title {leaf.get('title')} ≠ work.json title {w.get('title')}")
+    # English titles and labels are in plain, common Indian English (Shri Ram, Sundarkand, Hanuman Chalisa); the marks of IAST
+    # belong in the transliteration and the meanings (docs/PLAYBOOK.md)
+    MARK = re.compile('[Ā-ɏḀ-ỿ]')
+    labels = [w.get(k) for k in ('title', 'by', 'from', 'edition')] + [leaf.get(k) for k in ('title', 'desc', 'by', 'edition')] + [w['parts'].get('name')] + w['parts']['list'] \
+        + [x for t in (w.get('types') or {}).values() for x in (t.get('name'), t.get('short'))]
+    bad = sorted({l['en'] for l in labels if isinstance(l, dict) and isinstance(l.get('en'), str) and MARK.search(l['en'])})
+    _need(not bad, f"{name}: English titles and labels are in plain spelling (Shri Ram, Sundarkand), not IAST: {bad[:5]}")
+    # an āratī is titled by its opening words (docs/PLAYBOOK.md §6), unless it is known by a name of its own ("named": true, e.g. Dhūpa Āratī)
+    if '/aarti/' in path and not w.get('named'):
+        fold = lambda s: re.sub(r'[\s\-–,।॥.;:!?\'"‘’“”()]', '', s)
+        _need(fold(''.join(items[0]['v'])).startswith(fold(w['title']['hi'])),
+              f"{name}: an āratī's title is its opening words: {w['title']['hi']!r} is not how {items[0]['v'][0]!r} begins (a name of its own: \"named\": true in work.json)")
     _need(w.get('lang') in LANGS, f"{name}: work.json lang {w.get('lang')!r} is not in glossary/languages.json")
     bad = sorted({x['l'] for x in items if 'l' in x} - set(LANGS)); _need(not bad, f"{name}: verse languages {bad} are not in glossary/languages.json")
     # "load": "parts": the meanings and the work's own senses come one file per part (the app fetches a part when it opens it)
@@ -100,6 +113,8 @@ def check_work(lib, leaf, LANGS):
         _need(isinstance(SEC, dict) and all(_bi(v) for v in SEC.values()), f"{name}: sections maps a section id to its label {{hi, en}}")
         bad = sorted(set(SEC) - {x['s'] for x in items}); _need(not bad, f"{name}: sections names sections no verse has: {bad[:5]}")
     _need(len(ID) == len(ids), f"{name}: item ids are not unique")
+    raw = open(wp, encoding='utf-8').read(); _need(raw == unicodedata.normalize('NFC', raw), f"{name}: work.json is not in Unicode NFC (export it through the standard)")
+    bad = cite.check(w); _need(not bad, f"{name}: verse numbers (work.json → cite, tools/text/cite.py): " + '; '.join(bad[:5]))
     # the writing standard (tools/text/standard.py, PLAYBOOK §3): every verse and transliteration is what it makes
     std = standard.apply(json.loads(json.dumps(items)), w['lang'], standard.yajur(path))
     bad = [a['id'] for a, b in zip(items, std) if a['v'] != b['v'] or a.get('t') != b.get('t')]
@@ -127,6 +142,7 @@ def check_work(lib, leaf, LANGS):
             _need(not (ws - set(vs.get('g') or {})), f"{name}: vidhi.visarjan.g lacks {sorted(ws - set(vs.get('g') or {}))[:8]}")
         for k in ('before', 'after'):
             _need(all(x in pages for x in p.get(k, [])), f"{name}: plan {p['id']} {k} {p.get(k)} names a page the work lacks (has {sorted(pages)})")
+            _need(all(x == 'visarjan' or _bi(((w.get('vidhi') or {}).get('titles') or {}).get(x)) for x in p.get(k, [])), f"{name}: plan {p['id']} {k}: every page needs its title in vidhi.titles {{hi, en}}")
     # sources
     # meaning languages: those with a "meaning" block in glossary/languages.json (hi, en, pa);
     # hi, en and au are always listed, another only when the work has one
@@ -180,6 +196,9 @@ def check_work(lib, leaf, LANGS):
         src[k].sort(key=lambda x: (x['order'], x['id']))
         for x in src[k]: del x['order']
     src = {k: v for k, v in src.items() if v or k in ('hi', 'en', 'au')}
+    # the meaning and recording names in Sources are labels too: plain spelling
+    marked = sorted({x['title']['en'] for lst in src.values() for x in lst if isinstance(x.get('title'), dict) and re.search('[\u0100-\u024f\u1e00-\u1eff]', x['title'].get('en') or '')})
+    _need(not marked, f"{name}: source names are in plain spelling, not IAST: {marked[:3]}")
     has_g = os.path.exists(wg) or bool(gfiles)   # the app fetches <work>/glossary.json (or glossary/<part>.json) only when the work says it has one
     if w.get('sources') != src or bool(w.get('glossary')) != has_g:
         w['sources'] = src
@@ -201,12 +220,17 @@ def check_folders():
         _need(not miss, f"tools/works/{d}/: missing {miss}")
         m = json.load(open(os.path.join(f, 'work.json'), encoding='utf-8'))
         _need(m.get('id') == d and m.get('path'), f"tools/works/{d}/work.json: needs id {d!r} and the work's path")
+        rd = open(os.path.join(f, 'README.md'), encoding='utf-8').read()
+        _need(re.search(r'^## Structure$', rd, re.M) and '**Hierarchy:**' in rd and '**Numbering:**' in rd,
+              f"tools/works/{d}/README.md: needs a '## Structure' section with its **Hierarchy:** (part › section › verse) and **Numbering:** (how a verse is cited)")
         out[d] = m['path']
     return out
 
 def prepare(lib):
     bad = standard.selftest()
     _need(not bad, 'tools/text/standard.py fails its own cases: ' + '; '.join(f'{c}: wants {w!r}, makes {g!r}' for c, w, g in bad))
+    bad = cite.selftest()
+    _need(not bad, 'tools/text/cite.py fails its own cases: ' + '; '.join(f'{c}: wants {w!r}, makes {g!r}' for c, w, g in bad))
     LANGS = json.load(open(os.path.join(lib, 'glossary', 'languages.json')))
     for code, L in LANGS.items():
         _need(re.fullmatch(r'[a-z]{2,3}', code), f"languages.json: {code!r} must be an ISO 639 code (2–3 lowercase letters)")
@@ -234,6 +258,12 @@ def prepare(lib):
             for n in g.get('children', []):
                 _need('shelf' not in n, f"shelf: only a genre has shelf ({t['id']}/{g['id']}/{n['id']})")
     folders = check_folders()
+    # one word for one thing (docs/PLAYBOOK.md §7): a verse type has the same name and short tag in every work that declares it
+    TY = {}
+    for d in folders:
+        for k, t in (json.load(open(os.path.join(WORKS, d, 'work.json'), encoding='utf-8')).get('types') or {}).items():
+            key = json.dumps([t.get('name'), t.get('short')], ensure_ascii=False, sort_keys=True)
+            _need(TY.setdefault(k, (key, d))[0] == key, f"tools/works/{d}/work.json: type {k!r} is named {key} but {TY[k][1]} names it {TY[k][0]}; one type, one name")
     works = {}
     for leaf in leaves(shelf):
         _need(leaf['work'] not in works, f"shelf: work id {leaf['work']!r} is used twice")

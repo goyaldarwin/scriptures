@@ -49,6 +49,7 @@ Words go in the shared dictionaries, `library/glossary/<lang>.json`, edited dire
 - `title`, `by`, `edition`, `from` (shown under the title), `colophon`: bilingual labels.
 - `parts.list[].key`: the name `text.txt` uses for a part (`@part aarti`); it is not written to the library.
 - `types`: the work's verse types; the Mānas's own (`cau`, `do`, `so`, `cha`, `shloka`) need no entry.
+- `cite`: how a verse is cited, part › section › verse (`docs/LIBRARY.md` §2, `tools/text/cite.py`): declare it when a verse's own number restarts in each section or part (the Mānas by dohā, the Kaṭha adhyāya.vallī.mantra, the Śrī Rudram anuvāka.mantra); `n` in `text.txt` is always the verse's own number, as printed. Without it a verse is cited by its own number, and the build refuses two verses of one type cited alike in one part: give the sections names (`sections`) or declare `cite`.
 - `load: "parts"`: a big work (the Vālmīki Rāmāyaṇa) is written for loading one part at a time: each meaning source as a header and `meanings/<lang>-<src>/<part index>.json`, and the work's own senses as `glossary/<part index>.json` (`docs/LIBRARY.md` §2, §3, §5). The phone fetches a part's meanings and word senses only when it opens that part. Use it when a work's meanings would make a phone fetch more than a few MB at once; the verses stay one `work.json`.
 - `sections`: a label for each `@section` id, `{"bala.1": {"hi": "सर्ग १", "en": "Sarga 1"}}`, shown wherever the app names a section (footer, section picker, home, a verse's place). Every id must be a section of the text.
 - `prepended`, `removed`, `renamed`, `split`: keep readers' saved places when verses are added before the first, removed or split (`docs/LIBRARY.md`).
@@ -98,7 +99,7 @@ Every other key is copied into `library/<path>/work.json` as it is.
 - The source `scriptures` is ours, written for this library (`tools/meanings/style.md`); any other name is a source we copy, marked `"copied": true`. Its library id is `<lang>-<source>`.
 - `title`: optional for ours (the exporter's default per language), required for a copied source.
 - `order`: the source readers see first has the lowest.
-- `numbers`: ours end with the verse's number, `"verse"` (the number the verse ends with) or `"n"` (its `n`, for works whose verses carry none in their lines).
+- `numbers` (required on our own meanings): they end with the verse's number, `"verse"` (the number the verse ends with) or `"cite"` (its citation, `tools/text/cite.py`: the Kaṭha's mantra 1.1.1, whose verse ends ॥१॥, and the Śrī Rudram, whose mantras print none).
 - `partial`: our source need not cover every verse (otherwise the export stops on a missing one).
 - `m`: a string, or a list of one piece per verse line (read line by line in the app).
 - Ours may not share a run of 10 or more words with a copied source in the same language (`tools/meanings/overlap.py`).

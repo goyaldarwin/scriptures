@@ -2,7 +2,7 @@
 
 @part aarti
 @section ramchandra
-@topic आरती कीजै रामचन्द्र जी की | Āratī Kījai Rāmacandra Jī Kī
+@topic आरती कीजै रामचन्द्र जी की | Aarti Kijai Ramchandra Ji Ki
 [ramchandra.tek tek]
 आरती कीजै रामचन्द्र जी की ।
 हरि-हरि दुष्टदलन सीतापति जी की ॥

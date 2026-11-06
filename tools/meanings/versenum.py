@@ -30,13 +30,13 @@ def mark(item):
 def latin(s): return re.sub('[०-९]', lambda d: str(DEV.index(d.group())), s)
 
 def mark_n(item):
-    """'॥१.१॥' from the item's own number n, for works whose verses carry no mark of their own (the Śrī Rudram
-    numbers its mantras anuvāka.mantra and marks only an anuvāka's end)."""
-    n = str(item.get('n') or '')
+    """'॥१.१५॥' from the item's citation c (tools/text/cite.py), for works whose verses carry no mark of their own (the
+    Śrī Rudram cites its mantras anuvāka.mantra and prints only an anuvāka's number, at its end)."""
+    n = str(item.get('c') or '')
     return '॥' + re.sub(r'\d', lambda d: DEV[int(d.group())], n) + '॥' if n else ''
 
 def with_number(text, item, lang, by_n=False):
-    """The meaning as shown: text, a space, the verse's number (if any). by_n: the number is the item's n."""
+    """The meaning as shown: text, a space, the verse's number (if any). by_n: the number is the item's citation c."""
     assert not _HAS.search(text), f'{item["id"]}: the meaning file must not carry a verse number: {text[-20:]}'
     m = mark_n(item) if by_n else mark(item)
     if not m: return text

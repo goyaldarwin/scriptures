@@ -3,27 +3,23 @@
  "path": "hinduism/aarti/hanuman/hanuman-aarti",
  "lang": "hi",
  "title": {
-  "hi": "श्रीहनुमानजीकी आरती",
-  "en": "Śrī Hanumānjī kī Āratī"
+  "hi": "आरती कीजै हनुमान लला की",
+  "en": "Aarti Kijai Hanuman Lala Ki"
  },
  "by": {
   "hi": "श्रीहनुमानजी",
-  "en": "Śrī Hanumān"
- },
- "from": {
-  "hi": "आरती कीजै हनुमान लला की",
-  "en": "Āratī kījai Hanumāna lalā kī"
+  "en": "Shri Hanuman"
  },
  "parts": {
   "name": {
    "hi": "आरती",
-   "en": "Āratī"
+   "en": "Aarti"
   },
   "list": [
    {
     "key": "aarti",
-    "hi": "श्रीहनुमानजीकी आरती",
-    "en": "Śrī Hanumānjī kī Āratī"
+    "hi": "आरती कीजै हनुमान लला की",
+    "en": "Aarti Kijai Hanuman Lala Ki"
    }
   ]
  },
@@ -31,7 +27,7 @@
   "tek": {
    "name": {
     "hi": "टेक",
-    "en": "Refrain (ṭeka)"
+    "en": "Refrain (tek)"
    },
    "short": {
     "hi": "टेक",

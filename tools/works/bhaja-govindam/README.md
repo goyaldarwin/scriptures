@@ -13,4 +13,11 @@ The folder's format: `tools/works/README.md`.
 - `text.txt`: the settled text, one item per verse, in the recording's order.
 
 ## Structure
+- **Hierarchy:** one part › each śloka its own section › the śloka.
+- **Numbering:** a śloka's `n` is its printed number (॥१॥, ॥१३अ॥), and it is cited by it (Shloka 13अ; search finds it as 13a).
 One part. Items `sh1`–`sh13`, `sh13a`, `sh14`–`sh31` (type `shloka`), each its own section; 13a is not sung in the recording and has no time. Topics: the refrain (1), the Dvādaśa-mañjarikā (2–13), the Caturdaśa-mañjarikā (14–27), the closing verses (28–31). Item ids are permanent.
+
+## Introduction
+The readers' introduction (`intro` in `library/index.json`, shown in ⓘ About this work) states only what these support:
+- The owner's printout of sanskritdocuments.org, भज गोविन्दम् (scriptures-data …/bhaja-govindam/printouts/sanskritdocuments/bhajagovindam.pdf): the author, the name Moha Mudgar, the Kashi story, the Dwadasha- and Chaturdasha-manjarika and their attribution (with its own caution), 31 verses.
+- The text itself: verse 1 (our meaning, paraphrased in the quotation).

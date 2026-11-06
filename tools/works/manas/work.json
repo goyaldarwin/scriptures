@@ -4,11 +4,11 @@
  "lang": "awa",
  "title": {
   "hi": "श्रीरामचरितमानस",
-  "en": "Śrī Rāmacaritamānasa"
+  "en": "Shri Ramcharitmanas"
  },
  "by": {
   "hi": "गोस्वामी तुलसीदास",
-  "en": "Gosvāmī Tulasīdāsa"
+  "en": "Goswami Tulsidas"
  },
  "edition": {
   "hi": "गीताप्रेस, गोरखपुर",
@@ -16,50 +16,85 @@
  },
  "colophon": {
   "hi": "॥ इति श्रीरामचरितमानस समाप्त ॥ सियावर रामचन्द्रकी जय",
-  "en": "॥ इति श्रीरामचरितमानस समाप्त ॥ Glory to Śrī Rāma"
+  "en": "॥ इति श्रीरामचरितमानस समाप्त ॥ Glory to Shri Ram"
  },
  "parts": {
   "name": {
    "hi": "काण्ड",
-   "en": "Kāṇḍa"
+   "en": "Kand"
   },
   "list": [
    {
     "key": "bal",
     "hi": "बालकाण्ड",
-    "en": "Bāla-kāṇḍa"
+    "en": "Bal Kand"
    },
    {
     "key": "ayodhya",
     "hi": "अयोध्याकाण्ड",
-    "en": "Ayodhyā-kāṇḍa"
+    "en": "Ayodhya Kand"
    },
    {
     "key": "aranya",
     "hi": "अरण्यकाण्ड",
-    "en": "Araṇya-kāṇḍa"
+    "en": "Aranya Kand"
    },
    {
     "key": "kishkindha",
     "hi": "किष्किन्धाकाण्ड",
-    "en": "Kiṣkindhā-kāṇḍa"
+    "en": "Kishkindha Kand"
    },
    {
     "key": "sundar",
     "hi": "सुन्दरकाण्ड",
-    "en": "Sundara-kāṇḍa"
+    "en": "Sundar Kand"
    },
    {
     "key": "lanka",
     "hi": "लङ्काकाण्ड",
-    "en": "Laṅkā-kāṇḍa"
+    "en": "Lanka Kand"
    },
    {
     "key": "uttar",
     "hi": "उत्तरकाण्ड",
-    "en": "Uttara-kāṇḍa"
+    "en": "Uttar Kand"
    }
   ]
+ },
+ "cite": {
+  "by": [
+   "sec",
+   "n"
+  ],
+  "types": {
+   "do": [
+    "n"
+   ],
+   "so": [
+    "n"
+   ]
+  },
+  "sec": {
+   "hi": "दोहा",
+   "en": "Doha"
+  },
+  "word": {
+   "cau": {
+    "hi": "पद",
+    "en": "Verse"
+   }
+  },
+  "repeat": [
+   "aranya.20.cha1_2",
+   "lanka.101.cha1_2",
+   "lanka.101.cha2_2"
+  ]
+ },
+ "sections": {
+  "end": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
  },
  "include": [
   "book.json"

@@ -178,6 +178,7 @@ body.timing .verse.tocheck{box-shadow:inset 3px 0 0 var(--saffron)}.tcheck{margi
 .player .pinfo{flex:1;min-width:0;text-align:left;padding:4px 8px}
 .player .pinfo b{display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .player .pinfo small{display:block;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.player .pinfo.go small{color:var(--indigo);font-weight:600}.player .pinfo small:empty{display:none}   /* outside the reader “Go to verse ›” in the link colour, the same size as in the reader */
 .pbar{height:3px;background:var(--rule)}.pbar span{display:block;height:3px;width:0;background:var(--saffron)}
 body.playing #rBody{padding-bottom:150px}
 /* the verse being recited: a tint that covers exactly the verse's own box (its padding gives the text room), widened sideways
@@ -192,12 +193,15 @@ body.playing #rBody{padding-bottom:150px}
 .menu button .revd{margin-left:auto;box-shadow:none}
 .vbm{position:absolute;right:-25px;top:0;height:calc(var(--verse-size) * 1.6)}
 .vtext p.one{padding:calc(var(--verse-size) * .8) 0}
-.rowp{position:relative}
-.heroacts{display:flex;flex-wrap:nowrap;justify-content:center;gap:8px;margin-top:14px}.heroacts .btn{white-space:nowrap;min-width:0;padding-left:16px;padding-right:16px}
+.rowp{position:relative}.lmark{position:absolute;left:-3px;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;z-index:2;background:transparent}   /* over a vishram’s number: tap to mark it complete or not */
+.pdone{display:flex;align-items:center;gap:10px;padding:4px 2px 8px;border:0}.pdbar{flex:1;height:6px;border-radius:3px;background:var(--rule);overflow:hidden}.pdbar span{display:block;height:100%;background:var(--ok);border-radius:3px}.pdn{font-size:13.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.habout{display:inline-flex;align-items:center;gap:4px;padding:2px 4px;border-radius:999px;color:var(--indigo);font-size:inherit;vertical-align:baseline}#hSub:not(:empty)::after{content:" · "}.hsubrow{margin:6px 0 0;color:var(--muted);font-size:14px}.habout svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}   /* ⓘ About this work, under the title: what the work is, before reading it */
+.about p{line-height:1.6;margin:0 0 10px}.about dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:12px 0 4px;font-size:15px}.about dt{color:var(--muted)}.about dd{margin:0}
+.heroacts{display:flex;flex-wrap:nowrap;justify-content:center;gap:8px;margin-top:14px}.heroacts .btn{white-space:nowrap;min-width:0;padding-left:16px;padding-right:16px;flex:0 1 46%;max-width:210px;flex-direction:column;justify-content:center;gap:2px;min-height:62px}.heroacts .btn > span{display:inline-flex;align-items:center;gap:6px}.heroacts .btn small{font-size:12.5px;font-weight:400;opacity:.85;max-width:100%;white-space:normal;text-align:center;line-height:1.3}#contCard{display:contents}   /* Resume (with the place) and Play all (with the time): the same size, side by side */
 .no.pg{background:transparent;border:1px solid var(--rule)}.no.pg svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8}.heroacts:empty{display:none}.btn.cont{font-size:14.5px}.playall svg{width:16px;height:16px;fill:currentColor;stroke:none}
 .list .lhead{font-size:13px;font-weight:700;color:var(--saffron);letter-spacing:.02em;padding:18px 2px 4px;border:0}
-.ytno{width:200px;height:200px;display:flex;flex-direction:column;justify-content:center;gap:10px;padding:10px;box-sizing:border-box;font-size:13px;text-align:center;background:var(--card,#fff);border:1px solid var(--line,#ddd);border-radius:12px}.ytno .btn{display:block;padding:9px 8px;border-radius:10px;background:var(--accent,#2b3990);color:#fff;text-decoration:none;font-size:13px}
-.rowp .lplay ~ .it .grow{padding-right:46px}.lworks{display:flex;flex-wrap:wrap;gap:8px;padding:0 2px 14px;margin-top:-4px}.lworks button{padding:7px 13px;border:1px solid color-mix(in srgb,var(--indigo) 30%,var(--rule));border-radius:999px;font-size:15px;color:var(--indigo);background:var(--surface);font-weight:600;text-align:left}.lworks button.more{color:var(--muted);font-weight:400}
+#ytBox{position:relative;width:200px;height:200px}.ytno{position:absolute;inset:0;z-index:1;width:200px;height:200px;display:flex;flex-direction:column;justify-content:center;gap:10px;padding:10px;box-sizing:border-box;font-size:13px;text-align:center;background:var(--card,#fff);border:1px solid var(--line,#ddd);border-radius:12px}.ytno .btn{display:block;padding:9px 8px;border-radius:10px;background:var(--accent,#2b3990);color:#fff;text-decoration:none;font-size:13px}
+.rowp .lplay ~ .it .grow{padding-right:46px}.lworks{display:flex;flex-wrap:wrap;gap:8px;padding:0 2px 14px;margin-top:-4px}.lworks button{padding:7px 13px;border:1px solid color-mix(in srgb,var(--indigo) 30%,var(--rule));border-radius:999px;font-size:15px;color:var(--indigo);background:var(--surface);font-weight:600;text-align:left}.lworks button.more{color:var(--muted);font-weight:400}.lworks [data-open-work]{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}   /* a long press opens About this work, not the phone’s text menu */
 .lplay{position:absolute;right:30px;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:var(--indigo-soft);color:var(--indigo);display:grid;place-items:center;z-index:2}
 /* a plan day's ▶ with how long it plays under it: the two centred together in the row */
 .lplay.timed{transform:translateY(calc(-50% - 9px))}.ldur{position:absolute;right:18px;width:60px;top:calc(50% + 11px);text-align:center;font-size:12px;line-height:1.2;color:var(--indigo);font-variant-numeric:tabular-nums;white-space:nowrap;pointer-events:none;z-index:2}
@@ -292,6 +296,8 @@ input[type=checkbox],input[type=radio],input[type=range]{accent-color:var(--indi
 .vna .vcm{text-align:left;font-weight:600}
 .toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:20px;font-size:14px;z-index:60;opacity:0;transition:opacity .2s;pointer-events:none;max-width:90vw;text-align:center}
 /* “↓ now playing” pill: shown above the player only while the lit verse is off the screen; tap to come back to it */
+.rback{bottom:calc(18px + env(safe-area-inset-bottom,0px))}   /* ↩ Back to where you were reading (the reading anchor), when it is off the screen; backPill() lifts it above the bottom bar */
+.contat{margin:8px 0 0;font-size:14px;color:var(--muted)}.contat .lnk{color:var(--indigo);font-size:inherit;padding:0;text-decoration:underline;text-underline-offset:3px}
 .pjump{position:fixed;left:50%;transform:translateX(-50%);z-index:22;display:flex;flex-direction:column;align-items:center;padding:6px 18px;border-radius:20px;background:var(--surface);color:var(--ink);border:1px solid var(--rule);box-shadow:0 6px 24px rgba(0,0,0,.14);max-width:90vw;white-space:nowrap}
 .pjump b{font-size:15px;overflow:hidden;text-overflow:ellipsis;max-width:86vw;display:flex;align-items:center;gap:8px}.pjump .arr{font-size:24px;line-height:1;color:var(--saffron)}.pjump small{font-size:12px;color:var(--muted)}
 .toast.on{opacity:1}.toast.act{pointer-events:auto;display:flex;align-items:center;gap:14px;padding:6px 6px 6px 18px;background:var(--surface);color:var(--muted);border:1px solid var(--rule);box-shadow:0 6px 24px rgba(0,0,0,.14);white-space:nowrap}.toast .tact{color:var(--indigo);background:var(--indigo-soft);border-radius:16px;padding:7px 14px;font-weight:700;font-size:14px;white-space:nowrap}
@@ -310,7 +316,7 @@ input[type=checkbox],input[type=radio],input[type=range]{accent-color:var(--indi
 .sz{display:flex;border:1px solid var(--rule);border-radius:999px;overflow:hidden}.sz button{padding:0 11px;min-height:32px;font-weight:700;color:var(--indigo);font-size:15px}.sz button+button{border-left:1px solid var(--rule);font-size:19px}.sz sup{font-size:.6em}
 .libbtn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
 .crumbs{font-size:14px;color:var(--muted);margin:0 0 6px}.crumbs button{color:var(--indigo)}
-.loading{position:fixed;inset:0;z-index:70;background:var(--bg);display:grid;place-items:center;color:var(--saffron);font-size:30px;text-align:center;padding:0 16px}
+.loading{position:fixed;inset:0;z-index:70;background:var(--bg);display:grid;place-items:center;color:var(--saffron);font-size:30px;text-align:center;padding:0 16px}.loading:empty::after{content:"";width:30px;height:30px;border-radius:50%;border:3px solid var(--rule);border-top-color:var(--saffron);opacity:0;animation:spin .8s linear infinite,show .2s .3s forwards}@keyframes spin{to{transform:rotate(360deg)}}@keyframes show{to{opacity:1}}   /* the blank screen while loading: a spinner, after 0.3 s */
 .part-h{margin:30px 0 6px;text-align:center}.part-h b{font-size:calc(var(--verse-size) * 1.15);color:var(--indigo)}   /* headings follow the text size: 24 / 18 / 13 px at the default 21 px */
 .navbar .mid{display:flex;flex-direction:column;align-items:center}
 .navbar .mid .ml{font-size:15px}
@@ -336,6 +342,8 @@ body.playing #reader .navbar{display:none}
 .pstep{font-family:var(--lat);font-size:12.5px;font-weight:700;color:var(--saffron);border:1px solid var(--saffron);border-radius:12px;padding:3px 8px;line-height:1.2;white-space:nowrap}   /* how far − / + move a time, while Audio timing is on: saffron like the timing row */.pcheck{font-family:var(--lat);font-size:12.5px;font-weight:700;color:#fff;background:var(--saffron);border:1px solid var(--saffron);border-radius:12px;padding:3px 9px;line-height:1.2;white-space:nowrap}   /* Next ▸: the next verse still to check, while Audio timing is on */.ptop .ib{width:34px;height:34px}   /* ✕ in the top right corner; the speed sits after ⏭ */
 .prate{flex:none;font-family:var(--lat);font-size:12.5px;font-weight:700;color:var(--indigo);border:1px solid var(--indigo);border-radius:12px;padding:3px 8px;margin:0 0 0 4px;line-height:1.2;white-space:nowrap}   /* playing speed, after ⏭ in the controls: a tap moves to the next speed */
 body.playing #rBody{padding-bottom:240px}
+body.playing .toast{bottom:calc(236px + env(safe-area-inset-bottom,0px))}   /* above the player, never over its video or buttons */
+body.playing .view.on:not(#reader){padding-bottom:calc(240px + env(safe-area-inset-bottom,0px))}   /* the player stays open over the other screens: their last rows scroll up clear of it */
 </style>
 </head>
 <body>
@@ -348,6 +356,7 @@ body.playing #rBody{padding-bottom:240px}
  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M4 22V15"/><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" style="fill:var(--flag-fill,none)"/></symbol>
  <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/></symbol>
  <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+ <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.4"/></symbol>
  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></symbol>
  <symbol id="i-more" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.1" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="2.1" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="2.1" fill="currentColor" stroke="none"/></symbol>
@@ -395,7 +404,7 @@ body.playing #rBody{padding-bottom:240px}
   <button class="ib hmenu" id="hMenu" aria-label="मेनू"><svg><use href="#i-menu"/></svg></button>
  </div></div>
  <div class="wrap zoomable">
-  <div class="hero"><h1 id="hTitle"></h1><p id="hSub"></p><div class="heroacts"><span id="contCard"></span><button class="btn playall" id="hPlayAll" hidden><svg><use href="#i-play"/></svg><span data-en="Play all">सम्पूर्ण पाठ सुनें</span></button></div></div>
+  <div class="hero"><h1 id="hTitle"></h1><p class="hsubrow"><span id="hSub"></span><button class="habout" id="hAbout"><svg><use href="#i-info"/></svg><span data-en="About">परिचय</span></button></p><div class="heroacts"><span id="contCard"></span><button class="btn playall" id="hPlayAll" hidden><span><svg><use href="#i-play"/></svg><span data-en="Play all">सम्पूर्ण पाठ सुनें</span></span><small id="hPlayT"></small></button></div><p class="contat" id="contAt" hidden></p></div>
   <div class="seg" id="orgSeg"></div>
   <ul class="list" id="orgList"></ul>
   <div style="height:40px"></div>
@@ -419,7 +428,7 @@ body.playing #rBody{padding-bottom:240px}
  </div></div>
 </section>
 
-<button id="pJump" class="pjump" hidden></button>
+<button id="pJump" class="pjump" hidden></button><button id="rAnchor" class="pjump rback" hidden></button>
 <div id="player" class="player" hidden><div class="pbar"><span id="pProg"></span></div><div class="wrap pwrap">
   <div class="ytw"><div id="ytBox"></div></div>
   <div class="pside">
@@ -444,7 +453,7 @@ body.playing #rBody{padding-bottom:240px}
   <div class="scope" id="scope">
    <button class="chip on" data-s="v" data-en="Verses">मूल पाठ</button><button class="chip on" data-s="h" data-en="Hindi meaning">हिंदी अर्थ</button><button class="chip on" data-s="e" data-en="English meaning">अंग्रेज़ी अर्थ</button><button class="chip on" data-s="pa" data-en="Punjabi meaning" hidden>पंजाबी अर्थ</button><button class="chip on" data-s="n" data-en="My notes">मेरी टिप्पणियाँ</button>
   </div>
-  <div id="sRes"><div class="empty" data-en="Type any word from a verse, its Hindi meaning or its English meaning.">चौपाई, दोहे या अर्थका कोई भी शब्द लिखें।</div></div>
+  <div id="sRes" class="zoomable"><div class="empty" data-en="Type any word from a verse, its Hindi meaning or its English meaning.">चौपाई, दोहे या अर्थका कोई भी शब्द लिखें।</div></div>
  </div>
 </section>
 
@@ -462,9 +471,9 @@ body.playing #rBody{padding-bottom:240px}
 
 <!-- VIDHI -->
 <section id="vidhi" class="view vidhi">
- <div class="bar"><div class="wrap"><button class="ib" data-back aria-label="वापस"><svg><use href="#i-back"/></svg></button><div class="bt"><div class="t" data-en="Pārāyaṇa vidhi">पारायण-विधि</div></div><div class="sz"><button class="szm" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div><div class="lyr" id="vidLang"><button data-l="h">हिं</button><button data-l="e" class="lat">En</button></div></div></div>
+ <div class="bar"><div class="wrap"><button class="ib" data-back aria-label="वापस"><svg><use href="#i-back"/></svg></button><div class="bt"><div class="t" data-en="Parayan vidhi">पारायण-विधि</div></div><div class="sz"><button class="szm" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div><div class="lyr" id="vidLang"><button data-l="h">हिं</button><button data-l="e" class="lat">En</button></div></div></div>
  <div class="wrap">
-  <div class="seg" id="vidSeg"><button data-v="v" class="on" data-en="Pārāyaṇa vidhi">पारायण-विधि</button><button data-v="aarti" data-en="Āratī">आरती</button><button data-v="visarjan" data-en="Visarjana" hidden>विसर्जन</button></div>
+  <div class="seg" id="vidSeg"><button data-v="v" class="on" data-en="Parayan vidhi">पारायण-विधि</button><button data-v="aarti" data-en="Aarti">आरती</button><button data-v="visarjan" data-en="Visarjana" hidden>विसर्जन</button></div>
   <div id="vidBody" class="zoomable" style="padding-bottom:40px"></div>
  </div>
 </section>
@@ -473,7 +482,7 @@ body.playing #rBody{padding-bottom:240px}
 <div class="scrim" id="scrim"></div>
 <div class="coach" id="coach" hidden><div class="cspot" id="cspot"></div><div class="cbub" id="cbub"><p id="cbText"></p><div class="cbrow"><button id="cbBack" hidden><span data-en="‹ Back">‹ पीछे</span></button><span id="cbStep" class="muted"></span><button id="cbSkip"><span data-en="Skip tour">परिचय छोड़ें</span></button></div></div></div>
 <div class="tour" id="tour" hidden role="dialog" aria-modal="true"><div class="tcard"><div class="tart" id="tourArt"></div><h2 id="tourT"></h2><p id="tourP"></p><div class="tdots" id="tourDots"></div><div class="tbtns"><button class="btn ghost" id="tourSkip"></button><button class="btn" id="tourNext"></button></div></div></div>
-<div class="sheet" id="sheet"><div class="grab"></div><div class="wrap" id="sheetBody"></div></div>
+<div class="sheet" id="sheet"><div class="grab"></div><div class="wrap zoomable" id="sheetBody"></div></div>
 <div class="toast" id="toast"></div>
 <input type="file" id="fileIn" accept="application/json,.json" style="display:none">
 

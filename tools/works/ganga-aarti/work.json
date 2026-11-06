@@ -3,27 +3,23 @@
  "path": "hinduism/aarti/ganga/ganga-aarti",
  "lang": "hi",
  "title": {
-  "hi": "श्रीगंगाजीकी आरती",
-  "en": "Śrī Gaṅgājī kī Āratī"
+  "hi": "ॐ जय गंगे माता",
+  "en": "Om Jai Gange Mata"
  },
  "by": {
   "hi": "माँ गंगा",
-  "en": "Mother Gaṅgā"
- },
- "from": {
-  "hi": "ॐ जय गंगे माता",
-  "en": "Om Jaya Gaṅge Mātā"
+  "en": "Mother Ganga"
  },
  "parts": {
   "name": {
    "hi": "आरती",
-   "en": "Āratī"
+   "en": "Aarti"
   },
   "list": [
    {
     "key": "aarti",
-    "hi": "श्रीगंगाजीकी आरती",
-    "en": "Śrī Gaṅgājī kī Āratī"
+    "hi": "ॐ जय गंगे माता",
+    "en": "Om Jai Gange Mata"
    }
   ]
  },
@@ -31,7 +27,7 @@
   "tek": {
    "name": {
     "hi": "टेक",
-    "en": "Refrain (ṭeka)"
+    "en": "Refrain (tek)"
    },
    "short": {
     "hi": "टेक",

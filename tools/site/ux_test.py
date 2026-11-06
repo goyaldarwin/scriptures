@@ -1,6 +1,7 @@
 """End-to-end test of navigation and the reading experience, at phone size, for every work on the shelf.
 
-Usage:  python3 tools/site/ux_test.py [--shots DIR]      (serves the repository root on a free port)
+Usage:  python3 tools/site/ux_test.py [--shots DIR] [--shard K/N]      (serves the repository root on a free port)
+        python3 tools/site/check.py runs it as shards side by side, with every other check
 Needs:  pip install playwright (Chromium; set CHROMIUM=/path/to/chrome if it is not found)
 
 Each check prints PASS/FAIL with what it saw; the run fails if any check fails or the page logs a script error.
@@ -13,7 +14,18 @@ sys.path.insert(0, os.path.join(ROOT, 'tools', 'audio')); import order as ORDER 
 from playwright.async_api import async_playwright
 
 SHOTS = sys.argv[sys.argv.index('--shots') + 1] if '--shots' in sys.argv else None
+# --shard K/N: the per-work checks (one work at a time, as a reader goes through it; most of the run) are shared among N
+# processes run side by side: shard 0 runs every other check and none of them, shards 1 … N-1 a share of the works each
+SHARD, NSHARD = (map(int, sys.argv[sys.argv.index('--shard') + 1].split('/')) if '--shard' in sys.argv else (0, 1))
+def mine(works):
+    if NSHARD == 1: return works
+    return [w for k, w in enumerate(works) if SHARD and k % (NSHARD - 1) == SHARD - 1]
 results = []
+
+def YT_ERR(e):
+    """An error thrown inside YouTube's own player scripts, not the app's (its stack names only YouTube's files)."""
+    st = getattr(e, 'stack', '') or ''
+    return ('youtube.com' in st or 'ytimg.com' in st) and '/app/app.js' not in st
 
 def check(name, ok, seen=''):
     results.append(bool(ok)); print(('PASS ' if ok else 'FAIL ') + name + (f'  [{seen}]' if seen != '' else ''), flush=True)
@@ -37,148 +49,14 @@ async def main():
         ctx = await b.new_context(viewport={'width': 390, 'height': 844}, device_scale_factor=1, is_mobile=True, has_touch=True)
         pg = await ctx.new_page(); errs = []
         await pg.add_init_script('window.__SALUTE_MS = 0')   # the 1.5 s greeting is tested on its own
-        pg.on('pageerror', lambda e: errs.append(str(e)))
+        pg.on('pageerror', lambda e: None if YT_ERR(e) else errs.append(str(e)))   # YouTube's own script errors (the real player on the CI runner) are not the app's
         n = 0
         async def shot(tag):
             nonlocal n
             if SHOTS: n += 1; os.makedirs(SHOTS, exist_ok=True); await pg.screenshot(path=os.path.join(SHOTS, f'{n:02d}-{tag}.png'))
         ev = pg.evaluate
-        await pg.goto(url); await pg.wait_for_timeout(2500)
-        # first run: an interactive tour inside the Sundarakāṇḍa — each step moves on only when the reader has done it
-        check('first run: the tour shows', await ev("!document.querySelector('#tour').hidden"))
-        check('the page asks browsers never to offer translating it', await ev("document.documentElement.getAttribute('translate') === 'no' && !!document.querySelector('meta[name=google][content=notranslate]')"))
-        await (await pg.query_selector('#tourNext')).click(); await pg.wait_for_timeout(2500)
-        check('tour: opens the Sundarakāṇḍa and lights the first step', await ev("W && W.id") == 'sundarkand' and await ev("!document.querySelector('#coach').hidden && TOUR && TOUR.k === 0"))
-        check('tour: the first step points at the Sundarakāṇḍa itself, not the opening prayers', await ev("IT[+tourSteps()[0].t().dataset.open].id") == 'sundar.0.shloka1', await ev("IT[+tourSteps()[0].t().dataset.open].id"))
-        await ev("tourSteps()[0].t().click()"); await pg.wait_for_timeout(1800)
-        check('tour: opening the text moves to the word step', await ev("TOUR && TOUR.k") == 1, await ev("TOUR && TOUR.k"))
-        check('tour: the text opens at the Sundarakāṇḍa', await ev("IT[R.a].id") == 'sundar.0.shloka1', await ev("IT[R.a].id"))
-        await ev("tourSteps()[1].t().click()"); await pg.wait_for_timeout(1200)
-        check('tour: tapping a word opens its meaning and moves on', await ev("TOUR && TOUR.k") == 2 and await ev("document.querySelector('#sheet').classList.contains('on')"))
-        await ev("document.querySelector('#cbBack').click()"); await pg.wait_for_timeout(1200)
-        check('tour: ‹ Back from “close the drawer” closes it and waits on “tap a word”', await ev("TOUR && TOUR.k") == 1 and not await ev("document.querySelector('#sheet').classList.contains('on')"), await ev("TOUR && TOUR.k"))
-        await ev("tourSteps()[1].t().click()"); await pg.wait_for_timeout(1200)
-        sz0 = await ev("S.settings.size"); await ev("S.settings.size = 34; applyTheme()")   # already at the largest when the A+ step comes
-        await ev("closeSheet()"); await pg.wait_for_timeout(1200)
-        check('tour: closing the drawer moves on', await ev("TOUR && TOUR.k") == 3)
-        await pg.wait_for_timeout(600); stay = await ev("TOUR && TOUR.k")
-        await ev("tourSteps()[3].t().click()"); await pg.wait_for_timeout(1200)
-        check('tour: A+ at the largest size waits for the tap, then moves on', stay == 3 and await ev("TOUR && TOUR.k") == 4, [stay, await ev("TOUR && TOUR.k")])
-        await ev(f"S.settings.size = {sz0}; applyTheme()"); await ev("document.querySelector('#cbBack').click()"); await pg.wait_for_timeout(1200)
-        blocked = await ev("(() => { const b = document.querySelector('#rLayers [data-l=w]'); const w0 = S.settings.layers.w; b.click(); return S.settings.layers.w === w0; })()")
-        check('tour: taps outside the current step do nothing', blocked)
-        check('tour: the first steps have ‹ Back, the first does not', await ev("!document.querySelector('#cbBack').hidden"))
-        await ev("tourSteps()[3].t().click()"); await pg.wait_for_timeout(1200)
-        check('tour: A+ moves on to A−', await ev("TOUR && TOUR.k") == 4 and await ev("tourSteps()[4].t() === document.querySelector('#reader .szm')"))
-        await ev("document.querySelector('#cbBack').click()"); await pg.wait_for_timeout(1200)
-        check('tour: ‹ Back returns to the step before (A+)', await ev("TOUR && TOUR.k") == 3, await ev("TOUR && TOUR.k"))
-        await ev("tourSteps()[3].t().click()"); await pg.wait_for_timeout(1200)
-        await ev("tourSteps()[4].t().click()"); await pg.wait_for_timeout(1200)
-        check('tour: A− makes the text smaller and moves on', await ev("TOUR && TOUR.k") == 5)
-        await ev("tourSteps()[5].t().click()"); await pg.wait_for_timeout(1200)
-        check('tour: switching a meaning moves on', await ev("TOUR && TOUR.k") == 6)
-        await ev("tourSteps()[6].t().click()"); await pg.wait_for_timeout(1200)
-        check('tour: recitation mode moves on', await ev("TOUR && TOUR.k") == 7 and await ev("S.settings.recite"))
-        await ev("document.querySelector('#cbBack').click()"); await pg.wait_for_timeout(1200)
-        check('tour: ‹ Back to recitation mode turns it off so it can be tried again', await ev("TOUR && TOUR.k") == 6 and not await ev("S.settings.recite"))
-        await ev("tourSteps()[6].t().click()"); await pg.wait_for_timeout(1200)
-        await ev("(() => { const b = tourSteps()[7].t(); const i = +b.closest('.verse').dataset.i; ME().bm[KEY(IT[i].id)] = 1; save(); rerenderItem(i); })()"); await pg.wait_for_timeout(300)   # already bookmarked
-        await ev("tourSteps()[7].t().click()"); await pg.wait_for_timeout(700)
-        k_off = await ev("TOUR && TOUR.k")
-        await ev("tourSteps()[7].t().click()"); await pg.wait_for_timeout(1200)
-        check('tour: a verse already bookmarked — taken off and put back — still moves the tour on', k_off == 7 and await ev("TOUR && TOUR.k") == 8, [k_off, await ev("TOUR && TOUR.k")])
-        await ev("for (const k in ME().bm) delete ME().bm[k]; save()")
-        await ev("tourSteps()[8].t().click()"); await pg.wait_for_timeout(1200)
-        check('tour: while the verse plays, the tour waits in the reader', await ev("TOUR && TOUR.waiting && CURVIEW === 'reader' && document.querySelector('#coach').hidden"))
-        await pg.wait_for_timeout(5600)   # the verse plays for 5 seconds
-        check('tour: after 5 s the library, with the parting message in the light card, the meanings back', await ev("!TOUR && !PL.on && CURVIEW === 'library' && libPath.length === 0 && !S.settings.recite && /Tour complete|परिचय पूरा/.test(document.querySelector('#toast').textContent) && document.querySelector('#toast').classList.contains('act')"))
-        await ev("setSize(-2)")
-        check('the tour is remembered', await ev("S.settings.tour === 1"))
-        await ev("S.work = null; save()")
-        await pg.reload(); await pg.wait_for_timeout(2000)
-        check('the tour is not shown again', await ev("document.querySelector('#tour').hidden"))
-        # the drawer closes when dragged down from its handle
-        await ev("openSheet('<p>test</p>')"); await pg.wait_for_timeout(300)
-        await ev("""(() => { const sh = document.querySelector('#sheet'), g = sh.querySelector('.grab'), r = g.getBoundingClientRect(), x = r.left + 5, y = r.top + 2;
-          const t = (yy) => new Touch({identifier: 1, target: g, clientX: x, clientY: yy});
-          g.dispatchEvent(new TouchEvent('touchstart', {bubbles: true, touches: [t(y)]}));
-          g.dispatchEvent(new TouchEvent('touchmove', {bubbles: true, touches: [t(y + 150)]}));
-          g.dispatchEvent(new TouchEvent('touchend', {bubbles: true, touches: []})); })()"""); await pg.wait_for_timeout(300)
-        check('the drawer closes when dragged down', not await ev("document.querySelector('#sheet').classList.contains('on')"))
-        # the opening screen greets each work with its own salutation (library/index.json "salute"; default ॐ श्री परमात्मने नमः)
-        for wid, want in (('manas', '॥ जय श्रीराम ॥'), ('sukhmani-sahib', 'ੴ'), ('ramraksha', '॥ ॐ श्री परमात्मने नमः ॥')):
-            got = await ev(f"(async () => {{ const p = openWork({json.dumps(wid)}); await new Promise(r => setTimeout(r, 0)); const t = document.querySelector('#loading').textContent; await p; return [saluteOf({json.dumps(wid)}), t]; }})()")
-            check(f'opening {wid} from the library greets it', got == [want, want], got)
-        # no greeting when the app starts, on a refresh, or on a quiet open
-        pg2 = await ctx.new_page(); await pg2.add_init_script("window.__SALUTE_MS = undefined")
-        await pg2.goto(url + '?w=sukhmani-sahib'); await pg2.wait_for_timeout(200)
-        t1 = await pg2.evaluate("document.querySelector('#loading').textContent")
-        await pg2.wait_for_function("document.querySelector('#loading').hidden", timeout=10000); await pg2.reload(); await pg2.wait_for_timeout(200)
-        t2 = await pg2.evaluate("document.querySelector('#loading').textContent")
-        check('no greeting when the app starts or is refreshed', t1 == '' and t2 == '', [t1, t2])
-        # stepping into a work from the library: the greeting stays 1.5 s even when loading is quicker
-        await pg2.wait_for_function("document.querySelector('#loading').hidden", timeout=10000)
-        shown = await pg2.evaluate("(async () => { W = null; const t0 = performance.now(); await openWork('ramraksha'); return performance.now() - t0; })()")
-        check('the greeting stays about 1.5 s', shown >= 1450, round(shown)); await pg2.close()
-        # a store app shows only its shelves (?app=<id>, library/apps.json)
-        apps = json.load(open(os.path.join(ROOT, 'library', 'apps.json')))
-        for aid, a in apps.items():
-            if aid.startswith('_'): continue
-            await pg.goto(url + '?app=' + aid); await pg.wait_for_timeout(2000)
-            got = await ev("(() => { const r = []; (function w(ns, at){ ns.forEach(n => n.work ? r.push(n.path) : w(n.children || [], at.concat(n.id))); })(LIB, []); return r; })()")
-            ok = got and all(any(g == s_ or g.startswith(s_ + '/') for s_ in a['shelves']) for g in got)
-            check(f'app {aid}: only its shelves', ok, got)
-        await pg.goto(url); await pg.wait_for_timeout(2000)
-
-        # ---- library: one row per genre, no headings and no tradition; the Sikh gurbani among the Granthas ----
-        await ev("libPath=[]; show('library')"); await pg.wait_for_timeout(300); await shot('library')
-        heads = await ev("Array.from(document.querySelectorAll('#libList .lhead')).map(x => x.textContent)")
-        genres = [g for t in shelf for g in t['children'] if 'shelf' not in g]
-        rows = await ev("[...document.querySelectorAll('#libList button.it[data-node]')].map(b => b.dataset.node)")   # not the '+N' chip of a shelf with more works
-        check('library: one row per genre, no headings, no tradition', not heads and rows == [g['id'] for g in genres], [heads, rows])
-        sukh = await ev("(async () => { libPath = ['granth']; renderLibrary(); const n = document.querySelectorAll('#libList [data-node=\"guru-arjan-dev\"]').length; libPath = []; renderLibrary(); return n; })()")
-        check('library: the Sukhmani Sahib’s Guru is on the Granthas shelf', sukh == 1, sukh)
-        # each shelf names its works; tapping one opens it straight away
-        chip = await ev("(() => { const b = document.querySelector('#libList [data-open-work]'); return b ? b.dataset.openWork : null; })()")
-        check('library: a shelf lists its works by name', bool(chip), chip)
-        if chip:
-            await (await pg.query_selector('#libList [data-open-work]')).click(); await pg.wait_for_timeout(1500)
-            check('library: tapping a work on a shelf opens it', await ev("document.querySelector('#home').classList.contains('on') && W && W.id") == chip)
-            await ev("libPath=[]; show('library')"); await pg.wait_for_timeout(300)
-
-        # one header on the library, a work and the reader: back, A−/A+, हिं·En·शब्द, search, menu
-        for v in ('library', 'home', 'reader'):
-            need = ['.lyr.layers' if v == 'reader' else '.lyr.uilang', '.hsearch', '.hmenu'] + ([] if v == 'library' else ['.szm', '.szp'])   # the library's left side is its breadcrumbs
-            parts = await ev(f"(() => {{ const b = document.querySelector('#{v} .bar'); return b ? {need!r}.map(c => !!b.querySelector(c)) : []; }})()")
-            check(f'{v}: the same header (हिं·En — with शब्द in the reader —, search, menu; A−/A+ on a work and the reader)', parts and all(parts), parts)
-        hgt = await ev("document.querySelector('#library .bar').getBoundingClientRect().height")
-        check('library: the header is one row, even inside a shelf', hgt < 70, hgt)
-        # the library's way back is the breadcrumb row in its header; inside a work, “‹ Library” goes to the library
-        await ev("libPath=[LIB[0].id]; show('library')"); await pg.wait_for_timeout(300)
-        crumbs = await ev("document.querySelector('#library .bar #libCrumbs').innerText")
-        check('library: breadcrumbs sit in the header', 'Library' in crumbs or 'पुस्तकालय' in crumbs, crumbs)
-        hgt = await ev("document.querySelector('#library .bar').getBoundingClientRect().height")
-        check('library: inside a shelf the header is still one row', hgt < 70, hgt)
-        await ev("libPath=[]; renderLibrary()")
-        await ev("libPath=[]; show('library')"); await pg.wait_for_timeout(300)
-        lang0 = await ev("LANG()")
-        other = 'hi' if lang0 == 'en' else 'en'
-        await (await pg.query_selector(f'#library .lyr.uilang [data-u={other}]')).click(); await pg.wait_for_timeout(400)
-        check('language can be changed from the library (हिं · En, one choice)', await ev("LANG()") == other and await ev("document.querySelector('#libTitle').textContent") in ('पुस्तकालय', 'Library') and not await ev("!!document.querySelector('#library .lyr [data-l=w]')"), lang0)
-        check('हिं · En on the library also chooses the meaning', await ev("[S.settings.layers.h, S.settings.layers.e]") == [other == 'hi', other == 'en'])
-        await (await pg.query_selector(f'#library .lyr.uilang [data-u={lang0}]')).click(); await pg.wait_for_timeout(300)
-        await ev("S.settings.layers.h = false; save()")
-        # library search finds a work by its English or Hindi name
-        for leaf, trail in list(leaves(shelf))[:3]:
-            await ev("libPath=[]; show('library')"); await pg.wait_for_timeout(200)
-            await (await pg.query_selector('#libSearchBtn')).click(); await pg.wait_for_timeout(200)
-            q = leaf['title']['en'].split()[-1][:5]
-            await pg.fill('#q', q); await pg.wait_for_timeout(500)
-            found = await ev("Array.from(document.querySelectorAll('#sRes .snip')).map(x => x.textContent)")
-            check(f'library search “{q}” finds {leaf["work"]}', leaf['title']['hi'] in found or leaf['title']['en'] in found, found[:4])
-        await shot('library-search')
-
-        for leaf, trail in leaves(shelf):
+        # every check of one work, as a reader goes through it; with --shard K/N the works are shared among N processes (tools/site/check.py)
+        async def per_work(leaf, trail):
             wid = leaf['work']; tag = wid
             # walk the shelf exactly as a reader would: tap down the path, two levels at a time
             await ev("libPath=[]; show('library')"); await pg.wait_for_timeout(200)
@@ -410,6 +288,196 @@ async def main():
             # back goes home
             await ev("show('home')"); await pg.wait_for_timeout(300)
             check(f'{tag}: back to the work home', await ev("document.querySelector('#home').classList.contains('on')"))
+            # one number for each verse (work.json → cite): what the player shows for a verse finds that verse in the work's search,
+            # the number the reader prints at its end is the citation's own, and the reader's Go to / Back to pills say what the player says
+            cit = await ev("""(async () => { const bad = [], miss = [], pr = []; setScope('text');
+                for (let i = 0; i < IT.length; i++){ const c = CIT(IT[i]); if (!vNum(c)) continue;
+                  const wd = W.cite && W.cite.word && W.cite.word[IT[i].y], q = (wd ? TT(wd) : TYPE[IT[i].y]) + ' ' + c, Q = numQuery(q);
+                  if (!Q){ bad.push(q); continue; } const hits = []; numHits(Q, hits); if (!hits.some(h => h[1] === i)) miss.push(IT[i].id + ' ← ' + q);
+                  const t = (IT[i].v[IT[i].v.length - 1].match(/॥([0-9०-९੦-੯]+)[^॥]*॥(?:[^॥]*॥)*\s*$/) || [])[1];
+                  if (t && (W.cite || {}).mark !== 'sec'){ const last = CKEY(c).split('.').pop().replace(/[^0-9]/g, ''); if (CKEY(t) !== last) pr.push(IT[i].id + ': ॥' + t + '॥ but ' + c); } }
+                return [bad.slice(0, 3), miss.slice(0, 3), pr.slice(0, 3)]; })()""")
+            check(f'{tag}: every verse number the player shows finds that verse; the number at a verse\'s end is its citation\'s', cit == [[], [], []], cit)
+        await pg.goto(url); await pg.wait_for_timeout(2500)
+        if SHARD:   # a shard runs only its share of the per-work checks, from a reader who has seen the tour
+            await ev("(() => { S.settings.tour = 1; closeTour(); S.settings.layers.h = false; save(); })()"); await pg.reload(); await pg.wait_for_timeout(2000)
+            for leaf, trail in mine(list(leaves(shelf))): await per_work(leaf, trail)
+            check(f'shard {SHARD}/{NSHARD}: no script errors', not errs, '; '.join(errs[:3]))
+            await b.close(); print(f'\n{sum(results)}/{len(results)} checks passed'); sys.exit(0 if all(results) else 'UX TEST FAILED')
+        # first run: an interactive tour inside the Sundarakāṇḍa — each step moves on only when the reader has done it
+        check('first run: the tour shows', await ev("!document.querySelector('#tour').hidden"))
+        check('the page asks browsers never to offer translating it', await ev("document.documentElement.getAttribute('translate') === 'no' && !!document.querySelector('meta[name=google][content=notranslate]')"))
+        await (await pg.query_selector('#tourNext')).click(); await pg.wait_for_timeout(2500)
+        check('tour: opens the Sundarakāṇḍa and lights the first step', await ev("W && W.id") == 'sundarkand' and await ev("!document.querySelector('#coach').hidden && TOUR && TOUR.k === 0"))
+        check('tour: the first step points at the Sundarakāṇḍa itself, not the opening prayers', await ev("IT[+tourSteps()[0].t().dataset.open].id") == 'sundar.0.shloka1', await ev("IT[+tourSteps()[0].t().dataset.open].id"))
+        await ev("tourSteps()[0].t().click()"); await pg.wait_for_timeout(1800)
+        check('tour: opening the text moves to the word step', await ev("TOUR && TOUR.k") == 1, await ev("TOUR && TOUR.k"))
+        check('tour: the text opens at the Sundarakāṇḍa', await ev("IT[R.a].id") == 'sundar.0.shloka1', await ev("IT[R.a].id"))
+        await ev("tourSteps()[1].t().click()"); await pg.wait_for_timeout(1200)
+        check('tour: tapping a word opens its meaning and moves on', await ev("TOUR && TOUR.k") == 2 and await ev("document.querySelector('#sheet').classList.contains('on')"))
+        await ev("document.querySelector('#cbBack').click()"); await pg.wait_for_timeout(1200)
+        check('tour: ‹ Back from “close the drawer” closes it and waits on “tap a word”', await ev("TOUR && TOUR.k") == 1 and not await ev("document.querySelector('#sheet').classList.contains('on')"), await ev("TOUR && TOUR.k"))
+        await ev("tourSteps()[1].t().click()"); await pg.wait_for_timeout(1200)
+        sz0 = await ev("S.settings.size"); await ev("S.settings.size = 34; applyTheme()")   # already at the largest when the A+ step comes
+        await ev("closeSheet()"); await pg.wait_for_timeout(1200)
+        check('tour: closing the drawer moves on', await ev("TOUR && TOUR.k") == 3)
+        await pg.wait_for_timeout(600); stay = await ev("TOUR && TOUR.k")
+        await ev("tourSteps()[3].t().click()"); await pg.wait_for_timeout(1200)
+        check('tour: A+ at the largest size waits for the tap, then moves on', stay == 3 and await ev("TOUR && TOUR.k") == 4, [stay, await ev("TOUR && TOUR.k")])
+        await ev(f"S.settings.size = {sz0}; applyTheme()"); await ev("document.querySelector('#cbBack').click()"); await pg.wait_for_timeout(1200)
+        blocked = await ev("(() => { const b = document.querySelector('#rLayers [data-l=w]'); const w0 = S.settings.layers.w; b.click(); return S.settings.layers.w === w0; })()")
+        check('tour: taps outside the current step do nothing', blocked)
+        check('tour: the first steps have ‹ Back, the first does not', await ev("!document.querySelector('#cbBack').hidden"))
+        await ev("tourSteps()[3].t().click()"); await pg.wait_for_timeout(1200)
+        check('tour: A+ moves on to A−', await ev("TOUR && TOUR.k") == 4 and await ev("tourSteps()[4].t() === document.querySelector('#reader .szm')"))
+        await ev("document.querySelector('#cbBack').click()"); await pg.wait_for_timeout(1200)
+        check('tour: ‹ Back returns to the step before (A+)', await ev("TOUR && TOUR.k") == 3, await ev("TOUR && TOUR.k"))
+        await ev("tourSteps()[3].t().click()"); await pg.wait_for_timeout(1200)
+        await ev("tourSteps()[4].t().click()"); await pg.wait_for_timeout(1200)
+        check('tour: A− makes the text smaller and moves on', await ev("TOUR && TOUR.k") == 5)
+        await ev("tourSteps()[5].t().click()"); await pg.wait_for_timeout(1200)
+        check('tour: switching a meaning moves on', await ev("TOUR && TOUR.k") == 6)
+        await ev("tourSteps()[6].t().click()"); await pg.wait_for_timeout(1200)
+        check('tour: recitation mode moves on', await ev("TOUR && TOUR.k") == 7 and await ev("S.settings.recite"))
+        await ev("document.querySelector('#cbBack').click()"); await pg.wait_for_timeout(1200)
+        check('tour: ‹ Back to recitation mode turns it off so it can be tried again', await ev("TOUR && TOUR.k") == 6 and not await ev("S.settings.recite"))
+        await ev("tourSteps()[6].t().click()"); await pg.wait_for_timeout(1200)
+        await ev("(() => { const b = tourSteps()[7].t(); const i = +b.closest('.verse').dataset.i; ME().bm[KEY(IT[i].id)] = 1; save(); rerenderItem(i); })()"); await pg.wait_for_timeout(300)   # already bookmarked
+        await ev("tourSteps()[7].t().click()"); await pg.wait_for_timeout(700)
+        k_off = await ev("TOUR && TOUR.k")
+        await ev("tourSteps()[7].t().click()"); await pg.wait_for_timeout(1200)
+        check('tour: a verse already bookmarked — taken off and put back — still moves the tour on', k_off == 7 and await ev("TOUR && TOUR.k") == 8, [k_off, await ev("TOUR && TOUR.k")])
+        await ev("for (const k in ME().bm) delete ME().bm[k]; save()")
+        await ev("tourSteps()[8].t().click()"); await pg.wait_for_timeout(1200)
+        check('tour: while the verse plays, the tour waits in the reader', await ev("TOUR && TOUR.waiting && CURVIEW === 'reader' && document.querySelector('#coach').hidden"))
+        await pg.wait_for_timeout(5600)   # the verse plays for 5 seconds
+        check('tour: after 5 s the library, with the parting message in the light card, the meanings back', await ev("!TOUR && !PL.on && CURVIEW === 'library' && libPath.length === 0 && !S.settings.recite && /Tour complete|परिचय पूरा/.test(document.querySelector('#toast').textContent) && document.querySelector('#toast').classList.contains('act')"))
+        await ev("setSize(-2)")
+        check('the tour is remembered', await ev("S.settings.tour === 1"))
+        await ev("S.work = null; save()")
+        await pg.reload(); await pg.wait_for_timeout(2000)
+        check('the tour is not shown again', await ev("document.querySelector('#tour').hidden"))
+        # the drawer closes when dragged down from its handle
+        await ev("openSheet('<p>test</p>')"); await pg.wait_for_timeout(300)
+        await ev("""(() => { const sh = document.querySelector('#sheet'), g = sh.querySelector('.grab'), r = g.getBoundingClientRect(), x = r.left + 5, y = r.top + 2;
+          const t = (yy) => new Touch({identifier: 1, target: g, clientX: x, clientY: yy});
+          g.dispatchEvent(new TouchEvent('touchstart', {bubbles: true, touches: [t(y)]}));
+          g.dispatchEvent(new TouchEvent('touchmove', {bubbles: true, touches: [t(y + 150)]}));
+          g.dispatchEvent(new TouchEvent('touchend', {bubbles: true, touches: []})); })()"""); await pg.wait_for_timeout(300)
+        check('the drawer closes when dragged down', not await ev("document.querySelector('#sheet').classList.contains('on')"))
+        # the opening screen greets each work with its own salutation (library/index.json "salute"; default ॐ श्री परमात्मने नमः)
+        for wid, want in (('manas', '॥ जय श्रीराम ॥'), ('sukhmani-sahib', 'ੴ'), ('ramraksha', '॥ ॐ श्री परमात्मने नमः ॥')):
+            got = await ev(f"(async () => {{ const p = openWork({json.dumps(wid)}); await new Promise(r => setTimeout(r, 0)); const t = document.querySelector('#loading').textContent; await p; return [saluteOf({json.dumps(wid)}), t]; }})()")
+            check(f'opening {wid} from the library greets it', got == [want, want], got)
+        # no greeting when the app starts, on a refresh, or on a quiet open
+        pg2 = await ctx.new_page(); await pg2.add_init_script("window.__SALUTE_MS = undefined")
+        await pg2.goto(url + '?w=sukhmani-sahib'); await pg2.wait_for_timeout(200)
+        t1 = await pg2.evaluate("document.querySelector('#loading').textContent")
+        await pg2.wait_for_function("document.querySelector('#loading').hidden", timeout=10000); await pg2.reload(); await pg2.wait_for_timeout(200)
+        t2 = await pg2.evaluate("document.querySelector('#loading').textContent")
+        check('no greeting when the app starts or is refreshed', t1 == '' and t2 == '', [t1, t2])
+        # stepping into a work from the library: a quick open goes straight to the work's page, with no greeting screen
+        await pg2.wait_for_function("document.querySelector('#loading').hidden", timeout=10000)
+        quick = await pg2.evaluate("(async () => { W = null; let seen = false; const o = new MutationObserver(() => { if (!$('#loading').hidden) seen = true; }); o.observe($('#loading'), {attributes: true}); const t0 = performance.now(); await openWork('ramraksha'); o.disconnect(); return [seen, performance.now() - t0, CURVIEW]; })()")
+        check('a quick open shows no greeting screen', not quick[0] and quick[1] < 400 and quick[2] == 'home', quick)
+        # a slow open (the work takes 0.8 s to arrive): the greeting shows while it loads, and goes when it is here
+        async def late(route): await asyncio.sleep(0.8); await route.continue_()
+        await pg2.route('**/hinduism/stotra/shiva/bilvashtakam/work.json*', late)
+        slow = await pg2.evaluate("(async () => { const p = openWork('bilvashtakam'); await new Promise(r => setTimeout(r, 500)); const r = [!$('#loading').hidden, $('#loading').textContent]; await p; r.push($('#loading').hidden, CURVIEW); return r; })()")
+        await pg2.unroute('**/hinduism/stotra/shiva/bilvashtakam/work.json*')
+        check('a slow open greets the work while it loads, then shows its page', slow[0] and slow[1] == await pg2.evaluate("saluteOf('bilvashtakam')") and slow[2] and slow[3] == 'home', slow)
+        # opening the work that is already open: no greeting, no wait
+        again = await pg2.evaluate("(async () => { const t0 = performance.now(); const p = openWork('bilvashtakam'); const t = document.querySelector('#loading').hidden; await p; return [t, performance.now() - t0]; })()")
+        check('no greeting for the work already open', again[0] and again[1] < 200, again)
+        # the work's page shows before the meanings and dictionaries arrive (here the Awadhi dictionary takes 1.5 s); the reader, opened
+        # in the meantime, waits for them and then shows the verses with their meanings
+        async def slowdict(route): await asyncio.sleep(1.5); await route.continue_()
+        await pg2.route('**/glossary/awa.json*', slowdict)
+        early = await pg2.evaluate("""(async () => { show('library'); const t0 = performance.now(); const p = openWork('sundarkand');
+            while (!(CURVIEW === 'home' && W && W.id === 'sundarkand')) await new Promise(r => setTimeout(r, 20)); const t = performance.now() - t0, ready = wReady;
+            openReader('k', PARTS[2].a); const before = CURVIEW; await p; await new Promise(r => setTimeout(r, 500));
+            return [t, ready, before, CURVIEW, document.querySelectorAll('#rBody .verse').length, !!SRC.hi, !!GL.awa && Object.keys(GL.awa).length > 0]; })()""")
+        await pg2.unroute('**/glossary/awa.json*')
+        check("the work's page shows before its meanings and dictionaries; the reader waits for them", early[0] < 1200 and not early[1] and early[2] == 'home' and early[3] == 'reader' and early[4] > 0 and early[5] and early[6], early)
+        # a refresh on a work's page, with the dictionaries slow: the cover stays (blank, no greeting) until the page is back;
+        # the library underneath never shows in between
+        await pg2.evaluate("(async () => { await openWork('sundarkand'); })()"); await pg2.wait_for_timeout(500)
+        await pg2.route('**/glossary/awa.json*', slowdict)
+        await pg2.reload(wait_until='commit'); seen = []
+        for _ in range(60):
+            try: seen.append(await pg2.evaluate("[typeof CURVIEW === 'string' ? CURVIEW : '', !!document.querySelector('#loading') && document.querySelector('#loading').hidden]"))
+            except Exception: pass
+            await pg2.wait_for_timeout(50)
+        await pg2.unroute('**/glossary/awa.json*')
+        flash = [x for x in seen if x[1] and x[0] != 'home']
+        check('a refresh on a work page shows no library in between, and ends on the work page', not flash and seen and seen[-1] == ['home', True], [flash[:3], seen[-1:] if seen else None])
+        # opened again (not a refresh): the screen last used — the library after going back to it, else the work's page or the reader
+        res = []
+        for last in ('library', 'home', 'reader'):
+            await pg2.evaluate(f"""(async () => {{ await openWork('sundarkand', true); if ('{last}' === 'library') show('library'); else if ('{last}' === 'reader') openReader('k', PARTS[2].a); else show('home'); }})()""")
+            await pg2.wait_for_timeout(700); await pg2.goto(url); await pg2.wait_for_timeout(2500)
+            res.append(await pg2.evaluate("CURVIEW"))
+        check('opening the app again returns to the screen last used (library, work page, reader)', res == ['library', 'home', 'reader'], res)
+        await pg2.close()
+        # a store app shows only its shelves (?app=<id>, library/apps.json)
+        apps = json.load(open(os.path.join(ROOT, 'library', 'apps.json')))
+        for aid, a in apps.items():
+            if aid.startswith('_'): continue
+            await pg.goto(url + '?app=' + aid); await pg.wait_for_timeout(2000)
+            got = await ev("(() => { const r = []; (function w(ns, at){ ns.forEach(n => n.work ? r.push(n.path) : w(n.children || [], at.concat(n.id))); })(LIB, []); return r; })()")
+            ok = got and all(any(g == s_ or g.startswith(s_ + '/') for s_ in a['shelves']) for g in got)
+            check(f'app {aid}: only its shelves', ok, got)
+        await pg.goto(url); await pg.wait_for_timeout(2000)
+
+        # ---- library: one row per genre, no headings and no tradition; the Sikh gurbani among the Granthas ----
+        await ev("libPath=[]; show('library')"); await pg.wait_for_timeout(300); await shot('library')
+        heads = await ev("Array.from(document.querySelectorAll('#libList .lhead')).map(x => x.textContent)")
+        genres = [g for t in shelf for g in t['children'] if 'shelf' not in g]
+        rows = await ev("[...document.querySelectorAll('#libList button.it[data-node]')].map(b => b.dataset.node)")   # not the '+N' chip of a shelf with more works
+        check('library: one row per genre, no headings, no tradition', not heads and rows == [g['id'] for g in genres], [heads, rows])
+        sukh = await ev("(async () => { libPath = ['granth']; renderLibrary(); const n = document.querySelectorAll('#libList [data-node=\"guru-arjan-dev\"]').length; libPath = []; renderLibrary(); return n; })()")
+        check('library: the Sukhmani Sahib’s Guru is on the Granthas shelf', sukh == 1, sukh)
+        # each shelf names its works; tapping one opens it straight away
+        chip = await ev("(() => { const b = document.querySelector('#libList [data-open-work]'); return b ? b.dataset.openWork : null; })()")
+        check('library: a shelf lists its works by name', bool(chip), chip)
+        if chip:
+            await (await pg.query_selector('#libList [data-open-work]')).click(); await pg.wait_for_timeout(1500)
+            check('library: tapping a work on a shelf opens it', await ev("document.querySelector('#home').classList.contains('on') && W && W.id") == chip)
+            await ev("libPath=[]; show('library')"); await pg.wait_for_timeout(300)
+
+        # one header on the library, a work and the reader: back, A−/A+, हिं·En·शब्द, search, menu
+        for v in ('library', 'home', 'reader'):
+            need = ['.lyr.layers' if v == 'reader' else '.lyr.uilang', '.hsearch', '.hmenu'] + ([] if v == 'library' else ['.szm', '.szp'])   # the library's left side is its breadcrumbs
+            parts = await ev(f"(() => {{ const b = document.querySelector('#{v} .bar'); return b ? {need!r}.map(c => !!b.querySelector(c)) : []; }})()")
+            check(f'{v}: the same header (हिं·En — with शब्द in the reader —, search, menu; A−/A+ on a work and the reader)', parts and all(parts), parts)
+        hgt = await ev("document.querySelector('#library .bar').getBoundingClientRect().height")
+        check('library: the header is one row, even inside a shelf', hgt < 70, hgt)
+        # the library's way back is the breadcrumb row in its header; inside a work, “‹ Library” goes to the library
+        await ev("libPath=[LIB[0].id]; show('library')"); await pg.wait_for_timeout(300)
+        crumbs = await ev("document.querySelector('#library .bar #libCrumbs').innerText")
+        check('library: breadcrumbs sit in the header', 'Library' in crumbs or 'पुस्तकालय' in crumbs, crumbs)
+        hgt = await ev("document.querySelector('#library .bar').getBoundingClientRect().height")
+        check('library: inside a shelf the header is still one row', hgt < 70, hgt)
+        await ev("libPath=[]; renderLibrary()")
+        await ev("libPath=[]; show('library')"); await pg.wait_for_timeout(300)
+        lang0 = await ev("LANG()")
+        other = 'hi' if lang0 == 'en' else 'en'
+        await (await pg.query_selector(f'#library .lyr.uilang [data-u={other}]')).click(); await pg.wait_for_timeout(400)
+        check('language can be changed from the library (हिं · En, one choice)', await ev("LANG()") == other and await ev("document.querySelector('#libTitle').textContent") in ('पुस्तकालय', 'Library') and not await ev("!!document.querySelector('#library .lyr [data-l=w]')"), lang0)
+        check('हिं · En on the library also chooses the meaning', await ev("[S.settings.layers.h, S.settings.layers.e]") == [other == 'hi', other == 'en'])
+        await (await pg.query_selector(f'#library .lyr.uilang [data-u={lang0}]')).click(); await pg.wait_for_timeout(300)
+        await ev("S.settings.layers.h = false; save()")
+        # library search finds a work by its English or Hindi name
+        for leaf, trail in list(leaves(shelf))[:3]:
+            await ev("libPath=[]; show('library')"); await pg.wait_for_timeout(200)
+            await (await pg.query_selector('#libSearchBtn')).click(); await pg.wait_for_timeout(200)
+            q = leaf['title']['en'].split()[-1][:5]
+            await pg.fill('#q', q); await pg.wait_for_timeout(500)
+            found = await ev("Array.from(document.querySelectorAll('#sRes .snip')).map(x => x.textContent)")
+            check(f'library search “{q}” finds {leaf["work"]}', leaf['title']['hi'] in found or leaf['title']['en'] in found, found[:4])
+        await shot('library-search')
+
+        for leaf, trail in mine(list(leaves(shelf))): await per_work(leaf, trail)
 
         # a place saved before the Sundarakāṇḍa's opening prayers were added (an item position, no id) still opens the same verse
         old = await ev("""(async () => { await openWork('sundarkand', true); const old = W.items.findIndex(x => x.id === 'sundar.12.cau3') - W.prepended;
@@ -437,7 +505,7 @@ async def main():
         guard = await ev("(() => { PL.seekT = null; seekGuard(100); ytInfo.t = 40; const a = playTime(); ytInfo.t = 100.2; const b = playTime(); ytInfo.t = 99; const c = playTime(); return [a, b, c]; })()")
         check('a stale time right after a seek is held at the asked-for start', guard == [100, 100.2, 99], guard)
         # a refresh keeps you on the same page
-        await ev("show('library'); libPath = [LIB[0].id]; renderLibrary()"); await pg.reload(); await pg.wait_for_timeout(2500)
+        await ev("show('library'); libPath = [LIB[0].id]; history.pushState(snap('library'), ''); renderLibrary()"); await pg.reload(); await pg.wait_for_timeout(2500)
         r1 = await ev("[CURVIEW, libPath.join('/')]")
         check('refresh on a library shelf stays on that shelf', r1[0] == 'library' and r1[1] != '', r1)
         await ev("show('settings')"); await pg.reload(); await pg.wait_for_timeout(2500)
@@ -467,7 +535,7 @@ async def main():
         foot = await ev("(async () => { await openWork('sundarkand', true); show('home'); openReader('k', ID['kishkindha.29.do29']); await new Promise(r => setTimeout(r, 600)); return document.querySelector('#rMid small').textContent; })()")
         check('the reader footer names only the part, not the topic', foot == await ev("KNAME(R.n)"), foot)
         subs = await ev("""(async () => { const r = {}; for (const id of ['manas', 'sundarkand', 'ramraksha']){ await openWork(id, true); S.settings.ui = 'en'; applyLang(); show('home'); r[id] = document.querySelector('#hSub').textContent; } return r; })()""")
-        check('under the title: the author and parent text, no publisher', subs == {'manas': 'Gosvāmī Tulasīdāsa', 'sundarkand': 'Gosvāmī Tulasīdāsa · Śrī Rāmacaritamānasa', 'ramraksha': 'Budha Kauśika Ṛṣi'}, subs)
+        check('under the title: the author and parent text, no publisher', subs == {'manas': 'Goswami Tulsidas', 'sundarkand': 'Goswami Tulsidas · Shri Ramcharitmanas', 'ramraksha': 'Budha Kaushik Rishi'}, subs)
         pk = await ev("""(async () => { await openWork('manas', true); show('home'); openReader('k', 0); await new Promise(r => setTimeout(r, 500)); sectionSheet();
             const a0 = R.a; document.querySelector('#sheetBody [data-pick="1"]').click(); await new Promise(r => setTimeout(r, 300));
             const stillOpen = document.querySelector('#sheet').classList.contains('on'), same = R.a === a0, first = +document.querySelector('#sheetBody .secs [data-to]').dataset.to;
@@ -774,7 +842,7 @@ async def main():
         jp = await ev("""(async () => { await openWork('ramraksha', true); show('home'); S.timing.on = false; openReader('k', 0); await new Promise(r => setTimeout(r, 500));
             const a = AUT[0], v1 = a[3][0], v2 = a[4][0], pill = document.querySelector('#pJump'); PL.on = true; document.querySelector('#player').hidden = false; document.body.classList.add('playing'); PL.t = 0; PL.end = null; PL.cur = -1; ytOK = true; PL.seekT = null; ytInfo.t = a[3][1] + 0.2; tick(); await new Promise(r => setTimeout(r, 900));
             const r = []; jumpPill(); r.push(pill.hidden);                                   // on screen: no pill
-            window.scrollBy(0, 1200); await new Promise(r => setTimeout(r, 400)); jumpPill(); r.push(!pill.hidden, pill.textContent.startsWith('↑') && (pill.textContent.includes('Go to') || pill.textContent.includes('पर जाएँ')) && pill.textContent.includes(posLabel(v1)));   // scrolled past it: the pill, pointing up
+            window.scrollBy(0, 1200); await new Promise(r => setTimeout(r, 400)); jumpPill(); r.push(!pill.hidden, pill.textContent.startsWith('↑') && (pill.textContent.includes('Go to') || pill.textContent.includes('पर जाएँ')) && pill.textContent.includes(playLabel(v1)));   // scrolled past it: the pill, pointing up
             pill.click(); await new Promise(r => setTimeout(r, 900)); jumpPill(); r.push(pill.hidden, inView(document.getElementById('v' + v1)));   // a tap: back to the verse, pill gone
             window.scrollTo(0, 0); await new Promise(r => setTimeout(r, 400)); jumpPill(); r.push(!pill.hidden && pill.textContent.startsWith('↓'));   // scrolled before it: pointing down
             ytInfo.t = a[4][1] + 0.2; tick(); await new Promise(r => setTimeout(r, 1200)); jumpPill(); r.push(pill.hidden, PL.cur === v2);   // the next verse starts: the page follows, no pill
@@ -951,7 +1019,7 @@ async def main():
             S.timing.flags = JSON.parse(k0); syncFlags(); save();
             return [menu.slice(0, 5).join() === 'play,note,flag,copy,edit', added.length === 1 && added[0] === i, off, gone]; })()""")
         check('timing flag in ⋮: “Review audio timing” (third in ⋮) puts only that verse on the check list; one blue dot on ▶ and in ⋮ shows it; it leaves once set', all(fg), fg)
-        # "A flag on each verse" (Audio timing settings): off, no flag; on, while playing, a blue ⚑ bottom left of the verse recited and
+        # "Review timing" (Audio timing settings): off, no flag; on, while playing, a blue ⚑ bottom left of the verse recited and
         # its neighbours, outside timing mode; a tap fills it, marks the verse (on the settings' to-check list too, and ▶ needs no dot); timing mode hides it
         vf = await ev("""(async () => { const k0 = JSON.stringify(S.timing.flags), f0 = S.timing.flagsOn; await openWork('manas', true); await loadSources(); show('home');
             const i = IT.findIndex(x => x.id === 'bal.1.cau2'); S.timing.flagsOn = false; openReader('k', i); await new Promise(r => setTimeout(r, 400)); const none = !document.querySelector('#v' + i + ' .vflag');
@@ -966,7 +1034,7 @@ async def main():
             S.timing.on = true; refreshReader(); await new Promise(r => setTimeout(r, 300)); const hidden = !document.querySelector('#v' + i + ' .vflag'); S.timing.on = false;
             S.timing.flags = JSON.parse(k0); S.timing.flagsOn = f0; syncFlags(); save(); refreshReader();
             return [none, idle, shown, kept, filled, listed, hidden]; })()""")
-        check('“A flag on each verse”: while playing, a blue ⚑ on the verse recited and its neighbours; a tap fills it (shown after playing too) and lists the verse; hidden in timing mode', all(vf), vf)
+        check('“Review timing”: while playing, a blue ⚑ on the verse recited and its neighbours; a tap fills it (shown after playing too) and lists the verse; hidden in timing mode', all(vf), vf)
         # every number is shown as 1 2 3, in Hindi too; a digit inside a word (ओ३म्) and what a textarea holds stay as written
         nm = await ev("""(async () => { const ui = S.settings.ui, ly = JSON.stringify(S.settings.layers); S.settings.ui = 'hi'; applyLang(); await openWork('manas', true); await loadSources(); S.settings.layers = {h: true, e: false, w: false}; syncLayers();
             show('home'); renderHome(); await new Promise(r => setTimeout(r, 300)); const home = document.querySelector('#home').innerText;
@@ -1026,7 +1094,7 @@ async def main():
         ls = await ev("[...document.querySelectorAll('#sRes .snip')].map(x => x.textContent)")
         await pg.fill('#q', 'Sunderkand'); await pg.wait_for_timeout(600)
         ls2 = await ev("[...document.querySelectorAll('#sRes .snip')].map(x => x.textContent)")
-        check('library search: “सुंदरकांड” and “Sunderkand” find the Sundarakāṇḍa', any(t in x for x in ls for t in ('सुन्दरकाण्ड', 'Sundarakāṇḍa')) and any(t in x for x in ls2 for t in ('सुन्दरकाण्ड', 'Sundarakāṇḍa')), [ls[:3], ls2[:3]])
+        check('library search: “सुंदरकांड” and “Sunderkand” find the Sundarkand', any(t in x for x in ls for t in ('सुन्दरकाण्ड', 'Sundarkand')) and any(t in x for x in ls2 for t in ('सुन्दरकाण्ड', 'Sundarkand')), [ls[:3], ls2[:3]])
         # a shelf that holds only works is one row with its works as buttons (Āratī › Śrī Rāma like Vedas › Yajurveda)
         sv = await ev("""(async () => { libPath = ['aarti']; show('library'); await new Promise(r => setTimeout(r, 300));
             const rama = document.querySelector('#libList button.it[data-node="rama"]'); return [document.querySelectorAll('#libList .lhead').length, !!rama, rama ? rama.closest('li').querySelectorAll('[data-open-work], .more').length : 0, document.querySelectorAll('#libList [data-node="rama/shri-ramchandra-kripalu"]').length]; })()""")
@@ -1036,6 +1104,110 @@ async def main():
         off = await ev("(() => { ytBlocked(); return $('#ytBox').innerText; })()")
         await ctx.set_offline(False)
         check('offline: playing says it needs the internet', 'internet' in off.lower() or 'इंटरनेट' in off, off)
+        # YouTube slow to answer: a note with "Play on YouTube" lies over the player, which is kept (it may still start)
+        slow = await ev("(() => { ytLoad('QjSpUgnEPLU', 0); ytBlocked(); const r = [!!$('#ytf'), $$('#ytBox .ytno').length, $('#ytBox').innerText]; ytNoteOff(); r.push($$('#ytBox .ytno').length); return r; })()")
+        check('a slow YouTube start keeps the player under a note that can go', slow[0] and slow[1] == 1 and 'allowed' not in slow[2] and slow[3] == 0, slow)
+        # a work that is a slice of a longer video (the Hanumān āratī at the end of the Sundarakāṇḍa's) plays from its own first verse, not the video's start
+        ha = await ev("(async () => { await openWork('hanuman-aarti', true); show('home'); playRange('k', 0, IT.length - 1); const r = [Math.floor(PL.seekT), Math.floor(SRC.au.at[IT[0].id][1])]; stopAudio(); return r; })()")   # the time the app seeks to, whether it loads a player or reuses one (a live player reports 0 for a moment)
+        check('the Hanumān āratī plays from the āratī, not from the start of the Sundarakāṇḍa', ha[0] == ha[1] and ha[0] > 6000, ha)
+        # while playing, the work's page scrolls its last row clear of the player
+        clr = await ev("""(async () => { await openWork('sundarkand', true); show('home'); playRange('k', 0, IT.length - 1); await new Promise(r => setTimeout(r, 400)); show('home'); await new Promise(r => setTimeout(r, 300));
+            window.scrollTo(0, 1e6); await new Promise(r => setTimeout(r, 200)); const rows = $$('#orgList li').filter(x => x.offsetHeight); const r = [rows[rows.length - 1].getBoundingClientRect().bottom, $('#player').getBoundingClientRect().top]; stopAudio(); return r; })()""")
+        check('while playing, the last section scrolls clear of the player', clr[0] <= clr[1], clr)
+        # ⓘ About this work: under the title, with the work's language and length
+        ab = await ev("(async () => { await openWork('ramraksha', true); show('home'); $('#hAbout').click(); await new Promise(r => setTimeout(r, 300)); const t = $('#sheetBody').innerText; closeSheet(); return t; })()")
+        check('About this work shows the language and length', ('Sanskrit' in ab or 'संस्कृत' in ab) and ('verses' in ab or 'पद' in ab), ab[:120])
+        # the work's page: About on the author's line; a plan shows its progress as a bar; a vishram's number marks it done and back
+        wp = await ev("""(async () => { await openWork('manas', true); WS().org = 'M'; show('home'); await new Promise(r => setTimeout(r, 300));
+            const d = DONE(ME(), 'M'), had = Object.assign({}, d); for (const k in d) delete d[k]; d[1] = 1; save(); renderHome();
+            const inRow = !!$('.hsubrow #hAbout'), bar = $('.pdn') && $('.pdn').textContent, w0 = $('.pdbar span').style.width;
+            const m = $('#orgList [data-mark="2"]'); m.click(); const on = !!DONE(ME(), 'M')[2], bar2 = $('.pdn').textContent, view = CURVIEW;
+            $('#orgList [data-mark="2"]').click(); const off = !DONE(ME(), 'M')[2];
+            for (const k in d) delete d[k]; Object.assign(d, had); save(); renderHome(); return [inRow, bar, w0, on, bar2, view, off]; })()""")
+        check("work page: About beside the author, a progress bar, and a vishram's number marks it done and not done", wp[0] and wp[1] == '1 / 30' and wp[2] == '3%' and wp[3] and wp[4] == '2 / 30' and wp[5] == 'home' and wp[6], wp)
+        # the reading anchor (Resume, Back to): calm reading moves it; a fling or a jump does not; reading the new place for a while
+        # does (the old place is kept as "before that"); a recording playing 10 s makes the recited verse the anchor
+        an = await ev("""(async () => { AN.manual = true; await openWork('sundarkand', true); const ws = WS(); delete ws.anchor; delete ws.prev; AN.cand = null; AN.calm = 0;
+            const k = PARTS[2]; openReader('k', k.a); await new Promise(r => setTimeout(r, 300)); const tick = n => { for (let x = 0; x < n; x++) anchorTick(true); };
+            const step = async dy => { window.scrollBy(0, dy); await new Promise(r => setTimeout(r, 30)); };
+            tick(1); for (let x = 0; x < 6; x++){ await step(80); tick(1); }
+            const read = anchorOf().i, readTop = topVisibleItem();
+            await step(4 * innerHeight); tick(1); const afterFling = anchorOf().i, cand = !!AN.cand; await new Promise(r => setTimeout(r, 50)); backPill();
+            const pill = !$('#rAnchor').hidden && $('#rAnchor').textContent.includes(playLabel(read)) && $('#rAnchor').getBoundingClientRect().bottom <= $('#reader .navbar').getBoundingClientRect().top;   // above the bottom bar, not over it
+            $('#rAnchor').click(); await new Promise(r => setTimeout(r, 400)); const el = document.getElementById('v' + read).getBoundingClientRect(); const back = el.top < innerHeight && el.bottom > 0, pillGone = $('#rAnchor').hidden;
+            openReader('k', PARTS[3].a); await new Promise(r => setTimeout(r, 300)); tick(5); const notYet = anchorOf().i === read;
+            for (let x = 0; x < 22; x++){ await step(60); tick(1); } const moved = anchorOf().i >= PARTS[3].a, before = (WS().prev || [])[0] && ID[WS().prev[0].id] === read;
+            show('home'); const resume = $('#cGo') && $('#cGo').textContent.includes('Resume'), named = $('#cGo').textContent.includes(playLabel(anchorOf().i)), earlier = !$('#cPrev') && $('#contAt').hidden;
+            PL.on = true; PL.cur = -1; setCur(PARTS[4].a + 1); const byAudio = anchorOf().i === PARTS[4].a + 1; PL.on = false;   // pressing play is reading: at once
+            openReader('k', PARTS[2].a); await new Promise(r => setTimeout(r, 200)); backPill(); const pillAgain = !$('#rAnchor').hidden;
+            S.timing.on = true; backPill(); const noPillTiming = $('#rAnchor').hidden; S.timing.on = false;
+            WS().anchor.t = Date.now() - 16 * 60e3; backPill(); const noPillStale = $('#rAnchor').hidden; WS().anchor.t = Date.now();
+            AN.manual = false; return [read >= k.a, afterFling === read, cand, pill, back, pillGone, notYet, moved, before, resume, named, earlier, byAudio, pillAgain, noPillTiming, noPillStale]; })()""")
+        check('the reading anchor: reading moves it, a fling does not; Back to returns; a new place takes over once read; Resume names it; playing moves it at once; no Back to in timing mode or after 15 minutes', all(an), an)
+        # a number in a work's search finds by doha: "45" the doha 45 of each kand, "45.3" chaupai 3 under it, "दोहा ४५" too;
+        # in a work without dohas, the verse of that number
+        nums = await ev("""(async () => { const find = async (w, q) => { await openWork(w, true); setScope('text'); $('#q').value = q; runSearch(); await new Promise(r => setTimeout(r, 400)); return $$('#sRes .res').map(b => +b.dataset.i); };
+            const m = await find('manas', '45'), mOk = m.length > 3 && m.every(i => ['do', 'so'].includes(IT[i].y) && IT[i].s === '45');
+            const kands = new Set(m.map(i => IT[i].p)).size === m.length;
+            const c = await find('manas', '45.3'), cOk = c.length > 3 && c.every(i => IT[i].y === 'cau' && IT[i].s === '45' && parseInt(IT[i].n) === 3);
+            const h = await find('manas', 'दोहा ४५'), hOk = h.join() === m.join();
+            const s = await find('sundarkand', '2'), sOk = s.length === 1 && IT[s[0]].id === 'sundar.2.do2';
+            const r = await find('ramraksha', '5'), rOk = r.length >= 1 && r.every(i => parseInt(IT[i].n) === 5);
+            return [mOk, kands, cOk, hOk, sOk, rOk, m.length, c.length]; })()""")
+        check('a number in a work search finds that doha in each kand, N.M a chaupai under it; elsewhere the verse of that number', all(nums[:6]), nums)
+        # the citation (tools/text/cite.py) is the one number: the Katha's 2.1.1 (its verse prints ॥१॥) in the player and search,
+        # the Rudram's 11.17, a Manas chhand apart from the chaupai of the same number, a lettered doha, and Bhaja Govindam's 13a
+        cn = await ev("""(async () => { const find = async (w, q) => { await openWork(w, true); setScope('text'); $('#q').value = q; runSearch(); await new Promise(r => setTimeout(r, 50)); return $$('#sRes .res').map(b => IT[+b.dataset.i].id); };
+            const k = await find('katha-upanishad', '2.1.1'), kl = playLabel(ID['2.1.1']), kv = IT[ID['2.1.1']].v.slice(-1)[0].includes('॥१॥');
+            const k2 = await find('katha-upanishad', '1.2'), r = await find('shri-rudram', '11.17'), rl = playLabel(ID['chamakam.a11.m17']);
+            const c = await find('manas', 'chhand 10.1'), cl = playLabel(ID['bal.10.cha1']), ul = playLabel(ID['bal.10.cau1']), d = await find('manas', '3'), b = await find('bhaja-govindam', '13a');
+            return [k, kl, kv, k2, r, rl, c, cl, ul, d.includes('bal.3.do3क') && d.includes('bal.3.do3ख'), b]; })()""")
+        check('one number per verse: Katha 2.1.1 and Rudram 11.17 in the player and search; a Manas chhand is not the chaupai of its number; 3 finds 3क, 3ख',
+              cn == [['2.1.1'], 'Mantra 2.1.1', True, ['1.2.1'], ['chamakam.a11.m17'], 'Mantra 11.17', ['bal.10.cha1', 'kishkindha.10.cha1'], 'Chhand 10.1', 'Verse 10.1', True, ['sh13a']], cn)
+        # at the end of a part, the button to the next part shows how long it plays, as the button to the next day of a plan does
+        nd = await ev("""(async () => { const out = []; for (const w of ['katha-upanishad', 'manas']){ await openWork(w, true); await loadSources(); show('home');
+              openReader('k', PARTS[0].b); await new Promise(r => setTimeout(r, 300)); const e = document.querySelector('#reader .endb');
+              out.push([!!(e && e.querySelector('[data-next]')), !!(e && e.querySelector('.ndur') && /▶ \\d/.test(e.querySelector('.ndur').textContent))]); } return out; })()""")
+        check('the next part\'s button shows its listening time in every work, as a plan\'s next day does', nd == [[True, True], [True, True]], nd)
+        # the two capsules: the dark one answers a tap and has no button; an ending (Recitation complete) is in the white one, as "Finished · ▶ Play on" is
+        cap = await ev("""(() => { toast('x'); const dark = !$('#toast').classList.contains('act') && !$('#toast').querySelector('button'); $('#toast').classList.remove('on');
+              toastLight('y'); const white = $('#toast').classList.contains('act'); $('#toast').classList.remove('on', 'act');
+              const src = onEnded.toString() + tick.toString(); return [dark, white, /toastLight\\(msg\\)/.test(src)]; })()""")
+        check('capsules: a toast is dark with no button; an ending is in the white capsule', cap == [True, True, True], cap)
+        # A−/A+ scale the sheets and search results too, with nothing spilling sideways at the largest size
+        zs = await ev("""(async () => { const was = S.settings.size, out = []; for (const sz of [21, 34]){ S.settings.size = sz; applyTheme(); await openWork('manas', true); openReader('M', dayRange('M', 27)[0]); await new Promise(r => setTimeout(r, 300)); $('#rMid').click(); await new Promise(r => setTimeout(r, 400));
+            const sb = $('#sheetBody'); out.push([+getComputedStyle(sb).zoom, sb.scrollWidth <= sb.clientWidth + 1, +getComputedStyle($('#sRes')).zoom]); closeSheet(); }
+            S.settings.size = was; applyTheme(); return out; })()""")
+        check('A−/A+ scale the sheets and search results; nothing spills sideways at the largest size', zs[0][0] == 1 and zs[1][0] > 1.3 and zs[1][1] and zs[1][2] > 1.3, zs)
+        # the player: only the place, short ("Verse 1.3": the third verse under Doha 1); outside the reader "Go to verse ›" under it, and a tap opens the verse playing; in the reader nothing under it
+        pg_ = await ev("""(async () => { await openWork('sundarkand', true); show('home'); playRange('k', PARTS[2].a, PARTS[2].b); await new Promise(r => setTimeout(r, 300));
+            const yf = ytFrame(); if (yf) yf.src = 'about:blank'; ytOK = false;   // a quiet player: on the CI runner YouTube plays for real and would move the lit verse
+            PL.cur = -1; setCur(PARTS[2].a + 5);
+            const inR = $('#pTrack').textContent; show('home'); await new Promise(r => setTimeout(r, 200)); const lab = $('#pVerse').textContent, sub = $('#pTrack').textContent;
+            $('#pInfo').click(); await new Promise(r => setTimeout(r, 400)); const r = [lab, sub, inR, CURVIEW, !!document.querySelector('#v' + (PARTS[2].a + 5) + '.now')]; stopAudio(); return r; })()""")
+        check('the player outside the reader shows only the place and "Go to verse", which opens the verse playing', pg_[0] == 'Verse 1.3' and pg_[1] == 'Go to verse ›' and pg_[2] == '' and pg_[3] == 'reader' and pg_[4], pg_)
+        # ⏭ after a single verse was played: the next verse alone plays and stops (it stopped at once before); within a section, playing goes on
+        stp = await ev("""(async () => { await openWork('sundarkand', true); show('home'); const i = PARTS[2].a + 4; openReader('k', i); await new Promise(r => setTimeout(r, 200));
+            playFrom(i, i); PL.cur = -1; setCur(i); stepVerse(1); const one = [PL.on, PL.end === i + 1, PL.one];
+            stepVerse(1); one.push(PL.end === i + 2);
+            playFrom(i, i + 6); PL.cur = -1; setCur(i); stepVerse(1); const range = [PL.on, PL.end === i + 6, !PL.one]; stopAudio(); return one.concat(range); })()""")
+        check('after a single verse, ⏭ plays the next verse alone (and again); within a section it keeps playing to the end', all(stp), stp)
+        # "Back to …" never outlives its reader: leaving the reader hides it, and another work never shows the last one's place
+        xw = await ev("""(async () => { AN.manual = true; await openWork('katha-upanishad', true); const ws = WS(); delete ws.anchor; openReader('k', PARTS[1].a); await new Promise(r => setTimeout(r, 200)); anchorTick(true);
+            openReader('k', 0); await new Promise(r => setTimeout(r, 200)); backPill(); const up = !$('#rAnchor').hidden;
+            show('home'); const goneHome = $('#rAnchor').hidden; libPath = []; show('library'); await openWork('manas'); await new Promise(r => setTimeout(r, 200));
+            const goneOther = $('#rAnchor').hidden && !$('#rAnchor').textContent.includes('Mantra'); AN.manual = false; return [up, goneHome, goneOther]; })()""")
+        check('"Back to" hides on leaving the reader, and another work never shows the last one\'s place', all(xw), xw)
+        # the library lists works by name only (ⓘ About is on the work's own page)
+        nolib = await ev("(async () => { libPath = []; show('library'); await new Promise(r => setTimeout(r, 300)); return [$$('#libList [data-open-work]').length, $$('#libList .winfo, #libList [data-info-work]').length]; })()")
+        check('the library shows works by name, without ⓘ', nolib[0] > 0 and nolib[1] == 0, nolib)
+        # a long press on a work opens About this work (and not the work); a tap still opens the work
+        hold = await ev("""(async () => { libPath = []; show('library'); await new Promise(r => setTimeout(r, 300));
+            const b = $('#libList [data-open-work]'), id = b.dataset.openWork, ev = (k) => b.dispatchEvent(new PointerEvent(k, {bubbles: true, button: 0, clientX: 5, clientY: 5}));
+            ev('pointerdown'); await new Promise(r => setTimeout(r, 650)); ev('pointerup'); b.click(); await new Promise(r => setTimeout(r, 300));
+            const r = [id, $('#sheet').classList.contains('on'), CURVIEW, $('#sheetBody h2') ? $('#sheetBody h2').textContent === TT(workNode(id).title) : false];
+            closeSheet(); ev('pointerdown'); ev('pointerup'); b.click(); await new Promise(r => setTimeout(r, 1500)); r.push(CURVIEW, W && W.id === id); return r; })()""")
+        check('a long press on a work in the library opens About this work; a tap opens the work', hold[1] and hold[2] == 'library' and hold[3] and hold[4] == 'home' and hold[5], hold)
         # a saved file: “Add them to this phone” shows them at once; “Replace everything” with an older file (no timing) keeps the app working
         f = {'kind': 'manas-personal', 'v': 3, 'settings': {'ui': 'en', 'layers': {'h': False, 'e': True, 'w': False}, 'tr': False, 'size': 21, 'theme': 'light', 'tour': 1}, 'src': {}, 'w': {},
              'profiles': [{'id': 'px', 'name': 'Me', 'notes': {'manas:bal.1.cau1': [{'t': 'a note', 'ts': 1}]}, 'bm': {'manas:bal.1.cau2': 1}, 'done': {}, 'gloss': {}, 'fix': {}}], 'active': 'px', 'show': ['px']}
@@ -1059,11 +1231,11 @@ async def main():
         sheet = await ev("$('#sheet').classList.contains('on') ? $('#sheetBody').innerText : ''")
         await ev("closeSheet()")
         check('hard words of a meaning are underlined and open their meaning (the work’s own sense first); other words are plain', 'अविद्या' in hw[0] and 'avidyā' in hw[0] and 'उपासना' in hw[0] and hw[1] and 'ritual works' in sheet, [hw, sheet[:120]])
-        # ☰ › More settings › "Meaning line by line": off by default; the switch turns it on
+        # ☰ › More settings › "Meaning per line": off by default; the switch turns it on
         await ev("delete S.settings.lines; save(); show('settings')"); await pg.wait_for_timeout(300)
         off0 = await ev("!document.querySelector('#slines').checked")
         await (await pg.query_selector('label:has(#slines)')).click(); await pg.wait_for_timeout(200)
-        check('“Meaning line by line” is off by default and its switch turns it on', off0 and await ev("S.settings.lines === true"))
+        check('“Meaning per line” is off by default and its switch turns it on', off0 and await ev("S.settings.lines === true"))
         await ev(f"(() => {{ S = JSON.parse({json.dumps(keep)}); save(); applyState(); }})()")
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await split_work(b, SHOTS)
@@ -1103,7 +1275,7 @@ async def split_work(b, shots):
     await (await pg.query_selector('#orgList [data-open]')).click(); await pg.wait_for_timeout(1200)
     r0 = await ev("[R.n, document.querySelectorAll('#rBody .layer').length, document.querySelector('#rMid .ml').textContent]")
     await shot('part1')
-    check('split work: the first part shows its meanings; the footer shows the work’s own section label', r0[0] == 0 and r0[1] > 4 and r0[2].startswith('Śānti Pāṭha'), r0)
+    check('split work: the first part shows its meanings; the footer shows the work’s own section label', r0[0] == 0 and r0[1] > 4 and r0[2].startswith('Shanti Paath'), r0)
     # to the second part the way a finger does: the footer, the second part, its first section
     slow['on'] = True; got.clear()
     await pg.click('#rMid'); await pg.wait_for_timeout(400)
@@ -1115,9 +1287,9 @@ async def split_work(b, shots):
     await pg.wait_for_timeout(2500)
     r1 = await ev("""(() => { const i = R.a, v = document.getElementById('v' + i); return [R.n, document.querySelectorAll('#rBody .layer').length, IT[i].p, !!(v && v.querySelector('.layer')), document.querySelector('#rMid .ml').textContent, Math.round(v.getBoundingClientRect().top)]; })()""")
     await shot('part2')
-    check('split work: the section picker lists the second part’s sections by their labels (Vallī 2.1 …)', rows[:3] == ['Vallī 2.1', 'Vallī 2.2', 'Vallī 2.3'], rows)
+    check('split work: the section picker lists the second part’s sections by their labels (Valli 2.1 …)', rows[:3] == ['Valli 2.1', 'Valli 2.2', 'Valli 2.3'], rows)
     check('split work: the second part shows its verses at once and its meanings when its files come, the page kept in place',
-          early[0] == 1 and early[1] > 0 and early[2] == 0 and r1[0] == 1 and r1[1] > 4 and r1[2] == 1 and r1[3] and r1[4].startswith('Vallī 2.1') and abs(r1[5] - early[3]) <= 2 and
+          early[0] == 1 and early[1] > 0 and early[2] == 0 and r1[0] == 1 and r1[1] > 4 and r1[2] == 1 and r1[3] and r1[4].startswith('Valli 2.1') and abs(r1[5] - early[3]) <= 2 and
           any(f.startswith('meanings/en-scriptures/1') for f in got) and 'glossary/1.json' in got, (early, r1, sorted(set(got))))
     slow['on'] = False
     # a word of the second part: the work's own sense, which only glossary/1.json has
@@ -1149,7 +1321,7 @@ async def split_work(b, shots):
     s1 = await ev("[!!document.querySelector('#sRes .sload'), [...document.querySelectorAll('#sRes .res')].map(b => [IT[+b.dataset.i].id, IT[+b.dataset.i].p, b.querySelector('.where').textContent])]")
     await shot('search')
     check('split work: search shows “searching every part” at first, then finds a meaning only the second part has, with its section label',
-          s0[0] and not any('English meaning' in w for w in s0[1]) and not s1[0] and any(r[0] == '2.1.7' and r[1] == 1 and 'English meaning' in r[2] and 'Vallī 2.1' in r[2] for r in s1[1]), (s0, s1))
+          s0[0] and not any('English meaning' in w for w in s0[1]) and not s1[0] and any(r[0] == '2.1.7' and r[1] == 1 and 'English meaning' in r[2] and 'Valli 2.1' in r[2] for r in s1[1]), (s0, s1))
     await pg.fill('#q', 'विश्वे देवा'); await pg.wait_for_timeout(600)
     s2 = await ev("[...document.querySelectorAll('#sRes .res')].map(b => IT[+b.dataset.i].id)")
     check('split work: the verse text is found at once', wid in s2, s2)

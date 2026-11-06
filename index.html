@@ -6,8 +6,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#2B3A8C">
 <title>शास्त्र · Scriptures</title>
-<meta property="og:type" content="website"><meta property="og:site_name" content="शास्त्र · Scriptures"><meta property="og:title" content="शास्त्र · Scriptures"><meta property="og:description" content="श्रीरामचरितमानस, सुन्दरकाण्ड, हनुमान चालीसा, उपनिषद्, आरती — मूल पाठ, अर्थ, शब्दार्थ और ऑडियो। निःशुल्क। · Śrī Rāmacaritamānasa, Sundarakāṇḍa, Hanumān Chālīsā, Upaniṣads, āratīs: the text, Hindi and English meanings, the meaning of every word, recitation audio. Free, no ads."><meta property="og:image" content="https://scriptures.craadle.org/app/share-card.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:url" content="https://scriptures.craadle.org/"><meta name="description" content="श्रीरामचरितमानस, सुन्दरकाण्ड, हनुमान चालीसा, उपनिषद्, आरती — मूल पाठ, अर्थ, शब्दार्थ और ऑडियो। निःशुल्क। · Śrī Rāmacaritamānasa, Sundarakāṇḍa, Hanumān Chālīsā, Upaniṣads, āratīs: the text, Hindi and English meanings, the meaning of every word, recitation audio. Free, no ads.">
-<link rel="manifest" href="manifest.json"><link rel="icon" href="app/icon.svg"><link rel="apple-touch-icon" href="app/apple-touch-icon.png"><link rel="stylesheet" href="app/fonts.css?v=6ce0da9346"><link rel="stylesheet" href="app/style.css?v=fd76d51c03">
+<meta property="og:type" content="website"><meta property="og:site_name" content="शास्त्र · Scriptures"><meta property="og:title" content="शास्त्र · Scriptures"><meta property="og:description" content="श्रीरामचरितमानस, सुन्दरकाण्ड, हनुमान चालीसा, उपनिषद्, आरती — मूल पाठ, अर्थ, शब्दार्थ और ऑडियो। निःशुल्क। · Shri Ramcharitmanas, Sundarkand, Hanuman Chalisa, Upanishads, aartis: the text, Hindi and English meanings, the meaning of every word, recitation audio. Free, no ads."><meta property="og:image" content="https://scriptures.craadle.org/app/share-card.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:url" content="https://scriptures.craadle.org/"><meta name="description" content="श्रीरामचरितमानस, सुन्दरकाण्ड, हनुमान चालीसा, उपनिषद्, आरती — मूल पाठ, अर्थ, शब्दार्थ और ऑडियो। निःशुल्क। · Shri Ramcharitmanas, Sundarkand, Hanuman Chalisa, Upanishads, aartis: the text, Hindi and English meanings, the meaning of every word, recitation audio. Free, no ads.">
+<link rel="manifest" href="manifest.json"><link rel="icon" href="app/icon.svg"><link rel="apple-touch-icon" href="app/apple-touch-icon.png"><link rel="stylesheet" href="app/fonts.css?v=6ce0da9346"><link rel="stylesheet" href="app/style.css?v=1309deb889">
 
 </head>
 <body>
@@ -20,6 +20,7 @@
  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M4 22V15"/><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" style="fill:var(--flag-fill,none)"/></symbol>
  <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/></symbol>
  <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+ <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.4"/></symbol>
  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></symbol>
  <symbol id="i-more" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.1" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="2.1" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="2.1" fill="currentColor" stroke="none"/></symbol>
@@ -67,7 +68,7 @@
   <button class="ib hmenu" id="hMenu" aria-label="मेनू"><svg><use href="#i-menu"/></svg></button>
  </div></div>
  <div class="wrap zoomable">
-  <div class="hero"><h1 id="hTitle"></h1><p id="hSub"></p><div class="heroacts"><span id="contCard"></span><button class="btn playall" id="hPlayAll" hidden><svg><use href="#i-play"/></svg><span data-en="Play all">सम्पूर्ण पाठ सुनें</span></button></div></div>
+  <div class="hero"><h1 id="hTitle"></h1><p class="hsubrow"><span id="hSub"></span><button class="habout" id="hAbout"><svg><use href="#i-info"/></svg><span data-en="About">परिचय</span></button></p><div class="heroacts"><span id="contCard"></span><button class="btn playall" id="hPlayAll" hidden><span><svg><use href="#i-play"/></svg><span data-en="Play all">सम्पूर्ण पाठ सुनें</span></span><small id="hPlayT"></small></button></div><p class="contat" id="contAt" hidden></p></div>
   <div class="seg" id="orgSeg"></div>
   <ul class="list" id="orgList"></ul>
   <div style="height:40px"></div>
@@ -91,7 +92,7 @@
  </div></div>
 </section>
 
-<button id="pJump" class="pjump" hidden></button>
+<button id="pJump" class="pjump" hidden></button><button id="rAnchor" class="pjump rback" hidden></button>
 <div id="player" class="player" hidden><div class="pbar"><span id="pProg"></span></div><div class="wrap pwrap">
   <div class="ytw"><div id="ytBox"></div></div>
   <div class="pside">
@@ -116,7 +117,7 @@
   <div class="scope" id="scope">
    <button class="chip on" data-s="v" data-en="Verses">मूल पाठ</button><button class="chip on" data-s="h" data-en="Hindi meaning">हिंदी अर्थ</button><button class="chip on" data-s="e" data-en="English meaning">अंग्रेज़ी अर्थ</button><button class="chip on" data-s="pa" data-en="Punjabi meaning" hidden>पंजाबी अर्थ</button><button class="chip on" data-s="n" data-en="My notes">मेरी टिप्पणियाँ</button>
   </div>
-  <div id="sRes"><div class="empty" data-en="Type any word from a verse, its Hindi meaning or its English meaning.">चौपाई, दोहे या अर्थका कोई भी शब्द लिखें।</div></div>
+  <div id="sRes" class="zoomable"><div class="empty" data-en="Type any word from a verse, its Hindi meaning or its English meaning.">चौपाई, दोहे या अर्थका कोई भी शब्द लिखें।</div></div>
  </div>
 </section>
 
@@ -134,9 +135,9 @@
 
 <!-- VIDHI -->
 <section id="vidhi" class="view vidhi">
- <div class="bar"><div class="wrap"><button class="ib" data-back aria-label="वापस"><svg><use href="#i-back"/></svg></button><div class="bt"><div class="t" data-en="Pārāyaṇa vidhi">पारायण-विधि</div></div><div class="sz"><button class="szm" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div><div class="lyr" id="vidLang"><button data-l="h">हिं</button><button data-l="e" class="lat">En</button></div></div></div>
+ <div class="bar"><div class="wrap"><button class="ib" data-back aria-label="वापस"><svg><use href="#i-back"/></svg></button><div class="bt"><div class="t" data-en="Parayan vidhi">पारायण-विधि</div></div><div class="sz"><button class="szm" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div><div class="lyr" id="vidLang"><button data-l="h">हिं</button><button data-l="e" class="lat">En</button></div></div></div>
  <div class="wrap">
-  <div class="seg" id="vidSeg"><button data-v="v" class="on" data-en="Pārāyaṇa vidhi">पारायण-विधि</button><button data-v="aarti" data-en="Āratī">आरती</button><button data-v="visarjan" data-en="Visarjana" hidden>विसर्जन</button></div>
+  <div class="seg" id="vidSeg"><button data-v="v" class="on" data-en="Parayan vidhi">पारायण-विधि</button><button data-v="aarti" data-en="Aarti">आरती</button><button data-v="visarjan" data-en="Visarjana" hidden>विसर्जन</button></div>
   <div id="vidBody" class="zoomable" style="padding-bottom:40px"></div>
  </div>
 </section>
@@ -145,10 +146,10 @@
 <div class="scrim" id="scrim"></div>
 <div class="coach" id="coach" hidden><div class="cspot" id="cspot"></div><div class="cbub" id="cbub"><p id="cbText"></p><div class="cbrow"><button id="cbBack" hidden><span data-en="‹ Back">‹ पीछे</span></button><span id="cbStep" class="muted"></span><button id="cbSkip"><span data-en="Skip tour">परिचय छोड़ें</span></button></div></div></div>
 <div class="tour" id="tour" hidden role="dialog" aria-modal="true"><div class="tcard"><div class="tart" id="tourArt"></div><h2 id="tourT"></h2><p id="tourP"></p><div class="tdots" id="tourDots"></div><div class="tbtns"><button class="btn ghost" id="tourSkip"></button><button class="btn" id="tourNext"></button></div></div></div>
-<div class="sheet" id="sheet"><div class="grab"></div><div class="wrap" id="sheetBody"></div></div>
+<div class="sheet" id="sheet"><div class="grab"></div><div class="wrap zoomable" id="sheetBody"></div></div>
 <div class="toast" id="toast"></div>
 <input type="file" id="fileIn" accept="application/json,.json" style="display:none">
 
-<script src="app/app.js?v=0df516ccc4"></script>
+<script src="app/app.js?v=2c1582b558"></script>
 </body>
 </html>

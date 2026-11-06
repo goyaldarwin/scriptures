@@ -4,11 +4,11 @@
  "lang": "sa",
  "title": {
   "hi": "श्रीरामरक्षास्तोत्रम्",
-  "en": "Śrī Rāma Rakṣā Stotram"
+  "en": "Shri Ram Raksha Stotram"
  },
  "by": {
   "hi": "बुधकौशिक ऋषि",
-  "en": "Budha Kauśika Ṛṣi"
+  "en": "Budha Kaushik Rishi"
  },
  "edition": {
   "hi": "वन्दे गुरु परम्पराम्",
@@ -17,13 +17,13 @@
  "parts": {
   "name": {
    "hi": "पाठ",
-   "en": "Pāṭha"
+   "en": "Paath"
   },
   "list": [
    {
     "key": "ramraksha",
     "hi": "श्रीरामरक्षास्तोत्रम्",
-    "en": "Śrī Rāma Rakṣā Stotram"
+    "en": "Shri Ram Raksha Stotram"
    }
   ]
  },
@@ -51,7 +51,7 @@
   "dhyana": {
    "name": {
     "hi": "ध्यान",
-    "en": "Dhyāna"
+    "en": "Dhyan"
    },
    "short": {
     "hi": "ध्या॰",
@@ -61,11 +61,11 @@
   "shloka": {
    "name": {
     "hi": "श्लोक",
-    "en": "Śloka"
+    "en": "Shloka"
    },
    "short": {
     "hi": "श्लो॰",
-    "en": "Śl."
+    "en": "Shl."
    }
   },
   "iti": {

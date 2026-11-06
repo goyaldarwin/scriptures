@@ -8,7 +8,7 @@
  },
  "by": {
   "hi": "आदि शंकराचार्य",
-  "en": "Ādi Śaṅkarācārya"
+  "en": "Adi Shankaracharya"
  },
  "edition": {
   "hi": "sanskritdocuments.org",
@@ -17,7 +17,7 @@
  "parts": {
   "name": {
    "hi": "पाठ",
-   "en": "Pāṭha"
+   "en": "Paath"
   },
   "list": [
    {
@@ -31,11 +31,11 @@
   "shloka": {
    "name": {
     "hi": "श्लोक",
-    "en": "Śloka"
+    "en": "Shloka"
    },
    "short": {
     "hi": "श्लो॰",
-    "en": "Śl."
+    "en": "Shl."
    }
   }
  }

@@ -2,7 +2,7 @@
 
 @part aarti
 @section aarti
-@topic ॐ जय शिव ओंकारा | Om Jaya Śiva Oṅkārā
+@topic ॐ जय शिव ओंकारा | Om Jai Shiv Omkara
 [aarti.tek tek]
 ॐ जय शिव ओंकारा, स्वामी जय शिव ओंकारा ।
 ब्रह्मा, विष्णु, सदाशिव, अर्द्धांगी धारा ॥

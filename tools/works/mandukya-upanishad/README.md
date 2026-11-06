@@ -15,4 +15,12 @@ The folder's format: `tools/works/README.md`.
 - `glossary/sa.json`: the work's own senses of three words.
 
 ## Structure
+- **Hierarchy:** one part › each verse its own section › the verse.
+- **Numbering:** a mantra's `n` is its printed number, and it is cited by it (Mantra 7); the śānti and the closing words have none.
 One part. Items `shanti.1`, `m01`–`m12` (type `mantra`), `iti`. Each item is its own section. Topics: Śānti Pāṭha and the recording's four khaṇḍas (mantras 1–2, 3–7, 8–11, 12). Item ids are permanent.
+
+## Introduction
+The readers' introduction (`intro` in `library/index.json`, shown in ⓘ About this work) states only what these support:
+- Wikipedia, "Mandukya Upanishad" (https://en.wikipedia.org/wiki/Mandukya_Upanishad): Atharvaveda, twelve prose verses, the shortest, Om and the four states, Gaudapada's Karika, Shankara, the Muktika.
+- shlokam.org, "Mandukya Upanishad" (https://shlokam.org/text/mandukya-upanishad.htm): twelve verses, Gaudapada and Shankara as the foundation of Advaita.
+- The text itself and our meanings.

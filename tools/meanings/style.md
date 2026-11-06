@@ -36,7 +36,7 @@ Only after the draft, open the published meanings (Gita Press; Growse's 1883 tra
 
 ## 5. English
 - Plain, dignified, modern English; no thee/thou, no "verily", no inversion for effect.
-- **IAST for names and Sanskrit terms**, as in our other meanings: Śrī Rāma, Sītā, Lakṣmaṇa, Hanumān, Rāvaṇa, Laṅkā, Ayodhyā. Common nouns that have an English word are translated (monkey, demon, ocean, lotus).
+- **IAST for names and Sanskrit terms**, as in our other meanings: Śrī Rāma, Sītā, Lakṣmaṇa, Hanumān, Rāvaṇa, Laṅkā, Ayodhyā. Common nouns that have an English word are translated (monkey, demon, ocean, lotus). (Titles, headings and labels are different: plain common Indian English, Shri Ram, Sundarkand, Hanuman Chalisa: `docs/PLAYBOOK.md`.)
 - **Pronouns for the Lord and Sītā in lower case** (he, his, you), as in all our meanings.
 - British/Indian spelling (honour, colour, realise).
 - Punctuation: a colon before speech ("Hanumān said: …"); ordinary commas and full stops; no exclamation marks except where the verse exclaims (जय, धन्य, हा).
