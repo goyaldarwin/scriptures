@@ -1,0 +1,671 @@
+[
+ {
+  "case": 1,
+  "id": "ayodhya.10.16",
+  "decision": "keep",
+  "from": "भूषणैस्त्रिदिवोपमम्",
+  "reason": "भूषणैः 'with ornaments' is a valid instrumental parallel to महार्हैः and gives good sense."
+ },
+ {
+  "case": 2,
+  "id": "ayodhya.10.20",
+  "decision": "keep",
+  "from": "प्रतिहारी",
+  "reason": "प्रतिहारी is a recognised spelling of प्रतीहारी (door-keeper), listed in Monier-Williams."
+ },
+ {
+  "case": 3,
+  "id": "ayodhya.10.28",
+  "decision": "keep",
+  "from": "केनाभियुक्तासि",
+  "reason": "अभियुक्ता 'assailed, accused' is a valid participle that makes sense in Daśaratha's question."
+ },
+ {
+  "case": 4,
+  "id": "ayodhya.10.32",
+  "decision": "keep",
+  "from": "रौत्सीर्मा",
+  "reason": "रौत्सीः is a correct s-aorist of रुध् with मा; the reading differs by more than a slip, so it is kept as Gita Press's reading."
+ },
+ {
+  "case": 5,
+  "id": "ayodhya.10.34",
+  "decision": "keep",
+  "from": "कंचिदभिप्रायं",
+  "reason": "कंचित् is correct masculine accusative agreeing with अभिप्रायम् (masculine)."
+ },
+ {
+  "case": 6,
+  "id": "ayodhya.10.35",
+  "decision": "keep",
+  "from": "यन्मनसि",
+  "reason": "यन्मनसि स्थितम् 'what is in your mind' is grammatical and keeps the metre."
+ },
+ {
+  "case": 7,
+  "id": "ayodhya.11.3",
+  "decision": "keep",
+  "from": "यथाभिप्रार्थितं",
+  "reason": "यथाभिप्रार्थितम् 'as desired by me' is a valid adverbial reading."
+ },
+ {
+  "case": 8,
+  "id": "ayodhya.12.3",
+  "decision": "keep",
+  "from": "कैकेयीवाक्यतापितः",
+  "reason": "वाक्यतापितः 'scorched by Kaikeyī's words' is a valid and apt compound."
+ },
+ {
+  "case": 9,
+  "id": "ayodhya.12.4",
+  "decision": "keep",
+  "from": "विक्लवश्चैव",
+  "reason": "विक्लव is Gita Press's regular spelling of this word (व for ब)."
+ },
+ {
+  "case": 10,
+  "id": "ayodhya.12.33",
+  "decision": "keep",
+  "from": "यस्मिंस्तपस्त्यागः",
+  "reason": "तपः in the list of virtues is a valid alternative to दमः and the line scans."
+ },
+ {
+  "case": 11,
+  "id": "ayodhya.12.56",
+  "decision": "keep",
+  "from": "त्वमुपदेशिता",
+  "reason": "उपदेशिता 'instructed' (causative participle) is valid and fits the sense."
+ },
+ {
+  "case": 12,
+  "id": "ayodhya.12.80",
+  "decision": "keep",
+  "from": "रज्जुरुद्बन्धनी",
+  "reason": "उद्बन्धनी is a regular feminine of the instrument noun उद्बन्धन 'noose for hanging' and fits the simile."
+ },
+ {
+  "case": 13,
+  "id": "ayodhya.12.98",
+  "decision": "keep",
+  "from": "महार्हवस्त्रसम्बद्धो",
+  "reason": "सम्बद्धः 'wrapped in costly clothes' is valid sense."
+ },
+ {
+  "case": 14,
+  "id": "ayodhya.12.98",
+  "decision": "keep",
+  "from": "चिरसुखोचितः",
+  "reason": "सुखोचितः 'used to comfort' is a valid, common epic compound."
+ },
+ {
+  "case": 15,
+  "id": "ayodhya.12.99",
+  "decision": "keep",
+  "from": "वाक्यमेवंविधमपीरितम्",
+  "reason": "अपीरितम् (अपि ईरितम्) 'even spoken' is grammatical and makes sense."
+ },
+ {
+  "case": 16,
+  "id": "ayodhya.13.15",
+  "decision": "keep",
+  "from": "तदार्तस्य",
+  "reason": "तदा 'then' is a valid alternative to तथा."
+ },
+ {
+  "case": 17,
+  "id": "ayodhya.14.7",
+  "decision": "keep",
+  "from": "सत्येनावाप्यते",
+  "reason": "सत्येन अवाप्यते 'is attained by truth' is grammatical."
+ },
+ {
+  "case": 18,
+  "id": "ayodhya.14.13",
+  "decision": "keep",
+  "from": "विकलाभ्यां",
+  "reason": "विकल 'impaired' is a valid synonym of विह्वल for the eyes."
+ },
+ {
+  "case": 19,
+  "id": "ayodhya.14.18",
+  "decision": "keep",
+  "from": "तथामुखम्",
+  "reason": "तथामुखम् 'so (bright)-faced' is a valid bahuvrīhi qualifying जनम् in the next line."
+ },
+ {
+  "case": 20,
+  "id": "ayodhya.14.26",
+  "decision": "keep",
+  "from": "परिवृतस्तथा",
+  "reason": "तथा for तदा is a valid variant."
+ },
+ {
+  "case": 21,
+  "id": "ayodhya.14.34",
+  "decision": "keep",
+  "from": "भद्रपीठमभिषेकार्थमाहृतम्",
+  "reason": "आहृतम् 'brought' is valid for the seat brought for the consecration."
+ },
+ {
+  "case": 22,
+  "id": "ayodhya.14.39",
+  "decision": "keep",
+  "from": "समिधश्च",
+  "reason": "समिधः 'fuel-sticks' (with the fire) is a valid nominative plural and makes sense in the list of items."
+ },
+ {
+  "case": 23,
+  "id": "ayodhya.14.54",
+  "decision": "keep",
+  "from": "नैगमश्च",
+  "reason": "नैगमः as a collective singular with कृताञ्जलिः is grammatical."
+ },
+ {
+  "case": 24,
+  "id": "ayodhya.14.67",
+  "decision": "keep",
+  "from": "धर्मराट्",
+  "reason": "धर्मराट् as an epithet is a valid word and fits the sense."
+ },
+ {
+  "case": 25,
+  "id": "ayodhya.15.6",
+  "decision": "keep",
+  "from": "प्राग्वहाश्चोर्ध्ववाहाश्च",
+  "reason": "प्राग्वह 'flowing east' is a valid form beside प्राग्वाह."
+ },
+ {
+  "case": 26,
+  "id": "ayodhya.15.11",
+  "decision": "keep",
+  "from": "श्रीमदभिषेकपुरस्सरम्",
+  "reason": "पुरस्सर 'preceding, attending' is valid in the compound."
+ },
+ {
+  "case": 27,
+  "id": "ayodhya.15.32",
+  "decision": "keep",
+  "from": "मेरुगुहासमम्",
+  "reason": "मेरुगुहासम is a valid comparison compound."
+ },
+ {
+  "case": 28,
+  "id": "ayodhya.15.38",
+  "decision": "keep",
+  "from": "समाक्रान्तैस्तदा",
+  "reason": "तदा for तथा is a valid variant."
+ },
+ {
+  "case": 29,
+  "id": "ayodhya.15.39",
+  "decision": "keep",
+  "from": "सुविराजितम्",
+  "reason": "सुविराजितम् is a valid participle meaning 'well adorned'."
+ },
+ {
+  "case": 30,
+  "id": "ayodhya.15.40",
+  "decision": "keep",
+  "from": "राजगृहाभिपातिना",
+  "reason": "राजगृह 'royal palace' is a valid compound and the vaṃśastha scans."
+ },
+ {
+  "case": 31,
+  "id": "ayodhya.16.35",
+  "decision": "keep",
+  "from": "अनुजग्मुस्तथा",
+  "reason": "तथा for तदा is a valid variant."
+ },
+ {
+  "case": 32,
+  "id": "ayodhya.17.3",
+  "decision": "keep",
+  "from": "मध्येनागुरुधूपितम्",
+  "reason": "अगुरु is a standard spelling of the aloe-wood name (beside अगरु)."
+ },
+ {
+  "case": 33,
+  "id": "ayodhya.18.20",
+  "decision": "keep",
+  "from": "त्वद्भयान्नानुभाषते",
+  "reason": "अनुभाषते is a valid verb 'speaks' with the same sense."
+ },
+ {
+  "case": 34,
+  "id": "ayodhya.19.27",
+  "decision": "keep",
+  "from": "दुःखगतः",
+  "reason": "दुःखगतः 'fallen into grief' is a valid compound."
+ },
+ {
+  "case": 35,
+  "id": "ayodhya.19.36",
+  "decision": "keep",
+  "from": "कंचिदाकारमानने",
+  "reason": "कंचित् is correct masculine accusative agreeing with आकारम्."
+ },
+ {
+  "case": 36,
+  "id": "ayodhya.20.6",
+  "decision": "keep",
+  "from": "सस्वनं",
+  "reason": "सस्वनम् 'loudly' is a valid adverb."
+ },
+ {
+  "case": 37,
+  "id": "ayodhya.20.21",
+  "decision": "keep",
+  "from": "मातरमुपक्रान्तामुपसंगृह्य",
+  "reason": "उपक्रान्ताम् 'who had approached' is valid."
+ },
+ {
+  "case": 38,
+  "id": "ayodhya.20.52",
+  "decision": "keep",
+  "from": "यदपत्यकाम्यया",
+  "reason": "अपत्यकाम्यया 'from desire for a son' is valid and the vaṃśastha scans correctly."
+ },
+ {
+  "case": 39,
+  "id": "ayodhya.21.31",
+  "decision": "keep",
+  "from": "वनचारिणा",
+  "reason": "वनचारिणा 'living in the forest' is a valid epithet of Kaṇḍu."
+ },
+ {
+  "case": 40,
+  "id": "ayodhya.21.50",
+  "decision": "keep",
+  "from": "सम्भृत्य",
+  "reason": "सम्भृत्य 'having gathered' is a valid verb with सम्भारान्."
+ },
+ {
+  "case": 41,
+  "id": "ayodhya.21.51",
+  "decision": "keep",
+  "from": "सुधर्म्यमव्यग्रमविक्लवं",
+  "reason": "अविक्लव is Gita Press's regular spelling (व for ब)."
+ },
+ {
+  "case": 42,
+  "id": "ayodhya.22.3",
+  "decision": "keep",
+  "from": "निरस्यैनं",
+  "reason": "एनम् is a valid pronoun in place of इमम्."
+ },
+ {
+  "case": 43,
+  "id": "ayodhya.22.4",
+  "decision": "keep",
+  "from": "निरव्ययम्",
+  "reason": "निरव्यय 'without loss' is a dictionary word and fits the sense."
+ },
+ {
+  "case": 44,
+  "id": "ayodhya.22.19",
+  "decision": "keep",
+  "from": "मत्पीड्यं",
+  "reason": "मत्पीड्यम् 'what would pain me' is a possible gerundive compound and nothing settles a change."
+ },
+ {
+  "case": 45,
+  "id": "ayodhya.22.23",
+  "decision": "keep",
+  "from": "दैवेनाभिप्रचोदिताः",
+  "reason": "अभिप्रचोदिताः 'impelled by fate' is valid and apt."
+ },
+ {
+  "case": 46,
+  "id": "ayodhya.22.28",
+  "decision": "keep",
+  "from": "मयैतेन",
+  "reason": "किं मया एतेन 'what have I to do with this' is a valid idiom."
+ },
+ {
+  "case": 47,
+  "id": "ayodhya.22.28",
+  "decision": "keep",
+  "from": "राज्यद्रव्यमयेन",
+  "reason": "राज्यद्रव्य 'articles for the kingship' is a valid compound."
+ },
+ {
+  "case": 48,
+  "id": "ayodhya.23.19",
+  "decision": "keep",
+  "from": "यैर्दैवादाहतं",
+  "reason": "यैः (जनैः) ... दृष्टम् 'by whom it was seen' is grammatical."
+ },
+ {
+  "case": 49,
+  "id": "ayodhya.23.20",
+  "decision": "keep",
+  "from": "मदजलोद्धतम्",
+  "reason": "मदजल 'rut-fluid' is a valid compound for a rutting elephant."
+ },
+ {
+  "case": 50,
+  "id": "ayodhya.24.8",
+  "decision": "keep",
+  "from": "कक्ष्यं",
+  "reason": "कक्ष्य 'dry grass, brushwood' is a dictionary word that fits the forest-fire simile."
+ },
+ {
+  "case": 51,
+  "id": "ayodhya.24.20",
+  "decision": "correct",
+  "from": "पितरपेक्षया",
+  "to": "पितुरपेक्षया",
+  "reason": "पितरपेक्षया is not a possible form; the compound needs the genitive पितुः, a dropped ु sign."
+ },
+ {
+  "case": 52,
+  "id": "ayodhya.24.34",
+  "decision": "keep",
+  "from": "स्वपिष्ये",
+  "reason": "स्वपिष्ये is an epic future that the six-pāda verse's metre requires (स्वप्स्ये would leave seven syllables)."
+ },
+ {
+  "case": 53,
+  "id": "ayodhya.25.24",
+  "decision": "keep",
+  "from": "मन्त्राश्चर्षिमुखच्युताः",
+  "reason": "ऋषिमुखच्युताः is a valid compound with the same meaning."
+ },
+ {
+  "case": 54,
+  "id": "ayodhya.25.41",
+  "decision": "keep",
+  "from": "संधितं",
+  "reason": "संधित 'fixed, established' is a dictionary word that gives acceptable sense."
+ },
+ {
+  "case": 55,
+  "id": "ayodhya.26.15",
+  "decision": "keep",
+  "from": "पुष्परथो",
+  "reason": "पुष्परथ 'pleasure-chariot' is a Monier-Williams word cited from the Rāmāyaṇa."
+ },
+ {
+  "case": 56,
+  "id": "ayodhya.26.36",
+  "decision": "keep",
+  "from": "औरस्यानपि",
+  "reason": "औरस्य is a recognised equivalent of औरस 'legitimate (son)'."
+ },
+ {
+  "case": 57,
+  "id": "ayodhya.27.11",
+  "decision": "keep",
+  "from": "शार्दूलगणसेवितम्",
+  "reason": "शार्दूलगण is a valid compound."
+ },
+ {
+  "case": 58,
+  "id": "ayodhya.28.10",
+  "decision": "keep",
+  "from": "सुदुःखाश्च",
+  "reason": "सुदुःख 'very painful' is valid for paths."
+ },
+ {
+  "case": 59,
+  "id": "ayodhya.28.25",
+  "decision": "keep",
+  "from": "बहुदोषकरं",
+  "reason": "बहुदोषकर 'causing many evils' is valid."
+ },
+ {
+  "case": 60,
+  "id": "ayodhya.30.10",
+  "decision": "correct",
+  "from": "प्रस्थितुमर्हसि",
+  "to": "प्रस्थातुमर्हसि",
+  "reason": "प्रस्थितुम् is not a possible infinitive of स्था; the correct form is प्रस्थातुम्."
+ },
+ {
+  "case": 61,
+  "id": "ayodhya.30.13",
+  "decision": "keep",
+  "from": "महावातसमुद्भूतं",
+  "reason": "समुद्भूतम् 'raised by the wind' is valid for dust."
+ },
+ {
+  "case": 62,
+  "id": "ayodhya.31.24",
+  "decision": "keep",
+  "from": "प्रकल्प्यते",
+  "reason": "प्रकल्प्यते (passive) is grammatical and keeps the sense."
+ },
+ {
+  "case": 63,
+  "id": "ayodhya.31.26",
+  "decision": "keep",
+  "from": "स्वाहार्हाणि",
+  "reason": "स्वाहार्ह 'fit for offering' is a valid compound."
+ },
+ {
+  "case": 64,
+  "id": "ayodhya.32.41",
+  "decision": "keep",
+  "from": "व्यवस्यसि",
+  "reason": "व्यवस्यसि (2nd person) agrees with वृणीष्व and is grammatical."
+ },
+ {
+  "case": 65,
+  "id": "ayodhya.33.3",
+  "decision": "keep",
+  "from": "अभिरुह्य",
+  "reason": "अभिरुह्य 'having climbed' is valid."
+ },
+ {
+  "case": 66,
+  "id": "ayodhya.33.5",
+  "decision": "keep",
+  "from": "ऊचुर्बहुजना",
+  "reason": "बहुजनाः 'many people' as subject is grammatical."
+ },
+ {
+  "case": 67,
+  "id": "ayodhya.33.7",
+  "decision": "keep",
+  "from": "कामानां",
+  "reason": "कामानाम् आकरः 'a mine of pleasures' is a valid phrase."
+ },
+ {
+  "case": 68,
+  "id": "ayodhya.33.11",
+  "decision": "keep",
+  "from": "विनिवासनम्",
+  "reason": "विनिवासन 'banishment' is valid."
+ },
+ {
+  "case": 69,
+  "id": "ayodhya.34.4",
+  "decision": "keep",
+  "from": "परमाकुलचेतनम्",
+  "reason": "चेतन in a bahuvrīhi compound is valid."
+ },
+ {
+  "case": 70,
+  "id": "ayodhya.34.5",
+  "decision": "keep",
+  "from": "भयविक्लवया",
+  "reason": "विक्लव is Gita Press's regular spelling (व for ब)."
+ },
+ {
+  "case": 71,
+  "id": "ayodhya.34.5",
+  "decision": "keep",
+  "from": "श्लक्ष्णयाब्रवीत्",
+  "reason": "श्लक्ष्णया agreeing with वाचा is grammatical."
+ },
+ {
+  "case": 72,
+  "id": "ayodhya.35.1",
+  "decision": "keep",
+  "from": "निधूय",
+  "reason": "निधूय 'having shaken' is a valid form from नि+धू."
+ },
+ {
+  "case": 73,
+  "id": "ayodhya.36.1",
+  "decision": "keep",
+  "from": "पुनर्वचः",
+  "reason": "पुनर्वचः 'again these words' is valid."
+ },
+ {
+  "case": 74,
+  "id": "ayodhya.36.12",
+  "decision": "keep",
+  "from": "गतधनं",
+  "reason": "गतधन 'bereft of wealth' is valid sense for the kingdom."
+ },
+ {
+  "case": 75,
+  "id": "ayodhya.36.25",
+  "decision": "keep",
+  "from": "गिरिदुर्गाण्यलोकयत्",
+  "reason": "अलोकयत् 'looked over' is a valid verb."
+ },
+ {
+  "case": 76,
+  "id": "ayodhya.36.32",
+  "decision": "keep",
+  "from": "पापरूपे",
+  "reason": "पापरूपे is a valid vocative and fits the metre; the word under review needs no change."
+ },
+ {
+  "case": 77,
+  "id": "ayodhya.37.15",
+  "decision": "keep",
+  "from": "अन्तःपुरचरा",
+  "reason": "अन्तःपुरचर is a valid compound."
+ },
+ {
+  "case": 78,
+  "id": "ayodhya.39.22",
+  "decision": "keep",
+  "from": "क्षणमात्रविरागिणः",
+  "reason": "क्षणमात्रविरागिणः is a valid compound with the same sense."
+ },
+ {
+  "case": 79,
+  "id": "ayodhya.40.15",
+  "decision": "keep",
+  "from": "तथैवायुधजातानि",
+  "reason": "आयुधजात 'collection of weapons' is valid."
+ },
+ {
+  "case": 80,
+  "id": "ayodhya.40.15",
+  "decision": "keep",
+  "from": "प्रविन्यस्य",
+  "reason": "प्रविन्यस्य 'having placed' is valid."
+ },
+ {
+  "case": 81,
+  "id": "ayodhya.40.19",
+  "decision": "keep",
+  "from": "हयसिञ्जितनिर्घोषं",
+  "reason": "सिञ्जित is a Monier-Williams headword (beside शिञ्जित)."
+ },
+ {
+  "case": 82,
+  "id": "ayodhya.40.32",
+  "decision": "keep",
+  "from": "जनस्तथा",
+  "reason": "तथा for तदा is a valid variant."
+ },
+ {
+  "case": 83,
+  "id": "ayodhya.42.10",
+  "decision": "keep",
+  "from": "रेणुसमुद्ध्वस्तं",
+  "reason": "समुद्ध्वस्त is the regular spelling of उद्+ध्वस्त."
+ },
+ {
+  "case": 84,
+  "id": "ayodhya.42.20",
+  "decision": "keep",
+  "from": "श्वपदानर्दितं",
+  "reason": "श्वपद is a recognised form of श्वापद."
+ },
+ {
+  "case": 85,
+  "id": "ayodhya.43.9",
+  "decision": "keep",
+  "from": "सहभार्यं",
+  "reason": "सहभार्यम् is valid and the pāda has eight syllables."
+ },
+ {
+  "case": 86,
+  "id": "ayodhya.43.16",
+  "decision": "correct",
+  "from": "चामरप्रभाः",
+  "to": "चामरप्रभः",
+  "reason": "चामरप्रभाः is plural against the singular subject; the bahuvrīhi must be चामरप्रभः, an extra ा."
+ },
+ {
+  "case": 87,
+  "id": "ayodhya.44.25",
+  "decision": "keep",
+  "from": "यतोऽनघे",
+  "reason": "यतः 'since' is a valid conjunction here."
+ },
+ {
+  "case": 88,
+  "id": "ayodhya.44.27",
+  "decision": "keep",
+  "from": "मेघरेखेव",
+  "reason": "मेघरेखा is a valid synonym of मेघलेखा."
+ },
+ {
+  "case": 89,
+  "id": "ayodhya.45.23",
+  "decision": "keep",
+  "from": "स्वैश्छत्रैर्वाजपेयकैः",
+  "reason": "वाजपेयक is a Monier-Williams word cited from the Rāmāyaṇa."
+ },
+ {
+  "case": 90,
+  "id": "ayodhya.46.13",
+  "decision": "keep",
+  "from": "रात्रिमुपागताम्",
+  "reason": "उपागताम् 'come' is valid."
+ },
+ {
+  "case": 91,
+  "id": "ayodhya.46.19",
+  "decision": "keep",
+  "from": "निर्व्यपेक्षान्",
+  "reason": "निर्व्यपेक्ष 'indifferent' is valid."
+ },
+ {
+  "case": 92,
+  "id": "ayodhya.46.27",
+  "decision": "keep",
+  "from": "त्वरयाऽऽरोह",
+  "reason": "त्वरया आरोह 'mount quickly' is grammatical and has eight syllables."
+ },
+ {
+  "case": 93,
+  "id": "ayodhya.47.4",
+  "decision": "keep",
+  "from": "ययापहतचेतसः",
+  "reason": "अपहतचेतसः is a valid compound."
+ },
+ {
+  "case": 94,
+  "id": "ayodhya.48.6",
+  "decision": "keep",
+  "from": "रुदत्यश्च",
+  "reason": "रुदती is the correct feminine participle of रुद् (class 2), so रुदत्यः is correct."
+ },
+ {
+  "case": 95,
+  "id": "ayodhya.48.25",
+  "decision": "correct",
+  "from": "सर्वमनालम्भमनायकम्",
+  "to": "सर्वमनालम्बमनायकम्",
+  "reason": "आलम्भ means 'seizing, killing', not 'support'; the sense 'without support' needs अनालम्बम्, a ब/भ slip."
+ }
+]

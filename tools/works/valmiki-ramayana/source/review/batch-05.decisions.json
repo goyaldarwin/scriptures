@@ -1,0 +1,688 @@
+[
+ {
+  "case": 1,
+  "id": "aranya.38.23",
+  "decision": "keep",
+  "from": "करिष्यस्यापदां",
+  "reason": "आपदा is a valid feminine ā-stem ('calamity', MW), so आपदां घोरां is a correct accusative agreeing with घोरां."
+ },
+ {
+  "case": 2,
+  "id": "aranya.40.27",
+  "decision": "keep",
+  "from": "परिगण्य",
+  "reason": "परिगण्य 'having considered' is a valid gerund that fits 'weigh this properly with your mind'."
+ },
+ {
+  "case": 3,
+  "id": "aranya.41.12",
+  "decision": "correct",
+  "from": "भुज्यन्ते",
+  "to": "भज्यन्ते",
+  "reason": "The simile of chariots wrecked on rough ground requires भज्यन्ते 'are broken' (√भञ्ज्); भुज्यन्ते 'are eaten/enjoyed' gives no sense and is a one-vowel slip."
+ },
+ {
+  "case": 4,
+  "id": "aranya.42.6",
+  "decision": "keep",
+  "from": "एतच्छौटीर्ययुक्तं",
+  "reason": "शौटीर्य is a recognised form of शौण्डीर्य (MW, citing R.) and Gita Press uses it regularly elsewhere."
+ },
+ {
+  "case": 5,
+  "id": "aranya.43.36",
+  "decision": "keep",
+  "from": "स्पर्शेऽनेनेति",
+  "reason": "स्पर्शेऽनेन 'in touch, by this (skin)' is a valid reading with correct sandhi."
+ },
+ {
+  "case": 6,
+  "id": "aranya.47.45",
+  "decision": "keep",
+  "from": "सिंहसृगालयोर्वने",
+  "reason": "सृगाल is a valid variant spelling of शृगाल 'jackal' (MW)."
+ },
+ {
+  "case": 7,
+  "id": "aranya.48.15",
+  "decision": "keep",
+  "from": "मन्दवीर्यस्ततो",
+  "reason": "Gita Press's line (मन्दवीर्यस्ततो ज्येष्ठः सुतः) is a grammatical reordering with the same sense, matching its different first half."
+ },
+ {
+  "case": 8,
+  "id": "aranya.48.18",
+  "decision": "keep",
+  "from": "पश्चात्तापं",
+  "reason": "पश्चात्तापं 'remorse' is a valid word that fits 'you will repent after rejecting me'."
+ },
+ {
+  "case": 9,
+  "id": "aranya.49.4",
+  "decision": "keep",
+  "from": "कामरूपेण",
+  "reason": "कामरूपेण 'by my power of changing form at will' is a valid instrumental in Gita Press's own version of the half-verse."
+ },
+ {
+  "case": 10,
+  "id": "aranya.49.22",
+  "decision": "keep",
+  "from": "विचेष्टमानामादाय",
+  "reason": "विचेष्टमानाम् 'struggling' is a valid participle that fits Sītā writhing in Rāvaṇa's grasp."
+ },
+ {
+  "case": 11,
+  "id": "aranya.51.2",
+  "decision": "keep",
+  "from": "वातोद्धुतयोर्मेघयोर्गगने",
+  "reason": "उद्धुत 'shaken up' (√धु) is a valid participle; 'clouds tossed by wind' makes sense."
+ },
+ {
+  "case": 12,
+  "id": "aranya.51.45",
+  "decision": "keep",
+  "from": "सपाण्डुरोरस्कमुदारवीर्यम्",
+  "reason": "सपाण्डुरोरस्कम् 'with a pale chest' is a valid bahuvrīhi with the same sense."
+ },
+ {
+  "case": 13,
+  "id": "aranya.52.30",
+  "decision": "correct",
+  "from": "प्रशोभयत",
+  "to": "प्राशोभयत",
+  "reason": "The imperfect of प्र-√शुभ् causative needs the augment (प्र+अ = प्रा), and Gita Press has no augmentless form of this verb elsewhere; the ा is dropped."
+ },
+ {
+  "case": 14,
+  "id": "aranya.52.32",
+  "decision": "keep",
+  "from": "सघोषाण्यवशीर्यन्त",
+  "reason": "अवशीर्यन्त 'fell shattered' (अव-√शॄ) is a valid verb in the same epic augmentless form as the others' अवकीर्यन्त."
+ },
+ {
+  "case": 15,
+  "id": "aranya.52.34",
+  "decision": "correct",
+  "from": "उत्पातवाताभिरता",
+  "to": "उत्पातवाताभिहता",
+  "reason": "Trees 'struck' (अभिहता) by portent-winds is the sense; अभिरता 'delighting in' makes no sense here and is a र/ह slip."
+ },
+ {
+  "case": 16,
+  "id": "aranya.53.8",
+  "decision": "keep",
+  "from": "शौटीर्यमानिनः",
+  "reason": "शौटीर्य is a recognised form of शौण्डीर्य (MW, citing R.) used by Gita Press five times."
+ },
+ {
+  "case": 17,
+  "id": "aranya.53.26",
+  "decision": "correct",
+  "from": "नृपात्मजामागतगात्रवेपथुः",
+  "to": "नृपात्मजामागतगात्रवेपथुम्",
+  "reason": "The bahuvrīhi describes the trembling Sītā and must be accusative like तरुणीं विचेष्टतीं नृपात्मजाम्; the nominative is an ending slip."
+ },
+ {
+  "case": 18,
+  "id": "aranya.54.13",
+  "decision": "keep",
+  "from": "बहुलां",
+  "reason": "संरूढकक्ष्यां बहुलां are feminine accusatives continuing the description of पुरीं लङ्कां in Gita Press's verse 12, so the reading is grammatical."
+ },
+ {
+  "case": 19,
+  "id": "aranya.54.13",
+  "decision": "keep",
+  "from": "तामसितापाङ्गीं",
+  "reason": "असितापाङ्गी is a valid feminine of the bahuvrīhi (-अङ्गी/-अङ्गा both used)."
+ },
+ {
+  "case": 20,
+  "id": "aranya.54.13",
+  "decision": "keep",
+  "from": "शोकमोहसमन्विताम्",
+  "reason": "शोकमोहसमन्विताम् 'filled with grief and bewilderment' is a valid synonym of the others' reading."
+ },
+ {
+  "case": 21,
+  "id": "aranya.54.28",
+  "decision": "correct",
+  "from": "युस्माकं",
+  "to": "युष्माकं",
+  "reason": "युस्माकं is a non-word; the pronoun is युष्माकम् with retroflex ष."
+ },
+ {
+  "case": 22,
+  "id": "aranya.54.28",
+  "decision": "keep",
+  "from": "निवेशिताः",
+  "reason": "निवेशिताः 'stationed' is a valid participle that fits 'I have posted you in Janasthāna'."
+ },
+ {
+  "case": 23,
+  "id": "aranya.55.1",
+  "decision": "correct",
+  "from": "कृत्कृत्यममन्यत",
+  "to": "कृतकृत्यममन्यत",
+  "reason": "कृत्कृत्य is a non-word and leaves the half-verse at 15 syllables; कृतकृत्य mends both."
+ },
+ {
+  "case": 24,
+  "id": "aranya.55.35",
+  "decision": "keep",
+  "from": "यस्त्वामभिभविष्यति",
+  "reason": "अभिभविष्यति is a valid future form in Gita Press's own version of the half-verse and nothing decisive overrules it."
+ },
+ {
+  "case": 25,
+  "id": "aranya.56.20",
+  "decision": "keep",
+  "from": "तृणमध्यस्थं",
+  "reason": "तृणमध्यस्थं 'standing amid grass' is a valid compound with the same sense."
+ },
+ {
+  "case": 26,
+  "id": "aranya.56.29",
+  "decision": "keep",
+  "from": "प्रचल्य",
+  "reason": "प्रचल्य 'having moved/stepped forward' (प्र-√चल्) is a valid gerund that fits the stamping gait."
+ },
+ {
+  "case": 27,
+  "id": "aranya.58.20",
+  "decision": "keep",
+  "from": "प्राप्नुयामहे",
+  "reason": "The first-person plural for 'we two' is allowed (अस्मदो द्वयोश्च, P. 1.2.59), so प्राप्नुयामहे is grammatical."
+ },
+ {
+  "case": 28,
+  "id": "aranya.59.12",
+  "decision": "keep",
+  "from": "चादुःखभागिनी",
+  "reason": "अदुःखभागिनी 'never a sharer of sorrow' is a valid synonym of अदुःखदर्शिनी."
+ },
+ {
+  "case": 29,
+  "id": "aranya.61.18",
+  "decision": "keep",
+  "from": "पक्वतालोपमस्तनी",
+  "reason": "पक्वतालोपमस्तनी 'with breasts like ripe palm fruits' is a valid compound with the same sense."
+ },
+ {
+  "case": 30,
+  "id": "aranya.62.27",
+  "decision": "keep",
+  "from": "सीताहरणकर्षितः",
+  "reason": "कर्षित is a valid variant of कर्शित 'emaciated, afflicted' (MW)."
+ },
+ {
+  "case": 31,
+  "id": "aranya.63.3",
+  "decision": "keep",
+  "from": "शोकविवर्धनी",
+  "reason": "विवर्धनी is the valid feminine of the adjective विवर्धन 'increasing'."
+ },
+ {
+  "case": 32,
+  "id": "aranya.63.18",
+  "decision": "keep",
+  "from": "सूक्तचारिणा",
+  "reason": "सूक्तचारिणा 'acting as rightly told' is a valid compound that fits the context."
+ },
+ {
+  "case": 33,
+  "id": "aranya.64.8",
+  "decision": "correct",
+  "from": "नाभिपातः",
+  "to": "नाभिभातः",
+  "reason": "The two breasts are the subject, so the verb must be dual न अभिभातः 'do not shine'; नाभिपातः gives a singular noun with no construction, a भ/प slip."
+ },
+ {
+  "case": 34,
+  "id": "aranya.64.17",
+  "decision": "keep",
+  "from": "कुलपालिनीं",
+  "reason": "कुलपालिनी 'guardian of the family' is a valid epithet of Sītā."
+ },
+ {
+  "case": 35,
+  "id": "aranya.64.18",
+  "decision": "keep",
+  "from": "न्याय्ये",
+  "reason": "न्याय्ये 'in what is proper' is a valid locative of न्याय्य, same sense as न्याये."
+ },
+ {
+  "case": 36,
+  "id": "aranya.65.9",
+  "decision": "keep",
+  "from": "कर्मापि",
+  "reason": "कर्म अपि च (neuter accusative singular) is grammatical beside तद्रूपं."
+ },
+ {
+  "case": 37,
+  "id": "aranya.67.1",
+  "decision": "keep",
+  "from": "परिद्यूनमचेतसम्",
+  "reason": "अचेतसम् 'senseless' is a valid synonym of अचेतनम्."
+ },
+ {
+  "case": 38,
+  "id": "aranya.68.15",
+  "decision": "keep",
+  "from": "यामोषधीमिवायुष्मन्नन्वेषसि",
+  "reason": "ओषधी is a valid feminine ī-stem alongside ओषधि."
+ },
+ {
+  "case": 39,
+  "id": "aranya.68.27",
+  "decision": "keep",
+  "from": "पितुर्वयस्यो",
+  "reason": "पितुर्वयस्यः 'father's friend' (genitive phrase) is valid and synonymous with the compound."
+ },
+ {
+  "case": 40,
+  "id": "aranya.69.27",
+  "decision": "correct",
+  "from": "दिधक्ष्यामि",
+  "to": "दिधक्षामि",
+  "reason": "दिधक्ष्यामि is no valid form (the desiderative future would be दिधक्षिष्यामि); the present desiderative दिधक्षामि 'I wish to burn' is the intended word, with an intrusive य्."
+ },
+ {
+  "case": 41,
+  "id": "aranya.70.5",
+  "decision": "correct",
+  "from": "त्रिकोशं",
+  "to": "त्रिक्रोशं",
+  "reason": "The distance measure is क्रोश; कोश has no such sense in MW and Gita Press has त्रिकोश nowhere else, so the र is dropped."
+ },
+ {
+  "case": 42,
+  "id": "aranya.70.14",
+  "decision": "correct",
+  "from": "समालम्भत",
+  "to": "समालम्बत",
+  "reason": "The imperfect 'clung to' is from सम्-आ-√लम्ब्; √लभ् takes no nasal in the imperfect, so समालम्भत is a भ/ब slip."
+ },
+ {
+  "case": 43,
+  "id": "aranya.71.8",
+  "decision": "correct",
+  "from": "अच्छिन्दन्तां",
+  "to": "अच्छिन्दतां",
+  "reason": "The dual imperfect of √छिद् is अच्छिन्दताम्; अच्छिन्दन्तां is an impossible form with an extra nasal."
+ },
+ {
+  "case": 44,
+  "id": "aranya.73.4",
+  "decision": "keep",
+  "from": "बिभ्रन्माल्यं",
+  "reason": "माल्यं दिव्यं 'a divine garland' (neuter) is a valid synonym of मालां दिव्यां."
+ },
+ {
+  "case": 45,
+  "id": "aranya.75.16",
+  "decision": "keep",
+  "from": "वराँल्लोकानक्षयांस्त्वं",
+  "reason": "वराँल्लोकान् is the correct sandhi of न् before ल् used throughout Gita Press."
+ },
+ {
+  "case": 46,
+  "id": "aranya.76.24",
+  "decision": "keep",
+  "from": "कतकैरतिमुक्तकैः",
+  "reason": "कतक is a valid tree name (the clearing-nut tree) and fits the list of trees."
+ },
+ {
+  "case": 47,
+  "id": "kishkindha.1.76",
+  "decision": "keep",
+  "from": "संसिक्ता",
+  "reason": "संसिक्ताः 'sprinkled/watered' is a valid participle for trees on the Pampā's bank."
+ },
+ {
+  "case": 48,
+  "id": "kishkindha.1.81",
+  "decision": "keep",
+  "from": "शिंशपा",
+  "reason": "शिंशपा is the standard Sanskrit spelling of the tree name."
+ },
+ {
+  "case": 49,
+  "id": "kishkindha.1.88",
+  "decision": "keep",
+  "from": "रागरक्तो",
+  "reason": "रागरक्तः 'reddened/enamoured with passion' is a valid synonym of रागयुक्तः."
+ },
+ {
+  "case": 50,
+  "id": "kishkindha.1.129",
+  "decision": "keep",
+  "from": "चरंश्चरन्तौ",
+  "reason": "चरंश्चरन्तौ is the correct sandhi of चरन् before च."
+ },
+ {
+  "case": 51,
+  "id": "kishkindha.1.129",
+  "decision": "keep",
+  "from": "भयभारभग्नः",
+  "reason": "भयभारभग्नः 'broken by the weight of fear' is a valid compound with good sense."
+ },
+ {
+  "case": 52,
+  "id": "kishkindha.7.16",
+  "decision": "correct",
+  "from": "सुग्रीवचनात्",
+  "to": "सुग्रीववचनात्",
+  "reason": "सुग्रीवचनात् is a non-word with a dropped व, leaving the half-verse at 15 syllables."
+ },
+ {
+  "case": 53,
+  "id": "kishkindha.10.22",
+  "decision": "correct",
+  "from": "विकान्तं",
+  "to": "विक्रान्तं",
+  "reason": "विकान्तं is a non-word; the र is dropped from विक्रान्त 'valiant'."
+ },
+ {
+  "case": 54,
+  "id": "kishkindha.12.4",
+  "decision": "keep",
+  "from": "पुनस्तूणं",
+  "reason": "पुनस्तूणं तमेव प्रविवेश 'entered that same quiver again' is grammatical and makes good sense."
+ },
+ {
+  "case": 55,
+  "id": "kishkindha.13.28",
+  "decision": "correct",
+  "from": "जम्मुः",
+  "to": "जग्मुः",
+  "reason": "जम्मुः is a non-word; the perfect of √गम् is जग्मुः."
+ },
+ {
+  "case": 56,
+  "id": "kishkindha.16.25",
+  "decision": "keep",
+  "from": "सुपर्णसमवेगितौ",
+  "reason": "वेगित 'swift' (MW) is valid and Gita Press uses it elsewhere; 'swift as Suparṇa' makes sense."
+ },
+ {
+  "case": 57,
+  "id": "kishkindha.18.66",
+  "decision": "keep",
+  "from": "प्रभाषितस्त्वं",
+  "reason": "प्रभाषितः 'addressed (harshly)' is a valid participle that fits Vālin's apology."
+ },
+ {
+  "case": 58,
+  "id": "kishkindha.20.22",
+  "decision": "correct",
+  "from": "बाह्व्यो",
+  "to": "बह्व्यो",
+  "reason": "बाह्व्यो is a non-word; the feminine plural of बहु is बह्व्यः."
+ },
+ {
+  "case": 59,
+  "id": "kishkindha.22.12",
+  "decision": "keep",
+  "from": "तारेयस्तेजस्वी",
+  "reason": "तेजस्वी 'mighty' is a valid synonym of तरस्वी and scans the same."
+ },
+ {
+  "case": 60,
+  "id": "kishkindha.26.21",
+  "decision": "correct",
+  "from": "वसुधायं",
+  "to": "वसुधायां",
+  "reason": "वसुधायं is an impossible form; the locative 'on the ground' is वसुधायाम्."
+ },
+ {
+  "case": 61,
+  "id": "kishkindha.26.36",
+  "decision": "correct",
+  "from": "अभ्यषिञ्चत",
+  "to": "अभ्यषिञ्चन्त",
+  "reason": "The verb has the many monkeys named in verse 35 as its subject and must be plural; the singular drops न्."
+ },
+ {
+  "case": 62,
+  "id": "kishkindha.27.32",
+  "decision": "keep",
+  "from": "बाष्पोपहतचेतनम्",
+  "reason": "चेतन 'consciousness' is a valid synonym of चेतस् in the compound."
+ },
+ {
+  "case": 63,
+  "id": "kishkindha.28.8",
+  "decision": "keep",
+  "from": "केतकगन्धिनः",
+  "reason": "केतक is a valid stem of the screw-pine name."
+ },
+ {
+  "case": 64,
+  "id": "kishkindha.28.28",
+  "decision": "keep",
+  "from": "केतकिपुष्पगन्ध-",
+  "reason": "केतकि- is the valid shortened compound stem of केतकी."
+ },
+ {
+  "case": 65,
+  "id": "kishkindha.28.39",
+  "decision": "correct",
+  "from": "दृतं",
+  "to": "द्रुतं",
+  "reason": "The rivers hasten to the ocean, so the adverb is द्रुतम् 'swiftly'; दृतं (only a lexicon word) is the common ृ/्रु slip."
+ },
+ {
+  "case": 66,
+  "id": "kishkindha.30.14",
+  "decision": "keep",
+  "from": "लक्ष्मीवाँल्लक्ष्मणोऽग्रजम्",
+  "reason": "लक्ष्मीवाँल्लक्ष्मणः is the correct sandhi of न् before ल्."
+ },
+ {
+  "case": 67,
+  "id": "kishkindha.30.23",
+  "decision": "keep",
+  "from": "परिशान्ता",
+  "reason": "परिशान्ताः 'calmed' is a valid participle that fits clouds that have released their rain."
+ },
+ {
+  "case": 68,
+  "id": "kishkindha.30.35",
+  "decision": "keep",
+  "from": "कुसुमोद्गतानाम्",
+  "reason": "कुसुमोद्गत is a valid compound and nothing settles that it is an error."
+ },
+ {
+  "case": 69,
+  "id": "kishkindha.30.40",
+  "decision": "keep",
+  "from": "वराण्यात्मविभूषितानि",
+  "reason": "आत्मविभूषितानि 'that adorned themselves' is a valid compound describing the peacocks' tails."
+ },
+ {
+  "case": 70,
+  "id": "kishkindha.30.56",
+  "decision": "keep",
+  "from": "प्रचण्डचापोऽद्य",
+  "reason": "प्रचण्डचापः 'with a fierce bow' is a valid bahuvrīhi for Kāma in Gita Press's version."
+ },
+ {
+  "case": 71,
+  "id": "kishkindha.31.5",
+  "decision": "correct",
+  "from": "स्ववीक्षितं",
+  "to": "स्ववेक्षितं",
+  "reason": "सु+अवेक्षित gives स्ववेक्षितम् 'well-considered'; स्ववीक्षितं is broken sandhi with no sense."
+ },
+ {
+  "case": 72,
+  "id": "kishkindha.31.30",
+  "decision": "keep",
+  "from": "स्वतेजोविषसम्भूतः",
+  "reason": "स्वतेजोविषसम्भूतः 'born from the poison of his own energy' is a valid compound."
+ },
+ {
+  "case": 73,
+  "id": "kishkindha.31.38",
+  "decision": "keep",
+  "from": "निद्राक्लान्तसंवीतो",
+  "reason": "निद्राक्लान्तसंवीतः 'wrapped in sleep and weariness' is a valid compound."
+ },
+ {
+  "case": 74,
+  "id": "kishkindha.32.12",
+  "decision": "keep",
+  "from": "सम्प्रहितवाँल्लक्ष्मणं",
+  "reason": "सम्प्रहितवाँल्लक्ष्मणं is the correct sandhi of न् before ल्."
+ },
+ {
+  "case": 75,
+  "id": "kishkindha.33.7",
+  "decision": "keep",
+  "from": "चन्दनागुरुपद्मानां",
+  "reason": "अगुरु is a valid spelling of अगरु 'aloe wood'."
+ },
+ {
+  "case": 76,
+  "id": "kishkindha.33.41",
+  "decision": "keep",
+  "from": "दावाग्निमासीदति",
+  "reason": "दावाग्नि 'forest fire' is a valid compound (दाव 'forest fire')."
+ },
+ {
+  "case": 77,
+  "id": "kishkindha.35.1",
+  "decision": "correct",
+  "from": "ब्रूवाणं",
+  "to": "ब्रुवाणं",
+  "reason": "The participle of √ब्रू is ब्रुवाण with short ु; ब्रूवाणं is an impossible form."
+ },
+ {
+  "case": 78,
+  "id": "kishkindha.37.17",
+  "decision": "keep",
+  "from": "पतत्त्रिज्योतिरध्वगाः",
+  "reason": "पतत्त्रिन् is Gita Press's usual spelling (14 occurrences)."
+ },
+ {
+  "case": 79,
+  "id": "kishkindha.37.20",
+  "decision": "keep",
+  "from": "गिरेस्तस्मान्महाबलाः",
+  "reason": "महाबलाः 'mighty' is a valid synonym of महाजवाः."
+ },
+ {
+  "case": 80,
+  "id": "kishkindha.39.18",
+  "decision": "correct",
+  "from": "अनेकैर्बहुसास्रैर्वानराणां",
+  "to": "अनेकैर्बहुसाहस्रैर्वानराणां",
+  "reason": "बहुसास्रैः is a non-word with a dropped ह, leaving the half-verse at 15 syllables."
+ },
+ {
+  "case": 81,
+  "id": "kishkindha.39.32",
+  "decision": "keep",
+  "from": "कविर्वीरो",
+  "reason": "कविः 'wise' is a valid word as an epithet of the troop-leader, and nothing settles it as a slip."
+ },
+ {
+  "case": 82,
+  "id": "kishkindha.40.8",
+  "decision": "keep",
+  "from": "त्वत्सैन्यं",
+  "reason": "त्वत्सैन्यं 'your army' is valid and fits the address to Sugrīva."
+ },
+ {
+  "case": 83,
+  "id": "kishkindha.42.13",
+  "decision": "keep",
+  "from": "मुरवीपत्तनं",
+  "reason": "मुरवी is a known variant of the place name and nothing settles it as an error."
+ },
+ {
+  "case": 84,
+  "id": "kishkindha.43.36",
+  "decision": "keep",
+  "from": "प्रकाश्यते",
+  "reason": "The passive प्रकाश्यते 'is illumined' fits the instrumental agents (by the siddhas)."
+ },
+ {
+  "case": 85,
+  "id": "kishkindha.43.42",
+  "decision": "keep",
+  "from": "उद्धूतपुलिनास्तत्र",
+  "reason": "उद्धूत 'raised, tossed up' is a valid participle for the riverbanks."
+ },
+ {
+  "case": 86,
+  "id": "kishkindha.45.10",
+  "decision": "keep",
+  "from": "क्ष्वेडन्तो",
+  "reason": "क्ष्वेड् is a valid root form and Gita Press uses क्ष्वेड- regularly."
+ },
+ {
+  "case": 87,
+  "id": "kishkindha.46.12",
+  "decision": "keep",
+  "from": "सोऽनुबद्धः",
+  "reason": "सोऽनुबद्धः 'I, that one, pursued' (स with अहम्) is grammatical."
+ },
+ {
+  "case": 88,
+  "id": "kishkindha.49.2",
+  "decision": "keep",
+  "from": "सर्वमन्ततः",
+  "reason": "विचिताः सर्वमन्ततः 'searched all, to the end' is grammatical and the half-verse has 16 syllables."
+ },
+ {
+  "case": 89,
+  "id": "kishkindha.52.2",
+  "decision": "keep",
+  "from": "प्रणष्टः",
+  "reason": "प्रणष्ट is Gita Press's constant spelling (32 occurrences)."
+ },
+ {
+  "case": 90,
+  "id": "kishkindha.52.17",
+  "decision": "keep",
+  "from": "अस्माभिरुपयुक्तानि",
+  "reason": "उपयुक्तानि 'consumed' is a valid synonym of उपभुक्तानि."
+ },
+ {
+  "case": 91,
+  "id": "kishkindha.58.8",
+  "decision": "keep",
+  "from": "महाप्रज्ञः",
+  "reason": "महाप्रज्ञ 'of great wisdom' is a valid synonym of महाप्राज्ञ."
+ },
+ {
+  "case": 92,
+  "id": "kishkindha.58.10",
+  "decision": "keep",
+  "from": "राक्षसाधमम्",
+  "reason": "राक्षसाधम 'vilest of rākṣasas' is a valid epithet in an angry question."
+ },
+ {
+  "case": 93,
+  "id": "kishkindha.62.7",
+  "decision": "keep",
+  "from": "भक्ष्यैर्भोज्यैश्च",
+  "reason": "भक्ष्यैर्भोज्यैश्च is the correct sandhi."
+ },
+ {
+  "case": 94,
+  "id": "kishkindha.66.12",
+  "decision": "keep",
+  "from": "मारुतोऽपाहरच्छनैः",
+  "reason": "The imperfect of अप-√हृ is अपाहरत् (अप+अ), so Gita Press is correct."
+ },
+ {
+  "case": 95,
+  "id": "kishkindha.67.41",
+  "decision": "keep",
+  "from": "सिंहशार्दूलसहितं",
+  "reason": "सिंहशार्दूलसहितम् 'with lions and tigers' is a valid compound."
+ }
+]

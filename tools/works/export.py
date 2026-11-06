@@ -155,7 +155,7 @@ def export(wid, lib):
     work['parts'] = {**M['parts'], 'list': [{k: v for k, v in p.items() if k != 'key'} for p in M['parts']['list']]}
     work['items'] = items; work['topics'] = topics
     old = os.path.join(lib.out, WP, 'work.json')   # keep the sources list that build.py registered
-    if os.path.exists(old): work['sources'] = json.load(open(old, encoding='utf-8')).get('sources', {})
+    if os.path.exists(old) and 'sources' in (o := json.load(open(old, encoding='utf-8'))): work['sources'] = o['sources']   # a work not on the shelf has none
     lib.dump(WP + '/work.json', work)
 
     # ---- meanings: meanings/<lang>/<src>.json ----

@@ -1,0 +1,676 @@
+[
+ {
+  "case": 1,
+  "id": "ayodhya.48.34",
+  "decision": "keep",
+  "from": "तिमिरेणानुलिप्तेव",
+  "reason": "अनुलिप्ता 'smeared over (with darkness)' is a valid synonym of अभिलिप्ता."
+ },
+ {
+  "case": 2,
+  "id": "ayodhya.49.11",
+  "decision": "keep",
+  "from": "शीतवहां",
+  "reason": "शीतवहा 'carrying cool water' is a valid epithet of the Gomatī and fits the sense."
+ },
+ {
+  "case": 3,
+  "id": "ayodhya.50.1",
+  "decision": "keep",
+  "from": "अयोध्यामुन्मुखो",
+  "reason": "अयोध्याम् उन्मुखः 'facing towards Ayodhyā' is valid Sanskrit with the same meaning."
+ },
+ {
+  "case": 4,
+  "id": "ayodhya.50.2",
+  "decision": "keep",
+  "from": "पुरिश्रेष्ठे",
+  "reason": "पुरि is a recognised stem beside पुरी, so पुरिश्रेष्ठे is a valid vocative."
+ },
+ {
+  "case": 5,
+  "id": "ayodhya.50.4",
+  "decision": "keep",
+  "from": "रुचिरताम्राक्षो",
+  "reason": "रुचिर 'bright' with ताम्राक्ष is a valid compound that makes sense here."
+ },
+ {
+  "case": 6,
+  "id": "ayodhya.50.12",
+  "decision": "keep",
+  "from": "शीततोयामशैवलाम्",
+  "reason": "शीततोया 'having cool water' is a valid epithet of the Gaṅgā."
+ },
+ {
+  "case": 7,
+  "id": "ayodhya.50.15",
+  "decision": "keep",
+  "from": "देवोद्यानयुतां",
+  "reason": "देवोद्यानयुतां नदीम् is valid and metrically complete (8 syllables); it is another reading, not an error."
+ },
+ {
+  "case": 8,
+  "id": "ayodhya.50.15",
+  "decision": "keep",
+  "from": "देवार्थमाकाशगतां",
+  "reason": "आकाशगता 'gone to the sky' is a valid synonym of आकाशगमा."
+ },
+ {
+  "case": 9,
+  "id": "ayodhya.50.18",
+  "decision": "keep",
+  "from": "निर्मलोत्पलसंकुलाम्",
+  "reason": "निर्मलोत्पलसंकुला 'crowded with clear lotuses' is a valid synonym reading."
+ },
+ {
+  "case": 10,
+  "id": "ayodhya.50.19",
+  "decision": "keep",
+  "from": "चक्रवाकोपशोभिताम्",
+  "reason": "चक्रवाकोपशोभिता 'adorned by cakravākas' is a valid reading."
+ },
+ {
+  "case": 11,
+  "id": "ayodhya.50.23",
+  "decision": "keep",
+  "from": "देवराजोपवाह्यैश्च",
+  "reason": "देवराजोपवाह्य 'mounts of Indra' is a valid compound in Gita Press's own form of this verse."
+ },
+ {
+  "case": 12,
+  "id": "ayodhya.51.21",
+  "decision": "keep",
+  "from": "संविभक्तमहापथाम्",
+  "reason": "संविभक्त 'well divided' is a valid word and fits the description of the roads."
+ },
+ {
+  "case": 13,
+  "id": "ayodhya.51.22",
+  "decision": "keep",
+  "from": "तूर्यनादनिनादिताम्",
+  "reason": "निनादित is a valid synonym of विनादित."
+ },
+ {
+  "case": 14,
+  "id": "ayodhya.52.36",
+  "decision": "keep",
+  "from": "यौवराज्यमवेक्षता",
+  "reason": "यौवराज्यम् अवेक्षता 'looking after the heir-apparentship' is valid Sanskrit and makes sense."
+ },
+ {
+  "case": 15,
+  "id": "ayodhya.52.47",
+  "decision": "keep",
+  "from": "प्रवाह्यन्ति",
+  "reason": "प्रवाह्यन्ति differs by more than a slip from प्रवक्ष्यन्ति and is a deliberate (ārṣa) reading of pra-vah 'will draw', so keep."
+ },
+ {
+  "case": 16,
+  "id": "ayodhya.52.81",
+  "decision": "keep",
+  "from": "ततस्तैश्चालिता",
+  "reason": "चालिता नौका 'the boat, set moving' is valid and grammatical."
+ },
+ {
+  "case": 17,
+  "id": "ayodhya.52.86",
+  "decision": "correct",
+  "from": "समक्षसे",
+  "to": "समीक्षसे",
+  "reason": "समक्षसे is not a verb form; a dropped ी, the verb is samīkṣase 'you look upon (Brahmaloka)'."
+ },
+ {
+  "case": 18,
+  "id": "ayodhya.53.4",
+  "decision": "keep",
+  "from": "अपवर्तामहे",
+  "reason": "apa-vṛt 'turn aside / lie down' is a valid verb, so अपवर्तामहे is a valid reading."
+ },
+ {
+  "case": 19,
+  "id": "ayodhya.53.11",
+  "decision": "keep",
+  "from": "सुभार्यश्च",
+  "reason": "सुभार्य 'having a good wife' is a valid bahuvrīhi and fits Rāma's lament."
+ },
+ {
+  "case": 20,
+  "id": "ayodhya.53.18",
+  "decision": "keep",
+  "from": "परिदद्याद्धि",
+  "reason": "परिदद्याद्धि ... गरं ते मम मातरम् is a coherent Gita Press reading ('may give poison to your and my mother')."
+ },
+ {
+  "case": 21,
+  "id": "ayodhya.53.22",
+  "decision": "keep",
+  "from": "यत्तस्याः",
+  "reason": "यत्तस्याः श्रूयते is grammatical and keeps the half-verse at 16 syllables."
+ },
+ {
+  "case": 22,
+  "id": "ayodhya.53.33",
+  "decision": "keep",
+  "from": "समासीनौ",
+  "reason": "समासीनौ 'seated together' is a valid word in context."
+ },
+ {
+  "case": 23,
+  "id": "ayodhya.54.4",
+  "decision": "keep",
+  "from": "निर्वृत्तमात्रे",
+  "reason": "निर्वृत्त 'completed' is a valid word for the day being over."
+ },
+ {
+  "case": 24,
+  "id": "ayodhya.54.40",
+  "decision": "keep",
+  "from": "मयूरनादाभिरतो",
+  "reason": "अभिरत 'delighting in (peacock cries)' is a valid word and gives sense of the mountain."
+ },
+ {
+  "case": 25,
+  "id": "ayodhya.55.14",
+  "decision": "keep",
+  "from": "काष्ठसंघाटमथो",
+  "reason": "संघाट 'joining of timbers, raft' is a valid word (MW) and fits exactly."
+ },
+ {
+  "case": 26,
+  "id": "ayodhya.55.14",
+  "decision": "keep",
+  "from": "समाकीर्णमुशीरैश्च",
+  "reason": "समाकीर्ण 'strewn over' is a valid synonym of समास्तीर्ण."
+ },
+ {
+  "case": 27,
+  "id": "ayodhya.55.15",
+  "decision": "keep",
+  "from": "वैतसशाखाश्च",
+  "reason": "वैतस 'of the vetasa reed' is a valid derived adjective."
+ },
+ {
+  "case": 28,
+  "id": "ayodhya.55.15",
+  "decision": "keep",
+  "from": "जम्बुशाखाश्च",
+  "reason": "जम्बु is a recognised stem beside जम्बू."
+ },
+ {
+  "case": 29,
+  "id": "ayodhya.55.15",
+  "decision": "keep",
+  "from": "लक्ष्मणश्छित्त्वा",
+  "reason": "छित्त्वा is the correct absolutive spelling of chid."
+ },
+ {
+  "case": 30,
+  "id": "ayodhya.56.1",
+  "decision": "correct",
+  "from": "व्यातीतायामवसुप्तमनन्तरम्",
+  "to": "व्यतीतायामवसुप्तमनन्तरम्",
+  "reason": "vi+atīta gives vyatīta; व्यातीता is an impossible form with an extra ा."
+ },
+ {
+  "case": 31,
+  "id": "ayodhya.56.3",
+  "decision": "keep",
+  "from": "तन्द्रां",
+  "reason": "तन्द्रा is a valid word for drowsiness, as is तन्द्री."
+ },
+ {
+  "case": 32,
+  "id": "ayodhya.57.15",
+  "decision": "keep",
+  "from": "परिदेवनाम्",
+  "reason": "परिदेवना (feminine) is a valid word (MW) beside परिदेवन."
+ },
+ {
+  "case": 33,
+  "id": "ayodhya.58.23",
+  "decision": "keep",
+  "from": "व्यपरोरुधः",
+  "reason": "vy-apa-rudh 'exclude from sovereignty' is a recognised Rāmāyaṇa form (MW cites -roruḍhaḥ, R.)."
+ },
+ {
+  "case": 34,
+  "id": "ayodhya.58.33",
+  "decision": "correct",
+  "from": "प्रव्रज्य",
+  "to": "प्रव्राज्य",
+  "reason": "With the object रामं the sense 'having banished Rāma' needs the causative absolutive pravrājya, as Gita Press itself prints 'रामं प्रव्राज्य' at 2.79.2; intransitive pravrajya cannot take रामं."
+ },
+ {
+  "case": 35,
+  "id": "ayodhya.60.11",
+  "decision": "keep",
+  "from": "भवेदस्या",
+  "reason": "भवेदस्या 'would be for her' is valid and grammatical."
+ },
+ {
+  "case": 36,
+  "id": "ayodhya.60.13",
+  "decision": "keep",
+  "from": "साश्रिता",
+  "reason": "सा आश्रिता 'she resorted to' is valid in Gita Press's form of the verse."
+ },
+ {
+  "case": 37,
+  "id": "ayodhya.61.7",
+  "decision": "keep",
+  "from": "परिघसंकाशमुपाधाय",
+  "reason": "upa-ā-dhā 'placing (the arm as pillow)' is a valid verb."
+ },
+ {
+  "case": 38,
+  "id": "ayodhya.61.14",
+  "decision": "keep",
+  "from": "नाभ्युपेतुमलं",
+  "reason": "उपेतुम् is the common epic form of the infinitive and fits the sense."
+ },
+ {
+  "case": 39,
+  "id": "ayodhya.61.15",
+  "decision": "keep",
+  "from": "नावमन्यते",
+  "reason": "नावमन्यते (present) is a valid tense in the question."
+ },
+ {
+  "case": 40,
+  "id": "ayodhya.61.17",
+  "decision": "keep",
+  "from": "पुरोडाशः",
+  "reason": "A singular पुरोडाशः in the list is valid."
+ },
+ {
+  "case": 41,
+  "id": "ayodhya.61.23",
+  "decision": "keep",
+  "from": "सनातनैः",
+  "reason": "शास्त्रे दृष्टः सनातनैः 'seen in the śāstra by the ancients' is valid in Gita Press's reading."
+ },
+ {
+  "case": 42,
+  "id": "ayodhya.61.25",
+  "decision": "keep",
+  "from": "नैवासि",
+  "reason": "त्वं मम नैवासि 'you are not mine' is valid and fits Kausalyā's lament."
+ },
+ {
+  "case": 43,
+  "id": "ayodhya.63.3",
+  "decision": "keep",
+  "from": "विवक्षुरसितापाङ्गीं",
+  "reason": "Bahuvrīhis ending in aṅga may take -ī, so असितापाङ्गी is a valid feminine."
+ },
+ {
+  "case": 44,
+  "id": "ayodhya.63.13",
+  "decision": "keep",
+  "from": "शब्दवेध्यमिदं",
+  "reason": "शब्दवेध्यमिदं फलम् is valid and makes sense."
+ },
+ {
+  "case": 45,
+  "id": "ayodhya.63.37",
+  "decision": "keep",
+  "from": "शल्यवेधितम्",
+  "reason": "शल्यवेधित 'pierced by the arrow' is a valid synonym of शल्यपीडित."
+ },
+ {
+  "case": 46,
+  "id": "ayodhya.64.40",
+  "decision": "keep",
+  "from": "लोकास्त्वस्त्रयोधिनाम्",
+  "reason": "लोकास्तु अस्त्रयोधिनाम् 'worlds of those who fight with weapons' is valid."
+ },
+ {
+  "case": 47,
+  "id": "ayodhya.64.44",
+  "decision": "keep",
+  "from": "गुरुसेवाभृतामपि",
+  "reason": "गुरुसेवाभृत् is a valid compound and keeps the pāda at 8 syllables."
+ },
+ {
+  "case": 48,
+  "id": "ayodhya.64.49",
+  "decision": "correct",
+  "from": "मूलमुपैष्यथः",
+  "to": "मूलमुपैष्यतः",
+  "reason": "With भवन्तौ the verb takes the third person (upaiṣyataḥ), so the second-person थ is a one-letter slip."
+ },
+ {
+  "case": 49,
+  "id": "ayodhya.64.70",
+  "decision": "keep",
+  "from": "ताराधिपसमं",
+  "reason": "ताराधिपसम is a valid synonym of ताराधिपनिभ."
+ },
+ {
+  "case": 50,
+  "id": "ayodhya.64.73",
+  "decision": "keep",
+  "from": "संरक्ता",
+  "reason": "संरक्ता 'reddened' rays of a dying lamp is a valid image."
+ },
+ {
+  "case": 51,
+  "id": "ayodhya.64.74",
+  "decision": "keep",
+  "from": "संसाधयति",
+  "reason": "Causative saṃ-sādh 'overpower, destroy' (Apte, MW) is a valid reading."
+ },
+ {
+  "case": 52,
+  "id": "ayodhya.65.20",
+  "decision": "correct",
+  "from": "करेणेव इवारण्ये",
+  "to": "करेणव इवारण्ये",
+  "reason": "Followed by इव, the word must be the plural noun kareṇavaḥ (करेणव इव 'like she-elephants'); करेणेव would double the इव and is a slip of an extra े."
+ },
+ {
+  "case": 53,
+  "id": "ayodhya.66.15",
+  "decision": "keep",
+  "from": "संकालनं",
+  "reason": "संकालन 'carrying out or burning a corpse' (MW, citing R.) is the exact sense here."
+ },
+ {
+  "case": 54,
+  "id": "ayodhya.66.17",
+  "decision": "keep",
+  "from": "रुदत्यः",
+  "reason": "rud is a class-2 verb, so the feminine participle रुदती (pl. रुदत्यः) is correct."
+ },
+ {
+  "case": 55,
+  "id": "ayodhya.67.14",
+  "decision": "keep",
+  "from": "वसुसम्पूर्णा",
+  "reason": "वसुसम्पूर्ण is a valid synonym of वसुसम्पन्न."
+ },
+ {
+  "case": 56,
+  "id": "ayodhya.67.15",
+  "decision": "keep",
+  "from": "प्रहृष्टनटनर्तकाः",
+  "reason": "प्रहृष्ट 'delighted' is a valid word in context."
+ },
+ {
+  "case": 57,
+  "id": "ayodhya.67.26",
+  "decision": "keep",
+  "from": "संवदन्तोपतिष्ठन्ते",
+  "reason": "संवदन्त(ः) उपतिष्ठन्ते with the epic double sandhi is a valid reading, and upa-sthā makes sense."
+ },
+ {
+  "case": 58,
+  "id": "ayodhya.67.35",
+  "decision": "keep",
+  "from": "विशिष्यन्ते",
+  "reason": "The passive विशिष्यन्ते 'are surpassed' is valid."
+ },
+ {
+  "case": 59,
+  "id": "ayodhya.68.15",
+  "decision": "keep",
+  "from": "जलाकुलाम्",
+  "reason": "जलाकुला 'full of water' is a valid epithet of the river."
+ },
+ {
+  "case": 60,
+  "id": "ayodhya.68.19",
+  "decision": "correct",
+  "from": "प्रेक्ष्यमाणा",
+  "to": "प्रेक्षमाणा",
+  "reason": "The messengers are the ones looking at Viṣṇupada, so the active participle prekṣamāṇāḥ is needed; the passive प्रेक्ष्यमाणा ('being looked at') is wrong for the construction."
+ },
+ {
+  "case": 61,
+  "id": "ayodhya.69.3",
+  "decision": "keep",
+  "from": "विनयिष्यन्तः",
+  "reason": "The metre holds (8 syllables) and विनयिष्यन्तः is a deliberate epic future of vi-nī, not a slip."
+ },
+ {
+  "case": 62,
+  "id": "ayodhya.69.14",
+  "decision": "correct",
+  "from": "निषष्ण्णं",
+  "to": "निषण्णं",
+  "reason": "निषष्ण्णं is a non-word with a doubled ष्; the participle is niṣaṇṇa."
+ },
+ {
+  "case": 63,
+  "id": "ayodhya.70.13",
+  "decision": "keep",
+  "from": "आपृच्छेऽहं",
+  "reason": "आपृच्छे is the correct spelling; the others have a typing slip."
+ },
+ {
+  "case": 64,
+  "id": "ayodhya.70.26",
+  "decision": "keep",
+  "from": "नरनागाश्वसंकुलम्",
+  "reason": "संकुल is a valid synonym of संवृत."
+ },
+ {
+  "case": 65,
+  "id": "ayodhya.71.4",
+  "decision": "keep",
+  "from": "अभ्यगात्",
+  "reason": "अभ्यगात् (aorist of i) is a valid form."
+ },
+ {
+  "case": 66,
+  "id": "ayodhya.71.8",
+  "decision": "keep",
+  "from": "खमिवात्यगात्",
+  "reason": "अत्यगात् (aorist of ati-i) is a valid form."
+ },
+ {
+  "case": 67,
+  "id": "ayodhya.71.15",
+  "decision": "keep",
+  "from": "लोहित्ये",
+  "reason": "लोहित्य is a recognised form of the place name (MW cf. lohitya) and is the only form Gita Press uses."
+ },
+ {
+  "case": 68,
+  "id": "ayodhya.71.20",
+  "decision": "keep",
+  "from": "यज्विभिर्गुणसम्पन्नैर्ब्राह्मणैर्वेदपारगैः",
+  "reason": "यज्विन् is a valid stem (MW), so यज्विभिः is correct."
+ },
+ {
+  "case": 69,
+  "id": "ayodhya.71.27",
+  "decision": "keep",
+  "from": "सरक्तां",
+  "reason": "सरक्ता 'impassioned' is a valid word for the birds' voices."
+ },
+ {
+  "case": 70,
+  "id": "ayodhya.71.32",
+  "decision": "keep",
+  "from": "संलुलितेन्द्रियः",
+  "reason": "संलुलित 'disturbed' is a valid word."
+ },
+ {
+  "case": 71,
+  "id": "ayodhya.72.24",
+  "decision": "keep",
+  "from": "राजन्नत्र",
+  "reason": "राजन् अत्र 'O king, here' is a valid address in Gita Press's reading."
+ },
+ {
+  "case": 72,
+  "id": "ayodhya.72.25",
+  "decision": "keep",
+  "from": "शीलश्रुतितपोनुगा",
+  "reason": "शीलश्रुतितपोनुगा is a valid compound."
+ },
+ {
+  "case": 73,
+  "id": "ayodhya.72.26",
+  "decision": "keep",
+  "from": "परिविवृत्य",
+  "reason": "pari-vi-vṛt 'roll about' is valid and the half keeps 16 syllables."
+ },
+ {
+  "case": 74,
+  "id": "ayodhya.72.30",
+  "decision": "keep",
+  "from": "संनाम्य",
+  "reason": "संनाम्य (causative absolutive 'having bent') is valid."
+ },
+ {
+  "case": 75,
+  "id": "ayodhya.72.37",
+  "decision": "keep",
+  "from": "इतीमां",
+  "reason": "इतीमां keeps the pāda at 8 syllables and is valid."
+ },
+ {
+  "case": 76,
+  "id": "ayodhya.72.41",
+  "decision": "keep",
+  "from": "प्रियशंसया",
+  "reason": "प्रियशंसा 'announcement as if pleasant' is a valid compound."
+ },
+ {
+  "case": 77,
+  "id": "ayodhya.73.3",
+  "decision": "correct",
+  "from": "क्षारमिवाददाः",
+  "to": "क्षारमिवादधाः",
+  "reason": "Putting salt on a wound needs ā-dhā (ādadhāḥ 'you placed'); ā-dā means 'take', so द for ध is a slip."
+ },
+ {
+  "case": 78,
+  "id": "ayodhya.73.17",
+  "decision": "correct",
+  "from": "पुत्रगर्द्धिनीम्",
+  "to": "पुत्रगर्धिनीम्",
+  "reason": "Gita Press spells this word पुत्रगर्धिनी elsewhere in the Ayodhyā-kāṇḍa (2.37.32, 2.58.24, 2.64.35), so the extra द् here goes against its own spelling."
+ },
+ {
+  "case": 79,
+  "id": "ayodhya.73.23",
+  "decision": "keep",
+  "from": "चारित्रशौटीर्यं",
+  "reason": "शौटीर्य 'pride, heroism' is a valid word (MW, citing R.)."
+ },
+ {
+  "case": 80,
+  "id": "ayodhya.73.24",
+  "decision": "keep",
+  "from": "बुद्धिमोहः",
+  "reason": "बुद्धिमोह is a valid compound."
+ },
+ {
+  "case": 81,
+  "id": "ayodhya.74.27",
+  "decision": "keep",
+  "from": "गुणमुख्यायाः",
+  "reason": "गुणमुख्या is a valid compound."
+ },
+ {
+  "case": 82,
+  "id": "ayodhya.74.35",
+  "decision": "keep",
+  "from": "तोमराङ्कुशतोदितः",
+  "reason": "तोदित 'goaded' (causative of tud) is valid."
+ },
+ {
+  "case": 83,
+  "id": "ayodhya.75.19",
+  "decision": "keep",
+  "from": "प्राञ्जलिर्भरतस्तदा",
+  "reason": "प्राञ्जलिर्भरतस्तदा is a valid 8-syllable pāda."
+ },
+ {
+  "case": 84,
+  "id": "ayodhya.75.31",
+  "decision": "keep",
+  "from": "सोऽत्यर्थं",
+  "reason": "अत्यर्थं is a valid synonym of अत्यन्तं."
+ },
+ {
+  "case": 85,
+  "id": "ayodhya.75.34",
+  "decision": "keep",
+  "from": "पुत्रैर्दासैश्च",
+  "reason": "दासैः is a valid word in the list of household members."
+ },
+ {
+  "case": 86,
+  "id": "ayodhya.75.39",
+  "decision": "keep",
+  "from": "पलायमानो",
+  "reason": "पलायमान is the correct participle; the others have a slip."
+ },
+ {
+  "case": 87,
+  "id": "ayodhya.75.62",
+  "decision": "keep",
+  "from": "सहलक्षणः",
+  "reason": "सहलक्षणः 'with its auspicious marks' is a valid reading."
+ },
+ {
+  "case": 88,
+  "id": "ayodhya.77.3",
+  "decision": "keep",
+  "from": "राज्ञस्तस्यौर्ध्वदेहिकम्",
+  "reason": "और्ध्वदेहिक is a valid spelling (MW)."
+ },
+ {
+  "case": 89,
+  "id": "ayodhya.77.15",
+  "decision": "keep",
+  "from": "प्रवारयति",
+  "reason": "A third-person प्रवारयति about the king is valid."
+ },
+ {
+  "case": 90,
+  "id": "ayodhya.80.18",
+  "decision": "keep",
+  "from": "तत्रेन्द्रनीलप्रतिमाः",
+  "reason": "इन्द्रनीलप्रतिमा 'like sapphire' is valid."
+ },
+ {
+  "case": 91,
+  "id": "ayodhya.81.10",
+  "decision": "keep",
+  "from": "मणिहेमसमाकुलाम्",
+  "reason": "मणिहेम is a valid compound."
+ },
+ {
+  "case": 92,
+  "id": "ayodhya.83.1",
+  "decision": "keep",
+  "from": "कल्यमास्थाय",
+  "reason": "कल्यम् 'at dawn' is a valid adverb."
+ },
+ {
+  "case": 93,
+  "id": "ayodhya.83.1",
+  "decision": "keep",
+  "from": "रामदर्शनकाम्यया",
+  "reason": "काम्यया is a valid synonym of काङ्क्षया."
+ },
+ {
+  "case": 94,
+  "id": "ayodhya.83.6",
+  "decision": "keep",
+  "from": "रामानयनसंतुष्टा",
+  "reason": "संतुष्ट is a valid synonym of संहृष्ट."
+ },
+ {
+  "case": 95,
+  "id": "ayodhya.83.18",
+  "decision": "keep",
+  "from": "यातं",
+  "reason": "यात 'gone' is a valid participle."
+ }
+]

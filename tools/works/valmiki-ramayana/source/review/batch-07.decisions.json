@@ -1,0 +1,668 @@
+[
+ {
+  "case": 1,
+  "id": "sundara.18.3",
+  "decision": "keep",
+  "from": "प्राबोध्यत",
+  "reason": "प्राबोध्यत (pra-ā-√budh causative passive imperfect, 'was awakened') is a correct form that suits the sense."
+ },
+ {
+  "case": 2,
+  "id": "sundara.18.8",
+  "decision": "keep",
+  "from": "विविधैर्वृतां",
+  "reason": "वृतां 'surrounded by' is a valid synonym of जुष्टां; metre unaffected."
+ },
+ {
+  "case": 3,
+  "id": "sundara.18.20",
+  "decision": "keep",
+  "from": "कपिर्मारुतनन्दनः",
+  "reason": "मारुतनन्दनः is a common epithet of Hanumān; the pāda has 8 syllables without स."
+ },
+ {
+  "case": 4,
+  "id": "sundara.19.3",
+  "decision": "keep",
+  "from": "ऊरुभ्यामुदरं",
+  "reason": "No outside source; the half-verse scans 16 syllables and ऊरुभ्यामुदरं छाद्य is sound."
+ },
+ {
+  "case": 5,
+  "id": "sundara.19.6",
+  "decision": "keep",
+  "from": "मण्डनार्हाममण्डनाम्",
+  "reason": "अमण्डनाम् 'without ornament' (bahuvrīhi) is a valid synonym of अमण्डिताम्."
+ },
+ {
+  "case": 6,
+  "id": "sundara.19.12",
+  "decision": "keep",
+  "from": "पूजामपहतामिव",
+  "reason": "अपहताम् 'struck down, destroyed' is a valid participle that makes sense with पूजाम्."
+ },
+ {
+  "case": 7,
+  "id": "sundara.20.4",
+  "decision": "keep",
+  "from": "किञ्चिन्मनुष्या",
+  "reason": "किञ्चित् used adverbially ('none at all here, men or rākṣasas') is acceptable Sanskrit; metre unchanged."
+ },
+ {
+  "case": 8,
+  "id": "sundara.20.6",
+  "decision": "keep",
+  "from": "चैवमकामां",
+  "reason": "चैवमकामां त्वां न च स्प्रक्ष्यामि is grammatical and gives the same sense in another wording."
+ },
+ {
+  "case": 9,
+  "id": "sundara.20.9",
+  "decision": "keep",
+  "from": "चन्दनान्यगुरूणि",
+  "reason": "अगुरु is the standard spelling of the aloe-wood name (agaru is a variant)."
+ },
+ {
+  "case": 10,
+  "id": "sundara.20.10",
+  "decision": "keep",
+  "from": "नृत्यं",
+  "reason": "नृत्य 'dance' is a valid synonym of नृत्त."
+ },
+ {
+  "case": 11,
+  "id": "sundara.20.16",
+  "decision": "keep",
+  "from": "मोहमेतं",
+  "reason": "मोहमेतं 'this delusion' is a valid pronoun variant of मोहमेनं."
+ },
+ {
+  "case": 12,
+  "id": "sundara.20.24",
+  "decision": "keep",
+  "from": "ललतां",
+  "reason": "ललतां is the correct 3rd singular ātmanepada imperative of √लल्, matching ललस्व in the same verse and the singular बान्धवः."
+ },
+ {
+  "case": 13,
+  "id": "sundara.20.24",
+  "decision": "keep",
+  "from": "बान्धवस्तव",
+  "reason": "बान्धवस्तव (singular) agrees with the singular ललतां; a consistent valid reading."
+ },
+ {
+  "case": 14,
+  "id": "sundara.20.25",
+  "decision": "keep",
+  "from": "चीरवासिना",
+  "reason": "चीरवासिना 'wearing bark-garments' (√वस्+इन्) is a valid synonym of चीरवाससा."
+ },
+ {
+  "case": 15,
+  "id": "sundara.20.31",
+  "decision": "keep",
+  "from": "यावत्यो",
+  "reason": "यावत्यः is the regular feminine nominative plural of यावत् (यावती)."
+ },
+ {
+  "case": 16,
+  "id": "sundara.21.18",
+  "decision": "keep",
+  "from": "वासितया",
+  "reason": "वासिता is a recognised spelling of वाशिता 'female elephant' (MW, Apte) and Gita Press uses it consistently."
+ },
+ {
+  "case": 17,
+  "id": "sundara.21.25",
+  "decision": "keep",
+  "from": "रामलक्ष्मणलक्षिताः",
+  "reason": "रामलक्ष्मणलक्षिताः 'marked with the names of Rāma and Lakṣmaṇa' is valid and apt."
+ },
+ {
+  "case": 18,
+  "id": "sundara.22.5",
+  "decision": "keep",
+  "from": "प्रव्रजने",
+  "reason": "मिथ्या प्रव्रजने रताम् 'devoted to a false renunciation' is grammatical and makes sense."
+ },
+ {
+  "case": 19,
+  "id": "sundara.22.9",
+  "decision": "keep",
+  "from": "द्वाभ्यामूर्ध्वं",
+  "reason": "द्वाभ्यामूर्ध्वं तु मासाभ्यां is only a word-order variant; the pāda has 8 syllables."
+ },
+ {
+  "case": 20,
+  "id": "sundara.22.12",
+  "decision": "keep",
+  "from": "वृत्तशौटीर्यगर्वितम्",
+  "reason": "शौटीर्य is a valid form of शौण्डीर्य 'heroism, pride' (MW)."
+ },
+ {
+  "case": 21,
+  "id": "sundara.22.22",
+  "decision": "keep",
+  "from": "कस्माच्चिद्",
+  "reason": "कस्माच्चिद् 'for some reason' is valid and the pāda scans 8 syllables."
+ },
+ {
+  "case": 22,
+  "id": "sundara.22.25",
+  "decision": "keep",
+  "from": "चलाग्रमुकुटप्रांशुश्चित्रमाल्यानुलेपनः",
+  "reason": "मुकुट is the ordinary spelling of मकुट 'crown'."
+ },
+ {
+  "case": 23,
+  "id": "sundara.22.34",
+  "decision": "keep",
+  "from": "गोपदीं",
+  "reason": "गोपदीं 'cow-footed' (पद = foot) is a valid formation, matching Gita Press's हस्तिपद्यश्वपद्यौ in the same line."
+ },
+ {
+  "case": 24,
+  "id": "sundara.22.43",
+  "decision": "keep",
+  "from": "इच्छतीं",
+  "reason": "इच्छती is a valid feminine participle of √इष् (tudādi, nasal optional)."
+ },
+ {
+  "case": 25,
+  "id": "sundara.24.14",
+  "decision": "keep",
+  "from": "शिंशपाद्रुमे",
+  "reason": "शिंशपा is the standard spelling of the tree name."
+ },
+ {
+  "case": 26,
+  "id": "sundara.24.17",
+  "decision": "keep",
+  "from": "राक्षसीभिर्वरांगना",
+  "reason": "वराङ्गना 'beautiful woman' is a valid synonym of वरानना."
+ },
+ {
+  "case": 27,
+  "id": "sundara.24.21",
+  "decision": "keep",
+  "from": "सर्वत्रातिकृतं",
+  "reason": "सर्वत्रातिकृतं 'excess everywhere' is valid and sensible."
+ },
+ {
+  "case": 28,
+  "id": "sundara.24.33",
+  "decision": "keep",
+  "from": "अलमश्रुनिपातेन",
+  "reason": "अश्रुनिपात 'falling of tears' is a valid synonym of अश्रुप्रपात."
+ },
+ {
+  "case": 29,
+  "id": "sundara.24.39",
+  "decision": "keep",
+  "from": "हरिणशावाक्षीं",
+  "reason": "हरिणशावाक्षी 'fawn-eyed' is a valid, well-known epithet."
+ },
+ {
+  "case": 30,
+  "id": "sundara.24.39",
+  "decision": "keep",
+  "from": "त्रासोत्कम्पपयोधराम्",
+  "reason": "त्रासोत्कम्पपयोधरा 'whose breasts tremble with fear' is a valid compound."
+ },
+ {
+  "case": 31,
+  "id": "sundara.24.40",
+  "decision": "keep",
+  "from": "दौर्हृदो",
+  "reason": "दौर्हृद is listed by MW as 'morbid longing of pregnant women', a valid form of दौहृद."
+ },
+ {
+  "case": 32,
+  "id": "sundara.25.9",
+  "decision": "keep",
+  "from": "दीर्घबहुला",
+  "reason": "दीर्घबहुला 'long and thick' is a valid description of the braid."
+ },
+ {
+  "case": 33,
+  "id": "sundara.26.2",
+  "decision": "keep",
+  "from": "विचेष्टन्ती",
+  "reason": "विचेष्टन्ती 'writhing' is a valid participle that fits the sense."
+ },
+ {
+  "case": 34,
+  "id": "sundara.26.9",
+  "decision": "keep",
+  "from": "प्रत्याख्यानं",
+  "reason": "प्रत्याख्यानं न जानाति 'he does not know refusal' is grammatical and sensible."
+ },
+ {
+  "case": 35,
+  "id": "sundara.26.41",
+  "decision": "keep",
+  "from": "नास्त्यदृश्यतः",
+  "reason": "अदृश्यतः 'of one not seen' (genitive of passive participle) is valid and matches दृश्यमाने."
+ },
+ {
+  "case": 36,
+  "id": "sundara.26.44",
+  "decision": "keep",
+  "from": "मूलफलाशनौ",
+  "reason": "मूलफलाशनौ 'having roots and fruits for food' (bahuvrīhi) is valid."
+ },
+ {
+  "case": 37,
+  "id": "sundara.26.46",
+  "decision": "keep",
+  "from": "साहमेवंविधे",
+  "reason": "एवंविधे काले 'at such a time' is a valid synonym of एवंगते."
+ },
+ {
+  "case": 38,
+  "id": "sundara.26.47",
+  "decision": "keep",
+  "from": "जितात्मानो",
+  "reason": "जितात्मानः is the grammatically regular nominative plural of जितात्मन्."
+ },
+ {
+  "case": 39,
+  "id": "sundara.27.20",
+  "decision": "keep",
+  "from": "दिशमालोच्य",
+  "reason": "दिशमालोच्य 'having fixed on the northern direction' is a valid gerund."
+ },
+ {
+  "case": 40,
+  "id": "sundara.27.39",
+  "decision": "keep",
+  "from": "प्रमत्ताश्च",
+  "reason": "प्रमत्ताः 'intoxicated' is valid after पीत्वा तैलम्."
+ },
+ {
+  "case": 41,
+  "id": "sundara.27.53",
+  "decision": "keep",
+  "from": "वाचमुदीरयाणः",
+  "reason": "उदीरयाणः has correct ṇatva after the र् (y and vowels intervening), so it is a sound form of the participle."
+ },
+ {
+  "case": 42,
+  "id": "sundara.30.1",
+  "decision": "keep",
+  "from": "तर्जितम्",
+  "reason": "तर्जितम् (neuter noun 'threatening') is a valid synonym of तर्जनम्."
+ },
+ {
+  "case": 43,
+  "id": "sundara.30.8",
+  "decision": "keep",
+  "from": "सतीमेनां",
+  "reason": "No outside source; the half-verse scans 16 syllables and सतीमेनां is sound."
+ },
+ {
+  "case": 44,
+  "id": "sundara.30.21",
+  "decision": "keep",
+  "from": "जानाना",
+  "reason": "जानाना मां is the valid participle of √ज्ञा with its object and scans 8 syllables."
+ },
+ {
+  "case": 45,
+  "id": "sundara.30.37",
+  "decision": "keep",
+  "from": "विरुध्यन्ति",
+  "reason": "विरुध्यन्ति 'go wrong, are thwarted' is valid in context."
+ },
+ {
+  "case": 46,
+  "id": "sundara.32.6",
+  "decision": "keep",
+  "from": "विनीतवदुपागतम्",
+  "reason": "विनीतवदुपागतम् 'approaching humbly' is a valid synonym of उपस्थितम्."
+ },
+ {
+  "case": 47,
+  "id": "sundara.34.5",
+  "decision": "keep",
+  "from": "प्रतिसंहृष्टसर्वांगी",
+  "reason": "प्रतिसंहृष्ट 'glad' is listed by MW citing the Rāmāyaṇa and recurs in Gita Press."
+ },
+ {
+  "case": 48,
+  "id": "sundara.34.12",
+  "decision": "keep",
+  "from": "भयसंत्रस्ता",
+  "reason": "भयसंत्रस्ता is a valid synonym of भयवित्रस्ता."
+ },
+ {
+  "case": 49,
+  "id": "sundara.35.16",
+  "decision": "keep",
+  "from": "सुविभक्ताङ्गो",
+  "reason": "समश्च सुविभक्ताङ्गः is valid and scans 8 syllables."
+ },
+ {
+  "case": 50,
+  "id": "sundara.35.69",
+  "decision": "keep",
+  "from": "सागरस्यान्तमुत्तमम्",
+  "reason": "सागरस्यान्तमुत्तमम् 'the farthest shore of the ocean' is valid Sanskrit and sensible."
+ },
+ {
+  "case": 51,
+  "id": "sundara.35.70",
+  "decision": "keep",
+  "from": "वेलोपान्तमुपागताः",
+  "reason": "उपागताः is a valid synonym of उपस्थिताः."
+ },
+ {
+  "case": 52,
+  "id": "sundara.35.81",
+  "decision": "keep",
+  "from": "सपुत्रबान्धवं",
+  "reason": "सपुत्रबान्धवं 'with sons and kin' is valid."
+ },
+ {
+  "case": 53,
+  "id": "sundara.35.82",
+  "decision": "keep",
+  "from": "शम्बसादनमुद्धरन्",
+  "reason": "उद्धरन् is a valid participle dependent on the main verb गच्छति in Gita Press's longer verse."
+ },
+ {
+  "case": 54,
+  "id": "sundara.36.4",
+  "decision": "keep",
+  "from": "करविभूषितम्",
+  "reason": "करविभूषितम् 'that which adorned the hand' is a valid participle used as a noun in context."
+ },
+ {
+  "case": 55,
+  "id": "sundara.36.37",
+  "decision": "keep",
+  "from": "परिपूरितः",
+  "reason": "शोकेन परिपूरितः 'filled with grief' is valid and scans 8 syllables."
+ },
+ {
+  "case": 56,
+  "id": "sundara.37.5",
+  "decision": "keep",
+  "from": "परिक्रान्तो",
+  "reason": "परिक्रान्तः 'wandering about' is a valid participle in the simile of the shipwrecked swimmer."
+ },
+ {
+  "case": 57,
+  "id": "sundara.37.6",
+  "decision": "keep",
+  "from": "लङ्कामुन्मथितां",
+  "reason": "उन्मथिताम् 'crushed, destroyed' is a valid synonym of उन्मूलिताम्."
+ },
+ {
+  "case": 58,
+  "id": "sundara.37.25",
+  "decision": "keep",
+  "from": "नगराजस्य",
+  "reason": "नगराजस्य मूर्धनि 'on the summit of the king of mountains' is valid and fits Rāma on Prasravaṇa."
+ },
+ {
+  "case": 59,
+  "id": "sundara.37.55",
+  "decision": "keep",
+  "from": "अनवस्थौ",
+  "reason": "अनवस्थौ 'unstable, uncertain' is a valid synonym of अव्यवस्थौ."
+ },
+ {
+  "case": 60,
+  "id": "sundara.38.14",
+  "decision": "keep",
+  "from": "तस्योपवनखण्डेषु",
+  "reason": "वनखण्ड 'grove' is a valid synonym of वनषण्ड."
+ },
+ {
+  "case": 61,
+  "id": "sundara.38.40",
+  "decision": "correct",
+  "from": "अपारवारमक्षोभ्यं",
+  "to": "अपारपारमक्षोभ्यं",
+  "reason": "अपारवार is attested nowhere, whereas अपारपार 'whose farther shore cannot be reached' (MW) suits the ocean simile, so this is a प/व typesetting confusion."
+ },
+ {
+  "case": 62,
+  "id": "sundara.38.42",
+  "decision": "keep",
+  "from": "प्रतिसमीहितुम्",
+  "reason": "प्रतिसमीहितुम् 'to withstand' is a valid infinitive in context."
+ },
+ {
+  "case": 63,
+  "id": "sundara.38.63",
+  "decision": "keep",
+  "from": "कार्यनिर्वाहे",
+  "reason": "कार्यनिर्वाह 'accomplishment of the task' is a valid synonym of कार्यनिर्योग."
+ },
+ {
+  "case": 64,
+  "id": "sundara.39.29",
+  "decision": "keep",
+  "from": "समग्रैर्युधि",
+  "reason": "समग्रैर्युधि 'in battle with all his forces' is grammatical and sensible."
+ },
+ {
+  "case": 65,
+  "id": "sundara.39.33",
+  "decision": "keep",
+  "from": "सत्यसम्पन्नस्तवार्थे",
+  "reason": "सत्यसम्पन्न 'truthful' is a valid epithet of Sugrīva."
+ },
+ {
+  "case": 66,
+  "id": "sundara.39.41",
+  "decision": "keep",
+  "from": "महासङ्घौ",
+  "reason": "महासङ्घौ 'having great hosts' is a valid bahuvrīhi."
+ },
+ {
+  "case": 67,
+  "id": "sundara.41.9",
+  "decision": "keep",
+  "from": "मत्वाहमितः",
+  "reason": "मत्वा is the regular gerund of √मन्."
+ },
+ {
+  "case": 68,
+  "id": "sundara.41.17",
+  "decision": "keep",
+  "from": "प्रभिन्नसलिलाशयैः",
+  "reason": "प्रभिन्नसलिलाशयैः as a compound is grammatical and matches the instrumental series."
+ },
+ {
+  "case": 69,
+  "id": "sundara.42.30",
+  "decision": "keep",
+  "from": "क्षितावाविद्ध्य",
+  "reason": "आविद्ध्य follows Gita Press's own spelling of this gerund (परिविद्ध्य, अपविद्ध्य, समाविद्ध्य, व्याविद्ध्य)."
+ },
+ {
+  "case": 70,
+  "id": "sundara.45.2",
+  "decision": "keep",
+  "from": "महद्बलपरीवारा",
+  "reason": "महद्बल occurs elsewhere in Gita Press and is a known epic compound form."
+ },
+ {
+  "case": 71,
+  "id": "sundara.45.16",
+  "decision": "keep",
+  "from": "स्वनैर्लङ्का",
+  "reason": "स्वनैः 'sounds' is a valid synonym of स्वरैः."
+ },
+ {
+  "case": 72,
+  "id": "sundara.46.30",
+  "decision": "keep",
+  "from": "सहसोत्प्लुत्य",
+  "reason": "उत्प्लुत्य 'leaping up' is a valid synonym of उत्पत्य."
+ },
+ {
+  "case": 73,
+  "id": "sundara.48.2",
+  "decision": "keep",
+  "from": "त्वमस्त्रविच्छस्त्रभृतां",
+  "reason": "शस्त्रभृतां वरिष्ठः 'best of weapon-bearers' is valid and scans."
+ },
+ {
+  "case": 74,
+  "id": "sundara.48.10",
+  "decision": "keep",
+  "from": "समारभस्वास्त्रभृतां",
+  "reason": "अस्त्रभृतां वरिष्ठ is valid and scans."
+ },
+ {
+  "case": 75,
+  "id": "sundara.48.13",
+  "decision": "keep",
+  "from": "क्षत्रस्य",
+  "reason": "क्षत्रस्य च 'and of the kṣatra' is valid and scans 8 syllables."
+ },
+ {
+  "case": 76,
+  "id": "sundara.48.21",
+  "decision": "keep",
+  "from": "हनूमन्तमभिप्रेत्य",
+  "reason": "हनूमन्त is Gita Press's usual spelling."
+ },
+ {
+  "case": 77,
+  "id": "sundara.48.28",
+  "decision": "keep",
+  "from": "सुसंततान्",
+  "reason": "सुसंततान् 'in an unbroken stream' is valid."
+ },
+ {
+  "case": 78,
+  "id": "sundara.48.30",
+  "decision": "keep",
+  "from": "व्यावर्तत",
+  "reason": "व्यावर्तत (vi-ā-√वृत् imperfect) is a valid form."
+ },
+ {
+  "case": 79,
+  "id": "sundara.48.60",
+  "decision": "keep",
+  "from": "मुख्यमन्त्रीन्",
+  "reason": "मुख्यमन्त्रीन् is metrically fixed (मुख्यमन्त्रिणः would add a syllable) and is a word-order reading, not a slip, so it stands as an ārṣa form."
+ },
+ {
+  "case": 80,
+  "id": "sundara.50.18",
+  "decision": "keep",
+  "from": "राक्षसैस्त्वभिवेदितः",
+  "reason": "अभिवेदितः 'brought before (you)' is a valid participle in context."
+ },
+ {
+  "case": 81,
+  "id": "sundara.51.8",
+  "decision": "keep",
+  "from": "ऋष्यमूकमनुप्राप्तः",
+  "reason": "ऋष्यमूक is Gita Press's consistent spelling."
+ },
+ {
+  "case": 82,
+  "id": "sundara.51.21",
+  "decision": "keep",
+  "from": "धर्म्यमर्थानुयायि",
+  "reason": "अर्थानुयायि 'conducive to wealth' is a valid synonym of अर्थानुबन्धि."
+ },
+ {
+  "case": 83,
+  "id": "sundara.51.24",
+  "decision": "keep",
+  "from": "विषसंस्पृष्टमत्यर्थं",
+  "reason": "विषसंस्पृष्ट 'touched by poison' is valid."
+ },
+ {
+  "case": 84,
+  "id": "sundara.51.41",
+  "decision": "keep",
+  "from": "पतत्त्रिषु",
+  "reason": "पतत्त्रि is Gita Press's usual spelling (14 occurrences)."
+ },
+ {
+  "case": 85,
+  "id": "sundara.51.44",
+  "decision": "keep",
+  "from": "रुद्रस्त्रिनेत्रस्त्रिपुरान्तको",
+  "reason": "त्रिनेत्र is the correct spelling."
+ },
+ {
+  "case": 86,
+  "id": "sundara.52.11",
+  "decision": "keep",
+  "from": "तस्मादिमं",
+  "reason": "तस्मादिमं is a valid pronoun variant."
+ },
+ {
+  "case": 87,
+  "id": "sundara.52.11",
+  "decision": "keep",
+  "from": "पापकारिणम्",
+  "reason": "पापकारिणम् 'evil-doer' is a valid synonym of पापचारिणम्."
+ },
+ {
+  "case": 88,
+  "id": "sundara.53.12",
+  "decision": "keep",
+  "from": "भर्तृहितार्थाय",
+  "reason": "भर्तृहितार्थाय as a compound is valid."
+ },
+ {
+  "case": 89,
+  "id": "sundara.53.19",
+  "decision": "keep",
+  "from": "हनूमांश्चारयामास",
+  "reason": "हनूमान् is Gita Press's usual spelling."
+ },
+ {
+  "case": 90,
+  "id": "sundara.54.26",
+  "decision": "keep",
+  "from": "काश्चिदग्निपरीताङ्ग्यो",
+  "reason": "अग्निपरीताङ्ग्यः 'with bodies enveloped in fire' is a valid bahuvrīhi."
+ },
+ {
+  "case": 91,
+  "id": "sundara.54.35",
+  "decision": "keep",
+  "from": "रौद्रोऽग्निरर्को",
+  "reason": "रौद्रः 'the fierce one' is a valid word in the list of gods."
+ },
+ {
+  "case": 92,
+  "id": "sundara.55.23",
+  "decision": "keep",
+  "from": "स्वचरित्राभिगुप्तां",
+  "reason": "चरित्र 'conduct' is a valid synonym of चारित्र."
+ },
+ {
+  "case": 93,
+  "id": "sundara.56.21",
+  "decision": "keep",
+  "from": "विजित्यारीञ्छोकं",
+  "reason": "विजित्यारीञ्छोकं is the correct sandhi of न् + श."
+ },
+ {
+  "case": 94,
+  "id": "sundara.57.9",
+  "decision": "keep",
+  "from": "दृश्यादृश्यतनुर्वीरस्तथा",
+  "reason": "तथा is valid in place of तदा."
+ },
+ {
+  "case": 95,
+  "id": "sundara.57.17",
+  "decision": "keep",
+  "from": "सुपर्णाचरिते",
+  "reason": "सुपर्णाचरिते 'trodden by Suparṇa' is a valid compound."
+ }
+]

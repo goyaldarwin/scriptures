@@ -123,7 +123,11 @@ json.dump([{'relation': ['delegate_permission/common.handle_all_urls'], 'target'
 # ---------- single-file bundle ---------- (every library file, the part files of a work loaded by part included: the app's getJSON reads them by path)
 LIBD = os.path.join(SITE, 'library')
 bundle = {'files': {}}
-for f in glob.glob(LIBD + '/**/*.json', recursive=True): bundle['files'][os.path.relpath(f, LIBD)[:-5]] = json.load(open(f))
+# a work exported but not on the shelf yet is left out: the app cannot open it
+_off = [os.path.dirname(os.path.relpath(f, LIBD)) + '/' for f in glob.glob(LIBD + '/**/work.json', recursive=True)
+        if os.path.dirname(os.path.relpath(f, LIBD)) not in {n['path'] for n in _works}]
+for f in glob.glob(LIBD + '/**/*.json', recursive=True):
+    if not any(os.path.relpath(f, LIBD).startswith(o) for o in _off): bundle['files'][os.path.relpath(f, LIBD)[:-5]] = json.load(open(f))
 css64 = ''.join(face(fam, 'data:font/woff2;base64,' + base64.b64encode(open(path, 'rb').read()).decode(), w, st, ur) for fam, path, w, st, ur in FONTS)
 js = 'window.__BUNDLE=' + json.dumps(bundle, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/') + ';'
 one = tpl.replace('/*FONTS*/', css64).replace('/*BUNDLE*/\n', '<script>' + js + '</script>\n').replace('/*APP*/', app)

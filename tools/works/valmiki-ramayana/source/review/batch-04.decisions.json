@@ -1,0 +1,672 @@
+[
+ {
+  "case": 1,
+  "id": "ayodhya.83.22",
+  "decision": "keep",
+  "from": "निरीक्ष्यानुत्थितां",
+  "reason": "अनु-उत्थित 'risen up to follow' is a valid participle describing the army ready to move, so the Gita Press reading stands."
+ },
+ {
+  "case": 2,
+  "id": "ayodhya.87.7",
+  "decision": "keep",
+  "from": "रुदत्यः",
+  "reason": "रुद् is an adādi root whose feminine present participle is रुदती without nasal (Gita Press prints रुदती in the next verse too), so रुदत्यः is the regular form."
+ },
+ {
+  "case": 3,
+  "id": "ayodhya.87.8",
+  "decision": "keep",
+  "from": "वत्समुपगुह्य",
+  "reason": "गुह् lengthens its vowel only before a vowel-initial suffix (6.4.89), so with ल्यप् the regular absolutive is उपगुह्य."
+ },
+ {
+  "case": 4,
+  "id": "ayodhya.87.19",
+  "decision": "keep",
+  "from": "समुपासन्त",
+  "reason": "The thematic आसन्त is an ārṣa form Gita Press also prints at Bāla 14.18 (उपासन्ते); it is a recognised epic variant and the metre is intact."
+ },
+ {
+  "case": 5,
+  "id": "ayodhya.87.23",
+  "decision": "keep",
+  "from": "सज्जमुपोह्य",
+  "reason": "सज्ज 'ready, equipped' is a valid and common epithet of a bow, so सज्जम् makes good sense beside सज्यम्."
+ },
+ {
+  "case": 6,
+  "id": "ayodhya.88.6",
+  "decision": "keep",
+  "from": "चन्दनागुरुगन्धिषु",
+  "reason": "अगुरु and अगरु are both standard forms of the aloe-wood name."
+ },
+ {
+  "case": 7,
+  "id": "ayodhya.88.24",
+  "decision": "keep",
+  "from": "अनावृतपुरद्वारां",
+  "reason": "अनावृत 'uncovered, open' gives the same sense as अपावृत and is a valid word."
+ },
+ {
+  "case": 8,
+  "id": "ayodhya.90.12",
+  "decision": "keep",
+  "from": "स्त्रीनिमित्तेन",
+  "reason": "स्त्रीनिमित्तेन 'on account of a woman' is a valid compound that fits Bharata's being exiled through Kaikeyī."
+ },
+ {
+  "case": 9,
+  "id": "ayodhya.90.17",
+  "decision": "keep",
+  "from": "प्रतिनेतुमयोध्यायां",
+  "reason": "The locative with प्रति-नी 'to lead back into Ayodhyā' is a valid construction in Gita Press's own form of the line, and the metre is complete."
+ },
+ {
+  "case": 10,
+  "id": "ayodhya.91.17",
+  "decision": "keep",
+  "from": "मिश्रकेशीमलम्बुषाम्",
+  "reason": "Gita Press spells the apsaras's name अलम्बुषा consistently (also Bāla 47.12, Ayodhyā 91.47), a form MW records."
+ },
+ {
+  "case": 11,
+  "id": "ayodhya.91.17",
+  "decision": "keep",
+  "from": "नागदत्तां",
+  "reason": "नागदत्ता is a valid name form for the apsaras, and nothing shows a slip."
+ },
+ {
+  "case": 12,
+  "id": "ayodhya.91.30",
+  "decision": "keep",
+  "from": "फलभूषिताः",
+  "reason": "फलभूषिताः 'adorned with fruits' is a valid compound with the same sense as फलभूषणाः."
+ },
+ {
+  "case": 13,
+  "id": "ayodhya.91.47",
+  "decision": "keep",
+  "from": "अलम्बुषा",
+  "reason": "Gita Press spells the apsaras's name अलम्बुषा consistently (also Bāla 47.12), a form MW records."
+ },
+ {
+  "case": 14,
+  "id": "ayodhya.91.58",
+  "decision": "keep",
+  "from": "वाचमुदीरयन्",
+  "reason": "The augmentless plural उदीरयन् is an ārṣa imperfect Gita Press uses repeatedly (e.g. Ayodhyā 67.4, 91.60), so it is the edition's reading."
+ },
+ {
+  "case": 15,
+  "id": "ayodhya.91.75",
+  "decision": "correct",
+  "from": "समुद्रेष्ववतिष्ठतः",
+  "to": "समुद्गेष्ववतिष्ठतः",
+  "reason": "Sandal pastes kept 'in oceans' (samudra) makes no sense; the sense requires samudga 'caskets', as both sources read, so र is a typesetting slip for ग."
+ },
+ {
+  "case": 16,
+  "id": "ayodhya.91.76",
+  "decision": "keep",
+  "from": "पादुकोपानहं",
+  "reason": "पादुकोपानहम् is the regular samāhāra-dvandva with the samāsānta टच् after a ह-final member (5.4.106, cf. छत्रोपानहम्), so the form is grammatical."
+ },
+ {
+  "case": 17,
+  "id": "ayodhya.92.9",
+  "decision": "keep",
+  "from": "भ्रातुर्दर्शनलालसम्",
+  "reason": "भ्रातुर्दर्शनलालसम् (genitive + compound) is a valid alternative to the compound भ्रातृदर्शनलालसम्."
+ },
+ {
+  "case": 18,
+  "id": "ayodhya.92.29",
+  "decision": "keep",
+  "from": "वचनमर्थवित्",
+  "reason": "अर्थवित् 'knower of the meaning' is a valid epithet of Bharadvāja, here qualifying the speaker."
+ },
+ {
+  "case": 19,
+  "id": "ayodhya.92.40",
+  "decision": "keep",
+  "from": "सम्प्रहृष्टद्विपवाजियूथा",
+  "reason": "द्विपवाजियूथा 'with herds of elephants and horses' is a valid compound that fits the army."
+ },
+ {
+  "case": 20,
+  "id": "ayodhya.93.2",
+  "decision": "keep",
+  "from": "पृषतमुख्याश्च",
+  "reason": "पृषतमुख्याः 'chiefly spotted deer' is valid and makes sense in the list of animals."
+ },
+ {
+  "case": 21,
+  "id": "ayodhya.93.6",
+  "decision": "keep",
+  "from": "सम्परिश्रान्तवाहनः",
+  "reason": "सम्परिश्रान्तवाहनः 'whose mounts were thoroughly tired' is a valid compound."
+ },
+ {
+  "case": 22,
+  "id": "ayodhya.94.3",
+  "decision": "keep",
+  "from": "राज्यभ्रंशनं",
+  "reason": "राज्यभ्रंशनम् 'loss of the kingdom' is a valid tatpuruṣa with the same sense as राज्याद्भ्रंशनम्."
+ },
+ {
+  "case": 23,
+  "id": "ayodhya.94.13",
+  "decision": "keep",
+  "from": "जलप्रपातैरुद्भेदैर्निष्पन्दैश्च",
+  "reason": "Gita Press uses निष्पन्द for 'flow, trickle' elsewhere too (Kiṣkindhā 67.38, Uttara 28.43), and MW records the form in this sense, so it is the edition's reading."
+ },
+ {
+  "case": 24,
+  "id": "ayodhya.94.17",
+  "decision": "keep",
+  "from": "पितुश्चानृण्यता",
+  "reason": "Gita Press prints the same noun at Ayodhyā 24.34 (पितुरानृण्यताम्), so पितुश्चानृण्यता (च + आनृण्यता) is the edition's reading."
+ },
+ {
+  "case": 25,
+  "id": "ayodhya.95.2",
+  "decision": "keep",
+  "from": "चन्द्रचारुनिभाननाम्",
+  "reason": "चन्द्रचारुनिभाननाम् 'whose face is like the lovely moon' is intelligible, and the metre is intact; only the order of the members differs."
+ },
+ {
+  "case": 26,
+  "id": "ayodhya.95.8",
+  "decision": "keep",
+  "from": "पुष्पपत्राणि",
+  "reason": "पुष्पपत्राणि is the same dvandva with its members in the other order."
+ },
+ {
+  "case": 27,
+  "id": "ayodhya.95.13",
+  "decision": "keep",
+  "from": "विधूतकल्मषैः",
+  "reason": "कल्मष and कलुष are synonyms, so विधूतकल्मषैः is a valid reading."
+ },
+ {
+  "case": 28,
+  "id": "ayodhya.96.13",
+  "decision": "keep",
+  "from": "तामश्वरथसम्पूर्णां",
+  "reason": "अश्वरथसम्पूर्णाम् 'full of horses and chariots' is a valid compound that makes sense."
+ },
+ {
+  "case": 29,
+  "id": "ayodhya.96.26",
+  "decision": "keep",
+  "from": "हस्तिभिन्नमिव",
+  "reason": "हस्तिभिन्नम् 'split by an elephant' is a valid synonym of हस्तिभग्नम्."
+ },
+ {
+  "case": 30,
+  "id": "ayodhya.100.8",
+  "decision": "keep",
+  "from": "धर्मनिश्चितः",
+  "reason": "धर्मनिश्चितः 'firm in dharma' is a valid epithet of Daśaratha."
+ },
+ {
+  "case": 31,
+  "id": "ayodhya.100.27",
+  "decision": "keep",
+  "from": "तवावजानन्ति",
+  "reason": "Gita Press's line (उद्वेजिताः प्रजाः, राष्ट्रे तवावजानन्ति) is a coherent different reading, 'do the harassed people despise your ministers', with valid grammar."
+ },
+ {
+  "case": 32,
+  "id": "ayodhya.100.54",
+  "decision": "keep",
+  "from": "कोषो",
+  "reason": "कोष and कोश are both standard spellings of 'treasury'."
+ },
+ {
+  "case": 33,
+  "id": "ayodhya.100.56",
+  "decision": "keep",
+  "from": "अदृष्टः",
+  "reason": "अदृष्टः 'unexamined' fits Gita Press's own form of this verse and is a valid word."
+ },
+ {
+  "case": 34,
+  "id": "ayodhya.103.15",
+  "decision": "keep",
+  "from": "स्वर्गतिं",
+  "reason": "स्वर्गतिं पृथिवीपतेः 'the king's going to heaven' is grammatically consistent in Gita Press's line."
+ },
+ {
+  "case": 35,
+  "id": "ayodhya.103.23",
+  "decision": "keep",
+  "from": "अवतारयदालम्ब्य",
+  "reason": "The augmentless imperfect अवतारयत् is an ārṣa form Gita Press also prints at Uttara 76.23, and the metre is intact."
+ },
+ {
+  "case": 36,
+  "id": "ayodhya.103.24",
+  "decision": "keep",
+  "from": "कृच्छ्रादुपगम्य",
+  "reason": "उपगम्य 'having approached' is a valid absolutive with the same sense as उपागम्य."
+ },
+ {
+  "case": 37,
+  "id": "ayodhya.103.26",
+  "decision": "keep",
+  "from": "जलापूरितमञ्जलिम्",
+  "reason": "जलापूरित 'filled with water' is a valid compound."
+ },
+ {
+  "case": 38,
+  "id": "ayodhya.103.29",
+  "decision": "keep",
+  "from": "बदरैर्मिश्रं",
+  "reason": "बदरैर्मिश्रम् 'mixed with jujube fruits' is valid and makes sense."
+ },
+ {
+  "case": 39,
+  "id": "ayodhya.103.36",
+  "decision": "keep",
+  "from": "वाहान्",
+  "reason": "वाहान् परित्यज्य 'leaving their mounts' makes good sense in context."
+ },
+ {
+  "case": 40,
+  "id": "ayodhya.103.39",
+  "decision": "keep",
+  "from": "खुरनेमिसमाकुलैः",
+  "reason": "खुरनेमिसमाकुलैः 'crowded with hooves and wheel-rims' is a valid compound."
+ },
+ {
+  "case": 41,
+  "id": "ayodhya.104.13",
+  "decision": "keep",
+  "from": "पितुर्दद्यादिङ्गुदीक्षोदमृद्धिमान्",
+  "reason": "इङ्गुदी is the standard feminine name of the tree, so इङ्गुदीक्षोद is a valid compound."
+ },
+ {
+  "case": 42,
+  "id": "ayodhya.104.23",
+  "decision": "keep",
+  "from": "वनवासकृतां",
+  "reason": "वनवासकृतां दीनां 'made dejected by forest life' is a possible reading and nothing proves a slip, so the edition's word stands."
+ },
+ {
+  "case": 43,
+  "id": "ayodhya.104.23",
+  "decision": "correct",
+  "from": "वाक्यमब्रतीत्",
+  "to": "वाक्यमब्रवीत्",
+  "reason": "अब्रतीत् is a non-word; the verb is अब्रवीत्, with त printed for व."
+ },
+ {
+  "case": 44,
+  "id": "ayodhya.105.5",
+  "decision": "keep",
+  "from": "दुरावरं",
+  "reason": "दुरावर (दुर् + आ-वृ + खल्, with guṇa) 'hard to check' is the regular Pāṇinian form."
+ },
+ {
+  "case": 45,
+  "id": "ayodhya.105.19",
+  "decision": "keep",
+  "from": "समुद्रमुदकार्णवम्",
+  "reason": "उदकार्णवम् 'the ocean of water' is a valid compound in Gita Press's line (पूर्णं समुद्रम्)."
+ },
+ {
+  "case": 46,
+  "id": "ayodhya.105.28",
+  "decision": "keep",
+  "from": "समतिवर्तते",
+  "reason": "समतिवर्तते 'goes beyond' gives good sense: no creature goes beyond its own nature."
+ },
+ {
+  "case": 47,
+  "id": "ayodhya.106.10",
+  "decision": "keep",
+  "from": "धर्ममधर्मं",
+  "reason": "धर्ममधर्मं च 'dharma and adharma' is a valid reading that makes sense."
+ },
+ {
+  "case": 48,
+  "id": "ayodhya.106.11",
+  "decision": "keep",
+  "from": "परिगर्हेऽहं",
+  "reason": "परिगर्हे 'I censure' (ātmanepada) is a valid form, with अहम्."
+ },
+ {
+  "case": 49,
+  "id": "ayodhya.107.2",
+  "decision": "keep",
+  "from": "यस्त्वमेवमभाषथाः",
+  "reason": "यस्त्वम् 'you who spoke thus' is a valid relative construction."
+ },
+ {
+  "case": 50,
+  "id": "ayodhya.107.9",
+  "decision": "correct",
+  "from": "क्षिप्रमेवाभिषिञ्चनात्",
+  "to": "क्षिप्रमेवाभिषेचनात्",
+  "reason": "अभिषिञ्चन is not a Sanskrit noun (MW and Apte have no such headword); the noun is अभिषेचन, which Gita Press itself prints in the same phrase at Ayodhyā 4.15."
+ },
+ {
+  "case": 51,
+  "id": "ayodhya.109.27",
+  "decision": "keep",
+  "from": "प्रवाहये",
+  "reason": "प्रवाहये 'I carry on' is a valid causative with the same sense as प्रवर्तये."
+ },
+ {
+  "case": 52,
+  "id": "ayodhya.109.34",
+  "decision": "keep",
+  "from": "शक्यतमः",
+  "reason": "शक्यतमः 'the one most able to be punished' fits Gita Press's own form of the line (स नास्तिके …), so it is the edition's reading."
+ },
+ {
+  "case": 53,
+  "id": "ayodhya.110.21",
+  "decision": "keep",
+  "from": "तामभ्यवदत्",
+  "reason": "अभ्यवदत् before प्रीतो is the correct sandhi for Gita Press's own form of the line."
+ },
+ {
+  "case": 54,
+  "id": "ayodhya.111.14",
+  "decision": "keep",
+  "from": "शये",
+  "reason": "शये 'I lie' (present for the near future) is a valid form in Gita Press's line."
+ },
+ {
+  "case": 55,
+  "id": "ayodhya.111.29",
+  "decision": "keep",
+  "from": "उपाधिर्न",
+  "reason": "उपाधि 'deceit, pretext' is a valid synonym of उपधि here."
+ },
+ {
+  "case": 56,
+  "id": "ayodhya.112.10",
+  "decision": "keep",
+  "from": "कुलधर्मानुसंततम्",
+  "reason": "कुलधर्मानुसंततम् 'continued as the family's dharma' agrees with धर्मम् in Gita Press's line."
+ },
+ {
+  "case": 57,
+  "id": "ayodhya.113.16",
+  "decision": "keep",
+  "from": "शीलवृत्तविदां",
+  "reason": "The locatives नरव्याघ्रे … वरे agree with त्वयि in the same verse, so the reading is coherent."
+ },
+ {
+  "case": 58,
+  "id": "ayodhya.114.3",
+  "decision": "keep",
+  "from": "ग्रहेणाभ्युदितेनैकां",
+  "reason": "अभ्युदितेन 'risen' describes the eclipsing planet validly."
+ },
+ {
+  "case": 59,
+  "id": "ayodhya.114.13",
+  "decision": "keep",
+  "from": "द्यामिवाम्बुधरैर्युताम्",
+  "reason": "युताम् 'joined with clouds' is a valid synonym of वृताम्."
+ },
+ {
+  "case": 60,
+  "id": "ayodhya.114.19",
+  "decision": "keep",
+  "from": "निशाम्यते",
+  "reason": "निशाम्यते (passive of the causative of नि-शम् 'perceive', non-mit in this sense) is a regular form."
+ },
+ {
+  "case": 61,
+  "id": "ayodhya.114.29",
+  "decision": "keep",
+  "from": "सुरैरिवोत्कृष्टमभास्करं",
+  "reason": "उत्कृष्ट 'drawn away' gives a possible sense in Gita Press's own form of the verse, and nothing proves a slip."
+ },
+ {
+  "case": 62,
+  "id": "ayodhya.115.6",
+  "decision": "keep",
+  "from": "मार्गमार्यं",
+  "reason": "मार्गमार्यम् 'the noble path' (noun + adjective) has the same sense as आर्यमार्गम्."
+ },
+ {
+  "case": 63,
+  "id": "ayodhya.115.19",
+  "decision": "keep",
+  "from": "गुरुवर्तिताम्",
+  "reason": "गुरुवर्तिता 'the state of obeying the elder' is a valid abstract from गुरुवर्तिन्."
+ },
+ {
+  "case": 64,
+  "id": "ayodhya.116.17",
+  "decision": "keep",
+  "from": "अवक्षिपन्ति",
+  "reason": "अवक्षिपन्ति 'they throw down' is valid and makes sense."
+ },
+ {
+  "case": 65,
+  "id": "ayodhya.116.19",
+  "decision": "keep",
+  "from": "शारीरीमुपहिंसां",
+  "reason": "शारीरी is the regular feminine of the अण्-derivative शारीर (with ङीप्), so the form is correct."
+ },
+ {
+  "case": 66,
+  "id": "ayodhya.116.22",
+  "decision": "keep",
+  "from": "युक्तस्य",
+  "reason": "युक्तस्य 'of one always devoted' is valid and fits the line."
+ },
+ {
+  "case": 67,
+  "id": "ayodhya.116.23",
+  "decision": "keep",
+  "from": "शशाकोत्तरैर्वाक्यैरवबद्धुं",
+  "reason": "Gita Press uses the infinitive बद्धुम् elsewhere (Araṇya 55.24, Sundara 50.16), so अवबद्धुम् 'to restrain' is the edition's form."
+ },
+ {
+  "case": 68,
+  "id": "ayodhya.117.29",
+  "decision": "keep",
+  "from": "तदेवमेतं",
+  "reason": "एतम् is a valid demonstrative beside anvādeśa एनम्."
+ },
+ {
+  "case": 69,
+  "id": "ayodhya.118.3",
+  "decision": "keep",
+  "from": "वृत्तिवर्जितः",
+  "reason": "वृत्तिवर्जितः 'without livelihood' fits Gita Press's own form of the line."
+ },
+ {
+  "case": 70,
+  "id": "ayodhya.118.15",
+  "decision": "correct",
+  "from": "चास्म्युचितां",
+  "to": "चास्म्युचितं",
+  "reason": "The feminine accusative उचितां has nothing to agree with; the sense 'what fitting and dear thing shall I do' (उचितं … प्रियं च किम्) needs neuter उचितं, as the other sources read."
+ },
+ {
+  "case": 71,
+  "id": "ayodhya.118.35",
+  "decision": "keep",
+  "from": "प्रधर्षणमवाप्नोति",
+  "reason": "प्रधर्षण is a valid neuter noun with the same meaning as प्रधर्षणा."
+ },
+ {
+  "case": 72,
+  "id": "ayodhya.119.4",
+  "decision": "keep",
+  "from": "पतत्त्रिणाम्",
+  "reason": "पतत्त्रिन् (from पतत्त्र 'wing') is a valid spelling MW records."
+ },
+ {
+  "case": 73,
+  "id": "ayodhya.119.7",
+  "decision": "keep",
+  "from": "अल्पवर्णा",
+  "reason": "अल्पवर्णाः 'dim-coloured' trees at dusk is a valid reading that makes sense."
+ },
+ {
+  "case": 74,
+  "id": "aranya.2.5",
+  "decision": "keep",
+  "from": "गभीराक्षं",
+  "reason": "गभीर is a standard variant of गम्भीर."
+ },
+ {
+  "case": 75,
+  "id": "aranya.4.2",
+  "decision": "keep",
+  "from": "सत्यवाञ्छीलवान्",
+  "reason": "सत्यवाञ्छीलवान् is the regular sandhi of न् + श."
+ },
+ {
+  "case": 76,
+  "id": "aranya.4.3",
+  "decision": "keep",
+  "from": "मामृक्षा",
+  "reason": "ऋक्षाः 'bears' is a valid word that fits the list of beasts."
+ },
+ {
+  "case": 77,
+  "id": "aranya.9.32",
+  "decision": "correct",
+  "from": "त्रैलोक्यामपि",
+  "to": "त्रैलोक्यमपि",
+  "reason": "त्रैलोक्य is neuter only, so the accusative is त्रैलोक्यम्; त्रैलोक्याम् is an impossible form with an extra ा."
+ },
+ {
+  "case": 78,
+  "id": "aranya.11.40",
+  "decision": "keep",
+  "from": "वनखण्डस्य",
+  "reason": "खण्ड is a valid synonym of षण्ड 'grove', so वनखण्ड makes sense."
+ },
+ {
+  "case": 79,
+  "id": "aranya.12.34",
+  "decision": "keep",
+  "from": "महाराजतकोशोऽयमसिर्हेमविभूषितः",
+  "reason": "महाराजतकोशः 'with a great silver scabbard' is a valid compound."
+ },
+ {
+  "case": 80,
+  "id": "aranya.16.42",
+  "decision": "keep",
+  "from": "दैवतानपि",
+  "reason": "दैवत is also masculine (MW), so दैवतान् is valid, and the metre is intact."
+ },
+ {
+  "case": 81,
+  "id": "aranya.17.12",
+  "decision": "keep",
+  "from": "तापसवेषेण",
+  "reason": "तापसवेषेण 'in an ascetic's garb' is a valid synonym of तापसरूपेण."
+ },
+ {
+  "case": 82,
+  "id": "aranya.20.5",
+  "decision": "keep",
+  "from": "प्रपूजयन्",
+  "reason": "The participle प्रपूजयन् 'honouring' is a valid elliptical construction in Gita Press's own form of the line."
+ },
+ {
+  "case": 83,
+  "id": "aranya.23.25",
+  "decision": "keep",
+  "from": "मानवौ",
+  "reason": "मानवौ 'two men' is a valid synonym of मानुषौ."
+ },
+ {
+  "case": 84,
+  "id": "aranya.30.11",
+  "decision": "keep",
+  "from": "निरर्थिकाः",
+  "reason": "निरर्थिका is the regular feminine of निरर्थक (इत् before आप्, 7.3.44)."
+ },
+ {
+  "case": 85,
+  "id": "aranya.30.14",
+  "decision": "keep",
+  "from": "मृत्योर्वश्यो",
+  "reason": "मृत्योर्वश्यः 'in death's power' is valid and has the same sense as the compound."
+ },
+ {
+  "case": 86,
+  "id": "aranya.31.16",
+  "decision": "keep",
+  "from": "कनीयाँल्लक्ष्मणो",
+  "reason": "कनीयाँल्लक्ष्मणः is the regular न् + ल sandhi."
+ },
+ {
+  "case": 87,
+  "id": "aranya.31.19",
+  "decision": "keep",
+  "from": "भयकर्षिताः",
+  "reason": "कर्षित 'tormented' is a valid synonym of कर्शित here."
+ },
+ {
+  "case": 88,
+  "id": "aranya.31.38",
+  "decision": "keep",
+  "from": "सकुशलं",
+  "reason": "सकुशलम् 'in good health' is a valid word."
+ },
+ {
+  "case": 89,
+  "id": "aranya.31.38",
+  "decision": "keep",
+  "from": "राजँल्लोकानां",
+  "reason": "राजँल्लोकानाम् is the regular न् + ल sandhi."
+ },
+ {
+  "case": 90,
+  "id": "aranya.32.2",
+  "decision": "keep",
+  "from": "पुनर्महानादान्",
+  "reason": "The plural महानादान् 'great roars' is valid."
+ },
+ {
+  "case": 91,
+  "id": "aranya.32.11",
+  "decision": "keep",
+  "from": "देवप्रहरणैस्तदा",
+  "reason": "तदा 'then' is a valid alternative to तथा."
+ },
+ {
+  "case": 92,
+  "id": "aranya.33.16",
+  "decision": "keep",
+  "from": "क्रोधनं",
+  "reason": "क्रोधन 'irascible' is a valid synonym of क्रोधिन्."
+ },
+ {
+  "case": 93,
+  "id": "aranya.33.18",
+  "decision": "keep",
+  "from": "लोष्ठैरपि",
+  "reason": "लोष्ठ is a recognised spelling of लोष्ट 'clod' (MW)."
+ },
+ {
+  "case": 94,
+  "id": "aranya.33.24",
+  "decision": "keep",
+  "from": "परिकीर्तितांस्तथा",
+  "reason": "परिकीर्तितांस्तथा 'thus proclaimed' is a valid reading."
+ },
+ {
+  "case": 95,
+  "id": "aranya.35.22",
+  "decision": "keep",
+  "from": "फलिनां",
+  "reason": "फलिनाम् 'of fruit-bearing trees' is a valid reading that makes sense."
+ }
+]

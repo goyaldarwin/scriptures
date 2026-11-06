@@ -1,0 +1,122 @@
+[
+ {
+  "page": 287,
+  "printed": "मौनव ्रत",
+  "text": "मौनव्रत",
+  "reason": "misprint in the source text: a stray space and an orphaned sign inside the word; the page prints it with a dotted circle (seen on the rendered page)"
+ },
+ {
+  "page": 562,
+  "printed": "रमणीशि् ारोमणि",
+  "text": "रमणीशिरोमणि",
+  "reason": "misprint in the source text: a stray space and an orphaned sign inside the word; the page prints it with a dotted circle (seen on the rendered page)"
+ },
+ {
+  "page": 784,
+  "printed": "वैरविर ोधके",
+  "text": "वैरविरोधके",
+  "reason": "misprint in the source text: a stray space and an orphaned sign inside the word; the page prints it with a dotted circle (seen on the rendered page)"
+ },
+ {
+  "page": 812,
+  "printed": "तुहिनबिन्दुअ ोंसे",
+  "text": "तुहिनबिन्दुओंसे",
+  "reason": "misprint in the source text: a stray space and an orphaned sign inside the word; the page prints it with a dotted circle (seen on the rendered page)"
+ },
+ {
+  "page": 873,
+  "printed": "नष्टभ ्रष्ट",
+  "text": "नष्टभ्रष्ट",
+  "reason": "misprint in the source text: a stray space and an orphaned sign inside the word; the page prints it with a dotted circle (seen on the rendered page)"
+ },
+ {
+  "page": 921,
+  "printed": "पर्वतशि् ाखरके",
+  "text": "पर्वतशिखरके",
+  "reason": "misprint in the source text: a stray space and an orphaned sign inside the word; the page prints it with a dotted circle (seen on the rendered page)"
+ },
+ {
+  "page": 1141,
+  "printed": "वानरवीर ोंके",
+  "text": "वानरवीरोंके",
+  "reason": "misprint in the source text: a stray space and an orphaned sign inside the word; the page prints it with a dotted circle (seen on the rendered page)"
+ },
+ {
+  "page": 1650,
+  "printed": "हरीभर ी",
+  "text": "हरीभरी",
+  "reason": "misprint in the source text: a stray space and an orphaned sign inside the word; the page prints it with a dotted circle (seen on the rendered page)"
+ },
+ {
+  "page": 1707,
+  "printed": "वानरशि् ारोमणियो",
+  "text": "वानरशिरोमणियो",
+  "reason": "misprint in the source text: a stray space and an orphaned sign inside the word; the page prints it with a dotted circle (seen on the rendered page)"
+ },
+ {
+  "page": 1776,
+  "printed": "कामनाविश् ोषके",
+  "text": "कामनाविशेषके",
+  "reason": "misprint in the source text: a stray space and an orphaned sign inside the word; the page prints it with a dotted circle (seen on the rendered page)"
+ },
+ {
+  "page": 1808,
+  "printed": "वानरशि् ारोमणियोंको",
+  "text": "वानरशिरोमणियोंको",
+  "reason": "misprint in the source text: a stray space and an orphaned sign inside the word; the page prints it with a dotted circle (seen on the rendered page)"
+ },
+ {
+  "page": 1987,
+  "printed": "अश्रुबिन्दुअ ोंसे",
+  "text": "अश्रुबिन्दुओंसे",
+  "reason": "misprint in the source text: a stray space and an orphaned sign inside the word; the page prints it with a dotted circle (seen on the rendered page)"
+ },
+ {
+  "page": 2097,
+  "printed": "सालकटङ्कटवंश् ामें",
+  "text": "सालकटङ्कटवंशमें",
+  "reason": "misprint in the source text: a stray space and an orphaned sign inside the word; the page prints it with a dotted circle (seen on the rendered page)"
+ },
+ {
+  "page": 2246,
+  "printed": "उन्होंन े",
+  "text": "उन्होंने",
+  "reason": "misprint in the source text: a stray space and an orphaned sign inside the word; the page prints it with a dotted circle (seen on the rendered page)"
+ },
+ {
+  "page": 2283,
+  "printed": "यमुनातीरनिवास ी",
+  "text": "यमुनातीरनिवासी",
+  "reason": "misprint in the source text: a stray space and an orphaned sign inside the word; the page prints it with a dotted circle (seen on the rendered page)"
+ },
+ {
+  "page": 980,
+  "printed": "भेटं",
+  "text": "भेंट",
+  "reason": "misprint in the source text: the anusvāra is typed after ट instead of after े (the book has भेंट 49 times); seen on the page"
+ },
+ {
+  "page": 202,
+  "printed": "क्षत्रियध र्मके",
+  "text": "क्षत्रियधर्मके",
+  "reason": "stray space inside the word in the source text (the page shows the gap; a word cannot begin with a reph)"
+ },
+ {
+  "page": 2261,
+  "printed": "क्षत्रियध र्मके",
+  "text": "क्षत्रियधर्मके",
+  "reason": "stray space inside the word in the source text (the page shows the gap; a word cannot begin with a reph)"
+ },
+ {
+  "page": 1300,
+  "printed": "विमाननि र्माणोचित",
+  "text": "विमाननिर्माणोचित",
+  "reason": "stray space inside the word in the source text (the page shows the gap; a word cannot begin with a reph)"
+ },
+ {
+  "page": 1749,
+  "printed": "आग्नेयास्त्रयुक्त रु बाणका",
+  "text": "आग्नेयास्त्रयुक्त बाणका",
+  "reason": "a stray “रु” begins the next printed line (same legacy-conversion slip as the “रु” after ग्न/क्व, rule E); owner to confirm"
+ }
+]

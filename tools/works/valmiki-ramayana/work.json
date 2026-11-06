@@ -1,0 +1,89 @@
+{
+ "id": "valmiki-ramayana",
+ "path": "hinduism/granth/valmiki/ramayana",
+ "lang": "sa",
+ "title": {
+  "hi": "श्रीमद्वाल्मीकीय रामायण",
+  "en": "Shrimad Valmiki Ramayan"
+ },
+ "by": {
+  "hi": "महर्षि वाल्मीकि",
+  "en": "Maharshi Valmiki"
+ },
+ "edition": {
+  "hi": "गीताप्रेस, गोरखपुर (संस्कृत मूल, अंग्रेज़ी अनुवाद: कोड ४५२–४५३; हिन्दी अनुवाद: कोड ७७)",
+  "en": "Gita Press, Gorakhpur (Sanskrit text and English translation: codes 452–453; Hindi translation: code 77)"
+ },
+ "colophon": {
+  "hi": "समापन (पुष्पिका)",
+  "en": "Closing words (iti)"
+ },
+ "parts": {
+  "name": {
+   "hi": "काण्ड",
+   "en": "Kand"
+  },
+  "list": [
+   {
+    "key": "bala",
+    "hi": "बालकाण्ड",
+    "en": "Bal Kand"
+   },
+   {
+    "key": "ayodhya",
+    "hi": "अयोध्याकाण्ड",
+    "en": "Ayodhya Kand"
+   },
+   {
+    "key": "aranya",
+    "hi": "अरण्यकाण्ड",
+    "en": "Aranya Kand"
+   },
+   {
+    "key": "kishkindha",
+    "hi": "किष्किन्धाकाण्ड",
+    "en": "Kishkindha Kand"
+   },
+   {
+    "key": "sundara",
+    "hi": "सुन्दरकाण्ड",
+    "en": "Sundar Kand"
+   },
+   {
+    "key": "yuddha",
+    "hi": "युद्धकाण्ड",
+    "en": "Yuddh Kand"
+   },
+   {
+    "key": "uttara",
+    "hi": "उत्तरकाण्ड",
+    "en": "Uttar Kand"
+   }
+  ]
+ },
+ "cite": {
+  "by": [
+   "sec",
+   "n"
+  ],
+  "sec": {
+   "hi": "सर्ग",
+   "en": "Sarga"
+  }
+ },
+ "load": "parts",
+ "sections": {
+  "aranya.p1": {
+   "hi": "प्रक्षिप्त सर्ग 1",
+   "en": "Interpolated sarga 1"
+  },
+  "uttara.p1": {
+   "hi": "प्रक्षिप्त सर्ग 1",
+   "en": "Interpolated sarga 1"
+  },
+  "uttara.p2": {
+   "hi": "प्रक्षिप्त सर्ग 2",
+   "en": "Interpolated sarga 2"
+  }
+ }
+}

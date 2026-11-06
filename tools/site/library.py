@@ -82,11 +82,15 @@ def check_work(lib, leaf, LANGS):
     _need('title' not in leaf or leaf['title'] == w.get('title'), f"{name}: the shelf title {leaf.get('title')} ≠ work.json title {w.get('title')}")
     # English titles and labels are in plain, common Indian English (Shri Ram, Sundarkand, Hanuman Chalisa); the marks of IAST
     # belong in the transliteration and the meanings (docs/PLAYBOOK.md)
-    MARK = re.compile('[Ā-ɏḀ-ỿ]')
+    MARK = re.compile('[À-ÖØ-öø-ɏḀ-ỿ]')
     labels = [w.get(k) for k in ('title', 'by', 'from', 'edition')] + [leaf.get(k) for k in ('title', 'desc', 'by', 'edition')] + [w['parts'].get('name')] + w['parts']['list'] \
         + [x for t in (w.get('types') or {}).values() for x in (t.get('name'), t.get('short'))]
     bad = sorted({l['en'] for l in labels if isinstance(l, dict) and isinstance(l.get('en'), str) and MARK.search(l['en'])})
     _need(not bad, f"{name}: English titles and labels are in plain spelling (Shri Ram, Sundarkand), not IAST: {bad[:5]}")
+    # headings too, unless the work quotes its opening words in transliteration as headings (work.json → "headings": "transliteration")
+    if w.get('headings') != 'transliteration':
+        bad = [t['en'] for t in w.get('topics', []) if MARK.search(t.get('en', ''))] + [v['en'] for v in (w.get('sections') or {}).values() if MARK.search(v.get('en', ''))]
+        _need(not bad, f"{name}: headings and section names in English are in plain spelling, not IAST: {bad[:3]}")
     # an āratī is titled by its opening words (docs/PLAYBOOK.md §6), unless it is known by a name of its own ("named": true, e.g. Dhūpa Āratī)
     if '/aarti/' in path and not w.get('named'):
         fold = lambda s: re.sub(r'[\s\-–,।॥.;:!?\'"‘’“”()]', '', s)
@@ -270,6 +274,11 @@ def prepare(lib):
         _need(folders.get(leaf['work']) == leaf['path'], f"shelf: work {leaf['work']!r} needs its folder tools/works/{leaf['work']}/ with path {leaf['path']!r} in work.json")
         wid, src = check_work(lib, leaf, LANGS); works[wid] = src
         check_words(lib, leaf['path'], json.load(open(os.path.join(lib, leaf['path'], 'work.json'), encoding='utf-8')), LANGS, G, clean)
+    # a work exported but not on the shelf yet (a branch's new work) is held to the same checks, so it goes on the shelf clean
+    for d, path in sorted(folders.items()):
+        if d in works or not os.path.exists(os.path.join(lib, path, 'work.json')): continue
+        leaf = {'id': d, 'work': d, 'path': path}; check_work(lib, leaf, LANGS)
+        check_words(lib, path, json.load(open(os.path.join(lib, path, 'work.json'), encoding='utf-8')), LANGS, G, clean)
     # store apps (library/apps.json): each app's shelves must exist on the shelf
     ap = os.path.join(lib, 'apps.json')
     if os.path.exists(ap):

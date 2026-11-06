@@ -1,0 +1,692 @@
+[
+ {
+  "case": 1,
+  "id": "bala.1.29",
+  "decision": "keep",
+  "from": "शृङ्गवेरपुरे",
+  "reason": "शृङ्गवेरपुर is Gita Press's consistent spelling of the town throughout the book (8 places), a known variant of Śṛṅgiberapura."
+ },
+ {
+  "case": 2,
+  "id": "bala.1.32",
+  "decision": "keep",
+  "from": "पुत्रशोकातुरस्तदा",
+  "reason": "तदा 'then' is a valid adverb fitting the sense and metre equally well as तथा."
+ },
+ {
+  "case": 3,
+  "id": "bala.2.10",
+  "decision": "correct",
+  "from": "पुमासं",
+  "to": "पुमांसं",
+  "reason": "पुमासं is not a form; the accusative of पुंस् is पुमांसम्, with the anusvāra dropped in print."
+ },
+ {
+  "case": 4,
+  "id": "bala.2.12",
+  "decision": "correct",
+  "from": "पत्त्रिणा",
+  "to": "पत्रिणा",
+  "reason": "Gita Press writes पत्रिन् everywhere else in the book, so the doubled त् is a slip."
+ },
+ {
+  "case": 5,
+  "id": "bala.3.26",
+  "decision": "correct",
+  "from": "अङ्गलीयकदानं",
+  "to": "अङ्गुलीयकदानं",
+  "reason": "अङ्गलीयक is not a word; the ु of अङ्गुलीयक (ring), which Gita Press prints elsewhere, was dropped."
+ },
+ {
+  "case": 6,
+  "id": "bala.4.27",
+  "decision": "keep",
+  "from": "सर्वगीतिषु",
+  "reason": "गीति (f., song) is a valid word; सर्वगीतिषु कोविदौ 'skilled in all songs' makes good sense."
+ },
+ {
+  "case": 7,
+  "id": "bala.5.8",
+  "decision": "correct",
+  "from": "मुक्तपुष्पावकीेर्णेन",
+  "to": "मुक्तपुष्पावकीर्णेन",
+  "reason": "The stray े on की is an extra sign that makes a non-word."
+ },
+ {
+  "case": 8,
+  "id": "bala.6.22",
+  "decision": "keep",
+  "from": "काम्बोजविषये",
+  "reason": "काम्बोज is the standard spelling of the Kamboja country; the others' काम्भोज is the variant."
+ },
+ {
+  "case": 9,
+  "id": "bala.6.25",
+  "decision": "correct",
+  "from": "भद्रैर्मद्रैर्मृगैश्चैव",
+  "to": "भद्रैर्मन्द्रैर्मृगैश्चैव",
+  "reason": "The verse lists the three classes of elephants (भद्र, मन्द्र, मृग) and their mixtures, so मद्रैः is a slip for मन्द्रैः."
+ },
+ {
+  "case": 10,
+  "id": "bala.7.21",
+  "decision": "correct",
+  "from": "अवेक्ष्यमाणश्चारेण",
+  "to": "अवेक्षमाणश्चारेण",
+  "reason": "The king observes the people through spies, so the active middle participle अवेक्षमाणः is required (Gita Press's form elsewhere); passive अवेक्ष्यमाणः 'being observed' is wrong here."
+ },
+ {
+  "case": 11,
+  "id": "bala.15.6",
+  "decision": "keep",
+  "from": "भगवंस्त्वत्प्रसादेन",
+  "reason": "भगवन् before त् correctly becomes भगवंस्त्- by sandhi (8.3.7), so भगवंस्त्वत्प्रसादेन is the regular form."
+ },
+ {
+  "case": 12,
+  "id": "bala.15.15",
+  "decision": "correct",
+  "from": "एतच्छ्रत्वा",
+  "to": "एतच्छ्रुत्वा",
+  "reason": "The ु of श्रुत्वा was dropped, giving a non-word."
+ },
+ {
+  "case": 13,
+  "id": "bala.15.31",
+  "decision": "keep",
+  "from": "मानुष्ये",
+  "reason": "मानुष्य (n., human state/world) is a valid word; मानुष्ये 'in the human condition' fits the sense and metre."
+ },
+ {
+  "case": 14,
+  "id": "bala.18.23",
+  "decision": "keep",
+  "from": "पौरजानपदानपि",
+  "reason": "पौरजानपदान् as a dvandva compound is valid and means the same as the separate पौराञ्जानपदान्."
+ },
+ {
+  "case": 15,
+  "id": "bala.18.54",
+  "decision": "correct",
+  "from": "राजार्षिशब्देन",
+  "to": "राजर्षिशब्देन",
+  "reason": "राजार्षि is not a word; the compound is राजर्षि."
+ },
+ {
+  "case": 16,
+  "id": "bala.22.23",
+  "decision": "keep",
+  "from": "ससुखं",
+  "reason": "ससुखम् 'happily' (sa + sukha, adverbial) is a valid form with the same metre and sense as सुसुखम्."
+ },
+ {
+  "case": 17,
+  "id": "bala.24.25",
+  "decision": "keep",
+  "from": "यक्षिणी",
+  "reason": "यक्षिणी is a valid synonym of यक्षी and keeps the pāda at 8 syllables (कस्यचित्त्वथ कालस्य / यक्षिणी कामरूपिणी)."
+ },
+ {
+  "case": 18,
+  "id": "bala.26.2",
+  "decision": "correct",
+  "from": "कौसिकस्येति",
+  "to": "कौशिकस्येति",
+  "reason": "Gita Press spells Viśvāmitra's name कौशिक everywhere else, so स is a slip."
+ },
+ {
+  "case": 19,
+  "id": "bala.26.33",
+  "decision": "correct",
+  "from": "ववनमब्रवीत्",
+  "to": "वचनमब्रवीत्",
+  "reason": "ववनम् is not a word; the formula is इदं वचनमब्रवीत्."
+ },
+ {
+  "case": 20,
+  "id": "bala.28.6",
+  "decision": "correct",
+  "from": "नैरास्यविमलावुभौ",
+  "to": "नैराश्यविमलावुभौ",
+  "reason": "The word is नैराश्य, which is Gita Press's spelling everywhere else; नैरास्य is a misspelling."
+ },
+ {
+  "case": 21,
+  "id": "bala.28.7",
+  "decision": "keep",
+  "from": "सार्चिमाली",
+  "reason": "सार्चिमाली (sa + arci + mālin) is a possible name form of this astra, and nothing settles it against सार्चिर्माली; the metre is the same."
+ },
+ {
+  "case": 22,
+  "id": "bala.30.4",
+  "decision": "correct",
+  "from": "रक्षतां",
+  "to": "रक्षतं",
+  "reason": "With युवाम्, a second-person dual imperative (रक्षतम्) is required; रक्षताम् is third person."
+ },
+ {
+  "case": 23,
+  "id": "bala.37.13",
+  "decision": "keep",
+  "from": "समन्तादवशीर्यत",
+  "reason": "अवशीर्यत (passive imperfect of शॄ, 'was dispersed/shattered all around') is a valid form that makes sense here."
+ },
+ {
+  "case": 24,
+  "id": "bala.38.21",
+  "decision": "correct",
+  "from": "प्राहसन्नित्यं",
+  "to": "प्रहसन्नित्यं",
+  "reason": "The subject is singular (Asamañja) and the clause needs the present participle प्रहसन्; प्राहसन् is a third-person plural imperfect."
+ },
+ {
+  "case": 25,
+  "id": "bala.39.26",
+  "decision": "correct",
+  "from": "यज्ञहनोऽस्माकमनेनाश्वोऽपनीयते",
+  "to": "यज्ञहरोऽस्माकमनेनाश्वोऽपनीयते",
+  "reason": "अयं needs a nominative noun, and यज्ञहनः (genitive/ablative of यज्ञहन्) does not fit; यज्ञहरः 'stealer of our sacrifice' matches the horse being carried off."
+ },
+ {
+  "case": 26,
+  "id": "bala.40.21",
+  "decision": "keep",
+  "from": "समुपाक्रान्ता",
+  "reason": "समुपाक्रान्ताः (sam-upa-ā-√kram, 'having approached') is a valid form with the same metre and sense."
+ },
+ {
+  "case": 27,
+  "id": "bala.41.16",
+  "decision": "correct",
+  "from": "सुपर्णमनिलोपम्",
+  "to": "सुपर्णमनिलोपमम्",
+  "reason": "The pāda has only 7 syllables and अनिलोपम् is not a form; the accusative is अनिलोपमम्."
+ },
+ {
+  "case": 28,
+  "id": "bala.43.19",
+  "decision": "keep",
+  "from": "तदद्भुतमिमं",
+  "reason": "तदद्भुतमिमं … गङ्गावतरमुत्तमम् ('that wonder, this excellent descent of Gaṅgā') is grammatical, with इमम् agreeing with the masculine अवतरम्."
+ },
+ {
+  "case": 29,
+  "id": "bala.43.24",
+  "decision": "keep",
+  "from": "क्वचिदुद्भूतं",
+  "reason": "उद्भूतम् 'risen up' is a valid participle that fits the description of the river's course."
+ },
+ {
+  "case": 30,
+  "id": "bala.43.37",
+  "decision": "correct",
+  "from": "जह्रुं",
+  "to": "जह्नुं",
+  "reason": "The sage is जह्नु, as Gita Press prints in the same sarga (verses 35 and 38), so र is a slip for न."
+ },
+ {
+  "case": 31,
+  "id": "bala.44.16",
+  "decision": "keep",
+  "from": "तथागच्छद्",
+  "reason": "तथागच्छद् देवलोकम् is the regular sandhi of -त् before द्."
+ },
+ {
+  "case": 32,
+  "id": "bala.46.4",
+  "decision": "keep",
+  "from": "कश्यपस्तदा",
+  "reason": "मारीचः कश्यपः ('Kaśyapa, son of Marīci') is a valid way to name the sage, as is काश्यप."
+ },
+ {
+  "case": 33,
+  "id": "bala.48.28",
+  "decision": "keep",
+  "from": "सुरोषेण",
+  "reason": "सुरोष 'very angry' is a valid word that Monier-Williams cites from the Rāmāyaṇa."
+ },
+ {
+  "case": 34,
+  "id": "bala.48.30",
+  "decision": "keep",
+  "from": "वातभक्षा",
+  "reason": "वातभक्षा 'living on air' is a valid synonym of वायुभक्षा."
+ },
+ {
+  "case": 35,
+  "id": "bala.52.22",
+  "decision": "keep",
+  "from": "कामधुग्",
+  "reason": "कामधुग् before द् is the correct voiced final; the difference is sandhi only."
+ },
+ {
+  "case": 36,
+  "id": "bala.53.17",
+  "decision": "keep",
+  "from": "हैरण्यकक्षग्रैवेयान्",
+  "reason": "हैरण्यकक्ष ('with golden girths'), with the compound-final short form of कक्षा, is acceptable and the metre is identical."
+ },
+ {
+  "case": 37,
+  "id": "bala.55.9",
+  "decision": "correct",
+  "from": "भग्नद्रंष्ट्र",
+  "to": "भग्नदंष्ट्र",
+  "reason": "द्रंष्ट्र is not a word; the stray ् र makes it a misspelling of दंष्ट्रा (fang)."
+ },
+ {
+  "case": 38,
+  "id": "bala.57.4",
+  "decision": "keep",
+  "from": "मधुष्पन्दो",
+  "reason": "Gita Press prints both names with -ष्पन्द (from स्पन्द), हविष्पन्दो मधुष्पन्दो, a name form known to the tradition; it is consistent in the verse."
+ },
+ {
+  "case": 39,
+  "id": "bala.57.16",
+  "decision": "keep",
+  "from": "अभिवाद्यानुपूर्वेण",
+  "reason": "अनुपूर्वेण 'in due order' is a valid synonym of आनुपूर्व्येण."
+ },
+ {
+  "case": 40,
+  "id": "bala.58.24",
+  "decision": "keep",
+  "from": "नान्यच्छरणमस्ति",
+  "reason": "नान्यच्छरणम् (अन्यत् agreeing with neuter शरणम्) is valid sandhi and grammar."
+ },
+ {
+  "case": 41,
+  "id": "bala.59.14",
+  "decision": "keep",
+  "from": "चाण्डालभोजनम्",
+  "reason": "चाण्डाल is a valid, common spelling of चण्डाल."
+ },
+ {
+  "case": 42,
+  "id": "bala.60.6",
+  "decision": "keep",
+  "from": "रोषतः",
+  "reason": "रोषतः 'from anger' (ablative -तस्) is valid and fits the sense."
+ },
+ {
+  "case": 43,
+  "id": "bala.63.1",
+  "decision": "keep",
+  "from": "अभ्यगच्छन्",
+  "reason": "अभ्यगच्छन् (abhi + agacchan, imperfect) is a valid form; अभ्यागच्छन् adds आ but means the same."
+ },
+ {
+  "case": 44,
+  "id": "bala.63.6",
+  "decision": "keep",
+  "from": "कन्दर्पदर्पवशगो",
+  "reason": "कन्दर्पदर्पवशगः 'under the sway of Kandarpa's pride' is valid and the pāda has 8 syllables."
+ },
+ {
+  "case": 45,
+  "id": "bala.63.21",
+  "decision": "keep",
+  "from": "भगवन्नाह",
+  "reason": "यदि मे भगवन् आह (vocative with an honorific third-person verb) is acceptable, and nothing settles it against भगवानाह."
+ },
+ {
+  "case": 46,
+  "id": "bala.66.16",
+  "decision": "keep",
+  "from": "वरयामासुरागत्य",
+  "reason": "आगत्य and आगम्य are both valid gerunds of आ-√गम्."
+ },
+ {
+  "case": 47,
+  "id": "bala.69.4",
+  "decision": "keep",
+  "from": "दीर्घायुर्ऋषिः",
+  "reason": "दीर्घायुर्ऋषिः is the regular sandhi of -उः before a vowel."
+ },
+ {
+  "case": 48,
+  "id": "bala.69.6",
+  "decision": "keep",
+  "from": "पृष्ठतोऽन्वयात्",
+  "reason": "अन्वयात् (anu + ayāt, imperfect of √या) 'followed' is a valid form."
+ },
+ {
+  "case": 49,
+  "id": "bala.70.14",
+  "decision": "keep",
+  "from": "सर्षिगणस्तथा",
+  "reason": "तथा and तदा are both valid here and leave the metre the same."
+ },
+ {
+  "case": 50,
+  "id": "bala.73.40",
+  "decision": "correct",
+  "from": "अथोपकार्यं",
+  "to": "अथोपकार्यां",
+  "reason": "The noun 'royal tent' is the feminine उपकार्या (as Gita Press prints elsewhere), so the accusative is उपकार्याम्; the dropped ा gives a non-noun."
+ },
+ {
+  "case": 51,
+  "id": "bala.76.2",
+  "decision": "keep",
+  "from": "अनुरुध्यामहे",
+  "reason": "अनुरुध्यामहे (anu-√rudh, class 4, middle) is a valid form."
+ },
+ {
+  "case": 52,
+  "id": "bala.76.11",
+  "decision": "correct",
+  "from": "जामदग्नयोऽसौ",
+  "to": "जामदग्न्योऽसौ",
+  "reason": "जामदग्नय is not a word and gives the pāda 9 syllables; the patronymic is जामदग्न्यः."
+ },
+ {
+  "case": 53,
+  "id": "bala.77.2",
+  "decision": "keep",
+  "from": "विकलं",
+  "reason": "विकल 'agitated, distressed' is a valid word that fits the father's state."
+ },
+ {
+  "case": 54,
+  "id": "bala.77.14",
+  "decision": "correct",
+  "from": "सदिता",
+  "to": "सहिता",
+  "reason": "सदिता is not a word; the sense is भर्तृभिः सहिताः 'together with their husbands'."
+ },
+ {
+  "case": 55,
+  "id": "ayodhya.1.11",
+  "decision": "keep",
+  "from": "कदाचिदुपकारेण",
+  "reason": "कदाचित् 'at some time' is valid and makes good sense."
+ },
+ {
+  "case": 56,
+  "id": "ayodhya.1.24",
+  "decision": "keep",
+  "from": "दुर्वचः",
+  "reason": "दुर्वच 'speaking ill' (mfn.) is valid, and न दुर्वचः describes Rāma correctly."
+ },
+ {
+  "case": 57,
+  "id": "ayodhya.1.24",
+  "decision": "keep",
+  "from": "निस्तन्द्रीरप्रमत्तश्च",
+  "reason": "निस्तन्द्रीः keeps the ī-stem nominative of तन्द्री, which Monier-Williams records as ifc. nom. ˚द्रीस् in the epics."
+ },
+ {
+  "case": 58,
+  "id": "ayodhya.1.26",
+  "decision": "keep",
+  "from": "सत्संग्रहानुग्रहणे",
+  "reason": "सत्संग्रहानुग्रहणे 'in gathering and favouring the good' is a valid compound."
+ },
+ {
+  "case": 59,
+  "id": "ayodhya.1.38",
+  "decision": "keep",
+  "from": "सर्वभूतानुकम्पकः",
+  "reason": "अनुकम्पक 'compassionate' is a valid synonym of अनुकम्पन."
+ },
+ {
+  "case": 60,
+  "id": "ayodhya.2.2",
+  "decision": "keep",
+  "from": "दुन्दुभिस्वरकल्पेन",
+  "reason": "स्वर and स्वन are synonyms; both are valid."
+ },
+ {
+  "case": 61,
+  "id": "ayodhya.2.10",
+  "decision": "keep",
+  "from": "विश्राममिच्छामि",
+  "reason": "विश्राम and विश्रम are both valid words for 'rest'."
+ },
+ {
+  "case": 62,
+  "id": "ayodhya.2.12",
+  "decision": "keep",
+  "from": "प्रातः",
+  "reason": "प्रातः 'tomorrow morning' is valid and fits the announcement of the consecration."
+ },
+ {
+  "case": 63,
+  "id": "ayodhya.2.37",
+  "decision": "keep",
+  "from": "पुनरागत्य",
+  "reason": "आगत्य and आगम्य are both valid gerunds."
+ },
+ {
+  "case": 64,
+  "id": "ayodhya.3.17",
+  "decision": "keep",
+  "from": "तालापचरा",
+  "reason": "Monier-Williams records तालापचर ('dancer') citing exactly this verse (R. ii, 3, 17)."
+ },
+ {
+  "case": 65,
+  "id": "ayodhya.3.20",
+  "decision": "keep",
+  "from": "महाराजाङ्गनं",
+  "reason": "अङ्गन 'courtyard' is a valid spelling (Monier-Williams), used by Gita Press here."
+ },
+ {
+  "case": 66,
+  "id": "ayodhya.3.34",
+  "decision": "keep",
+  "from": "चाभ्युद्यतं",
+  "reason": "अभ्युद्यत 'raised, made ready' is a valid participle fitting the seat."
+ },
+ {
+  "case": 67,
+  "id": "ayodhya.3.35",
+  "decision": "keep",
+  "from": "तथाऽऽसनवरं",
+  "reason": "तथा + आसनवरम् is valid sandhi and makes sense."
+ },
+ {
+  "case": 68,
+  "id": "ayodhya.3.36",
+  "decision": "keep",
+  "from": "विभ्राजिता",
+  "reason": "विभ्राजिता 'made resplendent', agreeing with सा सभा, is valid."
+ },
+ {
+  "case": 69,
+  "id": "ayodhya.3.41",
+  "decision": "keep",
+  "from": "निर्णीतो",
+  "reason": "निर्णीतः 'determined (to be)' with इति is valid and makes sense."
+ },
+ {
+  "case": 70,
+  "id": "ayodhya.3.41",
+  "decision": "keep",
+  "from": "गुणवानिति",
+  "reason": "गुणवानिति, with निर्णीतः, is a valid construction."
+ },
+ {
+  "case": 71,
+  "id": "ayodhya.3.47",
+  "decision": "keep",
+  "from": "शीघ्रमागत्य",
+  "reason": "आगत्य is a valid synonym of अभ्येत्य."
+ },
+ {
+  "case": 72,
+  "id": "ayodhya.4.18",
+  "decision": "keep",
+  "from": "दारुणग्रहैः",
+  "reason": "दारुणग्रहैः, a karmadhāraya compound, is valid."
+ },
+ {
+  "case": 73,
+  "id": "ayodhya.4.31",
+  "decision": "correct",
+  "from": "चानयिता",
+  "to": "चानायिता",
+  "reason": "The sense 'Sītā had been brought' needs the causative participle आनायिता; आनयिता is an agent noun and does not fit."
+ },
+ {
+  "case": 74,
+  "id": "ayodhya.4.33",
+  "decision": "keep",
+  "from": "यौवराज्येऽभिषेचनम्",
+  "reason": "यौवराज्येऽभिषेचनम् 'consecration to the heir-apparency' (locative) is valid."
+ },
+ {
+  "case": 75,
+  "id": "ayodhya.4.41",
+  "decision": "keep",
+  "from": "येयमिक्ष्वाकुराजश्रीः",
+  "reason": "इक्ष्वाकुराजश्रीः 'the royal fortune of the Ikṣvākus' is valid."
+ },
+ {
+  "case": 76,
+  "id": "ayodhya.5.19",
+  "decision": "keep",
+  "from": "सस्त्रीबालाकुलो",
+  "reason": "सस्त्रीबालाकुलः 'crowded with women and children' is valid and fits जनः."
+ },
+ {
+  "case": 77,
+  "id": "ayodhya.5.19",
+  "decision": "keep",
+  "from": "रामाभिषेकमाकांक्षन्नाकांक्षन्नुदयं",
+  "reason": "आकाङ्क्षन् as an imperfect plural with the collective जनः (agreement by sense) is acceptable in the epic."
+ },
+ {
+  "case": 78,
+  "id": "ayodhya.6.8",
+  "decision": "keep",
+  "from": "गम्भीरमधुरस्तथा",
+  "reason": "तथा and तदा are both valid here."
+ },
+ {
+  "case": 79,
+  "id": "ayodhya.6.13",
+  "decision": "keep",
+  "from": "पताकाश्चाभवंस्तथा",
+  "reason": "तथा and तदा are both valid here."
+ },
+ {
+  "case": 80,
+  "id": "ayodhya.7.3",
+  "decision": "keep",
+  "from": "शिरःस्नातजनैर्युताम्",
+  "reason": "युताम् 'joined with' is a valid synonym of वृताम्."
+ },
+ {
+  "case": 81,
+  "id": "ayodhya.7.5",
+  "decision": "keep",
+  "from": "ब्रह्मघोषनिनादिताम्",
+  "reason": "ब्रह्मघोषनिनादिताम् 'resounding with Vedic chant' is valid."
+ },
+ {
+  "case": 82,
+  "id": "ayodhya.7.27",
+  "decision": "keep",
+  "from": "इवाङ्गेन",
+  "reason": "अङ्गेन 'with/against the body' is a valid reading that makes sense with परिधृतः."
+ },
+ {
+  "case": 83,
+  "id": "ayodhya.8.1",
+  "decision": "correct",
+  "from": "त्वभ्यसूय्यैनामुत्सृज्याभरणं",
+  "to": "त्वभ्यसूयैनामुत्सृज्याभरणं",
+  "reason": "The gerund of अभि + असूय is अभ्यसूय; the doubled य् makes a non-form."
+ },
+ {
+  "case": 84,
+  "id": "ayodhya.8.2",
+  "decision": "keep",
+  "from": "किमर्थमस्थाने",
+  "reason": "किमर्थम् 'why' is valid and makes good sense."
+ },
+ {
+  "case": 85,
+  "id": "ayodhya.8.11",
+  "decision": "keep",
+  "from": "प्रेष्यत्वं",
+  "reason": "प्रेष्यत्वं हि गमिष्यति is valid and makes an 8-syllable pāda."
+ },
+ {
+  "case": 86,
+  "id": "ayodhya.9.2",
+  "decision": "correct",
+  "from": "यौवराज्ये भरतं",
+  "to": "यौवराज्ये च भरतं",
+  "reason": "The pāda यौवराज्ये भरतं has only 7 syllables; the च that both other editions have restores the metre."
+ },
+ {
+  "case": 87,
+  "id": "ayodhya.9.2",
+  "decision": "keep",
+  "from": "क्षिप्रमद्याभिषेचये",
+  "reason": "अद्य 'today' is a valid word; the syllable count of this pāda is the same as with एव."
+ },
+ {
+  "case": 88,
+  "id": "ayodhya.9.23",
+  "decision": "correct",
+  "from": "प्रत्युदीक्षेया",
+  "to": "प्रत्युदीक्षेथा",
+  "reason": "With मा स्म, the second-person optative middle is प्रत्युदीक्षेथाः (written -था before म); प्रत्युदीक्षेया is not a form."
+ },
+ {
+  "case": 89,
+  "id": "ayodhya.9.30",
+  "decision": "keep",
+  "from": "रामप्रव्रजनं",
+  "reason": "रामप्रव्रजनम् 'Rāma's going into exile' is a valid noun stating the demand."
+ },
+ {
+  "case": 90,
+  "id": "ayodhya.9.35",
+  "decision": "keep",
+  "from": "संगृहीतमनुष्यश्च",
+  "reason": "संगृहीत is a valid synonym of सुगृहीत."
+ },
+ {
+  "case": 91,
+  "id": "ayodhya.9.38",
+  "decision": "keep",
+  "from": "नावजानामि",
+  "reason": "नावजानामि 'I do not disregard' is valid and makes sense."
+ },
+ {
+  "case": 92,
+  "id": "ayodhya.9.43",
+  "decision": "keep",
+  "from": "निर्मृष्टं",
+  "reason": "निर्मृष्ट 'polished, smooth' is valid as praise."
+ },
+ {
+  "case": 93,
+  "id": "ayodhya.9.59",
+  "decision": "keep",
+  "from": "भोजनैः",
+  "reason": "भोजनैः is a valid word in the list of things she rejects."
+ },
+ {
+  "case": 94,
+  "id": "ayodhya.9.63",
+  "decision": "correct",
+  "from": "गताभितो",
+  "to": "गतामितो",
+  "reason": "मां … गताम् इतः 'me gone hence to Yama's realm' needs the accusative गताम्; the nominative गता does not agree with मां, so भ is a slip for म."
+ },
+ {
+  "case": 95,
+  "id": "ayodhya.10.14",
+  "decision": "keep",
+  "from": "नित्यपुष्पफलैर्वृक्षैर्वापीभिरुपशोभितम्",
+  "reason": "वापीभिरुपशोभितम् is valid (the others merely add च)."
+ }
+]
