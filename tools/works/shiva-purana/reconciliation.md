@@ -23,6 +23,7 @@ The base is the owner's copy of sanskritdocuments.org's text, which follows Gita
 | 6.14.20 | missing (19 is followed by 21) | सद्योजातम्प्रपद्यामीत्युपक्रम्य सदाशिवोम् । इति प्राह श्रुतिस्तारं ब्रह्मपञ्चकवाचकम् ॥२०॥ | the Kalyan Hindi has the verse (॥ १९-२० ॥: the five mantras from 'सद्योजातं प्रपद्यामि' to 'सदाशिवोम्' and their vācaka, the tāra, ॐ; scan p. 410); the text from wisdomlib.org, *Shiva Purana [sanskrit]* 6.14.20 (the owner's screenshot, in `scriptures-data`), पंच written पञ्च by the standard |
 | 3.1.50 | the adhyāya's last verse, unnumbered | ॥५०॥ | the Kalyan Hindi numbers it ५० (scan p. 65) |
 | 2.2.34.22 | धिक् जन्म तव दक्षाद्य महामूढोऽसि पापधीःस् | धिग् जन्म तव दक्षाद्य महामूढोऽसि पापधीः | as the book prints it (scan p. 460): a stray स्, and धिक् not assimilated before ज |
+| 2.5.45.54 | एतद्वचस्तद्विधसोऽपि | एतद्वचस्तद्विघसोऽपि | the demon is Vighasa (2.5.46), as the book prints it here too (scan p. 1010) |
 | 3.3.28 | मुने ।` | मुने । | a stray backtick |
 | 4.17.26 | बहुश; | बहुशः | a semicolon typed for the visarga |
 | 6.14.18 | … प्रणवे नव वेष्टयेत् । त-व | … प्रणवे नव वेष्टयेत् । | "त-व" is an editor's mark of the copy, not text; प्रणवे नव is wisdomlib.org's reading too (6.14.18) |
