@@ -54,7 +54,7 @@ for c in chapters(SRC):
 st['meanings']=len(M); st['footnotes']=sum(map(len,N.values())); st["Tagare's verses not placed"]=len(left)
 order=[i for i in ids if i in M]
 jsonio.dump_meanings(os.path.join(WORK,'meanings','en','tagare.json'),{
- "about":"G. V. Tagare's English translation (Motilal Banarsidass, Ancient Indian Tradition and Mythology), from the owner's copy of wisdomlib.org, with Tagare's footnotes. Tagare translates another edition, so his verses are placed on the Gita Press verses by their content (source/english/): a translation covering several Gita Press verses sits under the last of them with their numbers; a verse his edition lacks, or his copy has lost, has none",
+ "about":"G. V. Tagare's English translation (Motilal Banarsidass, Ancient Indian Tradition and Mythology), from the owner's copy of wisdomlib.org, with Tagare's footnotes. Tagare translates another edition, so his verses are placed on the Gita Press verses by their content (source/english/): a translation covering several Gita Press verses sits under the last of them with their numbers; a verse his edition lacks, or that the copy has lost, has none",
  "title":{"hi":"तगारे — अंग्रेज़ी अनुवाद","en":"Tagare — English translation"},"order":2,"copied":True,
  "m":{k:M[k] for k in order},"notes":{k:N[k] for k in order if k in N}})
 print(dict(st))
