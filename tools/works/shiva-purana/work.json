@@ -1,0 +1,158 @@
+{
+ "id": "shiva-purana",
+ "path": "hinduism/purana/mahapurana/shiva",
+ "lang": "sa",
+ "title": {
+  "hi": "श्रीशिवमहापुराण",
+  "en": "Shri Shiv Mahapuran"
+ },
+ "by": {
+  "hi": "महर्षि वेदव्यास",
+  "en": "Maharshi Ved Vyas"
+ },
+ "edition": {
+  "hi": "गीताप्रेस, गोरखपुर (मूल संस्कृत श्लोक, कोड २२२३–२२२४), sanskritdocuments.org के पाठसे",
+  "en": "Gita Press, Gorakhpur (Sanskrit text, codes 2223–2224), from sanskritdocuments.org's copy"
+ },
+ "colophon": {
+  "hi": "समापन (पुष्पिका)",
+  "en": "Closing words (iti)"
+ },
+ "parts": {
+  "name": {
+   "hi": "संहिता",
+   "en": "Samhita"
+  },
+  "list": [
+   {
+    "key": "mahatmya",
+    "no": "ॐ",
+    "hi": "श्रीशिवमहापुराणमाहात्म्य",
+    "en": "Shiv Mahapuran Mahatmya"
+   },
+   {
+    "key": "1",
+    "no": "1",
+    "hi": "विद्येश्वरसंहिता",
+    "en": "Vidyeshwar Samhita"
+   },
+   {
+    "key": "2.1",
+    "no": "2.1",
+    "hi": "रुद्रसंहिता — सृष्टिखण्ड",
+    "en": "Rudra Samhita — Srishti Khand"
+   },
+   {
+    "key": "2.2",
+    "no": "2.2",
+    "hi": "रुद्रसंहिता — सतीखण्ड",
+    "en": "Rudra Samhita — Sati Khand"
+   },
+   {
+    "key": "2.3",
+    "no": "2.3",
+    "hi": "रुद्रसंहिता — पार्वतीखण्ड",
+    "en": "Rudra Samhita — Parvati Khand"
+   },
+   {
+    "key": "2.4",
+    "no": "2.4",
+    "hi": "रुद्रसंहिता — कुमारखण्ड",
+    "en": "Rudra Samhita — Kumar Khand"
+   },
+   {
+    "key": "2.5",
+    "no": "2.5",
+    "hi": "रुद्रसंहिता — युद्धखण्ड",
+    "en": "Rudra Samhita — Yuddh Khand"
+   },
+   {
+    "key": "3",
+    "no": "3",
+    "hi": "शतरुद्रसंहिता",
+    "en": "Shatarudra Samhita"
+   },
+   {
+    "key": "4",
+    "no": "4",
+    "hi": "कोटिरुद्रसंहिता",
+    "en": "Kotirudra Samhita"
+   },
+   {
+    "key": "5",
+    "no": "5",
+    "hi": "उमासंहिता",
+    "en": "Uma Samhita"
+   },
+   {
+    "key": "6",
+    "no": "6",
+    "hi": "कैलाससंहिता",
+    "en": "Kailas Samhita"
+   },
+   {
+    "key": "7.1",
+    "no": "7.1",
+    "hi": "वायवीयसंहिता — पूर्वखण्ड",
+    "en": "Vayaviya Samhita — Purva Khand"
+   },
+   {
+    "key": "7.2",
+    "no": "7.2",
+    "hi": "वायवीयसंहिता — उत्तरखण्ड",
+    "en": "Vayaviya Samhita — Uttar Khand"
+   }
+  ]
+ },
+ "types": {
+  "mshloka": {
+   "name": {
+    "hi": "श्लोक",
+    "en": "Shloka"
+   },
+   "short": {
+    "hi": "श्लो॰",
+    "en": "Shl."
+   }
+  },
+  "gadya": {
+   "name": {
+    "hi": "गद्य",
+    "en": "Prose"
+   },
+   "short": {
+    "hi": "गद्य",
+    "en": "Prose"
+   }
+  },
+  "iti": {
+   "name": {
+    "hi": "समापन (पुष्पिका)",
+    "en": "Closing words (iti)"
+   },
+   "short": {
+    "hi": "इति",
+    "en": "Iti"
+   }
+  }
+ },
+ "cite": {
+  "by": [
+   "part",
+   "sec",
+   "n"
+  ],
+  "types": {
+   "mshloka": [
+    "sec",
+    "n"
+   ]
+  },
+  "sec": {
+   "hi": "अध्याय",
+   "en": "Adhyay"
+  }
+ },
+ "load": "parts",
+ "words": "partial"
+}

@@ -191,6 +191,28 @@
          "en": "Mahatmya and 12 Skandhs · 335 Adhyays"
         },
         "salute": "॥ ॐ नमो भगवते वासुदेवाय ॥"
+       },
+       {
+        "id": "shiva",
+        "work": "shiva-purana",
+        "path": "hinduism/purana/mahapurana/shiva",
+        "title": {
+         "hi": "श्रीशिवमहापुराण",
+         "en": "Shri Shiv Mahapuran"
+        },
+        "by": {
+         "hi": "महर्षि वेदव्यास",
+         "en": "Maharshi Ved Vyas"
+        },
+        "edition": {
+         "hi": "गीताप्रेस, गोरखपुर",
+         "en": "Gita Press, Gorakhpur"
+        },
+        "desc": {
+         "hi": "माहात्म्य और ७ संहिताएँ · ४५७ अध्याय",
+         "en": "Mahatmya and 7 Samhitas · 457 Adhyays"
+        },
+        "salute": "॥ ॐ नमः शिवाय ॥"
        }
       ]
      }
