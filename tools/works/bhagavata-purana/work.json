@@ -1,0 +1,172 @@
+{
+ "id": "bhagavata-purana",
+ "path": "hinduism/purana/mahapurana/bhagavata",
+ "lang": "sa",
+ "title": {
+  "hi": "श्रीमद्भागवतमहापुराण",
+  "en": "Shrimad Bhagavat Mahapuran"
+ },
+ "by": {
+  "hi": "महर्षि वेदव्यास",
+  "en": "Maharshi Ved Vyas"
+ },
+ "edition": {
+  "hi": "गीताप्रेस, गोरखपुर (सरल हिन्दी व्याख्यासहित, कोड २६–२७)",
+  "en": "Gita Press, Gorakhpur (with simple Hindi commentary, codes 26–27)"
+ },
+ "colophon": {
+  "hi": "समापन (पुष्पिका)",
+  "en": "Closing words (iti)"
+ },
+ "parts": {
+  "name": {
+   "hi": "स्कन्ध",
+   "en": "Skandh"
+  },
+  "list": [
+   {
+    "key": "mahatmya",
+    "hi": "श्रीमद्भागवतमाहात्म्य",
+    "en": "Bhagavat Mahatmya"
+   },
+   {
+    "key": "1",
+    "hi": "प्रथम स्कन्ध",
+    "en": "Skandh 1"
+   },
+   {
+    "key": "2",
+    "hi": "द्वितीय स्कन्ध",
+    "en": "Skandh 2"
+   },
+   {
+    "key": "3",
+    "hi": "तृतीय स्कन्ध",
+    "en": "Skandh 3"
+   },
+   {
+    "key": "4",
+    "hi": "चतुर्थ स्कन्ध",
+    "en": "Skandh 4"
+   },
+   {
+    "key": "5",
+    "hi": "पञ्चम स्कन्ध",
+    "en": "Skandh 5"
+   },
+   {
+    "key": "6",
+    "hi": "षष्ठ स्कन्ध",
+    "en": "Skandh 6"
+   },
+   {
+    "key": "7",
+    "hi": "सप्तम स्कन्ध",
+    "en": "Skandh 7"
+   },
+   {
+    "key": "8",
+    "hi": "अष्टम स्कन्ध",
+    "en": "Skandh 8"
+   },
+   {
+    "key": "9",
+    "hi": "नवम स्कन्ध",
+    "en": "Skandh 9"
+   },
+   {
+    "key": "10",
+    "hi": "दशम स्कन्ध",
+    "en": "Skandh 10"
+   },
+   {
+    "key": "11",
+    "hi": "एकादश स्कन्ध",
+    "en": "Skandh 11"
+   },
+   {
+    "key": "12",
+    "hi": "द्वादश स्कन्ध",
+    "en": "Skandh 12"
+   }
+  ]
+ },
+ "types": {
+  "mshloka": {
+   "name": {
+    "hi": "श्लोक",
+    "en": "Shloka"
+   },
+   "short": {
+    "hi": "श्लो॰",
+    "en": "Shl."
+   }
+  },
+  "gadya": {
+   "name": {
+    "hi": "गद्य",
+    "en": "Prose"
+   },
+   "short": {
+    "hi": "गद्य",
+    "en": "Prose"
+   }
+  },
+  "iti": {
+   "name": {
+    "hi": "समापन (पुष्पिका)",
+    "en": "Closing words (iti)"
+   },
+   "short": {
+    "hi": "इति",
+    "en": "Iti"
+   }
+  }
+ },
+ "cite": {
+  "by": [
+   "part",
+   "sec",
+   "n"
+  ],
+  "types": {
+   "mshloka": [
+    "sec",
+    "n"
+   ]
+  },
+  "sec": {
+   "hi": "अध्याय",
+   "en": "Adhyay"
+  }
+ },
+ "load": "parts",
+ "words": "partial",
+ "plans": [
+  {
+   "id": "S",
+   "name": {
+    "hi": "सप्ताहपारायण",
+    "en": "7-day"
+   },
+   "long": {
+    "hi": "सप्ताहपारायण (७ दिन)",
+    "en": "Saptah Parayan (7 days)"
+   },
+   "unit": {
+    "hi": "दिन",
+    "en": "Day"
+   },
+   "n": 7,
+   "end": [
+    "3.22.iti",
+    "5.14.iti",
+    "7.15.iti",
+    "10.3.iti",
+    "10.54.iti",
+    "11.13.iti",
+    "12.13.iti"
+   ]
+  }
+ ]
+}

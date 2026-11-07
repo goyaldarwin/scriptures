@@ -73,9 +73,9 @@
    ]
   },
   {
-   "name": "Shri Ram Raksha Stotram",
-   "short_name": "Shri Ram Rak",
-   "url": "./?w=ramraksha",
+   "name": "Shrimad Bhagavat Mahapuran",
+   "short_name": "Shrimad Bhag",
+   "url": "./?w=bhagavata-purana",
    "icons": [
     {
      "src": "app/icon-192.png",
