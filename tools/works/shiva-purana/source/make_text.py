@@ -20,7 +20,8 @@ What this script does, in order (each step is listed in reconciliation.md):
      readings (variants, "(स भक्त्या)") are not part of the text and are left out;
   7. the closing words (इति … अध्यायः) are each adhyāya's last item, `<section>.iti`, numbered as Gita Press: ॥N॥;
   8. zero-width joiners (श‍ृ for शृ, a web font's workaround) are removed; corrections.json → "lines" fixes the rest;
-  9. a verse's first half-śloka (16 syllables) that lacks its । gets it, as the book prints every half-śloka;
+  9. each adhyāya's heading from topics.json (ours: written from the adhyāya's own title);
+ 10. a verse's first half-śloka (16 syllables) that lacks its । gets it, as the book prints every half-śloka;
  10. corrections.json → "insert": a verse the copy drops, from the witness reconciliation.md names, after the verse keyed.
 """
 import json, re, sys, os, unicodedata
@@ -170,7 +171,14 @@ def main(src, work):
     used = {k for sect in ('lines', 'speaker', 'drop', 'unnumbered', 'number', 'opening', 'type', 'insert') for k in C[sect]}
     header = ["Śrī Śivamahāpurāṇa with its Māhātmya: made by source/make_text.py from the owner's copy of sanskritdocuments.org's",
               "text, which follows Gita Press (code 2223 and its second part); change it there, not here. Every choice: reconciliation.md."]
-    textfile.write(os.path.join(work, 'text.txt'), items, [], PARTS, 'sa', header)
+    # our own adhyāya headings (docs/PLAYBOOK.md §4): topics.json, {first verse id: {hi, en}}, written from each adhyāya's title
+    TP = json.load(open(os.path.join(HERE, 'topics.json'), encoding='utf-8'))
+    first = {}
+    for x in items: first.setdefault(x['s'], x['id'])
+    missing = [s for s, i in first.items() if i not in TP]
+    if missing: raise SystemExit(f'adhyāyas without a heading in topics.json: {missing[:10]}')
+    topics = [{'id': i, 'hi': TP[i]['hi'], 'en': TP[i]['en']} for i in first.values()]
+    textfile.write(os.path.join(work, 'text.txt'), items, topics, PARTS, 'sa', header)
     with open(os.path.join(HERE, 'keys.json'), 'w', encoding='utf-8') as f:    # each verse's entries in the copy, for its meanings
         f.write('{\n' + ',\n'.join(json.dumps(k, ensure_ascii=False) + ': ' + json.dumps(v, ensure_ascii=False) for k, v in keymap.items()) + '\n}\n')
     print(f'{len(items)} items')

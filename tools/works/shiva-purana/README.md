@@ -35,7 +35,7 @@ The Gita Press books and the copy of sanskritdocuments.org's text are the owner'
 - **Items without a number:** an adhyāya's opening maṅgala-śloka (`1.1.0`, `3.1.0`), a prose passage before an adhyāya's first verse (`2.5.49.0`, Śukra's namaskāra; `6.19.0`, the list of mahāvākyas), and each adhyāya's closing words (`<adhyāya>.iti`). They are named by their type.
 - **Types:** `shloka`; `mshloka` (a śloka of the Māhātmya); `gadya` (prose); `iti` (the closing words of each adhyāya). A speaker's line (सूत उवाच, ब्रह्मोवाच) is the first line of the verse it opens, as the book prints it above that verse.
 - **Lines:** one line per half-verse for anuṣṭubh, one per pāda for longer metres, as the copy has them.
-- **Topics:** none yet; the book's Hindi adhyāya titles go in with its Hindi. **Loading:** by part (`"load": "parts"`).
+- **Topics:** one heading per adhyāya, ours (`docs/PLAYBOOK.md` §4: the work shows our meanings first), in Hindi and plain English, written from the adhyāya's own title (the …नाम of its closing words) and its opening verses: `source/topics.json`, read by `make_text.py`. **Loading:** by part (`"load": "parts"`).
 
 ## How it is made
 ```bash

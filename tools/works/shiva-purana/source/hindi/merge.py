@@ -48,8 +48,12 @@ def compound(w):
 
 def toks(text):
     out = []
-    for li, line in enumerate(unicodedata.normalize('NFC', text).replace('।।', '॥').splitlines()):
+    lines = unicodedata.normalize('NFC', text).replace('।।', '॥').splitlines()
+    if lines and len(lines[0].split()) <= 8 and re.search(r'[०-९]{1,4}\s*$|^[०-९]|संहिता|महापुराण|अ०|माहात्म्य', lines[0]):
+        lines[0] = ''                                                     # the running header (… संहिता ४९, [अ० १)
+    for li, line in enumerate(lines):
         line = re.sub(r'^[|;:`„)\]\s]+(?=\S)', '', line)                  # the column rule's marks at a line's start
+        line = re.sub(r'^[०-९]{1,3}\s*[|।]?\s+', '', line)                 # the Sanskrit column's verse number beside the gutter
         line = re.sub(r'(?<=[\u0900-\u0963])\s?:', 'ः', line)            # a visarga read as a colon (अत : → अतः)
         line = re.sub(r'-\s?-', '—', line)                                  # an em dash read as two hyphens
         line = re.sub(r'(?<=[\u0900-\u097F])\s*\|(?=\s|$)', ' ।', line)       # a daṇḍa read as |
@@ -91,6 +95,7 @@ def main(book, first, pages=None):
         a, b = map(int, pages.split('-')); files = [f for f in files if a <= int(os.path.basename(f)[1:5]) <= b]
     T = textfile.read(os.path.join(HERE, '..', '..', 'text.txt'))
     order = list(dict.fromkeys(x['section'] for x in T))
+    ids = {x['id'] for x in T}
     nums = collections.defaultdict(set)
     for x in T:
         if x['n']: nums[x['section']].add(int(x['n']))
@@ -105,7 +110,15 @@ def main(book, first, pages=None):
     # paragraphs end at a verse mark; a mark that restarts at 1 begins the next adhyāya
     out, flags, chosen = {}, [], []
     si, cur, last, ended = 0, [], 0, 0
-    text = lambda ws: ''.join((' ' if w['sp'] else '') + ('⟦' + w['t'] + '⟧' if w['flag'] and w['flag'] != 'chose' else w['t']) for w in ws if w['t']).strip()
+    def text(ws):
+        out, prev = [], None
+        for w in ws:
+            if not w['t']: continue
+            brk = prev is not None and (w['page'], w['side'], w['line']) != (prev['page'], prev['side'], prev['line'])
+            sp = w['sp'] or (brk and not prev['t'].endswith('-'))
+            if brk and prev['t'].endswith('-') and out and out[-1].endswith('-') and re.search(r'[\u0900-\u097F]-$', out[-1]): pass
+            out.append((' ' if sp else '') + ('⟦' + w['t'] + '⟧' if w['flag'] and w['flag'] != 'chose' else w['t'])); prev = w
+        return ''.join(out).strip()
     ordinal = lambda sec: int(sec.split('.')[-1])
     for k, w in enumerate(stream):
         cur.append(w)
@@ -121,10 +134,21 @@ def main(book, first, pages=None):
             si += 1; ended = 0; last = 0
             if si >= len(secs): break
             sec = secs[si]
+        if last == 0:          # an adhyāya's first paragraph: its title runs across both columns above it; the paragraph
+            at = next(((x['page'], x['line']) for x in cur if x['t'] and x['t'].startswith('बोल')), None)   # begins with the speaker
+            if at:
+                head = [x for x in cur if (x['page'], x['line']) < at]
+                cur = [x for x in cur if (x['page'], x['line']) >= at]
+                if f'{sec}.0' in ids and head:        # an unnumbered opening (1.1.0): its Hindi stands before the speaker,
+                    for x in head: x['flag'] = x['flag'] or 'opening'                  # below the title: every word read by eye
+                    out.setdefault(sec, {})[f'{sec}.0'] = {'t': text(head), 'page': head[0]['page'], 'mark': '', 'covers': []}
         vid = f'{sec}.{hi}' if hi in nums[sec] else f'{sec}.?{hi}'          # a mark that is no verse of this adhyāya: flagged
         out.setdefault(sec, {})[vid] = {'t': text(cur), 'page': cur[0]['page'], 'mark': m.group(1), 'covers': list(range(lo, hi + 1))}
+        k = 0
         for x in cur:
-            if x['flag']: (chosen if x['flag'] == 'chose' else flags).append({'id': vid, 'page': x['page'], 'side': x['side'], 'line': x['line'], 'word': x['t'], 'why': x['flag'], 'alt': x['alt']})
+            if x['flag'] and x['flag'] != 'chose' and x['t']: x['k'] = k; k += 1        # its place among the paragraph's ⟦…⟧
+        for x in cur:
+            if x['flag']: (chosen if x['flag'] == 'chose' else flags).append({'k': x.get('k'), 'id': vid, 'page': x['page'], 'side': x['side'], 'line': x['line'], 'word': x['t'], 'why': x['flag'], 'alt': x['alt']})
         if vid.split('.')[-1].startswith('?'): flags.append({'id': vid, 'page': cur[0]['page'], 'side': cur[0]['side'], 'line': cur[0]['line'], 'word': m.group(0), 'why': 'mark', 'alt': []})
         last, cur = hi, []
     json.dump(out, open(os.path.join(HERE, f'{book}.merged.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
