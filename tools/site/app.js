@@ -1116,11 +1116,16 @@ setInterval(tick, 300);
 /* place the verse being recited in the space between the top bar and the player:
    centred if it fits, otherwise with its first line just below the top bar (never hidden under it) */
 // The verse being recited is kept at the top, just below the bar, and the text moves up under it, so the next verses are
-// always in view — even when the recording runs a little ahead of the timings. A verse-type heading
-// (॥ चौपाई ॥) right above it stays with it.
+// always in view — even when the recording runs a little ahead of the timings. The headings right above it (the section's
+// blue title, the part's, ॥ चौपाई ॥) stay with it while its first verse is recited, so there is time to read them — unless
+// they would push the verse's start under the player; then only the verse-type heading stays.
 function keepInView(el){
-  const top = $('#reader .bar').getBoundingClientRect().bottom, prev = el.previousElementSibling;
-  const head = prev && prev.classList && prev.classList.contains('vtype') ? prev : el;
+  const top = $('#reader .bar').getBoundingClientRect().bottom, bot = $('#player').hidden ? innerHeight : $('#player').getBoundingClientRect().top;
+  const prev = el.previousElementSibling;
+  let head = prev && prev.classList && prev.classList.contains('vtype') ? prev : el, h = head;
+  while (h.previousElementSibling && h.previousElementSibling.matches('.part-h, .topic-h, .vtype')) h = h.previousElementSibling;
+  const firstLine = el.querySelector('.vline, .vtext p') || el;
+  if (h !== head && firstLine.getBoundingClientRect().bottom - h.getBoundingClientRect().top <= bot - top - 12) head = h;
   window.scrollTo({top: Math.max(0, scrollY + head.getBoundingClientRect().top - (top + 6)), behavior: 'smooth'});
 }
 // a verse taller than the space between the bar and the player: the page turns inside it while it is recited. The line being

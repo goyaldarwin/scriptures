@@ -578,6 +578,13 @@ async def main():
             const y0 = scrollY; ytInfo.t = a[8][1] + 1; setTime(i, 2, a[8][1] + 1); await new Promise(r => setTimeout(r, 900)); const y1 = scrollY;
             PL.on = false; S.timing.fix[tkey()] = JSON.parse(keep); S.timing.on = false; save(); applyTiming(); await loadSources(); return [y0, y1]; })()""")
         check('timing: marking a verse does not move the page', abs(ns[0] - ns[1]) < 2, ns)
+        # while the first verse of a section is recited, the section's blue title stays above it, below the bar
+        sh = await ev("""(async () => { await openWork('sundarkand', true); await loadSources(); show('home');
+            const a = AUT[0], t = TOPICS.find(t => t.i > 20 && a.some(x => x[0] === t.i)), i = t.i; openReader('k', i - 6); await new Promise(r => setTimeout(r, 600));
+            PL.on = true; PL.t = 0; PL.cur = null; $('#player').hidden = false; document.body.classList.add('playing'); setCur(i); await new Promise(r => setTimeout(r, 1200));
+            const bar = $('#reader .bar').getBoundingClientRect().bottom, pl = $('#player').getBoundingClientRect().top, hd = document.getElementById('t' + i).getBoundingClientRect(), v = document.getElementById('v' + i).getBoundingClientRect();
+            PL.on = false; stopAudio(); return [Math.round(hd.top - bar), Math.round(pl - v.top), i]; })()""")
+        check('playing: a section’s blue title stays in view above its first verse', 0 <= sh[0] <= 30 and sh[1] > 0, sh)
         nu = await ev("""(async () => { S.timing.on = true; applyTiming(); await openWork('shri-rudram', true); await loadSources(); show('home'); { const A = SRC.au; A.at0 = Object.fromEntries(Object.entries(A.at0).map(([k, v]) => [k, v.slice(0, 2)])); A.own = []; A.ownSet = new Set(); A.checkSet = new Set(Object.keys(A.at0)); A.guess = []; A.guessSet = new Set(); A.raw = {}; buildAudio(); }
             const a = AUT[0], i = a[10][0], o = a[12][0]; openReader('k', i); await new Promise(r => setTimeout(r, 600));
             const keep = JSON.stringify(S.timing.fix[tkey()] || {}); setTime(i, 1, a[10][1]); const s0 = SRC.au.at[IT[i].id][1]; setTime(i, 2, s0 + 3); rerenderItem(i);
