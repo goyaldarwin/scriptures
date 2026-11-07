@@ -1,0 +1,13 @@
+{
+ "id": "sanskrit-parayan",
+ "work": "hinduism/purana/mahapurana/bhagavata",
+ "type": "youtube",
+ "lang": "sa",
+ "title": {
+  "hi": "संस्कृत पारायण",
+  "en": "Sanskrit Parayan"
+ },
+ "window": 6,
+ "align": "anchors",
+ "draft": "matched from the transcripts, not yet checked by ear"
+}
