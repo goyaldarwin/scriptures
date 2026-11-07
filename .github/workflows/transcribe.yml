@@ -68,8 +68,11 @@ jobs:
           sparse-checkout-cone-mode: false
           persist-credentials: false
       - run: mkdir -p "pub/$(dirname '${{ inputs.source }}')" && cp -r "src/${{ inputs.source }}" "pub/${{ inputs.source }}"
-      - name: ffmpeg (an apt mirror sometimes hangs, so each try stops after 4 minutes; at most 3 tries)
-        run: for i in 1 2 3; do sudo timeout 240 apt-get update -qq && sudo timeout 240 apt-get install -y -qq --no-install-recommends ffmpeg && exit 0; sleep 5; done; exit 1
+      - name: ffmpeg (a static build from GitHub; apt only if that fails, since an apt mirror sometimes hangs)
+        run: |
+          if curl -fsSL --retry 3 -m 300 https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz | tar xJ -C "$RUNNER_TEMP"; then
+            echo "$(ls -d "$RUNNER_TEMP"/ffmpeg-*/bin)" >> "$GITHUB_PATH"; exit 0; fi
+          for i in 1 2 3; do sudo timeout 240 apt-get update -qq && sudo timeout 240 apt-get install -y -qq --no-install-recommends ffmpeg && exit 0; sleep 5; done; exit 1
       - run: pip install -q faster-whisper numpy
       - name: transcribe ${{ matrix.id }}
         working-directory: pub
