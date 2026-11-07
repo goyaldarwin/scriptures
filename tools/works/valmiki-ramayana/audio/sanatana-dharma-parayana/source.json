@@ -7,7 +7,6 @@
   "hi": "सनातन धर्म पारायण",
   "en": "Sanatana Dharma Parayana"
  },
- "draft": "not yet transcribed and checked: starts spread by verse length",
- "estimate": true,
- "window": 6
+ "window": 6,
+ "align": "anchors"
 }

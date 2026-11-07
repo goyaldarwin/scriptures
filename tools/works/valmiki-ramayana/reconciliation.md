@@ -125,5 +125,10 @@ Gita Press's Hindi translation (code 77), read from its glyph ids against the of
 ## Topics
 One per sarga: the Hindi title of the Hindi edition and the English title of the English edition.
 
+## The recording
+Sanatana Dharma Parayana (`audio/sanatana-dharma-parayana/`) recites one sarga per video, in the Gita Press text: video N of a kāṇḍa is Gita Press sarga N. Checked on every recording: its transcript, matched against the whole work, falls in its own sarga far more than anywhere else. Each recording opens by announcing its sarga (अथ सप्तपञ्चाशः सर्गः) and ends with the colophon (इत्यार्षे श्रीमद्रामायणे वाल्मीकीये आदिकाव्ये … सर्गः); neither is shown or timed, as they are not verses of the text. The Araṇya-kāṇḍa's interpolated sarga (`aranya.p1`, printed after sarga 56) is not recited: the video for Araṇya 57 opens with अथ सप्तपञ्चाशः सर्गः and its first verse, so `aranya.p1` stays untimed.
+
+The transcripts are made in 6-second windows (`source.json` → `"window": 6`) and matched by confident anchors (`"align": "anchors"`): without windows the speech recogniser drops whole 30-second stretches of this chant. The recogniser often garbles a sarga's closing verse (frequently in a longer metre); where the transcript still shows it, its start is in `fixes.json` with the evidence in `fixes.md`; where it does not, that verse has no time. Starts placed by length between heard verses are listed for checking by ear (☰ › More settings › Audio timing).
+
 ## Open
 - None in the text.
