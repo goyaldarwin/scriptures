@@ -1,0 +1,12 @@
+{
+ "id": "voice-of-rishis",
+ "work": "hinduism/granth/vyasa/bhagavad-gita",
+ "type": "youtube",
+ "lang": "sa",
+ "title": {
+  "hi": "वॉइस ऑफ़ ऋषिज़",
+  "en": "Voice of Rishis"
+ },
+ "order": 1,
+ "window": 6
+}
