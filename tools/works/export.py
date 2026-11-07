@@ -243,8 +243,10 @@ def export(wid, lib):
         if BYPART:
             for k in range(NP): psaid[k][lg] = heard(json.dumps([{i: v for i, v in m_.items() if i in BYID and BYID[i]['p'] == k} for m_ in ms], ensure_ascii=False))
     for lg, D in senses.items():   # a word as the app looks it up (standard.fold: गङ्गा and गंगा are one word)
-        bad = [k for k, v in D.items() if not (k in said[lg] if v.get('hard') else standard.fold(k) in words.get(lg, ())) or not (v.get('hi') and v.get('en'))]
-        need(not bad, f'{wid}/glossary/{lg}.json: senses of words not in any {lg} verse (or, if hard, in its {lg} meanings), or without hi and en: {bad[:5]}')
+        # a work published before its word meanings are complete ("words": "partial") may give a sense in English only
+        has = (lambda v: v.get('hi') or v.get('en')) if M.get('words') == 'partial' else (lambda v: v.get('hi') and v.get('en'))
+        bad = [k for k, v in D.items() if not (k in said[lg] if v.get('hard') else standard.fold(k) in words.get(lg, ())) or not has(v)]
+        need(not bad, f'{wid}/glossary/{lg}.json: senses of words not in any {lg} verse (or, if hard, in its {lg} meanings), or without hi and en (en alone in a work with "words": "partial"): {bad[:5]}')
         shared = json.load(open(os.path.join(REPO, 'library', 'glossary', f'{lg}.json'), encoding='utf-8')) if os.path.exists(os.path.join(REPO, 'library', 'glossary', f'{lg}.json')) else {}
         same = [k for k, v in D.items() if k in shared and shared[k].get('hi') == v.get('hi') and shared[k].get('en') == v.get('en')]
         need(not same, f'{wid}/glossary/{lg}.json: these senses say what the shared dictionary (library/glossary/{lg}.json) already says; a work\'s own sense is only for a different one: {same[:5]}')

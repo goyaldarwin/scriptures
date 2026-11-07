@@ -258,7 +258,7 @@ function hardWords(html, lang){   // html is already escaped; only whole words o
 }
 function wordList(lines){ const seen = new Set(), out = []; lines.forEach(l => l.split(/\s+/).forEach(t => { const w = cleanWord(t); if (w && !seen.has(w)){ seen.add(w); out.push(w); } })); return out; }
 function wbHTML(lines, lang){
-  return '<div class="wb">' + wordList(lines).map(w => { const g = lookup(w, lang); if (!g || g.none) return ''; const m = (g.pa && layerOn('pa') ? '<span class="gur">' + esc(g.pa) + '</span> · ' : '') + esc(g.hi || '') + (g.en ? ' <span class="en">· ' + esc(g.en) + '</span>' : '') + (g.possible ? ' <span class="q">(' + esc(g.possible) + ')</span>' : ''); return '<span class="ww w" data-w="' + esc(w) + '">' + esc(w) + '</span><span class="wm">' + m + '</span>'; }).join('') + '</div>';
+  return '<div class="wb">' + wordList(lines).map(w => { const g = lookup(w, lang); if (!g || g.none) return ''; const m = (g.pa && layerOn('pa') ? '<span class="gur">' + esc(g.pa) + '</span> · ' : '') + esc(g.hi || '') + (g.en ? ' <span class="en">' + (g.hi ? '· ' : '') + esc(g.en) + '</span>' : '') + (g.possible ? ' <span class="q">(' + esc(g.possible) + ')</span>' : ''); return '<span class="ww w" data-w="' + esc(w) + '">' + esc(w) + '</span><span class="wm">' + m + '</span>'; }).join('') + '</div>';
 }
 // Editing a meaning (glossEdit, editSheet) stays in the code, but no button offers it (the owner: no one edits, and taking
 // readers' edits into the library is cumbersome); a reader's earlier edits still show and can still be removed
@@ -273,7 +273,7 @@ function wordSheet(raw, alt, lang){
     if (g.possible) h += '<p class="small muted">' + T('मूल शब्द: ', 'Root: ') + '<b>' + esc(g.possible) + '</b></p>';
     const row = (k, v, c) => '<dt>' + k + '</dt><dd' + (c ? ' class="' + c + '"' : '') + '>' + v + '</dd>';
     h += '<dl class="kv">' + (g.p && g.p.length ? row(T('शब्द-खण्ड', 'Parts'), g.p.map(x => '<b>' + esc(x[0]) + '</b> (' + esc(x[1]) + ')').join(' + ')) : '')
-      + (g.pa ? row(T('पंजाबी', 'Punjabi'), esc(g.pa), 'gur') : '') + row(T('हिंदी', 'Hindi'), esc(g.hi || '—')) + row('English', esc(g.en || '—'), 'lat')
+      + (g.pa ? row(T('पंजाबी', 'Punjabi'), esc(g.pa), 'gur') : '') + (g.hi ? row(T('हिंदी', 'Hindi'), esc(g.hi)) : '') + (g.en ? row('English', esc(g.en), 'lat') : '')
       + (g.r && g.r !== w ? row(T('मूल', 'Root'), esc(g.r)) : '') + (g.g ? row(T('व्याकरण', 'Grammar'), esc(g.g)) : '') + '</dl>';
   }
   else h += '<p class="small muted">' + T('इस शब्दका अर्थ अभी नहीं जोड़ा गया है।', 'This word\'s meaning is not added yet.') + '</p>';
