@@ -145,6 +145,41 @@
         }
        }
       ]
+     },
+     {
+      "id": "vyasa",
+      "title": {
+       "hi": "महर्षि वेदव्यास",
+       "en": "Maharshi Ved Vyas"
+      },
+      "desc": {
+       "hi": "श्रीदुर्गासप्तशती",
+       "en": "Shri Durga Saptashati"
+      },
+      "children": [
+       {
+        "id": "durga-saptashati",
+        "work": "durga-saptashati",
+        "path": "hinduism/granth/vyasa/durga-saptashati",
+        "title": {
+         "hi": "श्रीदुर्गासप्तशती",
+         "en": "Shri Durga Saptashati"
+        },
+        "by": {
+         "hi": "महर्षि वेदव्यास",
+         "en": "Maharshi Ved Vyas"
+        },
+        "edition": {
+         "hi": "sanskritdocuments.org का पाठ",
+         "en": "sanskritdocuments.org's text"
+        },
+        "desc": {
+         "hi": "देवीमाहात्म्य: १३ अध्याय, ७०० मन्त्र · कवच, अर्गला, कीलक",
+         "en": "Devi Mahatmya: 13 adhyays, 700 mantras · Kavach, Argala, Kilak"
+        },
+        "salute": "॥ श्रीदुर्गायै नमः ॥"
+       }
+      ]
      }
     ]
    },

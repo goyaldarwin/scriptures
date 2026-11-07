@@ -1,0 +1,301 @@
+{
+ "id": "durga-saptashati",
+ "path": "hinduism/granth/vyasa/durga-saptashati",
+ "lang": "sa",
+ "title": {
+  "hi": "श्रीदुर्गासप्तशती",
+  "en": "Shri Durga Saptashati"
+ },
+ "by": {
+  "hi": "महर्षि वेदव्यास",
+  "en": "Maharshi Ved Vyas"
+ },
+ "from": {
+  "hi": "मार्कण्डेयपुराण",
+  "en": "Markandeya Puran"
+ },
+ "edition": {
+  "hi": "sanskritdocuments.org का पाठ",
+  "en": "sanskritdocuments.org's text"
+ },
+ "colophon": {
+  "hi": "समापन (पुष्पिका)",
+  "en": "Closing words (iti)"
+ },
+ "parts": {
+  "name": {
+   "hi": "अध्याय",
+   "en": "Adhyay"
+  },
+  "list": [
+   {
+    "key": "dhyana",
+    "no": "ॐ",
+    "hi": "श्रीचण्डिकाध्यान",
+    "en": "Shri Chandika Dhyan"
+   },
+   {
+    "key": "argala",
+    "no": "ॐ",
+    "hi": "अर्गलास्तोत्र",
+    "en": "Argala Stotram"
+   },
+   {
+    "key": "kilaka",
+    "no": "ॐ",
+    "hi": "कीलकस्तोत्र",
+    "en": "Kilak Stotram"
+   },
+   {
+    "key": "kavacha",
+    "no": "ॐ",
+    "hi": "देवीकवच",
+    "en": "Devi Kavach"
+   },
+   {
+    "key": "1",
+    "no": "1",
+    "hi": "मधुकैटभवध",
+    "en": "Madhu Kaitabh Vadh"
+   },
+   {
+    "key": "2",
+    "no": "2",
+    "hi": "महिषासुरसैन्यवध",
+    "en": "Mahishasur Sainya Vadh"
+   },
+   {
+    "key": "3",
+    "no": "3",
+    "hi": "महिषासुरवध",
+    "en": "Mahishasur Vadh"
+   },
+   {
+    "key": "4",
+    "no": "4",
+    "hi": "शक्रादिस्तुति",
+    "en": "Shakradi Stuti"
+   },
+   {
+    "key": "5",
+    "no": "5",
+    "hi": "देवीदूतसंवाद",
+    "en": "Devi Doot Samvad"
+   },
+   {
+    "key": "6",
+    "no": "6",
+    "hi": "धूम्रलोचनवध",
+    "en": "Dhumralochan Vadh"
+   },
+   {
+    "key": "7",
+    "no": "7",
+    "hi": "चण्डमुण्डवध",
+    "en": "Chand Mund Vadh"
+   },
+   {
+    "key": "8",
+    "no": "8",
+    "hi": "रक्तबीजवध",
+    "en": "Raktabeej Vadh"
+   },
+   {
+    "key": "9",
+    "no": "9",
+    "hi": "निशुम्भवध",
+    "en": "Nishumbh Vadh"
+   },
+   {
+    "key": "10",
+    "no": "10",
+    "hi": "शुम्भवध",
+    "en": "Shumbh Vadh"
+   },
+   {
+    "key": "11",
+    "no": "11",
+    "hi": "नारायणीस्तुति",
+    "en": "Narayani Stuti"
+   },
+   {
+    "key": "12",
+    "no": "12",
+    "hi": "भगवतीवाक्य",
+    "en": "Bhagavati Vakya"
+   },
+   {
+    "key": "13",
+    "no": "13",
+    "hi": "सुरथवैश्यवरप्रदान",
+    "en": "Surath Vaishya Vardan"
+   },
+   {
+    "key": "aparadha",
+    "no": "ॐ",
+    "hi": "अपराधक्षमापणस्तोत्र",
+    "en": "Aparadh Kshamapan Stotram"
+   },
+   {
+    "key": "devi-sukta",
+    "no": "ॐ",
+    "hi": "देवीसूक्त",
+    "en": "Devi Suktam"
+   }
+  ]
+ },
+ "sections": {
+  "dhyana": {
+   "hi": "श्रीचण्डिकाध्यान",
+   "en": "Shri Chandika Dhyan"
+  },
+  "argala": {
+   "hi": "अर्गलास्तोत्र",
+   "en": "Argala Stotram"
+  },
+  "kilaka": {
+   "hi": "कीलकस्तोत्र",
+   "en": "Kilak Stotram"
+  },
+  "kavacha": {
+   "hi": "देवीकवच",
+   "en": "Devi Kavach"
+  },
+  "1": {
+   "hi": "अध्याय १",
+   "en": "Adhyay 1"
+  },
+  "2": {
+   "hi": "अध्याय २",
+   "en": "Adhyay 2"
+  },
+  "3": {
+   "hi": "अध्याय ३",
+   "en": "Adhyay 3"
+  },
+  "4": {
+   "hi": "अध्याय ४",
+   "en": "Adhyay 4"
+  },
+  "5": {
+   "hi": "अध्याय ५",
+   "en": "Adhyay 5"
+  },
+  "6": {
+   "hi": "अध्याय ६",
+   "en": "Adhyay 6"
+  },
+  "7": {
+   "hi": "अध्याय ७",
+   "en": "Adhyay 7"
+  },
+  "8": {
+   "hi": "अध्याय ८",
+   "en": "Adhyay 8"
+  },
+  "9": {
+   "hi": "अध्याय ९",
+   "en": "Adhyay 9"
+  },
+  "10": {
+   "hi": "अध्याय १०",
+   "en": "Adhyay 10"
+  },
+  "11": {
+   "hi": "अध्याय ११",
+   "en": "Adhyay 11"
+  },
+  "12": {
+   "hi": "अध्याय १२",
+   "en": "Adhyay 12"
+  },
+  "13": {
+   "hi": "अध्याय १३",
+   "en": "Adhyay 13"
+  },
+  "aparadha": {
+   "hi": "अपराधक्षमापणस्तोत्र",
+   "en": "Aparadh Kshamapan Stotram"
+  },
+  "devi-sukta": {
+   "hi": "देवीसूक्त",
+   "en": "Devi Suktam"
+  }
+ },
+ "types": {
+  "mantra": {
+   "name": {
+    "hi": "मन्त्र",
+    "en": "Mantra"
+   },
+   "short": {
+    "hi": "मं॰",
+    "en": "Man."
+   }
+  },
+  "shloka": {
+   "name": {
+    "hi": "श्लोक",
+    "en": "Shloka"
+   },
+   "short": {
+    "hi": "श्लो॰",
+    "en": "Shl."
+   }
+  },
+  "rc": {
+   "name": {
+    "hi": "ऋचा",
+    "en": "Richa"
+   },
+   "short": {
+    "hi": "ऋ॰",
+    "en": "Ri."
+   }
+  },
+  "dhyana": {
+   "name": {
+    "hi": "ध्यान",
+    "en": "Dhyan"
+   },
+   "short": {
+    "hi": "ध्या॰",
+    "en": "Dhy."
+   }
+  },
+  "viniyoga": {
+   "name": {
+    "hi": "विनियोग",
+    "en": "Viniyoga"
+   },
+   "short": {
+    "hi": "विनि॰",
+    "en": "Vin."
+   }
+  },
+  "iti": {
+   "name": {
+    "hi": "समापन (पुष्पिका)",
+    "en": "Closing words (iti)"
+   },
+   "short": {
+    "hi": "इति",
+    "en": "Iti"
+   }
+  }
+ },
+ "cite": {
+  "by": [
+   "part",
+   "n"
+  ],
+  "types": {
+   "shloka": [
+    "n"
+   ],
+   "rc": [
+    "n"
+   ]
+  }
+ }
+}
