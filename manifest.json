@@ -51,6 +51,17 @@
    ]
   },
   {
+   "name": "Shrimad Bhagavad Gita",
+   "short_name": "Shrimad Bhag",
+   "url": "./?w=bhagavad-gita",
+   "icons": [
+    {
+     "src": "app/icon-192.png",
+     "sizes": "192x192"
+    }
+   ]
+  },
+  {
    "name": "Shri Ramcharitmanas",
    "short_name": "Shri Ramchar",
    "url": "./?w=manas",
@@ -65,17 +76,6 @@
    "name": "Sundarkand",
    "short_name": "Sundarkand",
    "url": "./?w=sundarkand",
-   "icons": [
-    {
-     "src": "app/icon-192.png",
-     "sizes": "192x192"
-    }
-   ]
-  },
-  {
-   "name": "Shrimad Bhagavat Mahapuran",
-   "short_name": "Shrimad Bhag",
-   "url": "./?w=bhagavata-purana",
    "icons": [
     {
      "src": "app/icon-192.png",
