@@ -276,6 +276,7 @@ function wordSheet(raw, alt, lang){
       + (g.pa ? row(T('पंजाबी', 'Punjabi'), esc(g.pa), 'gur') : '') + row(T('हिंदी', 'Hindi'), esc(g.hi || '—')) + row('English', esc(g.en || '—'), 'lat')
       + (g.r && g.r !== w ? row(T('मूल', 'Root'), esc(g.r)) : '') + (g.g ? row(T('व्याकरण', 'Grammar'), esc(g.g)) : '') + '</dl>';
   }
+  else h += '<p class="small muted">' + T('इस शब्दका अर्थ अभी नहीं जोड़ा गया है।', 'This word\'s meaning is not added yet.') + '</p>';
   if (EDITS) h += '<div class="acts"><button class="btn small ghost" id="gEdit">' + (g && !g.none ? T('अर्थ बदलें / जोड़ें', 'Edit meaning') : T('अर्थ जोड़ें', 'Add meaning')) + '</button></div>';
   openSheet(h); if ($('#gEdit')) $('#gEdit').onclick = () => glossEdit(w, lang || W.lang);
 }

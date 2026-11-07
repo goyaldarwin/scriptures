@@ -60,6 +60,7 @@ def _folded(D, lang):
 
 def check_words(lib, name, w, LANGS, G, clean):
     """Every word of every verse has a meaning in its language or a fallback (the work's own glossary.json first)."""
+    if w.get('words') == 'partial': return   # the owner's choice for a work whose word meanings are not all written yet (docs/LIBRARY.md §2)
     wg = os.path.join(lib, name, 'glossary.json'); WG = json.load(open(wg, encoding='utf-8')) if os.path.exists(wg) else {}
     # a work loaded by part: a verse's words are looked up in its own part's senses, as the app has only those
     PG = [json.load(open(f, encoding='utf-8')) if os.path.exists(f) else {} for f in (os.path.join(lib, name, 'glossary', f'{k}.json') for k in range(len(w['parts']['list'])))] if w.get('load') == 'parts' else None
