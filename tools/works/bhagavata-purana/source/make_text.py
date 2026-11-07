@@ -8,6 +8,10 @@ HERE=os.path.dirname(os.path.abspath(__file__)); CWD=os.getcwd()
 OUT=sys.argv[1]
 book=json.load(open(os.path.join(CWD,'book2.json')))
 COR=json.load(open(os.path.join(HERE,'corrections.json')))
+sys.path.insert(0,os.path.join(HERE,'..','..','..','text'))
+from standard import sanskrit as _san
+STD=lambda w: _san(w)
+HAL=json.load(open(os.path.join(HERE,'halant.json')))   # words whose ्य the e-book drops (halant.py)
 EN={}
 for l in open(os.path.join(HERE,'topics_en.tsv'),encoding='utf-8'):
     k,v=l.rstrip('\n').split('\t'); EN[k]=v
@@ -48,6 +52,11 @@ for pi,sk in enumerate(book):
             lines=[l for l in lines]
             lines[-1]=END.sub(lambda m:' ॥'+m.group(1)+'॥',lines[-1])
             lines=v['spk']+lines
+            def hal(t):
+                core=t.rstrip('-'); tail=t[len(core):]
+                k=core if core in HAL else STD(core)
+                return HAL[k]+tail if k in HAL else t
+            lines=[' '.join(hal(t) for t in l.split(' ')) for l in lines]
             for old,new,why in COR.get(vid,[]):
                 assert any(old in l for l in lines),(vid,old)
                 lines=[l.replace(old,new) for l in lines]

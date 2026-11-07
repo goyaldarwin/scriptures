@@ -11,6 +11,9 @@ The base is the owner's Gita Press book (codes 26–27), read from its glyph ids
 - **Daṇḍas and numbers** are written by the library's standard (`tools/text/standard.py`): । । is ॥, a verse number ॥१॥; a Sanskrit nasal before a stop is that stop's own nasal (संतोष → सन्तोष), as the standard writes every Sanskrit text.
 - **Footnote marks** (the book's superscript १ २ … on the variant readings of its old manuscript, प्रा॰ पा॰, and its * † on notes to the Hindi) are not part of the text and are left out, with the variant readings themselves (`docs/PLAYBOOK.md` §2: fix, don't annotate). The Hindi notes (about 170, printed at each adhyāya's end) are not included.
 
+## The dropped ्य (बुद्धया for बुद्ध्या)
+The e-book's text often writes a conjunct ending in द्ध, द्भ, द्व, ह्व, ग्र, द्र, ष्ट, ष्ण, ष्ठ, ह्न, ङ्ग, ह्म, घ्र followed by य without its halant (बुद्धया, पद्भयां, दिष्टया, बह्वयो), which a reader takes for a different word and which breaks the metre. `source/halant.py` finds every verse line one syllable longer than its metre whose only possible repair is one such ्य; that word is then written with ्य wherever it occurs (`source/halant.json`, 86 words, about 150 places; बुद्धया → बुद्ध्या alone 31). The words it proposes that are right as printed were struck out by hand (सृष्टिविवृद्धये, स्वनिष्ठया: their lines are long for another reason; प्रहसञ्शलक्ष्णया: its fault is श्ल, below). Where the e-book has the right form elsewhere (श्रद्धया, the instrumental of श्रद्धा), it is left alone: only words a metre decides are changed. A ्य dropped in a line whose metre cannot show it is not found by this check.
+
 ## Verses
 | Verse | The e-book | Here | Why |
 |---|---|---|---|
@@ -23,6 +26,14 @@ The base is the owner's Gita Press book (codes 26–27), read from its glyph ids
 | 3.21.46 | तद्व + an empty glyph + ्याहृतामृत… | तद्व्याहृतामृत… | the e-book's empty glyph (.notdef) inside व्या |
 | 5.9.3 | कर्मबन्धsविध्वंसन… | कर्मबन्धविध्वंसन… | a stray Latin s inside the compound |
 | 7.7.4 | 1तेषामतिबलोद्योगं | तेषामतिबलोद्योगं | a stray digit before the verse |
+| 9.20.10 | प्रहसञ्शलक्ष्णया | प्रहसञ्श्लक्ष्णया | श्ल drawn as श and ल; the metre needs श्ल |
+| 10.80.21 | अग्रहीच्छिसा | अग्रहीच्छिरसा | र dropped (शिरसा); the metre needs it |
+| 10.42.7 | पद्भयामाक्रम्य … द्वयंगुल्यु… | पद्भ्यामाक्रम्य … द्व्यङ्गुल्यु… | two dropped ्य in one line (the line is two syllables long) |
+| 10.47.12, 10.17.19, 10.44.51, 11.4.21 | कुङकुम, …ङकमारोप्य, शङकितौ, सलङकं | कुङ्कुम, …ङ्कमारोप्य, शङ्कितौ, सलङ्कं | the halant between ङ and क dropped |
+| 5.3.10 | हृार्हत्तम | ह्यर्हत्तम | a broken ह्य (हि अर्हत्तम) |
+| 6.6.43, 11.11.40 | जहााास, नोपयुञ्ज्याान्… | जहास, नोपयुञ्ज्यान्… | a vowel sign printed two or three times |
+
+Left as printed, for want of a witness: 4.28.47 आत्मानं शोचती दीनबन्धुं विक्लवाश्रुभिः (a syllable short; दीनमबन्धुं would fill it).
 
 ## Hindi meanings
 Each Hindi paragraph ends with the mark of the verse (or verses) it explains; it is placed under the last verse its mark names, the mark kept as printed (॥ ३२-३३ ॥ under 33). Misprinted marks, read by the sequence around them:
