@@ -5,7 +5,8 @@ word the checks flag read by eye (docs/PLAYBOOK.md §11 stays the rule for every
     python3 ocr.py <scan.pdf> <layout> <first page> <last page> <out folder>
 
 layout: "sh"  — Gita Press code 2223: Sanskrit in the left column, its Hindi in the right (the Hindi column is read);
-        "hh"  — Kalyan 2018: Hindi in both columns (left, then right).
+        "hh"  — Kalyan 2018: Hindi in both columns, read band by band (a line across the gutter, such as an adhyāya's
+                closing line and the next heading, ends a band), each band left column then right.
 For each page it writes <out>/p<NNNN>.json: the gutter found, and for each Hindi column the two passes — Tesseract's
 `hin` model and its `Devanagari` script model, which make different mistakes — and, for the whole page, a `hin` pass
 in reading order (the adhyāya titles and closing lines run across both columns). In the Devanagari pass a dash whose
@@ -31,6 +32,28 @@ def gutter(im):
     sm = np.convolve(body, np.ones(25) / 25, 'same')
     lo, hi = int(w * .42), int(w * .62)
     return lo + int(sm[lo:hi].argmin())
+
+def bands(im, g, top, bottom):
+    """For a page with Hindi in both columns: the bands between the lines that run across the gutter (an adhyāya's
+    closing line and the next one's heading), so each band is read left column, then right — the book's order."""
+    a = np.array(im) < 128; h = a.shape[0]
+    prof = a[int(h * .1):int(h * .95), g - 40:g + 41].mean(axis=0)
+    r = g - 40 + int(prof.argmax())                                       # the printed rule between the columns
+    rows = a[:, 40:-40].copy(); rows[:, r - 52:r - 28] = False             # ignore the rule's own band
+    inked = rows.any(axis=1)
+    cuts, y = [], top
+    while y < bottom:                                                     # each printed line: a run of inked rows
+        if not inked[y]: y += 1; continue
+        y0 = y
+        while y < bottom and inked[y]: y += 1
+        L, R = a[y0:y, r - 22:r - 10], a[y0:y, r + 8:r + 20]              # the white margins beside the rule
+        if y - y0 >= 15 and L.mean() > 0.15 and R.mean() > 0.15: cuts.append((y0, y))   # both inked: a line across
+    out, start = [], top
+    for y0, y1 in cuts:
+        if y0 - start > 40: out.append((start, y0))
+        start = y1
+    if bottom - start > 40: out.append((start, bottom))
+    return out or [(top, bottom)]
 
 def tess(img, lang, psm=6, tsv=False):
     with tempfile.NamedTemporaryFile(suffix='.png') as f:
@@ -76,9 +99,13 @@ def page(pdf, layout, p, out):
         im = render(pdf, p, d); w, h = im.size
         g = gutter(im)
         top, bottom = int(h * .055), h - 60                              # below the running header
-        cols = [('right', im.crop((g + 12, top, w - 40, bottom)))] if layout == 'sh' else \
-               [('left', im.crop((40, top, g - 12, bottom))), ('right', im.crop((g + 12, top, w - 40, bottom)))]
+        if layout == 'sh':
+            cols = [('right', im.crop((g + 12, top, w - 40, bottom)))]
+        else:                                                              # band by band, left then right
+            cols = [(f'{side}{i}', im.crop((x0, y0, x1, y1))) for i, (y0, y1) in enumerate(bands(im, g, top, bottom))
+                    for side, x0, x1 in (('left', 40, g - 12), ('right', g + 12, w - 40))]
         res = {'page': p, 'layout': layout, 'gutter': g, 'size': [w, h], 'cols': [], 'full': tess(im, 'hin', 3)}
+        if layout == 'hh': res['bands'] = bands(im, g, top, bottom)
         for side, c in cols:
             deva, dashes = deva_with_dashes(c)
             res['cols'].append({'side': side, 'hin': tess(c, 'hin', 6), 'deva': deva, 'em_dashes': dashes})

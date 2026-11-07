@@ -127,8 +127,9 @@ def main(book, first, pages=None):
         rng = [int(x) for x in re.split(r'\s*[-–—]\s*', m.group(1).translate(DEV))]
         lo, hi = rng[0], rng[-1]
         sec = secs[si]; top = max(nums[sec] or {1})
-        if lo == hi == ordinal(sec) and last >= 0.6 * top and lo < last and ended < 2:   # the adhyāya's two closing lines
+        if lo == hi == ordinal(sec) and last >= 0.6 * top and (lo > top or lo <= last) and ended < 2:   # the adhyāya's two closing lines
             ended += 1; cur = []; continue                                  # (इति … and इस प्रकार … पूर्ण हुआ ॥ N ॥)
+        if not ended and lo == 1 and last >= 0.8 * top: ended = 1                # a closing line misread: the marks restart anyway
         if ended:
             if lo != 1: cur = []; continue
             si += 1; ended = 0; last = 0
