@@ -1,6 +1,6 @@
 # श्रीशिवमहापुराण (Shri Shiv Mahapuran)
 
-Shelf: हिन्दू धर्म › पुराण › महापुराण › श्रीशिवमहापुराण (`library/hinduism/purana/mahapurana/shiva/`, work id `shiva-purana`). The Śrī Śivamahāpurāṇa of Maharṣi Vedavyāsa in its seven saṃhitās and 457 adhyāyas, with the Śivapurāṇa Māhātmya (seven adhyāyas) that Gita Press prints before it: 24,675 verses and passages, in Sanskrit (`sa`), each adhyāya closing with its इति words.
+Shelf: हिन्दू धर्म › पुराण › महापुराण › श्रीशिवमहापुराण (`library/hinduism/purana/mahapurana/shiva/`, work id `shiva-purana`). The Śrī Śivamahāpurāṇa of Maharṣi Vedavyāsa in its seven saṃhitās and 457 adhyāyas, with the Śivapurāṇa Māhātmya (seven adhyāyas) that Gita Press prints before it: 24,676 verses and passages, in Sanskrit (`sa`), each adhyāya closing with its इति words.
 
 | Part | Adhyāyas | Verses |
 |---|---|---|
@@ -14,7 +14,7 @@ Shelf: हिन्दू धर्म › पुराण › महापु�
 | Śatarudra-saṃhitā | 42 | 2,189 |
 | Koṭirudra-saṃhitā | 43 | 2,189 |
 | Umā-saṃhitā | 51 | 2,694 |
-| Kailāsa-saṃhitā | 23 | 1,286 |
+| Kailāsa-saṃhitā | 23 | 1,287 |
 | Vāyavīya-saṃhitā, Pūrva-khaṇḍa | 35 | 1,765 |
 | Vāyavīya-saṃhitā, Uttara-khaṇḍa | 41 | 2,363 |
 
