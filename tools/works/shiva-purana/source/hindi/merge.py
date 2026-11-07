@@ -50,6 +50,10 @@ def toks(text):
     out = []
     for li, line in enumerate(unicodedata.normalize('NFC', text).replace('।।', '॥').splitlines()):
         line = re.sub(r'^[|;:`„)\]\s]+(?=\S)', '', line)                  # the column rule's marks at a line's start
+        line = re.sub(r'(?<=[\u0900-\u0963])\s?:', 'ः', line)            # a visarga read as a colon (अत : → अतः)
+        line = re.sub(r'-\s?-', '—', line)                                  # an em dash read as two hyphens
+        line = re.sub(r'(?<=[\u0900-\u097F])\s*\|(?=\s|$)', ' ।', line)       # a daṇḍa read as |
+        line = re.sub(r'(?<![A-Za-z])[A-Za-z\\]{1,3}(?![A-Za-z])', ' ', line)   # stray Latin letters from the pictures
         for m in TOK.finditer(line):
             out.append((m.group(), li, m.start() > 0 and line[m.start() - 1] == ' '))
     return out
@@ -68,7 +72,9 @@ def merge(a, b):
                     out.append((plain(tb), li, sp, None if known(tb) or compound(tb) else 'unknown', [])); continue
                 pick = tb if known(tb) or not known(ta) else ta
                 if not known(ta) and not known(tb) and compound(ta) and not compound(tb): pick = ta
-                out.append((pick, li, sp, 'differ', [ta, tb]))
+                # one pass reads a real word and the other a non-word: the real word, unflagged (logged as 'chose');
+                # both real words (शिवकी / शिवको) or neither: flagged, read by eye
+                out.append((pick, li, sp, 'chose' if known(ta) != known(tb) else 'differ', [ta, tb]))
         else:
             sa = ' '.join(t for t, _, _ in A[i1:i2])
             for k, (tb, li, sp) in enumerate(B[j1:j2]): out.append((tb, li, sp, 'differ', [sa] if k == 0 else []))
@@ -97,9 +103,9 @@ def main(book, first, pages=None):
             for t, li, sp, fl, alt in merge(c['hin'], c['deva']):
                 stream.append({'t': t, 'page': P['page'], 'side': c['side'], 'line': li, 'sp': sp, 'flag': fl, 'alt': alt})
     # paragraphs end at a verse mark; a mark that restarts at 1 begins the next adhyāya
-    out, flags = {}, []
+    out, flags, chosen = {}, [], []
     si, cur, last, ended = 0, [], 0, 0
-    text = lambda ws: ''.join((' ' if w['sp'] else '') + ('⟦' + w['t'] + '⟧' if w['flag'] else w['t']) for w in ws if w['t']).strip()
+    text = lambda ws: ''.join((' ' if w['sp'] else '') + ('⟦' + w['t'] + '⟧' if w['flag'] and w['flag'] != 'chose' else w['t']) for w in ws if w['t']).strip()
     ordinal = lambda sec: int(sec.split('.')[-1])
     for k, w in enumerate(stream):
         cur.append(w)
@@ -118,12 +124,14 @@ def main(book, first, pages=None):
         vid = f'{sec}.{hi}' if hi in nums[sec] else f'{sec}.?{hi}'          # a mark that is no verse of this adhyāya: flagged
         out.setdefault(sec, {})[vid] = {'t': text(cur), 'page': cur[0]['page'], 'mark': m.group(1), 'covers': list(range(lo, hi + 1))}
         for x in cur:
-            if x['flag']: flags.append({'id': vid, 'page': x['page'], 'side': x['side'], 'line': x['line'], 'word': x['t'], 'why': x['flag'], 'alt': x['alt']})
+            if x['flag']: (chosen if x['flag'] == 'chose' else flags).append({'id': vid, 'page': x['page'], 'side': x['side'], 'line': x['line'], 'word': x['t'], 'why': x['flag'], 'alt': x['alt']})
         if vid.split('.')[-1].startswith('?'): flags.append({'id': vid, 'page': cur[0]['page'], 'side': cur[0]['side'], 'line': cur[0]['line'], 'word': m.group(0), 'why': 'mark', 'alt': []})
         last, cur = hi, []
     json.dump(out, open(os.path.join(HERE, f'{book}.merged.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
     with open(os.path.join(HERE, f'{book}.flags.jsonl'), 'w', encoding='utf-8') as f:
         for x in flags: f.write(json.dumps(x, ensure_ascii=False) + '\n')
+    with open(os.path.join(HERE, f'{book}.chosen.jsonl'), 'w', encoding='utf-8') as f:     # accepted by the one-real-word rule, for audit
+        for x in chosen: f.write(json.dumps(x, ensure_ascii=False) + '\n')
     words = sum(1 for w in stream if re.match(r'[ऀ-ॿ]', w['t'] or 'x'))
     missing = [(s, sorted(nums[s] - {n for v in out.get(s, {}).values() for n in v['covers']})) for s in secs[:si + 1]]
     print(f'{book}: {len(files)} pages, {words} words, {len(flags)} flagged ({100 * len(flags) / max(words, 1):.1f}%), adhyāyas reached: {secs[0]} … {secs[min(si, len(secs) - 1)]}')
