@@ -9,5 +9,5 @@
  },
  "window": 6,
  "align": "anchors",
- "review": "published for listening while every start is checked by ear: all starts came from matching the transcripts"
+ "check_only": "the owner hears a sample of 30 starts, one in each recording, to score the transcript's timings against Meta's MMS aligner (tools/audio/METHOD.md) before the starts are switched"
 }
