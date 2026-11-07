@@ -7,9 +7,10 @@ The source folder holds:
   recordings.json  [{"yt": video id, "file": original file name, "dur": seconds, "order": n, "from"?/"to"?: item id, "lead"?: seconds}]
   transcripts/     <video id>.jsonl from transcribe.py (+ .done when finished)
   fixes.json       optional hand-checked verse starts {video id: {item id: seconds}}, with the evidence in fixes.md
-  aligned.json     optional verse starts from a forced aligner run on the known text {video id: {item id: seconds}}, its lean
+  aligned.json     optional verse starts from a forced aligner run on the known text {video id: {item id: seconds or [start, end]}}, its lean
                    against the owner's by-ear starts already removed; they replace the starts matched from the transcript
-                   (fixes.json and owner.json still win). How they were made and how good they are: aligned.md
+                   (fixes.json and owner.json still win); an end is used only where the next verse starts more than 1.5 s
+                   after it (a refrain, music, a pause), as end + 0.3 s. How they were made and how good they are: aligned.md
   owner.json       optional starts (and ends) the owner set by ear in the app, written by apply_owner_timing.py
   check.json       optional {"why": "<how the list was found>", "ids": [item ids]}: verses whose start is in doubt, listed
                    for the owner to check by ear (☰ › More settings › Audio timing, Next ▸) until a start is set for them
@@ -123,7 +124,7 @@ for r in REC:
             c = 0
             for i, nl in zip(SPLIT[old], lines): first[i] = h[2 * c]; c += nl
     items = {i: round(max(0, t - 0.4), 2) for i, t in first.items()}
-    for iid, t in ALIGNED.get(v, {}).items(): items[ID[iid]] = t   # the forced aligner's starts (aligned.json) replace the transcript's
+    for iid, t in ALIGNED.get(v, {}).items(): items[ID[iid]] = t[0] if isinstance(t, list) else t   # the forced aligner's starts (aligned.json) replace the transcript's
     for iid, t in FIX.get(v, {}).items(): items[ID[iid]] = round(max(0, t - 0.4), 2)   # hand-checked starts win (fixes.json), with the same small lead
     items = sorted(items.items())
     clean, last = [], -1                       # drop matches that go backwards in time
@@ -152,6 +153,14 @@ for r in REC:
     print(v, len(full), tracks[-1]['first'], '→', tracks[-1]['last'])
 
 if ONLY: sys.exit(0)
+# the forced aligner's ends (aligned.json [start, end]): kept where the next verse on the recording starts more than 1.5 s later,
+# so the light leaves a verse when its reciting ends (tools/audio/METHOD.md, step 3)
+for ti, tr in enumerate(tracks):
+    E = {k: t[1] for k, t in ALIGNED.get(tr['yt'], {}).items() if isinstance(t, list) and len(t) > 1}
+    if not E: continue
+    a = sorted((ID[k], k) for k, v in at.items() if v[0] == ti)
+    for (i, k), (_, k2) in zip(a, a[1:]):
+        if k in E and E[k] > at[k][1] and at[k2][1] > E[k] + 1.5: at[k] = [ti, at[k][1], round(E[k] + 0.3, 2)]
 own_ids = set()
 for ti, tr in enumerate(tracks):
     for iid, t in OWN.get(tr['yt'], {}).items():   # seconds, or [start, end] when the owner also set where the verse ends
