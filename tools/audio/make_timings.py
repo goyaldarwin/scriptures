@@ -7,6 +7,9 @@ The source folder holds:
   recordings.json  [{"yt": video id, "file": original file name, "dur": seconds, "order": n, "from"?/"to"?: item id, "lead"?: seconds}]
   transcripts/     <video id>.jsonl from transcribe.py (+ .done when finished)
   fixes.json       optional hand-checked verse starts {video id: {item id: seconds}}, with the evidence in fixes.md
+  aligned.json     optional verse starts from a forced aligner run on the known text {video id: {item id: seconds}}, its lean
+                   against the owner's by-ear starts already removed; they replace the starts matched from the transcript
+                   (fixes.json and owner.json still win). How they were made and how good they are: aligned.md
   owner.json       optional starts (and ends) the owner set by ear in the app, written by apply_owner_timing.py
   check.json       optional {"why": "<how the list was found>", "ids": [item ids]}: verses whose start is in doubt, listed
                    for the owner to check by ear (☰ › More settings › Audio timing, Next ▸) until a start is set for them
@@ -67,6 +70,7 @@ L = lambda i: max(8, len(''.join(IT[i]['v'])))   # text length, used to spread t
 FP = os.path.join(SRC, 'fixes.json'); FIX = json.load(open(FP)) if os.path.exists(FP) else {}
 # owner.json (optional): {video id: {item id: seconds or [start, end]}} — starts (and ends) the owner set by ear in the app's timing mode (sent through
 # a GitHub issue and written by tools/audio/apply_owner_timing.py). They are used exactly as given and win over everything.
+ALP = os.path.join(SRC, 'aligned.json'); ALIGNED = json.load(open(ALP)) if os.path.exists(ALP) else {}
 OP = os.path.join(SRC, 'owner.json'); OWN = json.load(open(OP)) if os.path.exists(OP) else {}
 # ONLY=<ids>: just make the alignment caches of those recordings (run several in parallel), then run once without it
 ONLY = [x for x in os.environ.get('ONLY', '').split(',') if x]
@@ -119,6 +123,7 @@ for r in REC:
             c = 0
             for i, nl in zip(SPLIT[old], lines): first[i] = h[2 * c]; c += nl
     items = {i: round(max(0, t - 0.4), 2) for i, t in first.items()}
+    for iid, t in ALIGNED.get(v, {}).items(): items[ID[iid]] = t   # the forced aligner's starts (aligned.json) replace the transcript's
     for iid, t in FIX.get(v, {}).items(): items[ID[iid]] = round(max(0, t - 0.4), 2)   # hand-checked starts win (fixes.json), with the same small lead
     items = sorted(items.items())
     clean, last = [], -1                       # drop matches that go backwards in time

@@ -51,12 +51,13 @@ library/ ─ tools/site/build.py (checks everything first) ─► index.html, ap
 
 | Work (shelf path under `hinduism/` or `sikhism/`) | Text | Meanings shown first | Recording |
 |---|---|---|---|
-| Śrī Rāmacaritamānasa (`granth/tulsidas/ramcharitmanas`) | Gita Press, complete; 30-day and 9-day plans with vidhi, āratī and visarjana | Gita Press (ours, the second source, written for every kāṇḍa but the Bāla-kāṇḍa) | Pt. Kamlesh Upadhyay, live; the owner corrects times by ear; 136 starts where Meta's MMS aligner disagrees by more than 5 s are on the to-check list (`check.json`) |
+| Śrī Rāmacaritamānasa (`granth/tulsidas/ramcharitmanas`) | Gita Press, complete; 30-day and 9-day plans with vidhi, āratī and visarjana | Gita Press (ours, the second source, written for every kāṇḍa but the Bāla-kāṇḍa) | Pt. Kamlesh Upadhyay, live; starts from Meta's MMS forced aligner (`aligned.json`), 637 set by the owner by ear; the 5 the aligner is unsure of are on the to-check list (`check.json`) |
 | Sundarakāṇḍa (`granth/tulsidas/sundarkand`) | from the Mānas, plus opening prayers, Hanumān Chālīsā, āratī | ours | Pt. Ashwin Kumar Pathak, live |
 | Śrī Rāma Rakṣā Stotram (`stotra/rama/ramraksha`) | a video's on-screen text | ours | Vande Guru Paramparaam, live |
 | Bilvāṣṭakam (`stotra/shiva/bilvashtakam`) | the owner's pasted text, checked against sanskritdocuments.org | ours | Sounds of Isha, live (it does not sing śloka 2 or the phalaśruti) |
 | Bhaja Govindam (`stotra/krishna/bhaja-govindam`) | sanskritdocuments.org, checked against the recording | ours | Chinmaya Mission Boston, live (verse 13अ is not sung) |
-| Āratīs of Śrī Rāma: श्रीरामचन्द्र कृपालु, आरती कीजे श्रीरामलला की, आरती कीजै रामचन्द्र जी की (`aarti/rama/…`) | one printout; corrections open | ours | the stuti: Satya Adhikari, live; the other two: none yet |
+| श्रीरामचन्द्र कृपालु (`aarti/rama/shri-ramchandra-kripalu`) | the jansatta.com printout, its corrections confirmed by sanskritdocuments.org and shlokam.org | ours | Satya Adhikari, live |
+| आरती कीजे श्री रामलला की (`aarti/rama/ramlala-aarti`) | the words shown with Sohini Mishra's song (the owner's screenshot) | ours | Sohini Mishra, live |
 | Hanumān āratī (`aarti/hanuman/hanuman-aarti`) | from the Sundarakāṇḍa | ours | the Sundarakāṇḍa's, live |
 | ॐ जय जगदीश हरे (`aarti/vishnu/jagdish-aarti`) | the owner's pasted text | ours | Mahendra Kapoor, live |
 | ॐ जय शिव ओंकारा (`aarti/shiva/shiv-aarti`) | Anuradha Paudwal's version, from four written witnesses | ours | Anuradha Paudwal, live |
@@ -73,7 +74,4 @@ library/ ─ tools/site/build.py (checks everything first) ─► index.html, ap
 - Nothing open. A new work's or kāṇḍa's doubts go to `docs/reviews/` and are settled before its pull request is merged.
 
 ## Open with the owner
-- Recordings for आरती कीजे श्रीरामलला की and आरती कीजै रामचन्द्र जी की (the owner will share them).
-- The Mānas timings: the owner is setting by ear the 136 starts MMS doubts (`tools/works/manas/audio/kamlesh-upadhyay/check.json`). Then compare his times with MMS's and the library's to decide whether MMS retimes, or lists for checking, the 1,108 verses where the two differ by more than 2 s (the experiment and its figures: `experiments/align/README.md` in `scriptures-data`).
-- The Sundarakāṇḍa recording also sings, around the Chālīsā and the āratī, prayers the text does not show (`tools/works/sundarkand/reconciliation.md`, "The recording"); they are shown only if the owner asks.
-- Private copies that would complete `scriptures-data` (nothing depends on them): the Gaṅgā āratī screenshot, the jansatta.com printout of the Rāma āratīs, the Māṇḍūkya's sanskritdocuments.org and freepressjournal.in printouts and its recording.
+- Private copies that would complete `scriptures-data` (nothing depends on them; only the owner has them, from earlier chats): the Gaṅgā āratī screenshot, the jansatta.com printout of Śrī Rāmacandra Kṛpālu, the Māṇḍūkya's sanskritdocuments.org and freepressjournal.in printouts and its recording.
