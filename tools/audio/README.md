@@ -3,6 +3,8 @@
 The website plays recordings from YouTube and highlights each verse as it is recited, so a reader can listen hands-free. An audio source therefore needs only the video ids and the time each verse starts. No audio is stored in the repository. To add a reciter, follow `docs/HOW-TO.md` → "Add a new audio source". The state of each work's recordings is in `docs/START-HERE.md`.
 
 ## How the timings are made
+
+The method as a whole (rough placement, exact starts, ends, finding and fixing errors, the owner's ear), what is built and what is to build: `METHOD.md`.
 1. **`transcribe.py`**: Whisper small (CTranslate2 int8; e.g. `Systran/faster-whisper-small`) converts speech to text with times.
    - Audio is cut into 10-minute chunks with ffmpeg so memory stays low on a small machine.
    - Settings: Hindi mode for Hindi, Awadhi, Sanskrit and Punjabi (it writes Devanagari, which `align.py` needs), beam 1, no carry-over of earlier text (stops runaway repetition).
