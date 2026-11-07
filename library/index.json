@@ -149,6 +149,54 @@
     ]
    },
    {
+    "id": "purana",
+    "title": {
+     "hi": "पुराण",
+     "en": "Puranas"
+    },
+    "desc": {
+     "hi": "महापुराण और उपपुराण",
+     "en": "Mahapuranas and Upapuranas"
+    },
+    "children": [
+     {
+      "id": "mahapurana",
+      "title": {
+       "hi": "महापुराण",
+       "en": "Mahapuranas"
+      },
+      "desc": {
+       "hi": "अठारह महापुराण",
+       "en": "The eighteen Mahapuranas"
+      },
+      "children": [
+       {
+        "id": "bhagavata",
+        "work": "bhagavata-purana",
+        "path": "hinduism/purana/mahapurana/bhagavata",
+        "title": {
+         "hi": "श्रीमद्भागवतमहापुराण",
+         "en": "Shrimad Bhagavat Mahapuran"
+        },
+        "by": {
+         "hi": "महर्षि वेदव्यास",
+         "en": "Maharshi Ved Vyas"
+        },
+        "edition": {
+         "hi": "गीताप्रेस, गोरखपुर",
+         "en": "Gita Press, Gorakhpur"
+        },
+        "desc": {
+         "hi": "माहात्म्य और १२ स्कन्ध · ३३५ अध्याय",
+         "en": "Mahatmya and 12 Skandhs · 335 Adhyays"
+        },
+        "salute": "॥ ॐ नमो भगवते वासुदेवाय ॥"
+       }
+      ]
+     }
+    ]
+   },
+   {
     "id": "stotra",
     "title": {
      "hi": "स्तोत्र",
