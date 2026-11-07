@@ -34,6 +34,29 @@
     "धिग् जन्म तव दक्षाद्य महामूढोऽसि पापधीः"
    ],
    "why": "the copy: धिक् जन्म … पापधीःस्; the book (scan p. 460): धिग् जन्म … पापधीः — a stray स् and the unassimilated धिक्"
+  },
+  "6.13#29": {
+   "v": [
+    "नियतिः कालरागश्च विद्या च तदनन्तरम् ।",
+    "कला च पञ्चकमिदं मायोत्पन्नं मुनीश्वर"
+   ],
+   "why": "मयोत्पन्नं → मायोत्पन्नं: a dropped ा; the Kalyan Hindi reads \"ये पाँचों मायासे उत्पन्न हैं\" (॥ २४-२८ ॥, scan p. 406), and the next verse speaks of Māyā as their source; the metre is the same"
+  },
+  "3.6#1": {
+   "v": [
+    "सनत्कुमार उवाच ।",
+    "भवान्कथमनुप्राप्तो महादेवांशजः शिवम् ।",
+    "श्रोतुमिच्छामि तत्सर्वं वक्तुमर्हसि मे प्रभो"
+   ],
+   "why": "the copy's heading अथ नन्दीश्वरावतारमाह left out: the book begins the adhyāya with the speaker (Kalyan scan p. 72: \"सनत्कुमार बोले—\")"
+  },
+  "3.8#1": {
+   "v": [
+    "नन्दीश्वर उवाच ।",
+    "सनत्कुमार सर्वज्ञ शृणु त्वं भैरवीं कथाम् ।",
+    "यस्याः श्रवणमात्रेण शैवी भक्तिर्दृढा भवेत्"
+   ],
+   "why": "the copy's heading अथ भैरवावतारमाह left out: the book begins the adhyāya with the speaker (Kalyan scan p. 77: \"नन्दीश्वर बोले—\")"
   }
  },
  "speaker": {},
