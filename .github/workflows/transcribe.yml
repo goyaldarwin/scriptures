@@ -38,6 +38,9 @@ jobs:
     timeout-minutes: 350
     strategy:
       fail-fast: false
+      # GitHub runs at most 20 jobs at once for this account; a long transcription must leave room, or the checks, the site's
+      # publishing and the owner's timing submissions wait in the queue for hours
+      max-parallel: 14
       matrix:
         id: ${{ fromJSON(needs.plan.outputs.ids) }}
     steps:
