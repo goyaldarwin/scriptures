@@ -1014,6 +1014,27 @@ async def main():
         check('a third meaning language: ਪੰ · En in an English app, ਪੰ · हिं in a Hindi one, हिं · En when chosen; four places', pa['c1'].split('·')[:2] == ['ਪੰ', 'En'] and pa['c2'].split('·')[:2] == ['ਪੰ', 'हिं'] and pa['c3'].split('·')[:2] == ['हिं', 'En'] and len(pa['c1'].split('·')) == 4, pa)
         check('a third meaning language: its pieces under their lines, listed in Sources with "Meanings in the bar", searchable, off in recitation mode',
               all(pa['lay']) and pa['srcs'][0] and pa['srcs'][1].split('|') == ['ਪੰ · En', 'ਪੰ · हिं', 'हिं · En'] and pa['found'] and pa['off'] and pa['back'], pa)
+        # footnotes and commentary: the book's footnotes show under their meaning, and ☰ › More settings › Footnotes (shown only for
+        # a work with footnotes) hides them; a commentary is off until chosen in Sources (its picker shown only for a work that has
+        # one), then sits after the meanings under its name, with its own footnotes
+        cm = await ev("""(async () => { await openWork('shiv-aarti', true); show('settings'); await new Promise(r => setTimeout(r, 200));
+            const none = [!document.querySelector('#setBody [data-src="cm"]'), !document.querySelector('#setBody #sfn')];
+            await openWork('bhagavata-purana', true); show('home'); const S0 = JSON.stringify(S.settings), C0 = JSON.stringify(S.src[W.id] || {});
+            S.settings.layers = {h: true, e: false, w: false}; S.settings.recite = false; delete S.settings.fn;
+            const i = IT.findIndex(x => x.id === '10.9.14'); openReader('k', i); for (let n = 0; n < 40 && !(SRC.hi && SRC.hi.m['10.9.14']); n++) await new Promise(r => setTimeout(r, 150));
+            const at = () => { const d = document.createElement('div'); d.innerHTML = verseHTML(i); return d.firstElementChild; };
+            const fn1 = !!at().querySelector('.layer.h .fn'); S.settings.fn = false; const fn0 = !at().querySelector('.fn'); delete S.settings.fn;
+            show('settings'); await new Promise(r => setTimeout(r, 200)); const sw = !!document.querySelector('#setBody #sfn') && !document.querySelector('#setBody [data-src="cm"]');
+            W.sources.cm = [{id: 'sa-test', file: 'commentary/sa-test', title: {hi: 'परीक्षा टीका', en: 'Test commentary'}, lang: 'sa'}];
+            show('settings'); await new Promise(r => setTimeout(r, 200)); const sel = document.querySelector('#setBody [data-src="cm"]');
+            const pick = [!!sel, sel && sel.value === 'off', srcChoice('cm') === null, !at().querySelector('.layer.cm')];
+            SRC.cm = {meta: W.sources.cm[0], id: 'sa-test', m: {'10.9.14': ['परीक्षा व्याख्या', ['टीकाकी टिप्पणी']]}, got: new Set(PARTS.map(P => P.k))};
+            const v = at(), c = v.querySelector('.layer.cm'), last = [...v.children].filter(x => x.classList.contains('layer')).pop();
+            const shown = [!!c, c && c.querySelector('.lbl').textContent === TT(W.sources.cm[0].title), c && c.textContent.includes('परीक्षा व्याख्या'), c && !!c.querySelector('.fn'), last === c];
+            delete W.sources.cm; SRC.cm = null; S.settings = JSON.parse(S0); S.src[W.id] = JSON.parse(C0); save(); show('home');
+            return {none, fn1, fn0, sw, pick, shown}; })()""")
+        check('footnotes: under their meaning, hidden by ☰ › More settings › Footnotes, which only a work with footnotes shows', all(cm['none']) and cm['fn1'] and cm['fn0'] and cm['sw'], cm)
+        check('commentary: its picker only for a work with one, Off until chosen; when chosen, after the meanings under its name, with its footnotes', all(cm['pick']) and all(cm['shown']), cm)
         # a Roman-letter search shows the verse itself; Play from here ends with the open section
         rs = await ev("(async () => { await openWork('manas', true); show('home'); openSearch('text'); document.querySelector('#q').value = 'asur chal chonip'; runSearch(); await new Promise(r => setTimeout(r, 300)); const r = document.querySelector('#sRes .res'); return r ? [r.querySelector('.where').textContent, r.querySelector('.snip').textContent.slice(0, 12)] : 'none'; })()")
         check('search: a verse found by Roman letters is shown as the verse', rs != 'none' and ('Verses' in rs[0] or 'मूल पाठ' in rs[0]) and 'रहे' in rs[1], rs)
