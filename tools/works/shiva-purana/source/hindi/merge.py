@@ -1,7 +1,7 @@
 """The Hindi of a scan's OCR (ocr/<book>/p<NNNN>.json, by ocr.py), merged and checked, per verse, with every doubtful word
 flagged for reading by eye on the page image (hindi/README.md).
 
-    python3 merge.py <book> <first adhyāya section> [<pages>]      e.g.  merge.py shiv-1 m.1 13-199
+    python3 merge.py <book> <first adhyāya> [<last adhyāya> [<pages>]]      e.g.  merge.py shiv-1 m.1 2.5.59
 
 It writes hindi/<book>.merged.json: {section: {verse id: {"t": text with ⟦…⟧ around each flag, "page": n, "mark": "८-९"}}},
 and hindi/<book>.flags.jsonl: one line per flagged word, {id, page, side, line, word, why, alt}.
@@ -86,10 +86,10 @@ def merge(a, b):
                 li = out[-1][1] if out else 0; out.append(('', li, True, 'only in one pass', [sa]))
     return out
 
-MARK = re.compile(r'॥\s*([०-९]+(?:\s*[-–—]\s*[०-९]+)?)\s*॥')
+MARK = re.compile(r'॥\s*([०-९]+(?:\s*(?:½|[१1]\s*/\s*[२2]))?(?:\s*[-–—]\s*[०-९]+(?:\s*(?:½|[१1]\s*/\s*[२2]))?)?)\s*॥')   # ॥ ३½ ॥, ॥ १-३½ ॥
 DEV = str.maketrans('०१२३४५६७८९', '0123456789')
 
-def main(book, first, pages=None):
+def main(book, first, upto=None, pages=None):
     files = sorted(glob.glob(os.path.join(HERE, 'ocr', book, 'p*.json')))
     if pages:
         a, b = map(int, pages.split('-')); files = [f for f in files if a <= int(os.path.basename(f)[1:5]) <= b]
@@ -99,7 +99,7 @@ def main(book, first, pages=None):
     nums = collections.defaultdict(set)
     for x in T:
         if x['n']: nums[x['section']].add(int(x['n']))
-    secs = order[order.index(first):]
+    secs = order[order.index(first):(order.index(upto) + 1 if upto else None)]
     # the stream of words, column by column, page by page
     stream = []
     for f in files:
@@ -109,7 +109,7 @@ def main(book, first, pages=None):
                 stream.append({'t': t, 'page': P['page'], 'side': c['side'], 'line': li, 'sp': sp, 'flag': fl, 'alt': alt})
     # paragraphs end at a verse mark; a mark that restarts at 1 begins the next adhyāya
     out, flags, chosen = {}, [], []
-    si, cur, last, ended = 0, [], 0, 0
+    si, cur, last, ended, peak = 0, [], 0, 0, 0
     def text(ws):
         out, prev = [], None
         for w in ws:
@@ -124,18 +124,24 @@ def main(book, first, pages=None):
         cur.append(w)
         m = MARK.search(''.join(x['t'] for x in cur[-8:])) if w['t'] == '॥' else None
         if not m: continue
-        rng = [int(x) for x in re.split(r'\s*[-–—]\s*', m.group(1).translate(DEV))]
+        rng = [int(re.sub(r'(½|1\s*/\s*2)$', '', x.strip()) or 0) for x in re.split(r'\s*[-–—]\s*', m.group(1).translate(DEV))]
         lo, hi = rng[0], rng[-1]
         sec = secs[si]; top = max(nums[sec] or {1})
-        if lo == hi == ordinal(sec) and last >= 0.6 * top and (lo > top or lo <= last) and ended < 2:   # the adhyāya's two closing lines
+        if lo == hi and hi > top + 2 and not ended:                    # a range whose dash was lost (९-१३ read ९१३)
+            d = str(hi); nx = str(last + 1)
+            if d.startswith(nx) and d[len(nx):] and last + 1 < int(d[len(nx):]) <= top: lo, hi = last + 1, int(d[len(nx):])
+        if lo == hi == ordinal(sec) and peak >= 0.6 * top and (lo > top or lo <= peak) and ended < 2:   # the adhyāya's two closing lines
             ended += 1; cur = []; continue                                  # (इति … and इस प्रकार … पूर्ण हुआ ॥ N ॥)
-        if not ended and lo == 1 and last >= 0.8 * top: ended = 1                # a closing line misread: the marks restart anyway
+        if not ended and lo == 1 and peak >= 0.8 * top: ended = 1                # a closing line misread: the marks restart anyway
+        if not ended and lo != 1 and (hi < last - 3 or hi > top + 2) and not (lo == hi == ordinal(sec)):   # a mark far behind, or beyond the last verse: misread, flagged
+            flags.append({'k': None, 'id': f'{sec}.?{hi}', 'page': w['page'], 'side': w['side'], 'line': w['line'], 'word': m.group(0), 'why': 'mark', 'alt': []})
+            continue
         if ended:
-            if lo != 1: cur = []; continue
-            si += 1; ended = 0; last = 0
+            if lo > 5: cur = []; continue                                  # the other closing line (a first mark misread: ≤ 5)
+            si += 1; ended = 0; last = 0; peak = 0
             if si >= len(secs): break
             sec = secs[si]
-        if last == 0:          # an adhyāya's first paragraph: its title runs across both columns above it; the paragraph
+        if last == 0 and peak == 0:          # an adhyāya's first paragraph: its title runs across both columns above it; the paragraph
             at = next(((x['page'], x['line']) for x in cur if x['t'] and x['t'].startswith('बोल')), None)   # begins with the speaker
             if at:
                 head = [x for x in cur if (x['page'], x['line']) < at]
@@ -151,7 +157,7 @@ def main(book, first, pages=None):
         for x in cur:
             if x['flag']: (chosen if x['flag'] == 'chose' else flags).append({'k': x.get('k'), 'id': vid, 'page': x['page'], 'side': x['side'], 'line': x['line'], 'word': x['t'], 'why': x['flag'], 'alt': x['alt']})
         if vid.split('.')[-1].startswith('?'): flags.append({'id': vid, 'page': cur[0]['page'], 'side': cur[0]['side'], 'line': cur[0]['line'], 'word': m.group(0), 'why': 'mark', 'alt': []})
-        last, cur = hi, []
+        last, cur = hi, []; peak = max(peak, hi)
     json.dump(out, open(os.path.join(HERE, f'{book}.merged.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
     with open(os.path.join(HERE, f'{book}.flags.jsonl'), 'w', encoding='utf-8') as f:
         for x in flags: f.write(json.dumps(x, ensure_ascii=False) + '\n')
