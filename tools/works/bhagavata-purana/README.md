@@ -27,6 +27,9 @@ Shelf: हिन्दू धर्म › पुराण › महापु�
 ## Sources and permissions
 The Gita Press books are the owner's copies, used for personal study; the text and the Hindi are shown as printed. No permission has been requested from Gita Press.
 
+## Audio
+`audio/sanskrit-parayan/`: the whole Bhāgavata recited in Sanskrit, the Māhātmya first, in 30 YouTube recordings (48 hours; the reciter is not named in the owner's files). Transcribed with Whisper on GitHub (`transcribe` workflow), matched to the text by anchors (`"align": "anchors"`). Each recording starts where the one before it ends; `recordings.json` → `from` and `to` give those bounds, each recording begins at its first verse heard among a run of matched verses, and the alignment caches keep only the matches inside its bounds. 14,309 of the 14,945 items have a start; the rest (the first verses of some recordings, much of the Sanskrit prose of Skandha 5, which the recogniser hears poorly), and 12.13.19–23 at the end of the last recording, which after 12.13 goes on with matter not in this text. A draft (`source.json` → `draft`) until the owner has checked the starts by ear.
+
 ## Structure
 - **Hierarchy:** thirteen parts (the Māhātmya, then Skandh 1 … Skandh 12) › adhyāyas (sections `m.1` … `m.6`, `1.1` … `12.13`; numbered: `work.json` → `cite.sec` names them "Adhyay" / "अध्याय") › verses.
 - **Numbering:** a verse's id is `<skandha>.<adhyāya>.<verse>` with the book's numbers (`1.1.1`, `10.33.17`); in the Māhātmya `m.<adhyāya>.<verse>`. Its `n` is the number that ends it (॥१७॥). A verse of a skandha is cited skandha.adhyāya.verse (`work.json` → `cite`: "Shloka 10.33.17"); a verse of the Māhātmya (type `mshloka`) adhyāya.verse within the Māhātmya ("Shloka 3.12"). The Māhātmya's opening verse (कृष्णं नारायणं वन्दे, `m.1.0`) and each adhyāya's closing words (`<adhyāya>.iti`) have no number and are named by their type.
