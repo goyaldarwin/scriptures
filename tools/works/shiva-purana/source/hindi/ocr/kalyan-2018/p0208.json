@@ -33,14 +33,14 @@
 },
 {
 "side": "left2",
-"hin": "",
-"deva": "\n",
+"hin": "+--+- ७.\n",
+"deva": "——— eed\n",
 "em_dashes": 0
 },
 {
 "side": "right2",
-"hin": "",
-"deva": "\n",
+"hin": "७९\n",
+"deva": "oo\n",
 "em_dashes": 0
 }
 ],
@@ -55,7 +55,7 @@
 2841
 ],
 [
-2998,
+2961,
 3128
 ]
 ]

@@ -21,14 +21,14 @@
 },
 {
 "side": "left1",
-"hin": "",
-"deva": "\n",
+"hin": "फ्रफ्मरक््क्रक्क फ्कक्रफफक्ऋा फर्क क्र क्रफकफ्रफफक्फ फाक्रफ्क्फा फक्रकक का फ्फ\n",
+"deva": "HFFFFFHHHHHFAFFFFSSFIFFRRARSFSFFFFRRRHFFRFFF\n",
 "em_dashes": 0
 },
 {
 "side": "right1",
-"hin": "",
-"deva": "\n",
+"hin": "कफ फक्रफ्रक्कक्रक्कोक्रक्कफक्रफ क्रक्रफक्डक्फमक्रफफ्फ्क्रफक्फफक्रक्रफ्रफकर्क्ष+क्रमक\n",
+"deva": "FHFFFFFFSFFIFFSHFFFFFISHIFFFFFFRIAIFFFHH\n",
 "em_dashes": 0
 },
 {
@@ -45,14 +45,14 @@
 },
 {
 "side": "left3",
-"hin": "",
-"deva": "\n",
+"hin": "+----+-७-_ह\n",
+"deva": "— oe\n",
 "em_dashes": 0
 },
 {
 "side": "right3",
-"hin": "",
-"deva": "\n",
+"hin": "#कु७+--7\n",
+"deva": "eT\n",
 "em_dashes": 0
 }
 ],
@@ -63,7 +63,7 @@
 224
 ],
 [
-322,
+272,
 363
 ],
 [
@@ -71,7 +71,7 @@
 2920
 ],
 [
-3013,
+2976,
 3128
 ]
 ]

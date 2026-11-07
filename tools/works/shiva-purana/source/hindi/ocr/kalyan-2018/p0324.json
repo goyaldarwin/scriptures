@@ -21,14 +21,14 @@
 },
 {
 "side": "left1",
-"hin": "",
-"deva": "\n",
+"hin": "वि\n",
+"deva": "——b ed\n",
 "em_dashes": 0
 },
 {
 "side": "right1",
-"hin": "",
-"deva": "\n",
+"hin": "\"कीकुक--\"+\n",
+"deva": "be\n",
 "em_dashes": 0
 }
 ],
@@ -39,7 +39,7 @@
 2822
 ],
 [
-2985,
+2946,
 3128
 ]
 ]

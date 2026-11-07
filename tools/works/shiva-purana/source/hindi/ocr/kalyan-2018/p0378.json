@@ -21,14 +21,26 @@
 },
 {
 "side": "left1",
-"hin": "",
-"deva": "\n",
+"hin": "अझ--3+-७_हई\n",
+"deva": "— oe\n",
 "em_dashes": 0
 },
 {
 "side": "right1",
-"hin": "",
-"deva": "\n",
+"hin": "कु\n",
+"deva": "So\n",
+"em_dashes": 0
+},
+{
+"side": "left2",
+"hin": ">.--+-९-\n",
+"deva": "—— ed\n",
+"em_dashes": 0
+},
+{
+"side": "right2",
+"hin": "\"३-7\n",
+"deva": "eo\n",
 "em_dashes": 0
 }
 ],
@@ -39,7 +51,11 @@
 2011
 ],
 [
-2318,
+2133,
+2209
+],
+[
+2273,
 3128
 ]
 ]

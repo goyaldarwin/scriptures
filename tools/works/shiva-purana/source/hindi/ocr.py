@@ -37,17 +37,29 @@ def bands(im, g, top, bottom):
     """For a page with Hindi in both columns: the bands between the lines that run across the gutter (an adhyāya's
     closing line and the next one's heading), so each band is read left column, then right — the book's order."""
     a = np.array(im) < 128; h = a.shape[0]
-    prof = a[int(h * .1):int(h * .95), g - 40:g + 41].mean(axis=0)
-    r = g - 40 + int(prof.argmax())                                       # the printed rule between the columns
-    rows = a[:, 40:-40].copy(); rows[:, r - 52:r - 28] = False             # ignore the rule's own band
+    pts = []                                                              # the printed rule between the columns, strip by
+    for s0 in range(int(h * .1), int(h * .95) - 150, 150):                # strip: a scan can lean, so the rule's place
+        col = a[s0:s0 + 150, g - 80:g + 81].mean(axis=0)                  # is fitted as a line down the page
+        if col.max() > 0.8: pts.append((s0 + 75, g - 80 + int(col.argmax())))   # the rule unbroken through the strip
+    if len(pts) >= 3:
+        k, c = np.polyfit([y for y, _ in pts], [x for _, x in pts], 1)
+        rule_at = lambda y: int(round(k * y + c))
+    else:
+        prof = a[int(h * .1):int(h * .95), g - 40:g + 41].mean(axis=0); r0 = g - 40 + int(prof.argmax())
+        rule_at = lambda y: r0
+    rows = a[:, 40:-40].copy()
+    for y in range(h): r = rule_at(y) - 40; rows[y, max(0, r - 12):r + 13] = False      # ignore the rule's own band
     inked = rows.any(axis=1)
     cuts, y = [], top
     while y < bottom:                                                     # each printed line: a run of inked rows
         if not inked[y]: y += 1; continue
         y0 = y
         while y < bottom and inked[y]: y += 1
+        r = rule_at((y0 + y) // 2)
         L, R = a[y0:y, r - 22:r - 10], a[y0:y, r + 8:r + 20]              # the white margins beside the rule
-        if y - y0 >= 15 and L.mean() > 0.15 and R.mean() > 0.15: cuts.append((y0, y))   # both inked: a line across
+        rule = a[y0:y, r - 4:r + 5].any(axis=1).mean()                    # a line across stands where the rule is broken off;
+        if 15 <= y - y0 <= 160 and L.mean() > 0.15 and R.mean() > 0.15 and rule < 0.75: cuts.append((y0, y))   # text close to the rule is none
+        # (a taller run is printed lines touching one another over both columns, never a line across: not cut)
     out, start = [], top
     for y0, y1 in cuts:
         if y0 - start > 40: out.append((start, y0))

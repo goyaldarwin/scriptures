@@ -21,14 +21,26 @@
 },
 {
 "side": "left1",
-"hin": "",
-"deva": "\n",
+"hin": "ज--+-९_हईँ\n",
+"deva": "— ed\n",
 "em_dashes": 0
 },
 {
 "side": "right1",
-"hin": "",
-"deva": "\n",
+"hin": "७क--\n",
+"deva": "eo\n",
+"em_dashes": 0
+},
+{
+"side": "left2",
+"hin": "“+-+-<-_ह\n",
+"deva": "— eed\n",
+"em_dashes": 0
+},
+{
+"side": "right2",
+"hin": "कण\n",
+"deva": "eo\n",
 "em_dashes": 0
 }
 ],
@@ -39,7 +51,11 @@
 1866
 ],
 [
-2203,
+1998,
+2086
+],
+[
+2153,
 3128
 ]
 ]
