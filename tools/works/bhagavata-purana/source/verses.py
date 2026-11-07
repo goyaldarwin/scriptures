@@ -13,7 +13,12 @@ for sk in book:
         vs=[]; cur=[]; spk=[]; prose=''
         def flush_prose(final=False):
             global prose
-        for kind,t,marks,key,x in a['san']:
+        def _A(d):
+            global pend
+            d['nm']=pend; pend=[]; vs.append(d)
+        pend=[]   # the book's note marks (* † ‡) on Sanskrit lines, given to the verse they end up in
+        for kind,t,marks,key,x,y in a['san']:
+            pend+=[(key,y,ch) for ch in (marks or '') if ch in '*†‡']
             if kind=='g':
                 if cur: probs.append((sk['n'],a['n'],'prose inside verse',cur[-1][1][:40]))
                 if spk and not prose: pspk=spk; spk=[]
@@ -28,23 +33,23 @@ for sk in book:
                     m=PM.search(prose)
                     if not m: break
                     body=prose[:m.end()]; prose=prose[m.end():].strip()
-                    vs.append(dict(n=num(m.group(1)),spk=pspk,lines=[('g',body.replace('-',''),marks)],kind='g',pg=key)); pspk=[]
+                    _A(dict(n=num(m.group(1)),spk=pspk,lines=[('g',body.replace('-',''),marks)],kind='g',pg=key)); pspk=[]
                 continue
             if prose:
                 m=END.search(prose)
-                if m: vs.append(dict(n=num(m.group(1)),spk=pspk,lines=[('g',prose.replace('-',''),[])],kind='g',pg=key))
+                if m: _A(dict(n=num(m.group(1)),spk=pspk,lines=[('g',prose.replace('-',''),[])],kind='g',pg=key))
                 else: spk=spk+[prose.replace('-','')]
                 prose=''
             if kind=='spk' and not cur: spk.append(t); continue
             cur.append((kind,t,marks))
             m=END.search(t)
             if m:
-                vs.append(dict(n=num(m.group(1)),spk=spk,lines=cur,kind='v',pg=key)); cur=[]; spk=[]
+                _A(dict(n=num(m.group(1)),spk=spk,lines=cur,kind='v',pg=key)); cur=[]; spk=[]
             elif re.search(r'॥\s*$',t):
                 nn=(vs[-1]['n']+1) if vs else 1
                 fixes.append((sk['n'],a['n'],nn,'verse ends with a bare ॥: number inferred',t))
                 cur[-1]=(kind,re.sub(r'॥\s*$','॥'+str(nn).translate(str.maketrans('0123456789',D)),t),marks)
-                vs.append(dict(n=nn,spk=spk,lines=cur,kind='v',pg=key,inferred=True)); cur=[]; spk=[]
+                _A(dict(n=nn,spk=spk,lines=cur,kind='v',pg=key,inferred=True)); cur=[]; spk=[]
         if cur: probs.append((sk['n'],a['n'],'leftover',[c[1] for c in cur][:3]))
         if prose: probs.append((sk['n'],a['n'],'prose leftover',prose[:50]))
         # a verse printed again at a page turn (its last lines repeated with the same number): drop the repeat
@@ -60,7 +65,7 @@ for sk in book:
                 p=out[-1]; L=p['lines']; L[-1]=(L[-1][0],re.sub(r'॥[०-९]+$',' ।',L[-1][1]),L[-1][2])
                 fixes[-1]=None
                 fixes.append((sk['n'],a['n'],v['n'],'a ॥ printed for । inside the verse',L[-1][1]))
-                p['lines']=L+v['lines']; p.pop('inferred'); continue
+                p['lines']=L+v['lines']; p['nm']=p.get('nm',[])+v.get('nm',[]); p.pop('inferred'); continue
             out.append(v)
         vs=out
         # verses the e-book leaves out, from the witnesses (src/missing.json)

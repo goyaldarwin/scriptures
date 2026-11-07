@@ -12,11 +12,13 @@ def lines(fn,book):
             big=max(sizes) if sizes else 15.0
             sup=[i for i,s in enumerate(l) if not s.get('sp') and s['size']==11.2]
             # superscript footnote marks inside a 15pt line: drop them, remember
-            marks=''
+            marks=''; tm=t
             if big==15.0 and sup:
+                # the same line with the book's note marks (* † ‡) kept in place: the Hindi keeps them, as printed
+                tm=''.join(s['t'] if i not in sup else ''.join(ch for ch in s['t'] if ch in '*†‡') for i,s in enumerate(l)).replace('\u200c','')
                 marks=''.join(l[i]['t'] for i in sup)
                 t=''.join(s['t'] for i,s in enumerate(l) if i not in sup).replace('‌','')
-            out.append(dict(b=book,pg=pi+1,x=segs[0].get('x0'),y=segs[0].get('y'),size=big,bold=all(s['bold'] for s in segs if s['t'].strip()),t=t,marks=marks,ok=all(s['ok'] is True for s in l)))
+            out.append(dict(b=book,pg=pi+1,x=segs[0].get('x0'),y=segs[0].get('y'),size=big,bold=all(s['bold'] for s in segs if s['t'].strip()),t=t,tm=tm,marks=marks,ok=all(s['ok'] is True for s in l)))
     return out
 if __name__=='__main__':
     L=lines('p1.pkl',1)+lines('p2.pkl',2)

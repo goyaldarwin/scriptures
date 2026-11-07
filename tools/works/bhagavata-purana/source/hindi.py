@@ -10,11 +10,14 @@ def clean(t):
 probs=[]; out={}; fix=[]
 for sk in book:
     for a in sk['adh']:
-        txt=''; marks_at=[]
-        for t,para,marks,key in a['hindi']:
+        txt=''; marks_at=[]; hpos=[]
+        for t,para,marks,key,y in a['hindi']:
             if txt.endswith(('-','—')): txt+=t
             else: txt=(txt+' '+t) if txt else t
             if marks: marks_at.append((len(txt),marks))
+            base=len(txt)-len(t)
+            for j,ch in enumerate(t):
+                if ch in '*†‡': hpos.append((base+j,key,y,ch))
         chunks=[]; pos=0
         for m in MK.finditer(txt):
             body=txt[pos:m.start()]
@@ -33,7 +36,7 @@ for sk in book:
                 fix.append((sk['n'],a['n'],'mark %s read as %d'%(c['mark'],pb+1))); c['a']=c['b']=pb+1; c['fixed']=True; continue
             if c['b']>c['a'] and c['a']<=pb and c['b']>pb:
                 fix.append((sk['n'],a['n'],'mark %s read as %d-%d'%(c['mark'],pb+1,c['b']))); c['a']=pb+1; c['fixed']=True; continue
-        tail=txt[pos:].strip()
+        tail=re.sub(r'[*†‡]','',txt[pos:]).strip()
         if tail: probs.append((sk['n'],a['n'],'tail',tail[:80]))
         vn=[v['n'] for v in a['verses']]
         cov=[]
@@ -42,6 +45,10 @@ for sk in book:
             missing=sorted(set(vn)-set(cov)); extra=sorted(set(cov)-set(vn)); dup=[k for k,v in collections.Counter(cov).items() if v>1]
             order=cov==sorted(cov)
             probs.append((sk['n'],a['n'],'cover','missing',missing[:10],'extra',extra[:10],'dup',dup[:5],'ordered',order))
+        for c in chunks: c['nm']=[(k,y,ch) for p,k,y,ch in hpos if c['start']<=p<c['end']]
+        if chunks:
+            late=[(k,y,ch) for p,k,y,ch in hpos if p>=chunks[-1]['end']]
+            if late: chunks[-1]['nm']+=late; chunks[-1]['after']=''.join(ch for k,y,ch in late)
         a['mchunks']=chunks; a['hmarks']=marks_at
 json.dump(book,open('book2.json','w'),ensure_ascii=False)
 print(len(probs)); [print('FIX',f) for f in fix]; json.dump(fix,open('hfix.json','w'),ensure_ascii=False)
