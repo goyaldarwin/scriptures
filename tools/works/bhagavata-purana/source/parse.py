@@ -33,7 +33,10 @@ for key in sorted(pages):
             if mode=='title' and abs(x['size']-17.2)<0.2: adh['title']=(adh['title']+' '+t).strip(); continue
             adh['heads'].append((t,len(adh['san']))); continue
         if sk is not None and sk['n']==0 and adh is None: sk['pre'].append(t); continue
-        if adh is None or mode=='end': continue
+        if adh is None: continue
+        if mode=='end':
+            if 'तत्सत्' not in t: adh['notes'].append((t,x['x'],x['marks'],x['bold'],norm(x['tm'])))
+            continue
         if mode=='title' and x['bold'] and hscore(t)>0 and not END.search(t):
             adh['title']=(adh['title']+' '+t).strip(); continue
         if mode=='title' and not adh['title'] and hscore(t)>0 and not END.search(t) and x['x']>110:
@@ -44,14 +47,14 @@ for key in sorted(pages):
             adh['col'].append(t)
             if re.search(r'॥\s*[०-९]+\s*॥\s*$',t): mode='notes'
             continue
-        if mode=='notes': adh['notes'].append((t,x['x'],x['marks'],x['bold'])); continue
+        if mode=='notes': adh['notes'].append((t,x['x'],x['marks'],x['bold'],norm(x['tm']))); continue
         if is_verse(t,x):
             kind='spk' if ((SPK.search(t) or re.match(r'^\[.*\]$',t)) and '।' not in t and '॥' not in t and len(t)<40) else 'v'
-            adh['san'].append((kind,t,x['marks'],key,x['x']))
+            adh['san'].append((kind,t,x['marks'],key,x['x'],x['y']))
         elif x['bold'] and x['x']<=TH:
-            adh['san'].append(('g',t,x['marks'],key,x['x']))
+            adh['san'].append(('g',t,x['marks'],key,x['x'],x['y']))
         else:
-            adh['hindi'].append((t,x['x']>margin+10,x['marks'],key))
+            adh['hindi'].append((norm(x['tm']),x['x']>margin+10,x['marks'],key,x['y']))
 for s_ in book:
     for a_ in s_['adh']:
         if not a_['title']:

@@ -50,6 +50,7 @@ python3 $S/survey2.py && python3 $S/survey3.py        # the table grown by the c
 python3 $S/runall.py $D/bhag-1.pdf p1.pkl && python3 $S/runall.py $D/bhag-2.pdf p2.pkl   # again: now every run decodes
 python3 $S/lines.py                                   # → lines.json: every line with its position, size, weight
 python3 $S/parse.py && python3 $S/verses.py && python3 $S/hindi.py   # → book2.json: parts › adhyāyas › verses, Hindi paragraphs
-python3 $S/make_text.py tools/works/bhagavata-purana   # text.txt and meanings/hi/gitapress.json
+python3 $S/notes.py                                   # the book's notes (* † ‡) paired with their marks; anything left over → notes_unpaired.json
+python3 $S/make_text.py tools/works/bhagavata-purana   # text.txt and meanings/hi/gitapress.json (with the notes)
 ```
 The steps read the owner's PDFs from `scriptures-data`, so `regen_check.py` cannot run them: after changing a script, run them and diff `text.txt`. Corrections of the book are in `source/corrections.json` and `source/missing.json`; the sequence repairs are made by `verses.py` and `hindi.py` and logged. `reconciliation.md` lists every difference from the book and why.

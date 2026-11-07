@@ -17,7 +17,7 @@ for l in open(os.path.join(HERE,'topics_en.tsv'),encoding='utf-8'):
     k,v=l.rstrip('\n').split('\t'); EN[k]=v
 END=re.compile(r'॥\s*([०-९]+)\s*(॥)?\s*$')
 def fix_title(t): return re.sub(r'-\s+','-',t)
-items=[]; topics=[]; mean={}; part_keys=[]; ends={}
+items=[]; topics=[]; mean={}; notes={}; part_keys=[]; ends={}
 for pi,sk in enumerate(book):
     pk='mahatmya' if sk['n']==0 else str(sk['n']); part_keys.append(pk)
     sp='m' if sk['n']==0 else str(sk['n'])
@@ -67,14 +67,21 @@ for pi,sk in enumerate(book):
         # meanings: each chunk under the last verse it covers
         for c in a['mchunks']:
             mk='॥ '+dev(c['a'])+('-'+dev(c['b']) if c['b']!=c['a'] else '')+' ॥' if c.get('fixed') else re.sub(r'॥\s*(.*?)\s*॥',r'॥ \1 ॥',c['mark'])
-            mean[f"{sec}.{c['b']}"]=(c['t']+' '+mk).strip()
+            mean[f"{sec}.{c['b']}"]=(c['t']+' '+mk+c.get('after','')).strip()
+        # the book's notes (source/notes.py), under the meaning that carries their mark, in the order printed
+        for tid,kind,ch,txt in a.get('fnotes',[]):
+            if kind=='v':
+                n=int(tid.rsplit('.',1)[1]); tid=next(f"{sec}.{c['b']}" for c in a['mchunks'] if c['a']<=n<=c['b'])
+            notes.setdefault(tid,[]).append(ch+' '+txt)
 ids=[x['id'] for x in items]; IDS=set(ids)
+assert not [k for k in notes if k not in mean]
 bad=[k for k in mean if k not in IDS]; assert not bad,bad[:5]
 textfile.write(os.path.join(OUT,'text.txt'),items,topics,part_keys,'sa',[
  'Śrīmad Bhāgavata Mahāpurāṇa with the Śrīmad Bhāgavata Māhātmya: made by source/make_text.py from the owner\'s Gita Press',
  'books (codes 26–27, read from their glyph ids, no OCR); change it there, not here. Every correction and choice: reconciliation.md.'])
-M={"about":"Gita Press, Śrīmad Bhāgavata Mahāpurāṇa with its simple Hindi commentary (codes 26–27), read from its glyph ids (source/decode.py); each paragraph's meaning sits under the last verse its mark names, every mark kept as printed (a misprinted mark corrected: reconciliation.md)",
-   "title":{"hi":"गीताप्रेस — सरल हिन्दी व्याख्या","en":"Gita Press — Hindi commentary"},"order":1,"copied":True,"m":{k:mean[k] for k in ids if k in mean}}
+M={"about":"Gita Press, Śrīmad Bhāgavata Mahāpurāṇa with its simple Hindi commentary (codes 26–27), read from its glyph ids (source/decode.py); each paragraph's meaning sits under the last verse its mark names, every mark kept as printed (a misprinted mark corrected: reconciliation.md); the book's notes (*, †, ‡) under the meaning that carries their mark (source/notes.py)",
+   "title":{"hi":"गीताप्रेस — सरल हिन्दी व्याख्या","en":"Gita Press — Hindi commentary"},"order":1,"copied":True,"m":{k:mean[k] for k in ids if k in mean},
+   "notes":{k:notes[k] for k in ids if k in notes}}
 os.makedirs(os.path.join(OUT,'meanings','hi'),exist_ok=True)
 sys.path.insert(0,os.path.join(HERE,'..','..','..'))
 import jsonio
