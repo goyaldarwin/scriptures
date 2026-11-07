@@ -72,6 +72,9 @@ Use this when automatic timing is weak (kīrtan, chant) or a recording has no tr
 4. To verify a send: `gh api repos/goyaldarwin/scriptures/issues/<n>` and `/comments` (REST; GraphQL is unavailable), compare the issue's JSON with `library/<path>/audio/<source>.json` (each sent time exact), read `moved`, and check `gh api repos/goyaldarwin/scriptures/commits/main/check-runs`.
 5. Never edit `owner.json` or the generated timings by hand; the issue is the record.
 
+## OCR a scanned book (only where the owner has chosen OCR for it)
+`docs/PLAYBOOK.md` §11 ("No OCR") is the rule. Where the owner chooses OCR for a scan without a text layer (the work's `README.md` and the scan's `.meta.json` in `scriptures-data` say so), the OCR runs on GitHub, free here: the `ocr` workflow (Actions tab, or `gh api repos/goyaldarwin/scriptures/actions/workflows/ocr.yml/dispatches -X POST -f ref=main -f inputs[script]=<the work's OCR script> -f inputs[data]=<the PDF's path in scriptures-data> -f inputs[layout]=<layout> -f inputs[ranges]=13-60,61-110 -f inputs[out]=<folder> -f inputs[ref]=<branch>`; at most 256 ranges a run, 14 jobs at once). Each job fetches only that PDF with `DATA_TOKEN` and commits only the OCR text to the branch `ref`. The text is a draft: every word the work's checks flag is read by eye on the page image before it is used (`tools/works/shiva-purana/source/hindi/`).
+
 ## Correct or remove a verse in a generated text
 - Put the change where the work's text is made (`text.txt`, or, when a script in `source/` makes it, that script's corrections: the Mānas's `text_fixes.json`, `settle.py`'s `FIX` / `ITEM_FIX`), never only in `library/`: a regeneration undoes it. Diff the regenerated file against the previous one and explain every change.
 - Item ids are permanent. A removed verse's id is not reused; re-point any topic that started at it; regenerate meanings and audio timings; record it in the work's `reconciliation.md`.
