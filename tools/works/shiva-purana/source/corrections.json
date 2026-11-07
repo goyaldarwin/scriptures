@@ -27,7 +27,7 @@
     "एवं यन्त्रं समालिख्य प्रणवे नव वेष्टयेत् ।",
     "तदुत्थेनैव नादेन विद्यन्नादावसानकम्"
    ],
-   "why": "\"त-व\" after the daṇḍa is an editor's mark of the copy, not text; the reading प्रणवे नव is kept as printed until a witness settles it (the Kalyan Hindi: \"उसे ॐकारसे वेष्टित करे\")"
+   "why": "\"त-व\" after the daṇḍa is an editor's mark of the copy, not text; प्रणवे नव as printed, the reading of wisdomlib.org 6.14.18 too"
   },
   "2.2.34#22": {
    "v": [
@@ -103,9 +103,7 @@
   }
  },
  "type": {},
- "gap": [
-  "6.14:21"
- ],
+ "gap": [],
  "colophon": {},
  "insert": {
   "5.49#19": {
@@ -115,6 +113,14 @@
     "इति सञ्चिन्तयामास सहस्राक्षः पुनःपुनः"
    ],
    "why": "the copy drops verse 20 (19 is followed by 21); the Kalyan Hindi has it (॥ १९-२० ॥: 'जिसका ऐसा चरित्र है, मुझे उसीके शरणमें जाना चाहिये', scan p. 371); the text from wisdomlib.org's Shiva Purana [sanskrit] 9.49.20, which follows the Gita Press numbering"
+  },
+  "6.14#19": {
+   "n": "20",
+   "v": [
+    "सद्योजातम्प्रपद्यामीत्युपक्रम्य सदाशिवोम् ।",
+    "इति प्राह श्रुतिस्तारं ब्रह्मपञ्चकवाचकम्"
+   ],
+   "why": "the copy drops verse 20 (19 is followed by 21); the Kalyan Hindi has it (॥ १९-२० ॥, scan p. 410); the text from wisdomlib.org's Shiva Purana [sanskrit] 6.14.20 (the owner's screenshot), पंच written पञ्च by the standard"
   }
  },
  "speaker_lines": {

@@ -19,12 +19,10 @@ The base is the owner's copy of sanskritdocuments.org's text, which follows Gita
 | Verse | The copy | Here | Why |
 |---|---|---|---|
 | 5.49.20 | missing (19 is followed by 21) | चरित्रमीदृशं यस्य तमेव शरणं श्रये । इति सञ्चिन्तयामास सहस्राक्षः पुनःपुनः ॥२०॥ | the Kalyan Hindi has the verse (॥ १९-२० ॥: "तब इन्द्रने बार-बार यह विचार किया कि जिसका ऐसा चरित्र है, मुझे उसीके शरणमें जाना चाहिये", scan p. 371); the text from wisdomlib.org, *Shiva Purana [sanskrit]* 9.49.20 (its book 9 is the Umā-saṃhitā), संचिन्तयामास written सञ्चिन्तयामास by the standard |
+| 6.14.20 | missing (19 is followed by 21) | सद्योजातम्प्रपद्यामीत्युपक्रम्य सदाशिवोम् । इति प्राह श्रुतिस्तारं ब्रह्मपञ्चकवाचकम् ॥२०॥ | the Kalyan Hindi has the verse (॥ १९-२० ॥: the five mantras from 'सद्योजातं प्रपद्यामि' to 'सदाशिवोम्' and their vācaka, the tāra, ॐ; scan p. 410); the text from wisdomlib.org, *Shiva Purana [sanskrit]* 6.14.20 (the owner's screenshot, in `scriptures-data`), पंच written पञ्च by the standard |
 | 3.1.50 | the adhyāya's last verse, unnumbered | ॥५०॥ | the Kalyan Hindi numbers it ५० (scan p. 65) |
 | 2.2.34.22 | धिक् जन्म तव दक्षाद्य महामूढोऽसि पापधीःस् | धिग् जन्म तव दक्षाद्य महामूढोऽसि पापधीः | as the book prints it (scan p. 460): a stray स्, and धिक् not assimilated before ज |
 | 3.3.28 | मुने ।` | मुने । | a stray backtick |
 | 4.17.26 | बहुश; | बहुशः | a semicolon typed for the visarga |
-| 6.14.18 | … प्रणवे नव वेष्टयेत् । त-व | … प्रणवे नव वेष्टयेत् । | "त-व" is an editor's mark of the copy, not text |
+| 6.14.18 | … प्रणवे नव वेष्टयेत् । त-व | … प्रणवे नव वेष्टयेत् । | "त-व" is an editor's mark of the copy, not text; प्रणवे नव is wisdomlib.org's reading too (6.14.18) |
 
-## Open
-- **6.14.20** is missing in the copy: the Kalyan Hindi (॥ १९-२० ॥, scan p. 410) has a verse naming the five mantras from सद्योजातं प्रपद्यामि to सदाशिवोम् and their vācaka, the tāra (ॐ). The text skips 20 (`corrections.json` → `gap`) until a witness gives its Sanskrit: wisdomlib.org's 10.14.20 page could not be reached from this session.
-- **6.14.18** प्रणवे नव वेष्टयेत्: the Kalyan Hindi reads "उसे ॐकारसे वेष्टित करे", which suggests प्रणवेनैव; the copy's reading stays as printed until a witness settles it.
