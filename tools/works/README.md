@@ -20,6 +20,7 @@ python3 tools/site/build.py
 | `README.md` | what the work is, where its text, meanings and recordings come from, its verse types | yes |
 | `reconciliation.md` | the witnesses of the text and every choice made between them | yes |
 | `meanings/<lang>/<source>.json` | one meaning source in one language (below) | |
+| `commentary/<lang>/<source>.json` | one commentary, in the meaning format (below) | |
 | `glossary/<lang>.json` | the work's own sense of a word whose shared entry (`library/glossary/<lang>.json`) carries another text's sense; for a big work loaded by part, also every word the shared dictionary lacks (loaded by part) | |
 | `audio/<source>/` | one recording source (`tools/audio/README.md`) | |
 | `topics.json` | our own topic headings `{first verse id: {hi, en}}`, for works that take this work's verses and show ours (`"topics": "ours"`) | |
@@ -102,8 +103,13 @@ Every other key is copied into `library/<path>/work.json` as it is.
 - `numbers` (required on our own meanings): they end with the verse's number, `"verse"` (the number the verse ends with) or `"cite"` (its citation, `tools/text/cite.py`: the Kaṭha's mantra 1.1.1, whose verse ends ॥१॥, and the Śrī Rudram, whose mantras print none).
 - `partial`: our source need not cover every verse (otherwise the export stops on a missing one).
 - `m`: a string, or a list of one piece per verse line (read line by line in the app).
+- `notes`: a verse's footnotes, `[footnote, …]`; they show under the meaning they belong to (the reader can hide them: ☰ › More settings › Footnotes).
 - Ours may not share a run of 10 or more words with a copied source in the same language (`tools/meanings/overlap.py`).
 - Written with `tools/jsonio.py` → `dump_meanings` (settings first, one verse per line).
+
+## `commentary/<lang>/<source>.json`
+
+A commentary explains the verses (a guru's ṭīkā, a bhāṣya); a translation is a meaning. Same format and rules as a meaning source, with three differences: `lang` may be any language of `library/glossary/languages.json` (a Sanskrit ṭīkā is `sa`); there is no `numbers` and no `partial` (a commentary need not cover every verse); and our own (`scriptures`) has no default title. Its library id is `<lang>-<source>`, written to `library/<path>/commentary/` (`docs/LIBRARY.md` §3). A work may have any number; the reader sees none until one is chosen.
 
 ## Start a new work
 

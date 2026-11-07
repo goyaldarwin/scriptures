@@ -13,7 +13,7 @@ This repository holds everything about the scriptures library: the website, the 
 | `CLAUDE.md` | the non-negotiables, in brief |
 | `docs/START-HERE.md` | this page: the repositories, how the pieces fit, the status of each work, what is open |
 | `docs/PLAYBOOK.md` | every rule and preference of the owner, by topic |
-| `docs/HOW-TO.md` | step-by-step procedures: add a work, a meaning source, a recording; fix a text; change the app |
+| `docs/HOW-TO.md` | step-by-step procedures: add a work, a meaning source, a commentary, a recording; fix a text; change the app |
 | `docs/LIBRARY.md` | the data format (`library/`), field by field |
 | `docs/ROADMAP.md` | work not done yet |
 | `docs/APPS.md` | the store apps |
@@ -43,7 +43,7 @@ recordings ─ transcription ─► tools/works/<work>/audio/<source>/transcript
 library/ ─ tools/site/build.py (checks everything first) ─► index.html, app/, sw.js, manifest.json  +  dist/ (offline file)
 ```
 
-- The verse and its number are the core of each work. Meanings (Hindi, English, Punjabi) and recordings are selectable sources; word meanings are one dictionary per language (`library/glossary/<lang>.json`), each verse looked up in its own language.
+- The verse and its number are the core of each work. Meanings (Hindi, English, Punjabi), commentaries (off until the reader picks one) and recordings are selectable sources, footnotes coming with their meaning; word meanings are one dictionary per language (`library/glossary/<lang>.json`), each verse looked up in its own language.
 - The app is the same for every work: the library, the work's home (parts, plans, ▶), and a continuous reader. Bookmarks, notes, progress and hands-free playing are built in; readers' data stays on their phone.
 - The working rules (branches, tests, merging, the environment) are in `docs/PLAYBOOK.md` §10.
 
@@ -76,7 +76,7 @@ library/ ─ tools/site/build.py (checks everything first) ─► index.html, ap
 - Nothing open. A new work's or kāṇḍa's doubts go to `docs/reviews/` and are settled before its pull request is merged.
 
 ## To build next
-- The rest of the timing method (`tools/audio/METHOD.md`, steps 3–5: ends, error checks, fixes) as a public workflow; then the Śrīmad Bhāgavata Mahāpurāṇa and the Upaniṣads, scored on the owner's by-ear starts first.
+- The timing method's fixes (`tools/audio/METHOD.md`, step 5: re-align between trusted neighbours, snap to the onset, spread and list); steps 2–4 run in the public `align` workflow. Then the Upaniṣads, scored on the owner's by-ear starts first.
 
 ## Open with the owner
 - Private copies that would complete `scriptures-data` (nothing depends on them; only the owner has them, from earlier chats): the Gaṅgā āratī screenshot, the jansatta.com printout of Śrī Rāmacandra Kṛpālu, the Māṇḍūkya's sanskritdocuments.org and freepressjournal.in printouts and its recording.

@@ -24,17 +24,19 @@ through the refrain because it has no end.
 1. **Rough placement: Whisper** (built: the `transcribe` workflow, `make_timings.py`). The transcript matched to the
    text gives each verse a rough start. It also shows a recording that skips, repeats or reorders verses (a forced
    aligner assumes the text is all there, in order), and it cuts the recording into windows for step 2.
-2. **Exact starts: Meta's MMS forced aligner** (built for the Mānas: `aligned.json`, read by `make_timings.py`; the run
-   is in `scriptures-data`, `experiments/align/`). In windows of a minute or two from step 1, overlapping by a verse,
+2. **Exact starts: Meta's MMS forced aligner** (built: `mms_windows.py` cuts the windows from step 1, the `align` workflow
+   runs `mms_align.py` on each recording in this repository's free Actions, `mms_merge.py` writes `aligned.json`, read by
+   `make_timings.py`; the Mānas's first run is in `scriptures-data`, `experiments/align/`). In windows of a minute or two from step 1, overlapping by a verse,
    MMS is given the known text (romanised) with a wildcard between every two lines and at both ends, which absorbs
    refrains and music not in the text. Each start is moved by the recording's lean against the owner's starts (0.64 s
    for the Mānas; a new recording uses 0.6 s until the owner has set 20 or so by ear). A start MMS scores below 0.5
    keeps step 1's start and goes on the to-check list (`check.json`).
    Mānas, on the owner's 637 starts: within 1 s 78% (Whisper alone 46%), more than 3 s off 5% (34%).
-3. **Ends: from MMS** (to build). MMS knows where each line's last syllable ends; the run must save it. A verse's end is
+3. **Ends: from MMS** (built: `mms_align.py` saves each verse's end, `mms_merge.py` passes it on, `make_timings.py` applies
+   the rule). MMS knows where each line's last syllable ends. A verse's end is
    its last line's end + 0.3 s, kept only where the next start is more than 1.5 s later (a refrain or music), so the
    light leaves the verse when the singing does.
-4. **Find the errors** (to build), with no ear needed. A verse is flagged when:
+4. **Find the errors** (built in `mms_merge.py`, into `check.json`, except listener flags, which the app adds), with no ear needed. A verse is flagged when:
    - MMS and Whisper disagree by more than 2 s;
    - MMS scores any of its lines below 0.5;
    - its length is out of pace: its time against its length in mātrās (syllables for prose and Sanskrit), compared with
@@ -58,7 +60,7 @@ figures beside the recording (`aligned.md`).
 
 ## Where it runs
 
-In the public repo's Actions (free), like `transcribe`, and like it with at most 14 jobs at once, so the checks, the site's
+In the public repo's Actions (free), the `align` workflow, like `transcribe`, and like it with at most 14 jobs at once, so the checks, the site's
 publishing and the owner's timing submissions are never queued behind it (`docs/PLAYBOOK.md`, "GitHub Actions minutes").
 The whole Mānas with MMS is about 2,350 runner minutes.
 

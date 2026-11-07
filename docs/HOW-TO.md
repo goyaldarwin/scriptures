@@ -17,12 +17,21 @@ If `build.py` prints `LIBRARY PROBLEM: …`, fix what it names. It never builds 
 
 ---
 
-## Add a new meaning source (another translation or commentary)
+## Add a new meaning source (another translation)
 
 1. Choose the source's name: the publisher or translator, e.g. `swami-ramsukhdas` or `griffith`; its library id is `<lang>-<name>`.
 2. Write `tools/works/<work>/meanings/<lang>/<name>.json` (`tools/works/README.md` → meanings): `title` (bilingual), `order`, `"copied": true`, `m` {verse id: meaning, or a list of one piece per line}, and `notes` for footnotes. Match by the verse ids in `text.txt`, and check the verse text where possible, not by position alone. Copy the source's meanings faithfully (`docs/LIBRARY.md` §3). When a script makes the file from a book, keep the script and its intermediate files in `tools/works/<work>/source/` so it can be redone.
 3. Export the work and build. The source appears under ☰ › More settings › Sources. The default stays as it was unless the new file has a lower `order`.
 4. Note the edition and the permission status in the root `README.md` under "Sources and permissions".
+
+## Add a commentary
+
+A commentary explains the verse (a guru's or ācārya's ṭīkā, a bhāṣya); a translation, however free, is a meaning source (above).
+1. Keep the owner's copy in `scriptures-data` at the work's path, under `books/<publisher>/` or `printouts/<site>/`, with its `.meta.json`.
+2. Name it after its author or publisher (`shridhara`, `ramsukhdas`); its library id is `<lang>-<name>`, in the language it is written in (`sa` for a Sanskrit ṭīkā).
+3. Write `tools/works/<work>/commentary/<lang>/<name>.json` in the meaning format (`tools/works/README.md` → commentary): `title` (bilingual), `order`, `"copied": true`, `m` {verse id: the commentary on it}, `notes` for its footnotes. A commentary on several verses sits under the last of them. Make it with a script in `tools/works/<work>/source/` when it comes from a book, and record every choice in `reconciliation.md`.
+4. Export the work and build. ☰ › More settings › Sources then shows "Commentary" for this work (Off by default).
+5. Record the edition and permission status in the work's `README.md` under "Sources and permissions".
 
 Our own meanings (`meanings/<lang>/scriptures.json`) follow `tools/meanings/style.md`; `tools/meanings/prepare.py --work <work>` makes the batches to write, `apply_batches.py --work <work>` merges them, and the export checks them against the copied sources (`overlap.py`).
 
