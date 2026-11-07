@@ -1,0 +1,43 @@
+# श्रीशिवमहापुराण (Shri Shiv Mahapuran)
+
+Shelf: हिन्दू धर्म › पुराण › महापुराण › श्रीशिवमहापुराण (`library/hinduism/purana/mahapurana/shiva/`, work id `shiva-purana`). The Śrī Śivamahāpurāṇa of Maharṣi Vedavyāsa in its seven saṃhitās and 457 adhyāyas, with the Śivapurāṇa Māhātmya (seven adhyāyas) that Gita Press prints before it: 24,676 verses and passages, in Sanskrit (`sa`), each adhyāya closing with its इति words.
+
+| Part | Adhyāyas | Verses |
+|---|---|---|
+| Māhātmya | 7 | 373 |
+| Vidyeśvara-saṃhitā | 25 | 1,541 |
+| Rudra-saṃhitā, Sṛṣṭi-khaṇḍa | 20 | 1,222 |
+| Rudra-saṃhitā, Satī-khaṇḍa | 43 | 2,313 |
+| Rudra-saṃhitā, Pārvatī-khaṇḍa | 55 | 2,704 |
+| Rudra-saṃhitā, Kumāra-khaṇḍa | 20 | 1,080 |
+| Rudra-saṃhitā, Yuddha-khaṇḍa | 59 | 2,956 |
+| Śatarudra-saṃhitā | 42 | 2,189 |
+| Koṭirudra-saṃhitā | 43 | 2,189 |
+| Umā-saṃhitā | 51 | 2,694 |
+| Kailāsa-saṃhitā | 23 | 1,287 |
+| Vāyavīya-saṃhitā, Pūrva-khaṇḍa | 35 | 1,765 |
+| Vāyavīya-saṃhitā, Uttara-khaṇḍa | 41 | 2,363 |
+
+## Sources
+- **Text:** the owner's copy of sanskritdocuments.org's *Śrīśivamahāpurāṇam* (a JSON of its twelve pages: 464 chapters, Devanagari and IAST), in `scriptures-data` at `printouts/sanskritdocuments/shiva-purana.json`. It follows the Gita Press edition (code 2223, *Śrīśivamahāpurāṇa, mūla saṃskṛta śloka–hindī vyākhyāsahita*, and its second part, code 2224) verse for verse: its numbering, its speaker lines, its readings. `source/make_text.py` makes `text.txt` from it; `source/corrections.json` holds every choice made on it, each with its reason.
+- **The printed witnesses**, in `scriptures-data` at `books/gitapress/`: `shiv-1.pdf`, the owner's scan of Gita Press code 2223 (the Māhātmya, the Vidyeśvara- and the Rudra-saṃhitā, Sanskrit with Hindi), and `kalyan-2018-uttarardh.pdf`, his scan of Kalyan's *Śrīśivamahāpurāṇāṅka* (January 2018: the Śatarudra- to the Vāyavīya-saṃhitā in Hindi only, with the verse numbers). Both are page images without a text layer: a place a check flags is read by eye on the page image, never by OCR (`docs/PLAYBOOK.md` §11).
+- **Web witnesses** (the owner asked for web lookups wherever the copy is in doubt): wisdomlib.org's *Shiva Purana [sanskrit]*, which follows the Gita Press numbering, for a verse the copy drops (`reconciliation.md`).
+- **Meanings, word meanings:** not added yet (`work.json` → `"words": "partial"`).
+
+## Sources and permissions
+The Gita Press books and the copy of sanskritdocuments.org's text are the owner's, used for personal study; sanskritdocuments.org's pages are for personal study and research, and the Sanskrit text is public domain. No permission has been requested from Gita Press or sanskritdocuments.org.
+
+## Structure
+- **Hierarchy:** thirteen parts (the Māhātmya; the Vidyeśvara-saṃhitā; the Rudra-saṃhitā's five khaṇḍas; the Śatarudra-, Koṭirudra-, Umā- and Kailāsa-saṃhitā; the Vāyavīya-saṃhitā's two khaṇḍas) › adhyāyas (sections `m.1` … `m.7`, `1.1` … `1.25`, `2.1.1` … `2.5.59`, `3.1` … `6.23`, `7.1.1` … `7.2.41`; numbered: `work.json` → `cite.sec` names them "Adhyay" / "अध्याय") › verses. The part keys (`1`, `2.1` … `2.5`, `3` … `6`, `7.1`, `7.2`) are the copy's and wisdomlib's numbers for the books, and the mark beside each part in the list of parts.
+- **Numbering:** a verse's id is its adhyāya's section and its number as the book prints it (`1.1.5`, `2.3.27.12`, `7.2.4.30`); in the Māhātmya `m.<adhyāya>.<verse>`. Its `n` is the number that ends it (॥५॥). A verse is cited part.adhyāya.verse (`work.json` → `cite`: "Shloka 2.3.27.12", "Shloka 1.1.5"); a verse of the Māhātmya (type `mshloka`) adhyāya.verse within the Māhātmya ("Shloka 3.12").
+- **Items without a number:** an adhyāya's opening maṅgala-śloka (`1.1.0`, `3.1.0`), a prose passage before an adhyāya's first verse (`2.5.49.0`, Śukra's namaskāra; `6.19.0`, the list of mahāvākyas), and each adhyāya's closing words (`<adhyāya>.iti`). They are named by their type.
+- **Types:** `shloka`; `mshloka` (a śloka of the Māhātmya); `gadya` (prose); `iti` (the closing words of each adhyāya). A speaker's line (सूत उवाच, ब्रह्मोवाच) is the first line of the verse it opens, as the book prints it above that verse.
+- **Lines:** one line per half-verse for anuṣṭubh, one per pāda for longer metres, as the copy has them.
+- **Topics:** none yet; the book's Hindi adhyāya titles go in with its Hindi. **Loading:** by part (`"load": "parts"`).
+
+## How it is made
+```bash
+D=<clone of scriptures-data>/hinduism/purana/mahapurana/shiva
+python3 tools/works/shiva-purana/source/make_text.py $D/printouts/sanskritdocuments/shiva-purana.json tools/works/shiva-purana
+```
+It reads the owner's copy from `scriptures-data`, so `regen_check.py` cannot run it: after changing the script or `corrections.json`, run it and diff `text.txt`. It stops on any verse number out of sequence, any unnumbered lines it cannot place and any id used twice. `reconciliation.md` lists every difference from the copy and why.
