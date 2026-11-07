@@ -1,0 +1,98 @@
+{
+ "3.21.46": [
+  [
+   "तद्वa्याहृतामृत",
+   "तद्व्याहृतामृत",
+   "the e-book draws an empty glyph (.notdef) inside व्या; the word is तद्व्याहृत"
+  ]
+ ],
+ "5.9.3": [
+  [
+   "कर्मबन्धsविध्वंसन",
+   "कर्मबन्धविध्वंसन",
+   "a stray Latin s inside the compound"
+  ]
+ ],
+ "7.7.4": [
+  [
+   "1तेषामतिबलोद्योगं",
+   "तेषामतिबलोद्योगं",
+   "a stray digit 1 before the verse"
+  ]
+ ],
+ "9.20.10": [
+  [
+   "प्रहसञ्शलक्ष्णया",
+   "प्रहसञ्श्लक्ष्णया",
+   "श्ल drawn as श and ल; the metre needs श्ल (श्लक्ष्णया, gently)"
+  ]
+ ],
+ "10.80.21": [
+  [
+   "अग्रहीच्छिसा",
+   "अग्रहीच्छिरसा",
+   "र dropped: शिरसा (with his head); the metre needs it"
+  ]
+ ],
+ "10.47.12": [
+  [
+   "कुङकुम",
+   "कुङ्कुम",
+   "halant dropped between ङ and क"
+  ]
+ ],
+ "10.17.19": [
+  [
+   "परिष्वज्याङकमारोप्य",
+   "परिष्वज्याङ्कमारोप्य",
+   "halant dropped between ङ and क"
+  ]
+ ],
+ "10.44.51": [
+  [
+   "शङकितौ",
+   "शङ्कितौ",
+   "halant dropped between ङ and क"
+  ]
+ ],
+ "11.4.21": [
+  [
+   "सलङकं",
+   "सलङ्कं",
+   "halant dropped between ङ and क"
+  ]
+ ],
+ "5.3.10": [
+  [
+   "हृार्हत्तम",
+   "ह्यर्हत्तम",
+   "a broken ह्य (ह + ृ + ा) in the e-book: ह्यर्हत्तम (हि अर्हत्तम)"
+  ]
+ ],
+ "6.6.43": [
+  [
+   "जहााास",
+   "जहास",
+   "the vowel sign ा printed three times"
+  ]
+ ],
+ "11.11.40": [
+  [
+   "नोपयुञ्ज्याान्निवेदितम्",
+   "नोपयुञ्ज्यान्निवेदितम्",
+   "the vowel sign ा printed twice"
+  ]
+ ],
+ "10.42.7": [
+  [
+   "पद्भयामाक्रम्य",
+   "पद्भ्यामाक्रम्य",
+   "the e-book drops ्य after द्भ (halant.py); the metre needs it"
+  ],
+  [
+   "द्वयंगुल्युत्तानपाणिना",
+   "द्व्यङ्गुल्युत्तानपाणिना",
+   "the e-book drops ्य after द्व; the metre needs it"
+  ]
+ ]
+}
