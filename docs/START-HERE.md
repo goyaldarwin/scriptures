@@ -74,5 +74,8 @@ library/ ─ tools/site/build.py (checks everything first) ─► index.html, ap
 ## For a session to settle (PLAYBOOK §2: decide, never leave doubts for the owner)
 - Nothing open. A new work's or kāṇḍa's doubts go to `docs/reviews/` and are settled before its pull request is merged.
 
+## To build next
+- The rest of the timing method (`tools/audio/METHOD.md`, steps 3–5: ends, error checks, fixes) as a public workflow; then the Śrīmad Bhāgavata Mahāpurāṇa and the Upaniṣads, scored on the owner's by-ear starts first.
+
 ## Open with the owner
 - Private copies that would complete `scriptures-data` (nothing depends on them; only the owner has them, from earlier chats): the Gaṅgā āratī screenshot, the jansatta.com printout of Śrī Rāmacandra Kṛpālu, the Māṇḍūkya's sanskritdocuments.org and freepressjournal.in printouts and its recording.
