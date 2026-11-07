@@ -6,9 +6,10 @@
 
 Writes   library/<path>/work.json                 the manifest's fields, the verses (text.txt) and the topics
          library/<path>/meanings/<lang>-<src>.json one per meaning source (meanings/<lang>/<src>.json)
+         library/<path>/commentary/<lang>-<src>.json one per commentary (commentary/<lang>/<src>.json), in the same format
          library/<path>/glossary.json             the work's own senses of words (glossary/<lang>.json), if any
 A work with "load": "parts" (a big work, read one part at a time) has each meaning source as a header
-meanings/<lang>-<src>.json plus meanings/<lang>-<src>/<part index>.json, and its own senses as glossary/<part index>.json
+meanings/<lang>-<src>.json plus meanings/<lang>-<src>/<part index>.json (a commentary the same, under commentary/), and its own senses as glossary/<part index>.json
 (docs/LIBRARY.md §3, §5), so a phone fetches only the parts it opens.
 The recordings' timings (library/<path>/audio/<src>.json) are made by tools/audio/make_timings.py.
 Every file goes through the writing standard (tools/jsonio.py → tools/text/standard.py). It stops on anything wrong:
@@ -130,8 +131,8 @@ class Lib:
     def work(self, wid):
         p = os.path.join(self.out, self.path(wid), 'work.json'); need(os.path.exists(p), f'{wid} is not exported yet')
         return json.load(open(p, encoding='utf-8'))
-    def meanings(self, wid):
-        d = os.path.join(self.out, self.path(wid), 'meanings')
+    def meanings(self, wid, kind='meanings'):
+        d = os.path.join(self.out, self.path(wid), kind)
         return {os.path.basename(f)[:-5]: jsonio.read_meanings(f) for f in glob.glob(os.path.join(d, '*.json'))}   # a source loaded by part, whole
     def headings(self, wid, choice):
         """A work's topic headings by first verse id when a taking work shows "ours" (the work's topics.json), else None."""
@@ -158,72 +159,77 @@ def export(wid, lib):
     if os.path.exists(old) and 'sources' in (o := json.load(open(old, encoding='utf-8'))): work['sources'] = o['sources']   # a work not on the shelf has none
     lib.dump(WP + '/work.json', work)
 
-    # ---- meanings: meanings/<lang>/<src>.json ----
-    have = set()
-    srcs = {}
-    for f in sorted(glob.glob(os.path.join(HERE, wid, 'meanings', '*', '*.json'))):
-        lg = os.path.basename(os.path.dirname(f)); src = os.path.basename(f)[:-5]
-        srcs[(lg, src)] = json.load(open(f, encoding='utf-8'))
-    copied = {k: v for k, v in srcs.items() if v.get('copied')}
-    taken_from = {}   # source work → its meaning files in the library
-    for w in set(taken.values()): taken_from[w] = lib.meanings(w)
-    for (lg, src), D in srcs.items():
-        sid = f'{lg}-{src}'; mine = D.get('m', {})
-        # our own meanings end with the verse's number (docs/PLAYBOOK.md §4): "verse" the number the verse ends with, "cite" its
-        # citation (tools/text/cite.py) where the verse prints another (the Kaṭha's ॥१॥ is mantra 1.1.1); a copied source keeps its own
-        need(D.get('copied') or not mine or D.get('numbers') in ('verse', 'cite'), f'{wid}/meanings/{lg}/{src}.json: "numbers" must be "verse" or "cite" (how the verse number ends each meaning)')
-        unknown = [k for k in mine if k not in BYID or k in taken]
-        need(not unknown, f'{wid}/meanings/{lg}/{src}.json: meanings for verses this work does not write itself: {unknown[:5]}')
-        if mine and not D.get('partial') and not D.get('copied'):
-            miss = [i for i in own if not mine.get(i)]
-            need(not miss, f'{wid}/meanings/{lg}/{src}.json: no meaning for {miss[:5]} (or mark the source "partial")')
-        for (clg, csrc), C in copied.items():   # our own meanings never copy a copied source
-            if clg != lg or csrc == src or D.get('copied'): continue
-            res = overlap.check({k: versenum.joined(v) for k, v in mine.items()}, {k: versenum.joined(v) for k, v in C.get('m', {}).items()})
-            bad = [r for r in res if len(r[1]) >= 10]
-            need(not bad, f'{wid}/meanings/{lg}/{src}.json: {len(bad)} meanings share 10+ words with {csrc}, e.g. {bad[0][0] if bad else ""}: {" ".join(bad[0][1]) if bad else ""}')
-            note = [r for r in res if len(r[1]) >= 6]
-            if note: print(f'{wid} {sid}: {len(note)} meanings share 6–9 words with {csrc} (read them: tools/meanings/overlap.py --report)')
-        m, p = {}, {}
-        for i in ids:
-            if i in taken:   # a taken verse: the same source of the work it comes from
-                S = taken_from[taken[i]].get(sid)
-                if S and i in S['m']:
-                    m[i] = S['m'][i]
-                    if i in S.get('p', {}): p[i] = S['p'][i]
-                continue
-            if i not in mine: continue
-            v = mine[i]
-            if D.get('numbers'):
-                t, pcs = versenum.text_and_pieces(v, BYID[i], lg, by_n=D['numbers'] == 'cite')
+    # ---- meanings (meanings/<lang>/<src>.json) and commentaries (commentary/<lang>/<src>.json): one format, two kinds ----
+    nsrc = {}
+    for KIND in ('meanings', 'commentary'):
+        CM = KIND == 'commentary'   # a commentary: no verse number to end it, and it need not cover every verse
+        have = set()
+        srcs = {}
+        for f in sorted(glob.glob(os.path.join(HERE, wid, KIND, '*', '*.json'))):
+            lg = os.path.basename(os.path.dirname(f)); src = os.path.basename(f)[:-5]
+            srcs[(lg, src)] = json.load(open(f, encoding='utf-8'))
+        copied = {k: v for k, v in srcs.items() if v.get('copied')}
+        taken_from = {}   # source work → its meaning files in the library
+        for w in set(taken.values()): taken_from[w] = lib.meanings(w, KIND)
+        for (lg, src), D in srcs.items():
+            sid = f'{lg}-{src}'; mine = D.get('m', {})
+            # our own meanings end with the verse's number (docs/PLAYBOOK.md §4): "verse" the number the verse ends with, "cite" its
+            # citation (tools/text/cite.py) where the verse prints another (the Kaṭha's ॥१॥ is mantra 1.1.1); a copied source keeps its own
+            need(CM or D.get('copied') or not mine or D.get('numbers') in ('verse', 'cite'), f'{wid}/{KIND}/{lg}/{src}.json: "numbers" must be "verse" or "cite" (how the verse number ends each meaning)')
+            unknown = [k for k in mine if k not in BYID or k in taken]
+            need(not unknown, f'{wid}/{KIND}/{lg}/{src}.json: meanings for verses this work does not write itself: {unknown[:5]}')
+            if mine and not CM and not D.get('partial') and not D.get('copied'):
+                miss = [i for i in own if not mine.get(i)]
+                need(not miss, f'{wid}/{KIND}/{lg}/{src}.json: no meaning for {miss[:5]} (or mark the source "partial")')
+            for (clg, csrc), C in copied.items():   # our own meanings never copy a copied source
+                if clg != lg or csrc == src or D.get('copied'): continue
+                res = overlap.check({k: versenum.joined(v) for k, v in mine.items()}, {k: versenum.joined(v) for k, v in C.get('m', {}).items()})
+                bad = [r for r in res if len(r[1]) >= 10]
+                need(not bad, f'{wid}/{KIND}/{lg}/{src}.json: {len(bad)} meanings share 10+ words with {csrc}, e.g. {bad[0][0] if bad else ""}: {" ".join(bad[0][1]) if bad else ""}')
+                note = [r for r in res if len(r[1]) >= 6]
+                if note: print(f'{wid} {sid}: {len(note)} meanings share 6–9 words with {csrc} (read them: tools/meanings/overlap.py --report)')
+            m, p = {}, {}
+            for i in ids:
+                if i in taken:   # a taken verse: the same source of the work it comes from
+                    S = taken_from[taken[i]].get(sid)
+                    if S and i in S['m']:
+                        m[i] = S['m'][i]
+                        if i in S.get('p', {}): p[i] = S['p'][i]
+                    continue
+                if i not in mine: continue
+                v = mine[i]
+                if D.get('numbers'):
+                    t, pcs = versenum.text_and_pieces(v, BYID[i], lg, by_n=D['numbers'] == 'cite')
+                else:
+                    t, pcs = (v, None) if isinstance(v, str) else (versenum.joined(v), [x.strip() for x in v])
+                m[i] = [t] + ([D['notes'][i]] if i in D.get('notes', {}) else [])
+                if pcs: p[i] = pcs
+            title = D.get('title') or (OUR_TITLE.get(lg) if src == 'scriptures' and not CM else None)
+            if not title:   # a source with no entries of its own: the same source of the work its verses come from
+                title = next((tf[sid]['title'] for tf in taken_from.values() if sid in tf), None)
+            need(title, f'{wid}/{KIND}/{lg}/{src}.json: needs a title')
+            need(m, f'{wid}/{KIND}/{lg}/{src}.json: no meaning for any verse')
+            head = {'id': sid, 'lang': lg, 'order': D['order'], 'title': title}
+            pdir = os.path.join(lib.out, WP, KIND, sid)
+            if os.path.isdir(pdir): shutil.rmtree(pdir)
+            if BYPART:   # a header (an empty "m", so an app that does not know parts shows no meaning rather than failing), then one file per part
+                lib.dump(f'{WP}/{KIND}/{sid}.json', {**head, 'load': 'parts', 'm': {}})
+                for k in range(NP):
+                    part = {**head, 'part': k, 'm': {i: v for i, v in m.items() if BYID[i]['p'] == k}}
+                    pk = {i: v for i, v in p.items() if BYID[i]['p'] == k}
+                    if pk: part['p'] = pk
+                    lib.dump(f'{WP}/{KIND}/{sid}/{k}.json', part)
             else:
-                t, pcs = (v, None) if isinstance(v, str) else (versenum.joined(v), [x.strip() for x in v])
-            m[i] = [t] + ([D['notes'][i]] if i in D.get('notes', {}) else [])
-            if pcs: p[i] = pcs
-        title = D.get('title') or (OUR_TITLE.get(lg) if src == 'scriptures' else None)
-        if not title:   # a source with no entries of its own: the same source of the work its verses come from
-            title = next((tf[sid]['title'] for tf in taken_from.values() if sid in tf), None)
-        need(title, f'{wid}/meanings/{lg}/{src}.json: needs a title')
-        need(m, f'{wid}/meanings/{lg}/{src}.json: no meaning for any verse')
-        head = {'id': sid, 'lang': lg, 'order': D['order'], 'title': title}
-        pdir = os.path.join(lib.out, WP, 'meanings', sid)
-        if os.path.isdir(pdir): shutil.rmtree(pdir)
-        if BYPART:   # a header (an empty "m", so an app that does not know parts shows no meaning rather than failing), then one file per part
-            lib.dump(f'{WP}/meanings/{sid}.json', {**head, 'load': 'parts', 'm': {}})
-            for k in range(NP):
-                part = {**head, 'part': k, 'm': {i: v for i, v in m.items() if BYID[i]['p'] == k}}
-                pk = {i: v for i, v in p.items() if BYID[i]['p'] == k}
-                if pk: part['p'] = pk
-                lib.dump(f'{WP}/meanings/{sid}/{k}.json', part)
-        else:
-            out = {**head, 'm': m}
-            if p: out['p'] = p
-            lib.dump(f'{WP}/meanings/{sid}.json', out)
-        have.add(sid + '.json')
-    for f in glob.glob(os.path.join(lib.out, WP, 'meanings', '*.json')):   # a source removed from the folder leaves the library too
-        if os.path.basename(f) not in have: os.remove(f)
-    for f in glob.glob(os.path.join(lib.out, WP, 'meanings', '*', '')):
-        if os.path.basename(os.path.dirname(f)) + '.json' not in have: shutil.rmtree(f)
+                out = {**head, 'm': m}
+                if p: out['p'] = p
+                lib.dump(f'{WP}/{KIND}/{sid}.json', out)
+            have.add(sid + '.json')
+        for f in glob.glob(os.path.join(lib.out, WP, KIND, '*.json')):   # a source removed from the folder leaves the library too
+            if os.path.basename(f) not in have: os.remove(f)
+        for f in glob.glob(os.path.join(lib.out, WP, KIND, '*', '')):
+            if os.path.basename(os.path.dirname(f)) + '.json' not in have: shutil.rmtree(f)
+        nsrc[KIND] = len(srcs)
+        if CM and not srcs and os.path.isdir(os.path.join(lib.out, WP, KIND)) and not os.listdir(os.path.join(lib.out, WP, KIND)): os.rmdir(os.path.join(lib.out, WP, KIND))
 
     # ---- the work's own senses of words: glossary/<lang>.json ----
     senses = {os.path.basename(f)[:-5]: json.load(open(f, encoding='utf-8')) for f in sorted(glob.glob(os.path.join(HERE, wid, 'glossary', '*.json')))}
@@ -259,7 +265,7 @@ def export(wid, lib):
                 for P in [{w: v for w, v in D.items() if (w in psaid[k].get(lg, ()) if v.get('hard') else standard.fold(w) in pwords[k].get(lg, ()))}] if P})
     elif senses: lib.dump(WP + '/glossary.json', senses)
 
-    print(f'{wid}: {len(items)} verses ({len(taken)} taken), {len(topics)} topics, {len(srcs)} meaning sources')
+    print(f'{wid}: {len(items)} verses ({len(taken)} taken), {len(topics)} topics, {nsrc["meanings"]} meaning sources' + (f', {nsrc["commentary"]} commentaries' if nsrc['commentary'] else ''))
 
 def main(argv):
     out = os.path.join(REPO, 'library')
