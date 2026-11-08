@@ -1298,6 +1298,9 @@ async def main():
               toastLight('y'); const w = st($('#toast')); $('#toast').classList.remove('on', 'act'); toast('x'); const d = st($('#toast')); $('#toast').classList.remove('on');
               const pj = $('#pJump'), was = pj.hidden; pj.hidden = false; const p = st(pj); pj.hidden = was; return [JSON.stringify(w) === JSON.stringify(p), w[0] !== d[0] && d[2] === 'none']; })()""")
         check('capsules: the white capsule and the Go to / Back to pills look alike; the dark one does not', look == [True, True], look)
+        # a long message in the white capsule wraps inside the screen (nothing wider than the screen)
+        fit = await ev("""(() => { toastLight(T('आगेके अंशकी रिकॉर्डिंग नहीं है — अगली रिकॉर्डिंगसे जारी', 'No recording for the next part — continuing with the next one')); const t = $('#toast'), r = t.getBoundingClientRect(), ok = r.left >= 0 && r.right <= innerWidth && t.scrollWidth <= t.clientWidth + 1; t.classList.remove('on', 'act'); return ok; })()""")
+        check('capsules: a long message in the white capsule stays inside the screen', fit)
         # A−/A+ scale the sheets and search results too, with nothing spilling sideways at the largest size
         zs = await ev("""(async () => { const was = S.settings.size, out = []; for (const sz of [21, 34]){ S.settings.size = sz; applyTheme(); await openWork('manas', true); openReader('M', dayRange('M', 27)[0]); await new Promise(r => setTimeout(r, 300)); $('#rMid').click(); await new Promise(r => setTimeout(r, 400));
             const sb = $('#sheetBody'); out.push([+getComputedStyle(sb).zoom, sb.scrollWidth <= sb.clientWidth + 1, +getComputedStyle($('#sRes')).zoom]); closeSheet(); }
