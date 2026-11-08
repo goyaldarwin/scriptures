@@ -30,6 +30,9 @@ The Sanskrit text is public domain (sanskritdocuments.org: for personal study an
 - **Topics:** none; each part is one page.
 - **Plan:** the 7-day pāṭha of Gita Press's pāṭha-vidhi (one, two, one, four, two, one and two adhyāyas a day: 1, 2–3, 4, 5–8, 9–10, 11, 12–13); the opening stotras are read on the first day before adhyāya 1, the closing ones on the seventh after adhyāya 13.
 
+## Audio
+Braja Beats (`audio/braja-beats/`, YouTube `zmGU9QbLUVM`, 3 h 28 min): the whole pāṭha in the text's order, the colophons sung. Timed from its transcript (`tools/audio/METHOD.md` step 1), a draft until checked by ear; `fixes.md` has the starts checked by hand. The MMS steps wait for the owner's by-ear starts to score them on.
+
 ## How it is made
 ```bash
 D=<clone of scriptures-data>/hinduism/granth/vyasa/durga-saptashati
