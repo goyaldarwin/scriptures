@@ -29,6 +29,6 @@ The method as a whole (rough placement, exact starts, ends, finding and fixing e
 4. **Forced alignment (MMS)**, after the transcript has placed the verses (`METHOD.md`, steps 2–4):
    - `mms_windows.py <source>` cuts each recording into windows of about 90 s of the rough starts, overlapping by a verse → `<source>/mms/windows.json` (commit it to the branch the workflow runs on).
    - The `align` workflow (`.github/workflows/align.yml`, one free machine per recording, like `transcribe`) runs `mms_align.py` → `<source>/mms/<video id>.json`, each verse's start, end and score.
-   - `mms_merge.py <source> [--lean s]` → `aligned.json` (starts less the lean, ends) and `check.json` (the verses step 4 flags); then `make_timings.py`. Record the figures in the source's `aligned.md`.
+   - `mms_merge.py <source> [--lean s]` → `aligned.json` (starts less the lean, ends) and `check.json` (the verses step 4 flags); then `make_timings.py`. Score first: `mms_score.py <source>` compares MMS's starts and the transcript's alone with the owner's starts set by ear and prints the lean and the table; switch only when MMS is better, and record the figures in the source's `aligned.md` (a run not yet used: `mms/score.md`, why).
 
 Reading the verse ids in a recording's first/last printout is the quickest check. The key works for Devanagari and Gurmukhi texts; another script needs its own mapping in `align.py`'s `key()`.

@@ -54,7 +54,7 @@ through the refrain because it has no end.
 
 ## Before a new recording uses steps 2–5
 
-Score them on the owner's starts set by ear for that recording (20–30 are enough; the Katha Upaniṣad has 75): within 1 s,
+Score them on the owner's starts set by ear for that recording (20–30 are enough; the Katha Upaniṣad has 75; `mms_score.py`): within 1 s,
 more than 3 s off, against step 1 alone, the same table as `aligned.md`. Switch only when they are better, and record the
 figures beside the recording (`aligned.md`).
 
