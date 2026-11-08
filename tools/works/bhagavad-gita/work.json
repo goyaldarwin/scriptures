@@ -1,0 +1,268 @@
+{
+ "id": "bhagavad-gita",
+ "path": "hinduism/granth/vyasa/bhagavad-gita",
+ "lang": "sa",
+ "title": {
+  "hi": "श्रीमद्भगवद्गीता",
+  "en": "Shrimad Bhagavad Gita"
+ },
+ "by": {
+  "hi": "महर्षि वेदव्यास",
+  "en": "Maharshi Ved Vyas"
+ },
+ "from": {
+  "hi": "महाभारत, भीष्मपर्व",
+  "en": "Mahabharat, Bhishma Parv"
+ },
+ "edition": {
+  "hi": "sanskritdocuments.org का पाठ",
+  "en": "sanskritdocuments.org's text"
+ },
+ "colophon": {
+  "hi": "समापन (पुष्पिका)",
+  "en": "Closing words (iti)"
+ },
+ "parts": {
+  "name": {
+   "hi": "अध्याय",
+   "en": "Adhyay"
+  },
+  "list": [
+   {
+    "key": "dhyana",
+    "no": "ॐ",
+    "hi": "गीताध्यानम्",
+    "en": "Gita Dhyanam"
+   },
+   {
+    "key": "1",
+    "no": "1",
+    "hi": "अर्जुनविषादयोग",
+    "en": "Arjun Vishad Yog"
+   },
+   {
+    "key": "2",
+    "no": "2",
+    "hi": "साङ्ख्ययोग",
+    "en": "Sankhya Yog"
+   },
+   {
+    "key": "3",
+    "no": "3",
+    "hi": "कर्मयोग",
+    "en": "Karma Yog"
+   },
+   {
+    "key": "4",
+    "no": "4",
+    "hi": "ज्ञानकर्मसंन्यासयोग",
+    "en": "Gyan Karma Sanyas Yog"
+   },
+   {
+    "key": "5",
+    "no": "5",
+    "hi": "संन्यासयोग",
+    "en": "Sanyas Yog"
+   },
+   {
+    "key": "6",
+    "no": "6",
+    "hi": "आत्मसंयमयोग",
+    "en": "Atma Sanyam Yog"
+   },
+   {
+    "key": "7",
+    "no": "7",
+    "hi": "ज्ञानविज्ञानयोग",
+    "en": "Gyan Vigyan Yog"
+   },
+   {
+    "key": "8",
+    "no": "8",
+    "hi": "अक्षरब्रह्मयोग",
+    "en": "Akshar Brahma Yog"
+   },
+   {
+    "key": "9",
+    "no": "9",
+    "hi": "राजविद्याराजगुह्ययोग",
+    "en": "Raj Vidya Raj Guhya Yog"
+   },
+   {
+    "key": "10",
+    "no": "10",
+    "hi": "विभूतियोग",
+    "en": "Vibhuti Yog"
+   },
+   {
+    "key": "11",
+    "no": "11",
+    "hi": "विश्वरूपदर्शनयोग",
+    "en": "Vishwaroop Darshan Yog"
+   },
+   {
+    "key": "12",
+    "no": "12",
+    "hi": "भक्तियोग",
+    "en": "Bhakti Yog"
+   },
+   {
+    "key": "13",
+    "no": "13",
+    "hi": "क्षेत्रक्षेत्रज्ञविभागयोग",
+    "en": "Kshetra Kshetragya Vibhag Yog"
+   },
+   {
+    "key": "14",
+    "no": "14",
+    "hi": "गुणत्रयविभागयोग",
+    "en": "Gunatraya Vibhag Yog"
+   },
+   {
+    "key": "15",
+    "no": "15",
+    "hi": "पुरुषोत्तमयोग",
+    "en": "Purushottam Yog"
+   },
+   {
+    "key": "16",
+    "no": "16",
+    "hi": "दैवासुरसम्पद्विभागयोग",
+    "en": "Daivasur Sampad Vibhag Yog"
+   },
+   {
+    "key": "17",
+    "no": "17",
+    "hi": "श्रद्धात्रयविभागयोग",
+    "en": "Shraddhatraya Vibhag Yog"
+   },
+   {
+    "key": "18",
+    "no": "18",
+    "hi": "मोक्षसंन्यासयोग",
+    "en": "Moksha Sanyas Yog"
+   }
+  ]
+ },
+ "sections": {
+  "dhyana": {
+   "hi": "गीताध्यानम्",
+   "en": "Gita Dhyanam"
+  },
+  "1": {
+   "hi": "अध्याय १",
+   "en": "Adhyay 1"
+  },
+  "2": {
+   "hi": "अध्याय २",
+   "en": "Adhyay 2"
+  },
+  "3": {
+   "hi": "अध्याय ३",
+   "en": "Adhyay 3"
+  },
+  "4": {
+   "hi": "अध्याय ४",
+   "en": "Adhyay 4"
+  },
+  "5": {
+   "hi": "अध्याय ५",
+   "en": "Adhyay 5"
+  },
+  "6": {
+   "hi": "अध्याय ६",
+   "en": "Adhyay 6"
+  },
+  "7": {
+   "hi": "अध्याय ७",
+   "en": "Adhyay 7"
+  },
+  "8": {
+   "hi": "अध्याय ८",
+   "en": "Adhyay 8"
+  },
+  "9": {
+   "hi": "अध्याय ९",
+   "en": "Adhyay 9"
+  },
+  "10": {
+   "hi": "अध्याय १०",
+   "en": "Adhyay 10"
+  },
+  "11": {
+   "hi": "अध्याय ११",
+   "en": "Adhyay 11"
+  },
+  "12": {
+   "hi": "अध्याय १२",
+   "en": "Adhyay 12"
+  },
+  "13": {
+   "hi": "अध्याय १३",
+   "en": "Adhyay 13"
+  },
+  "14": {
+   "hi": "अध्याय १४",
+   "en": "Adhyay 14"
+  },
+  "15": {
+   "hi": "अध्याय १५",
+   "en": "Adhyay 15"
+  },
+  "16": {
+   "hi": "अध्याय १६",
+   "en": "Adhyay 16"
+  },
+  "17": {
+   "hi": "अध्याय १७",
+   "en": "Adhyay 17"
+  },
+  "18": {
+   "hi": "अध्याय १८",
+   "en": "Adhyay 18"
+  }
+ },
+ "types": {
+  "dhyana": {
+   "name": {
+    "hi": "ध्यान",
+    "en": "Dhyan"
+   },
+   "short": {
+    "hi": "ध्या॰",
+    "en": "Dhy."
+   }
+  },
+  "shloka": {
+   "name": {
+    "hi": "श्लोक",
+    "en": "Shloka"
+   },
+   "short": {
+    "hi": "श्लो॰",
+    "en": "Shl."
+   }
+  },
+  "iti": {
+   "name": {
+    "hi": "समापन (पुष्पिका)",
+    "en": "Closing words (iti)"
+   },
+   "short": {
+    "hi": "इति",
+    "en": "Iti"
+   }
+  }
+ },
+ "cite": {
+  "by": [
+   "part",
+   "n"
+  ],
+  "types": {
+   "dhyana": [
+    "n"
+   ]
+  }
+ }
+}
