@@ -121,8 +121,8 @@ for x in IT:
     if not g: continue
     en[x['id']] = g['x']
     if g.get('f'): enn[x['id']] = note_lines(g['f'])
-for lg, m, notes, title in (('hi', hi, hin, {'hi': 'गीताप्रेस — भावार्थ (हनुमानप्रसाद पोद्दार)', 'en': 'Gita Press — Hindi bhavarth (Hanuman Prasad Poddar)'}),
-                            ('en', en, enn, {'hi': 'गीताप्रेस — अंग्रेज़ी अनुवाद', 'en': 'Gita Press — English translation'})):
+for lg, m, notes, title in (('hi', hi, hin, {'hi': 'गीताप्रेस — हिंदी भावार्थ (हनुमानप्रसाद पोद्दार)', 'en': 'Gita Press — Hindi meaning (Hanuman Prasad Poddar)'}),
+                            ('en', en, enn, {'hi': 'गीताप्रेस — अंग्रेज़ी अर्थ', 'en': 'Gita Press — English meaning'})):
     m, notes = spread(m, notes, lg)
     jsonio.dump_meanings(os.path.join(WORK, 'meanings', lg, 'gitapress.json'), {'title': title, 'order': 1, 'copied': True, 'm': m, 'notes': notes})
 print(f'{len(items)} verses ({len(JOINT)} joint caupāīs split into {sum(len(v) for v in JOINT.values())}); meanings hi {len(hi)}, en {len(en)}')

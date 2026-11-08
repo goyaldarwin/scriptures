@@ -8,10 +8,12 @@ tools/
     app.js                         all behaviour → app/app.js
     index_template.html            layout + styles → index.html, app/style.css
     library.py                     registers each work's sources and checks the whole library
-    build.py                       runs library.py, then builds the website and dist/
+    build.py                       runs library.py and catalogue.py, then builds the website and dist/
+    catalogue.py                   docs/WORKS.md: every work's structure, numbering, sources and recordings, made from the library
     privacy.html                   the privacy policy → privacy.html
     check.py                       every check before a commit, side by side (build, then regen, history, smoke, UX in shards)
     regen_check.py                 the text generators make the committed texts; library/ is exactly what export.py and make_timings.py make
+                                   (only the works changed since its last pass here; --full: every work, as the CI)
     history_check.py               no work or verse id that readers' data points at has disappeared
     smoke_test.py, ux_test.py      every work in a browser; navigation and reading at phone size
     fixtures/                      data only the tests use (its README)
@@ -52,5 +54,5 @@ for s in tools/works/*/audio/*/; do grep -q '"take"' $s/source.json || python3 t
 for s in tools/works/*/audio/*/; do grep -q '"take"' $s/source.json && python3 tools/audio/make_timings.py $s; done   # then those taken from them
 python3 tools/site/build.py                                                    # check + website + dist/
 ```
-`python3 tools/site/regen_check.py` does the same into an empty folder and compares it with `library/`.
+`python3 tools/site/regen_check.py` does the same into an empty folder and compares it with `library/` (`--full` for every work; without it, only the works whose inputs or outputs changed since its last pass on this machine).
 Needs Python 3 with `numpy` and Node.js (`build.py` checks that `app.js` parses). Transcription also needs `faster-whisper` and `ffmpeg`; reading the PDFs again needs `pymupdf` and `tesseract`; the tests, icons and screenshots need `playwright`.

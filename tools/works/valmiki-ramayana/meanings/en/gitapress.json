@@ -1,6 +1,6 @@
 {
 "about": "Gita Press, Śrīmad Vālmīki-Rāmāyaṇa with Sanskrit text and English translation (codes 452–453), read from the book's text layer (source/english.py, source/parse.py); a joint translation of several verses sits under the last of them with the book's mark; the footnotes are attached to the verse whose English carries their mark (source/footnotes/report.md)",
-"title": {"hi": "गीताप्रेस — अंग्रेज़ी अनुवाद", "en": "Gita Press — English translation"},
+"title": {"hi": "गीताप्रेस — अंग्रेज़ी अर्थ", "en": "Gita Press — English meaning"},
 "order": 1,
 "copied": true,
 "m": {

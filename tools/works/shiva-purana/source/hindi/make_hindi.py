@@ -210,7 +210,7 @@ def main(draft=False):
         doubt.append(vid)
         if not draft: del m[vid]
     m = dict(sorted(m.items(), key=lambda kv: [int(x) if x.isdigit() else -1 for x in kv[0].replace('m.', '0.').split('.')]))
-    out = {'about': ABOUT, 'title': {'hi': 'गीताप्रेस — हिन्दी अनुवाद', 'en': 'Gita Press — Hindi translation'},
+    out = {'about': ABOUT, 'title': {'hi': 'गीताप्रेस — हिंदी अर्थ', 'en': 'Gita Press — Hindi meaning'},
            'order': 2, 'copied': True, 'm': m}
     path = os.path.join(WORK, 'meanings', 'hi', 'gitapress.json')
     os.makedirs(os.path.dirname(path), exist_ok=True)

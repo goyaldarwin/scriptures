@@ -1,7 +1,8 @@
 """End-to-end test of navigation and the reading experience, at phone size, for every work on the shelf.
 
-Usage:  python3 tools/site/ux_test.py [--shots DIR] [--shard K/N]      (serves the repository root on a free port)
+Usage:  python3 tools/site/ux_test.py [--shots DIR] [--shard K/N] [--works a,b]   (serves the repository root on a free port)
         python3 tools/site/check.py runs it as shards side by side, with every other check
+        --works a,b runs only these works' per-work checks (python3 tools/site/check.py --works a,b)
 Needs:  pip install playwright (Chromium; set CHROMIUM=/path/to/chrome if it is not found)
 
 Each check prints PASS/FAIL with what it saw; the run fails if any check fails or the page logs a script error.
@@ -17,9 +18,14 @@ SHOTS = sys.argv[sys.argv.index('--shots') + 1] if '--shots' in sys.argv else No
 # --shard K/N: the per-work checks (one work at a time, as a reader goes through it; most of the run) are shared among N
 # processes run side by side: shard 0 runs every other check and none of them, shards 1 … N-1 a share of the works each
 SHARD, NSHARD = (map(int, sys.argv[sys.argv.index('--shard') + 1].split('/')) if '--shard' in sys.argv else (0, 1))
+# --works a,b: the per-work checks of these works only (a change to their data); the checks of the whole app are left out
+ONLY = set(sys.argv[sys.argv.index('--works') + 1].split(',')) if '--works' in sys.argv else None
 def mine(works):
     """This shard's share of the works, balanced by size: the biggest first, each to the shard with the least so far (a
     work's checks take longer the more parts and verses it has: the Valmiki's alone are a shard's worth)."""
+    if ONLY is not None:
+        works = [w for w in works if w[0]['work'] in ONLY]
+        if NSHARD == 1: return works
     if NSHARD == 1: return works
     if not SHARD: return []
     size = lambda w: 1 + os.path.getsize(os.path.join(ROOT, 'library', w[0]['path'], 'work.json')) / 2e6   # a work's checks: ~15 s, and more with its size (the Valmiki's 11 MB: as 6 small works)
@@ -41,7 +47,7 @@ def check(name, ok, seen=''):
 def serve():
     class Quiet(http.server.SimpleHTTPRequestHandler):
         def log_message(self, *a): pass
-    s = socketserver.TCPServer(('127.0.0.1', 0), functools.partial(Quiet, directory=ROOT)); threading.Thread(target=s.serve_forever, daemon=True).start(); return s
+    s = socketserver.ThreadingTCPServer(('127.0.0.1', 0), functools.partial(Quiet, directory=ROOT)); threading.Thread(target=s.serve_forever, daemon=True).start(); return s
 
 def leaves(nodes, trail=()):
     for n in nodes:
@@ -63,6 +69,12 @@ async def main():
             nonlocal n
             if SHOTS: n += 1; os.makedirs(SHOTS, exist_ok=True); await pg.screenshot(path=os.path.join(SHOTS, f'{n:02d}-{tag}.png'))
         ev = pg.evaluate
+        async def until(js, most=15000):
+            """Wait for what the next step needs to see, never a fixed time: a slow runner only takes longer (and a check
+            that follows still fails if it never comes); then a frame for the page to settle."""
+            try: await pg.wait_for_function(js, timeout=most)
+            except Exception: pass
+            await pg.wait_for_timeout(60)
         # every check of one work, as a reader goes through it; with --shard K/N the works are shared among N processes (tools/site/check.py)
         async def per_work(leaf, trail):
             wid = leaf['work']; tag = wid
@@ -75,12 +87,14 @@ async def main():
                 btn = await pg.query_selector(f'#libList [data-node="{key}"]')
                 if not btn: key = path[k]; btn = await pg.query_selector(f'#libList [data-node="{key}"]')
                 if not btn: break
-                await btn.click(); await pg.wait_for_timeout(1500 if k + key.count('/') + 1 >= len(path) else 300)
+                await btn.click()
+                if k + key.count('/') + 1 >= len(path): await until(f"document.querySelector('#home').classList.contains('on') && W && W.id === {json.dumps(wid)} && !!document.querySelector('#orgList [data-open]')")
+                else: await pg.wait_for_timeout(300)
                 k += key.count('/') + 1
                 if k >= len(path): opened = True
             on_home = await ev("document.querySelector('#home').classList.contains('on') && W && W.id")
             check(f'{tag}: reached from the library by tapping its shelves', opened and on_home == wid, ' › '.join(path))
-            if on_home != wid: await ev(f"openWork({json.dumps(wid)})"); await pg.wait_for_timeout(1500)
+            if on_home != wid: await ev(f"openWork({json.dumps(wid)})"); await until("!!document.querySelector('#orgList [data-open]')")
             await shot(f'{tag}-home')
             title = await ev("document.querySelector('#hTitle').textContent")
             check(f'{tag}: home shows the title', title.strip() != '', title)
@@ -100,6 +114,11 @@ async def main():
                 want_pg = await ev(f"(PLAN[{json.dumps(pid)}].before || []).concat(PLAN[{json.dumps(pid)}].after || [])")
                 first = await ev("(document.querySelector('#orgList .it') || {}).dataset ? document.querySelector('#orgList .it').dataset.page || 'day' : ''")
                 check(f'{tag}: plan {pid} lists its before/after pages in place', got == want_pg and (first == (want_pg[0] if (await ev(f"(PLAN[{json.dumps(pid)}].before || []).length")) else 'day')), f'{got} first={first}')
+                # each day is named by the plan's own word (विश्राम / Vishram, दिन / Day), and a day read as one part whole says the part once
+                days = await ev(f"[...document.querySelectorAll('#orgList [data-mark]')].map(b => b.closest('li').querySelector('.ti').textContent)")
+                unit = await ev(f"TT(PLAN[{json.dumps(pid)}].unit)")
+                twice = await ev("[...document.querySelectorAll('#orgList .ds')].map(d => d.innerHTML.split('<br>')).flat().filter(l => { const m = /^(.+?): (.+)$/.exec(l); return m && m[1] === m[2]; })")
+                check(f'{tag}: plan {pid} names each day “{unit} N” and never a part twice', len(days) == await ev(f"PLAN[{json.dumps(pid)}].n") and all(unit in d for d in days) and not twice, f'{days[:2]} {twice[:2]}')
             if await ev("PLANS.length"): await ev("WS().org = 'k'; renderHome()"); await pg.wait_for_timeout(200)
             # timing review: drafts only with ☰ › More settings › Audio timing on; a start and an end set by ear take effect at once
             drafts = await ev("(W.sources.au || []).filter(s => s.draft).map(s => s.id)")
@@ -183,7 +202,7 @@ async def main():
             check(f'{tag}: continue and play share one line', len(set(tops)) <= 1, tops)
 
             # ---- reader ----
-            await (await pg.query_selector('#orgList [data-open]')).click(); await pg.wait_for_timeout(1500); await shot(f'{tag}-reader')
+            await (await pg.query_selector('#orgList [data-open]')).click(); await until("document.querySelector('#reader').classList.contains('on') && document.querySelectorAll('#reader .verse').length > 0 && wReady"); await pg.wait_for_timeout(300); await shot(f'{tag}-reader')
             nv = await ev("document.querySelectorAll('#reader .verse').length")
             check(f'{tag}: reader opens with verses', nv > 0, nv)
             hdr = await ev("document.querySelector('#rMid').innerText")
@@ -250,12 +269,12 @@ async def main():
             # search for a word of the first verse
             word = await ev("cleanWord((IT[0].v[0].split(/\\s+/).find(x => cleanWord(x).length > 2)) || '')")
             if word:
-                await ev("openSearch('text')"); await pg.fill('#q', word); await pg.wait_for_timeout(1200); await shot(f'{tag}-search')
+                await ev("openSearch('text')"); await pg.fill('#q', word); await until("document.querySelectorAll('#sRes .res').length > 0"); await pg.wait_for_timeout(300); await shot(f'{tag}-search')
                 hits = await ev("document.querySelectorAll('#sRes .res').length")
                 check(f'{tag}: search finds a word of its first verse', hits > 0, f'{word}: {hits}')
                 if hits:
                     # a locator, found again at the tap: a work loaded by part draws its results again as each part's meanings come
-                    await pg.locator('#sRes .res').first.click(); await pg.wait_for_timeout(1200)
+                    await pg.locator('#sRes .res').first.click(); await until("document.querySelector('#reader').classList.contains('on')"); await pg.wait_for_timeout(300)
                     check(f'{tag}: a search result opens the reader', await ev("document.querySelector('#reader').classList.contains('on')"))
             # English interface
             await ev("S.settings.ui = 'en'; S.settings.layers.e = true; S.settings.layers.h = false; applyLang(); refreshReader()"); await pg.wait_for_timeout(500)
@@ -307,9 +326,20 @@ async def main():
                   if (t && !['sec', 'none'].includes((W.cite || {}).mark)){ const last = CKEY(c).split('.').pop().replace(/[^0-9]/g, ''); if (CKEY(t) !== last) pr.push(IT[i].id + ': ॥' + t + '॥ but ' + c); } }
                 return [bad.slice(0, 3), miss.slice(0, 3), pr.slice(0, 3)]; })()""")
             check(f'{tag}: every verse number the player shows finds that verse; the number at a verse\'s end is its citation\'s', cit == [[], [], []], cit)
+            # a verse's place, a section's label and a range never say one name twice ("Pauri 12 · Pauri 12", "Refrain – Refrain")
+            rp = await ev("""(() => { const bad = [], dup = l => l.split(/ · | – /).some((x, k, a) => k && x === a[k - 1]), step = Math.max(1, Math.floor(IT.length / 4000));
+                for (let i = 0; i < IT.length; i += step) if (dup(itemLabel(i))) bad.push(itemLabel(i));
+                PAGES.forEach(p => { if (dup(secLabel(p))) bad.push(secLabel(p)); });
+                return [...new Set(bad)].slice(0, 3); })()""")
+            check(f'{tag}: no place or section label repeats a name', rp == [], rp)
+            # search finds a verse by its bare number too ("10.2", the way a reader types what the player shows)
+            bare = await ev("""(() => { setScope('text'); const miss = [], step = Math.max(1, Math.floor(IT.length / 3000));
+                for (let i = 0; i < IT.length; i += step){ const c = CIT(IT[i]); if (!vNum(c) || !/\\./.test(c)) continue; const Q = numQuery(c); const hits = []; if (Q) numHits(Q, hits); if (!hits.some(h => h[1] === i)) miss.push(IT[i].id + ' ← ' + c); }
+                return miss.slice(0, 3); })()""")
+            check(f'{tag}: a dotted number typed bare (10.2) finds its verse', bare == [], bare)
         await pg.goto(url); await pg.wait_for_timeout(2500)
-        if SHARD:   # a shard runs only its share of the per-work checks, from a reader who has seen the tour
-            await ev("(() => { S.settings.tour = 1; closeTour(); S.settings.layers.h = false; save(); })()"); await pg.reload(); await pg.wait_for_timeout(2000)
+        if SHARD or ONLY is not None:   # a shard (or --works) runs only its share of the per-work checks, from a reader who has seen the tour
+            await ev("(() => { S.settings.tour = 1; closeTour(); S.settings.layers.h = false; save(); })()"); await pg.reload(); await until("typeof LIB !== 'undefined' && !!LIB && LIB.length > 0 && !!document.querySelector('#libList [data-node]')", 20000)
             for leaf, trail in mine(list(leaves(shelf))): await per_work(leaf, trail)
             check(f'shard {SHARD}/{NSHARD}: no script errors', not errs, '; '.join(errs[:3]))
             await b.close(); print(f'\n{sum(results)}/{len(results)} checks passed'); sys.exit(0 if all(results) else 'UX TEST FAILED')
@@ -1256,6 +1286,18 @@ async def main():
               toastLight('y'); const white = $('#toast').classList.contains('act'); $('#toast').classList.remove('on', 'act');
               const src = onEnded.toString() + tick.toString(); return [dark, white, /toastLight\\(msg\\)/.test(src)]; })()""")
         check('capsules: a toast is dark with no button; an ending is in the white capsule', cap == [True, True, True], cap)
+        # a reading timer set just before leaving (scrolling, then Back and another work opened within its 200 ms) does nothing:
+        # it once read the new work's verses with the old reading's range (smoke test: "reading 's'" in updateHeader)
+        n0 = len(errs)
+        race = await ev("""(async () => { await openWork('bhagavata-purana', true); openReader('k', IT.length - 40); await new Promise(r => setTimeout(r, 300));
+              window.scrollBy(0, 400); window.dispatchEvent(new Event('scroll')); show('home'); await openWork('ganga-aarti', true); await new Promise(r => setTimeout(r, 450)); return W.id; })()""")
+        check('a reading timer from the work just left does nothing in the next one', race == 'ganga-aarti' and len(errs) == n0, errs[n0:n0 + 2])
+        # the white capsule looks the same wherever it shows: the message after an ending and the reader's ↑ Go to / ↓ Back to pills
+        # share the page's surface, its rule, its shadow, the ink for words and the round ends; the dark one is ink on the page colour
+        look = await ev("""(() => { const st = e => { const c = getComputedStyle(e); return [c.backgroundColor, c.color, c.boxShadow, c.borderTopColor, c.borderTopLeftRadius]; };
+              toastLight('y'); const w = st($('#toast')); $('#toast').classList.remove('on', 'act'); toast('x'); const d = st($('#toast')); $('#toast').classList.remove('on');
+              const pj = $('#pJump'), was = pj.hidden; pj.hidden = false; const p = st(pj); pj.hidden = was; return [JSON.stringify(w) === JSON.stringify(p), w[0] !== d[0] && d[2] === 'none']; })()""")
+        check('capsules: the white capsule and the Go to / Back to pills look alike; the dark one does not', look == [True, True], look)
         # A−/A+ scale the sheets and search results too, with nothing spilling sideways at the largest size
         zs = await ev("""(async () => { const was = S.settings.size, out = []; for (const sz of [21, 34]){ S.settings.size = sz; applyTheme(); await openWork('manas', true); openReader('M', dayRange('M', 27)[0]); await new Promise(r => setTimeout(r, 300)); $('#rMid').click(); await new Promise(r => setTimeout(r, 400));
             const sb = $('#sheetBody'); out.push([+getComputedStyle(sb).zoom, sb.scrollWidth <= sb.clientWidth + 1, +getComputedStyle($('#sRes')).zoom]); closeSheet(); }
@@ -1313,11 +1355,14 @@ async def main():
         sheet = await ev("$('#sheet').classList.contains('on') ? $('#sheetBody').innerText : ''")
         await ev("closeSheet()")
         check('hard words of a meaning are underlined and open their meaning (the work’s own sense first); other words are plain', 'अविद्या' in hw[0] and 'avidyā' in hw[0] and 'उपासना' in hw[0] and hw[1] and 'ritual works' in sheet, [hw, sheet[:120]])
-        # ☰ › More settings › "Meaning per line": off by default; the switch turns it on
+        # ☰ › More settings › "Meaning per line": shown only for a work with a meaning line by line (as Footnotes, Commentary);
+        # off by default; the switch turns it on
+        hidden = await ev("(async () => { show('settings'); await new Promise(r => setTimeout(r, 200)); return !document.querySelector('#slines') && !hasLines(); })()")   # the Īśāvāsya: whole meanings only
+        await ev("openWork('sundarkand', true)"); await pg.wait_for_timeout(1500)
         await ev("delete S.settings.lines; save(); show('settings')"); await pg.wait_for_timeout(300)
-        off0 = await ev("!document.querySelector('#slines').checked")
+        off0 = await ev("!!document.querySelector('#slines') && !document.querySelector('#slines').checked")
         await (await pg.query_selector('label:has(#slines)')).click(); await pg.wait_for_timeout(200)
-        check('“Meaning per line” is off by default and its switch turns it on', off0 and await ev("S.settings.lines === true"))
+        check('“Meaning per line” shows only in a work with line-by-line meanings, is off by default and its switch turns it on', hidden and off0 and await ev("S.settings.lines === true"))
         await ev(f"(() => {{ S = JSON.parse({json.dumps(keep)}); save(); applyState(); }})()")
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await split_work(b, SHOTS)

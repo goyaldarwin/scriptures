@@ -139,6 +139,8 @@ def check_work(lib, leaf, LANGS):
         _need(len(p['end']) == p['n'], f"{name}: plan {p['id']} has {len(p['end'])} ends for {p['n']} days")
         pos = [ids.index(e) if e in ID else -1 for e in p['end']]
         _need(min(pos) >= 0 and pos == sorted(pos), f"{name}: plan {p['id']} ends are missing or out of order")
+        # the plan's own word for a day (विश्राम / Vishram, दिन / Day): the app names every day by it, never by another work's
+        _need(_bi(p.get('unit')) and _bi(p.get('name')) and _bi(p.get('long')), f"{name}: plan {p['id']} needs name, long and unit {{hi, en}}")
         # before / after: pages read before the first day and after the reading (pūrvāṅga / uttarāṅga)
         pages = ({'vidhi'} if (w.get('vidhi') or {}).get('hi') else set()) | ({'aarti'} if (w.get('vidhi') or {}).get('aarti') else set()) | ({'visarjan'} if (w.get('vidhi') or {}).get('visarjan') else set())
         vs = (w.get('vidhi') or {}).get('visarjan')
@@ -177,6 +179,10 @@ def check_work(lib, leaf, LANGS):
             else: _need('load' not in s and not os.path.isdir(pd), f"{where}: only a work with \"load\": \"parts\" has its meanings by part")
             _need(s.get('lang') in (LANGS if CM else ML), f"{where}: lang must be " + ("a language of glossary/languages.json" if CM else f"a meaning language of glossary/languages.json ({', '.join(ML)})"))
             _need(_bi(s.get('title')), f"{where}: needs title {{hi, en}}")
+            if not CM and not sid.endswith('-scriptures'):   # a copied meaning is named one way: "<who> — <language> meaning" (one word for one thing: never "translation")
+                LN = LANGS[s['lang']]['meaning']['name']
+                _need(re.fullmatch(rf'.+ — {LN["en"]} meaning( \(.+\))?', s['title']['en']) and re.fullmatch(rf'.+ — {LN["hi"]} (अर्थ|भावार्थ)( \(.+\))?', s['title']['hi']),
+                      f"{where}: a copied meaning's title is \"<who> — {LN['en']} meaning\" / \"<who> — {LN['hi']} अर्थ\", got {s['title']}")
             bad = [k for k in s['m'] if k not in ID]; _need(not bad, f"{where}: {len(bad)} unknown item ids, e.g. {bad[:3]}")
             for k, e in s['m'].items(): _need(isinstance(e, list) and e and isinstance(e[0], str), f"{where}: {k} must be [text, footnotes?]")
             # line by line: "p" gives a verse's meaning one piece per verse line, shown under its line;
@@ -186,8 +192,9 @@ def check_work(lib, leaf, LANGS):
                 _need(k in s['m'], f"{where}: p.{k} has no meaning in m")
                 _need(isinstance(ps, list) and len(ps) == NL.get(k, -1) and all(isinstance(x, str) for x in ps) and any(x.strip() for x in ps),
                       f"{where}: p.{k} must give one piece (or \"\") per verse line ({NL.get(k, '?')} lines)")
-            # footnotes: shown under the meaning they belong to; the app shows its Footnotes switch only for a work with some
-            e = {'id': sid, 'file': KIND + '/' + sid, 'title': s['title'], 'order': s.get('order', 100), **({'notes': True} if any(len(x) > 1 and x[1] for x in s['m'].values()) else {})}
+            # footnotes: shown under the meaning they belong to; the app shows its Footnotes switch only for a work with some,
+            # and its "Meaning per line" switch only for a work with a meaning given line by line ("lines")
+            e = {'id': sid, 'file': KIND + '/' + sid, 'title': s['title'], 'order': s.get('order', 100), **({'notes': True} if any(len(x) > 1 and x[1] for x in s['m'].values()) else {}), **({'lines': True} if s.get('p') and not CM else {})}
             if CM: src['cm'].append({**e, 'lang': s['lang']})
             else: src[s['lang']].append(e)
     for f in sorted(glob.glob(os.path.join(lib, path, 'audio', '*.json'))):

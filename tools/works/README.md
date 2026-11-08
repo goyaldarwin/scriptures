@@ -116,3 +116,5 @@ A commentary explains the verses (a guru's ṭīkā, a bhāṣya); a translation
 1. Make `tools/works/<id>/` with `work.json`, `text.txt`, `README.md` and `reconciliation.md` (copy them from a work like it: `shiv-aarti` for a short hymn, `katha-upanishad` for a text settled from a book).
 2. Add the work to the shelf, `library/index.json`.
 3. Write the meanings, add the missing words to `library/glossary/<lang>.json`, then export, build and run the checks (`docs/HOW-TO.md` → "Add a new work").
+4. Read the work's row in `docs/WORKS.md` (the build writes it) beside the works like it: the same levels, the same verse types and names, a citation with every level its book uses, our meanings line by line, every word with a meaning, each recording timed by MMS. Anything that differs is either fixed or said in the work's README with its reason.
+5. While working on it, `python3 tools/site/check.py --works <id>` runs the build, the regeneration check (only what changed), the history check, the smoke test and the work's own UX checks; the full `check.py` before the pull request.

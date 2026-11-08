@@ -26,11 +26,11 @@ jobs:
         run: python tools/site/build.py
       - name: the committed website matches the build
         run: |
-          git status --porcelain -- index.html app get sw.js manifest.json library > /tmp/diff.txt
+          git status --porcelain -- index.html app get sw.js manifest.json library docs/WORKS.md > /tmp/diff.txt
           if [ -s /tmp/diff.txt ]; then echo "These generated files differ from what the build makes — run tools/site/build.py and commit:"; cat /tmp/diff.txt; git diff --stat; exit 1; fi
       - name: library/ is exactly what the generators make
         run: |
-          python tools/site/regen_check.py 2>&1 | tee /tmp/regen.txt; rc=${PIPESTATUS[0]}
+          python tools/site/regen_check.py --full 2>&1 | tee /tmp/regen.txt; rc=${PIPESTATUS[0]}
           grep -E '^FAIL|^ ' /tmp/regen.txt | head -20 | sed 's/^/::error::/'; exit $rc
       - name: no work or verse id that readers' bookmarks, notes and audio times point at has disappeared
         run: |

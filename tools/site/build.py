@@ -1,8 +1,9 @@
 """Build the website and the single-file versions.
 
 python3 tools/site/build.py
-  1. registers each work's meaning/audio sources and checks the library (library.py), re-writes the shared glossary and
-     shelf files one entry per line (tools/jsonio.py) and checks that app.js parses; stops on any problem
+  1. registers each work's meaning/audio sources and checks the library (library.py), writes docs/WORKS.md (catalogue.py),
+     re-writes the shared glossary and shelf files one entry per line (tools/jsonio.py) and checks that app.js parses;
+     stops on any problem
   2. writes the website at the repository root: index.html, app/ (app.js, style.css, fonts.css, fonts, icons), manifest.json, sw.js,
      privacy.html, get/ (the shared link), CNAME, .nojekyll and .well-known/assetlinks.json
   3. writes dist/Scriptures-offline.html (everything in one file) and dist/Scriptures-artifact.html (for a claude.ai artifact)
@@ -36,6 +37,7 @@ from library import prepare, LibraryError
 try: WORKS = prepare(os.path.join(ROOT, 'library'))
 except LibraryError as e: sys.exit('LIBRARY PROBLEM: ' + str(e))
 print('works', WORKS)
+import catalogue; catalogue.main()   # docs/WORKS.md: every work's structure, numbering, sources and recordings, made from the library
 # keep shared files one entry per line (tools/jsonio.py) so parallel branches merge cleanly
 sys.path.insert(0, os.path.dirname(HERE)); import jsonio
 for f in glob.glob(os.path.join(ROOT, 'library', 'glossary', '*.json')):
@@ -45,6 +47,11 @@ jsonio.dump_shelf(os.path.join(ROOT, 'library', 'index.json'), json.load(open(os
 import subprocess
 r = subprocess.run(['node', '--check', os.path.join(HERE, 'app.js')], capture_output=True, text=True)
 if r.returncode: sys.exit('APP PROBLEM: tools/site/app.js does not parse\n' + r.stderr)
+# one word for one thing (docs/PLAYBOOK.md §7): the app's English labels (the second half of each T('…', '…'), and the
+# template's data-en) never say "translation" (a meaning), "listen" or "hear" (play), "text" (a verse) or "colophon"
+_labels = re.findall(r"T\(\s*'(?:[^'\\]|\\.)*'\s*,\s*'((?:[^'\\]|\\.)*)'", app) + re.findall(r'data-en="([^"]*)"', tpl)
+_bad = sorted({l for l in _labels if re.search(r'\btranslat|\bcolophon', l, re.I) or (len(l.split()) <= 4 and re.search(r'\b(listen|hear|text)\b', l, re.I))})
+if _bad: sys.exit('APP PROBLEM: labels outside the vocabulary of docs/PLAYBOOK.md §7 (meaning, play, verse, closing words): ' + '; '.join(_bad[:5]))
 # ---------- website ----------
 if os.path.isdir(os.path.join(SITE, 'app')): shutil.rmtree(os.path.join(SITE, 'app'))
 APPD = os.path.join(SITE, 'app'); os.makedirs(os.path.join(APPD, 'fonts'), exist_ok=True)
