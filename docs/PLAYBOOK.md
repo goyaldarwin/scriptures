@@ -191,6 +191,7 @@ Contents: 1 Working with the owner · 2 Sources and accuracy · 3 Texts · 4 Mea
 - **Sending:** "Send to the library" opens a GitHub issue; the `timing` workflow (issues from the owner's accounts only: `goyaldarwin`, `darwingoyal`) applies it and fails if any other verse would change. Owner times win over everything. A live recording takes each send at once; a draft goes live with the "checked: publish it for everyone" switch.
 - **A recording covers every verse timed on it:** its `first`..`last` in the timings includes the verses the owner set after its last matched one (`make_timings.py`, the app, and a build check), so at a recording's end the player never goes back to a verse on the same recording (a loop).
 - **Helpers** save their marks as a file; the owner opens it and checks each mark before it is sent.
+- **What you hear now wins** (the owner: "Starts now" was refused because a later verse, started by an earlier "Ends now", already began before now): "Starts now" removes, and names in its toast, any start set on this phone and not yet sent that is out of order with it; a sent start still has to be moved first.
 - **A sample to check** (the owner: "suddenly the number I have to look at increases"): a source whose to-check list is a sample for scoring (`source.json` → `check_only`) keeps exactly that list; the verses the order rule moves around his times are not added to it.
 - **Verifying a send:** compare the issue's JSON with `library/<path>/audio/<source>.json` (each sent time exact), read `moved`, and check the deploy run succeeded.
 

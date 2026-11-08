@@ -1,0 +1,24 @@
+{
+ "about": "Every change to the owner's copy of sanskritdocuments.org's text, by item (its ref in the copy): [the copy's words, ours, why]. The copy's words must occur exactly once in the item (make_text.py checks). reconciliation.md lists them with the witness.",
+ "lines": {
+  "1.104": [["वदामि ते ॥", "वदामि ते ॥ ऐं ॐ ॥", "the closing bīja, which the copy prints as a line of its own after the adhyāya (। ऐं ॐ ।), written at the end of the last mantra as Gita Press prints it (॥ ऐंॐ॥ १०४॥)"]],
+  "3.4": [["तस्य छित्वा", "तस्य च्छित्त्वा", "छित्त्वा, the absolutive of छिद्, with the doubled च्छ after the short vowel (Gita Press: तस्यच्छित्त्वा); छित्वा is a slip"]],
+  "3.5": [["चातिसमुच्छृतम्", "चातिसमुच्छ्रितम्", "समुच्छ्रित (उत् + श्रि, \"raised high\"); समुच्छृत is not a word (Gita Press: समुच्छ्रितम्)"]],
+  "4.9": [["महाव्रता त्वं", "महाव्रता त्व-", "a word-final m before a vowel is joined to it (त्वमभ्यस्यसे, Gita Press's), written across the line with a hyphen as the copy itself does in 4.10 (निधान- / मुद्गीथ…)"], ["अभ्यस्यसे सुनियतेन्द्रिय", "मभ्यस्यसे सुनियतेन्द्रिय", "the same"]],
+  "4.19": [["तेष्वहितेषुसाध्वी", "तेष्वहितेषु साध्वी", "a missing space: साध्वी is a word of its own (the mind is kind, साध्वी, even towards the hostile)"]],
+  "4.23": [["भयमप्यपास्तम्", "भयमप्यपास्त-", "as 4.9 (अपास्तमस्माकम्, Gita Press's)"], ["अस्माकमुन्मदसुरारिभवं", "मस्माकमुन्मदसुरारिभवं", "the same"]],
+  "4.27": [["चास्त्रानि", "चास्त्राणि", "न after र in the same word is ण (अस्त्राणि; Gita Press agrees)"]],
+  "4.42": [["कथयामि ते ॥", "कथयामि ते ॥ ह्रीं ॐ ॥", "the closing bīja, which the copy prints after the adhyāya (। ह्रीं ॐ ।), at the end of the last mantra as Gita Press prints it"]],
+  "8.53": [["प्राहसत्वरम्", "प्राह सत्वरम्", "a missing space: प्राह (\"said\") and सत्वरम् (\"quickly\") are two words"]],
+  "8.55": [["क्षेणरक्तो", "क्षीणरक्तो", "क्षीण (\"drained\"): with his blood drained the demon will perish; क्षेण is not a word (Gita Press: क्षीणरक्तो)"]],
+  "9.15": [["आविद्याथ", "आविध्याथ", "आविध्य, the absolutive of आ + व्यध् (\"whirling\" the mace); आविद्य is a slip (Gita Press: आविध्याथ)"], ["देव्यास् त्रिशूलेन", "देव्यास्त्रिशूलेन", "a space inside the sandhi: देव्याः + त्रिशूलेन is देव्यास्त्रिशूलेन"]],
+  "9.23": [["वैः शब्दैरसुरा", "तैः शब्दैरसुरा", "तैः (\"by those\" cries); वैः is not a word (Gita Press: तैः)"]],
+  "10.16": [["अभ्यधा वत", "अभ्यधावत", "a space inside the word अभ्यधावत (\"rushed at\")"]],
+  "12.10": [["माहात्म्यम् उच्चार्यं", "माहात्म्यमुच्चार्यं", "a word-final m before a vowel is joined to it"]],
+  "13.15": [["ददामिते", "ददामि ते", "a missing space: ददामि (\"I give\") ते (\"to you\")"]],
+  "kavacha.47": [["तत्रार्थलाभश्व", "तत्रार्थलाभश्च", "च (\"and\"); श्व is a slip (Gita Press: तत्रार्थलाभश्च)"]],
+  "chapter-2/dhyānam-1": [["अक्षस्रक्परशू", "अक्षस्रक्परशुं", "परशुम्, an accusative like every other weapon she holds (दधतीं); परशू is a slip (Gita Press: परशुं)"]],
+  "chapter-7/dhyānam-1": [["मातङ्गी शङ्कपात्रां", "मातङ्गीं शङ्खपात्रां", "accusatives, the objects of ध्यायेयं (Gita Press: मातङ्गीं), and शङ्ख, the conch-shell cup; शङ्क is a slip"]],
+  "chapter-12/dhyānam-1": [["करवाळखेटविलसधस्ताभि", "करवालखेटविलसद्धस्ताभि", "विलसत् + हस्त is विलसद्धस्त (the copy drops the द्), and करवाल is written with ल as everywhere else in the text (Gita Press: करवालखेटविलसद्धस्ताभि)"]]
+ }
+}

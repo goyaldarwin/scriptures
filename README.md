@@ -8,6 +8,7 @@ A personal, ad-free library for studying scriptures. Each work has the same read
 |---|---|---|
 | Granthas › Gosvāmī Tulasīdāsa | Śrī Rāmacaritamānasa: 7 kāṇḍas, 30-day and 9-day pārāyaṇa | Gita Press, Gorakhpur |
 | Granthas › Gosvāmī Tulasīdāsa | Sundarakāṇḍa, with the Hanumān Chālīsā and the āratī | Gita Press (generated from the Mānas) |
+| Granthas › Maharṣi Vedavyāsa | Śrī Durgā Saptaśatī (Devī Māhātmya): 13 adhyāyas, 700 mantras, with the Argalā, Kīlaka and Kavaca, the Aparādha-kṣamāpaṇa stotra and the Devī Sūkta | sanskritdocuments.org (the owner's copy), checked against Gita Press
 | Stotras › Śrī Rāma | Śrī Rāma Rakṣā Stotram (Budha Kauśika): viniyoga, dhyāna, 38 ślokas | Vande Guru Paramparaam (video) |
 | Āratī › Śrī Rāma, Śrī Hanumān, Bhagavān Viṣṇu, Bhagavān Śiva, Mother Gaṅgā | Śrī Rāmacandra Kṛpālu, Āratī Kīje Śrī Rāmalalā Kī, Āratī Kījai Rāmacandra Jī Kī, Āratī Kījai Hanumāna Lalā Kī, Om Jaya Jagadīśa Hare, Om Jaya Śiva Oṅkārā, Om Jaya Gaṅge Mātā | the owner's printouts and screenshots |
 | Āratī › Shirdi Sāī Bābā | Dhūpa Āratī (evening āratī): Marathi, Sanskrit, Hindi | Shirdi tradition |
@@ -59,6 +60,8 @@ Meanings marked "Scriptures" (`hi-scriptures`, `en-scriptures`, `pa-scriptures`)
 **Śrī Rāmacaritamānasa.** The verse text is in the public domain. The Hindi bhāvārtha (Hanumānprasād Poddār) and the English translation are © Gita Press, Gorakhpur, and are shown credited to Gita Press. Gita Press is the default source. Our own Hindi and English meanings cover every kāṇḍa except the Bāla-kāṇḍa (there only Bāla 17, the sorṭhā), as a second source. Audio: Pt. Kamlesh Upadhyay "Haripuri".
 
 **Śrīmad Bhāgavata Mahāpurāṇa** (with the Śrīmad Bhāgavata Māhātmya). The Sanskrit text is in the public domain; it is read from the owner's Gita Press books (codes 26–27). The Hindi commentary (सरल हिन्दी व्याख्या) is © Gita Press, Gorakhpur, shown credited to Gita Press, the only meaning so far; permission has not been requested. Word meanings are not written yet. Six verses the e-book leaves out (10.33.17–22) are from vedabase.io and wisdomlib.org (`tools/works/bhagavata-purana/reconciliation.md`).
+
+**Śrī Durgā Saptaśatī** (the Devī Māhātmya). The Sanskrit text is in the public domain; it follows the owner's copy of sanskritdocuments.org's text, checked word for word against the owner's Gita Press book (code 118) (`tools/works/durga-saptashati/reconciliation.md`). Our own Hindi and English meanings (the owner's drafts, brought to the style sheet) are the default. The second English source is F. E. Pargiter's translation of the Mārkaṇḍeya Purāṇa (Bibliotheca Indica, 1904), in the public domain. The Gita Press book (© Gita Press, Gorakhpur) is used only to check the text, word meanings and meanings; nothing of it is included.
 
 **Sundarakāṇḍa** (a work of its own). Its text is generated from the Rāmacaritamānasa. Our own Hindi and English meanings are the default. Gita Press's meanings, generated from the Mānas (credited the same way), are the second source under ☰ › More settings › Sources. The Śrī Hanumān Chālīsā (Tulasīdāsa) and the āratī "आरती कीजै हनुमान लला की" are traditional texts in the public domain; their wording was settled from bhaktibharat.com, Kavita Kosh and Bharatkosh (`tools/works/sundarkand/reconciliation.md`). Audio: Pt. Ashwin Kumar Pathak.
 
