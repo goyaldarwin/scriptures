@@ -109,7 +109,7 @@ Every other key is copied into `library/<path>/work.json` as it is.
 
 ## `commentary/<lang>/<source>.json`
 
-A commentary explains the verses (a guru's ṭīkā, a bhāṣya); a translation is a meaning. Same format and rules as a meaning source, with three differences: `lang` may be any language of `library/glossary/languages.json` (a Sanskrit ṭīkā is `sa`); there is no `numbers` and no `partial` (a commentary need not cover every verse); and our own (`scriptures`) has no default title. Its library id is `<lang>-<source>`, written to `library/<path>/commentary/` (`docs/LIBRARY.md` §3). A work may have any number; the reader sees none until one is chosen.
+A commentary explains the verses (a guru's ṭīkā, a bhāṣya); a translation is a meaning. Same format and rules as a meaning source (a list in `m` is the commentary line by line: the reader shows each line's piece as its own paragraph), with three differences: `lang` may be any language of `library/glossary/languages.json` (a Sanskrit ṭīkā is `sa`); there is no `numbers` and no `partial` (a commentary need not cover every verse); and our own (`scriptures`) has no default title. Its library id is `<lang>-<source>`, written to `library/<path>/commentary/` (`docs/LIBRARY.md` §3). A work may have any number; the reader sees none until one is chosen.
 
 ## Start a new work
 
