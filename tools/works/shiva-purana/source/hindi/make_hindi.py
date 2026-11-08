@@ -189,17 +189,36 @@ def main(draft=False):
         if rest is None: continue
         for k, piece in moved: m[k] = piece.strip(); split.append(k)
         m[vid] = rest.strip()
+    failed = []                                         # the full proofreading against the page (<book>.full.json)
+    for book in BOOKS:
+        F = load(f'{book}.full.json', {'edits': {}, 'set': {}, 'add': {}})
+        for vid, t in F['set'].items():
+            if vid in m or vid in F['add']: m[vid] = typography(t)
+        for vid, t in F['add'].items():
+            if vid not in m: m[vid] = typography(t)
+        for vid, E in F['edits'].items():
+            if vid not in m: failed.append((vid, 'no paragraph')); continue
+            for a, b in E:
+                if a in m[vid]: m[vid] = m[vid].replace(a, b, 1)
+                else: failed.append((vid, a))
+            m[vid] = typography(m[vid])
+    if failed: print(f'{len(failed)} proofreading edits not found:', failed[:20])
+    for vid in [v for v, t in m.items() if '⟨?⟩' in t or '⟦' in t]:
+        doubt.append(vid)
+        if not draft: del m[vid]
+    m = dict(sorted(m.items(), key=lambda kv: [int(x) if x.isdigit() else -1 for x in kv[0].replace('m.', '0.').split('.')]))
     out = {'about': ABOUT, 'title': {'hi': 'गीताप्रेस — हिन्दी अनुवाद', 'en': 'Gita Press — Hindi translation'},
            'order': 2, 'copied': True, 'm': m}
     path = os.path.join(WORK, 'meanings', 'hi', 'gitapress.json')
     os.makedirs(os.path.dirname(path), exist_ok=True)
     json.dump(out, open(path, 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
-    m = dict(sorted(m.items(), key=lambda kv: [int(x) if x.isdigit() else -1 for x in kv[0].replace('m.', '0.').split('.')]))
     print(f'{len(split)} paragraphs split off at a mark inside another')
     print(f'{len(cuts)} first paragraphs cut to the speaker; {len(unheads)} paragraphs with heading words taken out')
     print(f'{len(heads)} first paragraphs with a heading and no speaker:', ' '.join(heads))
+    doubt = [d for d in doubt if d not in m]
     print(f'{len(m)} paragraphs written; {len(doubt)} with a word still in doubt' + (' (kept: --draft)' if draft else ' (left out)'))
-    for d in doubt: print('  ', d)
+    for d in doubt:
+        if d not in m: print('  ', d)
 
 if __name__ == '__main__':
     main('--draft' in sys.argv)

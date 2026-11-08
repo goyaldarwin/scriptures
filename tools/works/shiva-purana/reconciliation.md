@@ -39,6 +39,7 @@ Read from the owner's scans of Gita Press code 2223 (the Māhātmya to 2.5.59) a
 | 2.5.59 (pp. 1065–1068) | दुन्दुभिनिर्ह्लाद: the conjunct is the ह्ल of प्रह्लाद on the same page. |
 | 6.22.13 | ह्रां ह्रीं ह्रूं ह्रैं ह्रौं ह्रः: each of the six bold bījas has the stroke of ह्र inside its bowl (Kalyan p. 430, read at 400 dpi). |
 | 5.5.4, 6.12.3 | No paragraph: 5.5.4's verse is inside the ॥ ४-५ ॥ paragraph, and 6.12.3's inside ॥ ३-१३ ॥ (what stood there was a footnote's mantra lines). |
-| 3.39.18 | Left out: an ink blot covers the word before शरीरसे (Kalyan p. 151). |
+| 3.39.18, 3.29.10 | Left out: an ink blot covers a word (Kalyan p. 151, the word before शरीरसे; p. 125, the first letter of the word before दिये). |
 | Verse marks | A range is written with a hyphen (॥ ३-५ ॥), as in the Bhāgavata's Hindi, where Kalyan prints a long dash in some; a half verse as ½. |
-| Not yet carried | The books' footnotes (`source/hindi/<book>.notes.json` marks the lines left out); 358 verses whose Hindi the adhyāya walk did not place (a misread verse mark); words one OCR pass alone read that the readers found printed (`<book>.extra.json`). |
+| Proofread whole | Every paragraph was then read against its page by eye (`source/hindi/<book>.full.json`: each change as the page has it, a paragraph given whole where much was wrong, and the paragraphs the adhyāya walk had missed). |
+| Not yet carried | The books' footnotes (`source/hindi/<book>.notes.json` marks the lines left out); the Hindi of 2.1.14.87 and 7.2.31.126–132, which the proofreading did not place. |
