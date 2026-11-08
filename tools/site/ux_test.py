@@ -106,7 +106,7 @@ async def main():
             if drafts:
                 check(f'{tag}: a draft recording is not played to readers', (await ev("SRC.au ? SRC.au.meta.id : null")) not in drafts)
             await ev("S.timing.on = true; applyTiming()"); await ev("loadSources()"); await pg.wait_for_timeout(600)
-            if await ev("!!SRC.au"):
+            if await ev("!!SRC.au && !!(AUT[0] || []).length"):   # a draft not yet timed (still being transcribed) has no verse to set
                 j = await ev("AUT[0][1] ? AUT[0][1][0] : AUT[0][0][0]")
                 await ev(f"setTime({j}, 1, AUT[0].find(x => x[0] === {j})[1] + 0.5); setTime({j}, 2, AUT[0].find(x => x[0] === {j})[1] + 3)")
                 ent = await ev(f"AUT[0].find(x => x[0] === {j})")
