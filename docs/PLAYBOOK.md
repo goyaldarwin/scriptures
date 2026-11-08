@@ -200,7 +200,7 @@ Contents: 1 Working with the owner · 2 Sources and accuracy · 3 Texts · 4 Mea
 - **Verifying a send:** compare the issue's JSON with `library/<path>/audio/<source>.json` (each sent time exact), read `moved`, and check the deploy run succeeded.
 
 ## 9. Apps and store
-- **One app per tradition** (the Hindu app also shows the Sukhmani Sahib), published by the owner's corporation, in every country except mainland China; Android first, iPhone when the owner asks. The app shows the website, so content never waits for an app update. Details: `docs/APPS.md`.
+- **One app per tradition** (the Hindu app also shows Sri Guru Granth Sahib, the Sukhmani Sahib and the Japji Sahib), published by the owner's corporation, in every country except mainland China; Android first, iPhone when the owner asks. The app shows the website, so content never waits for an app update. Details: `docs/APPS.md`.
 - **Store pictures come from the real app** (`tools/store/screenshots.py`): a light, warm background, and only verses whose meanings are our own.
 - Support email: support@craadle.org.
 

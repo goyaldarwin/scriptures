@@ -1,8 +1,9 @@
 {
- "_note": "Store apps and the shelves each shows (?app=<id>): one app per tradition; the Hindu app also carries the Sukhmani Sahib and the Japji Sahib. \"store\": the app's public store page, shared by ☰ › Share the app.",
+ "_note": "Store apps and the shelves each shows (?app=<id>): one app per tradition; the Hindu app also carries Sri Guru Granth Sahib, the Sukhmani Sahib and the Japji Sahib. \"store\": the app's public store page, shared by ☰ › Share the app.",
  "hinduism": {
   "shelves": [
    "hinduism",
+   "sikhism/gurbani/guru-granth-sahib",
    "sikhism/gurbani/guru-arjan-dev/sukhmani-sahib",
    "sikhism/gurbani/guru-nanak-dev/japji-sahib"
   ],
