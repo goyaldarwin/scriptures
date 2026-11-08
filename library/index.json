@@ -153,10 +153,31 @@
        "en": "Maharshi Ved Vyas"
       },
       "desc": {
-       "hi": "श्रीदुर्गासप्तशती",
-       "en": "Shri Durga Saptashati"
+       "hi": "श्रीमद्भगवद्गीता, श्रीदुर्गासप्तशती",
+       "en": "Shrimad Bhagavad Gita, Shri Durga Saptashati"
       },
       "children": [
+       {
+        "id": "bhagavad-gita",
+        "work": "bhagavad-gita",
+        "path": "hinduism/granth/vyasa/bhagavad-gita",
+        "title": {
+         "hi": "श्रीमद्भगवद्गीता",
+         "en": "Shrimad Bhagavad Gita"
+        },
+        "by": {
+         "hi": "महर्षि वेदव्यास",
+         "en": "Maharshi Ved Vyas"
+        },
+        "edition": {
+         "hi": "sanskritdocuments.org का पाठ",
+         "en": "sanskritdocuments.org's text"
+        },
+        "desc": {
+         "hi": "महाभारतके भीष्मपर्वमें श्रीकृष्ण और अर्जुनका संवाद, अठारह अध्यायोंमें",
+         "en": "The dialogue of Shri Krishna and Arjun in the Mahabharat's Bhishma Parv, in eighteen adhyays"
+        }
+       },
        {
         "id": "durga-saptashati",
         "work": "durga-saptashati",
