@@ -3,7 +3,7 @@
     python3 tools/works/bhagavad-gita/source/meanings.py <bhagavad-gita.json>
 
 Writes, in tools/works/bhagavad-gita/meanings/:
-  hi/scriptures.json, en/scriptures.json   ours: the owner's drafts (written from each verse with Claude), brought to
+  hi/scriptures.json, en/scriptures.json   ours: the Gītā Dhyānam's from dhyana_meanings.json; the rest the owner's drafts (written from each verse with Claude), brought to
                                            tools/meanings/style.md by the rules below; meaning_fixes.json, beside this
                                            script, replaces a verse's draft where a rule cannot (each with its reason);
   en/besant.json                           Annie Besant's translation (4th ed., 1922), copied as given;
@@ -110,6 +110,8 @@ def main(src):
     for c, (hn, en_, ename) in enumerate(YOGA, 1):        # the closing words, one pattern (ours, not drafts)
         H[f'{c}.iti'] = f'ॐ तत् सत्। इस प्रकार उपनिषद्रूप श्रीमद्भगवद्गीतामें, ब्रह्मविद्या और योगशास्त्रमें, श्रीकृष्ण और अर्जुनके संवादमें {hn} नामक {HORD[c - 1]} अध्याय पूरा हुआ।'
         E[f'{c}.iti'] = f'Oṃ Tat Sat. Thus, in the Upaniṣads of the Śrīmad Bhagavad Gītā, the knowledge of Brahman, the scripture of yoga, in the dialogue between Śrī Kṛṣṇa and Arjuna, ends the {EORD[c - 1]} adhyāya, named {en_}, {ename}.'
+    DM = json.load(open(os.path.join(HERE, 'dhyana_meanings.json'), encoding='utf-8'))   # the Gītā Dhyānam: ours
+    H.update(DM['hi']); E.update(DM['en'])
     for lang, D in (('hi', H), ('en', E)):
         for r, x in F.get(lang, {}).items():
             assert r in D, r; D[r] = x['text']

@@ -10,6 +10,9 @@ The base is the owner's copy of sanskritdocuments.org's text (`README.md`). The 
 - **Left out, not being the Gītā's text:** the page's header lines (श्रीमद्भगवद्गीता, ॥ ॐ श्री परमात्मने नमः ॥, ॥ अथ श्रीमद्भगवद्गीता ॥) and the Viṣṇu dhyāna-śloka it prints after the text (शान्ताकारं भुजगशयनं …).
 - **Characters.** Runs of spaces are one space (6.17, 11.16); the text is NFC.
 
+## The Gītā Dhyānam
+The nine verses are typed from the owner's printout of shlokam.org (`source/dhyana.txt`). Its text layer puts a space inside some words (फु ल्ल, कृ ष्णाय, कं स, वेलाकु ला, के शवः, यत्कृ पा, षट् पदै); each word is joined as the printout's own transliteration gives it (phullāravinda…, kṛṣṇāya …), and the letters then equal the printout's, all 985. Its readings stand: नानाख्यानककेशरं (केशर, the classical spelling of केसर, "filament"), पाण्डवै रणनदी (पाण्डवैः before र loses its visarga). The printout has no daṇḍas or numbers: a । ends each half-verse and ॥N॥ each verse, as in the Gītā.
+
 ## Verses
 | Verse | The copy | Here | Why |
 |---|---|---|---|
