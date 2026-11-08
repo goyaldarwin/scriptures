@@ -863,7 +863,12 @@ $('#pCheck').onclick = () => {
 $('#pStep').onclick = () => { S.timing.step = STEPS[(STEPS.indexOf(step()) + 1) % STEPS.length]; save(); syncStep(); toast('− / + = ' + step() + ' s'); };
 function step(){ return S.timing.step || 0.5; }
 // a start that is only a guess — listed to be checked by the library, or placed again by text length to fit the set times — and not set by ear on this phone
-function toCheck(i){ const id = IT[i].id, A = SRC.au; return !!(S.timing.on && A && A.checkSet && (((A.checkSet.has(id) || (A.moved && A.moved.has(id))) && !myStarts()[id]) || FLAGGED.has(id))); }
+// a verse to check: listed by the library, or placed again around set times (moved) — except for a source whose list is a
+// fixed sample ("checkOnly": the owner scores the timings on it, and setting a verse's neighbours must not add to it) — or flagged
+// a start the light does not follow while timings are reviewed: one to check, or placed again around set times, or only
+// guessed — whatever the to-check list holds
+function unsure(i){ const id = IT[i].id, A = SRC.au; return toCheck(i) || !!(S.timing.on && A && !myStarts()[id] && !ownAt(id) && ((A.moved && A.moved.has(id)) || (A.guessSet && A.guessSet.has(id)))); }
+function toCheck(i){ const id = IT[i].id, A = SRC.au; return !!(S.timing.on && A && A.checkSet && (((A.checkSet.has(id) || (A.moved && !A.checkOnly && A.moved.has(id))) && !myStarts()[id]) || FLAGGED.has(id))); }
 // a timing flag (the owner: a listener hears where the recording and the verse part), set with "Review audio timing" in the
 // verse's ⋮ menu; once set, one sign shows it in both places, a blue dot (REVB): on the verse's ▶ (timing belongs to
 // playing) and at the end of the menu item: only a
@@ -1110,7 +1115,7 @@ function tick(anchor){
     // the light waits for you: it never moves on to a verse whose start is only a guess. It stays on the verse you are on
     // until you mark the next one ("Starts now"), or that verse's set end passes; verses with checked times are followed.
     let k = at(i); const c = at(anchor);
-    if (c >= 0 && k > c){ while (k > c && toCheck(a[k][0])) k--; show = a[k][0]; }
+    if (c >= 0 && k > c){ while (k > c && unsure(a[k][0])) k--; show = a[k][0]; }
     else if (c > 0 && k === c - 1 && endOf(a[k][0]) != null && time >= endOf(a[k][0])) show = anchor;   // moved on by an end: stay
   }
   // a verse whose set end has passed hands the light to the next verse at once, in both modes — even when
@@ -1196,6 +1201,18 @@ function setTime(i, k, sec){
   // again by the order rule, so they never block a move)
   const a = AUT[v[0]] || [], j = a.findIndex(x => x[0] === i);
   const rows = a.slice().sort((x, y) => x[0] - y[0]), jj = rows.findIndex(x => x[0] === i);
+  // what you hear now wins over a start you set earlier on this phone and have not sent (the owner: "Starts now" was refused
+  // because a later verse, often started by an earlier "Ends now", already started before now): a start not yet sent that is
+  // out of order with this one — a later verse starting at or before it, an earlier verse at or after it — is removed, and
+  // named; a sent start still has to be moved first
+  const dropped = [];
+  if (k === 1 && sec != null){
+    const A = SRC.au, mine = myStarts();
+    for (const r of rows){
+      const rid = IT[r[0]].id; if (rid === id || !mine[rid] || (A.ownSet && A.ownSet.has(rid)) || mine[rid][0] !== v[0]) continue;
+      if ((r[0] > i && mine[rid][1] <= v[1] + 0.1) || (r[0] < i && mine[rid][1] >= v[1] - 0.1)){ delete fx[rid]; unfrom(rid); dropped.push(r[0]); }
+    }
+  }
   let pid = null, nid = null;
   for (let q = jj - 1; q >= 0; q--) if (ownAt(IT[rows[q][0]].id)){ pid = IT[rows[q][0]].id; break; }
   for (let q = jj + 1; q < rows.length; q++) if (ownAt(IT[rows[q][0]].id)){ nid = IT[rows[q][0]].id; break; }
@@ -1239,7 +1256,7 @@ function setTime(i, k, sec){
   fx[id] = v; unfrom(id); link.forEach(([lid, lv]) => { fx[lid] = lv; unfrom(lid); }); save(); buildAudio();
   refreshMarks(was, i);
   if (PL.on){ PL.cur = -1; tick(i); }   // the light moves at once, from this verse (after an end: to the next verse); the page stays where you are
-  toast((k === 1 ? T('शुरुआत: ', 'Starts at ') : T('अंत: ', 'Ends at ')) + (sec == null ? '—' : fmtT(sec)));
+  toast((k === 1 ? T('शुरुआत: ', 'Starts at ') : T('अंत: ', 'Ends at ')) + (sec == null ? '—' : fmtT(sec)) + (dropped.length ? T(' · हटाई गई: ', ' · removed your earlier start for ') + dropped.map(playLabel).join(', ') : ''));
 }
 // after a time was written or removed: every verse on screen whose time, label or buttons changed is drawn again
 function refreshMarks(was, i){ Object.keys(was).forEach(q => { q = +q; if (q === i || was[q] !== JSON.stringify(SRC.au.at[IT[q].id]) + toCheck(q) + !!myStarts()[IT[q].id]) rerenderItem(q); }); syncCheck(); }
