@@ -303,7 +303,7 @@ async def main():
                   const wd = W.cite && W.cite.word && W.cite.word[IT[i].y], q = (wd ? TT(wd) : TYPE[IT[i].y]) + ' ' + c, Q = numQuery(q);
                   if (!Q){ bad.push(q); continue; } const hits = []; numHits(Q, hits); if (!hits.some(h => h[1] === i)) miss.push(IT[i].id + ' ← ' + q);
                   const t = (IT[i].v[IT[i].v.length - 1].match(/॥([0-9०-९੦-੯]+)[^॥]*॥(?:[^॥]*॥)*\s*$/) || [])[1];
-                  if (t && (W.cite || {}).mark !== 'sec'){ const last = CKEY(c).split('.').pop().replace(/[^0-9]/g, ''); if (CKEY(t) !== last) pr.push(IT[i].id + ': ॥' + t + '॥ but ' + c); } }
+                  if (t && !['sec', 'none'].includes((W.cite || {}).mark)){ const last = CKEY(c).split('.').pop().replace(/[^0-9]/g, ''); if (CKEY(t) !== last) pr.push(IT[i].id + ': ॥' + t + '॥ but ' + c); } }
                 return [bad.slice(0, 3), miss.slice(0, 3), pr.slice(0, 3)]; })()""")
             check(f'{tag}: every verse number the player shows finds that verse; the number at a verse\'s end is its citation\'s', cit == [[], [], []], cit)
         await pg.goto(url); await pg.wait_for_timeout(2500)
