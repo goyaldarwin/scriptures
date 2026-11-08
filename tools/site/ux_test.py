@@ -254,7 +254,8 @@ async def main():
                 hits = await ev("document.querySelectorAll('#sRes .res').length")
                 check(f'{tag}: search finds a word of its first verse', hits > 0, f'{word}: {hits}')
                 if hits:
-                    await (await pg.query_selector('#sRes .res')).click(); await pg.wait_for_timeout(1200)
+                    # a locator, found again at the tap: a work loaded by part draws its results again as each part's meanings come
+                    await pg.locator('#sRes .res').first.click(); await pg.wait_for_timeout(1200)
                     check(f'{tag}: a search result opens the reader', await ev("document.querySelector('#reader').classList.contains('on')"))
             # English interface
             await ev("S.settings.ui = 'en'; S.settings.layers.e = true; S.settings.layers.h = false; applyLang(); refreshReader()"); await pg.wait_for_timeout(500)
