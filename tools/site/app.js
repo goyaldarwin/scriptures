@@ -1201,6 +1201,18 @@ function setTime(i, k, sec){
   // again by the order rule, so they never block a move)
   const a = AUT[v[0]] || [], j = a.findIndex(x => x[0] === i);
   const rows = a.slice().sort((x, y) => x[0] - y[0]), jj = rows.findIndex(x => x[0] === i);
+  // what you hear now wins over a start you set earlier on this phone and have not sent (the owner: "Starts now" was refused
+  // because a later verse, often started by an earlier "Ends now", already started before now): a start not yet sent that is
+  // out of order with this one — a later verse starting at or before it, an earlier verse at or after it — is removed, and
+  // named; a sent start still has to be moved first
+  const dropped = [];
+  if (k === 1 && sec != null){
+    const A = SRC.au, mine = myStarts();
+    for (const r of rows){
+      const rid = IT[r[0]].id; if (rid === id || !mine[rid] || (A.ownSet && A.ownSet.has(rid)) || mine[rid][0] !== v[0]) continue;
+      if ((r[0] > i && mine[rid][1] <= v[1] + 0.1) || (r[0] < i && mine[rid][1] >= v[1] - 0.1)){ delete fx[rid]; unfrom(rid); dropped.push(r[0]); }
+    }
+  }
   let pid = null, nid = null;
   for (let q = jj - 1; q >= 0; q--) if (ownAt(IT[rows[q][0]].id)){ pid = IT[rows[q][0]].id; break; }
   for (let q = jj + 1; q < rows.length; q++) if (ownAt(IT[rows[q][0]].id)){ nid = IT[rows[q][0]].id; break; }
@@ -1244,7 +1256,7 @@ function setTime(i, k, sec){
   fx[id] = v; unfrom(id); link.forEach(([lid, lv]) => { fx[lid] = lv; unfrom(lid); }); save(); buildAudio();
   refreshMarks(was, i);
   if (PL.on){ PL.cur = -1; tick(i); }   // the light moves at once, from this verse (after an end: to the next verse); the page stays where you are
-  toast((k === 1 ? T('शुरुआत: ', 'Starts at ') : T('अंत: ', 'Ends at ')) + (sec == null ? '—' : fmtT(sec)));
+  toast((k === 1 ? T('शुरुआत: ', 'Starts at ') : T('अंत: ', 'Ends at ')) + (sec == null ? '—' : fmtT(sec)) + (dropped.length ? T(' · हटाई गई: ', ' · removed your earlier start for ') + dropped.map(playLabel).join(', ') : ''));
 }
 // after a time was written or removed: every verse on screen whose time, label or buttons changed is drawn again
 function refreshMarks(was, i){ Object.keys(was).forEach(q => { q = +q; if (q === i || was[q] !== JSON.stringify(SRC.au.at[IT[q].id]) + toCheck(q) + !!myStarts()[IT[q].id]) rerenderItem(q); }); syncCheck(); }
