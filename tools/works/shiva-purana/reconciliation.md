@@ -39,7 +39,11 @@ Read from the owner's scans of Gita Press code 2223 (the Māhātmya to 2.5.59) a
 | 2.5.59 (pp. 1065–1068) | दुन्दुभिनिर्ह्लाद: the conjunct is the ह्ल of प्रह्लाद on the same page. |
 | 6.22.13 | ह्रां ह्रीं ह्रूं ह्रैं ह्रौं ह्रः: each of the six bold bījas has the stroke of ह्र inside its bowl (Kalyan p. 430, read at 400 dpi). |
 | 5.5.4, 6.12.3 | No paragraph: 5.5.4's verse is inside the ॥ ४-५ ॥ paragraph, and 6.12.3's inside ॥ ३-१३ ॥ (what stood there was a footnote's mantra lines). |
-| 3.39.18, 3.29.10 | Left out: an ink blot covers a word (Kalyan p. 151, the word before शरीरसे; p. 125, the first letter of the word before दिये). |
+| 3.29.10 | बिना (मेरा हिस्सा बिना दिये ही): an ink blot covers the word's first letter on Kalyan p. 125; its ना and i-mark show, the Sanskrit अभक्तकं says “without a share”, the same page has “भाग दिये बिना ही” (5–6), and the Gita Press Hindi published online (gurujimaharaj.com, mahashivpuran.wordpress.com: “मेरे लिये भाग दिये बिना ही”) agrees. |
+| 3.39.18 | कुलका (सदाचारसे कुलका, शरीरसे भोजनका): an ink blot covers the word on Kalyan p. 151; its u-mark and closing का show, and the Sanskrit आचारः कुलमाख्याति (the same line in the Garuḍa Purāṇa and Cāṇakya-nīti) says conduct tells the family. |
+| 2.1.14.87 | Code 2223 p. 274 prints one paragraph for 86 and 87 and marks it ॥ ८६ ॥ (the margin's ८७ stands by its last line, which renders verse 87): the mark is written ॥ ८६-८७ ॥ and the paragraph stands under 87, the range's last verse. |
+| 7.2.9.21, 7.2.11.9 | Paragraphs ॥ ७-२१ ॥ and ॥ २-९½ ॥ (Kalyan pp. 529–530, 533–534) stand under their marks' last verse, where the OCR had placed them under 9 and 29. |
+| 7.2.31.133 | Kalyan p. 593 prints the mark without its opening ॥ (“करें १२६—१३३ ॥”); it is written ॥ १२६-१३३ ॥. |
 | Verse marks | A range is written with a hyphen (॥ ३-५ ॥), as in the Bhāgavata's Hindi, where Kalyan prints a long dash in some; a half verse as ½. |
-| Proofread whole | Every paragraph was then read against its page by eye (`source/hindi/<book>.full.json`: each change as the page has it, a paragraph given whole where much was wrong, and the paragraphs the adhyāya walk had missed). |
-| Not yet carried | The books' footnotes (`source/hindi/<book>.notes.json` marks the lines left out); the Hindi of 2.1.14.87 and 7.2.31.126–132, which the proofreading did not place. |
+| Proofread whole | Every paragraph was then read against its page by eye (`source/hindi/<book>.full.json`: each change as the page has it, a paragraph given whole where much was wrong, the paragraphs the adhyāya walk had missed, and a paragraph moved to its mark's last verse). |
+| Not yet carried | The books' footnotes (`source/hindi/<book>.notes.json` marks the lines left out). |

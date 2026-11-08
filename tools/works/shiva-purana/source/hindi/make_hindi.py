@@ -191,7 +191,7 @@ def main(draft=False):
         m[vid] = rest.strip()
     failed = []                                         # the full proofreading against the page (<book>.full.json)
     for book in BOOKS:
-        F = load(f'{book}.full.json', {'edits': {}, 'set': {}, 'add': {}})
+        F = load(f'{book}.full.json', {'edits': {}, 'set': {}, 'add': {}, 'move': {}})
         for vid, t in F['set'].items():
             if vid in m or vid in F['add']: m[vid] = typography(t)
         for vid, t in F['add'].items():
@@ -202,6 +202,9 @@ def main(draft=False):
                 if a in m[vid]: m[vid] = m[vid].replace(a, b, 1)
                 else: failed.append((vid, a))
             m[vid] = typography(m[vid])
+        for a, b in F.get('move', {}).items():          # a paragraph whose printed mark names other verses than its place
+            if a in m: m[b] = m.pop(a)
+            else: failed.append((a, 'no paragraph to move'))
     if failed: print(f'{len(failed)} proofreading edits not found:', failed[:20])
     for vid in [v for v, t in m.items() if '⟨?⟩' in t or '⟦' in t]:
         doubt.append(vid)

@@ -28,5 +28,12 @@
    "start": "वन्दना करनेसे",
    "why": "the previous khaṇḍa's closing lines and this one's title page, which the OCR ran into the opening's Hindi"
   }
+ ],
+ "3.39.18": [
+  {
+   "from": "सदाचारसे ⟦ङ्ङ⟧. शरीरसे",
+   "to": "सदाचारसे कुलका, शरीरसे",
+   "why": "a word blotted in Kalyan 2018 (p. 151): the u-mark and the closing का show on the page; the Sanskrit आचारः कुलमाख्याति (“conduct tells the family”) settles it as कुलका"
+  }
  ]
 }
