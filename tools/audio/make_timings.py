@@ -3,7 +3,9 @@
 Usage:  python3 tools/audio/make_timings.py tools/works/<work>/audio/<source-id>
 
 The source folder holds:
-  source.json      {"id", "work": "<library path>", "take"?: "<work id>" (then nothing else is needed), "type": "youtube", "title": {"hi", "en"}, "order"?, "draft"?: "<why it is not published yet>", "align"?: "anchors", "split"?: true, "fill"?: n, "anchor_min"?: 0.45, "estimate"?: true, "checked"?: true}
+  source.json      {"id", "work": "<library path>", "take"?: "<work id>" (then nothing else is needed), "type": "youtube", "title": {"hi", "en"}, "order"?, "draft"?: "<why it is not published yet>", "align"?: "anchors", "split"?: true, "fill"?: n, "anchor_min"?: 0.45, "estimate"?: true, "checked"?: true, "check_only"?: "<why>"}
+                   "check_only": the to-check list is check.json alone (a sample the owner hears to score the timings), not
+                   also the estimated starts
   recordings.json  [{"yt": video id, "file": original file name, "dur": seconds, "order": n, "from"?/"to"?: item id, "lead"?: seconds}]
   transcripts/     <video id>.jsonl from transcribe.py (+ .done when finished)
   fixes.json       optional hand-checked verse starts {video id: {item id: seconds}}, with the evidence in fixes.md
@@ -194,11 +196,12 @@ doc = {k: meta[k] for k in ('id', 'type', 'title', 'order', 'draft') if k in met
 # published for review (source.json "review": the owner checks it by ear while readers already hear it), every verse not
 # yet checked by hand; the app lists them for review in ☰ › More settings › Audio timing. Starts set by the owner never count.
 byhand = set(k for v in FIX.values() for k in v) | set(k for v in OWN.values() for k in v)
-check = [] if meta.get('checked') else [x['id'] for x in IT if x['id'] in at and x['id'] not in byhand and (meta.get('draft') or meta.get('review') or x['id'] not in heard)]   # "checked": published by the owner after hearing it through
+check = [] if meta.get('checked') or meta.get('check_only') else [x['id'] for x in IT if x['id'] in at and x['id'] not in byhand and (meta.get('draft') or meta.get('review') or x['id'] not in heard)]   # "checked": published by the owner after hearing it through
 CP = os.path.join(SRC, 'check.json'); DOUBT = set(json.load(open(CP))['ids']) if os.path.exists(CP) else set()   # check.json: starts in doubt, even when heard
 assert DOUBT <= set(ID), f'check.json: unknown verse ids {sorted(DOUBT - set(ID))[:5]}'
 check = [x['id'] for x in IT if x['id'] in at and x['id'] not in byhand and (x['id'] in check or x['id'] in DOUBT)]
 doc.update(tracks=tracks, at=at)
+if meta.get('check_only'): doc['checkOnly'] = True   # the to-check list is a fixed sample: the app does not add verses it moves
 if check: doc['check'] = check
 guess = [x['id'] for x in IT if x['id'] in at and x['id'] not in heard and x['id'] not in own_ids]
 if guess: doc['guess'] = guess   # starts only guessed by text length (never heard): guessed again around the owner's times
