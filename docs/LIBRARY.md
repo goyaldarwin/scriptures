@@ -116,6 +116,12 @@ The header's empty `m` keeps a release of the app that does not know parts worki
 2. **Our own meanings** are written from the verse, never by rewording a translation (`tools/meanings/style.md`). They are separate sources named `<lang>-scriptures` (titled "भावार्थ — शास्त्र" / "Hindi meaning — Scriptures", and the matching English and Punjabi titles), so readers can tell them apart.
 3. Name every other source after its publisher, translator or channel, titled "<who> — <language> meaning" / "<who> — <भाषा> अर्थ" with the language's name from `glossary/languages.json` ("Gita Press — English meaning", "गीताप्रेस — अंग्रेज़ी अर्थ"; Gita Press's Hindi may keep its own भावार्थ; a translator in brackets after it), never "translation" (`library.py` checks it), and record its edition and permission status in the root `README.md` → "Sources and permissions".
 
+A **personal source** has the same `m` (and `p`) in one file the app opens itself (☰ › Bookmarks & notes › Open a file),
+never in the library: `{"kind": "scriptures-source", "work": "<work id>", "source": {"id": "<lang>-<id>", "lang": "pa",
+"title": {"hi", "en", "pa"}, "cm": true?}, "m": {"<item id>": ["meaning, a \n for a line break", ["note", …]]}, "p"?: {…}}`.
+It is made outside this repository (the owner's own copy of a source not ours to publish, in `scriptures-data`) and kept
+on that phone only (`docs/PLAYBOOK.md` §6). A line break (`\n`) in a meaning shows as one.
+
 ## 4. An audio source: `library/<path>/audio/<id>.json`
 
 ```json

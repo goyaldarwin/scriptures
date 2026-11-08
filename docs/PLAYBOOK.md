@@ -133,6 +133,7 @@ Contents: 1 Working with the owner · 2 Sources and accuracy · 3 Texts · 4 Mea
 - **YouTube that is slow to start** is never called "not allowed": the player is kept, with a note and "Play on YouTube from this verse" over it until it answers. Only YouTube's own refusal (errors 101, 150, 153) says the recording plays only on YouTube.
 - **A new reader starts in English** (interface and English meaning).
 - **Personal data stays on the phone** (localStorage `manas.personal.v1`): one reader per device; "Save my file" / "Open a file" on Bookmarks & notes.
+- **A personal source stays on the phone too** (the owner: "This app is only for my personal use"): a meaning or commentary that is not ours to publish (Prof. Sahib Singh's Darpan for the Granth) is made in the private `scriptures-data`, never here, as a file `{"kind": "scriptures-source", …}` (`docs/LIBRARY.md` §3) and opened with "Open a file". The app keeps it in that phone's IndexedDB, puts it first among the work's meanings in its language (the default there) with that meaning turned on, and lists it in ☰ › More settings › Sources with "Remove from this phone". Nothing of it reaches the site, the library or a saved personal file.
 
 ## 7. The app
 **Consistency**
