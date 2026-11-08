@@ -6,7 +6,7 @@ Faridkot Teeka (the owner's PDFs in the private `scriptures-data`, `reference/pa
 
 ## 1. Reading the database (`source/shabados.py`)
 
-The database's 60,555 lines of the Granth (source 1) are in the common legacy ASCII Gurmukhi encoding, converted with
+The database's Granth lines are kept in `source/shabados.tsv` exactly as it types them. Its 60,555 lines of the Granth (source 1) are in the common legacy ASCII Gurmukhi encoding, converted with
 the Sukhmani Sahib's converter (`tools/works/sukhmani-sahib/source/gurmukhi.py`; its decisions:
 `tools/works/sukhmani-sahib/reconciliation.md` §2), then by the writing standard (`tools/text/standard.py`: ॥ with no
 space inside a number mark). Every line converts; the characters used are the 35 letters, the vowel signs, tippi, bindi,
@@ -33,7 +33,7 @@ by word with each witness's Gurbani (the method: `source/check.py`'s docstring):
 
 | | words of the text compared | words differing | of them |
 |---|---|---|---|
-| Darpan | 375,593 (94.1%) | 316 | 266 word division · 25 signs set in another order · 7 signs the font drops · 18 other font artefacts |
+| Darpan | 375,593 (94.1%) | 316 | 266 word division · 25 signs set in another order · 7 signs the font drops · 18 words its font sets otherwise |
 | Faridkot Teeka | 366,511 (91.8%) | 315 | 249 word division · 7 font · 59 readings of its own |
 
 The rest of each witness is its commentary, or lines the conversion could not tell from it (Darpan: the Gurbani set in

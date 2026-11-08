@@ -182,7 +182,7 @@ def verses(U):
 
 
 def main(argv):
-    db = shabados.db_path(argv)
+    db = argv[argv.index('--db') + 1] if '--db' in argv else shabados.EXTRACT   # the committed extract, or the database
     U = shabados.units(db)
     V = verses(U)
     # stanzas of compositions: a run of pauri/salok/pad verses (not shabads) in a raag; they are typed in verses()

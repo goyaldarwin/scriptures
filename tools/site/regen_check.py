@@ -24,7 +24,8 @@ sys.path.insert(0, HERE); import library
 
 # the scripts that make a work's text.txt (and its other source files) from data in its source/ folder, in the order they run
 GENERATORS = [('manas', ['make_appdata.py', 'make.py']), ('ramraksha', ['make.py']), ('sukhmani-sahib', ['make.py']),
-              ('katha-upanishad', ['settle.py']), ('shri-rudram', ['settle.py'])]
+              ('katha-upanishad', ['settle.py']), ('shri-rudram', ['settle.py']),
+              ('guru-granth-sahib', ['make.py'])]
 
 def generators():
     """Run each text generator in a copy of tools/; return the files it writes that differ from the committed ones."""

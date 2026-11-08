@@ -163,7 +163,7 @@ def align(A, B, n=6):
     return diffs, covered
 
 
-def kind(d):
+def kind(d, witness=''):
     """A difference's kind: 'division' (the same letters, divided into words otherwise), 'heading' (the witness does not
     print a heading or ੴ line), 'unaligned' (the witness's words there are its commentary: nothing alike), 'word'."""
     a, b = d[0], d[1]
@@ -173,20 +173,24 @@ def kind(d):
     bare = lambda x: sorted(re.sub(r'[ੁੂੰਂ\s◌]|[^਀-੿]', '', x))
     if sorted(a.replace(' ', '')) == sorted(b.replace(' ', '')): return 'order'       # the same signs, set in another order
     if bare(a) == bare(b) and len(b) < len(a): return 'lost'   # an aunkar, dulainkar or nasal the witness's font drops
+    sub = lambda x, y: (lambda it: all(c in it for c in x))(iter(y))   # x's letters, in order, within y
+    if witness == 'darpan' and (re.search(r'[^਀-੿\s]', b) or 'ੲ ੀ' in b or 'ਯ੍' in b or sub(b.replace(' ', ''), a)):
+        return 'font'   # the Darpan's font: a stray glyph, ਈ split, a yakash set as ਯ੍, a ligature (ਲੁੰ) dropped
     return 'word'
 
 
 DECIDE = {'word': 'the text kept: one witness alone, the other reading with the text (§3)',
           'division': 'the text kept: the witness divides the words otherwise (§3)',
           'lost': "the text kept: the witness's font drops the sign (§3)",
-          'order': "the text kept: the witness's font sets the signs in another order (§3)"}
+          'order': "the text kept: the witness's font sets the signs in another order (§3)",
+          'font': "the text kept: the witness's font sets the word otherwise (§3)"}
 def ang_key(v):
     m = re.match(r'(\d+)\.(\d+)$', v)
     return (int(m.group(1)), int(m.group(2))) if m else (int(re.sub(r'\D', '', v) or 0), 0)
 
 
 def main(argv):
-    db = shabados.db_path(argv)
+    db = argv[argv.index('--db') + 1] if '--db' in argv else shabados.EXTRACT   # the committed extract, or the database
     U = shabados.units(db); V = make.verses([dict(u, lines=[dict(l) for l in u['lines']]) for u in U])
     T = textfile.read(os.path.join(WORK, 'text.txt'))
     structure(T, shabados.units(db), V)
@@ -201,11 +205,11 @@ def main(argv):
     for name, lines in wit:
         B = [(w, ln) for ln, l in lines for w in words(l)]
         diffs, cov = align(A, B)
-        kinds = collections.Counter(kind(d) for d in diffs)
+        kinds = collections.Counter(kind(d, name) for d in diffs)
         with open(os.path.join(out, name + '.tsv'), 'w', encoding='utf-8') as f:
-            for d in diffs: f.write('\t'.join([kind(d)] + list(map(str, d))) + '\n')
+            for d in diffs: f.write('\t'.join([kind(d, name)] + list(map(str, d))) + '\n')
         print(f'   by kind: {dict(kinds)}')
-        rec += [(d[2], d[0], name, d[1], kind(d)) for d in diffs if kind(d) in DECIDE]
+        rec += [(d[2], d[0], name, d[1], kind(d, name)) for d in diffs if kind(d, name) in DECIDE]
         print(f'2. {name}: {len(A)} words in the text, {len(B)} in the witness\'s Gurbani lines; {cov} words of the text '
               f'compared ({100 * cov / len(A):.1f}%), {len(diffs)} differences → {out}/{name}.tsv')
     if '--record' in argv and len(wit) == 2:   # every difference of a word, with its decision (reconciliation.md §3)

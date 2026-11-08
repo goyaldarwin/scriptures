@@ -60,7 +60,7 @@ def write(work, obj):
 
 def main(argv):
     db = shabados.db_path(argv)
-    U = shabados.units(db); F = shabados.translations(db, 5)
+    U = shabados.units(shabados.EXTRACT); F = shabados.translations(db, 5)
     V = make.verses(U)
     T = textfile.read(os.path.join(WORK, 'text.txt'))
     own = [x for x in V if 'take' not in x]

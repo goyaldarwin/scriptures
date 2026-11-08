@@ -38,16 +38,35 @@ def line(ascii_text):
     return standard.dandas(unicodedata.normalize('NFC', u))
 
 
-def units(path):
-    db = sqlite3.connect(path)
-    out, cur = [], None
-    for sid, sec, wr, lid, ang, ln, ty, g in db.execute(
+EXTRACT = os.path.join(HERE, 'shabados.tsv')   # the database's Granth lines, committed (extract())
+
+
+def units(path=EXTRACT):
+    """The Granth's units, from the committed extract (default) or from the database itself."""
+    rows = (r.rstrip('\n').split('\t') for r in open(path, encoding='utf-8') if not r.startswith('#')) if path.endswith('.tsv') else \
+        sqlite3.connect(path).execute(
             'select s.id, s.section_id, s.writer_id, l.id, l.source_page, l.source_line, l.type_id, l.gurmukhi '
-            'from shabads s join lines l on l.shabad_id = s.id where s.source_id = 1 order by s.order_id, l.order_id'):
+            'from shabads s join lines l on l.shabad_id = s.id where s.source_id = 1 order by s.order_id, l.order_id')
+    out, cur = [], None
+    for sid, sec, wr, lid, ang, ln, ty, g in rows:
+        sec, wr, ang, ty = int(sec), int(wr), int(ang), int(ty or 0); ln = int(ln) if ln not in (None, '') else None
         if cur is None or cur['sid'] != sid:
             cur = {'sid': sid, 'section': sec, 'writer': wr, 'lines': []}; out.append(cur)
         cur['lines'].append({'id': lid, 'ang': ang, 'line': ln, 'type': ty, 'v': line(g), 'raw': g})
     return out
+
+
+def extract(path):
+    """The database → source/shabados.tsv: every Granth line as the database types it (legacy ASCII), with its unit,
+    section, writer, line id, Ang, line on the Ang and type, so make.py and the checks run from this repository."""
+    rows = sqlite3.connect(path).execute(
+        'select s.id, s.section_id, s.writer_id, l.id, l.source_page, l.source_line, l.type_id, l.gurmukhi '
+        'from shabads s join lines l on l.shabad_id = s.id where s.source_id = 1 order by s.order_id, l.order_id').fetchall()
+    with open(EXTRACT, 'w', encoding='utf-8') as f:
+        f.write('# Sri Guru Granth Sahib from the Shabad OS database (@shabados/database 4.8.7; Gurbani: public domain, typing: CC BY-SA 4.0)\n')
+        f.write('# unit\tsection\twriter\tline id\tang\tline\ttype\tgurmukhi (legacy ASCII, as the database types it); made by shabados.py --extract\n')
+        for r in rows: f.write('\t'.join('' if x is None else str(x) for x in r) + '\n')
+    print(f'{len(rows)} lines → {EXTRACT}')
 
 
 def sections(path):
@@ -62,3 +81,7 @@ def translations(path, source_id):
     return {r[0]: (r[1], r[2]) for r in db.execute(
         'select t.line_id, t.translation, t.additional_information from translations t join lines l on l.id = t.line_id '
         'join shabads s on s.id = l.shabad_id where s.source_id = 1 and t.translation_source_id = ?', (source_id,))}
+
+
+if __name__ == '__main__':
+    if '--extract' in sys.argv: extract(db_path(sys.argv))

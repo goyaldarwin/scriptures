@@ -31,10 +31,15 @@ the Sukhmani Sahib are taken from their works. Loaded by part (`"load": "parts"`
 
 ## Files
 
-The folder's format: `tools/works/README.md`. The database is not committed (158 MB): `npm install @shabados/database@4.8.7`
-in a scratch folder, then give its `build/database.sqlite` to the scripts with `--db` or `$SHABADOS_DB`.
+The folder's format: `tools/works/README.md`. The database itself (158 MB) is not in this repository: its Granth lines
+are, in `source/shabados.tsv`, so the text is made and checked here (`tools/site/regen_check.py` runs `make.py`). The
+database's npm package is kept in the private `scriptures-data` (`sikhism/gurbani/guru-granth-sahib/printouts/shabados/`, with its `.meta.json`), or
+`npm install @shabados/database@4.8.7`; give its `build/database.sqlite` with `--db` to make the extract again or the
+commentary.
 
-- `source/shabados.py` — reads the database: its Granth lines (legacy ASCII Gurmukhi) → Unicode with the Sukhmani Sahib's
+- `source/shabados.tsv` — the database's 60,555 Granth lines as it types them (legacy ASCII), with their unit, section,
+  writer, line id, Ang, line and type (`python3 source/shabados.py --extract --db DB`).
+- `source/shabados.py` — reads the extract (or the database): its Granth lines (legacy ASCII Gurmukhi) → Unicode with the Sukhmani Sahib's
   converter (`tools/works/sukhmani-sahib/source/gurmukhi.py`) and the writing standard; the vishraam marks, the spacer and
   the small numerals under some headings are left out (`reconciliation.md` §2).
 - `source/make.py` — the database → `text.txt` (the verses, parts, sections, topics, the two taken banis).
@@ -43,7 +48,9 @@ in a scratch folder, then give its `build/database.sqlite` to the scripts with `
 - `source/faridkot.py` — the database's Faridkot Teeka → `commentary/pa/faridkot.json`.
 - `commentary/pa/faridkot.json` — the Faridkot Teeka, line by line (`"copied": true`).
 
-Rebuild: `python3 tools/works/guru-granth-sahib/source/make.py --db DB && python3 tools/works/guru-granth-sahib/source/faridkot.py --db DB && python3 tools/works/export.py guru-granth-sahib && python3 tools/site/build.py`.
+- `source/differences.tsv` — every word of the text a witness gives otherwise, with its decision (`check.py --record`).
+
+Rebuild: `python3 tools/works/guru-granth-sahib/source/make.py && python3 tools/works/guru-granth-sahib/source/faridkot.py --db DB && python3 tools/works/export.py guru-granth-sahib && python3 tools/site/build.py`.
 
 ## Structure
 
