@@ -1,0 +1,93 @@
+# Time verses with Meta's MMS forced aligner (tools/audio/METHOD.md, steps 2–3) on GitHub's machines, one job per recording,
+# in parallel; free here, because this repository is public. Started by hand only (Actions tab, or:
+#   gh api repos/goyaldarwin/scriptures/actions/workflows/align.yml/dispatches -X POST -f ref=main
+#     -f inputs[source]=tools/works/<work>/audio/<source id> -f inputs[ids]=<id,id,…> -f inputs[ref]=<branch>).
+# First make <source>/mms/windows.json (tools/audio/mms_windows.py) on the branch `ref`.
+# The recordings stay private, as in transcribe.yml: each job fetches only its own speech-quality copy from
+# goyaldarwin/scriptures-data with the read-only token in DATA_TOKEN, onto its own throwaway machine; the audio is never
+# committed, uploaded or printed. Only the result is kept: <source>/mms/<video id>.json, committed to `ref` (also when a job
+# runs out of time, so a second run goes on from there). The scripts come from main. At most 256 ids per run.
+name: align
+on:
+  workflow_dispatch:
+    inputs:
+      source:
+        description: "audio source folder, e.g. tools/works/bhagavata-purana/audio/sanskrit-parayan"
+        required: true
+      ids:
+        description: "comma-separated YouTube video ids to align (at most 256)"
+        required: true
+      ref:
+        description: "branch that holds the audio source folder and its mms/windows.json; the results are committed to it"
+        default: main
+permissions:
+  contents: write
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      ids: ${{ steps.m.outputs.ids }}
+    steps:
+      - id: m
+        run: python3 -c "import json,os; ids=[x.strip() for x in os.environ['IDS'].split(',') if x.strip()]; assert 0 < len(ids) <= 256, len(ids); print('ids='+json.dumps(ids))" >> "$GITHUB_OUTPUT"
+        env:
+          IDS: ${{ inputs.ids }}
+  align:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      # at most 14 at once, so the checks, the site's publishing and the owner's timing submissions are not queued behind it
+      max-parallel: 14
+      matrix:
+        id: ${{ fromJSON(needs.plan.outputs.ids) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          path: pub
+          sparse-checkout: tools/audio
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+          path: src
+          sparse-checkout: ${{ inputs.source }}
+      - name: the recording's path in scriptures-data
+        id: rec
+        env:
+          SRC: src/${{ inputs.source }}
+          VID: ${{ matrix.id }}
+        run: python3 -c "import json,os; r=[x for x in json.load(open(os.environ['SRC']+'/recordings.json')) if x['yt']==os.environ['VID']]; assert len(r)==1 and r[0].get('data'), 'no data path for this id'; print('data='+r[0]['data'])" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@v4
+        with:
+          repository: goyaldarwin/scriptures-data
+          token: ${{ secrets.DATA_TOKEN }}
+          path: data
+          filter: blob:none
+          sparse-checkout: ${{ steps.rec.outputs.data }}
+          sparse-checkout-cone-mode: false
+          persist-credentials: false
+      - name: ffmpeg (a static build from GitHub; apt only if that fails)
+        run: |
+          if curl -fsSL --retry 3 -m 300 https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz | tar xJ -C "$RUNNER_TEMP"; then
+            echo "$(ls -d "$RUNNER_TEMP"/ffmpeg-*/bin)" >> "$GITHUB_PATH"; exit 0; fi
+          for i in 1 2 3; do sudo timeout 240 apt-get update -qq && sudo timeout 240 apt-get install -y -qq --no-install-recommends ffmpeg && exit 0; sleep 5; done; exit 1
+      - run: pip install -q "torch==2.8.*" "torchaudio==2.8.*" numpy --index-url https://download.pytorch.org/whl/cpu --extra-index-url https://pypi.org/simple
+      - name: align ${{ matrix.id }}
+        # stop a little before the job's limit, so what is done is still committed
+        timeout-minutes: 335
+        env:
+          DATA_DIR: ${{ github.workspace }}/data
+          THREADS: "4"
+          ONLY: ${{ matrix.id }}
+        run: python3 pub/tools/audio/mms_align.py "src/${{ inputs.source }}"
+      - name: commit the result to ${{ inputs.ref }}
+        if: always()
+        run: |
+          rm -rf data
+          ls "src/${{ inputs.source }}/mms/${{ matrix.id }}.json" || exit 0
+          cd src && git config user.name "align workflow" && git config user.email "actions@users.noreply.github.com"
+          git add "${{ inputs.source }}/mms/${{ matrix.id }}.json" && git commit -q -m "MMS starts ${{ matrix.id }} (${{ inputs.source }})" || exit 0
+          for i in $(seq 1 15); do git pull -q --rebase origin "${{ inputs.ref }}" && git push -q origin "HEAD:${{ inputs.ref }}" && exit 0; sleep $((RANDOM % 40 + 5)); done; exit 1

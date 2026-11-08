@@ -1,0 +1,85 @@
+# OCR a scanned book on GitHub's machines, one job per range of pages, in parallel; free here, because this repository is public.
+# For scans with no text layer where the owner has chosen OCR (the work's README says so; docs/PLAYBOOK.md §11 stays the
+# rule for every other book). Started by hand only (Actions tab, or: gh api repos/goyaldarwin/scriptures/actions/workflows/ocr.yml/dispatches
+#   -X POST -f ref=main -f inputs[script]=tools/works/<work>/source/hindi/ocr.py -f inputs[data]=<path of the PDF in scriptures-data>
+#   -f inputs[layout]=sh -f inputs[ranges]=13-60,61-110 -f inputs[out]=tools/works/<work>/source/hindi/ocr/<book> -f inputs[ref]=<branch>).
+# The book stays private: each job fetches only that PDF from goyaldarwin/scriptures-data with the read-only token in the secret
+# DATA_TOKEN, onto the job's own throwaway machine; the PDF and its page images are never committed, uploaded or printed here.
+# Only the OCR text is kept: <out>/p<NNNN>.json, committed to the branch `ref`, which also holds the script.
+name: ocr
+on:
+  workflow_dispatch:
+    inputs:
+      script:
+        description: "the OCR script, on the branch ref (python3 <script> <pdf> <layout> <first> <last> <out>)"
+        required: true
+      data:
+        description: "the PDF's path in scriptures-data"
+        required: true
+      layout:
+        description: "the page layout the script knows (e.g. sh, hh)"
+        required: true
+      ranges:
+        description: "comma-separated page ranges, one job each (at most 256), e.g. 13-60,61-110"
+        required: true
+      out:
+        description: "folder for the OCR text, on the branch ref"
+        required: true
+      ref:
+        description: "branch that holds the script; the OCR text is committed to it"
+        default: main
+permissions:
+  contents: write
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      ranges: ${{ steps.m.outputs.ranges }}
+    steps:
+      - id: m
+        run: python3 -c "import json,os,re; r=[x.strip() for x in os.environ['R'].split(',') if x.strip()]; assert 0 < len(r) <= 256 and all(re.fullmatch(r'\d+-\d+', x) for x in r), r; print('ranges='+json.dumps(r))" >> "$GITHUB_OUTPUT"
+        env:
+          R: ${{ inputs.ranges }}
+  ocr:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 14      # the account runs at most 20 jobs at once; leave room for the checks, publishing and timing
+      matrix:
+        range: ${{ fromJSON(needs.plan.outputs.ranges) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+          path: src
+          sparse-checkout: |
+            ${{ inputs.script }}
+            ${{ inputs.out }}
+          sparse-checkout-cone-mode: false
+      - uses: actions/checkout@v4
+        with:
+          repository: goyaldarwin/scriptures-data
+          token: ${{ secrets.DATA_TOKEN }}
+          path: data
+          filter: blob:none
+          sparse-checkout: ${{ inputs.data }}
+          sparse-checkout-cone-mode: false
+          persist-credentials: false
+      - name: Tesseract (Hindi and the Devanagari script model) and poppler
+        run: for i in 1 2 3; do sudo timeout 300 apt-get update -qq && sudo timeout 300 apt-get install -y -qq --no-install-recommends tesseract-ocr tesseract-ocr-hin tesseract-ocr-script-deva poppler-utils && exit 0; sleep 5; done; exit 1
+      - run: pip install -q numpy pillow
+      - name: OCR pages ${{ matrix.range }}
+        run: |
+          A="${RANGE%-*}"; B="${RANGE#*-}"
+          python3 "src/${{ inputs.script }}" "data/${{ inputs.data }}" "${{ inputs.layout }}" "$A" "$B" "src/${{ inputs.out }}"
+        env:
+          RANGE: ${{ matrix.range }}
+      - name: commit the OCR text to ${{ inputs.ref }}
+        if: always()
+        run: |
+          rm -rf data
+          cd src && git config user.name "ocr workflow" && git config user.email "actions@users.noreply.github.com"
+          git add -A "${{ inputs.out }}" && git commit -q -m "OCR pages ${{ matrix.range }} (${{ inputs.out }})" || exit 0
+          for i in $(seq 1 15); do git pull -q --rebase origin "${{ inputs.ref }}" && git push -q origin "HEAD:${{ inputs.ref }}" && exit 0; sleep $((RANDOM % 40 + 5)); done; exit 1

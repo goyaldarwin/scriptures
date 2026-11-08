@@ -145,6 +145,41 @@
         }
        }
       ]
+     },
+     {
+      "id": "vyasa",
+      "title": {
+       "hi": "महर्षि वेदव्यास",
+       "en": "Maharshi Ved Vyas"
+      },
+      "desc": {
+       "hi": "श्रीदुर्गासप्तशती",
+       "en": "Shri Durga Saptashati"
+      },
+      "children": [
+       {
+        "id": "durga-saptashati",
+        "work": "durga-saptashati",
+        "path": "hinduism/granth/vyasa/durga-saptashati",
+        "title": {
+         "hi": "श्रीदुर्गासप्तशती",
+         "en": "Shri Durga Saptashati"
+        },
+        "by": {
+         "hi": "महर्षि वेदव्यास",
+         "en": "Maharshi Ved Vyas"
+        },
+        "edition": {
+         "hi": "sanskritdocuments.org का पाठ",
+         "en": "sanskritdocuments.org's text"
+        },
+        "desc": {
+         "hi": "देवीमाहात्म्य: १३ अध्याय, ७०० मन्त्र · कवच, अर्गला, कीलक",
+         "en": "Devi Mahatmya: 13 adhyays, 700 mantras · Kavach, Argala, Kilak"
+        },
+        "salute": "॥ श्रीदुर्गायै नमः ॥"
+       }
+      ]
      }
     ]
    },
@@ -866,6 +901,53 @@
     },
     "shelf": "granth",
     "children": [
+     {
+      "id": "guru-nanak-dev",
+      "title": {
+       "hi": "गुरु नानक देव जी",
+       "en": "Guru Nanak Dev Ji"
+      },
+      "desc": {
+       "hi": "ਗੁਰੂ ਨਾਨਕ ਦੇਵ ਜੀ · पहले गुरु",
+       "en": "ਗੁਰੂ ਨਾਨਕ ਦੇਵ ਜੀ · the first Guru"
+      },
+      "children": [
+       {
+        "id": "japji-sahib",
+        "work": "japji-sahib",
+        "path": "sikhism/gurbani/guru-nanak-dev/japji-sahib",
+        "title": {
+         "hi": "जपुजी साहिब",
+         "en": "Japji Sahib"
+        },
+        "by": {
+         "hi": "गुरु नानक देव जी",
+         "en": "Guru Nanak Dev Ji"
+        },
+        "edition": {
+         "hi": "श्री गुरु ग्रन्थ साहिब, अंग १–८",
+         "en": "Sri Guru Granth Sahib, Ang 1–8"
+        },
+        "desc": {
+         "hi": "ਜਪੁਜੀ ਸਾਹਿਬ · मूल मंत्र और ३८ पउड़ियाँ",
+         "en": "ਜਪੁਜੀ ਸਾਹਿਬ · Mool Mantar and 38 Pauris"
+        },
+        "salute": "ੴ",
+        "intro": {
+         "hi": [
+          "जपुजी साहिब गुरु नानक देव जीकी बाणी है, जिससे श्री गुरु ग्रन्थ साहिबका आरम्भ होता है (अंग १–८)। इसका मूल नाम 'जपु' है — संस्कृत 'जप', अर्थात् जपना, स्मरण करना; 'जी' और 'साहिब' आदरसूचक शब्द हैं। इसे सिख धर्मका सार कहा जाता है, और पूरे गुरु ग्रन्थ साहिबको इसीका विस्तार माना जाता है।",
+          "इसका आरम्भ मूल मंत्रसे होता है; फिर एक सलोक, अलग-अलग छन्दोंमें ३८ पउड़ियाँ, और अन्तमें एक सलोक, जिसे गुरु अंगद देव जीका माना जाता है। विषय है सच्ची उपासना और परमात्माका स्वरूप: तीर्थ-स्नान, मौन या धन मनको पवित्र और तृप्त नहीं करते; जीवनका उतार-चढ़ाव परमात्माके हुक्ममें है; नाम सुनना (सुणिऐ) और मानना (मंनै) मुक्त करता है; परमात्मा निरंकार है और उसका कोई वर्णन पूरा नहीं; और अन्तमें धर्म, ज्ञान, शरम, करम और सच — पाँच खण्डोंकी यात्रा।",
+          "यह नितनेमकी पहली बाणी है — सिखोंकी दैनिक प्रार्थनाका आरम्भ, जो प्रातः अकेले मनन करते हुए पढ़ी जाती है। गुरुद्वारोंमें सुबह-शाम, खालसाकी दीक्षा (अमृत संचार) में और अन्तिम संस्कारके समय भी इसका पाठ होता है।"
+         ],
+         "en": [
+          "Japji Sahib is the bani of Guru Nanak Dev Ji with which Sri Guru Granth Sahib opens (Ang 1–8). Its original name is Jap, from the Sanskrit japa, to recite and remember; Ji and Sahib are marks of respect. It is called the essence of Sikhism, and the whole of the Guru Granth Sahib is regarded as its unfolding.",
+          "It begins with the Mool Mantar; then come a salok, 38 pauris in different metres, and a closing salok ascribed to Guru Angad Dev Ji. Its subject is true worship and the nature of God: bathing at holy places, silence or wealth cannot make the mind pure or content; life's rise and fall is within God's Hukam; listening to the Name (Suniai) and accepting it (Mannai) set one free; God is formless and no description of him is ever complete; and at the end comes the journey through the five realms of Dharam, Gian, Saram, Karam and Sach.",
+          "It is the first bani of Nitnem, the Sikhs' daily prayers, recited each morning for one's own meditation. It is also recited in gurdwaras morning and evening, at the Khalsa initiation (Amrit Sanchar) and at cremation."
+         ]
+        }
+       }
+      ]
+     },
      {
       "id": "guru-arjan-dev",
       "title": {

@@ -1,7 +1,8 @@
 'use strict';
 /* =====================================================================
    Scripture reader — library of works; each work = text (verse + number)
-   with selectable sources for Hindi meaning, English meaning and audio.
+   with selectable sources for Hindi meaning, English meaning, commentary (off unless chosen) and audio; footnotes come with
+   the meaning or commentary they belong to.
    Word meanings come from one dictionary per language (library/glossary), chosen by the verse's language.
    ===================================================================== */
 const $ = s => document.querySelector(s);
@@ -32,7 +33,7 @@ async function getJSON(path){
   if (BUNDLE){ const v = BUNDLE.files[path]; if (v) return v; throw new Error('missing ' + path); }
   const r = await fetch('library/' + path + '.json', {cache: 'no-cache'}); if (!r.ok) throw new Error(path); return r.json();
 }
-let LIB = [], LANGS = {}, GL = {}, WG = {}, ALT = {hi: [], en: []}, W = null, IT = [], ID = {}, SRC = {hi: null, en: null, au: null};
+let LIB = [], LANGS = {}, GL = {}, WG = {}, ALT = {hi: [], en: []}, W = null, IT = [], ID = {}, SRC = {hi: null, en: null, au: null, cm: null};
 // meaning languages: every language with a "meaning" block in glossary/languages.json (हिं, En, ਪੰ),
 // in its order. A layer's switch is S.settings.layers[LK(kind)]: h and e for Hindi and English (so older saved settings read unchanged), else the code.
 const MK = () => { const k = Object.keys(LANGS).filter(c => LANGS[c].meaning).sort((a, b) => (LANGS[a].meaning.order || 100) - (LANGS[b].meaning.order || 100)); return k.length ? k : ['hi', 'en']; };
@@ -142,7 +143,8 @@ const LB = {
   size: () => T('अक्षरका आकार', 'Letter size'), theme: () => T('रंग', 'Theme'), more: () => T('और सेटिंग', 'More settings'), tour: () => T('परिचय (टूर)', 'Take the tour'),
   sections: () => T('प्रसंग', 'Sections'), search: () => T('खोजें', 'Search'),
   bm: () => T('बुकमार्क और टिप्पणियाँ', 'Bookmarks & notes'), verses: () => T('मूल पाठ', 'Verses'),
-  lib: () => T('पुस्तकालय', 'Library'), src: () => T('स्रोत', 'Sources'), vidhi: () => T('पारायण-विधि', 'Parayan vidhi')
+  lib: () => T('पुस्तकालय', 'Library'), src: () => T('स्रोत', 'Sources'), vidhi: () => T('पारायण-विधि', 'Parayan vidhi'),
+  cm: () => T('टीका', 'Commentary'), fn: () => T('पाद-टिप्पणियाँ', 'Footnotes'), fnSub: () => T('अर्थ और टीकाके नीचे पुस्तककी टिप्पणियाँ', 'The book\'s notes, under the meaning or commentary')
 };
 
 /* ---------------- ui helpers ---------------- */
@@ -344,9 +346,10 @@ function spanLabel(a, b){
 }
 function rangeDesc(a, b){ const ka = KNAME(IT[a].p), kb = KNAME(IT[b].p); if (ka === kb) return esc(ka + ': ' + spanLabel(a, b)); let h = '', p = IT[a].p; while (p <= IT[b].p){ const x = Math.max(a, PARTS[p].a), y = Math.min(b, PARTS[p].b); h += (h ? '<br>' : '') + esc(KNAME(p) + ': ' + spanLabel(x, y)); p++; } return h; }
 
-/* ---------------- sources: meanings and audio ---------------- */
+/* ---------------- sources: meanings, commentaries and audio ---------------- */
 function srcList(kind){ return ((W.sources || {})[kind] || []).filter(s => !s.draft || S.timing.on); }   // a draft recording is heard only while reviewing timings
-function srcChoice(kind){ const list = srcList(kind); const sel = ((S.src[W.id] || {})[kind]); if (sel === 'off') return null; return (list.find(s => s.id === sel) || list[0] || null); }
+// a commentary ("cm") is off until the reader picks one (☰ › More settings › Sources › Commentary); the other kinds start on their first source
+function srcChoice(kind){ const list = srcList(kind); const sel = ((S.src[W.id] || {})[kind]); if (sel === 'off' || (kind === 'cm' && !sel)) return null; return (list.find(s => s.id === sel) || list[0] || null); }
 // only: 'au' the recording alone (all the work's page needs), 'meanings' the meaning sources alone; nothing: both. The
 // sources are fetched together, not one after another; ALT keeps each kind's sources in their listed order.
 async function loadSources(only){
@@ -355,7 +358,7 @@ async function loadSources(only){
   const get = async c => BYPART() ? {meta: c, id: c.id, title: c.title, m: {}, p: {}, got: new Set()} : Object.assign({meta: c}, await getJSON(W.path + '/' + c.file));
   if (only !== 'meanings'){ const c = srcChoice('au'); SRC.au = null; if (c){ try { SRC.au = Object.assign({meta: c}, await getJSON(W.path + '/' + c.file)); } catch (e) {} } buildAudio(); }
   if (only === 'au') return;
-  await Promise.all(MK().map(async kind => { const c = srcChoice(kind); SRC[kind] = null; if (c){ try { SRC[kind] = await get(c); } catch (e) {} } }));
+  await Promise.all(MK().concat('cm').map(async kind => { const c = srcChoice(kind); SRC[kind] = null; if (c){ try { SRC[kind] = await get(c); } catch (e) {} } }));
   // the other meaning sources of a kind fill in verses the chosen one doesn't cover (e.g. a stotra appended to a kāṇḍa)
   await Promise.all(MK().map(async kind => { const c = SRC[kind] && SRC[kind].meta;
     const got = await Promise.all(((W.sources || {})[kind] || []).filter(s => c && s.id !== c.id).map(s => get(s).catch(() => null)));
@@ -370,7 +373,7 @@ async function loadSources(only){
 const BYPART = () => !!W && W.load === 'parts';
 let PWANT = new Set(), PLOAD = {}, WGOT = new Set(), SLOADING = false, SFAIL = 0;   // the parts opened in this work; the loads under way; the parts of WG in
 function partReset(){ PWANT = new Set(); PLOAD = {}; WGOT = new Set(); }
-function partObjs(){ return MK().flatMap(k => [SRC[k]].concat(ALT[k] || [])).filter(Boolean); }
+function partObjs(){ return MK().flatMap(k => [SRC[k]].concat(ALT[k] || [])).concat(SRC.cm).filter(Boolean); }
 function partReady(k){ return !BYPART() || k == null || (partObjs().every(o => !o.got || o.got.has(k)) && (!W.glossary || WGOT.has(k))); }
 // resolves true when something new came in (then the page is drawn again); false when nothing was needed or nothing could be fetched
 function loadPart(k){
@@ -406,6 +409,11 @@ function mean(kind, i){
   return null;
 }
 const layerOn = l => !!S.settings.layers[l];
+// footnotes: on unless turned off (☰ › More settings › Footnotes, shown for a work that has any)
+const fnOn = () => S.settings.fn !== false;
+const hasNotes = () => !!W && Object.values(W.sources || {}).some(l => l.some(s => s.notes));
+// the chosen commentary's text for a verse: [text, footnotes?], or null
+function cmOf(i){ const c = SRC.cm; return c && c.m[IT[i].id] || null; }
 const shownKinds = () => capKinds().filter(k => layerOn(LK(k)));   // the meaning layers on, in the capsule's order
 
 /* ---------------- reader: continuous scroll over a kāṇḍa or a day's pāṭh ---------------- */
@@ -444,7 +452,7 @@ function verseHTML(i){
   const trl = l => '<div>' + l.split(/(?<=,)\s+/).map(x => '<span class="half">' + esc(x).replace(/\s*॥\s*([^॥]*?)\s*॥((?:[^॥\s]+॥)*)/g, ' <span class="dd">॥$1॥$2</span>') + '</span>').join(' ') + '</div>';
   const num = x => esc(x).replace(/\s*(॥[^॥]*॥)\s*$/, '<span style="white-space:nowrap"> $1</span>');
   // one meaning layer: Hindi and Punjabi keep the verse number on its line; English only when line by line
-  const lay = (kind, m, x, fn) => '<div class="layer ' + LCLS(kind) + '">' + hardWords(kind !== 'en' || m.p ? num(x) : esc(x), kind) + (m.edited ? '<span class="tag">' + (kind === 'en' ? 'edited' : T('संशोधित', 'edited')) + '</span>' : '') + (fn && m.f ? '<div class="fn">' + m.f.map(esc).join('<br>') + '</div>' : '') + '</div>';
+  const lay = (kind, m, x, fn) => '<div class="layer ' + LCLS(kind) + '">' + hardWords(kind !== 'en' || m.p ? num(x) : esc(x), kind) + (m.edited ? '<span class="tag">' + (kind === 'en' ? 'edited' : T('संशोधित', 'edited')) + '</span>' : '') + (fn && m.f && fnOn() ? '<div class="fn">' + m.f.map(esc).join('<br>') + '</div>' : '') + '</div>';
   const ks = shownKinds(), MS = {}; ks.forEach(k => { const m = mean(k, i); if (m) MS[k] = m; });
   const on = ks.filter(k => MS[k]);
   // line by line (☰ › More settings › "Meaning per line", off by default): a source that gives one piece per verse line
@@ -472,6 +480,8 @@ function verseHTML(i){
   h += whole(false);
   if (layerOn('w')) h += '<div class="layer wl">' + wbHTML(vv.v, langOf(i)) + '</div>';
   h += whole(true);
+  // the commentary, when one is chosen: after the meanings, under its name, in its own language's letters
+  const cm = cmOf(i); if (cm) h += '<div class="layer cm' + (SRC.cm.meta.lang === 'en' ? ' lat' : '') + '" lang="' + esc(SRC.cm.meta.lang) + '"><span class="lbl">' + esc(TT(SRC.cm.meta.title)) + '</span>' + esc(cm[0]) + (cm[1] && fnOn() ? '<div class="fn">' + cm[1].map(esc).join('<br>') + '</div>' : '') + '</div>';
   for (const p of SHOWN()) (p.notes[KEY(id)] || []).forEach((n, k) => { h += '<div class="note"><div class="who">' + new Date(n.ts).toLocaleDateString(LANG() === 'en' ? 'en-IN' : 'hi-IN') + (p.id === me.id ? '<button data-a="enote" data-k="' + k + '">' + T('बदलें', 'Edit') + '</button>' : '') + '</div>' + esc(n.t).replace(/\n/g, '<br>') + '</div>'; });
   return h + '</div>';
 }
@@ -853,7 +863,12 @@ $('#pCheck').onclick = () => {
 $('#pStep').onclick = () => { S.timing.step = STEPS[(STEPS.indexOf(step()) + 1) % STEPS.length]; save(); syncStep(); toast('− / + = ' + step() + ' s'); };
 function step(){ return S.timing.step || 0.5; }
 // a start that is only a guess — listed to be checked by the library, or placed again by text length to fit the set times — and not set by ear on this phone
-function toCheck(i){ const id = IT[i].id, A = SRC.au; return !!(S.timing.on && A && A.checkSet && (((A.checkSet.has(id) || (A.moved && A.moved.has(id))) && !myStarts()[id]) || FLAGGED.has(id))); }
+// a verse to check: listed by the library, or placed again around set times (moved) — except for a source whose list is a
+// fixed sample ("checkOnly": the owner scores the timings on it, and setting a verse's neighbours must not add to it) — or flagged
+// a start the light does not follow while timings are reviewed: one to check, or placed again around set times, or only
+// guessed — whatever the to-check list holds
+function unsure(i){ const id = IT[i].id, A = SRC.au; return toCheck(i) || !!(S.timing.on && A && !myStarts()[id] && !ownAt(id) && ((A.moved && A.moved.has(id)) || (A.guessSet && A.guessSet.has(id)))); }
+function toCheck(i){ const id = IT[i].id, A = SRC.au; return !!(S.timing.on && A && A.checkSet && (((A.checkSet.has(id) || (A.moved && !A.checkOnly && A.moved.has(id))) && !myStarts()[id]) || FLAGGED.has(id))); }
 // a timing flag (the owner: a listener hears where the recording and the verse part), set with "Review audio timing" in the
 // verse's ⋮ menu; once set, one sign shows it in both places, a blue dot (REVB): on the verse's ▶ (timing belongs to
 // playing) and at the end of the menu item: only a
@@ -1100,7 +1115,7 @@ function tick(anchor){
     // the light waits for you: it never moves on to a verse whose start is only a guess. It stays on the verse you are on
     // until you mark the next one ("Starts now"), or that verse's set end passes; verses with checked times are followed.
     let k = at(i); const c = at(anchor);
-    if (c >= 0 && k > c){ while (k > c && toCheck(a[k][0])) k--; show = a[k][0]; }
+    if (c >= 0 && k > c){ while (k > c && unsure(a[k][0])) k--; show = a[k][0]; }
     else if (c > 0 && k === c - 1 && endOf(a[k][0]) != null && time >= endOf(a[k][0])) show = anchor;   // moved on by an end: stay
   }
   // a verse whose set end has passed hands the light to the next verse at once, in both modes — even when
@@ -1186,6 +1201,18 @@ function setTime(i, k, sec){
   // again by the order rule, so they never block a move)
   const a = AUT[v[0]] || [], j = a.findIndex(x => x[0] === i);
   const rows = a.slice().sort((x, y) => x[0] - y[0]), jj = rows.findIndex(x => x[0] === i);
+  // what you hear now wins over a start you set earlier on this phone and have not sent (the owner: "Starts now" was refused
+  // because a later verse, often started by an earlier "Ends now", already started before now): a start not yet sent that is
+  // out of order with this one — a later verse starting at or before it, an earlier verse at or after it — is removed, and
+  // named; a sent start still has to be moved first
+  const dropped = [];
+  if (k === 1 && sec != null){
+    const A = SRC.au, mine = myStarts();
+    for (const r of rows){
+      const rid = IT[r[0]].id; if (rid === id || !mine[rid] || (A.ownSet && A.ownSet.has(rid)) || mine[rid][0] !== v[0]) continue;
+      if ((r[0] > i && mine[rid][1] <= v[1] + 0.1) || (r[0] < i && mine[rid][1] >= v[1] - 0.1)){ delete fx[rid]; unfrom(rid); dropped.push(r[0]); }
+    }
+  }
   let pid = null, nid = null;
   for (let q = jj - 1; q >= 0; q--) if (ownAt(IT[rows[q][0]].id)){ pid = IT[rows[q][0]].id; break; }
   for (let q = jj + 1; q < rows.length; q++) if (ownAt(IT[rows[q][0]].id)){ nid = IT[rows[q][0]].id; break; }
@@ -1229,7 +1256,7 @@ function setTime(i, k, sec){
   fx[id] = v; unfrom(id); link.forEach(([lid, lv]) => { fx[lid] = lv; unfrom(lid); }); save(); buildAudio();
   refreshMarks(was, i);
   if (PL.on){ PL.cur = -1; tick(i); }   // the light moves at once, from this verse (after an end: to the next verse); the page stays where you are
-  toast((k === 1 ? T('शुरुआत: ', 'Starts at ') : T('अंत: ', 'Ends at ')) + (sec == null ? '—' : fmtT(sec)));
+  toast((k === 1 ? T('शुरुआत: ', 'Starts at ') : T('अंत: ', 'Ends at ')) + (sec == null ? '—' : fmtT(sec)) + (dropped.length ? T(' · हटाई गई: ', ' · removed your earlier start for ') + dropped.map(playLabel).join(', ') : ''));
 }
 // after a time was written or removed: every verse on screen whose time, label or buttons changed is drawn again
 function refreshMarks(was, i){ Object.keys(was).forEach(q => { q = +q; if (q === i || was[q] !== JSON.stringify(SRC.au.at[IT[q].id]) + toCheck(q) + !!myStarts()[IT[q].id]) rerenderItem(q); }); syncCheck(); }
@@ -1622,15 +1649,16 @@ function pairPick(){ if (!W || workKinds().filter(k => k !== 'hi' && k !== 'en')
   return '<div class="field"><label>' + T('बारमें अर्थ', 'Meanings in the bar') + '</label><select id="sPair">' + pairOptions().map(p => '<option value="' + p.join(',') + '"' + (p.join(',') === cur ? ' selected' : '') + '>' + p.map(nm).join(' · ') + '</option>').join('') + '</select></div>'; }
 function renderSettings(){   // the "More settings" page: the rare things only — transliteration, sources, audio timing, privacy
   const cur = S.src[W ? W.id : ''] || {};
-  const pick = (kind, label, off) => { const list = W ? srcList(kind) : []; if (!list.length) return ''; const sel = cur[kind] || list[0].id; return '<div class="field"><label>' + label + '</label><select data-src="' + kind + '">' + list.map(s => '<option value="' + s.id + '"' + (sel === s.id ? ' selected' : '') + '>' + esc(TT(s.title)) + (s.draft ? T(' (जाँच बाकी)', ' (to be checked)') : '') + '</option>').join('') + (off ? '<option value="off"' + (sel === 'off' ? ' selected' : '') + '>' + T('बंद', 'Off') + '</option>' : '') + '</select></div>'; };
-  let h = '<h2>' + T('पढ़ना', 'Reading') + '</h2>' + sw('str', LB.tr(), LB.trSub(), S.settings.tr) + sw('slines', LB.lines(), LB.linesSub(), S.settings.lines) +
-    (W ? '<h2>' + LB.src() + ' · ' + esc(TT(W.title)) + '</h2>' + MK().map(k => pick(k, LBM(k))).join('') + pairPick() + pick('au', LB.au(), true) : '') +
+  const pick = (kind, label, off) => { const list = W ? srcList(kind) : []; if (!list.length) return ''; const sel = cur[kind] || (kind === 'cm' ? 'off' : list[0].id); return '<div class="field"><label>' + label + '</label><select data-src="' + kind + '">' + list.map(s => '<option value="' + s.id + '"' + (sel === s.id ? ' selected' : '') + '>' + esc(TT(s.title)) + (s.draft ? T(' (जाँच बाकी)', ' (to be checked)') : '') + '</option>').join('') + (off ? '<option value="off"' + (sel === 'off' ? ' selected' : '') + '>' + T('बंद', 'Off') + '</option>' : '') + '</select></div>'; };
+  let h = '<h2>' + T('पढ़ना', 'Reading') + '</h2>' + sw('str', LB.tr(), LB.trSub(), S.settings.tr) + sw('slines', LB.lines(), LB.linesSub(), S.settings.lines) + (hasNotes() ? sw('sfn', LB.fn(), LB.fnSub(), fnOn()) : '') +
+    (W ? '<h2>' + LB.src() + ' · ' + esc(TT(W.title)) + '</h2>' + MK().map(k => pick(k, LBM(k))).join('') + pairPick() + pick('cm', LB.cm(), true) + pick('au', LB.au(), true) : '') +
     timingHTML() +
     '<h2>' + T('सहायता', 'Help') + '</h2><div class="acts"><a class="btn ghost" href="privacy.html" target="_blank" rel="noopener">' + T('गोपनीयता', 'Privacy') + '</a></div>' +
     '<div style="height:50px"></div>';
   $('#setBody').innerHTML = h;
   $('#str').onchange = e => { S.settings.tr = e.target.checked; save(); };   // seen in the reader on the next open
   $('#slines').onchange = e => { S.settings.lines = e.target.checked; save(); };
+  if ($('#sfn')) $('#sfn').onchange = e => { S.settings.fn = e.target.checked; save(); };
   bindTiming();
   if ($('#sPair')) $('#sPair').onchange = e => { S.settings.pair = e.target.value; save(); syncLayers(); toast(T('बार बदला', 'Bar changed')); };
   $$('[data-src]').forEach(s => s.onchange = async () => { const c = S.src[W.id] = S.src[W.id] || {}; c[s.dataset.src] = s.value; save(); if (s.dataset.src === 'au') stopAudio(); await loadSources(); IDX = null; toast(T('स्रोत बदला', 'Source changed')); });

@@ -17,12 +17,21 @@ If `build.py` prints `LIBRARY PROBLEM: …`, fix what it names. It never builds 
 
 ---
 
-## Add a new meaning source (another translation or commentary)
+## Add a new meaning source (another translation)
 
 1. Choose the source's name: the publisher or translator, e.g. `swami-ramsukhdas` or `griffith`; its library id is `<lang>-<name>`.
 2. Write `tools/works/<work>/meanings/<lang>/<name>.json` (`tools/works/README.md` → meanings): `title` (bilingual), `order`, `"copied": true`, `m` {verse id: meaning, or a list of one piece per line}, and `notes` for footnotes. Match by the verse ids in `text.txt`, and check the verse text where possible, not by position alone. Copy the source's meanings faithfully (`docs/LIBRARY.md` §3). When a script makes the file from a book, keep the script and its intermediate files in `tools/works/<work>/source/` so it can be redone.
 3. Export the work and build. The source appears under ☰ › More settings › Sources. The default stays as it was unless the new file has a lower `order`.
 4. Note the edition and the permission status in the root `README.md` under "Sources and permissions".
+
+## Add a commentary
+
+A commentary explains the verse (a guru's or ācārya's ṭīkā, a bhāṣya); a translation, however free, is a meaning source (above).
+1. Keep the owner's copy in `scriptures-data` at the work's path, under `books/<publisher>/` or `printouts/<site>/`, with its `.meta.json`.
+2. Name it after its author or publisher (`shridhara`, `ramsukhdas`); its library id is `<lang>-<name>`, in the language it is written in (`sa` for a Sanskrit ṭīkā).
+3. Write `tools/works/<work>/commentary/<lang>/<name>.json` in the meaning format (`tools/works/README.md` → commentary): `title` (bilingual), `order`, `"copied": true`, `m` {verse id: the commentary on it}, `notes` for its footnotes. A commentary on several verses sits under the last of them. Make it with a script in `tools/works/<work>/source/` when it comes from a book, and record every choice in `reconciliation.md`.
+4. Export the work and build. ☰ › More settings › Sources then shows "Commentary" for this work (Off by default).
+5. Record the edition and permission status in the work's `README.md` under "Sources and permissions".
 
 Our own meanings (`meanings/<lang>/scriptures.json`) follow `tools/meanings/style.md`; `tools/meanings/prepare.py --work <work>` makes the batches to write, `apply_batches.py --work <work>` merges them, and the export checks them against the copied sources (`overlap.py`).
 
@@ -71,6 +80,9 @@ Use this when automatic timing is weak (kīrtan, chant) or a recording has no tr
 3. The owner taps "Publish changes": this opens a GitHub issue "Timing: <path> / <source>". The `timing` workflow applies it (issues from the owner's accounts only: `goyaldarwin`, `darwingoyal`) and closes it. For a draft, the switch "This recording is checked: publish it for everyone" goes with the send: the recording goes live and is marked checked.
 4. To verify a send: `gh api repos/goyaldarwin/scriptures/issues/<n>` and `/comments` (REST; GraphQL is unavailable), compare the issue's JSON with `library/<path>/audio/<source>.json` (each sent time exact), read `moved`, and check `gh api repos/goyaldarwin/scriptures/commits/main/check-runs`.
 5. Never edit `owner.json` or the generated timings by hand; the issue is the record.
+
+## OCR a scanned book (only where the owner has chosen OCR for it)
+`docs/PLAYBOOK.md` §11 ("No OCR") is the rule. Where the owner chooses OCR for a scan without a text layer (the work's `README.md` and the scan's `.meta.json` in `scriptures-data` say so), the OCR runs on GitHub, free here: the `ocr` workflow (Actions tab, or `gh api repos/goyaldarwin/scriptures/actions/workflows/ocr.yml/dispatches -X POST -f ref=main -f inputs[script]=<the work's OCR script> -f inputs[data]=<the PDF's path in scriptures-data> -f inputs[layout]=<layout> -f inputs[ranges]=13-60,61-110 -f inputs[out]=<folder> -f inputs[ref]=<branch>`; at most 256 ranges a run, 14 jobs at once). Each job fetches only that PDF with `DATA_TOKEN` and commits only the OCR text to the branch `ref`. The text is a draft: every word the work's checks flag is read by eye on the page image before it is used (`tools/works/shiva-purana/source/hindi/`).
 
 ## Correct or remove a verse in a generated text
 - Put the change where the work's text is made (`text.txt`, or, when a script in `source/` makes it, that script's corrections: the Mānas's `text_fixes.json`, `settle.py`'s `FIX` / `ITEM_FIX`), never only in `library/`: a regeneration undoes it. Diff the regenerated file against the previous one and explain every change.

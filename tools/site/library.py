@@ -1,7 +1,8 @@
 """Register sources and check the library before every build (called by build.py).
 
 For each work on the shelf (library/index.json) this:
-  1. lists the meaning sources in <work>/meanings/*.json and the audio sources in <work>/audio/*.json
+  1. lists the meaning sources in <work>/meanings/*.json, the commentaries in <work>/commentary/*.json ("cm", each with its
+     "lang") and the audio sources in <work>/audio/*.json
      and writes them into work.json → "sources" (the website reads that list; it cannot scan folders),
      and marks "glossary": true when the work has its own <work>/glossary.json;
   2. checks that every work has its folder in tools/works with the files every work has (check_folders), and that
@@ -10,7 +11,7 @@ For each work on the shelf (library/index.json) this:
      dictionaries in glossary/, fallbacks, each store app's shelves in library/apps.json), and stops the build with
      a clear message if not.
 A source's file name must equal its "id". The source with the lowest "order" (then id) is the default.
-A work with "load": "parts" has each meaning source as a header plus one file per part (meanings/<id>/<part>.json) and its
+A work with "load": "parts" has each meaning source (and commentary) as a header plus one file per part (meanings/<id>/<part>.json) and its
 own senses as glossary/<part>.json (docs/LIBRARY.md §3, §5): every part file must be there, hold only its part's verses,
 and the checks below run on the parts joined (a verse's words on its own part's senses).
 """
@@ -152,37 +153,43 @@ def check_work(lib, leaf, LANGS):
     # meaning languages: those with a "meaning" block in glossary/languages.json (hi, en, pa);
     # hi, en and au are always listed, another only when the work has one
     ML = sorted((k for k, L in LANGS.items() if L.get('meaning')), key=lambda k: (LANGS[k]['meaning'].get('order', 100), k))
-    src = {k: [] for k in ML}; src.setdefault('hi', []); src.setdefault('en', []); src['au'] = []
-    heads = sorted(glob.glob(os.path.join(lib, path, 'meanings', '*.json')))
-    stray = sorted(set(os.path.basename(d.rstrip(os.sep)) for d in glob.glob(os.path.join(lib, path, 'meanings', '*', ''))) - {os.path.basename(f)[:-5] for f in heads})
-    _need(not stray, f"{name}/meanings/: part folders without their source's header: {stray}")
+    src = {k: [] for k in ML}; src.setdefault('hi', []); src.setdefault('en', []); src['au'] = []; src['cm'] = []
     PART = {i['id']: i['p'] for i in items}
-    for f in heads:
-        s = json.load(open(f)); sid = os.path.basename(f)[:-5]; where = f"{name}/meanings/{sid}.json"
-        _need(s.get('id') == sid, f"{where}: id {s.get('id')!r} must equal the file name")
-        pd = f[:-5]
-        if bypart:   # the header: the source's fields, "load": "parts" and an empty "m"; then a file per part holding only that part's verses
-            _need(s.get('load') == 'parts' and s.get('m') == {} and 'p' not in s, f"{where}: a source of a work loaded by part is a header: \"load\": \"parts\", \"m\": {{}}")
-            for k in range(NP):
-                pf = os.path.join(pd, f'{k}.json'); _need(os.path.exists(pf), f"{where}: no part file meanings/{sid}/{k}.json")
-                x = json.load(open(pf, encoding='utf-8')); pw = f"{name}/meanings/{sid}/{k}.json"
-                _need(all(x.get(a) == s.get(a) for a in ('id', 'lang', 'order', 'title')) and x.get('part') == k, f"{pw}: needs the header's id, lang, order and title, and \"part\": {k}")
-                bad = [i for i in list(x.get('m', {})) + list(x.get('p', {})) if PART.get(i, k) != k]; _need(not bad, f"{pw}: verses of another part: {bad[:3]}")
-            _need(sorted(os.listdir(pd)) == sorted(f'{k}.json' for k in range(NP)), f"{name}/meanings/{sid}/: only 0.json … {NP - 1}.json")
-            s = jsonio.read_meanings(f)
-        else: _need('load' not in s and not os.path.isdir(pd), f"{where}: only a work with \"load\": \"parts\" has its meanings by part")
-        _need(s.get('lang') in ML, f"{where}: lang must be a meaning language of glossary/languages.json ({', '.join(ML)})")
-        _need(_bi(s.get('title')), f"{where}: needs title {{hi, en}}")
-        bad = [k for k in s['m'] if k not in ID]; _need(not bad, f"{where}: {len(bad)} unknown item ids, e.g. {bad[:3]}")
-        for k, e in s['m'].items(): _need(isinstance(e, list) and e and isinstance(e[0], str), f"{where}: {k} must be [text, footnotes?]")
-        # line by line: "p" gives a verse's meaning one piece per verse line, shown under its line;
-        # "" where a line has no meaning of its own. The joined text in "m" stays (search, copy, a reader's correction).
-        NL = {x['id']: len(x['v']) for x in items}
-        for k, ps in (s.get('p') or {}).items():
-            _need(k in s['m'], f"{where}: p.{k} has no meaning in m")
-            _need(isinstance(ps, list) and len(ps) == NL.get(k, -1) and all(isinstance(x, str) for x in ps) and any(x.strip() for x in ps),
-                  f"{where}: p.{k} must give one piece (or \"\") per verse line ({NL.get(k, '?')} lines)")
-        src[s['lang']].append({'id': sid, 'file': 'meanings/' + sid, 'title': s['title'], 'order': s.get('order', 100)})
+    # meanings/<id>.json and commentary/<id>.json: one format (a commentary may be in any language; the reader picks one, or none)
+    for KIND in ('meanings', 'commentary'):
+        CM = KIND == 'commentary'
+        heads = sorted(glob.glob(os.path.join(lib, path, KIND, '*.json')))
+        stray = sorted(set(os.path.basename(d.rstrip(os.sep)) for d in glob.glob(os.path.join(lib, path, KIND, '*', ''))) - {os.path.basename(f)[:-5] for f in heads})
+        _need(not stray, f"{name}/{KIND}/: part folders without their source's header: {stray}")
+        for f in heads:
+            s = json.load(open(f)); sid = os.path.basename(f)[:-5]; where = f"{name}/{KIND}/{sid}.json"
+            _need(s.get('id') == sid, f"{where}: id {s.get('id')!r} must equal the file name")
+            pd = f[:-5]
+            if bypart:   # the header: the source's fields, "load": "parts" and an empty "m"; then a file per part holding only that part's verses
+                _need(s.get('load') == 'parts' and s.get('m') == {} and 'p' not in s, f"{where}: a source of a work loaded by part is a header: \"load\": \"parts\", \"m\": {{}}")
+                for k in range(NP):
+                    pf = os.path.join(pd, f'{k}.json'); _need(os.path.exists(pf), f"{where}: no part file {KIND}/{sid}/{k}.json")
+                    x = json.load(open(pf, encoding='utf-8')); pw = f"{name}/{KIND}/{sid}/{k}.json"
+                    _need(all(x.get(a) == s.get(a) for a in ('id', 'lang', 'order', 'title')) and x.get('part') == k, f"{pw}: needs the header's id, lang, order and title, and \"part\": {k}")
+                    bad = [i for i in list(x.get('m', {})) + list(x.get('p', {})) if PART.get(i, k) != k]; _need(not bad, f"{pw}: verses of another part: {bad[:3]}")
+                _need(sorted(os.listdir(pd)) == sorted(f'{k}.json' for k in range(NP)), f"{name}/{KIND}/{sid}/: only 0.json … {NP - 1}.json")
+                s = jsonio.read_meanings(f)
+            else: _need('load' not in s and not os.path.isdir(pd), f"{where}: only a work with \"load\": \"parts\" has its meanings by part")
+            _need(s.get('lang') in (LANGS if CM else ML), f"{where}: lang must be " + ("a language of glossary/languages.json" if CM else f"a meaning language of glossary/languages.json ({', '.join(ML)})"))
+            _need(_bi(s.get('title')), f"{where}: needs title {{hi, en}}")
+            bad = [k for k in s['m'] if k not in ID]; _need(not bad, f"{where}: {len(bad)} unknown item ids, e.g. {bad[:3]}")
+            for k, e in s['m'].items(): _need(isinstance(e, list) and e and isinstance(e[0], str), f"{where}: {k} must be [text, footnotes?]")
+            # line by line: "p" gives a verse's meaning one piece per verse line, shown under its line;
+            # "" where a line has no meaning of its own. The joined text in "m" stays (search, copy, a reader's correction).
+            NL = {x['id']: len(x['v']) for x in items}
+            for k, ps in (s.get('p') or {}).items():
+                _need(k in s['m'], f"{where}: p.{k} has no meaning in m")
+                _need(isinstance(ps, list) and len(ps) == NL.get(k, -1) and all(isinstance(x, str) for x in ps) and any(x.strip() for x in ps),
+                      f"{where}: p.{k} must give one piece (or \"\") per verse line ({NL.get(k, '?')} lines)")
+            # footnotes: shown under the meaning they belong to; the app shows its Footnotes switch only for a work with some
+            e = {'id': sid, 'file': KIND + '/' + sid, 'title': s['title'], 'order': s.get('order', 100), **({'notes': True} if any(len(x) > 1 and x[1] for x in s['m'].values()) else {})}
+            if CM: src['cm'].append({**e, 'lang': s['lang']})
+            else: src[s['lang']].append(e)
     for f in sorted(glob.glob(os.path.join(lib, path, 'audio', '*.json'))):
         s = json.load(open(f)); sid = os.path.basename(f)[:-5]; where = f"{name}/audio/{sid}.json"
         _need(s.get('id') == sid, f"{where}: id {s.get('id')!r} must equal the file name")

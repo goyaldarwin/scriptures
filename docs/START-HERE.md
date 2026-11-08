@@ -13,7 +13,7 @@ This repository holds everything about the scriptures library: the website, the 
 | `CLAUDE.md` | the non-negotiables, in brief |
 | `docs/START-HERE.md` | this page: the repositories, how the pieces fit, the status of each work, what is open |
 | `docs/PLAYBOOK.md` | every rule and preference of the owner, by topic |
-| `docs/HOW-TO.md` | step-by-step procedures: add a work, a meaning source, a recording; fix a text; change the app |
+| `docs/HOW-TO.md` | step-by-step procedures: add a work, a meaning source, a commentary, a recording; fix a text; change the app |
 | `docs/LIBRARY.md` | the data format (`library/`), field by field |
 | `docs/ROADMAP.md` | work not done yet |
 | `docs/APPS.md` | the store apps |
@@ -43,7 +43,7 @@ recordings ─ transcription ─► tools/works/<work>/audio/<source>/transcript
 library/ ─ tools/site/build.py (checks everything first) ─► index.html, app/, sw.js, manifest.json  +  dist/ (offline file)
 ```
 
-- The verse and its number are the core of each work. Meanings (Hindi, English, Punjabi) and recordings are selectable sources; word meanings are one dictionary per language (`library/glossary/<lang>.json`), each verse looked up in its own language.
+- The verse and its number are the core of each work. Meanings (Hindi, English, Punjabi), commentaries (off until the reader picks one) and recordings are selectable sources, footnotes coming with their meaning; word meanings are one dictionary per language (`library/glossary/<lang>.json`), each verse looked up in its own language.
 - The app is the same for every work: the library, the work's home (parts, plans, ▶), and a continuous reader. Bookmarks, notes, progress and hands-free playing are built in; readers' data stays on their phone.
 - The working rules (branches, tests, merging, the environment) are in `docs/PLAYBOOK.md` §10.
 
@@ -67,16 +67,18 @@ library/ ─ tools/site/build.py (checks everything first) ─► index.html, ap
 | Kaṭha Upaniṣad (`veda/yajurveda/krishna-yajurveda/upanishad/katha-upanishad`) | the owner's Sandeepany book, checked word for word against his sanskritdocuments.org copy and shlokam.org | ours | SMVedroad, live |
 | Īśāvāsya Upaniṣad (`veda/yajurveda/shukla-yajurveda/upanishad/isha-upanishad`) | shlokam.org | ours | SMVedroad, live |
 | Māṇḍūkya Upaniṣad (`veda/atharvaveda/upanishad/mandukya-upanishad`) | sanskritdocuments.org; the svasti lines confirmed by shlokam.org | ours | SMVedroad, live |
-| Śrīmad Bhāgavata Mahāpurāṇa (`purana/mahapurana/bhagavata`) | Gita Press (codes 26–27), the Māhātmya and 12 skandhas, 14,603 verses, read from the e-book's glyph ids; 7-day Saptāha plan | Gita Press Hindi with the book's 185 notes, copied; Tagare's English with his footnotes (wisdomlib), copied and placed on the Gita Press verses by content; no word meanings yet (`"words": "partial"`) | Sanskrit Parayan, 30 recordings, published for review: timed from the transcripts (14,309 of 14,945 items), every start on the to-check list until set by ear |
-| Śrī Śivamahāpurāṇa (`purana/mahapurana/shiva`) | sanskritdocuments.org's copy (the owner's JSON), which follows Gita Press (codes 2223–2224); the Māhātmya and 7 saṃhitās, 24,676 verses; checked on the owner's Gita Press and Kalyan scans by eye (no OCR); two verses the copy drops (5.49.20, 6.14.20) from wisdomlib.org (`reconciliation.md`) | ours in English: the owner's drafts brought to the style sheet, standing until reviewed meanings replace them; English word meanings from his word-by-word glosses (`"words": "partial"`); the Hindi and the adhyāya headings to come from the scans by OCR, every flag read by eye | none yet |
+| Śrīmad Bhāgavata Mahāpurāṇa (`purana/mahapurana/bhagavata`) | Gita Press (codes 26–27), the Māhātmya and 12 skandhas, 14,603 verses, read from the e-book's glyph ids; 7-day Saptāha plan | Gita Press Hindi with the book's 185 notes, copied; Tagare's English with his footnotes (wisdomlib), copied and placed on the Gita Press verses by content; no word meanings yet (`"words": "partial"`) | Sanskrit Parayan, 30 recordings, published: starts from MMS (14,576 of 14,945 items; 94% within 1 s of the owner's 132 by-ear starts, `aligned.md`); the verses the checks flag on the to-check list |
+| Śrī Śivamahāpurāṇa (`purana/mahapurana/shiva`) | sanskritdocuments.org's copy (the owner's JSON), which follows Gita Press (codes 2223–2224); the Māhātmya and 7 saṃhitās, 24,676 verses; checked on the owner's Gita Press and Kalyan scans by eye; two verses the copy drops (5.49.20, 6.14.20) from wisdomlib.org (`reconciliation.md`) | ours in English: the owner's drafts brought to the style sheet, standing until reviewed meanings replace them; English word meanings from his word-by-word glosses (`"words": "partial"`); Gita Press Hindi, copied, read from the owner's two scans by OCR (his choice for them): every flagged word read by eye, then every paragraph proofread against its page; adhyāya headings ours | none yet |
+| Japji Sahib (`gurbani/guru-nanak-dev/japji-sahib`) | the owner's SikhNet PDF (Gurmukhi), word for word as the Shabad OS database | ours (Hindi, English, Punjabi), line by line with notes | Nirvair Khalsa Jatha UK, live for review: starts from the transcript, seven hand-checked; all on the to-check list until set by ear |
 | Sukhmani Sahib (`gurbani/guru-arjan-dev/sukhmani-sahib`) | the owner's PDF (Gurmukhi) | ours (Hindi, English, Punjabi) | Parminder Singh, live; 207 starts not yet set by ear are listed for the owner to check (`review`) |
 | Śrīmad Vālmīki Rāmāyaṇa (`granth/valmiki/ramayana`) | Gita Press (codes 452–453), read from the Chanakya font without OCR, checked against IIT Kanpur and valmikiramayan.net; 23,701 verses; `source/make_text.py` writes `text.txt` from the PDF | Gita Press Hindi (code 77) and English with its 240 footnotes, copied; every word's meaning (the English IIT Kanpur's or valmikiramayan.net's gloss as given, else ours: `source/words/src.json`); loaded by kāṇḍa. the word meanings written by us checked against Monier-Williams and Apte (`source/words/check_ours.py`) | Sanatana Dharma Parayana, live: one video per sarga for Bāla, Ayodhyā, Araṇya, Sundara and Yuddha (467); Kiṣkindhā and Uttara have none yet; starts the speech recogniser did not hear are on the to-check list |
+| Śrī Durgā Saptaśatī (`granth/vyasa/durga-saptashati`) | sanskritdocuments.org's text (the owner's JSON): the Caṇḍikā-dhyāna, Argalā, Kīlaka, Kavaca, 13 adhyāyas (700 mantras, numbered as Gita Press), Aparādha-kṣamāpaṇa, Devī Sūkta; checked word for word against the owner's Gita Press book (code 118), every choice in `reconciliation.md` | ours (Hindi, English): the owner's drafts brought to the style sheet, standing until reviewed meanings replace them; Pargiter (1904, public domain) copied; word meanings (Hindi, English) from the drafts' word-by-word glosses, root and grammar to come | Braja Beats (`zmGU9QbLUVM`), a draft: timed from the transcript |
 
 ## For a session to settle (PLAYBOOK §2: decide, never leave doubts for the owner)
 - Nothing open. A new work's or kāṇḍa's doubts go to `docs/reviews/` and are settled before its pull request is merged.
 
 ## To build next
-- The rest of the timing method (`tools/audio/METHOD.md`, steps 3–5: ends, error checks, fixes) as a public workflow; then the Śrīmad Bhāgavata Mahāpurāṇa and the Upaniṣads, scored on the owner's by-ear starts first.
+- The timing method's fixes (`tools/audio/METHOD.md`, step 5: re-align between trusted neighbours, snap to the onset, spread and list); steps 2–4 run in the public `align` workflow. Then the Upaniṣads, scored on the owner's by-ear starts first.
 
 ## Open with the owner
 - Private copies that would complete `scriptures-data` (nothing depends on them; only the owner has them, from earlier chats): the Gaṅgā āratī screenshot, the jansatta.com printout of Śrī Rāmacandra Kṛpālu, the Māṇḍūkya's sanskritdocuments.org and freepressjournal.in printouts and its recording.

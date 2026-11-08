@@ -571,6 +571,19 @@ async def main():
             const s0 = A.at[IT[i].id][1], pe = A.at[IT[p].id][2], r = setTime(i, 2, Math.min(s0 - 0.2, (pe != null ? pe : s0 - 1) + 0.3)), s1 = A.at[IT[i].id][1];
             S.timing.fix[tkey()] = {}; S.timing.on = false; save(); applyTiming(); await loadSources(); return [r === false, s1 === s0]; })()""")
         check('timing: a sent start is never moved by a late "Ends now"', so == [True, True], so)
+        # a fixed sample to check (checkOnly): a verse the order rule moves around a set time is not added to the list
+        co = await ev("""(async () => { S.timing.on = true; applyTiming(); await openWork('shri-rudram', true); await loadSources(); show('home');
+            const A = SRC.au, a = AUT[0], j = a.findIndex((x, n) => n > 2 && !A.ownSet.has(IT[x[0]].id) && !A.ownSet.has(IT[a[n + 1][0]].id)), i = a[j][0], nx = a[j + 1][0], keep = JSON.stringify(S.timing.fix[tkey()] || {});
+            setTime(i, 1, a[j + 1][1] + 2); const mv = A.moved.has(IT[nx].id), was = toCheck(nx); A.checkOnly = true; const now = toCheck(nx);
+            delete A.checkOnly; S.timing.fix[tkey()] = JSON.parse(keep); S.timing.on = false; save(); applyTiming(); await loadSources(); return [mv, was, !now]; })()""")
+        check('timing: a fixed sample to check (checkOnly) does not grow when neighbours are moved', co == [True, True, True], co)
+        # what you hear now wins: "Starts now" after a later verse's start set (and not sent) on this phone removes that start
+        lw = await ev("""(async () => { S.timing.on = true; applyTiming(); await openWork('shri-rudram', true); await loadSources(); show('home');
+            const A = SRC.au, a = AUT[0].slice().sort((x, y) => x[0] - y[0]), j = a.findIndex((x, n) => n > 2 && n + 2 < a.length && ![0, 1, 2].some(d => A.ownSet.has(IT[a[n + d][0]].id)));
+            const i = a[j][0], nx = a[j + 1][0], keep = JSON.stringify(S.timing.fix[tkey()] || {});
+            setTime(nx, 1, a[j][1] + 1); const r = setTime(i, 1, a[j][1] + 3), gone = !myStarts()[IT[nx].id], set = myStarts()[IT[i].id] && myStarts()[IT[i].id][1] === Math.round((a[j][1] + 3) * 10) / 10;
+            S.timing.fix[tkey()] = JSON.parse(keep); S.timing.on = false; save(); applyTiming(); await loadSources(); return [r !== false, gone, !!set]; })()""")
+        check('timing: Starts now after a later verse\'s unsent start removes that start (what you hear wins)', lw == [True, True, True], lw)
         # a timing mark never scrolls the page while the lit verse is on screen
         ns = await ev("""(async () => { S.timing.on = true; applyTiming(); await openWork('shri-rudram', true); await loadSources(); show('home'); { const A = SRC.au; A.at0 = Object.fromEntries(Object.entries(A.at0).map(([k, v]) => [k, v.slice(0, 2)])); A.own = []; A.ownSet = new Set(); A.checkSet = new Set(Object.keys(A.at0)); A.guess = []; A.guessSet = new Set(); A.raw = {}; buildAudio(); }
             const a = AUT[0], i = a[8][0]; openReader('k', i); await new Promise(r => setTimeout(r, 600));
@@ -666,12 +679,14 @@ async def main():
         # "Until next" on a verse that has no end does nothing (the estimated start does not become "yours")
         unx = await ev("""(async () => { """ + T0 + """ const i = AUT[0][10][0]; const r = [setTime(i, 2, null), !!myStarts()[IT[i].id]]; """ + T1 + """ return r; })()""")
         check('timing: Until next on a verse without an end changes nothing', unx == [False, False], unx)
-        # order between verses set by ear: a start cannot go before the previous set start, or at or past the next set start
-        ordr = await ev("""(async () => { """ + T0 + """ const a = AUT[0], p = a[10][0], i = a[11][0], n = a[12][0], s0 = Math.round(a[10][1] * 10) / 10;
-            setTime(p, 1, s0); setTime(n, 1, s0 + 20); setTime(i, 1, s0 + 10); const s = SRC.au.at[IT[i].id][1];
-            const r = [setTime(i, 1, s0 - 1), setTime(i, 1, s0 + 20.5), SRC.au.at[IT[i].id][1] === s, setTime(i, 1, s0 + 19)];
-            """ + T1 + """ return r; })()""")
-        check('timing: a start cannot go before the previous set start or past the next set start', ordr == [False, False, True, None], ordr)
+        # order between verses set by ear: a start at or past the next set start (unsent) removes that start, one at or before
+        # the previous set start removes that one (what you hear now wins); between them it simply moves
+        ordr = await ev("""(async () => { """ + T0 + """ const a = AUT[0], p = a[10][0], i = a[11][0], n = a[12][0], s0 = Math.round(a[10][1] * 10) / 10, has = q => !!myStarts()[IT[q].id];
+            setTime(p, 1, s0); setTime(n, 1, s0 + 20); setTime(i, 1, s0 + 10); const r0 = [setTime(i, 1, s0 + 19), has(p), has(n)];
+            setTime(i, 1, s0 + 20.5); const r1 = [has(p), has(n), Math.abs(SRC.au.at[IT[i].id][1] - (s0 + 20.5)) < 0.05];
+            setTime(i, 1, s0 - 1); const r2 = [has(p), Math.abs(SRC.au.at[IT[i].id][1] - (s0 - 1)) < 0.05];
+            """ + T1 + """ return [r0, r1, r2]; })()""")
+        check('timing: a start out of order with an unsent set start removes that start; between them it moves', ordr == [[None, True, True], [True, False, True], [False, True]], ordr)
         # an end carried into the next verse is refused when it would squeeze that verse against the verse after it
         chain = await ev("""(async () => { """ + T0 + """ const a = AUT[0], i = a[10][0], n = a[11][0], nn = a[12][0], s = Math.round(a[10][1] * 10) / 10;
             setTime(i, 1, s); setTime(n, 1, s + 10); setTime(nn, 1, s + 14);
@@ -1014,6 +1029,27 @@ async def main():
         check('a third meaning language: ਪੰ · En in an English app, ਪੰ · हिं in a Hindi one, हिं · En when chosen; four places', pa['c1'].split('·')[:2] == ['ਪੰ', 'En'] and pa['c2'].split('·')[:2] == ['ਪੰ', 'हिं'] and pa['c3'].split('·')[:2] == ['हिं', 'En'] and len(pa['c1'].split('·')) == 4, pa)
         check('a third meaning language: its pieces under their lines, listed in Sources with "Meanings in the bar", searchable, off in recitation mode',
               all(pa['lay']) and pa['srcs'][0] and pa['srcs'][1].split('|') == ['ਪੰ · En', 'ਪੰ · हिं', 'हिं · En'] and pa['found'] and pa['off'] and pa['back'], pa)
+        # footnotes and commentary: the book's footnotes show under their meaning, and ☰ › More settings › Footnotes (shown only for
+        # a work with footnotes) hides them; a commentary is off until chosen in Sources (its picker shown only for a work that has
+        # one), then sits after the meanings under its name, with its own footnotes
+        cm = await ev("""(async () => { await openWork('shiv-aarti', true); show('settings'); await new Promise(r => setTimeout(r, 200));
+            const none = [!document.querySelector('#setBody [data-src="cm"]'), !document.querySelector('#setBody #sfn')];
+            await openWork('bhagavata-purana', true); show('home'); const S0 = JSON.stringify(S.settings), C0 = JSON.stringify(S.src[W.id] || {});
+            S.settings.layers = {h: true, e: false, w: false}; S.settings.recite = false; delete S.settings.fn;
+            const i = IT.findIndex(x => x.id === '10.9.14'); openReader('k', i); for (let n = 0; n < 40 && !(SRC.hi && SRC.hi.m['10.9.14']); n++) await new Promise(r => setTimeout(r, 150));
+            const at = () => { const d = document.createElement('div'); d.innerHTML = verseHTML(i); return d.firstElementChild; };
+            const fn1 = !!at().querySelector('.layer.h .fn'); S.settings.fn = false; const fn0 = !at().querySelector('.fn'); delete S.settings.fn;
+            show('settings'); await new Promise(r => setTimeout(r, 200)); const sw = !!document.querySelector('#setBody #sfn') && !document.querySelector('#setBody [data-src="cm"]');
+            W.sources.cm = [{id: 'sa-test', file: 'commentary/sa-test', title: {hi: 'परीक्षा टीका', en: 'Test commentary'}, lang: 'sa'}];
+            show('settings'); await new Promise(r => setTimeout(r, 200)); const sel = document.querySelector('#setBody [data-src="cm"]');
+            const pick = [!!sel, sel && sel.value === 'off', srcChoice('cm') === null, !at().querySelector('.layer.cm')];
+            SRC.cm = {meta: W.sources.cm[0], id: 'sa-test', m: {'10.9.14': ['परीक्षा व्याख्या', ['टीकाकी टिप्पणी']]}, got: new Set(PARTS.map(P => P.k))};
+            const v = at(), c = v.querySelector('.layer.cm'), last = [...v.children].filter(x => x.classList.contains('layer')).pop();
+            const shown = [!!c, c && c.querySelector('.lbl').textContent === TT(W.sources.cm[0].title), c && c.textContent.includes('परीक्षा व्याख्या'), c && !!c.querySelector('.fn'), last === c];
+            delete W.sources.cm; SRC.cm = null; S.settings = JSON.parse(S0); S.src[W.id] = JSON.parse(C0); save(); show('home');
+            return {none, fn1, fn0, sw, pick, shown}; })()""")
+        check('footnotes: under their meaning, hidden by ☰ › More settings › Footnotes, which only a work with footnotes shows', all(cm['none']) and cm['fn1'] and cm['fn0'] and cm['sw'], cm)
+        check('commentary: its picker only for a work with one, Off until chosen; when chosen, after the meanings under its name, with its footnotes', all(cm['pick']) and all(cm['shown']), cm)
         # a Roman-letter search shows the verse itself; Play from here ends with the open section
         rs = await ev("(async () => { await openWork('manas', true); show('home'); openSearch('text'); document.querySelector('#q').value = 'asur chal chonip'; runSearch(); await new Promise(r => setTimeout(r, 300)); const r = document.querySelector('#sRes .res'); return r ? [r.querySelector('.where').textContent, r.querySelector('.snip').textContent.slice(0, 12)] : 'none'; })()")
         check('search: a verse found by Roman letters is shown as the verse', rs != 'none' and ('Verses' in rs[0] or 'मूल पाठ' in rs[0]) and 'रहे' in rs[1], rs)

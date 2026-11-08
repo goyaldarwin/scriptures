@@ -9,5 +9,5 @@
  },
  "window": 6,
  "align": "anchors",
- "review": "published for listening while every start is checked by ear: all starts came from matching the transcripts"
+ "check_only": "the to-check list is the verses the checks of tools/audio/METHOD.md step 4 flag (check.json, mms_merge.py), not the verses the order rule moves"
 }
