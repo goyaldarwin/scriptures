@@ -28,6 +28,7 @@ The Sanskrit text is public domain (sanskritdocuments.org: for personal study an
 - **Types:** `mantra` (the adhyāyas' 700, and the unnumbered ॐ नमश्चण्डिकायै and `13.end`); `shloka` (the stotras); `rc` (the Devī Sūkta's ṛcs, Ṛgveda 10.125); `dhyana`; `viniyoga`; `iti` (the colophon).
 - **Lines:** one per half-śloka, one per pāda in the longer metres, as the copy has them; a compound the copy breaks across lines keeps its hyphen.
 - **Topics:** none; each part is one page.
+- **Plan:** the 7-day pāṭha of Gita Press's pāṭha-vidhi (one, two, one, four, two, one and two adhyāyas a day: 1, 2–3, 4, 5–8, 9–10, 11, 12–13); the opening stotras are read on the first day before adhyāya 1, the closing ones on the seventh after adhyāya 13.
 
 ## How it is made
 ```bash

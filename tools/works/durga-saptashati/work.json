@@ -297,5 +297,32 @@
     "n"
    ]
   }
- }
+ },
+ "plans": [
+  {
+   "id": "S",
+   "name": {
+    "hi": "सप्ताहपाठ",
+    "en": "7-day"
+   },
+   "long": {
+    "hi": "सप्ताहपाठ (७ दिन)",
+    "en": "Saptah Path (7 days)"
+   },
+   "unit": {
+    "hi": "दिन",
+    "en": "Day"
+   },
+   "n": 7,
+   "end": [
+    "1.iti",
+    "3.iti",
+    "4.iti",
+    "8.iti",
+    "10.iti",
+    "11.iti",
+    "devi-sukta.iti"
+   ]
+  }
+ ]
 }
