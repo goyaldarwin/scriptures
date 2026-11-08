@@ -863,7 +863,12 @@ $('#pCheck').onclick = () => {
 $('#pStep').onclick = () => { S.timing.step = STEPS[(STEPS.indexOf(step()) + 1) % STEPS.length]; save(); syncStep(); toast('− / + = ' + step() + ' s'); };
 function step(){ return S.timing.step || 0.5; }
 // a start that is only a guess — listed to be checked by the library, or placed again by text length to fit the set times — and not set by ear on this phone
-function toCheck(i){ const id = IT[i].id, A = SRC.au; return !!(S.timing.on && A && A.checkSet && (((A.checkSet.has(id) || (A.moved && A.moved.has(id))) && !myStarts()[id]) || FLAGGED.has(id))); }
+// a verse to check: listed by the library, or placed again around set times (moved) — except for a source whose list is a
+// fixed sample ("checkOnly": the owner scores the timings on it, and setting a verse's neighbours must not add to it) — or flagged
+// a start the light does not follow while timings are reviewed: one to check, or placed again around set times, or only
+// guessed — whatever the to-check list holds
+function unsure(i){ const id = IT[i].id, A = SRC.au; return toCheck(i) || !!(S.timing.on && A && !myStarts()[id] && !ownAt(id) && ((A.moved && A.moved.has(id)) || (A.guessSet && A.guessSet.has(id)))); }
+function toCheck(i){ const id = IT[i].id, A = SRC.au; return !!(S.timing.on && A && A.checkSet && (((A.checkSet.has(id) || (A.moved && !A.checkOnly && A.moved.has(id))) && !myStarts()[id]) || FLAGGED.has(id))); }
 // a timing flag (the owner: a listener hears where the recording and the verse part), set with "Review audio timing" in the
 // verse's ⋮ menu; once set, one sign shows it in both places, a blue dot (REVB): on the verse's ▶ (timing belongs to
 // playing) and at the end of the menu item: only a
@@ -1110,7 +1115,7 @@ function tick(anchor){
     // the light waits for you: it never moves on to a verse whose start is only a guess. It stays on the verse you are on
     // until you mark the next one ("Starts now"), or that verse's set end passes; verses with checked times are followed.
     let k = at(i); const c = at(anchor);
-    if (c >= 0 && k > c){ while (k > c && toCheck(a[k][0])) k--; show = a[k][0]; }
+    if (c >= 0 && k > c){ while (k > c && unsure(a[k][0])) k--; show = a[k][0]; }
     else if (c > 0 && k === c - 1 && endOf(a[k][0]) != null && time >= endOf(a[k][0])) show = anchor;   // moved on by an end: stay
   }
   // a verse whose set end has passed hands the light to the next verse at once, in both modes — even when

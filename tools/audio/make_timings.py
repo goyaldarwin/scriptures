@@ -201,6 +201,7 @@ CP = os.path.join(SRC, 'check.json'); DOUBT = set(json.load(open(CP))['ids']) if
 assert DOUBT <= set(ID), f'check.json: unknown verse ids {sorted(DOUBT - set(ID))[:5]}'
 check = [x['id'] for x in IT if x['id'] in at and x['id'] not in byhand and (x['id'] in check or x['id'] in DOUBT)]
 doc.update(tracks=tracks, at=at)
+if meta.get('check_only'): doc['checkOnly'] = True   # the to-check list is a fixed sample: the app does not add verses it moves
 if check: doc['check'] = check
 guess = [x['id'] for x in IT if x['id'] in at and x['id'] not in heard and x['id'] not in own_ids]
 if guess: doc['guess'] = guess   # starts only guessed by text length (never heard): guessed again around the owner's times
