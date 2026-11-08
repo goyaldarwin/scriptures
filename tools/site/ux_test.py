@@ -571,6 +571,12 @@ async def main():
             const s0 = A.at[IT[i].id][1], pe = A.at[IT[p].id][2], r = setTime(i, 2, Math.min(s0 - 0.2, (pe != null ? pe : s0 - 1) + 0.3)), s1 = A.at[IT[i].id][1];
             S.timing.fix[tkey()] = {}; S.timing.on = false; save(); applyTiming(); await loadSources(); return [r === false, s1 === s0]; })()""")
         check('timing: a sent start is never moved by a late "Ends now"', so == [True, True], so)
+        # a fixed sample to check (checkOnly): a verse the order rule moves around a set time is not added to the list
+        co = await ev("""(async () => { S.timing.on = true; applyTiming(); await openWork('shri-rudram', true); await loadSources(); show('home');
+            const A = SRC.au, a = AUT[0], j = a.findIndex((x, n) => n > 2 && !A.ownSet.has(IT[x[0]].id) && !A.ownSet.has(IT[a[n + 1][0]].id)), i = a[j][0], nx = a[j + 1][0], keep = JSON.stringify(S.timing.fix[tkey()] || {});
+            setTime(i, 1, a[j + 1][1] + 2); const mv = A.moved.has(IT[nx].id), was = toCheck(nx); A.checkOnly = true; const now = toCheck(nx);
+            delete A.checkOnly; S.timing.fix[tkey()] = JSON.parse(keep); S.timing.on = false; save(); applyTiming(); await loadSources(); return [mv, was, !now]; })()""")
+        check('timing: a fixed sample to check (checkOnly) does not grow when neighbours are moved', co == [True, True, True], co)
         # a timing mark never scrolls the page while the lit verse is on screen
         ns = await ev("""(async () => { S.timing.on = true; applyTiming(); await openWork('shri-rudram', true); await loadSources(); show('home'); { const A = SRC.au; A.at0 = Object.fromEntries(Object.entries(A.at0).map(([k, v]) => [k, v.slice(0, 2)])); A.own = []; A.ownSet = new Set(); A.checkSet = new Set(Object.keys(A.at0)); A.guess = []; A.guessSet = new Set(); A.raw = {}; buildAudio(); }
             const a = AUT[0], i = a[8][0]; openReader('k', i); await new Promise(r => setTimeout(r, 600));
