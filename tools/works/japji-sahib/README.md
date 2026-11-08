@@ -25,7 +25,7 @@ The folder's format: `tools/works/README.md`.
   Khalsa and Manmohan Singh (English) and Manmohan Singh, Prof. Sahib Singh and the Faridkot Teeka (Punjabi), with no
   run of 10 or more words in common (`tools/meanings/overlap.py`).
 - The meanings of the Japji's Gurmukhi words are in `library/glossary/pa.json`.
-- `audio/nirvair-khalsa-jatha-uk/` — the recording (YouTube `wbuM4eyIBDM`, 16 minutes), timed by `tools/audio/METHOD.md`.
+- `audio/nirvair-khalsa-jatha-uk/` — the recording (YouTube `wbuM4eyIBDM`, 16 minutes), published for review (`source.json` → `review`): sung with a harmonium between lines, so the starts come from the 6-second-window transcript's anchor alignment (step 1 of `tools/audio/METHOD.md`), seven of them hand-checked (`fixes.md`); every start is on the to-check list until the owner sets it by ear. MMS (steps 2–5) is used once the owner has set 20–30 starts to score it on.
 
 Rebuild: `python3 tools/works/japji-sahib/source/make.py && python3 tools/works/export.py japji-sahib && python3 tools/site/build.py`.
 
