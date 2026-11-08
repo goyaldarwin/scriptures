@@ -63,6 +63,6 @@ en = {x['id']: [en_line(l) for l in x['e']] if len(x['e']) == len(x['v']) and an
       else en_line(' '.join(x['e'])) for x in items}
 jsonio.dump_meanings(os.path.join(WORK, 'meanings', 'en', 'sant-singh-khalsa.json'), {
     'about': "The English of the owner's PDF (Dr. Sant Singh Khalsa), copied; only breaks of the PDF's text layer are mended. A list gives it line by line.",
-    'title': {'hi': 'अंग्रेज़ी अनुवाद — डॉ. संत सिंह खालसा', 'en': 'English translation — Dr. Sant Singh Khalsa'},
+    'title': {'hi': 'डॉ. संत सिंह खालसा — अंग्रेज़ी अर्थ', 'en': 'Dr. Sant Singh Khalsa — English meaning'},
     'order': 2, 'copied': True, 'm': en})
 print(f'{len(items)} verses in 24 Ashtapadis; English line by line for {sum(isinstance(v, list) for v in en.values())}')
