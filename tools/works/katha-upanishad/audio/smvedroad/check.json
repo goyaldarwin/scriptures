@@ -1,0 +1,11 @@
+{
+ "why": "Verses the automatic checks of tools/audio/METHOD.md step 4 flag, for the owner's ear: MMS's score below 0.5 (the transcript's start is kept), MMS and the transcript more than 2 s apart, a length out of pace with the verses around it, or a start before the verse before (tools/audio/mms_merge.py, lean 0.08 s).",
+ "ids": [
+  "shanti.1",
+  "1.1.29",
+  "1.2.11",
+  "1.2.12",
+  "1.2.16",
+  "1.2.17"
+ ]
+}
