@@ -1,0 +1,15 @@
+{
+"about": "Every change made to the owner's copy of sanskritdocuments.org's text (scriptures-data: printouts/sanskritdocuments/bhagavad-gita.json), with its reason; read by make_text.py. reconciliation.md explains each.",
+"lines": {
+"2.64": [["रागद्वेषविमुक्तैस्तु विषयानिन्द्रियैश्चरन् । (रागद्वेषवियुक्तैस्तु)", "रागद्वेषविमुक्तैस्तु विषयानिन्द्रियैश्चरन् ।", "the copy's variant reading in brackets is not text (fix, don't annotate); its own reading stays"]],
+"8.9": [["मणोरणीयंसमनुस्मरेद्यः ।", "मणोरणीयांसमनुस्मरेद्यः ।", "अणीयांसम् (accusative of अणीयस्, 'subtler'): अणीयंसम् is not a word; the witness and the metre agree"]],
+"11.46": [["किरीटिनं गदिनं चक्रहस्तं", "किरीटिनं गदिनं चक्रहस्त-", "a final m before a vowel is joined to it (चक्रहस्तमिच्छामि), written across the line as the copy does in 8.9"], ["इच्छामि त्वां द्रष्टुमहं तथैव ।", "मिच्छामि त्वां द्रष्टुमहं तथैव ।", "the same"]],
+"12.2": [["श्रद्धया परयोपेताः ते मे युक्ततमा मताः ॥", "श्रद्धया परयोपेतास्ते मे युक्ततमा मताः ॥", "visarga before त is स् (उपेतास्ते), as the witness reads"]],
+"15.3": [["अश्वत्थमेनं सुविरूढमूलं", "अश्वत्थमेनं सुविरूढमूल-", "a final m before a vowel is joined to it (सुविरूढमूलमसङ्गशस्त्रेण), written across the line as the copy does in 8.9"], ["असङ्गशस्त्रेण दृढेन छित्त्वा ॥", "मसङ्गशस्त्रेण दृढेन छित्त्वा ॥", "the same"]],
+"17.23": [["ॐतत्सदिति निर्देशो ब्रह्मणस्त्रिविधः स्मृतः ।", "ॐ तत्सदिति निर्देशो ब्रह्मणस्त्रिविधः स्मृतः ।", "a missing space: ॐ is a word of its own, as in every colophon"]]
+},
+"colophons": {
+"15": [["श्रीकृष्णार्जुन संवादे", "श्रीकृष्णार्जुनसंवादे", "an extra space; the compound as in the other seventeen colophons"]],
+"18": [["नाम अष्टादशोऽध्यायः", "नामाष्टादशोऽध्यायः", "the vowels are joined by sandhi, as in नामाष्टमोऽध्यायः (8) and नामैकादशोऽध्यायः (11)"]]
+}
+}

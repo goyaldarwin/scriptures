@@ -73,9 +73,9 @@
    ]
   },
   {
-   "name": "Shri Durga Saptashati",
-   "short_name": "Shri Durga S",
-   "url": "./?w=durga-saptashati",
+   "name": "Shrimad Bhagavad Gita",
+   "short_name": "Shrimad Bhag",
+   "url": "./?w=bhagavad-gita",
    "icons": [
     {
      "src": "app/icon-192.png",

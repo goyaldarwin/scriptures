@@ -24,6 +24,8 @@ The folder's format: `tools/works/README.md`.
   They were checked against Prof. Sahib Singh's Darpan and the Faridkot Teeka, and against the translations of Sant Singh
   Khalsa and Manmohan Singh (English) and Manmohan Singh, Prof. Sahib Singh and the Faridkot Teeka (Punjabi), with no
   run of 10 or more words in common (`tools/meanings/overlap.py`).
+- `commentary/pa/faridkot.json` — the Faridkot Teeka, line by line, as typed in the Shabad OS database (CC BY-SA 4.0), made by
+  `tools/works/guru-granth-sahib/source/faridkot.py` (its choices: `tools/works/guru-granth-sahib/reconciliation.md` §5).
 - The meanings of the Japji's Gurmukhi words are in `library/glossary/pa.json`.
 - `audio/nirvair-khalsa-jatha-uk/` — the recording (YouTube `wbuM4eyIBDM`, 16 minutes), published for review (`source.json` → `review`): sung with a harmonium between lines, so the starts come from the 6-second-window transcript's anchor alignment (step 1 of `tools/audio/METHOD.md`), seven of them hand-checked (`fixes.md`); every start is on the to-check list until the owner sets it by ear. MMS (steps 2–5) is used once the owner has set 20–30 starts to score it on.
 

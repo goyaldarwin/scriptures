@@ -153,10 +153,31 @@
        "en": "Maharshi Ved Vyas"
       },
       "desc": {
-       "hi": "श्रीदुर्गासप्तशती",
-       "en": "Shri Durga Saptashati"
+       "hi": "श्रीमद्भगवद्गीता, श्रीदुर्गासप्तशती",
+       "en": "Shrimad Bhagavad Gita, Shri Durga Saptashati"
       },
       "children": [
+       {
+        "id": "bhagavad-gita",
+        "work": "bhagavad-gita",
+        "path": "hinduism/granth/vyasa/bhagavad-gita",
+        "title": {
+         "hi": "श्रीमद्भगवद्गीता",
+         "en": "Shrimad Bhagavad Gita"
+        },
+        "by": {
+         "hi": "महर्षि वेदव्यास",
+         "en": "Maharshi Ved Vyas"
+        },
+        "edition": {
+         "hi": "sanskritdocuments.org का पाठ",
+         "en": "sanskritdocuments.org's text"
+        },
+        "desc": {
+         "hi": "महाभारतके भीष्मपर्वमें श्रीकृष्ण और अर्जुनका संवाद, अठारह अध्यायोंमें",
+         "en": "The dialogue of Shri Krishna and Arjun in the Mahabharat's Bhishma Parv, in eighteen adhyays"
+        }
+       },
        {
         "id": "durga-saptashati",
         "work": "durga-saptashati",
@@ -226,6 +247,28 @@
          "en": "Mahatmya and 12 Skandhs · 335 Adhyays"
         },
         "salute": "॥ ॐ नमो भगवते वासुदेवाय ॥"
+       },
+       {
+        "id": "shiva",
+        "work": "shiva-purana",
+        "path": "hinduism/purana/mahapurana/shiva",
+        "title": {
+         "hi": "श्रीशिवमहापुराण",
+         "en": "Shri Shiv Mahapuran"
+        },
+        "by": {
+         "hi": "महर्षि वेदव्यास",
+         "en": "Maharshi Ved Vyas"
+        },
+        "edition": {
+         "hi": "गीताप्रेस, गोरखपुर",
+         "en": "Gita Press, Gorakhpur"
+        },
+        "desc": {
+         "hi": "माहात्म्य और ७ संहिताएँ · ४५७ अध्याय",
+         "en": "Mahatmya and 7 Samhitas · 457 Adhyays"
+        },
+        "salute": "॥ ॐ नमः शिवाय ॥"
        }
       ]
      }
@@ -879,6 +922,39 @@
     },
     "shelf": "granth",
     "children": [
+     {
+      "id": "guru-granth-sahib",
+      "work": "guru-granth-sahib",
+      "path": "sikhism/gurbani/guru-granth-sahib",
+      "title": {
+       "hi": "श्री गुरु ग्रन्थ साहिब",
+       "en": "Sri Guru Granth Sahib"
+      },
+      "by": {
+       "hi": "छह गुरु साहिबान, भगत और भट्ट",
+       "en": "Six Sikh Gurus, Bhagats and Bhatts"
+      },
+      "edition": {
+       "hi": "१,४३० अंग · शबद ओएस डेटाबेस",
+       "en": "1,430 Angs · Shabad OS database"
+      },
+      "desc": {
+       "hi": "५१ भाग · १,४३० अंग",
+       "en": "51 parts · 1,430 Angs"
+      },
+      "intro": {
+       "en": [
+        "Sri Guru Granth Sahib is the central scripture of Sikhism. Sikhs regard it as the final, sovereign and eternal Guru, following the lineage of the ten human Gurus: Guru Gobind Singh affirmed the text as his successor in 1708.",
+        "Its first rendition, the Adi Granth, was compiled by Guru Arjan, with Bhai Gurdas as his scribe, and completed in 1604, when it was first installed in the Golden Temple. Guru Gobind Singh added the hymns of Guru Tegh Bahadur to make the final edition, the Damdama bir. It was composed mainly by six Sikh Gurus — Guru Nanak, Guru Angad, Guru Amar Das, Guru Ram Das, Guru Arjan and Guru Tegh Bahadur — together with hymns of saints of the Bhakti movement, two Muslim saint poets and the bards (Bhatts). It is written in the Gurmukhi script, in several languages, Punjabi, Lahnda and regional Prakrits among them.",
+        "Its 1,430 pages are called Angs. It opens with the Mool Mantar, the Japji, So Dar and Sohila; the bulk of it is arranged by the 31 raags in which its hymns are sung, each raag in the order of the Gurus, followed by the compositions of the Bhagats; it closes with the Mundavani and the Raagmala. In every gurdwara it is the focal point, seated on a raised throne; a granthi reads from it, and Sikhs cover their heads and remove their shoes in its presence."
+       ],
+       "hi": [
+        "श्री गुरु ग्रन्थ साहिब सिख धर्मका केन्द्रीय धर्मग्रन्थ है। सिख इसे दस देहधारी गुरुओंकी परम्परामें अन्तिम, सर्वोच्च और शाश्वत गुरु मानते हैं: गुरु गोबिन्द सिंहजीने १७०८ में इस ग्रन्थको अपना उत्तराधिकारी ठहराया।",
+        "इसका पहला रूप, आदि ग्रन्थ, गुरु अर्जन देवजीने संकलित किया — भाई गुरदासजी इसके लेखक थे — और यह १६०४ में पूरा हुआ, जब इसे पहली बार हरिमन्दिर साहिब (स्वर्ण मन्दिर) में स्थापित किया गया। गुरु गोबिन्द सिंहजीने इसमें गुरु तेग बहादुरजीकी बाणी जोड़कर इसका अन्तिम रूप, दमदमी बीड़, बनाया। इसकी बाणी मुख्यतः छह सिख गुरुओंकी है — गुरु नानक, गुरु अंगद, गुरु अमरदास, गुरु रामदास, गुरु अर्जन और गुरु तेग बहादुर — और साथ ही भक्ति आन्दोलनके सन्तों, दो मुसलमान सन्त-कवियों और भट्टोंकी। यह गुरमुखी लिपिमें, कई भाषाओंमें है, जिनमें पंजाबी, लहंदा और प्रादेशिक प्राकृत हैं।",
+        "इसके १,४३० पृष्ठ अंग कहलाते हैं। इसका आरम्भ मूल मंत्र, जपुजी, सो दरु और सोहिलासे होता है; अधिकांश बाणी उन ३१ रागोंके अनुसार रखी गई है जिनमें वह गाई जाती है, हर रागमें गुरुओंके क्रमसे, फिर भगतोंकी बाणी; और अन्तमें मुंदावणी और रागमाला हैं। हर गुरुद्वारेमें यही केन्द्र है, ऊँचे तख़्तपर विराजमान; ग्रन्थी इसका पाठ करते हैं, और सिख इसके सामने सिर ढककर और जूते उतारकर आते हैं।"
+       ]
+      }
+     },
      {
       "id": "guru-nanak-dev",
       "title": {

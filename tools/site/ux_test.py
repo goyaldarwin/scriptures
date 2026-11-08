@@ -106,7 +106,7 @@ async def main():
             if drafts:
                 check(f'{tag}: a draft recording is not played to readers', (await ev("SRC.au ? SRC.au.meta.id : null")) not in drafts)
             await ev("S.timing.on = true; applyTiming()"); await ev("loadSources()"); await pg.wait_for_timeout(600)
-            if await ev("!!SRC.au"):
+            if await ev("!!SRC.au && !!(AUT[0] || []).length"):   # a draft not yet timed (still being transcribed) has no verse to set
                 j = await ev("AUT[0][1] ? AUT[0][1][0] : AUT[0][0][0]")
                 await ev(f"setTime({j}, 1, AUT[0].find(x => x[0] === {j})[1] + 0.5); setTime({j}, 2, AUT[0].find(x => x[0] === {j})[1] + 3)")
                 ent = await ev(f"AUT[0].find(x => x[0] === {j})")
@@ -254,7 +254,8 @@ async def main():
                 hits = await ev("document.querySelectorAll('#sRes .res').length")
                 check(f'{tag}: search finds a word of its first verse', hits > 0, f'{word}: {hits}')
                 if hits:
-                    await (await pg.query_selector('#sRes .res')).click(); await pg.wait_for_timeout(1200)
+                    # a locator, found again at the tap: a work loaded by part draws its results again as each part's meanings come
+                    await pg.locator('#sRes .res').first.click(); await pg.wait_for_timeout(1200)
                     check(f'{tag}: a search result opens the reader', await ev("document.querySelector('#reader').classList.contains('on')"))
             # English interface
             await ev("S.settings.ui = 'en'; S.settings.layers.e = true; S.settings.layers.h = false; applyLang(); refreshReader()"); await pg.wait_for_timeout(500)
@@ -303,7 +304,7 @@ async def main():
                   const wd = W.cite && W.cite.word && W.cite.word[IT[i].y], q = (wd ? TT(wd) : TYPE[IT[i].y]) + ' ' + c, Q = numQuery(q);
                   if (!Q){ bad.push(q); continue; } const hits = []; numHits(Q, hits); if (!hits.some(h => h[1] === i)) miss.push(IT[i].id + ' ← ' + q);
                   const t = (IT[i].v[IT[i].v.length - 1].match(/॥([0-9०-९੦-੯]+)[^॥]*॥(?:[^॥]*॥)*\s*$/) || [])[1];
-                  if (t && (W.cite || {}).mark !== 'sec'){ const last = CKEY(c).split('.').pop().replace(/[^0-9]/g, ''); if (CKEY(t) !== last) pr.push(IT[i].id + ': ॥' + t + '॥ but ' + c); } }
+                  if (t && !['sec', 'none'].includes((W.cite || {}).mark)){ const last = CKEY(c).split('.').pop().replace(/[^0-9]/g, ''); if (CKEY(t) !== last) pr.push(IT[i].id + ': ॥' + t + '॥ but ' + c); } }
                 return [bad.slice(0, 3), miss.slice(0, 3), pr.slice(0, 3)]; })()""")
             check(f'{tag}: every verse number the player shows finds that verse; the number at a verse\'s end is its citation\'s', cit == [[], [], []], cit)
         await pg.goto(url); await pg.wait_for_timeout(2500)

@@ -26,6 +26,8 @@ The folder's format: `tools/works/README.md`.
   Punjabi meanings of every verse, written for this library from the Gurmukhi (`tools/meanings/style.md` §12–13); ours
   are the default, and the export checks that our English shares no run of 10+ words with the PDF's.
 - The meanings of all 2,536 Gurmukhi words of the text, written for this library, are in `library/glossary/pa.json`.
+- `commentary/pa/faridkot.json` — the Faridkot Teeka, line by line, as typed in the Shabad OS database (CC BY-SA 4.0), made by
+  `tools/works/guru-granth-sahib/source/faridkot.py` (its choices: `tools/works/guru-granth-sahib/reconciliation.md` §5).
 - `reconciliation.md` — how the text is settled: conversion decisions, check results, the one English fix.
 - `audio/parminder-singh/` — the recording (YouTube `KJ8D_ObQNzQ`), published for review (`source.json` → `review`): kīrtan
   with long instrumental passages, so the automatic starts are only partly confirmed. Readers hear it; every start not yet
