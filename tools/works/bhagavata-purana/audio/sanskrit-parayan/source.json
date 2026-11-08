@@ -9,5 +9,5 @@
  },
  "window": 6,
  "align": "anchors",
- "check_only": "the owner hears a sample of 30 starts, one in each recording, to score the transcript's timings against Meta's MMS aligner (tools/audio/METHOD.md) before the starts are switched"
+ "check_only": "the to-check list is the verses the checks of tools/audio/METHOD.md step 4 flag (check.json, mms_merge.py), not the verses the order rule moves"
 }
