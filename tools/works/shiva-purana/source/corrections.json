@@ -1,0 +1,189 @@
+{
+ "about": "Choices made on the copy of sanskritdocuments.org's text, each read on the owner's Gita Press scan; reconciliation.md gives every one with its reason. Keys: <chapter ref>#<seq in the copy>.",
+ "lines": {
+  "6.8#35": {
+   "v": [
+    "साष्टाङ्गं प्रणमेत्तं च भक्त्या परमयान्वितः ।",
+    "पुनः प्रदक्षिणां कृत्वा प्रणमेत्पुनरेकधा"
+   ],
+   "why": "the copy's variant reading \"(स भक्त्या)\" left out (PLAYBOOK §2: fix, don't annotate)"
+  },
+  "3.3#28": {
+   "v": [
+    "दत्त्वैवमतुलां शक्तिं ब्रह्मणे सा शिवा मुने ।",
+    "विवेश देहं शम्भोर्हि शम्भुश्चान्तर्दधे प्रभुः"
+   ],
+   "why": "a stray backtick (`) after the daṇḍa"
+  },
+  "4.17#26": {
+   "v": [
+    "यदाहूतोऽपि बहुशः शिवपूजाक्तमानसः ।",
+    "बालश्च भोजनं नैच्छत्तदा तत्र ययौ प्रसूः"
+   ],
+   "why": "बहुश; → बहुशः: a semicolon typed for the visarga"
+  },
+  "6.14#18": {
+   "v": [
+    "एवं यन्त्रं समालिख्य प्रणवे नव वेष्टयेत् ।",
+    "तदुत्थेनैव नादेन विद्यन्नादावसानकम्"
+   ],
+   "why": "\"त-व\" after the daṇḍa is an editor's mark of the copy, not text; प्रणवे नव as printed, the reading of wisdomlib.org 6.14.18 too"
+  },
+  "2.2.34#22": {
+   "v": [
+    "धिग् जन्म तव दक्षाद्य महामूढोऽसि पापधीः"
+   ],
+   "why": "the copy: धिक् जन्म … पापधीःस्; the book (scan p. 460): धिग् जन्म … पापधीः — a stray स् and the unassimilated धिक्"
+  },
+  "6.13#29": {
+   "v": [
+    "नियतिः कालरागश्च विद्या च तदनन्तरम् ।",
+    "कला च पञ्चकमिदं मायोत्पन्नं मुनीश्वर"
+   ],
+   "why": "मयोत्पन्नं → मायोत्पन्नं: a dropped ा; the Kalyan Hindi reads \"ये पाँचों मायासे उत्पन्न हैं\" (॥ २४-२८ ॥, scan p. 406), and the next verse speaks of Māyā as their source; the metre is the same"
+  },
+  "3.6#1": {
+   "v": [
+    "सनत्कुमार उवाच ।",
+    "भवान्कथमनुप्राप्तो महादेवांशजः शिवम् ।",
+    "श्रोतुमिच्छामि तत्सर्वं वक्तुमर्हसि मे प्रभो"
+   ],
+   "why": "the copy's heading अथ नन्दीश्वरावतारमाह left out: the book begins the adhyāya with the speaker (Kalyan scan p. 72: \"सनत्कुमार बोले—\")"
+  },
+  "3.8#1": {
+   "v": [
+    "नन्दीश्वर उवाच ।",
+    "सनत्कुमार सर्वज्ञ शृणु त्वं भैरवीं कथाम् ।",
+    "यस्याः श्रवणमात्रेण शैवी भक्तिर्दृढा भवेत्"
+   ],
+   "why": "the copy's heading अथ भैरवावतारमाह left out: the book begins the adhyāya with the speaker (Kalyan scan p. 77: \"नन्दीश्वर बोले—\")"
+  },
+  "2.5.45#54": {
+   "v": [
+    "एतद्वचस्तद्विघसोऽपि तस्मा-",
+    "च्छ्रुत्वा हरान्निर्गत एव हृष्टः ।",
+    "प्रागात्ततो गर्जितहुङ्कृतानि",
+    "कुर्वंस्ततो दैत्यपतेः सकाशम्"
+   ],
+   "why": "विधसो → विघसो (the demon Vighasa, as in 2.5.46): the book prints एतद्वचस्तद्विघसोऽपि (scan p. 1010)"
+  }
+ },
+ "speaker": {},
+ "drop": {
+  "6.1#1": {
+   "why": "a heading of the copy (अथ षष्ठी कैलाससंहिता प्रारभ्यते), not a verse"
+  }
+ },
+ "unnumbered": {
+  "3.1#51": {
+   "as": "verse",
+   "n": "50",
+   "why": "the copy leaves the chapter's last verse unnumbered; the Kalyan Hindi numbers it ॥ ५० ॥ (scan p. 65)"
+  },
+  "6.19#1": {
+   "as": "item",
+   "y": "gadya",
+   "v": [
+    "अथ महावाक्यानि",
+    "(१) प्रज्ञानं ब्रह्म",
+    "(२) अहं ब्रह्मास्मि",
+    "(३) तत्त्वमसि",
+    "(४) अयामात्मा ब्रह्म",
+    "(५) ईशा वास्यमिदं सर्वं",
+    "(६) प्राणोऽस्मि",
+    "(७) प्रज्ञानात्मा",
+    "(८) यदेवेह तदमुत्र यदमुत्र तदन्विह",
+    "(९) अन्यदेव तद्विदितादथो अविदितादधि",
+    "(१०) एष न आत्मान्तर्याम्यमृतः",
+    "(११) स यश्चायं पुरुषे यश्चासावादित्ये स एकः",
+    "(१२) अहमस्मि परं ब्रह्म परापरपरात्परम्",
+    "(१३) वेदशास्त्रगुरुत्वात्तु स्वयमानन्दलक्षणम्",
+    "(१४) सर्वभूतस्थितं ब्रह्म तदेवाहं न संशयः",
+    "(१५) तत्त्वस्य प्राणोऽहमस्मि पृथिव्याः प्राणोऽहमस्मि",
+    "(१६) अपां च प्राणोऽहमस्मि तेजसश्च प्राणोऽहमस्मि",
+    "(१७) वायोश्च प्राणोऽहमस्मि आकाशस्य प्राणोऽहमस्मि",
+    "(१८) त्रिगुणस्य प्राणोऽहमस्मि",
+    "(१९) सर्वोऽहं सर्वात्मकोऽहं संसारी यद्भूतं यच्च भव्यं यद्वर्तमानं सर्वात्मकत्वादद्वितीयोऽहम्",
+    "(२०) सर्वं खल्विदं ब्रह्म",
+    "(२१) सर्वोऽहं विमुक्तोऽहम्",
+    "(२२) योऽसौ सोऽहं हंसः सोऽहमस्मि"
+   ],
+   "why": "the list of mahāvākyas before verse 1, numbered within the list and not as verses, as the Kalyan scan prints it (p. 421: 'सुब्रह्मण्य बोले — अब महावाक्योंको कहता हूँ — १-प्रज्ञानं ब्रह्म …'); the copy's quotation marks around अथ महावाक्यानि left out"
+  },
+  "2.5.49#1": {
+   "as": "item",
+   "y": "gadya",
+   "why": "Śukra's prose namaskāra (ॐ नमस्ते देवेशाय …) before verse 1, without a number"
+  }
+ },
+ "number": {
+  "4.10#32": {
+   "n": "32",
+   "why": "the copy prints ॥ ३॥ between 31 and 33: a dropped digit"
+  },
+  "4.12#12": {
+   "n": "12",
+   "why": "the copy prints ॥ १॥ between 11 and 13: a dropped digit"
+  }
+ },
+ "opening": {
+  "1.1#1": {
+   "why": "the book prints the opening maṅgala-śloka (आद्यन्तमङ्गल…) without a number; the copy numbers it 1 with the first verse (scan p. 45)"
+  },
+  "3.1#1": {
+   "why": "the opening maṅgala-śloka (वन्दे महानन्द…), unnumbered as at 1.1; the copy numbers it 1 with the first verse"
+  }
+ },
+ "type": {},
+ "gap": [],
+ "colophon": {},
+ "insert": {
+  "5.49#19": {
+   "n": "20",
+   "v": [
+    "चरित्रमीदृशं यस्य तमेव शरणं श्रये ।",
+    "इति सञ्चिन्तयामास सहस्राक्षः पुनःपुनः"
+   ],
+   "why": "the copy drops verse 20 (19 is followed by 21); the Kalyan Hindi has it (॥ १९-२० ॥: 'जिसका ऐसा चरित्र है, मुझे उसीके शरणमें जाना चाहिये', scan p. 371); the text from wisdomlib.org's Shiva Purana [sanskrit] 9.49.20, which follows the Gita Press numbering"
+  },
+  "6.14#19": {
+   "n": "20",
+   "v": [
+    "सद्योजातम्प्रपद्यामीत्युपक्रम्य सदाशिवोम् ।",
+    "इति प्राह श्रुतिस्तारं ब्रह्मपञ्चकवाचकम्"
+   ],
+   "why": "the copy drops verse 20 (19 is followed by 21); the Kalyan Hindi has it (॥ १९-२० ॥, scan p. 410); the text from wisdomlib.org's Shiva Purana [sanskrit] 6.14.20 (the owner's screenshot), पंच written पञ्च by the standard"
+  }
+ },
+ "speaker_lines": {
+  "about": "a speaker's line as the book prints it: no daṇḍa or dash after it; typing slips in the copy (उवाच्, नारद्, सन्त्कुमार, ऋष्य, दक्षवाच, उचुः for ऊचुः, a visarga kept before a vowel against sandhi: मुनयः ऊचुः → मुनय ऊचुः); 2.2.1: the chapter's title (सतीसङ्क्षेपचरित्रवर्णनं) run into the line",
+  "map": {
+   "ऋषय ऊचुः ।": "ऋषय ऊचुः",
+   "ब्रह्मोवाच ।": "ब्रह्मोवाच",
+   "ब्रह्मोवाच -": "ब्रह्मोवाच",
+   "विष्णुरुवाच -": "विष्णुरुवाच",
+   "ईश्वर उवाच ।": "ईश्वर उवाच",
+   "शिव उवाच ।": "शिव उवाच",
+   "नारद उवाच ।": "नारद उवाच",
+   "विष्णुरुवाच ।": "विष्णुरुवाच",
+   "सनत्कुमार उवाच ।": "सनत्कुमार उवाच",
+   "नन्दिकेश्वर उवाच ।": "नन्दिकेश्वर उवाच",
+   "सूत उवाच ।": "सूत उवाच",
+   "नन्दीश्वर उवाच ।": "नन्दीश्वर उवाच",
+   "इडोवाच ।": "इडोवाच",
+   "ऋषय उचुः ।": "ऋषय ऊचुः",
+   "मन्त्रिण उचुः": "मन्त्रिण ऊचुः",
+   "दक्षवाच ।": "दक्ष उवाच",
+   "सनत्कुमार उवाच्": "सनत्कुमार उवाच",
+   "नारद् उवाच": "नारद उवाच",
+   "सन्त्कुमार उवाच": "सनत्कुमार उवाच",
+   "ऋष्य ऊचुः": "ऋषय ऊचुः",
+   "ऋषि रुवाच": "ऋषिरुवाच",
+   "ईश्वरः उवाच": "ईश्वर उवाच",
+   "सनत्कुमारः उवाच": "सनत्कुमार उवाच",
+   "देवाः ऊचुः": "देवा ऊचुः",
+   "मुनयः ऊचुः": "मुनय ऊचुः",
+   "सतीसङ्क्षेपचरित्रवर्णनं नारद उवाच": "नारद उवाच"
+  }
+ }
+}

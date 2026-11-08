@@ -1332,7 +1332,11 @@ function renderLibrary(){
   // the library itself is one row per genre, with no headings (the owner: no partitioning on the library screen). On a
   // shelf's page, a shelf that holds shelves is a heading over them and a shelf that holds only works is one row with its
   // works as buttons, so every shelf page looks the same however deep its shelves go (Āratī › Śrī Rāma like Vedas › Yajurveda)
-  $('#libList').innerHTML = kids.map(c => libPath.length && c.children && c.children.some(g => g.children) ? '<li class="lhead">' + esc(TT(c.title)) + '</li>' + c.children.map(g => row(g, c.id + '/' + g.id)).join('') : row(c, c.id)).join('');
+  // a work that stands beside shelves (Sri Guru Granth Sahib among the authors of the Granthas) is shown like a shelf of
+  // one: its author over it, and the work as its button
+  const mixed = kids.some(c => !c.work) && kids.some(c => c.work);
+  const one = (c, key) => mixed && c.work ? row({id: c.id, title: c.by || c.title, children: [c]}, key) : row(c, key);
+  $('#libList').innerHTML = kids.map(c => libPath.length && c.children && c.children.some(g => g.children) ? '<li class="lhead">' + esc(TT(c.title)) + '</li>' + c.children.map(g => one(g, c.id + '/' + g.id)).join('') : one(c, c.id)).join('');
   $$('#libList [data-node]').forEach(b => b.onclick = () => {
     const ids = b.dataset.node.split('/'); let n = node, c = null; ids.forEach(id => { c = (n.children || []).find(x => x.id === id); n = c; });
     if (c.work) openWork(c.work); else { libPath.push(...ids); history.pushState(snap('library'), ''); renderLibrary(); window.scrollTo(0, 0); }
