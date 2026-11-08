@@ -414,6 +414,9 @@ const fnOn = () => S.settings.fn !== false;
 const hasNotes = () => !!W && Object.values(W.sources || {}).some(l => l.some(s => s.notes));
 // the chosen commentary's text for a verse: [text, footnotes?], or null
 function cmOf(i){ const c = SRC.cm; return c && c.m[IT[i].id] || null; }
+// a commentary written line by line (its "p": one piece per verse line, as the Faridkot Teeka) shows each line's piece as
+// its own paragraph, and a paragraph break inside a piece as a line break; any other, its text whole
+function cmBody(i, cm){ const pc = SRC.cm.p && SRC.cm.p[IT[i].id], br = x => esc(x).replace(/\n/g, '<br>'); return pc ? pc.filter(x => x).map(br).join('<br>') : br(cm[0]); }
 const shownKinds = () => capKinds().filter(k => layerOn(LK(k)));   // the meaning layers on, in the capsule's order
 
 /* ---------------- reader: continuous scroll over a kāṇḍa or a day's pāṭh ---------------- */
@@ -481,7 +484,7 @@ function verseHTML(i){
   if (layerOn('w')) h += '<div class="layer wl">' + wbHTML(vv.v, langOf(i)) + '</div>';
   h += whole(true);
   // the commentary, when one is chosen: after the meanings, under its name, in its own language's letters
-  const cm = cmOf(i); if (cm) h += '<div class="layer cm' + (SRC.cm.meta.lang === 'en' ? ' lat' : '') + '" lang="' + esc(SRC.cm.meta.lang) + '"><span class="lbl">' + esc(TT(SRC.cm.meta.title)) + '</span>' + esc(cm[0]) + (cm[1] && fnOn() ? '<div class="fn">' + cm[1].map(esc).join('<br>') + '</div>' : '') + '</div>';
+  const cm = cmOf(i); if (cm) h += '<div class="layer cm' + (SRC.cm.meta.lang === 'en' ? ' lat' : '') + '" lang="' + esc(SRC.cm.meta.lang) + '"><span class="lbl">' + esc(TT(SRC.cm.meta.title)) + '</span>' + cmBody(i, cm) + (cm[1] && fnOn() ? '<div class="fn">' + cm[1].map(esc).join('<br>') + '</div>' : '') + '</div>';
   for (const p of SHOWN()) (p.notes[KEY(id)] || []).forEach((n, k) => { h += '<div class="note"><div class="who">' + new Date(n.ts).toLocaleDateString(LANG() === 'en' ? 'en-IN' : 'hi-IN') + (p.id === me.id ? '<button data-a="enote" data-k="' + k + '">' + T('बदलें', 'Edit') + '</button>' : '') + '</div>' + esc(n.t).replace(/\n/g, '<br>') + '</div>'; });
   return h + '</div>';
 }
@@ -1329,7 +1332,11 @@ function renderLibrary(){
   // the library itself is one row per genre, with no headings (the owner: no partitioning on the library screen). On a
   // shelf's page, a shelf that holds shelves is a heading over them and a shelf that holds only works is one row with its
   // works as buttons, so every shelf page looks the same however deep its shelves go (Āratī › Śrī Rāma like Vedas › Yajurveda)
-  $('#libList').innerHTML = kids.map(c => libPath.length && c.children && c.children.some(g => g.children) ? '<li class="lhead">' + esc(TT(c.title)) + '</li>' + c.children.map(g => row(g, c.id + '/' + g.id)).join('') : row(c, c.id)).join('');
+  // a work that stands beside shelves (Sri Guru Granth Sahib among the authors of the Granthas) is shown like a shelf of
+  // one: its author over it, and the work as its button
+  const mixed = kids.some(c => !c.work) && kids.some(c => c.work);
+  const one = (c, key) => mixed && c.work ? row({id: c.id, title: c.by || c.title, children: [c]}, key) : row(c, key);
+  $('#libList').innerHTML = kids.map(c => libPath.length && c.children && c.children.some(g => g.children) ? '<li class="lhead">' + esc(TT(c.title)) + '</li>' + c.children.map(g => one(g, c.id + '/' + g.id)).join('') : one(c, c.id)).join('');
   $$('#libList [data-node]').forEach(b => b.onclick = () => {
     const ids = b.dataset.node.split('/'); let n = node, c = null; ids.forEach(id => { c = (n.children || []).find(x => x.id === id); n = c; });
     if (c.work) openWork(c.work); else { libPath.push(...ids); history.pushState(snap('library'), ''); renderLibrary(); window.scrollTo(0, 0); }

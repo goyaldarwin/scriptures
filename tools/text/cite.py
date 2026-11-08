@@ -23,7 +23,9 @@ levels the work names, with ".":
       "word":  {"cau": {"hi": "पद", "en": "Verse"}},   the word the player and Resume use for a type instead of its
                                          name, where the name would not fit ("Verse 106.3": the third verse under Doha 106)
       "mark":  "sec"                     what the number printed at a verse's end counts: "n" (default) the verse, "sec"
-                                         its section (the Śrī Rudram prints only the anuvāka's number, at its end)
+                                         its section (the Śrī Rudram prints only the anuvāka's number, at its end), "none"
+                                         neither (Sri Guru Granth Sahib: a shabad's end ॥੪॥੧॥੩੪॥ counts its stanzas, its
+                                         place in its group and in its raag, which restart; it is cited by its Ang)
       "repeat": ["aranya.20.cha1_2"]     verses the book itself numbers again, as another verse of the same type before
                                          them in the same section (a second run of chhands under one dohā starts at 1)
     }
@@ -47,7 +49,7 @@ def rule(M):
     by = C.get('by', ['n']); types = C.get('types', {})
     for lv in [by] + list(types.values()):
         assert isinstance(lv, list) and lv and set(lv) <= set(LEVELS) and lv[-1] == 'n', f'cite: levels {lv} must be of {LEVELS} and end with n'
-    assert C.get('mark', 'n') in ('n', 'sec'), 'cite: mark is "n" or "sec"'
+    assert C.get('mark', 'n') in ('n', 'sec', 'none'), 'cite: mark is "n", "sec" or "none"'
     assert isinstance(C.get('repeat', []), list), 'cite: repeat is a list of verse ids'
     return {'by': by, 'types': types, 'mark': C.get('mark', 'n'), 'repeat': set(C.get('repeat', []))}
 
@@ -92,7 +94,7 @@ def check(w):
         p = printed(it)
         if not p and it.get('v') and re.search(r'॥[^॥]*[0-9०-९੦-੯][^॥]*॥\s*$', it['v'][-1]):
             out.append(f"{it['id']}: its number mark is not written as the others (॥१॥, ॥३ (क)॥, ॥१३अ॥): {it['v'][-1][-14:]}")
-        if p and it.get('n'):
+        if p and it.get('n') and R['mark'] != 'none':
             want = sec_num(it.get('s')) if R['mark'] == 'sec' else it['n'].translate(DIGITS)
             if want and p != want: out.append(f"{it['id']}: the verse prints ॥{p}॥ but its {'section' if R['mark'] == 'sec' else 'n'} is {want!r}")
     return out
@@ -123,4 +125,8 @@ def selftest():
                                             {'id': 'b', 'p': 0, 's': 'y', 'y': 'pad', 'n': '1', 'c': '1', 'v': ['…']}]}
     w['items'].append({'id': 'c', 'p': 0, 's': 'z', 'y': 'do', 'n': '101क', 'c': '101क', 'v': ['… ॥१०१ क॥']})   # a lettered number without brackets
     if len(check(w)) != 3: bad.append(('check: a printed number that is not n, a number cited twice, a mark written otherwise', 3, check(w)))
+    g = {'cite': {'by': ['sec', 'n'], 'mark': 'none'}, 'parts': {'list': [{}]},   # the Granth: ॥੪॥੧॥ counts stanzas, not the place
+         'items': [{'id': '14.1', 'p': 0, 's': '14', 'y': 'shabad', 'n': '1', 'c': '14.1', 'v': ['… ॥੪॥੧॥']},
+                   {'id': '14.2', 'p': 0, 's': '14', 'y': 'shabad', 'n': '2', 'c': '14.2', 'v': ['… ॥੪॥੨॥']}]}
+    if check(g): bad.append(('check: mark "none" compares no printed number', [], check(g)))
     return bad
