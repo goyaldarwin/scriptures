@@ -359,6 +359,33 @@ function spanLabel(a, b){
 const partSpan = (k, x, y) => { const l = spanLabel(x, y); return k === l ? k : k + ': ' + l; };
 function rangeDesc(a, b){ const ka = KNAME(IT[a].p), kb = KNAME(IT[b].p); if (ka === kb) return esc(partSpan(ka, a, b)); let h = '', p = IT[a].p; while (p <= IT[b].p){ const x = Math.max(a, PARTS[p].a), y = Math.min(b, PARTS[p].b); h += (h ? '<br>' : '') + esc(partSpan(KNAME(p), x, y)); p++; } return h; }
 
+/* ---------------- personal sources: a meaning or commentary file kept on this phone only ----------------
+   The owner's own copy of a source that is not ours to publish (e.g. a commentary still under copyright) is made into a file
+   {kind: "scriptures-source", work, source: {id, lang, title, cm?}, m, p?} outside the library and opened here
+   (☰ › Bookmarks & notes › Open a file). It is kept in this browser's IndexedDB, never sent anywhere, and joins the work's
+   sources first, so it is the default meaning of its language (or a commentary to choose); Sources can remove it. */
+const PERS = {db: null, src: {}};
+function persDB(){ if (PERS.db) return PERS.db; return PERS.db = new Promise((ok, no) => { try { const r = indexedDB.open('scriptures-personal', 1); r.onupgradeneeded = () => r.result.createObjectStore('src'); r.onsuccess = () => ok(r.result); r.onerror = () => no(r.error); } catch (e) { no(e); } }); }
+async function persTx(mode, fn){ const db = await persDB(); return new Promise((ok, no) => { const t = db.transaction('src', mode), st = t.objectStore('src'), r = fn(st); t.oncomplete = () => ok(r && r.result); t.onerror = () => no(t.error); }); }
+async function persOf(work){ try { const all = await persTx('readonly', st => st.getAll()); return (all || []).filter(x => x && x.work === work); } catch (e) { return []; } }
+// the work's personal sources join its own, first in their language (the default there) or among its commentaries
+async function persJoin(){ if (!W) return; const w = W, list = await persOf(w.id); if (W !== w) return;
+  w.sources = w.sources || {}; PERS.src = {};
+  list.forEach(x => { const s = x.source, kind = s.cm ? 'cm' : s.lang; PERS.src[s.id] = x;
+    const meta = {id: s.id, lang: s.lang, title: s.title, personal: true, notes: !!(x.notes && Object.keys(x.notes).length) || Object.values(x.m || {}).some(v => Array.isArray(v) && v[1] && v[1].length)};
+    const l = (w.sources[kind] = (w.sources[kind] || []).filter(o => o.id !== s.id)); l.unshift(meta); }); }
+function persValid(X){ return X && X.kind === 'scriptures-source' && typeof X.work === 'string' && X.source && /^[a-z]{2,3}-[a-z0-9-]+$/.test(X.source.id || '') && X.source.lang && X.source.title && X.m && typeof X.m === 'object'; }
+async function persAdd(X){
+  if (!persValid(X)){ toast(T('यह स्रोत-फ़ाइल ठीक नहीं है', 'This source file is not valid')); return; }
+  try { await persTx('readwrite', st => st.put(X, X.work + '/' + X.source.id)); } catch (e) { toast(T('इस फ़ोनमें सहेजा नहीं जा सका', 'Could not keep it on this phone')); return; }
+  toast(TT(X.source.title) + T(' — केवल इस फ़ोनमें जुड़ा', ' — added on this phone only'));
+  if (!X.source.cm){ S.settings.layers[LK(X.source.lang)] = true; S.settings.recite = false; save(); }   // its meaning shows at once
+  if (W && W.id === X.work){ await persJoin(); await loadSources('meanings'); IDX = null; syncLayers(); if (CURVIEW === 'reader') refreshReader(); }
+}
+async function persRemove(id){ if (!W) return; try { await persTx('readwrite', st => st.delete(W.id + '/' + id)); } catch (e) {}
+  for (const k in W.sources) W.sources[k] = W.sources[k].filter(o => !(o.personal && o.id === id)); delete PERS.src[id];
+  await loadSources('meanings'); IDX = null; syncLayers(); toast(T('इस फ़ोनसे हटाया', 'Removed from this phone')); }
+
 /* ---------------- sources: meanings, commentaries and audio ---------------- */
 function srcList(kind){ return ((W.sources || {})[kind] || []).filter(s => !s.draft || S.timing.on); }   // a draft recording is heard only while reviewing timings
 // a commentary ("cm") is off until the reader picks one (☰ › More settings › Sources › Commentary); the other kinds start on their first source
@@ -368,7 +395,7 @@ function srcChoice(kind){ const list = srcList(kind); const sel = ((S.src[W.id] 
 async function loadSources(only){
   if (!Object.keys(LANGS).length) LANGS = await getJSON('glossary/languages');   // the meaning languages are listed there
   // a work loaded by part starts each meaning source empty; loadPart fills in each part it opens
-  const get = async c => BYPART() ? {meta: c, id: c.id, title: c.title, m: {}, p: {}, got: new Set()} : Object.assign({meta: c}, await getJSON(W.path + '/' + c.file));
+  const get = async c => c.personal ? (PERS.src[c.id] ? {meta: c, id: c.id, title: c.title, m: PERS.src[c.id].m, p: PERS.src[c.id].p || {}} : null) : BYPART() ? {meta: c, id: c.id, title: c.title, m: {}, p: {}, got: new Set()} : Object.assign({meta: c}, await getJSON(W.path + '/' + c.file));
   if (only !== 'meanings'){ const c = srcChoice('au'); SRC.au = null; if (c){ try { SRC.au = Object.assign({meta: c}, await getJSON(W.path + '/' + c.file)); } catch (e) {} } buildAudio(); }
   if (only === 'au') return;
   await Promise.all(MK().concat('cm').map(async kind => { const c = srcChoice(kind); SRC[kind] = null; if (c){ try { SRC[kind] = await get(c); } catch (e) {} } }));
@@ -470,7 +497,7 @@ function verseHTML(i){
   const trl = l => '<div>' + l.split(/(?<=,)\s+/).map(x => '<span class="half">' + esc(x).replace(/\s*॥\s*([^॥]*?)\s*॥((?:[^॥\s]+॥)*)/g, ' <span class="dd">॥$1॥$2</span>') + '</span>').join(' ') + '</div>';
   const num = x => esc(x).replace(/\s*(॥[^॥]*॥)\s*$/, '<span style="white-space:nowrap"> $1</span>');
   // one meaning layer: Hindi and Punjabi keep the verse number on its line; English only when line by line
-  const lay = (kind, m, x, fn) => '<div class="layer ' + LCLS(kind) + '">' + hardWords(kind !== 'en' || m.p ? num(x) : esc(x), kind) + (m.edited ? '<span class="tag">' + (kind === 'en' ? 'edited' : T('संशोधित', 'edited')) + '</span>' : '') + (fn && m.f && fnOn() ? '<div class="fn">' + m.f.map(esc).join('<br>') + '</div>' : '') + '</div>';
+  const lay = (kind, m, x, fn) => '<div class="layer ' + LCLS(kind) + '">' + hardWords(kind !== 'en' || m.p ? num(x) : esc(x), kind).replace(/\n/g, '<br>') + (m.edited ? '<span class="tag">' + (kind === 'en' ? 'edited' : T('संशोधित', 'edited')) + '</span>' : '') + (fn && m.f && fnOn() ? '<div class="fn">' + m.f.map(esc).join('<br>') + '</div>' : '') + '</div>';
   const ks = shownKinds(), MS = {}; ks.forEach(k => { const m = mean(k, i); if (m) MS[k] = m; });
   const on = ks.filter(k => MS[k]);
   // line by line (☰ › More settings › "Meaning per line", off by default): a source that gives one piece per verse line
@@ -1446,7 +1473,7 @@ async function openWork(id, noShow){
   else if (W === null || W.id !== id) coverOn('', $('#loading').hidden ? 200 : 0);   // a quiet open: blank, and only if it is slow
   try {
     if (!W || W.id !== id){ $('#rAnchor').hidden = true; $('#rAnchor').innerHTML = ''; AN.cand = null; AN.calm = 0; const path = workPath(id); W = await getJSON(path + '/work'); W.path = path;   /* another work: nothing of the last one's reading stays */ partReset(); buildWork(); moveRenamed(); fixLast();
-      await loadSources('au');
+      await loadSources('au'); await persJoin();
       wReady = false; const w = W;
       WREADY = Promise.all([loadSources('meanings'), loadGlossaries()]).then(() => { if (W !== w) return; if (BYPART()){ const l = WS().last; loadPart(l && IT[l.i] ? IT[l.i].p : 0); } })   // the part “Continue” opens
         .finally(() => { if (W === w) wReady = true; });
@@ -1679,7 +1706,8 @@ function renderSettings(){   // the "More settings" page: the rare things only �
   const cur = S.src[W ? W.id : ''] || {};
   const pick = (kind, label, off) => { const list = W ? srcList(kind) : []; if (!list.length) return ''; const sel = cur[kind] || (kind === 'cm' ? 'off' : list[0].id); return '<div class="field"><label>' + label + '</label><select data-src="' + kind + '">' + list.map(s => '<option value="' + s.id + '"' + (sel === s.id ? ' selected' : '') + '>' + esc(TT(s.title)) + (s.draft ? T(' (जाँच बाकी)', ' (to be checked)') : '') + '</option>').join('') + (off ? '<option value="off"' + (sel === 'off' ? ' selected' : '') + '>' + T('बंद', 'Off') + '</option>' : '') + '</select></div>'; };
   let h = '<h2>' + T('पढ़ना', 'Reading') + '</h2>' + sw('str', LB.tr(), LB.trSub(), S.settings.tr) + (hasLines() ? sw('slines', LB.lines(), LB.linesSub(), S.settings.lines) : '') + (hasNotes() ? sw('sfn', LB.fn(), LB.fnSub(), fnOn()) : '') +
-    (W ? '<h2>' + LB.src() + ' · ' + esc(TT(W.title)) + '</h2>' + MK().map(k => pick(k, LBM(k))).join('') + pairPick() + pick('cm', LB.cm(), true) + pick('au', LB.au(), true) : '') +
+    (W ? '<h2>' + LB.src() + ' · ' + esc(TT(W.title)) + '</h2>' + MK().map(k => pick(k, LBM(k))).join('') + pairPick() + pick('cm', LB.cm(), true) + pick('au', LB.au(), true) +
+      Object.values(W.sources || {}).flat().filter(o => o.personal).map(o => '<div class="acts"><button class="btn ghost" data-prm="' + esc(o.id) + '">' + T('इस फ़ोनसे हटाएँ: ', 'Remove from this phone: ') + esc(TT(o.title)) + '</button></div>').join('') : '') +
     timingHTML() +
     '<h2>' + T('सहायता', 'Help') + '</h2><div class="acts"><a class="btn ghost" href="privacy.html" target="_blank" rel="noopener">' + T('गोपनीयता', 'Privacy') + '</a></div>' +
     '<div style="height:50px"></div>';
@@ -1689,6 +1717,7 @@ function renderSettings(){   // the "More settings" page: the rare things only �
   if ($('#sfn')) $('#sfn').onchange = e => { S.settings.fn = e.target.checked; save(); };
   bindTiming();
   if ($('#sPair')) $('#sPair').onchange = e => { S.settings.pair = e.target.value; save(); syncLayers(); toast(T('बार बदला', 'Bar changed')); };
+  $$('[data-prm]').forEach(b => b.onclick = () => askYes(T('यह स्रोत इस फ़ोनसे हटेगा।', 'This source will be removed from this phone.'), T('हाँ, हटाएँ', 'Yes, remove'), async () => { await persRemove(b.dataset.prm); renderSettings(); }));
   $$('[data-src]').forEach(s => s.onchange = async () => { const c = S.src[W.id] = S.src[W.id] || {}; c[s.dataset.src] = s.value; save(); if (s.dataset.src === 'au') stopAudio(); await loadSources(); IDX = null; toast(T('स्रोत बदला', 'Source changed')); });
 }
 /* timing review: ☰ › More settings › Audio timing. While it is on, each verse shows its times and “Starts now” / “Ends now” (markBar), and the player bar the ± step;
@@ -1799,6 +1828,7 @@ $('#fileIn').onchange = async e => {
   const f = e.target.files[0]; e.target.value = ''; if (!f) return;
   let X; try { X = JSON.parse(await f.text()); } catch (err) { toast(T('यह फ़ाइल नहीं खुल सकी', 'Could not open this file')); return; }
   if (X && X.kind === 'scriptures-timing'){ importTiming(X); return; }
+  if (X && X.kind === 'scriptures-source'){ persAdd(X); return; }
   if (!X || !X.profiles){ toast(T('यह इस ऐपकी फ़ाइल नहीं है', 'This is not a file from this app')); return; }
   const tmp = S; S = X; migrate(); X = S; S = tmp;
   openSheet('<h2>' + T('फ़ाइल खोलें', 'Open a file') + '</h2><p>' + T('इस फ़ाइलमें: ', 'This file has: ') + '<b>' + DEV(Object.values(X.profiles[0].bm).length) + T(' बुकमार्क · ', ' bookmarks · ') + DEV(Object.values(X.profiles[0].notes).reduce((a, b) => a + b.length, 0)) + T(' टिप्पणी', Object.values(X.profiles[0].notes).reduce((a, b) => a + b.length, 0) === 1 ? ' note' : ' notes') + '</b></p><div class="menu"><button id="imAdd">' + T('इन्हें इस फ़ोनमें जोड़ें', 'Add them to this phone') + '<br><small class="muted">' + T('यहाँकी आपकी चीज़ें भी रहेंगी', 'Your existing data stays') + '</small></button><button id="imRep">' + T('इस फ़ोनका सब कुछ इस फ़ाइलसे बदलें', 'Replace everything on this phone') + '<br><small class="muted">' + T('सेटिंग्स और प्रगति भी फ़ाइल जैसी हो जाएँगी', 'Settings and progress also come from the file') + '</small></button></div>');

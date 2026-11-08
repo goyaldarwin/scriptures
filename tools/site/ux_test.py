@@ -1357,6 +1357,22 @@ async def main():
         await ev("openReader('k', 0)"); await pg.wait_for_timeout(800)
         rep = await ev("[document.querySelectorAll('#rBody .verse').length, !!(S.timing && S.timing.fix)]")
         check('a saved file: “1 note” (not “1 notes”); added bookmarks show at once; Replace with an older file keeps the reader working', '1 note' in one and '1 notes' not in one and 'Bookmarks (1)' in added and rep[0] > 0 and rep[1] and len(errs) == n_err, [one[:80], added[:40], rep, errs[n_err:]])
+        # a personal source (a meaning file kept on this phone only): Open a file adds it as the work's first meaning in its
+        # language, shown at once; it stays after a reload; Sources removes it
+        ps = {'kind': 'scriptures-source', 'work': 'isha-upanishad', 'source': {'id': 'pa-test', 'lang': 'pa', 'title': {'hi': 'परख', 'en': 'Test', 'pa': 'ਪਰਖ'}},
+              'm': {'m01': ['ਪਰਖ ਦਾ ਅਰਥ ।੧।\nਦੂਜੀ ਸਤਰ', ['ਪਦ ਅਰਥ: ਪਰਖ']]}}
+        await ev("(async () => { await openWork('isha-upanishad', true); S.settings.recite = false; save(); })()"); await pg.wait_for_timeout(400)
+        await pg.set_input_files('#fileIn', {'name': 'pa-test.json', 'mimeType': 'application/json', 'buffer': json.dumps(ps).encode()}); await pg.wait_for_timeout(800)
+        await ev("openReader('k', IT.findIndex(x => x.id === 'm01'))"); await pg.wait_for_timeout(600)
+        pa1 = await ev("""[W.sources.pa[0].id, !!S.settings.layers.pa, (() => { const v = document.querySelector('#v' + IT.findIndex(x => x.id === 'm01')), l = v && v.querySelector('.layer.pa'); return l ? l.innerHTML : ''; })()]""")
+        await pg.reload(); await pg.wait_for_timeout(2500)
+        await ev("(async () => { await openWork('isha-upanishad', true); })()"); await pg.wait_for_timeout(600)
+        pa2 = await ev("[(W.sources.pa || []).map(x => x.id), !!(SRC.pa && SRC.pa.m.m01)]")
+        await ev("(async () => { await persRemove('pa-test'); })()"); await pg.wait_for_timeout(400)
+        pa3 = await ev("(async () => [(W.sources.pa || []).map(x => x.id), (SRC.pa && SRC.pa.id) || null, (await persOf('isha-upanishad')).length])()")
+        check('a personal source: Open a file adds it first in its language and shows it (a line per break); it stays after a reload; Remove takes it off this phone',
+              pa1[0] == 'pa-test' and pa1[1] and 'ਪਰਖ ਦਾ ਅਰਥ' in pa1[2] and '<br>' in pa1[2] and pa2 == [['pa-test'], True] and 'pa-test' not in pa3[0] and pa3[1] != 'pa-test' and pa3[2] == 0, [pa1, pa2, pa3])
+        await ev("(() => { S.settings.layers.pa = false; save(); })()")
         # the hard words of our meanings: underlined, a tap opens its meaning; the work's own sense first (विद्या in the Īśāvāsya)
         hw = await ev("""(async () => { await openWork('isha-upanishad', true); S.settings.layers = {h: true, e: true, w: false}; S.settings.recite = false; await loadSources(); syncLayers(); openReader('k', IT.findIndex(x => x.id === 'm09')); await new Promise(r => setTimeout(r, 600));
             const v = document.querySelector('#v' + IT.findIndex(x => x.id === 'm09')), ws = [...v.querySelectorAll('.layer .mw')].map(w => w.dataset.mw), plain = !v.querySelector('.layer .mw[data-mw="जो"]');
