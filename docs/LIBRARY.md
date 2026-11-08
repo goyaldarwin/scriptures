@@ -65,7 +65,7 @@ The work node itself:
 | `from` | optional, bilingual: the parent text or context, shown under the title after the author (`by · from`), e.g. the Sundarakāṇḍa's “Śrī Rāmacaritamānasa”, the Sukhmani Sahib's “Sri Guru Granth Sahib, Ang 262–296”. Never a publisher. |
 | `parts` | the top division: `{"name": {"hi":"काण्ड","en":"Kāṇḍa"}, "list": [{"hi":…,"en":…}, …]}`. A part's optional `no` is the mark beside it in the work's list of parts where its place is not its number (the Śrīmad Bhāgavata: the Māhātmya ॐ, then Skandh 1 … 12 marked 1 … 12); without it a part is marked by its place. |
 | `load` | optional: `"parts"` for a big work (the Vālmīki Rāmāyaṇa): its meanings (§3) and its own word senses (§5) are one file per part, and the app fetches a part only when a verse of it is shown or used, keeping it in memory and, through the service worker, on the phone. Search reads the verses at once and fetches every part's meanings, one part at a time. The verses (`work.json`) stay one file. Without it, a work loads whole. |
-| `sections` | optional: a label for each section id, `{"bala.1": {"hi": "सर्ग १", "en": "Sarga 1"}}`, shown in the reader's footer, the section picker (which lists the sections when the part has no topics), the work's home and a verse's place (“Sarga 1 · Śloka 5”). A range of sections whose labels differ only in their last number is written once (“Sarga 1–3”); the numbers show as 1 2 3 (`docs/PLAYBOOK.md` §7). Without it, a numeric section is “Dohā N” and others are labelled by their verses. |
+| `sections` | optional: a label for each section id, `{"bala.1": {"hi": "सर्ग १", "en": "Sarga 1"}}`, shown in the reader's footer, the section picker (which lists the sections when the part has no topics), the work's home and a verse's place (“Sarga 1 · Śloka 5”). A range of sections whose labels differ only in their last number is written once (“Sarga 1–3”); the numbers show as 1 2 3 (`docs/PLAYBOOK.md` §7). Without it, a section is called by a number only where `cite.sec` names a numbered section (“Doha 106”, “Sarga 15”); every other section is labelled by its verses (“Shloka 1–5”). |
 | `items` | every verse, in reading order (below) |
 | `topics` | section headings: `[{"id": <first item id>, "hi": …, "en": …}]` |
 | `plans` | reading plans: `[{"id":"M","name":…,"long":…,"unit":…,"before":["vidhi"],"after":["aarti"],"n":30,"end":[<last item id of each day>]}]`. `before` / `after` (optional; the pūrvāṅga and uttarāṅga) name pages listed before the first day and after the last: `vidhi` (the procedure in `vidhi.hi/en`), `aarti` (`vidhi.aarti`) and `visarjan` (`vidhi.visarjan`: `{title, when, verses: [{v: [lines], hi, en}]}`, recited at the end of a pārāyaṇa). Each page is titled by the work: `vidhi.titles` → `{"vidhi": {hi, en}, "aarti": {hi, en}}` (the visarjana by its own `title`). `build.py` refuses a page the work lacks or a page without a title. |
@@ -82,7 +82,7 @@ The work node itself:
 
 An item: `{"id": "bal.86.cau4", "p": 0, "s": "86", "y": "cau", "n": "4", "c": "86.4", "v": [verse lines, in the work's script], "t": [transliteration lines]}`
 - `l` (only when it differs from the work's `lang`): the verse's language. In the Mānas, `sa` marks the ślokas and the Sanskrit stutis; every other verse is `awa`.
-- `p`: index into `parts.list`. `s`: the section (book page heading, e.g. the dohā number the item belongs to). `y`: type (`shloka`, `cau`, `do`, `so`, `cha`, or one of the work's `types`). A section named in `sections` shows that label; otherwise a numeric `s` is shown as “Dohā N” (the Mānas) and a non-numeric one (e.g. `sh4`) is labelled by its verses. `n`: the verse's number at its own level, as the book prints it (where a verse ends with a number, `n` is that number: the Kaṭha's 1.1.1 ends ॥१॥, so its `n` is 1). `c` (**generated** by `tools/works/export.py` from `cite`): its citation, "86.4", "1.1.1", "11.17", "3क", or "" for a verse without a number; the app shows and finds verses only by it. A verse taken from another work keeps that work's `c`.
+- `p`: index into `parts.list`. `s`: the section (book page heading, e.g. the dohā number the item belongs to). `y`: type (`shloka`, `cau`, `do`, `so`, `cha`, or one of the work's `types`). A section named in `sections` shows that label; otherwise a numeric `s` is shown by `cite.sec` (“Doha N” in the Mānas) and any other (e.g. `sh4`) is labelled by its verses. `n`: the verse's number at its own level, as the book prints it (where a verse ends with a number, `n` is that number: the Kaṭha's 1.1.1 ends ॥१॥, so its `n` is 1). `c` (**generated** by `tools/works/export.py` from `cite`): its citation, "86.4", "1.1.1", "11.17", "3क", or "" for a verse without a number; the app shows and finds verses only by it. A verse taken from another work keeps that work's `c`.
 - `v` (the verse) and its number are the core of the work. Meanings are never stored here.
 - `v` and `t` are written by the standard (`docs/PLAYBOOK.md` §3, `tools/text/standard.py`): `t` is the ISO 15919 transliteration of `v` (Devanagari and Gurmukhi).
 
@@ -90,7 +90,7 @@ An item: `{"id": "bal.86.cau4", "p": 0, "s": "86", "y": "cau", "n": "4", "c": "8
 
 ```json
 {"id": "hi-gitapress", "lang": "hi", "order": 1,
- "title": {"hi": "गीताप्रेस — भावार्थ (हनुमानप्रसाद पोद्दार)", "en": "Gita Press — Hindi bhavarth (Hanuman Prasad Poddar)"},
+ "title": {"hi": "गीताप्रेस — हिंदी भावार्थ (हनुमानप्रसाद पोद्दार)", "en": "Gita Press — Hindi meaning (Hanuman Prasad Poddar)"},
  "m": {"bal.0.shloka1": ["meaning text", ["footnote", "…"]]}}
 ```
 - `id` = the file name. Name it `<lang>-<publisher or translator>`, lowercase with hyphens, e.g. `en-gitapress`, `hi-swami-ramsukhdas`.
@@ -114,7 +114,7 @@ The header's empty `m` keeps a release of the app that does not know parts worki
 **Where meanings come from (the owner's rules; `docs/PLAYBOOK.md` §4):**
 1. **A publisher's meaning is copied faithfully** from the source the owner gives (a book, a web page, a video's on-screen text). Fix only plain typos and broken text layers, and list the fixes in the work's `reconciliation.md`.
 2. **Our own meanings** are written from the verse, never by rewording a translation (`tools/meanings/style.md`). They are separate sources named `<lang>-scriptures` (titled "भावार्थ — शास्त्र" / "Hindi meaning — Scriptures", and the matching English and Punjabi titles), so readers can tell them apart.
-3. Name every other source after its publisher, translator or channel, and record its edition and permission status in the root `README.md` → "Sources and permissions".
+3. Name every other source after its publisher, translator or channel, titled "<who> — <language> meaning" / "<who> — <भाषा> अर्थ" with the language's name from `glossary/languages.json` ("Gita Press — English meaning", "गीताप्रेस — अंग्रेज़ी अर्थ"; Gita Press's Hindi may keep its own भावार्थ; a translator in brackets after it), never "translation" (`library.py` checks it), and record its edition and permission status in the root `README.md` → "Sources and permissions".
 
 ## 4. An audio source: `library/<path>/audio/<id>.json`
 

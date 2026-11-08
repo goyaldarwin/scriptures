@@ -15,6 +15,7 @@ This repository holds everything about the scriptures library: the website, the 
 | `docs/PLAYBOOK.md` | every rule and preference of the owner, by topic |
 | `docs/HOW-TO.md` | step-by-step procedures: add a work, a meaning source, a commentary, a recording; fix a text; change the app |
 | `docs/LIBRARY.md` | the data format (`library/`), field by field |
+| `docs/WORKS.md` | every work side by side (made by the build, never edited): its levels, verse types, how a verse is cited, its meanings and recordings, and what is not yet the same in every work |
 | `docs/ROADMAP.md` | work not done yet |
 | `docs/APPS.md` | the store apps |
 | `docs/reviews/` | open questions for the owner |

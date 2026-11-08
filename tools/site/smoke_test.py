@@ -16,7 +16,7 @@ def serve():
     class Quiet(http.server.SimpleHTTPRequestHandler):
         def log_message(self, *a): pass
     h = functools.partial(Quiet, directory=ROOT)
-    s = socketserver.TCPServer(('127.0.0.1', 0), h); threading.Thread(target=s.serve_forever, daemon=True).start(); return s
+    s = socketserver.ThreadingTCPServer(('127.0.0.1', 0), h); threading.Thread(target=s.serve_forever, daemon=True).start(); return s
 
 def works(nodes):
     for n in nodes:
@@ -31,7 +31,7 @@ async def main():
         b = await p.chromium.launch(**kw)
         pg = await (await b.new_context(viewport={'width': 390, 'height': 844})).new_page()
         await pg.add_init_script('window.__SALUTE_MS = 0')
-        errs = []; pg.on('pageerror', lambda e: errs.append(str(e)))
+        errs = []; pg.on('pageerror', lambda e: errs.append(str(e) + ' @ ' + ' ‹ '.join(l.strip() for l in (getattr(e, 'stack', '') or '').splitlines()[1:4])))   # where in app.js
         await pg.goto(url); await pg.wait_for_timeout(2500)
         await pg.evaluate("typeof closeTour === 'function' && closeTour()")
         ok = True
@@ -42,11 +42,15 @@ async def main():
         print(f'word lookup form: app and standard.py agree on {len(words) - len(bad)} of {len(words)} words'); ok &= not bad
         for b_ in bad[:5]: print('  differs:', *b_)
         for wid in ids:
-            await pg.evaluate(f"openWork({json.dumps(wid)})"); await pg.wait_for_timeout(1500)
-            await pg.click('[data-open]'); await pg.wait_for_timeout(1500)
+            # waits for what it needs to see, never a fixed time (a slow phone or runner only takes longer)
+            await pg.evaluate(f"openWork({json.dumps(wid)})")
+            await pg.wait_for_function(f"W && W.id === {json.dumps(wid)} && document.querySelector('#home').classList.contains('on') && !!document.querySelector('#orgList [data-open]')", timeout=30000)
+            await pg.click('#orgList [data-open]')
+            try: await pg.wait_for_function("document.querySelector('#reader').classList.contains('on') && document.querySelectorAll('#reader .verse').length > 0", timeout=20000)
+            except Exception: pass
             n = await pg.evaluate("document.querySelectorAll('#reader .verse').length")
             print(f'{wid}: {n} verses in the reader'); ok &= n > 0
-            await pg.evaluate("history.back()"); await pg.wait_for_timeout(500)
+            await pg.evaluate("history.back()"); await pg.wait_for_function("!document.querySelector('#reader').classList.contains('on')", timeout=10000)
         # a work loaded by part, in this release and in the previous one
         tmp = tempfile.mkdtemp(); lib, path = split_fixture.make(tmp); srv2 = split_fixture.serve(lib, path); url2 = f'http://127.0.0.1:{srv2.server_address[1]}/'
         old = subprocess.run(['git', 'show', 'origin/main:tools/site/app.js'], cwd=ROOT, capture_output=True, text=True)

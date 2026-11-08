@@ -309,7 +309,10 @@ function dayRange(plan, n){ const P = PLAN[plan]; return [n === 1 ? 0 : P.ends[n
 function dayOf(plan, i){ const P = PLAN[plan]; for (let n = 1; n <= P.n; n++){ if (i <= P.ends[n - 1]) return n; } return P.n; }
 const KNAME = k => TT(W.parts.list[k]);
 const TNAME = t => T(t.hi, t.en || t.hi);
-const VN = n => T(ORDH[n] + ' विश्राम', 'Vishram ' + n);
+// a plan's day by the plan's own word for it (work.json → plans[].unit: the Mānas's विश्राम / Vishram, a Saptāha's दिन / Day):
+// "Vishram 3", "तीसरा विश्राम", "Day 3", "तीसरा दिन"; o is the plan (the one open in the reader when not given)
+const UNIT = o => (PLAN[o || R.org] || {}).unit || {hi: 'विश्राम', en: 'Vishram'};
+const VN = (n, o) => { const u = UNIT(o); return T((ORDH[n] || DEV(n)) + ' ' + u.hi, u.en + ' ' + n); };
 const PNAME = id => TT(PLAN[id].long);
 
 /* ---------------- labels ---------------- */
@@ -330,11 +333,17 @@ const SECN = s => W && W.sections && W.sections[s] ? TT(W.sections[s]) : '';
 const hasSec = p => isNum(p.s) || !!SECN(p.s);
 // two section labels as one range: the same words before a number are written once (Sarga 1–3, सर्ग १–३)
 function secSpan(la, lb){ if (la === lb) return la; const x = /^(.*?)([0-9०-९੦-੯]+)$/.exec(la), y = /^(.*?)([0-9०-९੦-੯]+)$/.exec(lb); return x && y && x[1] === y[1] ? la + '–' + y[2] : la + ' – ' + lb; }
-function secLabel(p){ if (SECN(p.s)) return SECN(p.s); if (isNum(p.s)) return SECW() + ' ' + DEV(SNUM(p.s)); const a = IT[p.from], z = IT[p.to]; if (a.y === z.y && vNum(CIT(a)) && vNum(CIT(z))) return TYPE[a.y] + ' ' + vNum(CIT(a)) + (CIT(z) !== CIT(a) ? '–' + vNum(CIT(z)) : ''); return vLabel(a) === vLabel(z) ? vLabel(a) : vLabel(a) + ' – ' + vLabel(z); }
+function secLabel(p){ if (SECN(p.s)) return SECN(p.s); if (isNum(p.s)) return SECW() + ' ' + DEV(SNUM(p.s)); const a = IT[p.from], z = IT[p.to]; if (a.y === z.y && vNum(CIT(a)) && vNum(CIT(z))) return TYPE[a.y] + ' ' + vNum(CIT(a)) + (CIT(z) !== CIT(a) ? '–' + vNum(CIT(z)) : ''); // a section that ends as it began (the Śiva Āratī: its refrain, the stanzas, the refrain again) runs to the last verse of
+  // another label, so it reads like every other ("Refrain (tek) – Stanza 7"), never as its first verse alone
+  let k = p.to; while (k > p.from && vLabel(IT[k]) === vLabel(a)) k--;
+  return k === p.from ? vLabel(a) : vLabel(a) + ' – ' + vLabel(IT[k]); }
 // a verse's place: its section's label and its own number under it ("Doha 106 · Chaupai 3", "Namaskarashtak · Stanza 1"), or its citation
+// (a section named as its verse, the Japji's Pauri 12, is said once)
 function posLabel(i){ const it = IT[i], p = PAGES[itemPage[i]], own = n => TYPE[it.y] + (vNum(n) ? ' ' + vNum(n) : '');
-  if (SECN(p.s)) return secLabel(p) + ' · ' + own(it.n); if (!isNum(p.s) || ALONE(it)) return vLabel(it); return secLabel(p) + ' · ' + own(it.n); }
-function itemLabel(i){ return KNAME(IT[i].p) + ' · ' + posLabel(i); }
+  if (SECN(p.s)){ const a = secLabel(p), b = own(it.n); return a === b ? a : a + ' · ' + b; } if (!isNum(p.s) || ALONE(it)) return vLabel(it); return secLabel(p) + ' · ' + own(it.n); }
+// names joined with " · ", a name said once where a part and its one section share it (the Gītā Dhyānam, the Argalā Stotram)
+const joinPlace = xs => xs.filter((x, k) => x && x !== xs[k - 1]).join(' · ');
+function itemLabel(i){ return joinPlace([KNAME(IT[i].p), ...posLabel(i).split(' · ')]); }
 function spanLabel(a, b){
   const pa = PAGES[itemPage[a]], pb = PAGES[itemPage[b]];
   if (SECN(pa.s) && SECN(pb.s)) return secSpan(secLabel(pa), secLabel(pb));
@@ -344,7 +353,9 @@ function spanLabel(a, b){
   if (IT[a].y === IT[b].y && !hasSec(pa) && !hasSec(pb) && vNum(CIT(IT[a])) && vNum(CIT(IT[b]))) return TYPE[IT[a].y] + ' ' + vNum(CIT(IT[a])) + '–' + vNum(CIT(IT[b]));
   return la + ' – ' + lb;
 }
-function rangeDesc(a, b){ const ka = KNAME(IT[a].p), kb = KNAME(IT[b].p); if (ka === kb) return esc(ka + ': ' + spanLabel(a, b)); let h = '', p = IT[a].p; while (p <= IT[b].p){ const x = Math.max(a, PARTS[p].a), y = Math.min(b, PARTS[p].b); h += (h ? '<br>' : '') + esc(KNAME(p) + ': ' + spanLabel(x, y)); p++; } return h; }
+// a part and what of it is read ("Bal Kand: Doha 1–30"); a part read whole under its own name (the Durgā Saptaśatī's Argala Stotram) is named once
+const partSpan = (k, x, y) => { const l = spanLabel(x, y); return k === l ? k : k + ': ' + l; };
+function rangeDesc(a, b){ const ka = KNAME(IT[a].p), kb = KNAME(IT[b].p); if (ka === kb) return esc(partSpan(ka, a, b)); let h = '', p = IT[a].p; while (p <= IT[b].p){ const x = Math.max(a, PARTS[p].a), y = Math.min(b, PARTS[p].b); h += (h ? '<br>' : '') + esc(partSpan(KNAME(p), x, y)); p++; } return h; }
 
 /* ---------------- sources: meanings, commentaries and audio ---------------- */
 function srcList(kind){ return ((W.sources || {})[kind] || []).filter(s => !s.draft || S.timing.on); }   // a draft recording is heard only while reviewing timings
@@ -412,6 +423,8 @@ const layerOn = l => !!S.settings.layers[l];
 // footnotes: on unless turned off (☰ › More settings › Footnotes, shown for a work that has any)
 const fnOn = () => S.settings.fn !== false;
 const hasNotes = () => !!W && Object.values(W.sources || {}).some(l => l.some(s => s.notes));
+// a meaning given line by line ("p"; work.json → sources → lines): only then has "Meaning per line" anything to do
+const hasLines = () => !!W && Object.entries(W.sources || {}).some(([k, l]) => k !== 'cm' && l.some(s => s.lines));   // a commentary line by line is always shown so
 // the chosen commentary's text for a verse: [text, footnotes?], or null
 function cmOf(i){ const c = SRC.cm; return c && c.m[IT[i].id] || null; }
 // a commentary written line by line (its "p": one piece per verse line, as the Faridkot Teeka) shows each line's piece as
@@ -490,7 +503,7 @@ function verseHTML(i){
 }
 function pauseHTML(i){
   const list = pauseAfter[i]; if (!list) return '';
-  return list.filter(([o]) => R.org === 'k' || R.org === o).map(([o, n]) => { const done = DONE(ME(), o)[n]; return '<div class="pause" data-pause="' + o + n + '"><b>' + PNAME(o) + ' · ' + VN(n) + '</b><div class="sub">' + T('यहाँ विश्राम करें', 'A place to pause the reading') + '</div><button class="btn small' + (done ? ' ghost' : '') + '" data-a="done" data-o="' + o + '" data-n="' + n + '" data-i="' + i + '">' + (done ? T('✓ पूर्ण — बदलें', '✓ Completed — undo') : T('विश्राम पूर्ण करें', 'Mark vishram complete')) + '</button></div>'; }).join('');
+  return list.filter(([o]) => R.org === 'k' || R.org === o).map(([o, n]) => { const done = DONE(ME(), o)[n]; return '<div class="pause" data-pause="' + o + n + '"><b>' + PNAME(o) + ' · ' + VN(n, o) + '</b><div class="sub">' + T('यहाँ विश्राम करें', 'A place to pause the reading') + '</div><button class="btn small' + (done ? ' ghost' : '') + '" data-a="done" data-o="' + o + '" data-n="' + n + '" data-i="' + i + '">' + (done ? T('✓ पूर्ण — बदलें', '✓ Completed — undo') : T(UNIT(o).hi + ' पूर्ण करें', 'Mark ' + UNIT(o).en.toLowerCase() + ' complete')) + '</button></div>'; }).join('');
 }
 // the verse type as a heading above the verse, “॥ चौपाई ॥”, shown only where the type changes:
 // before the first chaupāī of a run, then before the dohā that follows, and so on — and at the start of what is read
@@ -558,7 +571,11 @@ function updateHeader(){
   $('#rMid').innerHTML = '<span class="ml">' + (s ? spanLabel(Math.max(s.i, R.a), Math.min(s.end, R.b)) : spanLabel(R.a, R.b)) + ' ▾</span><small>' + esc(where || TT(W.title)) + '</small>';   // only the part (or reading day): a small footer; the topic heads the page
 }
 let scT;
-window.addEventListener('scroll', () => { if (!$('#reader').classList.contains('on')) return; ensure(); clearTimeout(scT); scT = setTimeout(() => { updateHeader(); savePos(); }, 200); }, {passive: true});
+// a timer set while reading acts only if the reader is still open on the same work and reading (Back, then another work
+// opened within the delay, would otherwise read the new work's verses with the old reading's range)
+const readingNow = () => [W, R.org, R.a, R.b].join('|');
+const stillReading = (w, r) => W === w && readingNow() === r && $('#reader').classList.contains('on');
+window.addEventListener('scroll', () => { if (!$('#reader').classList.contains('on')) return; ensure(); clearTimeout(scT); const w = W, r = readingNow(); scT = setTimeout(() => { if (stillReading(w, r)) { updateHeader(); savePos(); } }, 200); }, {passive: true});
 function savePos(i){ if (i == null) i = topVisibleItem(); const ws = WS(); ws.pos[R.org] = i; ws.last = {org: R.org, i, id: IT[i].id}; save();
   R.at = {org: R.org, id: IT[i].id}; if (CURVIEW === 'reader' && history.state && history.state.v === 'reader') history.replaceState(snap('reader'), ''); }   // Back and a refresh return here
 /* ---------------- the reading anchor: Resume and “Back to” ----------------
@@ -610,7 +627,7 @@ function backPill(){
     const el = document.getElementById('v' + a.i), r = el && el.getBoundingClientRect();
     show = !(r && r.bottom > 70 && r.top < innerHeight - 90);
   }
-  if (show){ const where = a.org === 'k' ? placeOf(a.i) : [VN(rangeFor(a.org, a.i)[2]), SECN(PAGES[itemPage[a.i]].s)].filter(Boolean).join(' · ');
+  if (show){ const where = a.org === 'k' ? placeOf(a.i) : [VN(rangeFor(a.org, a.i)[2], a.org), SECN(PAGES[itemPage[a.i]].s)].filter(Boolean).join(' · ');
     const h = '<b><span class="arr">' + (a.i >= topVisibleItem() ? '↓' : '↑') + '</span>' + T('', 'Back to ') + esc(playLabel(a.i)) + T(' पर लौटें', '') + '</b>' + (where ? '<small>' + esc(where) + '</small>' : '');   // as “Go to …”: an arrow pointing the way, the place, the part or day
     if (b.innerHTML !== h) b.innerHTML = h;
     // above the reader's bottom bar (the sections) and the player, never over them
@@ -671,7 +688,7 @@ function jumpTo(i){
   if (i < R.a || i > R.b){ openReader(R.org, i); return; }
   const pg = itemPage[i];
   if (pg >= R.pf && pg <= R.pt) scrollToItem(i, false); else renderAround(i);
-  setTimeout(() => { updateHeader(); savePos(i); anchorJump(i); backPill(); }, 60);
+  const w = W, r = readingNow(); setTimeout(() => { if (stillReading(w, r)) { updateHeader(); savePos(i); anchorJump(i); backPill(); } }, 60);
 }
 function refreshReader(){
   if (!$('#reader').classList.contains('on')) return;
@@ -797,7 +814,7 @@ function readerTap(ev){
     else if (act === 'bm'){ const me = ME(), k = KEY(IT[i].id); const had = !!me.bm[k]; if (had) delete me.bm[k]; else { me.bm[k] = Date.now(); if (TOUR) TOUR.bmAdded = true; } save(); rerenderItem(i); toast(!had ? T('बुकमार्क जोड़ा', 'Bookmarked') : T('बुकमार्क हटाया', 'Bookmark removed')); }
     else if (act === 'enote') noteSheet(i, +a.dataset.k);
     else if (act === 'menu') itemMenu(i);
-    else if (act === 'done'){ const o = a.dataset.o, n = +a.dataset.n, d = DONE(ME(), o); if (d[n]) delete d[n]; else d[n] = Date.now(); save(); const box = a.closest('.pause'); const tmp = document.createElement('div'); tmp.innerHTML = pauseHTML(+a.dataset.i); const nb = Array.from(tmp.children).find(x => x.dataset.pause === o + n); if (box && nb) box.replaceWith(nb); if (d[n]) toast(VN(n) + T(' पूर्ण — जय श्रीराम', ' complete — Jai Shri Ram')); }
+    else if (act === 'done'){ const o = a.dataset.o, n = +a.dataset.n, d = DONE(ME(), o); if (d[n]) delete d[n]; else d[n] = Date.now(); save(); const box = a.closest('.pause'); const tmp = document.createElement('div'); tmp.innerHTML = pauseHTML(+a.dataset.i); const nb = Array.from(tmp.children).find(x => x.dataset.pause === o + n); if (box && nb) box.replaceWith(nb); if (d[n]) toast(VN(n, o) + T(' पूर्ण', ' complete')); }
     return;
   }
   const w = ev.target.closest('.w'); if (w){ w.classList.add('sel'); const vb = w.closest('.verse'); wordSheet(w.dataset.w || w.textContent, null, vb ? langOf(+vb.dataset.i) : W.lang); }
@@ -1041,7 +1058,7 @@ function playLabel(i){ const it = IT[i], c = CIT(it), wd = W.cite && W.cite.word
   if (!vNum(c)) return vLabel(it);
   return (wd ? TT(wd) : TYPE[it.y]) + ' ' + vNum(c); }
 // where a verse is, around its label: the part (in a work of several) and a named section ("Uttar Kand · Closing", "Namaskarashtak")
-function placeOf(i){ const p = PAGES[itemPage[i]]; return [PARTS.length > 1 ? KNAME(IT[i].p) : '', SECN(p.s)].filter(Boolean).join(' · '); }
+function placeOf(i){ const p = PAGES[itemPage[i]]; return joinPlace([PARTS.length > 1 ? KNAME(IT[i].p) : '', SECN(p.s)]); }
 // the player's small line: outside the reader it says the label can be tapped (“Go to verse ›”); in the reader, nothing
 function pSub(){ const out = CURVIEW !== 'reader'; $('#pTrack').textContent = out ? T('पदपर जाएँ ›', 'Go to verse ›') : ''; $('#pInfo').classList.toggle('go', out);
   $('#pInfo').setAttribute('aria-label', T('चल रहे पदपर जाएँ', 'Go to the verse playing')); }
@@ -1091,9 +1108,10 @@ function playTime(){
 }
 function onEnded(){
   if (!PL.on) return;
-  // go on with the next recording; where a stretch has no recording yet, skip ahead to the next verse that has one
+  // go on with the next recording; where a stretch has no recording yet, skip ahead to the next verse that has one (said in the
+  // white capsule: the reading speaking, not an answer to a tap)
   const tr = SRC.au.tracks[PL.t], last = PL.end == null ? IT.length - 1 : PL.end, nx = firstAu(tr.li + 1, last);
-  if (nx != null){ if (nx > tr.li + 1) toast(T('आगेके अंशकी रिकॉर्डिंग नहीं है — अगली रिकॉर्डिंगसे जारी', 'No recording for the next part — continuing with the next one')); const whole = PL.whole, msg = PL.endMsg; playFrom(nx, PL.end); PL.whole = whole; PL.endMsg = msg; return; }   // the reading goes on in the next recording: what was asked for (the whole work, a part, a day) is kept
+  if (nx != null){ if (nx > tr.li + 1) toastLight(T('आगेके अंशकी रिकॉर्डिंग नहीं है — अगली रिकॉर्डिंगसे जारी', 'No recording for the next part — continuing with the next one')); const whole = PL.whole, msg = PL.endMsg; playFrom(nx, PL.end); PL.whole = whole; PL.endMsg = msg; return; }   // the reading goes on in the next recording: what was asked for (the whole work, a part, a day) is kept
   stopAudio();
 }
 function endOf(i){ const x = SRC.au && SRC.au.at[IT[i].id]; return x && x[2] != null ? x[2] : null; }   // a verse's end, when one is set (otherwise it runs until the next verse starts)
@@ -1476,11 +1494,11 @@ function renderHome(){
     ts.forEach((t, n) => { const name = t.hi || t.en ? TNAME(t) : KNAME(P.k); h += '<li class="rowp">' + play('k', t.i, t.end) + '<button class="it" data-open="' + t.i + '"><span class="no">' + DEV(n + 1) + '</span><span class="grow"><span class="ti">' + esc(name) + '</span><br><span class="ds">' + esc(spanLabel(t.i, t.end)) + '</span></span><span class="chev">›</span></button></li>'; });
   }
   else if (org === 'k') PARTS.forEach(p => { const tps = TOPICS.filter(t => IT[t.i].p === p.k).length || (W.sections ? PAGES.filter(g => g.k === p.k && SECN(g.s)).length : 0);   /* its topics, else its named sections */ h += '<li class="rowp">' + play('k', p.a, p.b) + '<button class="it" data-open="' + p.a + '"><span class="no">' + DEV(p.no != null ? p.no : p.k + 1) + '</span><span class="grow"><span class="ti">' + esc(KNAME(p.k)) + '</span><br><span class="ds">' + DEV(tps) + T(' प्रसंग', tps === 1 ? ' section' : ' sections') + '</span></span><span class="chev">›</span></button></li>'; });
-  else { const P = PLAN[org]; const dn = Object.keys(DONE(ME(), org)).length; h += '<li class="pdone" aria-label="' + DEV(dn) + ' / ' + DEV(P.n) + T(' विश्राम पूर्ण', ' vishrams completed') + '"><span class="pdbar"><span style="width:' + Math.round(100 * dn / P.n) + '%"></span></span><span class="pdn">' + DEV(dn) + ' / ' + DEV(P.n) + '</span></li>';   // how much of the plan is done; a vishram's number marks it done
+  else { const P = PLAN[org]; const dn = Object.keys(DONE(ME(), org)).length; h += '<li class="pdone" aria-label="' + DEV(dn) + ' / ' + DEV(P.n) + T(' ' + UNIT(org).hi + ' पूर्ण', ' ' + UNIT(org).en.toLowerCase() + 's completed') + '"><span class="pdbar"><span style="width:' + Math.round(100 * dn / P.n) + '%"></span></span><span class="pdn">' + DEV(dn) + ' / ' + DEV(P.n) + '</span></li>';   // how much of the plan is done; a vishram's number marks it done
     // pages read before the first day and after the reading (pūrvāṅga / uttarāṅga), when the plan names them
     const page = (pg, when) => { const t = pageTitle(pg); if (pg === 'visarjan') when = T('पारायणके अन्तिम दिन', 'On the last day of the parayan'); return '<li class="rowp"><button class="it" data-page="' + pg + '"><span class="no pg"><svg><use href="#i-lamp"/></svg></span><span class="grow"><span class="ti">' + t + '</span><br><span class="ds">' + when + '</span></span><span class="chev">›</span></button></li>'; };
     (P.before || []).forEach(pg => h += page(pg, T('पाठसे पहले', 'Before the reading')));
-    for (let n = 1; n <= P.n; n++){ const [a, b] = dayRange(org, n), d = DONE(ME(), org)[n], t = firstAu(a, b) != null ? durLabel(spanSecs(a, b)) : ''; h += '<li class="rowp"><button class="lmark" data-mark="' + n + '" aria-label="' + VN(n) + (d ? T(': पूर्ण — अपूर्ण करें', ': complete — mark not complete') : T(': पूर्ण करें', ': mark complete')) + '"></button>' + play(org, a, b) + '<button class="it" data-open="' + a + '"><span class="no' + (d ? ' done' : '') + '">' + (d ? '✓' : DEV(n)) + '</span><span class="grow"><span class="ti">' + VN(n) + '</span><br><span class="ds">' + rangeDesc(a, b) + '</span></span><span class="chev">›</span></button></li>'; }
+    for (let n = 1; n <= P.n; n++){ const [a, b] = dayRange(org, n), d = DONE(ME(), org)[n], t = firstAu(a, b) != null ? durLabel(spanSecs(a, b)) : ''; h += '<li class="rowp"><button class="lmark" data-mark="' + n + '" aria-label="' + VN(n, org) + (d ? T(': पूर्ण — अपूर्ण करें', ': complete — mark not complete') : T(': पूर्ण करें', ': mark complete')) + '"></button>' + play(org, a, b) + '<button class="it" data-open="' + a + '"><span class="no' + (d ? ' done' : '') + '">' + (d ? '✓' : DEV(n)) + '</span><span class="grow"><span class="ti">' + VN(n, org) + '</span><br><span class="ds">' + rangeDesc(a, b) + '</span></span><span class="chev">›</span></button></li>'; }
     (P.after || []).forEach(pg => h += page(pg, T('पाठके बाद', 'After the reading'))); }
   $('#orgList').innerHTML = h;
   $$('#orgList [data-open]').forEach(b => b.onclick = () => openReader(org, +b.dataset.open));
@@ -1488,7 +1506,7 @@ function renderHome(){
   $$('#orgList [data-pa]').forEach(b => b.onclick = ev => { ev.stopPropagation(); playRange(b.dataset.po, +b.dataset.pa, +b.dataset.pb); });
   // a vishram's number: tap to mark it complete, tap again to mark it not complete (as “Mark vishram complete” at its end does)
   $$('#orgList [data-mark]').forEach(b => b.onclick = ev => { ev.stopPropagation(); const n = +b.dataset.mark, d = DONE(ME(), org); if (d[n]) delete d[n]; else d[n] = Date.now(); save(); renderHome();
-    toast(VN(n) + (d[n] ? T(' पूर्ण — जय श्रीराम', ' complete — Jai Shri Ram') : T(' अपूर्ण किया', ' marked not complete'))); });
+    toast(VN(n, org) + (d[n] ? T(' पूर्ण', ' complete') : T(' अपूर्ण किया', ' marked not complete'))); });
 }
 /* ⓘ About this work, under the title on the work's page: what the work is, so a reader
    can decide to read it. The shelf entry's introduction (library/index.json "intro": {hi: [paragraphs], en: [paragraphs]},
@@ -1504,7 +1522,7 @@ function aboutWork(id){
     const row = (k, v) => v ? '<dt>' + k + '</dt><dd>' + esc(v) + '</dd>' : '';
     const n = BYPART() ? 0 : IT.length, len = n ? DEV(n) + T(' पद', ' verses') : '';
     const au = SRC.au && firstAu(0, IT.length - 1) != null ? durLabel(spanSecs(0, IT.length - 1)) + ' · ' + TT(SRC.au.meta.title) : '';
-    facts = '<dl>' + row(T('भाषा', 'Language'), LANGS[W.lang] ? TT(LANGS[W.lang].name) : '') + row(T('विस्तार', 'Length'), len) + row(T('सुनें', 'Listen'), au) + row(T('पाठ', 'Text'), TT(W.edition)) + '</dl>';
+    facts = '<dl>' + row(T('भाषा', 'Language'), LANGS[W.lang] ? TT(LANGS[W.lang].name) : '') + row(T('विस्तार', 'Length'), len) + row(T('रिकॉर्डिंग', 'Recording'), au) + row(T('संस्करण', 'Edition'), TT(W.edition)) + '</dl>';
   }
   openSheet('<div class="about"><h2>' + esc(TT(nd.title || (W && W.title))) + '</h2>' + (by.some(Boolean) ? '<p class="muted small">' + esc(by.filter(Boolean).join(' · ')) + '</p>' : '')
     + intro.map(p => '<p>' + esc(p) + '</p>').join('') + facts
@@ -1657,14 +1675,14 @@ function pairPick(){ if (!W || workKinds().filter(k => k !== 'hi' && k !== 'en')
 function renderSettings(){   // the "More settings" page: the rare things only — transliteration, sources, audio timing, privacy
   const cur = S.src[W ? W.id : ''] || {};
   const pick = (kind, label, off) => { const list = W ? srcList(kind) : []; if (!list.length) return ''; const sel = cur[kind] || (kind === 'cm' ? 'off' : list[0].id); return '<div class="field"><label>' + label + '</label><select data-src="' + kind + '">' + list.map(s => '<option value="' + s.id + '"' + (sel === s.id ? ' selected' : '') + '>' + esc(TT(s.title)) + (s.draft ? T(' (जाँच बाकी)', ' (to be checked)') : '') + '</option>').join('') + (off ? '<option value="off"' + (sel === 'off' ? ' selected' : '') + '>' + T('बंद', 'Off') + '</option>' : '') + '</select></div>'; };
-  let h = '<h2>' + T('पढ़ना', 'Reading') + '</h2>' + sw('str', LB.tr(), LB.trSub(), S.settings.tr) + sw('slines', LB.lines(), LB.linesSub(), S.settings.lines) + (hasNotes() ? sw('sfn', LB.fn(), LB.fnSub(), fnOn()) : '') +
+  let h = '<h2>' + T('पढ़ना', 'Reading') + '</h2>' + sw('str', LB.tr(), LB.trSub(), S.settings.tr) + (hasLines() ? sw('slines', LB.lines(), LB.linesSub(), S.settings.lines) : '') + (hasNotes() ? sw('sfn', LB.fn(), LB.fnSub(), fnOn()) : '') +
     (W ? '<h2>' + LB.src() + ' · ' + esc(TT(W.title)) + '</h2>' + MK().map(k => pick(k, LBM(k))).join('') + pairPick() + pick('cm', LB.cm(), true) + pick('au', LB.au(), true) : '') +
     timingHTML() +
     '<h2>' + T('सहायता', 'Help') + '</h2><div class="acts"><a class="btn ghost" href="privacy.html" target="_blank" rel="noopener">' + T('गोपनीयता', 'Privacy') + '</a></div>' +
     '<div style="height:50px"></div>';
   $('#setBody').innerHTML = h;
   $('#str').onchange = e => { S.settings.tr = e.target.checked; save(); };   // seen in the reader on the next open
-  $('#slines').onchange = e => { S.settings.lines = e.target.checked; save(); };
+  if ($('#slines')) $('#slines').onchange = e => { S.settings.lines = e.target.checked; save(); };
   if ($('#sfn')) $('#sfn').onchange = e => { S.settings.fn = e.target.checked; save(); };
   bindTiming();
   if ($('#sPair')) $('#sPair').onchange = e => { S.settings.pair = e.target.value; save(); syncLayers(); toast(T('बार बदला', 'Bar changed')); };

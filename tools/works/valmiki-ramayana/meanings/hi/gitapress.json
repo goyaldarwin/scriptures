@@ -1,6 +1,6 @@
 {
 "about": "Gita Press, Śrīmad Vālmīkīya Rāmāyaṇa, Hindi translation only (code 77), read from its glyph ids (source/hindi/decode.py) and placed under the verses by source/hindi_map.py: a paragraph whose mark is a ½ or a bare ॥ joins the next into one meaning under the last verse it covers, every mark kept as printed",
-"title": {"hi": "गीताप्रेस — हिन्दी अनुवाद", "en": "Gita Press — Hindi translation"},
+"title": {"hi": "गीताप्रेस — हिंदी अर्थ", "en": "Gita Press — Hindi meaning"},
 "order": 1,
 "copied": true,
 "m": {
