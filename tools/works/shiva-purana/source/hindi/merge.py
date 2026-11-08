@@ -142,14 +142,16 @@ def main(book, first, upto=None, pages=None):
         if x['n']: nums[x['section']].add(int(x['n']))
     secs = order[order.index(first):(order.index(upto) + 1 if upto else None)]
     # the stream of words, column by column, page by page
-    stream, lost = [], []
+    stream, lost, hhpages = [], [], set()
+    notes = json.load(open(os.path.join(HERE, f'{book}.notes.json'), encoding='utf-8')) if os.path.exists(os.path.join(HERE, f'{book}.notes.json')) else {}
     for f in files:
         P = json.load(open(f, encoding='utf-8'))
-        page = []
+        page = []; cut = notes.get(str(P['page']), {}).get('cols', {})   # the page's footnotes (notes.py) are no paragraph's
         for c in P['cols']:
             for t, li, sp, fl, alt in merge(c['hin'], c['deva']):
+                if c['side'] in cut and li >= cut[c['side']]: continue
                 page.append({'t': t, 'page': P['page'], 'side': c['side'], 'line': li, 'sp': sp, 'flag': fl, 'alt': alt})
-        if P['layout'] == 'hh': lost += closings(P, page)
+        if P['layout'] == 'hh': lost += closings(P, page); hhpages.add(P['page'])
         stream += page
     # paragraphs end at a verse mark; a mark that restarts at 1 begins the next adhyāya
     out, flags, chosen = {}, [], []
@@ -191,6 +193,12 @@ def main(book, first, upto=None, pages=None):
             elif not ended and peak >= 0.6 * top:                          # its number misread (२१ read २९): it still closes this adhyāya
                 resync.append((w['page'], sec, 'closing ' + m.group(1))); ended = 2; cur = []; continue
         if lo == hi == ordinal(sec) and peak >= 0.6 * top and (lo > top or lo <= peak) and ended < 2:   # the adhyāya's two closing lines
+            if ended and not w.get('closing') and w['page'] in hhpages:     # Kalyan: the column's own copy of a closing line already
+                if cur: cur.pop()                                           # the mark's closing ॥
+                for _ in range(4):                                          # … back to its opening ॥
+                    if not cur or cur.pop()['t'].startswith('॥'): break
+                ended += 1; continue                                        # placed: the words after it (the next heading, the first
+                                                                            # words of the next adhyāya in the other column) stay
             ended += 1; cur = []; continue                                  # (इति … and इस प्रकार … पूर्ण हुआ ॥ N ॥)
         if not ended and lo == 1 and (peak >= 0.8 * top or (peak >= 0.3 * top and behind(w['page'], sec))): ended = 1   # a closing line misread: the marks restart anyway
         if not ended and lo != 1 and (hi < last - 3 or hi > top + 2) and not (lo == hi == ordinal(sec)):   # a mark far behind, or beyond the last verse: misread, flagged

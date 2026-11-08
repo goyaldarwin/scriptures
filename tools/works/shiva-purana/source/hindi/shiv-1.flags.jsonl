@@ -799,11 +799,10 @@
 {"k": 1, "id": "1.10.31", "page": 77, "side": "right", "line": 27, "word": "निष्कलरूप", "why": "unknown", "alt": []}
 {"k": 2, "id": "1.10.31", "page": 77, "side": "right", "line": 27, "word": "निष्कल", "why": "unknown", "alt": []}
 {"k": 3, "id": "1.10.31", "page": 77, "side": "right", "line": 31, "word": "वाच्यार्थ", "why": "unknown", "alt": []}
-{"k": 4, "id": "1.10.31", "page": 77, "side": "right", "line": 36, "word": "व्यंजन", "why": "unknown", "alt": []}
-{"k": 5, "id": "1.10.31", "page": 78, "side": "right", "line": 3, "word": "निष्कल", "why": "unknown", "alt": []}
-{"k": 6, "id": "1.10.31", "page": 78, "side": "right", "line": 4, "word": "सदगुरु", "why": "unknown", "alt": []}
-{"k": 7, "id": "1.10.31", "page": 78, "side": "right", "line": 5, "word": "पद्योँद्वारा", "why": "differ", "alt": ["यद्योंद्रार", "पद्योँद्वारा"]}
-{"k": 8, "id": "1.10.31", "page": 78, "side": "right", "line": 6, "word": "-", "why": "differ", "alt": ["—", "-"]}
+{"k": 4, "id": "1.10.31", "page": 78, "side": "right", "line": 3, "word": "निष्कल", "why": "unknown", "alt": []}
+{"k": 5, "id": "1.10.31", "page": 78, "side": "right", "line": 4, "word": "सदगुरु", "why": "unknown", "alt": []}
+{"k": 6, "id": "1.10.31", "page": 78, "side": "right", "line": 5, "word": "पद्योँद्वारा", "why": "differ", "alt": ["यद्योंद्रार", "पद्योँद्वारा"]}
+{"k": 7, "id": "1.10.31", "page": 78, "side": "right", "line": 6, "word": "-", "why": "differ", "alt": ["—", "-"]}
 {"k": 0, "id": "1.10.32", "page": 78, "side": "right", "line": 7, "word": "वत्सो", "why": "unknown", "alt": []}
 {"k": null, "id": "1.10.32", "page": 78, "side": "right", "line": 9, "word": "", "why": "only in one pass", "alt": ["3"]}
 {"k": 1, "id": "1.10.32", "page": 78, "side": "right", "line": 9, "word": "%", "why": "differ", "alt": ["»", "%"]}
@@ -849,17 +848,12 @@
 {"k": 11, "id": "1.11.18", "page": 80, "side": "right", "line": 34, "word": "रुद्ररूपेभ्यः", "why": "unknown", "alt": []}
 {"k": 12, "id": "1.11.18", "page": 80, "side": "right", "line": 35, "word": "रुद्रः", "why": "unknown", "alt": []}
 {"k": 13, "id": "1.11.18", "page": 80, "side": "right", "line": 35, "word": "प्रचोदयात्‌", "why": "unknown", "alt": []}
-{"k": 14, "id": "1.11.18", "page": 80, "side": "right", "line": 36, "word": "[", "why": "differ", "alt": ["्रपतिब्रह्मणो 5 धिपतिर्त्रह्मा"]}
-{"k": 15, "id": "1.11.18", "page": 80, "side": "right", "line": 36, "word": "पतिर्ब्रह्मणोऽधिपतिरब्रह्मा", "why": "differ", "alt": []}
-{"k": 16, "id": "1.11.18", "page": 80, "side": "right", "line": 36, "word": "शिवो", "why": "unknown", "alt": []}
-{"k": 17, "id": "1.11.18", "page": 80, "side": "right", "line": 36, "word": "मे", "why": "unknown", "alt": []}
-{"k": 18, "id": "1.11.18", "page": 80, "side": "right", "line": 36, "word": "शिवोम्‌", "why": "unknown", "alt": []}
-{"k": 19, "id": "1.11.18", "page": 81, "side": "right", "line": 1, "word": "पंचाक्षर", "why": "unknown", "alt": []}
-{"k": 20, "id": "1.11.18", "page": 81, "side": "right", "line": 1, "word": "वेर", "why": "unknown", "alt": []}
-{"k": 21, "id": "1.11.18", "page": 81, "side": "right", "line": 4, "word": "वेर", "why": "unknown", "alt": []}
-{"k": 22, "id": "1.11.18", "page": 81, "side": "right", "line": 6, "word": "प्रणवमन्त्रके", "why": "differ", "alt": ["प्रणबमन्त्रके", "प्रणवमन्त्रके"]}
-{"k": 23, "id": "1.11.18", "page": 81, "side": "right", "line": 7, "word": "पंचाक्षरमन्त्रसे", "why": "unknown", "alt": []}
-{"k": 24, "id": "1.11.18", "page": 81, "side": "right", "line": 9, "word": "वेर", "why": "unknown", "alt": []}
+{"k": 14, "id": "1.11.18", "page": 81, "side": "right", "line": 1, "word": "पंचाक्षर", "why": "unknown", "alt": []}
+{"k": 15, "id": "1.11.18", "page": 81, "side": "right", "line": 1, "word": "वेर", "why": "unknown", "alt": []}
+{"k": 16, "id": "1.11.18", "page": 81, "side": "right", "line": 4, "word": "वेर", "why": "unknown", "alt": []}
+{"k": 17, "id": "1.11.18", "page": 81, "side": "right", "line": 6, "word": "प्रणवमन्त्रके", "why": "differ", "alt": ["प्रणबमन्त्रके", "प्रणवमन्त्रके"]}
+{"k": 18, "id": "1.11.18", "page": 81, "side": "right", "line": 7, "word": "पंचाक्षरमन्त्रसे", "why": "unknown", "alt": []}
+{"k": 19, "id": "1.11.18", "page": 81, "side": "right", "line": 9, "word": "वेर", "why": "unknown", "alt": []}
 {"k": 0, "id": "1.11.23", "page": 81, "side": "right", "line": 12, "word": "वेर", "why": "unknown", "alt": []}
 {"k": 1, "id": "1.11.23", "page": 81, "side": "right", "line": 12, "word": "बही", "why": "differ", "alt": ["वही", "बही"]}
 {"k": 2, "id": "1.11.23", "page": 81, "side": "right", "line": 14, "word": "महादेवजीको", "why": "differ", "alt": ["महादेवजीकी", "महादेवजीको"]}
@@ -900,8 +894,7 @@
 {"k": 8, "id": "1.11.45", "page": 83, "side": "right", "line": 30, "word": "पंचाक्षर", "why": "unknown", "alt": []}
 {"k": 9, "id": "1.11.45", "page": 83, "side": "right", "line": 33, "word": "-", "why": "differ", "alt": ["—", "-"]}
 {"k": 10, "id": "1.11.45", "page": 83, "side": "right", "line": 33, "word": "४५१", "why": "differ", "alt": ["४५", "४५१"]}
-{"k": 0, "id": "1.11.47", "page": 83, "side": "right", "line": 34, "word": "उपांशु", "why": "unknown", "alt": []}
-{"k": 1, "id": "1.11.47", "page": 84, "side": "right", "line": 4, "word": "सूक्तांका", "why": "differ", "alt": ["सूक्तोंका", "सूक्तांका"]}
+{"k": 0, "id": "1.11.47", "page": 84, "side": "right", "line": 4, "word": "सूक्तांका", "why": "differ", "alt": ["सूक्तोंका", "सूक्तांका"]}
 {"k": 0, "id": "1.11.48", "page": 84, "side": "right", "line": 6, "word": "एकाक्षर", "why": "unknown", "alt": []}
 {"k": 0, "id": "1.11.49", "page": 84, "side": "right", "line": 10, "word": "पारायणको", "why": "differ", "alt": ["पाराययगको", "पारायणको"]}
 {"k": 0, "id": "1.11.50", "page": 84, "side": "right", "line": 14, "word": "एकाक्षर", "why": "unknown", "alt": []}
@@ -1239,19 +1232,15 @@
 {"k": 3, "id": "1.15.11", "page": 105, "side": "right", "line": 14, "word": "-", "why": "differ", "alt": ["—", "-"]}
 {"k": 4, "id": "1.15.11", "page": 105, "side": "right", "line": 17, "word": "विषको", "why": "differ", "alt": ["विषकी", "विषको"]}
 {"k": 0, "id": "1.15.15", "page": 105, "side": "right", "line": 25, "word": "-", "why": "differ", "alt": ["—", "-"]}
-{"k": 0, "id": "1.15.18", "page": 105, "side": "right", "line": 34, "word": "खापर", "why": "differ", "alt": ["ख़ापर", "खापर"]}
-{"k": 1, "id": "1.15.18", "page": 105, "side": "right", "line": 35, "word": "अँगरेजी", "why": "unknown", "alt": []}
-{"k": 2, "id": "1.15.18", "page": 105, "side": "right", "line": 35, "word": "दिनांक", "why": "unknown", "alt": []}
-{"k": 3, "id": "1.15.18", "page": 105, "side": "right", "line": 35, "word": "मार्चको", "why": "differ", "alt": ["मार्चकों", "मार्चको"]}
-{"k": 4, "id": "1.15.18", "page": 106, "side": "right", "line": 0, "word": "हपण", "why": "differ", "alt": ["हापुएण _ _ _"]}
-{"k": 5, "id": "1.15.18", "page": 106, "side": "right", "line": 0, "word": "`", "why": "differ", "alt": []}
-{"k": 6, "id": "1.15.18", "page": 106, "side": "right", "line": 2, "word": "बह", "why": "differ", "alt": ["वह", "बह"]}
-{"k": 7, "id": "1.15.18", "page": 106, "side": "right", "line": 4, "word": "बही", "why": "differ", "alt": ["वही", "बही"]}
-{"k": 8, "id": "1.15.18", "page": 106, "side": "right", "line": 6, "word": "बही", "why": "differ", "alt": ["वही", "बही"]}
-{"k": 9, "id": "1.15.18", "page": 106, "side": "right", "line": 9, "word": "क्मोके", "why": "differ", "alt": ["कर्मोके", "क्मोके"]}
-{"k": 10, "id": "1.15.18", "page": 106, "side": "right", "line": 10, "word": "पात्रता", "why": "unknown", "alt": []}
-{"k": 11, "id": "1.15.18", "page": 106, "side": "right", "line": 11, "word": "-", "why": "differ", "alt": ["—", "-"]}
-{"k": 12, "id": "1.15.18", "page": 106, "side": "right", "line": 11, "word": "१८१", "why": "differ", "alt": ["१८", "१८१"]}
+{"k": 0, "id": "1.15.18", "page": 106, "side": "right", "line": 0, "word": "हपण", "why": "differ", "alt": ["हापुएण _ _ _"]}
+{"k": 1, "id": "1.15.18", "page": 106, "side": "right", "line": 0, "word": "`", "why": "differ", "alt": []}
+{"k": 2, "id": "1.15.18", "page": 106, "side": "right", "line": 2, "word": "बह", "why": "differ", "alt": ["वह", "बह"]}
+{"k": 3, "id": "1.15.18", "page": 106, "side": "right", "line": 4, "word": "बही", "why": "differ", "alt": ["वही", "बही"]}
+{"k": 4, "id": "1.15.18", "page": 106, "side": "right", "line": 6, "word": "बही", "why": "differ", "alt": ["वही", "बही"]}
+{"k": 5, "id": "1.15.18", "page": 106, "side": "right", "line": 9, "word": "क्मोके", "why": "differ", "alt": ["कर्मोके", "क्मोके"]}
+{"k": 6, "id": "1.15.18", "page": 106, "side": "right", "line": 10, "word": "पात्रता", "why": "unknown", "alt": []}
+{"k": 7, "id": "1.15.18", "page": 106, "side": "right", "line": 11, "word": "-", "why": "differ", "alt": ["—", "-"]}
+{"k": 8, "id": "1.15.18", "page": 106, "side": "right", "line": 11, "word": "१८१", "why": "differ", "alt": ["१८", "१८१"]}
 {"k": 0, "id": "1.15.23", "page": 106, "side": "right", "line": 12, "word": "—", "why": "differ", "alt": ["-", "—"]}
 {"k": 1, "id": "1.15.23", "page": 106, "side": "right", "line": 24, "word": "वर्षांतक", "why": "differ", "alt": ["वर्षोतक", "वर्षांतक"]}
 {"k": 0, "id": "1.15.25", "page": 106, "side": "right", "line": 30, "word": "वर्षातक", "why": "differ", "alt": ["वर्षोतक", "वर्षातक"]}
@@ -1284,15 +1273,12 @@
 {"k": 0, "id": "1.15.46", "page": 108, "side": "right", "line": 25, "word": "पुण्यकर्मौंकी", "why": "differ", "alt": ["पुण्यकर्मोकी", "पुण्यकर्मौंकी"]}
 {"k": 0, "id": "1.15.50", "page": 108, "side": "right", "line": 29, "word": "।", "why": "differ", "alt": [""]}
 {"k": 1, "id": "1.15.50", "page": 108, "side": "right", "line": 29, "word": "।", "why": "differ", "alt": []}
-{"k": 2, "id": "1.15.50", "page": 108, "side": "right", "line": 31, "word": "ल", "why": "differ", "alt": ["गाल", "ल"]}
-{"k": 3, "id": "1.15.50", "page": 108, "side": "right", "line": 31, "word": "उच्छ", "why": "differ", "alt": ["उज्छो", "उच्छ"]}
-{"k": 4, "id": "1.15.50", "page": 108, "side": "right", "line": 32, "word": "श्रीराघवानन्दजीने", "why": "unknown", "alt": []}
-{"k": 5, "id": "1.15.50", "page": 109, "side": "right", "line": 5, "word": "भोजनको", "why": "differ", "alt": ["भोजनकी", "भोजनको"]}
-{"k": 6, "id": "1.15.50", "page": 109, "side": "right", "line": 7, "word": "भोजनको", "why": "differ", "alt": ["भोजनकी", "भोजनको"]}
-{"k": 7, "id": "1.15.50", "page": 109, "side": "right", "line": 9, "word": "कूष्माण्डके", "why": "differ", "alt": ["कृष्माण्डके", "कूष्माण्डके"]}
-{"k": 8, "id": "1.15.50", "page": 109, "side": "right", "line": 9, "word": "दानको", "why": "differ", "alt": ["दानकों", "दानको"]}
-{"k": 9, "id": "1.15.50", "page": 109, "side": "right", "line": 12, "word": "भोगोंको", "why": "differ", "alt": ["भोगोंकी", "भोगोंको"]}
-{"k": 10, "id": "1.15.50", "page": 109, "side": "right", "line": 12, "word": "-", "why": "differ", "alt": ["—", "-"]}
+{"k": 2, "id": "1.15.50", "page": 109, "side": "right", "line": 5, "word": "भोजनको", "why": "differ", "alt": ["भोजनकी", "भोजनको"]}
+{"k": 3, "id": "1.15.50", "page": 109, "side": "right", "line": 7, "word": "भोजनको", "why": "differ", "alt": ["भोजनकी", "भोजनको"]}
+{"k": 4, "id": "1.15.50", "page": 109, "side": "right", "line": 9, "word": "कूष्माण्डके", "why": "differ", "alt": ["कृष्माण्डके", "कूष्माण्डके"]}
+{"k": 5, "id": "1.15.50", "page": 109, "side": "right", "line": 9, "word": "दानको", "why": "differ", "alt": ["दानकों", "दानको"]}
+{"k": 6, "id": "1.15.50", "page": 109, "side": "right", "line": 12, "word": "भोगोंको", "why": "differ", "alt": ["भोगोंकी", "भोगोंको"]}
+{"k": 7, "id": "1.15.50", "page": 109, "side": "right", "line": 12, "word": "-", "why": "differ", "alt": ["—", "-"]}
 {"k": 0, "id": "1.15.53", "page": 109, "side": "right", "line": 15, "word": "मुष्ट", "why": "unknown", "alt": []}
 {"k": 1, "id": "1.15.53", "page": 109, "side": "right", "line": 16, "word": "दालें", "why": "unknown", "alt": []}
 {"k": 2, "id": "1.15.53", "page": 109, "side": "right", "line": 17, "word": "मिर्च", "why": "unknown", "alt": []}
@@ -1996,11 +1982,10 @@
 {"k": 0, "id": "1.19.15", "page": 150, "side": "right", "line": 27, "word": "लिंगमूर्तियोंमें", "why": "differ", "alt": ["लिंगमूर्तियोंमें", "लिंगमूर्तियोमें"]}
 {"k": 1, "id": "1.19.15", "page": 150, "side": "right", "line": 31, "word": "३", "why": "differ", "alt": ["3", "३"]}
 {"k": 2, "id": "1.19.15", "page": 150, "side": "right", "line": 33, "word": "वर्णोमें", "why": "unknown", "alt": []}
-{"k": 3, "id": "1.19.15", "page": 150, "side": "right", "line": 34, "word": "[", "why": "differ", "alt": ["_", "["]}
-{"k": 4, "id": "1.19.15", "page": 151, "side": "right", "line": 4, "word": "ब्रतोंमें", "why": "unknown", "alt": []}
-{"k": 5, "id": "1.19.15", "page": 151, "side": "right", "line": 5, "word": "जांता", "why": "unknown", "alt": []}
-{"k": 6, "id": "1.19.15", "page": 151, "side": "right", "line": 6, "word": "शैवी", "why": "unknown", "alt": []}
-{"k": 7, "id": "1.19.15", "page": 151, "side": "right", "line": 8, "word": "-", "why": "differ", "alt": ["—", "-"]}
+{"k": 3, "id": "1.19.15", "page": 151, "side": "right", "line": 4, "word": "ब्रतोंमें", "why": "unknown", "alt": []}
+{"k": 4, "id": "1.19.15", "page": 151, "side": "right", "line": 5, "word": "जांता", "why": "unknown", "alt": []}
+{"k": 5, "id": "1.19.15", "page": 151, "side": "right", "line": 6, "word": "शैवी", "why": "unknown", "alt": []}
+{"k": 6, "id": "1.19.15", "page": 151, "side": "right", "line": 8, "word": "-", "why": "differ", "alt": ["—", "-"]}
 {"k": 0, "id": "1.19.17", "page": 151, "side": "right", "line": 12, "word": "पुण्यदायी", "why": "unknown", "alt": []}
 {"k": 1, "id": "1.19.17", "page": 151, "side": "right", "line": 13, "word": "दीर्घायुष्य", "why": "unknown", "alt": []}
 {"k": 0, "id": "1.19.22", "page": 151, "side": "right", "line": 17, "word": "कामनाओंको", "why": "differ", "alt": ["कामनाओंकी", "कामनाओंको"]}
@@ -2748,14 +2733,12 @@
 {"k": 1, "id": "1.24.36", "page": 176, "side": "right", "line": 32, "word": "यजामहे", "why": "differ", "alt": []}
 {"k": null, "id": "1.24.36", "page": 176, "side": "right", "line": 32, "word": "", "why": "only in one pass", "alt": ["त््यम्बर्क यजामहे “ - “"]}
 {"k": 2, "id": "1.24.36", "page": 176, "side": "right", "line": 33, "word": "अघोरेभ्योऽथ", "why": "differ", "alt": ["अघोरेभ्यो 5 थ"]}
-{"k": 0, "id": "1.24.37", "page": 176, "side": "right", "line": 37, "word": "पृ", "why": "unknown", "alt": []}
-{"k": 1, "id": "1.24.37", "page": 176, "side": "right", "line": 37, "word": "सं", "why": "unknown", "alt": []}
-{"k": 2, "id": "1.24.37", "page": 177, "side": "right", "line": 1, "word": "“", "why": "differ", "alt": [""]}
-{"k": 3, "id": "1.24.37", "page": 177, "side": "right", "line": 1, "word": "शिवोऽहं", "why": "differ", "alt": []}
-{"k": 4, "id": "1.24.37", "page": 177, "side": "right", "line": 1, "word": "-", "why": "differ", "alt": ["शिवो 5 हं ' —"]}
-{"k": 5, "id": "1.24.37", "page": 177, "side": "right", "line": 3, "word": "ईशानः", "why": "unknown", "alt": []}
-{"k": 6, "id": "1.24.37", "page": 177, "side": "right", "line": 3, "word": "सर्वविद्यानाम्‌", "why": "unknown", "alt": []}
-{"k": 7, "id": "1.24.37", "page": 177, "side": "right", "line": 3, "word": "-", "why": "differ", "alt": ["—", "-"]}
+{"k": 0, "id": "1.24.37", "page": 177, "side": "right", "line": 1, "word": "“", "why": "differ", "alt": [""]}
+{"k": 1, "id": "1.24.37", "page": 177, "side": "right", "line": 1, "word": "शिवोऽहं", "why": "differ", "alt": []}
+{"k": 2, "id": "1.24.37", "page": 177, "side": "right", "line": 1, "word": "-", "why": "differ", "alt": ["शिवो 5 हं ' —"]}
+{"k": 3, "id": "1.24.37", "page": 177, "side": "right", "line": 3, "word": "ईशानः", "why": "unknown", "alt": []}
+{"k": 4, "id": "1.24.37", "page": 177, "side": "right", "line": 3, "word": "सर्वविद्यानाम्‌", "why": "unknown", "alt": []}
+{"k": 5, "id": "1.24.37", "page": 177, "side": "right", "line": 3, "word": "-", "why": "differ", "alt": ["—", "-"]}
 {"k": 0, "id": "1.24.38", "page": 177, "side": "right", "line": 5, "word": "वर्णाके", "why": "differ", "alt": ["वर्णोके", "वर्णाके"]}
 {"k": 1, "id": "1.24.38", "page": 177, "side": "right", "line": 7, "word": "-", "why": "differ", "alt": ["—", "-"]}
 {"k": 0, "id": "1.24.39", "page": 177, "side": "right", "line": 10, "word": "धारक", "why": "unknown", "alt": []}
@@ -3557,9 +3540,7 @@
 {"k": 4, "id": "2.1.8.53", "page": 235, "side": "right", "line": 16, "word": "सृष्टिःस्थिति", "why": "differ", "alt": ["सृष्टि - स्थिति"]}
 {"k": 5, "id": "2.1.8.53", "page": 235, "side": "right", "line": 17, "word": "वचनांद्वारा", "why": "differ", "alt": ["बचनोंद्वारा", "वचनांद्वारा"]}
 {"k": 6, "id": "2.1.8.53", "page": 235, "side": "right", "line": 18, "word": "-", "why": "differ", "alt": ["—", "-"]}
-{"k": 0, "id": "2.1.9.3", "page": 235, "side": "right", "line": 35, "word": "'", "why": "differ", "alt": ["-"]}
-{"k": 1, "id": "2.1.9.3", "page": 235, "side": "right", "line": 35, "word": "—", "why": "differ", "alt": []}
-{"k": 2, "id": "2.1.9.3", "page": 236, "side": "right", "line": 3, "word": "त्रिपुण्डुसे", "why": "differ", "alt": ["त्रिपुण्ड्से", "त्रिपुण्डुसे"]}
+{"k": 0, "id": "2.1.9.3", "page": 236, "side": "right", "line": 3, "word": "त्रिपुण्डुसे", "why": "differ", "alt": ["त्रिपुण्ड्से", "त्रिपुण्डुसे"]}
 {"k": 0, "id": "2.1.9.4", "page": 236, "side": "right", "line": 6, "word": "उनको", "why": "differ", "alt": ["उनकी", "उनको"]}
 {"k": 1, "id": "2.1.9.4", "page": 236, "side": "right", "line": 6, "word": "को", "why": "differ", "alt": ["की", "को"]}
 {"k": 0, "id": "2.1.9.7", "page": 236, "side": "right", "line": 14, "word": "महेशवरको", "why": "differ", "alt": ["महेश्वरको", "महेशवरको"]}
@@ -5264,7 +5245,6 @@
 {"k": 0, "id": "2.2.13.36", "page": 362, "side": "right", "line": 23, "word": "पुत्रोंको", "why": "differ", "alt": ["पुत्रोंकी", "पुत्रोंको"]}
 {"k": 1, "id": "2.2.13.36", "page": 362, "side": "right", "line": 25, "word": "ऋणों", "why": "unknown", "alt": []}
 {"k": 2, "id": "2.2.13.36", "page": 362, "side": "right", "line": 26, "word": "मोक्षको", "why": "differ", "alt": ["मोक्षकी", "मोक्षको"]}
-{"k": 0, "id": "2.2.13.40", "page": 362, "side": "right", "line": 36, "word": "उत्पादनसे", "why": "unknown", "alt": []}
 {"k": null, "id": "2.2.14.2", "page": 363, "side": "right", "line": 19, "word": "", "why": "only in one pass", "alt": ["रे"]}
 {"k": 0, "id": "2.2.14.8", "page": 363, "side": "right", "line": 32, "word": ".", "why": "differ", "alt": ["ताक््ष्यको"]}
 {"k": 1, "id": "2.2.14.8", "page": 363, "side": "right", "line": 32, "word": "ताक्ष्यको", "why": "differ", "alt": []}
@@ -5781,9 +5761,7 @@
 {"k": 4, "id": "2.2.23.39", "page": 414, "side": "right", "line": 37, "word": "भक्त्या", "why": "unknown", "alt": []}
 {"k": 5, "id": "2.2.23.39", "page": 414, "side": "right", "line": 37, "word": "प्रणामोऽष्टाङ्ग", "why": "differ", "alt": ["प्रणामोउष्टाड़", "प्रणामोऽष्टाङ्ग"]}
 {"k": 6, "id": "2.2.23.39", "page": 414, "side": "right", "line": 37, "word": "ईरितः", "why": "unknown", "alt": []}
-{"k": 7, "id": "2.2.23.39", "page": 414, "side": "right", "line": 38, "word": "आचारेन्दुमें", "why": "differ", "alt": ["आचाोरेन्दुमें", "आचारेन्दुमें"]}
-{"k": 8, "id": "2.2.23.39", "page": 414, "side": "right", "line": 38, "word": "नरसिंहपुराणका", "why": "unknown", "alt": []}
-{"k": 9, "id": "2.2.23.39", "page": 415, "side": "right", "line": 1, "word": "देवेशि", "why": "unknown", "alt": []}
+{"k": 7, "id": "2.2.23.39", "page": 415, "side": "right", "line": 1, "word": "देवेशि", "why": "unknown", "alt": []}
 {"k": 0, "id": "2.2.23.45", "page": 415, "side": "right", "line": 20, "word": "!", "why": "differ", "alt": ["।", "!"]}
 {"k": 1, "id": "2.2.23.45", "page": 415, "side": "right", "line": 23, "word": "नन्दीद्वारा", "why": "differ", "alt": ["नन्‍्दीद्वारा", "नन्दीद्वारा"]}
 {"k": 0, "id": "2.2.23.46", "page": 415, "side": "right", "line": 25, "word": "देवेशि", "why": "unknown", "alt": []}
@@ -6493,18 +6471,16 @@
 {"k": 0, "id": "2.2.38.22", "page": 478, "side": "right", "line": 32, "word": "त्र्यम्बकं", "why": "differ", "alt": ["अ्यम्बक॑", "त्र्यम्बकं"]}
 {"k": 1, "id": "2.2.38.22", "page": 478, "side": "right", "line": 32, "word": "?", "why": "differ", "alt": ["'", "?"]}
 {"k": 2, "id": "2.2.38.22", "page": 478, "side": "right", "line": 33, "word": "मण्डलों", "why": "unknown", "alt": []}
-{"k": 0, "id": "2.2.38.25", "page": 478, "side": "right", "line": 36, "word": "बन्धनान्मृत्योर्मुक्षीय", "why": "unknown", "alt": []}
-{"k": 1, "id": "2.2.38.25", "page": 478, "side": "right", "line": 36, "word": "मामृतात्‌", "why": "unknown", "alt": []}
-{"k": 2, "id": "2.2.38.25", "page": 479, "side": "right", "line": 1, "word": "जोत्रितत््त", "why": "differ", "alt": ["जोत्रितत्त्व", "जोत्रितत््त"]}
-{"k": 3, "id": "2.2.38.25", "page": 479, "side": "right", "line": 1, "word": "विद्यातत््त", "why": "differ", "alt": ["विद्यातत्त्त", "विद्यातत््त"]}
-{"k": 4, "id": "2.2.38.25", "page": 479, "side": "right", "line": 2, "word": "त्रिवह्ि", "why": "differ", "alt": ["त्रिवह्नि", "त्रिवह्ि"]}
-{"k": 5, "id": "2.2.38.25", "page": 479, "side": "right", "line": 3, "word": "-", "why": "differ", "alt": ["—", "-"]}
-{"k": 6, "id": "2.2.38.25", "page": 479, "side": "right", "line": 3, "word": "त्रिदिव", "why": "unknown", "alt": []}
-{"k": 7, "id": "2.2.38.25", "page": 479, "side": "right", "line": 4, "word": "त्रिबाहु", "why": "unknown", "alt": []}
-{"k": 8, "id": "2.2.38.25", "page": 479, "side": "right", "line": 5, "word": "सुगन्धिं", "why": "unknown", "alt": []}
-{"k": 9, "id": "2.2.38.25", "page": 479, "side": "right", "line": 6, "word": "पुष्टिवर्धनम्‌", "why": "unknown", "alt": []}
-{"k": 10, "id": "2.2.38.25", "page": 479, "side": "right", "line": 6, "word": "महामृत्युंजयमन्त्रका", "why": "unknown", "alt": []}
-{"k": 11, "id": "2.2.38.25", "page": 479, "side": "right", "line": 9, "word": "देवोंमें", "why": "differ", "alt": ["देवोंमें", "देवोमें"]}
+{"k": 0, "id": "2.2.38.25", "page": 479, "side": "right", "line": 1, "word": "जोत्रितत््त", "why": "differ", "alt": ["जोत्रितत्त्व", "जोत्रितत््त"]}
+{"k": 1, "id": "2.2.38.25", "page": 479, "side": "right", "line": 1, "word": "विद्यातत््त", "why": "differ", "alt": ["विद्यातत्त्त", "विद्यातत््त"]}
+{"k": 2, "id": "2.2.38.25", "page": 479, "side": "right", "line": 2, "word": "त्रिवह्ि", "why": "differ", "alt": ["त्रिवह्नि", "त्रिवह्ि"]}
+{"k": 3, "id": "2.2.38.25", "page": 479, "side": "right", "line": 3, "word": "-", "why": "differ", "alt": ["—", "-"]}
+{"k": 4, "id": "2.2.38.25", "page": 479, "side": "right", "line": 3, "word": "त्रिदिव", "why": "unknown", "alt": []}
+{"k": 5, "id": "2.2.38.25", "page": 479, "side": "right", "line": 4, "word": "त्रिबाहु", "why": "unknown", "alt": []}
+{"k": 6, "id": "2.2.38.25", "page": 479, "side": "right", "line": 5, "word": "सुगन्धिं", "why": "unknown", "alt": []}
+{"k": 7, "id": "2.2.38.25", "page": 479, "side": "right", "line": 6, "word": "पुष्टिवर्धनम्‌", "why": "unknown", "alt": []}
+{"k": 8, "id": "2.2.38.25", "page": 479, "side": "right", "line": 6, "word": "महामृत्युंजयमन्त्रका", "why": "unknown", "alt": []}
+{"k": 9, "id": "2.2.38.25", "page": 479, "side": "right", "line": 9, "word": "देवोंमें", "why": "differ", "alt": ["देवोंमें", "देवोमें"]}
 {"k": 0, "id": "2.2.38.27", "page": 479, "side": "right", "line": 12, "word": "द्विजोत्तम", "why": "unknown", "alt": []}
 {"k": 1, "id": "2.2.38.27", "page": 479, "side": "right", "line": 13, "word": "सुब्रत", "why": "unknown", "alt": []}
 {"k": 2, "id": "2.2.38.27", "page": 479, "side": "right", "line": 13, "word": "महत्‌", "why": "unknown", "alt": []}
@@ -8953,13 +8929,7 @@
 {"k": 0, "id": "2.3.48.38", "page": 701, "side": "right", "line": 20, "word": "-", "why": "differ", "alt": ["—", "-"]}
 {"k": 1, "id": "2.3.48.38", "page": 701, "side": "right", "line": 21, "word": "सकलेश्वर", "why": "unknown", "alt": []}
 {"k": 0, "id": "2.3.48.42", "page": 701, "side": "right", "line": 33, "word": "ˆ", "why": "differ", "alt": ["”", "ˆ"]}
-{"k": 0, "id": "2.3.48.44", "page": 701, "side": "right", "line": 35, "word": "तका", "why": "differ", "alt": ["त्का", "तका"]}
-{"k": 1, "id": "2.3.48.44", "page": 701, "side": "right", "line": 35, "word": "*", "why": "differ", "alt": ["को 5 दात्कस्मा"]}
-{"k": 2, "id": "2.3.48.44", "page": 701, "side": "right", "line": 35, "word": "कोऽदात्कस्मा", "why": "differ", "alt": []}
-{"k": 3, "id": "2.3.48.44", "page": 701, "side": "right", "line": 36, "word": "तत्ते", "why": "unknown", "alt": []}
-{"k": 4, "id": "2.3.48.44", "page": 701, "side": "right", "line": 36, "word": "'", "why": "differ", "alt": ["!", "'"]}
-{"k": 5, "id": "2.3.48.44", "page": 701, "side": "right", "line": 36, "word": "शु", "why": "unknown", "alt": []}
-{"k": 6, "id": "2.3.48.44", "page": 702, "side": "right", "line": 4, "word": "'", "why": "differ", "alt": [""]}
+{"k": 0, "id": "2.3.48.44", "page": 702, "side": "right", "line": 4, "word": "'", "why": "differ", "alt": [""]}
 {"k": 0, "id": "2.3.48.47", "page": 702, "side": "right", "line": 13, "word": "सांगता", "why": "unknown", "alt": []}
 {"k": 0, "id": "2.3.48.53", "page": 702, "side": "right", "line": 27, "word": "-", "why": "differ", "alt": ["—", "-"]}
 {"k": 0, "id": "2.3.48.56", "page": 702, "side": "right", "line": 29, "word": "माध्यन्दिनी", "why": "unknown", "alt": []}
@@ -9054,12 +9024,9 @@
 {"k": 0, "id": "2.3.50.15", "page": 707, "side": "right", "line": 22, "word": "लौकिकाचार", "why": "unknown", "alt": []}
 {"k": 1, "id": "2.3.50.15", "page": 707, "side": "right", "line": 27, "word": "लौकिकाचार", "why": "unknown", "alt": []}
 {"k": 0, "id": "2.3.50.16", "page": 707, "side": "right", "line": 29, "word": "दम्पतीको", "why": "unknown", "alt": []}
-{"k": 0, "id": "2.3.50.20", "page": 707, "side": "right", "line": 34, "word": "प्रोक्षणीपात्रमें", "why": "unknown", "alt": []}
-{"k": 1, "id": "2.3.50.20", "page": 707, "side": "right", "line": 35, "word": "संख्रव", "why": "differ", "alt": ["संस्रव", "संख्रव"]}
-{"k": 2, "id": "2.3.50.20", "page": 707, "side": "right", "line": 35, "word": "इसीकोः", "why": "unknown", "alt": []}
-{"k": 3, "id": "2.3.50.20", "page": 708, "side": "right", "line": 5, "word": "कटाक्षयुक्त", "why": "differ", "alt": ["कटरक्षयुक्त", "कटाक्षयुक्त"]}
-{"k": 4, "id": "2.3.50.20", "page": 708, "side": "right", "line": 7, "word": "हुई", "why": "differ", "alt": ["हुईं", "हुई"]}
-{"k": 5, "id": "2.3.50.20", "page": 708, "side": "right", "line": 8, "word": "-", "why": "differ", "alt": ["—", "-"]}
+{"k": 0, "id": "2.3.50.20", "page": 708, "side": "right", "line": 5, "word": "कटाक्षयुक्त", "why": "differ", "alt": ["कटरक्षयुक्त", "कटाक्षयुक्त"]}
+{"k": 1, "id": "2.3.50.20", "page": 708, "side": "right", "line": 7, "word": "हुई", "why": "differ", "alt": ["हुईं", "हुई"]}
+{"k": 2, "id": "2.3.50.20", "page": 708, "side": "right", "line": 8, "word": "-", "why": "differ", "alt": ["—", "-"]}
 {"k": 0, "id": "2.3.50.24", "page": 708, "side": "right", "line": 10, "word": "दम्पतीको", "why": "unknown", "alt": []}
 {"k": 0, "id": "2.3.50.25", "page": 708, "side": "right", "line": 17, "word": ".", "why": "differ", "alt": ["-", "."]}
 {"k": 1, "id": "2.3.50.25", "page": 708, "side": "right", "line": 19, "word": "हुई", "why": "differ", "alt": ["हुईं", "हुई"]}
@@ -9143,19 +9110,13 @@
 {"k": 0, "id": "2.3.51.37", "page": 713, "side": "right", "line": 30, "word": "आपको", "why": "differ", "alt": ["आपकी", "आपको"]}
 {"k": 1, "id": "2.3.51.37", "page": 713, "side": "right", "line": 31, "word": "!", "why": "differ", "alt": ["।", "!"]}
 {"k": 2, "id": "2.3.51.37", "page": 713, "side": "right", "line": 32, "word": "विश्वम्भर", "why": "unknown", "alt": []}
-{"k": 3, "id": "2.3.51.37", "page": 713, "side": "right", "line": 33, "word": "अर्वाचीन", "why": "unknown", "alt": []}
-{"k": 4, "id": "2.3.51.37", "page": 713, "side": "right", "line": 34, "word": "तत", "why": "unknown", "alt": []}
-{"k": 5, "id": "2.3.51.37", "page": 713, "side": "right", "line": 35, "word": "पानद्ध", "why": "differ", "alt": ["आ्रनद्ध", "पानद्ध"]}
-{"k": 6, "id": "2.3.51.37", "page": 713, "side": "right", "line": 36, "word": "सुषिर", "why": "unknown", "alt": []}
-{"k": 7, "id": "2.3.51.37", "page": 713, "side": "right", "line": 36, "word": "विगुल", "why": "unknown", "alt": []}
-{"k": 8, "id": "2.3.51.37", "page": 713, "side": "right", "line": 36, "word": "हारमोनियमे", "why": "differ", "alt": ["हारमोनियम", "हारमोनियमे"]}
-{"k": 9, "id": "2.3.51.37", "page": 714, "side": "right", "line": 1, "word": "!", "why": "differ", "alt": ["।", "!"]}
-{"k": 10, "id": "2.3.51.37", "page": 714, "side": "right", "line": 1, "word": "आनन्दप्रवर्धक", "why": "unknown", "alt": []}
-{"k": 11, "id": "2.3.51.37", "page": 714, "side": "right", "line": 1, "word": "आपको", "why": "differ", "alt": ["आपकी", "आपको"]}
-{"k": 12, "id": "2.3.51.37", "page": 714, "side": "right", "line": 2, "word": "त्र्यम्बक", "why": "unknown", "alt": []}
-{"k": 13, "id": "2.3.51.37", "page": 714, "side": "right", "line": 2, "word": "सर्वेश", "why": "unknown", "alt": []}
-{"k": 14, "id": "2.3.51.37", "page": 714, "side": "right", "line": 2, "word": "आपको", "why": "differ", "alt": ["आपकी", "आपको"]}
-{"k": 15, "id": "2.3.51.37", "page": 714, "side": "right", "line": 3, "word": "मायापते", "why": "unknown", "alt": []}
+{"k": 3, "id": "2.3.51.37", "page": 714, "side": "right", "line": 1, "word": "!", "why": "differ", "alt": ["।", "!"]}
+{"k": 4, "id": "2.3.51.37", "page": 714, "side": "right", "line": 1, "word": "आनन्दप्रवर्धक", "why": "unknown", "alt": []}
+{"k": 5, "id": "2.3.51.37", "page": 714, "side": "right", "line": 1, "word": "आपको", "why": "differ", "alt": ["आपकी", "आपको"]}
+{"k": 6, "id": "2.3.51.37", "page": 714, "side": "right", "line": 2, "word": "त्र्यम्बक", "why": "unknown", "alt": []}
+{"k": 7, "id": "2.3.51.37", "page": 714, "side": "right", "line": 2, "word": "सर्वेश", "why": "unknown", "alt": []}
+{"k": 8, "id": "2.3.51.37", "page": 714, "side": "right", "line": 2, "word": "आपको", "why": "differ", "alt": ["आपकी", "आपको"]}
+{"k": 9, "id": "2.3.51.37", "page": 714, "side": "right", "line": 3, "word": "मायापते", "why": "unknown", "alt": []}
 {"k": 0, "id": "2.3.51.38", "page": 714, "side": "right", "line": 5, "word": "सर्वग", "why": "unknown", "alt": []}
 {"k": 1, "id": "2.3.51.38", "page": 714, "side": "right", "line": 5, "word": "आपको", "why": "differ", "alt": ["आपकी", "आपको"]}
 {"k": 0, "id": "2.3.51.40", "page": 714, "side": "right", "line": 12, "word": "मूड", "why": "differ", "alt": ["मृड", "मूड"]}
@@ -12934,7 +12895,6 @@
 {"k": 0, "id": "2.5.50.20", "page": 1030, "side": "right", "line": 32, "word": "तपोनिधे", "why": "unknown", "alt": []}
 {"k": 1, "id": "2.5.50.20", "page": 1030, "side": "right", "line": 33, "word": "!", "why": "differ", "alt": ["।", "!"]}
 {"k": 2, "id": "2.5.50.20", "page": 1030, "side": "right", "line": 34, "word": "मनोभिलषित", "why": "unknown", "alt": []}
-{"k": 3, "id": "2.5.50.20", "page": 1030, "side": "right", "line": 35, "word": "अगरु", "why": "unknown", "alt": []}
 {"k": 0, "id": "2.5.50.21", "page": 1031, "side": "right", "line": 4, "word": "बोलेशिवजीके", "why": "differ", "alt": ["बोले — शिवजीके"]}
 {"k": 0, "id": "2.5.50.23", "page": 1031, "side": "right", "line": 11, "word": "शिवजीको", "why": "differ", "alt": ["शिवजीकी", "शिवजीको"]}
 {"k": 0, "id": "2.5.50.24", "page": 1031, "side": "right", "line": 12, "word": "`", "why": "differ", "alt": [""]}

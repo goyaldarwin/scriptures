@@ -28,3 +28,17 @@ The base is the owner's copy of sanskritdocuments.org's text, which follows Gita
 | 4.17.26 | बहुश; | बहुशः | a semicolon typed for the visarga |
 | 6.14.18 | … प्रणवे नव वेष्टयेत् । त-व | … प्रणवे नव वेष्टयेत् । | "त-व" is an editor's mark of the copy, not text; प्रणवे नव is wisdomlib.org's reading too (6.14.18) |
 
+
+## Hindi meaning
+Read from the owner's scans of Gita Press code 2223 (the Māhātmya to 2.5.59) and Kalyan 2018 (3.1 to 7.2.41) as `source/hindi/README.md` describes; each flagged word as the readers found it on the page is in `source/hindi/<book>.read.json`, each word the readers' whole lines set right in `<book>.lines.json`, each Kalyan paragraph proofread whole in `kalyan-2018.proof.json`, and each paragraph read on the page by hand in `source/hindi/corrections.json`.
+
+| Place | Choice |
+|---|---|
+| 1.1.0, 2.1.1.1, 2.4.1.1, 2.5.49.0, 3.1.0 | The opening's Hindi stands under the title page and headings, which the OCR ran into it: the paragraph is read on the page (code 2223 pp. 45, 1025; Kalyan p. 63), or starts at its first words. Kalyan prints the maṅgala-śloka in Sanskrit above the Hindi; only the Hindi is kept, as for every other opening. |
+| Code 2223 p. 322; Kalyan p. 291 | ह्रद (a lake: नाभि ह्रदके समान; ह्रदमें स्नान): the conjunct is this type's ह्र, the same glyph as in the Sanskrit निम्ननाभिह्रदां beside it. |
+| 2.5.59 (pp. 1065–1068) | दुन्दुभिनिर्ह्लाद: the conjunct is the ह्ल of प्रह्लाद on the same page. |
+| 6.22.13 | ह्रां ह्रीं ह्रूं ह्रैं ह्रौं ह्रः: each of the six bold bījas has the stroke of ह्र inside its bowl (Kalyan p. 430, read at 400 dpi). |
+| 5.5.4, 6.12.3 | No paragraph: 5.5.4's verse is inside the ॥ ४-५ ॥ paragraph, and 6.12.3's inside ॥ ३-१३ ॥ (what stood there was a footnote's mantra lines). |
+| 3.39.18 | Left out: an ink blot covers the word before शरीरसे (Kalyan p. 151). |
+| Verse marks | A range is written with a hyphen (॥ ३-५ ॥), as in the Bhāgavata's Hindi, where Kalyan prints a long dash in some; a half verse as ½. |
+| Not yet carried | The books' footnotes (`source/hindi/<book>.notes.json` marks the lines left out); 358 verses whose Hindi the adhyāya walk did not place (a misread verse mark); words one OCR pass alone read that the readers found printed (`<book>.extra.json`). |
