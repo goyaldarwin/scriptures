@@ -290,8 +290,12 @@ async def main():
             await (await pg.query_selector('#rLayers [data-l=r]')).click(); await pg.wait_for_timeout(400)
             ok2 = await ev("!S.settings.recite && S.settings.layers.h && S.settings.layers.e")
             await (await pg.query_selector('#rLayers [data-l=r]')).click(); await pg.wait_for_timeout(300)
-            await (await pg.query_selector('#rLayers [data-l=h]')).click(); await pg.wait_for_timeout(300)
-            ok3 = await ev("!S.settings.recite && S.settings.layers.h && !document.body.classList.contains('recite')")
+            if await ev("!!document.querySelector('#rLayers [data-l=h]:not([hidden])')"):   # a work without a Hindi meaning has no हिं to end it
+                await (await pg.query_selector('#rLayers [data-l=h]')).click(); await pg.wait_for_timeout(300)
+                ok3 = await ev("!S.settings.recite && S.settings.layers.h && !document.body.classList.contains('recite')")
+            else:
+                await (await pg.query_selector('#rLayers [data-l=r]')).click(); await pg.wait_for_timeout(300)
+                ok3 = await ev("!S.settings.recite && !document.body.classList.contains('recite')")
             check(f'{tag}: recitation mode from the capsule hides meanings and restores them; a meaning ends it', ok1 and ok2 and ok3, [ok1, ok2, ok3])
             await ev("delete S.settings.pair; save(); syncLayers()")
             wide2 = await ev("document.documentElement.scrollWidth - document.documentElement.clientWidth")
@@ -307,6 +311,9 @@ async def main():
             await ev("S.settings.ui = 'en'; S.settings.layers.e = true; S.settings.layers.h = false; applyLang(); syncLayers()")
             await ev("show('reader')"); await pg.wait_for_timeout(200)
             await ev("S.settings.ui = 'hi'; S.settings.layers.h = true; S.settings.layers.e = false; applyLang()")
+            # the capsule's meaning switches: only languages the work has a meaning in, at most two (none for a work without meanings)
+            sw = await ev("[[...document.querySelectorAll('#rLayers button')].slice(0, 2).filter(b => !b.hidden).map(b => b.dataset.l), workKinds().map(LK)]")
+            check(f'{tag}: the reader shows a meaning switch only for a meaning the work has (at most two)', len(sw[0]) == min(2, len(sw[1])) and set(sw[0]) <= set(sw[1]), sw)
             # the work menu (☰) leads to bookmarks and settings
             await ev("show('home')"); await pg.wait_for_timeout(300)
             await (await pg.query_selector('#hMenu')).click(); await pg.wait_for_timeout(300)

@@ -46,7 +46,9 @@ function workKinds(){ return W ? MK().filter(k => ((W.sources || {})[k] || []).l
 function pairOptions(){ const ks = workKinds(), extra = ks.filter(k => k !== 'hi' && k !== 'en'), out = [];
   extra.forEach(x => { out.push([x, 'en'], [x, 'hi']); }); out.push(['hi', 'en']); for (let a = 0; a < extra.length; a++) for (let b = a + 1; b < extra.length; b++) out.push([extra[a], extra[b]]);
   return out.filter(p => p.every(k => ks.includes(k) || k === 'hi' || k === 'en')); }
-function capKinds(){ const ks = workKinds(); if (ks.filter(k => k !== 'hi' && k !== 'en').length === 0) return ['hi', 'en'];
+// only the languages the work has a meaning in: none for a work without meanings yet (Sri Guru Granth Sahib), one for a work
+// with one (its other switch is hidden), two otherwise
+function capKinds(){ const ks = workKinds(); if (W && ks.length < 2) return ks; if (ks.filter(k => k !== 'hi' && k !== 'en').length === 0) return ['hi', 'en'];
   const opts = pairOptions(), sel = (S.settings.pair || '').split(','), ok = opts.find(p => p.join(',') === sel.join(','));
   return ok || opts.find(p => p[1] === (S.settings.ui === 'hi' ? 'hi' : 'en')) || opts[0]; }
 const LBM = kind => kind === 'hi' ? LB.h() : kind === 'en' ? LB.e() : TT((LANGS[kind] && LANGS[kind].meaning || {}).name || {hi: kind, en: kind}) + T(' अर्थ', ' meaning');
@@ -734,7 +736,8 @@ $$('.lyr.layers button').forEach(b => b.onclick = () => { if (b.dataset.l === 'r
 $$('.lyr.uilang button').forEach(b => b.onclick = () => { if (S.settings.ui === b.dataset.u) return; S.settings.ui = b.dataset.u; S.settings.layers.h = b.dataset.u === 'hi'; S.settings.layers.e = b.dataset.u === 'en'; if (S.settings.recite){ S.settings.recite = false; delete S.settings.preRecite; applyRecite(); } save(); applyLang(); syncLayers(); onView(CURVIEW); });
 function syncLayers(){
   // the capsule's first two places are the two meaning switches shown for this work (capKinds)
-  const cb = $$('#rLayers button'); if (cb.length >= 2 && Object.keys(LANGS).length) capKinds().forEach((k, n) => { const b = cb[n], M = LANGS[k] && LANGS[k].meaning; b.dataset.l = LK(k); b.textContent = M ? M.short : k; b.classList.toggle('lat', k === 'en'); b.classList.toggle('gur', k === 'pa'); });
+  const cb = $$('#rLayers button'), ck = capKinds(); if (cb.length >= 2) [0, 1].forEach(n => { cb[n].hidden = !!W && n >= ck.length; });   // a meaning switch only for a meaning the work has
+  if (cb.length >= 2 && Object.keys(LANGS).length) ck.forEach((k, n) => { const b = cb[n], M = LANGS[k] && LANGS[k].meaning; b.dataset.l = LK(k); b.textContent = M ? M.short : k; b.classList.toggle('lat', k === 'en'); b.classList.toggle('gur', k === 'pa'); });
   $$('.lyr.layers button').forEach(b => b.classList.toggle('on', b.dataset.l === 'r' ? !!S.settings.recite : layerOn(b.dataset.l))); $$('.lyr.uilang button').forEach(b => b.classList.toggle('on', S.settings.ui === b.dataset.u)); }
 // a whole new state (a file opened with "Replace everything", or the cloud's): theme, language, meanings and the page all follow it
 function applyState(){ applyTheme(); applyLang(); applyRecite(); applyTiming(); if (CURVIEW === 'reader' && W) refreshReader(); else onView(CURVIEW); }
