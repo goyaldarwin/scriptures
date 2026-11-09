@@ -58,3 +58,9 @@ python3 $S/english/english.py $W/bhagavata-purana.json <this repository>/tools/w
 python3 $S/english/shifts.py $W/bhagavata-purana.json   # where Tagare's numbering parts from the Gita Press's: read each and settle it in english/placement.json
 ```
 The steps read the owner's PDFs from `scriptures-data`, so `regen_check.py` cannot run them: after changing a script, run them and diff `text.txt`. Corrections of the book are in `source/corrections.json` and `source/missing.json`; the sequence repairs are made by `verses.py` and `hindi.py` and logged. `reconciliation.md` lists every difference from the book and why.
+
+## Introduction
+The readers' introduction (`intro` in `library/index.json`, shown in ⓘ About this work) states only what these support:
+- The text itself: the Māhātmya's colophons (पद्मपुराणे उत्तरखण्डे) and topics (Nārada and Bhakti, Gokarṇa and Dhundhukārī, the Saptāha), the frame (1.1: Sūta questioned by Śaunaka and the sages; the colophon नैमिषीयोपाख्याने), the twelve skandhas, the Saptāha plan.
+- Wikipedia, "Bhagavata Purana" (https://en.wikipedia.org/wiki/Bhagavata_Purana, and its mirrors): one of the eighteen Mahāpurāṇas and central to Vaishnavism, twelve books, 335 chapters, 18,000 verses as the text states, the tenth book of about 4,000 verses, Śuka reciting to Parīkṣit.
+- inflibnet.ac.in, "Importance of Bhagavata Purana and Vishnu Purana", and exoticindiaart.com, "Glory of Bhagwat Purana": Parīkṣit's curse to die in seven days, the telling on the Gaṅgā's bank over seven days, the devotees (Dhruva, Prahlāda, Gajendra, Uddhava).

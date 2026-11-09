@@ -45,3 +45,8 @@ python3 tools/works/durga-saptashati/source/compare.py          # source/witness
 python3 tools/works/export.py durga-saptashati
 ```
 They read the owner's copies from `scriptures-data`, so `regen_check.py` cannot run them: after changing a script or one of its data files, run it and diff what it writes.
+
+## Introduction
+The readers' introduction (`intro` in `library/index.json`, shown in ⓘ About this work) states only what these support:
+- The text itself and `reconciliation.md`: its parts and their order (the dhyāna, Argalā, Kīlaka and Kavaca before, the Aparādha-kṣamāpana and Devī-sūkta after), the 700 mantras counted with the speakers' lines, the hymns' parts (Śakrādi-stuti, Nārāyaṇī-stuti), the seven-day plan; the README: the recording recites the stotras in that order.
+- Wikipedia, "Devi Mahatmya" (https://en.wikipedia.org/wiki/Devi_Mahatmya, and its mirrors): Mārkaṇḍeya Purāṇa chapters 81–93, the names Durgā Saptaśatī and Caṇḍī Pāṭha, 700 verses in 13 chapters, its place in Shaktism, the frame story (Suratha, Samādhi, Medhas), the three episodes and their goddesses (chapter 1 Mahākālī, 2–4 Mahālakṣmī, 5–13 Mahāsarasvatī), its reading at Navarātri; hindutone.com, "Devi Mahatmya … Complete Guide": the limbs (Kavaca, Argalā, Kīlaka) recited with it.

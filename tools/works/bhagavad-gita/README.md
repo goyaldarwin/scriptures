@@ -40,3 +40,8 @@ python3 tools/works/bhagavad-gita/source/words.py $J         # glossary/sa.json
 python3 tools/works/export.py bhagavad-gita
 ```
 They read the owner's copy from `scriptures-data`, so `regen_check.py` cannot run them: after changing a script or one of its data files, run it and diff what it writes.
+
+## Introduction
+The readers' introduction (`intro` in `library/index.json`, shown in ⓘ About this work) states only what these support:
+- The text itself: the Gita Dhyanam, the eighteen adhyāyas and their closing words naming each a yoga, the 701 ślokas with adhyāya 13 opening on Arjuna's question (`reconciliation.md`), the eleventh adhyāya's name.
+- Wikipedia, "Bhagavad Gita" (https://en.wikipedia.org/wiki/Bhagavad_Gita, read through its mirrors): its place in the Bhīṣma-parva (chapters 23–40 of book 6), about 700 verses, Sañjaya's divine sight from Vyāsa and his telling to Dhṛtarāṣṭra, its ascription to Vyāsa, its themes (dharma, karma yoga, knowledge, meditation, bhakti), the Prasthānatrayī and the commentaries.
