@@ -1088,6 +1088,13 @@ async def main():
             return {none, fn1, fn0, sw, pick, shown}; })()""")
         check('footnotes: under their meaning, hidden by ☰ › More settings › Footnotes, which only a work with footnotes shows', all(cm['none']) and cm['fn1'] and cm['fn0'] and cm['sw'], cm)
         check('commentary: its picker only for a work with one, Off until chosen; when chosen, after the meanings under its name, with its footnotes', all(cm['pick']) and all(cm['shown']), cm)
+        # a footnote grows and shrinks with A−/A+, a step below its meaning, never larger
+        fz = await ev("""(async () => { await openWork('bhagavata-purana', true); show('home'); const S0 = JSON.stringify(S.settings);
+            S.settings.layers = {h: true, e: false, w: false}; S.settings.recite = false; delete S.settings.fn; syncLayers();
+            const i = IT.findIndex(x => x.id === '10.9.14'); openReader('k', i); for (let n = 0; n < 40 && !document.querySelector('#v' + i + ' .fn'); n++) await new Promise(r => setTimeout(r, 150));
+            const out = []; for (const sz of [16, 21, 34]){ S.settings.size = sz; applyTheme(); const f = document.querySelector('#v' + i + ' .fn'); out.push(f ? [parseFloat(getComputedStyle(f).fontSize), parseFloat(getComputedStyle(f.closest('.layer')).fontSize)] : null); }
+            S.settings = JSON.parse(S0); applyTheme(); syncLayers(); save(); show('home'); return out; })()""")
+        check('footnotes: sized with A−/A+, below their meaning at every size (13.5px at the default)', all(fz) and all(f < m for f, m in fz) and fz[0][0] < fz[1][0] < fz[2][0] and abs(fz[1][0] - 13.5) < .2, fz)
         # a Roman-letter search shows the verse itself; Play from here ends with the open section
         rs = await ev("(async () => { await openWork('manas', true); show('home'); openSearch('text'); document.querySelector('#q').value = 'asur chal chonip'; runSearch(); await new Promise(r => setTimeout(r, 300)); const r = document.querySelector('#sRes .res'); return r ? [r.querySelector('.where').textContent, r.querySelector('.snip').textContent.slice(0, 12)] : 'none'; })()")
         check('search: a verse found by Roman letters is shown as the verse', rs != 'none' and ('Verses' in rs[0] or 'मूल पाठ' in rs[0]) and 'रहे' in rs[1], rs)
