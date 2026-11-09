@@ -83,7 +83,7 @@ library/ ─ tools/site/build.py (checks everything first) ─► index.html, ap
 
 ## To build next
 - The timing method's fixes (`tools/audio/METHOD.md`, step 5: re-align between trusted neighbours, snap to the onset, spread and list); steps 2–4 run in the public `align` workflow.
-- MMS on the recordings still timed from the transcript alone (`docs/WORKS.md`, last section): those whose MMS run waits for the owner's starts by ear to be scored (`mms/score.md` beside each, the Sukhmani Sahib's too), and the Vālmīki Rāmāyaṇa's 467 recordings (two runs of the `align` workflow, at most 256 ids each).
+- MMS on the recordings still timed from the transcript alone (`docs/WORKS.md`, last section): those whose MMS run waits for the owner's starts by ear to be scored (`mms/score.md` beside each: the Sukhmani Sahib's and the Vālmīki Rāmāyaṇa's 467 recordings).
 
 ## Open with the owner
 - Private copies that would complete `scriptures-data` (nothing depends on them; only the owner has them, from earlier chats): the Gaṅgā āratī screenshot, the jansatta.com printout of Śrī Rāmacandra Kṛpālu, the Māṇḍūkya's sanskritdocuments.org and freepressjournal.in printouts and its recording.
