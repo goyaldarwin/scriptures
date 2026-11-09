@@ -15,8 +15,11 @@ sarga in the Gita Press reading, which differs from the printout in some 25 word
 pāda together; it agrees with the printout against Gita Press in most places (भगवान् ऋषिः, जपेन्नित्यम्, भास्करो, तदेव,
 वधिष्यसि) and with Gita Press in a few (मार्तण्डकोऽंशुमान्, हरये, सर्वेषु परमप्रभुः, ततोऽगस्त्यो … स, युद्धार्थं).
 
-**The recordings:** Sri Sathya Sai Official (YouTube `Z7W59S6fH98`, the default) and Braja Beats (YouTube `I8Xg_2RC5Vk`), (YouTube `I8Xg_2RC5Vk`), through its transcript through their transcripts (`audio/<source>/transcripts/`). Braja Beats sings the 31 ślokas and then the sarga's closing
-words; it does not recite the viniyoga or the nyāsas.
+**The recordings:** Sri Sathya Sai Official (YouTube `Z7W59S6fH98`, the default), Braja Beats (YouTube `I8Xg_2RC5Vk`) and
+The Sanskrit Channel (YouTube `qLXRj4HIdJA`), through their transcripts (`audio/<source>/transcripts/`). All three sing
+the 31 ślokas and none recites the viniyoga or the nyāsas. Braja Beats then sings the sarga's closing words; Sri Sathya
+Sai ends with Om śānti; The Sanskrit Channel opens with अथ श्रीआदित्यहृदयस्तोत्रम् and ends with इति
+आदित्यहृदयस्तोत्रम्.
 
 `source/compare.py` prints every word that differs between `text.txt` and the two witnesses; each is below.
 
@@ -42,7 +45,7 @@ work keeps the book's. The ids are the stotra's own (`sh1`–`sh31`).
 
 Kept as the printout writes them: रश्मिमतेरिति in the viniyoga (no witness gives another form); भास्करो in 12, where the
 Gita Press sarga has ऽहस्करो: IIT Kanpur has भास्करो, and the recording does not make it clear; हिरण्यरेता (10) and वह्नये (21) over the printout's
-alternatives विश्वरेता and हरये, which the recording also bears out (“hiraṇyaretā”, “vahnaye”); चिन्ताशोकप्रशमनं आयुर्वर्धनम्
+alternatives विश्वरेता and हरये, which the recording also bears out (“hiraṇyaretā”, “vahnaye”; The Sanskrit Channel sings विश्वरेता in 10, the printout's alternative); चिन्ताशोकप्रशमनं आयुर्वर्धनम्
 (5, which the writing standard gives as प्रशमनम् आयुर्…, docs/PLAYBOOK.md §3); सहस्रांशो आदित्याय (17, a vocative before a
 vowel, unjoined in both witnesses); तदाऽगस्त्यो (27).
 
