@@ -1,0 +1,4 @@
+# The Hanumān Chālīsā of the Sundarakāṇḍa work, taken from it unchanged (its text, meanings and recording's timings).
+
+@part chalisa
+[take sundarkand chalisa.do1 .. chalisa.do3]

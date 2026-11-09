@@ -1,0 +1,40 @@
+{
+ "id": "ganesha-chalisa",
+ "path": "hinduism/chalisa/ganesha/ganesha-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री गणेश चालीसा",
+  "en": "Shri Ganesh Chalisa"
+ },
+ "by": {
+  "hi": "भगवान श्री गणेश",
+  "en": "Bhagwan Shri Ganesh"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री गणेश चालीसा",
+    "en": "Shri Ganesh Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

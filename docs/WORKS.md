@@ -37,6 +37,7 @@ Columns: the work and its permanent id · its shelf path (tradition first, the s
 
 | Work | Path | Languages | Levels | Verse types | Cited as | Meanings | Line by line | Word meanings | Recordings |
 |---|---|---|---|---|---|---|---|---|---|
+| Jai Ganesh Jai Ganesh Jai Ganesh Deva (`ganesh-aarti`) | `hinduism/aarti/ganesha/ganesh-aarti` | Hindi | 1 aarti › 1 sections › 6 verses | Refrain (tek) (`tek`), Stanza (`pad`) | verse (`1`) | hi: hi-scriptures; en: en-scriptures | no | every word | none |
 | Shri Ramchandra Kripalu (`shri-ramchandra-kripalu`) | `hinduism/aarti/rama/shri-ramchandra-kripalu` | Braj, Awadhi | 1 aarti › 1 sections › 7 verses | Chhand (`cha`), Soratha (`so`) | verse (`1`) | hi: hi-scriptures, hi-gitapress; en: en-scriptures, en-gitapress | yes | every word | satya-adhikari (transcript) |
 | Aarti Kije Shri Ramlala Ki (`ramlala-aarti`) | `hinduism/aarti/rama/ramlala-aarti` | Hindi | 1 aarti › 1 sections › 8 verses | Refrain (tek) (`tek`), Stanza (`pad`) | verse (`1`) | hi: hi-scriptures; en: en-scriptures | no | every word | sohini-mishra (transcript; MMS run, not yet used: mms/score.md) |
 | Aarti Kijai Hanuman Lala Ki (`hanuman-aarti`) | `hinduism/aarti/hanuman/hanuman-aarti` | Hindi | 1 aarti › 1 sections › 7 verses | Refrain (tek) (`tek`), Stanza (`pad`) | verse (`1`) | hi: hi-scriptures; en: en-scriptures | yes | every word | ashwin-pathak (taken from sundarkand, 4 by ear) |
@@ -44,6 +45,12 @@ Columns: the work and its permanent id · its shelf path (tradition first, the s
 | Om Jai Shiv Omkara (`shiv-aarti`) | `hinduism/aarti/shiva/shiv-aarti` | Hindi | 1 aarti › 1 sections › 9 verses | Refrain (tek) (`tek`), Stanza (`pad`) | verse (`1`) | hi: hi-scriptures; en: en-scriptures | no | every word | anuradha-paudwal (transcript) |
 | Om Jai Gange Mata (`ganga-aarti`) | `hinduism/aarti/ganga/ganga-aarti` | Hindi | 1 aarti › 1 sections › 5 verses | Refrain (tek) (`tek`), Stanza (`pad`) | verse (`1`) | hi: hi-scriptures; en: en-scriptures | no | every word | anuradha-paudwal (transcript) |
 | Dhoop Aarti (`shirdi-sai-dhoop-aarti`) | `hinduism/aarti/shirdi-sai/dhoop-aarti` | Marathi, Hindi, Sanskrit | 1 aarti › 10 sections › 64 verses | Dhruvapada (`dhru`), Stanza (`pad`), Abhang (`abhang`), Shloka (`shloka`), Mantra (`mantra`), Jayghosh (`jay`) | verse (`1`) | hi: hi-scriptures; en: en-scriptures, en-shirdisaibabakripa | no | every word | pramod-medhi-times (MMS, 60 by ear) |
+
+### Chalisa (`hinduism/chalisa`)
+
+| Work | Path | Languages | Levels | Verse types | Cited as | Meanings | Line by line | Word meanings | Recordings |
+|---|---|---|---|---|---|---|---|---|---|
+| Shri Ganesh Chalisa (`ganesha-chalisa`) | `hinduism/chalisa/ganesha/ganesha-chalisa` | Awadhi | 1 chalisa › 3 sections › 41 verses | Doha (`do`), Chaupai (`cau`) | verse (`1`) | hi: hi-scriptures; en: en-scriptures | no | every word | none |
 
 ### Vedas (`hinduism/veda`)
 
@@ -66,7 +73,7 @@ Columns: the work and its permanent id · its shelf path (tradition first, the s
 
 ## Not yet the same in every work
 
-- **Our meanings not yet line by line** ("Meaning per line" shows only where they are): `bhagavad-gita`, `durga-saptashati`, `shiva-purana`, `ramlala-aarti`, `jagdish-aarti`, `shiv-aarti`, `ganga-aarti`, `shirdi-sai-dhoop-aarti`, `shri-rudram`, `katha-upanishad`, `isha-upanishad`, `mandukya-upanishad`.
+- **Our meanings not yet line by line** ("Meaning per line" shows only where they are): `bhagavad-gita`, `durga-saptashati`, `shiva-purana`, `ganesh-aarti`, `ramlala-aarti`, `jagdish-aarti`, `shiv-aarti`, `ganga-aarti`, `shirdi-sai-dhoop-aarti`, `ganesha-chalisa`, `shri-rudram`, `katha-upanishad`, `isha-upanishad`, `mandukya-upanishad`.
 - **Word meanings still partial** (`"words": "partial"`): `bhagavata-purana`, `shiva-purana`, `guru-granth-sahib`.
 - **Recordings timed from the transcript alone, not yet by MMS** (`tools/audio/METHOD.md`, step 2): `ramraksha/vande-guru-paramparaam (MMS run, not yet used)`, `bilvashtakam/sounds-of-isha (MMS run, not yet used)`, `bhaja-govindam/chinmaya-mission-boston (MMS run, not yet used)`, `shri-ramchandra-kripalu/satya-adhikari`, `ramlala-aarti/sohini-mishra (MMS run, not yet used)`, `jagdish-aarti/mahendra-kapoor`, `shiv-aarti/anuradha-paudwal`, `ganga-aarti/anuradha-paudwal`, `isha-upanishad/smvedroad (MMS run, not yet used)`, `mandukya-upanishad/smvedroad`, `sukhmani-sahib/parminder-singh (MMS run, not yet used)`.
-- **Works without a recording**: `shiva-purana`.
+- **Works without a recording**: `shiva-purana`, `ganesh-aarti`, `ganesha-chalisa`.

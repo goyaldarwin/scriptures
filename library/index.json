@@ -516,6 +516,28 @@
     },
     "children": [
      {
+      "id": "ganesha",
+      "title": {
+       "hi": "भगवान श्री गणेश",
+       "en": "Bhagwan Shri Ganesh"
+      },
+      "children": [
+       {
+        "id": "ganesh-aarti",
+        "work": "ganesh-aarti",
+        "path": "hinduism/aarti/ganesha/ganesh-aarti",
+        "title": {
+         "hi": "जय गणेश जय गणेश जय गणेश देवा",
+         "en": "Jai Ganesh Jai Ganesh Jai Ganesh Deva"
+        },
+        "desc": {
+         "hi": "आरती श्री गणेशजीकी",
+         "en": "The aarti of Shri Ganesh"
+        }
+       }
+      ]
+     },
+     {
       "id": "rama",
       "title": {
        "hi": "श्रीराम",
@@ -614,43 +636,6 @@
       ]
      },
      {
-      "id": "vishnu",
-      "title": {
-       "hi": "भगवान विष्णु",
-       "en": "Bhagwan Vishnu"
-      },
-      "desc": {
-       "hi": "ॐ जय जगदीश हरे",
-       "en": "Om Jai Jagdish Hare"
-      },
-      "children": [
-       {
-        "id": "jagdish-aarti",
-        "work": "jagdish-aarti",
-        "path": "hinduism/aarti/vishnu/jagdish-aarti",
-        "title": {
-         "hi": "ॐ जय जगदीश हरे",
-         "en": "Om Jai Jagdish Hare"
-        },
-        "desc": {
-         "hi": "आरती श्रीजगदीशजीकी",
-         "en": "The aarti of Shri Jagdish"
-        },
-        "salute": "॥ ॐ नमो भगवते वासुदेवाय ॥",
-        "intro": {
-         "hi": [
-          "'ॐ जय जगदीश हरे' — 'हे जगदीश्वर हरि, आपकी जय हो' — भगवान विष्णुकी आरती है, जो पूरे भारतमें घरों और मन्दिरोंमें पूजाके अन्तमें गाई जाती है। इसकी रचना प्रायः पंजाबके फिल्लौरके पण्डित श्रद्धाराम फिल्लौरी (१८३७–१८८१), लेखक और समाज-सुधारक, की मानी जाती है, जिन्होंने इसे लगभग १८७० में लिखा बताया जाता है।",
-          "यह सीधी-सरल शरणागतिकी प्रार्थना है: तुम ही माता-पिता हो, तुम्हारे सिवा और कोई आस नहीं; तुम सबके भीतर बसनेवाले परमात्मा हो, करुणाके सागर; मैं तुम्हारा दास, तुम्हारे द्वारपर पड़ा हूँ। अन्तमें यह प्रार्थना करती है कि भगवान विषय-विकार मिटाएँ और श्रद्धा, भक्ति और सन्तोंकी सेवा बढ़ाएँ।"
-         ],
-         "en": [
-          "\"Om Jai Jagdish Hare\", \"victory to you, Hari, Lord of the universe\", is an aarti of Vishnu, sung at the close of worship in homes and temples across India. It is commonly attributed to Pandit Shardha Ram Phillauri (1837–1881) of Phillaur in Punjab, a writer and social reformer, who is said to have written it around 1870.",
-          "It is a prayer of simple surrender: you are my mother and father, there is no one else to hope in; you are the Supreme Self within all, an ocean of compassion; I am your servant at your door. It ends by asking the Lord to wipe away the troubles born of the senses and to increase faith, devotion and service to the saints."
-         ]
-        }
-       }
-      ]
-     },
-     {
       "id": "shiva",
       "title": {
        "hi": "भगवान शिव",
@@ -682,6 +667,43 @@
          "en": [
           "\"Om Jai Shiv Omkara\" is the aarti of Shiv, sung in many versions; this one is as Anuradha Paudwal sings it. It hails Shiv as Omkara, the sacred syllable Om itself, in whom Brahma, Vishnu and Sadashiv are one, with Parvati as half of his body.",
           "Its stanzas picture the three forms with one, four and five faces, on the swan, Garud and the bull; their garlands of beads, forest flowers and skulls; the moon on Shiv's brow and the tiger skin; the water pot, discus and trident in their hands. Only the undiscerning, it says, see the three as separate: within Om they are one. The last stanza names its singer as Shivanand Swami."
+         ]
+        }
+       }
+      ]
+     },
+     {
+      "id": "vishnu",
+      "title": {
+       "hi": "भगवान विष्णु",
+       "en": "Bhagwan Vishnu"
+      },
+      "desc": {
+       "hi": "ॐ जय जगदीश हरे",
+       "en": "Om Jai Jagdish Hare"
+      },
+      "children": [
+       {
+        "id": "jagdish-aarti",
+        "work": "jagdish-aarti",
+        "path": "hinduism/aarti/vishnu/jagdish-aarti",
+        "title": {
+         "hi": "ॐ जय जगदीश हरे",
+         "en": "Om Jai Jagdish Hare"
+        },
+        "desc": {
+         "hi": "आरती श्रीजगदीशजीकी",
+         "en": "The aarti of Shri Jagdish"
+        },
+        "salute": "॥ ॐ नमो भगवते वासुदेवाय ॥",
+        "intro": {
+         "hi": [
+          "'ॐ जय जगदीश हरे' — 'हे जगदीश्वर हरि, आपकी जय हो' — भगवान विष्णुकी आरती है, जो पूरे भारतमें घरों और मन्दिरोंमें पूजाके अन्तमें गाई जाती है। इसकी रचना प्रायः पंजाबके फिल्लौरके पण्डित श्रद्धाराम फिल्लौरी (१८३७–१८८१), लेखक और समाज-सुधारक, की मानी जाती है, जिन्होंने इसे लगभग १८७० में लिखा बताया जाता है।",
+          "यह सीधी-सरल शरणागतिकी प्रार्थना है: तुम ही माता-पिता हो, तुम्हारे सिवा और कोई आस नहीं; तुम सबके भीतर बसनेवाले परमात्मा हो, करुणाके सागर; मैं तुम्हारा दास, तुम्हारे द्वारपर पड़ा हूँ। अन्तमें यह प्रार्थना करती है कि भगवान विषय-विकार मिटाएँ और श्रद्धा, भक्ति और सन्तोंकी सेवा बढ़ाएँ।"
+         ],
+         "en": [
+          "\"Om Jai Jagdish Hare\", \"victory to you, Hari, Lord of the universe\", is an aarti of Vishnu, sung at the close of worship in homes and temples across India. It is commonly attributed to Pandit Shardha Ram Phillauri (1837–1881) of Phillaur in Punjab, a writer and social reformer, who is said to have written it around 1870.",
+          "It is a prayer of simple surrender: you are my mother and father, there is no one else to hope in; you are the Supreme Self within all, an ocean of compassion; I am your servant at your door. It ends by asking the Lord to wipe away the troubles born of the senses and to increase faith, devotion and service to the saints."
          ]
         }
        }
@@ -765,6 +787,63 @@
           "The Dhoop Aarti is the evening aarti of Shirdi Sai Baba, sung at Shirdi and by his devotees everywhere. It is not one song but a sequence, mostly in Marathi with Sanskrit and Hindi: the aarti \"Aarti Saibaba\", Das Ganu's abhang \"Shirdi Majhe Pandharpur\", the namana \"Ghalin Lotangan\", the Namasmaran, the Namaskarashtak, the prayer \"Aisa Yei Ba\", the Shri Sainath Mahimna Stotram, the Guru-prasad-yachana-dashak, the Pushpanjali and a closing prayer.",
           "\"Aarti Saibaba\" was composed by Madhavrao Adkar at Shirdi in 1903–04; it ends with his name, Madhav, and Baba himself is said to have blessed it. Other parts carry their poets' names too: Das Ganu in the abhang, Nama in the namana, and Balkrishna Vishwanath Deo (Balasaheb Deo) for the Guru-prasad-yachana-dashak."
          ]
+        }
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "chalisa",
+    "title": {
+     "hi": "चालीसा",
+     "en": "Chalisa"
+    },
+    "desc": {
+     "hi": "चालीसा संग्रह",
+     "en": "Chalisas"
+    },
+    "children": [
+     {
+      "id": "ganesha",
+      "title": {
+       "hi": "भगवान श्री गणेश",
+       "en": "Bhagwan Shri Ganesh"
+      },
+      "children": [
+       {
+        "id": "ganesha-chalisa",
+        "work": "ganesha-chalisa",
+        "path": "hinduism/chalisa/ganesha/ganesha-chalisa",
+        "title": {
+         "hi": "श्री गणेश चालीसा",
+         "en": "Shri Ganesh Chalisa"
+        },
+        "desc": {
+         "hi": "जय गणपति सदगुण सदन",
+         "en": "Jai Ganapati Sadgun Sadan"
+        }
+       }
+      ]
+     },
+     {
+      "id": "hanuman",
+      "title": {
+       "hi": "श्रीहनुमान",
+       "en": "Shri Hanuman"
+      },
+      "children": [
+       {
+        "id": "hanuman-chalisa",
+        "work": "hanuman-chalisa",
+        "path": "hinduism/chalisa/hanuman/hanuman-chalisa",
+        "title": {
+         "hi": "श्रीहनुमानचालीसा",
+         "en": "Shri Hanuman Chalisa"
+        },
+        "desc": {
+         "hi": "श्रीगुरु चरन सरोज रज",
+         "en": "Shri Guru Charan Saroj Raj"
         }
        }
       ]
