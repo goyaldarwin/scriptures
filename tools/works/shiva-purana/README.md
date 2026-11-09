@@ -44,3 +44,8 @@ python3 tools/works/shiva-purana/source/make_text.py $D/printouts/sanskritdocume
 python3 tools/works/shiva-purana/source/words.py <clone of scriptures-data>/hinduism/purana/mahapurana/shiva/meaning-records/en-scriptures/shiva-purana-drafts.json
 ```
 They read the owner's copy from `scriptures-data`, so `regen_check.py` cannot run them: after changing a script or `corrections.json`, run it and diff `text.txt` (and `glossary/sa.json`). It stops on any verse number out of sequence, any unnumbered lines it cannot place and any id used twice. `reconciliation.md` lists every difference from the copy and why.
+
+## Introduction
+The readers' introduction (`intro` in `library/index.json`, shown in ⓘ About this work) states only what these support:
+- The text itself: 1.1.1–3 (the sages' sacrifice at Prayāga, where the Gaṅgā meets the Yamunā, and Sūta, Vyāsa's disciple), the seven saṃhitās and the Rudra-saṃhitā's five khaṇḍas, the topics (the linga and Śiva's teaching of Om and the pañcākṣara in the Vidyeśvara; Satī, Pārvatī's tapas and marriage, Kārttikeya, Gaṇeśa, Tripura in the Rudra; the avatāras in the Śatarudra; the twelve jyotirliṅgas and Śivarātri in the Koṭirudra), the Māhātmya's colophons (स्कान्दे महापुराणे) and topics (Devarāja, Cañculā, Binduga, the way to hear it).
+- Wikipedia, "Shiva Purana" (https://en.wikipedia.org/wiki/Shiva_Purana, and its mirrors): one of the eighteen Mahāpurāṇas and Shaiva literature; its claim to have had 100,000 verses in twelve saṃhitās, abridged by Vyāsa; the seven-saṃhitā recension; hindupedia.com, "Śivapurāṇa": 24,000 verses in seven saṃhitās.
