@@ -24,6 +24,25 @@ NUM = re.compile(r'(?:।।|॥)\s*[०-९0-9]|\(\d+\)\s*$')
 
 def jl(p): return [json.loads(l) for l in open(p, encoding='utf-8') if l.strip()] if os.path.exists(p) else []
 
+DEVA = re.compile(r'[ऀ-ॿ]')
+
+def topic_fix(r):
+    """A topic line's fix as {hi?, en?}: {"hi", "en"} (or that as a JSON string), "hi | en", or one heading whose
+    language is "line" ("hi"/"en") or its script. "remove": true gives None (the heading goes)."""
+    if r.get('remove'): return None
+    fx = r['fix']
+    if isinstance(fx, str) and fx.strip().startswith('{'): fx = json.loads(fx)
+    if isinstance(fx, str):
+        if ' | ' in fx:
+            h, _, e = fx.partition(' | '); fx = {'hi': h, 'en': e}
+        else:
+            lang = r.get('line') if r.get('line') in ('hi', 'en') else ('hi' if DEVA.search(fx) else 'en')
+            fx = {lang: fx}
+    assert isinstance(fx, dict) and set(fx) <= {'hi', 'en'}, f"topic fix for {r['id']}: {r['fix']!r}"
+    out = {k: v.strip() for k, v in fx.items() if v and v.strip()}
+    assert all(bool(DEVA.search(v)) == (k == 'hi') for k, v in out.items()), f"topic fix for {r['id']} in the wrong script: {out}"
+    return out
+
 def dump_map(p, d):
     with open(p, 'w', encoding='utf-8') as f:
         f.write('{\n' + ',\n'.join(json.dumps(k, ensure_ascii=False) + ': ' + json.dumps(v, ensure_ascii=False) for k, v in d.items()) + '\n}\n')
@@ -67,11 +86,10 @@ def main():
                 fixed[r['lang']] += 1
             elif r.get('lang') in ('hi', 'en'): pass   # a comment with no fix
             elif r.get('lang') == 'topic' and r.get('fix'):
-                fx = r['fix']
-                if isinstance(fx, str):   # a Hindi heading, or "hi | en"
-                    h, _, e = fx.partition(' | ') if ' | ' in fx else (fx, '', '')
-                    fx = {'hi': h.strip(), 'en': e.strip() or top.get(r['id'], {}).get('en', '')}
-                top[r['id']] = {**top.get(r['id'], {}), **{k: v for k, v in fx.items() if v}}; fixed['topic'] += 1
+                fx = topic_fix(r)
+                if fx is None:   # an empty fix with "remove": the heading goes
+                    top.pop(r['id'], None); fixed['topic'] += 1; continue
+                top[r['id']] = {**top.get(r['id'], {}), **fx}; fixed['topic'] += 1
             elif r.get('lang') == 'word':
                 words.append({'source': 'review', 'batch': os.path.basename(b), **r})
             elif r.get('lang') == 'doubt' and r.get('issue'):   # a doubt raised by a checker

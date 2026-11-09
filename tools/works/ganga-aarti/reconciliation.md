@@ -13,3 +13,5 @@ No word is changed. Kept: चन्द्र-सी, मनवांछित, "
 
 ## Meanings
 Our own, one per verse.
+
+- **Commas.** The commas of the printed sources are not kept in the verse: a pause within a line is a space, as in every other work (the owner). The transliteration ends each half-line with a comma, as everywhere.

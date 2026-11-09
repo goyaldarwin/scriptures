@@ -81,6 +81,10 @@ def check_work(lib, leaf, LANGS):
     w = json.load(open(wp)); name = path
     _need(w.get('id') == leaf['work'], f"{name}: work.json id {w.get('id')!r} ≠ shelf work {leaf['work']!r}")
     items = w['items']; ids = [x['id'] for x in items]; ID = set(ids)
+    # an āratī's verse has no comma (its printed sources' commas are not kept: a pause within a line is a space, the owner)
+    if '/aarti/' in '/' + path + '/':
+        bad = [x['id'] for x in items if any(',' in l for l in x['v'])]
+        _need(not bad, f"{name}: an āratī's verse has no comma (a pause is a space): {bad[:5]}")
     _need('title' not in leaf or leaf['title'] == w.get('title'), f"{name}: the shelf title {leaf.get('title')} ≠ work.json title {w.get('title')}")
     # English titles and labels are in plain, common Indian English (Shri Ram, Sundarkand, Hanuman Chalisa); the marks of IAST
     # belong in the transliteration and the meanings (docs/PLAYBOOK.md)

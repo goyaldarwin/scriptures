@@ -73,3 +73,5 @@ Both printouts (and other Sāī āratī booklets, e.g. Sai Austin's) read "व�
 
 ## Author of the Śrī Guru-prasāda-yācanā-daśaka
 बाळकृष्ण विश्वनाथ देव (Bāḷakṛṣṇa Viśvanātha Deva, known as Bāḷāsāheba Deva / Balasaheb Deo), as named in `text.txt`: confirmed by the owner.
+
+- **Commas.** The commas of the printed sources are not kept in the verse: a pause within a line is a space, as in every other work (the owner). The transliteration ends each half-line with a comma, as everywhere.
