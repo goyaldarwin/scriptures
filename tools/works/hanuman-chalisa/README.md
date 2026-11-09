@@ -10,4 +10,5 @@ Verse types: the Mānas's own (`do` dohā, `cau` chaupāī).
 
 ## Structure
 - **Hierarchy:** one part (`chalisa`) › the Sundarakāṇḍa's three sections (the opening dohās, the forty chaupāīs, the closing dohā) › verses, with their ids, numbers and topics.
+- **Numbering:** as the Sundarakāṇḍa's: the chaupāīs 1–40, cited by it; the dohās by their section. The verses are taken (`[take sundarkand …]`) and keep its citations.
 - **Topics:** the Sundarakāṇḍa's. **Reading plans:** none.
