@@ -418,6 +418,41 @@
         }
        }
       ]
+     },
+     {
+      "id": "surya",
+      "title": {
+       "hi": "भगवान सूर्य",
+       "en": "Bhagwan Surya"
+      },
+      "desc": {
+       "hi": "आदित्यहृदयम्",
+       "en": "Aditya Hridayam"
+      },
+      "children": [
+       {
+        "id": "aditya-hridayam",
+        "work": "aditya-hridayam",
+        "path": "hinduism/stotra/surya/aditya-hridayam",
+        "title": {
+         "hi": "आदित्यहृदयम्",
+         "en": "Aditya Hridayam"
+        },
+        "by": {
+         "hi": "महर्षि वाल्मीकि",
+         "en": "Maharshi Valmiki"
+        },
+        "edition": {
+         "hi": "sanskritdocuments.org",
+         "en": "sanskritdocuments.org"
+        },
+        "desc": {
+         "hi": "विनियोग · न्यास · ३१ श्लोक",
+         "en": "Viniyoga · Nyas · 31 shlokas"
+        },
+        "salute": "॥ ॐ आदित्याय नमः ॥"
+       }
+      ]
      }
     ]
    },

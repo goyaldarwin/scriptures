@@ -1,0 +1,76 @@
+{
+ "id": "aditya-hridayam",
+ "path": "hinduism/stotra/surya/aditya-hridayam",
+ "lang": "sa",
+ "title": {
+  "hi": "आदित्यहृदयम्",
+  "en": "Aditya Hridayam"
+ },
+ "by": {
+  "hi": "महर्षि वाल्मीकि",
+  "en": "Maharshi Valmiki"
+ },
+ "from": {
+  "hi": "श्रीमद्वाल्मीकीय रामायण, युद्धकाण्ड, सर्ग १०५",
+  "en": "Shrimad Valmiki Ramayan, Yuddha Kand, Sarga 105"
+ },
+ "edition": {
+  "hi": "sanskritdocuments.org",
+  "en": "sanskritdocuments.org"
+ },
+ "parts": {
+  "name": {
+   "hi": "पाठ",
+   "en": "Paath"
+  },
+  "list": [
+   {
+    "key": "aditya-hridayam",
+    "hi": "आदित्यहृदयम्",
+    "en": "Aditya Hridayam"
+   }
+  ]
+ },
+ "types": {
+  "viniyoga": {
+   "name": {
+    "hi": "विनियोग",
+    "en": "Viniyoga"
+   },
+   "short": {
+    "hi": "विनि॰",
+    "en": "Vin."
+   }
+  },
+  "nyasa": {
+   "name": {
+    "hi": "न्यास",
+    "en": "Nyas"
+   },
+   "short": {
+    "hi": "न्या॰",
+    "en": "Nya."
+   }
+  },
+  "shloka": {
+   "name": {
+    "hi": "श्लोक",
+    "en": "Shloka"
+   },
+   "short": {
+    "hi": "श्लो॰",
+    "en": "Shl."
+   }
+  },
+  "iti": {
+   "name": {
+    "hi": "समापन (पुष्पिका)",
+    "en": "Closing words (iti)"
+   },
+   "short": {
+    "hi": "इति",
+    "en": "Iti"
+   }
+  }
+ }
+}
