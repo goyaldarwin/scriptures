@@ -53,7 +53,7 @@ library/ ─ tools/site/build.py (checks everything first) ─► index.html, ap
 | Work (shelf path under `hinduism/` or `sikhism/`) | Text | Meanings shown first | Recording |
 |---|---|---|---|
 | Śrī Rāmacaritamānasa (`granth/tulsidas/ramcharitmanas`) | Gita Press, complete; 30-day and 9-day plans with vidhi, āratī and visarjana | Gita Press (ours, the second source, written for every kāṇḍa but the Bāla-kāṇḍa) | Pt. Kamlesh Upadhyay, live; starts from Meta's MMS forced aligner (`aligned.json`), 637 set by the owner by ear; the 5 the aligner is unsure of are on the to-check list (`check.json`) |
-| Sundarakāṇḍa (`granth/tulsidas/sundarkand`) | from the Mānas, plus opening prayers, Hanumān Chālīsā, āratī | ours | Pt. Ashwin Kumar Pathak, live |
+| Sundarakāṇḍa (`granth/tulsidas/sundarkand`) | from the Mānas, plus opening prayers, Hanumān Chālīsā, āratī | ours | Pt. Ashwin Kumar Pathak, live: starts from MMS (91% within 1 s of the owner's 46, `aligned.md`); 207 listed to check |
 | Śrī Rāma Rakṣā Stotram (`stotra/rama/ramraksha`) | a video's on-screen text | ours | Vande Guru Paramparaam, live |
 | Bilvāṣṭakam (`stotra/shiva/bilvashtakam`) | the owner's pasted text, checked against sanskritdocuments.org | ours | Sounds of Isha, live (it does not sing śloka 2 or the phalaśruti) |
 | Bhaja Govindam (`stotra/krishna/bhaja-govindam`) | sanskritdocuments.org, checked against the recording | ours | Chinmaya Mission Boston, live (verse 13अ is not sung) |
@@ -87,4 +87,3 @@ library/ ─ tools/site/build.py (checks everything first) ─► index.html, ap
 ## Open with the owner
 - Private copies that would complete `scriptures-data` (nothing depends on them; only the owner has them, from earlier chats): the Gaṅgā āratī screenshot, the jansatta.com printout of Śrī Rāmacandra Kṛpālu, the Māṇḍūkya's sanskritdocuments.org and freepressjournal.in printouts and its recording.
 - Recordings missing from `scriptures-data`, so MMS cannot time them (`docs/WORKS.md`): the Māṇḍūkya's (SMVedroad), Śrī Rāmacandra Kṛpālu's (Satya Adhikari), and the Jagadīśa, Śiva and Gaṅgā āratīs' (Mahendra Kapoor, Anuradha Paudwal).
-- The Sundarakāṇḍa's MMS run (`tools/works/sundarkand/audio/ashwin-pathak/mms/score.md`): better on his starts (91% within 1 s against 37%), but it would put 200 verses on its empty to-check list; switch it or not.
