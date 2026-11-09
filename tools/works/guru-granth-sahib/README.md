@@ -42,7 +42,8 @@ commentary.
 - `source/shabados.py` — reads the extract (or the database): its Granth lines (legacy ASCII Gurmukhi) → Unicode with the Sukhmani Sahib's
   converter (`tools/works/sukhmani-sahib/source/gurmukhi.py`) and the writing standard; the vishraam marks, the spacer and
   the small numerals under some headings are left out (`reconciliation.md` §2).
-- `source/make.py` — the database → `text.txt` (the verses, parts, sections, topics, the two taken banis).
+- `source/make.py` — the database → `text.txt` (the verses, parts, sections, topics, the two taken banis) and `views.json`
+  (the writers and the Angs).
 - `source/check.py` — the checks of `reconciliation.md`: the structure, the taken banis equal to the database, and the
   text word by word against the Darpan and the Faridkot Teeka.
 - `source/faridkot.py` — the database's Faridkot Teeka → `commentary/pa/faridkot.json`.
@@ -68,6 +69,10 @@ Rebuild: `python3 tools/works/guru-granth-sahib/source/make.py && python3 tools/
   "Pauri 917.2". The numbers at a verse's end (॥੪॥੧॥੩੪॥: its stanzas, its place in its group of shabads, in its raag)
   stay as printed but are not its citation, because they restart with each Guru, each kind of composition and each vaar
   (`cite.mark` "none"). The Japji and the Sukhmani keep their own citations (Pauri 5, Pauri 1.8).
+- **Views** (`views.json`, made by `make.py`, joined to the manifest by `include`): beside its parts the Granth is
+  classified by **writer** (the Gurus, the Bhagats, the Bhatts, Satta and Balwand and Baba Sundar; each writer's verses
+  in the Granth's order, read on their own) and by **Ang** (for each of the 1,430 Angs, the verse its first line is in).
+  How a writer is settled: `reconciliation.md` §6.
 - **Topics:** every shabad, and every salok and swayya of the closing compositions, by its first line (as the Japji's);
   a composition (a vaar, a bani of pauris or stanzas) once, at its start, by its heading line.
 

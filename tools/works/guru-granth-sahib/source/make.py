@@ -200,12 +200,113 @@ def main(argv):
             topics.append({'id': x['id'], **pratik(x['v'][0])}); comp_open = (x['part'], x.get('comp') or 'run')
         items.append(x)
     write(items, topics)
-    own = [x for x in items if 'take' not in x]
+    vw = views(U, items)
+    # one writer's or one Ang's entry per line, so the file reads and diffs line by line
+    with open(os.path.join(WORK, 'views.json'), 'w', encoding='utf-8') as f:
+        f.write(json.dumps(vw, ensure_ascii=False, separators=(',', ':')).replace('{"id":', '\n{"id":') + '\n')
+    own =[x for x in items if 'take' not in x]
     import collections
     for x in own:
         if x.get('merged'): print('one verse again:', x['id'], x['merged'])
     print(f'{len(own)} verses of our own, {sum(len(x["v"]) for x in own)} lines; {len(topics)} topics;',
           dict(collections.Counter(x['y'] for x in own)))
+
+
+# The writers (the database's writer ids; names as the database gives them in Gurmukhi, in plain English and Hindi), in
+# four groups, each group's writers in the order of their English names (the Gurus by Mahala)
+GROUPS = [({'hi': 'गुरु साहिबान', 'en': 'Gurus', 'pa': 'ਗੁਰੂ ਸਾਹਿਬਾਨ'}, [
+    (1, 'guru-nanak-dev', 'गुरु नानक देव जी', 'Guru Nanak Dev Ji', 'ਗੁਰੂ ਨਾਨਕ ਦੇਵ ਜੀ', 1),
+    (2, 'guru-angad-dev', 'गुरु अंगद देव जी', 'Guru Angad Dev Ji', 'ਗੁਰੂ ਅੰਗਦ ਦੇਵ ਜੀ', 2),
+    (3, 'guru-amar-das', 'गुरु अमरदास जी', 'Guru Amar Das Ji', 'ਗੁਰੂ ਅਮਰਦਾਸ ਜੀ', 3),
+    (4, 'guru-ram-das', 'गुरु रामदास जी', 'Guru Ram Das Ji', 'ਗੁਰੂ ਰਾਮਦਾਸ ਜੀ', 4),
+    (5, 'guru-arjan-dev', 'गुरु अर्जन देव जी', 'Guru Arjan Dev Ji', 'ਗੁਰੂ ਅਰਜਨ ਦੇਵ ਜੀ', 5),
+    (6, 'guru-tegh-bahadur', 'गुरु तेग़ बहादुर जी', 'Guru Tegh Bahadur Ji', 'ਗੁਰੂ ਤੇਗ਼ ਬਹਾਦਰ ਜੀ', 9)]),
+  ({'hi': 'भगत', 'en': 'Bhagats', 'pa': 'ਭਗਤ'}, [
+    (8, 'bhagat-beni', 'भगत बेणी जी', 'Bhagat Beni Ji', 'ਭਗਤ ਬੇਣੀ ਜੀ', None),
+    (9, 'bhagat-bhikhan', 'भगत भीखन जी', 'Bhagat Bhikhan Ji', 'ਭਗਤ ਭੀਖਨ ਜੀ', None),
+    (10, 'bhagat-dhanna', 'भगत धन्ना जी', 'Bhagat Dhanna Ji', 'ਭਗਤ ਧੰਨਾ ਜੀ', None),
+    (12, 'bhagat-jaidev', 'भगत जयदेव जी', 'Bhagat Jaidev Ji', 'ਭਗਤ ਜੈਦੇਵ ਜੀ', None),
+    (13, 'bhagat-kabir', 'भगत कबीर जी', 'Bhagat Kabir Ji', 'ਭਗਤ ਕਬੀਰ ਜੀ', None),
+    (14, 'bhagat-namdev', 'भगत नामदेव जी', 'Bhagat Namdev Ji', 'ਭਗਤ ਨਾਮਦੇਵ ਜੀ', None),
+    (15, 'bhagat-parmanand', 'भगत परमानंद जी', 'Bhagat Parmanand Ji', 'ਭਗਤ ਪਰਮਾਨੰਦ ਜੀ', None),
+    (16, 'bhagat-pipa', 'भगत पीपा जी', 'Bhagat Pipa Ji', 'ਭਗਤ ਪੀਪਾ ਜੀ', None),
+    (17, 'bhagat-ramanand', 'भगत रामानंद जी', 'Bhagat Ramanand Ji', 'ਭਗਤ ਰਾਮਾਨੰਦ ਜੀ', None),
+    (18, 'bhagat-ravidas', 'भगत रविदास जी', 'Bhagat Ravidas Ji', 'ਭਗਤ ਰਵਿਦਾਸ ਜੀ', None),
+    (19, 'bhagat-sadhna', 'भगत सधना जी', 'Bhagat Sadhna Ji', 'ਭਗਤ ਸਾਧਨਾ ਜੀ', None),
+    (20, 'bhagat-sain', 'भगत सैण जी', 'Bhagat Sain Ji', 'ਭਗਤ ਸੈਣ ਜੀ', None),
+    (11, 'sheikh-farid', 'शेख़ फ़रीद जी', 'Sheikh Farid Ji', 'ਸ਼ੇਖ ਫਰੀਦ ਜੀ', None),
+    (21, 'bhagat-surdas', 'भगत सूरदास जी', 'Bhagat Surdas Ji', 'ਭਗਤ ਸੂਰਦਾਸ ਜੀ', None),
+    (22, 'bhagat-trilochan', 'भगत त्रिलोचन जी', 'Bhagat Trilochan Ji', 'ਭਗਤ ਤ੍ਰਿਲੋਚਨ ਜੀ', None)]),
+  ({'hi': 'भट्ट', 'en': 'Bhatts', 'pa': 'ਭੱਟ'}, [
+    (24, 'bhatt-balh', 'भट्ट बल्ह', 'Bhatt Balh', 'ਭੱਟ ਬਲੵ', None),
+    (25, 'bhatt-bhalh', 'भट्ट भल्ह', 'Bhatt Bhalh', 'ਭੱਟ ਭਲੵ', None),
+    (26, 'bhatt-bhikha', 'भट्ट भिखा', 'Bhatt Bhikha', 'ਭੱਟ ਭਿਖਾ', None),
+    (27, 'bhatt-gayand', 'भट्ट गयंद', 'Bhatt Gayand', 'ਭੱਟ ਗਯੰਦ', None),
+    (28, 'bhatt-harbans', 'भट्ट हरिबंस', 'Bhatt Harbans', 'ਭੱਟ ਹਰਿਬੰਸ', None),
+    (29, 'bhatt-jalap', 'भट्ट जालप', 'Bhatt Jalap', 'ਭੱਟ ਜਾਲਪ', None),
+    (30, 'bhatt-kalh-sahar', 'भट्ट कल्ह सहार', 'Bhatt Kalh Sahar', 'ਭੱਟ ਕਲੵ ਸਹਾਰ', None),
+    (31, 'bhatt-kirat', 'भट्ट कीरत', 'Bhatt Kirat', 'ਭੱਟ ਕੀਰਤੁ', None),
+    (32, 'bhatt-mathura', 'भट्ट मथुरा', 'Bhatt Mathura', 'ਭੱਟ ਮਥੁਰਾ', None),
+    (33, 'bhatt-nalh', 'भट्ट नल्ह', 'Bhatt Nalh', 'ਭੱਟ ਨਲੵ', None),
+    (34, 'bhatt-salh', 'भट्ट सल्ह', 'Bhatt Salh', 'ਭੱਟ ਸਲੵ', None)]),
+  ({'hi': 'अन्य', 'en': 'Others', 'pa': 'ਹੋਰ'}, [
+    (35, 'satta-balwand', 'सत्ता और बलवंड', 'Satta and Balwand', 'ਸਤਾ ਤੇ ਬਲਵੰਡਿ', None),
+    (23, 'baba-sundar', 'बाबा सुंदर', 'Baba Sundar', 'ਬਾਬਾ ਸੁੰਦਰ', None)])]
+# the Raagmala: the Granth names no writer for it (the database's "Poet Alam" is an attribution, not the text's), so it is
+# in no writer's list
+NO_WRITER = {42}
+# a verse whose own heading names a Mahala, where the database names a Bhagat: the heading is the Granth's word
+# (reconciliation.md §4); a vaar's heading names the vaar's writer, not its saloks', so it does not count
+MAHALA = {'੧': 1, '੨': 2, '੩': 3, '੪': 4, '੫': 5, '੯': 6}
+
+
+def writer_of(x, W):
+    """A verse's writer: the database's for its unit, unless its own heading names a Mahala and the database a Bhagat."""
+    w = W[x['db']]
+    for l in x['lines']:
+        if l['type'] not in (1, 2): break
+        m = re.search(r'(?:ਮਹਲਾ|ਮਃ) ([੧-੯])', l['v'])
+        if m and 'ਵਾਰ' not in l['v']:
+            if w > 6 and w not in NO_WRITER: w = MAHALA[m.group(1)]
+            break
+    return w
+
+
+def views(U, items):
+    """The Granth's other two classifications (work.json → views): its writers (the verses each wrote, in the Granth's
+    order) and its Angs (for each of the 1,430 Angs, the verse its first line is in)."""
+    W = {u['sid']: u['writer'] for u in U}
+    JAP, SUKH = takes(U)
+    taken = {w: [x for x in textfile.read(os.path.join(WORKS, w, 'text.txt'))] for w in ('japji-sahib', 'sukhmani-sahib')}
+    by = {}; ang = {}
+    for x in items:
+        if 'take' in x:
+            ks = sorted(JAP if x['take'] == 'japji' else SUKH); wr = {U[k]['writer'] for k in ks}
+            assert len(wr) == 1, wr; wr = wr.pop()   # the database's writer of the whole bani
+            vs = taken['japji-sahib' if x['take'] == 'japji' else 'sukhmani-sahib']
+            # the database's lines of the taken bani, one by one beside the work's own (check.py proves them equal; the
+            # Japji's Mool Mantar is one database line and four of the work's)
+            dl = [l for k in ks for l in U[k]['lines']]; mine = [(v['id'], n) for v in vs for n in range(len(v['v']))]
+            if x['take'] == 'japji': mine = [mine[0]] + mine[4:]
+            assert len(dl) == len(mine)
+            for l, (vid, _) in zip(dl, mine): ang.setdefault(l['ang'], vid)
+            by.setdefault(wr, []).extend(v['id'] for v in vs)
+            continue
+        for l in x['lines']: ang.setdefault(l['ang'], x['id'])
+        by.setdefault(writer_of(x, W), []).append(x['id'])
+    assert sorted(ang) == list(range(1, 1431)), 'an Ang without a line'
+    groups, named = [], set()
+    for head, ws in GROUPS:
+        lst = []
+        for wid, key, hi, en, pa, mahala in ws:
+            named.add(wid); w = {'id': key, 'hi': hi, 'en': en, 'pa': pa}
+            if mahala: w['mahala'] = mahala
+            w['items'] = by[wid]; lst.append(w)
+        groups.append(dict(head, list=lst))
+    assert set(by) - named == NO_WRITER, set(by) - named
+    return {'views': [
+        {'id': 'writer', 'name': {'hi': 'बाणीकार', 'en': 'Writer', 'pa': 'ਬਾਣੀਕਾਰ'}, 'groups': groups},
+        {'id': 'ang', 'name': {'hi': 'अंग', 'en': 'Ang', 'pa': 'ਅੰਗ'}, 'at': [ang[n] for n in range(1, 1431)]}]}
 
 
 def write(items, topics):

@@ -179,7 +179,7 @@ async function restore(st){
   const v = document.getElementById(st.v) && (W || !['home', 'reader', 'bookmarks', 'vidhi'].includes(st.v)) ? st.v : 'library';
   if (v === 'search') setScope(st.scope === 'lib' || !W ? 'lib' : 'text');   // Back to a search: the same kind of search, the query kept
   show(v, false);
-  if (v === 'reader'){ const r = st.r, i = r && W && ID[r.id]; if (i != null && (r.org === 'k' || PLAN[r.org])) openReader(r.org, i); else reopenReader(); }   // the reader's own place: a plan day stays that day
+  if (v === 'reader'){ const r = st.r, i = r && W && ID[r.id]; if (i != null && isOrg(r.org)) openReader(r.org, i); else reopenReader(); }   // the reader's own place: a plan day stays that day
 }
 function back(){ history.back(); }
 // Back with a drawer open closes the drawer and stays on the page (its entry is put back)
@@ -292,7 +292,7 @@ function glossEdit(w, lang){
 }
 
 /* ---------------- work structure ---------------- */
-let PAGES = [], itemPage = null, PARTS = [], TOPICS = [], topicAt = new Map(), PLANS = [], PLAN = {}, pauseAfter = {};
+let PAGES = [], itemPage = null, PARTS = [], TOPICS = [], topicAt = new Map(), PLANS = [], PLAN = {}, pauseAfter = {}, VIEWS = [], VIEW = {}, GROUP = {};
 function buildWork(){
   applyTypes();
   IT = W.items; ID = {}; IT.forEach((x, i) => ID[x.id] = i);
@@ -305,7 +305,21 @@ function buildWork(){
   PLANS = (W.plans || []).map(p => Object.assign({}, p, {ends: p.end.map(id => ID[id])}));
   PLAN = {}; PLANS.forEach(p => PLAN[p.id] = p);
   pauseAfter = {}; PLANS.forEach(p => p.ends.forEach((e, n) => (pauseAfter[e] = pauseAfter[e] || []).push([p.id, n + 1])));
+  // a work's other classifications beside its parts (work.json → views; docs/LIBRARY.md §2): named groups of verses, each read
+  // on its own (the Granth's writers: the reader "writer.bhagat-kabir" shows only Bhagat Kabir Ji's verses, in the Granth's
+  // order), and numbered pages that open where they begin (its Angs, read in their part)
+  VIEWS = W.views || []; VIEW = {}; GROUP = {};
+  VIEWS.forEach(v => { VIEW[v.id] = v; (v.groups || []).forEach(g => g.list.forEach(m => {
+    const key = v.id + '.' + m.id, list = m.items.map(id => ID[id]).filter(i => i != null), pgs = [...new Set(list.map(i => itemPage[i]))];
+    GROUP[key] = {key, m, list, set: new Set(list), ix: new Map(list.map((i, n) => [i, n])), pgs, pos: new Map(pgs.map((p, n) => [p, n]))}; })); });
 }
+const RG = () => GROUP[R.org] || null;   // the group the reader shows (a writer), or none
+const GNAME = o => T(GROUP[o].m.hi, GROUP[o].m.en);
+const isOrg = o => o === 'k' || !!PLAN[o] || !!GROUP[o];
+// what the reader shows, by name: the part, the plan's day, or the group (a writer)
+const RNAME = () => R.org === 'k' ? KNAME(R.n) : GROUP[R.org] ? GNAME(R.org) : VN(R.n);
+// a group's first verse from a on, up to b (none: -1)
+function gFirst(g, a, b){ let lo = 0, hi = g.list.length; while (lo < hi){ const m = (lo + hi) >> 1; if (g.list[m] < a) lo = m + 1; else hi = m; } return lo < g.list.length && g.list[lo] <= b ? g.list[lo] : -1; }
 function topicOf(i){ let lo = 0, hi = TOPICS.length - 1, r = null; while (lo <= hi){ const m = (lo + hi) >> 1; if (TOPICS[m].i <= i){ r = TOPICS[m]; lo = m + 1; } else hi = m - 1; } return r && IT[r.i].p === IT[i].p ? r : null; }
 function dayRange(plan, n){ const P = PLAN[plan]; return [n === 1 ? 0 : P.ends[n - 2] + 1, P.ends[n - 1]]; }
 function dayOf(plan, i){ const P = PLAN[plan]; for (let n = 1; n <= P.n; n++){ if (i <= P.ends[n - 1]) return n; } return P.n; }
@@ -536,31 +550,41 @@ function pauseHTML(i){
 }
 // the verse type as a heading above the verse, “॥ चौपाई ॥”, shown only where the type changes:
 // before the first chaupāī of a run, then before the dohā that follows, and so on — and at the start of what is read
-function typeHead(i){
+function typeHead(i, pv){
   const y = IT[i].y, nm = TYPEN[y]; if (!nm) return '';
-  if (i !== R.a && i > 0 && IT[i - 1].y === y && IT[i - 1].p === IT[i].p) return '';
+  const q = pv !== undefined ? pv : i !== R.a && i > 0 ? i - 1 : null;   // the verse before it in what is read (in a group: its own)
+  if (q != null && IT[q].y === y && IT[q].p === IT[i].p) return '';
   return '<div class="vtype">॥ ' + esc(T(nm[0], nm[1])) + ' ॥</div>';
 }
 function pageHTML(pg){
+  const g = RG(); if (g && !g.pos.has(pg)) return '';   // a group's reading: a page without its verses is not drawn
   const p = PAGES[pg], a = Math.max(p.from, R.a), b = Math.min(p.to, R.b); let h = '<div class="pg" data-pg="' + pg + '">';
   needPart(p.k);   // a work loaded by part: this page's part (a page never spans two)
   for (let i = a; i <= b; i++){
-    if (i === PARTS[IT[i].p].a) h += '<div class="part-h"><b>' + esc(KNAME(IT[i].p)) + '</b></div>';
-    const t = topicAt.get(i); if (t) h += '<div class="topic-h" id="t' + i + '"><b>' + esc(TNAME(t)) + '</b></div>';
-    h += typeHead(i) + verseHTML(i) + pauseHTML(i);
+    if (g && !g.set.has(i)) continue;
+    // in a group's reading, the part and the composition a verse is in head it where they change (a salok in another writer's vaar)
+    const pv = g ? g.list[g.ix.get(i) - 1] : null;
+    if (g ? pv == null || IT[pv].p !== IT[i].p : i === PARTS[IT[i].p].a) h += '<div class="part-h"><b>' + esc(KNAME(IT[i].p)) + '</b></div>';
+    const t = g ? topicOf(i) : topicAt.get(i);
+    if (t && (!g || t.i === i || pv == null || topicOf(pv) !== t)) h += '<div class="topic-h" id="t' + i + '"><b>' + esc(TNAME(t)) + '</b></div>';
+    h += typeHead(i, pv) + verseHTML(i) + pauseHTML(i);
   }
   return h + '</div>';
 }
-function rangeFor(org, i){ if (org === 'k'){ const P = PARTS[IT[i].p]; return [P.a, P.b, P.k]; } const n = dayOf(org, i); const [a, b] = dayRange(org, n); return [a, b, n]; }
-const canNext = () => R.pt + 1 < PAGES.length && PAGES[R.pt + 1].from <= R.b;
-const canPrev = () => R.pf - 1 >= 0 && PAGES[R.pf - 1].to >= R.a;
+function rangeFor(org, i){ if (GROUP[org]) return [0, IT.length - 1, org]; if (org === 'k'){ const P = PARTS[IT[i].p]; return [P.a, P.b, P.k]; } const n = dayOf(org, i); const [a, b] = dayRange(org, n); return [a, b, n]; }
+// the page after or before p in what is read: the next page, or in a group's reading the next page with its verses
+const nextPg = p => { const g = RG(); if (!g) return p + 1; const n = g.pos.get(p); return n != null && n + 1 < g.pgs.length ? g.pgs[n + 1] : PAGES.length; };
+const prevPg = p => { const g = RG(); if (!g) return p - 1; const n = g.pos.get(p); return n ? g.pgs[n - 1] : -1; };
+const canNext = () => { const p = nextPg(R.pt); return p < PAGES.length && PAGES[p].from <= R.b; };
+const canPrev = () => { const p = prevPg(R.pf); return p >= 0 && PAGES[p].to >= R.a; };
 function endHTML(){
   if (canNext()) return '';
   let h = '<div class="endb">';
-  if (R.b === IT.length - 1) h += '<div class="colo">' + esc(TT(W.colophon) || '') + '</div>';
+  if (R.b === IT.length - 1 && !RG()) h += '<div class="colo">' + esc(TT(W.colophon) || '') + '</div>';
   // the button to what comes next (the next part, or the next vishram of a plan), and under it how long that plays: the same in every work
   const next = (a, b, name) => { const d = durLabel(spanSecs(a, b)); h += '<button class="btn" data-next="' + a + '">' + esc(name) + ' ›</button>' + (d ? '<div class="ndur">▶ ' + d + '</div>' : ''); };
-  if (R.org === 'k'){ const nx = PARTS[R.n + 1]; if (nx) next(nx.a, nx.b, KNAME(nx.k)); }
+  if (RG()) h += '<div class="colo">' + esc(RNAME()) + '</div>';   // a writer's verses end here: no next part
+  else if (R.org === 'k'){ const nx = PARTS[R.n + 1]; if (nx) next(nx.a, nx.b, KNAME(nx.k)); }
   else { const P = PLAN[R.org]; if (R.n < P.n){ const [na, nb] = dayRange(R.org, R.n + 1); next(na, nb, VN(R.n + 1)); } }
   return h + '</div>';
 }
@@ -572,8 +596,8 @@ function renderAround(i, focus){
   updateHeader();
 }
 function fill(){ let n = 0; while (canNext() && document.body.scrollHeight < scrollY + innerHeight * 3 && n++ < 6) appendNext(); }
-function appendNext(){ if (!canNext()) return; R.pt++; $('#pages').insertAdjacentHTML('beforeend', pageHTML(R.pt)); $('#endB').innerHTML = endHTML(); }
-function prependPrev(){ if (!canPrev()) return; const h0 = document.body.scrollHeight, y0 = scrollY; R.pf--; $('#pages').insertAdjacentHTML('afterbegin', pageHTML(R.pf)); window.scrollTo(0, y0 + document.body.scrollHeight - h0); }
+function appendNext(){ if (!canNext()) return; R.pt = nextPg(R.pt); $('#pages').insertAdjacentHTML('beforeend', pageHTML(R.pt)); $('#endB').innerHTML = endHTML(); }
+function prependPrev(){ if (!canPrev()) return; const h0 = document.body.scrollHeight, y0 = scrollY; R.pf = prevPg(R.pf); $('#pages').insertAdjacentHTML('afterbegin', pageHTML(R.pf)); window.scrollTo(0, y0 + document.body.scrollHeight - h0); }
 function ensure(){
   if (!$('#reader').classList.contains('on')) return; const b = $('#botS'), t = $('#topS'); let n = 0;
   while (b && canNext() && b.getBoundingClientRect().top < innerHeight + 1800 && n++ < 4) appendNext();
@@ -596,7 +620,7 @@ function topVisibleItem(){
 function curSection(i){ const t = topicOf(i); return t && t.i <= R.b && t.end >= R.a ? t : null; }
 function updateHeader(){
   if (!IT.length) return; const i = topVisibleItem(), t = topicOf(i);
-  const s = curSection(i), where = R.org === 'k' ? (PARTS.length > 1 ? KNAME(R.n) : '') : VN(R.n), topic = s ? TNAME(s) : '';
+  const s = curSection(i), where = R.org === 'k' ? (PARTS.length > 1 ? KNAME(R.n) : '') : RNAME(), topic = s ? TNAME(s) : '';
   $('#rMid').innerHTML = '<span class="ml">' + (s ? spanLabel(Math.max(s.i, R.a), Math.min(s.end, R.b)) : spanLabel(R.a, R.b)) + ' ▾</span><small>' + esc(where || TT(W.title)) + '</small>';   // only the part (or reading day): a small footer; the topic heads the page
 }
 let scT;
@@ -618,7 +642,7 @@ function savePos(i){ if (i == null) i = topVisibleItem(); const ws = WS(); ws.po
    recording's “Go to …”) shows when it is off the screen, was read in the last 15 minutes, no recording plays and Audio
    timing is off (marking timings jumps about by design). ws.anchor = {org, id, t}; ws.prev: anchors left for a new place, latest first, three kept. */
 const AN = {cand: null, calm: 0, lastY: 0, going: false, playT0: 0, manual: false};
-function anchorOf(){ const a = W && WS().anchor; return a && ID[a.id] != null && (a.org === 'k' || PLAN[a.org]) ? Object.assign({}, a, {i: ID[a.id]}) : null; }
+function anchorOf(){ const a = W && WS().anchor; return a && ID[a.id] != null && isOrg(a.org) ? Object.assign({}, a, {i: ID[a.id]}) : null; }
 function setAnchor(org, i, moved){
   const ws = WS(), a = ws.anchor; if (!IT[i]) return;
   if (a && a.id === IT[i].id && a.org === org){ a.t = Date.now(); return; }
@@ -707,6 +731,8 @@ function fixLast(){
 function openReader(org, i, flash){
   if (!wReady){ whenReady().then(() => openReader(org, i, flash)); return; }   // the meanings are still on their way (openWork)
   if (!S.hinted && !TOUR){ S.hinted = 1; save(); setTimeout(() => toast(T('किसी शब्दको छूकर अर्थ देखें · नीचेसे प्रसंग चुनें', 'Tap any word for its meaning · choose a section at the bottom')), 900); }
+  if (!isOrg(org)) org = 'k';
+  const g0 = GROUP[org]; if (g0 && !g0.set.has(i)){ const f = gFirst(g0, i, IT.length - 1); i = f >= 0 ? f : g0.list[g0.list.length - 1]; }
   R.org = org; [R.a, R.b, R.n] = rangeFor(org, i);
   if (!$('#reader').classList.contains('on')) show('reader');
   renderAround(i); if (flash){ const el = document.getElementById('v' + i); if (el) el.classList.add('flash'); }
@@ -714,7 +740,7 @@ function openReader(org, i, flash){
 }
 function reopenReader(){ fixLast(); const l = WS().last; if (l && IT[l.i]) openReader(l.org, l.i); else show('home', false); }
 function jumpTo(i){
-  if (i < R.a || i > R.b){ openReader(R.org, i); return; }
+  if (i < R.a || i > R.b || (RG() && !RG().set.has(i))){ openReader(R.org, i); return; }
   const pg = itemPage[i];
   if (pg >= R.pf && pg <= R.pt) scrollToItem(i, false); else renderAround(i);
   const w = W, r = readingNow(); setTimeout(() => { if (stillReading(w, r)) { updateHeader(); savePos(i); anchorJump(i); backPill(); } }, 60);
@@ -733,17 +759,19 @@ function rerenderItem(i){ const el = document.getElementById('v' + i); if (!el) 
 // The section picker: the row of kāṇḍas (or plan days) on top only chooses which list shows below; nothing opens until a
 // section is tapped — the current one too.
 function sectionSheet(n){
-  const ti = topVisibleItem(), cur = curSection(ti), plan = R.org !== 'k';
-  if (n == null) n = R.n;
+  const ti = topVisibleItem(), cur = curSection(ti), g = RG(), plan = R.org !== 'k' && !g;
+  // a group's reading (a writer): the row of its parts, and under it its compositions in the part chosen
+  const here = g ? IT[ti].p : R.n; if (n == null) n = here;
   const [A, B] = plan ? dayRange(R.org, n) : [PARTS[n].a, PARTS[n].b];
   let h = '';
-  if (!plan) h += '<div class="pick">' + PARTS.map(p => '<button data-pick="' + p.k + '" class="' + (p.k === n ? 'on' : '') + '">' + esc(KNAME(p.k)) + '</button>').join('') + '</div>';
+  if (!plan) h += '<div class="pick">' + PARTS.filter(p => !g || gFirst(g, p.a, p.b) >= 0).map(p => '<button data-pick="' + p.k + '" class="' + (p.k === n ? 'on' : '') + '">' + esc(KNAME(p.k)) + '</button>').join('') + '</div>';
   else { const P = PLAN[R.org]; h += '<div class="pick days">' + Array.from({length: P.n}, (_, x) => x + 1).map(d => '<button data-pick="' + d + '" class="' + (d === n ? 'on' : '') + (DONE(ME(), R.org)[d] ? ' done' : '') + '">' + DEV(d) + '</button>').join('') + '</div>'; }
   let secs = TOPICS.filter(t => t.i <= B && t.end >= A);
   if (!secs.length && W.sections) secs = PAGES.filter(p => p.to >= A && p.from <= B && SECN(p.s)).map(p => ({i: p.from, end: p.to, hi: '', en: '', sec: true}));   // its named sections (Sarga 1 …)
-  const rows = []; if (!secs.length || secs[0].i > A) rows.push({i: A, end: (secs[0] ? secs[0].i - 1 : B), name: plan ? VN(n) : KNAME(n)});
+  let rows = []; if (!secs.length || secs[0].i > A) rows.push({i: A, end: (secs[0] ? secs[0].i - 1 : B), name: plan ? VN(n) : KNAME(n)});
   secs.forEach(t => rows.push({i: Math.max(t.i, A), end: Math.min(t.end, B), name: TNAME(t), t}));
-  h += '<h2>' + (plan ? PNAME(R.org) + ' · ' + VN(n) : esc(KNAME(n))) + '</h2><div class="secs">' + rows.map(r => '<button data-to="' + r.i + '" class="' + ((cur && r.t === cur || r.t && r.t.sec && ti >= r.i && ti <= r.end) && n === R.n ? 'on' : '') + '"><span class="sr">' + spanLabel(r.i, r.end) + '</span><span class="sn">' + esc(r.name) + '</span></button>').join('') + '</div>';
+  if (g) rows = rows.map(r => Object.assign(r, {i: gFirst(g, r.i, r.end)})).filter(r => r.i >= 0);   // where the group's verses are, from its first there
+  h += '<h2>' + (plan ? PNAME(R.org) + ' · ' + VN(n) : g ? esc(GNAME(R.org) + ' · ' + KNAME(n)) : esc(KNAME(n))) + '</h2><div class="secs">' + rows.map(r => '<button data-to="' + r.i + '" class="' + ((cur && r.t === cur || r.t && r.t.sec && ti >= r.i && ti <= r.end) && n === here ? 'on' : '') + '"><span class="sr">' + spanLabel(r.i, r.end) + '</span><span class="sn">' + esc(r.name) + '</span></button>').join('') + '</div>';
   if ($('#sheet').classList.contains('on') && $('#sheetBody .pick')){ $('#sheetBody').innerHTML = h; $('#sheet').scrollTop = 0; } else openSheet(h);
   $$('#sheetBody [data-pick]').forEach(b => b.onclick = () => sectionSheet(+b.dataset.pick));
   $$('#sheetBody [data-to]').forEach(b => b.onclick = () => { closeSheet(); jumpTo(+b.dataset.to); });
@@ -861,7 +889,7 @@ function itemMenu(i){
   openSheet('<p class="small muted">' + esc(itemLabel(i)) + '</p><div class="menu">' + (hasAu(i) ? '<button data-x="play"><svg><use href="#i-play"/></svg>' + T('यहाँसे सुनें', 'Play from here') + '</button>' : '') + '<button data-x="note"><svg><use href="#i-note"/></svg>' + T('टिप्पणी लिखें', 'Write a note') + '</button>' + (hasAu(i) ? '<button data-x="flag"' + (SRC.au && flagsNow()[id] ? ' class="on"' : '') + '><svg><use href="#i-clock"/></svg>' + T('ऑडियोका समय जाँचें', 'Review audio timing') + (SRC.au && flagsNow()[id] ? REVB : '') + '</button>' : '') + '<button data-x="copy"><svg><use href="#i-copy"/></svg>' + T('पद और अर्थ कॉपी करें', 'Copy verse and meaning') + '</button>' + (EDITS ? '<button data-x="edit"><svg><use href="#i-edit"/></svg>' + T('पद या अर्थ सुधारें', 'Improve verse or meaning') + '</button>' : '') + (edited ? '<button data-x="revert"><svg><use href="#i-edit"/></svg>' + T('मेरा सुधार हटाएँ (पद लौटाएँ)', 'Remove my correction (restore the verse)') + '</button>' : '') + '</div>');
   $$('#sheetBody [data-x]').forEach(b => b.onclick = () => {
     const x = b.dataset.x; closeSheet();
-    if (x === 'play'){ playFrom(i, R.b); PL.whole = false; PL.endMsg = (R.org === 'k' ? KNAME(R.n) : VN(R.n)) + T(' पूर्ण', ' finished'); }   // to the end of what is open: the kāṇḍa, or the vishram
+    if (x === 'play'){ playFrom(i, R.b); PL.whole = false; PL.endMsg = RNAME() + T(' पूर्ण', ' finished'); }   // to the end of what is open: the kāṇḍa, or the vishram
     if (x === 'copy'){ const ks = shownKinds().length ? shownKinds() : capKinds(); const txt = verseOf(i).v.join('\n') + ks.map(k => mean(k, i)).filter(Boolean).map(m => '\n\n' + m.x).join(''); (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(() => toast(T('कॉपी हो गया', 'Copied'))).catch(() => toast(T('कॉपी नहीं हो सका', 'Could not copy'))); }
     if (x === 'note') noteSheet(i, null);
     if (x === 'edit') editSheet(i);
@@ -1092,7 +1120,7 @@ function placeOf(i){ const p = PAGES[itemPage[i]]; return joinPlace([PARTS.lengt
 // the player's small line: outside the reader it says the label can be tapped (“Go to verse ›”); in the reader, nothing
 function pSub(){ const out = CURVIEW !== 'reader'; $('#pTrack').textContent = out ? T('पदपर जाएँ ›', 'Go to verse ›') : ''; $('#pInfo').classList.toggle('go', out);
   $('#pInfo').setAttribute('aria-label', T('चल रहे पदपर जाएँ', 'Go to the verse playing')); }
-function playingName(){ return (R.org === 'k' ? KNAME(R.n) : TT(PLAN[R.org].name) + ' · ' + VN(R.n)) + ' · ' + TT(SRC.au.meta.title); }   // the speed has its own button in the bar
+function playingName(){ return (R.org === 'k' ? KNAME(R.n) : GROUP[R.org] ? GNAME(R.org) : TT(PLAN[R.org].name) + ' · ' + VN(R.n)) + ' · ' + TT(SRC.au.meta.title); }   // the speed has its own button in the bar
 // Fine-tuning preview: after − / + on a start, the first 2 s of the verse play from the new start; on an
 // end, the last 2 s up to the new end. Then the player pauses, so the next tap can follow at once.
 let snipT = null;
@@ -1328,7 +1356,7 @@ function jumpPill(){
   const el = document.getElementById('v' + PL.cur), r = el && el.getBoundingClientRect(), top = $('#reader .bar').getBoundingClientRect().bottom, pl = $('#player').hidden ? {top: innerHeight} : $('#player').getBoundingClientRect();
   const seen = r && r.bottom > top + 24 && r.top < pl.top - 24;   // some of the verse is on the screen
   if (seen){ b.hidden = true; return; }
-  const i = PL.cur, where = R.org === 'k' ? placeOf(i) : [VN(R.n), SECN(PAGES[itemPage[i]].s)].filter(Boolean).join(' · ');
+  const i = PL.cur, where = R.org === 'k' ? placeOf(i) : GROUP[R.org] ? [GNAME(R.org), placeOf(i)].join(' · ') : [VN(R.n), SECN(PAGES[itemPage[i]].s)].filter(Boolean).join(' · ');
   const h = '<b><span class="arr">' + (i >= topVisibleItem() ? '↓' : '↑') + '</span>' + T('', 'Go to ') + esc(playLabel(i)) + T(' पर जाएँ', '') + '</b>' + (where ? '<small>' + esc(where) + '</small>' : '');   // "Go to <verse>", a big arrow pointing the way
   if (b.innerHTML !== h) b.innerHTML = h; b.style.bottom = (innerHeight - pl.top + 10) + 'px'; b.hidden = false;
 }
@@ -1425,13 +1453,14 @@ let SCOPE = 'text';
 // work's home it searches the whole work, as it always has.
 let SIN = null, SALL = false;
 function readerRange(){
+  if (RG()) return {set: RG().set, name: RNAME()};
   if (R.a > 0 || R.b < IT.length - 1) return {a: R.a, b: R.b, name: R.org === 'k' ? KNAME(R.n) : VN(R.n)};
   const t = TOPICS.length > 1 && curSection(topVisibleItem()); return t ? {a: t.i, b: t.end, name: TT(t)} : null;
 }
 function renderSIn(){ const el = $('#sIn'); el.hidden = !SIN || SCOPE === 'lib'; if (el.hidden) return;
   el.innerHTML = '<button class="chip' + (SALL ? '' : ' on') + '" data-in="part">' + esc(SIN.name) + '</button><button class="chip' + (SALL ? ' on' : '') + '" data-in="all">' + T('पूरा ग्रन्थ', 'Whole work') + '</button>';
   $$('#sIn .chip').forEach(c => c.onclick = () => { SALL = c.dataset.in === 'all'; renderSIn(); if ($('#q').value.trim()) runSearch(); }); }
-const inSearch = i => !SIN || SALL || (i >= SIN.a && i <= SIN.b);
+const inSearch = i => !SIN || SALL || (SIN.set ? SIN.set.has(i) : i >= SIN.a && i <= SIN.b);
 function setScope(scope){ SCOPE = scope; const lib = scope === 'lib'; $('#scope').hidden = lib;
   $$('#scope .chip').forEach(c => { if (!['v', 'h', 'e', 'n'].includes(c.dataset.s)) c.hidden = !workKinds().includes(c.dataset.s); });   // a third meaning language's chip, on works that have it
   $('#q').placeholder = lib ? T('ग्रन्थ, रचयिता या विषय खोजें', 'Search works, authors or shelves') : T('शब्द, अर्थ या English में खोजें', 'Search a verse or a meaning'); }
@@ -1489,7 +1518,7 @@ async function openWork(id, noShow){
 }
 
 /* ---------------- work home ---------------- */
-function homeOrg(){ return WS().org || 'k'; }
+function homeOrg(){ const o = WS().org; return o && (PLAN[o] || VIEW[o]) ? o : 'k'; }   // the parts, a plan, or another view (the Granth's writers, its Angs)
 // the work's title must fit the screen on one word per line even with the phone's text zoom: shrink it until it does
 function fitTitle() {
   const h = $('#hTitle'); h.style.fontSize = ''; h.style.overflowWrap = 'normal';
@@ -1513,16 +1542,26 @@ function renderHome(){
   $('#contCard').innerHTML = A ? '<button class="btn ghost cont" id="cGo"><span>' + T('आगे पढ़ें', 'Resume') + ' ›</span><small>' + esc(shortAt(A.i)) + '</small></button>' : '';
   if ($('#cGo')) $('#cGo').onclick = () => { AN.going = true; openReader(A.org, A.i, true); };
   const org = homeOrg();
-  $('#orgSeg').innerHTML = '<button data-org="k">' + esc(TT(W.parts.name)) + '</button>' + PLANS.map(p => '<button data-org="' + p.id + '">' + esc(TT(p.name)) + '</button>').join('');
+  $('#orgSeg').innerHTML = '<button data-org="k">' + esc(TT(W.parts.name)) + '</button>' + PLANS.map(p => '<button data-org="' + p.id + '">' + esc(TT(p.name)) + '</button>').join('') + VIEWS.map(v => '<button data-org="' + v.id + '">' + esc(TT(v.name)) + '</button>').join('');
   $$('#orgSeg button').forEach(b => { b.classList.toggle('on', b.dataset.org === org); b.onclick = () => { WS().org = b.dataset.org; save(); renderHome(); }; });
   // ▶ with its time under it, on every row that has a recording (parts, sections, reading days alike)
   const play = (o, a, b) => firstAu(a, b) != null ? '<button class="lplay timed" data-po="' + o + '" data-pa="' + a + '" data-pb="' + b + '" aria-label="play"><svg><use href="#i-play"/></svg></button><span class="ldur">' + durLabel(spanSecs(a, b)) + '</span>' : '';
   let h = '';
-  $('#orgSeg').hidden = !PLANS.length;   // a work without reading plans needs no switch
+  $('#orgSeg').hidden = !PLANS.length && !VIEWS.length;   // a work without reading plans or other views needs no switch
   if (org === 'k' && PARTS.length === 1){   // a single-part work (an āratī, a stotra): list its sections straight away
     const P = PARTS[0], ts = TOPICS.length || !W.sections ? TOPICS.slice() : PAGES.filter(p => SECN(p.s)).map(p => ({i: p.from, end: p.to})); if (!ts.length || ts[0].i > P.a) ts.unshift({i: P.a, end: ts.length ? ts[0].i - 1 : P.b});
     ts.forEach((t, n) => { const name = t.hi || t.en ? TNAME(t) : KNAME(P.k); h += '<li class="rowp">' + play('k', t.i, t.end) + '<button class="it" data-open="' + t.i + '"><span class="no">' + DEV(n + 1) + '</span><span class="grow"><span class="ti">' + esc(name) + '</span><br><span class="ds">' + esc(spanLabel(t.i, t.end)) + '</span></span><span class="chev">›</span></button></li>'; });
   }
+  else if (VIEW[org] && VIEW[org].groups) VIEW[org].groups.forEach(gr => {   // the writers, under their headings (Gurus, Bhagats …)
+    h += '<li class="lhead">' + esc(TT(gr)) + '</li>';
+    gr.list.forEach((m, n) => { const G = GROUP[org + '.' + m.id]; if (!G.list.length) return; const parts = new Set(G.list.map(i => IT[i].p)).size;
+      const ds = [m.mahala ? T('महला ' + DEV(m.mahala), 'Mahala ' + m.mahala) : '', DEV(G.list.length) + T(' पद', G.list.length === 1 ? ' verse' : ' verses'), DEV(parts) + ' ' + T(TT(W.parts.name), parts === 1 ? TT(W.parts.name).toLowerCase() : TT(W.parts.name).toLowerCase() + 's')].filter(Boolean).join(' · ');
+      h += '<li class="rowp"><button class="it" data-group="' + G.key + '"><span class="no">' + DEV(n + 1) + '</span><span class="grow"><span class="ti">' + esc(GNAME(G.key)) + '</span><br><span class="ds">' + esc(ds) + '</span></span><span class="chev">›</span></button></li>'; }); });
+  else if (VIEW[org] && VIEW[org].at){   // numbered pages (the Angs) by the hundred; a hundred opens to its numbers, a number opens its page
+    const at = VIEW[org].at.map(id => ID[id]), nm = TT(VIEW[org].name), open = (S.settings.atOpen || {})[W.id];
+    for (let a = 1; a <= at.length; a += 100){ const b = Math.min(at.length, a + 99), on = open === a, pa = IT[at[a - 1]].p, pb = IT[at[b - 1]].p;
+      h += '<li class="rowp"><button class="it" data-hund="' + a + '"><span class="no">' + DEV(Math.ceil(a / 100)) + '</span><span class="grow"><span class="ti">' + esc(nm + ' ' + DEV(a) + '–' + DEV(b)) + '</span><br><span class="ds">' + esc(KNAME(pa) + (pb !== pa ? ' – ' + KNAME(pb) : '')) + '</span></span><span class="chev">' + (on ? '⌄' : '›') + '</span></button></li>';
+      if (on) h += '<li class="angs"><div class="pick days">' + Array.from({length: b - a + 1}, (_, x) => '<button data-at="' + at[a + x - 1] + '" aria-label="' + esc(nm + ' ' + (a + x)) + '">' + DEV(a + x) + '</button>').join('') + '</div></li>'; } }
   else if (org === 'k') PARTS.forEach(p => { const tps = TOPICS.filter(t => IT[t.i].p === p.k).length || (W.sections ? PAGES.filter(g => g.k === p.k && SECN(g.s)).length : 0);   /* its topics, else its named sections */ h += '<li class="rowp">' + play('k', p.a, p.b) + '<button class="it" data-open="' + p.a + '"><span class="no">' + DEV(p.no != null ? p.no : p.k + 1) + '</span><span class="grow"><span class="ti">' + esc(KNAME(p.k)) + '</span><br><span class="ds">' + DEV(tps) + T(' प्रसंग', tps === 1 ? ' section' : ' sections') + '</span></span><span class="chev">›</span></button></li>'; });
   else { const P = PLAN[org]; const dn = Object.keys(DONE(ME(), org)).length; h += '<li class="pdone" aria-label="' + DEV(dn) + ' / ' + DEV(P.n) + T(' ' + UNIT(org).hi + ' पूर्ण', ' ' + UNIT(org).en.toLowerCase() + 's completed') + '"><span class="pdbar"><span style="width:' + Math.round(100 * dn / P.n) + '%"></span></span><span class="pdn">' + DEV(dn) + ' / ' + DEV(P.n) + '</span></li>';   // how much of the plan is done; a vishram's number marks it done
     // pages read before the first day and after the reading (pūrvāṅga / uttarāṅga), when the plan names them
@@ -1532,6 +1571,10 @@ function renderHome(){
     (P.after || []).forEach(pg => h += page(pg, T('पाठके बाद', 'After the reading'))); }
   $('#orgList').innerHTML = h;
   $$('#orgList [data-open]').forEach(b => b.onclick = () => openReader(org, +b.dataset.open));
+  $$('#orgList [data-group]').forEach(b => b.onclick = () => { const G = GROUP[b.dataset.group]; openReader(G.key, G.list[0]); });
+  $$('#orgList [data-hund]').forEach(b => b.onclick = () => { const a = +b.dataset.hund, o = S.settings.atOpen = S.settings.atOpen || {}; if (o[W.id] === a) delete o[W.id]; else o[W.id] = a; save(); renderHome();
+    const at = $('#orgList .angs'); if (at) at.scrollIntoView({block: 'nearest'}); });
+  $$('#orgList [data-at]').forEach(b => b.onclick = () => openReader('k', +b.dataset.at, true));   // an Ang opens in its part, at the verse its first line is in
   $$('#orgList [data-page]').forEach(b => b.onclick = () => { vidTab = b.dataset.page === 'vidhi' ? 'v' : b.dataset.page; show('vidhi'); });
   $$('#orgList [data-pa]').forEach(b => b.onclick = ev => { ev.stopPropagation(); playRange(b.dataset.po, +b.dataset.pa, +b.dataset.pb); });
   // a vishram's number: tap to mark it complete, tap again to mark it not complete (as “Mark vishram complete” at its end does)
@@ -1572,13 +1615,16 @@ const normL = s => (s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCas
 // before a consonant, ँ ं ़ ् and Vedic accents. Roman: long vowels, aspiration (bh = b), sh/s, ch/c, v/w/b, f/p, z/j, a nasal
 // before a consonant, a word's final a. Both: a word's final u (Tulsīdās's तनु धनु धामु, काजु for तन धन धाम, काज). Then a verse is found by the words typed, with spaces ignored and about one letter in six
 // allowed to differ, anywhere in it; or, failing that, by most of the words typed, in any order.
+// In Gurbani (a work in Punjabi) a word's last sihari or aunkar is grammar, not sound (ਹਰਿ ਨਾਮੁ, said and typed ਹਰ ਨਾਮ),
+// so both are folded away there, as the aunkar is everywhere
+let FOLDPA = false;
 const GUR = s => s.replace(/[਀-੿]/g, c => c === 'ੰ' ? 'ं' : c === 'ੱ' ? '' : c === 'ੵ' ? '्य' : String.fromCharCode(c.charCodeAt(0) - 0x100));
 const fD = s => GUR((s || '').normalize('NFC')).normalize('NFD').replace(/[ङञणनम]्(?=[क-ह])/g, '').replace(/[॑-॔᳐-᳿꣠-ꣿँं़‌‍ऽ्]/g, '')
-  .replace(/[ीूईऊवशषणृऋैौऐऔॉ]/g, c => ({'ी': 'ि', 'ू': 'ु', 'ई': 'इ', 'ऊ': 'उ', 'व': 'ब', 'श': 'स', 'ष': 'स', 'ण': 'न', 'ृ': 'रि', 'ऋ': 'रि', 'ै': 'इ', 'ौ': 'उ', 'ऐ': 'अइ', 'औ': 'अउ', 'ॉ': 'ो'})[c])
-  .replace(/[^ऀ-ॿ]+/g, ' ').replace(/[।॥०-९]/g, ' ').trim().split(/\s+/).filter(Boolean).map(w => w.length > 2 ? w.replace(/ु$/, '') : w);
+  .replace(/[ीूईऊवशषणृऋैौऐऔॉळ]/g, c => ({'ी': 'ि', 'ू': 'ु', 'ई': 'इ', 'ऊ': 'उ', 'व': 'ब', 'श': 'स', 'ष': 'स', 'ण': 'न', 'ृ': 'रि', 'ऋ': 'रि', 'ै': 'इ', 'ौ': 'उ', 'ऐ': 'अइ', 'औ': 'अउ', 'ॉ': 'ो', 'ळ': 'ल'})[c])
+  .replace(/[^ऀ-ॿ]+/g, ' ').replace(/[।॥०-९]/g, ' ').trim().split(/\s+/).filter(Boolean).map(w => w.length > 2 ? w.replace(FOLDPA ? /[ुि]$/ : /ु$/, '') : w);
 const fL = s => normL((s || '').normalize('NFD').replace(/m[̇̐]/g, 'n')).replace(/[^a-z]+/g, ' ')
   .replace(/(aa|ee|ii|oo|uu)/g, m => ({aa: 'a', ee: 'i', ii: 'i', oo: 'u', uu: 'u'})[m]).replace(/([bcdgjkptsr])h/g, '$1').replace(/[vw]/g, 'b').replace(/f/g, 'p').replace(/z/g, 'j').replace(/q/g, 'k')
-  .replace(/ri/g, 'r').replace(/[nm](?=[bcdgjklpqrstxyz])/g, '').trim().split(/\s+/).filter(Boolean).map(w => w.length > 2 ? w.replace(/[au]$/, '') : w);
+  .replace(/ri/g, 'r').replace(/[nm](?=[bcdgjklpqrstxyz])/g, '').trim().split(/\s+/).filter(Boolean).map(w => w.length > 2 ? w.replace(FOLDPA ? /[aui]$/ : /[au]$/, '') : w);
 let ROW0 = new Int32Array(256), ROW1 = new Int32Array(256);
 // the fewest letters to change, add or drop for p to appear somewhere in t (more than k: k + 1)
 function near(p, t, k){
@@ -1597,12 +1643,25 @@ const ed1 = (a, b) => { if (Math.abs(a.length - b.length) > 1) return false; let
 // a joined word (0.7: दीन दयाल in दीनदयाल)
 const wordsIn = (qs, ws) => qs.reduce((n, q) => n + (ws.includes(q) ? 1 : q.length >= 3 && ws.some(w => w.startsWith(q)) ? .9 : q.length >= 4 && ws.some(w => ed1(q, w)) ? .8 : q.length >= 3 && ws.some(w => w.includes(q)) ? .7 : 0), 0);
 const idxKey = () => W.id + MK().map(k => (SRC[k] || {}).id).join('|');
+// First-letter search, as Gurbani is often looked up: the first letter of each word of a line, typed together (ਸਨਕਪ, or snkp,
+// for ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ). A word's first letter is folded as search folds letters (ब/व, स/श/ष, न/ण), and the vowel
+// carriers by their family: ੳ (ਉ ਊ ਓ), ਅ (ਆ ਐ ਔ), ੲ (ਇ ਈ ਏ).
+const FLD = {'ॲ': 'इ', 'ॳ': 'उ', 'आ': 'अ', 'ऐ': 'अ', 'औ': 'अ', 'अइ': 'अ', 'अउ': 'अ', 'ई': 'इ', 'ए': 'इ', 'ऊ': 'उ', 'ओ': 'उ'};
+const firstD = w => { const c = w[0]; return FLD[w.slice(0, 2)] || FLD[c] || c; };
+const flLine = l => fD(l).filter(w => w !== 'ॴ').map(firstD).join('');   // ੴ is a sign, not a word typed by its letter
+// the same letters in Roman, as they are typed (ਸ s, ਵ w or v, ਫ f or p, ਅ a, ੲ i or e, ੳ u or o), folded as search folds them
+const LATF = {'क': 'k', 'ख': 'k', 'ग': 'g', 'घ': 'g', 'ङ': 'n', 'च': 'c', 'छ': 'c', 'ज': 'j', 'झ': 'j', 'ञ': 'n', 'ट': 't', 'ठ': 't', 'ड': 'd', 'ढ': 'd', 'न': 'n',
+  'त': 't', 'थ': 't', 'द': 'd', 'ध': 'd', 'प': 'p', 'फ': 'p', 'ब': 'b', 'भ': 'b', 'म': 'm', 'य': 'y', 'र': 'r', 'ल': 'l', 'स': 's', 'ह': 'h', 'अ': 'a', 'इ': 'i', 'उ': 'u', 'ॴ': ''};
+const flLat = fd => [...fd].map(c => LATF[c] != null ? LATF[c] : c).join('');
 // one search scope per meaning language (h, e, and the code of any other: pa); Latin script is searched as Latin
-function buildIdx(){ IDX = IT.map((it, i) => { const h = SRC.hi && SRC.hi.m[it.id], e = SRC.en && SRC.en.m[it.id], vw = fD(it.v.join(' ')), tw = fL((it.t || []).join(' ')), r = {vw, v: vw.join(''), tw, t: tw.join(''), h: fD(h ? h[0] : '').join(' '), e: normL(e ? e[0] : '')};
+function buildIdx(){ FOLDPA = W.lang === 'pa'; IDX = IT.map((it, i) => { const h = SRC.hi && SRC.hi.m[it.id], e = SRC.en && SRC.en.m[it.id], vw = fD(it.v.join(' ')), tw = fL((it.t || []).join(' ')), r = {vw, v: vw.join(''), tw, t: tw.join(''), h: fD(h ? h[0] : '').join(' '), e: normL(e ? e[0] : ''), fd: it.v.map(flLine)}; r.fl = r.fd.map(flLat);
   MK().forEach(k => { if (k !== 'hi' && k !== 'en'){ const x = SRC[k] && SRC[k].m[it.id]; r[k] = fD(x ? x[0] : '').join(' '); } }); return r; }); IDX.w = idxKey(); }
 const scopes = new Set(['v', 'h', 'e', 'n', 'pa']);
 $$('#scope .chip').forEach(c => c.onclick = () => { const s = c.dataset.s; if (scopes.has(s)) scopes.delete(s); else scopes.add(s); c.classList.toggle('on'); runSearch(); });
 let sT; $('#q').addEventListener('input', () => { clearTimeout(sT); sT = setTimeout(runSearch, 250); });
+// a verse found by its sound (ਹਰ ਹਰ ਨਾਮ for ਹਰਿ ਹਰਿ ਨਾਮੁ): its lines from the one holding most of the words typed
+function bestLines(i, q, latin){ const qs = latin ? fL(q) : fD(q), v = IT[i].v, t = IT[i].t || []; let best = 0, bs = -1;
+  v.forEach((l, n) => { const sc = wordsIn(qs, latin ? fL(t[n] || '') : fD(l)); if (sc > bs){ bs = sc; best = n; } }); return v.slice(best).join(' । '); }
 function snip(text, q, latin){ const src = text; const low = latin ? normL(src) : normD(src); const nq = latin ? normL(q) : normD(q); let p = low.indexOf(nq); if (p < 0) return esc(src.slice(0, 160)) + (src.length > 160 ? '…' : ''); let a = Math.max(0, p - 60), b = Math.min(src.length, p + nq.length + 80); if (a > 0){ const sp = src.indexOf(' ', a); if (sp > -1 && sp < p) a = sp + 1; } const s = src.slice(a, b); const pp = (latin ? normL(s) : normD(s)).indexOf(nq); let out; if (pp >= 0 && (latin ? normL(s) : normD(s)).length === s.length) out = esc(s.slice(0, pp)) + '<mark>' + esc(s.slice(pp, pp + nq.length)) + '</mark>' + esc(s.slice(pp + nq.length)); else out = esc(s); return (a > 0 ? '…' : '') + out + (b < src.length ? '…' : ''); }
 // A number typed into a work's search finds by number. In a work counted by dohas (the Manas, its kands), the doha is the main
 // counter and the chaupais count again under each: "45" (or "दोहा ४५") finds Doha 45 in each part, "45.3" (or "45 3") Chaupai 3
@@ -1614,7 +1673,7 @@ const CKEY = s => String(s).replace(/[०-९]/g, c => '०१२३४५६७
 function numQuery(q){
   const d = CKEY(q.trim().replace(/\s*[\/:,]\s*|\s+(?=\d)/g, m => /\d/.test(m) ? m : '.')), m = /^([^\d.]*?)\.?(\d{1,4}(?:\.\d{1,3}){0,3})([^\d.]{0,2})$/.exec(d);
   if (!m) return null; const word = m[1].replace(/\.+$/, '');
-  const f = x => fold(String(x || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()).replace(/\s/g, '');
+  const f = x => fold(GUR(String(x || '').normalize('NFC')).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()).replace(/\s/g, '');
   const w = f(word), is = nm => (nm || []).some(x => x && (f(x) === w || f(x) === w.replace(/e$/, 'a')));
   let ty = null; const C = W.cite || {};
   if (word){ ty = Object.keys(TYPEN).filter(k => is(TYPEN[k]) || is(VSHORT[k]) || (C.word && C.word[k] && is([C.word[k].hi, C.word[k].en])));
@@ -1637,6 +1696,9 @@ function numHits(Q, hits){
   // a bare number in a work counted by dohā: the dohā of that number in each part (not an opening soratha of the same number)
   const bare = !Q.word && Q.ty, inSec = bare ? all.filter(i => isNum(IT[i].s)) : null;
   let got = bare ? find(Q.ty).filter(i => inSec.includes(i)) : find(Q.ty);
+  const atV = VIEWS.find(v => v.at && W.cite && W.cite.sec && TT(v.name) === TT(W.cite.sec));
+  if (bare && atV && !Q.base.includes('.') && Q.c === Q.base && +Q.base >= 1 && +Q.base <= atV.at.length){
+    const first = ID[atV.at[+Q.base - 1]]; got = [first].concat(IT.map((x, i) => i).filter(i => i !== first && SNUM(IT[i].s) === Q.base)); }
   // a work counted by sections with no verse cited alone (the Valmiki: Sarga 15): a bare number opens that section in each part
   if (!got.length && bare && !Q.ty.length){ const seen = new Set(); got = inSec.filter(i => SNUM(IT[i].s) === Q.base && !seen.has(IT[i].p) && seen.add(IT[i].p)); }
   if (!got.length && bare) got = find(null);
@@ -1657,6 +1719,7 @@ function runSearch(){
       for (const m of meanK) if (x[m] && (words ? wordsIn(qs, x[m].split(' ')) >= need : x[m].includes(qm))) return [m, LBM(m), SRC[m].m[IT[x.i].id][0], false]; }
     else if (scopes.has('e') && x.e && (words ? ew.every(w => x.e.includes(w)) : x.e.includes(nq))) return ['e', LB.e(), SRC.en.m[IT[x.i].id][0], true];
     return null; };
+  FOLDPA = W.lang === 'pa';
   if (num){ numHits(num, hits); }   // a number: the doha of that number (or a chaupai under it), not the digits in the text
   else if (qj) for (let i = 0; i < IT.length; i++){
     const x = IDX[i]; x.i = i; const vt = latin ? x.t : x.v, vw = latin ? x.tw : x.vw;
@@ -1666,15 +1729,44 @@ function runSearch(){
     const sc = qs.length >= 2 && scopes.has('v') && vw.length ? wordsIn(qs, vw) : 0; if (sc && sc >= need - .25){ hits.push([k + 3 - sc / 100, i, LB.verses(), IT[i].v.join(' । '), false]); continue; }
     const w = qs.length >= 2 && mean(x, true); if (w) hits.push([k + 4, i, w[1], w[2], w[3]]);
   }
+  // first letters (one word of three or more letters, or letters with spaces between, without vowel signs): a line beginning
+  // with them comes first in Gurbani, where they are the usual way to look a line up, and elsewhere after the verses holding
+  // what was typed as it is; a line holding them further in, after the near matches
+  const flq = !num && scopes.has('v') ? flQuery(q, latin) : '';
+  if (flq){ const seen = new Set(hits.map(h => h[1])); for (let i = 0; i < IT.length; i++){ if (seen.has(i)) continue; const ls = latin ? IDX[i].fl : IDX[i].fd; let at = -1, k0 = -1;
+    for (let n = 0; n < ls.length; n++){ const p = ls[n].indexOf(flq); if (p === 0){ at = n; k0 = 0; break; } if (p > 0 && at < 0) at = n; }
+    if (at >= 0) hits.push([k0 === 0 ? (FOLDPA && flq.length >= 4 ? -2 : k + .5) : k + 2, i, T('पहले अक्षर', 'First letters'), IT[i].v.slice(at, at + 2).join(' । '), false]); } }
   const kept = hits.filter(h => inSearch(h[1])); kept.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
-  const res = kept.slice(0, 300).map(h => h.slice(1));
+  const res = kept.slice(0, 300).map(h => h.slice(1)).map(r => r[1] === LB.verses() && (latin || !normD(r[2]).includes(normD(q))) ? [r[0], r[1], bestLines(r[0], q, latin), false] : r);
   if (scopes.has('n')) for (const p of SHOWN()) for (const k in p.notes){ if (!k.startsWith(W.id + ':')) continue; const i = ID[k.slice(W.id.length + 1)]; if (i == null || !inSearch(i)) continue; p.notes[k].forEach(n => { if ((latin ? normL(n.t) : normD(n.t)).includes(nq)) res.push([i, T('टिप्पणी', 'Note'), n.t, latin]); }); }
   const note = loading ? '<p class="small muted sload">' + T('सभी भागोंके अर्थ खोजे जा रहे हैं…', 'Searching the meanings of every part…') + '</p>' : '';
-  const list = res.length ? '<p class="small muted">' + DEV(res.length) + (res.length >= 300 ? '+' : '') + T(' परिणाम', ' results') + '</p>' + res.map(r => '<button class="res" data-i="' + r[0] + '"><div class="where">' + esc(itemLabel(r[0])) + ' · ' + esc(r[1]) + '</div><div class="snip' + (r[3] ? ' lat' : '') + '">' + snip(r[2], q, r[3]) + '</div></button>').join('') : '<div class="empty">' + T('कुछ नहीं मिला। दूसरा रूप लिखकर देखें।', 'Nothing found. Try another spelling.') + '</div>';
+  // the parts and the groups (the Granth's raags and writers) named by what was typed open from the top of the results
+  const jumps = num || SIN && !SALL ? [] : nameHits(q, latin), jl = jumps.map(j => '<button class="jmp" data-jump="' + j.key + '"><div class="where">' + esc(j.kind) + '</div><div class="snip"><b>' + esc(j.name) + '</b> ›</div></button>').join('');
+  const list = jl + (res.length ? '<p class="small muted">' + DEV(res.length) + (res.length >= 300 ? '+' : '') + T(' परिणाम', ' results') + '</p>' + res.map(r => '<button class="res" data-i="' + r[0] + '"><div class="where">' + esc(itemLabel(r[0])) + ' · ' + esc(r[1]) + '</div><div class="snip' + (r[3] ? ' lat' : '') + '">' + snip(r[2], q, r[3]) + '</div></button>').join('') : jl ? '' : '<div class="empty">' + T('कुछ नहीं मिला। दूसरा रूप लिखकर देखें।', 'Nothing found. Try another spelling.') + '</div>');
   // a part's meanings arriving while the same results show: only the note changes, so a result being tapped stays in place
   if (box._list === list && box._first && box.contains(box._first)){ const n = box.querySelector('.sload'); if (loading && !n) box.insertAdjacentHTML('afterbegin', note); else if (!loading && n) n.remove(); return; }
   box.innerHTML = note + list; box._list = list; box._first = box.querySelector('.res, .empty');
-  $$('#sRes .res').forEach(b => b.onclick = () => openReader(readOrg(), +b.dataset.i, true));
+  $$('#sRes .res[data-i]').forEach(b => b.onclick = () => openReader(readOrg(), +b.dataset.i, true));
+  $$('#sRes [data-jump]').forEach(b => b.onclick = () => { const k = b.dataset.jump; if (GROUP[k]) openReader(k, GROUP[k].list[0]); else openReader('k', PARTS[+k.slice(5)].a); });
+}
+// what was typed as first letters, or '' (one word of three or more letters, or single letters with spaces between, with no
+// vowel sign: ਸਨਕਪ, ਸ ਨ ਕ ਪ, snkp)
+function flQuery(q, latin){
+  const t = q.trim(); if (!t) return '';
+  if (latin){ if (!(/^[a-zA-Z]{3,}$/.test(t) && (t.match(/[aeiou]/gi) || []).length <= (t.length >= 4 ? 1 : 0)) && !/^([a-zA-Z] ){2,}[a-zA-Z]$/.test(t)) return '';   /* a word has vowels: snkp, aknp are letters */ return t.replace(/ /g, '').toLowerCase().replace(/[vw]/g, 'b').replace(/f/g, 'p').replace(/z/g, 'j').replace(/q/g, 'k').replace(/o/g, 'u').replace(/e/g, 'i'); }
+  const d = GUR(t.normalize('NFC')).replace(/[ंँ़्]/g, ''); if (!/^[ऀ-ॿ]+$/.test(d.replace(/ /g, '')) || /[ा-ौॢॣ]/.test(d)) return '';
+  const ws = d.split(/\s+/); if (!(ws.length === 1 ? ws[0].length >= 3 : ws.length >= 3 && ws.every(w => w.length === 1))) return '';
+  return [...ws.join('')].map(c => fD(c).map(firstD).join('')).join('');
+}
+// parts and groups (raags, writers) whose names hold every word typed (the last may be begun): Raag Asa, ਆਸਾ, kabir
+function nameHits(q, latin){
+  const qs = latin ? fL(q) : fD(q); if (!qs.length || qs.join('').length < 3) return [];
+  const has = ws => qs.every((x, n) => ws.includes(x) || (n === qs.length - 1 && x.length >= 3 && ws.some(w => w.startsWith(x))));
+  const named = o => [o.en, o.hi, o.pa].filter(Boolean).some(s => has(/[a-zA-Z]/.test(s) ? fL(s) : fD(s)));
+  const out = [];
+  if (PARTS.length > 1) PARTS.forEach(p => { if (named(W.parts.list[p.k])) out.push({key: 'part.' + p.k, kind: TT(W.parts.name), name: KNAME(p.k)}); });
+  VIEWS.forEach(v => (v.groups || []).forEach(g => g.list.forEach(m => { if (named(m)) out.push({key: v.id + '.' + m.id, kind: TT(v.name), name: GNAME(v.id + '.' + m.id)}); })));
+  return out.slice(0, 6);
 }
 
 /* ---------------- bookmarks ---------------- */

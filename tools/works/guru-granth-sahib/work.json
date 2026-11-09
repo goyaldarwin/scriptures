@@ -16,6 +16,9 @@
  },
  "headings": "transliteration",
  "load": "parts",
+ "include": [
+  "views.json"
+ ],
  "words": "partial",
  "cite": {
   "by": [

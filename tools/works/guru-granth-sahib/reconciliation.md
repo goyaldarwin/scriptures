@@ -84,3 +84,20 @@ Sukhmani Sahib in their own works, so the taken verses carry it too). Changed on
 a private-use code for a hora (U+F02B, 16 places → ੋ) and for a bindi (U+F02E, 8 → ਂ), one stray (U+F02C) and a
 zero-width non-joiner dropped, the addak typed as ~ before its letter (~ → ੱ, 7) and one word left in the legacy
 encoding (qMU → ਤੂੰ). Its paragraph mark ☬ is a line break; its footnotes (_¹_ …) are the verse's notes.
+
+## 6. Writers and Angs (`source/make.py` → `views.json`)
+
+- **A verse's writer** is the database's writer of its unit (every verse's units have one writer; the taken Japji and
+  Sukhmani Sahib, the database's Guru Nanak Dev Ji and Guru Arjan Dev Ji). Where a verse's own heading names a Mahala and
+  the database names a Bhagat, the heading is the Granth's word and wins: `326.1` (ਗਉੜੀ ਕਬੀਰ ਜੀ ਕੀ ਨਾਲਿ ਰਲਾਇ ਲਿਖਿਆ ਮਹਲਾ ੫,
+  the database's Bhagat Kabir Ji), `1136.3` (ਭੈਰਉ ਮਹਲਾ ੫, Bhagat Kabir Ji) and `1253.3` (ਸਾਰੰਗ ਮਹਲਾ ੫ ਸੂਰਦਾਸ, Bhagat
+  Surdas Ji) are Guru Arjan Dev Ji's. A vaar's heading names the vaar's writer, not its saloks', so it does not count
+  (the Vaars of Sri Raag, Bihagra, Vadhans, Maru, Sarang and Malar open with another Guru's salok).
+- **The Raagmala** (`1429.13`) is in no writer's list: the Granth names no writer for it; the database's "Poet Alam" is
+  an attribution, not the text's.
+- **Names:** the database's, in Gurmukhi as it types them; in English its plain spelling (Guru Amar Das Ji and Guru Ram
+  Das Ji in two words, Bhagat Bhikhan, Bhatt Jalap, Bhatt Kirat); in Hindi the same names in Devanagari. Four groups:
+  the Gurus (by Mahala; Guru Tegh Bahadur Ji is Mahala 9), the Bhagats, the Bhatts, and Satta and Balwand with Baba
+  Sundar.
+- **An Ang** opens at the verse its first line is in, from the database's Ang of every line (the taken banis' lines
+  matched one by one with the database's, as `check.py` proves them equal).
