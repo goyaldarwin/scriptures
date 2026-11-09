@@ -1,12 +1,1 @@
-{
- "id": "braja-beats",
- "work": "hinduism/granth/vyasa/durga-saptashati",
- "type": "youtube",
- "lang": "sa",
- "title": {
-  "hi": "ब्रज बीट्स",
-  "en": "Braja Beats"
- },
- "window": 6,
- "draft": "timed from the transcript; not yet checked by ear"
-}
+{"id": "braja-beats", "work": "hinduism/granth/vyasa/durga-saptashati", "type": "youtube", "lang": "sa", "title": {"hi": "ब्रज बीट्स", "en": "Braja Beats"}, "window": 6}

@@ -31,7 +31,7 @@ The Sanskrit text is public domain (sanskritdocuments.org: for personal study an
 - **Plan:** the 7-day pāṭha of Gita Press's pāṭha-vidhi (one, two, one, four, two, one and two adhyāyas a day: 1, 2–3, 4, 5–8, 9–10, 11, 12–13); the opening stotras are read on the first day before adhyāya 1, the closing ones on the seventh after adhyāya 13.
 
 ## Audio
-Braja Beats (`audio/braja-beats/`, YouTube `zmGU9QbLUVM`, 3 h 28 min): the whole pāṭha in the text's order, the colophons sung. Starts and ends from Meta's MMS forced aligner (`tools/audio/METHOD.md` steps 2–4; `aligned.md`: 93% within 1 s of the owner's 101 starts set by ear, against 27% for the transcript alone), the owner's own starts winning (`owner.json`); a draft until checked by ear. `fixes.md` has the starts checked by hand.
+Braja Beats (`audio/braja-beats/`, YouTube `zmGU9QbLUVM`, 3 h 28 min): the whole pāṭha in the text's order, the colophons sung. Starts and ends from Meta's MMS forced aligner (`tools/audio/METHOD.md` steps 2–4; `aligned.md`: 93% within 1 s of the owner's 101 starts set by ear, against 27% for the transcript alone), the owner's own starts winning (`owner.json`), live. `fixes.md` has the starts checked by hand.
 
 ## How it is made
 ```bash
