@@ -4,7 +4,8 @@ The copy puts each English entry beside the Gita Press verse of the same number;
 and renumbered from the text itself:
 - an entry may hold later verses, each printed with its number on a new line ("24-25(A). …", "20(A). …"); they
   are split there, and verse numbers that share a part ("24-25(A)", "25(B)-27") form one group;
-- an entry may start with its own number ("12. …"), which then wins over the copy's;
+- an entry may start with its own number ("12. …"), which then wins over the copy's; a later one (the page's
+  "40. 41. …": the copy's 40 holds Tagare's 41) joins the verses up to it into one passage;
 - what follows a bracketed line such as "[ Padaratnāvalī’s Text adds:]" is another recension's verse: left out;
 - where Tagare's numbers step back (10.30: 31 holds 32(A) and 33(B), then comes 32), the rest are counted on."""
 import json,re
@@ -16,7 +17,10 @@ def segments(nums,text):
     out=[]; pos=0; lo,hi=min(nums),max(nums)
     m0=re.match(r'(\d+)(?:\s*\([A-Za-z]\))?(?:\s*[-–]\s*(\d+))?\.\s',text)
     if m0 and abs(int(m0.group(1))-lo)<=3:
-        lo=int(m0.group(1)); hi=int(m0.group(2)) if m0.group(2) else lo; pos=m0.end()
+        a=int(m0.group(1)); b=int(m0.group(2)) if m0.group(2) else a; pos=m0.end()
+        # a later number at the start of the copy's entry ("40. 41. …" on the page): that verse and the ones up
+        # to it are one passage; an earlier number wins over the copy's
+        lo,hi=(lo,b) if a>lo else (a,b)
     for m in MK.finditer(text):
         out.append([lo,hi,text[pos:m.start()]]); pos=m.end()
         lo=int(m.group(1)); hi=int(m.group(3)) if m.group(3) else lo
