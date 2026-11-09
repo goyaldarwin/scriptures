@@ -100,7 +100,7 @@ async def main():
             check(f'{tag}: home shows the title', title.strip() != '', title)
             single = await ev("PARTS.length === 1")
             seg_hidden = await ev("document.querySelector('#orgSeg').hidden")
-            check(f'{tag}: plan switch only when there are plans', seg_hidden == (await ev("PLANS.length === 0")))
+            check(f'{tag}: plan switch only when there are plans or other views', seg_hidden == (await ev("PLANS.length === 0 && VIEWS.length === 0")))
             nrows = await ev("document.querySelectorAll('#orgList [data-open]').length")
             want = await ev("PARTS.length === 1 ? null : PARTS.length")
             check(f'{tag}: home lists {"its sections" if single else "its parts"}', nrows > 0 and (want is None or nrows == want), nrows)
@@ -1101,6 +1101,26 @@ async def main():
                 'जय राम रमा रमनं समनं': 'uttar.14.cha1', 'होई है वही जो राम रचि राखा': 'bal.52.cau4', 'Jahan lagi nath': 'ayodhya.65.cau2', 'tan dhan dham': 'ayodhya.65.cau2', 'प्रभ कै सिमरनि गरभि न बसै': 'a01.p2'}
         bad = {q: fz.get(q) for q in want if fz.get(q) != want[q]}
         check('search forgives spelling: the verse meant comes first', not bad and fz['मंगल भवन अमंगल हारी'] and fz['mangal bhavan amangal hari'] == fz['मंगल भवन अमंगल हारी'] and fz['none'] is None, bad or fz)
+        # Sri Guru Granth Sahib: first letters, Gurbani's silent word endings, an Ang by its number, names that open what they name
+        gg = await ev("""(async () => { await openWork('guru-granth-sahib', true); show('home');
+            const run = async q => { openSearch('text'); document.querySelector('#q').value = q; runSearch(); await new Promise(r => setTimeout(r, 50)); const r = document.querySelector('#sRes .res'); return r ? IT[+r.dataset.i].id : null; };
+            const jump = async q => { await run(q); return [...document.querySelectorAll('#sRes [data-jump]')].map(b => b.dataset.jump); };
+            const s = await run('ਹਰ ਹਰ ਨਾਮ ਧਿਆਇ');
+            return {fl: await run('ਸਨਕਪ'), flr: await run('snkp'), fls: await run('ਸ ਨ ਕ ਪ'), sihari: s && IT[ID[s]].v.join(' ').includes('ਹਰਿ ਹਰਿ ਨਾਮੁ ਧਿਆ'), ang: await run('ਅੰਗ ੧੪'), ang608: await run('608'),
+              raag: await jump('ਆਸਾ'), kabir: await jump('kabir')}; })()""")
+        check('Gurbani search: first letters (ਸਨਕਪ, snkp), a final sihari or aunkar left off, an Ang by its number, a raag or writer by name', gg['fl'] == gg['flr'] == gg['fls'] == 'mool' and gg['sihari'] and gg['ang'] == '14.1' and gg['ang608'] == '607.3' and 'part.7' in gg['raag'] and 'writer.bhagat-kabir' in gg['kabir'], gg)
+        vw = await ev("""(async () => { await openWork('guru-granth-sahib', true); show('home'); WS().org = 'writer'; renderHome();
+            const seg = [...document.querySelectorAll('#orgSeg button')].map(b => b.dataset.org), rows = document.querySelectorAll('#orgList [data-group]').length;
+            document.querySelector('[data-group="writer.guru-tegh-bahadur"]').click(); await new Promise(r => setTimeout(r, 400));
+            const G = RG(), only = () => [...document.querySelectorAll('#rBody .verse')].every(v => G.set.has(+v.dataset.i)), o1 = only();
+            for (let n = 0; n < 6; n++){ window.scrollTo(0, document.body.scrollHeight); ensure(); await new Promise(r => setTimeout(r, 100)); }
+            const o2 = only(), shown = document.querySelectorAll('#rBody .verse').length;
+            openSearch('text', false, true); const chip = document.querySelector('#sIn .chip').textContent;
+            show('home'); WS().org = 'ang'; S.settings.atOpen = {}; renderHome(); document.querySelector('[data-hund="601"]').click();
+            [...document.querySelectorAll('#orgList [data-at]')][7].click(); await new Promise(r => setTimeout(r, 400));
+            const ang = [R.org, !!document.getElementById('v' + ID['607.3'])]; WS().org = 'k'; S.settings.atOpen = {}; save();
+            return {seg, rows, n: G.list.length, o1, o2, shown, chip, own: chip === GNAME('writer.guru-tegh-bahadur'), ang}; })()""")
+        check('Sri Guru Granth Sahib: Part · Writer · Ang; a writer opens a reading of only their verses, search from it narrowed to them; Ang 608 opens its part at the verse it begins in', vw['seg'] == ['k', 'writer', 'ang'] and vw['rows'] == 34 and vw['o1'] and vw['o2'] and vw['shown'] > 20 and vw['own'] and vw['ang'] == ['k', True], vw)
         # “Review audio timing” in the verse's ⋮ menu: only that verse joins the to-check list (seen in timing mode); one blue dot on ▶
         # and in the menu shows it is marked; it leaves the list once its start is set
         fg = await ev("""(async () => { const k0 = JSON.stringify(S.timing.flags); await openWork('manas', true); await loadSources(); show('home');
