@@ -34,7 +34,7 @@ WORKS = os.path.join(REPO, 'tools', 'works')
 sys.path.insert(0, WORKS); import export as EXPORT
 
 # the scripts that make a work's text.txt (and its other source files) from data in its source/ folder, in the order they run
-GENERATORS = [('manas', ['make_appdata.py', 'make.py']), ('ramraksha', ['make.py']), ('sukhmani-sahib', ['make.py']),
+GENERATORS = [('manas', ['make_appdata.py', 'make.py']), ('ramayan-aarti', ['make.py']), ('ramraksha', ['make.py']), ('sukhmani-sahib', ['make.py']),
               ('katha-upanishad', ['settle.py']), ('shri-rudram', ['settle.py']),
               ('guru-granth-sahib', ['make.py'])]
 BY_HAND = ['index.json', 'removed.json', 'apps.json', 'glossary']   # library/ files no generator makes
