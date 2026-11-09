@@ -157,7 +157,7 @@ body.timing .verse.tocheck{box-shadow:inset 3px 0 0 var(--saffron)}.tcheck{margi
 /* …but where a verse carries grey commentary (footnotes), the English meaning stays in full ink so it is not mistaken for the commentary */
 .verse:has(.fn) > .layer.h ~ .layer.e{color:inherit}
 .layer .lbl{display:block;font-size:12px;color:var(--muted);font-family:var(--dev);margin-bottom:2px}
-.layer .fn{font-size:13.5px;color:var(--muted);margin-top:6px}
+.layer .fn{font-size:max(11px, calc(var(--mean-size) * .824));color:var(--muted);margin-top:6px}   /* footnotes grow and shrink with A+/A−, a step below their meaning (13.5px at the default size, never under 11px) */
 .verse > .layer.cm{text-align:left;font-size:calc(var(--mean-size) - 1.5px);border-top:1px solid var(--line, rgba(0,0,0,.12));padding-top:8px;margin-top:10px}   /* a commentary: after the meanings, under its name */
 .verse > .layer.cm::before{content:none}
 .layer.cm.lat{font-family:var(--lat)}
