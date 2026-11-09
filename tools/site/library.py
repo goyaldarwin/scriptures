@@ -81,6 +81,10 @@ def check_work(lib, leaf, LANGS):
     w = json.load(open(wp)); name = path
     _need(w.get('id') == leaf['work'], f"{name}: work.json id {w.get('id')!r} ≠ shelf work {leaf['work']!r}")
     items = w['items']; ids = [x['id'] for x in items]; ID = set(ids)
+    # an āratī's verse has no comma (its printed sources' commas are not kept: a pause within a line is a space, the owner)
+    if '/aarti/' in '/' + path + '/':
+        bad = [x['id'] for x in items if any(',' in l for l in x['v'])]
+        _need(not bad, f"{name}: an āratī's verse has no comma (a pause is a space): {bad[:5]}")
     _need('title' not in leaf or leaf['title'] == w.get('title'), f"{name}: the shelf title {leaf.get('title')} ≠ work.json title {w.get('title')}")
     # English titles and labels are in plain, common Indian English (Shri Ram, Sundarkand, Hanuman Chalisa); the marks of IAST
     # belong in the transliteration and the meanings (docs/PLAYBOOK.md)
@@ -151,6 +155,25 @@ def check_work(lib, leaf, LANGS):
         for k in ('before', 'after'):
             _need(all(x in pages for x in p.get(k, [])), f"{name}: plan {p['id']} {k} {p.get(k)} names a page the work lacks (has {sorted(pages)})")
             _need(all(x == 'visarjan' or _bi(((w.get('vidhi') or {}).get('titles') or {}).get(x)) for x in p.get(k, [])), f"{name}: plan {p['id']} {k}: every page needs its title in vidhi.titles {{hi, en}}")
+    # views: other classifications of the work beside its parts (docs/LIBRARY.md §2): named groups of verses (the Granth's
+    # writers), each group's verses in reading order and no verse in two groups; or one verse per numbered page (its Angs)
+    IX = {x: n for n, x in enumerate(ids)}; vids = set()
+    for v in w.get('views', []):
+        _need(re.fullmatch(r'[a-z]+', v.get('id', '')) and v['id'] != 'k' and v['id'] not in {p['id'] for p in w.get('plans', [])} and v['id'] not in vids and _bi(v.get('name')), f"{name}: view {v.get('id')!r} needs a new lowercase id and name {{hi, en}}")
+        vids.add(v['id'])
+        _need(('groups' in v) != ('at' in v), f"{name}: view {v['id']} has either groups or at")
+        if 'groups' in v:
+            seen = set()
+            for g in v['groups']:
+                _need(_bi(g) and g.get('list'), f"{name}: view {v['id']}: a group needs hi, en and a list")
+                for m in g['list']:
+                    _need(re.fullmatch(r'[a-z0-9-]+', m.get('id', '')) and _bi(m) and m.get('items'), f"{name}: view {v['id']}: {m.get('id')!r} needs an id, hi, en and items")
+                    pos = [IX.get(x, -1) for x in m['items']]
+                    _need(min(pos) >= 0 and pos == sorted(set(pos)), f"{name}: view {v['id']}: {m['id']}'s verses are missing or out of order")
+                    _need(not seen & set(m['items']), f"{name}: view {v['id']}: {sorted(seen & set(m['items']))[:3]} in two groups"); seen |= set(m['items'])
+        else:
+            pos = [IX.get(x, -1) for x in v['at']]
+            _need(min(pos) >= 0 and pos == sorted(pos), f"{name}: view {v['id']}: its pages' verses are missing or out of order")
     # sources
     # meaning languages: those with a "meaning" block in glossary/languages.json (hi, en, pa);
     # hi, en and au are always listed, another only when the work has one

@@ -176,6 +176,18 @@
         "desc": {
          "hi": "महाभारतके भीष्मपर्वमें श्रीकृष्ण और अर्जुनका संवाद, अठारह अध्यायोंमें",
          "en": "The dialogue of Shri Krishna and Arjun in the Mahabharat's Bhishma Parv, in eighteen adhyays"
+        },
+        "intro": {
+         "hi": [
+          "श्रीमद्भगवद्गीता — 'भगवान्‌का गीत' — कुरुक्षेत्रकी रणभूमिमें श्रीकृष्ण और अर्जुनका संवाद है, जिसे वेदव्यासजीसे दिव्य दृष्टि पाकर संजय अंधे राजा धृतराष्ट्रको सुनाते हैं। यह महाभारतके छठे पर्व, भीष्मपर्वमें है (उसके अध्याय २३ से ४०), और परम्परासे महाभारतके रचयिता महर्षि वेदव्यासकी मानी जाती है।",
+          "इसके लगभग सात सौ श्लोक अठारह अध्यायोंमें हैं (इस पाठमें ७०१, क्योंकि यह तेरहवें अध्यायको अर्जुनके प्रश्न 'प्रकृतिं पुरुषं चैव' से आरम्भ करता है)। विपक्षमें अपने ही स्वजनोंको देखकर अर्जुन धनुष रख देते हैं; उनके सारथि श्रीकृष्ण उन्हें धर्म, फलकी आसक्तिके बिना कर्म (कर्मयोग), आत्मज्ञान, ध्यान और भक्तिका उपदेश देते हैं, और ग्यारहवें अध्यायमें अपना विश्वरूप दिखाते हैं। हर अध्यायके अन्तिम वचन उसे एक योग कहते हैं — अर्जुनविषादयोगसे मोक्षसंन्यासयोगतक।",
+          "उपनिषदों और ब्रह्मसूत्रके साथ यह प्रस्थानत्रयी है — वेदान्तके तीन आधार-ग्रन्थ — और आदि शंकराचार्य तथा अन्य आचार्योंने इसपर भाष्य लिखे। इसके पाठसे पहले प्रायः गीताध्यानके नौ श्लोक पढ़े जाते हैं, जो यहाँ सबसे पहले दिये हैं।"
+         ],
+         "en": [
+          "The Shrimad Bhagavad Gita, \"the song of the Lord\", is the dialogue of Shri Krishna and Arjun on the battlefield of Kurukshetra, as Sanjaya, given divine sight by Ved Vyas, tells it to the blind king Dhritarashtra. It stands in the Bhishma Parv, the sixth book of the Mahabharat (its chapters 23 to 40), and is traditionally ascribed to Maharshi Ved Vyas, who composed the Mahabharat.",
+          "Its seven hundred or so verses fall into eighteen adhyays (701 in this text, which opens the thirteenth with Arjun's question \"prakritim purusham chaiva\"). Seeing his own kin in the opposing army, Arjun lays down his bow; Krishna, his charioteer, answers him with a teaching on dharma, on action without attachment to its fruit (karma yoga), on knowledge of the Self, on meditation and on devotion, and in the eleventh adhyay shows him his universal form. The closing words of each adhyay name it a yoga, from Arjun Vishad Yog to Moksha Sanyas Yog.",
+          "With the Upanishads and the Brahma Sutras it forms the Prasthanatrayi, the three foundations of Vedanta, and Adi Shankaracharya and the other acharyas wrote commentaries on it. A reading often begins with the nine verses of the Gita Dhyanam, given first here."
+         ]
         }
        },
        {
@@ -198,7 +210,19 @@
          "hi": "देवीमाहात्म्य: १३ अध्याय, ७०० मन्त्र · कवच, अर्गला, कीलक",
          "en": "Devi Mahatmya: 13 adhyays, 700 mantras · Kavach, Argala, Kilak"
         },
-        "salute": "॥ श्रीदुर्गायै नमः ॥"
+        "salute": "॥ श्रीदुर्गायै नमः ॥",
+        "intro": {
+         "hi": [
+          "श्रीदुर्गासप्तशती, जिसे देवीमाहात्म्य और चण्डीपाठ भी कहते हैं, मार्कण्डेयपुराणके अध्याय ८१ से ९३ है। 'सप्तशती' का अर्थ है 'सात सौ': इसके तेरह अध्यायोंमें सात सौ मन्त्र हैं, जिनमें वक्ताके 'ऋषिरुवाच' जैसे एक पंक्तिके वचन भी मन्त्र गिने जाते हैं। शाक्त परम्पराके सबसे प्रमुख ग्रन्थोंमें यह एक है।",
+          "कथा मार्कण्डेय ऋषि सुनाते हैं। राज्य खो चुके राजा सुरथ और अपने ही परिवारसे ठुकराये गये समाधि वैश्य मेधा ऋषिके आश्रममें पहुँचते हैं, और ऋषि उन्हें देवीके तीन चरित्र सुनाते हैं: पहले अध्यायमें मधु-कैटभका वध (महाकाली), दूसरेसे चौथेमें महिषासुरका वध (महालक्ष्मी), और पाँचवेंसे तेरहवेंमें शुम्भ-निशुम्भ और उनकी सेनाका वध (महासरस्वती)। बीच-बीचमें देवताओंकी स्तुतियाँ हैं — शक्रादिस्तुति, 'या देवी सर्वभूतेषु' और नारायणीस्तुति।",
+          "पाठ अपने अंगोंके साथ होता है: पहले चण्डिकाध्यान, अर्गला, कीलक और देवीकवच, अन्तमें अपराधक्षमापण और देवीसूक्त — यहाँ सब उसी क्रममें हैं, जैसे इसकी रिकॉर्डिंगमें। नवरात्रमें इसका विशेष पाठ होता है, और इसका सात दिनोंका पाठ भी यहाँ दिया है।"
+         ],
+         "en": [
+          "The Shri Durga Saptashati, also called the Devi Mahatmya and the Chandi Path, is chapters 81 to 93 of the Markandeya Puran. Saptashati means \"seven hundred\": its thirteen adhyays hold seven hundred mantras, a speaker's one-line words such as \"the sage said\" counted among them. It is among the most important texts of the Shakta tradition.",
+          "The sage Markandeya tells the story. King Surath, who has lost his kingdom, and the merchant Samadhi, cast out by his own family, come to the hermitage of the sage Medhas, who tells them of the Devi's three deeds: the slaying of Madhu and Kaitabh in the first adhyay (Mahakali), of Mahishasur in the second to fourth (Mahalakshmi), and of Shumbh, Nishumbh and their armies in the fifth to thirteenth (Mahasaraswati). Between the battles come the gods' hymns: the Shakradi Stuti, \"Ya Devi Sarvabhuteshu\" and the Narayani Stuti.",
+          "It is recited with its limbs: first the Chandika Dhyan, the Argala, the Kilak and the Devi Kavach, and at the end the Aparadh Kshamapan Stotram and the Devi Suktam, all given here in that order, as in its recording. It is read above all at Navaratri; a seven-day reading of it is given here too."
+         ]
+        }
        }
       ]
      }
@@ -246,7 +270,19 @@
          "hi": "माहात्म्य और १२ स्कन्ध · ३३५ अध्याय",
          "en": "Mahatmya and 12 Skandhs · 335 Adhyays"
         },
-        "salute": "॥ ॐ नमो भगवते वासुदेवाय ॥"
+        "salute": "॥ ॐ नमो भगवते वासुदेवाय ॥",
+        "intro": {
+         "hi": [
+          "श्रीमद्भागवतमहापुराण अठारह महापुराणोंमेंसे एक और वैष्णव परम्पराका केन्द्रीय ग्रन्थ है, जो महर्षि वेदव्यासका रचा माना जाता है। इसके बारह स्कन्धोंमें ३३५ अध्याय हैं; परम्परा इसे अठारह हजार श्लोकोंका कहती है। सबसे बड़ा दसवाँ स्कन्ध है, लगभग चार हजार श्लोकोंका, जिसमें श्रीकृष्णका जीवन है।",
+          "नैमिषारण्यमें शौनकादि ऋषियोंके पूछनेपर सूतजी इसे सुनाते हैं; और कथाके भीतर इसके मुख्य वक्ता व्यासपुत्र श्रीशुकदेवजी हैं, जो शापसे सात दिनमें मृत्युकी प्रतीक्षा कर रहे राजा परीक्षित्‌को गंगाके तटपर यह सुनाते हैं। इसमें भगवान्‌के अवतार, ध्रुव, प्रह्लाद और गजेन्द्र जैसे भक्तोंकी कथाएँ, सृष्टि और राजवंशोंका वर्णन, दसवें स्कन्धमें श्रीकृष्णकी लीलाएँ और ग्यारहवेंमें उद्धवको उनका अन्तिम उपदेश है। इसका मूल विषय भगवान्‌की भक्ति है।",
+          "इससे पहले गीताप्रेस श्रीमद्भागवतमाहात्म्य छापता है, जो पद्मपुराणके उत्तरखण्डका अंश है: नारदजीकी भक्तिसे भेंट, गोकर्ण और धुन्धुकारीकी कथा, और सप्ताहयज्ञकी विधि। परीक्षित्‌के सात दिनोंकी तरह इसका सात दिनोंमें पारायण — भागवत सप्ताह — होता है; वह पारायण भी यहाँ दिया है।"
+         ],
+         "en": [
+          "The Shrimad Bhagavat Mahapuran is one of the eighteen great Puranas and the central text of the Vaishnava tradition, traditionally ascribed to Maharshi Ved Vyas. Its twelve skandhs hold 335 adhyays, eighteen thousand verses by its own count. The tenth skandh, of about four thousand verses, is the longest and tells the life of Shri Krishna.",
+          "Suta tells it to the sages led by Shaunak at Naimisharanya; within it the chief speaker is Shukdev, Vyas's son, who tells it on the bank of the Ganga to King Parikshit, cursed to die in seven days. It tells of the Lord's avatars, of devotees such as Dhruv, Prahlad and Gajendra, of creation and the royal lines, of Krishna's deeds in the tenth skandh and his last teaching to Uddhav in the eleventh. Its theme throughout is devotion to the Lord.",
+          "Gita Press prints before it the Shrimad Bhagavat Mahatmya, from the Uttar Khand of the Padma Puran: Narad's meeting with Bhakti, the story of Gokarna and Dhundhukari, and the method of the Saptah yajna. As Parikshit heard it in seven days, it is read in seven days, the Bhagavat Saptah; that reading is given here."
+         ]
+        }
        },
        {
         "id": "shiva",
@@ -268,7 +304,19 @@
          "hi": "माहात्म्य और ७ संहिताएँ · ४५७ अध्याय",
          "en": "Mahatmya and 7 Samhitas · 457 Adhyays"
         },
-        "salute": "॥ ॐ नमः शिवाय ॥"
+        "salute": "॥ ॐ नमः शिवाय ॥",
+        "intro": {
+         "hi": [
+          "श्रीशिवमहापुराण अठारह महापुराणोंमेंसे एक और शैव परम्पराका प्रमुख ग्रन्थ है, जो महर्षि वेदव्यासका माना जाता है। यह स्वयं बताता है कि पहले यह बारह संहिताओं और एक लाख श्लोकोंका था, और व्यासजीने इसे संक्षिप्त करके चौबीस हजार श्लोकोंमें सात संहिताओंमें रखा। गंगा-यमुनाके संगम प्रयागमें ज्ञानयज्ञ करते मुनियोंको यह कथा व्यासजीके शिष्य सूतजी सुनाते हैं।",
+          "सात संहिताएँ हैं: विद्येश्वरसंहिता (शिवलिंगकी महिमा, पंचाक्षर मन्त्र और शिवजीका ॐकारका उपदेश); रुद्रसंहिता, अपने पाँच खण्डों — सृष्टि, सती, पार्वती, कुमार और युद्ध — में सतीका देहत्याग, पार्वतीका तप और शिव-विवाह, कार्तिकेय और गणेशका जन्म, और त्रिपुर-वध; शतरुद्रसंहिता (शिवके अवतार); कोटिरुद्रसंहिता (बारह ज्योतिर्लिंग और शिवरात्रि); उमासंहिता; कैलाससंहिता; और वायवीयसंहिता, अपने पूर्व और उत्तर खण्डोंमें शिव-तत्त्व और उपासनाका उपदेश।",
+          "इससे पहले गीताप्रेस शिवपुराणमाहात्म्य छापता है, जो स्कन्दपुराणका अंश है: देवराज, चंचुला और बिन्दुगकी कथाएँ, जिन्हें शिवपुराण सुननेसे सद्गति मिली, और कथा सुननेकी विधि तथा श्रोताके नियम।"
+         ],
+         "en": [
+          "The Shri Shiv Mahapuran is one of the eighteen great Puranas and a foremost text of the Shaiva tradition, traditionally ascribed to Maharshi Ved Vyas. It says of itself that it once had twelve samhitas and a hundred thousand verses, which Vyas abridged to twenty-four thousand in seven samhitas. Suta, Vyas's disciple, tells it to the sages holding a great sacrifice at Prayag, where the Ganga meets the Yamuna.",
+          "The seven samhitas are: the Vidyeshwar Samhita (the glory of the linga, the five-syllable mantra, and Shiv's teaching of Om); the Rudra Samhita, whose five khands, Srishti, Sati, Parvati, Kumar and Yuddh, tell of Sati's death, Parvati's austerity and her marriage to Shiv, the births of Kartikeya and Ganesh, and the destruction of Tripura; the Shatarudra Samhita (Shiv's avatars); the Kotirudra Samhita (the twelve Jyotirlingas and Shivaratri); the Uma Samhita; the Kailas Samhita; and the Vayaviya Samhita, whose Purva and Uttar khands teach the nature and worship of Shiv.",
+          "Gita Press prints before it the Shiv Puran Mahatmya, from the Skanda Puran: the stories of Devaraj, Chanchula and Binduga, who reached a blessed state by hearing the Shiv Puran, and the way to hear it and the listener's rules."
+         ]
+        }
        }
       ]
      }
@@ -416,6 +464,41 @@
           "Tradition tells that in Kashi Shankara saw an old man labouring over the rules of Sanskrit grammar, and the first verse burst from him: \"Worship Govind, worship Govind, O foolish mind; when death comes, the rules of grammar will not save you.\" Twelve verses followed (the Dwadasha-manjarika). Tradition adds that his fourteen disciples then gave a verse each (the Chaturdasha-manjarika), though which disciple gave which verse rests on hearsay, and that Shankara closed the hymn with verses of his own, 31 in all."
          ]
         }
+       }
+      ]
+     },
+     {
+      "id": "surya",
+      "title": {
+       "hi": "भगवान सूर्य",
+       "en": "Bhagwan Surya"
+      },
+      "desc": {
+       "hi": "आदित्यहृदयम्",
+       "en": "Aditya Hridayam"
+      },
+      "children": [
+       {
+        "id": "aditya-hridayam",
+        "work": "aditya-hridayam",
+        "path": "hinduism/stotra/surya/aditya-hridayam",
+        "title": {
+         "hi": "आदित्यहृदयम्",
+         "en": "Aditya Hridayam"
+        },
+        "by": {
+         "hi": "महर्षि वाल्मीकि",
+         "en": "Maharshi Valmiki"
+        },
+        "edition": {
+         "hi": "sanskritdocuments.org",
+         "en": "sanskritdocuments.org"
+        },
+        "desc": {
+         "hi": "विनियोग · न्यास · ३१ श्लोक",
+         "en": "Viniyoga · Nyas · 31 shlokas"
+        },
+        "salute": "॥ ॐ आदित्याय नमः ॥"
        }
       ]
      }

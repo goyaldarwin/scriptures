@@ -1,0 +1,15 @@
+{
+ "id": "braja-beats",
+ "work": "hinduism/stotra/surya/aditya-hridayam",
+ "type": "youtube",
+ "lang": "sa",
+ "order": 2,
+ "title": {
+  "hi": "ब्रज बीट्स",
+  "en": "Braja Beats"
+ },
+ "window": 6,
+ "fill": 0,
+ "review": "starts from the transcript and MMS; not yet set by ear",
+ "align": "anchors"
+}

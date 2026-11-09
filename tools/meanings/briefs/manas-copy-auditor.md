@@ -19,6 +19,6 @@ A sentence of ours that follows theirs: the same sentence shape and order of cla
 - Read the new piece against the verse once more before you write it down.
 
 ## Output
-`batch-NN.audit.jsonl` in the batch folder, one line per rewritten piece: `{"id", "lang": "hi"|"en", "kind": "copy", "problem", "line", "fix"}` (`fix` is the complete new piece for that line). An empty file if nothing needs rewriting. Then put all final pieces (review and audit fixes applied) in a scratch copy and run `tools/meanings/overlap.py` against `hi-gitapress.json` and `en-gitapress.json`: both must show 0 runs of 10+. Do not edit the repository; name any helper file with your kāṇḍa and batch.
+`batch-NN.audit.jsonl` in the batch folder, one line per rewritten piece: `{"id", "lang": "hi"|"en", "kind": "copy", "problem", "line", "fix"}` (`fix` is the complete new piece for that line); a rewritten heading is `{"id", "lang": "topic", "kind": "copy", "problem", "fix": {"hi": "…", "en": "…"}}`. An empty file if nothing needs rewriting. Then put all final pieces (review and audit fixes applied) in a scratch copy and run `tools/meanings/overlap.py` against `hi-gitapress.json` and `en-gitapress.json`: both must show 0 runs of 10+. Do not edit the repository; name any helper file with your kāṇḍa and batch.
 
 Reply in under 60 words: verses read, pieces rewritten (hi/en). The rewrites then go to the accuracy check (`manas-accuracy-checker.md`).

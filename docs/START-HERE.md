@@ -52,11 +52,12 @@ library/ ─ tools/site/build.py (checks everything first) ─► index.html, ap
 
 | Work (shelf path under `hinduism/` or `sikhism/`) | Text | Meanings shown first | Recording |
 |---|---|---|---|
-| Śrī Rāmacaritamānasa (`granth/tulsidas/ramcharitmanas`) | Gita Press, complete; 30-day and 9-day plans with vidhi, āratī and visarjana | Gita Press (ours, the second source, written for every kāṇḍa but the Bāla-kāṇḍa) | Pt. Kamlesh Upadhyay, live; starts from Meta's MMS forced aligner (`aligned.json`), 637 set by the owner by ear; the 5 the aligner is unsure of are on the to-check list (`check.json`) |
+| Śrī Rāmacaritamānasa (`granth/tulsidas/ramcharitmanas`) | Gita Press, complete; 30-day and 9-day plans with vidhi, āratī and visarjana | Gita Press, and ours (the second source) for every verse | Pt. Kamlesh Upadhyay, live; starts from Meta's MMS forced aligner (`aligned.json`), 637 set by the owner by ear; the 5 the aligner is unsure of are on the to-check list (`check.json`) |
 | Sundarakāṇḍa (`granth/tulsidas/sundarkand`) | from the Mānas, plus opening prayers, Hanumān Chālīsā, āratī | ours | Pt. Ashwin Kumar Pathak, live: starts from MMS (91% within 1 s of the owner's 46, `aligned.md`); 207 listed to check |
 | Śrī Rāma Rakṣā Stotram (`stotra/rama/ramraksha`) | a video's on-screen text | ours | Vande Guru Paramparaam, live |
 | Bilvāṣṭakam (`stotra/shiva/bilvashtakam`) | the owner's pasted text, checked against sanskritdocuments.org | ours | Sounds of Isha, live (it does not sing śloka 2 or the phalaśruti) |
 | Bhaja Govindam (`stotra/krishna/bhaja-govindam`) | sanskritdocuments.org, checked against the recording | ours | Chinmaya Mission Boston, live (verse 13अ is not sung) |
+| Āditya Hṛdayam (`stotra/surya/aditya-hridayam`) | the owner's sanskritdocuments.org printout (the recitation text: viniyoga, nyāsas, 31 ślokas), checked word for word against the Gita Press sarga (Yuddha 105), IIT Kanpur and the recordings; the sarga's closing words that Braja Beats sings; every choice in `reconciliation.md` | ours | Sri Sathya Sai Official (default) and Braja Beats, live for review: starts from MMS (lean 0.6 s, not yet scored on the owner's ear), all on the to-check list until set by ear |
 | श्रीरामचन्द्र कृपालु (`aarti/rama/shri-ramchandra-kripalu`) | the jansatta.com printout, its corrections confirmed by sanskritdocuments.org and shlokam.org | ours | Satya Adhikari, live |
 | आरती कीजे श्री रामलला की (`aarti/rama/ramlala-aarti`) | the words shown with Sohini Mishra's song (the owner's screenshot) | ours | Sohini Mishra, live |
 | Hanumān āratī (`aarti/hanuman/hanuman-aarti`) | from the Sundarakāṇḍa | ours | the Sundarakāṇḍa's, live |
@@ -82,7 +83,7 @@ library/ ─ tools/site/build.py (checks everything first) ─► index.html, ap
 
 ## To build next
 - The timing method's fixes (`tools/audio/METHOD.md`, step 5: re-align between trusted neighbours, snap to the onset, spread and list); steps 2–4 run in the public `align` workflow.
-- MMS on the recordings still timed from the transcript alone (`docs/WORKS.md`, last section): those whose MMS run waits for the owner's starts by ear to be scored (`mms/score.md` beside each, the Sukhmani Sahib's too), and the Vālmīki Rāmāyaṇa's 467 recordings (two runs of the `align` workflow, at most 256 ids each).
+- MMS on the recordings still timed from the transcript alone (`docs/WORKS.md`, last section): those whose MMS run waits for the owner's starts by ear to be scored (`mms/score.md` beside each: the Sukhmani Sahib's and the Vālmīki Rāmāyaṇa's 467 recordings).
 
 ## Open with the owner
 - Private copies that would complete `scriptures-data` (nothing depends on them; only the owner has them, from earlier chats): the Gaṅgā āratī screenshot, the jansatta.com printout of Śrī Rāmacandra Kṛpālu, the Māṇḍūkya's sanskritdocuments.org and freepressjournal.in printouts and its recording.

@@ -30,3 +30,5 @@ Kept as the witnesses write them: अर्द्धांगी, पंचा�
 
 ## Meanings
 Our own, one per verse. The āratī praises Śiva as Oṅkāra, the one in whom Brahmā, Viṣṇu and Śiva are one; stanzas 1–5 name the three in turn (face, seat, arms, garland, garment, companions, what they hold, and their work), and the meanings say which belongs to whom. The word धारा ("bore") has that sense in this work only (`glossary/hi.json`).
+
+- **Commas.** The commas of the printed sources are not kept in the verse: a pause within a line is a space, as in every other work (the owner). The transliteration ends each half-line with a comma, as everywhere.

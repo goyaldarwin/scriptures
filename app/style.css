@@ -257,6 +257,7 @@ input[type=checkbox],input[type=radio],input[type=range]{accent-color:var(--indi
 .res{display:block;width:100%;text-align:left;padding:12px 0;border-bottom:1px solid var(--rule)}
 .res .where{font-size:12.5px;color:var(--saffron);font-weight:600}
 .res .snip{font-size:15.5px;line-height:1.55}
+.jmp{display:block;width:100%;text-align:left;padding:12px 0;border-bottom:1px solid var(--rule)}.jmp .where{font-size:12.5px;color:var(--saffron);font-weight:600}.jmp .snip{font-size:16px;color:var(--indigo)}   /* a part or a writer named by the search: opens it */
 .res mark{background:var(--saffron-soft);color:inherit;border-radius:3px;padding:0 1px}
 .scope{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
 .empty{color:var(--muted);text-align:center;padding:40px 10px;font-size:15px}
@@ -318,6 +319,7 @@ input[type=checkbox],input[type=radio],input[type=range]{accent-color:var(--indi
 .pick button{border:1px solid var(--rule);border-radius:16px;padding:4px 10px;font-size:14px}
 .pick button.on{background:var(--indigo);color:var(--bg);border-color:var(--indigo)}
 .pick.days button{min-width:40px}
+.list .angs{border:0;padding:2px 0 14px}.angs .pick{gap:7px}.angs .pick button{min-width:46px;padding:7px 4px}   /* an Ang's number, large enough to tap */
 .pick button.done:not(.on){background:color-mix(in srgb,var(--ok) 18%,transparent)}
 .secs button{display:flex;flex-direction:column;align-items:flex-start;width:100%;text-align:left;padding:10px 4px;border-bottom:1px solid var(--rule)}
 .secs .sr{font-size:13px;color:var(--saffron);font-weight:600}
