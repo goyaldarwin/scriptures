@@ -347,11 +347,12 @@ async def main():
             check(f'{tag}: back to the work home', await ev("document.querySelector('#home').classList.contains('on')"))
             # one number for each verse (work.json → cite): what the player shows for a verse finds that verse in the work's search,
             # the number the reader prints at its end is the citation's own, and the reader's Go to / Back to pills say what the player says
-            cit = await ev("""(async () => { const bad = [], miss = [], pr = []; setScope('text');
-                for (let i = 0; i < IT.length; i++){ const c = CIT(IT[i]); if (!vNum(c)) continue;
+            # (every verse, or a sample of about 4,000 in a work of more than 30,000: each look-up reads the whole work; the build checks every printed number)
+            cit = await ev("""(async () => { const bad = [], miss = [], pr = [], step = IT.length > 30000 ? Math.floor(IT.length / 4000) : 1; setScope('text');
+                for (let i = 0; i < IT.length; i += step){ const c = CIT(IT[i]); if (!vNum(c)) continue;
                   const wd = W.cite && W.cite.word && W.cite.word[IT[i].y], q = (wd ? TT(wd) : TYPE[IT[i].y]) + ' ' + c, Q = numQuery(q);
                   if (!Q){ bad.push(q); continue; } const hits = []; numHits(Q, hits); if (!hits.some(h => h[1] === i)) miss.push(IT[i].id + ' ← ' + q);
-                  const t = (IT[i].v[IT[i].v.length - 1].match(/॥([0-9०-९੦-੯]+)[^॥]*॥(?:[^॥]*॥)*\s*$/) || [])[1];
+                  const t = IT[i].v.length && (IT[i].v[IT[i].v.length - 1].match(/॥([0-9०-९੦-੯]+)[^॥]*॥(?:[^॥]*॥)*\s*$/) || [])[1];
                   if (t && !['sec', 'none'].includes((W.cite || {}).mark)){ const last = CKEY(c).split('.').pop().replace(/[^0-9]/g, ''); if (CKEY(t) !== last) pr.push(IT[i].id + ': ॥' + t + '॥ but ' + c); } }
                 return [bad.slice(0, 3), miss.slice(0, 3), pr.slice(0, 3)]; })()""")
             check(f'{tag}: every verse number the player shows finds that verse; the number at a verse\'s end is its citation\'s', cit == [[], [], []], cit)

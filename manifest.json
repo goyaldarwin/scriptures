@@ -73,9 +73,9 @@
    ]
   },
   {
-   "name": "Shrimad Bhagavad Gita",
-   "short_name": "Shrimad Bhag",
-   "url": "./?w=bhagavad-gita",
+   "name": "Mahabharat",
+   "short_name": "Mahabharat",
+   "url": "./?w=mahabharata",
    "icons": [
     {
      "src": "app/icon-192.png",

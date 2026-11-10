@@ -158,6 +158,27 @@
       },
       "children": [
        {
+        "id": "mahabharata",
+        "work": "mahabharata",
+        "path": "hinduism/granth/vyasa/mahabharata",
+        "title": {
+         "hi": "महाभारत",
+         "en": "Mahabharat"
+        },
+        "by": {
+         "hi": "महर्षि वेदव्यास",
+         "en": "Maharshi Ved Vyas"
+        },
+        "edition": {
+         "hi": "गीताप्रेस, गोरखपुर",
+         "en": "Gita Press, Gorakhpur"
+        },
+        "desc": {
+         "hi": "१८ पर्व · २,१०७ अध्याय",
+         "en": "18 Parvs · 2,107 Adhyays"
+        }
+       },
+       {
         "id": "bhagavad-gita",
         "work": "bhagavad-gita",
         "path": "hinduism/granth/vyasa/bhagavad-gita",
