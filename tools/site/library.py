@@ -52,6 +52,14 @@ def word_rule():
     P, S = re.compile(P.group(1)), re.compile(S.group(1))
     return lambda t: unicodedata.normalize('NFC', S.sub('', P.sub('', t)))
 
+CONTEXT = re.compile(r'\(here\b[^)]*\)|(?<!के )\((?:यहाँ|यहीं)[ )]|\bhere (?:held|as an?|the poet|for)\b|\bthis (?:āratī|aarti|pada|poem|chālīsā|chalisa|stotra|hymn|work|verse|line)\b'
+                     r'|इस (?:आरती|पद|पदके|स्तोत्र|ग्रन्थ|चालीसा|पंक्ति)|[—;]\s*यहाँ (?!समाप्त)|जो यहाँ |यहाँ (?:सम्बोधन|संबोधन)', re.I)
+THIS = re.compile(r'[एे]त[तदम]|इदं|इदम|इमं|इमम|अयं|अयम')   # a word that says "this" itself (स्तोत्रमेतत्पठेद्भक्त्या: "this hymn")
+def _texts(v):
+    """Every sense of a dictionary entry: its meanings, grammar and its parts' meanings."""
+    out = [v[f] for f in ('hi', 'en', 'pa', 'g') if isinstance(v.get(f), str)]
+    return out + [s for part in v.get('p') or [] for s in (part if isinstance(part, list) else [part]) if isinstance(s, str)]
+
 _FOLDED = {}
 def _folded(D, lang):
     """The lookup forms (standard.fold) of a dictionary's words."""
@@ -292,6 +300,10 @@ def prepare(lib):
             _need(isinstance(v, dict) and ('hi' in v or 'en' in v), f"glossary/{code}.json: {k!r} needs hi/en")
             # a hard word of our meanings (tappable in the Hindi or English meaning): both senses, simply put
             _need(v.get('hard', True) is True and (not v.get('hard') or (v.get('hi') and v.get('en'))), f"glossary/{code}.json: {k!r}: \"hard\" is true, with hi and en")
+            # a shared entry opens in every work: it gives the word's general senses and names the work a sense belongs
+            # to, never "here" or "this āratī" (docs/PLAYBOOK.md §5); a word that itself says "this" (एतत्, इदम्) may
+            bad = [s for s in _texts(v) if CONTEXT.search(s)] if not THIS.search(k) else []
+            _need(not bad, f"glossary/{code}.json: {k!r} speaks of one context ({(bad or [''])[0][:80]!r}): name the work, or move the sense to that work's glossary/")
     G = {os.path.basename(f)[:-5]: json.load(open(f, encoding='utf-8')) for f in glob.glob(os.path.join(lib, 'glossary', '*.json')) if not f.endswith('languages.json')}
     clean = word_rule()
     shelf = json.load(open(os.path.join(lib, 'index.json')))
