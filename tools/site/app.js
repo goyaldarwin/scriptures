@@ -525,7 +525,11 @@ function verseHTML(i){
     // corners, each inside the gutter so they never touch the text: ▶ (top left, on the line of the bookmark),
     // bookmark (top right), ⋮ (bottom right). A one-line verse is given a second line's height so the corners stay apart.
     const top = y === 0 ? (hasAu(i) ? '<button class="vb vplay" data-a="play" aria-label="play"><svg><use href="#i-play"/></svg>' + (SRC.au && flagsNow()[id] && !(S.timing.flagsOn && !S.timing.on) ? REVB : '') + '</button>' : '') + '<button class="vb vbm' + (bm ? ' bm-on' : '') + '" data-a="bm" aria-label="bookmark"><svg><use href="#i-bm"/></svg></button>' : '';
-    const undo = last && S.timing.on && SRC.au && myStarts()[id] ? '<span class="vundo"><button class="vb" data-a="tundo" aria-label="' + T('पहले जैसा', 'Undo') + '" title="' + T('पहले जैसा', 'Undo') + '"><svg><use href="#i-undo"/></svg></button></span>' : '';   // ↶ (bottom left) in timing mode, on a verse you set
+    // the bottom-left corner in timing mode (the owner: Undo and Correct never make sense together, so they share it):
+    // ✓ Correct on a verse still to check (a helper's mark, one the library lists, one flagged), ↶ Undo on a start you set
+    const by = S.timing.on && SRC.au ? fromOf(id) : undefined, mine = S.timing.on && SRC.au && myStarts()[id];
+    const okB = '<span class="vundo"><button class="vb" data-a="tok" aria-label="' + T('सही है', 'Correct') + '" title="' + T('सही है', 'Correct') + '"><svg><use href="#i-ok"/></svg></button></span>';
+    const undo = !last || !S.timing.on || !SRC.au ? '' : by ? okB : mine ? '<span class="vundo"><button class="vb" data-a="tundo" aria-label="' + T('पहले जैसा', 'Undo') + '" title="' + T('पहले जैसा', 'Undo') + '"><svg><use href="#i-undo"/></svg></button></span>' : toCheck(i) && SRC.au.at[id] ? okB : '';
     // ⚑ (bottom left) for the reader who turned on "Review timing" (☰ › More settings › Audio timing), outside timing
     // mode (where ↶ has that corner): shown while playing on the verse being recited and the verses just before and after it
     // (the light may already have moved on), and always once marked "Review audio timing" (filled blue; ▶ then needs no dot)
@@ -955,7 +959,7 @@ function markBar(i){
   // a time set by ear — on this phone ("yours") or by the owner and already in the library ("sent") — has − / + for fine-tuning
   // under the times: "Until next" when an end is set; ↶ Undo is the verse's bottom-left corner; the step is in the player bar; the ⋮ menu holds nothing about timing
   const chips = own && x && x[2] != null ? '<button class="tchip" data-a="tnone">' + T('अगले पद तक', 'Until next') + '</button>' : '';
-  return '<div class="tmark">' + grp(1, 'tstart', '⏱ ' + T('अभी शुरू', 'Starts now'), !!(own && x)) + grp(2, 'tend', '⏹ ' + T('अभी समाप्त', 'Ends now'), !!(own && x && x[2] != null)) + (by || (est && x) ? '<button data-a="tok">✓ ' + T('सही है', 'Correct') + '</button>' : '') + 
+  return '<div class="tmark">' + grp(1, 'tstart', '⏱ ' + T('अभी शुरू', 'Starts now'), !!(own && x)) + grp(2, 'tend', '⏹ ' + T('अभी समाप्त', 'Ends now'), !!(own && x && x[2] != null)) + 
     '<span class="tinfo">' + when + (by ? ' · <b class="test">' + T('', 'from ') + esc(by) + T(' का — जाँचें', ' — to check') + '</b>' : mine ? ' · <b>' + T('आपका', 'yours') + '</b>' : own ? ' · <b>' + T('भेजा हुआ', 'sent') + '</b>' : est && SRC.au.checkSet.has(IT[i].id) ? ' · <b class="test">' + T('अनुमान', 'estimated') + '</b>' : est ? ' · <b class="test">' + T('आपके समयके अनुसार खिसकाया', 'moved to fit your times') + '</b>' : '') + '</span>' + (chips ? '<span class="tchips">' + chips + '</span>' : '') + '</div>';
 }
 // how far each − / + moves a time: the saffron ±… s chip in the player bar, beside ✕, shown while timing is on

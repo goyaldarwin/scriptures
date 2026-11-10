@@ -203,7 +203,7 @@ async def main():
                 await ev("importTiming(" + json.dumps(doc) + ")"); await pg.wait_for_timeout(500)
                 await (await pg.query_selector('#tiAll')).click(); await pg.wait_for_timeout(300)
                 jid = await ev(f"IT[{j}].id")
-                check(f'{tag}: a helper file loads as marks to check, not sent', await ev(f"fromOf({json.dumps(jid)})") == 'Asha' and not await ev("Object.keys(pendingStarts()).length") and 'data-a="tok"' in await ev(f"markBar({j})"), await ev("pendingStarts()"))
+                check(f'{tag}: a helper file loads as marks to check, not sent', await ev(f"fromOf({json.dumps(jid)})") == 'Asha' and not await ev("Object.keys(pendingStarts()).length") and await ev(f"(() => {{ rerenderItem({j}); const v = document.getElementById('v{j}'); return !v || !!v.querySelector('.vundo [data-a=tok]') && !v.querySelector('[data-a=tundo]'); }})()"), await ev("pendingStarts()"))
                 await ev(f"unfrom({json.dumps(jid)}); save()")
                 check(f'{tag}: a checked helper mark is sent with yours', jid in await ev("pendingStarts()"))
                 await ev("delete S.timing.fix[tkey()]; S.timing.from = {}; save()")
@@ -997,7 +997,7 @@ async def main():
         nx.append(await ev("window.__got.map(i => window.__nx.indexOf(i))"))
         nx.append(await ev("(() => { const i = window.__nx[0]; setTime(i, 1, SRC.au.at[IT[i].id][1]); refreshMarks({}, i); return $('#pCheck').textContent === T('अगला ▸ ', 'Next ▸ ') + DEV(2); })()"))
         # ✓ Correct under a verse the library lists to check keeps its start as it is, as one set by ear: it leaves the list
-        nx.append(await ev("(() => { const i = window.__nx[1], id = IT[i].id, t = SRC.au.at[id][1]; rerenderItem(i); const b = document.querySelector('#v' + i + ' [data-a=tok]'); if (!b) return 'no ✓ Correct'; b.click(); return [myStarts()[id] && myStarts()[id][1] === Math.round(t * 10) / 10, $('#pCheck').textContent === T('अगला ▸ ', 'Next ▸ ') + DEV(1)]; })()"))
+        nx.append(await ev("(() => { const i = window.__nx[1], id = IT[i].id, t = SRC.au.at[id][1]; rerenderItem(i); const b = document.querySelector('#v' + i + ' .vundo [data-a=tok]'); if (!b) return 'no ✓ Correct in the corner'; b.click(); return [myStarts()[id] && myStarts()[id][1] === Math.round(t * 10) / 10, $('#pCheck').textContent === T('अगला ▸ ', 'Next ▸ ') + DEV(1)]; })()"))
         lay = await ev("(() => { const r = s => document.querySelector(s).getBoundingClientRect(), v = r('.ytw'), c = r('#pCheck'), t = r('#pStep'), x = r('#pClose'); return [c.left >= v.right, t.left >= v.right, x.bottom <= Math.min(c.top, t.top) + 1, Math.abs(c.top - t.top) < 2]; })()")
         check('timing: in the player bar ✕ sits on its own line above Next ▸ and ±step, which stay clear of the video', lay == [True, True, True, True], lay)
         RT = "(() => { const r = s => document.querySelector(s).getBoundingClientRect(), t = r('#pRate'), x = r('#pClose'), p = r('#pPlay'); return [t.right <= innerWidth, t.top < p.top ? 'top' : 'controls', Math.abs((t.top + t.bottom) / 2 - (x.top + x.bottom) / 2) < 4]; })()"
