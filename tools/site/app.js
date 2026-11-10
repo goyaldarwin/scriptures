@@ -451,7 +451,7 @@ function loadVerses(k){
   return VLOAD[k] = getJSON(W.path + '/verses/' + k).then(x => {
     if (W !== w) return false; delete VLOAD[k];
     for (const id in x.v || {}){ const i = ID[id]; if (i == null) continue; IT[i].v = x.v[id]; if (x.t && x.t[id]) IT[i].t = x.t[id]; }
-    VGOT.add(k); PWANT.add(k); IDX = null; return true;
+    VGOT.add(k); PWANT.add(k); partIn(k); return true;
   }, () => { if (W === w) delete VLOAD[k]; return false; });
 }
 function partObjs(){ return MK().flatMap(k => [SRC[k]].concat(ALT[k] || [])).concat(SRC.cm).filter(Boolean); }
@@ -470,7 +470,7 @@ function meaningsPart(k){
     if (W !== w) return false; delete PLOAD[k]; let got = false;
     objs.forEach((o, n) => { const x = ms[n]; if (!x) return; Object.assign(o.m, x.m || {}); if (x.p) Object.assign(o.p, x.p); o.got.add(k); got = true; });
     if (g){ for (const lg in g) WG[lg] = Object.assign({}, WG[lg] || {}, g[lg]); WGOT.add(k); got = true; }   // a new object: its fold index is made again
-    if (got){ PWANT.add(k); IDX = null; }
+    if (got){ PWANT.add(k); partIn(k); }
     return got;
   });
 }
@@ -1715,8 +1715,13 @@ const LATF = {'क': 'k', 'ख': 'k', 'ग': 'g', 'घ': 'g', 'ङ': 'n', 'च':
   'त': 't', 'थ': 't', 'द': 'd', 'ध': 'd', 'प': 'p', 'फ': 'p', 'ब': 'b', 'भ': 'b', 'म': 'm', 'य': 'y', 'र': 'r', 'ल': 'l', 'स': 's', 'ह': 'h', 'अ': 'a', 'इ': 'i', 'उ': 'u', 'ॴ': ''};
 const flLat = fd => [...fd].map(c => LATF[c] != null ? LATF[c] : c).join('');
 // one search scope per meaning language (h, e, and the code of any other: pa); Latin script is searched as Latin
-function buildIdx(){ FOLDPA = W.lang === 'pa'; IDX = IT.map((it, i) => { const h = SRC.hi && SRC.hi.m[it.id], e = SRC.en && SRC.en.m[it.id], vw = fD(it.v.join(' ')), tw = fL((it.t || []).join(' ')), r = {vw, v: vw.join(''), tw, t: tw.join(''), h: fD(h ? h[0] : '').join(' '), e: normL(e ? e[0] : ''), fd: it.v.map(flLine)}; r.fl = r.fd.map(flLat);
-  MK().forEach(k => { if (k !== 'hi' && k !== 'en'){ const x = SRC[k] && SRC[k].m[it.id]; r[k] = fD(x ? x[0] : '').join(' '); } }); return r; }); IDX.w = idxKey(); }
+// a part that comes in (its verses, its meanings) is indexed again alone (IDXPART), not the whole work: a big work's search
+// takes each of its parts in as it comes, and the Mahābhārata has 92,000 items
+let IDXPART = new Set();
+function partIn(k){ if (IDX && PARTS[k]) IDXPART.add(k); else IDX = null; }
+function buildIdx(){ FOLDPA = W.lang === 'pa'; IDXPART = new Set(); IDX = IT.map(idxItem); IDX.w = idxKey(); }
+function idxItem(it){ const h = SRC.hi && SRC.hi.m[it.id], e = SRC.en && SRC.en.m[it.id], vw = fD(it.v.join(' ')), tw = fL((it.t || []).join(' ')), r = {vw, v: vw.join(''), tw, t: tw.join(''), h: fD(h ? h[0] : '').join(' '), e: normL(e ? e[0] : ''), fd: it.v.map(flLine)}; r.fl = r.fd.map(flLat);
+  MK().forEach(k => { if (k !== 'hi' && k !== 'en'){ const x = SRC[k] && SRC[k].m[it.id]; r[k] = fD(x ? x[0] : '').join(' '); } }); return r; }
 const scopes = new Set(['v', 'h', 'e', 'n', 'pa']);
 $$('#scope .chip').forEach(c => c.onclick = () => { const s = c.dataset.s; if (scopes.has(s)) scopes.delete(s); else scopes.add(s); c.classList.toggle('on'); runSearch(); });
 let sT; $('#q').addEventListener('input', () => { clearTimeout(sT); sT = setTimeout(runSearch, 250); });
@@ -1771,6 +1776,7 @@ function runSearch(){
   const q = $('#q').value.trim(), box = $('#sRes'), num = numQuery(q);
   if (q.length < 2 && !num){ box.innerHTML = '<div class="empty">' + T('कम-से-कम दो अक्षर लिखें।', 'Type at least two letters.') + '</div>'; return; }
   if (!IDX || IDX.w !== idxKey()) buildIdx();
+  else if (IDXPART.size){ for (const k of IDXPART){ const P = PARTS[k]; for (let i = P.a; i <= P.b; i++) IDX[i] = idxItem(IT[i]); } IDXPART = new Set(); }
   if (BYPART() && PARTS.some(P => !partReady(P.k))) searchParts(); const loading = SLOADING;   // the meanings of the parts not in yet
   const latin = /[a-zA-Z]/.test(q), nq = latin ? normL(q) : normD(q);
   const qs = latin ? fL(q) : fD(q), qj = qs.join(''), k = Math.floor(qj.length / 6), need = qs.length >= 3 ? qs.length - Math.max(1, Math.floor(qs.length / 3)) : qs.length;   // most words: all of two, all but one of three to five, then two in three
