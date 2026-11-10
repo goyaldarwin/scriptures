@@ -1,0 +1,207 @@
+{
+ "id": "mahabharata",
+ "path": "hinduism/granth/vyasa/mahabharata",
+ "lang": "sa",
+ "title": {
+  "hi": "महाभारत",
+  "en": "Mahabharat"
+ },
+ "by": {
+  "hi": "महर्षि वेदव्यास",
+  "en": "Maharshi Ved Vyas"
+ },
+ "edition": {
+  "hi": "गीताप्रेस, गोरखपुर (सरल हिन्दी-अनुवादसहित, कोड ३२–३७)",
+  "en": "Gita Press, Gorakhpur (with simple Hindi translation, codes 32–37)"
+ },
+ "colophon": {
+  "hi": "समापन (पुष्पिका)",
+  "en": "Closing words (iti)"
+ },
+ "parts": {
+  "name": {
+   "hi": "पर्व",
+   "en": "Parv"
+  },
+  "list": [
+   {
+    "key": "1",
+    "hi": "आदिपर्व",
+    "en": "Adi Parv"
+   },
+   {
+    "key": "2",
+    "hi": "सभापर्व",
+    "en": "Sabha Parv"
+   },
+   {
+    "key": "3",
+    "hi": "वनपर्व",
+    "en": "Van Parv"
+   },
+   {
+    "key": "4",
+    "hi": "विराटपर्व",
+    "en": "Virat Parv"
+   },
+   {
+    "key": "5",
+    "hi": "उद्योगपर्व",
+    "en": "Udyog Parv"
+   },
+   {
+    "key": "6",
+    "hi": "भीष्मपर्व",
+    "en": "Bhishma Parv"
+   },
+   {
+    "key": "7",
+    "hi": "द्रोणपर्व",
+    "en": "Dron Parv"
+   },
+   {
+    "key": "8",
+    "hi": "कर्णपर्व",
+    "en": "Karna Parv"
+   },
+   {
+    "key": "9",
+    "hi": "शल्यपर्व",
+    "en": "Shalya Parv"
+   },
+   {
+    "key": "10",
+    "hi": "सौप्तिकपर्व",
+    "en": "Sauptik Parv"
+   },
+   {
+    "key": "11",
+    "hi": "स्त्रीपर्व",
+    "en": "Stri Parv"
+   },
+   {
+    "key": "12",
+    "hi": "शान्तिपर्व",
+    "en": "Shanti Parv"
+   },
+   {
+    "key": "13",
+    "hi": "अनुशासनपर्व",
+    "en": "Anushasan Parv"
+   },
+   {
+    "key": "14",
+    "hi": "आश्वमेधिकपर्व",
+    "en": "Ashvamedhik Parv"
+   },
+   {
+    "key": "15",
+    "hi": "आश्रमवासिकपर्व",
+    "en": "Ashramvasik Parv"
+   },
+   {
+    "key": "16",
+    "hi": "मौसलपर्व",
+    "en": "Mausal Parv"
+   },
+   {
+    "key": "17",
+    "hi": "महाप्रस्थानिकपर्व",
+    "en": "Mahaprasthanik Parv"
+   },
+   {
+    "key": "18",
+    "hi": "स्वर्गारोहणपर्व",
+    "en": "Swargarohan Parv"
+   }
+  ]
+ },
+ "types": {
+  "mangalacharan": {
+   "name": {
+    "hi": "मङ्गलाचरण",
+    "en": "Mangalacharan"
+   },
+   "short": {
+    "hi": "मङ्गल",
+    "en": "Mangal"
+   }
+  },
+  "gadya": {
+   "name": {
+    "hi": "गद्य",
+    "en": "Prose"
+   },
+   "short": {
+    "hi": "गद्य",
+    "en": "Prose"
+   }
+  },
+  "dshloka": {
+   "name": {
+    "hi": "दाक्षिणात्य श्लोक",
+    "en": "Dakshinatya Shloka"
+   },
+   "short": {
+    "hi": "दा॰",
+    "en": "Dak."
+   }
+  },
+  "dgadya": {
+   "name": {
+    "hi": "दाक्षिणात्य गद्य",
+    "en": "Dakshinatya Prose"
+   },
+   "short": {
+    "hi": "दा॰ गद्य",
+    "en": "Dak. Prose"
+   }
+  },
+  "iti": {
+   "name": {
+    "hi": "समापन (पुष्पिका)",
+    "en": "Closing words (iti)"
+   },
+   "short": {
+    "hi": "इति",
+    "en": "Iti"
+   }
+  }
+ },
+ "cite": {
+  "by": [
+   "part",
+   "sec",
+   "n"
+  ],
+  "sec": {
+   "hi": "अध्याय",
+   "en": "Adhyay"
+  }
+ },
+ "sections": {
+  "3.mahima": {
+   "hi": "वनपर्व-श्रवण-महिमा",
+   "en": "The merit of hearing the Van Parv"
+  },
+  "4.mahima": {
+   "hi": "श्रवण-महिमा",
+   "en": "The merit of hearing"
+  },
+  "6.mahima": {
+   "hi": "श्रवणमहिमा",
+   "en": "The merit of hearing"
+  },
+  "18.vidhi": {
+   "hi": "महाभारतश्रवणविधि",
+   "en": "How to hear the Mahabharat"
+  },
+  "18.mahatmya": {
+   "hi": "महाभारत-माहात्म्य",
+   "en": "The glory of the Mahabharat"
+  }
+ },
+ "load": "parts",
+ "words": "partial",
+ "verses": "parts"
+}
