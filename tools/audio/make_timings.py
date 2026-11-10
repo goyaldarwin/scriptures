@@ -43,6 +43,14 @@ if meta.get('take'):
     assert at, f"{meta['take']}'s recording {meta['id']} has none of this work's verses"
     used = sorted({t[0] for t in at.values()})
     tracks = [dict(A['tracks'][k], first=next(i for i in at if at[i][0] == k), last=[i for i in at if at[i][0] == k][-1]) for k in used]
+    # the verses taken are a stretch of the other work's recording: the track ends where that work's next verse on it starts
+    # (the Hanumān Chālīsā inside the Sundarakāṇḍa's video), so playing on never runs into the rest of the video
+    PO = {x['id']: n for n, x in enumerate(json.load(open(os.path.join(REPO, 'library', frm, 'work.json')))['items'])}
+    for k, tr in zip(used, tracks):
+        mine = [i for i in at if at[i][0] == k]; lastp = max(PO[i] for i in mine)
+        nxt = sorted(v[1] for i, v in A['at'].items() if v[0] == k and PO.get(i, -1) > lastp)
+        tr['start'] = max(tr.get('start', 0), min(at[i][1] for i in mine))
+        if nxt and nxt[0] < tr.get('end', tr['dur']): tr['end'] = nxt[0]
     doc = {k: v for k, v in A.items() if k not in ('tracks', 'at', 'check', 'guess', 'moved', 'raw', 'own')}
     doc.update(tracks=tracks, at={i: [used.index(t[0])] + t[1:] for i, t in at.items()})
     for k in ('check', 'guess', 'own'):
