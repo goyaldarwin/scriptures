@@ -172,8 +172,13 @@
   ],
   "namaskarashtak.pad3": [
    343.3,
-   364.2
+   363.3
   ],
+  "namaskarashtak.pad4": [
+   364.3,
+   384.5
+  ],
+  "namaskarashtak.pad5": 384.5,
   "namaskarashtak.pad6": [
    405.4,
    425.7
@@ -224,15 +229,15 @@
   ],
   "shirdi-majhe.abhang2": [
    212.5,
-   218.3
+   223.4
   ],
   "shirdi-majhe.abhang3": [
    223.7,
-   229.3
+   234.3
   ],
   "shirdi-majhe.abhang4": [
    234.4,
-   240.1
+   245.5
   ]
  }
 }

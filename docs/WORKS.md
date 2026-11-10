@@ -44,7 +44,7 @@ Columns: the work and its permanent id · its shelf path (tradition first, the s
 | Om Jai Jagdish Hare (`jagdish-aarti`) | `hinduism/aarti/vishnu/jagdish-aarti` | Hindi | 1 aarti › 1 sections › 8 verses | Refrain (tek) (`tek`), Stanza (`pad`) | verse (`1`) | hi: hi-scriptures; en: en-scriptures | no | every word | mahendra-kapoor (transcript) |
 | Om Jai Shiv Omkara (`shiv-aarti`) | `hinduism/aarti/shiva/shiv-aarti` | Hindi | 1 aarti › 1 sections › 9 verses | Refrain (tek) (`tek`), Stanza (`pad`) | verse (`1`) | hi: hi-scriptures; en: en-scriptures | no | every word | anuradha-paudwal (transcript) |
 | Om Jai Gange Mata (`ganga-aarti`) | `hinduism/aarti/ganga/ganga-aarti` | Hindi | 1 aarti › 1 sections › 5 verses | Refrain (tek) (`tek`), Stanza (`pad`) | verse (`1`) | hi: hi-scriptures; en: en-scriptures | no | every word | anuradha-paudwal (transcript) |
-| Dhoop Aarti (`shirdi-sai-dhoop-aarti`) | `hinduism/aarti/shirdi-sai/dhoop-aarti` | Marathi, Hindi, Sanskrit | 1 aarti › 10 sections › 64 verses | Dhruvapada (`dhru`), Stanza (`pad`), Abhang (`abhang`), Shloka (`shloka`), Mantra (`mantra`), Jayghosh (`jay`) | verse (`1`) | hi: hi-scriptures; en: en-scriptures, en-shirdisaibabakripa | no | every word | pramod-medhi-times (MMS, 60 by ear) |
+| Dhoop Aarti (`shirdi-sai-dhoop-aarti`) | `hinduism/aarti/shirdi-sai/dhoop-aarti` | Marathi, Hindi, Sanskrit | 1 aarti › 10 sections › 64 verses | Dhruvapada (`dhru`), Stanza (`pad`), Abhang (`abhang`), Shloka (`shloka`), Mantra (`mantra`), Jayghosh (`jay`) | verse (`1`) | hi: hi-scriptures; en: en-scriptures, en-shirdisaibabakripa | no | every word | pramod-medhi-times (MMS, 62 by ear) |
 
 ### Vedas (`hinduism/veda`)
 
