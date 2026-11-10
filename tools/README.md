@@ -38,6 +38,8 @@ tools/
   jsonio.py                      writes library files: shared ones one entry per line; a work's through the standard
   text/standard.py               the writing standard for verses (PLAYBOOK §3): ॥, Pāṇini's spelling for Sanskrit, ISO 15919
   text/cite.py                   a verse's number as cited (work.json → cite): the one source of every number the app shows or finds
+  text/names.json                a name's one spelling and its variants, on the shelves where it holds (checked by site/library.py)
+  sweep/inventory.py             the sweep's inventory (docs/SWEEP.md, step 0.4): every work, its sources here and in scriptures-data
   works/                         one folder per work, named by its id; the format: works/README.md
     export.py                      every work folder → library/<path>/ (work.json, meanings/, glossary.json)
     textfile.py                    the format of text.txt; source scripts write it with textfile.write

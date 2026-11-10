@@ -54,6 +54,7 @@ def leaves(nodes, trail=()):
         if 'work' in n: yield n, trail
         else: yield from leaves(n['children'], trail + (n['id'],))
 
+DUP_IDS = "(() => { const c = {}; for (const e of document.querySelectorAll('[id]')) c[e.id] = (c[e.id] || 0) + 1; return Object.keys(c).filter(k => c[k] > 1); })()"   # docs/PLAYBOOK.md §10: an element id is used once
 async def main():
     srv = serve(); url = f'http://127.0.0.1:{srv.server_address[1]}/'
     shelf = json.load(open(os.path.join(ROOT, 'library', 'index.json')))
@@ -371,6 +372,7 @@ async def main():
         if SHARD or ONLY is not None:   # a shard (or --works) runs only its share of the per-work checks, from a reader who has seen the tour
             await ev("(() => { S.settings.tour = 1; closeTour(); S.settings.layers.h = false; save(); })()"); await pg.reload(); await until("typeof LIB !== 'undefined' && !!LIB && LIB.length > 0 && !!document.querySelector('#libList [data-node]')", 20000)
             for leaf, trail in mine(list(leaves(shelf))): await per_work(leaf, trail)
+            dups = await ev(DUP_IDS); check(f'shard {SHARD}/{NSHARD}: every element id is used once in the page', not dups, dups[:5])
             check(f'shard {SHARD}/{NSHARD}: no script errors', not errs, '; '.join(errs[:3]))
             await b.close(); print(f'\n{sum(results)}/{len(results)} checks passed'); sys.exit(0 if all(results) else 'UX TEST FAILED')
         # first run: an interactive tour inside the Sundarakāṇḍa — each step moves on only when the reader has done it
@@ -1462,6 +1464,7 @@ async def main():
         await (await pg.query_selector('label:has(#slines)')).click(); await pg.wait_for_timeout(200)
         check('“Meaning per line” shows only in a work with line-by-line meanings, is off by default and its switch turns it on', hidden and off0 and await ev("S.settings.lines === true"))
         await ev(f"(() => {{ S = JSON.parse({json.dumps(keep)}); save(); applyState(); }})()")
+        dups = await ev(DUP_IDS); check('every element id is used once in the page (a second one takes the first one\'s tap)', not dups, dups[:5])
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await split_work(b, SHOTS)
         await b.close()
