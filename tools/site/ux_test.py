@@ -1446,6 +1446,11 @@ async def main():
         sheet = await ev("$('#sheet').classList.contains('on') ? $('#sheetBody').innerText : ''")
         await ev("closeSheet()")
         check('hard words of a meaning are underlined and open their meaning (the work’s own sense first); other words are plain', 'अविद्या' in hw[0] and 'avidyā' in hw[0] and 'उपासना' in hw[0] and hw[1] and 'ritual works' in sheet, [hw, sheet[:120]])
+        # a word with an entry of its own is that word: परे ("beyond", a plain entry) is never underlined as परा ("supreme"), a plural
+        # is looked through only when the word has no entry (देवियों → देवी, a plain word, before देवि, the hard vocative), and
+        # a postposition still is (अपकीर्तियोंको → अपकीर्ति)
+        hk = await ev("(() => [hardKey('परे', 'hi'), hardKey('देवियों', 'hi'), hardKey('रसोंके', 'hi'), hardKey('सिद्धिके', 'hi'), hardKey('अपकीर्तियोंको', 'hi'), hardKey('विभीषणजीने', 'hi')])()")
+        check('a meaning word with an entry of its own is never taken for another hard word (परे is not परा); joined endings are still looked through', hk[:3] == [None, None, None] and hk[3] == 'सिद्धि' and hk[4] == 'अपकीर्ति' and hk[5] == 'विभीषण', hk)
         # ☰ › More settings › "Meaning per line": shown only for a work with a meaning line by line (as Footnotes, Commentary);
         # off by default; the switch turns it on
         hidden = await ev("(async () => { show('settings'); await new Promise(r => setTimeout(r, 200)); return !document.querySelector('#slines') && !hasLines(); })()")   # the Īśāvāsya: whole meanings only

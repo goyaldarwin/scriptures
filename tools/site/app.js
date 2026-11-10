@@ -248,14 +248,28 @@ function wordsHTML(line){
    ending (मनमें, विषयोंसे, आसक्तियोंको), a name's जी (विभीषणजीने) or an English plural, tense or 's is looked through to the entry. */
 const HARD_RE = {hi: /[\u0900-\u0963\u0966-\u097F\u200C\u200D]+/g, en: /[A-Za-zÀ-ɏḀ-ỿ]+(?:[’'][A-Za-zÀ-ɏḀ-ỿ]+)*/g};
 const HI_POST = ['वाला', 'वाली', 'वाले', 'में', 'से', 'को', 'का', 'की', 'के', 'ने', 'पर', 'तक'];
+// The word itself, or without its postposition or a name's जी, comes first: when one of them is in the dictionary, it decides
+// (a hard entry is underlined; a plain one is a plain word: परे "beyond" is never taken for परा "supreme"). Only a word
+// with no entry of its own is looked through as a plural (देवियों → देवी before शक्तियों → शक्ति), the first form found deciding.
+function hardBase(w){
+  w = w.replace(/[\u200C\u200D]/g, '');   // a joiner (जाम्बवान्‌ने) is not part of the word
+  const base = [w].concat(HI_POST.filter(p => w.length > p.length + 1 && w.endsWith(p)).map(p => w.slice(0, -p.length)));
+  return base.concat(base.filter(x => x.length > 3 && x.endsWith('जी')).map(x => x.slice(0, -2)));   // विभीषणजीने → विभीषण
+}
+const hardPlural = x => [x.replace(/ियों$/, 'ी'), x.replace(/ियों$/, 'ि'), x.replace(/ियाँ$/, 'ी'), x.replace(/ियाँ$/, 'ि'), x.replace(/एँ$/, ''), x.replace(/ओं$/, ''), x.replace(/ों$/, ''), x.replace(/ों$/, 'ा'), x.replace(/ें$/, ''), x.replace(/ें$/, 'ा'), x.replace(/े$/, 'ा')].filter(y => y !== x);
 function hardForms(w, lang){
   if (lang === 'en'){ const x = w.toLowerCase().replace(/[’']s$/, ''); return [x, x.replace(/ies$/, 'y'), x.replace(/es$/, ''), x.replace(/s$/, ''), x.replace(/ed$/, ''), x.replace(/ed$/, 'e'), x.replace(/ing$/, ''), x.replace(/ing$/, 'e'), x.replace(/ly$/, '')]; }
-  w = w.replace(/[\u200C\u200D]/g, '');   // a joiner (जाम्बवान्‌ने) is not part of the word
-  let base = [w].concat(HI_POST.filter(p => w.length > p.length + 1 && w.endsWith(p)).map(p => w.slice(0, -p.length)));
-  base = base.concat(base.filter(x => x.length > 3 && x.endsWith('जी')).map(x => x.slice(0, -2)));   // विभीषणजीने → विभीषण
-  return base.flatMap(x => [x, x.replace(/ियों$/, 'ि'), x.replace(/ियों$/, 'ी'), x.replace(/ियाँ$/, 'ी'), x.replace(/ियाँ$/, 'ि'), x.replace(/एँ$/, ''), x.replace(/ओं$/, ''), x.replace(/ों$/, ''), x.replace(/ों$/, 'ा'), x.replace(/ें$/, ''), x.replace(/ें$/, 'ा'), x.replace(/े$/, 'ा')]);
+  const base = hardBase(w); return base.concat(base.flatMap(hardPlural));
 }
-function hardKey(w, lang){ const Ds = [WG[lang], GL[lang]].filter(Boolean); for (const k of hardForms(w, lang)) if (Ds.some(D => D[k] && D[k].hard)) return k; return null; }
+function hardKey(w, lang){
+  const Ds = [WG[lang], GL[lang]].filter(Boolean), ent = k => { for (const D of Ds) if (D[k]) return D[k]; return null; };
+  if (lang === 'en'){ for (const k of hardForms(w, lang)){ const e = ent(k); if (e) return e.hard ? k : null; } return null; }
+  const base = hardBase(w);
+  for (const k of base){ const e = ent(k); if (e && e.hard) return k; }
+  if (base.some(ent)) return null;   // a word with an entry of its own is a plain word
+  for (const x of base) for (const k of hardPlural(x)){ const e = ent(k); if (e) return e.hard ? k : null; }
+  return null;
+}
 function hardWords(html, lang){   // html is already escaped; only whole words outside the tags are wrapped
   const re = HARD_RE[lang]; if (!re || !(GL[lang] || WG[lang])) return html;
   return html.split(/(<[^>]*>|&[a-z#0-9]+;)/).map((s, k) => k % 2 ? s : s.replace(re, w => { const key = hardKey(w, lang); return key ? '<span class="mw" data-mw="' + esc(key) + '" data-ml="' + lang + '">' + w + '</span>' : w; })).join('');
