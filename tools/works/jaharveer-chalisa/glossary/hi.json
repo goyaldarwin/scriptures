@@ -1,4 +1,16 @@
 {
+ "नरसिंह": {
+  "hi": "नरसिंह, गोगाजीकी कथाके एक पण्डित (पण्डितानीके पुत्र), जो लीला घोड़े और भज्जू कोतवालके साथ जन्मे",
+  "en": "Narsiṃh, a paṇḍit of Gūgā's story (the paṇḍit's wife's son), born with Līlā the horse and Bhajjū the kotwāl",
+  "g": "संज्ञा (व्यक्तिवाचक)",
+  "hard": true
+ },
+ "लीला": {
+  "hi": "लीला, गोगाजीका घोड़ा, जो लीली घोड़ीसे जन्मा",
+  "en": "Līlā, Gūgā's horse, born of the mare Līlī",
+  "g": "संज्ञा (व्यक्तिवाचक)",
+  "hard": true
+ },
  "अनंगपाल": {
   "hi": "अनंगपाल, दिल्लीके महाराजा, जिन्हें (कथामें) गूगा वीरने जीता",
   "en": "Anaṅgpāl, the king of Delhi whom Gūgā defeated (in the legend)",
@@ -67,7 +79,7 @@
  },
  "संगलदीपमें": {
   "hi": "संगलदीप, वह देश जहाँ गूगाजी अतिथि बने",
-  "en": "Saṅgaladīpa, the land where Gūgā was a guest",
+  "en": "Saṅgaldīp, the land where Gūgā was a guest",
   "g": "संज्ञा (व्यक्तिवाचक)",
   "hard": true
  }

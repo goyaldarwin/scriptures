@@ -1,4 +1,15 @@
 {
+ "छाया": {
+  "hi": "छाया देवी, सूर्यकी पत्नी, शनिदेवकी माता (‘छाया महतारी’: जिनकी माता छाया हैं)",
+  "en": "Chāyā, Sūrya's wife and Śani's mother (‘chāyā mahatārī’: whose mother is Chāyā)",
+  "g": "संज्ञा (व्यक्तिवाचक)"
+ },
+ "धार": {
+  "hi": "धारण करके, पहनकर (‘नीलाम्बर धार’: नीला वस्त्र पहनकर)",
+  "en": "wearing, having put on (‘nīlāmbar dhār’: wearing blue garments)",
+  "r": "धारना",
+  "g": "पूर्वकालिक क्रिया (करके)"
+ },
  "विश्वनाथ": {
   "hi": "विश्वनाथ (इस आरतीके कवि, अन्तिम पदमें अपना नाम लेते हैं)",
   "en": "Viśvanātha (the poet of this āratī, naming himself in the last stanza)",

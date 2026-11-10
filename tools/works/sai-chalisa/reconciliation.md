@@ -2,7 +2,7 @@
 
 ## Witnesses
 - **The book (base):** ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, Haridwar, first edition 2000), pp. 117–133; scriptures-data `hinduism/chalisa/books/aarti-chalisa-sangrah/` (page images i-116 … i-132), read on the page images. The book prints the 204 lines without numbers, a line to a printed line.
-- **Drik Panchang** (`hinduism/chalisa/shirdi-sai/sai-chalisa/printouts/drikpanchang/sai-baba-chalisa.html`): the same text, line for line (204 lines), numbering every second line (॥10॥ … ॥100॥), with its own slips (राह for राम, दाप for पाप, सौदा for सदा, विविध for विधि, लेगे, समुधुर, शिक्त).
+- **Drik Panchang** (`hinduism/chalisa/shirdi-sai/sai-chalisa/printouts/drikpanchang/sai-baba-chalisa.html`): the same text, line for line (204 lines), numbering every second line (॥10॥ … ॥100॥), with its own slips (राह for राम, दाप for पाप, सौदा for सदा, विविध for विधि, लेगे, लगने for लगे, सोय, रह for रहा, हैं for है, समुधुर, शिक्त).
 - **Chalisa Mala** (the indif.com printout; scriptures-data `hinduism/chalisa/books/aarti-chalisa-sangrah/`, page images i-383 … i-391): the same web text as Drik Panchang, numbering each couplet ॥१॥ … ; a second copy of Drik's text, not an independent witness.
 
 The rule: keep the book; correct it only where it is clearly wrong, and only on the witnesses. The library's writing standard (docs/PLAYBOOK.md §3): a verse is a couplet of two printed lines, numbered as Drik Panchang and the Chalisa Mala number them (102 verses), the first line ending `।`, the second `॥`; the book's commas, quotation marks ('काशीराम', 'काशी') and exclamation marks (हाय!, अरे!) are not kept.
@@ -23,7 +23,7 @@ Kept as the book has them, against Drik Panchang: साईं (Drik साई; 
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
 
 ## Readings settled
-The open questions of `docs/reviews/sai-chalisa-doubts.jsonl`, each decided (docs/PLAYBOOK.md §2).
+The readings the words alone leave open, each decided (docs/PLAYBOOK.md §2).
 
 - **chalisa.cau30** — मतवाली मूरति, Sāī's living form or his image: मूरति read as "form, figure" (Platts मूरति, मूर्ति), as the words give it; the Hindi keeps मूर्ति and the English "form", which leave the poem's time open as the line does. Meaning unchanged.
 - **chalisa.cau91** — how जो कुछ पाया joins पाप ताप सन्ताप मिटाया: read as the words stand, "with whatever he received, Sāī wiped away sin, suffering and anguish" (पाया, "received", with साईं ने its subject); "whoever came to him" needs आया for पाया. Meaning unchanged.

@@ -12,7 +12,7 @@ The rule: keep the book; correct it only where it is clearly wrong, and only on 
 | chaupāī 3 | दो सहस्त्र बर्षहि अनुमाना | दो सहस्र बर्षहि अनुमाना | सहस्त्र is a misspelling of सहस्र ("thousand"); Drik Panchang has सहस्र. |
 | opening dohā | माला, पुस्तक, धारिणी | माला पुस्तक धारिणी | The commas inside the line are not kept (the standard). |
 
-Kept as the book has them, against Drik Panchang: जहां (Drik जहाँ), बध (Drik वध), स्वरूपा and रूपा in chaupāī 22 (Drik स्वरुपा, रुपा). Kept as every witness has them: सूर्य in chaupāī 15 (the metre needs its three mātrās), पढ़ीहे in chaupāī 36, and शचि in chaupāī 7 (Shubh Panchang the same; the sense would want शुचि, an open doubt in `docs/reviews/sharda-chalisa-doubts.jsonl`).
+Kept as the book has them, against Drik Panchang: जहां (Drik जहाँ), बध (Drik वध), स्वरूपा and रूपा in chaupāī 22 (Drik स्वरुपा, रुपा). Kept as every witness has them: सूर्य in chaupāī 15 (the metre needs its three mātrās), पढ़ीहे in chaupāī 36, and शचि in chaupāī 7 (Shubh Panchang the same; read as शुचि, settled below).
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).

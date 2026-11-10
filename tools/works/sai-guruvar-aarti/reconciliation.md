@@ -23,7 +23,7 @@ Kept as the book has them, where the other witnesses differ: जा की writt
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
 
 ## Readings settled
-The open questions of `docs/reviews/sai-guruvar-aarti-doubts.jsonl`, each decided (docs/PLAYBOOK.md §2).
+The readings the words alone leave open, each decided (docs/PLAYBOOK.md §2).
 
 - **aarti.pad4** — the word the book drops before इच्छित: कर, as Drik Panchang has it (दर्शन कर, "having had his darśana"), the shelf's own witness; Aarti Mala's से also fills the 16 mātrās, but a web search found no independent text to prefer it, and दर्शन कर is the ordinary idiom. Text and meaning unchanged.
 - **aarti.pad5** — साईंदास: the poet's signature. All three witnesses (the book, Drik Panchang, Aarti Mala) set it in quotation marks, as the book marks the signature 'प्रताप' in the Brahmā āratī; a common noun would not be marked. Meaning unchanged.

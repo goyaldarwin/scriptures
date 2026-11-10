@@ -23,7 +23,7 @@ Kept as the book has them (Drik Panchang the same unless noted): विराज
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
 
 ## Readings settled
-The open questions of `docs/reviews/sharda-aarti-doubts.jsonl`, each decided (docs/PLAYBOOK.md §2).
+The readings the words alone leave open, each decided (docs/PLAYBOOK.md §2).
 
 - **aarti.do1** — धरो मात अवतार: past, the Braj perfective (धर्यो/धरो), after the description भुवन विराजी … महिमा अपरम्पार; the dohā tells who she is and the prayer begins only with the refrain. Meaning unchanged.
 - **aarti.pad3** — कंधे से विनय सुनाऊँ: kept as printed (the book and Drik Panchang agree; कंठ से is attested by no source a web search found). स्वांस दिन राती stays one of the stanza's offerings. The meaning now marks "bowed" as implied: "with (bowed) shoulders" / "(झुके) कंधोंसे", since the words say only "with the shoulders".

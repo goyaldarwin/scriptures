@@ -9,6 +9,7 @@ The rule: keep the book; correct it only where it is clearly wrong, and only on 
 | Place | Book | Ours | Why |
 |---|---|---|---|
 | chaupāī 2 | गुरु गोरख का हे वरदानी | गुरु गोरख का है वरदानी | हे (a call, "O") cannot stand inside the phrase "Guru Gorakh's boon-given one"; the verb है ("is") is needed, as Drik Panchang has it. A dropped stroke of the ै sign. |
+| chaupāī 5 | जन्में गूगावीर | जन्मे गूगावीर | जन्में is a printer's form with a stray anusvāra: the past tense of जन्मना is जन्मे, as our meanings give it. |
 
 Kept as the book has them, against Drik Panchang: विसाला (chaupāī 3; Drik विशाला), महादुखी (chaupāī 12; Drik महादुःखी), मन्सा (chaupāī 51; Drik मनसा, as the book itself has in chaupāī 30). The spellings रनधीर, वन्स, मुकट, लासानी, ईसवी सन हजार दरमियाना, नौलक्खा / दुक्खा, कुआ, नाई, इकादसी, कपटिन, परसादी, पण्डतानी, भज्जु कुतवाल जना रणधीरा (which does not rhyme with घोड़ा), मेहमाना, जगदीसा and the last half's गोरखनाथ (against विधाता) are the book's, as Drik's.
 

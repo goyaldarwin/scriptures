@@ -1,6 +1,8 @@
 # BhaktiDhaam, "सम्पूर्ण चालीसा संग्रह" (YouTube lCwPg0LRRjk): hand-checked starts
 
-The text is the version sung (`../../reconciliation.md`). Starts not listed here come from the transcript's matches (the identify transcript, `transcripts/lCwPg0LRRjk.jsonl`).
+**The track** (`recordings.json` start 0.1, end 393.51: 0:00.10–6:33.51 of the 3028-s video lCwPg0LRRjk): this song alone. Its bounds are the silences between the songs, found on the audio (the loudness in 10 ms steps falls below −42 dB, most to digital silence): before it the video’s start (0–0.10) s, after it 393.51–393.82 s. Every verse is timed inside them (`make_timings.py` refuses one outside), the player starts at the first verse and stops at the end, and the listening time counts only this song.
+
+The text is the version sung (`../../reconciliation.md`). Starts not listed here come from the forced aligner (MMS, `aligned.json`), else from the transcript's matches (the identify transcript, `transcripts/lCwPg0LRRjk.jsonl`).
 
 | Verse | Start | Evidence |
 |---|---|---|

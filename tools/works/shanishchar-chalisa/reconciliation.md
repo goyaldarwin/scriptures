@@ -12,7 +12,7 @@ The rule: keep the book; correct it only where it is clearly wrong, and only on 
 | chaupāī 3 | अन्तक, कोण, रौद्रय मगाऊँ | अन्तक कोण रौद्रय मनाऊँ | मगाऊँ ("have it brought") is a misprint for मनाऊँ ("I propitiate"), which the sense needs; Drik Panchang मनाऊँ. |
 | closing dohā 1 | कीहौं 'विमल' तैयार | कीन्हौं विमल तैयार | कीहौं has lost the न् of कीन्हौं ("made"; Drik Panchang prints the same slip). The same dohā closes the other Śani Chālīsā, where Drik Panchang has कीन्हों (`shani-chalisa`). The quotation marks round the preparer's name are the printer's. |
 
-Kept as the book has them: every other reading, the book and Drik Panchang agreeing but for भांति (Drik भाँति) and शनीश्चर (Drik शनिश्चर). Their shared readings kept: मम् (opening dohā), मन्दसौरि, रौद्रय, विषमवस, महँवासा, होंय, गिरी, जोगी जनि, इकहोइ, दमनचित, हौं सुपुत्र, बांधन, होय सुख साखी. The soraṭhā's last word, सुव्रन, is so in both, though the sense wants सुवन ("son": "O son of the Sun, remover of obstacles"); no witness gives सुवन, so the book's reading stays (settled below, Readings settled).
+Kept as the book has them: every other reading, the book and Drik Panchang agreeing but for भांति (Drik भाँति) and शनीश्चर (Drik शनिश्चर). Their shared readings kept: मम् (opening dohā), मन्दसौरि, रौद्रय, विषमवस, महँवासा, तोर (chaupāī 16, read as तीर 'bank': 'on the Sarayū's bank'), होंय, गिरी, जोगी जनि, इकहोइ, दमनचित, हौं सुपुत्र, बांधन, होय सुख साखी. The soraṭhā's last word, सुव्रन, is so in both, though the sense wants सुवन ("son": "O son of the Sun, remover of obstacles"); no witness gives सुवन, so the book's reading stays (settled below, Readings settled).
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).

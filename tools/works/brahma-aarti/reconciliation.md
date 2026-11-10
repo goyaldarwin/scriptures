@@ -20,7 +20,7 @@ Kept as the book has them (Drik Panchang agrees throughout): भाँति, �
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
 
 ## Readings settled
-The open questions of `docs/reviews/brahma-aarti-doubts.jsonl`, each decided (docs/PLAYBOOK.md §2).
+The readings the words alone leave open, each decided (docs/PLAYBOOK.md §2).
 
 - **aarti.pad2** — दुःख निर्गुण नाशन हारे: corrected to दुःख दुर्गुण नाशन हारे. Both witnesses (the book, i-052, and Drik Panchang, a copy of the same collection) print निर्गुण, but "destroyer of sorrow and of the attributeless" is a sense that does not fit (PLAYBOOK §2), and an independent witness, Mukesh's 1950 recording as transcribed on Atul's Song A Day (atulsongaday.me), sings durgun: दुःख and दुर्गुण are the pair destroyed. Meaning changed: "you are the destroyer of sorrow and vice" (hi: दुःख और दुर्गुणोंका नाश करनेवाले). New word: दुर्गुण (hi).
 - **aarti.pad3** — भुलि हैं हम तो तुमको, a half-line short of its fellows: no word is missing; the half ends after तुम तो. Each first half has four IIS feet of 16 mātrās (पितु मा | तु सहा | यक स्वा | मि सखा), and भुलि हैं | हम तो | तुमको | तुम तो is exactly that, leaving हमरी सुधि नाहिं बिसारे हो as long as the other second halves; the book's comma follows the sense, not the metre. The words are as printed; only the line division moves. Meaning unchanged.

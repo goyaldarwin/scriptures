@@ -13,7 +13,7 @@ The rule: keep the base; correct it only where it is clearly wrong. The library'
 | line ends | । and ॥ alternating | । and, at a stanza's end, ॥N॥ | The standard. |
 | stanza numbers | none | ॥१॥ … ॥५॥ | The standard. |
 
-Kept as the base has them: बैजनाथ, वरदाती, ज्योत, कही योगेश्वरी (DNA Hindi कहीं; कही, "called", also reads: open doubt, `docs/reviews/katyayani-aarti-doubts.jsonl`), भगत है कहते (DNA Hindi भक्त), कत्यानी and कात्यानी (DNA Hindi कात्यायनी; the short forms keep the line's sixteen mātrās), ग्रन्थि, जपाने, बृहस्पतिवार, करिये, धरिये, भण्डारे.
+Kept as the base has them: बैजनाथ, वरदाती, ज्योत, कही योगेश्वरी (DNA Hindi कहीं; कही, "called", also reads; settled below, Readings settled), भगत है कहते (DNA Hindi भक्त), कत्यानी and कात्यानी (DNA Hindi कात्यायनी; the short forms keep the line's sixteen mātrās), ग्रन्थि, जपाने, बृहस्पतिवार, करिये, धरिये, भण्डारे.
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).

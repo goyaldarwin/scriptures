@@ -26,3 +26,6 @@ Kept as the book has them, against Drik Panchang (she sings these as the book ha
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- **aarti.tek** (तेरे ही गुन गायें भारती): भारती is Bhāratī, Sarasvatī, the goddess of speech (MW bhāratī, "speech; Sarasvatī"; the Hindī Śabdasāgara the same): the goddess of speech herself sings the Mother's praise. The people of Bhārata would be भारत or भारतवासी, not भारती. Meaning as given.

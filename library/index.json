@@ -728,8 +728,8 @@
          "en": "Gao Gao Ri Priyapritam Ki Aarti Gao"
         },
         "desc": {
-         "hi": "श्रीरामकी आरती",
-         "en": "The aarti of Shri Ram"
+         "hi": "श्रीसीतारामकी आरती",
+         "en": "The aarti of Shri Sitaram"
         }
        }
       ]
@@ -991,8 +991,8 @@
          "en": "Om Jai Ekadashi"
         },
         "desc": {
-         "hi": "भगवान विष्णुकी आरती",
-         "en": "The aarti of Bhagwan Vishnu"
+         "hi": "एकादशी माताकी आरती",
+         "en": "The aarti of Mother Ekadashi"
         }
        },
        {
@@ -1004,8 +1004,8 @@
          "en": "Jai Lakshmi-Vishno"
         },
         "desc": {
-         "hi": "भगवान विष्णुकी आरती",
-         "en": "The aarti of Bhagwan Vishnu"
+         "hi": "श्रीलक्ष्मीनारायणकी आरती",
+         "en": "The aarti of Shri Lakshmi Narayan"
         }
        },
        {
@@ -1854,7 +1854,7 @@
         "path": "hinduism/aarti/bagalamukhi/bagalamukhi-aarti",
         "title": {
          "hi": "जय जय श्री बगलामुखी माता",
-         "en": "Jai Jai Shri Bagalamukhi Mata"
+         "en": "Jai Jai Shri Baglamukhi Mata"
         },
         "desc": {
          "hi": "माँ बगलामुखीकी आरती",
@@ -2058,7 +2058,7 @@
         "path": "hinduism/aarti/ganga/bhagirath-nandini-aarti",
         "title": {
          "hi": "जय जय भगीरथनन्दिनि",
-         "en": "Jai Jai Bhagirathanandini"
+         "en": "Jai Jai Bhagirath Nandini"
         },
         "desc": {
          "hi": "माँ गंगाकी आरती",
@@ -2149,7 +2149,7 @@
          "en": "Jai Jai Pitarji Maharaj"
         },
         "desc": {
-         "hi": "पितरकी आरती",
+         "hi": "पितरोंकी आरती",
          "en": "The aarti of Pitars (the ancestors)"
         }
        }
@@ -2314,7 +2314,7 @@
         "path": "hinduism/aarti/pretraj/pretraj-aarti",
         "title": {
          "hi": "आरती प्रेतराज की कीजै",
-         "en": "Aarti Pretraj Ki Keejai"
+         "en": "Aarti Pretraj Ki Kijai"
         },
         "desc": {
          "hi": "प्रेतराज सरकारकी आरती",
@@ -2454,7 +2454,7 @@
         },
         "desc": {
          "hi": "मंगलमय मंगल करन करिवर वदन विशाल",
-         "en": "Shri Ganesh Chalisa"
+         "en": "Mangalmay Mangal Karan Karivar Vadan Vishal"
         }
        }
       ]
@@ -2498,7 +2498,7 @@
         },
         "desc": {
          "hi": "श्रीगुरु चरन सरोज रज",
-         "en": "Shri Guru Charan Saroj Raj"
+         "en": "Shri Hanuman Chalisa"
         }
        },
        {

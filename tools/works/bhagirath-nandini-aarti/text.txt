@@ -1,9 +1,9 @@
-# जय जय भगीरथनन्दिनि (Jai Jai Bhagirathanandini): the verse text, from Drik Panchang ("गंगा माता आरती"). The
+# जय जय भगीरथनन्दिनि (Jai Jai Bhagirath Nandini): the verse text, from Drik Panchang ("गंगा माता आरती"). The
 # witnesses and every choice: reconciliation.md.
 
 @part aarti
 @section aarti
-@topic जय जय भगीरथनन्दिनि | Jai Jai Bhagirathanandini
+@topic जय जय भगीरथनन्दिनि | Jai Jai Bhagirath Nandini
 [aarti.tek tek]
 जय जय भगीरथनन्दिनि ।
 मुनि-चय चकोर-चन्दिनि ।

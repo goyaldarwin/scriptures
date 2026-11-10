@@ -1,0 +1,147 @@
+{
+ "arka": {
+  "hi": "अर्क, सूर्य",
+  "en": "Arka, the sun",
+  "hard": true
+ },
+ "aśoka": {
+  "hi": "अशोक, शोकरहित — विष्णुका नाम",
+  "en": "Aśoka, 'the sorrowless': a name of Viṣṇu",
+  "hard": true
+ },
+ "dakṣa": {
+  "hi": "दक्ष, कुशल, सब कार्योंमें समर्थ",
+  "en": "dakṣa, skilful, able",
+  "hard": true
+ },
+ "gada": {
+  "hi": "गद, श्रीकृष्णके छोटे भाई (वसुदेवके पुत्र)",
+  "en": "Gada, Kṛṣṇa's younger brother (a son of Vasudeva)",
+  "hard": true
+ },
+ "gopati": {
+  "hi": "गोपति, गौओंके स्वामी / पृथ्वीके स्वामी (गो: पृथ्वी)",
+  "en": "Gopati, lord of the cows / lord of the earth (go: the earth)",
+  "hard": true
+ },
+ "guha": {
+  "hi": "गुह, (मायासे) अपनेको छिपानेवाले — विष्णुका नाम",
+  "en": "Guha, 'the hidden one', who hides himself by his māyā: a name of Viṣṇu",
+  "hard": true
+ },
+ "jahnu": {
+  "hi": "जह्नु, प्रलयमें सब प्राणियोंको अपनेमें समेट लेनेवाले — विष्णुका नाम",
+  "en": "Jahnu, he who draws all beings into himself at the dissolution: a name of Viṣṇu",
+  "hard": true
+ },
+ "jayanta": {
+  "hi": "जयन्त, विजयी, शत्रुओंको जीतनेवाले — विष्णुका नाम",
+  "en": "Jayanta, 'the victorious': a name of Viṣṇu",
+  "hard": true
+ },
+ "kālanemi": {
+  "hi": "कालनेमि, देवासुर-संग्राममें भगवान् विष्णुके हाथों मारा गया असुर",
+  "en": "Kālanemi, the asura slain by Viṣṇu in the war of the gods and asuras",
+  "hard": true
+ },
+ "kāma": {
+  "hi": "काम, जिनकी (मुमुक्षु) कामना करते हैं — विष्णुका नाम",
+  "en": "Kāma, the one who is longed for: a name of Viṣṇu",
+  "hard": true
+ },
+ "kāmadeva": {
+  "hi": "कामदेव, सबके द्वारा चाहे जानेवाले देव — विष्णुका नाम",
+  "en": "Kāmadeva, the god whom all desire: a name of Viṣṇu",
+  "hard": true
+ },
+ "madhu": {
+  "hi": "मधु, एक दैत्य, जिसे विष्णुने मारा (मधुसूदन) / मधु, शहद; मधुर (स्तोत्र १८) / मधु, यदुवंशके पूर्वज राजा (माधव, स्तोत्र ७८)",
+  "en": "Madhu, the demon slain by Viṣṇu (Madhusūdana) / honey, sweet (stotra 18) / Madhu, the Yādava forefather (Mādhava, stotra 78)",
+  "hard": true
+ },
+ "manu": {
+  "hi": "मनु, मनन करनेवाले — विष्णुका नाम",
+  "en": "Manu, 'the thinker': a name of Viṣṇu",
+  "hard": true
+ },
+ "mukunda": {
+  "hi": "मुकुन्द, मोक्ष देनेवाले, भगवान् विष्णुका नाम",
+  "en": "Mukunda, the giver of liberation, a name of Viṣṇu",
+  "hard": true
+ },
+ "nahuṣa": {
+  "hi": "नहुष, (मायासे) सबको बाँधनेवाले — विष्णुका नाम",
+  "en": "Nahuṣa, he who binds all by māyā (√nah, to bind): a name of Viṣṇu",
+  "hard": true
+ },
+ "nimiṣa": {
+  "hi": "निमिष, योगनिद्रामें मुँदे नेत्रोंवाले — विष्णुका नाम",
+  "en": "Nimiṣa, whose eyes are closed in yogic sleep: a name of Viṣṇu",
+  "hard": true
+ },
+ "niyama": {
+  "hi": "नियम, सबको उनके कर्मोंमें नियुक्त करनेवाले — विष्णुका नाम",
+  "en": "Niyama, he who appoints all to their work: a name of Viṣṇu",
+  "hard": true
+ },
+ "paramā": {
+  "hi": "परमा, सबसे ऊँची, परम",
+  "en": "paramā, highest, supreme (feminine, with gati)",
+  "hard": true
+ },
+ "siddhi": {
+  "hi": "सिद्धि, सबका फलरूप, पूर्णता",
+  "en": "Siddhi, fulfilment, the fruit of all",
+  "hard": true
+ },
+ "siddhārtha": {
+  "hi": "सिद्धार्थ, जिनके सब प्रयोजन सिद्ध हैं — विष्णुका नाम",
+  "en": "Siddhārtha, 'whose every aim is accomplished': a name of Viṣṇu",
+  "hard": true
+ },
+ "soma": {
+  "hi": "सोम, यज्ञमें अर्पित लताका रस / चन्द्रमा",
+  "en": "soma, the sacred plant and its juice offered in sacrifice / Soma, the moon",
+  "hard": true
+ },
+ "suṣeṇa": {
+  "hi": "सुषेण, सुन्दर सेनावाले — विष्णुका नाम",
+  "en": "Suṣeṇa, 'he of the splendid army': a name of Viṣṇu",
+  "hard": true
+ },
+ "vardhamāna": {
+  "hi": "वर्धमान, (जगत्‌रूपसे) बढ़नेवाले — विष्णुका नाम",
+  "en": "Vardhamāna, 'the growing one', who grows as the world: a name of Viṣṇu",
+  "hard": true
+ },
+ "vasiṣṭha": {
+  "hi": "वसिष्ठ, ब्रह्मर्षि, शक्तिके पिता और व्यासजीके प्रपितामह; रघुकुलके कुलगुरु",
+  "en": "Vasiṣṭha, the brahmarṣi, father of Śakti and great-grandfather of Vyāsa; the family guru of the Raghu kings",
+  "hard": true
+ },
+ "vikrama": {
+  "hi": "विक्रम, डग भरकर तीनों लोकोंको नापनेवाले — विष्णुका नाम",
+  "en": "Vikrama, 'the strider', who strode across the worlds: a name of Viṣṇu",
+  "hard": true
+ },
+ "vāsudeva": {
+  "hi": "वासुदेव, वसुदेवके पुत्र श्रीकृष्ण / सबमें बसनेवाले और सबको ढकनेवाले देव",
+  "en": "Vāsudeva, Kṛṣṇa, son of Vasudeva / the god who dwells in all and covers all",
+  "hard": true
+ },
+ "āśrama": {
+  "hi": "आश्रम, संसारमें भटकनेवालोंका विश्रामस्थल / जीवनकी अवस्था",
+  "en": "Āśrama, the resting place of those who wander in the world / a stage of life",
+  "hard": true
+ },
+ "śatrughna": {
+  "hi": "शत्रुघ्न, (देवताओंके) शत्रुओंका नाश करनेवाले — विष्णुका नाम",
+  "en": "Śatrughna, 'slayer of foes', of the enemies of the gods: a name of Viṣṇu",
+  "hard": true
+ },
+ "śārṅga": {
+  "hi": "शार्ङ्ग, भगवान् विष्णुका धनुष",
+  "en": "Śārṅga, the bow of Viṣṇu",
+  "hard": true
+ }
+}

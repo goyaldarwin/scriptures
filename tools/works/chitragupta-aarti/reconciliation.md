@@ -21,6 +21,6 @@ Kept as the base has them: इच्छित, सुखदायी, छाय�
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
 
 ## Readings settled
-The open questions of `docs/reviews/chitragupta-aarti-doubts.jsonl`, each decided (docs/PLAYBOOK.md §2).
+The readings the words alone leave open, each decided (docs/PLAYBOOK.md §2).
 
 - **aarti.pad7** — तुम तज मैं भर्ता: kept as printed (every witness found prints it: Drik Panchang, Bhakti Bharat its copy) and read with the half before it, जाऊँ कहाँ शरण में किसकी: "where shall I go, whose refuge shall I seek? Leaving you, O sustainer (भर्ता, "cherisher, supporter, lord", Platts), where could I go?" No other reading is attested. Meaning unchanged.

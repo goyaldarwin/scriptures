@@ -1,9 +1,17 @@
 # Anuradha Paudwal, "Om Jai Jagdish Hare Aarti Sangrah" jukebox (YouTube sd31yGqZFlA): hand-checked starts
 
+**The track** (`recordings.json` start 1634.38, end 1997.91: 27:14.38–33:17.91 of the 3641-s video sd31yGqZFlA): this song alone. Its bounds are the silences between the songs, found on the audio (the loudness in 10 ms steps falls below −42 dB, most to digital silence): before it 1634.01–1634.38 s, after it 1997.91–1998.25 s. Every verse is timed inside them (`make_timings.py` refuses one outside), the player starts at the first verse and stops at the end, and the listening time counts only this song.
+
 The āratī is the jukebox's track from 27:15 to 33:12 (1635–1992 s). Starts not listed here come from the transcript's anchors.
 
 | Verse | Start | Evidence |
 |---|---|---|
-| aarti.tek | 1635.1 | "शवाम जे लक्स्मी रमना" (1635.1–1648.9) = … स्वामी जय लक्ष्मी रमणा, the first sung words of the track; the automatic alignment took the repeat at 1648.9. |
-| aarti.pad2 | 1732.28 | "प्रगड भवे कनी कारन" = प्रगट भए कलि कारण, after the refrain at 1727.3; the automatic alignment took the next line, "विज़ को दर सतीो" (द्विज को दर्श दियो) at 1737.3. |
 | aarti.pad5 | 1823.24 | "भाव भाव्ती के कारन" = भाव भक्ति के कारण, after the refrain at 1817.8; the automatic alignment took the repeated "छिन छिन रूप धर्यो" at 1830.3. |
+
+## Starts left to the forced aligner (MMS), checked
+These verses have no hand start: a transcript segment's start is not the line's, and 5-s windows a second apart (Whisper small, the ONNX export of `tools/audio/transcribe_onnx.py`) show that MMS's start is the line's.
+
+| Verse | Evidence |
+|---|---|
+| aarti.tek | music from the song’s start (1634.38 s); windows from 1646 to 1648 s begin "जे लक्ष्मी रमणा", the one from 1649 s does not: about 1648.4 s; MMS 1648.99 |
+| aarti.pad2 | windows from 1732 to 1733 s begin "प्रगट भये", the one from 1734 s does not: about 1733.3 s; MMS 1733.9 |

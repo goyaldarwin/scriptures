@@ -3,7 +3,7 @@
 
 @part aarti
 @section aarti
-@topic ऐसी आरती राम रघुबीर की | Aisi Aarti Ram Raghubir Ki
+@topic ऐसी आरती राम रघुबीर की करहि मन | Aisi Aarti Ram Raghubir Ki Karahi Man
 [aarti.tek tek]
 ऐसी आरती राम रघुबीर की करहि मन ।
 हरण दुखदुन्द गोविन्द आनन्दघन ॥

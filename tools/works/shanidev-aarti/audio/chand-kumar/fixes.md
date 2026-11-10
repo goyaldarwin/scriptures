@@ -11,8 +11,8 @@ music). Evidence: the same Whisper small model (its ONNX export, `tools/audio/tr
 
 | Verse | Start | Evidence |
 |---|---|---|
-| aarti.tek | 18.65 | pieces to 18.65 are music ("अगर"); 18.65–24.4 "जे जे श्रिशनी देब", 24.4 "तनहित कारी" = …शनि देव भक्तन हितकारी; 42.5 "सूरज के पुत्र प्रभूच्वाया महतारी" |
-| aarti.pad1 | 93.2 | 68.35–93.2 music; 93.2–100.55 "शाम आंग वक्रे द्रिष्त च्टुर्ब हुजा दारी" = श्याम अंग वक्र-दृष्टि चतुर्भुजा धारी; the alignment took its repeat (102.0) |
-| aarti.pad2 | 145.7 | 127.15–145.7 music; 145.7–153.45 "क्रीट मुक्त शीश रजद दिपत है लिनारी" = क्रीट मुकुट शीश राजित दिपत है लिलारी; the alignment took 132.0, which is music |
-| aarti.pad3 | 209.3 | 180.6–209.3 music; 209.3–216.8 "मोदक मिष्ठान पान चडद ते है सुपारी"; 222.1 "लोहा किल तेल उडद महिश्याती प्यारी" |
+| aarti.tek | 20.4 | the window from 16 s hears music only, the one from 17 s only "जे जे", those from 18 to 21 s more and more of "जय जय श्री शनि देव": the singing starts at about 20 s; MMS took the line’s repeat at 27.2 |
+| aarti.pad1 | 95.4 | windows from 91 to 95 s begin "शाम आंग" (श्याम अंग), the one from 96 s "अग वक्रे": about 95.3 s; MMS took the repeat at 100.9 |
+| aarti.pad2 | 148.6 | windows from 147 to 148 s begin "क्रीट मुकुट शीश", the one from 149 s "वुट शीश": about 148.3 s; MMS took the repeat at 153.8 |
+| aarti.pad3 | 212.6 | windows from 209 to 212 s begin "मोदक मिष्ठान", the one from 213 s "विश्ठान पान": about 212.3 s; MMS took the repeat at 217.4 |
 | aarti.pad4 | (none) | not sung: after stanza 3's refrain (to 247.65) only "जेजे शिशनी देव…" (the refrain's first line) to the end. Its fix is stanza 3's own start, so no time is used for it, and with `"fill": 0` none is guessed |

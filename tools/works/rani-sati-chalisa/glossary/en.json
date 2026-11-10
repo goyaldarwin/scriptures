@@ -24,9 +24,24 @@
   "en": "Maham, a town in the Rohtak district of Haryana",
   "hard": true
  },
+ "satī": {
+  "hi": "सती, पतिके साथ चितापर देह त्यागनेवाली पतिव्रता; यहाँ राणी सती (नारायणी), जो देवी रूपमें पूजी जाती हैं",
+  "en": "a satī, a faithful wife who gave up her life on her husband's pyre; here Rāṇī Satī (Nārāyaṇī), worshipped as the Goddess",
+  "hard": true
+ },
+ "bhavānī": {
+  "hi": "भवानी, देवी (पार्वतीजीका नाम); यहाँ राणी सतीके लिये",
+  "en": "Bhavānī, the Goddess (a name of Pārvatī); here said of Rāṇī Satī",
+  "hard": true
+ },
+ "vikrama": {
+  "hi": "विक्रम संवत् — राजा विक्रम (विक्रमादित्य)के नामसे चलनेवाली वर्ष-गणना",
+  "en": "the Vikrama era (Vikrama saṁvat), the year-count named after King Vikramāditya",
+  "hard": true
+ },
  "rāṇājī": {
-  "hi": "राणाजी, एक राणा (राजा), जो सतीके दर्शन करके कृतार्थ हुए",
-  "en": "Rāṇājī, a Rāṇā (a ruler) who saw the Satī and was fulfilled",
+  "hi": "राणाजी, राणी सतीके स्वामिभक्त सेवक, जो सतीके दर्शन करके कृतार्थ हुए",
+  "en": "Rāṇājī, Rāṇī Satī's loyal servant, who saw the Satī and was fulfilled",
   "hard": true
  },
  "tanadhanadāsa": {

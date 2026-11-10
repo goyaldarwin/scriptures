@@ -8,7 +8,13 @@ repeats for stanzas 2 and 3. Evidence: the same Whisper small model (its ONNX ex
 
 | Verse | Start | Evidence |
 |---|---|---|
-| aarti.tek | 11.0 | 0–11.0 music; 11.0–19.65 "अम दू है जग जमबे काली जैए दूरी" = अम्बे तू है जगदम्बे काली जय दुर्गे; the alignment took 31.48 (its repeat) |
 | aarti.pad1 | 53.7 | 48.05 music; 53.7–61.9 "तेरी वाद जनो पे माथा", 61.9 "भीर पडी है पारी" = तेरे भक्त जनों पर माता भीर पड़ी है भारी (the transcript: 55.82) |
-| aarti.pad2 | 128.2 | 122.55 music; 128.2 "माबे के आपे", 135.0 "अज़ाग में बड़ा लिए निर्मल लादा" = मां बेटे का है इस जग में बड़ा ही निर्मल नाता; the alignment took 105.82, the refrain |
-| aarti.pad3 | 202.3 | 196.7 music; 202.3 "अद्याद लग तेदार", 208.85 "अर तालच ना चांजी ना सोडा" = (नहीं मांगते धन) और दौलत ना चांदी ना सोना; the alignment took 187.42, the refrain |
+| aarti.pad2 | 133.4 | windows from 130 to 133 s begin "मा बेटे का है", the one from 134 s does not, and the one from 129 s hears only "मा बे…": the line starts at about 133 s (the transcript segment began at 128.2); MMS took its repeat at 149.1 |
+| aarti.pad3 | 207.6 | the window from 207 s begins "नहीं मागते धन", the one from 208 s "अगते धन": about 207.3 s (the segment began at 202.3); MMS took its repeat at 223.3 |
+
+## Starts left to the forced aligner (MMS), checked
+These verses have no hand start: a transcript segment's start is not the line's, and 5-s windows a second apart (Whisper small, the ONNX export of `tools/audio/transcribe_onnx.py`) show that MMS's start is the line's.
+
+| Verse | Evidence |
+|---|---|
+| aarti.tek | windows from 12 to 15 s begin "अम्बे तु है जग जंबे", the one from 16 s with "तु है": the line starts at about 15.3 s; MMS 15.51 (14.91 with the lean) |

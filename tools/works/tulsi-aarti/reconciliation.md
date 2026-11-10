@@ -19,3 +19,6 @@ Kept as the book has them: सब जग की सुख दाता (Drik स
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- **aarti.pad1** (सब योगों के ऊपर): योग is the spiritual disciplines (yoga), the plain sense; Tulasī above all yogas and above all diseases. Meaning as given.

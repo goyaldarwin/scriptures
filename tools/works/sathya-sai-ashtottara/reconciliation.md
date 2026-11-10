@@ -32,6 +32,7 @@ until the owner hears it: name 89 sounds as “anna vastra dāya” (the organis
 | every name | (a number after every tenth name only; ॥ १०० without its closing ॥) | ॥N॥ after every name | each name is one verse with its own number, 1–108 |
 | 13 | सर्वसङ् गपरित्यागिने | सर्वसङ्गपरित्यागिने | the text layer splits the conjunct ङ्ग; the page shows it whole |
 | 17 | पर्ति ग्रामोद्भवाय | पर्तिग्रामोद्भवाय | a space added by the text layer; the page prints one word |
+| 18 | पर्ति क्षेत्रनिवासिने (pdftotext) | पर्तिक्षेत्रनिवासिने | one word on the printed page, as 17 पर्तिग्रामोद्भवाय; a space added by the text layer |
 | 30 | शङ् कराय | शङ्कराय | split conjunct (text layer) |
 | 45 | मूर्ति त्रयस्वरूपाय | मूर्तित्रयस्वरूपाय | a space added by the text layer; the page prints one word |
 | 47 | कलुषविदू राय | कलुषविदूराय | a word broken by the text layer |

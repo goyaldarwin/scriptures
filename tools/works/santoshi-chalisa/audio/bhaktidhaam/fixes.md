@@ -1,6 +1,8 @@
 # BhaktiDhaam, "सम्पूर्ण चालीसा संग्रह" (YouTube lCwPg0LRRjk): hand-checked starts
 
-The track: 29:50–35:09 (1790–2109 s; the previous track fades out at 1790 s, this one fades out after chaupāī 40 at 2104.5–2109 s). Starts not listed here come from the transcript's matches (the identify transcript, `transcripts/lCwPg0LRRjk.jsonl`).
+**The track** (`recordings.json` start 1790.55, end 2108.6: 29:50.55–35:08.60 of the 3028-s video lCwPg0LRRjk): this song alone. Its bounds are the silences between the songs, found on the audio (the loudness in 10 ms steps falls below −42 dB, most to digital silence): before it the fade at 1790.53 s, after it 2108.60–2109.07 s. Every verse is timed inside them (`make_timings.py` refuses one outside), the player starts at the first verse and stops at the end, and the listening time counts only this song.
+
+The track: 29:50–35:09 (1790–2109 s; the previous track fades out at 1790 s, this one fades out after chaupāī 40 at 2104.5–2109 s). Starts not listed here come from the forced aligner (MMS, `aligned.json`), else from the transcript's matches (the identify transcript, `transcripts/lCwPg0LRRjk.jsonl`).
 
 | Verse | Start | Evidence |
 |---|---|---|
@@ -8,10 +10,18 @@ The track: 29:50–35:09 (1790–2109 s; the previous track fades out at 1790 s,
 | chalisa.cau2 | 1808.72 | "गडपति देव तुमारे ताता" = गणपति देव तुम्हारे ताता. |
 | chalisa.cau3 | 1814.72 | "मात पिता की रहो दूलारी" = माता-पिता की रहौ दुलारी. |
 | chalisa.cau4 | 1820.72 | "की त्मबुत् सिर अनपम वारी" = क्रीट मुकुट सिर अनुपम भारी. |
-| chalisa.cau10–12 | 1863.4, 1869.4, 1875.4 | The transcript has them twice: "करहु भच्त की आप सजाई · रमहा दिंग सरस्वती कहाई · लक्ष मी … · शिवद्धिंग थ्रजा …" at 1862.72–1872.72 s and again "करहु बखत की आप सहाई, रम्हा दिंग …, शिवदिंग गिर जा …, महिमती नो लोक मेगाजे" at 1872.72–1888.72 s; the matcher took the first (1860.8, 1864.1, 1869.3), which packs three chaupāīs into 9 s. Set from the tune, which agrees with the second reading: the album sings this chālīsā to the Shiv Chālīsā's tune (`shiv-chalisa/audio/bhaktidhaam`): its chaupāī starts counted from chaupāī 1 put this track's chaupāīs 1–4 and 13–19 within 0.5 s of the transcript, and chaupāīs 10–12 at 60.7, 66.7, 72.7 s after chaupāī 1. |
 | chalisa.cau23 | 1967.8 | Segment 1964.72–1970.94 s: "वाबकातिनी भव भायतरनी" (chaupāī 22's second half) and then "तित लगाए तुमें जो भी दियाता"; the matcher's 1964.32 is chaupāī 22's half-line. The tune gives 1968.4. |
 | chalisa.cau36 | 2067.0 | "ता किशन में काज बनावे" (its second half) at 2069.96 s, after "जो जन शरन मात तरी आबे" at the end of the long segment 2042.96–2069.96 s; the matcher's 2069.56 is the second half. The tune gives 2067.1. |
 
 Chaupāīs 5–8 are not in the transcript (no segment from 1827.72 to 1857.72 s): placed by length between chaupāīs 4 and 9 and listed to check (the tune puts them at 1833.3, 1839.4, 1845.4, 1851.4 s).
 
 Not heard: the opening dohā (the transcript has nothing between the fade at 1790 s and chaupāī 1 at 1802.7 s; whether those 12 s are the dohā or music is to be heard; it is back-filled to the track's start and listed to check) and the closing dohā (the track fades out right after chaupāī 40; it stays untimed).
+
+## Starts left to the forced aligner (MMS), checked
+These verses have no hand start: a transcript segment's start is not the line's, and 5-s windows a second apart (Whisper small, the ONNX export of `tools/audio/transcribe_onnx.py`) show that MMS's start is the line's.
+
+| Verse | Evidence |
+|---|---|
+| chalisa.cau10 | the window from 1869 s still hears the line before ("…जाए नसाई"), the one from 1870 s begins "वेद पुरान रहे": about 1870.3 s; MMS 1870.66 |
+| chalisa.cau11 | the window from 1876 s begins "ब्रम्हाडिंग सर स्वती", the one from 1877 s "अदिंग…": about 1876.3 s; MMS 1876.72 |
+| chalisa.cau12 | the window from 1882 s begins "शिवदिन गिर जारुप", the one from 1883 s "वदिन…": about 1882.3 s; MMS 1882.84 |

@@ -7,7 +7,7 @@
  },
  "मंदला": {
   "hi": "मंदला, शीतला माताका एक लोकनाम",
-  "en": "Maṃdalā, a folk name of Śītalā",
+  "en": "Mandalā, a folk name of Śītalā",
   "g": "संज्ञा (व्यक्तिवाचक)",
   "hard": true
  },
@@ -25,8 +25,14 @@
  },
  "शेढ़ला": {
   "hi": "शेढ़ला, शीतला माताका एक नाम",
-  "en": "Śeḍhalā, a name of Śītalā Mātā",
+  "en": "Śeṛhalā, a name of Śītalā Mātā",
   "g": "संज्ञा (व्यक्तिवाचक)",
+  "hard": true
+ },
+ "वैशाख": {
+  "hi": "(‘वैशाख-सुनन्दन’) वैशाखनन्दन, गधेका एक नाम / वैशाख मास (अप्रैल–मई)",
+  "en": "(‘vaiśākha-sunandana’) Vaiśākhanandana, a name for the donkey / the month Vaiśākha (April–May)",
+  "g": "संज्ञा",
   "hard": true
  },
  "सुनन्दन": {

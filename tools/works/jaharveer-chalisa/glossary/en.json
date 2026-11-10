@@ -34,9 +34,14 @@
   "en": "Bhajjū, the kotwāl, a companion of Gūgā",
   "hard": true
  },
+ "līlā": {
+  "hi": "लीला, गूगा (जाहरवीर)का घोड़ा, जो लीली घोड़ीसे जन्मा",
+  "en": "Līlā, the horse of Gūgā (Jāharvīr), born of the mare Līlī",
+  "hard": true
+ },
  "līlī": {
-  "hi": "लीली, गूगा जाहरवीरकी घोड़ी",
-  "en": "Līlī, the mare of Gūgā (Jāharvīr)",
+  "hi": "लीली, गूगाकी कथाकी घोड़ी, जिससे लीला घोड़ा (गूगाका घोड़ा) जन्मा",
+  "en": "Līlī, the mare in Gūgā's story who bore Līlā, the horse of Gūgā (Jāharvīr)",
   "hard": true
  },
  "lūnā": {

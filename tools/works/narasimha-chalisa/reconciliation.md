@@ -13,7 +13,7 @@ The rule: keep the base; correct it only where it is clearly wrong. The library'
 | chaupāī 18 | शेष शारदा पारन पावे | शेष शारदा पार न पावे | A missing space: "Śeṣa and Śāradā do not reach the end (पार न)"; पारन makes no sense here. |
 | chaupāī 27 | ताकि काया कञ्चन होई | ताकी काया कञ्चन होई | ताकि ("so that") is a slip for ताकी ("his"): "his body becomes like gold". |
 
-Kept as the base has it: पिता कियो मारन परसाया (chaupāī 7). परसाया is not a word and does not rhyme with दासा; the sense wants "the father tried (प्रयास) to kill him", but no independent witness was found to give the right form, so the base's reading stays and the doubt is in `docs/reviews/narasimha-chalisa-doubts.jsonl`. The base's own spellings are kept as printed: प्रहलाद and प्रह्लाद, बिष्णु and विष्णु, नही and नहीं, सङ्कट, कञ्चन, वाञ्छित, रङ्क, and the short lines दुःख व्याधि हो निस्तारा (chaupāī 21) and उस घर आनन्द रहे (closing dohā 2).
+Kept as the base has it: पिता कियो मारन परसाया (chaupāī 7). परसाया is not a word and does not rhyme with दासा; the sense wants "the father tried (प्रयास) to kill him", but no independent witness was found to give the right form, so the base's reading stays (settled below, Readings settled). The base's own spellings are kept as printed: प्रहलाद and प्रह्लाद, बिष्णु and विष्णु, नही and नहीं, सङ्कट, कञ्चन, वाञ्छित, रङ्क, and the short lines दुःख व्याधि हो निस्तारा (chaupāī 21) and उस घर आनन्द रहे (closing dohā 2).
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).

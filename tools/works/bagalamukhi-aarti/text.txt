@@ -1,9 +1,9 @@
-# जय जय श्री बगलामुखी माता (Jai Jai Shri Bagalamukhi Mata): the verse text, from ५१ चालीसा संग्रह आरतियों
+# जय जय श्री बगलामुखी माता (Jai Jai Shri Baglamukhi Mata): the verse text, from ५१ चालीसा संग्रह आरतियों
 # सहित (Randhir Prakashan, p. 255). The witnesses and every choice: reconciliation.md.
 
 @part aarti
 @section aarti
-@topic जय जय श्री बगलामुखी माता | Jai Jai Shri Bagalamukhi Mata
+@topic जय जय श्री बगलामुखी माता | Jai Jai Shri Baglamukhi Mata
 [aarti.tek tek]
 जय जय श्री बगलामुखी माता ।
 आरति करहुँ तुम्हारी ॥

@@ -19,3 +19,7 @@ Kept as the base has them: बैजंती, बजावै, झलकाल�
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- **aarti.pad1** (राधिका चमक रही आली): आली is सखी, "O friend", the Braj address (Platts ālī, "a woman's female friend"). Meaning as given.
+- **aarti.pad4** (टेर सुन दीन भिखारी की): सुन is the imperative, a request to the Lord to hear the poor beggar's call; कटत is intransitive, so it cannot take the call as its cause. Meaning as given.

@@ -1,4 +1,9 @@
 {
+ "hari": {
+  "hi": "हरि, भगवान् विष्णुका नाम",
+  "en": "Hari, a name of Viṣṇu",
+  "hard": true
+ },
  "himaretā": {
   "hi": "हिमरेता, सूर्यदेवका एक नाम (आश्विन मासमें)",
   "en": "Himaretā, a name of the Sun (in the month of Āśvina, as this Chālīsā names him)",
@@ -15,7 +20,7 @@
   "hard": true
  },
  "suvarṇaretā": {
-  "hi": "सुवर्णरेता, 'सोनेके तेजवाला', सूर्यदेवका एक नाम",
+  "hi": "सुवर्णरेता, 'सोनेके बीजवाला', सूर्यदेवका एक नाम",
   "en": "Suvarṇaretā, 'of golden seed', a name of the Sun",
   "hard": true
  },
