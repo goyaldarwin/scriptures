@@ -6,7 +6,7 @@ The transcript (`transcripts/faxIif-3F8o.jsonl`, the identify run) begins each s
 
 | Verse | Start | Evidence |
 |---|---|---|
-| aarti.tek | 2398.8 | 2398.8 "जेजे", 2404.9 "तुल्सी माता जे जे" = जय जय तुलसी माता; 2383.0–2398.8 music. The automatic match took a later repeat (2436.7). |
+| aarti.tek | 2403.9 | windows from 2394 to 2398 s hear no words (music: the hand start 2398.8 was a transcript segment's); the one from 2399 s ends "जेजे", those to 2403 s only "जे जे" at their end, the one from 2404 s begins "जे जे तुसी माता", the one from 2405 s "तुल सी माता": the refrain starts at about 2403.9 s; MMS 2425.08 took a later repeat |
 | aarti.pad2 | 2557.3 | 2557.3 "बद्दू भुद्द्री हे शामा" = बहु पुत्री हे श्यामा; 2543.0–2557.3 music. |
 | aarti.pad3 | 2628.4 | 2628.4 "औरिके शीशवी राजद · त्रिबो वंशे हो वंदित" = हरि के शीश विराजत त्रिभुवन से हो वंदित; the automatic match took the line's repeat (2645.7). |
 | aarti.pad4 | 2700.4 | 2700.4 "लिकर जन्मवे जन्मे" = लेकर जन्म विजन में; 2691.8–2700.4 music. |

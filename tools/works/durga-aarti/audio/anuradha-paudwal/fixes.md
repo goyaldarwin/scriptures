@@ -8,7 +8,7 @@ repeats for stanzas 2 and 3. Evidence: the same Whisper small model (its ONNX ex
 
 | Verse | Start | Evidence |
 |---|---|---|
-| aarti.pad1 | 53.7 | 48.05 music; 53.7–61.9 "तेरी वाद जनो पे माथा", 61.9 "भीर पडी है पारी" = तेरे भक्त जनों पर माता भीर पड़ी है भारी (the transcript: 55.82) |
+| aarti.pad1 | 59.4 | 5-s and 8-s windows from 48 to 55 s hear no words (music: the hand start 53.7 was a transcript piece's); those from 56 to 59 s begin "तीरी वाद ज़ो पी माँ…" (तेरे भक्त जनों पे माता), the one from 60 s "ज़ो पी माता": the line starts at about 59.4 s; MMS 74.85 took its repeat |
 | aarti.pad2 | 133.4 | windows from 130 to 133 s begin "मा बेटे का है", the one from 134 s does not, and the one from 129 s hears only "मा बे…": the line starts at about 133 s (the transcript segment began at 128.2); MMS took its repeat at 149.1 |
 | aarti.pad3 | 207.6 | the window from 207 s begins "नहीं मागते धन", the one from 208 s "अगते धन": about 207.3 s (the segment began at 202.3); MMS took its repeat at 223.3 |
 

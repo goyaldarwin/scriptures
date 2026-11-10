@@ -6,8 +6,8 @@ The transcript (`transcripts/faxIif-3F8o.jsonl`, the identify run) begins each s
 
 | Verse | Start | Evidence |
 |---|---|---|
-| aarti.tek | 629.5 | 629.5 "वोंजे सरस्वत्यी माता · जेजे सरस्वती मादा" = ॐ जय सरस्वती माता, the first sung line; the transcript has only the refrain's second singing (663.9). |
-| aarti.pad5 | 907.5 | 907.5 "दूम्पजीपखध्हल मेवा" = धूप दीप फल मेवा; 890.5–907.5 music (the transcript's 890.1 segment starts in it). |
+| aarti.tek | 630.4 | windows from 627 to 630 s hear "जय सरस्वती माता" (the first two only at their end), the one from 631 s no words of it: the refrain starts at about 630.4 s (the hand start 629.5 was a transcript segment's); MMS 657.61 took its repeat |
+| aarti.pad5 | 910.4 | the window from 905 s hears no words, those from 906 to 910 s more and more of "दूप दीप फल मेवा" (धूप दीप फल मेवा), the one from 911 s "…विप ख़ग मेवा": the line starts at about 910.4 s (the hand start 907.5 was a transcript segment's); MMS 910.36 agrees |
 | aarti.pad6 | 960.1 | 960.1 "माशरस्वती की आरती" = माँ सरस्वती की आरती; 940.9–960.1 music. |
 
 ## Starts left to the forced aligner (MMS), checked

@@ -13,9 +13,11 @@ The text is the version sung (`../../reconciliation.md`). Starts not listed here
 | chalisa.cau8 | 2772.3 | "रम्हा दिक तब पार ना पावे" = ब्रह्मादिक तव पार न पावैं, the third of those four half-lines (the segment shared by length). |
 | chalisa.cau9 | 2784.3 | "चारी उवेद भरत है साखी" = चारिउ वेद भरत हैं साखी, the first of three half-lines in 2784.3–2793.3 s. |
 | chalisa.cau10 | 2790.3 | "गुडगावत शारत मनमाही" = गुण गावत शारद मन माहीं, the third of those (shared by length). |
-| chalisa.cau11 | 2796.5 | "नाम तुमार लेत जो कोई" = नाम तुम्हार लेत जो कोई, the second of five half-lines in 2793.3–2809.3 s (shared by length). |
+| chalisa.cau11 | 2797.4 | windows from 2794 and 2795 s end with "नाम तुमार लेत", the one from 2797 s begins "नाम तुमार लेत जो कोई", the one from 2798 s "…लित जो खोई": the line starts at about 2797.4 s (the hand start 2796.5 was a transcript segment's); MMS 2797.11 |
 | chalisa.cau12 | 2802.9 | "राम नाम है अप्रम पारा" = राम नाम है अपरम्पारा, the fourth of those five (shared by length). |
-| chalisa.cau29 | 2932.3 | "सत्य है सत्य व्रत स्वामी" = सत्य सत्य सत्य ब्रत स्वामी, the first half-line of the segment 2932.3–2960.3 s, right after chaupāī 28 (2925.3 s); the segment holds seven half-lines (chaupāīs 29–31 and the first half of 32) in 28 s, and the automatic alignment matched it from chaupāī 30 on, at its start. |
+| chalisa.cau13 | 2815.4 | windows from 2809 and 2810 s hear no words, those from 2811 to 2815 s begin "गल पति नाम तुमहारो…" (गणपति नाम तुम्हारो लीन्हो), the one from 2816 s "…नाम तुमहारो": the line starts at about 2815.4 s (the transcript held nothing here and the start in use was spread by length); MMS 2815.50 agrees (score 0.076) |
+| chalisa.cau17 | 2846.4 | windows from 2843 to 2846 s begin "नाम शत्रु हन्र्दे प्रकाशा", the one from 2847 s "…द्रु हन्र्दे": the line starts at about 2846.4 s; those from 2840 and 2841 s hear no words (the transcript's start, 2839.3, was early); MMS 2846.35 agrees (score 0.123) |
+| chalisa.cau29 | 2938.4 | windows from 2930 to 2934 s hear the line before's end and no words (the hand start 2932.3 was a transcript segment's); those from 2936 to 2938 s begin "सत्य है सत्य व्रत स्वामी", the one from 2939 s does not: the line starts at about 2938.4 s; MMS 2938.59 agrees (score 0.196) |
 
 Chaupāīs 13–16 are not in the transcript (it has nothing between 2809.3 and 2839.3 s, where chaupāī 17 is heard); they are placed by length between chaupāīs 12 and 17 and listed to check. The video ends after chaupāī 40: chaupāīs 41–46 and the closing dohās are untimed.
 

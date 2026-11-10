@@ -5,5 +5,6 @@ Each file lists readings our meanings or word meanings take where a question is 
 | File | What |
 |---|---|
 | `dictionary-doubts.jsonl` (none open now) | word meanings whose sense is not settled (`library/glossary/<lang>.json`): `{k, lang, why}` |
+| `chalisa-aarti-namavali-audit.md` | the audit of every work and recording of the Chālīsā, Āratī and Nāmāvalī shelves: per work, what was read, each finding and what became of it, and each recording's checks (not doubts: everything in it is settled) |
 
 A new doubts file is named `<work or topic>-doubts.jsonl`, one JSON object per line.

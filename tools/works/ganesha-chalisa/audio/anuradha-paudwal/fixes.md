@@ -11,6 +11,7 @@ on 4–9 s pieces.
 | chalisa.do1 | 13.6 | pieces to 13.6 are music ("अगर"); 13.6–21.05 "जाया गानो पती सद गुडे सदार" = जय गणपति सदगुण सदन, 21.05 "कारी वर बदेन" |
 | chalisa.cau1 | 53.85 | 41.25–53.85 music; 53.85 "जे जे", 59.9 "मंगले परना करन शुभखाचु" = …मंगल भरण करण शुभ काजू |
 | chalisa.cau2 | 65.9 | 65.9–72.3 "जय गज बदन स", 72.3 "वीश्ववि नायत बुत्तिवि ताद्धा" = विश्वविनायक बुद्धि विधाता |
+| chalisa.cau20 | 265.4 | windows from 264 and 265 s begin "…लखियत्ती आनन्द" (लखि अति आनन्द), those from 266 to 268 s hear none of it: the line starts at about 265.4 s (the start in use, 266.49, was late; MMS 267.09) |
 | chalisa.cau29 | 372.95 | 372.95 "पानत्के ददू परदार्यो प्रानु मन्त्र पडिल" = बालक के धड़ ऊपर धारयो प्राण मन्त्र पढ़ि; the alignment took 351.08 |
 
 The same pieces confirm the wording she sings in closing dohā 2: 508.85 "समबन्द्ह अपनी सहस्ट्रदशे" (the transcript: "सम बन्द, अपने सहस्ट्र दश्य") = सम्बन्ध अपने सहस्र दश.
