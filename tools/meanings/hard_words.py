@@ -22,18 +22,45 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 WORD = {'hi': re.compile(r'[ऀ-ॣ०-ॿ‌‍]+'), 'en': re.compile(r"[A-Za-zÀ-ɏḀ-ỿ]+(?:[’'][A-Za-zÀ-ɏḀ-ỿ]+)*")}
 HI_POST = ['वाला', 'वाली', 'वाले', 'में', 'से', 'को', 'का', 'की', 'के', 'ने', 'पर', 'तक']
 
+def _base(w):
+    w = re.sub('[\u200c\u200d]', '', w)   # a joiner (जाम्बवान्‌ने) is not part of the word
+    base = [w] + [w[:-len(p)] for p in HI_POST if len(w) > len(p) + 1 and w.endswith(p)]
+    return base + [x[:-2] for x in base if len(x) > 3 and x.endswith('जी')]   # विभीषणजीने → विभीषण
+
+def _plural(x):
+    """A plural's guessed singulars, in the app's order (an ī-noun's देवियों → देवी before an i-noun's शक्तियों → शक्ति)."""
+    v = [re.sub('ियों$', 'ी', x), re.sub('ियों$', 'ि', x), re.sub('ियाँ$', 'ी', x), re.sub('ियाँ$', 'ि', x), re.sub('एँ$', '', x), re.sub('ओं$', '', x), re.sub('ों$', '', x), re.sub('ों$', 'ा', x), re.sub('ें$', '', x), re.sub('ें$', 'ा', x), re.sub('े$', 'ा', x)]
+    return [y for y in v if y != x]
+
 def forms(w, lang):
-    """The forms the app tries for a word of a meaning, in its order (tools/site/app.js hardForms)."""
+    """The forms the app tries for a word of a meaning, in its order (tools/site/app.js hardForms): the word, without its
+    postposition or जी, then a plural's guessed singulars."""
     if lang == 'en':
         x = re.sub(r"[’']s$", '', w.lower())
         return [x, re.sub(r'ies$', 'y', x), re.sub(r'es$', '', x), re.sub(r's$', '', x), re.sub(r'ed$', '', x), re.sub(r'ed$', 'e', x), re.sub(r'ing$', '', x), re.sub(r'ing$', 'e', x), re.sub(r'ly$', '', x)]
-    w = re.sub('[\u200c\u200d]', '', w)   # a joiner (जाम्बवान्‌ने) is not part of the word
-    base = [w] + [w[:-len(p)] for p in HI_POST if len(w) > len(p) + 1 and w.endswith(p)]
-    base += [x[:-2] for x in base if len(x) > 3 and x.endswith('जी')]   # विभीषणजीने → विभीषण
-    out = []
+    base = _base(w)
+    return base + [y for x in base for y in _plural(x)]
+
+def hard_key(w, lang, ent):
+    """The hard entry the app underlines a word with (tools/site/app.js hardKey), or None. ent(k): the entry for key k (the
+    work's own glossary first, then the shared one), or None. In Hindi the word itself, or without its postposition or जी,
+    decides when it has an entry (a plain one makes it a plain word: परे is never taken for परा); only a word with no
+    entry of its own is looked through as a plural, the first form found deciding."""
+    if lang == 'en':
+        for k in forms(w, lang):
+            e = ent(k)
+            if e is not None: return k if e.get('hard') else None
+        return None
+    base = _base(w)
+    for k in base:
+        e = ent(k)
+        if e is not None and e.get('hard'): return k
+    if any(ent(k) is not None for k in base): return None
     for x in base:
-        out += [x, re.sub('ियों$', 'ि', x), re.sub('ियों$', 'ी', x), re.sub('ियाँ$', 'ी', x), re.sub('ियाँ$', 'ि', x), re.sub('एँ$', '', x), re.sub('ओं$', '', x), re.sub('ों$', '', x), re.sub('ों$', 'ा', x), re.sub('ें$', '', x), re.sub('ें$', 'ा', x), re.sub('े$', 'ा', x)]
-    return out
+        for k in _plural(x):
+            e = ent(k)
+            if e is not None: return k if e.get('hard') else None
+    return None
 
 def meanings():
     """(work, lang, item id, text) for every one of our meanings, each text once (the Sundarakāṇḍa repeats the Mānas)."""
@@ -105,10 +132,17 @@ def apply(files):
     print(dict(n))
 
 def report(reach=False):
-    H = hard_keys(); hit = Counter(); via = defaultdict(Counter)
+    H = hard_keys(); hit = Counter(); via = defaultdict(Counter); D = {}
+    def ent(work, lang):   # the work's own glossary first, then the shared dictionary, as the app looks a word up
+        if (work, lang) not in D:
+            wp = os.path.join(ROOT, 'tools/works', work, 'glossary', lang + '.json'); sp = os.path.join(ROOT, 'library/glossary', lang + '.json')
+            if lang not in D: D[lang] = json.load(open(sp, encoding='utf-8')) if os.path.exists(sp) else {}
+            W = json.load(open(wp, encoding='utf-8')) if os.path.exists(wp) else {}
+            D[(work, lang)] = lambda k, W=W, S=D[lang]: W.get(k, S.get(k))
+        return D[(work, lang)]
     for work, lang, iid, t in meanings():
         for m in WORD[lang].finditer(t):
-            k = next((f for f in forms(m.group(0), lang) if f in H[lang]), None)
+            k = hard_key(m.group(0), lang, ent(work, lang))
             if k: hit[(lang, k)] += 1; via[(lang, k)][m.group(0)] += 1
     if reach:   # every word each hard key underlines, to catch a wrong catch (साम in सामने)
         for (lang, k), ws in sorted(via.items()): print(lang, k, '←', ' '.join(f'{w}×{n}' for w, n in ws.most_common()))
