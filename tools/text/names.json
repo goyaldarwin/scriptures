@@ -1,0 +1,7 @@
+{
+ "about": "A name's one spelling (docs/PLAYBOOK.md §2: a name takes its standard spelling, not a printout's). For the works on these shelves, tools/site/library.py refuses a variant in a verse, a heading, a label, the shelf entry or one of our meanings. A variant that is another word elsewhere (साईं, 'lord', in the Mānas) is refused only on these shelves.",
+ "names": [
+  {"name": "साई", "variants": ["साईं", "साँईं", "सायि"], "en": "Sāī", "shelves": ["hinduism/aarti/shirdi-sai", "hinduism/chalisa/shirdi-sai", "hinduism/namavali/sathya-sai"]},
+  {"name": "शिर्डी", "variants": ["शिरडी", "षिर्डी"], "en": "Śirḍī", "en_variants": ["Shirdi"], "shelves": ["hinduism/aarti/shirdi-sai", "hinduism/chalisa/shirdi-sai", "hinduism/namavali/sathya-sai"]}
+ ]
+}

@@ -3,11 +3,11 @@
  "path": "hinduism/chalisa/shirdi-sai/sai-chalisa",
  "lang": "awa",
  "title": {
-  "hi": "श्री साईं चालीसा",
+  "hi": "श्री साई चालीसा",
   "en": "Shri Sai Chalisa"
  },
  "by": {
-  "hi": "शिरडी साईबाबा",
+  "hi": "शिर्डी साईबाबा",
   "en": "Shirdi Sai Baba"
  },
  "parts": {
@@ -18,7 +18,7 @@
   "list": [
    {
     "key": "chalisa",
-    "hi": "श्री साईं चालीसा",
+    "hi": "श्री साई चालीसा",
     "en": "Shri Sai Chalisa"
    }
   ]

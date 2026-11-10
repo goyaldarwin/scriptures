@@ -3,11 +3,11 @@
  "path": "hinduism/aarti/shirdi-sai/sai-guruvar-aarti",
  "lang": "hi",
  "title": {
-  "hi": "आरती श्री साईं गुरुवर की",
+  "hi": "आरती श्री साई गुरुवर की",
   "en": "Aarti Shri Sai Guruvar Ki"
  },
  "by": {
-  "hi": "शिरडी साईबाबा",
+  "hi": "शिर्डी साईबाबा",
   "en": "Shirdi Sai Baba"
  },
  "parts": {
@@ -18,7 +18,7 @@
   "list": [
    {
     "key": "aarti",
-    "hi": "आरती श्री साईं गुरुवर की",
+    "hi": "आरती श्री साई गुरुवर की",
     "en": "Aarti Shri Sai Guruvar Ki"
    }
   ]

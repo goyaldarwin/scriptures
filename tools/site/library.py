@@ -60,6 +60,7 @@ def _texts(v):
     out = [v[f] for f in ('hi', 'en', 'pa', 'g') if isinstance(v.get(f), str)]
     return out + [s for part in v.get('p') or [] for s in (part if isinstance(part, list) else [part]) if isinstance(s, str)]
 
+NAMES = json.load(open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'text', 'names.json'), encoding='utf-8'))
 _FOLDED = {}
 def _folded(D, lang):
     """The lookup forms (standard.fold) of a dictionary's words."""
@@ -90,6 +91,17 @@ def check_work(lib, leaf, LANGS):
     _need(w.get('id') == leaf['work'], f"{name}: work.json id {w.get('id')!r} ≠ shelf work {leaf['work']!r}")
     items = w['items']; ids = [x['id'] for x in items]; ID = set(ids)
     # an āratī's verse has no comma (its printed sources' commas are not kept: a pause within a line is a space, the owner)
+    # a name's one spelling (tools/text/names.json): in the verses, headings, labels, the shelf entry and our meanings
+    for N in NAMES['names']:
+        if not any((path + '/').startswith(sh + '/') for sh in N['shelves']): continue
+        texts = [l for x in items for l in x['v']] + [str(t) for t in w.get('topics', [])] + [str(w.get(k)) for k in ('title', 'by', 'from')] + [str(leaf.get(k)) for k in ('title', 'by', 'desc', 'intro')]
+        texts += [str(v) for f in glob.glob(os.path.join(lib, path, 'meanings', 'hi-scriptures*.json')) for v in json.load(open(f, encoding='utf-8')).get('m', {}).values()]
+        bad = sorted({v for t in texts for v in N['variants'] if v in t})
+        _need(not bad, f"{name}: the name is {N['name']}, never {bad} (tools/text/names.json)")
+        if N.get('en_variants'):
+            en = [str(v) for f in glob.glob(os.path.join(lib, path, 'meanings', 'en-scriptures*.json')) for v in json.load(open(f, encoding='utf-8')).get('m', {}).values()]
+            bad = sorted({v for t in en for v in N['en_variants'] if re.search(r'\b' + v + r'\b', t)})
+            _need(not bad, f"{name}: our English meaning writes {N['en']}, never {bad} (tools/text/names.json)")
     if '/aarti/' in '/' + path + '/':
         bad = [x['id'] for x in items if any(',' in l for l in x['v'])]
         _need(not bad, f"{name}: an āratī's verse has no comma (a pause is a space): {bad[:5]}")
