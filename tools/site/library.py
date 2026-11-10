@@ -152,6 +152,9 @@ def check_work(lib, leaf, LANGS):
         if vs:   # every word of the visarjan has its own meaning in context (vidhi.visarjan.g)
             ws = {x for v in vs['verses'] for l in v['v'] for x in re.findall(r'[\u0900-\u0963\u0971-\u097f]+', l)}
             _need(not (ws - set(vs.get('g') or {})), f"{name}: vidhi.visarjan.g lacks {sorted(ws - set(vs.get('g') or {}))[:8]}")
+        # vidhi.open {page: work id}: a page that is a work of its own (the Mānas's āratī, with its recording) opens that work
+        for pg, wid in ((w.get('vidhi') or {}).get('open') or {}).items():
+            _need(pg in pages and os.path.isfile(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'tools', 'works', wid, 'work.json')), f"{name}: vidhi.open {pg} → {wid}: not a page of the work, or no such work")
         for k in ('before', 'after'):
             _need(all(x in pages for x in p.get(k, [])), f"{name}: plan {p['id']} {k} {p.get(k)} names a page the work lacks (has {sorted(pages)})")
             _need(all(x == 'visarjan' or _bi(((w.get('vidhi') or {}).get('titles') or {}).get(x)) for x in p.get(k, [])), f"{name}: plan {p['id']} {k}: every page needs its title in vidhi.titles {{hi, en}}")

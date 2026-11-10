@@ -119,6 +119,17 @@ async def main():
                 unit = await ev(f"TT(PLAN[{json.dumps(pid)}].unit)")
                 twice = await ev("[...document.querySelectorAll('#orgList .ds')].map(d => d.innerHTML.split('<br>')).flat().filter(l => { const m = /^(.+?): (.+)$/.exec(l); return m && m[1] === m[2]; })")
                 check(f'{tag}: plan {pid} names each day “{unit} N” and never a part twice', len(days) == await ev(f"PLAN[{json.dumps(pid)}].n") and all(unit in d for d in days) and not twice, f'{days[:2]} {twice[:2]}')
+            # a plan's page that is a work of its own (the Mānas's āratī: vidhi.open) opens that work's reading, with its recording; ‹ comes back
+            opens = await ev("Object.entries((W.vidhi || {}).open || {})")
+            if opens:
+                me, pid = await ev("W.id"), await ev("PLANS.find(p => (p.after || []).concat(p.before || []).length).id")
+                for pgk, wk in opens:
+                    await ev(f"WS().org = {json.dumps(pid)}; renderHome()"); await pg.wait_for_timeout(200)
+                    await pg.click(f'#orgList [data-page="{pgk}"]', timeout=3000); await pg.wait_for_timeout(2500)
+                    op = await ev("[W.id, CURVIEW, document.querySelectorAll('#pages .verse').length, document.querySelectorAll('#pages .vplay').length]")
+                    await pg.click('#rBack', timeout=3000); await pg.wait_for_timeout(2500)
+                    op.append(await ev("[W.id, CURVIEW, homeOrg()]"))
+                    check(f'{tag}: the plan\'s {pgk} page opens the work {wk} with ▶ on its verses, and ‹ returns to the plan', op[:2] == [wk, 'reader'] and op[2] > 0 and op[3] == op[2] and op[4] == [me, 'home', pid], op)
             if await ev("PLANS.length"): await ev("WS().org = 'k'; renderHome()"); await pg.wait_for_timeout(200)
             # timing review: drafts only with ☰ › More settings › Audio timing on; a start and an end set by ear take effect at once
             drafts = await ev("(W.sources.au || []).filter(s => s.draft).map(s => s.id)")

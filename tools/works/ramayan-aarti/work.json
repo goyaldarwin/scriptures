@@ -1,0 +1,52 @@
+{
+ "id": "ramayan-aarti",
+ "path": "hinduism/aarti/rama/ramayan-aarti",
+ "lang": "awa",
+ "title": {
+  "hi": "आरति श्रीरामायनजी की",
+  "en": "Aarti Shri Ramayanji Ki"
+ },
+ "by": {
+  "hi": "श्रीरामायणजी",
+  "en": "Shri Ramayanji"
+ },
+ "edition": {
+  "hi": "गीताप्रेस, गोरखपुर (श्रीरामचरितमानस)",
+  "en": "Gita Press, Gorakhpur (Shri Ramcharitmanas)"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "आरति श्रीरामायनजी की",
+    "en": "Aarti Shri Ramayanji Ki"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

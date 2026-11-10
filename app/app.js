@@ -1575,7 +1575,10 @@ function renderHome(){
   $$('#orgList [data-hund]').forEach(b => b.onclick = () => { const a = +b.dataset.hund, o = S.settings.atOpen = S.settings.atOpen || {}; if (o[W.id] === a) delete o[W.id]; else o[W.id] = a; save(); renderHome();
     const at = $('#orgList .angs'); if (at) at.scrollIntoView({block: 'nearest'}); });
   $$('#orgList [data-at]').forEach(b => b.onclick = () => openReader('k', +b.dataset.at, true));   // an Ang opens in its part, at the verse its first line is in
-  $$('#orgList [data-page]').forEach(b => b.onclick = () => { vidTab = b.dataset.page === 'vidhi' ? 'v' : b.dataset.page; show('vidhi'); });
+  // a page that is also a work of its own (the Mānas's āratī, with its meanings and recording: vidhi.open) opens that work's reading
+  $$('#orgList [data-page]').forEach(b => b.onclick = async () => { const pg = b.dataset.page, wk = ((W.vidhi || {}).open || {})[pg];
+    if (wk){ await openWork(wk, true); openReader('k', 0); return; }   // Back returns here, to the plan
+    vidTab = pg === 'vidhi' ? 'v' : pg; show('vidhi'); });
   $$('#orgList [data-pa]').forEach(b => b.onclick = ev => { ev.stopPropagation(); playRange(b.dataset.po, +b.dataset.pa, +b.dataset.pb); });
   // a vishram's number: tap to mark it complete, tap again to mark it not complete (as “Mark vishram complete” at its end does)
   $$('#orgList [data-mark]').forEach(b => b.onclick = ev => { ev.stopPropagation(); const n = +b.dataset.mark, d = DONE(ME(), org); if (d[n]) delete d[n]; else d[n] = Date.now(); save(); renderHome();

@@ -77,7 +77,7 @@ book = {
     # a reader's place saved as a bare item position (no id) counts the joint caupāīs as one: [position, items added there]
     'split': [[k, len(JOINT[x['id']]) - 1] for k, x in enumerate(IT) if x['id'] in JOINT],
     # the pages' titles are data, as every label shown is (docs/LIBRARY.md §2 → plans): the vidhi's and the āratī's
-    'vidhi': {**d['vidhi'], 'titles': {'vidhi': {'hi': 'पारायण-विधि', 'en': 'Parayan vidhi'}, 'aarti': {'hi': 'श्रीरामायणजीकी आरती', 'en': 'Shri Ramayanji ki Aarti'}}, 'visarjan': {k: v for k, v in json.load(open(os.path.join(HERE, 'visarjan.json'), encoding='utf-8')).items() if k != 'source'}},   # kathā-visarjana: visarjan.md
+    'vidhi': {**d['vidhi'], 'titles': {'vidhi': {'hi': 'पारायण-विधि', 'en': 'Parayan vidhi'}, 'aarti': {'hi': 'श्रीरामायणजीकी आरती', 'en': 'Shri Ramayanji ki Aarti'}}, 'open': {'aarti': 'ramayan-aarti'}, 'visarjan': {k: v for k, v in json.load(open(os.path.join(HERE, 'visarjan.json'), encoding='utf-8')).items() if k != 'source'}},   # kathā-visarjana: visarjan.md
     'vg': d['vg'],
 }
 json.dump(plain(book), open(os.path.join(WORK, 'book.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
