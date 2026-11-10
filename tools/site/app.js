@@ -893,7 +893,13 @@ function readerTap(ev){
     }
     else if (act === 'tn'){ const x = SRC.au.at[IT[i].id], k = +a.dataset.k; if (setTime(i, k, Math.max(0, x[k] + a.dataset.d * step())) === false) return; if (k === 1){ flagDone(IT[i].id); save(); } rerenderItem(i); if (!livePlay()) snippet(i, k); }
     else if (act === 'tflag') toggleFlag(i);
-    else if (act === 'tok'){ unfrom(IT[i].id); flagDone(IT[i].id); save(); rerenderItem(i); toast(T('जाँच लिया — अब यह आपका है', 'Checked — it is now yours')); }
+    else if (act === 'tok'){
+      // ✓ Correct: a helper's time becomes yours; a start the library lists to check (or a flagged one) is kept as it is,
+      // as a start set by ear, so it leaves the to-check list and goes with your next send
+      const id = IT[i].id, x = SRC.au.at[id];
+      if (!fromOf(id) && !ownAt(id) && x && setTime(i, 1, x[1]) === false) return;
+      unfrom(id); flagDone(id); save(); rerenderItem(i); syncCheck(); toast(T('जाँच लिया — अब यह आपका है', 'Checked — it is now yours'));
+    }
     else if (act === 'tundo'){ clearStart(i); toast(T('पहले जैसा', 'Restored')); }
     else if (act === 'tnone'){ setTime(i, 2, null); rerenderItem(i); }
     else if (act === 'bm'){ const me = ME(), k = KEY(IT[i].id); const had = !!me.bm[k]; if (had) delete me.bm[k]; else { me.bm[k] = Date.now(); if (TOUR) TOUR.bmAdded = true; } save(); rerenderItem(i); toast(!had ? T('बुकमार्क जोड़ा', 'Bookmarked') : T('बुकमार्क हटाया', 'Bookmark removed')); }
@@ -949,7 +955,7 @@ function markBar(i){
   // a time set by ear — on this phone ("yours") or by the owner and already in the library ("sent") — has − / + for fine-tuning
   // under the times: "Until next" when an end is set; ↶ Undo is the verse's bottom-left corner; the step is in the player bar; the ⋮ menu holds nothing about timing
   const chips = own && x && x[2] != null ? '<button class="tchip" data-a="tnone">' + T('अगले पद तक', 'Until next') + '</button>' : '';
-  return '<div class="tmark">' + grp(1, 'tstart', '⏱ ' + T('अभी शुरू', 'Starts now'), !!(own && x)) + grp(2, 'tend', '⏹ ' + T('अभी समाप्त', 'Ends now'), !!(own && x && x[2] != null)) + (by ? '<button data-a="tok">✓ ' + T('सही है', 'Correct') + '</button>' : '') + 
+  return '<div class="tmark">' + grp(1, 'tstart', '⏱ ' + T('अभी शुरू', 'Starts now'), !!(own && x)) + grp(2, 'tend', '⏹ ' + T('अभी समाप्त', 'Ends now'), !!(own && x && x[2] != null)) + (by || (est && x) ? '<button data-a="tok">✓ ' + T('सही है', 'Correct') + '</button>' : '') + 
     '<span class="tinfo">' + when + (by ? ' · <b class="test">' + T('', 'from ') + esc(by) + T(' का — जाँचें', ' — to check') + '</b>' : mine ? ' · <b>' + T('आपका', 'yours') + '</b>' : own ? ' · <b>' + T('भेजा हुआ', 'sent') + '</b>' : est && SRC.au.checkSet.has(IT[i].id) ? ' · <b class="test">' + T('अनुमान', 'estimated') + '</b>' : est ? ' · <b class="test">' + T('आपके समयके अनुसार खिसकाया', 'moved to fit your times') + '</b>' : '') + '</span>' + (chips ? '<span class="tchips">' + chips + '</span>' : '') + '</div>';
 }
 // how far each − / + moves a time: the saffron ±… s chip in the player bar, beside ✕, shown while timing is on
