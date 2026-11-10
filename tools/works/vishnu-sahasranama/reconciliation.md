@@ -63,9 +63,17 @@ rough Hindi letters, with gaps), only for what they recite and in what order.
   the 108 ślokas with the refrain after 107 (सर्वप्रहरणायुध ॐ नम इति); the uttara-pīṭhikā 1–33 with the refrains after 22 and
   25; the recording ends with समर्पयामि (uttara 33).
 - **Ishaan Pai, Vande Guru Paramparaam** (`vande-guru-paramparaam`, YouTube `A4D-Zf-HJLI`): the opening ślokas from
-  यस्य द्विरदवक्त्राद्याः (the first śloka is not heard), the pūrva-pīṭhikā, the viniyoga (ॐ अस्य … to …विनियोगः), dhyāna 1–2,
+  शुक्लाम्बरधरं (the first transcript begins at यस्य द्विरदवक्त्राद्याः; the fuller one, below, hears śloka 1), the pūrva-pīṭhikā, the viniyoga (ॐ अस्य … to …विनियोगः), dhyāna 1–2,
   ॐ नमो भगवते वासुदेवाय, dhyāna 3–7, the 108 ślokas, the uttara-pīṭhikā 1–33 with the refrains after 22, 24, 25 and 28; it
   also ends with uttara 33.
+
+A fuller transcript (the timing sources' `transcripts/`: the stretches Whisper lost re-transcribed in 4–9 s pieces with
+`tools/audio/transcribe_onnx.py`) hears the first minutes of both: M. S. Subbulakshmi sings opening śloka 1 at 0:08,
+then goes straight to śloka 3 (व्यासं वसिष्ठनप्तारं, 0:21), 4, 5, 6 and ॐ नमो विष्णवे प्रभविष्णवे (about 0:58): śloka 2 is not
+recited, and the viniyoga is (3:38–4:37, the minute the first transcript left empty). Ishaan Pai sings ślokas 1 (0:10)
+to 6 and the mantra (about 1:07). Neither is heard reciting ॥ हरिः ॐ ॥ before the first śloka of names. The text
+keeps all of these (each is recited by at least one recording; harih, by neither, stays as the base prints it), so nothing changes; a verse a recording skips stays
+untimed for it.
 
 The order of both is the base's, so the text keeps it. Neither recites the ṛṣyādi-, kara- or ṣaḍaṅga-nyāsa, the saṅkalpa,
 the closing words or the closing ślokas (upasaṃhāra, paryāya); they stay in the text, untimed. Whether ॥ हरिः ॐ ॥ (before

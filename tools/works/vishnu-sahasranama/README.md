@@ -14,9 +14,16 @@ words and the closing ślokas. Both recordings end with the uttara-pīṭhikā; 
   text is taken: the page's Hindi meanings, notes and menus are left out. Checked against the owner's second witness, a
   roman transliteration of the stotra (no diacritics), and, for doubtful readings, against sanskritdocuments.org's
   edition and the Mahābhārata's critical text. Every change from the base and every source used: `reconciliation.md`.
-- **Recordings** (not yet timed; what each recites and in what order: `reconciliation.md`):
-  - `ms-subbulakshmi` (the default): M. S. Subbulakshmi, YouTube `0tubv1OKDjg` (29:51); the text follows its order;
-  - `vande-guru-paramparaam`: Vande Guru Paramparaam, “Vishnu Sahasranamam” (Ishaan Pai; YouTube `A4D-Zf-HJLI`, 30 minutes).
+- **Recordings** (what each recites and in what order: `reconciliation.md`), each the whole video, timed from the
+  first śloka to uttara-pīṭhikā 33 (`audio/<reciter>/`). The starts come from the transcript (`transcripts/`: the identify
+  transcript, with the stretches it lost or garbled re-transcribed in 4–9 s pieces by `tools/audio/transcribe_onnx.py`;
+  `"align": "anchors"`, no fill by length), with hand-checked starts in each `fixes.md`, to be set by ear:
+  - `ms-subbulakshmi` (the default, `order` 1): M. S. Subbulakshmi, YouTube `0tubv1OKDjg` (29:51), 0:08–29:49; the text
+    follows its order. It does not recite opening śloka 2 (यस्य द्विरदवक्त्राद्याः), which stays untimed for it;
+  - `vande-guru-paramparaam` (`order` 2): Vande Guru Paramparaam, “Vishnu Sahasranamam” (Ishaan Pai; YouTube
+    `A4D-Zf-HJLI`, 30:15), 0:10–30:00.
+  ॥ हरिः ॐ ॥ (`stotra.harih`) is heard in neither and stays untimed, with the nyāsas, the saṅkalpa, the closing words and
+  the closing ślokas.
 - **Meanings, word meanings:** none yet.
 
 ## Structure
