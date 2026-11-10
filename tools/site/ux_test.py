@@ -881,6 +881,14 @@ async def main():
             const n0 = document.querySelectorAll('#bmBody [data-del]').length; document.querySelector('#bmBody [data-del="40"]').click(); await new Promise(r => setTimeout(r, 300));
             const r = [n0, document.querySelectorAll('#bmBody [data-del]').length, !me.bm[KEY(IT[40].id)], !!me.bm[KEY(IT[41].id)]]; delete me.bm[KEY(IT[41].id)]; save(); return r; })()""")
         check('bookmarks: each bookmark can be removed on its own', bd == [2, 1, True, True], bd)
+        # "Read the bookmarked verses": only they, as the reader shows a verse (meanings, ▶), in the work's order; ‹ comes back
+        last = await ev("(() => { const me = ME(), l = IT.length - 1; [40, 43, l].forEach((i, n) => me.bm[KEY(IT[i].id)] = n + 1); save(); show('bookmarks'); return l; })()"); await pg.wait_for_timeout(400)
+        await pg.click('#bmRead', timeout=3000); await pg.wait_for_timeout(900)
+        br = await ev("""[R.org, [...document.querySelectorAll('#pages .verse')].map(e => +e.dataset.i), !!document.querySelector('#v40 .vbm.bm-on'), !!document.querySelector('#v41'), document.querySelector('#rMid small').textContent]""")
+        await pg.click('#rBack', timeout=3000); await pg.wait_for_timeout(500)
+        br.append(await ev("CURVIEW")); await ev("(() => { const me = ME(); [40, 43, IT.length - 1].forEach(i => delete me.bm[KEY(IT[i].id)]); save(); })()")
+        check('bookmarks: "Read the bookmarked verses" opens a reading of only them, in order, and ‹ returns to Bookmarks',
+              br[0] == 'bm' and br[1][:2] == [40, 43] and set(br[1]) <= {40, 43, last} and br[2] and not br[3] and br[4] == 'Bookmarks' and br[5] == 'bookmarks', br)
         th = await ev("""(async () => { await openWork('manas', true); show('home'); openReader('k', 30); await new Promise(r => setTimeout(r, 400)); const t0 = S.settings.theme;
             document.querySelector('#rMore').click(); await new Promise(r => setTimeout(r, 300)); S.settings.theme = 'light'; applyTheme(); document.querySelector('#mth').checked = false; document.querySelector('#mth').click();
             const r = [S.settings.theme, document.documentElement.getAttribute('data-theme'), document.querySelector('#sheet').classList.contains('on'), document.querySelector('#mth').checked];
