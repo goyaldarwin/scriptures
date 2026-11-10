@@ -29,7 +29,10 @@ def dump_library(out, rel, obj):
     size = 0
     if rel.endswith('work.json') and obj.get('verses') == 'parts':   # the verses by part: work.json keeps every item without its lines
         obj = {**obj, 'items': [dict(x) for x in obj['items']]}   # the caller's items keep their lines
-        size = sum(dump_library(out, os.path.join(os.path.dirname(rel), 'verses', f'{k}.json'), part) for k, part in split_verses(obj).items())
+        for k, part in split_verses(obj).items():   # already written by the standard with the work's items: not again
+            vp = os.path.join(out, os.path.dirname(rel), 'verses', f'{k}.json'); os.makedirs(os.path.dirname(vp), exist_ok=True)
+            with open(vp, 'w', encoding='utf-8') as f: json.dump(part, f, ensure_ascii=False, separators=(',', ':'))
+            size += os.path.getsize(vp)
     with open(p, 'w', encoding='utf-8') as f: json.dump(obj, f, ensure_ascii=False, separators=(',', ':'))
     return size + os.path.getsize(p)
 
