@@ -1,0 +1,22 @@
+{
+ "why": "Verses the automatic checks of tools/audio/METHOD.md step 4 flag, for the owner's ear: MMS's score below 0.5 (the transcript's start is kept), MMS and the transcript more than 2 s apart, a length out of pace with the verses around it, or a start before the verse before (tools/audio/mms_merge.py, lean 0.6 s).",
+ "ids": [
+  "nyasa.rishyadi",
+  "nyasa.kara",
+  "nyasa.anga",
+  "sankalpa",
+  "dhyana.dh1",
+  "dhyana.dh2",
+  "stotra.harih",
+  "stotra.sh1",
+  "stotra.sh40",
+  "stotra.sh41",
+  "stotra.sh60",
+  "stotra.sh108",
+  "uttara.sh19",
+  "uttara.sh20",
+  "uttara.sh21",
+  "uttara.sh26",
+  "uttara.sh27"
+ ]
+}
