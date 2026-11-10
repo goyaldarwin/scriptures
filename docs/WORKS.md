@@ -203,7 +203,7 @@ Columns: the work and its permanent id · its shelf path (tradition first, the s
 | Work | Path | Languages | Levels | Verse types | Cited as | Meanings | Line by line | Word meanings | Recordings |
 |---|---|---|---|---|---|---|---|---|---|
 | Shri Vishnu Sahasranamam (`vishnu-sahasranama`) | `hinduism/namavali/vishnu/vishnu-sahasranama` | Sanskrit | 1 paath › 9 sections › 203 verses | Shloka (`shloka`), Mantra (`mantra`), Viniyoga (`viniyoga`), Nyas (`nyasa`), Sankalp (`sankalpa`), Dhyan (`dhyana`), Closing words (iti) (`iti`) | verse (`1`) | hi: hi-scriptures; en: en-scriptures | no | every word | ms-subbulakshmi (MMS, 2 by ear); vande-guru-paramparaam (MMS) |
-| Shri Sathya Sai Ashtottara Shatanamavali (`sathya-sai-ashtottara`) | `hinduism/namavali/sathya-sai/sathya-sai-ashtottara` | Sanskrit | 1 paath › 2 sections › 109 verses | Name (`nama`), Closing words (iti) (`iti`) | verse (`1`) | hi: hi-scriptures; en: en-scriptures | no | every word | ashtotrashat-namavali (MMS) |
+| Shri Sathya Sai Ashtottara Shatanamavali (`sathya-sai-ashtottara`) | `hinduism/namavali/sathya-sai/sathya-sai-ashtottara` | Sanskrit | 1 paath › 2 sections › 109 verses | Name (`nama`), Closing words (iti) (`iti`) | verse (`1`) | hi: hi-scriptures; en: en-scriptures | no | every word | ashtotrashat-namavali (MMS, 58 by ear) |
 
 ### Vedas (`hinduism/veda`)
 
