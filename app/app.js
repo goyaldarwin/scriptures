@@ -596,7 +596,8 @@ function endHTML(){
   const next = (a, b, name) => { const d = durLabel(spanSecs(a, b)); h += '<button class="btn" data-next="' + a + '">' + esc(name) + ' ›</button>' + (d ? '<div class="ndur">▶ ' + d + '</div>' : ''); };
   if (RG()) h += '<div class="colo">' + esc(RNAME()) + '</div>';   // a writer's verses end here: no next part
   else if (R.org === 'k'){ const nx = PARTS[R.n + 1]; if (nx) next(nx.a, nx.b, KNAME(nx.k)); }
-  else { const P = PLAN[R.org]; if (R.n < P.n){ const [na, nb] = dayRange(R.org, R.n + 1); next(na, nb, VN(R.n + 1)); } }
+  else { const P = PLAN[R.org]; if (R.n < P.n){ const [na, nb] = dayRange(R.org, R.n + 1); next(na, nb, VN(R.n + 1)); }
+    else if ((P.after || []).length){ const pg = P.after[0]; h += '<button class="btn" data-after="' + pg + '">' + esc(pageTitle(pg)) + ' ›</button>' + (PAGEWORK(pg) ? '<div class="ndur" data-pdur="' + pg + '"></div>' : ''); setTimeout(fillPageDurs, 0); } }   // after the last day: what is read after it (the āratī), as the next day is
   return h + '</div>';
 }
 function renderAround(i, focus){
@@ -865,6 +866,7 @@ $('#rBody').addEventListener('click', ev => {
 });
 function readerTap(ev){
   const nx = ev.target.closest('[data-next]'); if (nx){ openReader(R.org, +nx.dataset.next); return; }
+  const af = ev.target.closest('[data-after]'); if (af){ openPage(af.dataset.after); return; }
   const mw = ev.target.closest('.mw'); if (mw){ mw.classList.add('sel'); wordSheet(mw.dataset.mw, null, mw.dataset.ml); return; }   // a hard word of a meaning
   const v = ev.target.closest('.verse'), i = v ? +v.dataset.i : null;
   const a = ev.target.closest('[data-a]');
@@ -1195,7 +1197,9 @@ function tick(anchor){
     const last = PL.end, whole = PL.whole, msg = whole ? T('पाठ पूर्ण', 'Recitation complete') : PL.endMsg || T('पूर्ण', 'Finished');
     stopAudio(); const nx = whole ? null : firstAu(last + 1, Math.min(IT.length - 1, last + 80));
     if (TOUR && TOUR.waiting) return;   // the tour's verse has been heard: the tour finishes (no "Play on")
-    if (nx == null) toastLight(msg); else toastAct(msg, T('▶ आगे सुनें', '▶ Play on'), () => { if (!$('#reader').classList.contains('on')) openReader(R.org, nx); playFrom(nx); });
+    const P = PLAN[R.org], af = P && R.n === P.n && last === P.ends[P.n - 1] && (P.after || [])[0];
+    if (nx == null && af && PAGEWORK(af)) toastAct(msg, '▶ ' + pageTitle(af), () => openPage(af, true));
+    else if (nx == null) toastLight(msg); else toastAct(msg, T('▶ आगे सुनें', '▶ Play on'), () => { if (!$('#reader').classList.contains('on')) openReader(R.org, nx); playFrom(nx); });
     return;
   }
   // a verse's end matters only where playing stops (one verse, or the last verse of a reading): never skipped. While timings
@@ -1486,6 +1490,25 @@ $('#libSearchBtn').onclick = () => openSearch('lib');
 $('#hSearch').onclick = () => openSearch('text');
 $('#rSearch').onclick = () => openSearch('text', false, true);
 $('#libMenu').onclick = mainMenu;
+// a plan's page (vidhi, aarti, visarjan): its page, or, when it is a work of its own (vidhi.open: the Mānas's āratī, with its
+// meanings and recording), that work's reading, played from its start with play; Back returns to where it was opened
+const PAGEWORK = pg => W && ((W.vidhi || {}).open || {})[pg];
+async function openPage(pg, play){ const wk = PAGEWORK(pg);
+  if (!wk){ vidTab = pg === 'vidhi' ? 'v' : pg; show('vidhi'); return; }
+  if (PL.on) stopAudio(); await openWork(wk, true);
+  if (CURVIEW === 'reader') $('#reader').classList.remove('on');   // from the reader (the end of the last day): a page of its own, so Back returns there
+  if (play && firstAu(0, IT.length - 1) != null) playRange('k', 0, IT.length - 1); else openReader('k', 0); }
+// its listening time, as every ▶ shows one: from that work's first recording, from its first verse's start to its last
+// verse's end (its set end, else the recording's end); fetched once, then shown on every ▶ of the page
+const PAGESECS = {};
+function pageSecs(wk){
+  if (!(wk in PAGESECS)) PAGESECS[wk] = (async () => { try { const p = workPath(wk), w = await getJSON(p + '/work'), c = ((w.sources || {}).au || [])[0]; if (!c) return null;
+    const A = await getJSON(p + '/' + c.file), at = Object.values(A.at || {}); let sec = 0;
+    (A.tracks || []).forEach((tr, t) => { const L = at.filter(x => x[0] === t).sort((x, y) => x[1] - y[1]); if (L.length){ const z = L[L.length - 1]; sec += (z[2] != null ? z[2] : tr.dur) - L[0][1]; } });
+    return sec > 0 ? sec : null; } catch (e) { return null; } })();
+  return PAGESECS[wk]; }
+const pagePlay = pg => PAGEWORK(pg) ? '<button class="lplay timed" data-ppg="' + pg + '" aria-label="play"><svg><use href="#i-play"/></svg></button><span class="ldur" data-pdur="' + pg + '"></span>' : '';
+function fillPageDurs(){ $$('[data-pdur]').forEach(el => { const wk = PAGEWORK(el.dataset.pdur); if (wk) pageSecs(wk).then(s => { el.textContent = s ? (el.classList.contains('ndur') ? '▶ ' : '') + durLabel(s / RATE()) : ''; }); }); }
 function workPath(id){ let r = null; (function walk(n){ (n || []).forEach(c => { if (c.work === id) r = c.path; else walk(c.children); }); })(LIB); return r || id; }
 // the salutation on the opening screen: the work's own (library/index.json "salute": जय श्रीराम for the
 // Mānas and Sundarakāṇḍa, ॐ श्री साईं राम for the Dhūpa Āratī, ੴ for the Sukhmani Sahib …), otherwise ॐ श्री परमात्मने नमः.
@@ -1576,7 +1599,7 @@ function renderHome(){
   else if (org === 'k') PARTS.forEach(p => { const tps = TOPICS.filter(t => IT[t.i].p === p.k).length || (W.sections ? PAGES.filter(g => g.k === p.k && SECN(g.s)).length : 0);   /* its topics, else its named sections */ h += '<li class="rowp">' + play('k', p.a, p.b) + '<button class="it" data-open="' + p.a + '"><span class="no">' + DEV(p.no != null ? p.no : p.k + 1) + '</span><span class="grow"><span class="ti">' + esc(KNAME(p.k)) + '</span><br><span class="ds">' + DEV(tps) + T(' प्रसंग', tps === 1 ? ' section' : ' sections') + '</span></span><span class="chev">›</span></button></li>'; });
   else { const P = PLAN[org]; const dn = Object.keys(DONE(ME(), org)).length; h += '<li class="pdone" aria-label="' + DEV(dn) + ' / ' + DEV(P.n) + T(' ' + UNIT(org).hi + ' पूर्ण', ' ' + UNIT(org).en.toLowerCase() + 's completed') + '"><span class="pdbar"><span style="width:' + Math.round(100 * dn / P.n) + '%"></span></span><span class="pdn">' + DEV(dn) + ' / ' + DEV(P.n) + '</span></li>';   // how much of the plan is done; a vishram's number marks it done
     // pages read before the first day and after the reading (pūrvāṅga / uttarāṅga), when the plan names them
-    const page = (pg, when) => { const t = pageTitle(pg); if (pg === 'visarjan') when = T('पारायणके अन्तिम दिन', 'On the last day of the parayan'); return '<li class="rowp"><button class="it" data-page="' + pg + '"><span class="no pg"><svg><use href="#i-lamp"/></svg></span><span class="grow"><span class="ti">' + t + '</span><br><span class="ds">' + when + '</span></span><span class="chev">›</span></button></li>'; };
+    const page = (pg, when) => { const t = pageTitle(pg); if (pg === 'visarjan') when = T('पारायणके अन्तिम दिन', 'On the last day of the parayan'); return '<li class="rowp">' + pagePlay(pg) + '<button class="it" data-page="' + pg + '"><span class="no pg"><svg><use href="#i-lamp"/></svg></span><span class="grow"><span class="ti">' + t + '</span><br><span class="ds">' + when + '</span></span><span class="chev">›</span></button></li>'; };
     (P.before || []).forEach(pg => h += page(pg, T('पाठसे पहले', 'Before the reading')));
     for (let n = 1; n <= P.n; n++){ const [a, b] = dayRange(org, n), d = DONE(ME(), org)[n], t = firstAu(a, b) != null ? durLabel(spanSecs(a, b)) : ''; h += '<li class="rowp"><button class="lmark" data-mark="' + n + '" aria-label="' + VN(n, org) + (d ? T(': पूर्ण — अपूर्ण करें', ': complete — mark not complete') : T(': पूर्ण करें', ': mark complete')) + '"></button>' + play(org, a, b) + '<button class="it" data-open="' + a + '"><span class="no' + (d ? ' done' : '') + '">' + (d ? '✓' : DEV(n)) + '</span><span class="grow"><span class="ti">' + VN(n, org) + '</span><br><span class="ds">' + rangeDesc(a, b) + '</span></span><span class="chev">›</span></button></li>'; }
     (P.after || []).forEach(pg => h += page(pg, T('पाठके बाद', 'After the reading'))); }
@@ -1587,9 +1610,9 @@ function renderHome(){
     const at = $('#orgList .angs'); if (at) at.scrollIntoView({block: 'nearest'}); });
   $$('#orgList [data-at]').forEach(b => b.onclick = () => openReader('k', +b.dataset.at, true));   // an Ang opens in its part, at the verse its first line is in
   // a page that is also a work of its own (the Mānas's āratī, with its meanings and recording: vidhi.open) opens that work's reading
-  $$('#orgList [data-page]').forEach(b => b.onclick = async () => { const pg = b.dataset.page, wk = ((W.vidhi || {}).open || {})[pg];
-    if (wk){ await openWork(wk, true); openReader('k', 0); return; }   // Back returns here, to the plan
-    vidTab = pg === 'vidhi' ? 'v' : pg; show('vidhi'); });
+  $$('#orgList [data-page]').forEach(b => b.onclick = () => openPage(b.dataset.page));
+  $$('#orgList [data-ppg]').forEach(b => b.onclick = ev => { ev.stopPropagation(); openPage(b.dataset.ppg, true); });
+  fillPageDurs();
   $$('#orgList [data-pa]').forEach(b => b.onclick = ev => { ev.stopPropagation(); playRange(b.dataset.po, +b.dataset.pa, +b.dataset.pb); });
   // a vishram's number: tap to mark it complete, tap again to mark it not complete (as “Mark vishram complete” at its end does)
   $$('#orgList [data-mark]').forEach(b => b.onclick = ev => { ev.stopPropagation(); const n = +b.dataset.mark, d = DONE(ME(), org); if (d[n]) delete d[n]; else d[n] = Date.now(); save(); renderHome();

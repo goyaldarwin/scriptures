@@ -8,7 +8,7 @@ Needs:  pip install playwright (Chromium; set CHROMIUM=/path/to/chrome if it is 
 Each check prints PASS/FAIL with what it saw; the run fails if any check fails or the page logs a script error.
 --shots saves a screenshot after each step, for a person to look at.
 """
-import asyncio, functools, http.server, json, os, random, shutil, socketserver, subprocess, sys, tempfile, threading
+import asyncio, functools, http.server, json, os, random, re, shutil, socketserver, subprocess, sys, tempfile, threading
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.join(ROOT, 'tools', 'site')); import split_fixture   # a work loaded by part (the Kaṭha, exported again with "load": "parts")
 sys.path.insert(0, os.path.join(ROOT, 'tools', 'audio')); import order as ORDER   # the order rule, shared with make_timings.py
@@ -130,6 +130,17 @@ async def main():
                     await pg.click('#rBack', timeout=3000); await pg.wait_for_timeout(2500)
                     op.append(await ev("[W.id, CURVIEW, homeOrg()]"))
                     check(f'{tag}: the plan\'s {pgk} page opens the work {wk} with ▶ on its verses, and ‹ returns to the plan', op[:2] == [wk, 'reader'] and op[2] > 0 and op[3] == op[2] and op[4] == [me, 'home', pid], op)
+                    # its row has ▶ with its time, as a day has; the end of the last day offers it as the next button, with its time, and ‹ comes back to that day
+                    await ev(f"WS().org = {json.dumps(pid)}; renderHome()"); await pg.wait_for_timeout(1200)
+                    row = await ev(f"[!!document.querySelector('#orgList [data-ppg=\"{pgk}\"]'), (document.querySelector('#orgList [data-pdur=\"{pgk}\"]') || {{}}).textContent]")
+                    await ev(f"openReader({json.dumps(pid)}, PLAN[{json.dumps(pid)}].ends[PLAN[{json.dumps(pid)}].n - 1])"); await pg.wait_for_timeout(1500)
+                    await pg.locator(f'#endB [data-after="{pgk}"]').scroll_into_view_if_needed(timeout=3000); await pg.wait_for_timeout(300)
+                    end = await ev(f"(document.querySelector('#endB [data-pdur=\"{pgk}\"]') || {{}}).textContent")
+                    await pg.click(f'#endB [data-after="{pgk}"]', timeout=3000); await pg.wait_for_timeout(2500)
+                    went = await ev("[W.id, CURVIEW]"); await pg.click('#rBack', timeout=3000); await pg.wait_for_timeout(2500)
+                    went.append(await ev("[W.id, CURVIEW, R.org]"))
+                    check(f'{tag}: the plan\'s {pgk} row has ▶ with its time, and the end of the last day opens it as the next button; ‹ returns to that day',
+                          row[0] and bool(re.search(r'\d', row[1] or '')) and (end or '').startswith('▶ ') and went[:2] == [wk, 'reader'] and went[2] == [me, 'reader', pid], [row, end, went])
             if await ev("PLANS.length"): await ev("WS().org = 'k'; renderHome()"); await pg.wait_for_timeout(200)
             # timing review: drafts only with ☰ › More settings › Audio timing on; a start and an end set by ear take effect at once
             drafts = await ev("(W.sources.au || []).filter(s => s.draft).map(s => s.id)")
@@ -1186,7 +1197,7 @@ async def main():
         check('numbers are shown as 1 2 3 in Hindi too; ओ३म् and a textarea keep their digits', all(nm), nm)
         # each plan day's ▶ says how long it plays; the days add up to the recordings; the speed shortens it; the next-day button says it too
         du = await ev("""(async () => { await openWork('manas', true); await loadSources(); const o = PLANS[0].id; WS().org = o; show('home'); renderHome(); await new Promise(r => setTimeout(r, 300));
-            const rows = document.querySelectorAll('#orgList .lplay.timed + .ldur').length; let sum = 0; for (let n = 1; n <= PLAN[o].n; n++){ const [a, b] = dayRange(o, n); sum += spanSecs(a, b); }
+            const rows = document.querySelectorAll('#orgList .lplay.timed[data-pa] + .ldur').length;   /* the days (a page's ▶, the āratī's, is not a day) */ let sum = 0; for (let n = 1; n <= PLAN[o].n; n++){ const [a, b] = dayRange(o, n); sum += spanSecs(a, b); }
             const tr = AUT.reduce((s, L, t) => s + SRC.au.tracks[t].dur - L[0][1], 0), [a1, b1] = dayRange(o, 1), one = spanSecs(a1, b1);
             const r0 = S.settings.rate; S.settings.rate = 2; const two = spanSecs(a1, b1); S.settings.rate = r0;
             openReader(o, b1); await new Promise(r => setTimeout(r, 600)); const nx = document.querySelector('.endb [data-next] + .ndur'); WS().org = 'k';
