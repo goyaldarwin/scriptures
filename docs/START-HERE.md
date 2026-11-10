@@ -17,6 +17,7 @@ This repository holds everything about the scriptures library: the website, the 
 | `docs/LIBRARY.md` | the data format (`library/`), field by field |
 | `docs/WORKS.md` | every work side by side (made by the build, never edited): its levels, verse types, how a verse is cited, its meanings and recordings, and what is not yet the same in every work |
 | `docs/ROADMAP.md` | work not done yet |
+| `docs/SWEEP.md` | the prompt for a full correctness and consistency audit of every work, the app and both repositories ("Run docs/SWEEP.md") |
 | `docs/APPS.md` | the store apps |
 | `docs/reviews/` | open questions for the owner |
 | `tools/meanings/style.md` | how our meanings are written (§1 first: from the verse, its word meanings, the dictionaries and its context in the work and the nearby verses; accuracy never traded away) |
