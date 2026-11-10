@@ -14,3 +14,6 @@ Kept as the book has them, against Drik Panchang: सरसुति (chaupāī 
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- **chalisa.cau21** (जटा शंकरी): one name, Jaṭāśaṅkarī: the line says नाम तुम्हारा, "your name", in the singular. Meaning unchanged.

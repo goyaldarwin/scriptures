@@ -18,3 +18,7 @@ Kept as the book has them, against Drik Panchang: सुन्दरि (Drik �
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- **chalisa.cau19** — त्रिपुर-प्यारी: "beloved of the three worlds" (त्रिपुर, the three worlds, as in the Goddess's names Tripurasundarī and Tripureśvarī); Śiva is Tripurāri, not त्रिपुर, so "beloved of Śiva" would need a word the line does not have. Meaning unchanged.
+- **chalisa.cau32** — चक्र-कपाली: the plain words, "bearer of the discus and the skull", in a line naming her as Lakṣmī, Durgā, Kālī and Śāradā. Meaning unchanged.

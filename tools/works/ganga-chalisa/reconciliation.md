@@ -18,3 +18,8 @@ Kept as the book has them, against Drik Panchang (beyond its typing slips): म�
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- chalisa.cau4, मम तनु: मम ("my body"), as printed; the book, Drik Panchang, Aaj Tak (aajtak.in, Shri Ganga Chalisa) and Shubh Panchang (shubhpanchang.com, Ganga Chalisa) all print मम, and no source has सम, so the plain reading stands.
+- chalisa.cau40, वागीसा: the reader "becomes a master of speech", as the meaning has it; Monier-Williams gives vāg-īśa first as "a master of language, eloquent, an orator", and the reading needs no giver the line does not name.
+- chalisa.do3, सम्वत् भुज नभ दिशि … नैत्र: the year kept in its number-words (arm, sky, direction), as the meaning has it; read right to left they give no likely year, and दिशि may be 4, 8 or 10, so no figure is given; नैत्र is "eye" (Monier-Williams also lists netra as the numeral 2, but the year is complete in the first line and नैत्र is the rhyme of चैत्र), as printed.

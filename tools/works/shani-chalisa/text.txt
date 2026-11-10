@@ -1,4 +1,4 @@
-# श्री शनि चालीसा (Shri Shani Chalisa): the verse text, from ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 59–62, "श्री शनि चालीसा (२)").
+# श्री शनि चालीसा (Shri Shani Chalisa): the verse text, as BhaktiDhaam sings it, from ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 59–62, "श्री शनि चालीसा (२)").
 # The witnesses and every choice: reconciliation.md.
 
 @part chalisa
@@ -84,7 +84,7 @@
 [chalisa.cau34 cau 34]
 लौह चरण पर जब प्रभु आवैं । धन जन सम्पत्ति नष्ट करावैं ॥
 [chalisa.cau35 cau 35]
-समता ताम्र रजत शुभकारी । स्वर्ण सर्वसुख मंगल भारी ॥
+समता ताम्र रजत शुभकारी । स्वर्ण सर्वसुख मंगल कारी ॥
 @topic पाठ और पूजाका फल | The fruit of reading and worship
 [chalisa.cau36 cau 36]
 जो यह शनि चरित्र नित गावै । कबहुं न दशा निकृष्ट सतावै ॥

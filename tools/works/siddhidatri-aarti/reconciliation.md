@@ -15,3 +15,6 @@ Kept as the base has them: the page's line breaks and words throughout, the shor
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- aarti.pad5 — भक्ति है सवाली तू जिसकी दाता: kept "devotion is the one who asks, and you are its giver". सवाली is "one who asks" (Platts sawālī), as in stanza 4 (तेरे दर का ही अम्बे सवाली), and जिसकी refers back to it; "my plea" would need सवाल.

@@ -17,3 +17,6 @@ Kept as the base has them: चतुरानन प्रिय सुख द�
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- **pad 2**, जिसको जपे सरल संसारा (सरल 'with ease' or qualifying संसारा): changed to 'the simple-hearted world chants'. सरल stands before संसारा as its adjective, and Platts gives सरल as an adjective only ('upright, sincere, artless, simple; easy'), not as an adverb; the meaning (Hindi and English) changed accordingly.

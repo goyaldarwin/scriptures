@@ -13,7 +13,13 @@ The rule: keep the book; correct it only where it is clearly wrong. The library'
 | refrain | आरती प्रेतराज की कीजै। | आरती प्रेतराज की कीजै ॥ | The refrain's last line ends ॥. |
 | stanza numbers | none | ॥१॥ … ॥५॥ | The standard. |
 
-Kept as the book has them: every word; Drik Panchang does not differ from the book in any word. ढाल कृपाल धनुष (stanza 5) is kept as both witnesses print it, although the list of arms suggests कृपाण ("sword"); no independent witness was found (`docs/reviews/pretraj-aarti-doubts.jsonl`).
+Kept as the book has them: every word; Drik Panchang does not differ from the book in any word. ढाल कृपाल धनुष (stanza 5) is kept as both witnesses print it, although the list of arms suggests कृपाण ("sword"); no independent witness was found (settled below, under Readings settled).
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+The open questions of `docs/reviews/pretraj-aarti-doubts.jsonl`, each decided (docs/PLAYBOOK.md §2).
+
+- **aarti.pad5** — ढाल कृपाल धनुष, कृपाल or कृपाण: कृपाल kept as both witnesses print it. A search found only Bhakti Bharat (a copy of Drik Panchang) and no independent source with कृपाण, so the print is not shown to be a corruption (docs/PLAYBOOK.md §2). Text unchanged.
+- **aarti.pad5** — the sense of कृपाल as printed: read as an address, "O merciful one" (कृपाल, the Hindi form of कृपालु), between the shield and the bow it praises. Meaning unchanged.

@@ -17,3 +17,8 @@ Kept as the book has them, against Drik Panchang: विघन (Drik विघ�
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- **aarti.tek** (हरे): the vocative of हरि, "O Hari": the refrain is modelled on जय जगदीश हरे and stands in a row of vocatives after जय जय; as a verb it would want an object the line does not give. Meaning unchanged.
+- **aarti.pad6** (भवन पधारो अटल क्षत्र कह भक्तों की सेवा करे): the devotees serve, saying "come into the house, O unshakeable canopy" (क्षत्र for छत्र); the next line (प्रेम से सेवा करे जो कोई) speaks of the devotees' service too. Meaning unchanged.
+- **aarti.pad5** (माड़ी): मढ़ी (Platts, maṛhī: a small temple, a jogī's hut); the book's Jāharvīr Chālīsā on the same page (i-104) uses माड़ी for the shrine built for Gūgā (सिंह भवन माड़ी बनवाया). Meaning unchanged.

@@ -2,9 +2,9 @@
 
 The chālīsā of Durgā that opens "नमो नमो दुर्गे सुख करनी", in Awadhi (`awa`).
 
-- **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 173–176), checked against Drik Panchang. Every choice: `reconciliation.md`.
+- **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 173–176), checked against Drik Panchang, with four places as the recording sings them (Drik Panchang's reading). Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/bhaktidhaam/`: BhaktiDhaam (भक्तिधाम; the singers are not named), "सम्पूर्ण चालीसा संग्रह", a jukebox (YouTube `lCwPg0LRRjk`), this chālīsā at 24:46–29:49. The starts come from the transcript (`transcripts/`, with hand-checked starts in `fixes.md`), to be set by ear; chaupāī 41 and the closing dohā are not heard and stay untimed; chaupāī 17's start is listed to check (`check.json`).
 
 The poet names himself in the last chaupāī: Devīdāsa ("देवीदास शरण निज जानी").
 

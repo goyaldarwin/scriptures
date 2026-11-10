@@ -17,3 +17,12 @@ Kept as the book has them, against Drik Panchang: शरदचंद्र (Drik
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+The open questions of `docs/reviews/shitala-chalisa-doubts.jsonl`, each decided (docs/PLAYBOOK.md §2).
+
+- **chalisa.cau16** — who speaks जहँ अपवित्र सकल दुःख हरिहैं, and the book's हरिहैं against Drik Panchang's हरिहौं: the book's हरिहैं kept and read as the demon's speech going on (from chaupāī 15): "where there is impurity, all its sorrow will be taken away". हरिहैं is a third-person future with no subject named, so the Hindi and English give it in the passive; हरिहौं is Drik Panchang's typing of the same edition, not a correction of it, and a search found no independent witness for either; chaupāī 17 goes on in the same third-person future, and chaupāī 18 closes the episode. Meaning unchanged.
+- **chalisa.cau25** — रुणलीह्युणनी, an unclear folk name: kept and transliterated as printed (Ruṇalīhyuṇanī). The page image (i-216) prints the word so, Drik Panchang the same; a split into another pair of names (रुणकी-झुणकी) is not attested by any witness. Meaning unchanged.
+- **chalisa.cau37** — पुरी तिवारी, a place or the poet's caste: read as the place-name the words give ("Purī Tivārī is my home"), with Kakarā on the Gaṅgā by Durvāsā's hermitage; "I am a Tivārī" needs words the line does not have. Meaning unchanged.
+- **chalisa.cau38** — अब विलम्ब with no verb: the plain reading "now it grows late" (विलम्ब, "delay", the glossary; Monier-Williams vilamba) kept; "(make no) delay" needs a negative the line does not have. Meaning unchanged.
+- **chalisa.cau39** — पड़ा क्षर: kept as printed (the page image i-217 prints क्षर clearly, Drik Panchang the same) and read "this perishable one lies here" (क्षर, "perishable", Monier-Williams, Apte). द्वार ("at your door") is attested by no witness (Shubh Panchang has क्षति), so the print is not shown to be a corruption. Meaning unchanged.

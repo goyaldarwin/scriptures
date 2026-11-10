@@ -18,3 +18,7 @@ Kept as the book has them, against Drik Panchang: सन्त जनों, स
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- **chalisa.cau13** (उत्राणी): kept as a name of the Goddess, as all three witnesses print it (the book, Drik Panchang उत्रानी, Chalisa Mala); not a slip for रुद्राणी, which the chālīsā already names (chaupāī 8, रुद्रानी). Meaning unchanged.
+- **chalisa.cau16** (दन्त कुमारी): kept as one name, Danta Kumārī, as the line's words give it; splitting it (Danteśvarī, Kumārī) would supply names the text does not print. Meaning unchanged.

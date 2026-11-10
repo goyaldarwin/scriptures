@@ -12,7 +12,12 @@ The rule: keep the base; correct it only where it is clearly wrong. The library'
 | line ends | । and ॥ alternating | । and, at a stanza's end, ॥N॥ | The standard. |
 | stanza numbers | none | ॥१॥ … ॥५॥ | The standard. |
 
-Kept as the base has them: सुखदानी, पिङ्गला, शाकम्बरी, भोली भाली, भीमा पर्वत, स्वीकारो प्रणाम ये मेरा, सुख पहुँचती हो (Aaj Tak and InstaAstro have it too; the sense and the sixteen mātrās want पहुँचाती: open doubt, `docs/reviews/kushmanda-aarti-doubts.jsonl`), पूर्ण कर दो मेरी आशा, क्यों ना, अरज, कारज, भण्डारे, ध्याये, झुकाये.
+Kept as the base has them: सुखदानी, पिङ्गला, शाकम्बरी, भोली भाली, भीमा पर्वत, स्वीकारो प्रणाम ये मेरा, सुख पहुँचती हो (Aaj Tak and InstaAstro have it too; see Readings settled), पूर्ण कर दो मेरी आशा, क्यों ना, अरज, कारज, भण्डारे, ध्याये, झुकाये.
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+The open questions of `docs/reviews/kushmanda-aarti-doubts.jsonl`, each decided (docs/PLAYBOOK.md §2).
+
+- **aarti.pad3** — सुख पहुँचती हो: kept as printed. पहुँचाती would mend the sense and the 16 mātrās, but every witness prints पहुँचती (Drik Panchang, Aaj Tak, InstaAstro, and NavBharat Live, navbharatlive.com, found by a web search), so nothing shows the print is a corruption. The meaning gives the sense the line plainly carries, "you bring happiness", as our word entry for पहुँचती already does. Meaning unchanged.

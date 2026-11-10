@@ -17,3 +17,6 @@ Kept as the book has them, against Drik Panchang: लखि नर नारी 
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- chalisa.cau7 — मुनिवर संघ … लखि ब्रजभूमि यहाँ ठहराये: read as printed, संघ "company" (Platts saṅgh) and ठहराये transitive, "set (you) down" (Platts ṭhahrānā, v.t. "to cause to stay"): "When the company of great sages came into Braja, they saw the land of Braja and set you down here", as Pulastya set Govardhana down in Braja. Both witnesses print संघ; the meaning no longer reads it as संग.

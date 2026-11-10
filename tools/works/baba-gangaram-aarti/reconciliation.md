@@ -15,3 +15,6 @@ Kept as the book has them: every word; Drik Panchang does not differ from the bo
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- aarti.pad1 — सारो: kept, you accomplish their work (Platts sārnā, to make, perform, accomplish), which gives the clause its verb; as सारा (all) the clause has none.

@@ -18,3 +18,8 @@ Kept as the book has them, where Drik Panchang differs: स्वरूप (Drik
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- aarti.tek, राधे धन न्यौछावर कीजै: राधे as the invocation "Rādhe!", as the meaning has it; राधे is the vocative of राधा, and "for Rādhā" would need a postposition (पर, पै); the Budhwar recension's तन मन (धन) is another recension's reading, not a correction of the book's.
+- aarti.pad6, आधा नील पीत पटसारी: the pair's one form, half in a blue sari, half in a yellow robe, as the meaning has it; आधा ("half") is the book's and Drik Panchang's word, and it gives that sense; ओढ़े नील पीत पट सारी is the other recension.
+- aarti.pad8, परमानन्द स्वामी: the poet's signature, "the lords of Paramānanda", as the meaning has it; the name-plus-स्वामी signature closes the āratī as in Braj padas (कृष्णदास-प्रभु in yashoda-lala-aarti), and the line supplies no verb for "says".

@@ -23,3 +23,12 @@ Kept as the book has them, against Drik Panchang: ध्याइये; सह�
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+The open questions of `docs/reviews/surya-chalisa-doubts.jsonl`, each decided (docs/PLAYBOOK.md §2).
+
+- **chalisa.cau6** — अरुण सदृश सारथी, when Aruṇa is himself the Sun's charioteer: kept as printed and read as the words say, "a charioteer lovely as Aruṇa". The same poet two chaupāīs later writes उच्चैःश्रवा सदृश हय, "horses like Uccaiḥśravā", so सदृश after a name is "like" in this text (our glossary: समान); MW's other sense "fit, worthy" would need another word order. Meaning unchanged.
+- **chalisa.cau16** — रिपु सों जमलहते सोतेहि छन: divided रिपु सों जम लहते, सो तेहि छन ("their enemies obtain Yama, that very moment"), लहना "to obtain" (Platts) as in मोदलहि (cau5) and लहै (closing dohā). The book (i-074) and Drik Panchang print the same; no witness divides it otherwise. Meaning unchanged.
+- **chalisa.cau23** — सुउष्णकर: read as an epithet of Tvaṣṭā and Varuṇa ("of fair warm rays"), the plain reading: उष्णकर "hot-rayed" (MW) is an adjective before it is a name of the Sun, and the half has one verb (रहत) for the pair. Drik Panchang and Aaj Tak print the same words. Meaning unchanged.
+- **chalisa.cau24** — भानुमान उरसर्म सुउदरचन: kept as printed (the book, Drik Panchang, Aaj Tak agree) and read with उरसर्म as उरः + शर्म "guard of the chest" and सु-उदर "the belly well (guarded)"; no source of the armour could be read to restore other names, so the plain reading stands. Meaning unchanged.
+- **chalisa.cau40** — अगहन भिन्न: kept as printed. मित्र (the Sun of Mārgaśīrṣa in some lists) is a likely original, but every witness (the book i-076, Drik Panchang, Aaj Tak) prints भिन्न and no source of this chālīsā with मित्र was found, so nothing shows the print is a corruption; भिन्न read as the words say, "another (name)". Meaning unchanged.

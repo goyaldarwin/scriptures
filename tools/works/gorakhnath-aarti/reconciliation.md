@@ -15,3 +15,6 @@ Kept as the book has them: every word; Drik Panchang does not differ from the bo
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- aarti.pad8 — विनवत बाल त्रिलोकी: "the child Trilokī prays" stays; बाल, "child", is the poet's humility before his guru, as signatures often have it, and the words read that way; no source found names a poet Bāl Trilokī.

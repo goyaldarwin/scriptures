@@ -12,7 +12,14 @@ The rule: keep the book; correct it only where it is clearly wrong, and only on 
 | chaupāī 3 | अन्तक, कोण, रौद्रय मगाऊँ | अन्तक कोण रौद्रय मनाऊँ | मगाऊँ ("have it brought") is a misprint for मनाऊँ ("I propitiate"), which the sense needs; Drik Panchang मनाऊँ. |
 | closing dohā 1 | कीहौं 'विमल' तैयार | कीन्हौं विमल तैयार | कीहौं has lost the न् of कीन्हौं ("made"; Drik Panchang prints the same slip). The same dohā closes the other Śani Chālīsā, where Drik Panchang has कीन्हों (`shani-chalisa`). The quotation marks round the preparer's name are the printer's. |
 
-Kept as the book has them: every other reading, the book and Drik Panchang agreeing but for भांति (Drik भाँति) and शनीश्चर (Drik शनिश्चर). Their shared readings kept: मम् (opening dohā), मन्दसौरि, रौद्रय, विषमवस, महँवासा, होंय, गिरी, जोगी जनि, इकहोइ, दमनचित, हौं सुपुत्र, बांधन, होय सुख साखी. The soraṭhā's last word, सुव्रन, is so in both, though the sense wants सुवन ("son": "O son of the Sun, remover of obstacles"); no witness gives सुवन, so the book's reading stays and the doubt is in `docs/reviews/shanishchar-chalisa-doubts.jsonl`.
+Kept as the book has them: every other reading, the book and Drik Panchang agreeing but for भांति (Drik भाँति) and शनीश्चर (Drik शनिश्चर). Their shared readings kept: मम् (opening dohā), मन्दसौरि, रौद्रय, विषमवस, महँवासा, होंय, गिरी, जोगी जनि, इकहोइ, दमनचित, हौं सुपुत्र, बांधन, होय सुख साखी. The soraṭhā's last word, सुव्रन, is so in both, though the sense wants सुवन ("son": "O son of the Sun, remover of obstacles"); no witness gives सुवन, so the book's reading stays (settled below, Readings settled).
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- **chalisa.so1** (रवि सुव्रन: not a word, the sense wants सुवन): the text stays as printed (the book's page image i-053 and Drik Panchang both have सुव्रन; a web search found no other witness), and the meaning gives 'son of Ravi', as it does. The metre favours सुवन too (the soraṭhā's last quarter has 13 mātrās with it, 14 with सुव्रन), but the base is corrected only where a witness gives the right form (docs/PLAYBOOK.md §2).
+- **chalisa.cau27** (इकहोइ धारण करत शनि नित: whose subject?): the three gods of chaupāīs 25–26, being one form, as our meaning has it: वंदत सोई takes them up, and the reciter enters only in chaupāī 28 (जो नर पाठ करे).
+- **chalisa.cau32** (शनि सम ध्यान): सम as 'with an even mind', as our meaning has it: 'like Śani' gives no sense, and 'such meditation' would need a word the line does not have.
+- **chalisa.do2** (कीन्हौं विमल तैयार): Vimala, the preparer's name, as our meaning has it: the book (page image) and Drik Panchang print 'विमल' in quotation marks, the printers' sign for a name.
+- **chalisa.do3** (ललिता लिखें सुधार): Lalitā, the poet's name, as our meaning has it: ललिता is a name and the subject of लिखें; 'graceful' would be ललित, and the language is already described (सरस सुभाषा).

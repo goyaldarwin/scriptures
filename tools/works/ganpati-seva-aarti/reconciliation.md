@@ -16,3 +16,7 @@ Settled by the web witnesses, kept as the page has them: देव बंधु 
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- aarti.pad3 — दिन दोपारा दूर परैं: the words as printed (Drik Panchang, Shubh Panchang and InstaAstro agree), so no correction to a time phrase; the subject of दूर परैं is taken from stanza 2, where the same words are said of obstacles (विघ्न भाग जा दूर परैं): at midday, obstacles fell far away.
+- aarti.pad5 — देख वेद ब्रह्मा जी जाको: देख वेद, the verb and its object side by side, is "having looked into the Veda" (as a name is chosen by the śāstra), and जाको is the one named (जाको … नाम धरैं); "seeing whom, Brahmā and the Vedas" would split देख from जाको and make the Veda a namer. इन्द्र अप्सरा is Indra's apsarases: the dancers are the apsarases of Indra's court; Indra's music is stanza 4's.

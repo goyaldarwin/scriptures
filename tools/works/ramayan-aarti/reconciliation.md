@@ -5,10 +5,13 @@
 - **Drik Panchang** (`hinduism/aarti/rama/ramayan-aarti/printouts/drikpanchang/shree-ramayan-aarti.html`): the same four stanzas, a half-line per line, the refrain marked after each.
 - **For a doubtful reading only** (stanza 4), the text as other sites print it, found by web search: sanatanaaradhana.com (श्री रामायण जी की आरती), kavita.org.in (आरती श्री रामायण जी की), snatanbhakti.com (श्री रामायणजी की आरती), sanatanajourney.com (Ramayan ji ki aarti).
 
+- **The recording** the owner chose: Kumar Vishu, the "Aarti Collection" jukebox (YouTube `rI-DXgiHALU`, 19:46–25:41). He sings the refrain, then stanzas 1, 3, 2 and 4 of the book, each followed by the refrain; the text takes his order (docs/PLAYBOOK.md §3), each line as the book writes it.
+
 The rule: keep the book; correct it only where it is clearly wrong. The library's writing standard (docs/PLAYBOOK.md §3): an āratī's verse has no comma (the book's comma between the halves of a line becomes a line break, a half per line); the refrain (टेक) is shown once; stanzas numbered (॥१॥).
 
 | Place | Book | Ours | Why |
 |---|---|---|---|
+| the order of the stanzas | 1 गावत ब्रह्मादिक, 2 गावत वेद पुरान, 3 गावत संतत संभु भवानी, 4 कलि मल हरनि (Drik Panchang the same) | 1 गावत ब्रह्मादिक, 2 गावत संतत संभु भवानी, 3 गावत वेद पुरान, 4 कलि मल हरनि | As he sings it: गावत संतत संभु भवानी from 22:06 (1326 s), गावत वेद पुरान अष्टदस from 23:05 (1385 s). The stanzas keep their ids (`aarti.pad3` is stanza 2, `aarti.pad2` stanza 3) and are numbered in the order sung. |
 | every line | one printed line, its halves joined by a comma | two lines, ending । (and ॥ / ॥N॥ at a stanza's end) | The standard; the comma marks the half. |
 | the refrain | the first printed line, ending ।। (stanza 1 numbered after the next two lines) | the refrain (`aarti.tek`), stanza 1 its next two lines | The refrain is sung after every stanza (Drik Panchang marks it so). |
 | stanza 1, line 3; stanza 3, line 2 | अरू | अरु | अरू (long ū) is a misspelling of अरु ("and"); Drik Panchang has अरु. |

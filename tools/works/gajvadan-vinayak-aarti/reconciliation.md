@@ -16,3 +16,8 @@ Kept as the page has them: गजबदन, सुर-मुनि-पूजि�
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+The open questions of `docs/reviews/gajvadan-vinayak-aarti-doubts.jsonl`, each decided (docs/PLAYBOOK.md §2).
+
+- **aarti.pad3** — वज्रांकुश-कर: a dvandva, "with the thunderbolt and the goad in his hands". MW knows वज्राङ्कुश only as a mountain's name, so no compound "adamantine goad" is attested, and a pair joined in one compound with -कर ("in whose hands") is the plain reading. Meaning unchanged.

@@ -20,3 +20,6 @@ Kept as the book has them, where Drik Panchang differs: नंगे पां�
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- **aarti.pad3** — सत्युग त्रेता द्वापर मध्ये कलयुग राज सवाया: both books (Randhir and Aarti Mala) and Drik Panchang print it so. सवाया "one and a quarter, greater by a quarter" (Platts sawāyā = sawaiyā): "your reign stood through the Satya, Tretā and Dvāpara ages, and in the Kali age it is greater by a quarter." Meaning unchanged.

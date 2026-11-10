@@ -16,3 +16,8 @@ Kept as the book has them, against Drik Panchang: विनय करें / �
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- **chaupāī 3**, सिन्धु महि पारा … सुरसा बदन पैठि विस्तारा: महि as the book prints it ('to the land beyond'; Drik Panchang वहि is not clearly better), and विस्तारा with Surasā's mouth, the noun beside it: 'entered Surasā's mouth when she spread it wide'.
+- **chaupāī 6**, सिंधु मँह बोरा … यम कातर तोरा: the garden, the only object in the half, is what was sunk; यम कातर as Yama's dagger (कातर for कटार). 'Like Yama you broke the frightened ones' would add a comparison and an object the verse does not print. Plain reading.
+- **chaupāī 25**, जनक सुता हरिदास कहावो । ताकी शपथ: 'the servant of Janaka's daughter and of Hari; by her oath', as the book prints it (हरिदास joined); Rāma's oath was invoked in chaupāī 24, and ताकी follows जनक सुता. Plain reading kept.

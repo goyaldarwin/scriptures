@@ -16,3 +16,6 @@ Kept as the book has them, against Drik Panchang: सब भाग जावे�
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`). Chaupāī 32: स्वामी is an address, as in chaupāīs 12, 31 and 34.
+
+## Readings settled
+- chalisa.cau5 — तमसे (the book, read on page image i-140, and Drik Panchang): read as तुमसे, "great delusion grew afraid of you", as our glossary (awa तमसे) has it. डर खाना needs a से-object, which तम "darkness" would leave without one; the line goes with chaupāī 4's कर्म-शत्रु भी तुम से हारा. Text kept as printed. Meaning unchanged.

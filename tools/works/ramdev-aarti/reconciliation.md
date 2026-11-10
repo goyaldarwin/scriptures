@@ -15,3 +15,6 @@ Kept as the book has them: every word; Drik Panchang does not differ from the bo
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- **pad 3**, सरजीवन भाण को (भाण a name or for भाणेज, sister's son): a name, Bhāṇ, as printed. The Rāmdev Chālīsā's seventh parchā (Sugnā's son revived) would fit 'nephew', but no dictionary or source gives भाण for भाणेज, and the web searches found no account that settles it; the printed word stands.

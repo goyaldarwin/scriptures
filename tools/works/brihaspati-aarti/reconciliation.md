@@ -14,7 +14,11 @@ The rule: keep the book; correct it only where it is clearly wrong. The library'
 | stanza 4, line 4 | भव बन्धन हार | भव बन्धन हारी | हार drops the ī that the rhyme with हितकारी needs ("remover of the bonds of the world"); Drik Panchang has हारी. |
 | after the āratī | सब बोलो विष्णु भगवान की जय । सब बोलो बृहस्पति भगवान की जय ।। | (not written) | The closing cry (jayakāra), not a stanza of the āratī. |
 
-Kept as the book has them, against Drik Panchang: लगाऊं (Drik लगाऊँ), तन मन धन अर्पणकर (Drik तन, मन, धन अर्पण कर), दीन दयाल (Drik दीनदयाल), and, as both have them, सब संशय तारो (which does not rhyme with सुखकारी) and जेष्टानन्द बन्द (open doubt, `docs/reviews/brihaspati-aarti-doubts.jsonl`).
+Kept as the book has them, against Drik Panchang: लगाऊं (Drik लगाऊँ), तन मन धन अर्पणकर (Drik तन, मन, धन अर्पण कर), दीन दयाल (Drik दीनदयाल), and, as both have them, सब संशय तारो (which does not rhyme with सुखकारी) and जेष्टानन्द बन्द (settled below, Readings settled).
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- **aarti.pad5** — सब संशय तारो, which does not rhyme with सुखकारी: kept as printed (the book and Drik Panchang agree; Shubh Panchang's हारो does not rhyme either, and no rhyming text is attested). Read as printed, तारो "carry (us) across". Meaning unchanged.
+- **aarti.pad6** — जेष्टानन्द बन्द सो सो निश्चय पावे: kept as printed (both witnesses agree; Shubh Panchang's जेठानन्द आनन्दकर is another wording that settles nothing, and the other pages a web search found could not be read). Read as the poet's signature, जेष्टानन्द, with बन्द = वन्दना ("bows"), सो सो "each such one". Meaning unchanged.

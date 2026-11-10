@@ -14,3 +14,9 @@ Kept as the book has them, against Drik Panchang: संदेश (chaupāī 10;
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- chalisa.cau5 — बीतहिं जन्म: kept, as his life went by he had no thought for his body (बीतना, to pass, of time: Platts). The plain words; both witnesses agree.
+- chalisa.cau12 — the subject of कीन्हों: changed, Bābā did all the work for dharma (was a passive). दीन्हों and कीन्हों are parallel verbs of one subject, Bābā, the subject of the stanza before (पठाया, दिखावा, बतलावा).
+- chalisa.cau23 — सुखसंतोष लहै न मन में: changed, a question, do they not find happiness and contentment in their minds? लहना is to find, get (Platts); "cannot contain" has no dictionary support, and the literal statement contradicts the stanza. Both witnesses print लहै न; a web search found only Bhakti Bharat (a copy of Drik Panchang), so the text stays as printed.
+- chalisa.cau40 — महावीर: kept, the poet's name (the signature): the book and Drik Panchang both print it in quotation marks, 'महावीर'.

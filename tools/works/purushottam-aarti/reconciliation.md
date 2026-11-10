@@ -16,3 +16,6 @@ No reading of the base is changed. Kept as the base has them: सुक्ख, �
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- aarti.pad7 — प्रभुदास: the poet's name, "says Prabhudāsa", stays; an āratī's last stanza carries its poet's signature (README), and वे is already the subject, so प्रभुदास as "the Lord's servants" would repeat it.

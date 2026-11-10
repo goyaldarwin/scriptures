@@ -15,7 +15,12 @@ The rule: keep the base; correct it only where it is clearly wrong. The library'
 | stanza numbers | none | ॥१॥ … ॥१०॥ | The standard. |
 | after the refrain and every stanza | ॐ जय चित्रगुप्त हरे...॥ | (not shown) | The refrain cue; the refrain is the first item (टेक). |
 
-Kept as the base has them: इच्छित, सुखदायी, छायी, राजै, अङ्ग, शङ्ख, हुये, सोहै, हर्षाये, तैंतीस, कीन्हा, वेगि विलम्ब न लायो, दारा सुत भगिनी / सब अपने स्वास्थ के कर्ता (every witness has स्वास्थ, Bhakti Bharat too; read as "their own well-being", which gives the stanza's sense, as स्वारथ would), तुम तज मैं भर्ता (open doubt: the sense is unclear), गहूँ, करूँ, गावैं, छूटैं, बैकुण्ठ, तिहारी; the order with the stanza न्यायाधीश बैकुण्ठ निवासी after the stanza that names the singer. The doubts: `docs/reviews/chitragupta-aarti-doubts.jsonl`.
+Kept as the base has them: इच्छित, सुखदायी, छायी, राजै, अङ्ग, शङ्ख, हुये, सोहै, हर्षाये, तैंतीस, कीन्हा, वेगि विलम्ब न लायो, दारा सुत भगिनी / सब अपने स्वास्थ के कर्ता (every witness has स्वास्थ, Bhakti Bharat too; read as "their own well-being", which gives the stanza's sense, as स्वारथ would), तुम तज मैं भर्ता (settled below, under Readings settled), गहूँ, करूँ, गावैं, छूटैं, बैकुण्ठ, तिहारी; the order with the stanza न्यायाधीश बैकुण्ठ निवासी after the stanza that names the singer.
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+The open questions of `docs/reviews/chitragupta-aarti-doubts.jsonl`, each decided (docs/PLAYBOOK.md §2).
+
+- **aarti.pad7** — तुम तज मैं भर्ता: kept as printed (every witness found prints it: Drik Panchang, Bhakti Bharat its copy) and read with the half before it, जाऊँ कहाँ शरण में किसकी: "where shall I go, whose refuge shall I seek? Leaving you, O sustainer (भर्ता, "cherisher, supporter, lord", Platts), where could I go?" No other reading is attested. Meaning unchanged.

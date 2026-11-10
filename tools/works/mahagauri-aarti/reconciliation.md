@@ -11,7 +11,7 @@ The rule: keep the base; correct it only where it is clearly wrong. The library'
 |---|---|---|---|
 | stanza 1, line 4 | महागौरी तेरा वहा निवास | महागौरी तेरा वहाँ निवासा | वहा is वहाँ with its candrabindu dropped; निवास breaks the rhyme with पासा (every other couplet rhymes). Aaj Tak has वहां निवासा. |
 | stanza 2, line 4 | जग विख्यता | जग विख्याता | विख्यता is not a word, and it breaks the rhyme with माता; Aaj Tak has विख्याता. |
-| stanza 3, line 3 | सती (सत) हवन कुंड में था जलाया | सती हवन कुंड में था जलाया | The bracketed सत is a variant the page offers; the base reading is kept (Aaj Tak prints 'सत' in quotation marks after सती: open doubt, `docs/reviews/mahagauri-aarti-doubts.jsonl`). |
+| stanza 3, line 3 | सती (सत) हवन कुंड में था जलाया | सती हवन कुंड में था जलाया | The bracketed सत is a variant the page offers; the base reading is kept (Aaj Tak prints 'सत' in quotation marks after सती: settled under Readings settled). |
 | line ends | । and ॥ alternating | । and, at a stanza's end, ॥N॥ | The standard. |
 | stanza numbers | none | ॥१॥ … ॥५॥ | The standard. |
 
@@ -19,3 +19,6 @@ Kept as the base has them: पासा, चन्द्रकली, ममत�
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- aarti.pad3 — सती (सत) हवन कुंड: kept सती हवन कुंड में था जलाया. सत is set off in every source (Drik Panchang in brackets, Aaj Tak and InstaAstro in quotation marks), none prints it as part of the line, and the stanza's lines are too uneven for the metre to decide; the base reading stands.

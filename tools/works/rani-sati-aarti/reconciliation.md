@@ -15,7 +15,15 @@ The rule: keep the book; correct it only where it is clearly wrong. The library'
 | refrain, line 3 | क़रो (a dot under क) | करो | A speck of ink: क़रो is not a word; Drik Panchang has करो. |
 | stanza 4, line 1 | संप्त मातृका | सप्त मातृका | A misprint: संप्त is not a word; the seven Mothers are सप्त मातृका, as Drik Panchang has it. |
 
-Kept as the book has them (Drik Panchang the same): अपनि अनन्तर, चहुँककूंभा (`docs/reviews/rani-sati-aarti-doubts.jsonl`), खडग, विद्युतसम, शोभा लखि न बड़े, घड़ावल, घुरे, सुरगम, हृदय पटले, करन, आयो, सदनसिद्धि, विपती.
+Kept as the book has them (Drik Panchang the same): अपनि अनन्तर, चहुँककूंभा (settled below, Readings settled), खडग, विद्युतसम, शोभा लखि न बड़े, घड़ावल, घुरे, सुरगम, हृदय पटले, करन, आयो, सदनसिद्धि, विपती.
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- **aarti.pad1** — चहुँककूंभा, not a word as printed: kept as printed (the book, read on page image i-286, and Drik Panchang agree; web searches found no independent text, bharatdiscovery.org unreadable, Bhakti Bharat a copy of Drik Panchang). The meaning reads it as चहुँ + ककुभा, "the four quarters" (ककुभ्/ककुभा, "quarter, region": Apte, Platts), the only sense the letters give with मंडित; no change.
+- **aarti.pad1** — अनन्तर: taken in its dictionary sense "uninterrupted, unbroken, continuous" (Monier-Williams an-antara), which pairs with अखण्डित; not emended to अनन्त or आन्तर, which no witness prints. Meaning unchanged.
+- **aarti.pad2** — शोभा लखि न बड़े: the printed words read "even the great (बड़े) cannot behold its splendour"; परे is not printed by either witness, so no correction. Meaning unchanged.
+- **aarti.pad4** — सुरगम ध्यान धरे: read as the hosts of gods (सुर + गण), beside the seven Mothers of the same line; सरगम (the scale), the only other sense, cannot take ध्यान धरे ("meditate"), and neither Platts nor the Sanskrit dictionaries has सुरगम. Text as printed; meaning unchanged.
+- **aarti.pad5** — सेवक जन हृदय पटले मृदुल करन सुमति: read as printed, हृदय पटले "on the surface (पटल) of the heart", करन "who brings about", मृदुल qualifying सुमति: "on the hearts of your servants you bring gentle good sense". Meaning unchanged.
+- **aarti.pad7** — सदनसिद्धि: kept as printed (both witnesses; a web search found no other text) and read as its parts, सदन + सिद्धि, "success in the home"; सदा सिद्धि or ऋद्धि-सिद्धि would be guesses. Meaning unchanged.

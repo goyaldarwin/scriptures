@@ -14,7 +14,11 @@ The rule: keep the book; correct it only where it is clearly wrong. The library'
 | stanza numbers | none | ॥१॥ … ॥६॥ | The standard. |
 | stanza 6 | कहे 'धरणीधर' वह नर | कहे धरणीधर वह नर | The quotation marks are the printer's, not part of the verse. |
 
-Kept as the book has them (Drik Panchang agrees throughout): तुम्हरी, उद्धारक, चतुर्वतिका (open doubt: वर्तिका "wick" would give चतुर्वर्तिका, "four-wicked"; `docs/reviews/batuk-bhairav-aarti-doubts.jsonl`), चटकि, भाषावलि, कीजिये, नहिं, पाँवों घूंघरू, हरषावत, वांछित. Against Aarti Mala, the book's readings are kept everywhere (its wordings are listed above).
+Kept as the book has them (Drik Panchang agrees throughout): तुम्हरी, उद्धारक, चतुर्वतिका (read as चतुर्वर्तिका, "four-wicked"; settled below, Readings settled), चटकि, भाषावलि, कीजिये, नहिं, पाँवों घूंघरू, हरषावत, वांछित. Against Aarti Mala, the book's readings are kept everywhere (its wordings are listed above).
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- **aarti.pad3** (चतुर्वतिका): the print stays (the book and Drik Panchang agree, and no witness or web copy prints चतुर्वर्तिका, so no source gives the corrected form); it is read as चतुर्वर्तिका, "four-wicked" (वर्तिका, wick), the sense Aarti Mala's चौमुख दीपक and mantra.tips's text confirm. Meaning unchanged.
+- **aarti.pad4** (तेल चटकि दधि मिश्रित भाषावलि): the printed words stand; all witnesses (the book, Drik Panchang, Aarti Mala, mantra.tips) have भाषावलि, and माषावलि is not attested. Meaning unchanged.

@@ -17,3 +17,6 @@ Kept as the base has them: सखियाँ, दैनी, सुनैनी,
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- aarti.pad4 — रामेस्वर: the poet's name (chhāp) in the closing stanza, bidding himself as stanza 1 bids the companions; a pada's signature stands in its last stanza, and Śiva holding the fan and whisk for the couple is not in the words. Drik Panchang is the only witness; a web search found no other copy. Meaning unchanged.

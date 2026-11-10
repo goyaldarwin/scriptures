@@ -19,3 +19,7 @@ Kept as the book has them (Drik Panchang the same): शाकम्भर (in th
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- **aarti.pad1** (बखानी: passive or active): passive, "you yourself are described so": बखानी (Platts bakhān, "description, praise") is feminine with तुम, the goddess; an active perfect of a transitive verb would agree with an object, and the line has none. Meaning unchanged.
+- **aarti.pad2** (शिव मूर्ति: Śiva's embodiment or auspicious form): शिव the adjective, "auspicious" (Monier-Williams śiva, "auspicious, propitious, benign"): the line lists the goddess's own names and attributes (Śākambharī, Śatākṣī, Māyā, Prakāśī), and nothing in the āratī speaks of Śiva. Meaning changed: "You are of auspicious form, and Māyā" (was "the embodiment of Śiva").

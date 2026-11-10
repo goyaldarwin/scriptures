@@ -16,3 +16,10 @@ Kept as the book has them, against Drik Panchang: चरणगुरू (Drik �
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- **chaupāī 4**, अर्पणा in the second half (Aparṇā again, or 'offered'): 'offered, devoted' stands. Platts gives अरपना *arpnā*, 'to present an offering, to devote', so the printed word reads plainly as it is; the first half's अर्पणा stays Aparṇā (MW *a-parṇā*, a name of Durgā/Pārvatī).
+- **chaupāī 10**, भीम (the name Bhīmā or the adjective): the name Bhīmā. The chaupāīs around it name the sisters (Śatākṣī in 9, Bhrāmarī in 11), and Bhīmā, Bhrāmarī and Śatākṣī are the Devī's forms named together with Śākambharī (Durgāsaptaśatī, ch. 11).
+- **chaupāī 27**, शोक पात (or शाक पात, 'greens and leaves'): शोक as printed. The page image (i-273) and Drik Panchang both print शोक; no independent source was reachable to show a corruption (sanskritdocuments.org's copy is closed to the fetch tool; Shubh Panchang copies Drik Panchang), so the print stands.
+- **chaupāī 28**, कान्त and कम्पलेश्वर: कान्त is the poet's signature, as in chaupāīs 37, 39 and 46 (Kāntā Prasād of Jagādhrī); कम्पलेश्वर as the page image prints it (Drik Panchang कमलेश्वर is not clearly the better reading).
+- **chaupāī 43**, शोक मोह शत्रु न संहारे (न against the first half): a rhetorical question, 'does she not destroy…?', which affirms what the first half says; the printed न is kept and read as it stands (every witness has it).

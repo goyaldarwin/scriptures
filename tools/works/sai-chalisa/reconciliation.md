@@ -21,3 +21,10 @@ Kept as the book has them, against Drik Panchang: साईं (Drik साई; 
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+The open questions of `docs/reviews/sai-chalisa-doubts.jsonl`, each decided (docs/PLAYBOOK.md §2).
+
+- **chalisa.cau30** — मतवाली मूरति, Sāī's living form or his image: मूरति read as "form, figure" (Platts मूरति, मूर्ति), as the words give it; the Hindi keeps मूर्ति and the English "form", which leave the poem's time open as the line does. Meaning unchanged.
+- **chalisa.cau91** — how जो कुछ पाया joins पाप ताप सन्ताप मिटाया: read as the words stand, "with whatever he received, Sāī wiped away sin, suffering and anguish" (पाया, "received", with साईं ने its subject); "whoever came to him" needs आया for पाया. Meaning unchanged.
+- **chalisa.cau101** — निर्भय, the poet's name or "fearless": the poet's name (chhāp), addressed by himself in the second person in the poem's closing verses, as chālīsā poets sign; "fearless" fits no word of the line (मिल जाता is not done fearlessly), and the next verse goes on in the first person. Meaning unchanged.

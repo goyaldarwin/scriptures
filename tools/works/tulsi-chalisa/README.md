@@ -2,7 +2,7 @@
 
 The chālīsā of Tulasī that opens "जय जय तुलसी भगवती सत्यवती सुखदानी", in Awadhi (`awa`).
 
-- **Text** (`text.txt`): Drik Panchang (lyrics/chalisa/tulasi-mata/tulasi-mata-chalisa); the book (५१ चालीसा संग्रह आरतियों सहित) has no copy. Every choice: `reconciliation.md`; open doubts: `docs/reviews/tulsi-chalisa-doubts.jsonl`.
+- **Text** (`text.txt`): Drik Panchang (lyrics/chalisa/tulasi-mata/tulasi-mata-chalisa); the book (५१ चालीसा संग्रह आरतियों सहित) has no copy. Every choice: `reconciliation.md`; the doubtful readings settled: `reconciliation.md`, "Readings settled".
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
 - **Recordings:** none yet.
 - **Poet:** chaupāīs 38–39 name him, the poet Sundara, living near Durvāsā's hermitage east of Prayāga (the place of the Gaṅgā and Śītalā Chālīsās' poets).

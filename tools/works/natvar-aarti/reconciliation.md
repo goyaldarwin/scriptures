@@ -15,7 +15,10 @@ The rule: keep the base; correct it only where it is clearly wrong. The library'
 | line ends | , । ॥ | । and, at a stanza's end, ॥N॥ | The standard. |
 | stanza numbers | none | ॥१॥ … ॥५॥ | The standard. |
 
-Kept as the base has them: the hyphens (नन्द-सुवन, वसुदेव-देवकी-नन्दन, कालयवन-कन्सादि-निकन्दन, पाण्डव-पूत, मूषक-भक्षक, गोवर्धन-धर), जसुमतिके and असुरनके written joined, कन्सादि, बन्शीधर, निर्गुन, अजाव्यक्त, अतुलित अहि अघ मूषक-भक्षक (an open doubt: `docs/reviews/natvar-aarti-doubts.jsonl`).
+Kept as the base has them: the hyphens (नन्द-सुवन, वसुदेव-देवकी-नन्दन, कालयवन-कन्सादि-निकन्दन, पाण्डव-पूत, मूषक-भक्षक, गोवर्धन-धर), जसुमतिके and असुरनके written joined, कन्सादि, बन्शीधर, निर्गुन, अजाव्यक्त, अतुलित अहि अघ मूषक-भक्षक (settled below, Readings settled).
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- **aarti.pad4** — अतुलित अहि अघ मूषक-भक्षक: kept as Drik Panchang, the base, prints it (a web search found only Bhakti Bharat, its copy). Every epithet of the stanza in -क is Kṛṣṇa's (रक्षक, भक्षक, निरीक्षक), so भक्षक is he: he made an end of Agha the serpent as if he were a mouse, भक्षक in its figurative sense "devourer, destroyer". Meaning unchanged.

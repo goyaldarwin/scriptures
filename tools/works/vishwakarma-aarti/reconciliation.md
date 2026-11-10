@@ -17,3 +17,7 @@ Kept as the book has them (Drik Panchang agrees throughout): आवो, बन�
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- **aarti.pad3** — प्रभु लंका विजय करावो: read as a past deed, like its stanza (पूजन की, रचि डारो, पार किया): करावो is the Braj past करायो written with व, as आवो/आयो, beside बचायो in stanza 2. Meaning unchanged.
+- **aarti.pad4** — श्री कृष्ण की विजय सुनो: kept as printed (the book and Drik Panchang agree on विजय; विनय is a guess no witness prints). "Hear of Śrī Kṛṣṇa's victory." Meaning unchanged.

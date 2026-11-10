@@ -16,3 +16,6 @@ Kept as Drik Panchang has them: मंगलागार, भारापहर,
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- aarti.pad5 — राम संभ्राज शोभा-सहित सर्वदा, who shines: संभ्राज (sam-√bhrāj, "shining brightly", Monier-Williams) stands next to राम and goes with him: Rāma, radiant in splendour; Hanumān is विहारी, the one who roams. "With Rāma, radiant in his splendour, you ever roam in the Rāma-city of Tulasī's mind" stands.

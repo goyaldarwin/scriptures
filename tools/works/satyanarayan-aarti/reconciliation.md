@@ -16,5 +16,10 @@ The rule: keep the book; correct it only where it is clearly wrong. The library'
 
 Kept as the book has them, against Drik Panchang: जय लक्ष्मी रमणा स्वामी जय लक्ष्मी रमणा (Drik जय लक्ष्मीरमणा श्री जय लक्ष्मीरमणा), जन पातक हरना (Drik जनपातक हरणा), रतन जड़त (Drik रत्नजड़ित), छबी (Drik छवि), घंटा धुन (Drik घंटा ध्वनि), भए (Drik भये), धरयो / सरयो (Drik धर्यो / सर्यो), दीन्हा (Drik दीनो), सवायो (Drik सवाया), श्रीसत्यनारायण जी की आरती जो कोई गावे (Drik श्री सत्यनारायणजी की आरती जो कोई नर गावे).
 
+Anuradha Paudwal's recording (the "Om Jai Jagdish Hare Aarti Sangrah" jukebox, YouTube `sd31yGqZFlA`, 27:15–33:12; docs/PLAYBOOK.md §3) sings this version, the refrain and the eight stanzas in this order, so the text stays as it is. Where she seems to sing other words, the text keeps the book until the owner decides by ear: stanza 8, which no witness has as she sings it (the transcript: "लच्मी रमन जी की आरती · जो कोई नरगावे · ब्रे थि से ती सुख्य संपती · जी बर्छे पावे", apparently लक्ष्मी रमण जी की आरती … जो कोई नर गावे with सुख सम्पत्ति in the second line, not श्रीसत्यनारायण जी की आरती … कहत शिवानन्द स्वामी मनवांछित फल पावे); stanza 3, perhaps जिन पर कृपा करी (both witnesses: इन पर). Drik Panchang's spellings she may follow (रत्न जड़ित, छवि, ध्वनि, सवाया) are the same words and are not taken.
+
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- **aarti.pad3** (दुर्बल भील कठारो इन पर: कठारो not in Platts, इन plural): the poor Bhīl woodcutters, as our meaning has it. कठारो is काठ 'wood' + the agent suffix -हारा, 'one who gathers wood' (Platts has no entry for the word itself), and the Satyanārāyaṇa story's woodcutter is the one this stanza means, beside King Candracūḍa in the next half; इन पर is the woodcutter and his fellows (or the plural of respect). A list of three (the poor one, the Bhīl, the woodcutter) has no figure in the story.

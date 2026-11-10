@@ -17,3 +17,7 @@ Kept as the base has it: पिता कियो मारन परसाय�
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- chalisa.cau7 — परसाया: the text stays as the base prints it (no witness, and no independent copy found, has परयासा); the meaning "tried to kill him" is the only sense the words give, परसाया read as प्रयास with its letters moved for the rhyme (the glossary).
+- chalisa.cau40 — शिव स्वरूप है शरण तुम्हारी: "your refuge is blessing itself" stays; है makes शरण the subject and शिवस्वरूप its predicate ("auspicious in nature", MW śiva), and the chālīsā is addressed to Narasiṁha throughout.

@@ -10,7 +10,7 @@ The rule: keep the book; correct it only where it is clearly wrong, and only on 
 
 | Place | Book | Ours | Why |
 |---|---|---|---|
-| opening dohā 1 | जनक जननि पदम दुरज | जनक जननि पद कमल रज | दुरज is not a word, and the quarter is short of its 13 mātrās. The witnesses all mean "the dust of the (lotus) feet" but differ in form: Chalisa Mala पद्मराज, Shubh Panchang पद-रज (both still short), Drik Panchang and AstroVed पद कमल रज, the only form that is whole in sense and metre. Listed in `docs/reviews/saraswati-chalisa-doubts.jsonl`. |
+| opening dohā 1 | जनक जननि पदम दुरज | जनक जननि पद कमल रज | दुरज is not a word, and the quarter is short of its 13 mātrās. The witnesses all mean "the dust of the (lotus) feet" but differ in form: Chalisa Mala पद्मराज, Shubh Panchang पद-रज (both still short), Drik Panchang and AstroVed पद कमल रज, the only form that is whole in sense and metre. Settled under Readings settled. |
 | chaupāī 3 | रूप चर्तुभुजधारी माता | रूप चतुर्भुजधारी माता | चर्तुभुज is a misprint of चतुर्भुज ("four-armed"), as Chalisa Mala and Drik Panchang have it. |
 | chaupāī 6 | तब प्रसाद जानै संसारा | तव प्रसाद जानै संसारा | The sense is "by your grace" (तव प्रसाद), as Chalisa Mala and Drik Panchang have it; तब ("then") leaves the line without its subject. |
 | chaupāī 13 | विनय करु भाँति बहुतेरी | विनय करउं भाँति बहुतेरी | The speaker pleads ("I plead"), and the half-line needs 16 mātrās: करु (an imperative, 14 mātrās) is a slip. Chalisa Mala has करउं, which fills the metre; Shubh Panchang करूं. |
@@ -21,3 +21,7 @@ Kept as the book has them, against Drik Panchang: बन्दौं, अवि�
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- chalisa.do1 — the book's पदम दुरज: the text's पद कमल रज stands (the table above): the only witnessed form whole in sense and metre (Drik Panchang, AstroVed).
+- chalisa.cau29 — दुर्ग आदि हरनी: read as "slayer of the demon Durga (Durgama) and the others". cau27–28 follow Devī Māhātmya 11 (Raktadantikā, Śatākṣī), where the Goddess slays the great asura Durgama and so is named Durgā (11.45–46: दुर्गमाख्यं महासुरम् … दुर्गा देवीति विख्यातं); cau28 names her Durgā for that deed, and Monier-Williams gives Durga as the Asura slain by Durgā (SkandaP.). The meaning changes from "remover of hardships".

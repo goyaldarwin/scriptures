@@ -16,3 +16,6 @@ Kept as the book has them, against Drik Panchang: पुरवहु (Drik प�
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- chalisa.do3, रामदास: the poet's name, Rāmadāsa, as the meaning has it; a chālīsā's closing dohā names its poet, and the next line's दास पै ("on [your] servant") is he; the awa glossary's रामदास already lists the poet's name beside "Rāma's servant".

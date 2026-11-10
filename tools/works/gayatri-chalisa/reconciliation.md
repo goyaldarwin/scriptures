@@ -14,3 +14,8 @@ Kept as the book has them, against Drik Panchang: शांति क्रा�
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- chalisa.cau10 — शारद शतमुख: "Śāradā, singing your virtues with a hundred mouths", not "the hundred-mouthed Śeṣa". MW gives śatamukha only as "having a hundred mouths/outlets" (and an Asura), never Śeṣa, who is the thousand-mouthed; Drik Panchang prints शत मुख apart, an adverb to Śāradā's singing; our glossary (awa) has the sense "with a hundred mouths". Meaning changed (Hindi and English).
+- chalisa.cau31 — सदा सुखदाई describes her wedded fortune (सुहाग), the noun it follows in the same half; nothing names Gāyatrī there. Meaning unchanged.
+- chalisa.cau37 — चिन्तत (the book; Drik चिन्तित): "the thoughtful". Platts: चिन्तना "to think, to reflect on, to study"; the list आरत अर्थी चिन्तत follows the Gītā's (7.16) ārta, arthārthī, jijñāsu. Meaning unchanged.

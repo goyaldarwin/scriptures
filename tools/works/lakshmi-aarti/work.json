@@ -3,8 +3,8 @@
  "path": "hinduism/aarti/lakshmi/lakshmi-aarti",
  "lang": "hi",
  "title": {
-  "hi": "जय लक्ष्मी माता",
-  "en": "Jai Lakshmi Mata"
+  "hi": "ॐ जय लक्ष्मी माता",
+  "en": "Om Jai Lakshmi Mata"
  },
  "by": {
   "hi": "माँ लक्ष्मी",
@@ -18,8 +18,8 @@
   "list": [
    {
     "key": "aarti",
-    "hi": "जय लक्ष्मी माता",
-    "en": "Jai Lakshmi Mata"
+    "hi": "ॐ जय लक्ष्मी माता",
+    "en": "Om Jai Lakshmi Mata"
    }
   ]
  },

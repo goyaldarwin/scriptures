@@ -15,3 +15,9 @@ Kept as the book has them, against Drik Panchang: संदेश (chaupāī 18;
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- chalisa.do1 — आपको दे दियो आशीर्वाद: kept as a request ("give your blessing"). दियो is the precative -इयो form of this work's own speech, as राखियो and करियो in dohā 2, and the next line (रखदो सिर पर हाथ) asks too.
+- chalisa.cau6 — उसी दृष्टि का: kept दृष्टि, "vision". The book and Drik Panchang both print it; सृष्टि would only repeat the rhyme word of the first half, so it is no correction.
+- chalisa.cau7 — प्रथम पूजन प्रभु आज्ञा सुनाते: kept "the Lord's command is proclaimed, that you be worshipped first". A plural verb with no subject is the Hindi impersonal "they say, it is said" (कहते हैं); the ancestors as subject is not in the words.
+- chalisa.cau20 — सब पूजे पित्तर भाई: kept भाई as an address ("brother"), the common line-end address of such songs; "as brothers" would need a postposition.

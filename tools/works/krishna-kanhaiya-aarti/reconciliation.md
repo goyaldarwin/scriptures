@@ -15,9 +15,13 @@ The rule: keep Drik Panchang; correct it only where it is clearly wrong. The lib
 | stanza 2, line 3 | पूर्ण सरक ससि मुख लखि लाजै | पूर्ण सरद ससि मुख लखि लाजै | सरक is not a word; the image is the full autumn moon (सरद ससि) put to shame by his face. A one-letter typing slip. |
 | stanza 3, line 2 | कन्स बिनासी | कंस बिनासी | Drik Panchang types the anusvāra as न्; the name is कंस. |
 
-Open: stanza 4, line 3, कहुँ जागेस (`docs/reviews/krishna-kanhaiya-aarti-doubts.jsonl`); the text keeps the base.
+Stanza 4, line 3, कहुँ जागेस: the text keeps the base (settled below, Readings settled).
 
 Kept as the base has them: जसुदा, विहारी, छाजै, काछनि, मुरलि, पूर्ण, ससि, जितवैया, बिनासी, कृसानु प्रकासी, बसवैया, रन, जागेस, बेद, नचवैया, अगुन सगुन, बपु, रखवैया.
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- **aarti.pad4** (कहुँ जागेस): the print stays; no second copy of this āratī was found (a web search for the line found none), and जागेस keeps the half's sixteen mātrās (जगेस would drop one). Read as "the lord", whose glory the Vedas sing. Meaning unchanged.
+- **aarti.pad4** (कहुँ नृप कर): कर as the verb, "makes (kings)", the sense that pairs with the other verbs of the stanza (चढ़ै, जावै, चरावै); Kṛṣṇa set Ugrasena and Yudhiṣṭhira on their thrones. Meaning unchanged.

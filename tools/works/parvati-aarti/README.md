@@ -2,7 +2,7 @@
 
 The āratī of Pārvatī, in Hindi (`hi`).
 
-- **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, p. 250), checked against Drik Panchang and Aarti Mala. Every choice: `reconciliation.md`.
+- **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, p. 250), checked against Drik Panchang and Aarti Mala; stanza 5's second line as Anuradha Paudwal sings it (Drik Panchang's). Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
 - **Recordings:** none yet.
 

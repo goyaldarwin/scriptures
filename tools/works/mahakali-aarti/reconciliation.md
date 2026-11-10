@@ -21,3 +21,9 @@ Kept as the book has them, where Drik Panchang differs: सिंहासन (D
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- aarti.tek, मंगल: Tuesday ("this Tuesday's worship"), as the meaning has it; the book and Drik Panchang both set 'मंगल' in quotation marks, as they do 'आदित' (Sunday, stanza 4), and the āratī runs through the weekdays (वार शनिश्चर, stanza 3; सात बार की महिमा बरनी, stanza 6).
+- aarti.pad3, सहसफण लिए: "with the thousand-hooded Śeṣa", as printed; the book and Drik Panchang have सहसफण, a valid word (Śeṣa beside Viṣṇu); Aarti Mala's फल लिए is another recension's reading, not evidence that the base is wrong.
+- aarti.pad3, कुंकुम बरणो … लुँकड़: बरणो as वर्ण ("your hue is of kumkum"), confirmed by Aarti Mala's कुंकुमवरणी ("kumkum-coloured"); लुँकड़ as लौंकड़ा, the Goddess's boy attendant (Platts), as the meaning has it.
+- aarti.pad4, आदित वारी: "on Sunday", as the meaning has it; 'आदित' is quoted as a day name in the book and Drik Panchang, in the āratī's run of weekdays.

@@ -11,13 +11,18 @@ The rule: keep the base; correct it only where it is clearly wrong. The library'
 |---|---|---|---|
 | every stanza | one printed line, its halves joined by a daṇḍa | two lines, ending । and ॥N॥ (the refrain ॥) | The standard; the daṇḍa marks the half. |
 | refrain, line 2 | हरि विष्णु धाता | हर विष्णु विधाता | The line names the three gods (Hara, Viṣṇu, the Creator); हरि is Viṣṇu himself, named twice, and the half is a mātrā short of the ten every other second half has. Drik Panchang has हर विष्णु विधाता. |
+| stanza 1, line 1 | जग दाता | जग माता | A slip for माता: Drik Panchang (जगमाता) and India TV's text of this āratī (indiatvnews.com, Ahoi Ashtami 2017) have माता, and the line is the Lakṣmī āratī's, whose frame this āratī takes (the Randhir book, p. 191, page image i-190: ब्रह्माणी कमला तू ही है जग माता). See "Readings settled". |
 | stanza 1, line 1 | रूद्राणी | रुद्राणी | रुद्र has a short u; Drik Panchang has रुद्राणी. |
 | stanza 4, line 1 | वही मे | वही में | A dropped anusvāra (मे is not the postposition). |
 | stanzas 4, 5, 6 | नही (घबराता, आता, पाता) | नहीं | A dropped anusvāra; Drik Panchang has नहीं. |
 | after every stanza | जय· | not written | The refrain cue; the refrain is shown once. |
 | stanza numbers | none | ॥१॥ … ॥७॥ | The standard. |
 
-Kept as the base has them: निसदिन, जग दाता (Drik जगमाता; a doubt: `docs/reviews/ahoi-aarti-doubts.jsonl`), सूर्य चन्द्रमा (Drik सूर्य-चन्द्रमा), सुख सम्पत्ति (Drik सुख-सम्पत्ति), तू ही है पाताल बसन्ती (Drik तू ही पाताल बसंती), सुख दाता (Drik शुभदाता), कर्म प्रभाव (Drik कर्म-प्रभाव), थारो वास वही में (Drik थारो वासा वाहि में), कर ले, घबराता (Drik धड़काता), पुत्र न कोई पाता (Drik न कोई पुत्र पाता), खान-पान, क्षीर निधि, तोकूं (Drik तोकू).
+Kept as the base has them: निसदिन, सूर्य चन्द्रमा (Drik सूर्य-चन्द्रमा), सुख सम्पत्ति (Drik सुख-सम्पत्ति), तू ही है पाताल बसन्ती (Drik तू ही पाताल बसंती), सुख दाता (Drik शुभदाता), कर्म प्रभाव (Drik कर्म-प्रभाव), थारो वास वही में (Drik थारो वासा वाहि में), कर ले, घबराता (Drik धड़काता), पुत्र न कोई पाता (Drik न कोई पुत्र पाता), खान-पान, क्षीर निधि, तोकूं (Drik तोकू).
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- **aarti.pad1** (जग दाता or जगमाता): जग माता. The base's दाता is a valid word, but independent sources show it is a slip: Drik Panchang and India TV (indiatvnews.com, Ahoi Ashtami 2017) read माता, and the line is taken whole from the Lakṣmī āratī, which the Randhir book prints as ब्रह्माणी कमला तू ही है जग माता (i-190); the address to the goddesses (Brahmāṇī, Rudrāṇī, Kamalā) calls for "mother". Text corrected; meaning changed: "you alone are the mother of the world" (was "the giver to the world").
+- **aarti.pad6** (रतन चतुर्दश तोकूं कोई नहीं पाता): as printed: तोकूं is "you" (object), so "of the fourteen jewels, none attains to you"; the Lakṣmī āratī's तुम बिन ("without you") is not in this text (the base, Drik Panchang and the Randhir book's ताको all lack it), and जगनिधि stays "the ocean of the world" (as भवनिधि). Meaning unchanged.

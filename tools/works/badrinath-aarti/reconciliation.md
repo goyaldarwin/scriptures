@@ -18,3 +18,7 @@ Kept as Drik Panchang has them: योग ध्यानी, सुरभूप
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- aarti.pad1 — सुरभूप: "the king of the gods", Indra (sura + bhūpa, a tatpuruṣa: MW bhūpa "king"), not a list "gods and kings". The same compound is "lord of the gods" wherever else our texts use it (Mānas, Brahmā and Śāradā Chālīsās). Meaning changed (Hindi and English); the sense is added to the dictionary (hi सुरभूप).
+- aarti.pad5 — श्यामा: kept as the name, "Śyāmā prays always": the signature stanza of an āratī names the one who prays, and nothing in the words makes her Lakṣmī. Drik Panchang is the only witness; a web search found no other. Meaning unchanged.

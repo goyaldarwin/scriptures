@@ -17,3 +17,6 @@ Kept as the base has them: बैजनाथ, वरदाती, ज्यो�
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- **pad 2**, कही योगेश्वरी महिमा न्यारी (कही or कहीं): कही, as the base (Drik Panchang) prints it: 'you were called Yogeśvarī'. DNA Hindi's कहीं is not clearly better, and nothing shows the base's reading is a slip.

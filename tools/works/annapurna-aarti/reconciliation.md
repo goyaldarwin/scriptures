@@ -19,3 +19,6 @@ Kept as the book has them (Drik Panchang the same unless noted): ध्याव
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- aarti.pad4 — देवी देव दयनीय दशा में: "to goddesses and gods in a pitiable plight, your name is mercy, mercy" stays; the half has no verb of crying out or addressing, and देवी देव is a pair as in the stanza before (चतुरानन, चक्रधर, चन्द्रचूड़); the plain words give it.

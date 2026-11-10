@@ -24,3 +24,6 @@ Kept as the book has them, against Drik Panchang: प्रणवों; नं�
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- chalisa.cau40 — वृन्दावन है शरण तिहारी: changed, Vṛndāvana is in your refuge (was "is your refuge"). In Hindi "X आपकी शरण है" says X is in your refuge (मैं आपकी शरण हूँ), and Rādhā is the one who shelters; the book's two printings and Drik Panchang agree on the words.

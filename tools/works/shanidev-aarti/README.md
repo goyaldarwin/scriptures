@@ -2,9 +2,9 @@
 
 The āratī of Śani, in Hindi (`hi`).
 
-- **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, p. 58), checked against Drik Panchang. Every choice: `reconciliation.md`.
+- **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, p. 58), checked against Drik Panchang; the refrain's second line as Chand Kumar sings it (Drik Panchang's wording). Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/chand-kumar/`: Chand Kumar (YouTube `JtJ4P0302FY`); the starts come from the transcript, to be set by ear; stanza 4 is not sung (`fixes.md`).
 
 Verse types: टेक (refrain, `tek`, shown once at the start although it is sung after every stanza) and पद (stanza, `pad`). The folder's format: `tools/works/README.md`.
 

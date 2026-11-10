@@ -14,10 +14,16 @@ The rule: keep the book; correct it only where it is clearly wrong. The library'
 | every line | the halves joined by a comma | two lines | The standard; the comma marks the half. |
 | refrain, line 4; stanza 4, lines 1–2; stanza 5, line 4 | दुःख, शोक, संकट, भयहारी · राम, कृष्ण, हनुमान · दे दर्शन, जानत · बसि सुख, मंगल | without the commas | The standard: a pause inside a line is a space. |
 | stanza numbers | none (।) | ॥१॥ … ॥५॥ | The standard. |
-| stanza 4, line 4 | दर्शन इच्छित फल पाते | दर्शन कर इच्छित फल पाते | A word dropped: every half-line is a caupāī quarter of 16 mātrās, and the book's has 14 (दर्शन 4, इच्छित 4, फल 2, पाते 4). Drik Panchang has दर्शन कर ("having seen him"), Aarti Mala दर्शन से ("by the sight"); we take Drik Panchang's. An open doubt: `docs/reviews/sai-guruvar-aarti-doubts.jsonl`. |
+| stanza 4, line 4 | दर्शन इच्छित फल पाते | दर्शन कर इच्छित फल पाते | A word dropped: every half-line is a caupāī quarter of 16 mātrās, and the book's has 14 (दर्शन 4, इच्छित 4, फल 2, पाते 4). Drik Panchang has दर्शन कर ("having seen him"), Aarti Mala दर्शन से ("by the sight"); we take Drik Panchang's (Readings settled). |
 | stanza 5, line 3 | 'साईंदास' | साईंदास | The quotation marks are the printer's, not part of the verse. |
 
 Kept as the book has them, where the other witnesses differ: जा की written apart (Aarti Mala जाकी), तत्त्व (Drik Panchang and Aarti Mala तत्व), चिरंतन (Aarti Mala चिरतंन, a slip), धरै (Aarti Mala धरे), उदी, लाभत, गुरुवासर (Aarti Mala गुरूबारसर), रूप (Drik Panchang रुप), जै बोलो (Aarti Mala जय बोलो), अवधूत गुरु written apart (Aarti Mala अवधूतगुरू), गावै beside गावे, घर में बसि सुख मंगल पावे.
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+The open questions of `docs/reviews/sai-guruvar-aarti-doubts.jsonl`, each decided (docs/PLAYBOOK.md §2).
+
+- **aarti.pad4** — the word the book drops before इच्छित: कर, as Drik Panchang has it (दर्शन कर, "having had his darśana"), the shelf's own witness; Aarti Mala's से also fills the 16 mātrās, but a web search found no independent text to prefer it, and दर्शन कर is the ordinary idiom. Text and meaning unchanged.
+- **aarti.pad5** — साईंदास: the poet's signature. All three witnesses (the book, Drik Panchang, Aarti Mala) set it in quotation marks, as the book marks the signature 'प्रताप' in the Brahmā āratī; a common noun would not be marked. Meaning unchanged.

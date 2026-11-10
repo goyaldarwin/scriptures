@@ -11,7 +11,7 @@ The rule: keep the base; correct it only where it is clearly wrong. The library'
 |---|---|---|---|
 | after every stanza | ॐ जय नरसिंह हरे॥ | (not written) | The cue back to the refrain. |
 | stanzas 1–3, line 1 | तुम हो दीन दयाला, भक्तन हितकारी, (and the same in 2, 3) | two lines | The standard: a line split at its comma. |
-| stanza 2, lines 2–3 | दुस्यु जियो मारी / प्रभु दुस्यु जियो मारी | दस्यु जियो मारी / प्रभु दस्यु जियो मारी | दुस्यु is not a word; दस्यु (the demon, Hiraṇyakaśipu) is the word the sense needs ("tearing open the heart, slew the demon"). No other witness prints the line; recorded in `docs/reviews/narsingh-aarti-doubts.jsonl`. |
+| stanza 2, lines 2–3 | दुस्यु जियो मारी / प्रभु दुस्यु जियो मारी | दस्यु जियो मारी / प्रभु दस्यु जियो मारी | दुस्यु is not a word; दस्यु (the demon, Hiraṇyakaśipu) is the word the sense needs ("tearing open the heart, slew the demon"). No other witness prints the line; see "Readings settled". |
 | line ends | , । ॥ | । and, at a stanza's end, ॥N॥ | The standard. |
 | stanza numbers | none | ॥१॥ … ॥३॥ | The standard. |
 
@@ -19,3 +19,7 @@ Kept as the base has them: the repeated lines (स्तम्भ फाड़ �
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- aarti.pad2 — दुस्यु जियो मारी: the correction दस्यु stands. दुस्यु is not a word; दस्यु (MW, enemy of the gods) is the word the sense needs, one vowel sign away; जियो, the life (जी). A web search found only Bhakti Bharat, which copies Drik Panchang.
+- aarti.pad2 — सबके हृदय विदारण: kept, you who tear open the hearts of all (MW vidāraṇa, tearing asunder, piercing). The plain words; no witness reads otherwise.

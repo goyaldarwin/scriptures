@@ -14,7 +14,10 @@ The rule: keep Drik Panchang; correct it only where it is clearly wrong. The lib
 | stanza numbers | none | ॥१॥ … ॥११॥ | The standard. |
 | after every stanza | ⟨refrain⟩ हर हर हर महादेव! | not shown | The refrain cue; the refrain is the first item. |
 
-No word is changed. Kept as Drik Panchang has them: औढरदानी, मणिमय-भवन, छाल-कपाल गरल-गल, भस्मतन, अयनमहाकाली (a doubt: `docs/reviews/har-har-mahadev-aarti-doubts.jsonl`), शुभ्र-सौम्य, शिवमुनि मन-हारी, निरञ्जन, सत् चित् आनन्द, प्रेम-सुधा-निधि, चरण-शरण.
+No word is changed. Kept as Drik Panchang has them: औढरदानी, मणिमय-भवन, छाल-कपाल गरल-गल, भस्मतन, अयनमहाकाली (settled: "Readings settled"), शुभ्र-सौम्य, शिवमुनि मन-हारी, निरञ्जन, सत् चित् आनन्द, प्रेम-सुधा-निधि, चरण-शरण.
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- aarti.pad6 — अयनमहाकाली: kept, the refuge of Mahākālī (MW ayana, place of refuge, Mn. i, 10; Apte, abode, place of resort). Drik Panchang prints it as one word; a web search found only its copy (Bhakti Bharat).

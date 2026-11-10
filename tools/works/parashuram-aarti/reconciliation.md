@@ -17,3 +17,7 @@ Kept as the book has them (Drik Panchang agrees throughout): जमदग्न�
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- **pad 6**, मेरी बिरद संभारो: as printed, 'uphold my honour'. Platts: बिरद *birad*, 'fame, reputation, honour'; both witnesses print मेरी.
+- **pad 7**, पूर्णेन्दु शिव साखि: the signature line, 'Pūrṇendu says it with Śiva as his witness' (साखि = साक्षी, Platts); शिव as 'auspicious' would leave साखि without a sense.

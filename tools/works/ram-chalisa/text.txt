@@ -1,4 +1,4 @@
-# श्री राम चालीसा (Shri Ram Chalisa): the verse text, from ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 12–15).
+# श्री राम चालीसा (Shri Ram Chalisa): the verse text, as BhaktiDhaam sings it, from ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 12–15).
 # The witnesses and every choice: reconciliation.md.
 
 @part chalisa
@@ -83,7 +83,7 @@
 [chalisa.cau38 cau 38]
 सत्य शुद्ध देवन मुख गाया । बजी दुन्दुभी शंख बजाया ॥
 [chalisa.cau39 cau 39]
-सत्य सत्य तुम सत्य सनातन । तुम ही हो हमारे तन मन धन ॥
+सत्य सत्य तुम सत्य सनातन । तुम ही हो हमरे तन मन धन ॥
 @topic पाठका फल | The fruit of the reading
 [chalisa.cau40 cau 40]
 याको पाठ करे जो कोई । ज्ञान प्रकट ताके उर होई ॥

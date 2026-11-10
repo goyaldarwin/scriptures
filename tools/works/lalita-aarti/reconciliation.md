@@ -18,3 +18,6 @@ Kept as the book has them, where Drik Panchang differs: मातेश्वर
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- **aarti.tek** (शरणं वरणं, no verb): "I choose your refuge": वरण is "the act of choosing, choice" (Monier-Williams 2. varaṇa); its other senses ("rampart", "surrounding, keeping off", 1. varaṇa) give no "protection" or "chosen one". Meaning unchanged.

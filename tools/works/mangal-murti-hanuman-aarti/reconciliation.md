@@ -21,3 +21,9 @@ No word is changed. Kept as Drik Panchang has them: मंगल-मंगल, �
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- aarti.pad2 — काल अकाल जुद्ध किलकारी: his war-cry in battle is death, untimely death, to the foe; the line describes his terror in battle (the next line: देश उजारत क्रुद्ध अपारी), and काल and अकाल are nouns, not "in season and out". Meaning unchanged.
+- aarti.pad6 — who is broken by his touch: काल (Death), the nearest noun, the one the line has just punished. Meaning unchanged.
+- aarti.pad9 — दारिद्र दहन ऋण त्रासा, two mātrās short: kept as printed. Drik Panchang is the only witness, and web searches (two) found no independent copy; a missing word cannot be supplied without a source.
+- aarti.pad11 — सहितासु and जब: kept as printed, "sung together with Hanumān's" (सहित + सु) and "when wishes are fulfilled, at the end one goes to Viṣṇu's abode". The only witness; web searches found no independent copy; the plain reading of the printed words stands.

@@ -17,3 +17,10 @@ Kept as the book has them (Drik Panchang agrees): आनंद कन्दी, 
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- aarti.tek — the bare list of names and रुद्री: kept, Revā is named as one with Brahmā, Hari, Hara, Śaṅkara, Śiva and Rudrāṇī, she who sustains. The line is a list with no verb; nothing in the book or Drik Panchang (word for word the same) supports another construction; a web search found no independent text or gloss.
+- aarti.pad1 — नारद शारद तुम वरदायक, पदचण्डी, पदवन्ती: kept, she grants boons to Nārada and Śāradā; पद + चण्डी, holding the rank of Caṇḍī (MW caṇḍī, N. of Durgā); पदवन्ती, worshipping her feet, as the line before (सुर नर मुनि जन सेवत) has the same subjects serving her. The plain reading of the printed words; both witnesses agree.
+- aarti.pad2 — धूमक: kept, in splendour (Platts dhūm, s.f., display, parade, pomp). The other senses (MW dhūmaka, smoke; a pot-herb) do not fit a mount.
+- aarti.pad3 — the musical words: kept, सुरमण्डल the svaramaṇḍala (MW svara-maṇḍala, a kind of vīṇā), तोड़ीतान tāns in Toḍī (Platts toṛī, ṭoṛī, a rāginī), तुरड़ड़ the instruments' sound, सुरवन्ती melodious. The stanza is about music (ताल, मृदंग).
+- aarti.pad6 — who repeats Hari and भजत शिवानंद स्वामी: kept, those who read and sing the āratī, repeating Hari's name, gain the fruit desired; Svāmī Śivānanda sings it in worship. भजत is printed in both witnesses (not कहत/भणत, the signature verb of other āratīs); the plain words stand.

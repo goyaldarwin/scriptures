@@ -15,3 +15,7 @@ Kept as the book has them, against Drik Panchang: करूँ (Drik करु�
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- chalisa.cau25, व्याकुलयारी: व्याकुल + यारी ("help, aid", Platts: yārī, assistance, aid), as the meaning has it; the book and Drik Panchang both print व्याकुलयारी, a web search found no copy with व्याकुलहारी, so the printed word is kept and read as it stands.
+- chalisa.cau38, जगदीशा: the Lord of the world, as the meaning has it; जगदीश is a masculine word (the Mother would be जगदीश्वरी), and the ā is the rhyme's (चालीसा / जगदीशा).

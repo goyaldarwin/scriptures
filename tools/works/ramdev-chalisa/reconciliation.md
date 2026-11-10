@@ -12,3 +12,8 @@ Kept as the book has them, against Drik Panchang: द्वार केश न�
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- chalisa.cau8 — चिथड़ों का घोड़ा ही साया: kept, even a horse of rags was made fit to ride; साया read with साधना / सारना, to tame, break in (Platts sārnā, "to tame"), the story of the cloth horse that carried the child Rāmdev. "Flew" is the story, not the word.
+- chalisa.cau19 — पीर परी पधारया: kept, the pīrs came; you brought their bowls (the story of the five pīrs from Mecca). परी is unexplained and both witnesses print it; no independent text was found (Bhakti Bharat copies Drik Panchang), so the words stand and the meaning gives what they plainly say.
+- chalisa.cau28 — भक्त उजागर: kept, your renowned devotee (Platts ujāgar, adj., celebrated, famous). The book (base) has भक्त; Drik Panchang's उक्त is a slip. The line has one verb, दीन्हा, so उजागर is read with the noun.

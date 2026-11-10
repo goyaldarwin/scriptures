@@ -15,3 +15,11 @@ No word of the book is changed. Kept as the book has them, against Drik Panchang
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- chalisa.cau7 — who the दूत are: Bālājī's messengers, who gather and rejoice when the spells are cut. दूत is "messenger, emissary" (Platts); the subject of मिले … मनाते is the दूत themselves; both witnesses agree; no other reading is in the words.
+- chalisa.cau15 — आन: "coming" (आकर), not आन "command, sway". आन "command" is feminine (Platts), but फिराया is masculine, so its object is मुगदर घोटा, not आन; फिराना is "to whirl" (Platts). Meaning unchanged.
+- chalisa.cau24 — चाकर: Hanumān is the son of Śiva and of Mother Añjanī, and (Śrī Rāma's) servant, not "the servant of Añjanī". The line lists his parentage as the Hanumān Chālīsā's शंकर सुवन केसरीनंदन does, and chaupāī 25 goes on with केशरी नन्दन; Hanumān is Añjanī's son everywhere, the servant of Rāma (रामदास, chaupāī 35). Meaning changed (Hindi and English). दिवाकर kept as printed: "the sun of Lakṣmaṇa's life".
+- chalisa.cau26 — जब (book and Drik Panchang) or जय: kept जब, "when the devotees call out to Bābā", leading into chaupāī 27. Both witnesses are one edition; Shubh Panchang and Bhakti Bharat (copies of Drik) do not differ; no independent source shows a corruption, so the print stands.
+- chalisa.cau28 — कल्याणा: "who brings good", as the same word in chaupāī 16; the poet signs as कल्याण स्नेही (opening dohā, chaupāī 40, closing dohā), not with the bare name mid-prayer. Meaning unchanged.
+- chalisa.cau39 — सत is "a hundred (times)", as the Hanumān Chālīsā's जो सत बार पाठ कर कोई; बागीसा is Vāgīśa, "the Lord of Speech" (MW vāgīśa: Bṛhaspati, Brahmā), rendered by its sense. Meaning unchanged.

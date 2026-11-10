@@ -14,3 +14,9 @@ Kept as the book has them, against Drik Panchang: विसाला (chaupāī 
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- **chaupāī 7**, हरि भक्त निकन्दन (निकन्दन without an object): two epithets, 'a devotee of Hari and a destroyer (of the wicked)'. Read as one compound the words would say 'destroyer of Hari's devotees', against the verse; 'destroyer of the sorrows of…' adds a word the verse does not have.
+- **dohā 2**, आप बने सुर भूप: 'a king among the gods' as printed (सुर, god; Gūgā is worshipped as a deity); सूर ('hero') is not what the book or Drik Panchang prints.
+- **chaupāī 48**, who clasped whose feet, and सिंह भवन माड़ी: Anaṅgpāl, the subject of chaupāī 47's second half, clasps Gūgā's feet; the shrine's builder is left unnamed as the verse leaves him; सिंह भवन read as 'a lion's abode' (Gūgā, the lion of dohā 1), माड़ी as मढ़ी, a shrine. Plain reading of the printed words.
+- **chaupāī 49**, गोरख टीला धूनी रमाये (Gūgā's or Gorakh's dhūnī): Gūgā, the subject of the first half (समाये … रमाये, one subject). Gorakh Ṭīlā is the place's name (Gorakhnāth's tapobhūmi beside Gogāmeḍī; Bhakti Bharat, Gogamedi Mandir), so the name does not make Gorakh the subject.
