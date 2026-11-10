@@ -1,0 +1,21 @@
+# आरती कीजै श्रीजनक लली की (Aarti Kijai Shri Janak Lali Ki): the verse text, from Drik Panchang's
+# "Janaki Mata Aarti". The witnesses and every choice: reconciliation.md.
+
+@part aarti
+@section aarti
+@topic आरती कीजै श्रीजनक लली की | Aarti Kijai Shri Janak Lali Ki
+[aarti.tek tek]
+आरती कीजै श्रीजनक लली की ।
+राममधुपमन कमल कली की ॥
+[aarti.pad1 pad 1]
+रामचन्द्र मुखचन्द्र चकोरी ।
+अन्तर साँवर बाहर गोरी ।
+सकल सुमंगल सुफल फली की ॥१॥
+[aarti.pad2 pad 2]
+पिय दृगमृग जुग-बन्धन डोरी ।
+पीय प्रेम रस-राशि किशोरी ।
+पिय मन गति विश्राम थली की ॥२॥
+[aarti.pad3 pad 3]
+रूप-रास गुननिधि जग स्वामिनि ।
+प्रेम प्रवीन राम अभिरामिनि ।
+सरबस धन हरिचन्द अली की ॥३॥

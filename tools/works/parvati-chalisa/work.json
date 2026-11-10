@@ -1,0 +1,40 @@
+{
+ "id": "parvati-chalisa",
+ "path": "hinduism/chalisa/parvati/parvati-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री पार्वती चालीसा",
+  "en": "Shri Parvati Chalisa"
+ },
+ "by": {
+  "hi": "माँ पार्वती",
+  "en": "Mother Parvati"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री पार्वती चालीसा",
+    "en": "Shri Parvati Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

@@ -1,0 +1,40 @@
+{
+ "id": "gorakhnath-chalisa",
+ "path": "hinduism/chalisa/gorakhnath/gorakhnath-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री गोरख चालीसा",
+  "en": "Shri Gorakh Chalisa"
+ },
+ "by": {
+  "hi": "गुरु गोरखनाथ",
+  "en": "Guru Gorakhnath"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री गोरख चालीसा",
+    "en": "Shri Gorakh Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

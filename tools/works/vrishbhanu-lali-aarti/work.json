@@ -1,0 +1,48 @@
+{
+ "id": "vrishbhanu-lali-aarti",
+ "path": "hinduism/aarti/radha/vrishbhanu-lali-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "आरति श्रीवृषभानुलली की",
+  "en": "Aarti Shri Vrishbhanu Lali Ki"
+ },
+ "by": {
+  "hi": "श्रीराधा",
+  "en": "Shri Radha"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "आरति श्रीवृषभानुलली की",
+    "en": "Aarti Shri Vrishbhanu Lali Ki"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

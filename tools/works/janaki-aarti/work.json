@@ -1,0 +1,48 @@
+{
+ "id": "janaki-aarti",
+ "path": "hinduism/aarti/sita/janaki-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "आरती कीजै श्रीजनक लली की",
+  "en": "Aarti Kijai Shri Janak Lali Ki"
+ },
+ "by": {
+  "hi": "माता सीता",
+  "en": "Mother Sita"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "आरती कीजै श्रीजनक लली की",
+    "en": "Aarti Kijai Shri Janak Lali Ki"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

@@ -1,0 +1,48 @@
+{
+ "id": "kailashvasi-aarti",
+ "path": "hinduism/aarti/shiva/kailashvasi-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "शीश गंग अर्धन्ग पार्वती",
+  "en": "Shish Gang Ardhang Parvati"
+ },
+ "by": {
+  "hi": "भगवान शिव",
+  "en": "Bhagwan Shiv"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "शीश गंग अर्धन्ग पार्वती",
+    "en": "Shish Gang Ardhang Parvati"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

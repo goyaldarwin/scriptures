@@ -1,0 +1,36 @@
+{
+ "id": "vindhyeshwari-chalisa",
+ "path": "hinduism/chalisa/vindhyeshwari/vindhyeshwari-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री विन्ध्येश्वरी चालीसा",
+  "en": "Shri Vindhyeshwari Chalisa"
+ },
+ "by": {
+  "hi": "माँ विन्ध्येश्वरी",
+  "en": "Mother Vindhyeshwari"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री विन्ध्येश्वरी चालीसा",
+    "en": "Shri Vindhyeshwari Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  }
+ }
+}

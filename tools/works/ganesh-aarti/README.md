@@ -2,7 +2,7 @@
 
 The āratī of Gaṇeśa, in Hindi (`hi`).
 
-- **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, p. 11), checked against Drik Panchang. Every choice: `reconciliation.md`.
+- **Text** (`text.txt`): as Anuradha Paudwal sings it (YouTube `oWo6hMlex5M`), written as Drik Panchang writes it, with one stanza she does not sing from ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, p. 11). Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
 - **Recordings:** none yet.
 

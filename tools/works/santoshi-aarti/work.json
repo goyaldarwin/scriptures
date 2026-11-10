@@ -1,0 +1,48 @@
+{
+ "id": "santoshi-aarti",
+ "path": "hinduism/aarti/santoshi/santoshi-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "जय संतोषी माता",
+  "en": "Jai Santoshi Mata"
+ },
+ "by": {
+  "hi": "माँ संतोषी",
+  "en": "Mother Santoshi"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "जय संतोषी माता",
+    "en": "Jai Santoshi Mata"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

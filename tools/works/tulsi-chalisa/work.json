@@ -1,0 +1,40 @@
+{
+ "id": "tulsi-chalisa",
+ "path": "hinduism/chalisa/tulsi/tulsi-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री तुलसी चालीसा",
+  "en": "Shri Tulsi Chalisa"
+ },
+ "by": {
+  "hi": "तुलसी माता",
+  "en": "Tulsi Mata"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री तुलसी चालीसा",
+    "en": "Shri Tulsi Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

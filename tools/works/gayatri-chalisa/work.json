@@ -1,0 +1,40 @@
+{
+ "id": "gayatri-chalisa",
+ "path": "hinduism/chalisa/gayatri/gayatri-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री गायत्री चालीसा",
+  "en": "Shri Gayatri Chalisa"
+ },
+ "by": {
+  "hi": "माँ गायत्री",
+  "en": "Mother Gayatri"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री गायत्री चालीसा",
+    "en": "Shri Gayatri Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

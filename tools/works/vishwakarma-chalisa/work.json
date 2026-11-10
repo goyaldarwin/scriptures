@@ -1,0 +1,40 @@
+{
+ "id": "vishwakarma-chalisa",
+ "path": "hinduism/chalisa/vishwakarma/vishwakarma-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री विश्वकर्मा चालीसा",
+  "en": "Shri Vishwakarma Chalisa"
+ },
+ "by": {
+  "hi": "भगवान विश्वकर्मा",
+  "en": "Bhagwan Vishwakarma"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री विश्वकर्मा चालीसा",
+    "en": "Shri Vishwakarma Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

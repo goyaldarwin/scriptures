@@ -1,0 +1,32 @@
+{
+ "id": "gita-chalisa",
+ "path": "hinduism/chalisa/gita/gita-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री गीता चालीसा",
+  "en": "Shri Gita Chalisa"
+ },
+ "by": {
+  "hi": "श्रीमद्भगवद्गीता",
+  "en": "Shrimad Bhagavad Gita"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री गीता चालीसा",
+    "en": "Shri Gita Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  }
+ }
+}

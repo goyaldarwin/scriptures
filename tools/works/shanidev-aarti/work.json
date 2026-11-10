@@ -1,0 +1,48 @@
+{
+ "id": "shanidev-aarti",
+ "path": "hinduism/aarti/shani/shanidev-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "जय जय जय श्री शनि देव",
+  "en": "Jai Jai Jai Shri Shani Dev"
+ },
+ "by": {
+  "hi": "शनिदेव",
+  "en": "Shani Dev"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "जय जय जय श्री शनि देव",
+    "en": "Jai Jai Jai Shri Shani Dev"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

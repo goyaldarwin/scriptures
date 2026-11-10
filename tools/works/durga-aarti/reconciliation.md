@@ -1,0 +1,20 @@
+# Reconciliation: अम्बे तू है जगदम्बे काली
+
+## Witnesses
+- **The book (base):** ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, Haridwar, 2000), p. 207; scriptures-data `hinduism/chalisa/books/aarti-chalisa-sangrah/` (page image i-206), read on the page image, under the heading "आरती श्री काली जी की". The refrain (two printed lines) and three stanzas of four printed lines each; the last printed line of every stanza ends with the refrain's last line, "…, ओ मैया हम सब उतारें तेरी आरती।". The āratī ends on this page (p. 208 begins the Mahākālī Chālīsā).
+- **Drik Panchang** (`hinduism/aarti/durga/durga-aarti/printouts/drikpanchang/durga-mata-aarti.html`, "Durga Mata Ki Aarti"): another version, four stanzas: the book's three (तेरे भक्त जनो पर माता, माँ-बेटे का है इस जग में, नहीं मांगते धन और दौलत) and a fourth, चरण शरण में खड़े तुम्हारी, which the book does not have. Its first stanza ends दुष्टों को तू ही ललकारती (the book: दुखियों के दुःख को निवारती), and its third has हम तो मांगें तेरे चरणों में छोटा सा कोना (the book: हम तो मांगते तेरे मन का एक छोटा सा कोना). Each stanza in seven lines, with the cue "ओ मैया हम सब उतारे तेरी आरती॥" after each.
+- **Aarti Mala** (page image i-339, "श्री दुर्गा जी की आरती", a printout carrying the indif.com watermark): a longer version, ten stanzas, with other wordings: the book's three stanzas (the first ending दुष्टो को तू ही संहारती, the second and third with other last lines), then चौदस के दिन तेरे भवन मे, हम पापी माँ अधम अधम अनाड़ी, मन मंदिर मे गूंज रहा है, बीच भँवर मे आन पड़ी नैया, तुम हो मेरी इष्टाध्यायी, यह छोटा सा परिवार हमारा.
+
+The book's version is the text (three stanzas). The rule: keep the book; correct it only where it is clearly wrong. The library's writing standard (docs/PLAYBOOK.md §3): an āratī's verse has no comma (a printed line is split at its half, one half per line); the refrain (टेक) is shown once; stanzas numbered (॥१॥).
+
+| Place | Book | Ours | Why |
+|---|---|---|---|
+| refrain | अम्बे तू है जगदम्बे काली जय दुर्गे खप्पर वाली, तेरे ही गुन गायें भारती। / ओ मैया हम सब उतारें तेरी आरती। | four lines: अम्बे तू है जगदम्बे काली । जय दुर्गे खप्पर वाली । तेरे ही गुन गायें भारती । ओ मैया हम सब उतारें तेरी आरती ॥ | The standard: a half per line, split at the book's comma and, where it has none, where Drik Panchang splits it. |
+| every stanza | four printed lines | seven lines: each of the first three printed lines in two halves, then the closing line | The same; Drik Panchang divides the lines at the same places. |
+| end of every stanza | …निवारती (संवारती), ओ मैया हम सब उतारें तेरी आरती। | …निवारती (संवारती) ॥N॥ | "ओ मैया हम सब उतारें तेरी आरती" is the refrain's last line, sung after every stanza as the refrain: the cue (Drik Panchang prints it as the cue). The refrain is the first item (टेक). |
+| stanza numbers | none | ॥१॥ … ॥३॥ | The standard. |
+
+Kept as the book has them, against Drik Panchang: जगदम्बे काली जय दुर्गे (Drik adds commas only), गुन गायें (Drik गुण गावें), उतारें (Drik उतारे), माता तेरे भक्त जनों पर (Drik तेरे भक्त जनो पर माता), भीड़ पड़ी (Drik भीर पड़ी; भीड़ पड़ना, "trouble befalls", is good Hindi), सौ सौ सिंहों से बलशाली अष्ट भुजाओं वाली (Drik सौ-सौ सिहों से बलशाली है अष्ट भुजाओं वाली), दुखियों के दुःख को निवारती in stanza 1 (Drik दुष्टों को तू ही ललकारती; open doubt: the book repeats here the last line of its stanza 2, which may be the printer's slip, but its line makes sense, `docs/reviews/durga-aarti-doubts.jsonl`), मां बेटे का इस जग में है (Drik माँ-बेटे का है इस जग में), पूत कपूत सुने हैं, सब पर करुणा दरसाने वाली (Drik सब पे करूणा दर्शाने वाली), दुखियों के दुख को निवारती (Drik दुखियों के दुखड़े निवारती), ना चांदी ना सोना (Drik न चांदी न सोना), हम तो मांगते तेरे मन का एक छोटा सा कोना (Drik हम तो मांगें तेरे चरणों में छोटा सा कोना). Drik Panchang's fourth stanza (चरण शरण में खड़े तुम्हारी) and Aarti Mala's further stanzas are not in the book's version and are not part of the text.
+
+## Meanings
+Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).

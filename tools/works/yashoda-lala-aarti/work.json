@@ -1,0 +1,48 @@
+{
+ "id": "yashoda-lala-aarti",
+ "path": "hinduism/aarti/krishna/yashoda-lala-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "आरति करत यसोदा प्रमुदित",
+  "en": "Aarti Karat Yasoda Pramudit"
+ },
+ "by": {
+  "hi": "भगवान श्रीकृष्ण",
+  "en": "Bhagwan Shri Krishna"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "आरति करत यसोदा प्रमुदित",
+    "en": "Aarti Karat Yasoda Pramudit"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

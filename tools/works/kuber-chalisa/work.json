@@ -1,0 +1,40 @@
+{
+ "id": "kuber-chalisa",
+ "path": "hinduism/chalisa/kubera/kuber-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री कुबेर चालीसा",
+  "en": "Shri Kuber Chalisa"
+ },
+ "by": {
+  "hi": "कुबेर",
+  "en": "Kuber"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री कुबेर चालीसा",
+    "en": "Shri Kuber Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

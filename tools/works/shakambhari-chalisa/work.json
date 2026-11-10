@@ -1,0 +1,40 @@
+{
+ "id": "shakambhari-chalisa",
+ "path": "hinduism/chalisa/shakambhari/shakambhari-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री शाकम्भरी चालीसा",
+  "en": "Shri Shakambhari Chalisa"
+ },
+ "by": {
+  "hi": "माँ शाकम्भरी",
+  "en": "Mother Shakambhari"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री शाकम्भरी चालीसा",
+    "en": "Shri Shakambhari Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

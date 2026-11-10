@@ -1,0 +1,40 @@
+{
+ "id": "mahavir-chalisa",
+ "path": "hinduism/chalisa/mahavir/mahavir-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री महावीर (तीर्थंकर) चालीसा",
+  "en": "Shri Mahavir (Tirthankar) Chalisa"
+ },
+ "by": {
+  "hi": "भगवान महावीर",
+  "en": "Bhagwan Mahavir"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री महावीर (तीर्थंकर) चालीसा",
+    "en": "Shri Mahavir (Tirthankar) Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

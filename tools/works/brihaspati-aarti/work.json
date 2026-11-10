@@ -1,0 +1,48 @@
+{
+ "id": "brihaspati-aarti",
+ "path": "hinduism/aarti/brihaspati/brihaspati-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "ॐ जय बृहस्पति देवा",
+  "en": "Om Jai Brihaspati Deva"
+ },
+ "by": {
+  "hi": "बृहस्पतिदेव",
+  "en": "Brihaspati Dev"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "ॐ जय बृहस्पति देवा",
+    "en": "Om Jai Brihaspati Deva"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

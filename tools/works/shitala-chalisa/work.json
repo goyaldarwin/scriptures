@@ -1,0 +1,36 @@
+{
+ "id": "shitala-chalisa",
+ "path": "hinduism/chalisa/shitala/shitala-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री शीतला चालीसा",
+  "en": "Shri Shitala Chalisa"
+ },
+ "by": {
+  "hi": "माँ शीतला",
+  "en": "Mother Shitala"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री शीतला चालीसा",
+    "en": "Shri Shitala Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  }
+ }
+}

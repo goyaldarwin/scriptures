@@ -1,0 +1,40 @@
+{
+ "id": "narmada-chalisa",
+ "path": "hinduism/chalisa/narmada/narmada-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री नर्मदा चालीसा",
+  "en": "Shri Narmada Chalisa"
+ },
+ "by": {
+  "hi": "माँ नर्मदा",
+  "en": "Mother Narmada"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री नर्मदा चालीसा",
+    "en": "Shri Narmada Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

@@ -1,0 +1,36 @@
+# जय जानकीनाथा जय श्रीरघुनाथा (Jai Janakinatha Jai Shri Raghunatha): the verse text, from Drik Panchang (aarti/shree-rama/shri-janakinatha-aarti);
+# the book (Randhir Prakashan) does not print this āratī. The witnesses and every choice: reconciliation.md.
+
+@part aarti
+@section aarti
+@topic जय जानकीनाथा | Jai Janakinatha
+[aarti.tek tek]
+जय जानकीनाथा ।
+जय श्रीरघुनाथा ।
+दोउ कर जोरें बिनवौं ।
+प्रभु सुनिये बाता ॥
+[aarti.pad1 pad 1]
+तुम रघुनाथ हमारे ।
+प्रान पिता माता ।
+तुम ही सज्जन-सङ्गी ।
+भक्ति मुक्ति दाता ॥१॥
+[aarti.pad2 pad 2]
+लख चौरासी काटो ।
+मेटो यम त्रासा ।
+निसिदिन प्रभु मोहि रखिये ।
+अपने ही पासा ॥२॥
+[aarti.pad3 pad 3]
+राम भरत लछिमन ।
+सँग शत्रुहन भैया ।
+जगमग ज्योति विराजै ।
+शोभा अति लहिया ॥३॥
+[aarti.pad4 pad 4]
+हनुमत नाद बजावत ।
+नेवर झमकाता ।
+स्वर्णथाल कर आरती ।
+कौशल्या माता ॥४॥
+[aarti.pad5 pad 5]
+सुभग मुकुट सिर धनु सर ।
+कर सोभा भारी ।
+मनीराम दर्शन करि ।
+पल-पल बलिहारी ॥५॥

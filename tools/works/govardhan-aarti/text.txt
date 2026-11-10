@@ -1,0 +1,24 @@
+# श्री गोवर्धन महाराज (Shri Govardhan Maharaj): the verse text, from Drik Panchang (Shri Govardhan Aarti); no printed
+# book has it. The witness and every choice: reconciliation.md.
+
+@part aarti
+@section aarti
+@topic श्री गोवर्धन महाराज | Shri Govardhan Maharaj
+[aarti.tek tek]
+श्री गोवर्धन महाराज ओ महाराज ।
+तेरे माथे मुकुट विराज रहेओ ॥
+[aarti.pad1 pad 1]
+तोपे पान चढ़े तोपे फूल चढ़े ।
+तोपे चढ़े दूध की धार ॥१॥
+[aarti.pad2 pad 2]
+तेरी सात कोस की परिकम्मा ।
+चकलेश्वर है विश्राम ॥२॥
+[aarti.pad3 pad 3]
+तेरे गले में कण्ठा साज रहेओ ।
+ठोड़ी पे हीरा लाल ॥३॥
+[aarti.pad4 pad 4]
+तेरे कानन कुण्डल चमक रहेओ ।
+तेरी झाँकी बनी विशाल ॥४॥
+[aarti.pad5 pad 5]
+गिरिराज धरण प्रभु तेरी शरण ।
+करो भक्त का बेड़ा पार ॥५॥

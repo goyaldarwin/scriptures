@@ -1,0 +1,24 @@
+# आरती श्री जनक दुलारी की (Aarti Shri Janak Dulari Ki): the verse text, from Drik Panchang's
+# "Sita Mata Aarti". The witnesses and every choice: reconciliation.md.
+
+@part aarti
+@section aarti
+@topic आरती श्री जनक दुलारी की | Aarti Shri Janak Dulari Ki
+[aarti.tek tek]
+आरती श्री जनक दुलारी की ।
+सीताजी रघुवर प्यारी की ॥
+[aarti.pad1 pad 1]
+जगत जननी जग की विस्तारिणि ।
+नित्य सत्य साकेत-विहारिणि ।
+परम दयामयी दीनोद्धारिणि ।
+सीता मैया भक्तन हितकारी की ॥१॥
+[aarti.pad2 pad 2]
+सती शिरोमणि पति हित कारिणि ।
+पति सेवा हित वन-वन चारिणि ।
+पति हित पति वियोग स्वीकारिणि ।
+त्याग धर्म मूरति धारी की ॥२॥
+[aarti.pad3 pad 3]
+विमल कीर्ति सब लोकन छाई ।
+नाम लेत पावन मति आई ।
+सुमिरत कटत कष्ट दुखदाई ।
+शरणागत जन भय-हारी की ॥३॥

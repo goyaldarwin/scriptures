@@ -1,0 +1,48 @@
+{
+ "id": "ahoi-aarti",
+ "path": "hinduism/aarti/ahoi/ahoi-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "जय अहोई माता",
+  "en": "Jai Ahoi Mata"
+ },
+ "by": {
+  "hi": "अहोई माता",
+  "en": "Ahoi Mata"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "जय अहोई माता",
+    "en": "Jai Ahoi Mata"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

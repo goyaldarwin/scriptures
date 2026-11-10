@@ -1,0 +1,40 @@
+{
+ "id": "rani-sati-chalisa",
+ "path": "hinduism/chalisa/rani-sati/rani-sati-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री राणी सती चालीसा",
+  "en": "Shri Rani Sati Chalisa"
+ },
+ "by": {
+  "hi": "राणी सती",
+  "en": "Rani Sati"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री राणी सती चालीसा",
+    "en": "Shri Rani Sati Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

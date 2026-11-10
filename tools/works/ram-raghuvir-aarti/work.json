@@ -1,0 +1,48 @@
+{
+ "id": "ram-raghuvir-aarti",
+ "path": "hinduism/aarti/rama/ram-raghuvir-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "ऐसी आरती राम रघुबीर की करहि मन",
+  "en": "Aisi Aarti Ram Raghubir Ki Karahi Man"
+ },
+ "by": {
+  "hi": "भगवान श्रीराम",
+  "en": "Bhagwan Shri Ram"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "ऐसी आरती राम रघुबीर की",
+    "en": "Aisi Aarti Ram Raghubir Ki"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

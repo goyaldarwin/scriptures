@@ -1,0 +1,16 @@
+# श्री राम चालीसा (Shri Ram Chalisa)
+
+The chālīsā of Śrī Rāma that opens "श्री रघुवीर भक्त हितकारी", in Awadhi (`awa`).
+
+- **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 12–15), checked against Drik Panchang. Every choice: `reconciliation.md`.
+- **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+- **Recordings:** none yet.
+- **Poet:** the text names him in its last chaupāī and first closing dohā: Haridāsa (श्री हरिदास).
+
+Verse types: the Mānas's own (`do` dohā, `cau` chaupāī).
+
+## Structure
+- **Hierarchy:** one part (`chalisa`) › two sections: the chaupāīs (`chalisa-cau`), the closing dohās (`chalisa-ant`) › verses. The book prints no opening dohā.
+- **Numbering:** the 46 chaupāīs are numbered 1–46 and cited by it ("Chaupai 12"); the two dohās have no number of their own and are cited by their section ("Closing · Doha").
+- **Ids:** as the Hanumān Chālīsā's in the Sundarakāṇḍa (`chalisa.do1`, `chalisa.cau1` …).
+- **Topics:** the glory of Rāma and his name, those who hold the name, the Lord who is truth, the fruit of the reading. **Reading plans:** none.

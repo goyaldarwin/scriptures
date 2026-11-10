@@ -1,0 +1,48 @@
+{
+ "id": "bagalamukhi-aarti",
+ "path": "hinduism/aarti/bagalamukhi/bagalamukhi-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "जय जय श्री बगलामुखी माता",
+  "en": "Jai Jai Shri Bagalamukhi Mata"
+ },
+ "by": {
+  "hi": "माँ बगलामुखी",
+  "en": "Mother Baglamukhi"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "जय जय श्री बगलामुखी माता",
+    "en": "Jai Jai Shri Bagalamukhi Mata"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

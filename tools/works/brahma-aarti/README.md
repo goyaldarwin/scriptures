@@ -1,0 +1,15 @@
+# पितु मातु सहायक स्वामी सखा (Pitu Matu Sahayak Swami Sakha)
+
+The āratī of Brahmā, in Hindi (`hi`).
+
+- **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, p. 53), checked against Drik Panchang. Every choice: `reconciliation.md`.
+- **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+- **Recordings:** none yet.
+- **Poet:** the last stanza names प्रताप (Pratap).
+
+Verse types: पद (stanza, `pad`). The āratī has no refrain (टेक): neither witness prints one. The folder's format: `tools/works/README.md`.
+
+## Structure
+- **Hierarchy:** one part (Pitu Matu Sahayak Swami Sakha) › one section (`aarti`) › verses: 5 stanzas, no refrain.
+- **Numbering:** each stanza's `n` is its number (॥१॥ …), and it is cited by it ("Stanza 3").
+- **Topics:** one, the āratī's title. **Reading plans:** none.

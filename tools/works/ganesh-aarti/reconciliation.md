@@ -1,18 +1,22 @@
 # Reconciliation: जय गणेश जय गणेश जय गणेश देवा
 
-## Witnesses
-- **The book (base):** ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, Haridwar, 2000), p. 11; scriptures-data `hinduism/chalisa/books/aarti-chalisa-sangrah/` (page image i-010), read on the page image. Its order: the refrain, पान चढ़ें, एकदन्त, अन्धन को, दीनन की लाज, and the closing stanza with the poet's name (सूरश्याम).
-- **Drik Panchang** (`hinduism/aarti/ganesha/ganesh-aarti/printouts/drikpanchang/`): the same āratī in another order (एकदन्त before पान चढ़े), with variants offered in brackets (माथे पर सिन्दूर सोहे; हार चढ़े; the दीनन की लाज stanza).
+## Source
+The text is the version Anuradha Paudwal sings in the recording chosen from the owner's downloads ("Ganesh Aarti", YouTube `oWo6hMlex5M`; its first 1:40 is a spoken introduction on how an āratī is done, which is not text). The other three recordings of this āratī in the owner's downloads sing the same version. The words are written as Drik Panchang writes them; the owner checks them by ear.
 
-The rule: keep the book; correct it only where it is clearly wrong. The library's writing standard (docs/PLAYBOOK.md §3): an āratī's verse has no comma (the book's comma between the halves of a line becomes a line break, a half per line); the refrain (टेक) is shown once; stanzas numbered (॥१॥).
+Witnesses (private copies in `scriptures-data`):
+- **D**, Drik Panchang (`hinduism/aarti/ganesha/ganesh-aarti/printouts/drikpanchang/`): the version she sings, with variants in brackets (माथे पर सिन्दूर सोहे; हार चढ़े; the दीनन की लाज stanza).
+- **B**, the book ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, Haridwar, 2000), p. 11 (`hinduism/chalisa/books/aarti-chalisa-sangrah/`, page image i-010): an older wording, in another order (पान चढ़ें, एकदन्त, अन्धन को, दीनन की लाज, the poet's stanza).
 
-| Place | Book | Ours | Why |
-|---|---|---|---|
-| every stanza | one printed line, its halves joined by a comma | two lines, ending । and ॥N॥ | The standard; the comma marks the half. |
-| stanza numbers | none | ॥१॥ … ॥५॥ | The standard. |
-| the order | as above | as above | The book's order is kept. The verses follow the owner's recording once one is chosen (docs/PLAYBOOK.md §3); a stanza the recording leaves out stays, untimed. |
+The library's writing standard (docs/PLAYBOOK.md §3): no comma in a verse (a printed line's halves are two lines, ending । and ॥N॥); the refrain (टेक) shown once, although she sings it again after stanzas 2 and 5; stanzas numbered (॥१॥).
 
-Kept as the book has them: चढ़ें, लडुवन (Drik लड्डुअन), करे, मस्तक सिन्दूर सोहे (Drik माथे पर तिलक सोहे, with सिन्दूर as its variant), अन्धन, आंख, बांझन, शम्भु-सुत वारी (Drik शम्भु सुतवारी), पूरा (Drik पूर्ण), आये, सूरश्याम (Drik 'सूर' श्याम), सुफल (Drik सफल).
+| Place | D | B | Text | Why |
+|---|---|---|---|---|
+| order | एकदन्त, पान चढ़े, अँधे को, सूर श्याम | पान चढ़ें, एकदन्त, अन्धन को, दीनन, सूरश्याम | D's | as she sings it |
+| stanza 1, line 2 | माथे पर तिलक सोहे (variant सिन्दूर) | मस्तक सिन्दूर सोहे | माथे पर तिलक सोहे | as she sings it |
+| stanza 2 | पान चढ़े … लड्डुअन … करें | पान चढ़ें … लडुवन … करे | D's | as she sings it |
+| stanza 3 | अँधे को आँख … बाँझन | अन्धन को आंख … बांझन | D's | as she sings it |
+| stanza 4 | in brackets | दीनन की लाज राखो शम्भु-सुत वारी, कामना को पूरा करो जग बलिहारी | B's | she does not sing it; it stays in the text, untimed (docs/PLAYBOOK.md §3) |
+| stanza 5 | 'सूर' श्याम शरण आए सफल कीजे सेवा, माता जाकी पार्वती पिता महादेवा | जय गणेश … देवा, सूरश्याम शरण आये सुफल कीजे सेवा | D's, without the quotation marks | as she sings it |
 
 ## Meanings
-Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`). Open doubt: `docs/reviews/ganesh-aarti-doubts.jsonl` (सूर श्याम).

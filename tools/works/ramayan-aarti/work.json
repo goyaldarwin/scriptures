@@ -1,0 +1,48 @@
+{
+ "id": "ramayan-aarti",
+ "path": "hinduism/aarti/rama/ramayan-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "आरती श्री रामायण जी की",
+  "en": "Aarti Shri Ramayan Ji Ki"
+ },
+ "by": {
+  "hi": "भगवान श्रीराम",
+  "en": "Bhagwan Shri Ram"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "आरती श्री रामायण जी की",
+    "en": "Aarti Shri Ramayan Ji Ki"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

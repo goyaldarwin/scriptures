@@ -1,0 +1,48 @@
+{
+ "id": "pretraj-aarti",
+ "path": "hinduism/aarti/pretraj/pretraj-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "आरती प्रेतराज की कीजै",
+  "en": "Aarti Pretraj Ki Keejai"
+ },
+ "by": {
+  "hi": "प्रेतराज सरकार",
+  "en": "Pretraj Sarkar"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "आरती प्रेतराज की कीजै",
+    "en": "Aarti Pretraj Ki Keejai"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

@@ -1,0 +1,48 @@
+{
+ "id": "balaji-aarti",
+ "path": "hinduism/aarti/hanuman/balaji-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "ॐ जय हनुमत वीरा",
+  "en": "Om Jai Hanumat Veera"
+ },
+ "by": {
+  "hi": "श्रीहनुमान",
+  "en": "Shri Hanuman"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "ॐ जय हनुमत वीरा",
+    "en": "Om Jai Hanumat Veera"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

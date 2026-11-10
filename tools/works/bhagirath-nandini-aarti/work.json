@@ -1,0 +1,48 @@
+{
+ "id": "bhagirath-nandini-aarti",
+ "path": "hinduism/aarti/ganga/bhagirath-nandini-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "जय जय भगीरथनन्दिनि",
+  "en": "Jai Jai Bhagirathanandini"
+ },
+ "by": {
+  "hi": "माँ गंगा",
+  "en": "Mother Ganga"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "जय जय भगीरथनन्दिनि",
+    "en": "Jai Jai Bhagirathanandini"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

@@ -1,0 +1,48 @@
+{
+ "id": "pitar-aarti",
+ "path": "hinduism/aarti/pitar/pitar-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "जय जय पितरजी महाराज",
+  "en": "Jai Jai Pitarji Maharaj"
+ },
+ "by": {
+  "hi": "पितर",
+  "en": "Pitars (the ancestors)"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "जय जय पितरजी महाराज",
+    "en": "Jai Jai Pitarji Maharaj"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

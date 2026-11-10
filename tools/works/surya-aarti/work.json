@@ -1,0 +1,48 @@
+{
+ "id": "surya-aarti",
+ "path": "hinduism/aarti/surya/surya-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "जय कश्यप-नन्दन",
+  "en": "Jai Kashyap Nandan"
+ },
+ "by": {
+  "hi": "भगवान सूर्य",
+  "en": "Bhagwan Surya"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "जय कश्यप-नन्दन",
+    "en": "Jai Kashyap Nandan"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

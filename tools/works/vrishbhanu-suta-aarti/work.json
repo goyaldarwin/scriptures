@@ -1,0 +1,48 @@
+{
+ "id": "vrishbhanu-suta-aarti",
+ "path": "hinduism/aarti/radha/vrishbhanu-suta-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "आरती श्री वृषभानुसुता की",
+  "en": "Aarti Shri Vrishbhanu Suta Ki"
+ },
+ "by": {
+  "hi": "श्रीराधा",
+  "en": "Shri Radha"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "आरती श्री वृषभानुसुता की",
+    "en": "Aarti Shri Vrishbhanu Suta Ki"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

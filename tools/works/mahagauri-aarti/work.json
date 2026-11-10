@@ -1,0 +1,48 @@
+{
+ "id": "mahagauri-aarti",
+ "path": "hinduism/aarti/durga/mahagauri-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "जय महागौरी जगत की माया",
+  "en": "Jai Mahagauri Jagat Ki Maya"
+ },
+ "by": {
+  "hi": "माँ दुर्गा",
+  "en": "Mother Durga"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "जय महागौरी जगत की माया",
+    "en": "Jai Mahagauri Jagat Ki Maya"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

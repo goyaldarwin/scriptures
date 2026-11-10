@@ -1,0 +1,21 @@
+# ॐ जय श्री रामादे (Om Jai Shri Ramade): the verse text, from ५१ चालीसा संग्रह आरतियों सहित
+# (Randhir Prakashan, p. 161). The witnesses and every choice: reconciliation.md.
+
+@part aarti
+@section aarti
+@topic ॐ जय श्री रामादे | Om Jai Shri Ramade
+[aarti.tek tek]
+ॐ जय श्री रामादे स्वामी जय श्री रामादे ।
+पिता तुम्हारे अजमल मैया मेनादे ॥
+[aarti.pad1 pad 1]
+रूप मनोहर जिसका घोड़े असवारी ।
+कर में सोहे भाला मुक्तामणि धारी ॥१॥
+[aarti.pad2 pad 2]
+विष्णु रूप तुम स्वामी कलियुग अवतारी ।
+सुरनर मुनिजन ध्यावे जावे बलिहारी ॥२॥
+[aarti.pad3 pad 3]
+दुःख दलजी का तुमने पल भर में टारा ।
+सरजीवन भाण को तुमने कर डारा ॥३॥
+[aarti.pad4 pad 4]
+नाव सेठ की तारी दानव को मारा ।
+पल में कीना तुमने सरवर को खारा ॥४॥

@@ -1,0 +1,40 @@
+{
+ "id": "krishna-chalisa",
+ "path": "hinduism/chalisa/krishna/krishna-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री कृष्ण चालीसा",
+  "en": "Shri Krishna Chalisa"
+ },
+ "by": {
+  "hi": "भगवान श्रीकृष्ण",
+  "en": "Bhagwan Shri Krishna"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री कृष्ण चालीसा",
+    "en": "Shri Krishna Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

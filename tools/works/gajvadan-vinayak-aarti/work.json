@@ -1,0 +1,48 @@
+{
+ "id": "gajvadan-vinayak-aarti",
+ "path": "hinduism/aarti/ganesha/gajvadan-vinayak-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "आरती गजबदन विनायक की",
+  "en": "Aarti Gajbadan Vinayak Ki"
+ },
+ "by": {
+  "hi": "भगवान श्री गणेश",
+  "en": "Bhagwan Shri Ganesh"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "आरती गजबदन विनायक की",
+    "en": "Aarti Gajbadan Vinayak Ki"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

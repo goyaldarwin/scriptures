@@ -1,0 +1,48 @@
+{
+ "id": "banke-bihari-aarti",
+ "path": "hinduism/aarti/krishna/banke-bihari-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "श्री बाँकेबिहारी तेरी आरती गाऊँ",
+  "en": "Shri Banke Bihari Teri Aarti Gaun"
+ },
+ "by": {
+  "hi": "भगवान श्रीकृष्ण (बाँकेबिहारी)",
+  "en": "Bhagwan Shri Krishna (Banke Bihari)"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "श्री बाँकेबिहारी तेरी आरती गाऊँ",
+    "en": "Shri Banke Bihari Teri Aarti Gaun"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

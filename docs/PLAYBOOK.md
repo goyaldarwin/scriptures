@@ -65,7 +65,7 @@ Contents: 1 Working with the owner · 2 Sources and accuracy · 3 Texts · 4 Mea
 - **Vedic accents** (svaras) are kept in the text; the app strips them only when looking a word up.
 - **Each āratī is its own work**, on its deity's shelf (`hinduism/aarti/<deity>/<work>`), even when several come from one page. **The refrain (टेक) is shown once**; the "॥ ॐ जय शिव… ॥" cues after each stanza and the closing repeat are left out, unless the recording sings a different closing refrain (the Śiva Āratī's `aarti.tek2`).
 - **A popular part of a big work can be a work of its own** (the Sundarakāṇḍa beside the Mānas): it is generated from the big work and never written into it; its own additions (opening prayers, Chālīsā, āratī) come from its own `text.txt`.
-- **The verses follow the order of the owner's recording** (the owner: "re-order the verses to suit the recording"): where it sings them in another order than the source, the text takes the recording's order and `reconciliation.md` says so. A verse of the source that the recording leaves out stays in the text, untimed.
+- **An āratī's text follows the version sung in its chosen recording** (the owner: "re-order the verses to suit the recording"; the Śiva and Gaṇeśa āratīs): where it sings the verses in another order, or in another of the written versions, the text takes the recording's order and wording, each word as a written witness spells it, and `reconciliation.md` says so. A verse of the source that the recording leaves out stays in the text, untimed.
 - **A recording's opening that is not in the book is added as text too, and timed**, so the reader sees what is being sung (the Sundarakāṇḍa's opening prayers).
 - **The closing verse is "समापन (पुष्पिका)" / "Closing words (iti)"**, not "colophon".
 

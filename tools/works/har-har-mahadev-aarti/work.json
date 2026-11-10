@@ -1,0 +1,48 @@
+{
+ "id": "har-har-mahadev-aarti",
+ "path": "hinduism/aarti/shiva/har-har-mahadev-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "हर हर हर महादेव",
+  "en": "Har Har Har Mahadev"
+ },
+ "by": {
+  "hi": "भगवान शिव",
+  "en": "Bhagwan Shiv"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "हर हर हर महादेव",
+    "en": "Har Har Har Mahadev"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

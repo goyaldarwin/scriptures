@@ -1,0 +1,30 @@
+# श्री बाँकेबिहारी तेरी आरती गाऊँ (Shri Banke Bihari Teri Aarti Gaun): the verse text, from Drik Panchang (Shri Banke
+# Bihari Ki Aarti); no printed book has it. The witness and every choice: reconciliation.md.
+
+@part aarti
+@section aarti
+@topic श्री बाँकेबिहारी तेरी आरती गाऊँ | Shri Banke Bihari Teri Aarti Gaun
+[aarti.tek tek]
+श्री बाँकेबिहारी तेरी आरती गाऊँ ।
+कुञ्जबिहारी तेरी आरती गाऊँ ।
+श्री श्यामसुन्दर तेरी आरती गाऊँ ॥
+[aarti.pad1 pad 1]
+मोर मुकुट प्रभु शीश पे सोहे ।
+प्यारी बंशी मेरो मन मोहे ।
+देखि छवि बलिहारी जाऊँ ॥१॥
+[aarti.pad2 pad 2]
+चरणों से निकली गंगा प्यारी ।
+जिसने सारी दुनिया तारी ।
+मैं उन चरणों के दर्शन पाऊँ ॥२॥
+[aarti.pad3 pad 3]
+दास अनाथ के नाथ आप हो ।
+दुःख सुख जीवन प्यारे साथ हो ।
+हरि चरणों में शीश नवाऊँ ॥३॥
+[aarti.pad4 pad 4]
+श्री हरि दास के प्यारे तुम हो ।
+मेरे मोहन जीवन धन हो ।
+देखि युगल छवि बलि-बलि जाऊँ ॥४॥
+[aarti.pad5 pad 5]
+आरती गाऊँ प्यारे तुमको रिझाऊँ ।
+हे गिरिधर तेरी आरती गाऊँ ।
+श्री श्यामसुन्दर तेरी आरती गाऊँ ॥५॥

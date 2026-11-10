@@ -1,0 +1,48 @@
+{
+ "id": "krishna-kanhaiya-aarti",
+ "path": "hinduism/aarti/krishna/krishna-kanhaiya-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "आरती श्रीकृष्ण कन्हैया की",
+  "en": "Aarti Shri Krishna Kanhaiya Ki"
+ },
+ "by": {
+  "hi": "भगवान श्रीकृष्ण",
+  "en": "Bhagwan Shri Krishna"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "आरती श्रीकृष्ण कन्हैया की",
+    "en": "Aarti Shri Krishna Kanhaiya Ki"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

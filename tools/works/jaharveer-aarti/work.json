@@ -1,0 +1,48 @@
+{
+ "id": "jaharveer-aarti",
+ "path": "hinduism/aarti/jaharveer/jaharveer-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "जय जय जाहरवीर हरे",
+  "en": "Jai Jai Jaharveer Hare"
+ },
+ "by": {
+  "hi": "जाहरवीर गोगाजी",
+  "en": "Jaharveer Gogaji"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "जय जय जाहरवीर हरे",
+    "en": "Jai Jai Jaharveer Hare"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

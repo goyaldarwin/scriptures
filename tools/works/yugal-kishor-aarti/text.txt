@@ -1,0 +1,33 @@
+# आरती जुगल किशोर की कीजै (Aarti Jugal Kishor Ki Kijai): the verse text, from ५१ चालीसा संग्रह
+# आरतियों सहित (Randhir Prakashan, p. 47). The witnesses and every choice: reconciliation.md.
+
+@part aarti
+@section aarti
+@topic आरती जुगल किशोर की कीजै | Aarti Jugal Kishor Ki Kijai
+[aarti.tek tek]
+आरती जुगल किशोर की कीजै ।
+राधे धन न्यौछावर कीजै ॥
+[aarti.pad1 pad 1]
+रवि शशि कोटि बदन की शोभा ।
+ताहि निरखि मेरा मन लोभा ॥१॥
+[aarti.pad2 pad 2]
+गौर श्याम मुख निरखत रीझै ।
+प्रभु को स्वरूप नयन भर पीजै ॥२॥
+[aarti.pad3 pad 3]
+कंचन थार कपूर की बाती ।
+हरि आये निर्मल भई छाती ॥३॥
+[aarti.pad4 pad 4]
+फूलन की सेज फूलन की माला ।
+रतन सिंहासन बैठे नन्दलाला ॥४॥
+[aarti.pad5 pad 5]
+मोर मुकुट कर मुरली सोहै ।
+नटवर वेष देखि मन मोहै ॥५॥
+[aarti.pad6 pad 6]
+आधा नील पीत पटसारी ।
+कुञ्ज बिहारी गिरिवरधारी ॥६॥
+[aarti.pad7 pad 7]
+श्री पुरुषोत्तम गिरवरधारी ।
+आरती करें सकल ब्रजनारी ॥७॥
+[aarti.pad8 pad 8]
+नन्द लाला वृषभानु किशोरी ।
+परमानन्द स्वामी अविचल जोरी ॥८॥

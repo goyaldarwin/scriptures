@@ -1,0 +1,48 @@
+{
+ "id": "ganpati-seva-aarti",
+ "path": "hinduism/aarti/ganesha/ganpati-seva-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "गणपति की सेवा मंगल मेवा",
+  "en": "Ganpati Ki Seva Mangal Meva"
+ },
+ "by": {
+  "hi": "भगवान श्री गणेश",
+  "en": "Bhagwan Shri Ganesh"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "गणपति की सेवा मंगल मेवा",
+    "en": "Ganpati Ki Seva Mangal Meva"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

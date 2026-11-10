@@ -1,0 +1,48 @@
+{
+ "id": "gau-mata-aarti",
+ "path": "hinduism/aarti/gau-mata/gau-mata-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "आरती श्री गैया मैया की",
+  "en": "Aarti Shri Gaiya Maiya Ki"
+ },
+ "by": {
+  "hi": "गौ माता",
+  "en": "Gau Mata"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "आरती श्री गैया मैया की",
+    "en": "Aarti Shri Gaiya Maiya Ki"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

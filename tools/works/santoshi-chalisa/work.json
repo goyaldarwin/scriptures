@@ -1,0 +1,40 @@
+{
+ "id": "santoshi-chalisa",
+ "path": "hinduism/chalisa/santoshi/santoshi-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री संतोषी माँ चालीसा",
+  "en": "Shri Santoshi Maa Chalisa"
+ },
+ "by": {
+  "hi": "माँ संतोषी",
+  "en": "Mother Santoshi"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री संतोषी माँ चालीसा",
+    "en": "Shri Santoshi Maa Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

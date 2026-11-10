@@ -1,0 +1,48 @@
+{
+ "id": "satyanarayan-aarti",
+ "path": "hinduism/aarti/vishnu/satyanarayan-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "जय लक्ष्मी रमणा",
+  "en": "Jai Lakshmi Ramana"
+ },
+ "by": {
+  "hi": "भगवान विष्णु (सत्यनारायण)",
+  "en": "Bhagwan Vishnu (Satyanarayan)"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "जय लक्ष्मी रमणा",
+    "en": "Jai Lakshmi Ramana"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

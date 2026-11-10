@@ -1,0 +1,48 @@
+{
+ "id": "batuk-bhairav-aarti",
+ "path": "hinduism/aarti/bhairava/batuk-bhairav-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "जय भैरव देवा",
+  "en": "Jai Bhairav Deva"
+ },
+ "by": {
+  "hi": "भगवान भैरव",
+  "en": "Bhagwan Bhairav"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "जय भैरव देवा",
+    "en": "Jai Bhairav Deva"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

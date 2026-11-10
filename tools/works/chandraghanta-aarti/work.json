@@ -1,0 +1,48 @@
+{
+ "id": "chandraghanta-aarti",
+ "path": "hinduism/aarti/durga/chandraghanta-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "जय माँ चन्द्रघण्टा सुख धाम",
+  "en": "Jai Maa Chandraghanta Sukh Dham"
+ },
+ "by": {
+  "hi": "माँ दुर्गा",
+  "en": "Mother Durga"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "जय माँ चन्द्रघण्टा सुख धाम",
+    "en": "Jai Maa Chandraghanta Sukh Dham"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

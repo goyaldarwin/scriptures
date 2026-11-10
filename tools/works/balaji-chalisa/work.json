@@ -1,0 +1,40 @@
+{
+ "id": "balaji-chalisa",
+ "path": "hinduism/chalisa/hanuman/balaji-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री बालाजी चालीसा",
+  "en": "Shri Balaji Chalisa"
+ },
+ "by": {
+  "hi": "श्रीहनुमान",
+  "en": "Shri Hanuman"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री बालाजी चालीसा",
+    "en": "Shri Balaji Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

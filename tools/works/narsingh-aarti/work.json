@@ -1,0 +1,48 @@
+{
+ "id": "narsingh-aarti",
+ "path": "hinduism/aarti/narasimha/narsingh-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "ॐ जय नरसिंह हरे",
+  "en": "Om Jai Narsingh Hare"
+ },
+ "by": {
+  "hi": "भगवान नृसिंह",
+  "en": "Bhagwan Narasimha"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "ॐ जय नरसिंह हरे",
+    "en": "Om Jai Narsingh Hare"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

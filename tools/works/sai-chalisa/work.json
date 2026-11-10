@@ -1,0 +1,32 @@
+{
+ "id": "sai-chalisa",
+ "path": "hinduism/chalisa/shirdi-sai/sai-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री साईं चालीसा",
+  "en": "Shri Sai Chalisa"
+ },
+ "by": {
+  "hi": "शिरडी साईबाबा",
+  "en": "Shirdi Sai Baba"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री साईं चालीसा",
+    "en": "Shri Sai Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  }
+ }
+}

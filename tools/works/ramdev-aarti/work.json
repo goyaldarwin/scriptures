@@ -1,0 +1,48 @@
+{
+ "id": "ramdev-aarti",
+ "path": "hinduism/aarti/ramdev/ramdev-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "ॐ जय श्री रामादे",
+  "en": "Om Jai Shri Ramade"
+ },
+ "by": {
+  "hi": "बाबा रामदेव",
+  "en": "Baba Ramdev"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "ॐ जय श्री रामादे",
+    "en": "Om Jai Shri Ramade"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

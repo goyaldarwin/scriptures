@@ -1,0 +1,48 @@
+{
+ "id": "mahakali-aarti",
+ "path": "hinduism/aarti/kali/mahakali-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "मंगल की सेवा सुन मेरी देवा",
+  "en": "Mangal Ki Seva Sun Meri Deva"
+ },
+ "by": {
+  "hi": "माँ काली",
+  "en": "Mother Kali"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "मंगल की सेवा सुन मेरी देवा",
+    "en": "Mangal Ki Seva Sun Meri Deva"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

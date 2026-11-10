@@ -1,0 +1,32 @@
+# ॐ जय नरसिंह हरे (Om Jai Narsingh Hare): the verse text, from Drik Panchang (Narsingh Bhagwan Ki Aarti).
+# The witnesses and every choice: reconciliation.md.
+
+@part aarti
+@section aarti
+@topic ॐ जय नरसिंह हरे | Om Jai Narsingh Hare
+[aarti.tek tek]
+ॐ जय नरसिंह हरे ।
+प्रभु जय नरसिंह हरे ।
+स्तम्भ फाड़ प्रभु प्रकटे ।
+स्तम्भ फाड़ प्रभु प्रकटे ।
+जन का ताप हरे ॥
+[aarti.pad1 pad 1]
+तुम हो दीन दयाला ।
+भक्तन हितकारी ।
+प्रभु भक्तन हितकारी ।
+अद्भुत रूप बनाकर ।
+अद्भुत रूप बनाकर ।
+प्रकटे भय हारी ॥१॥
+[aarti.pad2 pad 2]
+सबके हृदय विदारण ।
+दस्यु जियो मारी ।
+प्रभु दस्यु जियो मारी ।
+दास जान अपनायो ।
+दास जान अपनायो ।
+जन पर कृपा करी ॥२॥
+[aarti.pad3 pad 3]
+ब्रह्मा करत आरती ।
+माला पहिनावे ।
+प्रभु माला पहिनावे ।
+शिवजी जय जय कहकर ।
+पुष्पन बरसावे ॥३॥

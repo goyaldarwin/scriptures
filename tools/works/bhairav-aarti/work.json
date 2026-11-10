@@ -1,0 +1,48 @@
+{
+ "id": "bhairav-aarti",
+ "path": "hinduism/aarti/bhairava/bhairav-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "सुनो जी भैरव लाड़िले",
+  "en": "Suno Ji Bhairav Ladile"
+ },
+ "by": {
+  "hi": "भगवान भैरव",
+  "en": "Bhagwan Bhairav"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "सुनो जी भैरव लाड़िले",
+    "en": "Suno Ji Bhairav Ladile"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

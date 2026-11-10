@@ -1,0 +1,48 @@
+{
+ "id": "gorakhnath-aarti",
+ "path": "hinduism/aarti/gorakhnath/gorakhnath-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "जय गोरख देवा",
+  "en": "Jai Gorakh Deva"
+ },
+ "by": {
+  "hi": "गुरु गोरखनाथ",
+  "en": "Guru Gorakhnath"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "जय गोरख देवा",
+    "en": "Jai Gorakh Deva"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

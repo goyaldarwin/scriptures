@@ -1,0 +1,48 @@
+{
+ "id": "dhanvantari-aarti",
+ "path": "hinduism/aarti/dhanvantari/dhanvantari-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "जय धन्वन्तरि देवा",
+  "en": "Jai Dhanvantari Deva"
+ },
+ "by": {
+  "hi": "भगवान धन्वन्तरि",
+  "en": "Bhagwan Dhanvantari"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "जय धन्वन्तरि देवा",
+    "en": "Jai Dhanvantari Deva"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

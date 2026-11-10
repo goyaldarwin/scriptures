@@ -1,0 +1,34 @@
+# जय जय श्री बदरीनाथ (Jai Jai Shri Badrinath): the verse text, from Drik Panchang ("Lord Badarinatha Aarti").
+# The witnesses and every choice: reconciliation.md.
+
+@part aarti
+@section aarti
+@topic जय जय श्री बदरीनाथ | Jai Jai Shri Badrinath
+[aarti.tek tek]
+जय जय श्री बदरीनाथ ।
+जयति योग ध्यानी ॥
+[aarti.pad1 pad 1]
+निर्गुण सगुण स्वरूप ।
+मेघवर्ण अति अनूप ।
+सेवत चरण सुरभूप ।
+ज्ञानी विज्ञानी ॥१॥
+[aarti.pad2 pad 2]
+झलकत है शीश छत्र ।
+छवि अनूप अति विचित्र ।
+बरनत पावन चरित्र ।
+सकुचत बरबानी ॥२॥
+[aarti.pad3 pad 3]
+तिलक भाल अति विशाल ।
+गल में मणि मुक्त-माल ।
+प्रनतपाल अति दयाल ।
+सेवक सुखदानी ॥३॥
+[aarti.pad4 pad 4]
+कानन कुण्डल ललाम ।
+मूरति सुखमा की धाम ।
+सुमिरत हों सिद्धि काम ।
+कहत गुण बखानी ॥४॥
+[aarti.pad5 pad 5]
+गावत गुण शम्भु शेष ।
+इन्द्र चन्द्र अरु दिनेश ।
+विनवत श्यामा हमेश ।
+जोरी जुगल पानी ॥५॥
