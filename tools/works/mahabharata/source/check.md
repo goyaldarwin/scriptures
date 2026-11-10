@@ -1,0 +1,117 @@
+# What the checks found
+
+92,804 items: shloka 83,517, dshloka 6,750, iti 2,107, gadya 409, mangalacharan 16, dgadya 5
+69,399 meanings, 2,148 notes, 2,112 topics.
+
+Counts: dak_bare 6,434, dak_no_note 35, dak_paren 321, daknote_off 2, daknote_ok 460, daknotes 462, extra_unnumbered 56, heads 95, mangala 16, mark_not_in_cover 27, number_fixed 17, number_jumps 1, number_restored 6, para_joined_prev 70, para_runs_on 9,814, repeat_left_out 1, sambandha 215, visarga_colon 11
+
+## Places to read
+
+- 1.3.96: its Hindi ends ॥ १६ ॥
+- 1.67.2: its Hindi ends ॥ १२ ॥
+- 1.72.6: its Hindi ends ॥ ५६ ॥
+- 1.80: the book counts 5.5 dākṣiṇātya ślokas ((दाक्षिणात्य अधिक पाठके ५½ श्लोक मिलाकर कुल ३२½ श्लोक हैं)); the text has 7.5 lines (3.75 ślokas)
+- 1.103: 3.0 dākṣiṇātya lines, and the book prints no count
+- 1.116.6: printed without its number, in a run of 1 between 5 and 7: numbered 6
+- 1.116.8: printed without its number, in a run of 2 between 7 and 10: numbered 8
+- 1.116.9: printed without its number, in a run of 2 between 7 and 10: numbered 9
+- 1.118.25: “:” for the visarga ः
+- 1.121: 10.5 dākṣiṇātya lines, and the book prints no count
+- 1.172: 12.0 dākṣiṇātya lines, and the book prints no count
+- 1.190: 2.0 dākṣiṇātya lines, and the book prints no count
+- 1.192: 1.0 dākṣiṇātya lines, and the book prints no count
+- 1.219.2: its Hindi ends ॥ १२ ॥
+- 2.2: 5.0 dākṣiṇātya lines, and the book prints no count
+- 2.16: 1.0 dākṣiṇātya lines, and the book prints no count
+- 2.38.32: printed without its number, in a run of 1 between 31 and 33: numbered 32
+- 2.49.60: its Hindi ends ॥ ६९ ॥
+- 2.61: 2.0 dākṣiṇātya lines, and the book prints no count
+- 3.67: 2.0 dākṣiṇātya lines, and the book prints no count
+- 3.88.25: its Hindi ends ॥ ५४ ॥
+- 3.110: 2.0 dākṣiṇātya lines, and the book prints no count
+- 3.137.2: its Hindi ends ॥ १२ ॥
+- 3.157: 3.0 dākṣiṇātya lines, and the book prints no count
+- 3.158: 2.0 dākṣiṇātya lines, and the book prints no count
+- 3.175: 1.0 dākṣiṇātya lines, and the book prints no count
+- 3.176: the verse numbers jump [(16, 16)]
+- 3.194.3: printed without its number, in a run of 1 between 2 and 4: numbered 3
+- 3.199: 1.5 dākṣiṇātya lines, and the book prints no count
+- 3.207.69: “:” for the visarga ः
+- 3.214: 1.0 dākṣiṇātya lines, and the book prints no count
+- 3.283.49: its Hindi ends ॥ ५९ ॥
+- 3.313.9: printed ॥ १९ ॥, between 8 and 10: corrected to 9
+- 3.315.13: its Hindi ends ॥ ५३ ॥
+- 4.1.13: printed ॥ ५३ ॥, between 12 and 14: corrected to 13
+- 4.3: the book counts 2.5 dākṣiṇātya ślokas ((दाक्षिणात्य अधिक पाठके २½ श्लोक मिलाकर कुल २५½ श्लोक हैं।)); the text has 7.5 lines (3.75 ślokas)
+- 4.4.6: printed ॥ ३ ॥, between 5 and 7: corrected to 6
+- 4.5.13: its Hindi ends ॥ ५३ ॥
+- 4.16.47d3: “:” for the visarga ः
+- 4.20.15: its Hindi ends ॥ १६ ॥
+- 4.24.13: “:” for the visarga ः
+- 4.30: 1.0 dākṣiṇātya lines, and the book prints no count
+- 4.37: 2.0 dākṣiṇātya lines, and the book prints no count
+- 4.49.7: “:” for the visarga ः
+- 4.50.15: its Hindi ends ॥ १६ ॥
+- 5.8: 11.0 dākṣiṇātya lines, and the book prints no count
+- 5.10.40: “:” for the visarga ः
+- 5.16.33: “:” for the visarga ः
+- 5.33.21: its Hindi ends ॥ २२ ॥
+- 5.63.5: “:” for the visarga ः
+- 5.95: the closing words number it None
+- 5.95.63: its Hindi ends ॥ १५ ॥
+- 5.95: no closing words
+- 6.29.25: “:” for the visarga ः
+- 6.30: the closing words number it 6
+- 6.34: 1.0 dākṣiṇātya lines, and the book prints no count
+- 6.39: 2.0 dākṣiṇātya lines, and the book prints no count
+- 6.42.68: its Hindi ends ॥ ३८ ॥
+- 6.48.68: “:” for the visarga ः
+- 6.93: the closing words number it 13
+- 6.100.47: its Hindi ends ॥ १७ ॥
+- 6.103: 1.0 dākṣiṇātya lines, and the book prints no count
+- 7.60: a Hindi paragraph runs on to the end: के लिये शोक न करो। नारदजीने राजा सृंजयसे यही बात कही ॥ १३½ ॥
+- 7.112: a Hindi paragraph runs on to the end: े मिलनेके लिये सात्यकि आपकी सेनाकी ओर वेगपूर्वक बढ़े ॥ ७९½ ॥
+- 7.116.40: its Hindi ends ॥ ३९-४ ० ॥
+- 7.137.40: its Hindi ends ॥ ३९ ॥
+- 7.138: a Hindi paragraph runs on to the end: र भीमसेनने उस युद्धस्थलमें महान् संहार मचा रखा था ॥ २७-२८½ ॥
+- 7.145.97: printed ॥ १७ ॥, between 96 and 98: corrected to 97
+- 7.156.99: its Hindi ends ॥ १९ ॥
+- 7.mahima: "श्रवण-महिमा" repeats verses printed before it: left out
+- 8.29: 3.0 dākṣiṇātya lines, and the book prints no count
+- 8.31.69: printed ॥ ६१ ॥, between 68 and 70: corrected to 69
+- 8.34.98: printed ॥ १८ ॥, between 97 and 99: corrected to 98
+- 8.42: 2.0 dākṣiṇātya lines, and the book prints no count
+- 8.50.29: printed ॥ २१ ॥, between 28 and 30: corrected to 29
+- 8.96.47: its Hindi ends ॥ ४३ ॥
+- 12.7.9: printed ॥ १ ॥, between 8 and 10: corrected to 9
+- 12.77: 10.0 dākṣiṇātya lines, and the book prints no count
+- 12.98: 57.0 dākṣiṇātya lines, and the book prints no count
+- 12.122: 1.0 dākṣiṇātya lines, and the book prints no count
+- 12.139.33: printed without its number, in a run of 1 between 32 and 34: numbered 33
+- 12.160: 1.0 dākṣiṇātya lines, and the book prints no count
+- 12.171.21: printed ॥ २९ ॥, between 20 and 22: corrected to 21
+- 12.175.34: printed ॥ ४ ॥, between 33 and 35: corrected to 34
+- 12.207: 47.5 dākṣiṇātya lines, and the book prints no count
+- 12.210.18: printed ॥ ८ ॥, between 17 and 19: corrected to 18
+- 12.222.1: printed ॥ ९ ॥, between 0 and 2: corrected to 1
+- 12.301.50: its Hindi ends ॥ ४९-५ ० ॥
+- 12.336.3: its Hindi ends ॥ ६ ॥
+- 12.349.73: its Hindi ends ॥ ७२ ॥
+- 13.16: 1.0 dākṣiṇātya lines, and the book prints no count
+- 13.39: 2.0 dākṣiṇātya lines, and the book prints no count
+- 13.47: 1.0 dākṣiṇātya lines, and the book prints no count
+- 13.62.95: printed ॥ १५ ॥, between 94 and 96: corrected to 95
+- 13.75: 1.0 dākṣiṇātya lines, and the book prints no count
+- 13.96: a Hindi paragraph runs on to the end: ाना प्रकारके यज्ञोंका अनुष्ठान करे और विधिपूर्वक सत्य बोले ॥
+- 13.104.94: printed ॥ १४ ॥, between 93 and 95: corrected to 94
+- 13.144: 1.0 dākṣiṇātya lines, and the book prints no count
+- 13.150.59: printed ॥ ५१ ॥, between 58 and 60: corrected to 59
+- 13.158.39: printed ॥ ३१ ॥, between 38 and 40: corrected to 39
+- 13.159.5: its Hindi ends ॥ ४ ॥
+- 14.45: 3.0 dākṣiṇātya lines, and the book prints no count
+- 14.59.20: its Hindi ends ॥ २१ ॥
+- 14.75.19: its Hindi ends ॥ २९ ॥
+- 14.89.26: its Hindi ends ॥ २३ ॥
+- 14.92.53d1022: “:” for the visarga ः
+- 15.35: 1.0 dākṣiṇātya lines, and the book prints no count
+- 18.1.9: printed ॥ १ ॥, between 8 and 10: corrected to 9
