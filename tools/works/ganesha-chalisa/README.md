@@ -2,9 +2,9 @@
 
 The chālīsā of Gaṇeśa that opens "जय गणपति सदगुण सदन", in Awadhi (`awa`).
 
-- **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 7–10), checked against Drik Panchang. Every choice: `reconciliation.md`.
+- **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 7–10), checked against Drik Panchang; chaupāī 38 and closing dohā 2 as Anuradha Paudwal sings them (Drik Panchang's wording). Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/anuradha-paudwal/`: Anuradha Paudwal (YouTube `oHHniScYJzo`); the starts come from the transcript, to be set by ear; hand-checked starts in `fixes.md`.
 
 Verse types: the Mānas's own (`do` dohā, `cau` chaupāī).
 

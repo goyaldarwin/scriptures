@@ -1,4 +1,5 @@
-# श्री गणेश चालीसा (Shri Ganesh Chalisa): the verse text, from ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 7–10).
+# श्री गणेश चालीसा (Shri Ganesh Chalisa): the verse text, from ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 7–10);
+# two lines as Anuradha Paudwal sings them in the owner's recording (YouTube oHHniScYJzo), written as Drik Panchang writes them.
 # The witnesses and every choice: reconciliation.md.
 
 @part chalisa
@@ -95,5 +96,5 @@
 श्री गणेश यह चालीसा पाठ करै धर ध्यान ।
 नित नव मंगल गृह बसै लहै जगत सनमान ॥
 [chalisa.do3 do]
-सम्वत् अपना सहस्र दश ऋषि पंचमी दिनेश ।
+सम्वत् अपने सहस्र दश ऋषि पंचमी दिनेश ।
 पूरण चालीसा भयो मंगल मूर्ति गणेश ॥

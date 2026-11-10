@@ -4,7 +4,7 @@ The āratī of Tulasī Mātā, in Hindi (`hi`).
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, p. 230), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/anuradha-paudwal/`: Anuradha Paudwal, "Aarti Vol. 2" (a jukebox, YouTube `faxIif-3F8o`), the track 39:59–47:10. The starts come from the transcript, with hand-checked ones in `fixes.md`; to be set by ear.
 
 Verse types: टेक (refrain, `tek`, shown once at the start although it is sung after every stanza) and पद (stanza, `pad`). The folder's format: `tools/works/README.md`.
 

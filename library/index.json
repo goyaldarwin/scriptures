@@ -3524,6 +3524,75 @@
     ]
    },
    {
+    "id": "namavali",
+    "title": {
+     "hi": "नामावलि",
+     "en": "Namavali"
+    },
+    "desc": {
+     "hi": "भगवान्‌के नाम",
+     "en": "The names of the Lord"
+    },
+    "children": [
+     {
+      "id": "vishnu",
+      "title": {
+       "hi": "भगवान विष्णु",
+       "en": "Bhagwan Vishnu"
+      },
+      "children": [
+       {
+        "id": "vishnu-sahasranama",
+        "work": "vishnu-sahasranama",
+        "path": "hinduism/namavali/vishnu/vishnu-sahasranama",
+        "title": {
+         "hi": "श्रीविष्णुसहस्रनामस्तोत्रम्",
+         "en": "Shri Vishnu Sahasranamam"
+        },
+        "by": {
+         "hi": "महर्षि वेदव्यास (महाभारत, अनुशासन पर्व)",
+         "en": "Maharshi Ved Vyas (Mahabharata, Anushasan Parva)"
+        },
+        "edition": {
+         "hi": "vishnusahasranamam.in",
+         "en": "vishnusahasranamam.in"
+        },
+        "desc": {
+         "hi": "विष्णुके सहस्र नाम",
+         "en": "The thousand names of Vishnu"
+        }
+       }
+      ]
+     },
+     {
+      "id": "sathya-sai",
+      "title": {
+       "hi": "श्री सत्य साई बाबा",
+       "en": "Shri Sathya Sai Baba"
+      },
+      "children": [
+       {
+        "id": "sathya-sai-ashtottara",
+        "work": "sathya-sai-ashtottara",
+        "path": "hinduism/namavali/sathya-sai/sathya-sai-ashtottara",
+        "title": {
+         "hi": "श्री सत्यसायि अष्टोत्तर शतनामावलि",
+         "en": "Shri Sathya Sai Ashtottara Shatanamavali"
+        },
+        "by": {
+         "hi": "भगवान श्री सत्य साई बाबा",
+         "en": "Bhagwan Shri Sathya Sai Baba"
+        },
+        "desc": {
+         "hi": "श्री सत्य साई बाबाके १०८ नाम",
+         "en": "The 108 names of Shri Sathya Sai Baba"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   {
     "id": "veda",
     "title": {
      "hi": "वेद",

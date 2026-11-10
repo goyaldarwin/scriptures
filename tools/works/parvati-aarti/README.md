@@ -4,7 +4,7 @@ The āratī of Pārvatī, in Hindi (`hi`).
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, p. 250), checked against Drik Panchang and Aarti Mala; stanza 5's second line as Anuradha Paudwal sings it (Drik Panchang's). Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/anuradha-paudwal/`: Anuradha Paudwal, "Aarti Vol. 2" (a jukebox, YouTube `faxIif-3F8o`), the track 31:22–39:22. The starts come from the transcript, with hand-checked ones in `fixes.md`; to be set by ear.
 
 The closing stanza begins श्री प्रताप आरती मैया की, which may carry the poet's name (Pratap); no witness says more.
 

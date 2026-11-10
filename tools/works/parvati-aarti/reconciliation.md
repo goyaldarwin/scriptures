@@ -5,7 +5,7 @@
 - **Drik Panchang** (`hinduism/aarti/parvati/parvati-aarti/printouts/drikpanchang/parvati-mata-aarti.html`): the same refrain and seven stanzas in the same order, each in four lines, with the cue "जय पार्वती माता" after each; a typed copy with its own spellings.
 - **Aarti Mala** (page image i-348, an indif.com printout): the same version, one stanza per line, the first marked टेक; it has देव वधू and सारा मदमाता.
 
-The rule: keep the book; correct it only where it is clearly wrong, and follow the version Anuradha Paudwal sings in the chosen recording ("Aarti Vol. 2", YouTube `faxIif-3F8o`, 31:03–39:12; docs/PLAYBOOK.md §3) where she sings another witness's line, each word as that witness spells it. The library's writing standard (docs/PLAYBOOK.md §3): an āratī's verse has no comma (the book's comma between the halves of a line becomes a line break, a half per line); the refrain (टेक) is shown once; stanzas numbered (॥१॥).
+The rule: keep the book; correct it only where it is clearly wrong, and follow the version Anuradha Paudwal sings in the chosen recording ("Aarti Vol. 2", YouTube `faxIif-3F8o`, 31:22–39:22; docs/PLAYBOOK.md §3) where she sings another witness's line, each word as that witness spells it. The library's writing standard (docs/PLAYBOOK.md §3): an āratī's verse has no comma (the book's comma between the halves of a line becomes a line break, a half per line); the refrain (टेक) is shown once; stanzas numbered (॥१॥).
 
 | Place | Book | Ours | Why |
 |---|---|---|---|

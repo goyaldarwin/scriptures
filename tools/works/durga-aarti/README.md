@@ -2,9 +2,9 @@
 
 The āratī of the Mother as Jagadambā, Kālī and Durgā, in Hindi (`hi`).
 
-- **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, p. 207, under the heading "आरती श्री काली जी की"), checked against Drik Panchang and Aarti Mala. Every choice: `reconciliation.md`.
+- **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, p. 207, under the heading "आरती श्री काली जी की"), checked against Drik Panchang and Aarti Mala; six lines as Anuradha Paudwal sings them (Drik Panchang's and Aarti Mala's wording). Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/anuradha-paudwal/`: Anuradha Paudwal (YouTube `OQ5K_GILwzQ`); the starts come from the transcript, to be set by ear.
 
 Verse types: टेक (refrain, `tek`, shown once at the start although it is sung after every stanza) and पद (stanza, `pad`). The folder's format: `tools/works/README.md`.
 

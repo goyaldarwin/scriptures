@@ -4,7 +4,7 @@ The āratī of Śiva as Gaṅgādhara, the bearer of the Gaṅgā, describing hi
 
 - **Text** (`text.txt`): Drik Panchang, "Lord Gangadhara Aarti", the only witness; the āratī is not in ५१ चालीसा संग्रह आरतियों सहित. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/bhajan-aur-aarti/`: "Aarti Gangadhar Ji Ki" from the album Bhajan aur Aarti — Badrinath Kedarnath Gangotri Yamnotri (the singer is not named; YouTube `Zn78FYVwbZM`); the starts come from the transcript, to be set by ear. It leaves out lines 3–4 of stanza 4, lines 1–2 of stanza 5 and lines 1–2 of stanza 8, and ends with the śloka कर्पूरगौरं करुणावतारं, which is not part of this text (`fixes.md`).
 
 Verse types: टेक (refrain, `tek`, shown once at the start) and पद (stanza, `pad`). The folder's format: `tools/works/README.md`.
 
