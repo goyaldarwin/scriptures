@@ -6,7 +6,11 @@ The source folder holds:
   source.json      {"id", "work": "<library path>", "take"?: "<work id>" (then nothing else is needed), "type": "youtube", "title": {"hi", "en"}, "order"?, "draft"?: "<why it is not published yet>", "align"?: "anchors", "split"?: true, "fill"?: n, "anchor_min"?: 0.45, "estimate"?: true, "checked"?: true, "check_only"?: "<why>"}
                    "check_only": the to-check list is check.json alone (a sample the owner hears to score the timings), not
                    also the estimated starts
-  recordings.json  [{"yt": video id, "file": original file name, "dur": seconds, "order": n, "from"?/"to"?: item id, "lead"?: seconds}]
+  recordings.json  [{"yt": video id, "file": original file name, "dur": seconds, "order": n, "from"?/"to"?: item id, "lead"?: seconds,
+                   "start"?/"end"?: seconds}]
+                   "start" / "end": where this work's track begins and ends inside the video (a song in a jukebox, the
+                   āratī at the end of a longer recording): the track keeps them, the app plays, stops and counts the
+                   length within them, and only the transcript between them is matched
   transcripts/     <video id>.jsonl from transcribe.py (+ .done when finished)
   fixes.json       optional hand-checked verse starts {video id: {item id: seconds}}, with the evidence in fixes.md
   aligned.json     optional verse starts from a forced aligner run on the known text {video id: {item id: seconds or [start, end]}}, its lean
@@ -39,6 +43,14 @@ if meta.get('take'):
     assert at, f"{meta['take']}'s recording {meta['id']} has none of this work's verses"
     used = sorted({t[0] for t in at.values()})
     tracks = [dict(A['tracks'][k], first=next(i for i in at if at[i][0] == k), last=[i for i in at if at[i][0] == k][-1]) for k in used]
+    # the verses taken are a stretch of the other work's recording: the track ends where that work's next verse on it starts
+    # (the Hanumān Chālīsā inside the Sundarakāṇḍa's video), so playing on never runs into the rest of the video
+    PO = {x['id']: n for n, x in enumerate(json.load(open(os.path.join(REPO, 'library', frm, 'work.json')))['items'])}
+    for k, tr in zip(used, tracks):
+        mine = [i for i in at if at[i][0] == k]; lastp = max(PO[i] for i in mine)
+        nxt = sorted(v[1] for i, v in A['at'].items() if v[0] == k and PO.get(i, -1) > lastp)
+        tr['start'] = max(tr.get('start', 0), min(at[i][1] for i in mine))
+        if nxt and nxt[0] < tr.get('end', tr['dur']): tr['end'] = nxt[0]
     doc = {k: v for k, v in A.items() if k not in ('tracks', 'at', 'check', 'guess', 'moved', 'raw', 'own')}
     doc.update(tracks=tracks, at={i: [used.index(t[0])] + t[1:] for i, t in at.items()})
     for k in ('check', 'guess', 'own'):
@@ -77,6 +89,11 @@ ALP = os.path.join(SRC, 'aligned.json'); ALIGNED = json.load(open(ALP)) if os.pa
 OP = os.path.join(SRC, 'owner.json'); OWN = json.load(open(OP)) if os.path.exists(OP) else {}
 # ONLY=<ids>: just make the alignment caches of those recordings (run several in parallel), then run once without it
 ONLY = [x for x in os.environ.get('ONLY', '').split(',') if x]
+# a track's own stretch of its video (recordings.json "start" / "end", seconds), kept on the track as given
+def BOUNDS(r):
+    b = {k: round(float(r[k]), 2) for k in ('start', 'end') if k in r}
+    assert 0 <= b.get('start', 0) < b.get('end', r['dur']) <= r['dur'], f"{r['yt']}: start / end must lie inside the video, start before end"
+    return b
 tracks, at, heard = [], {}, set()   # heard: verses whose start was found in the recording (matched, or checked by hand)
 for r in REC:
     v = r['yt']; p = os.path.join(TR, v + '.jsonl')
@@ -84,8 +101,8 @@ for r in REC:
         # source.json "estimate": true and no transcript: spread the verses over the recording by their length, as a
         # starting point for the owner to mark by ear (☰ › More settings › Audio timing); every start is listed to be checked
         a0 = ID[r['from']] if r.get('from') else 0; a1 = ID[r['to']] if r.get('to') else len(IT) - 1
-        t0, t1 = float(r.get('lead', 0)), r['dur'] * 0.98; tot = sum(L(x) for x in range(a0, a1 + 1)); acc = 0; ti = len(tracks)
-        tracks.append({'yt': v, 'dur': r['dur'], 'first': IT[a0]['id'], 'last': IT[a1]['id']})
+        t0, t1 = float(r.get('lead', r.get('start', 0))), r.get('end', r['dur'] * 0.98); tot = sum(L(x) for x in range(a0, a1 + 1)); acc = 0; ti = len(tracks)
+        tracks.append({'yt': v, 'dur': r['dur'], **BOUNDS(r), 'first': IT[a0]['id'], 'last': IT[a1]['id']})
         for x in range(a0, a1 + 1): at.setdefault(IT[x]['id'], [ti, round(t0 + (t1 - t0) * acc / tot, 1)]); acc += L(x)
         for iid, t in FIX.get(v, {}).items(): at[iid] = [ti, round(max(0, t - 0.4), 2)]; heard.add(iid)
         print(v, 'estimated by length:', a1 - a0 + 1, 'verses'); continue
@@ -94,6 +111,7 @@ for r in REC:
     cache = os.path.join(TR, v + '.align.json')
     if not os.path.exists(cache):
         S = A.load(p)
+        if 'start' in r or 'end' in r: S = [x for x in S if x['e'] > r.get('start', 0) and x['s'] < r.get('end', r['dur'])]   # only this track's stretch of the video
         # recordings.json may say where a recording starts ("from": item id); otherwise it is located by matching words,
         # which can fail on texts whose lines repeat a lot (the Rudram's "namo … namaḥ")
         r0 = next(k for k, ref in enumerate(A.REF) if ref[0] == ID[r['from']]) if r.get('from') else A.locate(S)
@@ -149,7 +167,7 @@ for r in REC:
         for x in range(i0 - 1, ds - 1, -1): t = max(0, t - L(x) * rate); pre.append([x, round(t, 2)])
         full = pre[::-1] + full
     ti = len(tracks)
-    tracks.append({'yt': v, 'dur': r['dur'], 'first': IT[full[0][0]]['id'], 'last': IT[full[-1][0]]['id']})
+    tracks.append({'yt': v, 'dur': r['dur'], **BOUNDS(r), 'first': IT[full[0][0]]['id'], 'last': IT[full[-1][0]]['id']})
     heard |= {IT[i]['id'] for i, _ in clean}
     for i, t in full: at.setdefault(IT[i]['id'], [ti, t])
     print(v, len(full), tracks[-1]['first'], '→', tracks[-1]['last'])
@@ -182,7 +200,7 @@ if own_ids:
     for ti in range(len(tracks)):
         a = sorted([[ID[k], v[1], v[2] if len(v) > 2 else None] for k, v in at.items() if v[0] == ti])
         before = {i: st for i, st, _ in a}
-        rows, mv = O.keep_order(a, lambda i: IT[i]['id'] in own_ids, lambda i: IT[i]['id'] in heard, lambda i: max(8, len(''.join(IT[i]['v']))), tracks[ti]['dur'])
+        rows, mv = O.keep_order(a, lambda i: IT[i]['id'] in own_ids, lambda i: IT[i]['id'] in heard, lambda i: max(8, len(''.join(IT[i]['v']))), tracks[ti].get('end', tracks[ti]['dur']))
         for i, st, en in rows: at[IT[i]['id']] = [ti, st, en] if en is not None else [ti, st]
         for i in mv: raw[IT[i]['id']] = before[i]
         moved += [IT[i]['id'] for i in mv]
@@ -200,6 +218,10 @@ check = [] if meta.get('checked') or meta.get('check_only') else [x['id'] for x 
 CP = os.path.join(SRC, 'check.json'); DOUBT = set(json.load(open(CP))['ids']) if os.path.exists(CP) else set()   # check.json: starts in doubt, even when heard
 assert DOUBT <= set(ID), f'check.json: unknown verse ids {sorted(DOUBT - set(ID))[:5]}'
 check = [x['id'] for x in IT if x['id'] in at and x['id'] not in byhand and (x['id'] in check or x['id'] in DOUBT)]
+# every verse timed on a track lies inside its stretch (a start or end outside it would play another song of the jukebox)
+for k, v in at.items():
+    tr = tracks[v[0]]; lo, hi = tr.get('start', 0), tr.get('end', tr['dur'])
+    assert lo <= v[1] < hi and (len(v) < 3 or v[2] <= hi + 0.5), f"{k}: timed at {v[1:]}, outside its track's stretch {lo}–{hi} of {tr['yt']}"
 doc.update(tracks=tracks, at=at)
 if meta.get('check_only'): doc['checkOnly'] = True   # the to-check list is a fixed sample: the app does not add verses it moves
 if check: doc['check'] = check

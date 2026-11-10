@@ -18,7 +18,7 @@ def r1(x): return math.floor(x * 10 + 0.5) / 10   # JavaScript's Math.round(x * 
 
 def keep_order(a, own, heard, lengths, dur):
     """a: [[i, start, end|None], …] in text order; own(i), heard(i): predicates on the item index; lengths(i): text length;
-    dur: the recording's length in seconds. Returns (rows, moved) — rows in text order, moved a list of item indices."""
+    dur: where the recording ends, in seconds (its track's "end" inside a longer video, else the video's length). Returns (rows, moved) — rows in text order, moved a list of item indices."""
     a = [[i, s, e] for i, s, e in a]
     moved = []
     n_ = len(a)

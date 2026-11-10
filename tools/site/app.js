@@ -1031,7 +1031,7 @@ function buildAudio(){
       const p = k - 1, n = e + 1;
       if ((p >= 0 && own(p)) || (n < a.length && own(n))){
         const pre = p >= 0 && a[p][2] == null ? len(p) : 0, L0 = p >= 0 ? (a[p][2] != null ? a[p][2] : a[p][1]) : a[k][1];
-        const U = n < a.length ? a[n][1] : A.tracks[ti].dur * 0.98;
+        const U = n < a.length ? a[n][1] : A.tracks[ti].end != null ? A.tracks[ti].end : A.tracks[ti].dur * 0.98;
         let tot = pre; for (let j = k; j <= e; j++) tot += len(j); let acc = pre;
         if (U - L0 > 0.3 * (e - k + 1 + (pre ? 1 : 0))) for (let j = k; j <= e; j++){ const st = Math.round((L0 + (U - L0) * acc / tot) * 10) / 10; acc += len(j); if (st !== a[j][1]){ a[j] = [a[j][0], st, a[j][2]]; A.moved.add(IT[a[j][0]].id); } }
       }
@@ -1043,8 +1043,10 @@ function buildAudio(){
 }
 // Where a recording begins for this work: at 0, so the opening music is heard, when the first verse follows a short
 // opening; at the first verse when the work is a part of a longer video (the Hanumān āratī at the end of a Sundarakāṇḍa video)
+// A track that is a stretch of a longer video ("start" / "end": a song in a jukebox) begins at its first verse and ends at its "end".
 const INTRO_MAX = 90;
-function trStart(tr){ const a = SRC.au && SRC.au.at[(IT[tr.fi] || {}).id]; const s = a ? a[1] : 0; return s <= INTRO_MAX ? 0 : s; }
+function trStart(tr){ const a = SRC.au && SRC.au.at[(IT[tr.fi] || {}).id]; const s = a ? a[1] : 0; return tr.start == null && s <= INTRO_MAX ? 0 : s; }
+function trEnd(tr){ return tr.end != null ? tr.end : tr.dur; }   // where a track ends: its own end inside the video, else the video's
 function hasAu(i){ return !!(SRC.au && SRC.au.at[IT[i].id]); }
 function firstAu(a, b){ for (let i = a; i <= b; i++) if (hasAu(i)) return i; return null; }
 /* YouTube embed driven by postMessage (no external script needed) */
@@ -1082,7 +1084,7 @@ function RATE(){ return S.settings.rate || 1; }
 function spanSecs(a, b){
   if (!SRC.au) return null; let s = 0;
   AUT.forEach((L, t) => { let k0 = -1, k1 = -1; L.forEach(([i], k) => { if (i >= a && i <= b){ if (k0 < 0) k0 = k; k1 = k; } }); if (k0 < 0) return;
-    const e = L[k1][2] != null ? L[k1][2] : k1 + 1 < L.length ? L[k1 + 1][1] : SRC.au.tracks[t].dur; if (e > L[k0][1]) s += e - L[k0][1]; });
+    const e = L[k1][2] != null ? L[k1][2] : k1 + 1 < L.length ? L[k1 + 1][1] : trEnd(SRC.au.tracks[t]); if (e > L[k0][1]) s += e - L[k0][1]; });
   return s ? s / RATE() : null;
 }
 // 48 m · 4 h 58 m (४ घं ५८ मि), to the nearest minute: a listening time, so it is shown with ▶, never as the time to read
@@ -1095,6 +1097,7 @@ $('#pRate').onclick = () => { S.settings.rate = RATES[(RATES.indexOf(RATE()) + 1
 function ytWatchURL(){
   const A = SRC.au, st = Math.floor(ytInfo.t || 0); let end = '';
   if (PL.end != null){ const nx = A.at[(IT[PL.end + 1] || {}).id]; if (nx && nx[0] === PL.t) end = '&end=' + Math.ceil(nx[1]); }
+  if (!end && A.tracks[PL.t] && A.tracks[PL.t].end != null) end = '&end=' + Math.ceil(A.tracks[PL.t].end);
   return 'https://www.youtube.com/embed/' + ytVid + '?autoplay=1&start=' + st + end;
 }
 // why: 'refused' (YouTube error 101 / 150 / 153: the recording may not be played outside YouTube), 'gone' (100: removed or
@@ -1191,10 +1194,13 @@ function curAt(time){ const a = AUT[PL.t]; let lo = 0, hi = a.length - 1, r = a[
 function tick(anchor){
   if (!PL.on || !ytOK) return; if (typeof anchor !== 'number') anchor = PL.cur;
   const time = playTime(); const i = curAt(time);
-  const e = endOf(i);
-  if (PL.end != null && (i > PL.end || (i === PL.end && e != null && time >= e))){
+  const e = endOf(i), tr0 = SRC.au.tracks[PL.t];
+  // a track inside a longer video ends at its own end: the reading goes on with the next recording, or stops there
+  const trOver = tr0.end != null && time >= tr0.end && PL.snip == null;
+  if (trOver && firstAu(tr0.li + 1, PL.end == null ? IT.length - 1 : PL.end) != null){ onEnded(); return; }
+  if (trOver || (PL.end != null && (i > PL.end || (i === PL.end && e != null && time >= e)))){
     // the verse or stretch asked for has ended: stop, and offer to go on from the next verse
-    const last = PL.end, whole = PL.whole, msg = whole ? T('पाठ पूर्ण', 'Recitation complete') : PL.endMsg || T('पूर्ण', 'Finished');
+    const last = PL.end != null ? PL.end : tr0.li, whole = PL.whole, msg = whole ? T('पाठ पूर्ण', 'Recitation complete') : PL.endMsg || T('पूर्ण', 'Finished');
     stopAudio(); const nx = whole ? null : firstAu(last + 1, Math.min(IT.length - 1, last + 80));
     if (TOUR && TOUR.waiting) return;   // the tour's verse has been heard: the tour finishes (no "Play on")
     const P = PLAN[R.org], af = P && R.n === P.n && last === P.ends[P.n - 1] && (P.after || [])[0];
@@ -1218,7 +1224,7 @@ function tick(anchor){
   if (e2 != null && time >= e2 && m >= 0 && m + 1 < a.length) show = a[m + 1][0];
   setCur(show); followLines(show, time);
   // the bar runs over this work's part of the recording only (a work that is a slice of a longer video starts at 0%)
-  const tr = SRC.au.tracks[PL.t], d = ytInfo.d || tr.dur, s0 = trStart(tr);
+  const tr = SRC.au.tracks[PL.t], d = tr.end != null ? tr.end : ytInfo.d || tr.dur, s0 = trStart(tr);
   $('#pProg').style.width = Math.max(0, Math.min(100, 100 * (time - s0) / Math.max(1, d - s0))) + '%';
 }
 setInterval(tick, 300);
@@ -1245,7 +1251,7 @@ function followLines(i, time){
   const top = $('#reader .bar').getBoundingClientRect().bottom, bot = $('#player').getBoundingClientRect().top;
   if (el.offsetHeight <= bot - top - 12) return;
   const a = AUT[PL.t], m = a.findIndex(x => x[0] === i); if (m < 0) return;
-  const s = a[m][1], e = endOf(i) ?? (m + 1 < a.length ? a[m + 1][1] : (ytInfo.d || SRC.au.tracks[PL.t].dur));
+  const s = a[m][1], e = endOf(i) ?? (m + 1 < a.length ? a[m + 1][1] : SRC.au.tracks[PL.t].end ?? (ytInfo.d || SRC.au.tracks[PL.t].dur));
   const vl = [...el.querySelectorAll('.vline')], ls = vl.length ? vl : [...el.querySelectorAll('.vtext p')];
   if (!(e > s) || ls.length < 2) return;
   const w = ls.map(l => l.textContent.length || 1), f = (time - s) / (e - s) * w.reduce((x, y) => x + y);
@@ -1504,7 +1510,7 @@ const PAGESECS = {};
 function pageSecs(wk){
   if (!(wk in PAGESECS)) PAGESECS[wk] = (async () => { try { const p = workPath(wk), w = await getJSON(p + '/work'), c = ((w.sources || {}).au || [])[0]; if (!c) return null;
     const A = await getJSON(p + '/' + c.file), at = Object.values(A.at || {}); let sec = 0;
-    (A.tracks || []).forEach((tr, t) => { const L = at.filter(x => x[0] === t).sort((x, y) => x[1] - y[1]); if (L.length){ const z = L[L.length - 1]; sec += (z[2] != null ? z[2] : tr.dur) - L[0][1]; } });
+    (A.tracks || []).forEach((tr, t) => { const L = at.filter(x => x[0] === t).sort((x, y) => x[1] - y[1]); if (L.length){ const z = L[L.length - 1]; sec += (z[2] != null ? z[2] : trEnd(tr)) - L[0][1]; } });
     return sec > 0 ? sec : null; } catch (e) { return null; } })();
   return PAGESECS[wk]; }
 const pagePlay = pg => PAGEWORK(pg) ? '<button class="lplay timed" data-ppg="' + pg + '" aria-label="play"><svg><use href="#i-play"/></svg></button><span class="ldur" data-pdur="' + pg + '"></span>' : '';
@@ -1923,7 +1929,7 @@ async function importTiming(X){
   const got = {}; let bad = 0;
   for (const yt in (X.starts || {})) for (const id in X.starts[yt]){
     const v = X.starts[yt][id], s = Array.isArray(v) ? v[0] : v, e = Array.isArray(v) ? v[1] : null, t = tr[yt], tk = SRC.au.tracks[t], i = ID[id];
-    const ok = t != null && i != null && i >= tk.fi && i <= tk.li && typeof s === 'number' && isFinite(s) && s >= 0 && (!tk.dur || s < tk.dur) && (e == null || (typeof e === 'number' && isFinite(e) && e > s));
+    const ok = t != null && i != null && i >= tk.fi && i <= tk.li && typeof s === 'number' && isFinite(s) && s >= (tk.start || 0) && (!tk.dur || s < trEnd(tk)) && (e == null || (typeof e === 'number' && isFinite(e) && e > s));
     if (ok) got[id] = [t, Math.round(s * 10) / 10, e == null ? null : Math.round(e * 10) / 10]; else bad++;
   }
   const mine = myStarts(), ids = Object.keys(got), nw = ids.filter(id => !mine[id]), diff = ids.filter(id => mine[id] && JSON.stringify(mine[id]) !== JSON.stringify(got[id]));

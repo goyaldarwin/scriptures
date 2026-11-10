@@ -47,8 +47,9 @@ def main(src):
             j = k
             while j + 1 < len(idx) and T[idx[j + 1]] - T[idx[k]] < WIN: j += 1
             lo, hi = max(0, k - 1), min(len(idx) - 1, j + 1)
-            a = max(0.0, T[idx[lo]] - PAD)
-            b = min(tr['dur'], (T[idx[hi + 1]] if hi + 1 < len(idx) else tr['dur'] - PAD) + PAD)
+            t0, t1 = tr.get('start', 0.0), tr.get('end', tr['dur'])   # a track inside a longer video: only its own stretch
+            a = max(t0, T[idx[lo]] - PAD)
+            b = min(t1, (T[idx[hi + 1]] if hi + 1 < len(idx) else t1 - PAD) + PAD)
             out.append({'yt': tr['yt'], 'a': round(a, 2), 'b': round(b, 2), 'keep': [IT[i]['id'] for i in idx[k:j + 1]],
                         'lines': [{'id': IT[i]['id'], 'rom': rom(IT[i].get('t') or []), 'rough': round(T[i], 2) if i in rough else None} for i in idx[lo:hi + 1]]})
             k = j + 1
