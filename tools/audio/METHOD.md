@@ -55,13 +55,17 @@ through the refrain because it has no end.
    start he sets becomes an anchor: the stretch up to his next set start is aligned again (to build), so the verses
    around it improve without being touched, and his first starts on a recording measure its lean.
 
-## Before a new recording uses steps 2–5
+## When a recording uses steps 2–5
 
-Score them on the owner's starts set by ear for that recording (20–30 are enough; the Katha Upaniṣad has 75; `mms_score.py`): within 1 s,
-more than 3 s off, against step 1 alone, the same table as `aligned.md`. Switch only when they are better, and record the
-figures beside the recording (`aligned.md`). A new recording uses steps 2–5 at once and is published without waiting for the owner's ear (the owner, 2026-11: "Don't wait for me to review the recordings"); its lean is 0.6 s until he has set starts on it. Before that, on the owner's word a recording could switch before he had set any start (the Gītā's, the Vālmīki
-Rāmāyaṇa's): it is then published for review (`source.json` "review"), so every start stays on his to-check list until
-scored.
+**A new recording** uses steps 2–5 at once and is published without waiting for the owner's ear (the owner: "Don't wait
+for me to review the recordings"); its lean is 0.6 s until he has set starts on it, and what the checks flag is on his
+to-check list.
+
+**A recording already timed from step 1 alone** switches once steps 2–5 score better on the owner's starts set by ear for
+it (20–30 are enough; the Kaṭha Upaniṣad has 75; `mms_score.py`): within 1 s and more than 3 s off, against step 1 alone,
+the same table as `aligned.md`, with the figures recorded beside the recording (`aligned.md`). On the owner's word it may
+switch before he has set any start (the Gītā's, the Vālmīki Rāmāyaṇa's): it is then published for review (`source.json`
+"review"), so every start stays on his to-check list until scored.
 
 ## Where it runs
 
@@ -69,6 +73,6 @@ In the public repo's Actions (free), the `align` workflow, like `transcribe`, an
 publishing and the owner's timing submissions are never queued behind it (`docs/PLAYBOOK.md`, "GitHub Actions minutes").
 The whole Mānas with MMS is about 2,350 runner minutes.
 
-## Next to apply it to
+## Still to apply it to
 
-The Śrīmad Bhāgavata Mahāpurāṇa and the Upaniṣads, where the owner hears starts and ends off.
+The recordings `docs/WORKS.md` lists as timed from the transcript alone (its last section, made by the build).

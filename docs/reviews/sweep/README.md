@@ -1,0 +1,26 @@
+# The sweep: where it stands
+
+`docs/SWEEP.md` is the prompt; this folder is its record, so the next session continues from here. Each finding says what became of it: **fixed** (with its pull request's branch), **recorded** (settled, the reason given), or **open** (for a later session, with what is known).
+
+| File | What |
+|---|---|
+| `inventory.md` | every work on the shelf and in `tools/works`, its languages, parts, verses, meaning sources, recordings and sources in scriptures-data (`tools/sweep/inventory.py` remakes it) |
+| `lessons.md` | every past mistake, its rule and its guard; the lines marked "none" are tests still to write (§E) |
+| `<work id>.md` | one per work once its §A audit is done (none yet) |
+
+## Done
+
+- **Step 0.** Docs read; dictionaries fetched; history read into `lessons.md`; inventory made: 175 works in `tools/works`, the same 175 on the shelf, every one with its sources folder in scriptures-data, every source a README or `reconciliation.md` names present there. The only gaps are the five recordings `docs/START-HERE.md` already lists under "Open with the owner" (Gaṅgā, Jagadīśa and Śiva āratīs, Māṇḍūkya, Śrī Rāmacandra Kṛpālu: their audio files are not in scriptures-data).
+- **A4, agent notes in data (whole library).** Every one of our meanings (Hindi, English, Punjabi) and every dictionary searched for notes, instructions, placeholders and English inside Hindi: none found. Every "this Chālīsā", "should be recited", "here" is the verse's own word.
+- **A5, shared entries that speak of one context (whole library).** 13 found and fixed (branch `sweep/shared-entries`): śārṅga "here held by Śrī Rāma" opened so in the Viṣṇu Sahasranāma, the Durgā Saptaśatī and the Śiva Purāṇa; बिभ्यति gave only "she fears" (Bhaja Govindam's epic singular) in 20 verses of the Rāmāyaṇa, Bhāgavata and Mahābhārata whose subject is plural (Monier-Williams: 3rd plural, epic also 3rd singular), now both readings; वास्तुपति, कृष्णदासप्रभु, मोहिनीराज, मोहनीराज, माधवा, अवधूतो, खगकेतू, विद्याच्छुक्रममृतमिति, विमुक्तश्च, शञ्च, rāmacaritamānasa now name their work or say what "here" meant. `library.py` now refuses such an entry.
+- **A2, a name spelled two ways.** Shirdi Sai Baba's name was साई in the Dhūpa Āratī and the 108 names, साईं in the Guruvar āratī and three ways in the Sai Chālīsā (साईं, साई, साँईं), and the village शिर्डी and शिरडी; the English meanings had Śirḍī and Shirdi. Fixed to साई / शिर्डी / Śirḍī everywhere, on the owner's ruling for the name (branch `sweep/sai-name`); `tools/text/names.json` and `library.py` now hold it.
+- **D, documents against the data.** LIBRARY.md said no Punjabi dictionary entry has a Punjabi sense (all 3,125 have; now checked by `library.py`) and listed the Japji Sahib as planned; METHOD.md carried a date, a "before that" story, two switching rules that read as one contradiction, and a stale "next to apply" list; CLAUDE.md gave only one of the two switching rules (branch `sweep/docs`).
+- **E.** PLAYBOOK §10 said `ux_test.py` checks that an element id is used once; no test did. Now it does, app-wide and per work (branch `sweep/docs`).
+
+## Open (next sessions)
+
+- **A6, language of the Chālīsās.** All 55 Chālīsās are `awa`; most are modern Hindi verse, not Awadhi (the Sai Chālīsā's README says so: "Hindi verse, catalogued `awa`, as the shelf's other chālīsās"), while the 96 Āratīs are `hi`. Each Chālīsā's language is to be read and set, and its words that only `awa.json` has moved to `hi.json` (Platts and the Śabdasāgara), with a check; the Hanumān Chālīsā is Awadhi.
+- **A5, inflected forms with one reading.** बिभ्यति shows the class: a shared Sanskrit entry written for the first small work that used an inflected form, now opening in the epics with the wrong person or number. Every shared `sa.json` entry that the Rāmāyaṇa, Mahābhārata, Bhāgavata or Śiva Purāṇa also reach is to be read against its verses there.
+- **A5, hard entries no meaning reaches.** `hard_words.py report`: 197 Hindi and 2 English hard entries (`kankhal`, `nāmadeva`) are reached by no word of any meaning: each is a word a meaning dropped or spells otherwise; find which.
+- **C, speed.** Measured on a fresh machine (the first run, so `regen_check` remade every work): build 44 s, regen_check 526 s, history_check 5 s, smoke_test 115 s, UX shards 709, 1,325, 1,579 and 1,457 s (shared with other runs on the machine, so upper bounds); 1,623 s in all, every check passing on `main`. `check.py`, CLAUDE.md and HOW-TO say "about 5 minutes"; the UX shards dominate (6,081 checks; 174 fixed `wait_for_timeout`s in `ux_test.py`). A data-only change's `--fast` run here: about 230 s (regen_check 180–200 s, as each fresh worktree remakes every work).
+- **A1, A2, A3, A7, A8 work by work; B, B2, D (procedures run on a scratch branch), E (the "none" lines of `lessons.md`), F:** not begun.

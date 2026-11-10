@@ -30,7 +30,7 @@ hinduism/veda/yajurveda/shukla-yajurveda/upanishad/isha-upanishad
 hinduism/veda/atharvaveda/upanishad/mandukya-upanishad
 sikhism/gurbani/guru-arjan-dev/sukhmani-sahib
 hinduism/veda/samaveda/upanishad/kena          (planned)
-sikhism/gurbani/guru-nanak-dev/japji-sahib     (planned)
+sikhism/gurbani/guru-nanak-dev/japji-sahib
 ```
 
 Rules (`tools/site/build.py` checks them):
@@ -171,7 +171,7 @@ The file lists every language of a verse, and every language a meaning is writte
 
 Dictionary keys are written **without Vedic accent marks** (svara: U+0951–0954, U+1CD0–1CFF, U+A8E0–A8F1); the app removes them from a tapped word before looking it up, so a text keeps its svaras and still finds its meanings. Exporters must strip them the same way when they collect words.
 
-A dictionary (`<lang>.json`): `{"राम": {"hi": "भगवान श्रीराम", "en": "Lord Rama", "g": "grammar", "r": "root", "p": [["part", "meaning"]]}}`. Every entry has `hi` or `en`. An entry may also carry `"pa"`, its Punjabi meaning: the app shows it in the word sheet, and in the word list while the ਪੰ layer is on. No entry has one yet.
+A dictionary (`<lang>.json`): `{"राम": {"hi": "भगवान श्रीराम", "en": "Lord Rama", "g": "grammar", "r": "root", "p": [["part", "meaning"]]}}`. Every entry has `hi` or `en`. An entry may also carry `"pa"`, its Punjabi meaning: the app shows it in the word sheet, and in the word list while the ਪੰ layer is on. Every entry of `pa.json` (the Gurbani dictionary) has one, the same senses as `hi` and `en` in the same order (`docs/HOW-TO.md`, "Add the Punjabi sense"); `library.py` checks it.
 
 **The hard words of our meanings** (`"hard": true`): a word of one of our Hindi or English meanings that a reader may not know (विषयासक्ति, अमृतत्व; "covet", "Pūṣan") has an entry in that language's dictionary (`hi.json`, `en.json`) marked `"hard": true`, with `hi` and `en` (a simple Hindi meaning and an English one) and, for Hindi, `g`. In the reader it is faintly underlined and opens its meaning like a verse word; other words of a meaning are plain text. The entry's key is the word's plain form: the app looks through a joined Hindi ending, a plural and a name's जी (मनमें, विषयोंसे, आसक्तियोंको, गोपियाँ, गाथाएँ, विभीषणजीने → the word) and an English plural, tense or 's (lowercase keys). A word that has an entry of its own (as written, or without its postposition or जी) is that word: underlined only if that entry is hard, so a plain word is never taken for a hard one it resembles (परे "beyond" is not परा "supreme", धरे is not धरा). Only a word with no entry is looked through as a plural, its guessed singulars in order (देवियों → देवी before देवि), the first one in the dictionary deciding (`tools/site/app.js` hardKey, `tools/meanings/hard_words.py` hard_key). A sense that fits only one work (विद्या in the Īśāvāsya Upaniṣad) goes in that work's `glossary/<lang>.json` with `"hard": true`, and the exporter checks the word is in that work's meanings.
 

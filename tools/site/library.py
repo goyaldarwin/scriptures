@@ -304,6 +304,8 @@ def prepare(lib):
             # to, never "here" or "this āratī" (docs/PLAYBOOK.md §5); a word that itself says "this" (एतत्, इदम्) may
             bad = [s for s in _texts(v) if CONTEXT.search(s)] if not THIS.search(k) else []
             _need(not bad, f"glossary/{code}.json: {k!r} speaks of one context ({(bad or [''])[0][:80]!r}): name the work, or move the sense to that work's glossary/")
+            # the Gurbani dictionary: every entry has its Punjabi sense, the same senses as hi and en in the same order (docs/HOW-TO.md)
+            if code == 'pa': _need(isinstance(v.get('pa'), str) and v['pa'] and len(v['pa'].split(' / ')) == len(str(v.get('hi', '')).split(' / ')) == len(str(v.get('en', '')).split(' / ')), f"glossary/pa.json: {k!r} needs pa with as many senses as hi and en (\" / \" between)")
     G = {os.path.basename(f)[:-5]: json.load(open(f, encoding='utf-8')) for f in glob.glob(os.path.join(lib, 'glossary', '*.json')) if not f.endswith('languages.json')}
     clean = word_rule()
     shelf = json.load(open(os.path.join(lib, 'index.json')))
