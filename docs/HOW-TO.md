@@ -54,6 +54,13 @@ The rules are `tools/meanings/style.md` (above all §1) and `docs/PLAYBOOK.md` �
 6. **Copy check of the whole file:** `python3 tools/meanings/overlap.py tools/works/manas/meanings/hi/scriptures.json library/hinduism/granth/tulsidas/ramcharitmanas/meanings/hi-gitapress.json` and `python3 tools/meanings/overlap.py tools/works/manas/meanings/en/scriptures.json library/hinduism/granth/tulsidas/ramcharitmanas/meanings/en-gitapress.json`, 0 runs of 10+ for both.
 7. `python3 tools/works/export.py`, then every check of `CLAUDE.md`; diff the regenerated data; one pull request per kāṇḍa. Before it merges, the session settles every doubt the writer or reviewer recorded (`docs/PLAYBOOK.md` §2): it applies the decision and removes the doubt from its file (`docs/reviews/README.md`).
 
+## Add the Punjabi sense to the Gurbani word meanings (`library/glossary/pa.json`)
+Every entry has `pa` beside `hi` and `en`, the same senses in the same order (" / " between). For new words:
+1. `python3 tools/meanings/teeka.py fetch`, then `python3 tools/meanings/pa_words_prepare.py DIR`: batches of 125 words, each with its entry, up to three lines where it occurs and the Darpan/Faridkot word glosses.
+2. For each batch, a writer (`tools/meanings/briefs/pa-words-writer.md`) and then a reviewer (`pa-words-reviewer.md`), each its own agent; the reviewer gives `hi`/`en` for any sense a line needs that the entry lacks.
+3. Merge (the reviewer's line wins), check that `hi`, `en` and `pa` list the same number of senses, and look up every word marked `mk` on srigranth.org (its dictionary page gathers the Mahan Kosh and the SGGS dictionaries; the browser needs the owner to allow the site).
+4. Write `pa` after `en` in each entry, keeping the file one entry per line; `python3 tools/site/check.py`.
+
 ## Add a new audio source (another reciter)
 
 1. Choose the id: the reciter's name, e.g. `anup-jalota`. Create `tools/works/<work>/audio/<id>/`.

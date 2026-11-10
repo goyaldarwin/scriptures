@@ -312,6 +312,17 @@ function buildWork(){
   VIEWS.forEach(v => { VIEW[v.id] = v; (v.groups || []).forEach(g => g.list.forEach(m => {
     const key = v.id + '.' + m.id, list = m.items.map(id => ID[id]).filter(i => i != null), pgs = [...new Set(list.map(i => itemPage[i]))];
     GROUP[key] = {key, m, list, set: new Set(list), ix: new Map(list.map((i, n) => [i, n])), pgs, pos: new Map(pgs.map((p, n) => [p, n]))}; })); });
+  bmGroup();
+}
+// the bookmarked verses as a reading of their own (GROUP.bm, read like a writer's verses): every verse as the reader shows it,
+// with its meanings, words and ▶, in the work's order, each part and section heading the verses in it. Made again each
+// time it is opened from Bookmarks & notes, so a bookmark set or removed meanwhile is in it (or not)
+function bmGroup(){
+  const pre = W.id + ':', set = new Set();
+  for (const p of SHOWN()) for (const k in p.bm) if (k.startsWith(pre) && ID[k.slice(pre.length)] != null) set.add(ID[k.slice(pre.length)]);
+  const list = [...set].sort((a, b) => a - b), pgs = [...new Set(list.map(i => itemPage[i]))];
+  delete GROUP.bm; if (!list.length) return null;
+  return GROUP.bm = {key: 'bm', m: {hi: 'बुकमार्क', en: 'Bookmarks'}, list, set, ix: new Map(list.map((i, n) => [i, n])), pgs, pos: new Map(pgs.map((p, n) => [p, n]))};
 }
 const RG = () => GROUP[R.org] || null;   // the group the reader shows (a writer), or none
 const GNAME = o => T(GROUP[o].m.hi, GROUP[o].m.en);
@@ -585,7 +596,8 @@ function endHTML(){
   const next = (a, b, name) => { const d = durLabel(spanSecs(a, b)); h += '<button class="btn" data-next="' + a + '">' + esc(name) + ' ›</button>' + (d ? '<div class="ndur">▶ ' + d + '</div>' : ''); };
   if (RG()) h += '<div class="colo">' + esc(RNAME()) + '</div>';   // a writer's verses end here: no next part
   else if (R.org === 'k'){ const nx = PARTS[R.n + 1]; if (nx) next(nx.a, nx.b, KNAME(nx.k)); }
-  else { const P = PLAN[R.org]; if (R.n < P.n){ const [na, nb] = dayRange(R.org, R.n + 1); next(na, nb, VN(R.n + 1)); } }
+  else { const P = PLAN[R.org]; if (R.n < P.n){ const [na, nb] = dayRange(R.org, R.n + 1); next(na, nb, VN(R.n + 1)); }
+    else if ((P.after || []).length){ const pg = P.after[0]; h += '<button class="btn" data-after="' + pg + '">' + esc(pageTitle(pg)) + ' ›</button>' + (PAGEWORK(pg) ? '<div class="ndur" data-pdur="' + pg + '"></div>' : ''); setTimeout(fillPageDurs, 0); } }   // after the last day: what is read after it (the āratī), as the next day is
   return h + '</div>';
 }
 function renderAround(i, focus){
@@ -854,6 +866,7 @@ $('#rBody').addEventListener('click', ev => {
 });
 function readerTap(ev){
   const nx = ev.target.closest('[data-next]'); if (nx){ openReader(R.org, +nx.dataset.next); return; }
+  const af = ev.target.closest('[data-after]'); if (af){ openPage(af.dataset.after); return; }
   const mw = ev.target.closest('.mw'); if (mw){ mw.classList.add('sel'); wordSheet(mw.dataset.mw, null, mw.dataset.ml); return; }   // a hard word of a meaning
   const v = ev.target.closest('.verse'), i = v ? +v.dataset.i : null;
   const a = ev.target.closest('[data-a]');
@@ -1184,7 +1197,9 @@ function tick(anchor){
     const last = PL.end, whole = PL.whole, msg = whole ? T('पाठ पूर्ण', 'Recitation complete') : PL.endMsg || T('पूर्ण', 'Finished');
     stopAudio(); const nx = whole ? null : firstAu(last + 1, Math.min(IT.length - 1, last + 80));
     if (TOUR && TOUR.waiting) return;   // the tour's verse has been heard: the tour finishes (no "Play on")
-    if (nx == null) toastLight(msg); else toastAct(msg, T('▶ आगे सुनें', '▶ Play on'), () => { if (!$('#reader').classList.contains('on')) openReader(R.org, nx); playFrom(nx); });
+    const P = PLAN[R.org], af = P && R.n === P.n && last === P.ends[P.n - 1] && (P.after || [])[0];
+    if (nx == null && af && PAGEWORK(af)) toastAct(msg, '▶ ' + pageTitle(af), () => openPage(af, true));
+    else if (nx == null) toastLight(msg); else toastAct(msg, T('▶ आगे सुनें', '▶ Play on'), () => { if (!$('#reader').classList.contains('on')) openReader(R.org, nx); playFrom(nx); });
     return;
   }
   // a verse's end matters only where playing stops (one verse, or the last verse of a reading): never skipped. While timings
@@ -1475,6 +1490,25 @@ $('#libSearchBtn').onclick = () => openSearch('lib');
 $('#hSearch').onclick = () => openSearch('text');
 $('#rSearch').onclick = () => openSearch('text', false, true);
 $('#libMenu').onclick = mainMenu;
+// a plan's page (vidhi, aarti, visarjan): its page, or, when it is a work of its own (vidhi.open: the Mānas's āratī, with its
+// meanings and recording), that work's reading, played from its start with play; Back returns to where it was opened
+const PAGEWORK = pg => W && ((W.vidhi || {}).open || {})[pg];
+async function openPage(pg, play){ const wk = PAGEWORK(pg);
+  if (!wk){ vidTab = pg === 'vidhi' ? 'v' : pg; show('vidhi'); return; }
+  if (PL.on) stopAudio(); await openWork(wk, true);
+  if (CURVIEW === 'reader') $('#reader').classList.remove('on');   // from the reader (the end of the last day): a page of its own, so Back returns there
+  if (play && firstAu(0, IT.length - 1) != null) playRange('k', 0, IT.length - 1); else openReader('k', 0); }
+// its listening time, as every ▶ shows one: from that work's first recording, from its first verse's start to its last
+// verse's end (its set end, else the recording's end); fetched once, then shown on every ▶ of the page
+const PAGESECS = {};
+function pageSecs(wk){
+  if (!(wk in PAGESECS)) PAGESECS[wk] = (async () => { try { const p = workPath(wk), w = await getJSON(p + '/work'), c = ((w.sources || {}).au || [])[0]; if (!c) return null;
+    const A = await getJSON(p + '/' + c.file), at = Object.values(A.at || {}); let sec = 0;
+    (A.tracks || []).forEach((tr, t) => { const L = at.filter(x => x[0] === t).sort((x, y) => x[1] - y[1]); if (L.length){ const z = L[L.length - 1]; sec += (z[2] != null ? z[2] : tr.dur) - L[0][1]; } });
+    return sec > 0 ? sec : null; } catch (e) { return null; } })();
+  return PAGESECS[wk]; }
+const pagePlay = pg => PAGEWORK(pg) ? '<button class="lplay timed" data-ppg="' + pg + '" aria-label="play"><svg><use href="#i-play"/></svg></button><span class="ldur" data-pdur="' + pg + '"></span>' : '';
+function fillPageDurs(){ $$('[data-pdur]').forEach(el => { const wk = PAGEWORK(el.dataset.pdur); if (wk) pageSecs(wk).then(s => { el.textContent = s ? (el.classList.contains('ndur') ? '▶ ' : '') + durLabel(s / RATE()) : ''; }); }); }
 function workPath(id){ let r = null; (function walk(n){ (n || []).forEach(c => { if (c.work === id) r = c.path; else walk(c.children); }); })(LIB); return r || id; }
 // the salutation on the opening screen: the work's own (library/index.json "salute": जय श्रीराम for the
 // Mānas and Sundarakāṇḍa, ॐ श्री साईं राम for the Dhūpa Āratī, ੴ for the Sukhmani Sahib …), otherwise ॐ श्री परमात्मने नमः.
@@ -1565,7 +1599,7 @@ function renderHome(){
   else if (org === 'k') PARTS.forEach(p => { const tps = TOPICS.filter(t => IT[t.i].p === p.k).length || (W.sections ? PAGES.filter(g => g.k === p.k && SECN(g.s)).length : 0);   /* its topics, else its named sections */ h += '<li class="rowp">' + play('k', p.a, p.b) + '<button class="it" data-open="' + p.a + '"><span class="no">' + DEV(p.no != null ? p.no : p.k + 1) + '</span><span class="grow"><span class="ti">' + esc(KNAME(p.k)) + '</span><br><span class="ds">' + DEV(tps) + T(' प्रसंग', tps === 1 ? ' section' : ' sections') + '</span></span><span class="chev">›</span></button></li>'; });
   else { const P = PLAN[org]; const dn = Object.keys(DONE(ME(), org)).length; h += '<li class="pdone" aria-label="' + DEV(dn) + ' / ' + DEV(P.n) + T(' ' + UNIT(org).hi + ' पूर्ण', ' ' + UNIT(org).en.toLowerCase() + 's completed') + '"><span class="pdbar"><span style="width:' + Math.round(100 * dn / P.n) + '%"></span></span><span class="pdn">' + DEV(dn) + ' / ' + DEV(P.n) + '</span></li>';   // how much of the plan is done; a vishram's number marks it done
     // pages read before the first day and after the reading (pūrvāṅga / uttarāṅga), when the plan names them
-    const page = (pg, when) => { const t = pageTitle(pg); if (pg === 'visarjan') when = T('पारायणके अन्तिम दिन', 'On the last day of the parayan'); return '<li class="rowp"><button class="it" data-page="' + pg + '"><span class="no pg"><svg><use href="#i-lamp"/></svg></span><span class="grow"><span class="ti">' + t + '</span><br><span class="ds">' + when + '</span></span><span class="chev">›</span></button></li>'; };
+    const page = (pg, when) => { const t = pageTitle(pg); if (pg === 'visarjan') when = T('पारायणके अन्तिम दिन', 'On the last day of the parayan'); return '<li class="rowp">' + pagePlay(pg) + '<button class="it" data-page="' + pg + '"><span class="no pg"><svg><use href="#i-lamp"/></svg></span><span class="grow"><span class="ti">' + t + '</span><br><span class="ds">' + when + '</span></span><span class="chev">›</span></button></li>'; };
     (P.before || []).forEach(pg => h += page(pg, T('पाठसे पहले', 'Before the reading')));
     for (let n = 1; n <= P.n; n++){ const [a, b] = dayRange(org, n), d = DONE(ME(), org)[n], t = firstAu(a, b) != null ? durLabel(spanSecs(a, b)) : ''; h += '<li class="rowp"><button class="lmark" data-mark="' + n + '" aria-label="' + VN(n, org) + (d ? T(': पूर्ण — अपूर्ण करें', ': complete — mark not complete') : T(': पूर्ण करें', ': mark complete')) + '"></button>' + play(org, a, b) + '<button class="it" data-open="' + a + '"><span class="no' + (d ? ' done' : '') + '">' + (d ? '✓' : DEV(n)) + '</span><span class="grow"><span class="ti">' + VN(n, org) + '</span><br><span class="ds">' + rangeDesc(a, b) + '</span></span><span class="chev">›</span></button></li>'; }
     (P.after || []).forEach(pg => h += page(pg, T('पाठके बाद', 'After the reading'))); }
@@ -1575,7 +1609,10 @@ function renderHome(){
   $$('#orgList [data-hund]').forEach(b => b.onclick = () => { const a = +b.dataset.hund, o = S.settings.atOpen = S.settings.atOpen || {}; if (o[W.id] === a) delete o[W.id]; else o[W.id] = a; save(); renderHome();
     const at = $('#orgList .angs'); if (at) at.scrollIntoView({block: 'nearest'}); });
   $$('#orgList [data-at]').forEach(b => b.onclick = () => openReader('k', +b.dataset.at, true));   // an Ang opens in its part, at the verse its first line is in
-  $$('#orgList [data-page]').forEach(b => b.onclick = () => { vidTab = b.dataset.page === 'vidhi' ? 'v' : b.dataset.page; show('vidhi'); });
+  // a page that is also a work of its own (the Mānas's āratī, with its meanings and recording: vidhi.open) opens that work's reading
+  $$('#orgList [data-page]').forEach(b => b.onclick = () => openPage(b.dataset.page));
+  $$('#orgList [data-ppg]').forEach(b => b.onclick = ev => { ev.stopPropagation(); openPage(b.dataset.ppg, true); });
+  fillPageDurs();
   $$('#orgList [data-pa]').forEach(b => b.onclick = ev => { ev.stopPropagation(); playRange(b.dataset.po, +b.dataset.pa, +b.dataset.pb); });
   // a vishram's number: tap to mark it complete, tap again to mark it not complete (as “Mark vishram complete” at its end does)
   $$('#orgList [data-mark]').forEach(b => b.onclick = ev => { ev.stopPropagation(); const n = +b.dataset.mark, d = DONE(ME(), org); if (d[n]) delete d[n]; else d[n] = Date.now(); save(); renderHome();
@@ -1779,6 +1816,8 @@ function renderBookmarks(){
   let h = '', bmh = '';
   // each bookmark has its own ✕ to remove it
   bmh += bms.length ? bms.map(b => '<div class="bmrow"><button class="res" data-i="' + b[0] + '"><div class="where">' + esc(itemLabel(b[0])) + '</div><div class="snip" style="font-weight:700">' + esc(IT[b[0]].v[0]) + '</div></button><button class="bmdel" data-del="' + b[0] + '" aria-label="' + T('बुकमार्क हटाएँ', 'Remove bookmark') + '"><svg><use href="#i-x"/></svg></button></div>').join('') : '<p class="muted">' + T('किसी भी पदके पास बुकमार्क चिह्न दबाएँ।', 'Tap the bookmark sign beside any verse.') + '</p>';
+  // read them all as the reader shows a verse (meanings, words, ▶), only the bookmarked ones
+  if (bms.length) bmh = '<button class="btn bmread" id="bmRead">' + T('बुकमार्क किये पद पढ़ें', 'Read the bookmarked verses') + ' ›</button>' + bmh;
   h += sec('bm', T('बुकमार्क (', 'Bookmarks (') + DEV(bms.length) + ')', bmh);
   h += sec('notes', T('टिप्पणियाँ (', 'Notes (') + DEV(notes.length) + ')', notes.length ? notes.map(n => '<button class="res" data-i="' + n[0] + '"><div class="where">' + esc(itemLabel(n[0])) + '</div><div class="snip">' + esc(n[2].t.slice(0, 200)) + '</div></button>').join('') : '<p class="muted">' + T('किसी पदके ⋮ मेनूसे अपनी टिप्पणी लिखें।', 'Use the ⋮ menu of any verse to write a note.') + '</p>');
   h += '<h2 style="font-size:19px;margin:26px 0 4px">' + T('मेरी फ़ाइल', 'My file') + '</h2><p class="small muted">' + T('आपके बुकमार्क, टिप्पणियाँ, प्रगति और सुधार इसी फ़ोनमें रहते हैं। फ़ाइल सेव करके बैकअप रखें या दूसरे फ़ोनपर खोलें।', 'Your bookmarks, notes, progress and corrections stay on this phone. Save the file as a backup, or open it on another phone.') + (canStore ? '' : ' <b>' + T('ध्यान दें: यह फ़ोन डेटा अपने-आप नहीं रख पा रहा — पाठके बाद “फ़ाइल सेव करें” दबाएँ।', 'This phone is not keeping app data — tap Save my file after each reading.') + '</b>') + '</p>' +
@@ -1787,6 +1826,7 @@ function renderBookmarks(){
   $('#exp').onclick = exportFile; $('#imp').onclick = () => $('#fileIn').click();
   $$('#bmBody .bmsec').forEach(d => d.ontoggle = () => { S.settings.bmFold = S.settings.bmFold || {}; if (d.open) delete S.settings.bmFold[d.dataset.fold]; else S.settings.bmFold[d.dataset.fold] = 1; save(); });
   $$('#bmBody .res').forEach(b => b.onclick = () => openReader(readOrg(), +b.dataset.i, true));
+  if ($('#bmRead')) $('#bmRead').onclick = () => { const g = bmGroup(); if (g) openReader('bm', g.list[0]); };
   $$('#bmBody [data-del]').forEach(b => b.onclick = () => { const k = KEY(IT[+b.dataset.del].id); for (const p of S.profiles) delete p.bm[k]; save(); renderBookmarks(); toast(T('बुकमार्क हटाया', 'Bookmark removed')); });
 }
 

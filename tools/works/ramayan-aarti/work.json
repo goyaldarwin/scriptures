@@ -1,14 +1,18 @@
 {
  "id": "ramayan-aarti",
  "path": "hinduism/aarti/rama/ramayan-aarti",
- "lang": "hi",
+ "lang": "awa",
  "title": {
-  "hi": "आरती श्री रामायण जी की",
-  "en": "Aarti Shri Ramayan Ji Ki"
+  "hi": "आरति श्रीरामायनजी की",
+  "en": "Aarti Shri Ramayanji Ki"
  },
  "by": {
-  "hi": "भगवान श्रीराम",
-  "en": "Bhagwan Shri Ram"
+  "hi": "श्रीरामायणजी",
+  "en": "Shri Ramayanji"
+ },
+ "edition": {
+  "hi": "गीताप्रेस, गोरखपुर (श्रीरामचरितमानस)",
+  "en": "Gita Press, Gorakhpur (Shri Ramcharitmanas)"
  },
  "parts": {
   "name": {
@@ -18,8 +22,8 @@
   "list": [
    {
     "key": "aarti",
-    "hi": "आरती श्री रामायण जी की",
-    "en": "Aarti Shri Ramayan Ji Ki"
+    "hi": "आरति श्रीरामायनजी की",
+    "en": "Aarti Shri Ramayanji Ki"
    }
   ]
  },

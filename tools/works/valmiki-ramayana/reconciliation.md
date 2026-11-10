@@ -122,6 +122,14 @@ Gita Press's English, its diacritics converted (`source/english.py`). A joint tr
 ## The Hindi (meanings/hi/gitapress.json)
 Gita Press's Hindi translation (code 77), read from its glyph ids against the official Noto Sans Devanagari 2.000, with no OCR (`source/hindi/report.md`: method, checks and every anomaly of the e-book). Its verse numbering is the Sanskrit edition's (640 of 648 sargas end on the same verse). A paragraph marked ½ (it runs into the next verse) or with a bare ॥ (1,412 paragraphs: the book prints no number) is not a boundary: it joins the next into one meaning under the last verse it covers, every printed mark kept; a run of bare paragraphs that covers exactly one verse each goes under those verses.
 
+Seven places where the book's marks mislead the placement, each checked against the Sanskrit, Gita Press's English and IIT Kanpur's English (valmiki.gitasupersite.in; for the Uttara, enjoylearningsanskrit.com), are placed by what the paragraph translates, the printed marks kept as printed:
+- ayodhya.18: the first paragraph is printed ॥ २ ॥ for १; its three opening paragraphs go under 18.1–18.3.
+- ayodhya.93.27 printed ॥ १७ ॥ and kiṣkindhā.51 ॥ १९१/२ ॥ for 11½: already under the right verses.
+- uttara.20: the third paragraph is printed ॥ ६ ॥ for ३; paragraphs 3–7 go under 20.3–20.7.
+- uttara.40: the book prints 31's paragraph before 29 and 30 (॥ ३१ ॥ ॥ २९ ॥ ॥ ३० ॥); each goes under its own verse.
+- uttara.43: the book prints paragraphs 7–23 a second time after ॥ २३ ॥ (pages 2232–2233); the repeat is left out.
+- uttara.47: nine paragraphs of 48 (Sītā's reply, 48.3–11, page 2245) are printed inside 47 as well, marked ३–११; they are left out of 47, whose own paragraphs go under 47.3–47.18 (11½–17 one meaning under 47.17, by its ½ marks).
+
 ## Topics
 One per sarga: the Hindi title of the Hindi edition and the English title of the English edition.
 

@@ -8,7 +8,7 @@ Needs:  pip install playwright (Chromium; set CHROMIUM=/path/to/chrome if it is 
 Each check prints PASS/FAIL with what it saw; the run fails if any check fails or the page logs a script error.
 --shots saves a screenshot after each step, for a person to look at.
 """
-import asyncio, functools, http.server, json, os, random, shutil, socketserver, subprocess, sys, tempfile, threading
+import asyncio, functools, http.server, json, os, random, re, shutil, socketserver, subprocess, sys, tempfile, threading
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.join(ROOT, 'tools', 'site')); import split_fixture   # a work loaded by part (the Kaṭha, exported again with "load": "parts")
 sys.path.insert(0, os.path.join(ROOT, 'tools', 'audio')); import order as ORDER   # the order rule, shared with make_timings.py
@@ -119,6 +119,28 @@ async def main():
                 unit = await ev(f"TT(PLAN[{json.dumps(pid)}].unit)")
                 twice = await ev("[...document.querySelectorAll('#orgList .ds')].map(d => d.innerHTML.split('<br>')).flat().filter(l => { const m = /^(.+?): (.+)$/.exec(l); return m && m[1] === m[2]; })")
                 check(f'{tag}: plan {pid} names each day “{unit} N” and never a part twice', len(days) == await ev(f"PLAN[{json.dumps(pid)}].n") and all(unit in d for d in days) and not twice, f'{days[:2]} {twice[:2]}')
+            # a plan's page that is a work of its own (the Mānas's āratī: vidhi.open) opens that work's reading, with its recording; ‹ comes back
+            opens = await ev("Object.entries((W.vidhi || {}).open || {})")
+            if opens:
+                me, pid = await ev("W.id"), await ev("PLANS.find(p => (p.after || []).concat(p.before || []).length).id")
+                for pgk, wk in opens:
+                    await ev(f"WS().org = {json.dumps(pid)}; renderHome()"); await pg.wait_for_timeout(200)
+                    await pg.click(f'#orgList [data-page="{pgk}"]', timeout=3000); await pg.wait_for_timeout(2500)
+                    op = await ev("[W.id, CURVIEW, document.querySelectorAll('#pages .verse').length, document.querySelectorAll('#pages .vplay').length]")
+                    await pg.click('#rBack', timeout=3000); await pg.wait_for_timeout(2500)
+                    op.append(await ev("[W.id, CURVIEW, homeOrg()]"))
+                    check(f'{tag}: the plan\'s {pgk} page opens the work {wk} with ▶ on its verses, and ‹ returns to the plan', op[:2] == [wk, 'reader'] and op[2] > 0 and op[3] == op[2] and op[4] == [me, 'home', pid], op)
+                    # its row has ▶ with its time, as a day has; the end of the last day offers it as the next button, with its time, and ‹ comes back to that day
+                    await ev(f"WS().org = {json.dumps(pid)}; renderHome()"); await pg.wait_for_timeout(1200)
+                    row = await ev(f"[!!document.querySelector('#orgList [data-ppg=\"{pgk}\"]'), (document.querySelector('#orgList [data-pdur=\"{pgk}\"]') || {{}}).textContent]")
+                    await ev(f"openReader({json.dumps(pid)}, PLAN[{json.dumps(pid)}].ends[PLAN[{json.dumps(pid)}].n - 1])"); await pg.wait_for_timeout(1500)
+                    await pg.locator(f'#endB [data-after="{pgk}"]').scroll_into_view_if_needed(timeout=3000); await pg.wait_for_timeout(300)
+                    end = await ev(f"(document.querySelector('#endB [data-pdur=\"{pgk}\"]') || {{}}).textContent")
+                    await pg.click(f'#endB [data-after="{pgk}"]', timeout=3000); await pg.wait_for_timeout(2500)
+                    went = await ev("[W.id, CURVIEW]"); await pg.click('#rBack', timeout=3000); await pg.wait_for_timeout(2500)
+                    went.append(await ev("[W.id, CURVIEW, R.org]"))
+                    check(f'{tag}: the plan\'s {pgk} row has ▶ with its time, and the end of the last day opens it as the next button; ‹ returns to that day',
+                          row[0] and bool(re.search(r'\d', row[1] or '')) and (end or '').startswith('▶ ') and went[:2] == [wk, 'reader'] and went[2] == [me, 'reader', pid], [row, end, went])
             if await ev("PLANS.length"): await ev("WS().org = 'k'; renderHome()"); await pg.wait_for_timeout(200)
             # timing review: drafts only with ☰ › More settings › Audio timing on; a start and an end set by ear take effect at once
             drafts = await ev("(W.sources.au || []).filter(s => s.draft).map(s => s.id)")
@@ -325,11 +347,12 @@ async def main():
             check(f'{tag}: back to the work home', await ev("document.querySelector('#home').classList.contains('on')"))
             # one number for each verse (work.json → cite): what the player shows for a verse finds that verse in the work's search,
             # the number the reader prints at its end is the citation's own, and the reader's Go to / Back to pills say what the player says
-            cit = await ev("""(async () => { const bad = [], miss = [], pr = []; setScope('text');
-                for (let i = 0; i < IT.length; i++){ const c = CIT(IT[i]); if (!vNum(c)) continue;
+            # (every verse, or a sample of about 4,000 in a work of more than 30,000: each look-up reads the whole work; the build checks every printed number)
+            cit = await ev("""(async () => { const bad = [], miss = [], pr = [], step = IT.length > 30000 ? Math.floor(IT.length / 4000) : 1; setScope('text');
+                for (let i = 0; i < IT.length; i += step){ const c = CIT(IT[i]); if (!vNum(c)) continue;
                   const wd = W.cite && W.cite.word && W.cite.word[IT[i].y], q = (wd ? TT(wd) : TYPE[IT[i].y]) + ' ' + c, Q = numQuery(q);
                   if (!Q){ bad.push(q); continue; } const hits = []; numHits(Q, hits); if (!hits.some(h => h[1] === i)) miss.push(IT[i].id + ' ← ' + q);
-                  const t = (IT[i].v[IT[i].v.length - 1].match(/॥([0-9०-९੦-੯]+)[^॥]*॥(?:[^॥]*॥)*\s*$/) || [])[1];
+                  const t = IT[i].v.length && (IT[i].v[IT[i].v.length - 1].match(/॥([0-9०-९੦-੯]+)[^॥]*॥(?:[^॥]*॥)*\s*$/) || [])[1];
                   if (t && !['sec', 'none'].includes((W.cite || {}).mark)){ const last = CKEY(c).split('.').pop().replace(/[^0-9]/g, ''); if (CKEY(t) !== last) pr.push(IT[i].id + ': ॥' + t + '॥ but ' + c); } }
                 return [bad.slice(0, 3), miss.slice(0, 3), pr.slice(0, 3)]; })()""")
             check(f'{tag}: every verse number the player shows finds that verse; the number at a verse\'s end is its citation\'s', cit == [[], [], []], cit)
@@ -808,9 +831,9 @@ async def main():
             PL.on = false; return [Math.round(t - bar), nx < innerHeight]; })()""")
         check('playing: the verse being recited is kept at the top, the next verse in view below it', pin[0] != 'no v34' and 0 <= pin[0] <= 12 and pin[1], pin)
         # one caupāī per item: Gita Press's joint caupāīs are split; old ids, places and notes follow
-        sp = await ev("""(async () => { W = null; await openWork('manas', true); const hi = SRC.hi, m = id => ((hi && hi.m[id]) || [''])[0];
+        sp = await ev("""(async () => { W = null; await openWork('manas', true); const g = srcList('hi').find(s => /gitapress/.test(s.file)), hi = g && await getJSON(W.path + '/' + g.file), m = id => ((hi && hi.m[id]) || [''])[0];
             return [ID['bal.6.cau3-5'] == null, ['bal.6.cau3', 'bal.6.cau4', 'bal.6.cau5'].every(id => ID[id] != null), /चौपाई ५/.test(m('bal.6.cau3')), /३-५/.test(m('bal.6.cau5')), IT[ID['bal.6.cau5']].v.length]; })()""")
-        check('Mānas: joint caupāīs are separate verses; the joint meaning sits under the last', sp == [True, True, True, True, 1], sp)
+        check('Mānas: joint caupāīs are separate verses; Gita Press\'s joint meaning sits under the last', sp == [True, True, True, True, 1], sp)
         mv = await ev("""(async () => { const me = ME(); me.notes['manas:bal.6.cau3-5'] = [{t: 'n', ts: 1}]; me.bm['manas:bal.6.cau3-5'] = 2; me.fix['manas:hi-gitapress:bal.6.cau3-5'] = {m: 'x'};
             const old = ID['bal.6.do6'] - 3; S.w.manas.last = {org: 'k', i: old}; S.w.manas.pos = {k: old}; save(); W = null; await openWork('manas', true);
             const r = [!!me.notes['manas:bal.6.cau3'], !!me.bm['manas:bal.6.cau3'], !!me.fix['manas:hi-gitapress:bal.6.cau5'], !me.notes['manas:bal.6.cau3-5'], S.w.manas.last.id];
@@ -870,6 +893,14 @@ async def main():
             const n0 = document.querySelectorAll('#bmBody [data-del]').length; document.querySelector('#bmBody [data-del="40"]').click(); await new Promise(r => setTimeout(r, 300));
             const r = [n0, document.querySelectorAll('#bmBody [data-del]').length, !me.bm[KEY(IT[40].id)], !!me.bm[KEY(IT[41].id)]]; delete me.bm[KEY(IT[41].id)]; save(); return r; })()""")
         check('bookmarks: each bookmark can be removed on its own', bd == [2, 1, True, True], bd)
+        # "Read the bookmarked verses": only they, as the reader shows a verse (meanings, ▶), in the work's order; ‹ comes back
+        last = await ev("(() => { const me = ME(), l = IT.length - 1; [40, 43, l].forEach((i, n) => me.bm[KEY(IT[i].id)] = n + 1); save(); show('bookmarks'); return l; })()"); await pg.wait_for_timeout(400)
+        await pg.click('#bmRead', timeout=3000); await pg.wait_for_timeout(900)
+        br = await ev("""[R.org, [...document.querySelectorAll('#pages .verse')].map(e => +e.dataset.i), !!document.querySelector('#v40 .vbm.bm-on'), !!document.querySelector('#v41'), document.querySelector('#rMid small').textContent]""")
+        await pg.click('#rBack', timeout=3000); await pg.wait_for_timeout(500)
+        br.append(await ev("CURVIEW")); await ev("(() => { const me = ME(); [40, 43, IT.length - 1].forEach(i => delete me.bm[KEY(IT[i].id)]); save(); })()")
+        check('bookmarks: "Read the bookmarked verses" opens a reading of only them, in order, and ‹ returns to Bookmarks',
+              br[0] == 'bm' and br[1][:2] == [40, 43] and set(br[1]) <= {40, 43, last} and br[2] and not br[3] and br[4] == 'Bookmarks' and br[5] == 'bookmarks', br)
         th = await ev("""(async () => { await openWork('manas', true); show('home'); openReader('k', 30); await new Promise(r => setTimeout(r, 400)); const t0 = S.settings.theme;
             document.querySelector('#rMore').click(); await new Promise(r => setTimeout(r, 300)); S.settings.theme = 'light'; applyTheme(); document.querySelector('#mth').checked = false; document.querySelector('#mth').click();
             const r = [S.settings.theme, document.documentElement.getAttribute('data-theme'), document.querySelector('#sheet').classList.contains('on'), document.querySelector('#mth').checked];
@@ -1167,7 +1198,7 @@ async def main():
         check('numbers are shown as 1 2 3 in Hindi too; ओ३म् and a textarea keep their digits', all(nm), nm)
         # each plan day's ▶ says how long it plays; the days add up to the recordings; the speed shortens it; the next-day button says it too
         du = await ev("""(async () => { await openWork('manas', true); await loadSources(); const o = PLANS[0].id; WS().org = o; show('home'); renderHome(); await new Promise(r => setTimeout(r, 300));
-            const rows = document.querySelectorAll('#orgList .lplay.timed + .ldur').length; let sum = 0; for (let n = 1; n <= PLAN[o].n; n++){ const [a, b] = dayRange(o, n); sum += spanSecs(a, b); }
+            const rows = document.querySelectorAll('#orgList .lplay.timed[data-pa] + .ldur').length;   /* the days (a page's ▶, the āratī's, is not a day) */ let sum = 0; for (let n = 1; n <= PLAN[o].n; n++){ const [a, b] = dayRange(o, n); sum += spanSecs(a, b); }
             const tr = AUT.reduce((s, L, t) => s + SRC.au.tracks[t].dur - L[0][1], 0), [a1, b1] = dayRange(o, 1), one = spanSecs(a1, b1);
             const r0 = S.settings.rate; S.settings.rate = 2; const two = spanSecs(a1, b1); S.settings.rate = r0;
             openReader(o, b1); await new Promise(r => setTimeout(r, 600)); const nx = document.querySelector('.endb [data-next] + .ndur'); WS().org = 'k';

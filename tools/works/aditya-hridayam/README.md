@@ -17,13 +17,16 @@ southern recension). Recited as a stotra: the viniyoga, three nyāsas, the 31 ś
 - **Word meanings:** written for this library, in `library/glossary/sa.json`; the 19 words that another work's own dictionary
   already gives with the same sense (the Gītā's, the Durgā Saptaśatī's, the Vālmīki Rāmāyaṇa's) are in this work's
   `glossary/sa.json`, since the shared dictionary may not repeat a work's sense.
-- **Recordings:** the owner's two, each with its speech-quality copy in scriptures-data under
+- **Recordings:** the owner's three, each with its speech-quality copy in scriptures-data under
   `hinduism/stotra/surya/aditya-hridayam/audio/<source>/`:
   - `sri-sathya-sai` (the default): Sri Sathya Sai Official, "Aditya Hrudayam Stotram – Prayer that Pleases the Heart of
     Sun God | Offering on Ratha Saptami Day" (YouTube `Z7W59S6fH98`): the 31 ślokas, then a closing Om śānti, which no
     written source gives, so it is not in the text and stays untimed after śloka 31.
   - `braja-beats`: Braja Beats, "Aditya Hrudaya Stotram – chanted by Lord Rama in Srimad Valmiki Ramayana" (YouTube
     `I8Xg_2RC5Vk`): the 31 ślokas and the closing words.
+  - `the-sanskrit-channel`: The Sanskrit Channel, "Aditya hRdaya stOtram – Sanskrit Guided Chant & Meanings –
+    Uninterrupted" (YouTube `qLXRj4HIdJA`): the title अथ श्रीआदित्यहृदयस्तोत्रम्, the 31 ślokas, then इति
+    आदित्यहृदयस्तोत्रम्; the title and the closing line are not in the printout and stay untimed.
   Neither recites the viniyoga or the nyāsas, which stay untimed (`recordings.json` → `from` `sh1`). Transcripts by
   `tools/audio/transcribe_onnx.py` (Whisper small, Hindi decoding), starts by MMS (`aligned.md`).
 

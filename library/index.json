@@ -158,6 +158,27 @@
       },
       "children": [
        {
+        "id": "mahabharata",
+        "work": "mahabharata",
+        "path": "hinduism/granth/vyasa/mahabharata",
+        "title": {
+         "hi": "महाभारत",
+         "en": "Mahabharat"
+        },
+        "by": {
+         "hi": "महर्षि वेदव्यास",
+         "en": "Maharshi Ved Vyas"
+        },
+        "edition": {
+         "hi": "गीताप्रेस, गोरखपुर",
+         "en": "Gita Press, Gorakhpur"
+        },
+        "desc": {
+         "hi": "१८ पर्व · २,१०७ अध्याय",
+         "en": "18 Parvs · 2,107 Adhyays"
+        }
+       },
+       {
         "id": "bhagavad-gita",
         "work": "bhagavad-gita",
         "path": "hinduism/granth/vyasa/bhagavad-gita",
@@ -679,12 +700,23 @@
         "work": "ramayan-aarti",
         "path": "hinduism/aarti/rama/ramayan-aarti",
         "title": {
-         "hi": "आरती श्री रामायण जी की",
-         "en": "Aarti Shri Ramayan Ji Ki"
+         "hi": "आरति श्रीरामायनजी की",
+         "en": "Aarti Shri Ramayanji Ki"
         },
         "desc": {
-         "hi": "श्रीरामकी आरती",
-         "en": "The aarti of Shri Ram"
+         "hi": "श्रीरामचरितमानसकी आरती",
+         "en": "The aarti of the Shri Ramcharitmanas"
+        },
+        "salute": "॥ जय श्रीराम ॥",
+        "intro": {
+         "hi": [
+          "'आरति श्रीरामायनजी की' श्रीरामचरितमानसकी आरती है, जो मानसके पारायणके अन्तमें गायी जाती है; गीताप्रेसका मानस इसे ग्रन्थके अन्तमें छापता है।",
+          "टेकके बाद चार पद हैं। वे कहते हैं कि ब्रह्मा, नारद, वाल्मीकि, शिव-पार्वती, व्यास, काकभुशुण्डि और गरुड़ जैसे देवता, मुनि और कवि इसे गाते हैं; यह वेद, पुराण और शास्त्रोंका सार है, कलियुगके पाप हरती है, संसाररूपी रोगकी अमृत-जड़ी है, और तुलसीदासके लिये माता-पिता है। यहाँ इसकी रिकॉर्डिंग पं. कमलेश उपाध्यायके मासपारायणके तीसवें दिनके अन्तसे है।"
+         ],
+         "en": [
+          "\"Aarti Shri Ramayanji Ki\" is the aarti of the Shri Ramcharitmanas, sung at the end of a parayan of the Manas; the Gita Press Manas prints it at the end of the book.",
+          "After its refrain come four stanzas. They tell how gods, sages and poets such as Brahma, Narad, Valmiki, Shiv and Parvati, Vyas, Kakabhushundi and Garud sing it; how it is the essence of the Vedas, Puranas and shastras, takes away the sins of the Kali age and is the nectar herb for the disease of worldly life; and how it is father and mother to Tulsidas. Its recording here is the end of the thirtieth day of Pt. Kamlesh Upadhyay's Maas Parayan."
+         ]
         }
        },
        {

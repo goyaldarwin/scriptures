@@ -8,8 +8,8 @@ the 17,623 verses take MMS's start; the 332 MMS scored below 0.5 keep the transc
 
 **Checked:** `check.json` lists the 1,622 verses the automatic checks flag (MMS and the transcript more than 2 s apart 1,289,
 low score 332, out of pace 9). Against the transcript's starts used before, the median start moved 0.68 s; 342 moved more
-than 3 s. The source is published for review (`source.json` "review", on the owner's word, before any start was set by
-ear), so every start is on the owner's to-check list in ☰ › More settings › Audio timing.
+than 3 s. The owner listened and found the starts accurate, so the source is no longer published for review: only the flagged
+verses are on his to-check list in ☰ › More settings › Audio timing.
 
 **How good:** not scored yet. The score on the owner's starts set by ear (within 1 s, more than 3 s off, against the
 transcript alone, as in the Mānas's `aligned.md`) is made once he has set 20 or so on this recording (`mms_score.py`); his

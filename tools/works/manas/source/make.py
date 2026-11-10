@@ -77,7 +77,7 @@ book = {
     # a reader's place saved as a bare item position (no id) counts the joint caupāīs as one: [position, items added there]
     'split': [[k, len(JOINT[x['id']]) - 1] for k, x in enumerate(IT) if x['id'] in JOINT],
     # the pages' titles are data, as every label shown is (docs/LIBRARY.md §2 → plans): the vidhi's and the āratī's
-    'vidhi': {**d['vidhi'], 'titles': {'vidhi': {'hi': 'पारायण-विधि', 'en': 'Parayan vidhi'}, 'aarti': {'hi': 'श्रीरामायणजीकी आरती', 'en': 'Shri Ramayanji ki Aarti'}}, 'visarjan': {k: v for k, v in json.load(open(os.path.join(HERE, 'visarjan.json'), encoding='utf-8')).items() if k != 'source'}},   # kathā-visarjana: visarjan.md
+    'vidhi': {**d['vidhi'], 'titles': {'vidhi': {'hi': 'पारायण-विधि', 'en': 'Parayan vidhi'}, 'aarti': {'hi': 'श्रीरामायणजीकी आरती', 'en': 'Shri Ramayanji ki Aarti'}}, 'open': {'aarti': 'ramayan-aarti'}, 'visarjan': {k: v for k, v in json.load(open(os.path.join(HERE, 'visarjan.json'), encoding='utf-8')).items() if k != 'source'}},   # kathā-visarjana: visarjan.md
     'vg': d['vg'],
 }
 json.dump(plain(book), open(os.path.join(WORK, 'book.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
@@ -124,5 +124,5 @@ for x in IT:
 for lg, m, notes, title in (('hi', hi, hin, {'hi': 'गीताप्रेस — हिंदी भावार्थ (हनुमानप्रसाद पोद्दार)', 'en': 'Gita Press — Hindi meaning (Hanuman Prasad Poddar)'}),
                             ('en', en, enn, {'hi': 'गीताप्रेस — अंग्रेज़ी अर्थ', 'en': 'Gita Press — English meaning'})):
     m, notes = spread(m, notes, lg)
-    jsonio.dump_meanings(os.path.join(WORK, 'meanings', lg, 'gitapress.json'), {'title': title, 'order': 1, 'copied': True, 'm': m, 'notes': notes})
+    jsonio.dump_meanings(os.path.join(WORK, 'meanings', lg, 'gitapress.json'), {'title': title, 'order': 2, 'copied': True, 'm': m, 'notes': notes})
 print(f'{len(items)} verses ({len(JOINT)} joint caupāīs split into {sum(len(v) for v in JOINT.values())}); meanings hi {len(hi)}, en {len(en)}')
