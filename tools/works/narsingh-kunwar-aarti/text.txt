@@ -1,0 +1,24 @@
+# आरती कीजै नरसिंह कुँवर की (Aarti Kijai Narsingh Kunwar Ki): the verse text, from Drik Panchang
+# (Narsingh Bhagwan Ki Aarti, aarti-kijai-narsingh-kunwarki). The witnesses and every choice: reconciliation.md.
+
+@part aarti
+@section aarti
+@topic आरती कीजै नरसिंह कुँवर की | Aarti Kijai Narsingh Kunwar Ki
+[aarti.tek tek]
+आरती कीजै नरसिंह कुँवर की ।
+वेद विमल यश गाऊँ मेरे प्रभुजी ॥
+[aarti.pad1 pad 1]
+पहली आरती प्रह्लाद उबारे ।
+हिरणाकुश नख उदर विदारे ।
+दूसरी आरती वामन सेवा ।
+बलि के द्वार पधारे हरि देवा ॥१॥
+[aarti.pad2 pad 2]
+तीसरी आरती ब्रह्म पधारे ।
+सहसबाहु के भुजा उखारे ।
+चौथी आरती असुर संहारे ।
+भक्त विभीषण लंक पधारे ॥२॥
+[aarti.pad3 pad 3]
+पाँचवीं आरती कंस पछारे ।
+गोपी ग्वाल सखा प्रतिपाले ।
+तुलसी को पत्र कण्ठ मणि हीरा ।
+हरषि-निरखि गावें दास कबीरा ॥३॥

@@ -1,0 +1,48 @@
+{
+ "id": "parvati-aarti",
+ "path": "hinduism/aarti/parvati/parvati-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "जय पार्वती माता",
+  "en": "Jai Parvati Mata"
+ },
+ "by": {
+  "hi": "माँ पार्वती",
+  "en": "Mother Parvati"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "जय पार्वती माता",
+    "en": "Jai Parvati Mata"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

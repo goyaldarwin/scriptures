@@ -1,0 +1,36 @@
+{
+ "id": "ram-chalisa",
+ "path": "hinduism/chalisa/rama/ram-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री राम चालीसा",
+  "en": "Shri Ram Chalisa"
+ },
+ "by": {
+  "hi": "श्रीराम",
+  "en": "Shri Ram"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री राम चालीसा",
+    "en": "Shri Ram Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

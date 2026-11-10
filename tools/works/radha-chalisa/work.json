@@ -1,0 +1,40 @@
+{
+ "id": "radha-chalisa",
+ "path": "hinduism/chalisa/radha/radha-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री राधा चालीसा",
+  "en": "Shri Radha Chalisa"
+ },
+ "by": {
+  "hi": "श्रीराधा",
+  "en": "Shri Radha"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री राधा चालीसा",
+    "en": "Shri Radha Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

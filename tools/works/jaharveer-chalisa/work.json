@@ -1,0 +1,36 @@
+{
+ "id": "jaharveer-chalisa",
+ "path": "hinduism/chalisa/jaharveer/jaharveer-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री जाहरवीर चालीसा",
+  "en": "Shri Jaharveer Chalisa"
+ },
+ "by": {
+  "hi": "जाहरवीर गोगाजी",
+  "en": "Jaharveer Gogaji"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री जाहरवीर चालीसा",
+    "en": "Shri Jaharveer Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  }
+ }
+}

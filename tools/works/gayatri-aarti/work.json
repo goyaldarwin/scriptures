@@ -1,0 +1,48 @@
+{
+ "id": "gayatri-aarti",
+ "path": "hinduism/aarti/gayatri/gayatri-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "जयति जय गायत्री माता",
+  "en": "Jayati Jai Gayatri Mata"
+ },
+ "by": {
+  "hi": "माँ गायत्री",
+  "en": "Mother Gayatri"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "जयति जय गायत्री माता",
+    "en": "Jayati Jai Gayatri Mata"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

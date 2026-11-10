@@ -1,0 +1,48 @@
+{
+ "id": "pavansut-hanuman-aarti",
+ "path": "hinduism/aarti/hanuman/pavansut-hanuman-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "जयति मंगलागार",
+  "en": "Jayati Mangalagar"
+ },
+ "by": {
+  "hi": "श्रीहनुमान",
+  "en": "Shri Hanuman"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "जयति मंगलागार",
+    "en": "Jayati Mangalagar"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

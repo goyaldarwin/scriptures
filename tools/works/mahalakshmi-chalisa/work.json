@@ -1,0 +1,40 @@
+{
+ "id": "mahalakshmi-chalisa",
+ "path": "hinduism/chalisa/lakshmi/mahalakshmi-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री महालक्ष्मी चालीसा",
+  "en": "Shri Mahalakshmi Chalisa"
+ },
+ "by": {
+  "hi": "माँ लक्ष्मी",
+  "en": "Mother Lakshmi"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री महालक्ष्मी चालीसा",
+    "en": "Shri Mahalakshmi Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

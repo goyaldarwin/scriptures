@@ -1,0 +1,40 @@
+{
+ "id": "batuk-bhairav-chalisa",
+ "path": "hinduism/chalisa/bhairava/batuk-bhairav-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री बटुक भैरव चालीसा",
+  "en": "Shri Batuk Bhairav Chalisa"
+ },
+ "by": {
+  "hi": "भगवान भैरव",
+  "en": "Bhagwan Bhairav"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री बटुक भैरव चालीसा",
+    "en": "Shri Batuk Bhairav Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

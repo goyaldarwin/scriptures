@@ -1,0 +1,54 @@
+{
+ "id": "sathya-sai-ashtottara",
+ "path": "hinduism/namavali/sathya-sai/sathya-sai-ashtottara",
+ "lang": "sa",
+ "title": {
+  "hi": "श्री सत्यसायि अष्टोत्तर शतनामावलि",
+  "en": "Shri Sathya Sai Ashtottara Shatanamavali"
+ },
+ "by": {
+  "hi": "भगवान श्री सत्य साई बाबा",
+  "en": "Bhagwan Shri Sathya Sai Baba"
+ },
+ "parts": {
+  "name": {
+   "hi": "पाठ",
+   "en": "Paath"
+  },
+  "list": [
+   {
+    "key": "namavali",
+    "hi": "श्री सत्यसायि अष्टोत्तर शतनामावलि",
+    "en": "Shri Sathya Sai Ashtottara Shatanamavali"
+   }
+  ]
+ },
+ "sections": {
+  "nama": {
+   "hi": "नामावलि",
+   "en": "Namavali"
+  }
+ },
+ "types": {
+  "nama": {
+   "name": {
+    "hi": "नाम",
+    "en": "Name"
+   },
+   "short": {
+    "hi": "ना॰",
+    "en": "Nm."
+   }
+  },
+  "iti": {
+   "name": {
+    "hi": "समापन (पुष्पिका)",
+    "en": "Closing words (iti)"
+   },
+   "short": {
+    "hi": "इति",
+    "en": "Iti"
+   }
+  }
+ }
+}

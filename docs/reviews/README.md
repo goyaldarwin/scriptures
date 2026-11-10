@@ -4,6 +4,6 @@ Each file lists readings our meanings or word meanings take where a question is 
 
 | File | What |
 |---|---|
-| `dictionary-doubts.jsonl` | word meanings whose sense is not settled (`library/glossary/<lang>.json`): `{k, lang, why}` |
+| `dictionary-doubts.jsonl` (none open now) | word meanings whose sense is not settled (`library/glossary/<lang>.json`): `{k, lang, why}` |
 
 A new doubts file is named `<work or topic>-doubts.jsonl`, one JSON object per line.

@@ -1,0 +1,48 @@
+{
+ "id": "lakshmi-aarti",
+ "path": "hinduism/aarti/lakshmi/lakshmi-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "ॐ जय लक्ष्मी माता",
+  "en": "Om Jai Lakshmi Mata"
+ },
+ "by": {
+  "hi": "माँ लक्ष्मी",
+  "en": "Mother Lakshmi"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "ॐ जय लक्ष्मी माता",
+    "en": "Om Jai Lakshmi Mata"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

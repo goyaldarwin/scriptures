@@ -1,0 +1,24 @@
+# आरती गजबदन विनायक की (Aarti Gajbadan Vinayak Ki): the verse text, from Drik Panchang (aarti/shree-ganesh/gajavadan-vinayaka-aarti);
+# the book (Randhir Prakashan) does not print this āratī. The witnesses and every choice: reconciliation.md.
+
+@part aarti
+@section aarti
+@topic आरती गजबदन विनायक की | Aarti Gajbadan Vinayak Ki
+[aarti.tek tek]
+आरती गजबदन विनायक की ।
+सुर-मुनि-पूजित गणनायक की ॥
+[aarti.pad1 pad 1]
+एकदन्त शशिभाल गजानन ।
+विघ्नविनाशक शुभगुण कानन ।
+शिवसुत वन्द्यमान-चतुरानन ।
+दुःखविनाशक सुखदायक की ॥१॥
+[aarti.pad2 pad 2]
+ऋद्धि-सिद्धि-स्वामी समर्थ अति ।
+विमल बुद्धि दाता सुविमल-मति ।
+अघ-वन-दहन अमल अबिगत गति ।
+विद्या-विनय-विभव-दायक की ॥२॥
+[aarti.pad3 pad 3]
+पिङ्गलनयन विशाल शुण्डधर ।
+धूम्रवर्ण शुचि वज्रांकुश-कर ।
+लम्बोदर बाधा-विपत्ति-हर ।
+सुर-वन्दित सब विधि लायक की ॥३॥

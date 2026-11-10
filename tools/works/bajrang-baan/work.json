@@ -1,0 +1,40 @@
+{
+ "id": "bajrang-baan",
+ "path": "hinduism/chalisa/hanuman/bajrang-baan",
+ "lang": "awa",
+ "title": {
+  "hi": "बजरंग बाण",
+  "en": "Bajrang Baan"
+ },
+ "by": {
+  "hi": "श्रीहनुमान",
+  "en": "Shri Hanuman"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "बजरंग बाण",
+    "en": "Bajrang Baan"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

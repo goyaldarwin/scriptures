@@ -1,0 +1,40 @@
+{
+ "id": "narasimha-chalisa",
+ "path": "hinduism/chalisa/narasimha/narasimha-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री नरसिंह चालीसा",
+  "en": "Shri Narasimha Chalisa"
+ },
+ "by": {
+  "hi": "भगवान नृसिंह",
+  "en": "Bhagwan Narasimha"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री नरसिंह चालीसा",
+    "en": "Shri Narasimha Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

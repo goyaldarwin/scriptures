@@ -1,0 +1,36 @@
+{
+ "id": "ramdev-chalisa",
+ "path": "hinduism/chalisa/ramdev/ramdev-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री रामदेव चालीसा",
+  "en": "Shri Ramdev Chalisa"
+ },
+ "by": {
+  "hi": "बाबा रामदेव",
+  "en": "Baba Ramdev"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री रामदेव चालीसा",
+    "en": "Shri Ramdev Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  }
+ }
+}

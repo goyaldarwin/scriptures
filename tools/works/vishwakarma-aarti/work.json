@@ -1,0 +1,48 @@
+{
+ "id": "vishwakarma-aarti",
+ "path": "hinduism/aarti/vishwakarma/vishwakarma-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "प्रभु श्री विश्वकर्मा घर आवो",
+  "en": "Prabhu Shri Vishwakarma Ghar Aavo"
+ },
+ "by": {
+  "hi": "भगवान विश्वकर्मा",
+  "en": "Bhagwan Vishwakarma"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "प्रभु श्री विश्वकर्मा घर आवो",
+    "en": "Prabhu Shri Vishwakarma Ghar Aavo"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

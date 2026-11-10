@@ -1,0 +1,25 @@
+# जय गणेश जय गणेश जय गणेश देवा (Jai Ganesh Jai Ganesh Jai Ganesh Deva): the verse text, as Anuradha Paudwal sings it in
+# the owner's recording (YouTube oWo6hMlex5M), written as Drik Panchang writes it; one stanza from ५१ चालीसा संग्रह
+# आरतियों सहित (Randhir Prakashan, p. 11) that she does not sing. The witnesses and every choice: reconciliation.md.
+
+@part aarti
+@section aarti
+@topic जय गणेश देवा | Jai Ganesh Deva
+[aarti.tek tek]
+जय गणेश जय गणेश जय गणेश देवा ।
+माता जाकी पार्वती पिता महादेवा ॥
+[aarti.pad1 pad 1]
+एकदन्त दयावन्त चार भुजाधारी ।
+माथे पर तिलक सोहे मूसे की सवारी ॥१॥
+[aarti.pad2 pad 2]
+पान चढ़े फूल चढ़े और चढ़े मेवा ।
+लड्डुअन का भोग लगे सन्त करें सेवा ॥२॥
+[aarti.pad3 pad 3]
+अँधे को आँख देत कोढ़िन को काया ।
+बाँझन को पुत्र देत निर्धन को माया ॥३॥
+[aarti.pad4 pad 4]
+दीनन की लाज राखो शम्भु-सुत वारी ।
+कामना को पूरा करो जग बलिहारी ॥४॥
+[aarti.pad5 pad 5]
+सूर श्याम शरण आए सफल कीजे सेवा ।
+माता जाकी पार्वती पिता महादेवा ॥५॥

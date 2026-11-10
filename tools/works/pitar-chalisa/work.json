@@ -1,0 +1,40 @@
+{
+ "id": "pitar-chalisa",
+ "path": "hinduism/chalisa/pitar/pitar-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री पितर चालीसा",
+  "en": "Shri Pitar Chalisa"
+ },
+ "by": {
+  "hi": "पितर",
+  "en": "Pitars (the ancestors)"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री पितर चालीसा",
+    "en": "Shri Pitar Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

@@ -1,0 +1,48 @@
+{
+ "id": "durga-aarti",
+ "path": "hinduism/aarti/durga/durga-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "अम्बे तू है जगदम्बे काली",
+  "en": "Ambe Tu Hai Jagdambe Kali"
+ },
+ "by": {
+  "hi": "माँ दुर्गा",
+  "en": "Mother Durga"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "अम्बे तू है जगदम्बे काली",
+    "en": "Ambe Tu Hai Jagdambe Kali"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

@@ -1,0 +1,48 @@
+{
+ "id": "skandamata-aarti",
+ "path": "hinduism/aarti/durga/skandamata-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "जय तेरी हो स्कन्द माता",
+  "en": "Jai Teri Ho Skand Mata"
+ },
+ "by": {
+  "hi": "माँ दुर्गा",
+  "en": "Mother Durga"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "जय तेरी हो स्कन्द माता",
+    "en": "Jai Teri Ho Skand Mata"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

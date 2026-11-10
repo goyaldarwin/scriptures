@@ -1,0 +1,48 @@
+{
+ "id": "vaishno-devi-aarti",
+ "path": "hinduism/aarti/vaishno-devi/vaishno-devi-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "जय वैष्णवी माता",
+  "en": "Jai Vaishnavi Mata"
+ },
+ "by": {
+  "hi": "माँ वैष्णो देवी",
+  "en": "Mother Vaishno Devi"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "जय वैष्णवी माता",
+    "en": "Jai Vaishnavi Mata"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

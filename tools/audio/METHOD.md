@@ -56,7 +56,7 @@ through the refrain because it has no end.
 
 Score them on the owner's starts set by ear for that recording (20–30 are enough; the Katha Upaniṣad has 75; `mms_score.py`): within 1 s,
 more than 3 s off, against step 1 alone, the same table as `aligned.md`. Switch only when they are better, and record the
-figures beside the recording (`aligned.md`). On the owner's word a recording may switch before he has set any start (the Gītā's, the Vālmīki
+figures beside the recording (`aligned.md`). A new recording uses steps 2–5 at once and is published without waiting for the owner's ear (the owner, 2026-11: "Don't wait for me to review the recordings"); its lean is 0.6 s until he has set starts on it. Before that, on the owner's word a recording could switch before he had set any start (the Gītā's, the Vālmīki
 Rāmāyaṇa's): it is then published for review (`source.json` "review"), so every start stays on his to-check list until
 scored.
 

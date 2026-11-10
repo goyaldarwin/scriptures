@@ -1,0 +1,48 @@
+{
+ "id": "ravidas-aarti",
+ "path": "hinduism/aarti/ravidas/ravidas-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "नामु तेरो आरती मजनु मुरारे",
+  "en": "Namu Tero Aarti Majanu Murare"
+ },
+ "by": {
+  "hi": "गुरु रविदास",
+  "en": "Guru Ravidas"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "नामु तेरो आरती मजनु मुरारे",
+    "en": "Namu Tero Aarti Majanu Murare"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

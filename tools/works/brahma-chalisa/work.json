@@ -1,0 +1,36 @@
+{
+ "id": "brahma-chalisa",
+ "path": "hinduism/chalisa/brahma/brahma-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री ब्रह्मा चालीसा",
+  "en": "Shri Brahma Chalisa"
+ },
+ "by": {
+  "hi": "भगवान ब्रह्मा",
+  "en": "Bhagwan Brahma"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री ब्रह्मा चालीसा",
+    "en": "Shri Brahma Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  }
+ }
+}

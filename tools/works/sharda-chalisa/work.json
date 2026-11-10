@@ -1,0 +1,40 @@
+{
+ "id": "sharda-chalisa",
+ "path": "hinduism/chalisa/sharda/sharda-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री शारदा चालीसा",
+  "en": "Shri Sharda Chalisa"
+ },
+ "by": {
+  "hi": "माँ शारदा",
+  "en": "Mother Sharda"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री शारदा चालीसा",
+    "en": "Shri Sharda Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

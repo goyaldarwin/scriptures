@@ -1,0 +1,14 @@
+# Anuradha Paudwal, "Ambe Tu Hai Jagdambe" (YouTube OQ5K_GILwzQ): hand-checked starts
+
+What the recording sings: music to ~11 s; the refrain twice (11–48); stanza 1 and the refrain (53.7–122); stanza 2 and the
+refrain (128–196); stanza 3 and the refrain (202–257); the refrain's last line to the end (257–291). The transcript
+(`transcripts/OQ5K_GILwzQ.jsonl`) sets its first segment at 0 and holds long segments; the alignment took the refrain's
+repeats for stanzas 2 and 3. Evidence: the same Whisper small model (its ONNX export, `tools/audio/transcribe_onnx.py`) on
+4–9 s pieces.
+
+| Verse | Start | Evidence |
+|---|---|---|
+| aarti.tek | 11.0 | 0–11.0 music; 11.0–19.65 "अम दू है जग जमबे काली जैए दूरी" = अम्बे तू है जगदम्बे काली जय दुर्गे; the alignment took 31.48 (its repeat) |
+| aarti.pad1 | 53.7 | 48.05 music; 53.7–61.9 "तेरी वाद जनो पे माथा", 61.9 "भीर पडी है पारी" = तेरे भक्त जनों पर माता भीर पड़ी है भारी (the transcript: 55.82) |
+| aarti.pad2 | 128.2 | 122.55 music; 128.2 "माबे के आपे", 135.0 "अज़ाग में बड़ा लिए निर्मल लादा" = मां बेटे का है इस जग में बड़ा ही निर्मल नाता; the alignment took 105.82, the refrain |
+| aarti.pad3 | 202.3 | 196.7 music; 202.3 "अद्याद लग तेदार", 208.85 "अर तालच ना चांजी ना सोडा" = (नहीं मांगते धन) और दौलत ना चांदी ना सोना; the alignment took 187.42, the refrain |

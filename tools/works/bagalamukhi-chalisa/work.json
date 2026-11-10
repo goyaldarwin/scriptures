@@ -1,0 +1,40 @@
+{
+ "id": "bagalamukhi-chalisa",
+ "path": "hinduism/chalisa/bagalamukhi/bagalamukhi-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री बगलामुखी चालीसा",
+  "en": "Shri Baglamukhi Chalisa"
+ },
+ "by": {
+  "hi": "माँ बगलामुखी",
+  "en": "Mother Baglamukhi"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री बगलामुखी चालीसा",
+    "en": "Shri Baglamukhi Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

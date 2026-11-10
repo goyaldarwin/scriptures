@@ -1,0 +1,41 @@
+# जय धन्वन्तरि देवा (Jai Dhanvantari Deva): the verse text, from Drik Panchang ("Lord Dhanvantari Aarti",
+# drikpanchang.com/lyrics/aarti/lord-dhanvantari/lord-dhanvantari-aarti.html). The witnesses and every choice: reconciliation.md.
+
+@part aarti
+@section aarti
+@topic जय धन्वन्तरि देवा | Jai Dhanvantari Deva
+[aarti.tek tek]
+जय धन्वन्तरि देवा ।
+जय धन्वन्तरि जी देवा ।
+जरा-रोग से पीड़ित ।
+जन-जन सुख देवा ॥
+[aarti.pad1 pad 1]
+तुम समुद्र से निकले ।
+अमृत कलश लिए ।
+देवासुर के संकट ।
+आकर दूर किए ॥१॥
+[aarti.pad2 pad 2]
+आयुर्वेद बनाया ।
+जग में फैलाया ।
+सदा स्वस्थ रहने का ।
+साधन बतलाया ॥२॥
+[aarti.pad3 pad 3]
+भुजा चार अति सुन्दर ।
+शंख सुधा धारी ।
+आयुर्वेद वनस्पति से ।
+शोभा भारी ॥३॥
+[aarti.pad4 pad 4]
+तुम को जो नित ध्यावे ।
+रोग नहीं आवे ।
+असाध्य रोग भी उसका ।
+निश्चय मिट जावे ॥४॥
+[aarti.pad5 pad 5]
+हाथ जोड़कर प्रभुजी ।
+दास खड़ा तेरा ।
+वैद्य-समाज तुम्हारे ।
+चरणों का घेरा ॥५॥
+[aarti.pad6 pad 6]
+धन्वन्तरिजी की आरती ।
+जो कोई नर गावे ।
+रोग-शोक न आए ।
+सुख-समृद्धि पावे ॥६॥

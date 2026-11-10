@@ -1,0 +1,40 @@
+{
+ "id": "baba-gangaram-chalisa",
+ "path": "hinduism/chalisa/baba-gangaram/baba-gangaram-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री बाबा गंगाराम चालीसा",
+  "en": "Shri Baba Gangaram Chalisa"
+ },
+ "by": {
+  "hi": "बाबा गंगाराम",
+  "en": "Baba Gangaram"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री बाबा गंगाराम चालीसा",
+    "en": "Shri Baba Gangaram Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

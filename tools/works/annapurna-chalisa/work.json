@@ -1,0 +1,40 @@
+{
+ "id": "annapurna-chalisa",
+ "path": "hinduism/chalisa/annapurna/annapurna-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री अन्नपूर्णा चालीसा",
+  "en": "Shri Annapurna Chalisa"
+ },
+ "by": {
+  "hi": "माँ अन्नपूर्णा",
+  "en": "Mother Annapurna"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री अन्नपूर्णा चालीसा",
+    "en": "Shri Annapurna Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

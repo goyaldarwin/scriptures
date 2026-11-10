@@ -1,0 +1,33 @@
+# बन्दौं रघुपति करुना निधान (Bandaun Raghupati Karuna Nidhan): the verse text, from Drik Panchang's
+# "Shri Rama Raghupati Aarti". The witnesses and every choice: reconciliation.md.
+
+@part aarti
+@section aarti
+@topic बन्दौं रघुपति करुना निधान | Bandaun Raghupati Karuna Nidhan
+[aarti.pad1 pad 1]
+बन्दौं रघुपति करुना निधान ।
+जाते छूटै भव-भेद ग्यान ॥१॥
+[aarti.pad2 pad 2]
+रघुबंस-कुमुद-सुखप्रद निसेस ।
+सेवत पद-पंकज अज-महेस ॥२॥
+[aarti.pad3 pad 3]
+निज भक्त-हृदय पाथोज-भृंग ।
+लावन्यबपुष अगनित अनंग ॥३॥
+[aarti.pad4 pad 4]
+अति प्रबल मोह-तम-मारतण्ड ।
+अग्यान-गहन-पावक-प्रचण्ड ॥४॥
+[aarti.pad5 pad 5]
+अभिमान-सिन्धु-कुम्भज उदार ।
+सुररंजन भंजन भूमिभार ॥५॥
+[aarti.pad6 pad 6]
+रागादि-सर्पगन पन्नगारि ।
+कन्दर्प-नाग-मृगपति मुरारि ॥६॥
+[aarti.pad7 pad 7]
+भव-जलधि-पोत चरनारबिन्द ।
+जानकी-रवन आनन्द कन्द ॥७॥
+[aarti.pad8 pad 8]
+हनुमन्त प्रेम बापी मराल ।
+निष्काम कामधुक गो दयाल ॥८॥
+[aarti.pad9 pad 9]
+त्रैलोक-तिलक गुनगहन राम ।
+कह तुलसिदास बिश्राम-धाम ॥९॥

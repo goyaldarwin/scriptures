@@ -1,0 +1,40 @@
+{
+ "id": "surya-chalisa",
+ "path": "hinduism/chalisa/surya/surya-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री सूर्य चालीसा",
+  "en": "Shri Surya Chalisa"
+ },
+ "by": {
+  "hi": "भगवान सूर्य",
+  "en": "Bhagwan Surya"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री सूर्य चालीसा",
+    "en": "Shri Surya Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

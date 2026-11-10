@@ -15,7 +15,7 @@ Every work has an address, read from the general to the specific like a REST pat
 | Level | What it is | Ids in use or planned |
 |---|---|---|
 | tradition | the faith; in the paths and folders only, never shown in the app | `hinduism` (हिन्दू धर्म), `sikhism` (सिख धर्म); later `jain`, `bauddh` … |
-| genre | the kind of text, as a reader looks for it | Hindu: `granth` (epics, scriptures), `stotra`, `aarti`, `chalisa`, `bhajan`, `veda`, `purana` … · Sikh: `gurbani` … |
+| genre | the kind of text, as a reader looks for it | Hindu: `granth` (epics, scriptures), `stotra`, `aarti`, `chalisa`, `namavali` (the names of the gods: sahasranāmas, aṣṭottaras), `bhajan`, `veda`, `purana` … · Sikh: `gurbani` … |
 | group(s) | whatever groups works naturally inside that genre (one or more levels) | `granth`: the author (`tulsidas`, `valmiki`, `vyasa`) · `stotra`, `aarti`, `chalisa`: the deity or saint (`rama`, `hanuman`, `vishnu`, `shiva`, `ganga`, `shirdi-sai`) · `veda`: the Veda, its śākhā where there are two (`yajurveda/krishna-yajurveda`, `yajurveda/shukla-yajurveda`), then the division `samhita` / `brahmana` / `aranyaka` / `upanishad` · `gurbani`: the Guru (`guru-arjan-dev`, `guru-nanak-dev`) |
 | work | the text you open | `ramcharitmanas`, `ramraksha`, `dhoop-aarti`, `katha-upanishad`, `sukhmani-sahib` |
 

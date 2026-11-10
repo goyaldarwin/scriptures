@@ -1,0 +1,36 @@
+{
+ "id": "lalita-chalisa",
+ "path": "hinduism/chalisa/lalita/lalita-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री ललिता चालीसा",
+  "en": "Shri Lalita Chalisa"
+ },
+ "by": {
+  "hi": "माँ ललिता",
+  "en": "Mother Lalita"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री ललिता चालीसा",
+    "en": "Shri Lalita Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

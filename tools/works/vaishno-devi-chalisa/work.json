@@ -1,0 +1,40 @@
+{
+ "id": "vaishno-devi-chalisa",
+ "path": "hinduism/chalisa/vaishno-devi/vaishno-devi-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री वैष्णो देवी चालीसा",
+  "en": "Shri Vaishno Devi Chalisa"
+ },
+ "by": {
+  "hi": "माँ वैष्णो देवी",
+  "en": "Mother Vaishno Devi"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री वैष्णो देवी चालीसा",
+    "en": "Shri Vaishno Devi Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

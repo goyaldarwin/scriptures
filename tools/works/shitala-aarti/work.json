@@ -1,0 +1,48 @@
+{
+ "id": "shitala-aarti",
+ "path": "hinduism/aarti/shitala/shitala-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "जय शीतला माता",
+  "en": "Jai Shitala Mata"
+ },
+ "by": {
+  "hi": "माँ शीतला",
+  "en": "Mother Shitala"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "जय शीतला माता",
+    "en": "Jai Shitala Mata"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

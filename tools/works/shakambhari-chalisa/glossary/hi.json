@@ -1,0 +1,38 @@
+{
+ "कान्त": {
+  "hi": "कान्त, शाकम्भरी चालीसाके कवि",
+  "en": "Kānta, the poet of the Śākambharī Cālīsā",
+  "g": "संज्ञा (व्यक्तिवाचक)",
+  "hard": true
+ },
+ "कम्पलेश्वर": {
+  "hi": "कम्पलेश्वर, एक तीर्थ-स्थान, जहाँ देवी भद्रकाली होकर आयीं",
+  "en": "Kampaleśvara, a holy place where the Goddess came as Bhadrakālī",
+  "g": "संज्ञा (व्यक्तिवाचक)",
+  "hard": true
+ },
+ "कान्ताकी": {
+  "hi": "कान्ता (कान्ताप्रसाद), जगाधरीके निवासी, इस चालीसाके कवि",
+  "en": "Kāntā (Kāntāprasāda) of Jagādharī, the poet of this Chālīsā",
+  "g": "संज्ञा (व्यक्तिवाचक)",
+  "hard": true
+ },
+ "कान्ताप्रसादने": {
+  "hi": "कान्ताप्रसाद, जगाधरीके निवासी, इस चालीसाके कवि",
+  "en": "Kāntāprasāda of Jagādharī, the poet of this Chālīsā",
+  "g": "संज्ञा (व्यक्तिवाचक)",
+  "hard": true
+ },
+ "जगाधरीके": {
+  "hi": "जगाधरी, एक नगर, इस चालीसाके कवि कान्ताप्रसादका निवास",
+  "en": "Jagādharī, a town, home of Kāntāprasāda, the poet of this Chālīsā",
+  "g": "संज्ञा (व्यक्तिवाचक)",
+  "hard": true
+ },
+ "भूरा": {
+  "hi": "भूरा देव, शाकम्भरी देवीके साथ पूजे जानेवाले एक देवता (लौकड़ाके साथ), जिनकी पहली पूजा होती है",
+  "en": "Bhūrā Dev, a god worshipped with Śākambharī (with Laukaṛā), who receives the first worship",
+  "g": "संज्ञा (व्यक्तिवाचक)",
+  "hard": true
+ }
+}

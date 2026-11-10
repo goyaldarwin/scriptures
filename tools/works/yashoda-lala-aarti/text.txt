@@ -1,0 +1,26 @@
+# आरति करत यसोदा प्रमुदित (Aarti Karat Yasoda Pramudit): the verse text, from Drik Panchang
+# (Shri Yashodalala Aarti). The witnesses and every choice: reconciliation.md.
+
+@part aarti
+@section aarti
+@topic आरति करत यसोदा प्रमुदित | Aarti Karat Yasoda Pramudit
+[aarti.pad1 pad 1]
+आरति करत यसोदा प्रमुदित ।
+फूली अङ्ग न मात ।
+बल-बल कहि दुलरावत ।
+आनन्द मगन भई पुलकात ॥१॥
+[aarti.pad2 pad 2]
+सुबरन-थार रत्न-दीपावलि ।
+चित्रित घृत-भीनी बात ।
+कल सिन्दूर दूब दधि ।
+अच्छत तिलक करत बहु भाँत ॥२॥
+[aarti.pad3 pad 3]
+अन्न चतुर्विध बिबिध ।
+भोग दुन्दुभि बाजत बहु जात ।
+नाचत गोप कुम्कुमा ।
+छिरकत देत अखिल नगदात ॥३॥
+[aarti.pad4 pad 4]
+बरसत कुसुम निकर-सुर-नर-मुनि ।
+व्रजजुवती मुसकात ।
+कृष्णदास-प्रभु गिरधर को ।
+मुख निरख लजत ससि-काँत ॥४॥

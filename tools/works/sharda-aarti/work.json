@@ -1,0 +1,49 @@
+{
+ "id": "sharda-aarti",
+ "path": "hinduism/aarti/sharda/sharda-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "मैया शारदा तोरे दरबार आरती नित गाऊँ",
+  "en": "Maiya Sharda Tore Darbar Aarti Nit Gaun"
+ },
+ "named": true,
+ "by": {
+  "hi": "माँ शारदा",
+  "en": "Mother Sharda"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "मैया शारदा तोरे दरबार",
+    "en": "Maiya Sharda Tore Darbar"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

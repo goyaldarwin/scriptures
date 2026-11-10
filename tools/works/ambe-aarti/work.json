@@ -1,0 +1,48 @@
+{
+ "id": "ambe-aarti",
+ "path": "hinduism/aarti/durga/ambe-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "जय अम्बे गौरी",
+  "en": "Jai Ambe Gauri"
+ },
+ "by": {
+  "hi": "माँ दुर्गा",
+  "en": "Mother Durga"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "जय अम्बे गौरी",
+    "en": "Jai Ambe Gauri"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

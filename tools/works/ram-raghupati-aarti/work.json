@@ -1,0 +1,48 @@
+{
+ "id": "ram-raghupati-aarti",
+ "path": "hinduism/aarti/rama/ram-raghupati-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "बन्दौं रघुपति करुना निधान",
+  "en": "Bandaun Raghupati Karuna Nidhan"
+ },
+ "by": {
+  "hi": "भगवान श्रीराम",
+  "en": "Bhagwan Shri Ram"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "बन्दौं रघुपति करुना निधान",
+    "en": "Bandaun Raghupati Karuna Nidhan"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

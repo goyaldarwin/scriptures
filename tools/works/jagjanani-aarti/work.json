@@ -1,0 +1,48 @@
+{
+ "id": "jagjanani-aarti",
+ "path": "hinduism/aarti/durga/jagjanani-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "जगजननी जय जय",
+  "en": "Jagjanani Jai Jai"
+ },
+ "by": {
+  "hi": "माँ दुर्गा",
+  "en": "Mother Durga"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "जगजननी जय जय",
+    "en": "Jagjanani Jai Jai"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

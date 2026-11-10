@@ -1,0 +1,48 @@
+{
+ "id": "shailputri-aarti",
+ "path": "hinduism/aarti/durga/shailputri-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "शैलपुत्री माँ बैल असवार",
+  "en": "Shailputri Maa Bail Asvar"
+ },
+ "by": {
+  "hi": "माँ दुर्गा",
+  "en": "Mother Durga"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "शैलपुत्री माँ बैल असवार",
+    "en": "Shailputri Maa Bail Asvar"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

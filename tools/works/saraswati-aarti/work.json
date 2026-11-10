@@ -1,0 +1,48 @@
+{
+ "id": "saraswati-aarti",
+ "path": "hinduism/aarti/saraswati/saraswati-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "जय सरस्वती माता",
+  "en": "Jai Saraswati Mata"
+ },
+ "by": {
+  "hi": "माँ सरस्वती",
+  "en": "Mother Saraswati"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "जय सरस्वती माता",
+    "en": "Jai Saraswati Mata"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

@@ -1,0 +1,48 @@
+{
+ "id": "rani-sati-aarti",
+ "path": "hinduism/aarti/rani-sati/rani-sati-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "जय श्री राणी सती मैया",
+  "en": "Jai Shri Rani Sati Maiya"
+ },
+ "by": {
+  "hi": "राणी सती",
+  "en": "Rani Sati"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "जय श्री राणी सती मैया",
+    "en": "Jai Shri Rani Sati Maiya"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

@@ -1,0 +1,48 @@
+{
+ "id": "katyayani-aarti",
+ "path": "hinduism/aarti/durga/katyayani-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "जय जय अम्बे जय कात्यायनी",
+  "en": "Jai Jai Ambe Jai Katyayani"
+ },
+ "by": {
+  "hi": "माँ दुर्गा",
+  "en": "Mother Durga"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "जय जय अम्बे जय कात्यायनी",
+    "en": "Jai Jai Ambe Jai Katyayani"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

@@ -1,0 +1,40 @@
+{
+ "id": "mahakali-chalisa",
+ "path": "hinduism/chalisa/kali/mahakali-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री महाकाली चालीसा",
+  "en": "Shri Mahakali Chalisa"
+ },
+ "by": {
+  "hi": "माँ काली",
+  "en": "Mother Kali"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री महाकाली चालीसा",
+    "en": "Shri Mahakali Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

@@ -1,0 +1,48 @@
+{
+ "id": "lalita-aarti",
+ "path": "hinduism/aarti/lalita/lalita-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "जय शरणं वरणं नमो नमः",
+  "en": "Jai Sharanam Varanam Namo Namah"
+ },
+ "by": {
+  "hi": "माँ ललिता",
+  "en": "Mother Lalita"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "जय शरणं वरणं नमो नमः",
+    "en": "Jai Sharanam Varanam Namo Namah"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

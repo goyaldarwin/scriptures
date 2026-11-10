@@ -1,0 +1,40 @@
+{
+ "id": "ravidas-chalisa",
+ "path": "hinduism/chalisa/ravidas/ravidas-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री रविदास चालीसा",
+  "en": "Shri Ravidas Chalisa"
+ },
+ "by": {
+  "hi": "गुरु रविदास",
+  "en": "Guru Ravidas"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री रविदास चालीसा",
+    "en": "Shri Ravidas Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

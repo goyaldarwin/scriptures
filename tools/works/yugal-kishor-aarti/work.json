@@ -1,0 +1,48 @@
+{
+ "id": "yugal-kishor-aarti",
+ "path": "hinduism/aarti/krishna/yugal-kishor-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "आरती जुगल किशोर की कीजै",
+  "en": "Aarti Jugal Kishor Ki Kijai"
+ },
+ "by": {
+  "hi": "भगवान श्रीकृष्ण",
+  "en": "Bhagwan Shri Krishna"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "आरती जुगल किशोर की कीजै",
+    "en": "Aarti Jugal Kishor Ki Kijai"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

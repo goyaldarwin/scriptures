@@ -1,0 +1,26 @@
+{
+ "id": "hanuman-chalisa",
+ "path": "hinduism/chalisa/hanuman/hanuman-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्रीहनुमानचालीसा",
+  "en": "Shri Hanuman Chalisa"
+ },
+ "by": {
+  "hi": "गोस्वामी तुलसीदास",
+  "en": "Goswami Tulsidas"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्रीहनुमानचालीसा",
+    "en": "Shri Hanuman Chalisa"
+   }
+  ]
+ }
+}

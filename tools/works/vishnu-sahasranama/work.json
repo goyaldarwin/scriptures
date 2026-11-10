@@ -1,0 +1,140 @@
+{
+ "id": "vishnu-sahasranama",
+ "path": "hinduism/namavali/vishnu/vishnu-sahasranama",
+ "lang": "sa",
+ "title": {
+  "hi": "श्रीविष्णुसहस्रनामस्तोत्रम्",
+  "en": "Shri Vishnu Sahasranamam"
+ },
+ "by": {
+  "hi": "महर्षि वेदव्यास (महाभारत, अनुशासन पर्व)",
+  "en": "Maharshi Ved Vyas (Mahabharata, Anushasan Parva)"
+ },
+ "edition": {
+  "hi": "vishnusahasranamam.in",
+  "en": "vishnusahasranamam.in"
+ },
+ "parts": {
+  "name": {
+   "hi": "पाठ",
+   "en": "Paath"
+  },
+  "list": [
+   {
+    "key": "vishnu-sahasranama",
+    "hi": "श्रीविष्णुसहस्रनामस्तोत्रम्",
+    "en": "Shri Vishnu Sahasranamam"
+   }
+  ]
+ },
+ "sections": {
+  "mangala": {
+   "hi": "मङ्गलाचरण",
+   "en": "Opening Prayers"
+  },
+  "purva": {
+   "hi": "पूर्वपीठिका",
+   "en": "Purva Peethika"
+  },
+  "nyasa": {
+   "hi": "विनियोग और न्यास",
+   "en": "Viniyoga and Nyas"
+  },
+  "dhyana": {
+   "hi": "ध्यानम्",
+   "en": "Dhyanam"
+  },
+  "stotra": {
+   "hi": "स्तोत्र",
+   "en": "Stotra"
+  },
+  "uttara": {
+   "hi": "उत्तरपीठिका",
+   "en": "Uttara Peethika"
+  },
+  "iti": {
+   "hi": "समापन",
+   "en": "Closing words"
+  },
+  "upasamhara": {
+   "hi": "उपसंहारश्लोक",
+   "en": "Closing Shlokas"
+  },
+  "paryaya": {
+   "hi": "पर्याय उपसंहारश्लोक",
+   "en": "Alternative Closing Shlokas"
+  }
+ },
+ "types": {
+  "mantra": {
+   "name": {
+    "hi": "मन्त्र",
+    "en": "Mantra"
+   },
+   "short": {
+    "hi": "मं॰",
+    "en": "Man."
+   }
+  },
+  "viniyoga": {
+   "name": {
+    "hi": "विनियोग",
+    "en": "Viniyoga"
+   },
+   "short": {
+    "hi": "विनि॰",
+    "en": "Vin."
+   }
+  },
+  "nyasa": {
+   "name": {
+    "hi": "न्यास",
+    "en": "Nyas"
+   },
+   "short": {
+    "hi": "न्या॰",
+    "en": "Nya."
+   }
+  },
+  "sankalpa": {
+   "name": {
+    "hi": "सङ्कल्प",
+    "en": "Sankalp"
+   },
+   "short": {
+    "hi": "सं॰",
+    "en": "San."
+   }
+  },
+  "dhyana": {
+   "name": {
+    "hi": "ध्यान",
+    "en": "Dhyan"
+   },
+   "short": {
+    "hi": "ध्या॰",
+    "en": "Dhy."
+   }
+  },
+  "shloka": {
+   "name": {
+    "hi": "श्लोक",
+    "en": "Shloka"
+   },
+   "short": {
+    "hi": "श्लो॰",
+    "en": "Shl."
+   }
+  },
+  "iti": {
+   "name": {
+    "hi": "समापन (पुष्पिका)",
+    "en": "Closing words (iti)"
+   },
+   "short": {
+    "hi": "इति",
+    "en": "Iti"
+   }
+  }
+ }
+}

@@ -1,0 +1,40 @@
+{
+ "id": "parashurama-chalisa",
+ "path": "hinduism/chalisa/parashurama/parashurama-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री परशुराम चालीसा",
+  "en": "Shri Parshuram Chalisa"
+ },
+ "by": {
+  "hi": "भगवान परशुराम",
+  "en": "Bhagwan Parshuram"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री परशुराम चालीसा",
+    "en": "Shri Parshuram Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

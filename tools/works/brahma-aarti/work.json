@@ -1,0 +1,48 @@
+{
+ "id": "brahma-aarti",
+ "path": "hinduism/aarti/brahma/brahma-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "पितु मातु सहायक स्वामी सखा",
+  "en": "Pitu Matu Sahayak Swami Sakha"
+ },
+ "by": {
+  "hi": "भगवान ब्रह्मा",
+  "en": "Bhagwan Brahma"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "पितु मातु सहायक स्वामी सखा",
+    "en": "Pitu Matu Sahayak Swami Sakha"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

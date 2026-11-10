@@ -1,0 +1,40 @@
+{
+ "id": "ganga-chalisa",
+ "path": "hinduism/chalisa/ganga/ganga-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री गंगा चालीसा",
+  "en": "Shri Ganga Chalisa"
+ },
+ "by": {
+  "hi": "माँ गंगा",
+  "en": "Mother Ganga"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री गंगा चालीसा",
+    "en": "Shri Ganga Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

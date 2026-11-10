@@ -1,0 +1,48 @@
+{
+ "id": "chitragupta-aarti",
+ "path": "hinduism/aarti/chitragupta/chitragupta-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "ॐ जय चित्रगुप्त हरे",
+  "en": "Om Jai Chitragupt Hare"
+ },
+ "by": {
+  "hi": "भगवान चित्रगुप्त",
+  "en": "Bhagwan Chitragupta"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "ॐ जय चित्रगुप्त हरे",
+    "en": "Om Jai Chitragupt Hare"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

@@ -1,0 +1,48 @@
+{
+ "id": "baba-gangaram-aarti",
+ "path": "hinduism/aarti/baba-gangaram/baba-gangaram-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "जय हो गंगाराम बाबा",
+  "en": "Jai Ho Gangaram Baba"
+ },
+ "by": {
+  "hi": "बाबा गंगाराम",
+  "en": "Baba Gangaram"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "जय हो गंगाराम बाबा",
+    "en": "Jai Ho Gangaram Baba"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

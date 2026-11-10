@@ -1,0 +1,48 @@
+{
+ "id": "janakinath-aarti",
+ "path": "hinduism/aarti/rama/janakinath-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "जय जानकीनाथा जय श्रीरघुनाथा",
+  "en": "Jai Janakinatha Jai Shri Raghunatha"
+ },
+ "by": {
+  "hi": "भगवान श्रीराम",
+  "en": "Bhagwan Shri Ram"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "जय जानकीनाथा",
+    "en": "Jai Janakinatha"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

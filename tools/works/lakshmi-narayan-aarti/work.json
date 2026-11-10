@@ -1,0 +1,48 @@
+{
+ "id": "lakshmi-narayan-aarti",
+ "path": "hinduism/aarti/vishnu/lakshmi-narayan-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "जय लक्ष्मी-विष्णो",
+  "en": "Jai Lakshmi-Vishno"
+ },
+ "by": {
+  "hi": "भगवान विष्णु (लक्ष्मीनारायण)",
+  "en": "Bhagwan Vishnu (Lakshmi Narayan)"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "जय लक्ष्मी-विष्णो",
+    "en": "Jai Lakshmi-Vishno"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

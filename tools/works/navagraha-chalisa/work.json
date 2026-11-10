@@ -1,0 +1,40 @@
+{
+ "id": "navagraha-chalisa",
+ "path": "hinduism/chalisa/navagraha/navagraha-chalisa",
+ "lang": "awa",
+ "title": {
+  "hi": "श्री नवग्रह चालीसा",
+  "en": "Shri Navagraha Chalisa"
+ },
+ "by": {
+  "hi": "नवग्रह",
+  "en": "Navagraha"
+ },
+ "parts": {
+  "name": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "list": [
+   {
+    "key": "chalisa",
+    "hi": "श्री नवग्रह चालीसा",
+    "en": "Shri Navagraha Chalisa"
+   }
+  ]
+ },
+ "sections": {
+  "chalisa-do": {
+   "hi": "आरम्भ",
+   "en": "Opening"
+  },
+  "chalisa-cau": {
+   "hi": "चालीसा",
+   "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
+  }
+ }
+}

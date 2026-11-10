@@ -1,0 +1,48 @@
+{
+ "id": "govardhan-aarti",
+ "path": "hinduism/aarti/krishna/govardhan-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "श्री गोवर्धन महाराज",
+  "en": "Shri Govardhan Maharaj"
+ },
+ "by": {
+  "hi": "भगवान श्रीकृष्ण (गिरिराज गोवर्धन)",
+  "en": "Bhagwan Shri Krishna (Giriraj Govardhan)"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "श्री गोवर्धन महाराज",
+    "en": "Shri Govardhan Maharaj"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

@@ -1,0 +1,30 @@
+# जय माँ चन्द्रघण्टा सुख धाम (Jai Maa Chandraghanta Sukh Dham): the verse text, from Drik Panchang ("Chandraghanta
+# Mata Aarti", drikpanchang.com/lyrics/aarti/navdurga/chandraghanta/devi-chandraghanta-aarti.html). The witnesses and
+# every choice: reconciliation.md.
+
+@part aarti
+@section aarti
+@topic जय माँ चन्द्रघण्टा सुख धाम | Jai Maa Chandraghanta Sukh Dham
+[aarti.pad1 pad 1]
+जय माँ चन्द्रघण्टा सुख धाम ।
+पूर्ण कीजो मेरे काम ।
+चन्द्र समान तू शीतल दाती ।
+चन्द्र तेज किरणों में समाती ॥१॥
+[aarti.pad2 pad 2]
+मन की मालक मन भाती हो ।
+चन्द्रघण्टा तुम वर दाती हो ।
+सुन्दर भाव को लाने वाली ।
+हर संकट में बचाने वाली ॥२॥
+[aarti.pad3 pad 3]
+हर बुधवार जो तुझे ध्याये ।
+श्रद्धा सहित जो विनय सुनाये ।
+मूर्ति चन्द्र आकार बनाये ।
+सन्मुख घी की ज्योत जलाये ॥३॥
+[aarti.pad4 pad 4]
+शीश झुका कहे मन की बाता ।
+पूर्ण आस करो जगत दाता ।
+कांचीपुर स्थान तुम्हारा ।
+कर्नाटिका में मान तुम्हारा ॥४॥
+[aarti.pad5 pad 5]
+नाम तेरा रटू महारानी ।
+भक्त की रक्षा करो भवानी ॥५॥

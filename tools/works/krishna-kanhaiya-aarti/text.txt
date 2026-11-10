@@ -1,0 +1,33 @@
+# आरती श्रीकृष्ण कन्हैया की (Aarti Shri Krishna Kanhaiya Ki): the verse text, from Drik Panchang (Shri Krishna Kanhaiya
+# Aarti); no printed book has it. The witness and every choice: reconciliation.md.
+
+@part aarti
+@section aarti
+@topic आरती श्रीकृष्ण कन्हैया की | Aarti Shri Krishna Kanhaiya Ki
+[aarti.tek tek]
+आरती श्रीकृष्ण कन्हैया की ॥
+[aarti.pad1 pad 1]
+मथुरा कारागृह अवतारी ।
+गोकुल जसुदा गोद विहारी ।
+नन्दलाल नटवर गिरधारी ।
+वासुदेव हलधर भैया की ॥१॥
+[aarti.pad2 pad 2]
+मोर मुकुट पीताम्बर छाजै ।
+कटि काछनि कर मुरलि विराजै ।
+पूर्ण सरद ससि मुख लखि लाजै ।
+काम कोटि छवि जितवैया की ॥२॥
+[aarti.pad3 pad 3]
+गोपीजन रस रास विलासी ।
+कौरव कालिय कंस बिनासी ।
+हिमकर भानु कृसानु प्रकासी ।
+सर्वभूत हिय बसवैया की ॥३॥
+[aarti.pad4 pad 4]
+कहुँ रन चढ़ै भागि कहुँ जावै ।
+कहुँ नृप कर कहुँ गाय चरावै ।
+कहुँ जागेस बेद जस गावै ।
+जग नचाय ब्रज नचवैया की ॥४॥
+[aarti.pad5 pad 5]
+अगुन सगुन लीला बपु धारी ।
+अनुपम गीता ज्ञान प्रचारी ।
+दामोदर सब विधि बलिहारी ।
+विप्र धेनु सुर रखवैया की ॥५॥

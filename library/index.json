@@ -537,14 +537,62 @@
     },
     "children": [
      {
+      "id": "ganesha",
+      "title": {
+       "hi": "भगवान श्री गणेश",
+       "en": "Bhagwan Shri Ganesh"
+      },
+      "children": [
+       {
+        "id": "ganesh-aarti",
+        "work": "ganesh-aarti",
+        "path": "hinduism/aarti/ganesha/ganesh-aarti",
+        "title": {
+         "hi": "जय गणेश जय गणेश जय गणेश देवा",
+         "en": "Jai Ganesh Jai Ganesh Jai Ganesh Deva"
+        },
+        "desc": {
+         "hi": "आरती श्री गणेशजीकी",
+         "en": "The aarti of Shri Ganesh"
+        }
+       },
+       {
+        "id": "gajvadan-vinayak-aarti",
+        "work": "gajvadan-vinayak-aarti",
+        "path": "hinduism/aarti/ganesha/gajvadan-vinayak-aarti",
+        "title": {
+         "hi": "आरती गजबदन विनायक की",
+         "en": "Aarti Gajbadan Vinayak Ki"
+        },
+        "desc": {
+         "hi": "भगवान श्री गणेशकी आरती",
+         "en": "The aarti of Bhagwan Shri Ganesh"
+        }
+       },
+       {
+        "id": "ganpati-seva-aarti",
+        "work": "ganpati-seva-aarti",
+        "path": "hinduism/aarti/ganesha/ganpati-seva-aarti",
+        "title": {
+         "hi": "गणपति की सेवा मंगल मेवा",
+         "en": "Ganpati Ki Seva Mangal Meva"
+        },
+        "desc": {
+         "hi": "भगवान श्री गणेशकी आरती",
+         "en": "The aarti of Bhagwan Shri Ganesh"
+        }
+       }
+      ]
+     },
+     {
       "id": "rama",
       "title": {
        "hi": "श्रीराम",
        "en": "Shri Ram"
       },
       "desc": {
-       "hi": "श्रीरामचन्द्र कृपालु · आरती कीजे श्री रामलला की · आरति श्रीरामायनजी की",
-       "en": "Shri Ramchandra Kripalu · Aarti Kije Shri Ramlala Ki · Aarti Shri Ramayanji Ki"
+       "hi": "श्रीरामचन्द्र कृपालु · आरती कीजे श्री रामलला की",
+       "en": "Shri Ramchandra Kripalu · Aarti Kije Shri Ramlala Ki"
       },
       "children": [
        {
@@ -596,6 +644,58 @@
         }
        },
        {
+        "id": "janakinath-aarti",
+        "work": "janakinath-aarti",
+        "path": "hinduism/aarti/rama/janakinath-aarti",
+        "title": {
+         "hi": "जय जानकीनाथा जय श्रीरघुनाथा",
+         "en": "Jai Janakinatha Jai Shri Raghunatha"
+        },
+        "desc": {
+         "hi": "श्रीरामकी आरती",
+         "en": "The aarti of Shri Ram"
+        }
+       },
+       {
+        "id": "raghuvar-aarti",
+        "work": "raghuvar-aarti",
+        "path": "hinduism/aarti/rama/raghuvar-aarti",
+        "title": {
+         "hi": "आरती कीजै श्री रघुवर जी की",
+         "en": "Aarti Kijai Shri Raghuvar Ji Ki"
+        },
+        "desc": {
+         "hi": "श्रीरामकी आरती",
+         "en": "The aarti of Shri Ram"
+        }
+       },
+       {
+        "id": "ram-raghupati-aarti",
+        "work": "ram-raghupati-aarti",
+        "path": "hinduism/aarti/rama/ram-raghupati-aarti",
+        "title": {
+         "hi": "बन्दौं रघुपति करुना निधान",
+         "en": "Bandaun Raghupati Karuna Nidhan"
+        },
+        "desc": {
+         "hi": "श्रीरामकी आरती",
+         "en": "The aarti of Shri Ram"
+        }
+       },
+       {
+        "id": "ram-raghuvir-aarti",
+        "work": "ram-raghuvir-aarti",
+        "path": "hinduism/aarti/rama/ram-raghuvir-aarti",
+        "title": {
+         "hi": "ऐसी आरती राम रघुबीर की करहि मन",
+         "en": "Aisi Aarti Ram Raghubir Ki Karahi Man"
+        },
+        "desc": {
+         "hi": "श्रीरामकी आरती",
+         "en": "The aarti of Shri Ram"
+        }
+       },
+       {
         "id": "ramayan-aarti",
         "work": "ramayan-aarti",
         "path": "hinduism/aarti/rama/ramayan-aarti",
@@ -617,6 +717,54 @@
           "\"Aarti Shri Ramayanji Ki\" is the aarti of the Shri Ramcharitmanas, sung at the end of a parayan of the Manas; the Gita Press Manas prints it at the end of the book.",
           "After its refrain come four stanzas. They tell how gods, sages and poets such as Brahma, Narad, Valmiki, Shiv and Parvati, Vyas, Kakabhushundi and Garud sing it; how it is the essence of the Vedas, Puranas and shastras, takes away the sins of the Kali age and is the nectar herb for the disease of worldly life; and how it is father and mother to Tulsidas. Its recording here is the end of the thirtieth day of Pt. Kamlesh Upadhyay's Maas Parayan."
          ]
+        }
+       },
+       {
+        "id": "sitaram-aarti",
+        "work": "sitaram-aarti",
+        "path": "hinduism/aarti/rama/sitaram-aarti",
+        "title": {
+         "hi": "गाओ गाओ री प्रियाप्रीतम की आरती गाओ",
+         "en": "Gao Gao Ri Priyapritam Ki Aarti Gao"
+        },
+        "desc": {
+         "hi": "श्रीरामकी आरती",
+         "en": "The aarti of Shri Ram"
+        }
+       }
+      ]
+     },
+     {
+      "id": "sita",
+      "title": {
+       "hi": "माता सीता",
+       "en": "Mother Sita"
+      },
+      "children": [
+       {
+        "id": "janaki-aarti",
+        "work": "janaki-aarti",
+        "path": "hinduism/aarti/sita/janaki-aarti",
+        "title": {
+         "hi": "आरती कीजै श्रीजनक लली की",
+         "en": "Aarti Kijai Shri Janak Lali Ki"
+        },
+        "desc": {
+         "hi": "माता सीताकी आरती",
+         "en": "The aarti of Mother Sita"
+        }
+       },
+       {
+        "id": "sita-aarti",
+        "work": "sita-aarti",
+        "path": "hinduism/aarti/sita/sita-aarti",
+        "title": {
+         "hi": "आरती श्री जनक दुलारी की",
+         "en": "Aarti Shri Janak Dulari Ki"
+        },
+        "desc": {
+         "hi": "माता सीताकी आरती",
+         "en": "The aarti of Mother Sita"
         }
        }
       ]
@@ -655,42 +803,44 @@
           "Its stanzas tell his great deeds: taking Ram's task across the sea, burning Lanka and bringing news of Sita, carrying the life-giving herb before dawn to save Lakshman, and going down into the netherworld to tear off Ahiravan's arms. Gods, men and sages wave the lamp, and his mother Anjani performs the aarti. The last stanza names Tulsidas as the one who sang his Lord's glory."
          ]
         }
-       }
-      ]
-     },
-     {
-      "id": "vishnu",
-      "title": {
-       "hi": "भगवान विष्णु",
-       "en": "Bhagwan Vishnu"
-      },
-      "desc": {
-       "hi": "ॐ जय जगदीश हरे",
-       "en": "Om Jai Jagdish Hare"
-      },
-      "children": [
+       },
        {
-        "id": "jagdish-aarti",
-        "work": "jagdish-aarti",
-        "path": "hinduism/aarti/vishnu/jagdish-aarti",
+        "id": "balaji-aarti",
+        "work": "balaji-aarti",
+        "path": "hinduism/aarti/hanuman/balaji-aarti",
         "title": {
-         "hi": "ॐ जय जगदीश हरे",
-         "en": "Om Jai Jagdish Hare"
+         "hi": "ॐ जय हनुमत वीरा",
+         "en": "Om Jai Hanumat Veera"
         },
         "desc": {
-         "hi": "आरती श्रीजगदीशजीकी",
-         "en": "The aarti of Shri Jagdish"
+         "hi": "श्रीहनुमानकी आरती",
+         "en": "The aarti of Shri Hanuman"
+        }
+       },
+       {
+        "id": "mangal-murti-hanuman-aarti",
+        "work": "mangal-murti-hanuman-aarti",
+        "path": "hinduism/aarti/hanuman/mangal-murti-hanuman-aarti",
+        "title": {
+         "hi": "मंगल मूरति जय जय हनुमन्ता",
+         "en": "Mangal Murti Jai Jai Hanumanta"
         },
-        "salute": "॥ ॐ नमो भगवते वासुदेवाय ॥",
-        "intro": {
-         "hi": [
-          "'ॐ जय जगदीश हरे' — 'हे जगदीश्वर हरि, आपकी जय हो' — भगवान विष्णुकी आरती है, जो पूरे भारतमें घरों और मन्दिरोंमें पूजाके अन्तमें गाई जाती है। इसकी रचना प्रायः पंजाबके फिल्लौरके पण्डित श्रद्धाराम फिल्लौरी (१८३७–१८८१), लेखक और समाज-सुधारक, की मानी जाती है, जिन्होंने इसे लगभग १८७० में लिखा बताया जाता है।",
-          "यह सीधी-सरल शरणागतिकी प्रार्थना है: तुम ही माता-पिता हो, तुम्हारे सिवा और कोई आस नहीं; तुम सबके भीतर बसनेवाले परमात्मा हो, करुणाके सागर; मैं तुम्हारा दास, तुम्हारे द्वारपर पड़ा हूँ। अन्तमें यह प्रार्थना करती है कि भगवान विषय-विकार मिटाएँ और श्रद्धा, भक्ति और सन्तोंकी सेवा बढ़ाएँ।"
-         ],
-         "en": [
-          "\"Om Jai Jagdish Hare\", \"victory to you, Hari, Lord of the universe\", is an aarti of Vishnu, sung at the close of worship in homes and temples across India. It is commonly attributed to Pandit Shardha Ram Phillauri (1837–1881) of Phillaur in Punjab, a writer and social reformer, who is said to have written it around 1870.",
-          "It is a prayer of simple surrender: you are my mother and father, there is no one else to hope in; you are the Supreme Self within all, an ocean of compassion; I am your servant at your door. It ends by asking the Lord to wipe away the troubles born of the senses and to increase faith, devotion and service to the saints."
-         ]
+        "desc": {
+         "hi": "श्रीहनुमानकी आरती",
+         "en": "The aarti of Shri Hanuman"
+        }
+       },
+       {
+        "id": "pavansut-hanuman-aarti",
+        "work": "pavansut-hanuman-aarti",
+        "path": "hinduism/aarti/hanuman/pavansut-hanuman-aarti",
+        "title": {
+         "hi": "जयति मंगलागार",
+         "en": "Jayati Mangalagar"
+        },
+        "desc": {
+         "hi": "श्रीहनुमानकी आरती",
+         "en": "The aarti of Shri Hanuman"
         }
        }
       ]
@@ -729,6 +879,1141 @@
           "Its stanzas picture the three forms with one, four and five faces, on the swan, Garud and the bull; their garlands of beads, forest flowers and skulls; the moon on Shiv's brow and the tiger skin; the water pot, discus and trident in their hands. Only the undiscerning, it says, see the three as separate: within Om they are one. The last stanza names its singer as Shivanand Swami."
          ]
         }
+       },
+       {
+        "id": "gangadhar-aarti",
+        "work": "gangadhar-aarti",
+        "path": "hinduism/aarti/shiva/gangadhar-aarti",
+        "title": {
+         "hi": "ॐ जय गङ्गाधर",
+         "en": "Om Jai Gangadhar"
+        },
+        "desc": {
+         "hi": "भगवान शिवकी आरती",
+         "en": "The aarti of Bhagwan Shiv"
+        }
+       },
+       {
+        "id": "har-har-mahadev-aarti",
+        "work": "har-har-mahadev-aarti",
+        "path": "hinduism/aarti/shiva/har-har-mahadev-aarti",
+        "title": {
+         "hi": "हर हर हर महादेव",
+         "en": "Har Har Har Mahadev"
+        },
+        "desc": {
+         "hi": "भगवान शिवकी आरती",
+         "en": "The aarti of Bhagwan Shiv"
+        }
+       },
+       {
+        "id": "kailashvasi-aarti",
+        "work": "kailashvasi-aarti",
+        "path": "hinduism/aarti/shiva/kailashvasi-aarti",
+        "title": {
+         "hi": "शीश गंग अर्धन्ग पार्वती",
+         "en": "Shish Gang Ardhang Parvati"
+        },
+        "desc": {
+         "hi": "भगवान शिवकी आरती",
+         "en": "The aarti of Bhagwan Shiv"
+        }
+       },
+       {
+        "id": "shankar-aarti",
+        "work": "shankar-aarti",
+        "path": "hinduism/aarti/shiva/shankar-aarti",
+        "title": {
+         "hi": "जयति जयति जग-निवास",
+         "en": "Jayati Jayati Jag Nivas"
+        },
+        "desc": {
+         "hi": "भगवान शिवकी आरती",
+         "en": "The aarti of Bhagwan Shiv"
+        }
+       }
+      ]
+     },
+     {
+      "id": "vishnu",
+      "title": {
+       "hi": "भगवान विष्णु",
+       "en": "Bhagwan Vishnu"
+      },
+      "desc": {
+       "hi": "ॐ जय जगदीश हरे",
+       "en": "Om Jai Jagdish Hare"
+      },
+      "children": [
+       {
+        "id": "jagdish-aarti",
+        "work": "jagdish-aarti",
+        "path": "hinduism/aarti/vishnu/jagdish-aarti",
+        "title": {
+         "hi": "ॐ जय जगदीश हरे",
+         "en": "Om Jai Jagdish Hare"
+        },
+        "desc": {
+         "hi": "आरती श्रीजगदीशजीकी",
+         "en": "The aarti of Shri Jagdish"
+        },
+        "salute": "॥ ॐ नमो भगवते वासुदेवाय ॥",
+        "intro": {
+         "hi": [
+          "'ॐ जय जगदीश हरे' — 'हे जगदीश्वर हरि, आपकी जय हो' — भगवान विष्णुकी आरती है, जो पूरे भारतमें घरों और मन्दिरोंमें पूजाके अन्तमें गाई जाती है। इसकी रचना प्रायः पंजाबके फिल्लौरके पण्डित श्रद्धाराम फिल्लौरी (१८३७–१८८१), लेखक और समाज-सुधारक, की मानी जाती है, जिन्होंने इसे लगभग १८७० में लिखा बताया जाता है।",
+          "यह सीधी-सरल शरणागतिकी प्रार्थना है: तुम ही माता-पिता हो, तुम्हारे सिवा और कोई आस नहीं; तुम सबके भीतर बसनेवाले परमात्मा हो, करुणाके सागर; मैं तुम्हारा दास, तुम्हारे द्वारपर पड़ा हूँ। अन्तमें यह प्रार्थना करती है कि भगवान विषय-विकार मिटाएँ और श्रद्धा, भक्ति और सन्तोंकी सेवा बढ़ाएँ।"
+         ],
+         "en": [
+          "\"Om Jai Jagdish Hare\", \"victory to you, Hari, Lord of the universe\", is an aarti of Vishnu, sung at the close of worship in homes and temples across India. It is commonly attributed to Pandit Shardha Ram Phillauri (1837–1881) of Phillaur in Punjab, a writer and social reformer, who is said to have written it around 1870.",
+          "It is a prayer of simple surrender: you are my mother and father, there is no one else to hope in; you are the Supreme Self within all, an ocean of compassion; I am your servant at your door. It ends by asking the Lord to wipe away the troubles born of the senses and to increase faith, devotion and service to the saints."
+         ]
+        }
+       },
+       {
+        "id": "badrinath-aarti",
+        "work": "badrinath-aarti",
+        "path": "hinduism/aarti/vishnu/badrinath-aarti",
+        "title": {
+         "hi": "जय जय श्री बदरीनाथ",
+         "en": "Jai Jai Shri Badrinath"
+        },
+        "desc": {
+         "hi": "भगवान विष्णुकी आरती",
+         "en": "The aarti of Bhagwan Vishnu"
+        }
+       },
+       {
+        "id": "ekadashi-aarti",
+        "work": "ekadashi-aarti",
+        "path": "hinduism/aarti/vishnu/ekadashi-aarti",
+        "title": {
+         "hi": "ॐ जय एकादशी",
+         "en": "Om Jai Ekadashi"
+        },
+        "desc": {
+         "hi": "भगवान विष्णुकी आरती",
+         "en": "The aarti of Bhagwan Vishnu"
+        }
+       },
+       {
+        "id": "lakshmi-narayan-aarti",
+        "work": "lakshmi-narayan-aarti",
+        "path": "hinduism/aarti/vishnu/lakshmi-narayan-aarti",
+        "title": {
+         "hi": "जय लक्ष्मी-विष्णो",
+         "en": "Jai Lakshmi-Vishno"
+        },
+        "desc": {
+         "hi": "भगवान विष्णुकी आरती",
+         "en": "The aarti of Bhagwan Vishnu"
+        }
+       },
+       {
+        "id": "purushottam-aarti",
+        "work": "purushottam-aarti",
+        "path": "hinduism/aarti/vishnu/purushottam-aarti",
+        "title": {
+         "hi": "जय पुरुषोत्तम देवा",
+         "en": "Jai Purushottam Deva"
+        },
+        "desc": {
+         "hi": "भगवान विष्णुकी आरती",
+         "en": "The aarti of Bhagwan Vishnu"
+        }
+       },
+       {
+        "id": "satyanarayan-aarti",
+        "work": "satyanarayan-aarti",
+        "path": "hinduism/aarti/vishnu/satyanarayan-aarti",
+        "title": {
+         "hi": "जय लक्ष्मी रमणा",
+         "en": "Jai Lakshmi Ramana"
+        },
+        "desc": {
+         "hi": "भगवान विष्णुकी आरती",
+         "en": "The aarti of Bhagwan Vishnu"
+        }
+       }
+      ]
+     },
+     {
+      "id": "krishna",
+      "title": {
+       "hi": "भगवान श्रीकृष्ण",
+       "en": "Bhagwan Shri Krishna"
+      },
+      "children": [
+       {
+        "id": "banke-bihari-aarti",
+        "work": "banke-bihari-aarti",
+        "path": "hinduism/aarti/krishna/banke-bihari-aarti",
+        "title": {
+         "hi": "श्री बाँकेबिहारी तेरी आरती गाऊँ",
+         "en": "Shri Banke Bihari Teri Aarti Gaun"
+        },
+        "desc": {
+         "hi": "भगवान श्रीकृष्णकी आरती",
+         "en": "The aarti of Bhagwan Shri Krishna"
+        }
+       },
+       {
+        "id": "giridhari-aarti",
+        "work": "giridhari-aarti",
+        "path": "hinduism/aarti/krishna/giridhari-aarti",
+        "title": {
+         "hi": "जय जय गिरिधारी प्रभु",
+         "en": "Jai Jai Giridhari Prabhu"
+        },
+        "desc": {
+         "hi": "भगवान श्रीकृष्णकी आरती",
+         "en": "The aarti of Bhagwan Shri Krishna"
+        }
+       },
+       {
+        "id": "giriraj-aarti",
+        "work": "giriraj-aarti",
+        "path": "hinduism/aarti/krishna/giriraj-aarti",
+        "title": {
+         "hi": "ॐ जय जय जय गिरिराज",
+         "en": "Om Jai Jai Jai Giriraj"
+        },
+        "desc": {
+         "hi": "भगवान श्रीकृष्णकी आरती",
+         "en": "The aarti of Bhagwan Shri Krishna"
+        }
+       },
+       {
+        "id": "govardhan-aarti",
+        "work": "govardhan-aarti",
+        "path": "hinduism/aarti/krishna/govardhan-aarti",
+        "title": {
+         "hi": "श्री गोवर्धन महाराज",
+         "en": "Shri Govardhan Maharaj"
+        },
+        "desc": {
+         "hi": "भगवान श्रीकृष्णकी आरती",
+         "en": "The aarti of Bhagwan Shri Krishna"
+        }
+       },
+       {
+        "id": "krishna-kanhaiya-aarti",
+        "work": "krishna-kanhaiya-aarti",
+        "path": "hinduism/aarti/krishna/krishna-kanhaiya-aarti",
+        "title": {
+         "hi": "आरती श्रीकृष्ण कन्हैया की",
+         "en": "Aarti Shri Krishna Kanhaiya Ki"
+        },
+        "desc": {
+         "hi": "भगवान श्रीकृष्णकी आरती",
+         "en": "The aarti of Bhagwan Shri Krishna"
+        }
+       },
+       {
+        "id": "kunj-bihari-aarti",
+        "work": "kunj-bihari-aarti",
+        "path": "hinduism/aarti/krishna/kunj-bihari-aarti",
+        "title": {
+         "hi": "आरती कुंजबिहारी की",
+         "en": "Aarti Kunj Bihari Ki"
+        },
+        "desc": {
+         "hi": "भगवान श्रीकृष्णकी आरती",
+         "en": "The aarti of Bhagwan Shri Krishna"
+        }
+       },
+       {
+        "id": "natvar-aarti",
+        "work": "natvar-aarti",
+        "path": "hinduism/aarti/krishna/natvar-aarti",
+        "title": {
+         "hi": "आरती कीजै श्रीनटवर जी की",
+         "en": "Aarti Kijai Shri Natvar Ji Ki"
+        },
+        "desc": {
+         "hi": "भगवान श्रीकृष्णकी आरती",
+         "en": "The aarti of Bhagwan Shri Krishna"
+        }
+       },
+       {
+        "id": "yashoda-lala-aarti",
+        "work": "yashoda-lala-aarti",
+        "path": "hinduism/aarti/krishna/yashoda-lala-aarti",
+        "title": {
+         "hi": "आरति करत यसोदा प्रमुदित",
+         "en": "Aarti Karat Yasoda Pramudit"
+        },
+        "desc": {
+         "hi": "भगवान श्रीकृष्णकी आरती",
+         "en": "The aarti of Bhagwan Shri Krishna"
+        }
+       },
+       {
+        "id": "yugal-kishor-aarti",
+        "work": "yugal-kishor-aarti",
+        "path": "hinduism/aarti/krishna/yugal-kishor-aarti",
+        "title": {
+         "hi": "आरती जुगल किशोर की कीजै",
+         "en": "Aarti Jugal Kishor Ki Kijai"
+        },
+        "desc": {
+         "hi": "भगवान श्रीकृष्णकी आरती",
+         "en": "The aarti of Bhagwan Shri Krishna"
+        }
+       }
+      ]
+     },
+     {
+      "id": "radha",
+      "title": {
+       "hi": "श्रीराधा",
+       "en": "Shri Radha"
+      },
+      "children": [
+       {
+        "id": "vrishbhanu-lali-aarti",
+        "work": "vrishbhanu-lali-aarti",
+        "path": "hinduism/aarti/radha/vrishbhanu-lali-aarti",
+        "title": {
+         "hi": "आरति श्रीवृषभानुलली की",
+         "en": "Aarti Shri Vrishbhanu Lali Ki"
+        },
+        "desc": {
+         "hi": "श्रीराधाकी आरती",
+         "en": "The aarti of Shri Radha"
+        }
+       },
+       {
+        "id": "vrishbhanu-suta-aarti",
+        "work": "vrishbhanu-suta-aarti",
+        "path": "hinduism/aarti/radha/vrishbhanu-suta-aarti",
+        "title": {
+         "hi": "आरती श्री वृषभानुसुता की",
+         "en": "Aarti Shri Vrishbhanu Suta Ki"
+        },
+        "desc": {
+         "hi": "श्रीराधाकी आरती",
+         "en": "The aarti of Shri Radha"
+        }
+       }
+      ]
+     },
+     {
+      "id": "narasimha",
+      "title": {
+       "hi": "भगवान नृसिंह",
+       "en": "Bhagwan Narasimha"
+      },
+      "children": [
+       {
+        "id": "narsingh-aarti",
+        "work": "narsingh-aarti",
+        "path": "hinduism/aarti/narasimha/narsingh-aarti",
+        "title": {
+         "hi": "ॐ जय नरसिंह हरे",
+         "en": "Om Jai Narsingh Hare"
+        },
+        "desc": {
+         "hi": "भगवान नृसिंहकी आरती",
+         "en": "The aarti of Bhagwan Narasimha"
+        }
+       },
+       {
+        "id": "narsingh-kunwar-aarti",
+        "work": "narsingh-kunwar-aarti",
+        "path": "hinduism/aarti/narasimha/narsingh-kunwar-aarti",
+        "title": {
+         "hi": "आरती कीजै नरसिंह कुँवर की",
+         "en": "Aarti Kijai Narsingh Kunwar Ki"
+        },
+        "desc": {
+         "hi": "भगवान नृसिंहकी आरती",
+         "en": "The aarti of Bhagwan Narasimha"
+        }
+       }
+      ]
+     },
+     {
+      "id": "parashurama",
+      "title": {
+       "hi": "भगवान परशुराम",
+       "en": "Bhagwan Parshuram"
+      },
+      "children": [
+       {
+        "id": "parashuram-aarti",
+        "work": "parashuram-aarti",
+        "path": "hinduism/aarti/parashurama/parashuram-aarti",
+        "title": {
+         "hi": "ॐ जय परशुधारी",
+         "en": "Om Jai Parshudhari"
+        },
+        "desc": {
+         "hi": "भगवान परशुरामकी आरती",
+         "en": "The aarti of Bhagwan Parshuram"
+        }
+       }
+      ]
+     },
+     {
+      "id": "brahma",
+      "title": {
+       "hi": "भगवान ब्रह्मा",
+       "en": "Bhagwan Brahma"
+      },
+      "children": [
+       {
+        "id": "brahma-aarti",
+        "work": "brahma-aarti",
+        "path": "hinduism/aarti/brahma/brahma-aarti",
+        "title": {
+         "hi": "पितु मातु सहायक स्वामी सखा",
+         "en": "Pitu Matu Sahayak Swami Sakha"
+        },
+        "desc": {
+         "hi": "भगवान ब्रह्माकी आरती",
+         "en": "The aarti of Bhagwan Brahma"
+        }
+       }
+      ]
+     },
+     {
+      "id": "surya",
+      "title": {
+       "hi": "भगवान सूर्य",
+       "en": "Bhagwan Surya"
+      },
+      "children": [
+       {
+        "id": "surya-aarti",
+        "work": "surya-aarti",
+        "path": "hinduism/aarti/surya/surya-aarti",
+        "title": {
+         "hi": "जय कश्यप-नन्दन",
+         "en": "Jai Kashyap Nandan"
+        },
+        "desc": {
+         "hi": "भगवान सूर्यकी आरती",
+         "en": "The aarti of Bhagwan Surya"
+        }
+       }
+      ]
+     },
+     {
+      "id": "shani",
+      "title": {
+       "hi": "शनिदेव",
+       "en": "Shani Dev"
+      },
+      "children": [
+       {
+        "id": "jai-shani-deva-aarti",
+        "work": "jai-shani-deva-aarti",
+        "path": "hinduism/aarti/shani/jai-shani-deva-aarti",
+        "title": {
+         "hi": "जय शनि देवा",
+         "en": "Jai Shani Deva"
+        },
+        "desc": {
+         "hi": "शनिदेवकी आरती",
+         "en": "The aarti of Shani Dev"
+        }
+       },
+       {
+        "id": "shanidev-aarti",
+        "work": "shanidev-aarti",
+        "path": "hinduism/aarti/shani/shanidev-aarti",
+        "title": {
+         "hi": "जय जय जय श्री शनि देव",
+         "en": "Jai Jai Jai Shri Shani Dev"
+        },
+        "desc": {
+         "hi": "शनिदेवकी आरती",
+         "en": "The aarti of Shani Dev"
+        }
+       }
+      ]
+     },
+     {
+      "id": "brihaspati",
+      "title": {
+       "hi": "बृहस्पतिदेव",
+       "en": "Brihaspati Dev"
+      },
+      "children": [
+       {
+        "id": "brihaspati-aarti",
+        "work": "brihaspati-aarti",
+        "path": "hinduism/aarti/brihaspati/brihaspati-aarti",
+        "title": {
+         "hi": "ॐ जय बृहस्पति देवा",
+         "en": "Om Jai Brihaspati Deva"
+        },
+        "desc": {
+         "hi": "बृहस्पतिदेवकी आरती",
+         "en": "The aarti of Brihaspati Dev"
+        }
+       }
+      ]
+     },
+     {
+      "id": "bhairava",
+      "title": {
+       "hi": "भगवान भैरव",
+       "en": "Bhagwan Bhairav"
+      },
+      "children": [
+       {
+        "id": "batuk-bhairav-aarti",
+        "work": "batuk-bhairav-aarti",
+        "path": "hinduism/aarti/bhairava/batuk-bhairav-aarti",
+        "title": {
+         "hi": "जय भैरव देवा",
+         "en": "Jai Bhairav Deva"
+        },
+        "desc": {
+         "hi": "भगवान भैरवकी आरती",
+         "en": "The aarti of Bhagwan Bhairav"
+        }
+       },
+       {
+        "id": "bhairav-aarti",
+        "work": "bhairav-aarti",
+        "path": "hinduism/aarti/bhairava/bhairav-aarti",
+        "title": {
+         "hi": "सुनो जी भैरव लाड़िले",
+         "en": "Suno Ji Bhairav Ladile"
+        },
+        "desc": {
+         "hi": "भगवान भैरवकी आरती",
+         "en": "The aarti of Bhagwan Bhairav"
+        }
+       }
+      ]
+     },
+     {
+      "id": "kubera",
+      "title": {
+       "hi": "कुबेर",
+       "en": "Kuber"
+      },
+      "children": [
+       {
+        "id": "kuber-aarti",
+        "work": "kuber-aarti",
+        "path": "hinduism/aarti/kubera/kuber-aarti",
+        "title": {
+         "hi": "ॐ जै यक्ष कुबेर हरे",
+         "en": "Om Jai Yaksha Kuber Hare"
+        },
+        "desc": {
+         "hi": "कुबेरकी आरती",
+         "en": "The aarti of Kuber"
+        }
+       }
+      ]
+     },
+     {
+      "id": "vishwakarma",
+      "title": {
+       "hi": "भगवान विश्वकर्मा",
+       "en": "Bhagwan Vishwakarma"
+      },
+      "children": [
+       {
+        "id": "vishwakarma-aarti",
+        "work": "vishwakarma-aarti",
+        "path": "hinduism/aarti/vishwakarma/vishwakarma-aarti",
+        "title": {
+         "hi": "प्रभु श्री विश्वकर्मा घर आवो",
+         "en": "Prabhu Shri Vishwakarma Ghar Aavo"
+        },
+        "desc": {
+         "hi": "भगवान विश्वकर्माकी आरती",
+         "en": "The aarti of Bhagwan Vishwakarma"
+        }
+       }
+      ]
+     },
+     {
+      "id": "chitragupta",
+      "title": {
+       "hi": "भगवान चित्रगुप्त",
+       "en": "Bhagwan Chitragupta"
+      },
+      "children": [
+       {
+        "id": "chitragupta-aarti",
+        "work": "chitragupta-aarti",
+        "path": "hinduism/aarti/chitragupta/chitragupta-aarti",
+        "title": {
+         "hi": "ॐ जय चित्रगुप्त हरे",
+         "en": "Om Jai Chitragupt Hare"
+        },
+        "desc": {
+         "hi": "भगवान चित्रगुप्तकी आरती",
+         "en": "The aarti of Bhagwan Chitragupta"
+        }
+       }
+      ]
+     },
+     {
+      "id": "dhanvantari",
+      "title": {
+       "hi": "भगवान धन्वन्तरि",
+       "en": "Bhagwan Dhanvantari"
+      },
+      "children": [
+       {
+        "id": "dhanvantari-aarti",
+        "work": "dhanvantari-aarti",
+        "path": "hinduism/aarti/dhanvantari/dhanvantari-aarti",
+        "title": {
+         "hi": "जय धन्वन्तरि देवा",
+         "en": "Jai Dhanvantari Deva"
+        },
+        "desc": {
+         "hi": "भगवान धन्वन्तरिकी आरती",
+         "en": "The aarti of Bhagwan Dhanvantari"
+        }
+       }
+      ]
+     },
+     {
+      "id": "durga",
+      "title": {
+       "hi": "माँ दुर्गा",
+       "en": "Mother Durga"
+      },
+      "children": [
+       {
+        "id": "ambe-aarti",
+        "work": "ambe-aarti",
+        "path": "hinduism/aarti/durga/ambe-aarti",
+        "title": {
+         "hi": "जय अम्बे गौरी",
+         "en": "Jai Ambe Gauri"
+        },
+        "desc": {
+         "hi": "माँ दुर्गाकी आरती",
+         "en": "The aarti of Mother Durga"
+        }
+       },
+       {
+        "id": "brahmacharini-aarti",
+        "work": "brahmacharini-aarti",
+        "path": "hinduism/aarti/durga/brahmacharini-aarti",
+        "title": {
+         "hi": "जय अम्बे ब्रह्मचारिणी माता",
+         "en": "Jai Ambe Brahmacharini Mata"
+        },
+        "desc": {
+         "hi": "माँ दुर्गाकी आरती",
+         "en": "The aarti of Mother Durga"
+        }
+       },
+       {
+        "id": "chandraghanta-aarti",
+        "work": "chandraghanta-aarti",
+        "path": "hinduism/aarti/durga/chandraghanta-aarti",
+        "title": {
+         "hi": "जय माँ चन्द्रघण्टा सुख धाम",
+         "en": "Jai Maa Chandraghanta Sukh Dham"
+        },
+        "desc": {
+         "hi": "माँ दुर्गाकी आरती",
+         "en": "The aarti of Mother Durga"
+        }
+       },
+       {
+        "id": "durga-aarti",
+        "work": "durga-aarti",
+        "path": "hinduism/aarti/durga/durga-aarti",
+        "title": {
+         "hi": "अम्बे तू है जगदम्बे काली",
+         "en": "Ambe Tu Hai Jagdambe Kali"
+        },
+        "desc": {
+         "hi": "माँ दुर्गाकी आरती",
+         "en": "The aarti of Mother Durga"
+        }
+       },
+       {
+        "id": "jagjanani-aarti",
+        "work": "jagjanani-aarti",
+        "path": "hinduism/aarti/durga/jagjanani-aarti",
+        "title": {
+         "hi": "जगजननी जय जय",
+         "en": "Jagjanani Jai Jai"
+        },
+        "desc": {
+         "hi": "माँ दुर्गाकी आरती",
+         "en": "The aarti of Mother Durga"
+        }
+       },
+       {
+        "id": "kalaratri-aarti",
+        "work": "kalaratri-aarti",
+        "path": "hinduism/aarti/durga/kalaratri-aarti",
+        "title": {
+         "hi": "कालरात्रि जय जय महाकाली",
+         "en": "Kalaratri Jai Jai Mahakali"
+        },
+        "desc": {
+         "hi": "माँ दुर्गाकी आरती",
+         "en": "The aarti of Mother Durga"
+        }
+       },
+       {
+        "id": "katyayani-aarti",
+        "work": "katyayani-aarti",
+        "path": "hinduism/aarti/durga/katyayani-aarti",
+        "title": {
+         "hi": "जय जय अम्बे जय कात्यायनी",
+         "en": "Jai Jai Ambe Jai Katyayani"
+        },
+        "desc": {
+         "hi": "माँ दुर्गाकी आरती",
+         "en": "The aarti of Mother Durga"
+        }
+       },
+       {
+        "id": "kushmanda-aarti",
+        "work": "kushmanda-aarti",
+        "path": "hinduism/aarti/durga/kushmanda-aarti",
+        "title": {
+         "hi": "कूष्माण्डा जय जग सुखदानी",
+         "en": "Kushmanda Jai Jag Sukhdani"
+        },
+        "desc": {
+         "hi": "माँ दुर्गाकी आरती",
+         "en": "The aarti of Mother Durga"
+        }
+       },
+       {
+        "id": "mahagauri-aarti",
+        "work": "mahagauri-aarti",
+        "path": "hinduism/aarti/durga/mahagauri-aarti",
+        "title": {
+         "hi": "जय महागौरी जगत की माया",
+         "en": "Jai Mahagauri Jagat Ki Maya"
+        },
+        "desc": {
+         "hi": "माँ दुर्गाकी आरती",
+         "en": "The aarti of Mother Durga"
+        }
+       },
+       {
+        "id": "shailputri-aarti",
+        "work": "shailputri-aarti",
+        "path": "hinduism/aarti/durga/shailputri-aarti",
+        "title": {
+         "hi": "शैलपुत्री माँ बैल असवार",
+         "en": "Shailputri Maa Bail Asvar"
+        },
+        "desc": {
+         "hi": "माँ दुर्गाकी आरती",
+         "en": "The aarti of Mother Durga"
+        }
+       },
+       {
+        "id": "siddhidatri-aarti",
+        "work": "siddhidatri-aarti",
+        "path": "hinduism/aarti/durga/siddhidatri-aarti",
+        "title": {
+         "hi": "जय सिद्धिदात्री माँ तू सिद्धि की दाता",
+         "en": "Jai Siddhidatri Maa Tu Siddhi Ki Data"
+        },
+        "desc": {
+         "hi": "माँ दुर्गाकी आरती",
+         "en": "The aarti of Mother Durga"
+        }
+       },
+       {
+        "id": "skandamata-aarti",
+        "work": "skandamata-aarti",
+        "path": "hinduism/aarti/durga/skandamata-aarti",
+        "title": {
+         "hi": "जय तेरी हो स्कन्द माता",
+         "en": "Jai Teri Ho Skand Mata"
+        },
+        "desc": {
+         "hi": "माँ दुर्गाकी आरती",
+         "en": "The aarti of Mother Durga"
+        }
+       }
+      ]
+     },
+     {
+      "id": "vaishno-devi",
+      "title": {
+       "hi": "माँ वैष्णो देवी",
+       "en": "Mother Vaishno Devi"
+      },
+      "children": [
+       {
+        "id": "vaishno-devi-aarti",
+        "work": "vaishno-devi-aarti",
+        "path": "hinduism/aarti/vaishno-devi/vaishno-devi-aarti",
+        "title": {
+         "hi": "जय वैष्णवी माता",
+         "en": "Jai Vaishnavi Mata"
+        },
+        "desc": {
+         "hi": "माँ वैष्णो देवीकी आरती",
+         "en": "The aarti of Mother Vaishno Devi"
+        }
+       }
+      ]
+     },
+     {
+      "id": "vindhyeshwari",
+      "title": {
+       "hi": "माँ विन्ध्येश्वरी",
+       "en": "Mother Vindhyeshwari"
+      },
+      "children": [
+       {
+        "id": "vindhyeshwari-aarti",
+        "work": "vindhyeshwari-aarti",
+        "path": "hinduism/aarti/vindhyeshwari/vindhyeshwari-aarti",
+        "title": {
+         "hi": "सुन मेरी देवी पर्वतवासिनि",
+         "en": "Sun Meri Devi Parvatvasini"
+        },
+        "desc": {
+         "hi": "माँ विन्ध्येश्वरीकी आरती",
+         "en": "The aarti of Mother Vindhyeshwari"
+        }
+       }
+      ]
+     },
+     {
+      "id": "kali",
+      "title": {
+       "hi": "माँ काली",
+       "en": "Mother Kali"
+      },
+      "children": [
+       {
+        "id": "mahakali-aarti",
+        "work": "mahakali-aarti",
+        "path": "hinduism/aarti/kali/mahakali-aarti",
+        "title": {
+         "hi": "मंगल की सेवा सुन मेरी देवा",
+         "en": "Mangal Ki Seva Sun Meri Deva"
+        },
+        "desc": {
+         "hi": "माँ कालीकी आरती",
+         "en": "The aarti of Mother Kali"
+        }
+       }
+      ]
+     },
+     {
+      "id": "lakshmi",
+      "title": {
+       "hi": "माँ लक्ष्मी",
+       "en": "Mother Lakshmi"
+      },
+      "children": [
+       {
+        "id": "lakshmi-aarti",
+        "work": "lakshmi-aarti",
+        "path": "hinduism/aarti/lakshmi/lakshmi-aarti",
+        "title": {
+         "hi": "ॐ जय लक्ष्मी माता",
+         "en": "Om Jai Lakshmi Mata"
+        },
+        "desc": {
+         "hi": "माँ लक्ष्मीकी आरती",
+         "en": "The aarti of Mother Lakshmi"
+        }
+       }
+      ]
+     },
+     {
+      "id": "saraswati",
+      "title": {
+       "hi": "माँ सरस्वती",
+       "en": "Mother Saraswati"
+      },
+      "children": [
+       {
+        "id": "saraswati-aarti",
+        "work": "saraswati-aarti",
+        "path": "hinduism/aarti/saraswati/saraswati-aarti",
+        "title": {
+         "hi": "जय सरस्वती माता",
+         "en": "Jai Saraswati Mata"
+        },
+        "desc": {
+         "hi": "माँ सरस्वतीकी आरती",
+         "en": "The aarti of Mother Saraswati"
+        }
+       }
+      ]
+     },
+     {
+      "id": "gayatri",
+      "title": {
+       "hi": "माँ गायत्री",
+       "en": "Mother Gayatri"
+      },
+      "children": [
+       {
+        "id": "gayatri-aarti",
+        "work": "gayatri-aarti",
+        "path": "hinduism/aarti/gayatri/gayatri-aarti",
+        "title": {
+         "hi": "जयति जय गायत्री माता",
+         "en": "Jayati Jai Gayatri Mata"
+        },
+        "desc": {
+         "hi": "माँ गायत्रीकी आरती",
+         "en": "The aarti of Mother Gayatri"
+        }
+       }
+      ]
+     },
+     {
+      "id": "parvati",
+      "title": {
+       "hi": "माँ पार्वती",
+       "en": "Mother Parvati"
+      },
+      "children": [
+       {
+        "id": "parvati-aarti",
+        "work": "parvati-aarti",
+        "path": "hinduism/aarti/parvati/parvati-aarti",
+        "title": {
+         "hi": "जय पार्वती माता",
+         "en": "Jai Parvati Mata"
+        },
+        "desc": {
+         "hi": "माँ पार्वतीकी आरती",
+         "en": "The aarti of Mother Parvati"
+        }
+       }
+      ]
+     },
+     {
+      "id": "lalita",
+      "title": {
+       "hi": "माँ ललिता",
+       "en": "Mother Lalita"
+      },
+      "children": [
+       {
+        "id": "lalita-aarti",
+        "work": "lalita-aarti",
+        "path": "hinduism/aarti/lalita/lalita-aarti",
+        "title": {
+         "hi": "जय शरणं वरणं नमो नमः",
+         "en": "Jai Sharanam Varanam Namo Namah"
+        },
+        "desc": {
+         "hi": "माँ ललिताकी आरती",
+         "en": "The aarti of Mother Lalita"
+        }
+       }
+      ]
+     },
+     {
+      "id": "annapurna",
+      "title": {
+       "hi": "माँ अन्नपूर्णा",
+       "en": "Mother Annapurna"
+      },
+      "children": [
+       {
+        "id": "annapurna-aarti",
+        "work": "annapurna-aarti",
+        "path": "hinduism/aarti/annapurna/annapurna-aarti",
+        "title": {
+         "hi": "बारम्बार प्रणाम मैया बारम्बार प्रणाम",
+         "en": "Barambar Pranam Maiya Barambar Pranam"
+        },
+        "desc": {
+         "hi": "माँ अन्नपूर्णाकी आरती",
+         "en": "The aarti of Mother Annapurna"
+        }
+       }
+      ]
+     },
+     {
+      "id": "bagalamukhi",
+      "title": {
+       "hi": "माँ बगलामुखी",
+       "en": "Mother Baglamukhi"
+      },
+      "children": [
+       {
+        "id": "bagalamukhi-aarti",
+        "work": "bagalamukhi-aarti",
+        "path": "hinduism/aarti/bagalamukhi/bagalamukhi-aarti",
+        "title": {
+         "hi": "जय जय श्री बगलामुखी माता",
+         "en": "Jai Jai Shri Bagalamukhi Mata"
+        },
+        "desc": {
+         "hi": "माँ बगलामुखीकी आरती",
+         "en": "The aarti of Mother Baglamukhi"
+        }
+       }
+      ]
+     },
+     {
+      "id": "sharda",
+      "title": {
+       "hi": "माँ शारदा",
+       "en": "Mother Sharda"
+      },
+      "children": [
+       {
+        "id": "sharda-aarti",
+        "work": "sharda-aarti",
+        "path": "hinduism/aarti/sharda/sharda-aarti",
+        "title": {
+         "hi": "मैया शारदा तोरे दरबार आरती नित गाऊँ",
+         "en": "Maiya Sharda Tore Darbar Aarti Nit Gaun"
+        },
+        "desc": {
+         "hi": "माँ शारदाकी आरती",
+         "en": "The aarti of Mother Sharda"
+        }
+       }
+      ]
+     },
+     {
+      "id": "shakambhari",
+      "title": {
+       "hi": "माँ शाकम्भरी",
+       "en": "Mother Shakambhari"
+      },
+      "children": [
+       {
+        "id": "shakambhari-aarti",
+        "work": "shakambhari-aarti",
+        "path": "hinduism/aarti/shakambhari/shakambhari-aarti",
+        "title": {
+         "hi": "हरि ॐ श्री शाकम्भर अम्बा जी की आरती कीजो",
+         "en": "Hari Om Shri Shakambhar Amba Ji Ki Aarti Kijo"
+        },
+        "desc": {
+         "hi": "माँ शाकम्भरीकी आरती",
+         "en": "The aarti of Mother Shakambhari"
+        }
+       }
+      ]
+     },
+     {
+      "id": "santoshi",
+      "title": {
+       "hi": "माँ संतोषी",
+       "en": "Mother Santoshi"
+      },
+      "children": [
+       {
+        "id": "santoshi-aarti",
+        "work": "santoshi-aarti",
+        "path": "hinduism/aarti/santoshi/santoshi-aarti",
+        "title": {
+         "hi": "जय संतोषी माता",
+         "en": "Jai Santoshi Mata"
+        },
+        "desc": {
+         "hi": "माँ संतोषीकी आरती",
+         "en": "The aarti of Mother Santoshi"
+        }
+       }
+      ]
+     },
+     {
+      "id": "shitala",
+      "title": {
+       "hi": "माँ शीतला",
+       "en": "Mother Shitala"
+      },
+      "children": [
+       {
+        "id": "shitala-aarti",
+        "work": "shitala-aarti",
+        "path": "hinduism/aarti/shitala/shitala-aarti",
+        "title": {
+         "hi": "जय शीतला माता",
+         "en": "Jai Shitala Mata"
+        },
+        "desc": {
+         "hi": "माँ शीतलाकी आरती",
+         "en": "The aarti of Mother Shitala"
+        }
+       }
+      ]
+     },
+     {
+      "id": "ahoi",
+      "title": {
+       "hi": "अहोई माता",
+       "en": "Ahoi Mata"
+      },
+      "children": [
+       {
+        "id": "ahoi-aarti",
+        "work": "ahoi-aarti",
+        "path": "hinduism/aarti/ahoi/ahoi-aarti",
+        "title": {
+         "hi": "जय अहोई माता",
+         "en": "Jai Ahoi Mata"
+        },
+        "desc": {
+         "hi": "अहोई माताकी आरती",
+         "en": "The aarti of Ahoi Mata"
+        }
+       }
+      ]
+     },
+     {
+      "id": "tulsi",
+      "title": {
+       "hi": "तुलसी माता",
+       "en": "Tulsi Mata"
+      },
+      "children": [
+       {
+        "id": "tulsi-aarti",
+        "work": "tulsi-aarti",
+        "path": "hinduism/aarti/tulsi/tulsi-aarti",
+        "title": {
+         "hi": "जय जय तुलसी माता",
+         "en": "Jai Jai Tulsi Mata"
+        },
+        "desc": {
+         "hi": "तुलसी माताकी आरती",
+         "en": "The aarti of Tulsi Mata"
+        }
+       }
+      ]
+     },
+     {
+      "id": "gau-mata",
+      "title": {
+       "hi": "गौ माता",
+       "en": "Gau Mata"
+      },
+      "children": [
+       {
+        "id": "gau-mata-aarti",
+        "work": "gau-mata-aarti",
+        "path": "hinduism/aarti/gau-mata/gau-mata-aarti",
+        "title": {
+         "hi": "आरती श्री गैया मैया की",
+         "en": "Aarti Shri Gaiya Maiya Ki"
+        },
+        "desc": {
+         "hi": "गौ माताकी आरती",
+         "en": "The aarti of Gau Mata"
+        }
        }
       ]
      },
@@ -765,6 +2050,107 @@
           "\"Om Jai Gange Mata\" is the aarti of Mother Ganga. In four short stanzas it praises her moon-bright radiance and pure waters, and recalls how she delivered the sons of King Sagara.",
           "It promises that whoever comes to her refuge even once is freed from the fear of Yama and crosses the ocean of worldly life, and that whoever sings her aarti every day easily attains liberation. Its author is not named."
          ]
+        }
+       },
+       {
+        "id": "bhagirath-nandini-aarti",
+        "work": "bhagirath-nandini-aarti",
+        "path": "hinduism/aarti/ganga/bhagirath-nandini-aarti",
+        "title": {
+         "hi": "जय जय भगीरथनन्दिनि",
+         "en": "Jai Jai Bhagirathanandini"
+        },
+        "desc": {
+         "hi": "माँ गंगाकी आरती",
+         "en": "The aarti of Mother Ganga"
+        }
+       }
+      ]
+     },
+     {
+      "id": "yamuna",
+      "title": {
+       "hi": "माँ यमुना",
+       "en": "Mother Yamuna"
+      },
+      "children": [
+       {
+        "id": "yamuna-aarti",
+        "work": "yamuna-aarti",
+        "path": "hinduism/aarti/yamuna/yamuna-aarti",
+        "title": {
+         "hi": "ॐ जय यमुना माता",
+         "en": "Om Jai Yamuna Mata"
+        },
+        "desc": {
+         "hi": "माँ यमुनाकी आरती",
+         "en": "The aarti of Mother Yamuna"
+        }
+       }
+      ]
+     },
+     {
+      "id": "narmada",
+      "title": {
+       "hi": "माँ नर्मदा",
+       "en": "Mother Narmada"
+      },
+      "children": [
+       {
+        "id": "narmada-aarti",
+        "work": "narmada-aarti",
+        "path": "hinduism/aarti/narmada/narmada-aarti",
+        "title": {
+         "hi": "ॐ जय जगदानन्दी",
+         "en": "Om Jai Jagadanandi"
+        },
+        "desc": {
+         "hi": "माँ नर्मदाकी आरती",
+         "en": "The aarti of Mother Narmada"
+        }
+       }
+      ]
+     },
+     {
+      "id": "gita",
+      "title": {
+       "hi": "श्रीमद्भगवद्गीता",
+       "en": "Shrimad Bhagavad Gita"
+      },
+      "children": [
+       {
+        "id": "gita-aarti",
+        "work": "gita-aarti",
+        "path": "hinduism/aarti/gita/gita-aarti",
+        "title": {
+         "hi": "जय भगवद् गीते",
+         "en": "Jai Bhagavad Gite"
+        },
+        "desc": {
+         "hi": "श्रीमद्भगवद्गीताकी आरती",
+         "en": "The aarti of Shrimad Bhagavad Gita"
+        }
+       }
+      ]
+     },
+     {
+      "id": "pitar",
+      "title": {
+       "hi": "पितर",
+       "en": "Pitars (the ancestors)"
+      },
+      "children": [
+       {
+        "id": "pitar-aarti",
+        "work": "pitar-aarti",
+        "path": "hinduism/aarti/pitar/pitar-aarti",
+        "title": {
+         "hi": "जय जय पितरजी महाराज",
+         "en": "Jai Jai Pitarji Maharaj"
+        },
+        "desc": {
+         "hi": "पितरकी आरती",
+         "en": "The aarti of Pitars (the ancestors)"
         }
        }
       ]
@@ -810,6 +2196,1428 @@
           "The Dhoop Aarti is the evening aarti of Shirdi Sai Baba, sung at Shirdi and by his devotees everywhere. It is not one song but a sequence, mostly in Marathi with Sanskrit and Hindi: the aarti \"Aarti Saibaba\", Das Ganu's abhang \"Shirdi Majhe Pandharpur\", the namana \"Ghalin Lotangan\", the Namasmaran, the Namaskarashtak, the prayer \"Aisa Yei Ba\", the Shri Sainath Mahimna Stotram, the Guru-prasad-yachana-dashak, the Pushpanjali and a closing prayer.",
           "\"Aarti Saibaba\" was composed by Madhavrao Adkar at Shirdi in 1903–04; it ends with his name, Madhav, and Baba himself is said to have blessed it. Other parts carry their poets' names too: Das Ganu in the abhang, Nama in the namana, and Balkrishna Vishwanath Deo (Balasaheb Deo) for the Guru-prasad-yachana-dashak."
          ]
+        }
+       },
+       {
+        "id": "sai-guruvar-aarti",
+        "work": "sai-guruvar-aarti",
+        "path": "hinduism/aarti/shirdi-sai/sai-guruvar-aarti",
+        "title": {
+         "hi": "आरती श्री साईं गुरुवर की",
+         "en": "Aarti Shri Sai Guruvar Ki"
+        },
+        "desc": {
+         "hi": "शिरडी साईबाबाकी आरती",
+         "en": "The aarti of Shirdi Sai Baba"
+        }
+       }
+      ]
+     },
+     {
+      "id": "khatu-shyam",
+      "title": {
+       "hi": "खाटूश्यामजी",
+       "en": "Khatu Shyam Ji"
+      },
+      "children": [
+       {
+        "id": "khatu-shyam-aarti",
+        "work": "khatu-shyam-aarti",
+        "path": "hinduism/aarti/khatu-shyam/khatu-shyam-aarti",
+        "title": {
+         "hi": "ॐ जय श्रीश्याम हरे",
+         "en": "Om Jai Shri Shyam Hare"
+        },
+        "desc": {
+         "hi": "खाटूश्यामजीकी आरती",
+         "en": "The aarti of Khatu Shyam Ji"
+        }
+       }
+      ]
+     },
+     {
+      "id": "ramdev",
+      "title": {
+       "hi": "बाबा रामदेव",
+       "en": "Baba Ramdev"
+      },
+      "children": [
+       {
+        "id": "ramdev-aarti",
+        "work": "ramdev-aarti",
+        "path": "hinduism/aarti/ramdev/ramdev-aarti",
+        "title": {
+         "hi": "ॐ जय श्री रामादे",
+         "en": "Om Jai Shri Ramade"
+        },
+        "desc": {
+         "hi": "बाबा रामदेवकी आरती",
+         "en": "The aarti of Baba Ramdev"
+        }
+       }
+      ]
+     },
+     {
+      "id": "gorakhnath",
+      "title": {
+       "hi": "गुरु गोरखनाथ",
+       "en": "Guru Gorakhnath"
+      },
+      "children": [
+       {
+        "id": "gorakhnath-aarti",
+        "work": "gorakhnath-aarti",
+        "path": "hinduism/aarti/gorakhnath/gorakhnath-aarti",
+        "title": {
+         "hi": "जय गोरख देवा",
+         "en": "Jai Gorakh Deva"
+        },
+        "desc": {
+         "hi": "गुरु गोरखनाथकी आरती",
+         "en": "The aarti of Guru Gorakhnath"
+        }
+       }
+      ]
+     },
+     {
+      "id": "jaharveer",
+      "title": {
+       "hi": "जाहरवीर गोगाजी",
+       "en": "Jaharveer Gogaji"
+      },
+      "children": [
+       {
+        "id": "jaharveer-aarti",
+        "work": "jaharveer-aarti",
+        "path": "hinduism/aarti/jaharveer/jaharveer-aarti",
+        "title": {
+         "hi": "जय जय जाहरवीर हरे",
+         "en": "Jai Jai Jaharveer Hare"
+        },
+        "desc": {
+         "hi": "जाहरवीर गोगाजीकी आरती",
+         "en": "The aarti of Jaharveer Gogaji"
+        }
+       }
+      ]
+     },
+     {
+      "id": "pretraj",
+      "title": {
+       "hi": "प्रेतराज सरकार",
+       "en": "Pretraj Sarkar"
+      },
+      "children": [
+       {
+        "id": "pretraj-aarti",
+        "work": "pretraj-aarti",
+        "path": "hinduism/aarti/pretraj/pretraj-aarti",
+        "title": {
+         "hi": "आरती प्रेतराज की कीजै",
+         "en": "Aarti Pretraj Ki Keejai"
+        },
+        "desc": {
+         "hi": "प्रेतराज सरकारकी आरती",
+         "en": "The aarti of Pretraj Sarkar"
+        }
+       }
+      ]
+     },
+     {
+      "id": "baba-gangaram",
+      "title": {
+       "hi": "बाबा गंगाराम",
+       "en": "Baba Gangaram"
+      },
+      "children": [
+       {
+        "id": "baba-gangaram-aarti",
+        "work": "baba-gangaram-aarti",
+        "path": "hinduism/aarti/baba-gangaram/baba-gangaram-aarti",
+        "title": {
+         "hi": "जय हो गंगाराम बाबा",
+         "en": "Jai Ho Gangaram Baba"
+        },
+        "desc": {
+         "hi": "बाबा गंगारामकी आरती",
+         "en": "The aarti of Baba Gangaram"
+        }
+       }
+      ]
+     },
+     {
+      "id": "rani-sati",
+      "title": {
+       "hi": "राणी सती",
+       "en": "Rani Sati"
+      },
+      "children": [
+       {
+        "id": "rani-sati-aarti",
+        "work": "rani-sati-aarti",
+        "path": "hinduism/aarti/rani-sati/rani-sati-aarti",
+        "title": {
+         "hi": "जय श्री राणी सती मैया",
+         "en": "Jai Shri Rani Sati Maiya"
+        },
+        "desc": {
+         "hi": "राणी सतीकी आरती",
+         "en": "The aarti of Rani Sati"
+        }
+       }
+      ]
+     },
+     {
+      "id": "ravidas",
+      "title": {
+       "hi": "गुरु रविदास",
+       "en": "Guru Ravidas"
+      },
+      "children": [
+       {
+        "id": "ravidas-aarti",
+        "work": "ravidas-aarti",
+        "path": "hinduism/aarti/ravidas/ravidas-aarti",
+        "title": {
+         "hi": "नामु तेरो आरती मजनु मुरारे",
+         "en": "Namu Tero Aarti Majanu Murare"
+        },
+        "desc": {
+         "hi": "गुरु रविदासकी आरती",
+         "en": "The aarti of Guru Ravidas"
+        }
+       }
+      ]
+     },
+     {
+      "id": "mahavir",
+      "title": {
+       "hi": "भगवान महावीर",
+       "en": "Bhagwan Mahavir"
+      },
+      "children": [
+       {
+        "id": "mahavir-aarti",
+        "work": "mahavir-aarti",
+        "path": "hinduism/aarti/mahavir/mahavir-aarti",
+        "title": {
+         "hi": "जय महावीर प्रभो",
+         "en": "Jai Mahavir Prabho"
+        },
+        "desc": {
+         "hi": "भगवान महावीरकी आरती",
+         "en": "The aarti of Bhagwan Mahavir"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "chalisa",
+    "title": {
+     "hi": "चालीसा",
+     "en": "Chalisa"
+    },
+    "desc": {
+     "hi": "चालीसा संग्रह",
+     "en": "Chalisas"
+    },
+    "children": [
+     {
+      "id": "ganesha",
+      "title": {
+       "hi": "भगवान श्री गणेश",
+       "en": "Bhagwan Shri Ganesh"
+      },
+      "children": [
+       {
+        "id": "ganesha-chalisa",
+        "work": "ganesha-chalisa",
+        "path": "hinduism/chalisa/ganesha/ganesha-chalisa",
+        "title": {
+         "hi": "श्री गणेश चालीसा",
+         "en": "Shri Ganesh Chalisa"
+        },
+        "desc": {
+         "hi": "जय गणपति सदगुण सदन",
+         "en": "Jai Ganapati Sadgun Sadan"
+        }
+       },
+       {
+        "id": "mangalmay-ganesha-chalisa",
+        "work": "mangalmay-ganesha-chalisa",
+        "path": "hinduism/chalisa/ganesha/mangalmay-ganesha-chalisa",
+        "title": {
+         "hi": "श्री गणेश चालीसा",
+         "en": "Shri Ganesh Chalisa"
+        },
+        "desc": {
+         "hi": "मंगलमय मंगल करन करिवर वदन विशाल",
+         "en": "Shri Ganesh Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "rama",
+      "title": {
+       "hi": "श्रीराम",
+       "en": "Shri Ram"
+      },
+      "children": [
+       {
+        "id": "ram-chalisa",
+        "work": "ram-chalisa",
+        "path": "hinduism/chalisa/rama/ram-chalisa",
+        "title": {
+         "hi": "श्री राम चालीसा",
+         "en": "Shri Ram Chalisa"
+        },
+        "desc": {
+         "hi": "श्री रघुवीर भक्त हितकारी",
+         "en": "Shri Ram Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "hanuman",
+      "title": {
+       "hi": "श्रीहनुमान",
+       "en": "Shri Hanuman"
+      },
+      "children": [
+       {
+        "id": "hanuman-chalisa",
+        "work": "hanuman-chalisa",
+        "path": "hinduism/chalisa/hanuman/hanuman-chalisa",
+        "title": {
+         "hi": "श्रीहनुमानचालीसा",
+         "en": "Shri Hanuman Chalisa"
+        },
+        "desc": {
+         "hi": "श्रीगुरु चरन सरोज रज",
+         "en": "Shri Guru Charan Saroj Raj"
+        }
+       },
+       {
+        "id": "bajrang-baan",
+        "work": "bajrang-baan",
+        "path": "hinduism/chalisa/hanuman/bajrang-baan",
+        "title": {
+         "hi": "बजरंग बाण",
+         "en": "Bajrang Baan"
+        },
+        "desc": {
+         "hi": "निश्चय प्रेम प्रतीति ते विनय करें सनमान",
+         "en": "Bajrang Baan"
+        }
+       },
+       {
+        "id": "balaji-chalisa",
+        "work": "balaji-chalisa",
+        "path": "hinduism/chalisa/hanuman/balaji-chalisa",
+        "title": {
+         "hi": "श्री बालाजी चालीसा",
+         "en": "Shri Balaji Chalisa"
+        },
+        "desc": {
+         "hi": "श्री गुरु चरण चितलाय के धरें ध्यान हनुमान",
+         "en": "Shri Balaji Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "shiva",
+      "title": {
+       "hi": "भगवान शिव",
+       "en": "Bhagwan Shiv"
+      },
+      "children": [
+       {
+        "id": "shiv-chalisa",
+        "work": "shiv-chalisa",
+        "path": "hinduism/chalisa/shiva/shiv-chalisa",
+        "title": {
+         "hi": "श्री शिव चालीसा",
+         "en": "Shri Shiv Chalisa"
+        },
+        "desc": {
+         "hi": "जय गणेश गिरिजा सुवन मंगल मूल सुजान",
+         "en": "Shri Shiv Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "vishnu",
+      "title": {
+       "hi": "भगवान विष्णु",
+       "en": "Bhagwan Vishnu"
+      },
+      "children": [
+       {
+        "id": "vishnu-chalisa",
+        "work": "vishnu-chalisa",
+        "path": "hinduism/chalisa/vishnu/vishnu-chalisa",
+        "title": {
+         "hi": "श्री विष्णु चालीसा",
+         "en": "Shri Vishnu Chalisa"
+        },
+        "desc": {
+         "hi": "विष्णु सुनिए विनय सेवक की चितलाय",
+         "en": "Shri Vishnu Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "krishna",
+      "title": {
+       "hi": "भगवान श्रीकृष्ण",
+       "en": "Bhagwan Shri Krishna"
+      },
+      "children": [
+       {
+        "id": "giriraj-chalisa",
+        "work": "giriraj-chalisa",
+        "path": "hinduism/chalisa/krishna/giriraj-chalisa",
+        "title": {
+         "hi": "श्री गिरिराज चालीसा",
+         "en": "Shri Giriraj Chalisa"
+        },
+        "desc": {
+         "hi": "बन्दहुँ वीणा वादिनी धरि गणपति को ध्यान",
+         "en": "Shri Giriraj Chalisa"
+        }
+       },
+       {
+        "id": "gopal-chalisa",
+        "work": "gopal-chalisa",
+        "path": "hinduism/chalisa/krishna/gopal-chalisa",
+        "title": {
+         "hi": "श्री गोपाल चालीसा",
+         "en": "Shri Gopal Chalisa"
+        },
+        "desc": {
+         "hi": "श्री राधापद कमल रज सिर धरि यमुना कूल",
+         "en": "Shri Gopal Chalisa"
+        }
+       },
+       {
+        "id": "krishna-chalisa",
+        "work": "krishna-chalisa",
+        "path": "hinduism/chalisa/krishna/krishna-chalisa",
+        "title": {
+         "hi": "श्री कृष्ण चालीसा",
+         "en": "Shri Krishna Chalisa"
+        },
+        "desc": {
+         "hi": "बंशी शोभित कर मधुर नील जलद तन श्याम",
+         "en": "Shri Krishna Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "radha",
+      "title": {
+       "hi": "श्रीराधा",
+       "en": "Shri Radha"
+      },
+      "children": [
+       {
+        "id": "radha-chalisa",
+        "work": "radha-chalisa",
+        "path": "hinduism/chalisa/radha/radha-chalisa",
+        "title": {
+         "hi": "श्री राधा चालीसा",
+         "en": "Shri Radha Chalisa"
+        },
+        "desc": {
+         "hi": "श्री राधे वृषभानुजा भक्तनि प्राणाधार",
+         "en": "Shri Radha Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "narasimha",
+      "title": {
+       "hi": "भगवान नृसिंह",
+       "en": "Bhagwan Narasimha"
+      },
+      "children": [
+       {
+        "id": "narasimha-chalisa",
+        "work": "narasimha-chalisa",
+        "path": "hinduism/chalisa/narasimha/narasimha-chalisa",
+        "title": {
+         "hi": "श्री नरसिंह चालीसा",
+         "en": "Shri Narasimha Chalisa"
+        },
+        "desc": {
+         "hi": "मास वैशाख कृतिका युत हरण मही को भार",
+         "en": "Shri Narasimha Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "parashurama",
+      "title": {
+       "hi": "भगवान परशुराम",
+       "en": "Bhagwan Parshuram"
+      },
+      "children": [
+       {
+        "id": "parashurama-chalisa",
+        "work": "parashurama-chalisa",
+        "path": "hinduism/chalisa/parashurama/parashurama-chalisa",
+        "title": {
+         "hi": "श्री परशुराम चालीसा",
+         "en": "Shri Parshuram Chalisa"
+        },
+        "desc": {
+         "hi": "श्री गुरु चरण सरोज छवि निज मन मन्दिर धारि",
+         "en": "Shri Parshuram Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "brahma",
+      "title": {
+       "hi": "भगवान ब्रह्मा",
+       "en": "Bhagwan Brahma"
+      },
+      "children": [
+       {
+        "id": "brahma-chalisa",
+        "work": "brahma-chalisa",
+        "path": "hinduism/chalisa/brahma/brahma-chalisa",
+        "title": {
+         "hi": "श्री ब्रह्मा चालीसा",
+         "en": "Shri Brahma Chalisa"
+        },
+        "desc": {
+         "hi": "जय ब्रह्मा जय स्वयम्भू चतुरानन सुखमूल",
+         "en": "Shri Brahma Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "surya",
+      "title": {
+       "hi": "भगवान सूर्य",
+       "en": "Bhagwan Surya"
+      },
+      "children": [
+       {
+        "id": "surya-chalisa",
+        "work": "surya-chalisa",
+        "path": "hinduism/chalisa/surya/surya-chalisa",
+        "title": {
+         "hi": "श्री सूर्य चालीसा",
+         "en": "Shri Surya Chalisa"
+        },
+        "desc": {
+         "hi": "कनक बदन कुण्डल मकर मुक्ता माला अङ्ग",
+         "en": "Shri Surya Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "shani",
+      "title": {
+       "hi": "शनिदेव",
+       "en": "Shani Dev"
+      },
+      "children": [
+       {
+        "id": "shani-chalisa",
+        "work": "shani-chalisa",
+        "path": "hinduism/chalisa/shani/shani-chalisa",
+        "title": {
+         "hi": "श्री शनि चालीसा",
+         "en": "Shri Shani Chalisa"
+        },
+        "desc": {
+         "hi": "जय गणेश गिरिजा सुवन मंगल करण कृपाल",
+         "en": "Shri Shani Chalisa"
+        }
+       },
+       {
+        "id": "shanishchar-chalisa",
+        "work": "shanishchar-chalisa",
+        "path": "hinduism/chalisa/shani/shanishchar-chalisa",
+        "title": {
+         "hi": "श्री शनि चालीसा",
+         "en": "Shri Shani Chalisa"
+        },
+        "desc": {
+         "hi": "श्री शनिश्चर देवजी सुनहु श्रवण मम् टेर",
+         "en": "Shri Shani Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "navagraha",
+      "title": {
+       "hi": "नवग्रह",
+       "en": "Navagraha"
+      },
+      "children": [
+       {
+        "id": "navagraha-chalisa",
+        "work": "navagraha-chalisa",
+        "path": "hinduism/chalisa/navagraha/navagraha-chalisa",
+        "title": {
+         "hi": "श्री नवग्रह चालीसा",
+         "en": "Shri Navagraha Chalisa"
+        },
+        "desc": {
+         "hi": "श्री गणपति गुरुपद कमल प्रेम सहित सिरनाय",
+         "en": "Shri Navagraha Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "bhairava",
+      "title": {
+       "hi": "भगवान भैरव",
+       "en": "Bhagwan Bhairav"
+      },
+      "children": [
+       {
+        "id": "batuk-bhairav-chalisa",
+        "work": "batuk-bhairav-chalisa",
+        "path": "hinduism/chalisa/bhairava/batuk-bhairav-chalisa",
+        "title": {
+         "hi": "श्री बटुक भैरव चालीसा",
+         "en": "Shri Batuk Bhairav Chalisa"
+        },
+        "desc": {
+         "hi": "विश्वनाथ को सुमिर मन धर गणेश का ध्यान",
+         "en": "Shri Batuk Bhairav Chalisa"
+        }
+       },
+       {
+        "id": "bhairav-chalisa",
+        "work": "bhairav-chalisa",
+        "path": "hinduism/chalisa/bhairava/bhairav-chalisa",
+        "title": {
+         "hi": "श्री भैरव चालीसा",
+         "en": "Shri Bhairav Chalisa"
+        },
+        "desc": {
+         "hi": "श्री भैरव संकट हरन मंगल करन कृपालु",
+         "en": "Shri Bhairav Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "kubera",
+      "title": {
+       "hi": "कुबेर",
+       "en": "Kuber"
+      },
+      "children": [
+       {
+        "id": "kuber-chalisa",
+        "work": "kuber-chalisa",
+        "path": "hinduism/chalisa/kubera/kuber-chalisa",
+        "title": {
+         "hi": "श्री कुबेर चालीसा",
+         "en": "Shri Kuber Chalisa"
+        },
+        "desc": {
+         "hi": "जैसे अटल हिमालय और जैसे अडिग सुमेर",
+         "en": "Shri Kuber Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "vishwakarma",
+      "title": {
+       "hi": "भगवान विश्वकर्मा",
+       "en": "Bhagwan Vishwakarma"
+      },
+      "children": [
+       {
+        "id": "vishwakarma-chalisa",
+        "work": "vishwakarma-chalisa",
+        "path": "hinduism/chalisa/vishwakarma/vishwakarma-chalisa",
+        "title": {
+         "hi": "श्री विश्वकर्मा चालीसा",
+         "en": "Shri Vishwakarma Chalisa"
+        },
+        "desc": {
+         "hi": "विनय करौं कर जोड़कर मन वचन कर्म संभारि",
+         "en": "Shri Vishwakarma Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "durga",
+      "title": {
+       "hi": "माँ दुर्गा",
+       "en": "Mother Durga"
+      },
+      "children": [
+       {
+        "id": "durga-chalisa",
+        "work": "durga-chalisa",
+        "path": "hinduism/chalisa/durga/durga-chalisa",
+        "title": {
+         "hi": "श्री दुर्गा चालीसा",
+         "en": "Shri Durga Chalisa"
+        },
+        "desc": {
+         "hi": "नमो नमो दुर्गे सुख करनी",
+         "en": "Shri Durga Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "vaishno-devi",
+      "title": {
+       "hi": "माँ वैष्णो देवी",
+       "en": "Mother Vaishno Devi"
+      },
+      "children": [
+       {
+        "id": "vaishno-devi-chalisa",
+        "work": "vaishno-devi-chalisa",
+        "path": "hinduism/chalisa/vaishno-devi/vaishno-devi-chalisa",
+        "title": {
+         "hi": "श्री वैष्णो देवी चालीसा",
+         "en": "Shri Vaishno Devi Chalisa"
+        },
+        "desc": {
+         "hi": "गरुड़ वाहिनी वैष्णवी त्रिकूटा पर्वत धाम",
+         "en": "Shri Vaishno Devi Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "vindhyeshwari",
+      "title": {
+       "hi": "माँ विन्ध्येश्वरी",
+       "en": "Mother Vindhyeshwari"
+      },
+      "children": [
+       {
+        "id": "vindhyeshwari-chalisa",
+        "work": "vindhyeshwari-chalisa",
+        "path": "hinduism/chalisa/vindhyeshwari/vindhyeshwari-chalisa",
+        "title": {
+         "hi": "श्री विन्ध्येश्वरी चालीसा",
+         "en": "Shri Vindhyeshwari Chalisa"
+        },
+        "desc": {
+         "hi": "नमो नमो विन्ध्येश्वरी नमो नमो जगदम्ब",
+         "en": "Shri Vindhyeshwari Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "kali",
+      "title": {
+       "hi": "माँ काली",
+       "en": "Mother Kali"
+      },
+      "children": [
+       {
+        "id": "kali-chalisa",
+        "work": "kali-chalisa",
+        "path": "hinduism/chalisa/kali/kali-chalisa",
+        "title": {
+         "hi": "श्री काली चालीसा",
+         "en": "Shri Kali Chalisa"
+        },
+        "desc": {
+         "hi": "जय काली जगदम्ब जय हरनि ओघ अघ पुंज",
+         "en": "Shri Kali Chalisa"
+        }
+       },
+       {
+        "id": "mahakali-chalisa",
+        "work": "mahakali-chalisa",
+        "path": "hinduism/chalisa/kali/mahakali-chalisa",
+        "title": {
+         "hi": "श्री महाकाली चालीसा",
+         "en": "Shri Mahakali Chalisa"
+        },
+        "desc": {
+         "hi": "जय जय सीताराम के मध्यवासिनी अम्ब",
+         "en": "Shri Mahakali Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "lakshmi",
+      "title": {
+       "hi": "माँ लक्ष्मी",
+       "en": "Mother Lakshmi"
+      },
+      "children": [
+       {
+        "id": "lakshmi-chalisa",
+        "work": "lakshmi-chalisa",
+        "path": "hinduism/chalisa/lakshmi/lakshmi-chalisa",
+        "title": {
+         "hi": "श्री लक्ष्मी चालीसा",
+         "en": "Shri Lakshmi Chalisa"
+        },
+        "desc": {
+         "hi": "मातु लक्ष्मी करि कृपा करो हृदय में वास",
+         "en": "Shri Lakshmi Chalisa"
+        }
+       },
+       {
+        "id": "mahalakshmi-chalisa",
+        "work": "mahalakshmi-chalisa",
+        "path": "hinduism/chalisa/lakshmi/mahalakshmi-chalisa",
+        "title": {
+         "hi": "श्री महालक्ष्मी चालीसा",
+         "en": "Shri Mahalakshmi Chalisa"
+        },
+        "desc": {
+         "hi": "जय जय श्री महालक्ष्मी करूँ मात तव ध्यान",
+         "en": "Shri Mahalakshmi Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "saraswati",
+      "title": {
+       "hi": "माँ सरस्वती",
+       "en": "Mother Saraswati"
+      },
+      "children": [
+       {
+        "id": "saraswati-chalisa",
+        "work": "saraswati-chalisa",
+        "path": "hinduism/chalisa/saraswati/saraswati-chalisa",
+        "title": {
+         "hi": "श्री सरस्वती चालीसा",
+         "en": "Shri Saraswati Chalisa"
+        },
+        "desc": {
+         "hi": "जनक जननि पद कमल रज निज मस्तक पर धारि",
+         "en": "Shri Saraswati Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "gayatri",
+      "title": {
+       "hi": "माँ गायत्री",
+       "en": "Mother Gayatri"
+      },
+      "children": [
+       {
+        "id": "gayatri-chalisa",
+        "work": "gayatri-chalisa",
+        "path": "hinduism/chalisa/gayatri/gayatri-chalisa",
+        "title": {
+         "hi": "श्री गायत्री चालीसा",
+         "en": "Shri Gayatri Chalisa"
+        },
+        "desc": {
+         "hi": "ह्रीं श्रीं क्लीं मेधा प्रभा जीवन ज्योति प्रचंड",
+         "en": "Shri Gayatri Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "parvati",
+      "title": {
+       "hi": "माँ पार्वती",
+       "en": "Mother Parvati"
+      },
+      "children": [
+       {
+        "id": "parvati-chalisa",
+        "work": "parvati-chalisa",
+        "path": "hinduism/chalisa/parvati/parvati-chalisa",
+        "title": {
+         "hi": "श्री पार्वती चालीसा",
+         "en": "Shri Parvati Chalisa"
+        },
+        "desc": {
+         "hi": "जय गिरी तनये दक्षजे शंभु प्रिये गुणखानि",
+         "en": "Shri Parvati Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "lalita",
+      "title": {
+       "hi": "माँ ललिता",
+       "en": "Mother Lalita"
+      },
+      "children": [
+       {
+        "id": "lalita-chalisa",
+        "work": "lalita-chalisa",
+        "path": "hinduism/chalisa/lalita/lalita-chalisa",
+        "title": {
+         "hi": "श्री ललिता चालीसा",
+         "en": "Shri Lalita Chalisa"
+        },
+        "desc": {
+         "hi": "जयति जयति जय ललिते माता",
+         "en": "Shri Lalita Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "annapurna",
+      "title": {
+       "hi": "माँ अन्नपूर्णा",
+       "en": "Mother Annapurna"
+      },
+      "children": [
+       {
+        "id": "annapurna-chalisa",
+        "work": "annapurna-chalisa",
+        "path": "hinduism/chalisa/annapurna/annapurna-chalisa",
+        "title": {
+         "hi": "श्री अन्नपूर्णा चालीसा",
+         "en": "Shri Annapurna Chalisa"
+        },
+        "desc": {
+         "hi": "विश्वेश्वर-पदपदम की रज-निज शीश-लगाय",
+         "en": "Shri Annapurna Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "bagalamukhi",
+      "title": {
+       "hi": "माँ बगलामुखी",
+       "en": "Mother Baglamukhi"
+      },
+      "children": [
+       {
+        "id": "bagalamukhi-chalisa",
+        "work": "bagalamukhi-chalisa",
+        "path": "hinduism/chalisa/bagalamukhi/bagalamukhi-chalisa",
+        "title": {
+         "hi": "श्री बगलामुखी चालीसा",
+         "en": "Shri Baglamukhi Chalisa"
+        },
+        "desc": {
+         "hi": "सिर नवाइ बगलामुखी लिखूँ चालीसा आज",
+         "en": "Shri Baglamukhi Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "sharda",
+      "title": {
+       "hi": "माँ शारदा",
+       "en": "Mother Sharda"
+      },
+      "children": [
+       {
+        "id": "sharda-chalisa",
+        "work": "sharda-chalisa",
+        "path": "hinduism/chalisa/sharda/sharda-chalisa",
+        "title": {
+         "hi": "श्री शारदा चालीसा",
+         "en": "Shri Sharda Chalisa"
+        },
+        "desc": {
+         "hi": "मूर्ति स्वयंभू शारदा मैहर आन विराज",
+         "en": "Shri Sharda Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "shakambhari",
+      "title": {
+       "hi": "माँ शाकम्भरी",
+       "en": "Mother Shakambhari"
+      },
+      "children": [
+       {
+        "id": "shakambhari-chalisa",
+        "work": "shakambhari-chalisa",
+        "path": "hinduism/chalisa/shakambhari/shakambhari-chalisa",
+        "title": {
+         "hi": "श्री शाकम्भरी चालीसा",
+         "en": "Shri Shakambhari Chalisa"
+        },
+        "desc": {
+         "hi": "बन्दउ माँ शाकम्भरी चरणगुरू का धरकर ध्यान",
+         "en": "Shri Shakambhari Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "santoshi",
+      "title": {
+       "hi": "माँ संतोषी",
+       "en": "Mother Santoshi"
+      },
+      "children": [
+       {
+        "id": "santoshi-chalisa",
+        "work": "santoshi-chalisa",
+        "path": "hinduism/chalisa/santoshi/santoshi-chalisa",
+        "title": {
+         "hi": "श्री संतोषी माँ चालीसा",
+         "en": "Shri Santoshi Maa Chalisa"
+        },
+        "desc": {
+         "hi": "श्री गणपति पद नाय सिर धरि हिय शारदा ध्यान",
+         "en": "Shri Santoshi Maa Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "shitala",
+      "title": {
+       "hi": "माँ शीतला",
+       "en": "Mother Shitala"
+      },
+      "children": [
+       {
+        "id": "shitala-chalisa",
+        "work": "shitala-chalisa",
+        "path": "hinduism/chalisa/shitala/shitala-chalisa",
+        "title": {
+         "hi": "श्री शीतला चालीसा",
+         "en": "Shri Shitala Chalisa"
+        },
+        "desc": {
+         "hi": "जय-जय माता शीतला तुमहिं धरै जो ध्यान",
+         "en": "Shri Shitala Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "tulsi",
+      "title": {
+       "hi": "तुलसी माता",
+       "en": "Tulsi Mata"
+      },
+      "children": [
+       {
+        "id": "tulsi-chalisa",
+        "work": "tulsi-chalisa",
+        "path": "hinduism/chalisa/tulsi/tulsi-chalisa",
+        "title": {
+         "hi": "श्री तुलसी चालीसा",
+         "en": "Shri Tulsi Chalisa"
+        },
+        "desc": {
+         "hi": "जय जय तुलसी भगवती सत्यवती सुखदानी",
+         "en": "Shri Tulsi Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "ganga",
+      "title": {
+       "hi": "माँ गंगा",
+       "en": "Mother Ganga"
+      },
+      "children": [
+       {
+        "id": "ganga-chalisa",
+        "work": "ganga-chalisa",
+        "path": "hinduism/chalisa/ganga/ganga-chalisa",
+        "title": {
+         "hi": "श्री गंगा चालीसा",
+         "en": "Shri Ganga Chalisa"
+        },
+        "desc": {
+         "hi": "जय जय जय जग पावनी जयति देवसरि गंग",
+         "en": "Shri Ganga Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "narmada",
+      "title": {
+       "hi": "माँ नर्मदा",
+       "en": "Mother Narmada"
+      },
+      "children": [
+       {
+        "id": "narmada-chalisa",
+        "work": "narmada-chalisa",
+        "path": "hinduism/chalisa/narmada/narmada-chalisa",
+        "title": {
+         "hi": "श्री नर्मदा चालीसा",
+         "en": "Shri Narmada Chalisa"
+        },
+        "desc": {
+         "hi": "देवि पूजिता नर्मदा महिमा बड़ी अपार",
+         "en": "Shri Narmada Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "gita",
+      "title": {
+       "hi": "श्रीमद्भगवद्गीता",
+       "en": "Shrimad Bhagavad Gita"
+      },
+      "children": [
+       {
+        "id": "gita-chalisa",
+        "work": "gita-chalisa",
+        "path": "hinduism/chalisa/gita/gita-chalisa",
+        "title": {
+         "hi": "श्री गीता चालीसा",
+         "en": "Shri Gita Chalisa"
+        },
+        "desc": {
+         "hi": "प्रथमहिं गुरुको शीश नवाऊँ",
+         "en": "Shri Gita Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "pitar",
+      "title": {
+       "hi": "पितर",
+       "en": "Pitars (the ancestors)"
+      },
+      "children": [
+       {
+        "id": "pitar-chalisa",
+        "work": "pitar-chalisa",
+        "path": "hinduism/chalisa/pitar/pitar-chalisa",
+        "title": {
+         "hi": "श्री पितर चालीसा",
+         "en": "Shri Pitar Chalisa"
+        },
+        "desc": {
+         "hi": "हे पितरेश्वर आपको दे दियो आशीर्वाद",
+         "en": "Shri Pitar Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "shirdi-sai",
+      "title": {
+       "hi": "शिरडी साईबाबा",
+       "en": "Shirdi Sai Baba"
+      },
+      "children": [
+       {
+        "id": "sai-chalisa",
+        "work": "sai-chalisa",
+        "path": "hinduism/chalisa/shirdi-sai/sai-chalisa",
+        "title": {
+         "hi": "श्री साईं चालीसा",
+         "en": "Shri Sai Chalisa"
+        },
+        "desc": {
+         "hi": "पहले साईं के चरणों में अपना शीश नमाऊँ मैं",
+         "en": "Shri Sai Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "khatu-shyam",
+      "title": {
+       "hi": "खाटूश्यामजी",
+       "en": "Khatu Shyam Ji"
+      },
+      "children": [
+       {
+        "id": "khatu-shyam-chalisa",
+        "work": "khatu-shyam-chalisa",
+        "path": "hinduism/chalisa/khatu-shyam/khatu-shyam-chalisa",
+        "title": {
+         "hi": "श्री श्याम चालीसा",
+         "en": "Shri Shyam Chalisa"
+        },
+        "desc": {
+         "hi": "श्री गुरु चरण ध्यान धर सुमिरि सच्चिदानन्द",
+         "en": "Shri Shyam Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "ramdev",
+      "title": {
+       "hi": "बाबा रामदेव",
+       "en": "Baba Ramdev"
+      },
+      "children": [
+       {
+        "id": "ramdev-chalisa",
+        "work": "ramdev-chalisa",
+        "path": "hinduism/chalisa/ramdev/ramdev-chalisa",
+        "title": {
+         "hi": "श्री रामदेव चालीसा",
+         "en": "Shri Ramdev Chalisa"
+        },
+        "desc": {
+         "hi": "श्री गुरु पद नमन करि गिरा गनेश मनाय",
+         "en": "Shri Ramdev Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "gorakhnath",
+      "title": {
+       "hi": "गुरु गोरखनाथ",
+       "en": "Guru Gorakhnath"
+      },
+      "children": [
+       {
+        "id": "gorakhnath-chalisa",
+        "work": "gorakhnath-chalisa",
+        "path": "hinduism/chalisa/gorakhnath/gorakhnath-chalisa",
+        "title": {
+         "hi": "श्री गोरख चालीसा",
+         "en": "Shri Gorakh Chalisa"
+        },
+        "desc": {
+         "hi": "गणपति गिरजा पुत्र को सुमिरूँ बारम्बार",
+         "en": "Shri Gorakh Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "jaharveer",
+      "title": {
+       "hi": "जाहरवीर गोगाजी",
+       "en": "Jaharveer Gogaji"
+      },
+      "children": [
+       {
+        "id": "jaharveer-chalisa",
+        "work": "jaharveer-chalisa",
+        "path": "hinduism/chalisa/jaharveer/jaharveer-chalisa",
+        "title": {
+         "hi": "श्री जाहरवीर चालीसा",
+         "en": "Shri Jaharveer Chalisa"
+        },
+        "desc": {
+         "hi": "सुवन केहरी जेवर सुत महाबली रनधीर",
+         "en": "Shri Jaharveer Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "pretraj",
+      "title": {
+       "hi": "प्रेतराज सरकार",
+       "en": "Pretraj Sarkar"
+      },
+      "children": [
+       {
+        "id": "pretraj-chalisa",
+        "work": "pretraj-chalisa",
+        "path": "hinduism/chalisa/pretraj/pretraj-chalisa",
+        "title": {
+         "hi": "श्री प्रेतराज चालीसा",
+         "en": "Shri Pretraj Chalisa"
+        },
+        "desc": {
+         "hi": "गणपति की कर वंदना गुरू चरनन चितलाय",
+         "en": "Shri Pretraj Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "baba-gangaram",
+      "title": {
+       "hi": "बाबा गंगाराम",
+       "en": "Baba Gangaram"
+      },
+      "children": [
+       {
+        "id": "baba-gangaram-chalisa",
+        "work": "baba-gangaram-chalisa",
+        "path": "hinduism/chalisa/baba-gangaram/baba-gangaram-chalisa",
+        "title": {
+         "hi": "श्री बाबा गंगाराम चालीसा",
+         "en": "Shri Baba Gangaram Chalisa"
+        },
+        "desc": {
+         "hi": "अलख निरंजन आप हैं निरगुण सगुण हमेश",
+         "en": "Shri Baba Gangaram Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "rani-sati",
+      "title": {
+       "hi": "राणी सती",
+       "en": "Rani Sati"
+      },
+      "children": [
+       {
+        "id": "rani-sati-chalisa",
+        "work": "rani-sati-chalisa",
+        "path": "hinduism/chalisa/rani-sati/rani-sati-chalisa",
+        "title": {
+         "hi": "श्री राणी सती चालीसा",
+         "en": "Shri Rani Sati Chalisa"
+        },
+        "desc": {
+         "hi": "श्री गुरु पद पंकज नमन दूषित भाव सुधार",
+         "en": "Shri Rani Sati Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "ravidas",
+      "title": {
+       "hi": "गुरु रविदास",
+       "en": "Guru Ravidas"
+      },
+      "children": [
+       {
+        "id": "ravidas-chalisa",
+        "work": "ravidas-chalisa",
+        "path": "hinduism/chalisa/ravidas/ravidas-chalisa",
+        "title": {
+         "hi": "श्री रविदास चालीसा",
+         "en": "Shri Ravidas Chalisa"
+        },
+        "desc": {
+         "hi": "बन्दौं वीणा पाणि को देहु आय मोहिं ज्ञान",
+         "en": "Shri Ravidas Chalisa"
+        }
+       }
+      ]
+     },
+     {
+      "id": "mahavir",
+      "title": {
+       "hi": "भगवान महावीर",
+       "en": "Bhagwan Mahavir"
+      },
+      "children": [
+       {
+        "id": "mahavir-chalisa",
+        "work": "mahavir-chalisa",
+        "path": "hinduism/chalisa/mahavir/mahavir-chalisa",
+        "title": {
+         "hi": "श्री महावीर (तीर्थंकर) चालीसा",
+         "en": "Shri Mahavir (Tirthankar) Chalisa"
+        },
+        "desc": {
+         "hi": "शीश नवा अरिहन्त को सिद्धन करूँ प्रणाम",
+         "en": "Shri Mahavir (Tirthankar) Chalisa"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "namavali",
+    "title": {
+     "hi": "नामावलि",
+     "en": "Namavali"
+    },
+    "desc": {
+     "hi": "भगवान्‌के नाम",
+     "en": "The names of the Lord"
+    },
+    "children": [
+     {
+      "id": "vishnu",
+      "title": {
+       "hi": "भगवान विष्णु",
+       "en": "Bhagwan Vishnu"
+      },
+      "children": [
+       {
+        "id": "vishnu-sahasranama",
+        "work": "vishnu-sahasranama",
+        "path": "hinduism/namavali/vishnu/vishnu-sahasranama",
+        "title": {
+         "hi": "श्रीविष्णुसहस्रनामस्तोत्रम्",
+         "en": "Shri Vishnu Sahasranamam"
+        },
+        "by": {
+         "hi": "महर्षि वेदव्यास (महाभारत, अनुशासन पर्व)",
+         "en": "Maharshi Ved Vyas (Mahabharata, Anushasan Parva)"
+        },
+        "edition": {
+         "hi": "vishnusahasranamam.in",
+         "en": "vishnusahasranamam.in"
+        },
+        "desc": {
+         "hi": "विष्णुके सहस्र नाम",
+         "en": "The thousand names of Vishnu"
+        }
+       }
+      ]
+     },
+     {
+      "id": "sathya-sai",
+      "title": {
+       "hi": "श्री सत्य साई बाबा",
+       "en": "Shri Sathya Sai Baba"
+      },
+      "children": [
+       {
+        "id": "sathya-sai-ashtottara",
+        "work": "sathya-sai-ashtottara",
+        "path": "hinduism/namavali/sathya-sai/sathya-sai-ashtottara",
+        "title": {
+         "hi": "श्री सत्यसायि अष्टोत्तर शतनामावलि",
+         "en": "Shri Sathya Sai Ashtottara Shatanamavali"
+        },
+        "by": {
+         "hi": "भगवान श्री सत्य साई बाबा",
+         "en": "Bhagwan Shri Sathya Sai Baba"
+        },
+        "desc": {
+         "hi": "श्री सत्य साई बाबाके १०८ नाम",
+         "en": "The 108 names of Shri Sathya Sai Baba"
         }
        }
       ]

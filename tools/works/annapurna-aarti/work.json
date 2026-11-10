@@ -1,0 +1,48 @@
+{
+ "id": "annapurna-aarti",
+ "path": "hinduism/aarti/annapurna/annapurna-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "बारम्बार प्रणाम मैया बारम्बार प्रणाम",
+  "en": "Barambar Pranam Maiya Barambar Pranam"
+ },
+ "by": {
+  "hi": "माँ अन्नपूर्णा",
+  "en": "Mother Annapurna"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "बारम्बार प्रणाम",
+    "en": "Barambar Pranam"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

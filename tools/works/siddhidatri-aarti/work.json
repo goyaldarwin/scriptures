@@ -1,0 +1,48 @@
+{
+ "id": "siddhidatri-aarti",
+ "path": "hinduism/aarti/durga/siddhidatri-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "जय सिद्धिदात्री माँ तू सिद्धि की दाता",
+  "en": "Jai Siddhidatri Maa Tu Siddhi Ki Data"
+ },
+ "by": {
+  "hi": "माँ दुर्गा",
+  "en": "Mother Durga"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "जय सिद्धिदात्री माँ तू सिद्धि की दाता",
+    "en": "Jai Siddhidatri Maa Tu Siddhi Ki Data"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

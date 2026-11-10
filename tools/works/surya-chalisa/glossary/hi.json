@@ -1,0 +1,32 @@
+{
+ "कलिकर": {
+  "hi": "सूर्यदेवका एक नाम (सूर्य-चालीसाकी नामावलीमें)",
+  "en": "Kalikara, a name of Sūrya (in the Chālīsā’s list of his names)",
+  "g": "संज्ञा (व्यक्तिवाचक)",
+  "hard": true
+ },
+ "वेदांग": {
+  "hi": "सूर्यदेवका एक नाम, जिससे वे मधु (चैत्र) मासमें उदय होते हैं",
+  "en": "Vedāṅga, the name under which the Sun rises in the month of Madhu (Caitra)",
+  "g": "संज्ञा (व्यक्तिवाचक)",
+  "hard": true
+ },
+ "सुनूर": {
+  "hi": "सूर्यदेवका एक नाम (नामोंकी सूचीमें)",
+  "en": "Sunūra, a name of the Sun (in a list of names)",
+  "g": "संज्ञा (व्यक्तिवाचक)",
+  "hard": true
+ },
+ "सुवर्णरेताकी": {
+  "hi": "सुवर्णरेता, सूर्यदेवका एक नाम",
+  "en": "Suvarṇaretā, a name of the Sun",
+  "g": "संज्ञा (व्यक्तिवाचक)",
+  "hard": true
+ },
+ "हिमरेता": {
+  "hi": "हिमरेता, सूर्यदेवका एक नाम, जिससे वे आश्विन मासमें उदय होते हैं",
+  "en": "Himaretā, the name the Sun bears in the month of Āśvina",
+  "g": "संज्ञा (व्यक्तिवाचक)",
+  "hard": true
+ }
+}

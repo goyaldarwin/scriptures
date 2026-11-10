@@ -1,0 +1,32 @@
+# जय अम्बे ब्रह्मचारिणी माता (Jai Ambe Brahmacharini Mata): the verse text, from Drik Panchang ("Brahmacharini
+# Mata Aarti", drikpanchang.com/lyrics/aarti/navdurga/brahmacharini/devi-brahmacharini-aarti.html). The witnesses and
+# every choice: reconciliation.md.
+
+@part aarti
+@section aarti
+@topic जय अम्बे ब्रह्मचारिणी माता | Jai Ambe Brahmacharini Mata
+[aarti.pad1 pad 1]
+जय अम्बे ब्रह्मचारिणी माता ।
+जय चतुरानन प्रिय सुख दाता ।
+ब्रह्मा जी के मन भाती हो ।
+ज्ञान सभी को सिखलाती हो ॥१॥
+[aarti.pad2 pad 2]
+ब्रह्म मन्त्र है जाप तुम्हारा ।
+जिसको जपे सरल संसारा ।
+जय गायत्री वेद की माता ।
+जो जन जिस दिन तुम्हें ध्याता ॥२॥
+[aarti.pad3 pad 3]
+कमी कोई रहने ना पाये ।
+कोई भी दुख सहने न पाये ।
+उसकी विरति रहे ठिकाने ।
+जो तेरी महिमा को जाने ॥३॥
+[aarti.pad4 pad 4]
+रुद्राक्ष की माला ले कर ।
+जपे जो मन्त्र श्रद्धा दे कर ।
+आलस छोड़ करे गुणगाना ।
+माँ तुम उसको सुख पहुँचाना ॥४॥
+[aarti.pad5 pad 5]
+ब्रह्मचारिणी तेरो नाम ।
+पूर्ण करो सब मेरे काम ।
+भक्त तेरे चरणों का पुजारी ।
+रखना लाज मेरी महतारी ॥५॥

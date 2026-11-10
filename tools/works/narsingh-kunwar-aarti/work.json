@@ -1,0 +1,48 @@
+{
+ "id": "narsingh-kunwar-aarti",
+ "path": "hinduism/aarti/narasimha/narsingh-kunwar-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "आरती कीजै नरसिंह कुँवर की",
+  "en": "Aarti Kijai Narsingh Kunwar Ki"
+ },
+ "by": {
+  "hi": "भगवान नृसिंह",
+  "en": "Bhagwan Narasimha"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "आरती कीजै नरसिंह कुँवर की",
+    "en": "Aarti Kijai Narsingh Kunwar Ki"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

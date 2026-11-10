@@ -1,0 +1,48 @@
+{
+ "id": "giridhari-aarti",
+ "path": "hinduism/aarti/krishna/giridhari-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "जय जय गिरिधारी प्रभु",
+  "en": "Jai Jai Giridhari Prabhu"
+ },
+ "by": {
+  "hi": "भगवान श्रीकृष्ण (गिरिधारी)",
+  "en": "Bhagwan Shri Krishna (Giridhari)"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "जय जय गिरिधारी प्रभु",
+    "en": "Jai Jai Giridhari Prabhu"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}

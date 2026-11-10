@@ -1,0 +1,48 @@
+{
+ "id": "badrinath-aarti",
+ "path": "hinduism/aarti/vishnu/badrinath-aarti",
+ "lang": "hi",
+ "title": {
+  "hi": "जय जय श्री बदरीनाथ",
+  "en": "Jai Jai Shri Badrinath"
+ },
+ "by": {
+  "hi": "भगवान विष्णु",
+  "en": "Bhagwan Vishnu"
+ },
+ "parts": {
+  "name": {
+   "hi": "आरती",
+   "en": "Aarti"
+  },
+  "list": [
+   {
+    "key": "aarti",
+    "hi": "जय जय श्री बदरीनाथ",
+    "en": "Jai Jai Shri Badrinath"
+   }
+  ]
+ },
+ "types": {
+  "tek": {
+   "name": {
+    "hi": "टेक",
+    "en": "Refrain (tek)"
+   },
+   "short": {
+    "hi": "टेक",
+    "en": "Ref."
+   }
+  },
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St."
+   }
+  }
+ }
+}
