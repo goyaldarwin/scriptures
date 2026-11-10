@@ -312,6 +312,17 @@ function buildWork(){
   VIEWS.forEach(v => { VIEW[v.id] = v; (v.groups || []).forEach(g => g.list.forEach(m => {
     const key = v.id + '.' + m.id, list = m.items.map(id => ID[id]).filter(i => i != null), pgs = [...new Set(list.map(i => itemPage[i]))];
     GROUP[key] = {key, m, list, set: new Set(list), ix: new Map(list.map((i, n) => [i, n])), pgs, pos: new Map(pgs.map((p, n) => [p, n]))}; })); });
+  bmGroup();
+}
+// the bookmarked verses as a reading of their own (GROUP.bm, read like a writer's verses): every verse as the reader shows it,
+// with its meanings, words and ▶, in the work's order, each part and section heading the verses in it. Made again each
+// time it is opened from Bookmarks & notes, so a bookmark set or removed meanwhile is in it (or not)
+function bmGroup(){
+  const pre = W.id + ':', set = new Set();
+  for (const p of SHOWN()) for (const k in p.bm) if (k.startsWith(pre) && ID[k.slice(pre.length)] != null) set.add(ID[k.slice(pre.length)]);
+  const list = [...set].sort((a, b) => a - b), pgs = [...new Set(list.map(i => itemPage[i]))];
+  delete GROUP.bm; if (!list.length) return null;
+  return GROUP.bm = {key: 'bm', m: {hi: 'बुकमार्क', en: 'Bookmarks'}, list, set, ix: new Map(list.map((i, n) => [i, n])), pgs, pos: new Map(pgs.map((p, n) => [p, n]))};
 }
 const RG = () => GROUP[R.org] || null;   // the group the reader shows (a writer), or none
 const GNAME = o => T(GROUP[o].m.hi, GROUP[o].m.en);
@@ -1782,6 +1793,8 @@ function renderBookmarks(){
   let h = '', bmh = '';
   // each bookmark has its own ✕ to remove it
   bmh += bms.length ? bms.map(b => '<div class="bmrow"><button class="res" data-i="' + b[0] + '"><div class="where">' + esc(itemLabel(b[0])) + '</div><div class="snip" style="font-weight:700">' + esc(IT[b[0]].v[0]) + '</div></button><button class="bmdel" data-del="' + b[0] + '" aria-label="' + T('बुकमार्क हटाएँ', 'Remove bookmark') + '"><svg><use href="#i-x"/></svg></button></div>').join('') : '<p class="muted">' + T('किसी भी पदके पास बुकमार्क चिह्न दबाएँ।', 'Tap the bookmark sign beside any verse.') + '</p>';
+  // read them all as the reader shows a verse (meanings, words, ▶), only the bookmarked ones
+  if (bms.length) bmh = '<button class="btn bmread" id="bmRead">' + T('बुकमार्क किये पद पढ़ें', 'Read the bookmarked verses') + ' ›</button>' + bmh;
   h += sec('bm', T('बुकमार्क (', 'Bookmarks (') + DEV(bms.length) + ')', bmh);
   h += sec('notes', T('टिप्पणियाँ (', 'Notes (') + DEV(notes.length) + ')', notes.length ? notes.map(n => '<button class="res" data-i="' + n[0] + '"><div class="where">' + esc(itemLabel(n[0])) + '</div><div class="snip">' + esc(n[2].t.slice(0, 200)) + '</div></button>').join('') : '<p class="muted">' + T('किसी पदके ⋮ मेनूसे अपनी टिप्पणी लिखें।', 'Use the ⋮ menu of any verse to write a note.') + '</p>');
   h += '<h2 style="font-size:19px;margin:26px 0 4px">' + T('मेरी फ़ाइल', 'My file') + '</h2><p class="small muted">' + T('आपके बुकमार्क, टिप्पणियाँ, प्रगति और सुधार इसी फ़ोनमें रहते हैं। फ़ाइल सेव करके बैकअप रखें या दूसरे फ़ोनपर खोलें।', 'Your bookmarks, notes, progress and corrections stay on this phone. Save the file as a backup, or open it on another phone.') + (canStore ? '' : ' <b>' + T('ध्यान दें: यह फ़ोन डेटा अपने-आप नहीं रख पा रहा — पाठके बाद “फ़ाइल सेव करें” दबाएँ।', 'This phone is not keeping app data — tap Save my file after each reading.') + '</b>') + '</p>' +
@@ -1790,6 +1803,7 @@ function renderBookmarks(){
   $('#exp').onclick = exportFile; $('#imp').onclick = () => $('#fileIn').click();
   $$('#bmBody .bmsec').forEach(d => d.ontoggle = () => { S.settings.bmFold = S.settings.bmFold || {}; if (d.open) delete S.settings.bmFold[d.dataset.fold]; else S.settings.bmFold[d.dataset.fold] = 1; save(); });
   $$('#bmBody .res').forEach(b => b.onclick = () => openReader(readOrg(), +b.dataset.i, true));
+  if ($('#bmRead')) $('#bmRead').onclick = () => { const g = bmGroup(); if (g) openReader('bm', g.list[0]); };
   $$('#bmBody [data-del]').forEach(b => b.onclick = () => { const k = KEY(IT[+b.dataset.del].id); for (const p of S.profiles) delete p.bm[k]; save(); renderBookmarks(); toast(T('बुकमार्क हटाया', 'Bookmark removed')); });
 }
 
