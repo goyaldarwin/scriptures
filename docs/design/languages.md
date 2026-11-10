@@ -2,7 +2,7 @@
 
 The owner's request: "design interface for supporting Punjabi and other languages. For now we will support only Punjabi", and "right now the text of the verse is fixed and we don't have different text in different languages. In future that might also change. Please keep this in mind."
 
-Built: meaning languages as a list (§1), Punjabi meanings of the Sukhmani Sahib, and the app's support for Punjabi word meanings (§2). Designed, not built: Punjabi in the dictionaries (§2), a Punjabi interface (§3) and text sources (§4).
+Built: meaning languages as a list (§1), Punjabi meanings of the Sukhmani Sahib, the app's support for Punjabi word meanings and the Punjabi sense of every Gurbani word (§2). Designed, not built: a Punjabi interface (§3) and text sources (§4).
 
 ## 1. Meaning languages are a list (built)
 - **Registry:** `library/glossary/languages.json` gives each language a reader can read a meaning in a `meaning` block: `{"short": "ਪੰ", "name": {"hi": "पंजाबी", "en": "Punjabi", "pa": "ਪੰਜਾਬੀ"}, "order": 3}`. The meaning languages are `hi`, `en` and `pa`. Adding one is one entry, with no app change (`docs/LIBRARY.md` §5).
@@ -15,7 +15,7 @@ Built: meaning languages as a list (§1), Punjabi meanings of the Sukhmani Sahib
 
 ## 2. Word meanings in more languages
 - **Built (app):** a dictionary entry may carry a `pa` meaning beside `hi` and `en`. The word sheet shows it, and the word list shows it while the ਪੰ switch is on. Entries without `pa` show Hindi and English, so the dictionaries can be filled in gradually.
-- **Not built (data):** no dictionary entry has `pa` yet. It is to be filled in from the Gurmukhi words of the Sukhmani Sahib (`library/glossary/pa.json`), with the Mahan Kosh as the check (`tools/meanings/style.md` §11).
+- **Built (data):** every entry of `library/glossary/pa.json` (3,125 Gurmukhi words of the Sukhmani Sahib, Japji Sahib and the Granth) has `pa`, the same senses as its `hi` and `en`, written from the lines and the Darpan/Faridkot word glosses and checked against the Mahan Kosh where they did not settle it (`docs/HOW-TO.md`, "Add the Punjabi sense to the Gurbani word meanings"). The Hindi and Awadhi dictionaries have no `pa`.
 
 ## 3. The interface language is Hindi or English (designed, not built)
 - Labels are `{hi, en}`, and the interface language is chosen with हिं · En on the library, work and vidhi pages. A Punjabi interface would add `pa` to the labels with an English fallback, and a third button there.
