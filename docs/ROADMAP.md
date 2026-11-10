@@ -41,5 +41,4 @@ The owner's priorities, in order: **accuracy**, then unambiguity, clarity, consi
 6. **Check audio against what is sung.** After timing, read each verse's transcript segment against its text, and flag verses where the reciter's wording differs. This catches both text errors and timing errors.
 7. **Finish the timings by ear.** The Sukhmani Sahib recording is published with every start not yet set by ear listed to check; the owner checks them under ☰ › More settings › Audio timing (`docs/HOW-TO.md` → "Time a recording by ear"). Helpers can mark too and send the owner a file. The Mānas recording still has verses to check, and one dohā (`aranya.46.do46ख`) without a time.
 8. **Player buttons for timing** (offered to the owner): "⏹ End" and "⏱ Next starts" beside play/pause, so marking needs no scrolling.
-9. **Punjabi word meanings.** Fill in `pa` in `library/glossary/pa.json` (`docs/design/languages.md` §2).
-10. **The Android app** (`docs/APPS.md`): the content-rights decision, then the Play release. The iPhone app is parked.
+9. **The Android app** (`docs/APPS.md`): the content-rights decision, then the Play release. The iPhone app is parked.
