@@ -9,7 +9,7 @@ on:
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 45   # the browser tests open every work (174 with the Chālīsā, Āratī and Nāmāvalī shelves)
     env:
       CHROMIUM: /usr/bin/google-chrome   # the runner's own Chrome: no browser download, no apt-get
     steps:
