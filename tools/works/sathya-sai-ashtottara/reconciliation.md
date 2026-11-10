@@ -1,7 +1,7 @@
-# Śrī Satya Sāyi Aṣṭottara Śatanāmāvali — how the text is settled
+# Śrī Satya Sāī Aṣṭottara Śatanāmāvali — how the text is settled
 
 **Base:** the owner's PDF of Bhakti Bharat's page *श्री सत्यसायि अष्टोत्तर शतनामावलि*
-(<https://www.bhaktibharat.com/mantra/bhagawan-sathya-sai-baba-108-names>), its 108 lines ओं श्री सायि … नमः (a number
+(<https://www.bhaktibharat.com/mantra/bhagawan-sathya-sai-baba-108-names>), its 108 lines ओं श्री सायि … नमः (its spelling of साई) (a number
 after every tenth) and the line इति श्री सत्यसायि अष्टोत्तर शतनामावलि ॥. The text layer was read in full and every page
 was checked against the rendered page, where the layer splits conjuncts and words. The page's menus, related links and
 English summary are not part of the text.
@@ -18,7 +18,7 @@ recites the names one after another in the base's order (1 at 0 s, 2 at 11 s, 39
 ends after the names with no prayer (at 6:43); nothing before name 1. So the text keeps the base's order and adds no opening
 or closing; the closing words (इति …), which the recording does not recite, stay untimed. In name 1 it sings
 “bhagavān śrī satya sāī bābāya”, as the organisation's list (and the base page's own English line) has it; the text keeps
-the base's सत्यसायिबाबाय (below), so the highlight of name 1 will differ from the singing by those words. A second transcript of the whole recording (`tools/audio/transcribe_onnx.py`, 4–9 s pieces;
+the base's सत्यसाईबाबाय (below), so the highlight of name 1 will differ from the singing by those words. A second transcript of the whole recording (`tools/audio/transcribe_onnx.py`, 4–9 s pieces;
 the timing source's `transcripts/`) hears the names to the end: name 108 at 6:38, the recording ending at 6:43 (the
 first transcript stops at 5:22). It confirms the base's order throughout. Where it hears another form, the text is kept
 until the owner hears it: name 89 sounds as “anna vastra dāya” (the organisation's form, not दायिने), and name 108 as
@@ -39,36 +39,36 @@ until the owner hears it: name 89 sounds as “anna vastra dāya” (the organis
 | 87 | सिद्धसङ् कल्पाय | सिद्धसङ्कल्पाय | split conjunct (text layer) |
 | 102 | सर्वमङ् गलकराय | सर्वमङ्गलकराय | split conjunct (text layer) |
 | 105 | आर्ति हराय | आर्तिहराय | a space added by the text layer; the page prints one word |
-| iti | इति श्री सत्यसायि अष्टोत्तर शतनामावलि ॥ | इति श्री सत्यसायि अष्टोत्तर शतनामावलिः ॥ | after इति the title stands in the nominative, नामावलिः; the stem form is broken Sanskrit |
+| iti | इति श्री सत्यसायि अष्टोत्तर शतनामावलि ॥ | इति श्री सत्यसाई अष्टोत्तर शतनामावलिः ॥ | after इति the title stands in the nominative, नामावलिः; the stem form is broken Sanskrit; साई as in every name (below) |
+| every name, the title, iti | सायि (सत्यसायि, सत्यसायिबाबाय) | साई (सत्यसाई, सत्यसाईबाबाय) | the name's standard spelling, as the organisation writes it (ॐ श्री साई … नमः, sssbalvikas.in; Sāī in *108 Mirrors*) and as the library spells him everywhere (the Shirdi Sāī works): the owner's decision. The meanings, word entries, title and shelf say साई / Sāī too |
+| 19, 29, 31 | षिर्डी | शिर्डी | the place's standard spelling, as the library's Shirdi works print it (शिर्डी) and our Hindi meanings write it; the base's ष is its Telugu-style spelling, and the organisation's list writes “Shirdi” |
+| 32 | द्वारकामायिवासिने | द्वारकामाईवासिने | Dvārakāmāī, the mosque's standard spelling (द्वारकामाई), as our Hindi meaning writes it: the same मायि / माई as सायि / साई |
 
 ## Kept as the base prints them
-- **सायि** (not साई) throughout, in every name and in the title: the base's spelling, a correct Sanskrit form of the name
-  (the organisation's list writes Sāi / Sāī, which either spelling renders). **श्री सायि** stays two words, as printed.
-- **Spaces inside the longer names** as the page prints them: जोडि आदिपल्लि सोमप्पाय (20), षिर्डी सायि अभेद
-  शक्त्यावताराय (29), षिर्डी सायि मूर्तये (31), चित्रावतीतट पुट्टपर्ति विहारिणे (33), असहाय सहायाय (40), संसारदुःख
-  क्षयकराय (90), भगवान् सत्यसायिबाबाय (108). Joining them would bring in sandhi the list never uses (साय्यभेद…).
-- **षिर्डी** (19, 29, 31): the base's spelling; the organisation's list writes “Shirdi” with sh, its letter for ष
-  (Purushāya, Poshaṇāya), not ś for श.
+- **श्री साई** stays two words, as printed (श्री सायि).
+- **Spaces inside the longer names** as the page prints them: जोडि आदिपल्लि सोमप्पाय (20), शिर्डी साई अभेद
+  शक्त्यावताराय (29), शिर्डी साई मूर्तये (31), चित्रावतीतट पुट्टपर्ति विहारिणे (33), असहाय सहायाय (40), संसारदुःख
+  क्षयकराय (90), भगवान् सत्यसाईबाबाय (108). Joining them would bring in sandhi the list never uses.
 - Names where the organisation's list has another valid form, the base's kept (both are good Sanskrit; nothing shows the
   base wrong):
 
 | Name | Base (kept) | Organisation's list |
 |---|---|---|
-| 1 | सत्यसायिबाबाय | Bhagawan Sathya Sāi Bābāya |
+| 1 | सत्यसाईबाबाय | Bhagawan Sathya Sāi Bābāya |
 | 23 | अपान्तरात्मने | Apāntarātmāne (आत्मने is the dative of आत्मन्; the list's long ā is a slip) |
 | 51 | पुण्यफलप्रदाय | Sarva Puṇya Phala Pradāya |
 | 58 | अपरूपशक्तिने | Aparūpa Śaktine (both: the dative of शक्तिन्, “possessed of power”) |
 | 70 | भक्तजनहृदयविहारिणे | Bhakta Jana Hṛdaya Vihārāya |
 | 89 | अन्नवस्त्रदायिने | Anna Vastra Dāya |
-| 108 | भगवान् सत्यसायिबाबाय | Bhagawan Śrī Sathya Sāī Bābāya |
+| 108 | भगवान् सत्यसाईबाबाय | Bhagawan Śrī Sathya Sāī Bābāya |
 
   Name 1 stays as the base prints it, though the recording and the organisation's list read भगवान् श्री सत्य साई बाबाय:
   the base's form is good Sanskrit and not a misprint (a correction is for what is clearly wrong), and with भगवान् … in 1 the first and last names would be the same name twice.
-  भगवान् in 108 stays: the name is the title भगवान् सत्यसायिबाबा as one, which both witnesses print with the nominative
+  भगवान् in 108 stays: the name is the title भगवान् सत्यसाईबाबा as one, which both witnesses print with the nominative
   भगवान्.
 
 ## Sources used
-- Bhakti Bharat, *श्री सत्यसायि अष्टोत्तर शतनामावलि* (the base; the owner's PDF).
+- Bhakti Bharat, *श्री सत्यसायि अष्टोत्तर शतनामावलि* (the base; the owner's PDF; its spelling सायि, ours साई).
 - sathyasai.org (Sri Sathya Sai International Organization), *108 Mirrors* study guide, parts 1–6 (the second witness).
 - sathyasai.org, *Sai Vijayam* sheet (looked at; a thematic rearrangement, not used).
 - sssbalvikas.in, *Ashtothram Introduction* (looked at: describes the form ॐ श्री साई … नमः, gives no list).
@@ -89,9 +89,9 @@ Apte, the grammar, and the organisation's *108 Mirrors* checked after drafting):
 - **47 कलुषविदूराय:** विदूर "far removed from" (MW): "far removed from impurity", not "who drives impurity away".
 - **69 भक्तमन्दाराय:** मन्दार is the coral tree, one of the five trees of paradise (MW); the name is read as that tree
   for devotees (the wish-granting tree), not as Mount Mandara (a different word, मन्दर).
-- **29 षिर्डी सायि अभेद शक्त्यावताराय:** read as one name, "the incarnation of power (śakti) not different from Shirdi
-  Sāyi", as the organisation's own Bal Vikas lesson on the name explains it (sssbalvikas.in, *Ashtotaram 29*: "whose
+- **29 शिर्डी साई अभेद शक्त्यावताराय:** read as one name, "the incarnation of power (śakti) not different from Shirdi
+  Sāī", as the organisation's own Bal Vikas lesson on the name explains it (sssbalvikas.in, *Ashtotaram 29*: "whose
   glory is not different from the Shirdi Avataara"); the English is worded so that "the incarnation of power" cannot be
-  read as a title of Shirdi Sāyi.
+  read as a title of Shirdi Sāī.
 - **30 शङ्कराय:** Śaṅkara here is Śiva (the list names him so beside 16 महेश्वरस्वरूपाय), not the ācārya; the name is
   kept with Śiva after it in brackets (style §6), and its sense "the giver of good" (MW: śaṃ-kara "causing prosperity").

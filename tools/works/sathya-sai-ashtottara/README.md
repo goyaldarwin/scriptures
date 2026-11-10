@@ -1,12 +1,12 @@
-# श्री सत्यसायि अष्टोत्तर शतनामावलि (Śrī Satya Sāyi Aṣṭottara Śatanāmāvali)
+# श्री सत्यसाई अष्टोत्तर शतनामावलि (Śrī Satya Sāī Aṣṭottara Śatanāmāvali)
 
-Shelf: हिन्दू धर्म › नामावलि › सत्य साई › श्री सत्यसायि अष्टोत्तर शतनामावलि
+Shelf: हिन्दू धर्म › नामावलि › सत्य साई › श्री सत्यसाई अष्टोत्तर शतनामावलि
 (`library/hinduism/namavali/sathya-sai/sathya-sai-ashtottara/`, work id `sathya-sai-ashtottara`). The 108 names of
 Bhagavān Śrī Satya Sāī Bābā, in Sanskrit (`sa`): a nāmāvalī of the Sathya Sai tradition (20th century), each name
-ॐ श्री सायि … नमः, followed by the closing words.
+ॐ श्री साई … नमः, followed by the closing words. The name is spelt साई (Sāī) throughout, the owner's choice (`reconciliation.md`).
 
 ## Sources
-- **Text** (`text.txt`): the owner's base, Bhakti Bharat's page *श्री सत्यसायि अष्टोत्तर शतनामावलि*
+- **Text** (`text.txt`): the owner's base, Bhakti Bharat's page *श्री सत्यसायि अष्टोत्तर शतनामावलि* (its spelling सायि; ours साई)
   (<https://www.bhaktibharat.com/mantra/bhagawan-sathya-sai-baba-108-names>, the owner's PDF of it with its text layer),
   checked name by name against the Sathya Sai Organisation's own list, the study guide *108 Mirrors* on sathyasai.org
   (parts 1–6, roman letters with diacritics). Every choice: `reconciliation.md`.
