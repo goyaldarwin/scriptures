@@ -48,7 +48,8 @@ if meta.get('take'):
     json.dump(doc, open(out, 'w'), ensure_ascii=False, separators=(',', ':'))
     print('verses with audio', len(at), 'of', len(ids), '(from', meta['take'] + ') →', os.path.relpath(out, REPO)); sys.exit()
 REC = sorted(json.load(open(os.path.join(SRC, 'recordings.json'))), key=lambda r: r['order'])
-work = json.load(open(os.path.join(REPO, 'library', meta['work'], 'work.json')))
+sys.path.insert(0, os.path.dirname(HERE)); import jsonio   # tools/, beside this script (REPO may be a copy to work in)
+work = jsonio.read_work(os.path.join(REPO, 'library', meta['work'], 'work.json'))   # its verses joined when loaded by part
 IT = work['items']; ID = {x['id']: i for i, x in enumerate(IT)}
 # work.json "renamed" (old id → new id, e.g. a joint caupāī split into one item each): an old id in an alignment cache,
 # fixes.json, owner.json or recordings.json counts as its new id; the later parts of a split verse are placed by length

@@ -437,12 +437,33 @@ async function loadSources(only){
    so a part opened once is readable offline. Other works load whole, as before. */
 const BYPART = () => !!W && W.load === 'parts';
 let PWANT = new Set(), PLOAD = {}, WGOT = new Set(), SLOADING = false, SFAIL = 0;   // the parts opened in this work; the loads under way; the parts of WG in
-function partReset(){ PWANT = new Set(); PLOAD = {}; WGOT = new Set(); }
+function partReset(){ PWANT = new Set(); PLOAD = {}; WGOT = new Set(); VGOT = new Set(); VLOAD = {}; }
+/* A work whose verses are loaded by part too (work.json "verses": "parts", the Mahābhārata): work.json lists every item
+   (its id, part, section, type, number and citation) with no lines; verses/<part>.json brings that part's lines and
+   transliteration. A part's verses come on their own, before its meanings, and the page is drawn again when they do. */
+const BYVERSE = () => BYPART() && W.verses === 'parts';
+let VGOT = new Set(), VLOAD = {};
+function versesReady(k){ return !BYVERSE() || k == null || VGOT.has(k); }
+function loadVerses(k){
+  if (versesReady(k)) return Promise.resolve(false);
+  if (VLOAD[k]) return VLOAD[k];
+  const w = W;
+  return VLOAD[k] = getJSON(W.path + '/verses/' + k).then(x => {
+    if (W !== w) return false; delete VLOAD[k];
+    for (const id in x.v || {}){ const i = ID[id]; if (i == null) continue; IT[i].v = x.v[id]; if (x.t && x.t[id]) IT[i].t = x.t[id]; }
+    VGOT.add(k); PWANT.add(k); IDX = null; return true;
+  }, () => { if (W === w) delete VLOAD[k]; return false; });
+}
 function partObjs(){ return MK().flatMap(k => [SRC[k]].concat(ALT[k] || [])).concat(SRC.cm).filter(Boolean); }
-function partReady(k){ return !BYPART() || k == null || (partObjs().every(o => !o.got || o.got.has(k)) && (!W.glossary || WGOT.has(k))); }
+function partReady(k){ return !BYPART() || k == null || (versesReady(k) && partObjs().every(o => !o.got || o.got.has(k)) && (!W.glossary || WGOT.has(k))); }
 // resolves true when something new came in (then the page is drawn again); false when nothing was needed or nothing could be fetched
 function loadPart(k){
   if (partReady(k)) return Promise.resolve(false);
+  if (!versesReady(k)){ const vp = loadVerses(k); return Promise.all([vp, meaningsPart(k)]).then(([a, b]) => a || b); }
+  return meaningsPart(k);
+}
+function meaningsPart(k){
+  if (partObjs().every(o => !o.got || o.got.has(k)) && (!W.glossary || WGOT.has(k))) return Promise.resolve(false);
   if (PLOAD[k]) return PLOAD[k];
   const w = W, objs = partObjs().filter(o => o.got && !o.got.has(k)), gl = W.glossary && !WGOT.has(k), get = f => getJSON(W.path + '/' + f).catch(() => null);
   return PLOAD[k] = Promise.all([Promise.all(objs.map(o => get(o.meta.file + '/' + k))), gl ? get('glossary/' + k) : null]).then(([ms, g]) => {
@@ -454,7 +475,10 @@ function loadPart(k){
   });
 }
 // a page drawn before its part is in shows the verses at once; the meanings and word meanings follow, without moving the page
-function needPart(k){ if (!partReady(k)) loadPart(k).then(got => { if (got && CURVIEW === 'reader') refreshReader(); }); }
+function needPart(k){
+  if (!versesReady(k)) loadVerses(k).then(got => { if (got && CURVIEW === 'reader') refreshReader(); });   // the lines first, on their own
+  if (!partReady(k)) loadPart(k).then(got => { if (got && CURVIEW === 'reader') refreshReader(); });
+}
 // search: every part's meanings, one part at a time; the verses (work.json) are searched at once, the meanings as each part comes
 async function searchParts(){
   if (!BYPART() || SLOADING || Date.now() - SFAIL < 30000) return; SLOADING = true; const w = W;   // after a part could not be fetched (offline), tried again 30 s later
@@ -1809,6 +1833,8 @@ function nameHits(q, latin){
 /* ---------------- bookmarks ---------------- */
 function renderBookmarks(){
   const bms = [], notes = [], pre = W.id + ':';
+  if (BYVERSE()){ const ks = new Set(); for (const p of SHOWN()) for (const k in p.bm) if (k.startsWith(pre) && ID[k.slice(pre.length)] != null) ks.add(IT[ID[k.slice(pre.length)]].p);   // a bookmark shows its verse's first line
+    ks.forEach(k => { if (!versesReady(k)) loadVerses(k).then(got => { if (got && CURVIEW === 'bookmarks') renderBookmarks(); }); }); }
   for (const p of SHOWN()){ for (const k in p.bm) if (k.startsWith(pre) && ID[k.slice(pre.length)] != null) bms.push([ID[k.slice(pre.length)], p]); for (const k in p.notes) if (k.startsWith(pre) && ID[k.slice(pre.length)] != null) p.notes[k].forEach(n => notes.push([ID[k.slice(pre.length)], p, n])); }
   bms.sort((a, b) => a[0] - b[0]); notes.sort((a, b) => a[0] - b[0]);
   // each list folds under its heading: open by default, and a fold is remembered

@@ -59,7 +59,7 @@ def main():
         raise SystemExit('The Sanskrit dictionaries are not downloaded: run python3 tools/meanings/sanskrit_dict.py fetch, and make sure the batches were written and reviewed with them')
     folder = os.path.join(REPO, 'tools', 'works', a.work)
     path = json.load(open(os.path.join(folder, 'work.json'), encoding='utf-8'))['path']
-    W = json.load(open(os.path.join(REPO, 'library', path, 'work.json'), encoding='utf-8'))
+    W = jsonio.read_work(os.path.join(REPO, 'library', path, 'work.json'))
     order = [x['id'] for x in W['items']]
     mine = lambda lg: os.path.join(folder, 'meanings', lg, 'scriptures.json')
     F = {lg: json.load(open(mine(lg), encoding='utf-8')) for lg in ('hi', 'en')}

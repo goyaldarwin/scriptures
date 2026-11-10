@@ -30,7 +30,8 @@ def main():
         raise SystemExit(f'The Sanskrit dictionaries are not downloaded ({", ".join(missing)}): run python3 tools/meanings/sanskrit_dict.py fetch first')
     lib = os.path.join(REPO, 'library'); folder = os.path.join(REPO, 'tools', 'works', a.work)
     path = json.load(open(os.path.join(folder, 'work.json'), encoding='utf-8'))['path']
-    W = json.load(open(os.path.join(lib, path, 'work.json'), encoding='utf-8'))
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))); import jsonio
+    W = jsonio.read_work(os.path.join(lib, path, 'work.json'))
     LANGS = json.load(open(os.path.join(lib, 'glossary', 'languages.json'), encoding='utf-8'))
     G = {}
     def gloss(lg):

@@ -23,7 +23,8 @@ def rom(lines):
 def main(src):
     meta = json.load(open(os.path.join(src, 'source.json')))
     lib = os.path.join(REPO, 'library', meta['work'])
-    work = json.load(open(os.path.join(lib, 'work.json'), encoding='utf-8'))
+    sys.path.insert(0, os.path.dirname(HERE)); import jsonio
+    work = jsonio.read_work(os.path.join(lib, 'work.json'))   # its verses joined when loaded by part
     au = json.load(open(os.path.join(lib, 'audio', meta['id'] + '.json'), encoding='utf-8'))
     IT = work['items']; ID = {x['id']: k for k, x in enumerate(IT)}
     L = lambda i: max(8, len(''.join(IT[i]['v'])))

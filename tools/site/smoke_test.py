@@ -1,6 +1,6 @@
 """Smoke test before every push: the site starts, every work opens, the reader shows verses, no script errors, and the
 app looks words up by the same rule as tools/text/standard.py. A work loaded by part (tools/site/split_fixture.py) opens
-in this release, with its meanings in its second part, and in the previous release (origin/main's app.js, as a phone
+in this release, with its verses' lines and its meanings in its second part, and in the previous release (origin/main's app.js, as a phone
 with it cached runs it) without a script error.
 
 Usage:  python3 tools/site/smoke_test.py            (serves the repository root on a free port)
@@ -10,6 +10,7 @@ import asyncio, functools, glob, http.server, json, os, shutil, socketserver, su
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.join(ROOT, 'tools', 'site')); import split_fixture
 sys.path.insert(0, os.path.join(ROOT, 'tools', 'text')); import standard
+sys.path.insert(0, os.path.join(ROOT, 'tools')); import jsonio
 from playwright.async_api import async_playwright
 
 def serve():
@@ -36,7 +37,7 @@ async def main():
         await pg.evaluate("typeof closeTour === 'function' && closeTour()")
         ok = True
         # the app's word lookup form is the same rule as tools/text/standard.py fold(), on every word of the library
-        words = sorted({t for f in glob.glob(os.path.join(ROOT, 'library', '**', 'work.json'), recursive=True) for x in json.load(open(f, encoding='utf-8'))['items'] for l in x['v'] for t in l.split()} | {'गङ्गा', 'इदम्', 'अग्ंशुश्च', 'सꣳहिता'})
+        words = sorted({t for f in glob.glob(os.path.join(ROOT, 'library', '**', 'work.json'), recursive=True) for x in jsonio.read_work(f)['items'] for l in x['v'] for t in l.split()} | {'गङ्गा', 'इदम्', 'अग्ंशुश्च', 'सꣳहिता'})
         js = await pg.evaluate("ws => ws.map(fold)", words)
         bad = [(w, a, standard.fold(w)) for w, a in zip(words, js) if a != standard.fold(w)]
         print(f'word lookup form: app and standard.py agree on {len(words) - len(bad)} of {len(words)} words'); ok &= not bad
@@ -67,9 +68,10 @@ async def main():
             await sp.evaluate("(() => { S.settings.tour = 1; typeof closeTour === 'function' && closeTour(); S.settings.layers.h = true; S.settings.layers.e = true; save(); })()")
             await sp.evaluate(f"openWork({json.dumps(split_fixture.WORK)})"); await sp.wait_for_timeout(1500)
             await sp.evaluate("openReader('k', PARTS[1].a)"); await sp.wait_for_timeout(1500)
-            n, m = await sp.evaluate("[document.querySelectorAll('#reader .verse').length, document.querySelectorAll('#reader .layer').length]")
-            good = n > 0 and not e2 and (m > 0 or js is not None)   # the previous release shows the verses (its meanings need this release)
-            print(f'split work, {label}: {n} verses and {m} meanings in its second part' + (f'; errors: {e2[:2]}' if e2 else '')); ok &= good
+            n, m, tx = await sp.evaluate("[document.querySelectorAll('#reader .verse').length, document.querySelectorAll('#reader .layer').length, [...document.querySelectorAll('#reader .verse .vtext')].filter(x => x.textContent.trim()).length]")
+            # the previous release draws the verses without failing (their lines and meanings, loaded by part, need this release)
+            good = n > 0 and not e2 and (js is not None or (m > 0 and tx == n))
+            print(f'split work, {label}: {n} verses ({tx} with their lines) and {m} meanings in its second part' + (f'; errors: {e2[:2]}' if e2 else '')); ok &= good
             await cx.close()
         srv2.shutdown(); srv2.server_close(); shutil.rmtree(tmp, ignore_errors=True)
         await b.close()

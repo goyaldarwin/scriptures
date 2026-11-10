@@ -10,7 +10,8 @@ Writes   library/<path>/work.json                 the manifest's fields, the ver
          library/<path>/glossary.json             the work's own senses of words (glossary/<lang>.json), if any
 A work with "load": "parts" (a big work, read one part at a time) has each meaning source as a header
 meanings/<lang>-<src>.json plus meanings/<lang>-<src>/<part index>.json (a commentary the same, under commentary/), and its own senses as glossary/<part index>.json
-(docs/LIBRARY.md §3, §5), so a phone fetches only the parts it opens.
+(docs/LIBRARY.md §3, §5), so a phone fetches only the parts it opens. With "verses": "parts" too, its verses' lines and
+transliteration are verses/<part index>.json, and work.json keeps every item without them (docs/LIBRARY.md §2).
 The recordings' timings (library/<path>/audio/<src>.json) are made by tools/audio/make_timings.py.
 Every file goes through the writing standard (tools/jsonio.py → tools/text/standard.py). It stops on anything wrong:
 an unknown verse, type, part or work; a verse without lines; a meaning for a verse the work does not have; our own
@@ -130,7 +131,7 @@ class Lib:
     def path(self, wid): return manifest(wid)['path']
     def work(self, wid):
         p = os.path.join(self.out, self.path(wid), 'work.json'); need(os.path.exists(p), f'{wid} is not exported yet')
-        return json.load(open(p, encoding='utf-8'))
+        return jsonio.read_work(p)   # a work whose verses are loaded by part, whole
     def meanings(self, wid, kind='meanings'):
         d = os.path.join(self.out, self.path(wid), kind)
         return {os.path.basename(f)[:-5]: jsonio.read_meanings(f) for f in glob.glob(os.path.join(d, '*.json'))}   # a source loaded by part, whole
@@ -144,6 +145,7 @@ def export(wid, lib):
     M = manifest(wid); WP = M['path']
     need(M.get('load') in (None, 'parts'), f'{wid}/work.json: load must be "parts" (meanings and own senses one file per part) or absent')
     BYPART = M.get('load') == 'parts'; NP = len(M['parts']['list'])
+    need(M.get('verses') in (None, 'parts') and (M.get('verses') is None or BYPART), f'{wid}/work.json: verses must be "parts" (each part\'s lines in verses/<part>.json), and only with "load": "parts"')
     need(not isinstance(M.get('sections'), dict) or all(isinstance(v, dict) and isinstance(v.get('hi'), str) and isinstance(v.get('en'), str) for v in M['sections'].values()),
          f'{wid}/work.json: sections maps a section id to its label {{hi, en}}')
     items, topics, taken = read_text(wid, M, lib)

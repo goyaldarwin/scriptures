@@ -26,8 +26,12 @@ def dump_library(out, rel, obj):
     sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'text')); import standard
     obj = standard.finish(rel, obj)
     p = os.path.join(out, rel); os.makedirs(os.path.dirname(p), exist_ok=True)
+    size = 0
+    if rel.endswith('work.json') and obj.get('verses') == 'parts':   # the verses by part: work.json keeps every item without its lines
+        obj = {**obj, 'items': [dict(x) for x in obj['items']]}   # the caller's items keep their lines
+        size = sum(dump_library(out, os.path.join(os.path.dirname(rel), 'verses', f'{k}.json'), part) for k, part in split_verses(obj).items())
     with open(p, 'w', encoding='utf-8') as f: json.dump(obj, f, ensure_ascii=False, separators=(',', ':'))
-    return os.path.getsize(p)
+    return size + os.path.getsize(p)
 
 def dump_meanings(path, obj):
     """A meaning source in a work's folder (tools/works/<work>/meanings/<lang>/<source>.json): its settings first, then
@@ -60,6 +64,36 @@ def read_meanings(path):
         s['m'].update(x.get('m', {})); p.update(x.get('p', {}))
     if p: s['p'] = p
     return s
+
+# ---- a work whose verses are loaded by part too (work.json "verses": "parts", docs/LIBRARY.md §2) ----
+# work.json keeps every item, in order, with its id, part, section, type, number and citation, and "v": [] (so an app
+# that does not know parts shows the item without failing); verses/<part index>.json holds the lines and transliteration
+# of that part's items: {"part": k, "v": {id: [lines]}, "t": {id: [lines]}}. read_work joins them.
+
+def split_verses(work):
+    """Take the lines (v) and transliteration (t) out of a work.json's items (in place): {part index: its verses file}."""
+    parts = {k: {'part': k, 'v': {}, 't': {}} for k in range(len(work['parts']['list']))}
+    for x in work['items']:
+        P = parts[x['p']]; P['v'][x['id']] = x['v']; x['v'] = []
+        if 't' in x: P['t'][x['id']] = x.pop('t')
+    return parts
+
+def read_work(path):
+    """A work of the library (library/<work>/work.json), whole: a work whose verses are loaded by part has each item's
+    lines and transliteration put back from verses/<part>.json."""
+    import os
+    with open(path, encoding='utf-8') as f: w = json.load(f)
+    if w.get('verses') != 'parts': return w
+    d = os.path.join(os.path.dirname(path), 'verses'); V, T = {}, {}
+    for k in range(len(w['parts']['list'])):
+        fn = os.path.join(d, f'{k}.json')
+        if not os.path.exists(fn): continue
+        with open(fn, encoding='utf-8') as f: x = json.load(f)
+        V.update(x.get('v', {})); T.update(x.get('t', {}))
+    for x in w['items']:
+        if x['id'] in V: x['v'] = V[x['id']]
+        if x['id'] in T: x['t'] = T[x['id']]
+    return w
 
 def read_work_glossary(workdir):
     """A work's own senses of words (library/<work>/glossary.json, or glossary/<part>.json for a work loaded by part),

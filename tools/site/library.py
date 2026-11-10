@@ -78,7 +78,19 @@ def check_words(lib, name, w, LANGS, G, clean):
 def check_work(lib, leaf, LANGS):
     path = leaf.get('path'); wp = os.path.join(lib, path or '', 'work.json')
     _need(path and os.path.exists(wp), f"shelf: {leaf['id']} → path {path!r} has no work.json")
-    w = json.load(open(wp)); name = path
+    w = jsonio.read_work(wp); name = path
+    # verses loaded by part (work.json "verses": "parts", docs/LIBRARY.md §2): work.json keeps every item with "v": [] and no
+    # transliteration; verses/<part>.json holds exactly that part's items' lines and transliteration
+    _need(w.get('verses') in (None, 'parts') and (w.get('verses') is None or w.get('load') == 'parts'), f"{name}: \"verses\": \"parts\" goes with \"load\": \"parts\"")
+    if w.get('verses') == 'parts':
+        raw = json.load(open(wp, encoding='utf-8'))
+        _need(all(x.get('v') == [] and 't' not in x for x in raw['items']), f"{name}: work.json items keep \"v\": [] and no \"t\" (the lines are in verses/)")
+        for k in range(len(raw['parts']['list'])):
+            vf = os.path.join(lib, path, 'verses', f'{k}.json'); _need(os.path.exists(vf), f"{name}: no verses/{k}.json")
+            x = json.load(open(vf, encoding='utf-8')); mine = {i['id'] for i in raw['items'] if i['p'] == k}
+            _need(x.get('part') == k and set(x.get('v', {})) == mine and set(x.get('t', {})) <= mine, f"{name}/verses/{k}.json: holds exactly part {k}'s verses")
+            vr = open(vf, encoding='utf-8').read()
+            _need(vr == unicodedata.normalize('NFC', vr) and '।।' not in vr, f"{name}/verses/{k}.json: not in Unicode NFC, or ।। where the standard writes ॥")
     _need(w.get('id') == leaf['work'], f"{name}: work.json id {w.get('id')!r} ≠ shelf work {leaf['work']!r}")
     items = w['items']; ids = [x['id'] for x in items]; ID = set(ids)
     # an āratī's verse has no comma (its printed sources' commas are not kept: a pause within a line is a space, the owner)
@@ -249,7 +261,11 @@ def check_work(lib, leaf, LANGS):
         w['sources'] = src
         if has_g: w['glossary'] = True
         else: w.pop('glossary', None)
-        json.dump(w, open(wp, 'w'), ensure_ascii=False, separators=(',', ':'))
+        f0 = json.load(open(wp, encoding='utf-8'))   # the file as it is (a work's verses loaded by part stay out of it)
+        f0['sources'] = src
+        if has_g: f0['glossary'] = True
+        else: f0.pop('glossary', None)
+        json.dump(f0, open(wp, 'w'), ensure_ascii=False, separators=(',', ':'))
     return w['id'], {k: [x['id'] for x in v] for k, v in src.items()}
 
 WORKS = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'works')
@@ -314,12 +330,12 @@ def prepare(lib):
         _need(leaf['work'] not in works, f"shelf: work id {leaf['work']!r} is used twice")
         _need(folders.get(leaf['work']) == leaf['path'], f"shelf: work {leaf['work']!r} needs its folder tools/works/{leaf['work']}/ with path {leaf['path']!r} in work.json")
         wid, src = check_work(lib, leaf, LANGS); works[wid] = src
-        check_words(lib, leaf['path'], json.load(open(os.path.join(lib, leaf['path'], 'work.json'), encoding='utf-8')), LANGS, G, clean)
+        check_words(lib, leaf['path'], jsonio.read_work(os.path.join(lib, leaf['path'], 'work.json')), LANGS, G, clean)
     # a work exported but not on the shelf yet (a branch's new work) is held to the same checks, so it goes on the shelf clean
     for d, path in sorted(folders.items()):
         if d in works or not os.path.exists(os.path.join(lib, path, 'work.json')): continue
         leaf = {'id': d, 'work': d, 'path': path}; check_work(lib, leaf, LANGS)
-        check_words(lib, path, json.load(open(os.path.join(lib, path, 'work.json'), encoding='utf-8')), LANGS, G, clean)
+        check_words(lib, path, jsonio.read_work(os.path.join(lib, path, 'work.json')), LANGS, G, clean)
     # store apps (library/apps.json): each app's shelves must exist on the shelf
     ap = os.path.join(lib, 'apps.json')
     if os.path.exists(ap):

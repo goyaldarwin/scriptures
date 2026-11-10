@@ -10,6 +10,7 @@ Each check prints PASS/FAIL with what it saw; the run fails if any check fails o
 """
 import asyncio, functools, http.server, json, os, random, re, shutil, socketserver, subprocess, sys, tempfile, threading
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.join(ROOT, 'tools')); import jsonio   # a work's verses, joined when loaded by part
 sys.path.insert(0, os.path.join(ROOT, 'tools', 'site')); import split_fixture   # a work loaded by part (the Kaṭha, exported again with "load": "parts")
 sys.path.insert(0, os.path.join(ROOT, 'tools', 'audio')); import order as ORDER   # the order rule, shared with make_timings.py
 from playwright.async_api import async_playwright
@@ -1453,7 +1454,7 @@ async def main():
     print(f'\n{sum(results)}/{len(results)} checks passed')
     sys.exit(0 if all(results) else 'UX TEST FAILED')
 async def split_work(b, shots):
-    """A work loaded by part ("load": "parts", docs/LIBRARY.md §3): it opens without fetching any other part, shows the
+    """A work loaded by part ("load": "parts", docs/LIBRARY.md §3; its verses too, "verses": "parts", §2): it opens without fetching any other part, shows the
     meanings and word meanings of a second part once the reader goes there (the footer's section picker, tapped), finds
     meanings across every part in search (the verses at once, the meanings as each part comes), shows its own section
     labels ("sections"), and keeps a part opened once for reading offline."""
@@ -1480,7 +1481,7 @@ async def split_work(b, shots):
     home = await ev("[W.load, [...document.querySelectorAll('#orgList .ds')].map(x => x.textContent)]")
     first = sorted(set(got))
     check('split work: it opens with the verses only and the first part’s meanings and word senses, never a whole source or another part',
-          home[0] == 'parts' and 'work.json' in first and any(f.startswith('meanings/hi-scriptures/0') for f in first) and 'glossary/0.json' in first
+          home[0] == 'parts' and 'work.json' in first and any(f.startswith('meanings/hi-scriptures/0') for f in first) and 'glossary/0.json' in first and 'verses/0.json' in first
           and not any(f.endswith('/1.json') for f in first) and 'glossary.json' not in first, first)
     await (await pg.query_selector('#orgList [data-open]')).click(); await pg.wait_for_timeout(1200)
     r0 = await ev("[R.n, document.querySelectorAll('#rBody .layer').length, document.querySelector('#rMid .ml').textContent]")
@@ -1500,10 +1501,12 @@ async def split_work(b, shots):
     check('split work: the section picker lists the second part’s sections by their labels (Valli 2.1 …)', rows[:3] == ['Valli 2.1', 'Valli 2.2', 'Valli 2.3'], rows)
     check('split work: the second part shows its verses at once and its meanings when its files come, the page kept in place',
           early[0] == 1 and early[1] > 0 and early[2] == 0 and r1[0] == 1 and r1[1] > 4 and r1[2] == 1 and r1[3] and r1[4].startswith('Valli 2.1') and abs(r1[5] - early[3]) <= 2 and
-          any(f.startswith('meanings/en-scriptures/1') for f in got) and 'glossary/1.json' in got, (early, r1, sorted(set(got))))
+          any(f.startswith('meanings/en-scriptures/1') for f in got) and 'glossary/1.json' in got and 'verses/1.json' in got, (early, r1, sorted(set(got))))
+    lines = await ev("[...document.querySelectorAll('#rBody .verse')].filter(v => IT[+v.id.slice(1)].p === 1).map(v => v.querySelector('.vtext').textContent.trim().length > 0)")
+    check('split work: its verses are loaded by part too (verses/<part>.json): the second part’s lines are shown', lines and all(lines), lines)
     slow['on'] = False
     # a word of the second part: the work's own sense, which only glossary/1.json has
-    wid = next(x['id'] for x in json.load(open(os.path.join(lib, path, 'work.json'), encoding='utf-8'))['items'] if 'विश्वे' in ' '.join(x['v']))
+    wid = next(x['id'] for x in jsonio.read_work(os.path.join(lib, path, 'work.json'))['items'] if 'विश्वे' in ' '.join(x['v']))
     await ev(f"(() => {{ const i = ID[{json.dumps(wid)}]; jumpTo(i); }})()"); await pg.wait_for_timeout(600)
     loc = pg.locator(f'#v{await ev(f"ID[{json.dumps(wid)}]")} .w', has_text='विश्वे').first
     await loc.click(); await pg.wait_for_timeout(500)

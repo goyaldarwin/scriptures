@@ -1,7 +1,7 @@
 """A work loaded by part, for the tests (smoke_test.py, ux_test.py).
 
 The Kaṭha Upaniṣad (two adhyāyas, its own word senses in both) is exported again by the real exporter with
-`"load": "parts"` and its own section labels (`"sections"`: Vallī 1 …), into a temporary folder, and checked by
+`"load": "parts"`, `"verses": "parts"` (its lines in verses/<part>.json) and its own section labels (`"sections"`: Vallī 1 …), into a temporary folder, and checked by
 library.py as the build checks a work. `serve(tmp)` then serves the repository with that work in place of the published
 one, so the app is tested on a split work without one on the shelf.
 
@@ -23,7 +23,7 @@ def make(tmp):
     for name in ('export.py', 'textfile.py'): shutil.copy(os.path.join(ROOT, 'tools', 'works', name), works)
     shutil.copytree(src, os.path.join(works, WORK), ignore=shutil.ignore_patterns('source', 'audio'))
     mp = os.path.join(works, WORK, 'work.json'); M = json.load(open(mp, encoding='utf-8'))
-    M['load'] = 'parts'; M['sections'] = SECTIONS
+    M['load'] = 'parts'; M['verses'] = 'parts'; M['sections'] = SECTIONS
     json.dump(M, open(mp, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     lib = os.path.join(tmp, 'library'); os.makedirs(lib)
     r = subprocess.run([sys.executable, os.path.join(works, 'export.py'), '--out', lib, WORK], capture_output=True, text=True)
@@ -36,7 +36,7 @@ def make(tmp):
     leaf = {'id': WORK, 'work': WORK, 'path': path}
     library.check_work(lib, leaf, LANGS)
     G = {os.path.basename(f)[:-5]: json.load(open(f, encoding='utf-8')) for f in glob.glob(os.path.join(real, 'glossary', '*.json')) if not f.endswith('languages.json')}
-    library.check_words(lib, path, json.load(open(os.path.join(lib, path, 'work.json'), encoding='utf-8')), LANGS, G, library.word_rule())
+    library.check_words(lib, path, library.jsonio.read_work(os.path.join(lib, path, 'work.json')), LANGS, G, library.word_rule())
     return lib, path
 
 def serve(lib, path):
