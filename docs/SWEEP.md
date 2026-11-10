@@ -99,6 +99,14 @@ Test at phone size (390×844, and 360) in a real browser, in Hindi and in Englis
 - **Saffron headers in āratīs, Chālīsās and other texts** (check 6): section headings and topic headings (`@topic`), their wording, their language pair, their capitalisation and transliteration style, where they appear and how they look. They should be consistent within a shelf and across shelves. Chālīsās should have the same set: the opening dohā(s), chaupāī groups by topic, the closing dohā. Āratīs should follow one convention. Write the convention down.
 - The jukebox and track behaviour, and the hard-word underlines, in several works.
 
+## B2. What the rules and the app promise, case by case
+A control can exist and still be missing where it is needed. ✓ Correct was in the rules and in the app's own help ("tap “✓ Correct”"), but it appeared only on a helper's marks, never on the verses the library itself lists to check, so those stayed in Next ▸. Find every miss of this kind:
+- **List every promise.** That means each rule in `docs/PLAYBOOK.md` §5, §7 and §8 that says what the reader can do or see, each instruction the app gives in its own text (help lines, toasts, list headings: "tap …", "play each with ▶ …", "only checked ones go …"), and each control named in `docs/HOW-TO.md`. Put them in `docs/reviews/sweep/promises.md`.
+- **List the cases each promise covers.** For example, a verse to check can be a helper's mark, listed by the library (`check.json`), moved by the order rule, flagged by a listener, set by you and not sent, or sent; it can be on a whole video, a jukebox track, a taken recording or a split work, with timing on or off, in Hindi or English, at 390 or 360 px. Do the same for every other promise: the work kinds, the citation styles, the meaning sources, the languages, the settings.
+- **Check every pair in the app,** and write down where the control is missing, is shown where it does nothing, or does something else. A label that is in `app.js` proves nothing until it has been seen working in each case.
+- **Every pair gets a test** (§E) that renders that case and uses the control the way a reader would: find it on the screen, tap it, see the result. A test that calls the function directly misses the case where the button is never drawn.
+- Where two controls never apply together, they share a place (↶ Undo and ✓ Correct share the verse's bottom-left corner). Look for screens that crowd several controls that never occur together.
+
 ## C. Speed of build and test (owner's 18)
 - Time each step of `tools/site/check.py` (build, regen_check, history_check, smoke_test, ux_test shards) and of CI. Find the slow parts: regen_check re-exporting everything, browser tests opening 174 works, YouTube loads that the sandbox refuses, fixed `wait_for_timeout`s.
 - Make them faster without losing coverage:
@@ -131,6 +139,7 @@ Test at phone size (390×844, and 360) in a real browser, in Hindi and in Englis
   - a setting that does nothing;
   - a capsule that breaks the colour rule.
 - Prefer a build check (`library.py`) for a data rule, and a UX test for a behaviour.
+- A UX test reaches a control the way a reader does (it finds the button on the rendered screen and taps it) for each case it covers (§B2), never only by calling the handler.
 
 ## F. What else? (owner's 20)
 Think about what has not been listed and look for it. For example:
