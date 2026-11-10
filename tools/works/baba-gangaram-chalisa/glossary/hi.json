@@ -1,13 +1,19 @@
 {
+ "महावीर": {
+  "hi": "महावीर, इस चालीसाके रचयिता कवि",
+  "en": "Mahāvīra, the poet of this chālīsā",
+  "g": "संज्ञा (व्यक्तिवाचक)",
+  "hard": true
+ },
  "झुंझनूं": {
   "hi": "झुंझुनूँ नगर, बाबा गंगारामका धाम",
-  "en": "Jhunjhunu, the town of Bābā Gaṅgārām’s shrine",
+  "en": "Jhunjhunu, the town of Bābā Gaṅgārāma's shrine",
   "g": "संज्ञा (व्यक्तिवाचक)",
   "hard": true
  },
  "दशहराको": {
   "hi": "गंगा दशहरा — ज्येष्ठ शुक्ल दशमीको गंगाजीके अवतरणका पर्व",
-  "en": "Gaṅgā Dasharā, the festival of the Gaṅgā's descent, on the bright tenth of Jyeṣṭha",
+  "en": "Gaṅgā Daśaharā, the festival of the Gaṅgā's descent, on the bright tenth of Jyeṣṭha",
   "g": "संज्ञा (व्यक्तिवाचक)",
   "hard": true
  }

@@ -1,4 +1,10 @@
 {
+ "रसों": {
+  "hi": "रस, स्वाद; इन्द्रियोंके सुख-भोग",
+  "en": "tastes, relishes; the pleasures of the senses",
+  "g": "संज्ञा, बहुवचन",
+  "hard": true
+ },
  "नित्यानन्द": {
   "hi": "सदा आनन्दमय (गोरखनाथजीका एक नाम)",
   "en": "Nityānanda, \"ever blissful\" (a name of Gorakhnāth)",

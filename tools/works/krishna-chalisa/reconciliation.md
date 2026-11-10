@@ -23,7 +23,7 @@ Kept as the book has them, against Drik Panchang: the two opening dohās (above)
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
 
 ## Readings settled
-The open questions of `docs/reviews/krishna-chalisa-doubts.jsonl`, each decided (docs/PLAYBOOK.md §2).
+The readings the words alone leave open, each decided (docs/PLAYBOOK.md §2).
 
 - **chalisa.cau5** — बंशी मधुर अधर धरि टेरी, past or request: past. टेरी is the feminine perfective of टेरना "to call aloud, to sing" (Platts), agreeing with बंशी (our glossary: भूतकाल, स्त्रीलिंग); a request would be टेरो or टेरिये, as the imperatives around it (धारो, निवारो, चाखो, राखो) show. Meaning changed: "Setting the flute to your lips, you sounded its sweet call; may this prayer of mine be fulfilled" (hi likewise).
 - **chalisa.cau15** — लगत-लगत: the doubled imperfective participle of continuance, "on and on, keeping it up" (the rain of chaupāī 14 going on); both witnesses agree. Meaning unchanged.

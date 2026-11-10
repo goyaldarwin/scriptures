@@ -15,8 +15,11 @@ The library's writing standard (docs/PLAYBOOK.md §3): no comma in a verse (a pr
 | stanza 1, line 2 | माथे पर तिलक सोहे (variant सिन्दूर) | मस्तक सिन्दूर सोहे | माथे पर तिलक सोहे | as she sings it |
 | stanza 2 | पान चढ़े … लड्डुअन … करें | पान चढ़ें … लडुवन … करे | D's | as she sings it |
 | stanza 3 | अँधे को आँख … बाँझन | अन्धन को आंख … बांझन | D's | as she sings it |
-| stanza 4 | in brackets | दीनन की लाज राखो शम्भु-सुत वारी, कामना को पूरा करो जग बलिहारी | B's | she does not sing it; it stays in the text, untimed (docs/PLAYBOOK.md §3) |
+| stanza 4 | in brackets, after the सूर श्याम stanza | दीनन की लाज राखो शम्भु-सुत वारी, कामना को पूरा करो जग बलिहारी | B's words, in B's place (before the poet's stanza) | she does not sing it; it stays in the text, untimed (docs/PLAYBOOK.md §3), where the book puts it, so the poet's signature stays last |
 | stanza 5 | 'सूर' श्याम शरण आए सफल कीजे सेवा, माता जाकी पार्वती पिता महादेवा | जय गणेश … देवा, सूरश्याम शरण आये सुफल कीजे सेवा | D's, without the quotation marks | as she sings it |
 
 ## Meanings
-Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`). Open doubt: `docs/reviews/ganesh-aarti-doubts.jsonl` (सूर श्याम).
+Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- **aarti.pad5** (सूर श्याम शरण आए): the poet's signature, as Drik Panchang marks it ('सूर' श्याम) and the book prints it joined; whether one name (Sūraśyāma) or Sūradāsa's own chhāp सूर स्याम, the line says the poet has come to Gaṇeśa's refuge, and the meanings give it as the poet's name. Meaning as given.

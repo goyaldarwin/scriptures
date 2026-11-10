@@ -18,6 +18,6 @@ Kept as the base has them: सुखदानी, पिङ्गला, शा�
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
 
 ## Readings settled
-The open questions of `docs/reviews/kushmanda-aarti-doubts.jsonl`, each decided (docs/PLAYBOOK.md §2).
+The readings the words alone leave open, each decided (docs/PLAYBOOK.md §2).
 
 - **aarti.pad3** — सुख पहुँचती हो: kept as printed. पहुँचाती would mend the sense and the 16 mātrās, but every witness prints पहुँचती (Drik Panchang, Aaj Tak, InstaAstro, and NavBharat Live, navbharatlive.com, found by a web search), so nothing shows the print is a corruption. The meaning gives the sense the line plainly carries, "you bring happiness", as our word entry for पहुँचती already does. Meaning unchanged.

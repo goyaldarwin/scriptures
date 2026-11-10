@@ -52,6 +52,9 @@ viniyoga after …महामन्त्रस्य and …दिग्बन
 **Left out:** the lines closing each nyāsa (इति ऋष्यादिन्यासः ॥, इति करन्यासः ॥, इति षडङ्गन्यासः ॥), which the base prints as
 headings' closes, as the Āditya Hṛdayam leaves them out.
 
+
+Stotra 41, second line (करणं कारणं कर्ता विकर्ता गहनो गुहः): hidden on the base's printed page (PDF page 11) by the site's header bar; taken from the PDF's text layer, and the second witness has the same line ("Karanam karanam karta vikarta gahano guhah").
+
 ## Order and the recordings
 Both recordings were read through their Whisper transcripts (scriptures-data `experiments/identify/results/<id>.jsonl`,
 rough Hindi letters, with gaps), only for what they recite and in what order.

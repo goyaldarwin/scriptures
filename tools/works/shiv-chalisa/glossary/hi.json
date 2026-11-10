@@ -1,7 +1,13 @@
 {
+ "जगदीश": {
+  "hi": "जगत्‌के स्वामी; यहाँ शिवजी",
+  "en": "Lord of the universe; here Śiva",
+  "g": "संज्ञा (समास)",
+  "hard": true
+ },
  "अयोध्यादास": {
   "hi": "अयोध्यादास, शिव चालीसाके कवि",
-  "en": "Ayodhyādāsa, the poet of the Śiva Cālīsā",
+  "en": "Ayodhyādāsa, the poet of the Śiva Chālīsā",
   "g": "संज्ञा (व्यक्तिवाचक)",
   "hard": true
  }

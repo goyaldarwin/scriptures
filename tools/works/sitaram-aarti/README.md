@@ -1,6 +1,6 @@
 # गाओ गाओ री प्रियाप्रीतम की आरती गाओ (Gao Gao Ri Priyapritam Ki Aarti Gao)
 
-The āratī of Sītā and Rāma, the beloved pair (प्रियाप्रीतम), in Hindi (`hi`). Its last stanza names रामेस्वर, which may be the poet's signature; that is not settled (`docs/reviews/sitaram-aarti-doubts.jsonl`).
+The āratī of Sītā and Rāma, the beloved pair (प्रियाप्रीतम), in Hindi (`hi`). Its last stanza names रामेस्वर, the poet's signature (`reconciliation.md`, Readings settled).
 
 - **Text** (`text.txt`): Drik Panchang, "Shri Sitarama Aarti" (no copy in the owner's books). Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).

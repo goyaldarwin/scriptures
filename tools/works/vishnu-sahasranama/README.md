@@ -24,7 +24,7 @@ words and the closing ślokas. Both recordings end with the uttara-pīṭhikā; 
     `A4D-Zf-HJLI`, 30:15), 0:10–30:00.
   ॥ हरिः ॐ ॥ (`stotra.harih`) is heard in neither and stays untimed, with the nyāsas, the saṅkalpa, the closing words and
   the closing ślokas.
-- **Meanings, word meanings:** none yet.
+- **Meanings, word meanings:** our own Hindi and English meanings (`meanings/`) and word meanings in the shared Sanskrit dictionary; the readings taken: `reconciliation.md`.
 
 ## Structure
 - **Hierarchy:** one part › nine sections (pages) › the verse.

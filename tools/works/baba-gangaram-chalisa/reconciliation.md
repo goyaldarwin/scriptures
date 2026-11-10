@@ -8,6 +8,7 @@ The rule: keep the book; correct it only where it is clearly wrong, and only on 
 
 | Place | Book | Ours | Why |
 |---|---|---|---|
+| chaupāī 31 | जहँ जन्में | जहँ जन्मे | जन्में is a printer's form with a stray anusvāra: the past tense of जन्मना is जन्मे, as our meanings give it. |
 | chaupāī 40 | 'महावीर' धर ध्यान पुनीता | महावीर धर ध्यान पुनीता | The quotation marks (around the poet's name) are the printer's, not part of the verse. |
 
 Kept as the book has them, against Drik Panchang: संदेश (chaupāī 10; Drik सन्देश), भांति (chaupāīs 15, 26; Drik भाँति), प्रातःकाल (chaupāī 37; Drik प्रातः काल), पूरई (closing dohā; Drik पुरई). Kept as both have them: अरू, रहेऊ / भयेउ, नाहीं / गुसाई, रावरो, निश्छल, मँह, विरचेउ.

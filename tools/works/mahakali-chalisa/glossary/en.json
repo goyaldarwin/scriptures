@@ -9,6 +9,11 @@
   "en": "maririna, a sound syllable of the Goddess's music",
   "hard": true
  },
+ "siddhi": {
+  "hi": "सिद्धि, योगसे प्राप्त अलौकिक शक्ति / सिद्धि, इस चालीसाके कवि",
+  "en": "a supernatural power gained by yoga / Siddhi, the poet of this Chālīsā",
+  "hard": true
+ },
  "sundarī": {
   "hi": "सुन्दरी, त्रिपुरसुन्दरी, दस महाविद्याओंमेंसे एक",
   "en": "Sundarī, Tripurasundarī, one of the ten Mahāvidyās",
@@ -17,6 +22,11 @@
  "tacchu": {
   "hi": "तच्छु, देवीके नाद (संगीत)की एक ध्वनि",
   "en": "tacchu, a sound syllable of the Goddess's music",
+  "hard": true
+ },
+ "tārā": {
+  "hi": "तारा, दस महाविद्याओंमेंसे एक देवी",
+  "en": "Tārā, one of the ten Mahāvidyā goddesses",
   "hard": true
  },
  "vidyāvatī": {

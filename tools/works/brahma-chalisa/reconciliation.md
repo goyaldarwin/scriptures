@@ -12,8 +12,9 @@ The rule: keep the book; correct it only where it is clearly wrong, and only on 
 | chaupāī 1 | जय जय कमलासान जगमूला | जय जय कमलासन जगमूला | कमलासान is not a word: the lotus-seated one, कमलासन, as the book itself prints it in chaupāīs 11 and 15; the long ā gives the half 9 mātrās where the chaupāī has 8 (17 in all). Drik Panchang and Shubh Panchang print the same slip; nothing in them supports it. |
 | dohā 2 | अज विधि घाता नाम | अज विधि धाता नाम | घाता is no name of Brahmā (Platts: घाता, a thing thrown in over a purchase; घात, slaughter); the line lists his names, and अज, विधि and धाता stand together among them in the Amarakośa (1.1.16–17: धाताब्जयोनिर्द्रुहिणो … विधाता विश्वसृड्विधिः), धाता "creator, sustainer, a name of Brahmā" in Monier-Williams, Apte and Platts. घ for ध is a one-stroke slip that Drik Panchang and Shubh Panchang, typed from the same text, carry over. |
 | chaupāī 10 | वीणा वादिनि सब विधि मुन्दर | वीणा वादिनि सब विधि सुन्दर | मुन्दर is not a word: सुन्दर, rhyming with मनोहर; Shubh Panchang सुन्दर (Drik Panchang has the book's slip). |
+| chaupāī 29 | भैटहु जाइ | भैंटहु जाइ | भैटहु has lost its anusvāra: the verb is भेंटना, "to meet"; Drik Panchang's भ्ौटहु is garbled and gives no other form. |
 
-Kept as the book has them, against Drik Panchang: chaupāīs 35–36 (above); रूप, जटाजूट, महापद्म, प्राचीना, कहँ कोइ नाहीं, सब कछु, निज इच्छा उन सब (Drik इन सब), भैंटहु जाइ, श्यामवर्ण, शिवशङ्कर, मांहीं, होइ, अगुणरूप श्री ब्रह्म बखानहु (Drik ब्रह्मा). In chaupāī 39 a stray dot over दोउ is a speck, not an anusvāra. The book and Drik Panchang also agree on सरस्वती तब सुता (तब for तव), गरब बढ़ायो / सुखपाये and करिहै.
+Kept as the book has them, against Drik Panchang: chaupāīs 35–36 (above); रूप, जटाजूट, महापद्म, प्राचीना, कहँ कोइ नाहीं, सब कछु, निज इच्छा उन सब (Drik इन सब), श्यामवर्ण, शिवशङ्कर, मांहीं, होइ, अगुणरूप श्री ब्रह्म बखानहु (Drik ब्रह्मा). In chaupāī 39 a stray dot over दोउ is a speck, not an anusvāra. The book and Drik Panchang also agree on सरस्वती तब सुता (तब for तव), गरब बढ़ायो / सुखपाये and करिहै.
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).

@@ -1,4 +1,22 @@
 {
+ "भैरव": {
+  "hi": "भैरव, एक राक्षस, जिसे बाबा रामदेवने मारा",
+  "en": "Bhairava, a demon whom Bābā Rāmdev slew",
+  "g": "संज्ञा (व्यक्तिवाचक)",
+  "hard": true
+ },
+ "नाड़ी": {
+  "hi": "नाड़ी (नाडी), छोटा तालाब, पोखर (राजस्थानी)",
+  "en": "nāḍī, a small pond (Rajasthani)",
+  "g": "संज्ञा",
+  "hard": true
+ },
+ "लीले": {
+  "hi": "लीला (नीला) घोड़ा, बाबा रामदेवका घोड़ा",
+  "en": "Līlā, Bābā Rāmdev's blue horse",
+  "g": "संज्ञा (व्यक्तिवाचक)",
+  "hard": true
+ },
  "परचा": {
   "hi": "चमत्कार, दैवी शक्तिका प्रमाण (बाबा रामदेवके परचे)",
   "en": "parcā, a miracle shown as proof of divine power (Bābā Rāmdev’s miracles)",
@@ -7,7 +25,7 @@
  },
  "पुंगल": {
   "hi": "पुंगल (पूगल), एक स्थान, जहाँ बाबा रामदेवने रतनाका फंदा छुड़ाया",
-  "en": "Puṅgal (Pugal), the place where Bābā Rāmdev freed Ratanā from his bonds",
+  "en": "Puṅgal (Pūgal), the place where Bābā Rāmdev freed Ratnā from his bonds",
   "g": "संज्ञा (व्यक्तिवाचक)",
   "hard": true
  },
@@ -55,7 +73,7 @@
  },
  "हड़बूजीने": {
   "hi": "हड़बूजी (हरबू), जिन्होंने बाबा रामदेवजीका सोलहवाँ परचा पाया",
-  "en": "Haḍbūjī (Harbū), who received Bābā Rāmdev's sixteenth miracle",
+  "en": "Haṛbūjī (Harbū), who received Bābā Rāmdev's sixteenth miracle",
   "g": "संज्ञा (व्यक्तिवाचक)",
   "hard": true
  }

@@ -17,7 +17,7 @@ Kept as the book has them, against Drik Panchang: निज दास (Drik ज�
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
 
 ## Readings settled
-The open questions of `docs/reviews/bhairav-chalisa-doubts.jsonl`, each decided (docs/PLAYBOOK.md §2).
+The readings the words alone leave open, each decided (docs/PLAYBOOK.md §2).
 
 - **chalisa.cau14** — शिव कहँ भजहु असुर आराती, who worships whom: Bhairava (the one addressed, as in every chaupāī round it) worships Śiva, and असुर आराती, standing beside शिव, is Śiva, "the foe of the demons"; the line has no word that turns it to the reader. Meaning unchanged.
 - **chalisa.cau27** — साद भक्त: kept as printed (the page image i-065 prints साद, Drik Panchang the same) and read as the devotee's name, Sāda, beside the name Ailādī in the first half; साधु is attested by no witness. Meaning unchanged.

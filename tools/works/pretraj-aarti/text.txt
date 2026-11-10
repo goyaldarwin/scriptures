@@ -1,9 +1,9 @@
-# आरती प्रेतराज की कीजै (Aarti Pretraj Ki Keejai): the verse text, from ५१ चालीसा संग्रह आरतियों सहित
+# आरती प्रेतराज की कीजै (Aarti Pretraj Ki Kijai): the verse text, from ५१ चालीसा संग्रह आरतियों सहित
 # (Randhir Prakashan, p. 112). The witnesses and every choice: reconciliation.md.
 
 @part aarti
 @section aarti
-@topic आरती प्रेतराज की कीजै | Aarti Pretraj Ki Keejai
+@topic आरती प्रेतराज की कीजै | Aarti Pretraj Ki Kijai
 [aarti.tek tek]
 आरती प्रेतराज की कीजै ॥
 [aarti.pad1 pad 1]

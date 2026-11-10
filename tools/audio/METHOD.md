@@ -48,6 +48,9 @@ through the refrain because it has no end.
    1. align again just the stretch between the nearest trusted starts on each side (the owner's, or MMS's unflagged);
    2. move the start to the nearest onset of singing within ±1.5 s;
    3. spread it by its length between the trusted neighbours, and put it on the to-check list.
+   Until these are built, a session checks a flagged start by hearing its stretch in 5-s windows a second apart
+   (`windows.py`: the last window that still begins with the line's first words is at the start), never by a transcript
+   segment's start (it may open on music or the line before), and sets it in `fixes.json` with the windows in `fixes.md`.
 6. **The owner's ear** (built: timing mode, the `timing` workflow, `owner.json`). His starts and ends always win. Each
    start he sets becomes an anchor: the stretch up to his next set start is aligned again (to build), so the verses
    around it improve without being touched, and his first starts on a recording measure its lean.

@@ -1,8 +1,26 @@
 {
+ "भुवन": {
+  "hi": "लोक, संसार / भुवन, विश्वकर्माके पिता (भुवन पुत्र: भौवन विश्वकर्मा)",
+  "en": "world, realm (of the fourteen worlds) / Bhuvana, Viśvakarmā's father (bhuvana putra: Viśvakarmā Bhauvana)",
+  "g": "संज्ञा",
+  "hard": true
+ },
  "देवागम": {
   "hi": "देवागम, शिल्पविद्याके ज्ञाता एक मुनि",
   "en": "Devāgama, a sage versed in the craft",
   "g": "संज्ञा (व्यक्तिवाचक)",
+  "hard": true
+ },
+ "नल": {
+  "hi": "नल, श्रीरामकी सेनाके वानर, नीलके साथी, जिन्होंने लंकाका पुल बाँधा",
+  "en": "Nala, a monkey of Śrī Rāma's army, Nīla's companion, who built the bridge to Laṅkā",
+  "g": "संज्ञा (व्यक्तिवाचक)",
+  "hard": true
+ },
+ "परे": {
+  "hi": "से आगे, से बाहर, अतीत (गुणोंसे परे)",
+  "en": "beyond (beyond the guṇas)",
+  "g": "अव्यय",
   "hard": true
  }
 }

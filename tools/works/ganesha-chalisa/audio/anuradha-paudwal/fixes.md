@@ -11,12 +11,19 @@ on 4–9 s pieces.
 | chalisa.do1 | 13.6 | pieces to 13.6 are music ("अगर"); 13.6–21.05 "जाया गानो पती सद गुडे सदार" = जय गणपति सदगुण सदन, 21.05 "कारी वर बदेन" |
 | chalisa.cau1 | 53.85 | 41.25–53.85 music; 53.85 "जे जे", 59.9 "मंगले परना करन शुभखाचु" = …मंगल भरण करण शुभ काजू |
 | chalisa.cau2 | 65.9 | 65.9–72.3 "जय गज बदन स", 72.3 "वीश्ववि नायत बुत्तिवि ताद्धा" = विश्वविनायक बुद्धि विधाता |
-| chalisa.cau3 | 83.9 | 79.7 music; 83.9 "तुब" (वक्र…), 90.35 "…तुंदश चिछन्द सुहावन तिल कत्पूंद भाल मना" = …तुण्ड शुचि शुण्ड सुहावन तिलक त्रिपुण्ड भाल मन (भावन) |
-| chalisa.cau4 | 95.4 | 95.4 "बावन राज़े तमानी मुख़ा" = (भा)वन, राजत मणि मुक्तन |
-| chalisa.cau8 | 126.0 | the transcript's 126.0–133.0 "रेथि से थी तव चंवरे सुथारे" = ऋद्धि सिद्धि तव चंवर सुधारे; the alignment took its repeat (133.0) |
-| chalisa.cau27 | 352.1 | 339.75 "सो दुक्डशा आगयो नहीं बाव्रनी" (chaupāī 26's second half), 347.25 music; 352.1 "आँद" — the first sound after it. To check by ear |
-| chalisa.cau28 | 360.7 | 360.7 "अप्रद़़", then 368.75 "…नो सिदाय काती चक्र सोगज शिर डाय" = (विष्णु) सिधाये काटि चक्र सो गजशिर लाये. To check by ear |
+| chalisa.cau20 | 265.4 | windows from 264 and 265 s begin "…लखियत्ती आनन्द" (लखि अति आनन्द), those from 266 to 268 s hear none of it: the line starts at about 265.4 s (the start in use, 266.49, was late; MMS 267.09) |
 | chalisa.cau29 | 372.95 | 372.95 "पानत्के ददू परदार्यो प्रानु मन्त्र पडिल" = बालक के धड़ ऊपर धारयो प्राण मन्त्र पढ़ि; the alignment took 351.08 |
-| chalisa.cau30 | 377.55 | 377.55 "आमगनेश शम्ब तब कीने प्रत्म" = नाम गणेश शम्भु तब कीन्हें प्रथम |
 
 The same pieces confirm the wording she sings in closing dohā 2: 508.85 "समबन्द्ह अपनी सहस्ट्रदशे" (the transcript: "सम बन्द, अपने सहस्ट्र दश्य") = सम्बन्ध अपने सहस्र दश.
+
+## Starts left to the forced aligner (MMS), checked
+These verses have no hand start: a transcript segment's start is not the line's, and 5-s windows a second apart (Whisper small, the ONNX export of `tools/audio/transcribe_onnx.py`) show that MMS's start is the line's.
+
+| Verse | Evidence |
+|---|---|
+| chalisa.cau3 | windows from 86 to 90 s begin "वक्र तुंड शुचि", the one from 91 s does not: the line starts at about 90.3 s; MMS 90.14 |
+| chalisa.cau4 | windows from 97 to 99 s begin "राजत मनी मुक्तन", the one from 100 s does not: about 99.3 s; MMS 99.35 |
+| chalisa.cau8 | the window from 132 s begins "रिद ति" (ऋद्धि), the ones before hear the line before (…विश्वर विख्यात): about 132.6 s; MMS 133.12 |
+| chalisa.cau27 | windows from 354 to 357 s begin "अगा खार मच्छो" (हाहाकार मच्यो), the one from 358 s "अखार": about 357.4 s; MMS 357.73 |
+| chalisa.cau28 | windows from 363 to 367 s begin "तुरत गरुड़", the one from 368 s "तचड़ि": about 367.3 s; MMS 366.95 |
+| chalisa.cau30 | windows from 379 to 381 s begin "नाम गनेश", the one from 382 s does not: about 381.5 s; MMS 382.24 |

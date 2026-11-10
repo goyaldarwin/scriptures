@@ -16,6 +16,6 @@ Kept as the book has them, against Drik Panchang: बन्दौं (Drik ब�
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
 
 ## Readings settled
-The open questions of `docs/reviews/ravidas-chalisa-doubts.jsonl`, each decided (docs/PLAYBOOK.md §2).
+The readings the words alone leave open, each decided (docs/PLAYBOOK.md §2).
 
 - **chalisa.cau10** — चरित भव भय नाशी के, whose deed: Gaṅgā's, the act just told (chaupāī 9: she stretched out her hand and took the cowrie), which is what the paṇḍitas of Kāśī saw. नाशी is used of goddesses as of gods in this Awadhi (our glossary takes it so here), so the grammar does not turn it to Ravidāsa. Meaning unchanged.

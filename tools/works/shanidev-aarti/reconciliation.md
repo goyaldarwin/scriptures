@@ -18,3 +18,6 @@ Kept as the book has them, against Drik Panchang: जय जय जय श्र
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- **aarti.pad4** (विश्वनाथ धरत ध्यान शरण हैं तुम्हारी): विश्वनाथ is kept as the name in the line (Śiva, Lord of the universe, or the poet's signature: both are the name Viśvanātha), who meditates on Śani and is in his refuge; Drik Panchang's हम हैं is another line. Meaning as given.

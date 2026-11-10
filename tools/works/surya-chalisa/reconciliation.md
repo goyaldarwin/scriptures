@@ -25,7 +25,7 @@ Kept as the book has them, against Drik Panchang: ध्याइये; सह�
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
 
 ## Readings settled
-The open questions of `docs/reviews/surya-chalisa-doubts.jsonl`, each decided (docs/PLAYBOOK.md §2).
+The readings the words alone leave open, each decided (docs/PLAYBOOK.md §2).
 
 - **chalisa.cau6** — अरुण सदृश सारथी, when Aruṇa is himself the Sun's charioteer: kept as printed and read as the words say, "a charioteer lovely as Aruṇa". The same poet two chaupāīs later writes उच्चैःश्रवा सदृश हय, "horses like Uccaiḥśravā", so सदृश after a name is "like" in this text (our glossary: समान); MW's other sense "fit, worthy" would need another word order. Meaning unchanged.
 - **chalisa.cau16** — रिपु सों जमलहते सोतेहि छन: divided रिपु सों जम लहते, सो तेहि छन ("their enemies obtain Yama, that very moment"), लहना "to obtain" (Platts) as in मोदलहि (cau5) and लहै (closing dohā). The book (i-074) and Drik Panchang print the same; no witness divides it otherwise. Meaning unchanged.

@@ -1,4 +1,9 @@
 {
+ "khara": {
+  "hi": "खर, गधा (शीतला माताके वाहनका एक नाम)",
+  "en": "khara, a donkey (a name of Śītalā's mount)",
+  "hard": true
+ },
  "visphoṭaka": {
   "hi": "विस्फोटक, चेचक (फोड़ोंका) राक्षस, जिसे शीतला माताने जीता",
   "en": "Visphoṭaka, 'pustule', the demon of smallpox, overcome by Śītalā",
@@ -9,9 +14,9 @@
   "en": "Mahalā, a name of Śītalā Mātā",
   "hard": true
  },
- "maṃdalā": {
+ "mandalā": {
   "hi": "मंदला, शीतला माताका एक नाम",
-  "en": "Maṃdalā, a name of Śītalā Mātā",
+  "en": "Mandalā, a name of Śītalā Mātā",
   "hard": true
  },
  "ruṇalīhyuṇanī": {

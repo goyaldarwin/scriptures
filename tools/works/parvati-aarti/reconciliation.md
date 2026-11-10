@@ -21,3 +21,7 @@ Where she sings words no witness has, the text keeps the book until the owner de
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## Readings settled
+- **aarti.pad7** (श्री प्रताप आरती मैया की): प्रताप is the poet's signature, as a name closes many āratīs (the Brahmā āratī's प्रताप, the Śiva āratī's स्वामी शिवानन्द); "the glorious āratī" would want प्रतापी. Meaning as given.
+- **aarti.pad6** (देवन अरज करत तव चित को लाता): the gods make their plea and bring it to your heart (चित, attention), the book's देवन kept against Drik Panchang's हम. Meaning as given.

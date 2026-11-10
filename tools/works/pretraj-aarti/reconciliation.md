@@ -19,7 +19,7 @@ Kept as the book has them: every word; Drik Panchang does not differ from the bo
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
 
 ## Readings settled
-The open questions of `docs/reviews/pretraj-aarti-doubts.jsonl`, each decided (docs/PLAYBOOK.md §2).
+The readings the words alone leave open, each decided (docs/PLAYBOOK.md §2).
 
 - **aarti.pad5** — ढाल कृपाल धनुष, कृपाल or कृपाण: कृपाल kept as both witnesses print it. A search found only Bhakti Bharat (a copy of Drik Panchang) and no independent source with कृपाण, so the print is not shown to be a corruption (docs/PLAYBOOK.md §2). Text unchanged.
 - **aarti.pad5** — the sense of कृपाल as printed: read as an address, "O merciful one" (कृपाल, the Hindi form of कृपालु), between the shield and the bow it praises. Meaning unchanged.

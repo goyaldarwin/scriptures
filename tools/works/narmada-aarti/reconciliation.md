@@ -13,7 +13,7 @@ The rule: keep the book; correct it only where it is clearly wrong. The library'
 | stanza numbers | none | ॥१॥ … ॥६॥ | The standard. |
 | refrain, line 4 | रूद्री | रुद्री | A misprint: the name is from रुद्र (short u); Drik Panchang has रुद्री. |
 
-Kept as the book has them (Drik Panchang agrees): आनंद कन्दी, पालन्ती, पदचण्डी, पदवन्ती, धूमक वाहन, वादयन्ती, झूमकत, झननन, तोड़ीतान, तुरड़ड़, सुरवन्ती, मेटन्ती, अमरकंठ, कोटी, जोती, पढ़ि, जुग जुग, शिवानंद beside आनन्दी (both spellings of the nasal, as printed).
+Kept as the book has them: रेवा शंकर (stanza 4; Drik Panchang joins रेवाशंकर; the book's spacing gives the meaning 'Revā, Śaṅkara serves you'). Kept as the book has them (Drik Panchang agrees): आनंद कन्दी, पालन्ती, पदचण्डी, पदवन्ती, धूमक वाहन, वादयन्ती, झूमकत, झननन, तोड़ीतान, तुरड़ड़, सुरवन्ती, मेटन्ती, अमरकंठ, कोटी, जोती, पढ़ि, जुग जुग, शिवानंद beside आनन्दी (both spellings of the nasal, as printed).
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).

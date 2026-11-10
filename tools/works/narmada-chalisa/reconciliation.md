@@ -17,3 +17,4 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 
 ## Readings settled
 - **chalisa.cau21** (जटा शंकरी): one name, Jaṭāśaṅkarī: the line says नाम तुम्हारा, "your name", in the singular. Meaning unchanged.
+- **chalisa.cau22** (समोद्भवा): read as सोमोद्भवा, "born of the moon", the Narmadā's name (MW somodbhavā, Raghuvaṃśa); समोद्भवा is not a word and its half-line has 15 mātrās against 16. Both witnesses print समोद्भवा, so the text stays as printed; the meaning and the word entry give सोमोद्भवा.

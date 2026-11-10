@@ -19,7 +19,7 @@ Kept as the book has them, against Drik Panchang: शरदचंद्र (Drik
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
 
 ## Readings settled
-The open questions of `docs/reviews/shitala-chalisa-doubts.jsonl`, each decided (docs/PLAYBOOK.md §2).
+The readings the words alone leave open, each decided (docs/PLAYBOOK.md §2).
 
 - **chalisa.cau16** — who speaks जहँ अपवित्र सकल दुःख हरिहैं, and the book's हरिहैं against Drik Panchang's हरिहौं: the book's हरिहैं kept and read as the demon's speech going on (from chaupāī 15): "where there is impurity, all its sorrow will be taken away". हरिहैं is a third-person future with no subject named, so the Hindi and English give it in the passive; हरिहौं is Drik Panchang's typing of the same edition, not a correction of it, and a search found no independent witness for either; chaupāī 17 goes on in the same third-person future, and chaupāī 18 closes the episode. Meaning unchanged.
 - **chalisa.cau25** — रुणलीह्युणनी, an unclear folk name: kept and transliterated as printed (Ruṇalīhyuṇanī). The page image (i-216) prints the word so, Drik Panchang the same; a split into another pair of names (रुणकी-झुणकी) is not attested by any witness. Meaning unchanged.

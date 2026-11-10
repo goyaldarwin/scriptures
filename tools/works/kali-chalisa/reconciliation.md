@@ -20,7 +20,7 @@ Kept as the book has them, against Drik Panchang: हृदय-निकुं�
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
 
 ## Readings settled
-The open questions of `docs/reviews/kali-chalisa-doubts.jsonl`, each decided (docs/PLAYBOOK.md §2).
+The readings the words alone leave open, each decided (docs/PLAYBOOK.md §2).
 
 - **chalisa.cau3** — जगजाया, "mother of the world" or "wife of the world's Lord": "she who gave birth to the world" kept. The line is a list of the Mother's names; जाया is "bringing forth" by its derivation (Monier-Williams, after Manu 9.8) and "born" in Hindi (Platts), and Śiva is not named in the line. Meaning unchanged.
 - **chalisa.cau27** — मद्यपान कीन्हैउ रण गंगा: read as the words give it, रण गंगा "the Gaṅgā of battle", the stream of blood on the field, where she drank; no witness makes रण गंगा a place. Meaning unchanged.
