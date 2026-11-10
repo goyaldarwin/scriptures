@@ -720,7 +720,7 @@ async def main():
                     got = await ev(f"(() => {{ S.timing.fix[tkey()] = {json.dumps(fix)}; buildAudio(); return {{at: SRC.au.at, moved: [...SRC.au.moved]}}; }})()")
                     base = {k: ([v[0], A['raw'][k]] + v[2:]) if k in A['raw'] else v for k, v in A['at'].items()}; base.update(fix); exp = {}; moved = []; ownset = set(A['own']) | set(fix)
                     for ti, tr in enumerate(A['tracks']):
-                        rows, mv = ORDER.keep_order(sorted([[IDX[k], v[1], v[2] if len(v) > 2 and v[2] is not None else None] for k, v in base.items() if v[0] == ti and k in IDX]), lambda i: items[i][0] in ownset, lambda i: items[i][0] not in guess, lambda i: max(8, items[i][1]), tr['dur'])
+                        rows, mv = ORDER.keep_order(sorted([[IDX[k], v[1], v[2] if len(v) > 2 and v[2] is not None else None] for k, v in base.items() if v[0] == ti and k in IDX]), lambda i: items[i][0] in ownset, lambda i: items[i][0] not in guess, lambda i: max(8, items[i][1]), tr.get('end', tr['dur']))
                         for i, st, en in rows: exp[items[i][0]] = [ti, st, en] if en is not None else [ti, st]
                         moved += [items[i][0] for i in mv]
                     diff = [(k, got['at'].get(k), exp.get(k)) for k in set(exp) | set(got['at']) if got['at'].get(k) != exp.get(k)]
@@ -1199,7 +1199,7 @@ async def main():
         # each plan day's ▶ says how long it plays; the days add up to the recordings; the speed shortens it; the next-day button says it too
         du = await ev("""(async () => { await openWork('manas', true); await loadSources(); const o = PLANS[0].id; WS().org = o; show('home'); renderHome(); await new Promise(r => setTimeout(r, 300));
             const rows = document.querySelectorAll('#orgList .lplay.timed[data-pa] + .ldur').length;   /* the days (a page's ▶, the āratī's, is not a day) */ let sum = 0; for (let n = 1; n <= PLAN[o].n; n++){ const [a, b] = dayRange(o, n); sum += spanSecs(a, b); }
-            const tr = AUT.reduce((s, L, t) => s + SRC.au.tracks[t].dur - L[0][1], 0), [a1, b1] = dayRange(o, 1), one = spanSecs(a1, b1);
+            const tr = AUT.reduce((s, L, t) => s + trEnd(SRC.au.tracks[t]) - L[0][1], 0), [a1, b1] = dayRange(o, 1), one = spanSecs(a1, b1);
             const r0 = S.settings.rate; S.settings.rate = 2; const two = spanSecs(a1, b1); S.settings.rate = r0;
             openReader(o, b1); await new Promise(r => setTimeout(r, 600)); const nx = document.querySelector('.endb [data-next] + .ndur'); WS().org = 'k';
             return [rows === PLAN[o].n, Math.abs(sum - tr) < 60, Math.abs(two * 2 - one) < 1, !!nx && nx.textContent.startsWith('▶')]; })()""")
@@ -1263,6 +1263,13 @@ async def main():
         # a work that is a slice of a longer video (the Hanumān āratī at the end of the Sundarakāṇḍa's) plays from its own first verse, not the video's start
         ha = await ev("(async () => { await openWork('hanuman-aarti', true); show('home'); playRange('k', 0, IT.length - 1); const r = [Math.floor(PL.seekT), Math.floor(SRC.au.at[IT[0].id][1])]; stopAudio(); return r; })()")   # the time the app seeks to, whether it loads a player or reuses one (a live player reports 0 for a moment)
         check('the Hanumān āratī plays from the āratī, not from the start of the Sundarakāṇḍa', ha[0] == ha[1] and ha[0] > 6000, ha)
+        # a track that is one song of a jukebox (recordings.json "start" / "end"): it plays from its first verse, stops at its own
+        # end (never runs on into the next song) and its ▶ counts only its own length, not the rest of the video
+        jb = await ev("""(async () => { await openWork('lakshmi-aarti', true); await loadSources(); show('home'); const tr = SRC.au.tracks[0], had = [tr.start, tr.end], s0 = SRC.au.at[IT[0].id][1];
+            tr.start = Math.max(0, s0 - 5); tr.end = s0 + 600; const sp = Math.round(spanSecs(0, IT.length - 1) * RATE());
+            playRange('k', 0, IT.length - 1); const seek = Math.floor(PL.seekT), ok0 = ytOK; ytOK = true; PL.seekT = null; ytInfo.t = tr.end + 0.5; ytInfo.at = performance.now(); tick(); const on = PL.on;
+            ytOK = ok0; stopAudio(); ['start', 'end'].forEach((k, n) => { if (had[n] == null) delete tr[k]; else tr[k] = had[n]; }); return [seek, Math.floor(s0), sp, on]; })()""")
+        check('a jukebox track plays from its first verse, stops at its own end and counts only its own length', jb[0] == jb[1] and 0 < jb[2] <= 601 and jb[3] is False, jb)
         # while playing, the work's page scrolls its last row clear of the player
         clr = await ev("""(async () => { await openWork('sundarkand', true); show('home'); playRange('k', 0, IT.length - 1); await new Promise(r => setTimeout(r, 400)); show('home'); await new Promise(r => setTimeout(r, 300));
             window.scrollTo(0, 1e6); await new Promise(r => setTimeout(r, 200)); const rows = $$('#orgList li').filter(x => x.offsetHeight); const r = [rows[rows.length - 1].getBoundingClientRect().bottom, $('#player').getBoundingClientRect().top]; stopAudio(); return r; })()""")
