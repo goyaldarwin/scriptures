@@ -737,8 +737,8 @@
    ]
   },
   "गोपालनन्दनः": {
-   "hi": "गोपालनन्दन (ग्वालोंको आनन्द देनेवाले, श्रीकृष्ण)",
-   "en": "the son of the cowherds, Kṛṣṇa",
+   "hi": "गोपालनन्दन (ग्वालेके पुत्र, श्रीकृष्ण)",
+   "en": "the cowherd's son, Kṛṣṇa",
    "g": "प्रथमा एकवचन",
    "p": [
     [
@@ -747,7 +747,7 @@
     ],
     [
      "नन्दनः",
-     "पुत्र, आनन्द देनेवाला"
+     "पुत्र"
     ]
    ]
   },
@@ -817,17 +817,17 @@
    ]
   },
   "तोत्रवेत्रैकपाणये": {
-   "hi": "जिनके एक हाथमें (गौएँ हाँकनेका) अंकुश और छड़ी है, उनको",
+   "hi": "जिनके एक हाथमें पैना (पशु हाँकनेका) और बेंत है, उनको",
    "en": "to him who holds the goad and the cane in one hand",
    "g": "चतुर्थी एकवचन",
    "p": [
     [
      "तोत्र",
-     "पशु हाँकनेका अंकुश"
+     "पैना, पशु हाँकनेकी छड़ी"
     ],
     [
      "वेत्र",
-     "बेंत, छड़ी"
+     "बेंत"
     ],
     [
      "एक",
@@ -1335,17 +1335,17 @@
    "g": "तृतीया बहुवचन"
   },
   "वेलाकुला": {
-   "hi": "जिसके किनारे (कर्णरूपी लहरोंसे) उफन रहे थे",
-   "en": "its shore surging (with Karṇa)",
+   "hi": "जिसका ज्वार (कर्णसे) उफन रहा था",
+   "en": "its tide surging (with Karṇa)",
    "g": "प्रथमा एकवचन, स्त्रीलिंग",
    "p": [
     [
      "वेला",
-     "किनारा, तट"
+     "ज्वार, प्रवाह"
     ],
     [
      "आकुला",
-     "उफनता हुआ, भरा हुआ"
+     "उफनता हुआ, क्षुब्ध"
     ]
    ]
   },
@@ -1581,6 +1581,511 @@
    "en": "is united / is applied, is used",
    "r": "युज्",
    "g": "कर्मणि, लट्, प्रथम पुरुष एकवचन"
+  },
+  "पितॄनथ": {
+   "hi": "पिताओं, पितृतुल्य बड़ोंको; और",
+   "en": "fathers, elders of the father's rank; then, and",
+   "p": [
+    [
+     "पितॄन्",
+     "पिताओं, पितृतुल्य बड़ोंको"
+    ],
+    [
+     "अथ",
+     "और"
+    ]
+   ]
+  },
+  "अनार्यजुष्टमस्वर्ग्यमकीर्तिकरमर्जुन": {
+   "hi": "अनार्यों, हीन पुरुषोंद्वारा अपनाया गया; स्वर्ग न देनेवाला; अपयश करनेवाला; हे अर्जुन!",
+   "en": "practised by the ignoble; not leading to heaven; causing disgrace; O Arjuna",
+   "p": [
+    [
+     "अनार्यजुष्टम्",
+     "अनार्यों, हीन पुरुषोंद्वारा अपनाया गया"
+    ],
+    [
+     "अस्वर्ग्यम्",
+     "स्वर्ग न देनेवाला"
+    ],
+    [
+     "अकीर्तिकरम्",
+     "अपयश करनेवाला"
+    ],
+    [
+     "अर्जुन",
+     "हे अर्जुन!"
+    ]
+   ]
+  },
+  "कर्मफलहेतुर्भूर्मा": {
+   "hi": "कर्मफलका हेतु (कारण); बनो; न",
+   "en": "the cause of the fruit of action; be; not",
+   "p": [
+    [
+     "कर्मफलहेतुः",
+     "कर्मफलका हेतु (कारण)"
+    ],
+    [
+     "भूः",
+     "बनो"
+    ],
+    [
+     "मा",
+     "न"
+    ]
+   ]
+  },
+  "आत्मवान्": {
+   "hi": "सावधान, संयमी",
+   "en": "self-possessed, prudent"
+  },
+  "समाधौ": {
+   "hi": "समाधिमें, अन्तःकरणमें (जिसमें चित्तका समाधान होता है)",
+   "en": "in samādhi, in the mind (where thought is composed)"
+  },
+  "समाधावचला": {
+   "hi": "समाधिमें, आत्मामें (जिसमें चित्त समाहित होता है); अचल, स्थिर",
+   "en": "in samādhi, in the Self (in which the mind is composed); immovable, steady",
+   "p": [
+    [
+     "समाधौ",
+     "समाधिमें, आत्मामें"
+    ],
+    [
+     "अचला",
+     "अचल, स्थिर"
+    ]
+   ]
+  },
+  "विधीयते": {
+   "hi": "उत्पन्न होती है, बनती है",
+   "en": "is formed, arises"
+  },
+  "गुणकर्मसु": {
+   "hi": "गुणोंके कर्मोंमें",
+   "en": "in the actions of the guṇas"
+  },
+  "पुरोवाच": {
+   "hi": "प्राचीन कालमें, सृष्टिके आरम्भमें; कहा",
+   "en": "of old, in the beginning (of creation); said",
+   "p": [
+    [
+     "पुरा",
+     "प्राचीन कालमें, आरम्भमें"
+    ],
+    [
+     "उवाच",
+     "कहा"
+    ]
+   ]
+  },
+  "देवान्भावयतानेन": {
+   "hi": "देवताओंको; पुष्ट करो; इसके द्वारा",
+   "en": "the gods; nourish (you all); with this",
+   "p": [
+    [
+     "देवान्",
+     "देवताओंको"
+    ],
+    [
+     "भावयत",
+     "पुष्ट करो"
+    ],
+    [
+     "अनेन",
+     "इसके द्वारा"
+    ]
+   ]
+  },
+  "भावयन्तु": {
+   "hi": "पुष्ट करें",
+   "en": "may they nourish"
+  },
+  "भावयन्तः": {
+   "hi": "पुष्ट करते हुए",
+   "en": "nourishing"
+  },
+  "यज्ञभाविताः": {
+   "hi": "यज्ञसे पुष्ट हुए",
+   "en": "nourished by sacrifice"
+  },
+  "कामकामी": {
+   "hi": "भोगोंकी कामना करनेवाला",
+   "en": "one who longs for the objects of desire"
+  },
+  "प्रजहि": {
+   "hi": "मार डालो (प्र+हन्) / त्याग दो (प्र+हा: प्रजहिहि, आगेके ह्ये- सहित)",
+   "en": "slay (pra-√han) / cast off (pra-√hā: prajahihi, with the hi- of hy enam)"
+  },
+  "ह्येनं": {
+   "hi": "अवश्य; इसको / क्योंकि; इसको / (प्रजहिहि का) हि; इसको",
+   "en": "indeed; this / for, indeed; this / (the hi of prajahihi); this",
+   "p": [
+    [
+     "हि",
+     "अवश्य, क्योंकि"
+    ],
+    [
+     "एनम्",
+     "इसको"
+    ]
+   ]
+  },
+  "विकर्मणः": {
+   "hi": "निषिद्ध कर्मका",
+   "en": "of forbidden action"
+  },
+  "संस्तभ्यात्मानमात्मना": {
+   "hi": "स्थिर करके; अपनेको; अपने मनसे",
+   "en": "having steadied; oneself; by one's own mind",
+   "p": [
+    [
+     "संस्तभ्य",
+     "स्थिर करके"
+    ],
+    [
+     "आत्मानम्",
+     "अपनेको"
+    ],
+    [
+     "आत्मना",
+     "अपने मनसे"
+    ]
+   ]
+  },
+  "भजाम्यहम्": {
+   "hi": "अनुग्रह करता हूँ, अपनाता हूँ; मैं",
+   "en": "favour (them); I",
+   "p": [
+    [
+     "भजामि",
+     "अनुग्रह करता हूँ, अपनाता हूँ"
+    ],
+    [
+     "अहम्",
+     "मैं"
+    ]
+   ]
+  },
+  "विजितात्मा": {
+   "hi": "शरीरको जीतनेवाला / अपनेको (मनको) जीतनेवाला",
+   "en": "master of his body / self-conquered"
+  },
+  "सर्गो": {
+   "hi": "जन्म (सृष्टि), जन्म-मरणरूप संसार",
+   "en": "birth (creation), the round of births"
+  },
+  "युक्ताहारविहारस्य": {
+   "hi": "उचित आहार और चलने-फिरनेवालेका",
+   "en": "of one moderate in food and in moving about"
+  },
+  "अयतिः": {
+   "hi": "प्रयत्नमें शिथिल / असंयमी",
+   "en": "slack in effort / lacking self-control"
+  },
+  "दुर्लभतरं": {
+   "hi": "अधिक दुर्लभ",
+   "en": "harder to obtain"
+  },
+  "एतद्धि": {
+   "hi": "यह; निःसन्देह",
+   "en": "this; indeed",
+   "p": [
+    [
+     "एतत्",
+     "यह"
+    ],
+    [
+     "हि",
+     "निःसन्देह"
+    ]
+   ]
+  },
+  "मामपि": {
+   "hi": "मुझे; भी",
+   "en": "to me; also, even",
+   "p": [
+    [
+     "माम्",
+     "मुझे"
+    ],
+    [
+     "अपि",
+     "भी"
+    ]
+   ]
+  },
+  "कर्मसंज्ञितः": {
+   "hi": "कर्म नामवाला",
+   "en": "called karma"
+  },
+  "धातारमचिन्त्यरूप": {
+   "hi": "विधान और धारण करनेवालेको; अचिन्त्य रूपवालेको",
+   "en": "the ordainer, the sustainer; of inconceivable form",
+   "p": [
+    [
+     "धातारम्",
+     "विधान और धारण करनेवालेको"
+    ],
+    [
+     "अचिन्त्यरूपम्",
+     "अचिन्त्य रूपवालेको"
+    ]
+   ]
+  },
+  "प्रयाणकाले": {
+   "hi": "प्रयाणके समय, मृत्युके समय",
+   "en": "at the time of departure (death)"
+  },
+  "मश्नन्ति": {
+   "hi": "भोगते हैं (अश्नन्ति; आरम्भका म् सुरेन्द्रलोकम्‌का)",
+   "en": "enjoy (aśnanti; the m at the start ends surendralokam)",
+   "r": "अश्",
+   "g": "लट् प्रथम पुरुष बहुवचन"
+  },
+  "सुरेन्द्रलोक": {
+   "hi": "इन्द्रलोकको",
+   "en": "the world of the lord of the gods (Indra)",
+   "g": "द्वितीया एकवचन (सुरेन्द्रलोकम्; म् अगली पंक्तिमें)"
+  },
+  "प्रतिजानीहि": {
+   "hi": "प्रतिज्ञा करो, निश्चयपूर्वक घोषणा करो",
+   "en": "declare for certain, promise"
+  },
+  "प्रीयमाणाय": {
+   "hi": "प्रसन्न होनेवाले तुम्हारे लिये",
+   "en": "to (you) who take delight"
+  },
+  "भावेषु": {
+   "hi": "भावोंमें, पदार्थोंमें",
+   "en": "in things, in forms of being"
+  },
+  "झषाणां": {
+   "hi": "मछलियोंमें",
+   "en": "among fishes"
+  },
+  "सर्वहरश्चाहमुद्भवश्च": {
+   "hi": "सबका हरण करनेवाली; और; मैं; उत्पत्ति, उत्कर्ष; और",
+   "en": "that seizes all; and; I; the origin, the rise; and",
+   "p": [
+    [
+     "सर्वहरः",
+     "सबका हरण करनेवाली"
+    ],
+    [
+     "च",
+     "और"
+    ],
+    [
+     "अहम्",
+     "मैं"
+    ],
+    [
+     "उद्भवः",
+     "उत्पत्ति, उत्कर्ष"
+    ],
+    [
+     "च",
+     "और"
+    ]
+   ]
+  },
+  "यादसामहम्": {
+   "hi": "जलचरोंमें, जलके निवासियोंमें; मैं",
+   "en": "among the dwellers of the waters; I",
+   "p": [
+    [
+     "यादसाम्",
+     "जलचरोंमें, जलके निवासियोंमें"
+    ],
+    [
+     "अहम्",
+     "मैं"
+    ]
+   ]
+  },
+  "ब्रह्मणोऽप्यादिकर्त्रे": {
+   "hi": "ब्रह्माके; भी; आदिकर्ताको",
+   "en": "of Brahmā; even; to the first creator",
+   "p": [
+    [
+     "ब्रह्मणः",
+     "ब्रह्माके"
+    ],
+    [
+     "अपि",
+     "भी"
+    ],
+    [
+     "आदिकर्त्रे",
+     "आदिकर्ताको"
+    ]
+   ]
+  },
+  "वेदयज्ञाध्ययनैर्न": {
+   "hi": "वेदों और यज्ञोंके अध्ययनसे; न",
+   "en": "by the study of the Vedas and of sacrifices; not",
+   "p": [
+    [
+     "वेदयज्ञाध्ययनैः",
+     "वेदों और यज्ञोंके अध्ययनसे"
+    ],
+    [
+     "न",
+     "न"
+    ]
+   ]
+  },
+  "प्रसभं": {
+   "hi": "बलपूर्वक / ढिठाईसे",
+   "en": "forcibly / rashly, presumptuously"
+  },
+  "कार्यकारणकर्तृत्वे": {
+   "hi": "कार्य और कारणके कर्तापनमें",
+   "en": "in the producing of effect and cause"
+  },
+  "उदासीनो": {
+   "hi": "तटस्थ, पक्षपातरहित",
+   "en": "neutral, impartial, taking no side"
+  },
+  "निर्मलत्वात्प्रकाशकमनामयम्": {
+   "hi": "निर्मल होनेसे; प्रकाश करनेवाला; निरामय, उपद्रवसे रहित",
+   "en": "because of stainlessness; illuminating; free from ill",
+   "p": [
+    [
+     "निर्मलत्वात्",
+     "निर्मल होनेसे"
+    ],
+    [
+     "प्रकाशकम्",
+     "प्रकाश करनेवाला"
+    ],
+    [
+     "अनामयम्",
+     "निरामय, उपद्रवसे रहित"
+    ]
+   ]
+  },
+  "धीरस्तुल्यनिन्दात्मसंस्तुतिः": {
+   "hi": "धीर, बुद्धिमान्; अपनी निन्दा-स्तुतिमें समान",
+   "en": "wise, steadfast; equal in blame and praise of himself",
+   "p": [
+    [
+     "धीरः",
+     "धीर, बुद्धिमान्"
+    ],
+    [
+     "तुल्यनिन्दात्मसंस्तुतिः",
+     "अपनी निन्दा-स्तुतिमें समान"
+    ]
+   ]
+  },
+  "तृष्णासङ्गसमुद्भवम्": {
+   "hi": "तृष्णा और आसक्तिका उद्गम / तृष्णा और आसक्तिसे उत्पन्न",
+   "en": "the source of craving and attachment / arising from craving and attachment"
+  },
+  "सम्प्रतिष्ठा": {
+   "hi": "स्थिति, बने रहना (आदि और अन्तके बीच)",
+   "en": "continuance, permanence"
+  },
+  "सत्त्वसंशुद्धिर्ज्ञानयोगव्यवस्थितिः": {
+   "hi": "अन्तःकरणकी पूर्ण शुद्धि; ज्ञान और योगमें दृढ़ स्थिति",
+   "en": "complete purity of the mind (sattva); steadfastness in knowledge and in yoga",
+   "p": [
+    [
+     "सत्त्वसंशुद्धिः",
+     "अन्तःकरणकी पूर्ण शुद्धि"
+    ],
+    [
+     "ज्ञानयोगव्यवस्थितिः",
+     "ज्ञान और योगमें दृढ़ स्थिति"
+    ]
+   ]
+  },
+  "अपरस्परसम्भूतं": {
+   "hi": "स्त्री-पुरुषके परस्पर संयोगसे उत्पन्न / एक-दूसरेसे उत्पन्न नहीं",
+   "en": "born of the union of man and woman / not produced one by the other"
+  },
+  "नष्टात्मानोऽल्पबुद्धयः": {
+   "hi": "नष्ट अन्तःकरणवाले; अल्प बुद्धिवाले",
+   "en": "ruined in mind; of little understanding",
+   "p": [
+    [
+     "नष्टात्मानः",
+     "नष्ट अन्तःकरणवाले"
+    ],
+    [
+     "अल्पबुद्धयः",
+     "अल्प बुद्धिवाले"
+    ]
+   ]
+  },
+  "भूतेष्वलोलुप्त्वं": {
+   "hi": "प्राणियोंपर; लोलुपताका अभाव",
+   "en": "towards beings; freedom from craving",
+   "p": [
+    [
+     "भूतेषु",
+     "प्राणियोंपर"
+    ],
+    [
+     "अलोलुप्त्वम्",
+     "लोलुपताका अभाव"
+    ]
+   ]
+  },
+  "कट्वम्ललवणात्युष्णतीक्ष्णरूक्षविदाहिनः": {
+   "hi": "चरपरे, खट्टे, नमकीन, बहुत गरम, तीखे, रूखे और दाहकारक",
+   "en": "pungent, sour, salty, very hot, sharp, dry and burning"
+  },
+  "सद्भावे": {
+   "hi": "अस्तित्व, सत्ताके अर्थमें",
+   "en": "in the sense of existence, reality"
+  },
+  "यातयामं": {
+   "hi": "अधपका / बासी, पहर बीता हुआ",
+   "en": "half-cooked / stale (kept for hours)"
+  },
+  "कुशले": {
+   "hi": "कुशल (शुभ) कर्ममें",
+   "en": "in auspicious (wholesome) action"
+  },
+  "द्वेष्ट्यकुशलं": {
+   "hi": "द्वेष करता है; अशुभ (अकुशल) कर्मसे",
+   "en": "hates; inauspicious (action)",
+   "p": [
+    [
+     "द्वेष्टि",
+     "द्वेष करता है"
+    ],
+    [
+     "अकुशलम्",
+     "अशुभ (अकुशल) कर्मसे"
+    ]
+   ]
+  },
+  "सत्त्वं": {
+   "hi": "सत्त्व / प्राणी, पदार्थ",
+   "en": "sattva / a being, entity"
+  },
+  "नैष्कृतिकोऽलसः": {
+   "hi": "दूसरोंकी जीविका नष्ट करनेवाला, कपटी; आलसी",
+   "en": "ruinous to others' livelihood, dishonest; lazy",
+   "p": [
+    [
+     "नैष्कृतिकः",
+     "दूसरोंकी जीविका नष्ट करनेवाला, कपटी"
+    ],
+    [
+     "अलसः",
+     "आलसी"
+    ]
+   ]
+  },
+  "परिग्रहम्": {
+   "hi": "परिग्रहको, संग्रहको",
+   "en": "possessions, acquisition"
   }
  },
  "why": {
@@ -1588,6 +2093,67 @@
   "प्रणश्यामि": "first person (अहं … न प्रणश्यामि, 6.30): the gloss copied प्रणश्यति's third person; \"I do not pass out of his sight\" (Śaṅkara)",
   "प्रणश्यति": "6.30 (स च मे न प्रणश्यति): a finite verb, so होता है",
   "पुण्यकर्मणाम्": "a bahuvrīhi qualifying जनानाम् (7.28) and the people of the worlds (18.71): those whose deeds are virtuous, not the deeds",
-  "युज्यते": "17.26: सच्छब्दः … युज्यते repeats प्रयुज्यते of the line before, \"is used, applied\" of a word; जोड़ा जाता है (\"is joined\") misses it"
+  "युज्यते": "17.26: सच्छब्दः … युज्यते repeats प्रयुज्यते of the line before, \"is used, applied\" of a word; जोड़ा जाता है (\"is joined\") misses it",
+  "गोपालनन्दनः": "nandana m. 'a son' (MW); the Hindi gave 'giving joy to the cowherds' while the English gave 'son'; gopāla is one cowherd (Nanda)",
+  "वेलाकुला": "velā 'tide, flow, current' (Apte) beside 'shore'; with Kṛpa as the current, the river's tide is meant; 'shore surging' mixed the two",
+  "तोत्रवेत्रैकपाणये": "tottra: a goad for driving cattle (MW), पैना; अंकुश is the elephant-hook; vetra a cane, बेंत",
+  "पितॄनथ": "the Hindi ran two glosses together (पिताओं पितृतुल्योंको); Arjuna's father was dead, so the plural is the father's generation",
+  "अनार्यजुष्टमस्वर्ग्यमकीर्तिकरमर्जुन": "an-ārya-juṣṭa: 'practised or observed by non-Āryas' (MW); juṣṭa 'practised, resorted to' (Apte, citing Bg. 2.2): not 'not practised by the noble'",
+  "कर्मफलहेतुर्भूर्मा": "a tatpuruṣa, the cause (hetu, MW) of the fruit of action (Śaṅkara), as our meaning reads; 'motivated by' is the bahuvrīhi of 2.49 phalahetavaḥ",
+  "आत्मवान्": "ātmavat: 'self-possessed, composed, prudent' (MW; Apte citing Bg. 2.45); Śaṅkara apramatta; not 'possessed of the Self'",
+  "समाधौ": "samādhi from sam-ā-√dhā, the place in which the mind is composed (samādhīyate asmin): Śaṅkara reads the antaḥkaraṇa, as our meaning does",
+  "समाधावचला": "Śaṅkara: samādhīyate cittam asminn iti samādhir ātmā, as our meaning reads",
+  "विधीयते": "passive of vi-√dhā 'to make, form, produce' (MW, Apte); Śaṅkara: does not arise",
+  "गुणकर्मसु": "a tatpuruṣa, guṇānāṃ karmasu (Śaṅkara), as the English and our meaning read; the Hindi gave a dvandva",
+  "पुरोवाच": "purā 'formerly, of old' and 'at first, in the beginning' (MW); in 3.10 the beginning of creation (Śaṅkara sargādau)",
+  "देवान्भावयतानेन": "causative of √bhū, 'cherish, foster' (MW bhāvita), Śaṅkara vardhayata: पुष्ट करो, as the English 'nourish'",
+  "भावयन्तु": "as भावयत: causative of √bhū, foster (MW bhāvita)",
+  "भावयन्तः": "as भावयत: causative of √bhū, foster (MW bhāvita)",
+  "यज्ञभाविताः": "bhāvita 'cherished, fostered' (MW, Apte)",
+  "कामकामी": "kāma is also the object of desire (MW); Śaṅkara: kāmāḥ viṣayāḥ",
+  "प्रजहि": "jahi is the imperative of √han, jahihi that of √hā; Śaṅkara splits prajahihi enam (cast off), as our meaning of 3.41 reads",
+  "ह्येनं": "enam is accusative (इसको); in 3.41 Śaṅkara reads prajahihi enam, the hi closing the verb",
+  "विकर्मणः": "vikarman: 'an unlawful or prohibited act' (Apte, citing Bg. 4.17; MW); Śaṅkara pratiṣiddhasya",
+  "संस्तभ्यात्मानमात्मना": "Śaṅkara: ātmānaṃ svenaiva ātmanā saṃskṛtena manasā; ātman also 'the mind' (MW); not the supreme Self, as our meaning reads",
+  "भजाम्यहम्": "√bhaj 'to declare for, prefer, choose' (MW); Śaṅkara anugṛhṇāmi; Hindi भजता हूँ reads as the Lord worshipping",
+  "विजितात्मा": "ātman also 'the body' (MW); in 5.7 the mind is in viśuddhātmā and the senses in jitendriyaḥ, so Śaṅkara vijitadehaḥ",
+  "सर्गो": "sarga 'creation', 'begetting, procreation' (MW); Śaṅkara on 5.19: sargo janma",
+  "युक्ताहारविहारस्य": "vihāra 'walking, wandering, roaming' (MW); Śaṅkara pādakrama",
+  "अयतिः": "a-yati, no striver (yati from √yat, MW 'no ascetic, Bhag.'); Śaṅkara prayatnavarjitaḥ, beside yatamāna (6.45)",
+  "दुर्लभतरं": "a single word: the hi of 6.42 is in एतद्धि",
+  "एतद्धि": "etat + hi: the hi was glossed under दुर्लभतरं",
+  "मामपि": "api is 'also, even', not 'alone' (eva)",
+  "कर्मसंज्ञितः": "saṃjñita 'called, named' (MW, Apte): an adjective, not a verb",
+  "धातारमचिन्त्यरूप": "dhātṛ 'supporter, orderer, arranger' (MW); Śaṅkara: the dispenser of all fruits, as our meaning reads",
+  "प्रयाणकाले": "prayāṇa 'departure, death' (MW); the Hindi ran प्रयाण into मृत्युके समय, and the two senses were one",
+  "मश्नन्ति": "the printed line breaks inside surendralokam aśnanti: the verb is aśnanti (√aś, eat, enjoy)",
+  "सुरेन्द्रलोक": "accusative (surendralokam), object of āsādya (9.20); its m is printed at the start of the next line",
+  "प्रतिजानीहि": "prati-√jñā 'to promise, declare solemnly, affirm' (MW, Apte); Śaṅkara pratijñāṃ kuru, as our meaning reads",
+  "प्रीयमाणाय": "तुमके लिये is not Hindi",
+  "भावेषु": "bhāva 'that which is or exists, thing, being' (MW); Śaṅkara vastuṣu",
+  "झषाणां": "jhaṣa 'a (large) fish' (MW); Śaṅkara matsyādīnām",
+  "सर्वहरश्चाहमुद्भवश्च": "udbhava 'origin' and 'springing, growing' (MW); Śaṅkara utkarṣa, abhyudaya, as our meaning reads",
+  "यादसामहम्": "yādas 'any large aquatic animal' (MW; Apte citing Bg. 10.29), as our meaning reads",
+  "ब्रह्मणोऽप्यादिकर्त्रे": "brahmaṇaḥ is genitive with ādikartre (Śaṅkara: hiraṇyagarbhasya api ādikartā), as our meaning reads",
+  "वेदयज्ञाध्ययनैर्न": "veda-yajña + adhyayana: study of the Vedas and of the rites (Śaṅkara), not three means",
+  "प्रसभं": "prasabham 'forcibly' and 'importunately, Bhag.' (MW); हठपूर्वक is 'stubbornly'",
+  "कार्यकारणकर्तृत्वे": "the printed word has kāraṇa, cause, not karaṇa, instrument",
+  "उदासीनो": "udāsīna 'sitting apart, neutral, one who is neither friend nor foe' (MW, Apte); Hindi उदासीन now reads as sad",
+  "निर्मलत्वात्प्रकाशकमनामयम्": "anāmaya 'free from disease, healthy, sound' (MW, Apte); Śaṅkara nirupadrava; विकाररहित is not a sense",
+  "धीरस्तुल्यनिन्दात्मसंस्तुतिः": "dhīra is both 'intelligent, wise' and 'steady, firm' (MW); Śaṅkara dhīmān",
+  "तृष्णासङ्गसमुद्भवम्": "samudbhava ifc. is 'arisen from' or 'being the source of' (MW); Śaṅkara and our meaning read the latter",
+  "सम्प्रतिष्ठा": "sampratiṣṭhā 'permanence, continuance (as opp. to beginning or end), Bhag.' (MW), beside ādi and anta",
+  "सत्त्वसंशुद्धिर्ज्ञानयोगव्यवस्थितिः": "Śaṅkara reads jñānayoga as a dvandva, knowledge and yoga, as our meaning does",
+  "अपरस्परसम्भूतं": "MW a-paraspara-sambhūta 'not produced one by the other, Bhag.'; Apte gives the reading 'produced by the union of male and female' (Śaṅkara), which our meaning follows",
+  "नष्टात्मानोऽल्पबुद्धयः": "naṣṭātman 'deprived of mind or sense' (MW); the Self is not destroyed",
+  "भूतेष्वलोलुप्त्वं": "lolupa 'very desirous, ardently longing for' (MW, Apte): craving, as our meaning reads",
+  "कट्वम्ललवणात्युष्णतीक्ष्णरूक्षविदाहिनः": "kaṭu is the pungent rasa (MW; Apte citing Bg. 17.9), not tikta, bitter; tīkṣṇa 'sharp' (MW, Apte)",
+  "सद्भावे": "sadbhāva 'real being, existence' (MW); the Hindi ran two glosses together",
+  "यातयामं": "yātayāma 'used, spoiled' and 'raw, half-ripe' (MW); Śaṅkara mandapakva, as our meaning reads",
+  "कुशले": "kuśala 'right, proper, good, auspicious' (Apte, citing Bg. 18.10); the Hindi was garbled",
+  "द्वेष्ट्यकुशलं": "akuśala 'inauspicious, evil' (MW, Apte); 'disagreeable' is not a sense",
+  "सत्त्वं": "sattva 'being, entity' and 'a living being, creature' (MW); in 18.40 a being, not the guṇa",
+  "नैष्कृतिकोऽलसः": "18.28: Śaṅkara's reading (paravṛtticchedanapara, cutting off others' livelihood), which our meaning follows, beside the dictionaries' 'dishonest'",
+  "परिग्रहम्": "parigraha 'acquisition, possession, property' (MW); Śaṅkara outward possessions; possessiveness is nirmamaḥ"
  }
 }

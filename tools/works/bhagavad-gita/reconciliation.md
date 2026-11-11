@@ -39,3 +39,30 @@ The nine verses are typed from the owner's printout of shlokam.org (`source/dhya
 | 17.25 | मोक्षकाङ्क्षिभिः | मोक्षकाङ्क्षि | the witness drops the ending; the metre needs it |
 | 18.68 | य इदं परमं गुह्यं | य इमं परमं गुह्यं | both are readings; इदं agrees with गुह्यम् |
 | 2.64 | रागद्वेषविमुक्तैस्तु | रागद्वेषवियुक्तैस्तु | both are readings (the copy prints the witness's in brackets beside its own); the base's is valid |
+
+## Readings of our meanings
+Our meanings follow Śaṅkara's reading; where another well-known reading differs materially it is a footnote. The places where the writers and checkers weighed two readings, and what was settled:
+
+| Verse | Settled reading | Why |
+|---|---|---|
+| dhyana.1 | अनुसन्दधामि: "I meditate on you again and again" | the received sense of the dhyāna verse; Monier-Williams and Apte's anu-sam-√dhā "to think of, aim at" is the same act, continued |
+| dhyana.6 | Gāndhārī as the river's blue lotus | the text as printed (गान्धारी-); editions that read गान्धार- make it Śakuni |
+| 1.18 | सर्वशः "all of them" | the plain sense with पृथक् पृथक् |
+| 2.5 | अर्थकामान् describes the gurus ("though they seek their own gain") | an adjective beside गुरून्; Madhusūdana Sarasvatī |
+| 2.44, 2.53 | समाधि as the mind (2.44) and the Self (2.53); विधीयते "is formed" | Śaṅkara; the sense "absorption" in the footnotes |
+| 2.46 | the well and the flood: all a well serves is served where water floods everywhere, as all the Vedas serve is gained by the knower | Śaṅkara; the other reading in the footnote |
+| 3.41 | प्रजहि "cast off" | Śaṅkara reads प्रजहिहि, "give up" (प्र + √हा); "slay" (प्र + √हन्, as जहि in 3.43) in the footnote |
+| 5.11 | केवलैः "with the senses alone" | the plain sense of केवल with इन्द्रियैः |
+| 5.14 | प्रभुः "the master" | the plain word; Śaṅkara's "the Self" and the reading "God" in the footnote |
+| 5.20 | the second line describes the one of the first | Śaṅkara: the knower of Brahman, established in Brahman, should not rejoice … |
+| 5.26 | अभितः "here and hereafter" | Śaṅkara (ubhayataḥ) |
+| 9.32 | women, vaiśyas and śūdras are named beside "those of sinful birth", not as instances of it | the plain order of the words, and a line about a group of people is never made harsher than the verse (`tools/meanings/style.md` §2); Śaṅkara's reading in the footnote |
+| 13.21 | कार्यकारण "effect and cause" | the text as printed; Śaṅkara explains this reading beside कार्यकरण |
+| 13.31 | ब्रह्म सम्पद्यते "becomes Brahman" | Śaṅkara (brahmaiva bhavati); Monier-Williams sam-√pad "to become" |
+| 14.7 | तृष्णासङ्गसमुद्भवम् "the source of craving and attachment" | Śaṅkara; Monier-Williams gives both senses of samudbhava |
+| 14.20 | birth, death, old age and sorrows, four things | Śaṅkara takes the compound as a dvandva |
+| 16.8 | अपरस्परसम्भूतम् "born of the union of man and woman" | Śaṅkara (with Telang and Besant); the word-by-word reading "not produced one by the other" in the footnote |
+| 18.10 | अकुशल / कुशल "inauspicious / auspicious" action | the dictionary senses; Śaṅkara's sense (action from desire, which binds / obligatory action, which purifies) in the footnote |
+| 18.16 | केवलम् "the pure Self" | Śaṅkara (kevalaṃ śuddham) |
+| 18.28 | नैष्कृतिक "ruinous to others' livelihood" | Śaṅkara (paravṛtticchedanapara); the work's own word entry gives it beside the dictionaries' "dishonest" |
+
