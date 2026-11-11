@@ -2,14 +2,14 @@
 "order": 1,
 "numbers": "verse",
 "m": {
-"aarti.tek": "Om, victory to you, bearer of the Gaṅgā; victory, Hara; victory, lord of Girijā. O Lord of the world, in your grace protect me always.",
-"aarti.pad1": "On Kailāsa, on the mountain peak, in the forest of wish-granting trees, swarms of bees hum in the dense groves of bowers. There, amid the calls of cuckoos, the swans play; and the lovely one, full of joy, unfolds all her arts and dances.",
-"aarti.pad2": "In that lovely, fine place stands a hall built of gems. In its midst, beside Śiva, joyful Gaurī, adorned with ornaments, plays with her own lord; Indra and the other gods serve and bow their heads.",
-"aarti.pad3": "Many wives of the gods dance, joyful at heart; kinnaras sing in the seven notes. Dhinakat thai thai dhinakat, the mṛdaṅga is played; kvaṇ kvaṇ, the lovely one plays the flute sweetly.",
-"aarti.pad4": "Bright anklets ring ruṇ ruṇ on his feet; whirling round and round, Śiva dances tāṃ dhik tāṃ. Tāṃ tāṃ lup cup tāṃ tāṃ, he plays the ḍamaru, and keeping time with thumb and fingers, he dances.",
-"aarti.pad5": "He is white with the lustre of camphor, five-faced; three-eyed, with the moon on his crown and a serpent at his throat. His mass of matted hair is lovely, his forehead bears fire; in his hands he holds the ḍamaru, the trident, the Pināka bow and a human skull.",
-"aarti.pad6": "He makes a garland of skulls, and a serpent is his sacred thread; on his left side is the most lovely form of Girijā. Over his whole lovely body ashes are his ornament: such is the form of the bull-bannered Śiva, which takes away the three afflictions.",
-"aarti.pad7": "Having sounded the conch, he rings the cymbals; Brahmā performs the āratī and recites the verses of the Veda. Holding the most tender lotus feet in the lotus of his heart, and bowing, he beholds Maheśa, the Lord.",
-"aarti.pad8": "Meditating deeply in his heart at the time of āratī, Rāma bows to the Lord of the matted locks. Whoever recites this song thus every day, and whoever hears it with devotion, attains union with Śiva."
+"aarti.tek": ["Om, victory to you, bearer of the Gaṅgā; victory, Hara; victory, lord of Girijā.", "O Lord of the world, in your grace protect me always."],
+"aarti.pad1": ["On Kailāsa, on the mountain peak, in the forest of wish-granting trees,", "swarms of bees hum in the dense groves of bowers.", "There, amid the calls of cuckoos, the swans play;", "and the lovely one, full of joy, unfolds all her arts and dances."],
+"aarti.pad2": ["In that lovely, fine place stands a hall built of gems.", "In its midst, beside Śiva, joyful Gaurī,", "adorned with ornaments, plays with her own lord;", "Indra and the other gods serve and bow their heads."],
+"aarti.pad3": ["Many wives of the gods dance, joyful at heart;", "kinnaras sing in the seven notes.", "Dhinakat thai thai dhinakat, the mṛdaṅga is played;", "kvaṇ kvaṇ, the lovely one plays the flute sweetly."],
+"aarti.pad4": ["Bright anklets ring ruṇ ruṇ on his feet;", "whirling round and round, Śiva dances tāṃ dhik tāṃ.", "Tāṃ tāṃ lup cup tāṃ tāṃ, he plays the ḍamaru,", "and keeping time with thumb and fingers, he dances."],
+"aarti.pad5": ["He is white with the lustre of camphor, five-faced;", "three-eyed, with the moon on his crown and a serpent at his throat.", "His mass of matted hair is lovely, his forehead bears fire;", "in his hands he holds the ḍamaru, the trident, the Pināka bow and a human skull."],
+"aarti.pad6": ["He makes a garland of skulls, and a serpent is his sacred thread;", "on his left side is the most lovely form of Girijā.", "Over his whole lovely body ashes are his ornament:", "such is the form of the bull-bannered Śiva, which takes away the three afflictions."],
+"aarti.pad7": ["Having sounded the conch, he rings the cymbals;", "Brahmā performs the āratī and recites the verses of the Veda.", "Holding the most tender lotus feet in the lotus of his heart,", "and bowing, he beholds Maheśa, the Lord."],
+"aarti.pad8": ["Meditating deeply in his heart at the time of āratī,", "Rāma bows to the Lord of the matted locks.", "Whoever recites this song thus every day,", "and whoever hears it with devotion, attains union with Śiva."]
 }
 }

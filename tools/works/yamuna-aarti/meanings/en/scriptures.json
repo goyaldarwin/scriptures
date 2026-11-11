@@ -2,11 +2,11 @@
 "order": 1,
 "numbers": "verse",
 "m": {
-"aarti.tek": "Om, victory to Mother Yamunā; Hari Om, victory to Mother Yamunā. Whoever bathes in her gains the fruit; she is the giver of joy and sorrow.",
-"aarti.pad1": "The water of Śrī Yamunā is holy; her cool, deep stream flows on. Whoever came to her refuge, she set free.",
-"aarti.pad2": "Whoever rises at dawn, bathes every day and meditates every day, does not suffer the terror of Yama.",
-"aarti.pad3": "In the Kali age your glory has remained unshaken; the four Vedas have told of your great holiness.",
-"aarti.pad4": "Mother, the Lord came to your banks and took his avatāra there; drinking your ever-pure water, he killed Kaṃsa.",
-"aarti.pad5": "Salutations, Mother, remover of fear, bringer of all that is good and auspicious. My mind has grown restless; without you, the Vaitaraṇī lies before me."
+"aarti.tek": ["Om, victory to Mother Yamunā;", "Hari Om, victory to Mother Yamunā.", "Whoever bathes in her gains the fruit;", "she is the giver of joy and sorrow."],
+"aarti.pad1": ["The water of Śrī Yamunā is holy;", "her cool, deep stream flows on.", "Whoever came to her refuge,", "she set free."],
+"aarti.pad2": ["Whoever rises at dawn,", "bathes every day", "", "and meditates every day, does not suffer the terror of Yama."],
+"aarti.pad3": ["In the Kali age your glory", "has remained unshaken;", "", "the four Vedas have told of your great holiness."],
+"aarti.pad4": ["Mother, the Lord came to your banks", "and took his avatāra there;", "drinking your ever-pure water,", "he killed Kaṃsa."],
+"aarti.pad5": ["Salutations, Mother, remover of fear,", "bringer of all that is good and auspicious.", "My mind has grown restless;", "without you, the Vaitaraṇī lies before me."]
 }
 }

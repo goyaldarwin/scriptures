@@ -2,15 +2,15 @@
 "order": 1,
 "numbers": "verse",
 "m": {
-"aarti.tek": "Victory, victory to you, Lord Giridhārī, holder of the mountain; victory, victory to you, Giridhārī. You take away the strength of the demon hosts and do good to cows and brāhmaṇas.",
-"aarti.pad1": "Victory to you, Govinda, treasury of mercy, holder of Mount Govardhana. You bear the flute, you wear the garland of the forest, and you do what is dear to the people of Braj.",
-"aarti.pad2": "You took away the fear of the courtesan, the vulture, Ajāmila and the king of elephants; you remove the distress of the distressed and bring good to the world.",
-"aarti.pad3": "You are the keeper of cows and the lord of the cowherds; you ended Draupadī's sorrow, gave joy to the Śabara's daughter (Śabarī) and delivered Gautama's wife (Ahalyā).",
-"aarti.pad4": "You gladdened your devotee Prahlāda, taking the body of Narasiṃha, the man-lion; you delight the hearts of the people and destroy the sons of Diti.",
-"aarti.pad5": "You protected the lapwing's young and guarded the cat; you did good to the sons of Pāṇḍu and humbled the pride of the Kauravas.",
-"aarti.pad6": "You are Mohana, who stirs the heart of Kāma himself; you play the flute, roam the forest of Vṛndāvana and wander on the banks of the Yamunā.",
-"aarti.pad7": "You delivered Agha, Baka and Bakī (Pūtanā), and Tṛṇāvarta; you humbled the pride of Brahmā and Indra, and gave liberation to Kaṃsa.",
-"aarti.pad8": "Śeṣa, Śiva and Sarasvatī have tired of singing your virtues. Your fair fame spreads far, and you take away your devotees' fear.",
-"aarti.pad9": "Nārāyaṇa, a great sinner, has come to your refuge, remover of sin; he longs for the purifying dust of your feet, stealer of hearts."
+"aarti.tek": ["Victory, victory to you, Lord Giridhārī, holder of the mountain;", "victory, victory to you, Giridhārī.", "You take away the strength of the demon hosts", "and do good to cows and brāhmaṇas."],
+"aarti.pad1": ["Victory to you, Govinda, treasury of mercy,", "holder of Mount Govardhana.", "You bear the flute, you wear the garland of the forest,", "and you do what is dear to the people of Braj."],
+"aarti.pad2": ["You took away the fear of the courtesan, the vulture, Ajāmila", "and the king of elephants;", "you remove the distress of the distressed", "and bring good to the world."],
+"aarti.pad3": ["You are the keeper of cows and the lord of the cowherds;", "you ended Draupadī's sorrow,", "gave joy to the Śabara's daughter (Śabarī)", "and delivered Gautama's wife (Ahalyā)."],
+"aarti.pad4": ["You gladdened your devotee Prahlāda,", "taking the body of Narasiṃha, the man-lion;", "you delight the hearts of the people", "and destroy the sons of Diti."],
+"aarti.pad5": ["You protected the lapwing's young", "and guarded the cat;", "you did good to the sons of Pāṇḍu", "and humbled the pride of the Kauravas."],
+"aarti.pad6": ["You are Mohana, who stirs the heart of Kāma himself;", "you play the flute,", "roam the forest of Vṛndāvana", "and wander on the banks of the Yamunā."],
+"aarti.pad7": ["You delivered Agha, Baka and Bakī (Pūtanā),", "and Tṛṇāvarta;", "you humbled the pride of Brahmā and Indra,", "and gave liberation to Kaṃsa."],
+"aarti.pad8": ["Śeṣa, Śiva and Sarasvatī", "have tired of singing your virtues.", "Your fair fame spreads far,", "and you take away your devotees' fear."],
+"aarti.pad9": ["Nārāyaṇa, a great sinner, has come to your refuge,", "remover of sin;", "he longs for the purifying dust of your feet,", "stealer of hearts."]
 }
 }

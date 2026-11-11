@@ -2,10 +2,10 @@
 "order": 1,
 "numbers": "verse",
 "m": {
-"aarti.tek": "Victory, victory to you, revered Pitarjī Mahārāja. I have come to your refuge; I have come to your refuge, Bābā; I have come to your refuge.",
-"aarti.pad1": "You alone are the protector, you alone the giver, you alone the boatman who ferries us across. I am a fool and know nothing; you alone are the guardian.",
-"aarti.pad2": "You stand at all times, every moment, to guard me. All of us are in your refuge; this is the petition we have offered.",
-"aarti.pad3": "At home and abroad, everywhere, may you alone be the help. When need arises, your name feels a great comfort.",
-"aarti.pad4": "All the devotees, with their families, are in your refuge. May you alone protect everyone; I repeat this again and again."
+"aarti.tek": ["Victory, victory to you, revered Pitarjī Mahārāja.", "I have come to your refuge;", "I have come to your refuge, Bābā;", "I have come to your refuge."],
+"aarti.pad1": ["You alone are the protector, you alone the giver,", "you alone the boatman who ferries us across.", "I am a fool and know nothing;", "you alone are the guardian."],
+"aarti.pad2": ["You stand at all times, every moment,", "to guard me.", "All of us are in your refuge;", "this is the petition we have offered."],
+"aarti.pad3": ["At home and abroad, everywhere,", "may you alone be the help.", "When need arises,", "your name feels a great comfort."],
+"aarti.pad4": ["", "All the devotees, with their families, are in your refuge.", "May you alone protect everyone;", "I repeat this again and again."]
 }
 }

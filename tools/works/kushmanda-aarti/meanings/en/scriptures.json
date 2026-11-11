@@ -2,10 +2,10 @@
 "order": 1,
 "numbers": "verse",
 "m": {
-"aarti.pad1": "Victory to you, Kūṣmāṇḍā, giver of happiness to the world; have mercy on me, great queen. You are Piṅgalā, the wondrous Jvālāmukhī, Mother Śākambharī, simple and innocent.",
-"aarti.pad2": "You have lakhs of names, each one wondrous; many of your devotees are lost in love of you. Your dwelling is on Mount Bhīmā; accept this salutation of mine.",
-"aarti.pad3": "You hear everyone, Jagadambā; you bring happiness, Mother Ambā. I thirst for the sight of you; fulfil my hope.",
-"aarti.pad4": "The Mother has deep tenderness in her heart; why would she not hear our plea? I have made my camp at your door; Mother, remove my trouble.",
-"aarti.pad5": "Bring my tasks to completion; fill my storehouses. Your servant meditates on you alone; your devotee bows his head at your door."
+"aarti.pad1": ["Victory to you, Kūṣmāṇḍā, giver of happiness to the world;", "have mercy on me, great queen.", "You are Piṅgalā, the wondrous Jvālāmukhī,", "Mother Śākambharī, simple and innocent."],
+"aarti.pad2": ["You have lakhs of names, each one wondrous;", "many of your devotees are lost in love of you.", "Your dwelling is on Mount Bhīmā;", "accept this salutation of mine."],
+"aarti.pad3": ["You hear everyone, Jagadambā;", "you bring happiness, Mother Ambā.", "I thirst for the sight of you;", "fulfil my hope."],
+"aarti.pad4": ["The Mother has deep tenderness in her heart;", "why would she not hear our plea?", "I have made my camp at your door;", "Mother, remove my trouble."],
+"aarti.pad5": ["Bring my tasks to completion;", "fill my storehouses.", "Your servant meditates on you alone;", "your devotee bows his head at your door."]
 }
 }

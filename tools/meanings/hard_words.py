@@ -69,7 +69,7 @@ def meanings():
         work, lang = f.split('/')[-4], f.split('/')[-2]
         if lang not in WORD: continue
         for iid, v in json.load(open(f, encoding='utf-8')).get('m', {}).items():
-            t = v[0] if isinstance(v, list) else v
+            t = ' '.join(x for x in v if isinstance(x, str)) if isinstance(v, list) else v   # a meaning line by line: every piece
             if isinstance(t, str) and (lang, t) not in seen: seen.add((lang, t)); yield work, lang, iid, t
 
 def hard_keys():

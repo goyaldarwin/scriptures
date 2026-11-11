@@ -2,13 +2,13 @@
 "order": 1,
 "numbers": "verse",
 "m": {
-"aarti.tek": "Om, victory to you, bearer of the axe; Lord, victory to you, bearer of the axe. Gods, men and sages serve you, the incarnation of Viṣṇu, the Lord of Śrī.",
-"aarti.pad1": "You are the son of Jamadagni, a lion among men, born of mother Reṇukā. You are radiant as the sun, a descendant of Bhṛgu; your fame has spread over the three worlds.",
-"aarti.pad2": "On your shoulder is the sacred thread, around your neck a rosary of rudrākṣa; wooden sandals grace your feet, and the three-lined tilaka, the tripuṇḍra, marks your forehead.",
-"aarti.pad3": "Your thick hair is a coppery dark, and matted locks are bound up on your head. To the good you are a season full of sweetness, to the wicked a storm that crushes them.",
-"aarti.pad4": "The radiance of the sun shines on your face, and your eyes are red. You are the protector of the lowly and helpless, of cows and brahmins, day and night.",
-"aarti.pad5": "The excellent axe shines in your hand; you know the Vedas and the āgamas. On your shoulder are Viṣṇu’s bow and arrows; you are the protector of the brahmin line.",
-"aarti.pad6": "You are my mother, father, master, friend and companion. Uphold my honour; I lie at your door.",
-"aarti.pad7": "Whoever sings the āratī of the ageless, deathless Śrī Paraśurāma — Pūrṇendu says it with Śiva as his witness — gains happiness and wealth."
+"aarti.tek": ["Om, victory to you, bearer of the axe;", "Lord, victory to you, bearer of the axe.", "Gods, men and sages serve you,", "the incarnation of Viṣṇu, the Lord of Śrī."],
+"aarti.pad1": ["You are the son of Jamadagni, a lion among men,", "born of mother Reṇukā.", "You are radiant as the sun, a descendant of Bhṛgu;", "your fame has spread over the three worlds."],
+"aarti.pad2": ["On your shoulder is the sacred thread,", "around your neck a rosary of rudrākṣa;", "wooden sandals grace your feet,", "and the three-lined tilaka, the tripuṇḍra, marks your forehead."],
+"aarti.pad3": ["Your thick hair is a coppery dark,", "and matted locks are bound up on your head.", "To the good you are a season full of sweetness,", "to the wicked a storm that crushes them."],
+"aarti.pad4": ["The radiance of the sun shines on your face,", "and your eyes are red.", "You are the protector of the lowly and helpless, of cows and brahmins,", "day and night."],
+"aarti.pad5": ["The excellent axe shines in your hand;", "you know the Vedas and the āgamas.", "On your shoulder are Viṣṇu’s bow and arrows;", "you are the protector of the brahmin line."],
+"aarti.pad6": ["You are my mother, father, master,", "friend and companion.", "Uphold my honour;", "I lie at your door."],
+"aarti.pad7": ["", "Whoever sings the āratī of the ageless, deathless Śrī Paraśurāma —", "Pūrṇendu says it with Śiva as his witness —", "gains happiness and wealth."]
 }
 }

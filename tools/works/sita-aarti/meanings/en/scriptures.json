@@ -2,9 +2,9 @@
 "order": 1,
 "numbers": "verse",
 "m": {
-"aarti.tek": "The āratī of Śrī Janaka's darling daughter, of Sītā, beloved of Śrī Rāma.",
-"aarti.pad1": "Of the mother of the world, who unfolds the world, eternal and true, who dwells in Sāketa, supremely compassionate, uplifter of the lowly: of Mother Sītā, who does good to her devotees.",
-"aarti.pad2": "Of the crest-jewel of faithful wives, who works for her husband's good, who wandered from forest to forest to serve her husband, who for her husband's good accepted separation from him: of her who took the form of renunciation and dharma.",
-"aarti.pad3": "Of her whose spotless fame has spread through all the worlds, whose name, once spoken, brings purity of mind, at whose remembrance grievous troubles are cut away: of her who takes away the fear of those who come for refuge."
+"aarti.tek": ["The āratī of Śrī Janaka's darling daughter,", "of Sītā, beloved of Śrī Rāma."],
+"aarti.pad1": ["Of the mother of the world, who unfolds the world,", "eternal and true, who dwells in Sāketa,", "supremely compassionate, uplifter of the lowly:", "of Mother Sītā, who does good to her devotees."],
+"aarti.pad2": ["Of the crest-jewel of faithful wives, who works for her husband's good,", "who wandered from forest to forest to serve her husband,", "who for her husband's good accepted separation from him:", "of her who took the form of renunciation and dharma."],
+"aarti.pad3": ["Of her whose spotless fame has spread through all the worlds,", "whose name, once spoken, brings purity of mind,", "at whose remembrance grievous troubles are cut away:", "of her who takes away the fear of those who come for refuge."]
 }
 }

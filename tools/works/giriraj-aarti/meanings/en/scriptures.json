@@ -2,13 +2,13 @@
 "order": 1,
 "numbers": "verse",
 "m": {
-"aarti.tek": "Om, victory, victory, victory to you, Girirāja, king of mountains; Master, victory, victory, victory to you, Girirāja. In times of trouble you keep the honour of your devotees.",
-"aarti.pad1": "Indra and all the gods together meditate on you. Seers and sages sing your glory, and they cross the ocean of worldly existence.",
-"aarti.pad2": "Your beautiful form shines as the dark stone. As the devotees gaze again and again at the forests and groves, their hearts are charmed.",
-"aarti.pad3": "In your midst is Mānasī Gaṅgā, who takes away the impurities of the Kali age. Those who light lamps at her cross the Vaitaraṇī, the river of the dead.",
-"aarti.pad4": "The Navala and Apsarā pools are lovely, purifying and joy-giving. On the left is Rādhā Kuṇḍa, where people bathe; it takes away even great sins.",
-"aarti.pad5": "You alone are the giver of liberation and the master of the Kali age. Lord, you are the protector of the humble and the indweller of all.",
-"aarti.pad6": "Great mountain, Giridhārī, we are in your refuge. Son of Devakī, who do good to your devotees, have mercy.",
-"aarti.pad7": "Those who walk the parikramā, worship and recite, and sing the āratī every day, are not born again."
+"aarti.tek": ["Om, victory, victory, victory to you, Girirāja, king of mountains; Master, victory, victory, victory to you, Girirāja.", "In times of trouble you keep the honour of your devotees."],
+"aarti.pad1": ["Indra and all the gods together meditate on you.", "Seers and sages sing your glory, and they cross the ocean of worldly existence."],
+"aarti.pad2": ["Your beautiful form shines as the dark stone.", "As the devotees gaze again and again at the forests and groves, their hearts are charmed."],
+"aarti.pad3": ["In your midst is Mānasī Gaṅgā, who takes away the impurities of the Kali age.", "Those who light lamps at her cross the Vaitaraṇī, the river of the dead."],
+"aarti.pad4": ["The Navala and Apsarā pools are lovely, purifying and joy-giving.", "On the left is Rādhā Kuṇḍa, where people bathe; it takes away even great sins."],
+"aarti.pad5": ["You alone are the giver of liberation and the master of the Kali age.", "Lord, you are the protector of the humble and the indweller of all."],
+"aarti.pad6": ["Great mountain, Giridhārī, we are in your refuge.", "Son of Devakī, who do good to your devotees, have mercy."],
+"aarti.pad7": ["Those who walk the parikramā, worship and recite,", "and sing the āratī every day, are not born again."]
 }
 }

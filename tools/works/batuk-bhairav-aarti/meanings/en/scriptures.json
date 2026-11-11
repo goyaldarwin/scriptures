@@ -2,12 +2,12 @@
 "order": 1,
 "numbers": "verse",
 "m": {
-"aarti.tek": "Victory to you, Bhairava Deva; Lord, victory to you, Bhairava Deva. Gods, men and sages all serve you, Lord.",
-"aarti.pad1": "You deliver from sin and carry across the ocean of sorrow; you bring happiness to devotees and bear a fearsome form.",
-"aarti.pad2": "You are seated on your mount, the dog, and hold the trident in your hand. Your glory is boundless; victory, victory to you, remover of fear.",
-"aarti.pad3": "Without you, the service of Śiva bears no fruit. The sight of the four-wicked lamp takes away sorrow.",
-"aarti.pad4": "Before you are offerings crackled in oil and mixed with curd, and a string of praises to you. Have mercy, Bhairava; do not delay.",
-"aarti.pad5": "Ankle bells ring on his feet and he beats the ḍamaru; Baṭukanātha, taking the form of a child, gladdens people’s hearts.",
-"aarti.pad6": "Whoever sings the āratī of Baṭukanātha — says Dharaṇīdhara — gains the fruit his heart desires."
+"aarti.tek": ["Victory to you, Bhairava Deva; Lord, victory to you, Bhairava Deva.", "Gods, men and sages all serve you, Lord."],
+"aarti.pad1": ["You deliver from sin and carry across the ocean of sorrow;", "you bring happiness to devotees and bear a fearsome form."],
+"aarti.pad2": ["You are seated on your mount, the dog, and hold the trident in your hand.", "Your glory is boundless; victory, victory to you, remover of fear."],
+"aarti.pad3": ["Without you, the service of Śiva bears no fruit.", "The sight of the four-wicked lamp takes away sorrow."],
+"aarti.pad4": ["Before you are offerings crackled in oil and mixed with curd, and a string of praises to you.", "Have mercy, Bhairava; do not delay."],
+"aarti.pad5": ["Ankle bells ring on his feet and he beats the ḍamaru;", "Baṭukanātha, taking the form of a child, gladdens people’s hearts."],
+"aarti.pad6": ["Whoever sings the āratī of Baṭukanātha —", "says Dharaṇīdhara — gains the fruit his heart desires."]
 }
 }

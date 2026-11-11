@@ -2,16 +2,16 @@
 "order": 1,
 "numbers": "verse",
 "m": {
-"aarti.tek": "Victory to you, Mother Śītalā; victory to you, Mother Śītalā. Primal light, great queen, you give every fruit.",
-"aarti.pad1": "You shine on a jewelled throne, and a white canopy looks lovely; Ṛddhi and Siddhi together wave chowries, and your glittering beauty spreads over all.",
-"aarti.pad2": "Viṣṇu stands serving you, and Śiva and Brahmā serve you; the Vedas and Purāṇas describe you, but cannot reach your end.",
-"aarti.pad3": "Indra plays the mṛdaṅga, the Moon has the vīṇā in his hand; the Sun beats time, and the sage Nārada sings.",
-"aarti.pad4": "Bells, conches and the shehnai sound, pleasing to the mind; devotees perform the āratī and rejoice as they gaze and gaze on you.",
-"aarti.pad5": "You are Brahman in form, the giver of boons; you alone know the three times. You give happiness to your devotees, and are their mother, father and brother.",
-"aarti.pad6": "Whoever fixes his mind in meditation gains love and strength; he attains every wish and crosses the ocean of worldly existence.",
-"aarti.pad7": "Whoever, afflicted by disease, comes to your refuge: one with leprosy gains a clean body, and one who is blind gains sight.",
-"aarti.pad8": "The childless woman gains a son, and poverty is cut away; whoever does not worship her beats his head and repents.",
-"aarti.pad9": "You alone bring coolness to people; you alone are the protector of the world. Creation, the maiden Bālā, destruction: you are the mother of all.",
-"aarti.pad10": "Mother, your servant Nārāyaṇa prays with joined hands: give me devotion to you, Mother, and nothing else."
+"aarti.tek": ["Victory to you, Mother Śītalā; victory to you, Mother Śītalā.", "Primal light, great queen, you give every fruit."],
+"aarti.pad1": ["You shine on a jewelled throne, and a white canopy looks lovely;", "Ṛddhi and Siddhi together wave chowries, and your glittering beauty spreads over all."],
+"aarti.pad2": ["Viṣṇu stands serving you, and Śiva and Brahmā serve you;", "the Vedas and Purāṇas describe you, but cannot reach your end."],
+"aarti.pad3": ["Indra plays the mṛdaṅga, the Moon has the vīṇā in his hand;", "the Sun beats time, and the sage Nārada sings."],
+"aarti.pad4": ["Bells, conches and the shehnai sound, pleasing to the mind;", "devotees perform the āratī and rejoice as they gaze and gaze on you."],
+"aarti.pad5": ["You are Brahman in form, the giver of boons; you alone know the three times.", "You give happiness to your devotees, and are their mother, father and brother."],
+"aarti.pad6": ["Whoever fixes his mind in meditation gains love and strength;", "he attains every wish and crosses the ocean of worldly existence."],
+"aarti.pad7": ["Whoever, afflicted by disease, comes to your refuge:", "one with leprosy gains a clean body, and one who is blind gains sight."],
+"aarti.pad8": ["The childless woman gains a son, and poverty is cut away;", "whoever does not worship her beats his head and repents."],
+"aarti.pad9": ["You alone bring coolness to people; you alone are the protector of the world.", "Creation, the maiden Bālā, destruction: you are the mother of all."],
+"aarti.pad10": ["Mother, your servant Nārāyaṇa prays with joined hands:", "give me devotion to you, Mother, and nothing else."]
 }
 }

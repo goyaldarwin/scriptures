@@ -2,10 +2,10 @@
 "order": 1,
 "numbers": "verse",
 "m": {
-"aarti.tek": "Listen, my Goddess who dwells on the mountain: no one has found your limit.",
-"aarti.pad1": "Betel leaf, areca nut, a flag and a coconut have been brought and offered to you.",
-"aarti.pad2": "A red bodice graces your body, and a saffron tilaka has been applied. Akbar went to you barefoot and offered a golden canopy.",
-"aarti.pad3": "A temple was built for you on the high mountains, and a town was founded below. Your reign has stood through the Satya, Tretā and Dvāpara ages, and in the Kali age it is greater by a quarter.",
-"aarti.pad4": "Incense, a lamp, food offerings, the āratī and mohanbhog, a sweet, have been offered. The devotee Dhyānū sings the Mother's praises; he has gained the fruit his heart desired."
+"aarti.tek": ["Listen, my Goddess who dwells on the mountain:", "no one has found your limit."],
+"aarti.pad1": ["Betel leaf, areca nut, a flag and a coconut", "have been brought and offered to you."],
+"aarti.pad2": ["A red bodice graces your body,", "and a saffron tilaka has been applied.", "Akbar went to you barefoot", "and offered a golden canopy."],
+"aarti.pad3": ["A temple was built for you on the high mountains,", "and a town was founded below.", "Your reign has stood through the Satya, Tretā and Dvāpara ages,", "and in the Kali age it is greater by a quarter."],
+"aarti.pad4": ["Incense, a lamp, food offerings, the āratī", "and mohanbhog, a sweet, have been offered.", "The devotee Dhyānū sings the Mother's praises;", "he has gained the fruit his heart desired."]
 }
 }
