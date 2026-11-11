@@ -35,6 +35,7 @@ The e-book's text often writes a conjunct ending in द्ध, द्भ, द्
 | 3.21.46 | तद्व + an empty glyph + ्याहृतामृत… | तद्व्याहृतामृत… | the e-book's empty glyph (.notdef) inside व्या |
 | 5.9.3 | कर्मबन्धsविध्वंसन… | कर्मबन्धविध्वंसन… | a stray Latin s inside the compound |
 | 7.7.4 | 1तेषामतिबलोद्योगं | तेषामतिबलोद्योगं | a stray digit before the verse |
+| 2.5.12 | तस्मै नमो भगवत़े | तस्मै नमो भगवते | a nukta under त, which no Sanskrit letter takes; the Hindi reads भगवान् वासुदेवकी … वन्दना |
 | 9.20.10 | प्रहसञ्शलक्ष्णया | प्रहसञ्श्लक्ष्णया | श्ल drawn as श and ल; the metre needs श्ल |
 | 10.80.21 | अग्रहीच्छिसा | अग्रहीच्छिरसा | र dropped (शिरसा); the metre needs it |
 | 10.42.7 | पद्भयामाक्रम्य … द्वयंगुल्यु… | पद्भ्यामाक्रम्य … द्व्यङ्गुल्यु… | two dropped ्य in one line (the line is two syllables long) |

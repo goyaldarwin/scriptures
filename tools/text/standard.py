@@ -21,7 +21,8 @@ tools/site/library.py refuses an item that does not already equal what `apply` m
    A daṇḍa inside or at the end of a line is ",", a line ending in ॥ ends with "." (a line that opens with ॥ also
    closes with it), and a verse number is " ॥N॥" (Latin digits; Gurbani's chain ॥੮॥੧੧॥ stays a chain, ॥8॥11॥).
    Gurmukhi is transliterated the same way, letter for letter (`gurmukhi`: each Gurmukhi letter is its Devanagari twin;
-   tippi and bindi ṁ, addak doubles the next consonant, yakash y, ੴ ik oaṅkār).
+   tippi and bindi ṁ, addak doubles the next consonant, yakash y, ੴ ik oaṅkār; the Granth's two vowel signs on one
+   letter, hora and aunkar, are its metrical short o, ŏ: ਗੋੁਪਾਲ gŏpāla).
 """
 import re, unicodedata
 
@@ -121,10 +122,17 @@ def iso_word(w):
             else: out.append(_C[ch]); i += 1
             nx = w[i:i + 1]
             if nx == '्': i += 1; continue
-            if nx in _M: out.append(_M[nx]); i += 1; continue
+            if nx in _M:
+                out.append(_M[nx]); i += 1
+                # a second vowel sign on the letter, as only the Granth writes them (Unicode L2/05-344): hora with aunkar is
+                # the metre's short o (ਗੋੁਪਾਲ gŏpāla, ਓੁਹੀ ŏhī); any other pair keeps both vowels, in order (ਮੵਾਿਨੇ myāine)
+                while w[i:i + 1] in _M:
+                    out[-1] = 'ŏ' if (out[-1], w[i]) == ('o', 'ु') else out[-1] + _M[w[i]]; i += 1
+                continue
             out.append('a'); continue
         if ch in _V:   # इ उ after an a are ï ü, so that a-i, a-u never read as ai, au (ऐ, औ)
             out.append({'i': 'ï', 'u': 'ü'}.get(_V[ch], _V[ch]) if out and out[-1].endswith('a') and _V[ch] in ('i', 'u') else _V[ch])
+            if _V[ch] == 'o' and w[i + 1:i + 2] == 'ु': out[-1] = 'ŏ'; i += 1   # the Granth's ਓੁ, as ੋੁ above
         elif ch in _SIGN: out.append(_SIGN[ch])
         elif ch in DEV_DIG: out.append(str(DEV_DIG.index(ch)))
         else: out.append(ch)
@@ -232,6 +240,8 @@ CASES = [
     (iso_line, ('गउ भइ गौ भै ॥',), 'gaü bhaï gau bhai.'),
     (lambda l: iso_line(gurmukhi(l)), ('ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥',), 'ik oaṅkār satigura prasādi.'),
     (lambda l: iso_line(gurmukhi(l)), ('ਨਾਨਕ ਸੱਚ ਸਿੰਮ੍ਰਿਤਿ ਸੁਧਾਖੵਰ ॥੮॥੧੧॥',), 'nānaka sacca siṁmriti sudhākhyara ॥8॥11॥'),
+    (lambda l: iso_line(gurmukhi(l)), ('ਟੂਟੀ ਗਾਢਨਹਾਰ ਗੋੁਪਾਲ ॥',), 'ṭūṭī gāḍhanahāra gŏpāla.'),   # two vowel signs on one letter
+    (lambda l: iso_line(gurmukhi(l)), ('ਓੁਹੀ ਪੀਓ ਮੵਾਿਨੇ ॥',), 'ŏhī pīo myāine.'),
     (fold, ('गङ्गा',), 'गंगा'), (fold, ('इदम्',), 'इदं'), (fold, ('अग्ंशुः',), 'अंशुः'), (fold, ('अन्न',), 'अन्न'),
 ]
 

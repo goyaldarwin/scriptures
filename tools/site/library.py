@@ -65,6 +65,8 @@ def _texts(v):
 
 NAMES = json.load(open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'text', 'names.json'), encoding='utf-8'))
 _FOLDED = {}
+TR_CHARS = set(open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'fonts', 'gentium-tr.chars'), encoding='utf-8').read().strip('\n'))
+BROKEN = re.compile('[\u093e-\u094c\u0962\u0963][\u093e-\u094c\u0962\u0963]|(?<![कखगजडढफयरलनळ])\u093c')
 SCRIPT = {'Deva': r'[\u0900-\u0963\u0966-\u097F\uA8E0-\uA8FF]', 'Guru': r'[\u0A00-\u0A7F]', 'Latn': r'[A-Za-z]'}   # a script's letters (the daṇḍas । ॥ are shared)
 
 def _folded(D, lang):
@@ -190,6 +192,13 @@ def check_work(lib, leaf, LANGS):
     std = standard.apply(json.loads(json.dumps(items)), w['lang'], standard.yajur(path))
     bad = [a['id'] for a, b in zip(items, std) if a['v'] != b['v'] or a.get('t') != b.get('t')]
     _need(not bad, f"{name}: {len(bad)} items are not written by the standard (export through jsonio.dump_library): {bad[:5]}")
+    # every letter and mark of a transliteration is Latin and in its font (tools/fonts/gentium-tr.chars): an Indic sign
+    # left in it is a letter the transliteration could not read, and a mark the font lacks is drawn apart from its vowel
+    bad = sorted({ch for x in items for ch in ''.join(x.get('t') or []) if ch not in TR_CHARS and ch != '॥'})
+    _need(not bad, f"{name}: transliterations use characters the transliteration's font lacks or that are not Latin: {' '.join(f'{c} U+{ord(c):04X}' for c in bad[:8])} (an Indic letter: fix tools/text/standard.py; a new mark: run tools/fonts/subset_gentium.py)")
+    # a broken letter: two vowel signs on one Devanagari letter, or a nukta on a letter that takes none (a slip of the source)
+    bad = [x['id'] for x in items if any(BROKEN.search(l) for l in x.get('v', []))] + [t['id'] for t in w.get('topics', []) if BROKEN.search(t.get('hi', ''))]
+    _need(not bad, f"{name}: verses or headings with a broken letter (two vowel signs on one letter, or a nukta that no letter takes): {bad[:5]}")
     for f in [wp] + glob.glob(os.path.join(lib, path, 'meanings', '**', '*.json'), recursive=True):
         _need('।।' not in open(f, encoding='utf-8').read(), f"{os.path.relpath(f, lib)}: two daṇḍas ।। where the standard writes ॥")
     for x in items:

@@ -31,7 +31,8 @@ def gur2dev(s):
         elif c == 'ੜ': out.append('ड़')
         elif 0x0A00 <= o <= 0x0A7F: out.append(chr(o - 0x100))
         else: out.append(c)
-    return ''.join(out)
+    # Devanagari writes one vowel sign on a letter: of the Granth's two (ਗੋੁਪਾਲ, the metre's short o), the first
+    return re.sub('([\u093e-\u094c])[\u093e-\u094c]+', r'\1', ''.join(out))
 
 
 # Two topics in each Ashtapadi: its Salok and its eight pauris, each named by its first line — the way a passage
