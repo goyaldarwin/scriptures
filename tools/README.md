@@ -34,7 +34,7 @@ tools/
     versenum.py                    the verse number at the end of each of our meanings
     sanskrit_dict.py               Monier-Williams and Apte look-ups
   store/                         the store apps (docs/APPS.md): icons, screenshots, listing check
-  fonts/                         Noto Serif Devanagari and Gurmukhi, Tiro Devanagari Sanskrit (svaras), Literata, Gentium (transliteration subset)
+  fonts/                         Noto Serif Devanagari and Gurmukhi, Tiro Devanagari Sanskrit (svaras), Literata, Gentium Book Plus (the transliteration's letters only, `subset_gentium.py`; OFL, `gentium-LICENSE.txt`)
   jsonio.py                      writes library files: shared ones one entry per line; a work's through the standard
   text/standard.py               the writing standard for verses (PLAYBOOK §3): ॥, Pāṇini's spelling for Sanskrit, ISO 15919
   text/cite.py                   a verse's number as cited (work.json → cite): the one source of every number the app shows or finds
