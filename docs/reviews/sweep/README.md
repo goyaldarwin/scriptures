@@ -32,6 +32,8 @@
 
 - **C, speed** (branch `sweep/speed`). The UX test's shard 0 ran only the checks of the whole app (654 s) while shards 1–3 shared the works (1,350–1,580 s); it now takes a share of the works after its own checks: 1,623 s → 1,347 s for a full `check.py` here (−17%). The figures are in `tools/site/README.md`; CLAUDE.md and HOW-TO said "about 5 minutes".
 
+- **A4, the style's Hindi spellings** (branch `sweep/hindi-style`). `style.md` writes लिये, गये, किये, दिये; our Hindi meanings had लिए 47 times, गई 15, गए, दिए and इसलिए, in the Śrī Rudram, the Dhūpa Āratī and two chālīsās: now the style's (and the rule names गयी and इसलिये too). Not taken: three गई in the Sundarakāṇḍa's meanings, which the owner approved as they are (PLAYBOOK §4).
+
 ## Open (next sessions)
 
 - **A5, the Śiva Purāṇa's words that keep their own gloss** (`word_fixes.json` → `own`, 616): with the 25 shared entries made general, the rest of those shared entries are to be read against the Śiva Purāṇa's verses before it takes them (its own glosses are English only; the shared entries give Hindi, root and grammar too).

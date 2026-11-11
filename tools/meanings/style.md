@@ -29,7 +29,7 @@ Only after the draft, open the published meanings (Gita Press; Growse's 1883 tra
 
 ## 4. Hindi
 - Natural modern Hindi in our house style (as in the owner-approved Sundarakāṇḍa: the `sundar.` entries of `tools/works/manas/meanings/hi/scriptures.json`, the same as `tools/works/sundarkand/meanings/hi/scriptures.json`; Sukhmani, Rudram, Īśa).
-- **Postpositions joined to the noun:** श्रीरामजीको, सीताजीसे, हनुमान्‌जीने, समुद्रके; pronouns too (उसको, उनके). Spellings of this style: लिये, गये, किये, दिये.
+- **Postpositions joined to the noun:** श्रीरामजीको, सीताजीसे, हनुमान्‌जीने, समुद्रके; pronouns too (उसको, उनके). Spellings of this style: लिये, इसलिये, गये, गयी, किये, दिये (never लिए, गए, गई, किए, दिए); हुए as Hindi writes it.
 - **Honorific plural** for the Lord, Sītā, Lakṣmaṇa, Hanumān, sages, elders and anyone the speaker honours: वे, उन्होंने, कहते हैं; "आप" when they are addressed by a devotee. The Lord addresses others, Hanumān included, with तुम (the owner's choice; Gita Press uses तू).
 - **Standard Hindi spelling for names** (विभीषण not बिभीषन, लक्ष्मण not लछिमन, जाम्बवान्‌ not जामवंत; the monkey king is बालि / Vāli, as the verse spells him, kept apart from बलि / Bali, the king Vāmana bound), anusvāra rather than a half-nasal (लंका, संत), ZWNJ in हनुमान्‌जी.
 - Punctuation: । at the end of a sentence; ! after an address or exclamation; — before speech after "कहा"; ; and , as in prose.
