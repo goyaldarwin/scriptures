@@ -36,3 +36,5 @@ From the history of `scriptures` (`git log`: every "fix", "the owner:" and owner
 | Our English wrote ṁ (the transliteration's letter) in some works and ṃ in others, so a hard entry keyed one way left the other un-underlined (hrīṃ, Narasiṃha, Kaṃsa) | style §5 IAST: ṃ | `library.py` (ṁ in our English or `en.json`) |
 | The sacred syllable written Om and Oṃ in the same uses | style §5: Om | `library.py` (Oṃ in our English) |
 | A source copy's stray character kept in a verse (@नाम) | §2 correct a clear slip | none: the Unicode scan (sweep §A2) is run by hand |
+| A draft's gloss kept its doubt ("text uncertain", "prob. for …") in the data, and a meaning followed the doubt instead of the book (7.2.35.25 "beyond Sadāśiva" for not beyond) | §2 decide; fix, don't annotate | `library.py` (`DOUBT`: in our meanings, the shared dictionaries and every work's glossary) |
+| A work's glossary file drifted from its generator (words.py reads scriptures-data, so regen_check cannot run it) | §3 change data in its generator | none |

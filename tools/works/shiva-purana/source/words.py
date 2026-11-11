@@ -12,7 +12,11 @@ and a reader taps the word as printed, so:
   3. a word's senses across the work are gathered: the same gloss in another case is one sense (the form used most
      is kept), a gloss met once where the word has a sense met many times is left out (an alignment slip), and the
      senses that remain are joined with " / ", the most used first, as every dictionary of the library lists senses;
-  4. a word the shared dictionary (library/glossary/sa.json) already has is left to it.
+  4. a word the shared dictionary (library/glossary/sa.json) already has is left to it, unless word_fixes.json → "own"
+     keeps the work's gloss (a shared entry that carries another work's reading);
+  5. a sense settled by hand replaces the gathered one: word_fixes.json → "words" {word as printed: {"en", "why"}}, where a
+     draft's gloss doubted the text or its sense (reconciliation.md, "Glosses settled"); a fix for a word no verse prints
+     stops the script.
 The entries are English only (`work.json` → "words": "partial"; Hindi, root and grammar are not written yet).
 """
 import json, re, sys, os, difflib, unicodedata, collections
@@ -75,15 +79,21 @@ def main(drafts):
             stat['ok' if ok else 'not used'] += 1
             if ok: senses[t]['; '.join(re.sub(r'\s+', ' ', p['meaning']).strip().rstrip('.') for p in parts)] += 1
     shared = {standard.fold(k) for k in json.load(open(os.path.join(ROOT, 'library', 'glossary', 'sa.json'), encoding='utf-8'))}
+    KEEP = set(json.load(open(os.path.join(HERE, 'word_fixes.json'), encoding='utf-8')).get('own', []))
     G = {}
     for w, C in senses.items():
-        if standard.fold(w) in shared: stat['left to the shared dictionary'] += 1; continue
+        if standard.fold(w) in shared and w not in KEEP: stat['left to the shared dictionary'] += 1; continue
         one = collections.defaultdict(collections.Counter)            # one sense in any case: the form used most
         for g, n in C.items(): one[g.lower()][g] += n
         S = sorted(((sum(c.values()), c.most_common(1)[0][0]) for c in one.values()), reverse=True)
         top = S[0][0]
         S = [g for n, g in S if not (n == 1 and top >= 5)][:4]          # a lone gloss beside a common one: a slip
         G[w] = {'en': ' / '.join(S)}
+    F = json.load(open(os.path.join(HERE, 'word_fixes.json'), encoding='utf-8'))['words']
+    printed = {t for x in T.values() for t in tokens(x['v'])}
+    stale = [w for w in F if w not in printed]
+    if stale: raise SystemExit(f'word_fixes.json: words no verse prints: {stale}')
+    for w, f in F.items(): G[w] = {'en': f['en']}; stat['settled by hand'] += 1
     os.makedirs(os.path.join(HERE, '..', 'glossary'), exist_ok=True)
     jsonio.dump_glossary(os.path.join(HERE, '..', 'glossary', 'sa.json'), G)
     print(f"{len(G)} words; {dict(stat)}")

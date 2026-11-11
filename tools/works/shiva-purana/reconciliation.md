@@ -25,6 +25,22 @@ The base is the owner's copy of sanskritdocuments.org's text, which follows Gita
 | 2.2.34.22 | धिक् जन्म तव दक्षाद्य महामूढोऽसि पापधीःस् | धिग् जन्म तव दक्षाद्य महामूढोऽसि पापधीः | as the book prints it (scan p. 460): a stray स्, and धिक् not assimilated before ज |
 | 2.5.45.54 | एतद्वचस्तद्विधसोऽपि | एतद्वचस्तद्विघसोऽपि | the demon is Vighasa (2.5.46), as the book prints it here too (scan p. 1010) |
 | 3.3.28 | मुने ।` | मुने । | a stray backtick |
+| 2.5.37.23 | तद्दृष्ट्या | तद्वृष्ट्या | as the book prints it (scan p. 968); its Hindi: उस वृष्टिसे |
+| 2.3.39.9 | सामरस्तवां | सामरस्त्वां | as the book prints it (scan p. 657): सामरः त्वाम्, the Lord with the gods remembered you; its Hindi: देवताओंके सहित … आपका स्मरण किया |
+| 2.5.59.42 | हिकिं … श्रोतुमिच्छिसि | हि किं … श्रोतुमिच्छसि | as the book prints it (scan p. 1072): हि किं, two words, and इच्छसि (इच्छिसि is not a form) |
+| 4.13.42 | घृतस्नानं तश्चक्रे | घृतस्नानं ततश्चक्रे | तश्चक्रे is not a word and leaves the pāda a syllable short; ततः, as the book's Hindi has it: इसके बाद … घृतसे स्नान कराकर |
+| 7.1.11.11 | तृणवक्त्रीणि | तृणवत्त्रीणि | तृणवक्त्रीणि is not a word; तृणवत् त्रीणि, the book's Hindi: तीनों लोकोंको तृणके समान |
+| 7.2.2.34 | सृजते त्रसते | सृजते ग्रसते | त्रसते (trembles) has no place beside सृजते; ग्रसते, devours, as the book's Hindi has it: सर्जन और संहार |
+| 7.2.15.70 | पततीँल्लब्धवती | पतीँल्लब्धवती | पततीँल् is not a word and makes the pāda nine syllables; पतीन् (husbands), as the sense and the metre need |
+| 3.15.61 | पश्चाग्नि… | पञ्चाग्नि… | पश्चाग्नि is not a word; पञ्चाग्नि, the book's Hindi: पंचाग्नि तापनेवाले |
+| 7.1.1.37 | पुनर्देदान् | पुनर्वेदान् | देदान् is not a word; वेदान्, as the half before it (पुनर्वेदांश्चतुर्द्धा) and the book's Hindi: वेदोंका संक्षेपण करनेके अनन्तर |
+| 7.2.1.24 | युत्रमात्मनः | पुत्रमात्मनः | युत्रम् is not a word; पुत्रम्, the book's Hindi: अपने लिये एक पुत्र |
+| 7.2.3.14 | रमनायाश्च | रसनायाश्च | रमनायाः is not a word; रसनायाः (the tongue), the book's Hindi: रसना, पायु, रस और जल |
+| 7.2.21.32 | अवक्रमाय तं | अवक्रमायतं | a word split wrongly: अवक्रम् आयतम्, straight and oblong, the book's Hindi: टेढ़ा-मेढ़ा न हो तथा आयताकार |
+| 2.3.28.24 | वेभ्यस्ते विनिर्गताः | वेदेभ्यो ये विनिर्गताः | as the book prints it (scan p. 613): वेदेभ्यो ये; its Hindi: वेद एवं देवतासे विमुख |
+| 2.3.32.1 | शोकेनसाधुनयना | शोकेनासाधुनयना | as the book prints it (scan p. 627): a dropped ा |
+| 3.37.59 | दृष्टहन्ता | दुष्टहन्ता | दृष्टहन्ता (slayer of the seen) has no sense here; दुष्ट, the book's Hindi: दुष्टोंके विनाशक |
+| 5.11.24 | अन्त एव | अत एव | अन्त एव (at the end only) has no sense here; अत एव, the book's Hindi: अतः अन्नदान करनेमें महापुण्य |
 | 1.20, closing words | …वर्णनं @नाम … | …वर्णनं नाम … | a stray @, not a letter (`corrections.json` → `colophon`) |
 | 4.17.26 | बहुश; | बहुशः | a semicolon typed for the visarga |
 | 6.14.18 | … प्रणवे नव वेष्टयेत् । त-व | … प्रणवे नव वेष्टयेत् । | "त-व" is an editor's mark of the copy, not text; प्रणवे नव is wisdomlib.org's reading too (6.14.18) |
@@ -48,3 +64,8 @@ Read from the owner's scans of Gita Press code 2223 (the Māhātmya to 2.5.59) a
 | Verse marks | A range is written with a hyphen (॥ ३-५ ॥), as in the Bhāgavata's Hindi, where Kalyan prints a long dash in some; a half verse as ½. |
 | Proofread whole | Every paragraph was then read against its page by eye (`source/hindi/<book>.full.json`: each change as the page has it, a paragraph given whole where much was wrong, the paragraphs the adhyāya walk had missed, and a paragraph moved to its mark's last verse). |
 | Not yet carried | The books' footnotes (`source/hindi/<book>.notes.json` marks the lines left out). |
+
+## Glosses settled
+The owner's draft glosses doubted the text or its sense in 56 places ("text uncertain", "prob. for …"). Each was read on the Gita Press print where the book has the Sanskrit (code 2223, `shiv-1.pdf`, the scan page named), else on the book's own Hindi (Kalyan 2018, which prints no Sanskrit): sixteen were slips of the copy, corrected above; every other word stands as printed, its sense the one the book's Hindi gives. The senses are in `source/word_fixes.json` (`words.py` applies them), each with its reason. One stays as the copy has it: 7.1.35.57 मुक्त्वा प्रसन्नात्मा, a pāda two syllables short (a word is lost: the book's Hindi, ऐसा कहकर, says what it meant, not which word), read "having spoken".
+
+Where our English had followed a draft's doubt, it now gives the book's reading: 1.18.10 the basin round a jīvā plant (बकायन नामक वृक्षका थाला; Monier-Williams jīvā, a plant, and ālavāla, the basin round a tree's root), not a child; 2.2.3.26 filled with passion, not with sweat (the book prints धर्माभि…, ध, scan p. 315; its Hindi: कामसे परिपूर्ण); 2.2.14.38 the doubt taken out of the meaning; 2.2.21.32 the trees bore lovely flowers; 2.2.28.4 the fortunate Vijayā (सौभाग्यशालिनी); 2.4.19.17 a wager that brings good (शं-द, कल्याणप्रद); 2.5.46.41 the hosts of gods dismissed with honour (पूजित देवगणोंको सत्कारसहित विदाकर); 3.11.9 the trident whirled like a drumstick; 3.20.3 endowed with every virtue (सर्वगुणसम्पन्न); 3.20.22 he of great sport (महालीला करनेवाले); 5.10.39 a "(?)" taken out; 5.28.10 without a nose (नासिकारहित), not armless; 6.10.20 remembering the ocean and Giriśa (समुद्र और भगवान् शंकरका स्मरण), not joyfully; 7.2.21.32 straight, oblong and distinct (आयताकार); 7.2.35.25 not beyond Sadāśiva (किंतु वह सदाशिवसे परे नहीं है); 2.2.21.18 he covered her eyes from behind (सतीके नेत्रोंको पीछेसे आकर अपने हाथोंसे बन्द कर लेते थे), not embraced her; 2.2.40.6 that the god Dakṣa may live (देव दक्ष), without "the gods be content", which the verse does not say; 2.3.39.43 the gods and dānavas (देवता, दानव), without the yakṣas of a conjecture; 5.5.15 they make sport of it out of greed (लोभवश … उपहास करते हैं), not trade in it.
