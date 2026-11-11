@@ -386,7 +386,7 @@ async def main():
             check(f'{tag}: a dotted number typed bare (10.2) finds its verse', bare == [], bare)
         await pg.goto(url); await pg.wait_for_timeout(2500)
         if SHARD or ONLY is not None:   # a shard (or --works) runs only its share of the per-work checks, from a reader who has seen the tour
-            await ev("(() => { S.settings.tour = 1; closeTour(); S.settings.layers.h = false; save(); })()"); await pg.reload(); await until("typeof LIB !== 'undefined' && !!LIB && LIB.length > 0 && !!document.querySelector('#libList [data-node]')", 20000)
+            await ev("(() => { S.settings.tour = 1; S.admin = 1; closeTour(); S.settings.layers.h = false; save(); })()"); await pg.reload(); await until("typeof LIB !== 'undefined' && !!LIB && LIB.length > 0 && !!document.querySelector('#libList [data-node]')", 20000)
             for leaf, trail in mine(list(leaves(shelf))): await per_work(leaf, trail)
             dups = await ev(DUP_IDS); check(f'shard {SHARD}/{NSHARD}: every element id is used once in the page', not dups, dups[:5])
             check(f'shard {SHARD}/{NSHARD}: no script errors', not errs, '; '.join(errs[:3]))
@@ -435,13 +435,15 @@ async def main():
         await ev("tourSteps()[7].t().click()"); await pg.wait_for_timeout(1200)
         check('tour: a verse already bookmarked — taken off and put back — still moves the tour on', k_off == 7 and await ev("TOUR && TOUR.k") == 8, [k_off, await ev("TOUR && TOUR.k")])
         await ev("for (const k in ME().bm) delete ME().bm[k]; save()")
-        await ev("tourSteps()[8].t().click()"); await pg.wait_for_timeout(1200)
+        await ev("tourSteps()[8].t().click()"); await pg.wait_for_timeout(1600)
+        check('tour: search opens on this part, then the reader comes back for ▶', await ev("TOUR && TOUR.k") == 9 and await ev("CURVIEW") == 'reader', [await ev("TOUR && TOUR.k"), await ev("CURVIEW")])
+        await ev("tourSteps()[9].t().click()"); await pg.wait_for_timeout(1200)
         check('tour: while the verse plays, the tour waits in the reader', await ev("TOUR && TOUR.waiting && CURVIEW === 'reader' && document.querySelector('#coach').hidden"))
         await pg.wait_for_timeout(5600)   # the verse plays for 5 seconds
         check('tour: after 5 s the library, with the parting message in the light card, the meanings back', await ev("!TOUR && !PL.on && CURVIEW === 'library' && libPath.length === 0 && !S.settings.recite && /Tour complete|परिचय पूरा/.test(document.querySelector('#toast').textContent) && document.querySelector('#toast').classList.contains('act')"))
         await ev("setSize(-2)")
         check('the tour is remembered', await ev("S.settings.tour === 1"))
-        await ev("S.work = null; save()")
+        await ev("S.work = null; S.admin = 1; save()")   # the checks below are an admin's phone (the timing tools); a reader's is checked on its own
         await pg.reload(); await pg.wait_for_timeout(2000)
         check('the tour is not shown again', await ev("document.querySelector('#tour').hidden"))
         # the drawer closes when dragged down from its handle
@@ -498,13 +500,13 @@ async def main():
         await pg2.unroute('**/glossary/awa.json*')
         flash = [x for x in seen if x[1] and x[0] != 'home']
         check('a refresh on a work page shows no library in between, and ends on the work page', not flash and seen and seen[-1] == ['home', True], [flash[:3], seen[-1:] if seen else None])
-        # opened again (not a refresh): the screen last used — the library after going back to it, else the work's page or the reader
+        # opened again (not a refresh): always the library, whatever screen was last used (readers asked for it)
         res = []
         for last in ('library', 'home', 'reader'):
             await pg2.evaluate(f"""(async () => {{ await openWork('sundarkand', true); if ('{last}' === 'library') show('library'); else if ('{last}' === 'reader') openReader('k', PARTS[2].a); else show('home'); }})()""")
             await pg2.wait_for_timeout(700); await pg2.goto(url); await pg2.wait_for_timeout(2500)
             res.append(await pg2.evaluate("CURVIEW"))
-        check('opening the app again returns to the screen last used (library, work page, reader)', res == ['library', 'home', 'reader'], res)
+        check('opening the app again opens the library, whatever screen was last used', res == ['library', 'library', 'library'], res)
         await pg2.close()
         # a store app shows only its shelves (?app=<id>, library/apps.json)
         apps = json.load(open(os.path.join(ROOT, 'library', 'apps.json')))
@@ -522,8 +524,8 @@ async def main():
         genres = [g for t in shelf for g in t['children'] if 'shelf' not in g]
         rows = await ev("[...document.querySelectorAll('#libList button.it[data-node]')].map(b => b.dataset.node)")   # not the '+N' chip of a shelf with more works
         check('library: one row per genre, no headings, no tradition', not heads and rows == [g['id'] for g in genres], [heads, rows])
-        sukh = await ev("(async () => { libPath = ['granth']; renderLibrary(); const n = document.querySelectorAll('#libList [data-node=\"guru-arjan-dev\"]').length; libPath = []; renderLibrary(); return n; })()")
-        check('library: the Sukhmani Sahib’s Guru is on the Granthas shelf', sukh == 1, sukh)
+        sukh = await ev("(async () => { libPath = ['gurbani']; renderLibrary(); const n = document.querySelectorAll('#libList [data-node=\"guru-arjan-dev\"]').length; libPath = []; renderLibrary(); return [n, !!document.querySelector('#libList button.it[data-node=\"gurbani\"]')]; })()")
+        check('library: Gurbani is a shelf of its own, the Sukhmani Sahib’s Guru on it', sukh == [1, True], sukh)
         # each shelf names its works; tapping one opens it straight away
         chip = await ev("(() => { const b = document.querySelector('#libList [data-open-work]'); return b ? b.dataset.openWork : null; })()")
         check('library: a shelf lists its works by name', bool(chip), chip)
@@ -1044,8 +1046,10 @@ async def main():
             await openWork('isha-upanishad', true); libPath = []; show('library'); await new Promise(r => setTimeout(r, 200));
             const row = [...document.querySelectorAll('#libList li')].find(li => li.querySelector('[data-node="veda"]')); const chips = [...row.querySelectorAll('[data-open-work]')].map(b => b.dataset.openWork), more = row.querySelector('.more');
             const g = [...document.querySelectorAll('#libList li')].find(li => li.querySelector('[data-node="granth"]')); const gchips = g.querySelectorAll('[data-open-work]').length;
-            JSON.parse(keep); Object.entries(JSON.parse(keep)).forEach(([k, v]) => { if (S.w[k]) { if (v) S.w[k].at = v; else delete S.w[k].at; } }); save(); return [chips[0], chips.length, !!more, gchips]; })()""")
-        check('library: a shelf shows two works, the one used most recently first', sh2[0] == 'isha-upanishad' and sh2[1] <= 2 and sh2[3] <= 2, sh2)
+            const a = [...document.querySelectorAll('#libList li')].find(li => li.querySelector('button.it[data-node="aarti"]')), lw = a.querySelector('.lworks'), cnt = a.querySelector('.it .cnt').textContent;
+            const oneLine = getComputedStyle(lw).flexWrap === 'nowrap' && lw.scrollWidth > lw.clientWidth && document.documentElement.scrollWidth <= innerWidth, all = a.querySelector('.lworks .more');
+            JSON.parse(keep); Object.entries(JSON.parse(keep)).forEach(([k, v]) => { if (S.w[k]) { if (v) S.w[k].at = v; else delete S.w[k].at; } }); save(); return [chips[0], chips.length, !!more, gchips, a.querySelectorAll('[data-open-work]').length, cnt, oneLine, !!all && all.dataset.node === 'aarti']; })()""")
+        check('library: a shelf shows four works on one line that swipes, the one used most recently first, its count beside its name and “All N” at the end', sh2[0] == 'isha-upanishad' and sh2[1] <= 4 and sh2[3] <= 4 and sh2[4] == 4 and sh2[5].strip().isdigit() and int(sh2[5]) > 4 and sh2[6] and sh2[7], sh2)
         # one word for one thing: no "text" for a verse, no "listen/hear" for play, no "translation", no "Adjust audio timing"
         words = await ev("""(() => { const src = [...document.querySelectorAll('[data-en]')].map(e => e.dataset.en).join(' | '); return src; })()""")
         bad = [w for w in ('Listen', 'translation', 'Adjust audio timing', 'the text') if w in words]
@@ -1269,10 +1273,38 @@ async def main():
         await pg.fill('#q', 'Sunderkand'); await pg.wait_for_timeout(600)
         ls2 = await ev("[...document.querySelectorAll('#sRes .snip')].map(x => x.textContent)")
         check('library search: “सुंदरकांड” and “Sunderkand” find the Sundarkand', any(t in x for x in ls for t in ('सुन्दरकाण्ड', 'Sundarkand')) and any(t in x for x in ls2 for t in ('सुन्दरकाण्ड', 'Sundarkand')), [ls[:3], ls2[:3]])
-        # a shelf that holds only works is one row with its works as buttons (Āratī › Śrī Rāma like Vedas › Yajurveda)
+        # a shelf of many deity shelves is an index: every deity a chip with its count; a tap opens its shelf, one row of its works
         sv = await ev("""(async () => { libPath = ['aarti']; show('library'); await new Promise(r => setTimeout(r, 300));
-            const rama = document.querySelector('#libList button.it[data-node="rama"]'); return [document.querySelectorAll('#libList .lhead').length, !!rama, rama ? rama.closest('li').querySelectorAll('[data-open-work], .more').length : 0, document.querySelectorAll('#libList [data-node="rama/shri-ramchandra-kripalu"]').length]; })()""")
-        check('a shelf of works is one row with its works as buttons, no heading', sv[0] == 0 and sv[1] and sv[2] >= 2 and sv[3] == 0, sv)
+            const chip = document.querySelector('#libList .lindex [data-node="rama"]'), n = document.querySelectorAll('#libList .lindex [data-node]').length, label = chip ? chip.textContent : '';
+            const g = document.querySelector('#libList .lindex [data-node="ganesha"]'), short = g ? !/Bhagwan|भगवान/.test(g.textContent) : false;
+            chip.click(); await new Promise(r => setTimeout(r, 300)); const works = document.querySelectorAll('#libList button.it[data-node]').length, path = libPath.join('/');
+            libPath = []; show('library'); return [n, /\\d/.test(label), short, path, works]; })()""")
+        check('Aarti is an index of deities with their counts (no honorific); a tap opens that deity’s shelf with its works', sv[0] > 12 and sv[1] and sv[2] and sv[3] == 'aarti/rama' and sv[4] >= 2, sv)
+        # searched from a shelf, the library looks on that shelf only, and finds a work by a line of a verse; a chip widens it
+        ls3 = await ev("""(async () => { libPath = ['aarti']; show('library'); openSearch('lib'); const chips = [...document.querySelectorAll('#sIn .chip')].map(c => c.textContent);
+            $('#q').value = 'jai ambe gauri'; await libSearch('jai ambe gauri'); const lines = [...document.querySelectorAll('#sRes [data-line]')].length;
+            const wr = [...document.querySelectorAll('#sRes .res .where')].map(x => x.textContent);
+            $('#q').value = 'hanuman'; await libSearch('hanuman'); const onShelf = [...document.querySelectorAll('#sRes [data-hit]')].every(b => !/Chalisa|चालीसा/.test(b.textContent));
+            document.querySelector('#sIn [data-in="all"]').click(); await new Promise(r => setTimeout(r, 400)); await libSearch('hanuman'); const wide = [...document.querySelectorAll('#sRes [data-hit]')].some(b => /Chalisa|चालीसा/.test(b.textContent));
+            history.back(); await new Promise(r => setTimeout(r, 300)); libPath = []; show('library'); return [chips, lines, wr.slice(0, 3), onShelf, wide]; })()""")
+        check('library search from Aarti: only āratīs, a line finds its āratī, “Whole library” widens it', len(ls3[0]) == 2 and ls3[1] >= 1 and ls3[3] and ls3[4], ls3)
+        # the timing tools are the admins' only: on another phone no Audio timing, no ⚑, no Review audio timing in ⋮
+        ad = await ev("""(async () => { const a0 = S.admin, f0 = S.timing.flagsOn; S.admin = 0; S.timing.flagsOn = true; await openWork('sundarkand', true); await loadSources(); show('home');
+            show('settings'); renderSettings(); const set = !!document.querySelector('#stm') || !!document.querySelector('#stf');
+            openReader('k', ID['sundar.1.cau1'] || 5); await new Promise(r => setTimeout(r, 400)); const flag = !!document.querySelector('#rBody .vflag');
+            itemMenu(ID['sundar.1.cau1'] || 5); await new Promise(r => setTimeout(r, 200)); const menu = !!document.querySelector('#sheetBody [data-x="flag"]'); closeSheet();
+            S.admin = 1; show('settings'); renderSettings(); const set1 = !!document.querySelector('#stm');
+            S.admin = a0; S.timing.flagsOn = f0; save(); libPath = []; show('library'); return [set, flag, menu, set1]; })()""")
+        check('timing tools: hidden on a phone that is not an admin’s, shown on one that is', ad == [False, False, False, True], ad)
+        pg4 = await ctx.new_page()
+        await pg4.goto(url); await pg4.wait_for_timeout(2500); await pg4.evaluate("S.admin = 0; save()")
+        await pg4.goto(url + '?admin=not-the-phrase'); await pg4.wait_for_timeout(2500)
+        wrong = await pg4.evaluate("[!!S.admin, location.search.includes('admin')]")
+        await pg4.evaluate("(async () => { await openWork('sundarkand', true); show('home'); openReader('k', 3); savePos(3); })()"); await pg4.wait_for_timeout(1500)
+        await pg4.goto(url); await pg4.wait_for_timeout(3000)
+        fresh = await pg4.evaluate("CURVIEW")
+        await pg4.evaluate("S.admin = 1; save()"); await pg4.close()
+        check('a wrong admin phrase does nothing and leaves the address bar; a fresh start opens the library, not the reader', wrong == [False, False] and fresh == 'library', [wrong, fresh])
         # offline, playing says it needs the internet (not that YouTube is not allowed)
         await ctx.set_offline(True)
         off = await ev("(() => { ytBlocked(); return $('#ytBox').innerText; })()")
@@ -1488,7 +1520,7 @@ async def main():
         await split_work(b, SHOTS)
         if NSHARD > 1:   # shard 0's share of the works, after every check of the whole app (those change the reader's settings), as a reader who has seen the tour
             await pg.goto(url); await pg.wait_for_timeout(2500)
-            await ev("(() => { S.settings.tour = 1; closeTour(); S.settings.layers.h = false; save(); })()"); await pg.reload(); await until("typeof LIB !== 'undefined' && !!LIB && LIB.length > 0 && !!document.querySelector('#libList [data-node]')", 20000)
+            await ev("(() => { S.settings.tour = 1; S.admin = 1; closeTour(); S.settings.layers.h = false; save(); })()"); await pg.reload(); await until("typeof LIB !== 'undefined' && !!LIB && LIB.length > 0 && !!document.querySelector('#libList [data-node]')", 20000)
             for leaf, trail in mine(list(leaves(shelf))): await per_work(leaf, trail)
             dups = await ev(DUP_IDS); check(f'shard 0/{NSHARD}: every element id is used once in the page', not dups, dups[:5])
             check(f'shard 0/{NSHARD}: no script errors', not errs, '; '.join(errs[:3]))
