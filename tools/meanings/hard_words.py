@@ -131,24 +131,42 @@ def apply(files):
     for p, D in own.items(): os.makedirs(os.path.dirname(p), exist_ok=True); json.dump(D, open(p, 'w', encoding='utf-8'), ensure_ascii=False, indent=1); open(p, 'a').write('\n')
     print(dict(n))
 
-def report(reach=False):
-    H = hard_keys(); hit = Counter(); via = defaultdict(Counter); D = {}
+def reached():
+    """(hit, via): how many places in our meanings each (lang, hard key) is underlined, and by which words, as the app
+    underlines them (hard_key, the work's own glossary first)."""
+    hit = Counter(); via = defaultdict(Counter); D = {}; memo = {}
     def ent(work, lang):   # the work's own glossary first, then the shared dictionary, as the app looks a word up
         if (work, lang) not in D:
             wp = os.path.join(ROOT, 'tools/works', work, 'glossary', lang + '.json'); sp = os.path.join(ROOT, 'library/glossary', lang + '.json')
             if lang not in D: D[lang] = json.load(open(sp, encoding='utf-8')) if os.path.exists(sp) else {}
             W = json.load(open(wp, encoding='utf-8')) if os.path.exists(wp) else {}
-            D[(work, lang)] = lambda k, W=W, S=D[lang]: W.get(k, S.get(k))
+            D[(work, lang)] = (bool(W), lambda k, W=W, S=D[lang]: W.get(k, S.get(k)))
         return D[(work, lang)]
     for work, lang, iid, t in meanings():
+        own, look = ent(work, lang)
         for m in WORD[lang].finditer(t):
-            k = hard_key(m.group(0), lang, ent(work, lang))
-            if k: hit[(lang, k)] += 1; via[(lang, k)][m.group(0)] += 1
+            w = m.group(0); key = (work if own else None, lang, w)   # a work without its own glossary looks up as every other
+            if key not in memo: memo[key] = hard_key(w, lang, look)
+            k = memo[key]
+            if k: hit[(lang, k)] += 1; via[(lang, k)][w] += 1
+    return hit, via
+
+def unreached(verse_keys):
+    """lang → the hard keys that no word of our meanings reaches and that are not a word of any verse either (a hard entry
+    whose meaning dropped the word or spells it otherwise: kankhal for Kanakhala). verse_keys: lang → the folded keys
+    (tools/text/standard.py fold) of the words of the verses whose lookup chain reaches that language's dictionary."""
+    sys.path.insert(0, os.path.join(ROOT, 'tools', 'text')); import standard
+    H = hard_keys(); hit, _ = reached()
+    return {lang: sorted(k for k in H[lang] if not hit[(lang, k)] and standard.fold(k) not in verse_keys.get(lang, ())) for lang in WORD}
+
+def report(reach=False):
+    H = hard_keys(); hit, via = reached()
     if reach:   # every word each hard key underlines, to catch a wrong catch (साम in सामने)
         for (lang, k), ws in sorted(via.items()): print(lang, k, '←', ' '.join(f'{w}×{n}' for w, n in ws.most_common()))
     for lang in WORD:
         dead = sorted(k for k in H[lang] if not hit[(lang, k)])
-        print(f'{lang}: {len(H[lang])} hard entries, {sum(n for (l, _), n in hit.items() if l == lang)} places underlined; never reached: {len(dead)} {dead[:30]}')
+        print(f'{lang}: {len(H[lang])} hard entries, {sum(n for (l, _), n in hit.items() if l == lang)} places underlined; '
+              f'not in any of our meanings: {len(dead)} {dead[:30]} (a word of a verse is looked up all the same; the build refuses one that is neither)')
 
 if __name__ == '__main__':
     a = sys.argv[1:]

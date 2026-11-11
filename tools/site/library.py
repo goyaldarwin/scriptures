@@ -68,8 +68,13 @@ def _folded(D, lang):
     if key not in _FOLDED or _FOLDED[key][0] is not D: _FOLDED[key] = (D, {standard.fold(k) for k in D.get(lang, {})})
     return _FOLDED[key][1]
 
-def check_words(lib, name, w, LANGS, G, clean):
-    """Every word of every verse has a meaning in its language or a fallback (the work's own glossary.json first)."""
+def check_words(lib, name, w, LANGS, G, clean, seen=None):
+    """Every word of every verse has a meaning in its language or a fallback (the work's own glossary.json first).
+    seen: lang → the folded keys of the verses' words in that language, gathered for every work (check_hard)."""
+    if seen is not None:
+        for x in w['items']:
+            S = seen.setdefault(x.get('l', w['lang']), set())
+            for line in x['v']: S.update(standard.fold(clean(t)) for t in line.split())
     if w.get('words') == 'partial': return   # the owner's choice for a work whose word meanings are not all written yet (docs/LIBRARY.md §2)
     wg = os.path.join(lib, name, 'glossary.json'); WG = json.load(open(wg, encoding='utf-8')) if os.path.exists(wg) else {}
     # a work loaded by part: a verse's words are looked up in its own part's senses, as the app has only those
@@ -83,6 +88,16 @@ def check_words(lib, name, w, LANGS, G, clean):
                 k = clean(t)
                 if k and not any(k in WG.get(c, {}) or k in G.get(c, {}) or standard.fold(k) in _folded(WG, c) or standard.fold(k) in _folded(G, c) for c in chain): miss.setdefault(lg, set()).add(k)
     _need(not miss, f"{name}: words without a meaning: " + '; '.join(f"{lg}: {' '.join(sorted(ws)[:12])}{' …' if len(ws) > 12 else ''} ({len(ws)})" for lg, ws in miss.items()))
+
+def check_hard(LANGS, seen):
+    """Every hard entry (docs/LIBRARY.md §5) is underlined by a word of our meanings, or is a word of a verse whose lookup
+    reaches that dictionary: an entry neither reaches is one whose meaning dropped the word or spells it otherwise."""
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'meanings')); import hard_words
+    verse = {}
+    for x, S in seen.items():
+        for L in [x] + LANGS[x].get('fallback', []): verse.setdefault(L, set()).update(S)
+    for lang, dead in hard_words.unreached(verse).items():
+        _need(not dead, f"glossary/{lang}.json (or a work's glossary/{lang}.json): hard entries no word of our meanings reaches and no verse has: {dead[:8]}: the meaning spells the word otherwise (fix the key), or no longer has it (remove the entry)")
 
 def check_work(lib, leaf, LANGS):
     path = leaf.get('path'); wp = os.path.join(lib, path or '', 'work.json')
@@ -336,17 +351,18 @@ def prepare(lib):
         for k, t in (json.load(open(os.path.join(WORKS, d, 'work.json'), encoding='utf-8')).get('types') or {}).items():
             key = json.dumps([t.get('name'), t.get('short')], ensure_ascii=False, sort_keys=True)
             _need(TY.setdefault(k, (key, d))[0] == key, f"tools/works/{d}/work.json: type {k!r} is named {key} but {TY[k][1]} names it {TY[k][0]}; one type, one name")
-    works = {}
+    works = {}; seen = {}
     for leaf in leaves(shelf):
         _need(leaf['work'] not in works, f"shelf: work id {leaf['work']!r} is used twice")
         _need(folders.get(leaf['work']) == leaf['path'], f"shelf: work {leaf['work']!r} needs its folder tools/works/{leaf['work']}/ with path {leaf['path']!r} in work.json")
         wid, src = check_work(lib, leaf, LANGS); works[wid] = src
-        check_words(lib, leaf['path'], json.load(open(os.path.join(lib, leaf['path'], 'work.json'), encoding='utf-8')), LANGS, G, clean)
+        check_words(lib, leaf['path'], json.load(open(os.path.join(lib, leaf['path'], 'work.json'), encoding='utf-8')), LANGS, G, clean, seen)
     # a work exported but not on the shelf yet (a branch's new work) is held to the same checks, so it goes on the shelf clean
     for d, path in sorted(folders.items()):
         if d in works or not os.path.exists(os.path.join(lib, path, 'work.json')): continue
         leaf = {'id': d, 'work': d, 'path': path}; check_work(lib, leaf, LANGS)
-        check_words(lib, path, json.load(open(os.path.join(lib, path, 'work.json'), encoding='utf-8')), LANGS, G, clean)
+        check_words(lib, path, json.load(open(os.path.join(lib, path, 'work.json'), encoding='utf-8')), LANGS, G, clean, seen)
+    check_hard(LANGS, seen)
     # store apps (library/apps.json): each app's shelves must exist on the shelf
     ap = os.path.join(lib, 'apps.json')
     if os.path.exists(ap):

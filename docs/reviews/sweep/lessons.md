@@ -25,6 +25,9 @@ From the history of `scriptures` (`git log`: every "fix", "the owner:" and owner
 | A doubts file was left for the owner | §2 decide; doubts settled before merge | none: no check that `docs/reviews/*-doubts.jsonl` is empty or gone |
 | An agent's note or instruction written into data | §2 only a helper's fix goes into data | none: the sweep searched every meaning and dictionary (no instance found); a check would need a word list |
 | A plain word marked `hard` (परे, बन्द) or an underline opening another word's entry (परे → परा) | §5 | `hard_words.py report --reach` (run by hand), app `hardKey` = `hard_key` (smoke test); none in the build |
+| A hard entry kept after its meaning respelled the word (`kankhal` for Kanakhala) or its work was removed (नाथकर, कोया, nāmadeva) | §5 the key is the word as our meaning spells it | `library.py` (`check_hard`: an entry no meaning word reaches and no verse has) |
+| An underline opened the shared sense where one work means another (the Śiva Purāṇa's "five Brahmans" opened "Brahman, the one supreme reality") | §5 a work's own sense in its glossary | none: read by hand (`hard_words.py report --reach`, sweep §A5) |
+| A name spelled three ways in one work's English (Sadyojāta, Sadyaojāta, Sadyajāta) | §2 one name, one spelling | `library.py` for the names in `tools/text/names.json` only |
 | A recording's last verse looped back on the same recording | §8 a recording covers every verse timed on it | `library.py`, `make_timings.py` |
 | A setting shown where it does nothing | §7 a setting only where it does something | `library.py` (`lines`, `notes`); `ux_test.py` (Meaning per line) |
 | An empty timing file broke a UX check (Durgā Saptaśatī before its transcript) | §8 a recording waits for its transcript | `regen_check.py` |
