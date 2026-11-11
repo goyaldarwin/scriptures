@@ -2,7 +2,7 @@
 
 Each procedure ends with the same three steps: **build, test, publish**.
 ```bash
-python3 tools/site/check.py        # every check below, side by side (about 5 minutes); --fast: the first three only (about 20 s)
+python3 tools/site/check.py        # every check below, side by side (about 25 minutes on 2 cores: tools/site/README.md); --fast: the first three only (about 4 minutes)
   # tools/site/build.py          registers sources, checks the library, builds the site
   # tools/site/regen_check.py    the text generators make the committed texts; library/ is exactly what the exporters and make_timings.py make
   # tools/site/history_check.py  no work or verse id that readers' data points at has disappeared

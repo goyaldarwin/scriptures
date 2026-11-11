@@ -20,19 +20,26 @@ SHOTS = sys.argv[sys.argv.index('--shots') + 1] if '--shots' in sys.argv else No
 SHARD, NSHARD = (map(int, sys.argv[sys.argv.index('--shard') + 1].split('/')) if '--shard' in sys.argv else (0, 1))
 # --works a,b: the per-work checks of these works only (a change to their data); the checks of the whole app are left out
 ONLY = set(sys.argv[sys.argv.index('--works') + 1].split(',')) if '--works' in sys.argv else None
+# the checks of the whole app (shard 0) take about as long as 15% of all the per-work checks (measured: 654 s against
+# 1,350–1,580 s for each of three shards of the works), so shard 0 takes a share of the works too, after them
+APP_SHARE = 0.15
 def mine(works):
     """This shard's share of the works, balanced by size: the biggest first, each to the shard with the least so far (a
-    work's checks take longer the more parts and verses it has: the Valmiki's alone are a shard's worth)."""
+    work's checks take longer the more parts and verses it has: the Valmiki's alone are a shard's worth); shard 0 starts
+    with the checks of the whole app as its load (APP_SHARE)."""
     if ONLY is not None:
         works = [w for w in works if w[0]['work'] in ONLY]
         if NSHARD == 1: return works
     if NSHARD == 1: return works
-    if not SHARD: return []
     size = lambda w: 1 + os.path.getsize(os.path.join(ROOT, 'library', w[0]['path'], 'work.json')) / 2e6   # a work's checks: ~15 s, and more with its size (the Valmiki's 11 MB: as 6 small works)
-    load, out = [0.0] * (NSHARD - 1), []
+    if ONLY is not None:   # --works: the app-wide checks are left out, so the works are shared among shards 1 … N-1 only
+        if not SHARD: return []
+        load, first = [0.0] * NSHARD, 1; load[0] = float('inf')
+    else: load, first = [APP_SHARE * sum(size(w) for w in works)] + [0.0] * (NSHARD - 1), 0
+    out = []
     for k in sorted(range(len(works)), key=lambda k: -size(works[k])):
-        s = min(range(NSHARD - 1), key=lambda j: load[j]); load[s] += size(works[k])
-        if s == SHARD - 1: out.append(k)
+        s = min(range(first, NSHARD), key=lambda j: load[j]); load[s] += size(works[k])
+        if s == SHARD: out.append(k)
     return [works[k] for k in sorted(out)]
 results = []
 
@@ -557,7 +564,8 @@ async def main():
             check(f'library search “{q}” finds {leaf["work"]}', leaf['title']['hi'] in found or leaf['title']['en'] in found, found[:4])
         await shot('library-search')
 
-        for leaf, trail in mine(list(leaves(shelf))): await per_work(leaf, trail)
+        if NSHARD == 1:
+            for leaf, trail in mine(list(leaves(shelf))): await per_work(leaf, trail)
 
         # a place saved before the Sundarakāṇḍa's opening prayers were added (an item position, no id) still opens the same verse
         old = await ev("""(async () => { await openWork('sundarkand', true); const old = W.items.findIndex(x => x.id === 'sundar.12.cau3') - W.prepended;
@@ -1478,6 +1486,12 @@ async def main():
         dups = await ev(DUP_IDS); check('every element id is used once in the page (a second one takes the first one\'s tap)', not dups, dups[:5])
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await split_work(b, SHOTS)
+        if NSHARD > 1:   # shard 0's share of the works, after every check of the whole app (those change the reader's settings), as a reader who has seen the tour
+            await pg.goto(url); await pg.wait_for_timeout(2500)
+            await ev("(() => { S.settings.tour = 1; closeTour(); S.settings.layers.h = false; save(); })()"); await pg.reload(); await until("typeof LIB !== 'undefined' && !!LIB && LIB.length > 0 && !!document.querySelector('#libList [data-node]')", 20000)
+            for leaf, trail in mine(list(leaves(shelf))): await per_work(leaf, trail)
+            dups = await ev(DUP_IDS); check(f'shard 0/{NSHARD}: every element id is used once in the page', not dups, dups[:5])
+            check(f'shard 0/{NSHARD}: no script errors', not errs, '; '.join(errs[:3]))
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')
     sys.exit(0 if all(results) else 'UX TEST FAILED')
