@@ -22,6 +22,10 @@ jobs:
       - name: the browser test driver (the build itself needs nothing beyond Python)
         timeout-minutes: 5
         run: pip install -q playwright==1.64.1 && "$CHROMIUM" --version
+      - name: no doubts left for the owner (a doubts file is settled and removed before its branch merges, docs/PLAYBOOK.md §2)
+        run: |
+          left=$(find docs/reviews -name '*-doubts.jsonl' -size +0)
+          if [ -n "$left" ]; then echo "Doubts still open — settle each, record it in the work's reconciliation.md and remove the file:"; echo "$left"; exit 1; fi
       - name: library checks + build
         run: python tools/site/build.py
       - name: the committed website matches the build
