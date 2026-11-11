@@ -1049,7 +1049,7 @@ async def main():
             const a = [...document.querySelectorAll('#libList li')].find(li => li.querySelector('button.it[data-node="aarti"]')), lw = a.querySelector('.lworks'), cnt = a.querySelector('.it .cnt').textContent;
             const oneLine = getComputedStyle(lw).flexWrap === 'nowrap' && lw.scrollWidth > lw.clientWidth && document.documentElement.scrollWidth <= innerWidth, all = a.querySelector('.lworks .more');
             JSON.parse(keep); Object.entries(JSON.parse(keep)).forEach(([k, v]) => { if (S.w[k]) { if (v) S.w[k].at = v; else delete S.w[k].at; } }); save(); return [chips[0], chips.length, !!more, gchips, a.querySelectorAll('[data-open-work]').length, cnt, oneLine, !!all && all.dataset.node === 'aarti']; })()""")
-        check('library: a shelf shows four works on one line that swipes, the one used most recently first, its count beside its name and “All N” at the end', sh2[0] == 'isha-upanishad' and sh2[1] <= 4 and sh2[3] <= 4 and sh2[4] == 4 and sh2[5].strip().isdigit() and int(sh2[5]) > 4 and sh2[6] and sh2[7], sh2)
+        check('library: a shelf shows three works on one line that swipes, the one used most recently first, its count beside its name and “All N” at the end', sh2[0] == 'isha-upanishad' and sh2[1] <= 3 and sh2[3] <= 3 and sh2[4] == 3 and sh2[5].strip().isdigit() and int(sh2[5]) > 3 and sh2[6] and sh2[7], sh2)
         # one word for one thing: no "text" for a verse, no "listen/hear" for play, no "translation", no "Adjust audio timing"
         words = await ev("""(() => { const src = [...document.querySelectorAll('[data-en]')].map(e => e.dataset.en).join(' | '); return src; })()""")
         bad = [w for w in ('Listen', 'translation', 'Adjust audio timing', 'the text') if w in words]
@@ -1278,8 +1278,9 @@ async def main():
             const chip = document.querySelector('#libList .lindex [data-node="rama"]'), n = document.querySelectorAll('#libList .lindex [data-node]').length, label = chip ? chip.textContent : '';
             const g = document.querySelector('#libList .lindex [data-node="ganesha"]'), short = g ? !/Bhagwan|भगवान/.test(g.textContent) : false;
             chip.click(); await new Promise(r => setTimeout(r, 300)); const works = document.querySelectorAll('#libList button.it[data-node]').length, path = libPath.join('/');
-            libPath = []; show('library'); return [n, /\\d/.test(label), short, path, works]; })()""")
-        check('Aarti is an index of deities with their counts (no honorific); a tap opens that deity’s shelf with its works', sv[0] > 12 and sv[1] and sv[2] and sv[3] == 'aarti/rama' and sv[4] >= 2, sv)
+            const names = [...document.querySelectorAll('#libList .lindex [data-node] span:first-child')].map(x => x.textContent), sorted = names.join() === [...names].sort((a, b) => a.localeCompare(b, 'en')).join();
+            libPath = []; show('library'); return [n, /\\d/.test(label), short, path, works, sorted]; })()""")
+        check('Aarti is an index of deities with their counts (no honorific), A to Z; a tap opens that deity’s shelf with its works', sv[0] > 12 and sv[1] and sv[2] and sv[3] == 'aarti/rama' and sv[4] >= 2 and sv[5], sv)
         # searched from a shelf, the library looks on that shelf only, and finds a work by a line of a verse; a chip widens it
         ls3 = await ev("""(async () => { libPath = ['aarti']; show('library'); openSearch('lib'); const chips = [...document.querySelectorAll('#sIn .chip')].map(c => c.textContent);
             $('#q').value = 'jai ambe gauri'; await libSearch('jai ambe gauri'); const lines = [...document.querySelectorAll('#sRes [data-line]')].length;
