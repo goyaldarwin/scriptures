@@ -35,7 +35,7 @@ through the refrain because it has no end.
 3. **Ends: from MMS** (built: `mms_align.py` saves each verse's end, `mms_merge.py` passes it on, `make_timings.py` applies
    the rule). MMS knows where each line's last syllable ends. A verse's end is
    its last line's end + 0.3 s, kept only where the next start is more than 1.5 s later (a refrain or music), so the
-   light leaves the verse when the singing does.
+   light moves on to the next verse when this one's singing ends, not when the next one begins.
 4. **Find the errors** (built in `mms_merge.py`, into `check.json`, except listener flags, which the app adds), with no ear needed. A verse is flagged when:
    - MMS and Whisper disagree by more than 2 s;
    - MMS scores any of its lines below 0.5;
