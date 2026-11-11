@@ -2,9 +2,9 @@
 "order": 1,
 "numbers": "verse",
 "m": {
-"aarti.tek": "Perform the āratī of Śrī Janaka's darling daughter, the lotus bud for the bee of Rāma's mind.",
-"aarti.pad1": "Of the cakorī bird to the moon of Rāmacandra's face, dark within and fair without, who has borne the fair fruit of every blessing.",
-"aarti.pad2": "Of her who is the cord that binds the pair of deer that are her beloved's eyes, the young maiden who is a store of the sweetness of love for her beloved, the place where the course of her beloved's mind comes to rest.",
-"aarti.pad3": "Of her who is a mine of beauty, a treasury of virtues, mistress of the world, skilled in love, the delight of Rāma, and the whole wealth of her companion Haricanda."
+"aarti.tek": ["Perform the āratī of Śrī Janaka's darling daughter,", "the lotus bud for the bee of Rāma's mind."],
+"aarti.pad1": ["Of the cakorī bird to the moon of Rāmacandra's face,", "dark within and fair without,", "who has borne the fair fruit of every blessing."],
+"aarti.pad2": ["Of her who is the cord that binds the pair of deer that are her beloved's eyes,", "the young maiden who is a store of the sweetness of love for her beloved,", "the place where the course of her beloved's mind comes to rest."],
+"aarti.pad3": ["Of her who is a mine of beauty, a treasury of virtues, mistress of the world,", "skilled in love, the delight of Rāma,", "and the whole wealth of her companion Haricanda."]
 }
 }

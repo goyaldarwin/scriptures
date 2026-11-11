@@ -2,10 +2,10 @@
 "order": 1,
 "numbers": "verse",
 "m": {
-"aarti.pad1": "Victory, victory to you, Ambā; victory to you, Kātyāyanī. Victory to you, Mother of the world, great queen of the world. Baijnāth is your seat; there you were called by the name Varadātī, the boon-giver.",
-"aarti.pad2": "You have many names and many abodes; this place too is an abode of happiness. Your flame is in every temple; you were called Yogeśvarī, and your glory is wondrous.",
-"aarti.pad3": "Everywhere festivals go on and on; in every temple the devotees say: Kātyāyanī is the protector of the body; she cuts the knot of attachment and illusion.",
-"aarti.pad4": "She frees from false attachment and makes one chant her name. Worship on Thursday, and fix your meditation on Kātyāyanī.",
-"aarti.pad5": "She will remove every trouble and fill the storehouses to the brim. Whatever devotee calls on the Mother, Kātyāyanī takes away all his suffering."
+"aarti.pad1": ["Victory, victory to you, Ambā; victory to you, Kātyāyanī.", "Victory to you, Mother of the world, great queen of the world.", "Baijnāth is your seat;", "there you were called by the name Varadātī, the boon-giver."],
+"aarti.pad2": ["You have many names and many abodes;", "this place too is an abode of happiness.", "Your flame is in every temple;", "you were called Yogeśvarī, and your glory is wondrous."],
+"aarti.pad3": ["Everywhere festivals go on and on;", "in every temple the devotees say:", "Kātyāyanī is the protector of the body;", "she cuts the knot of attachment and illusion."],
+"aarti.pad4": ["She frees from false attachment", "and makes one chant her name.", "Worship on Thursday,", "and fix your meditation on Kātyāyanī."],
+"aarti.pad5": ["She will remove every trouble", "and fill the storehouses to the brim.", "Whatever devotee calls on the Mother,", "Kātyāyanī takes away all his suffering."]
 }
 }

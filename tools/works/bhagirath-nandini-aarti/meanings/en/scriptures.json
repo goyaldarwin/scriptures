@@ -2,11 +2,11 @@
 "order": 1,
 "numbers": "verse",
 "m": {
-"aarti.tek": "Victory, victory to you, daughter of Bhagīratha, moonlight to the cakora birds that are the hosts of sages, worshipped by men, nāgas and gods; victory to you, daughter of Jahnu.",
-"aarti.pad1": "You are born of the lotus feet of Viṣṇu, you shine on Śiva's head; you are Tripathagā, who flows by three paths (heaven, earth and the underworld), a store of merit, the washer-away of sins.",
-"aarti.pad2": "You carry pure, abundant water; you are cool and take away the three afflictions; you have fine whirlpools and garlands of waves that curl and curve.",
-"aarti.pad3": "With the townspeople's offerings of worship, your stream shines, white as the moon; you break the burden of worldly existence, and are the basin round the wish-granting tree of devotion.",
-"aarti.pad4": "The birds that live on your banks, the beasts and winged insects of water and land, the worms and the ascetics with matted hair: you nurture all of them alike.",
-"aarti.pad5": "Give Tulasīdāsa a mind that wanders along your banks, remembering the hero of the Raghu line; you are Kālikā to the buffalo-demon of delusion."
+"aarti.tek": ["Victory, victory to you, daughter of Bhagīratha,", "moonlight to the cakora birds that are the hosts of sages,", "worshipped by men, nāgas and gods;", "victory to you, daughter of Jahnu."],
+"aarti.pad1": ["You are born of the lotus feet of Viṣṇu,", "you shine on Śiva's head;", "you are Tripathagā, who flows by three paths (heaven, earth and the underworld), a store of merit,", "the washer-away of sins."],
+"aarti.pad2": ["You carry pure, abundant water;", "you are cool and take away the three afflictions;", "you have fine whirlpools", "and garlands of waves that curl and curve."],
+"aarti.pad3": ["With the townspeople's offerings of worship,", "your stream shines, white as the moon;", "you break the burden of worldly existence,", "and are the basin round the wish-granting tree of devotion."],
+"aarti.pad4": ["The birds that live on your banks,", "the beasts and winged insects of water and land,", "the worms and the ascetics with matted hair:", "you nurture all of them alike."],
+"aarti.pad5": ["", "", "Give Tulasīdāsa a mind that wanders along your banks, remembering the hero of the Raghu line;", "you are Kālikā to the buffalo-demon of delusion."]
 }
 }

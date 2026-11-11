@@ -2,11 +2,11 @@
 "order": 1,
 "numbers": "verse",
 "m": {
-"aarti.tek": "Victory, victory to you, Mother Tulasī, giver of happiness to the whole world.",
-"aarti.pad1": "You are above all yogas, above all diseases; guarding from illness, you save from worldly existence.",
-"aarti.pad2": "O Bahuputrī, O Śyāmā, O creeper of the gods, O Grāmyā, beloved of Viṣṇu: whoever serves you crosses over.",
-"aarti.pad3": "You sit upon Hari's head, and the three worlds revere you; you are renowned as the saviour of the fallen.",
-"aarti.pad4": "Born in a lonely, wild place, you came into the divine dwelling; the world of men gains happiness and wealth from you alone.",
-"aarti.pad5": "Dark-hued maiden, you are very dear to Hari. His love is wondrous: what a bond he has with you!"
+"aarti.tek": ["Victory, victory to you, Mother Tulasī, giver of happiness to the whole world."],
+"aarti.pad1": ["You are above all yogas, above all diseases;", "guarding from illness, you save from worldly existence."],
+"aarti.pad2": ["O Bahuputrī, O Śyāmā, O creeper of the gods, O Grāmyā,", "beloved of Viṣṇu: whoever serves you crosses over."],
+"aarti.pad3": ["You sit upon Hari's head, and the three worlds revere you;", "you are renowned as the saviour of the fallen."],
+"aarti.pad4": ["Born in a lonely, wild place, you came into the divine dwelling;", "the world of men gains happiness and wealth from you alone."],
+"aarti.pad5": ["Dark-hued maiden, you are very dear to Hari.", "His love is wondrous: what a bond he has with you!"]
 }
 }

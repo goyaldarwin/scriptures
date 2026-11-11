@@ -2,19 +2,19 @@
 "order": 1,
 "numbers": "verse",
 "m": {
-"aarti.tek": "Victory, victory to you, Mother of the world. Remover of fear, you who carry us across worldly existence, consort of Śiva, victory, victory to you.",
-"aarti.pad1": "You alone are being, consciousness and bliss, pure, the very form of Brahman; you are true, eternal, beautiful, the supreme Śiva, sovereign of the gods.",
-"aarti.pad2": "You are the first and without beginning, free of every ill, unmoving, imperishable; stainless, endless, beyond the senses, unborn, a treasury of bliss.",
-"aarti.pad3": "You are changeless, the remover of sin, without parts and the bearer of all parts; you are Brahmā who creates, Hari who sustains, and Śiva who destroys.",
-"aarti.pad4": "You are Brahmā's consort Sarasvatī, you are Lakṣmī, you are Umā and Mahāmāyā. You are primal Prakṛti and Vidyā; you are mother, and you are wife.",
-"aarti.pad5": "You are Rāma, Kṛṣṇa, Sītā and Rādhā, queen of Vraja. You are the wish-fulfilling tree of every desire, and you take away all obstacles.",
-"aarti.pad6": "You are the ten Mahāvidyās and the nine Durgās, holding many weapons in your hands; as the eight Mothers and the yoginīs you have taken ever new forms.",
-"aarti.pad7": "You dwell in the supreme abode, you are great in your divine play; you alone roam the cremation grounds and dance the tāṇḍava.",
-"aarti.pad8": "You enchant gods and sages, you are gentle, the ground of all beauty; you are unclothed, of fearsome form, the torrent of dissolution.",
-"aarti.pad9": "You alone are full of the nectar of love, and your mind is fierce as deadly poison; you alone are adorned with jewels, and you alone have a body of bones.",
-"aarti.pad10": "Dweller in the mūlādhāra, giver of success in this world and the next: you are beyond time, you are Kālī and Kamalā, O giver of boons.",
-"aarti.pad11": "You alone are Śakti and the bearer of Śakti, ever undivided; you display difference, you are speech, O pure one, you are the three Vedas.",
-"aarti.pad12": "We are very lowly and wretched, Mother, caught in a net of calamities. We are unworthy sons and utterly deceitful, but we are your children.",
-"aarti.pad13": "By your own nature, Mother, cast a merciful glance. Show compassion, O compassionate one, and give refuge at your feet."
+"aarti.tek": ["Victory, victory to you, Mother of the world.", "Remover of fear, you who carry us across worldly existence, consort of Śiva, victory, victory to you."],
+"aarti.pad1": ["You alone are being, consciousness and bliss, pure, the very form of Brahman;", "you are true, eternal, beautiful, the supreme Śiva, sovereign of the gods."],
+"aarti.pad2": ["You are the first and without beginning, free of every ill, unmoving, imperishable;", "stainless, endless, beyond the senses, unborn, a treasury of bliss."],
+"aarti.pad3": ["You are changeless, the remover of sin, without parts and the bearer of all parts;", "you are Brahmā who creates, Hari who sustains, and Śiva who destroys."],
+"aarti.pad4": ["You are Brahmā's consort Sarasvatī, you are Lakṣmī, you are Umā and Mahāmāyā.", "You are primal Prakṛti and Vidyā; you are mother, and you are wife."],
+"aarti.pad5": ["You are Rāma, Kṛṣṇa, Sītā and Rādhā, queen of Vraja.", "You are the wish-fulfilling tree of every desire, and you take away all obstacles."],
+"aarti.pad6": ["You are the ten Mahāvidyās and the nine Durgās, holding many weapons in your hands;", "as the eight Mothers and the yoginīs you have taken ever new forms."],
+"aarti.pad7": ["You dwell in the supreme abode, you are great in your divine play;", "you alone roam the cremation grounds and dance the tāṇḍava."],
+"aarti.pad8": ["You enchant gods and sages, you are gentle, the ground of all beauty;", "you are unclothed, of fearsome form, the torrent of dissolution."],
+"aarti.pad9": ["You alone are full of the nectar of love, and your mind is fierce as deadly poison;", "you alone are adorned with jewels, and you alone have a body of bones."],
+"aarti.pad10": ["Dweller in the mūlādhāra, giver of success in this world and the next:", "you are beyond time, you are Kālī and Kamalā, O giver of boons."],
+"aarti.pad11": ["You alone are Śakti and the bearer of Śakti, ever undivided;", "you display difference, you are speech, O pure one, you are the three Vedas."],
+"aarti.pad12": ["We are very lowly and wretched, Mother, caught in a net of calamities.", "We are unworthy sons and utterly deceitful, but we are your children."],
+"aarti.pad13": ["By your own nature, Mother, cast a merciful glance.", "Show compassion, O compassionate one, and give refuge at your feet."]
 }
 }
