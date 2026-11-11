@@ -217,7 +217,10 @@ byhand = set(k for v in FIX.values() for k in v) | set(k for v in OWN.values() f
 check = [] if meta.get('checked') or meta.get('check_only') else [x['id'] for x in IT if x['id'] in at and x['id'] not in byhand and (meta.get('draft') or meta.get('review') or x['id'] not in heard)]   # "checked": published by the owner after hearing it through
 CP = os.path.join(SRC, 'check.json'); DOUBT = set(json.load(open(CP))['ids']) if os.path.exists(CP) else set()   # check.json: starts in doubt, even when heard
 assert DOUBT <= set(ID), f'check.json: unknown verse ids {sorted(DOUBT - set(ID))[:5]}'
-check = [x['id'] for x in IT if x['id'] in at and x['id'] not in byhand and (x['id'] in check or x['id'] in DOUBT)]
+# a start in doubt (check.json) is listed even when set by hand (a session lists one its windows did not settle), but
+# never once the owner has set it by ear
+ownset = set(k for v in OWN.values() for k in v)
+check = [x['id'] for x in IT if x['id'] in at and ((x['id'] not in byhand and x['id'] in check) or (x['id'] in DOUBT and x['id'] not in ownset))]
 # every verse timed on a track lies inside its stretch (a start or end outside it would play another song of the jukebox)
 for k, v in at.items():
     tr = tracks[v[0]]; lo, hi = tr.get('start', 0), tr.get('end', tr['dur'])
