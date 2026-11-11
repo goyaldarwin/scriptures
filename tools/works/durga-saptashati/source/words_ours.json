@@ -658,6 +658,490 @@
      "अध्याय"
     ]
    ]
+  },
+  "सिद्ध्यन्त्युच्चाटनादीनि": {
+   "hi": "सिद्ध होते हैं; उच्चाटन (किसीको उसके स्थानसे हटा देनेका प्रयोग) आदि",
+   "en": "succeed; uccāṭana (making a person quit his place by a rite) and the like",
+   "p": [
+    [
+     "सिद्ध्यन्ति",
+     "सिद्ध होते हैं"
+    ],
+    [
+     "उच्चाटनादीनि",
+     "उच्चाटन (किसीको उसके स्थानसे हटा देनेका प्रयोग) आदि"
+    ]
+   ]
+  },
+  "निमन्त्रयामास": {
+   "hi": "बुलाया / कीलित (नियन्त्रित) कर दिया",
+   "en": "summoned / bound (kīlita)"
+  },
+  "सम्पत्तिरुच्चकैः": {
+   "hi": "सम्पत्ति; बहुत अधिक",
+   "en": "prosperity; greatly, in a high degree",
+   "p": [
+    [
+     "सम्पत्तिः",
+     "सम्पत्ति"
+    ],
+    [
+     "उच्चकैः",
+     "बहुत अधिक"
+    ]
+   ]
+  },
+  "चैवापाटवं": {
+   "hi": "और; ही; रोग, अस्वस्थता",
+   "en": "and; indeed; sickness, illness",
+   "p": [
+    [
+     "च",
+     "और"
+    ],
+    [
+     "एव",
+     "ही"
+    ],
+    [
+     "अपाटवम्",
+     "रोग, अस्वस्थता"
+    ]
+   ]
+  },
+  "पार्श्वके": {
+   "hi": "पार्श्वभागमें, बगलमें",
+   "en": "at the side"
+  },
+  "मनःशोकविनाशिनी": {
+   "hi": "मनकी; शोकविनाशिनी, शोकका नाश करनेवाली",
+   "en": "the mind (object); Śokavināśinī, destroyer of sorrow",
+   "p": [
+    [
+     "मनः",
+     "मनकी"
+    ],
+    [
+     "शोकविनाशिनी",
+     "शोकका नाश करनेवाली"
+    ]
+   ]
+  },
+  "सुपथा": {
+   "hi": "सुपथा (देवीका नाम)",
+   "en": "Supathā (a name of the Devī)"
+  },
+  "दैवीकला": {
+   "hi": "दैवी; कला, अंश",
+   "en": "divine; a portion, share",
+   "p": [
+    [
+     "दैवी",
+     "दैवी"
+    ],
+    [
+     "कला",
+     "कला, अंश"
+    ]
+   ]
+  },
+  "न्यूनैरपि": {
+   "hi": "हीन (कम शक्तिवालों)से; भी",
+   "en": "by inferior (weaker) ones; even",
+   "p": [
+    [
+     "न्यूनैः",
+     "हीन (कम शक्तिवालों)से"
+    ],
+    [
+     "अपि",
+     "भी"
+    ]
+   ]
+  },
+  "यानुच्चार्याविशेषतः": {
+   "hi": "जो; जिसका उच्चारण नहीं किया जा सकता; विशेष रूपसे",
+   "en": "which (she); not to be uttered; distinctly, specifically",
+   "p": [
+    [
+     "या",
+     "जो"
+    ],
+    [
+     "अनुच्चार्या",
+     "जिसका उच्चारण नहीं किया जा सकता"
+    ],
+    [
+     "विशेषतः",
+     "विशेष रूपसे"
+    ]
+   ]
+  },
+  "एतद्वः": {
+   "hi": "यह; आपसे",
+   "en": "this; to you",
+   "p": [
+    [
+     "एतत्",
+     "यह"
+    ],
+    [
+     "वः",
+     "आपसे"
+    ]
+   ]
+  },
+  "कथितं": {
+   "hi": "कहा गया",
+   "en": "has been told"
+  },
+  "स्तूयसे": {
+   "hi": "(आपकी) स्तुति की जाती है",
+   "en": "you are praised"
+  },
+  "जगत्पात्यत्ति": {
+   "hi": "जगत्का; पालन करता है; ग्रस लेता है",
+   "en": "the world; protects; devours",
+   "p": [
+    [
+     "जगत्",
+     "जगत्का"
+    ],
+    [
+     "पाति",
+     "पालन करता है"
+    ],
+    [
+     "अत्ति",
+     "ग्रस लेता है"
+    ]
+   ]
+  },
+  "समुत्पाट्य": {
+   "hi": "निकालकर, उखाड़कर",
+   "en": "having drawn out, having torn out"
+  },
+  "विच्छिन्नजङ्घास्त्वपरे": {
+   "hi": "कटी टाँगोंवाले; और; दूसरे",
+   "en": "with legs (shanks) cut off; and; others",
+   "p": [
+    [
+     "विच्छिन्नजङ्घाः",
+     "कटी टाँगोंवाले"
+    ],
+    [
+     "तु",
+     "और"
+    ],
+    [
+     "अपरे",
+     "दूसरे"
+    ]
+   ]
+  },
+  "विचिन्वति": {
+   "hi": "खोजता है, चुन-चुनकर निकालता है",
+   "en": "searches out, picks out"
+  },
+  "निभृतात्मजभृत्यदारा": {
+   "hi": "विनीत और निष्ठावान् पुत्र, सेवक और पत्नीवाले",
+   "en": "whose sons, servants and wives are humble and faithful"
+  },
+  "नैर्ऋत्यै": {
+   "hi": "नैर्ऋतीको (देवीका नाम)",
+   "en": "to Nairṛtī (a name of the Devī)"
+  },
+  "क्लीं": {
+   "hi": "बीज मन्त्र क्लीं",
+   "en": "the seed syllable klīṃ"
+  },
+  "चितिरूपेण": {
+   "hi": "चैतन्यके रूपमें",
+   "en": "in the form of consciousness, the thinking mind"
+  },
+  "भक्तिविनम्रमूर्तिभिः": {
+   "hi": "भक्तिसे विनम्र देहवालोंद्वारा",
+   "en": "by those whose bodies are bowed in devotion"
+  },
+  "तुभ्यमग्निशौचे": {
+   "hi": "आपको; अग्निसे शुद्ध होनेवाले (दो)",
+   "en": "to you; cleansed by fire (dual)",
+   "p": [
+    [
+     "तुभ्यम्",
+     "आपको"
+    ],
+    [
+     "अग्निशौचे",
+     "अग्निसे शुद्ध होनेवाले (दो)"
+    ]
+   ]
+  },
+  "चाधरेणान्यान्": {
+   "hi": "और; होंठसे; अन्योंको",
+   "en": "and; with the lip; others",
+   "p": [
+    [
+     "च",
+     "और"
+    ],
+    [
+     "अधरेण",
+     "होंठसे"
+    ],
+    [
+     "अन्यान्",
+     "अन्योंको"
+    ]
+   ]
+  },
+  "तलप्रहारेण": {
+   "hi": "तल (पंजे)के प्रहारसे",
+   "en": "with a blow of the palm (the paw)"
+  },
+  "दैत्यानामधिपं": {
+   "hi": "दैत्योंके; अधिपतिको",
+   "en": "of the Daityas; chief, lord (object)",
+   "p": [
+    [
+     "दैत्यानाम्",
+     "दैत्योंके"
+    ],
+    [
+     "अधिपम्",
+     "अधिपतिको"
+    ]
+   ]
+  },
+  "मौर्वाः": {
+   "hi": "मौर्व",
+   "en": "the Maurvas"
+  },
+  "योद्धुमभ्याययौ": {
+   "hi": "युद्ध करनेके लिये; सामने आया",
+   "en": "to fight; came forward",
+   "p": [
+    [
+     "योद्धुम्",
+     "युद्ध करनेके लिये"
+    ],
+    [
+     "अभ्याययौ",
+     "सामने आया"
+    ]
+   ]
+  },
+  "शिवदूत्यभिदूषिताः": {
+   "hi": "शिवदूतीद्वारा आहत (घायल)",
+   "en": "wounded, stricken by Śivadūtī"
+  },
+  "रथस्थस्तथात्युच्चैर्गृहीतपरमायुधैः": {
+   "hi": "रथपर स्थित; तथा; बहुत ऊँचे (उठाये हुए); श्रेष्ठ आयुध धारण की हुई (भुजाओंसे)",
+   "en": "standing in the chariot; and; very high aloft; holding supreme weapons",
+   "p": [
+    [
+     "रथस्थः",
+     "रथपर स्थित"
+    ],
+    [
+     "तथा",
+     "तथा"
+    ],
+    [
+     "अत्युच्चैः",
+     "बहुत ऊँचे (उठाये हुए)"
+    ],
+    [
+     "गृहीतपरमायुधैः",
+     "श्रेष्ठ आयुध धारण की हुई (भुजाओंसे)"
+    ]
+   ]
+  },
+  "केचिन्नष्टा": {
+   "hi": "कुछ; भाग गये",
+   "en": "some; fled",
+   "p": [
+    [
+     "केचित्",
+     "कुछ"
+    ],
+    [
+     "नष्टाः",
+     "भाग गये"
+    ]
+   ]
+  },
+  "मुद्गरं": {
+   "hi": "मुद्गर (हथौड़े-जैसा अस्त्र)",
+   "en": "a war-hammer, mallet"
+  },
+  "शाकैरावृष्टेः": {
+   "hi": "शाकोंसे; वर्षा होनेतक",
+   "en": "with vegetables; until the rains",
+   "p": [
+    [
+     "शाकैः",
+     "शाकोंसे"
+    ],
+    [
+     "आ",
+     "तक"
+    ],
+    [
+     "वृष्टेः",
+     "वर्षा होने"
+    ]
+   ]
+  },
+  "प्रतीक्षिष्याम्यहं": {
+   "hi": "(प्रेमसे) देखूँगी, ग्रहण करूँगी; मैं",
+   "en": "I shall look upon (with favour), receive; I",
+   "p": [
+    [
+     "प्रतीक्षिष्यामि",
+     "(प्रेमसे) देखूँगी, ग्रहण करूँगी"
+    ],
+    [
+     "अहम्",
+     "मैं"
+    ]
+   ]
+  },
+  "तस्यां": {
+   "hi": "उनके (…होनेपर) / उसके (…होनेपर) / उसमें",
+   "en": "when she (locative absolute) / when that woman (locative absolute) / in that, at that"
+  },
+  "निर्विण्णोऽतिममत्वेन": {
+   "hi": "खिन्न, विरक्त; अत्यधिक ममताके कारण",
+   "en": "despondent, disgusted; through excessive sense of possession",
+   "p": [
+    [
+     "निर्विण्णः",
+     "खिन्न, विरक्त"
+    ],
+    [
+     "अतिममत्वेन",
+     "अत्यधिक ममताके कारण"
+    ]
+   ]
+  },
+  "प्रसभकृतिवशात्": {
+   "hi": "हठपूर्वक (बलात्) किये जानेके कारण",
+   "en": "through doing it forcibly, by force"
+  },
+  "सोममाहनसं": {
+   "hi": "सोमको; कूटकर निचोड़े जानेवाले",
+   "en": "Soma (object); to be beaten or pressed out",
+   "p": [
+    [
+     "सोमम्",
+     "सोमको"
+    ],
+    [
+     "आहनसम्",
+     "कूटकर निचोड़े जानेवाले"
+    ]
+   ]
+  },
+  "वाम्या": {
+   "hi": "बहती हूँ (वामि; आ, आरभमाणाका उपसर्ग)",
+   "en": "I blow (vāmi; ā, the prefix of ārabhamāṇā)",
+   "p": [
+    [
+     "वामि",
+     "बहती हूँ"
+    ],
+    [
+     "आ",
+     "(आरभमाणाका उपसर्ग)"
+    ]
+   ]
+  },
+  "रभमाणा": {
+   "hi": "(आ)रभमाणा: थामती हुई, आरम्भ करती हुई",
+   "en": "(ā)rabhamāṇā: laying hold of, setting in motion"
+  },
+  "पृथिव्यै": {
+   "hi": "पृथ्वीसे (परे) (पृथिव्या; ए संधिमें एतावतीका)",
+   "en": "(beyond) the earth (pṛthivyā; the e is etāvatī's)"
+  },
+  "तावती": {
+   "hi": "इतनी विशाल (एतावती; ए पृथिव्यैमें संधिसे)",
+   "en": "so vast (etāvatī; its e joined to pṛthivyai)"
+  },
+  "सं": {
+   "hi": "(बभूवका उपसर्ग) — सं बभूव: हो गयी हूँ",
+   "en": "(prefix of babhūva) — saṃ babhūva: I have become"
+  },
+  "विश्वो": {
+   "hi": "समस्त (विश्वा; उतका उ संधिमें)",
+   "en": "all (viśvā, with the u of uta)"
+  },
+  "तामूं": {
+   "hi": "और (उत, जिसका उ विश्वोमें है); उस",
+   "en": "and (uta, its u joined to viśvo); yonder",
+   "p": [
+    [
+     "उत",
+     "और"
+    ],
+    [
+     "अमूम्",
+     "उस"
+    ]
+   ]
+  },
+  "वि": {
+   "hi": "(तिष्ठेका उपसर्ग) — वि तिष्ठे: फैल जाती हूँ",
+   "en": "(prefix of tiṣṭhe) — vi tiṣṭhe: I spread out"
   }
+ },
+ "why": {
+  "सिद्ध्यन्त्युच्चाटनादीनि": "Monier-Williams uccāṭana: causing a person to quit his place or occupation by incantations; 'driving away' alone is vague",
+  "निमन्त्रयामास": "Monier-Williams nimantrita: invited, summoned; 'bound' is the commentators' reading (नियन्त्रित), with कीलितम् in kilaka.8, as our meaning reads it; 'restricted' dropped",
+  "सम्पत्तिरुच्चकैः": "Monier-Williams uccakais: loud; greatly, in a high degree: 'abundantly' is not a listed sense",
+  "चैवापाटवं": "Monier-Williams and Apte apāṭava: unskilfulness; sickness, illness: beside fear and untimely death it is sickness",
+  "पार्श्वके": "locative singular (Monier-Williams pārśvaka, pārśva: the side, the region of the ribs), not a plural",
+  "मनःशोकविनाशिनी": "मनः is the object of रक्षेत् and शोकविनाशिनी the goddess (each quarter pairs a part with a goddess), as our meaning reads it",
+  "सुपथा": "kavacha.43: a goddess in the nominative, parallel to क्षेमङ्करी (पन्थानं सुपथा रक्षेत्); the instrumental of supathin does not fit the list",
+  "दैवीकला": "Monier-Williams kalā: a small part, any single part or portion of a whole; 'power, potency' is not a listed sense",
+  "न्यूनैरपि": "Monier-Williams nyūna: less, deficient, inferior; the line sets their strength against the king's mighty sceptre",
+  "यानुच्चार्याविशेषतः": "या + अनुच्चार्या + विशेषतः, as our meaning reads it (MW an-uccārya: not to be pronounced): the negation is in अनुच्चार्या; the Hindi's slip नकी mended",
+  "एतद्वः": "एतत् + वः: the वः (to you) belongs here, not to कथितं",
+  "कथितं": "2.8 and 13.2: वः and ते are words of their own (एतद्वः, एतत्ते)",
+  "स्तूयसे": "present passive, second person singular, of स्तु; not an imperative",
+  "जगत्पात्यत्ति": "जगत् पाति अत्ति: पाति is the verb (पा, लट् प्रथम पुरुष एकवचन), not a noun 'protector'",
+  "समुत्पाट्य": "Monier-Williams sam-utpāṭita: torn completely out or away; from पट्, not from उत्पद् 'to arise'",
+  "विच्छिन्नजङ्घास्त्वपरे": "Monier-Williams jaṅghā: the shank, the leg; not the thigh (जाँघ)",
+  "विचिन्वति": "the finite verb of 2.68 (vi-√ci), as our meaning reads it, not a participle",
+  "निभृतात्मजभृत्यदारा": "Monier-Williams nibhṛta: attached, faithful (MārkP.); quiet, humble, modest; Apte: modest, humble; true, faithful; 'obedient' is in neither",
+  "नैर्ऋत्यै": "Monier-Williams nairṛtī: N. of Durgā (Devīm.); Apte: an epithet of Durgā; 'destructive power' is in neither",
+  "क्लीं": "one sense, said once",
+  "चितिरूपेण": "Monier-Williams citi: the thinking mind, citing Devīm. v, 36 (this verse); चैतन्य as our meaning has it",
+  "भक्तिविनम्रमूर्तिभिः": "the half has no अस्माभिः; the instrumental is general (मूर्ति: bodily form)",
+  "तुभ्यमग्निशौचे": "agni-śauca, a bahuvrīhi: whose cleansing (śauca, Monier-Williams: cleanness, purification) is by fire",
+  "चाधरेणान्यान्": "Monier-Williams adhara m.: the lower lip, the lip; neither dictionary gives 'jaw'",
+  "तलप्रहारेण": "Monier-Williams tala: the palm; थप्पड़ (a slap) does not fit a lion's blow",
+  "दैत्यानामधिपं": "adhipa is a ruler or chief, not a general (सेनापति); the object of प्राह takes को",
+  "मौर्वाः": "the text reads मौर्वाः, not मौर्याः",
+  "योद्धुमभ्याययौ": "अभ्याययौ is लिट् प्रथम पुरुष एकवचन (the subject Raktabīja), not feminine plural",
+  "शिवदूत्यभिदूषिताः": "Monier-Williams abhi-dūṣita: wounded, injured; the fall is पेतुः's",
+  "रथस्थस्तथात्युच्चैर्गृहीतपरमायुधैः": "Monier-Williams uccais ind.: aloft, high: the arms (भुजैः) are raised high, not Śumbha 'towering'",
+  "केचिन्नष्टा": "with the ablative महाहवात् नष्ट is 'fled from'",
+  "मुद्गरं": "Monier-Williams mudgara: a hammer, mallet, any hammer-like weapon; 'mace' is गदा's",
+  "शाकैरावृष्टेः": "the second gloss was doubled; आ with the ablative वृष्टेः: until the rain",
+  "प्रतीक्षिष्याम्यहं": "Monier-Williams and Apte prati-īkṣ: look at, regard, expect, bear with; 'accept' is not listed",
+  "तस्यां": "5.88 and 6.24 are locatives absolute; 12.12 is 'in that' (the great worship)",
+  "निर्विण्णोऽतिममत्वेन": "Monier-Williams nirviṇṇa: despondent, depressed, disgusted with (instr.); Apte the same: the instrumental is the cause",
+  "प्रसभकृतिवशात्": "Monier-Williams prasabha: forcibly, violently, exceedingly; no sense of haste",
+  "सोममाहनसं": "Monier-Williams and Apte āhanas (of Soma): to be beaten or pressed out; 'swelling' is in neither",
+  "वाम्या": "वामि + आ: प्र वामि, I blow forth; the आ belongs to आरभमाणा (padapāṭha)",
+  "रभमाणा": "Monier-Williams ā-√rabh: to lay or take hold of; to begin; its आ is joined to वाम्या",
+  "पृथिव्यै": "पृथिव्यैतावती is पृथिव्या एतावती (padapāṭha), beside दिवा: beyond heaven, beyond this earth",
+  "तावती": "the tail of एतावती (Monier-Williams etāvat: so great)",
+  "सं": "सं is the prefix of बभूव, first person perfect: 'I have become'",
+  "विश्वो": "विश्वोतामूं is विश्वा उत अमूम् (padapāṭha)",
+  "तामूं": "(उ)त + अमूम्: not a word of its own (विश्वा उत अमूम्, padapāṭha)",
+  "वि": "वि is the prefix of तिष्ठे, not a word of its own"
  }
 }

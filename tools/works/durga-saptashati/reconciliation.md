@@ -120,3 +120,45 @@ Both are readings of the Devī Māhātmya's editions; the base's is good Sanskri
 
 ## The stotras
 The copy's Argalā (27 ślokas), Kīlaka (16) and Kavaca (61) are another recension than Gita Press's (24, 14 and 56, in another order), so they are not compared word for word. Their lines were read against Gita Press's where the two share them, and corrected only where the copy is clearly wrong (`kavacha.47` श्व for च, and the dhyānas of adhyāyas 2, 7 and 12, above).
+
+## Readings of our meanings
+Our meanings give the plain reading of the words as the recitation tradition takes it; a well-known second reading is a footnote. The places where the writers and checkers weighed two readings, and what was settled:
+
+| Verse | Settled reading | Why |
+|---|---|---|
+| argala.1 | भूतापहारिणि: remover of the sufferings of beings | the recitation tradition's reading |
+| argala.21 | सदा goes with संस्तुते, ever praised | the line's own order |
+| kilaka.2 | सोऽपि … जप्यतत्परः: he too who is intent on recitation | the plain words; the commentators' 'one reciting other mantras' is an explanation, not the verse |
+| kilaka.5 | निमन्त्रयामास: bound (kīlita) the hymn | the commentators, and the hymn's own name; 'summoned' (the dictionaries) in the footnote |
+| kilaka.6, kilaka.8 | as the words say: one attains that binding; one gives and receives back | nothing added the verse does not say |
+| kilaka.13 | उच्चकैः: in great measure | Monier-Williams; the soft-and-loud reading in the footnote |
+| kavacha.5 | ब्रह्मणा: the Veda | Brahmā himself is the speaker of the kavaca (kavacha.2); 'by Brahmā' in the footnote |
+| kavacha.24, kavacha.44, kavacha.46 | Trinetrā with the trident, Yamaghaṇṭā at the sides; Mahālakṣmī and Vijayā two goddesses; 'because of your devotion' | the words as they stand |
+| 1.5 | Kolāvidhvaṃsin, a royal line | Monier-Williams |
+| 1.22, 1.32 | deprived of wealth, wife and sons; the wife gave up love for husband and kin | विहीन with the instrumental; 1.31's santyajya continued |
+| 1.45, 1.71 | each of us blind in discernment; Brahmā, the lord of radiance | the genitives as printed; प्रभुः nominative |
+| 1.103, 1.104 | on his thigh; she herself came forth | जघने locative; स्वयम् with समुत्पन्ना |
+| 2.42, 2.44 | five crore; five hundred crore chariots | niyuta a million (Monier-Williams); fifty ayutas of ayutas |
+| 2.43 | Parivārita, the name of an asura | a second finite verb follows; 'surrounded' in the footnote |
+| 2.60, 2.69, 3.22, 3.40 | swooping like hawks; the Devī and her attendants; one group lashed and torn; pressing his throat with her foot | the grammar of each line |
+| 4.7, 4.11, 4.14, 4.37, 5.11 | as the words stand, the plain reading | no reading the grammar does not give |
+| 5.41 | जाति: birth | Monier-Williams's first sense; जाति alone reads as caste in modern Hindi |
+| 5.77, 5.82 | the senses of beings; two clauses about her, no verb supplied | the recitation tradition; the verse as it stands |
+| 5.111, 5.129 | beings and things; with care | the list before it; Monier-Williams ādṛta |
+| 6.dhyana | भैरवाङ्ग: Bhairava's body | the text as printed (some read अङ्क, lap) |
+| 6.16 | अधरेण: with its lip | Monier-Williams and Apte adhara |
+| 6.24 | अथ: or else | two alternatives |
+| 7.17 | Caṇḍa with the arrows, Muṇḍa with the discuses | the recitation tradition; Caṇḍa has just rushed at her |
+| 8.4, 8.5 | weapons raised; of boundless valour | the only senses Monier-Williams and Apte give; कोटिवीर्याणि agrees with कुलानि |
+| 8.10, 8.32, 8.39, 8.54, 8.56 | as the words stand | the grammar of each line |
+| 9.26, 9.30 | a thunderclap's crash, no owner named; the lord of the dānavas left unnamed | the verse names neither |
+| 10.23 | प्रथमं: a combat never seen before | Apte prathama 'matchless' |
+| 10.32 | शान्ताः अग्नयः: the fires that had gone out blazed up | Gita Press's reading; Monier-Williams śānta 'extinguished' |
+| 11.2 | आशाः: the quarters | the recitation tradition |
+| 11.6 | स्तव्यपरा परोक्तिः: beyond all that is to be praised, the highest speech | Gita Press's two words; the one-compound reading in the footnote |
+| 11.33 | विश्वेश: the lord of the universe | our word meaning |
+| 11.50, 11.52 | तत्: and so (my name) | Monier-Williams tad 'therefore' |
+| 12.22, 12.23, 12.38 | recited or heard; the recital of my births protects from evil spirits; Mahākālī in apposition | the locatives side by side; bhūtebhyaḥ ablative; the received text |
+| 13.9, 13.10 | the king took his place on the bank, and the merchant too did austerity | आस्थितः goes with the main subject, Suratha; 13.10's 'and that merchant too' |
+| 13.25 | संसिद्ध्यै between the two clauses | the verse's order |
+| devi-sukta.4 | उपक्षियन्ति: dwell in me | Monier-Williams cites -kṣiyanti for this very ṛc; 'waste away' in the footnote |

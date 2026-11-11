@@ -2,13 +2,13 @@
 
     python3 tools/works/durga-saptashati/source/meanings.py <durga-saptashati.json>
 
-Writes, in tools/works/durga-saptashati/meanings/:
-  hi/scriptures.json, en/scriptures.json   ours: the owner's drafts (written from each verse with Claude), brought to
-                                           tools/meanings/style.md by the rules below; meaning_fixes.json, beside this
-                                           script, replaces a verse's draft where a rule cannot (each with its reason);
+Writes, in tools/works/durga-saptashati/meanings/, the copied translation:
   en/pargiter.json                         F. E. Pargiter's English (The Mārkaṇḍeya Purāṇa, Bibliotheca Indica, 1904;
                                            public domain), copied as given; a passage he gives for several mantras sits
                                            under the last of them (the joint meaning under the last part, as in the Mānas).
+Our own meanings (hi/scriptures.json, en/scriptures.json) are reviewed meanings kept in their files
+(tools/meanings/apply_batches.py, docs/HOW-TO.md); this script no longer writes them. Its style rules below are
+still used by words.py for the word meanings' Hindi.
 The style rules, in order (the drafts are otherwise kept word for word):
   both   a mantra that is only a speaker's line (ऋषिरुवाच ॥, देवा ऊचुः ॥) has one meaning from one table (SPEAKER),
          its bīja first (ॐ ऐं।); square brackets go: their words are written into the sentence; quotation marks are curly,
@@ -173,7 +173,6 @@ ITI = {   # the stotras' closing words: Hindi, English
 
 def main(src):
     J = json.load(open(src, encoding='utf-8'))
-    F = json.load(open(os.path.join(HERE, 'meaning_fixes.json'), encoding='utf-8'))
     C = json.load(open(os.path.join(HERE, 'corrections.json'), encoding='utf-8'))
     T = textfile.read(os.path.join(HERE, '..', 'text.txt')); order = [x['id'] for x in T]
     BY = {}   # text item id → the copy's item
@@ -181,51 +180,23 @@ def main(src):
         s = make_text.SEC[sec['id']]
         for it in sec['items']: BY.setdefault(s, []).append(it)
     made = make_text.items_of(J, C)
-    src_of = {}
-    for x, it in zip([m for m in made if not m['id'].endswith('.iti')], [it for sec in J['sections'] for it in sec['items'] for _ in range(3 if '-' in (it['number'] or '') else 1)]):
-        src_of[x['id']] = it
-    H, E, P = {}, {}, {}
-    for x in made:
-        r = x['id']; s, _, n = r.partition('.')
-        if r.endswith('.iti'):
-            if s.isdigit():
-                c = int(s); hn, en_ = CH[c - 1]
-                H[r] = f'स्वस्ति। श्रीमार्कण्डेयपुराणमें सावर्णिक मन्वन्तरकी कथाके अन्तर्गत देवीमाहात्म्यमें ‘{hn}’ नामक {ORD_HI[c - 1]} अध्याय पूरा हुआ।'
-                E[r] = f'Svasti. Thus, in the Devī Māhātmya of the Śrī Mārkaṇḍeya Purāṇa, in the account of the Sāvarṇika manvantara, ends the {ORD_EN[c - 1]} adhyāya, named {en_}.'
-            else: H[r], E[r] = ITI[s]
-            continue
-        it = src_of[r]
-        m = SPK.match(' '.join(x['v']))
-        if m and len(x['v']) == 1:
-            b = BIJA.get(m.group(1) or '', ('', '')); h, e = SPEAKER[m.group(2)]
-            H[r] = (b[0] + ' ' + h).strip(); E[r] = (b[1] + ' ' + e).strip(); continue
-        if '-' in (it['number'] or ''):
-            a = int(it['number'].split('-')[0]); H[r], E[r] = namah(a)[int(n) - a]; continue
-        H[r] = hi(it['meaning']['hi'], ADDRESS(r)); E[r] = en(it['meaning']['en'])
+    ids = {x['id'] for x in made}
+    P = {}
     for sec in J['sections']:                       # Pargiter: each passage once, under the last mantra it covers
         for it in sec['items']:
             t = it['translations'].get('pargiter')
             if not t: continue
             a, _, b = t['mantras'].partition('-'); b = b or a
             last = b if '.' in b else a.split('.')[0] + '.' + b
-            assert last in H, (it['ref'], last)
+            assert last in ids, (it['ref'], last)
             P[last] = re.sub(r'\s+', ' ', t['text']).strip()
-    for lang, D in (('hi', H), ('en', E)):
-        for r, x in F.get(lang, {}).items():
-            assert r in D, r; D[r] = x['text']
-    assert set(H) == set(order), set(order) ^ set(H)
-    H = {r: H[r] for r in order}; E = {r: E[r] for r in order}; P = {r: P[r] for r in order if r in P}
+    assert ids == set(order), set(order) ^ ids
+    P = {r: P[r] for r in order if r in P}
     M = os.path.join(HERE, '..', 'meanings')
-    jsonio.dump_meanings(M + '/hi/scriptures.json', {
-        'about': "Hindi meaning written for this library (hi-scriptures): the owner's drafts, written from each verse, brought to the style sheet (tools/meanings/style.md) by source/meanings.py; they stand until a reviewed meaning replaces them.",
-        'order': 1, 'numbers': 'verse', 'm': H})
-    jsonio.dump_meanings(M + '/en/scriptures.json', {
-        'about': "English meaning written for this library (en-scriptures): the owner's drafts, written from each verse, brought to the style sheet (tools/meanings/style.md) by source/meanings.py; they stand until a reviewed meaning replaces them.",
-        'order': 1, 'numbers': 'verse', 'm': E})
     jsonio.dump_meanings(M + '/en/pargiter.json', {
         'about': "F. E. Pargiter, The Mārkaṇḍeya Purāṇa (Bibliotheca Indica, 1904; public domain), cantos 81–93, from archive.org's scan, corrected and divided by mantra in the owner's copy; copied as given. A passage for several mantras sits under the last of them.",
         'title': {'hi': 'एफ़. ई. पार्जिटर — अंग्रेज़ी अर्थ', 'en': 'F. E. Pargiter — English meaning'}, 'order': 2, 'copied': True, 'm': P})
-    print(len(H), len(E), len(P))
+    print(len(P))
 
 if __name__ == '__main__':
     main(sys.argv[1])
