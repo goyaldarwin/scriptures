@@ -52,6 +52,8 @@ def word_rule():
     P, S = re.compile(P.group(1)), re.compile(S.group(1))
     return lambda t: unicodedata.normalize('NFC', S.sub('', P.sub('', t)))
 
+# a doubt is settled and recorded in the work's reconciliation.md, never left in the data (docs/PLAYBOOK.md §2)
+DOUBT = re.compile(r'\b(?:text|reading|sense) (?:is )?(?:uncertain|unclear|doubtful)\b|\b(?:uncertain|unclear) reading\b|\b(?:prob\.|probably|likely) for\b|\btext reads\b|\(\?\)|\?\?|पाठ (?:अनिश्चित|संदिग्ध)|अर्थ (?:अनिश्चित|स्पष्ट नहीं)', re.I)
 CONTEXT = re.compile(r'\(here\b[^)]*\)|(?<!के )\((?:यहाँ|यहीं)[ )]|\bhere (?:held|as an?|the poet|for)\b|\bthis (?:āratī|aarti|pada|poem|chālīsā|chalisa|stotra|hymn|work|verse|line)\b'
                      r'|इस (?:आरती|पद|पदके|स्तोत्र|ग्रन्थ|चालीसा|पंक्ति)|[—;]\s*यहाँ (?!समाप्त)|जो यहाँ |यहाँ (?:सम्बोधन|संबोधन)', re.I)
 THIS = re.compile(r'[एे]त[तदम]|इदं|इदम|इमं|इमम|अयं|अयम')   # a word that says "this" itself (स्तोत्रमेतत्पठेद्भक्त्या: "this hymn")
@@ -121,6 +123,12 @@ def check_work(lib, leaf, LANGS):
     # letter, and a word spelled with it is another word to the dictionary (tools/meanings/style.md §5); a work loaded by
     # part keeps its meanings in en-scriptures/<part>.json
     en = [(i, str(v)) for f in glob.glob(os.path.join(lib, path, 'meanings', 'en-scriptures*.json')) + glob.glob(os.path.join(lib, path, 'meanings', 'en-scriptures', '*.json')) for i, v in json.load(open(f, encoding='utf-8')).get('m', {}).items()]
+    ours = en + [(i, str(v)) for f in glob.glob(os.path.join(lib, path, 'meanings', '*-scriptures*.json')) + glob.glob(os.path.join(lib, path, 'meanings', '*-scriptures', '*.json')) if '/en-scriptures' not in f for i, v in json.load(open(f, encoding='utf-8')).get('m', {}).items()]
+    bad = [i for i, t in ours if DOUBT.search(t)]
+    _need(not bad, f"{name}: our meaning keeps a doubt (\"reading uncertain\", \"(?)\"): settle it and record it in reconciliation.md: {bad[:5]}")
+    for g in glob.glob(os.path.join(lib, path, 'glossary.json')) + glob.glob(os.path.join(lib, path, 'glossary', '*.json')):
+        bad = sorted({k for D in json.load(open(g, encoding='utf-8')).values() for k, v in D.items() if any(DOUBT.search(x) for x in _texts(v))})
+        _need(not bad, f"{name}: {os.path.relpath(g, lib)} keeps a doubt in a sense: settle it (the work's reconciliation.md): {bad[:5]}")
     bad = [i for i, t in en if 'ṁ' in t]
     _need(not bad, f"{name}: our English meaning writes ṃ for the anusvāra, never ṁ: {bad[:5]}")
     bad = [i for i, t in en if re.search(r'\bOṃ\b', t)]   # the syllable is the English word Om; a lowercase IAST mantra keeps oṃ
@@ -339,6 +347,7 @@ def prepare(lib):
             if code == 'en': _need('ṁ' not in k + str(v.get('en', '')), f"glossary/en.json: {k!r} writes ṁ; IAST's anusvāra is ṃ")
             # a shared entry opens in every work: it gives the word's general senses and names the work a sense belongs
             # to, never "here" or "this āratī" (docs/PLAYBOOK.md §5); a word that itself says "this" (एतत्, इदम्) may
+            _need(not any(DOUBT.search(x) for x in _texts(v)), f"glossary/{code}.json: {k!r} keeps a doubt in its sense: settle it")
             bad = [s for s in _texts(v) if CONTEXT.search(s)] if not THIS.search(k) else []
             _need(not bad, f"glossary/{code}.json: {k!r} speaks of one context ({(bad or [''])[0][:80]!r}): name the work, or move the sense to that work's glossary/")
             # the Gurbani dictionary: every entry has its Punjabi sense, the same senses as hi and en in the same order (docs/HOW-TO.md)
