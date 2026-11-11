@@ -10,12 +10,11 @@ The rule: keep the book; correct it only where it is clearly wrong. The library'
 |---|---|---|---|
 | the lines | the refrain one printed line, each stanza two | the same lines; the refrain's ends ॥, a stanza's । and ॥N॥ | The book's own lines; it halves a line with a comma only in the refrain and stanza 1 (whose halves rhyme as those of the uncomma'd lines do: श्यामा / ग्राम्या), so the printed line stays one line throughout, the comma dropped (the standard). |
 | stanza 1, line 1 | सब लोगों के ऊपर | सब रोगों के ऊपर | The line goes on रुज से रक्षा करके ("guarding from illness"): रोगों ("illnesses"), as Drik Panchang, [Hindupad](https://hindupad.com/tag/aarti-sangrah/) and [mantra.tips](https://mantra.tips/hi/mantras/tulsi-aarti) print it; ल for र is a misprint. |
-| stanza 2, line 1 | बटु पुत्री | बहु पुत्री | बहुपुत्री ("of many offspring") is a name of Tulasī, as Drik Panchang has it; बटु ("a boy") makes no sense with पुत्री: ट for ह, a misprint. |
 | stanza 5, line 1 | श्याम वरुण कुमारी | श्याम वर्ण कुमारी | "Of dark hue" (श्याम वर्ण), as Drik Panchang and [mantra.tips](https://mantra.tips/hi/mantras/tulsi-aarti) have it; वरुण (the god of waters) has no place in the line. कुमारी is kept (Drik सुकुमारी). |
 | after every stanza | जय | not written | The refrain cue; the refrain is shown once. |
 | stanza numbers | none | ॥१॥ … ॥५॥ | The standard. |
 
-Kept as the book has them: सब जग की सुख दाता (Drik सबकी सुखदाता वर माता), रुज, हे श्यामा … हे ग्राम्या (Drik है), सुर बल्ली (Drik सूर वल्ली), विष्णु प्रिये (Drik प्रिय), सेवे, वंदित, तारिणी (Drik तारिणि), विजन (Drik बिजन), मानवलोक, संपत्ति, उनका तुमसे कैसा नाता (Drik श्री हरि का तुम से नाता).
+Kept as the book has them: बटु पुत्री (Drik बहु पुत्री; the recording sings बटु, and most printings read so: Bhakti Bharat, Shubh Panchang, mantra.tips; not clearly wrong, so the book stands), सब जग की सुख दाता (Drik सबकी सुखदाता वर माता), रुज, हे श्यामा … हे ग्राम्या (Drik है), सुर बल्ली (Drik सूर वल्ली), विष्णु प्रिये (Drik प्रिय), सेवे, वंदित, तारिणी (Drik तारिणि), विजन (Drik बिजन), मानवलोक, संपत्ति, उनका तुमसे कैसा नाता (Drik श्री हरि का तुम से नाता).
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
