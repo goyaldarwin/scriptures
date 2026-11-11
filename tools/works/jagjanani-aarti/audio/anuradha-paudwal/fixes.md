@@ -6,16 +6,11 @@ The transcript (`transcripts/faxIif-3F8o.jsonl`, the identify run) begins each s
 
 | Verse | Start | Evidence |
 |---|---|---|
-| aarti.tek | 1147.0 | 1147.0 "जग जए मनी जे जे माँ", 1150.0 "माजब जननी जेजे · भायगारिनी भावतारिनी" = जगजननी जय जय, (माँ) जगजननी जय जय, भयहारिणि भवतारिणि; 1099.4–1147.0 music. The transcript has nothing before 1180.6. |
-| aarti.pad1 | 1218.7 | 1218.7 "तुही सच्चित सुखा मैं" = तू ही सत-चित-सुखमय; 1199.9–1218.7 music and vocalise. |
-| aarti.pad2 | 1270.0 | 1270.0 "आदी", 1274.5 "आवी चला वी नाशी" = आदि … अविचल अविनाशी; 1250.7–1270.0 music and vocalise. |
-| aarti.pad3 | 1320.5 | 1320.5 "अभी तारी अगवारी" = अविकारी अघहारी; 1301.3–1320.5 music and vocalise. |
-| aarti.pad5 | 1421.1 | 1421.1 "राम त्रेशन तुसीपा · ब्रेजे रानी रादा" = राम कृष्ण तू सीता व्रजरानी राधा; the transcript missed this line, and the automatic match took the second line's repeat (1439). |
-| aarti.pad6 | 1472.4 | 1472.4 "दश्वेख्यान वजुर्गा · नानाशा स्ट्रकरा" = दश विद्या नव दुर्गा नानाशस्त्रकरा; the automatic match took stanza 5's "हारिणि सब बाधा" (1447). |
-| aarti.pad9 | 1624.0 | 1624.0 "तुही स्नी है सुदा मैं · तुवति गर्ल मना" = तू ही स्नेह-सुधामयि तू अति गरलमना; the automatic match took the refrain before it (1599). |
-| aarti.pad10 | 1674.7 | 1674.7 "मुडा दार निवास्णी · इह बरे सी भी प्रदे" = मूलाधारनिवासिनि इह-पर-सिद्धिप्रदे; 1654.9–1674.7 music and vocalise. |
-| aarti.pad11 | 1725.3 | 1725.3 "शाएटी शक्ति दर किवी" = शक्ति शक्तिधर तू ही; 1706.3–1725.3 music and vocalise. |
-| aarti.pad12 | 1776.0 | 1776.0 "खम्मती दीन जुखीमा · विपत जाल गिए" = हम अति दीन दुखी मा विपत-जाल घेरे; 1756.8–1776.0 music and vocalise. |
+| aarti.tek | 1147.0 | 1147.0 "जग जए मनी जे जे माँ", 1150.0 "माजब जननी जेजे · भायगारिनी भावतारिनी" = जगजननी जय जय, (माँ) जगजननी जय जय, भयहारिणि भवतारिणि; 1099.4–1147.0 music. The transcript has nothing before 1180.6. Heard in 5-s windows: windows from 1144 to 1147 s begin “जग जए में लिजे जे माँ” (जगजननी जय जय माँ), the one from 1148 s “वज़नी जे जे…” (…जननी जय जय, its middle), and from 1150 s the line sung again: the line starts at about 1147 s. |
+| aarti.pad3 | 1320.5 | 1320.5 "अभी तारी अगवारी" = अविकारी अघहारी; 1301.3–1320.5 music and vocalise. Heard in 5-s windows: windows from 1317.5 to 1320.5 s begin “अभी तारी आद़़ारी” (अविकारी अघहारी), the one from 1322.5 s “अगर कला ता” (…अकल कलाधारी, its middle): the line starts at about 1320.5 s. |
+| aarti.pad9 | 1624.0 | 1624.0 "तुही स्नी है सुदा मैं · तुवति गर्ल मना" = तू ही स्नेह-सुधामयि तू अति गरलमना; the automatic match took the refrain before it (1599). Heard in 5-s windows: windows from 1621 to 1624 s begin “तुही स्नी है सुदा मैं” (तू ही स्नेह-सुधामयि), the one from 1625 s “तुवति अगर तुवति” (तू अति…, its middle): the line starts at about 1624 s. |
+| aarti.pad10 | 1674.7 | 1674.7 "मुडा दार निवास्णी · इह बरे सी भी प्रदे" = मूलाधारनिवासिनि इह-पर-सिद्धिप्रदे; 1654.9–1674.7 music and vocalise. Heard in 5-s windows: windows from 1672.7 to 1675.7 s begin “मुडा दार निवासिनी” (मूलाधारनिवासिनि), the one from 1676.7 s “अगर निवासिनी यहाम बरे से” (…निवासिनि इह-पर, its middle): the line starts between 1674.7 and 1675.7 s. |
+| aarti.pad11 | 1725.3 | 1725.3 "शाएटी शक्ति दर किवी" = शक्ति शक्तिधर तू ही; 1706.3–1725.3 music and vocalise. Heard in 5-s windows: windows from 1724.3 to 1725.3 s begin “शाएक्ती शाक्ती दर किवी” (शक्ति शक्तिधर तू ही), the one from 1726.3 s no words: the line starts at about 1725.3 s. |
 
 ## Starts left to the forced aligner (MMS), checked
 These verses have no hand start: a transcript segment's start is not the line's, and 5-s windows a second apart (Whisper small, the ONNX export of `tools/audio/transcribe_onnx.py`) show that MMS's start is the line's.

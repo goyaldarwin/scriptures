@@ -6,15 +6,9 @@ The text is the version sung (`../../reconciliation.md`). Starts not listed here
 
 | Verse | Start | Evidence |
 |---|---|---|
-| chalisa.cau4 | 2741.6 | "जैजे जे रगुनाक्धिपाला" = जय जय जय रघुनाथ कृपाला. |
-| chalisa.cau5 | 2753.9 | "दोत तुमार वीर हन्माना" = दूत तुम्हार वीर हनुमाना. |
-| chalisa.cau6 | 2760.2 | "तब बुज दंद प्रचंद खपाला" = तव भुज दण्ड प्रचण्ड कृपाला. |
-| chalisa.cau7 | 2766.3 | "तुम अनात के नात को साई" = तुम अनाथ के नाथ गोसाईं, the first of four half-lines in the segment 2766.3–2778.3 s. |
-| chalisa.cau8 | 2772.3 | "रम्हा दिक तब पार ना पावे" = ब्रह्मादिक तव पार न पावैं, the third of those four half-lines (the segment shared by length). |
-| chalisa.cau9 | 2784.3 | "चारी उवेद भरत है साखी" = चारिउ वेद भरत हैं साखी, the first of three half-lines in 2784.3–2793.3 s. |
-| chalisa.cau10 | 2790.3 | "गुडगावत शारत मनमाही" = गुण गावत शारद मन माहीं, the third of those (shared by length). |
+| chalisa.cau8 | 2772.3 | "रम्हा दिक तब पार ना पावे" = ब्रह्मादिक तव पार न पावैं, the third of those four half-lines (the segment shared by length). Heard in 5-s windows: the window from 2769.3 s hears the line before's end and then “प्रम्हादिक तब पार”, those from 2770.3 to 2772.3 s begin “रम्हा दिक तब पार नपावे” (ब्रह्मादिक तव पार न पावैं), the one from 2773.3 s “… पावे सदाएश तुमहरो” (…न पावैं सदा ईश, its middle): the line starts at about 2772 s. |
+| chalisa.cau9 | 2784.3 | "चारी उवेद भरत है साखी" = चारिउ वेद भरत हैं साखी, the first of three half-lines in 2784.3–2793.3 s. Heard in 5-s windows: windows from 2781.3 to 2784.3 s begin “चारी उवेद बरत है साखी” (चारिउ वेद भरत हैं साखी), the one from 2785.3 s “वेद बरत है साखिश…” (its middle): the line starts at about 2784.3 s. |
 | chalisa.cau11 | 2797.4 | windows from 2794 and 2795 s end with "नाम तुमार लेत", the one from 2797 s begins "नाम तुमार लेत जो कोई", the one from 2798 s "…लित जो खोई": the line starts at about 2797.4 s (the hand start 2796.5 was a transcript segment's); MMS 2797.11 |
-| chalisa.cau12 | 2802.9 | "राम नाम है अप्रम पारा" = राम नाम है अपरम्पारा, the fourth of those five (shared by length). |
 | chalisa.cau13 | 2815.4 | windows from 2809 and 2810 s hear no words, those from 2811 to 2815 s begin "गल पति नाम तुमहारो…" (गणपति नाम तुम्हारो लीन्हो), the one from 2816 s "…नाम तुमहारो": the line starts at about 2815.4 s (the transcript held nothing here and the start in use was spread by length); MMS 2815.50 agrees (score 0.076) |
 | chalisa.cau17 | 2846.4 | windows from 2843 to 2846 s begin "नाम शत्रु हन्र्दे प्रकाशा", the one from 2847 s "…द्रु हन्र्दे": the line starts at about 2846.4 s; those from 2840 and 2841 s hear no words (the transcript's start, 2839.3, was early); MMS 2846.35 agrees (score 0.123) |
 | chalisa.cau29 | 2938.4 | windows from 2930 to 2934 s hear the line before's end and no words (the hand start 2932.3 was a transcript segment's); those from 2936 to 2938 s begin "सत्य है सत्य व्रत स्वामी", the one from 2939 s does not: the line starts at about 2938.4 s; MMS 2938.59 agrees (score 0.196) |

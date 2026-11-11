@@ -4,9 +4,7 @@
 
 The text is the version sung (`../../reconciliation.md`). Starts not listed here come from the forced aligner (MMS, `aligned.json`), else from the transcript's matches (the identify transcript, `transcripts/lCwPg0LRRjk.jsonl`).
 
-| Verse | Start | Evidence |
-|---|---|---|
-| chalisa.do2 | 2136.8 | "जैया जैया श्रेशनी देव प्रभ हो" = जय जय श्री शनिदेव प्रभु; the automatic alignment took its second half (सुनहु विनय महाराज, 2143.8 s). |
+No start is set by hand.
 
 ## Starts left to the forced aligner (MMS), checked
 These verses have no hand start: a transcript segment's start is not the line's, and 5-s windows a second apart (Whisper small, the ONNX export of `tools/audio/transcribe_onnx.py`) show that MMS's start is the line's.

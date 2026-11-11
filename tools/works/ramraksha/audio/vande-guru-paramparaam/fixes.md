@@ -4,13 +4,13 @@ Speech recognition garbles or drops some lines of the chant, so the automatic ma
 
 | Verse | Start (s) | Evidence |
 |---|---|---|
-| dhyana | 66.5 | "द्यानं द्याये दाजानु" — the heading ध्यानम् and the verse's first words |
-| sh3 | 127.0 | "सासितूण…" inside the 126.0–134.7 segment, before "नक्तंचरान्तकम्" |
-| sh4 | 143.65 | "ता वरक्शाम पदेद प्राग्ण्या" = रामरक्षां पठेत्प्राज्ञः |
-| sh18 | 331.0 | "…ष्णाजिनाम्बरौ | फलमूलाशिनौ दान्तौ" (328.5–334.45), after śloka 17's last word |
-| sh20 | 358.0 | "आत्तसज्जधनुषा…" |
-| sh21 | 372.6 | "…गच्छन्मनोरथान्नश्च": the segment holds both lines; the first is not recognised |
-| sh29 | 508.5 | "…शरणं भव राम राम | श्रीरामचन्द्र चरणौ" at the end of 503.05–511.6 |
-| sh38 | 667.9 | after śloka 37 ends ("रामे चित्तलयः…" 661.9–667.9); its second half is at 681.7 |
+| dhyana | 66.5 | "द्यानं द्याये दाजानु" — the heading ध्यानम् and the verse's first words Heard in 5-s windows: windows from 65.5 to 66.5 s begin “दियानं दियाये दाजानु” (the heading ध्यानम्, then ध्यायेदाजानु…), the one from 68.5 s “दिया एदा जानुबाूं…” (ध्यायेदाजानुबाहुं): the reciter names the dhyāna at about 66.5 s and its first words follow at about 68.5 s (MMS: 69.0); the verse is lit from its name. |
+| sh3 | 131 | "सासितूण…" inside the 126.0–134.7 segment, before "नक्तंचरान्तकम्" Heard in 5-s windows: the window from 128 s hears “जदाम कुटमन्नितम् सासितुन दहने” (śloka 2's last word …जटामुकुटमण्डितम्, then सासितूणधनु…), those from 129 to 130 s no words of it, the one from 131 s begins “शासी तुन दहनुल भाड़ भानें नत्तंचरा” (सासितूणधनुर्बाणपाणिं नक्तञ्चरा…), the one from 132 s “तुन दहनुल बाड़…” (its middle): the line starts at about 131 s (127.0 was on śloka 2's last word); MMS (131.39, score 0.78) agrees. |
+| sh4 | 143.65 | "ता वरक्शाम पदेद प्राग्ण्या" = रामरक्षां पठेत्प्राज्ञः Heard in 5-s windows: the window from 140.7 s hears śloka 3's end and then “ताम रखशाम पट्” (रामरक्षां पठेत्), those from 141.7 to 143.7 s begin “तो वरवशाम पदेग प्राग्या” (रामरक्षां पठेत्प्राज्ञः), the one from 144.7 s “अग्शाम पदेग…” (…रक्षां पठेत्, its middle): the line starts at about 143.7 s. |
+| sh18 | 331.0 | "…ष्णाजिनाम्बरौ | फलमूलाशिनौ दान्तौ" (328.5–334.45), after śloka 17's last word Heard in 5-s windows: the window from 329 s hears “…बाजिना बदावु लमुलाशिनो दान्त” (…जिनाम्बरौ, then फलमूलाशिनौ दान्तौ): the line starts at about 331 s; MMS (331.17, score 0.76) agrees. |
+| sh20 | 358.0 | "आत्तसज्जधनुषा…" Heard in 5-s windows: windows from 357 to 358 s begin “बाद्दसद्जदनुशाविषुस्प्रिषा” (आत्तसज्जधनुषाविषुस्पृशा…), the one from 359 s “अदिए तानुशा विषुस प्रिषावक शया” (…धनुषाविषु, its middle): the line starts at about 358 s; MMS (358.53) agrees. |
+| sh21 | 372.6 | "…गच्छन्मनोरथान्नश्च": the segment holds both lines; the first is not recognised Heard in 5-s windows: the window from 370.6 s hears the line before's end and “च़ाव चन्दा कवड़ी कड़ी” (सन्नद्धः कवची खड्गी), the one from 372.6 s begins “सन्नदाख कवाची कदकी चापा बानदरो” (सन्नद्धः कवची खड्गी चापबाणधरो): the line starts at about 372 s; MMS (372.76) agrees. |
+| sh29 | 508.5 | "…शरणं भव राम राम | श्रीरामचन्द्र चरणौ" at the end of 503.05–511.6 Heard in 5-s windows: windows from 507.5 to 509.5 s begin “शिराम च्च्ट्र चरनों मनसास्मरामी” (श्रीरामचन्द्रचरणौ मनसा स्मरामि): the line starts between 507.5 and 509 s; MMS (509.1) agrees within a second. |
+| sh38 | 672.9 | after śloka 37 ends ("रामे चित्तलयः…" 661.9–667.9); its second half is at 681.7 Heard in 5-s windows: windows from 664.9 to 667.9 s hear śloka 37 still being sung (“रावे चित्तलयस्दा भाबतु में”, “अदा बाबतुने वोरा मामुद्धरर” = …चित्तलयः सदा भवतु मे भो राम मामुद्धर), the one from 669.9 s “भोरा मा मुद्धरे रामरा मेरा” (its last words, then राम रामे…), the one from 672.9 s begins “रामरामेती र” (राम रामेति), the one from 673.9 s “… वेदि रा” (its middle): the line starts at about 672.9 s (667.9, a transcript segment's end, was inside śloka 37); MMS (673.5, less its 0.6-s lean 672.9) agrees. |
 
 Note: the alignment cache `transcripts/ZIDdE4SZAuw.align.json` already carries these starts. Re-running `make_timings.py` reproduces the published timings exactly. If you delete the cache to realign, check the neighbouring verses again.

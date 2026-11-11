@@ -2,8 +2,6 @@
 
 Video NQhdLn7FHwA (SMVedroad, 35 min). The recogniser left four silent stretches of about 30 s each (126–157, 181–211, 2023–2053, 2078–2108 s), and the aligner trusts the transcript only from 161 s, where it starts 1.1.9 at what is really the second line of 1.1.7. The first eight mantras and the śānti, and the last five, are placed from the transcript's own segments; the mantras inside a silent stretch (1.1.3, 1.1.5–6, 1.1.9; 2.3.15–16, 2.3.18) are filled by text length between the fixed neighbours, which is what the aligner does for short gaps. Evidence:
 
-- **shanti.1 at 38.0 s:** 30.0–38.0 is the announcement ("शान्ति मन्त्र…"); 38.0–48.0 reads "ओों सहनाववतु सहनो भूनक्तु" = ॐ सह नाववतु । सह नौ भुनक्तु.
-- **1.1.1 at 69.0 s:** 57.0–69.0 ends the śānti ("…शान्दिशान्दिशान्दि"); 69.0–76.0 reads "वो शन्जवैवाजश्रवस सर्ववेदसम्ददो" = ॐ उशन् ह वै वाजश्रवसः सर्ववेदसं ददौ.
 - **1.1.2 at 82.0 s:** 82.0–91.2 reads "तमह कुमारम संतम दक्ष्ना सुनी आमाना सुश्रद्धा विवेश" = तँ ह कुमारँ सन्तं दक्षिणासु नीयमानासु श्रद्धाविवेश.
 - **1.1.4 at 109.72 s:** 109.7–126.7 reads "शवो वाच़ पितरंत तकस्मे मांदास्यसील्ती …" = स होवाच पितरं तत कस्मै मां दास्यसीति … (the whole mantra in one segment).
 - **1.1.7 at 156.72 s:** 156.7–161.7 reads "वानरव प्रविषत्यति तिख्र ब्रामवाडो ग्रूहान" = वैश्वानरः प्रविशत्यतिथिर्ब्राह्मणो गृहान्; 161.7 is its second line, तस्यैताँ शान्तिं कुर्वन्ति (which the aligner takes for 1.1.9).

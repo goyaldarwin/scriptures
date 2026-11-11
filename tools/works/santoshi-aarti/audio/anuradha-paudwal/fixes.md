@@ -9,7 +9,7 @@ ONNX export, `tools/audio/transcribe_onnx.py`) on 4–9 s pieces.
 | Verse | Start | Evidence |
 |---|---|---|
 | aarti.pad5 | 188.4 | windows from 186 to 188 s begin "शुग्र भार…" (शुक्रवार), the one from 189 s "अज दी": the line starts at about 188.4 s (the hand start 187.0 was a transcript segment's); MMS 188.87 agrees |
-| aarti.pad9 | 308.3 | 302.95 "जे सन्तो शीबाता" (the refrain), 308.3 "यान दाए जल तेडा मन्वाचित वल्ग" = ध्यान धरो जाने तेरो मनवांछित फल (the transcript: 308.36); the alignment took 315.84, its repeat |
+| aarti.pad9 | 308.3 | 302.95 "जे सन्तो शीबाता" (the refrain), 308.3 "यान दाए जल तेडा मन्वाचित वल्ग" = ध्यान धरो जाने तेरो मनवांछित फल (the transcript: 308.36); the alignment took 315.84, its repeat Heard in 5-s windows: windows from 300.7 to 303.7 s hear the refrain (“जे सन्तो शीबाता”), the one from 307.7 s begins “जान दाए जल तीडा मनुए प्रदा” (ध्यान धरो जाने तेरो मनवांछित), the one from 308.7 s “… ताई जल तेडा मन्वाची” (…धरो जाने तेरो, its middle): the line starts between 307.7 and 308.3 s; MMS (303.67) took the refrain. |
 | aarti.pad11 | 398.4 | windows from 395 to 397 s hear no words of it, the one from 398 s begins "संतोषी माँ की आरती", the one from 399 s none: the line starts at about 398.4 s (the start in use, 396.74, was early) |
 
 ## Starts left to the forced aligner (MMS), checked

@@ -1,8 +1,6 @@
 {
  "why": "Verses the automatic checks of tools/audio/METHOD.md step 4 flag, for the owner's ear: MMS's score below 0.5 (the transcript's start is kept), MMS and the transcript more than 2 s apart, a length out of pace with the verses around it, or a start before the verse before (tools/audio/mms_merge.py, lean 0.6 s).",
  "ids": [
-  "chalisa.do1",
-  "chalisa.cau2",
   "chalisa.cau3",
   "chalisa.cau4",
   "chalisa.cau5",

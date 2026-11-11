@@ -50,7 +50,7 @@ through the refrain because it has no end.
    3. spread it by its length between the trusted neighbours, and put it on the to-check list.
    Until these are built, a session checks a flagged start by hearing its stretch in 5-s windows a second apart
    (`windows.py`: the last window that still begins with the line's first words is at the start), never by a transcript
-   segment's start (it may open on music or the line before), and sets it in `fixes.json` with the windows in `fixes.md`.
+   segment's start (it may open on music or the line before), and sets it in `fixes.json` with the windows in `fixes.md`. A start so set leaves the to-check list; where MMS's start agrees with the windows (within a second) the hand start is not kept and MMS's stands; where the windows do not settle a start, the start stays, `fixes.md` says so and `check.json` → `also` keeps it on the list. A word held long (a sung जय) or a line sung twice makes several windows in a row begin with the line's first words: then the windows that hear the line before, or the line's later words, decide, and where they cannot the start is listed.
 6. **The owner's ear** (built: timing mode, the `timing` workflow, `owner.json`). His starts and ends always win. Each
    start he sets becomes an anchor: the stretch up to his next set start is aligned again (to build), so the verses
    around it improve without being touched, and his first starts on a recording measure its lean.

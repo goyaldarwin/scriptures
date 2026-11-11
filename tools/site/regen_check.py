@@ -5,7 +5,8 @@
 
 First runs every work's text generator that reads only files in this repository (GENERATORS: the scripts in
 tools/works/<work>/source/ that write its text.txt, book.json or copied meanings) in a copy of tools/, and fails if any
-file it writes differs from the committed one: a text edited by hand would be undone by the next run of its generator.
+file it writes differs from the committed one: a text edited by hand would be undone by the next run of its generator; and
+runs tools/audio/mms_merge.py on each recording with MMS's raw results (mms/), which must give its aligned.json and check.json.
 Then makes the works again in an empty folder that holds only what is edited by hand (index.json, removed.json,
 apps.json and glossary/): each work with tools/works/export.py (works that take nothing from each other side by side,
 one process each), then each recording's timings with tools/audio/make_timings.py (a recording that takes its timings
@@ -27,7 +28,7 @@ both what the last pass recorded is the same as when it passed, so it is not mad
 work's text, a meaning, a script the exporters use, a generated file edited by hand) makes that work, and every work that
 takes from it, run again. The record is kept outside the repository (~/.cache/scriptures/regen.json); --full ignores it.
 """
-import glob, hashlib, json, os, shutil, subprocess, sys, tempfile
+import glob, hashlib, json, os, re, shutil, subprocess, sys, tempfile
 from concurrent.futures import ThreadPoolExecutor
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.dirname(os.path.dirname(HERE))
 WORKS = os.path.join(REPO, 'tools', 'works')
@@ -114,6 +115,25 @@ def generators(only):
             for r in ex.map(one, todo): bad += r
     return bad
 
+def merges(only):
+    """Run mms_merge.py on a copy of each recording of these works that uses MMS's starts (aligned.json, from mms/), with the
+    lean its check.json names; return the recordings whose aligned.json or check.json differs from what it makes."""
+    bad = []
+    for w in sorted(only):
+        for d in sorted(glob.glob(os.path.join(WORKS, w, 'audio', '*', 'mms', 'windows.json'))):
+            src = os.path.dirname(os.path.dirname(d)); rel = os.path.relpath(src, WORKS)
+            if not os.path.exists(os.path.join(src, 'aligned.json')): continue   # a run not used yet (mms/score.md says why)
+            if not os.path.exists(os.path.join(src, 'aligned.md')): bad.append(f'{rel}: uses MMS but has no aligned.md, how its starts were made and how good they are (tools/audio/aligned_md.py writes it)')
+            if not os.path.exists(os.path.join(src, 'check.json')): bad.append(f'{rel}: uses MMS but has no check.json (run mms_merge.py)'); continue
+            m = re.search(r'lean ([\d.]+) s', json.load(open(os.path.join(src, 'check.json'), encoding='utf-8')).get('why', ''))
+            with tempfile.TemporaryDirectory() as tmp:
+                cp = os.path.join(tmp, 's'); shutil.copytree(src, cp, ignore=shutil.ignore_patterns('transcripts'))
+                r = subprocess.run([sys.executable, os.path.join(REPO, 'tools', 'audio', 'mms_merge.py'), cp, '--lean', m.group(1) if m else '0.6'], capture_output=True, text=True)
+                if r.returncode: bad.append(f'{rel}: mms_merge.py failed: {(r.stdout + r.stderr)[-300:]}'); continue
+                bad += [f'{rel}/{f}: differs from what mms_merge.py makes (run it with --lean {m.group(1) if m else "0.6"})' for f in ('aligned.json', 'check.json')
+                        if not os.path.exists(os.path.join(src, f)) or not same(os.path.join(cp, f), os.path.join(src, f))]
+    return bad
+
 def groups(wids):
     """The works in sets that take nothing from one another's, each in the order export.py makes them."""
     left, out = set(wids), []
@@ -152,6 +172,8 @@ def main(argv):
         print(f'regen check: nothing has changed since the last pass ({len(wids)} works; --full makes them all again)'); return
     bad = generators(dirty)
     if bad: fail("FAIL: a work's source file differs from what its generator makes (put the change in the generator, or run it):", bad)
+    bad = merges(dirty)
+    if bad: fail("FAIL: a recording's MMS starts or to-check list differ from what tools/audio/mms_merge.py makes from its raw results:", bad)
     need = set().union(*(deps(w) for w in dirty))
     with tempfile.TemporaryDirectory() as tmp:
         out = os.path.join(tmp, 'library'); os.makedirs(out)
