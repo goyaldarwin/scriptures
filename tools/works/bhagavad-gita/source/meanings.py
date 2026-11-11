@@ -25,7 +25,7 @@ import json, os, re, sys, unicodedata
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, '..', '..', '..', '..'))
 sys.path.insert(0, os.path.join(ROOT, 'tools')); sys.path.insert(0, os.path.join(ROOT, 'tools', 'works'))
-import jsonio, textfile
+import jsonio
 
 ZWNJ = '‌'
 SPEAKER = {   # the speaker's line as the text prints it → our opening, Hindi and English
@@ -84,7 +84,6 @@ def hi(s, speaker):
 
 def main(src):
     J = json.load(open(src, encoding='utf-8'))
-    T = {x['id']: x for x in textfile.read(os.path.join(HERE, '..', 'text.txt'))}
     B, TL = {}, {}
     for ch in J['chapters']:
         for v in ch['verses']:
@@ -93,7 +92,6 @@ def main(src):
             t = v['translations']['telang']; last = t['verses'].split('-')[-1]
             if r == last: TL[r] = re.sub(r'\s+', ' ', t['text']).strip()
             else: assert t['verses'].split('-')[0] <= r or True
-    order = [x['id'] for x in textfile.read(os.path.join(HERE, '..', 'text.txt'))]
     M = os.path.join(HERE, '..', 'meanings'); os.makedirs(M + '/en', exist_ok=True)
     jsonio.dump_meanings(M + '/en/besant.json', {
         'about': "Annie Besant, The Bhagavad-Gita, 4th edition (1922; public domain), from en.wikisource.org's 'Bhagavad-Gita (Besant 4th)', in the owner's copy; copied as given, verse by verse.",
