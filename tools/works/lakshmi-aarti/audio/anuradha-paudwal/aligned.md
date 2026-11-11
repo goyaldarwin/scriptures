@@ -4,7 +4,7 @@
 
 **By hand:** 1 start set by hand win over these (`fixes.json`, each with the 5-s windows or words it was read from in `fixes.md`): aarti.tek.
 
-**How good:** not scored yet: the owner has not set starts by ear on this recording. His first 20 or so will measure its lean and score MMS against the transcript (`tools/audio/mms_score.py`).
+**How good:** not scored yet: of the owner's 2 starts set by ear here, 2 are timed by both MMS and the transcript, fewer than the 20 or so a score needs (`tools/audio/mms_score.py`).
 
-**To check** (`check.json`, the checks of METHOD.md step 4, verses the owner has not set): 2.
+**To check** (`check.json`, the checks of METHOD.md step 4, verses the owner has not set): 0.
 The owner's starts (`owner.json`) and hand fixes (`fixes.json`) win over these.

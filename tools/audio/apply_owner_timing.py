@@ -4,7 +4,7 @@ Usage:  python3 tools/audio/apply_owner_timing.py <file with the GitHub issue bo
 The body carries one JSON block: {"path": "<library path of the work>", "source": "<audio source id>",
 "starts": {"<video id>": {"<item id>": seconds or [start, end]}}, "publish"?: true}.
 It merges the starts into tools/works/<work>/audio/<source>/owner.json (later sends win), removes "draft" from that
-source's source.json and marks it "checked" when "publish" is true, and re-makes the source's timings with make_timings.py
+source's source.json and marks it "checked" when "publish" is true, and re-makes the source's timings with make_timings.py (first, for a recording timed by MMS, its check.json and the count in its aligned.md)
 (and those of works that take this recording: source.json "take"). It prints one
 line per change and exits non-zero with a reason when the body is not valid, so the workflow can say so on the issue.
 """
@@ -46,6 +46,17 @@ print('%d starts applied' % n)
 # never touched by a manual correction
 meta = json.load(open(os.path.join(src, 'source.json'))); out = os.path.join(REPO, 'library', path, 'audio', meta['id'] + '.json')
 old = json.load(open(out)) if os.path.exists(out) else {}; before = old.get('at', {})
+# a recording timed by MMS lists to check only verses the owner has not set: re-make its check.json (and aligned.json) with
+# its own lean (tools/site/regen_check.py fails if it is stale), and set the count in its aligned.md's "To check" line
+if os.path.exists(os.path.join(src, 'aligned.json')) and os.path.exists(os.path.join(src, 'mms', 'windows.json')):
+    cj = os.path.join(src, 'check.json'); why = json.load(open(cj, encoding='utf-8')).get('why', '') if os.path.exists(cj) else ''
+    lm = re.search(r'lean ([\d.]+) s', why)
+    subprocess.run([sys.executable, os.path.join(HERE, 'mms_merge.py'), src, '--lean', lm.group(1) if lm else '0.6'], check=True)
+    AM = os.path.join(src, 'aligned.md')
+    if os.path.exists(AM):
+        md = open(AM, encoding='utf-8').read(); left = len(json.load(open(cj, encoding='utf-8'))['ids'])
+        md2 = re.sub(r'(verses the owner has not set\): )\d+\.', lambda m: m.group(1) + '%d.' % left, md)
+        if md2 != md: open(AM, 'w', encoding='utf-8').write(md2)
 subprocess.run([sys.executable, os.path.join(HERE, 'make_timings.py'), src], check=True)
 wid = os.path.basename(os.path.dirname(os.path.dirname(src)))   # the work's folder: works that take this recording follow
 for sj in sorted(glob.glob(os.path.join(REPO, 'tools', 'works', '*', 'audio', sid, 'source.json'))):
