@@ -54,6 +54,16 @@ The rules are `tools/meanings/style.md` (above all §1) and `docs/PLAYBOOK.md` �
 6. **Copy check of the whole file:** `python3 tools/meanings/overlap.py tools/works/manas/meanings/hi/scriptures.json library/hinduism/granth/tulsidas/ramcharitmanas/meanings/hi-gitapress.json` and `python3 tools/meanings/overlap.py tools/works/manas/meanings/en/scriptures.json library/hinduism/granth/tulsidas/ramcharitmanas/meanings/en-gitapress.json`, 0 runs of 10+ for both.
 7. `python3 tools/works/export.py`, then every check of `CLAUDE.md`; diff the regenerated data; one pull request per kāṇḍa. Before it merges, the session settles every doubt the writer or reviewer recorded (`docs/PLAYBOOK.md` §2): it applies the decision and removes the doubt from its file (`docs/reviews/README.md`).
 
+## Write our own meanings for a Sanskrit work (the Bhagavad Gītā, the Durgā Saptaśatī)
+
+The same four steps as the Mānas, with the briefs for Sanskrit works (`tools/meanings/briefs/sanskrit-*.md`; the writer's brief holds the works table: library folder, traditional reading, copied sources). A work whose meanings are the owner's drafts is reviewed the same way: the writer works out each verse first, then keeps the draft's wording where it is accurate and in style.
+
+0. **Dictionaries:** `python3 tools/meanings/sanskrit_dict.py fetch`, then `check`.
+1. **Batches:** `python3 tools/meanings/prepare.py <scratch folder> <first id> <last id> --work <work> --size 40 --within` (`--within`: a batch may end inside an adhyāya, never leaving fewer than 10 of its verses).
+2. **For every batch, each step by its own agent:** writer (`sanskrit-writer.md`: one piece per verse line, and `batch-NN.notes.json` for the rare footnote), reviewer (`sanskrit-reviewer.md`), copy audit (`sanskrit-copy-auditor.md`, against the work's copied English), accuracy and dictionary check (`sanskrit-accuracy-checker.md`).
+3. **Apply:** `python3 tools/meanings/apply_batches.py <scratch folder> --work <work> --doubts docs/reviews/<work>-doubts.jsonl` on a branch `meanings-<work>`: it also replaces each verse's footnotes from the batches.
+4. **Consistency pass** over the work (names, address, speaker openings, recurring terms), then the dictionary step and the copy check of the whole file (`overlap.py` against each copied source), then `export.py` and the checks; settle every doubt before the pull request merges.
+
 ## Add the Punjabi sense to the Gurbani word meanings (`library/glossary/pa.json`)
 Every entry has `pa` beside `hi` and `en`, the same senses in the same order (" / " between). For new words:
 1. `python3 tools/meanings/teeka.py fetch`, then `python3 tools/meanings/pa_words_prepare.py DIR`: batches of 125 words, each with its entry, up to three lines where it occurs and the Darpan/Faridkot word glosses.
