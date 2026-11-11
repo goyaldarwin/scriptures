@@ -143,7 +143,7 @@ for r in REC:
         if len(h) == 2 * sum(lines):
             c = 0
             for i, nl in zip(SPLIT[old], lines): first[i] = h[2 * c]; c += nl
-    items = {i: round(max(0, t - 0.4), 2) for i, t in first.items()}
+    items = {i: round(max(float(r.get('start', 0)), t - 0.4), 2) for i, t in first.items()}   # a segment may begin just before the track
     for iid, t in ALIGNED.get(v, {}).items(): items[ID[iid]] = t[0] if isinstance(t, list) else t   # the forced aligner's starts (aligned.json) replace the transcript's
     for iid, t in FIX.get(v, {}).items(): items[ID[iid]] = round(max(0, t - 0.4), 2)   # hand-checked starts win (fixes.json), with the same small lead
     items = sorted(items.items())
@@ -164,7 +164,8 @@ for r in REC:
     if r.get('from'): ds = max(ds, min(i0, ID[r['from']]))   # never back-fill verses before where the recording starts
     if 0 < i0 - ds <= 4:                      # back-fill the first verses of the day
         pre, t = [], t0
-        for x in range(i0 - 1, ds - 1, -1): t = max(0, t - L(x) * rate); pre.append([x, round(t, 2)])
+        lo = float(r.get('start', 0))          # never before the track's own start (a song inside a longer video)
+        for x in range(i0 - 1, ds - 1, -1): t = max(lo, t - L(x) * rate); pre.append([x, round(t, 2)])
         full = pre[::-1] + full
     ti = len(tracks)
     tracks.append({'yt': v, 'dur': r['dur'], **BOUNDS(r), 'first': IT[full[0][0]]['id'], 'last': IT[full[-1][0]]['id']})
