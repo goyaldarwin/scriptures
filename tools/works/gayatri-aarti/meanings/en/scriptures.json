@@ -2,16 +2,16 @@
 "order": 1,
 "numbers": "verse",
 "m": {
-"aarti.tek": "Victory, victory to Mother Gāyatrī; victory, victory to Mother Gāyatrī.",
-"aarti.pad1": "You are the primal Power, unseen and stainless, the sustainer of the world; you take away sorrow, grief, fear, affliction, strife, poverty and wretchedness.",
-"aarti.pad2": "O Mother whose form is Brahman, who protects those who bow to you and upholds the world; O Mother of the world, who takes away the fear of worldly existence, does good to people and gives happiness.",
-"aarti.pad3": "Remover of fear, who carries us across worldly existence, O sinless one, unborn, a treasury of bliss: you are changeless, the remover of sin, unshaken, pure and imperishable.",
-"aarti.pad4": "You are the wish-fulfilling cow, being, consciousness and bliss; victory to you, Gaṅgā, Gītā. You are the eternal power of Savitṛ, the Sun, Sāvitrī and Sītā.",
-"aarti.pad5": "Beloved of the Ṛg, Yajur, Sāma and Atharva Vedas, Praṇava (Om), O you of great glory. You are Kuṇḍalinī, Sahasrāra, Suṣumnā and splendour, O you who are great in virtue.",
-"aarti.pad6": "You are Svāhā, Svadhā, Śacī, Brahmāṇī, Rādhā and Rudrāṇī; victory to you, Śatarūpā, Vāṇī, Vidyā, Kamalā, Kalyāṇī.",
-"aarti.pad7": "Mother, we are lowly and helpless, hemmed in by sorrow and poverty. Though we are crooked, deceitful and unworthy sons, still we are your children.",
-"aarti.pad8": "Mother, steeped in love and full of compassion, give us refuge at your feet. We, your little children, are weeping: look on us with mercy.",
-"aarti.pad9": "Take away desire, anger, pride, greed, hypocrisy, ill will and hatred. Make our understanding pure, our heart sinless and our mind holy.",
-"aarti.pad10": "You are able in every way, the one who carries us across, the protector who gives contentment and nourishment. Lead us on the path of truth, which gives happiness."
+"aarti.tek": ["Victory, victory to Mother Gāyatrī;", "victory, victory to Mother Gāyatrī."],
+"aarti.pad1": ["You are the primal Power, unseen and stainless, the sustainer of the world;", "you take away sorrow, grief, fear, affliction, strife, poverty and wretchedness."],
+"aarti.pad2": ["O Mother whose form is Brahman, who protects those who bow to you and upholds the world;", "O Mother of the world, who takes away the fear of worldly existence, does good to people and gives happiness."],
+"aarti.pad3": ["Remover of fear, who carries us across worldly existence, O sinless one, unborn, a treasury of bliss:", "you are changeless, the remover of sin, unshaken, pure and imperishable."],
+"aarti.pad4": ["You are the wish-fulfilling cow, being, consciousness and bliss; victory to you, Gaṅgā, Gītā.", "You are the eternal power of Savitṛ, the Sun, Sāvitrī and Sītā."],
+"aarti.pad5": ["Beloved of the Ṛg, Yajur, Sāma and Atharva Vedas, Praṇava (Om), O you of great glory.", "You are Kuṇḍalinī, Sahasrāra, Suṣumnā and splendour, O you who are great in virtue."],
+"aarti.pad6": ["You are Svāhā, Svadhā, Śacī, Brahmāṇī, Rādhā and Rudrāṇī;", "victory to you, Śatarūpā, Vāṇī, Vidyā, Kamalā, Kalyāṇī."],
+"aarti.pad7": ["Mother, we are lowly and helpless, hemmed in by sorrow and poverty.", "Though we are crooked, deceitful and unworthy sons, still we are your children."],
+"aarti.pad8": ["Mother, steeped in love and full of compassion, give us refuge at your feet.", "We, your little children, are weeping: look on us with mercy."],
+"aarti.pad9": ["Take away desire, anger, pride, greed, hypocrisy, ill will and hatred.", "Make our understanding pure, our heart sinless and our mind holy."],
+"aarti.pad10": ["You are able in every way, the one who carries us across, the protector who gives contentment and nourishment.", "Lead us on the path of truth, which gives happiness."]
 }
 }

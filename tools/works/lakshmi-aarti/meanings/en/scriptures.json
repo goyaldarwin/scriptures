@@ -2,13 +2,13 @@
 "order": 1,
 "numbers": "verse",
 "m": {
-"aarti.tek": "Om, victory to you, Mother Lakṣmī; Mother, victory to you, Mother Lakṣmī! Śiva, Viṣṇu and Brahmā serve you night and day.",
-"aarti.pad1": "You are Umā, Ramā and Brahmāṇī; you alone are the Mother of the world. The Sun and the Moon meditate on you, and the sage Nārada sings your praise.",
-"aarti.pad2": "You are Durgā in form, the stainless one, the giver of happiness and wealth. Whoever meditates on you gains prosperity, success and riches.",
-"aarti.pad3": "You dwell in the netherworld; you alone give what is good. You bring to light the effects of deeds, and you are the protector from the ocean of worldly existence.",
-"aarti.pad4": "In the house where you dwell, every virtue comes. Everything becomes possible there, and the heart is not troubled.",
-"aarti.pad5": "Without you no sacrifices are performed, and no one gets clothing. All the splendour of food and drink comes from you.",
-"aarti.pad6": "You are the beautiful temple of auspicious virtues, born of the ocean of milk. Without you no one gains the fourteen jewels.",
-"aarti.pad7": "Whoever sings the āratī of Mahālakṣmī finds his heart filled with joy, and his sins fall away."
+"aarti.tek": ["Om, victory to you, Mother Lakṣmī;", "Mother, victory to you, Mother Lakṣmī!", "", "Śiva, Viṣṇu and Brahmā serve you night and day."],
+"aarti.pad1": ["You are Umā, Ramā and Brahmāṇī;", "you alone are the Mother of the world.", "The Sun and the Moon meditate on you,", "and the sage Nārada sings your praise."],
+"aarti.pad2": ["You are Durgā in form, the stainless one,", "the giver of happiness and wealth.", "Whoever meditates on you", "gains prosperity, success and riches."],
+"aarti.pad3": ["You dwell in the netherworld;", "you alone give what is good.", "You bring to light the effects of deeds,", "and you are the protector from the ocean of worldly existence."],
+"aarti.pad4": ["In the house where you dwell,", "every virtue comes.", "Everything becomes possible there,", "and the heart is not troubled."],
+"aarti.pad5": ["Without you no sacrifices are performed,", "and no one gets clothing.", "All the splendour of food and drink", "comes from you."],
+"aarti.pad6": ["You are the beautiful temple of auspicious virtues,", "born of the ocean of milk.", "Without you", "no one gains the fourteen jewels."],
+"aarti.pad7": ["", "Whoever sings the āratī of Mahālakṣmī", "finds his heart filled with joy,", "and his sins fall away."]
 }
 }

@@ -2,9 +2,9 @@
 "order": 1,
 "numbers": "verse",
 "m": {
-"aarti.pad1": "Yaśodā, overjoyed, performs the āratī; she swells with joy more than her body can hold. Saying again and again that she gives herself for him, she caresses her child; immersed in bliss, she thrills all over.",
-"aarti.pad2": "A golden platter, a row of jewelled lamps, painted wicks soaked in ghee; with lovely vermilion, dūrvā grass, curd and unbroken rice she applies the tilaka in many ways.",
-"aarti.pad3": "There is food of four kinds and offerings of many sorts; kettledrums of many kinds are sounding. The cowherds dance, sprinkle saffron water and give gifts of jewels to all.",
-"aarti.pad4": "Hosts of gods, men and sages shower flowers; the young women of Vraja smile. Seeing the face of Giridhara, Kṛṣṇadāsa's Lord, the lovely moon is put to shame."
+"aarti.pad1": ["Yaśodā, overjoyed, performs the āratī;", "she swells with joy more than her body can hold.", "Saying again and again that she gives herself for him, she caresses her child;", "immersed in bliss, she thrills all over."],
+"aarti.pad2": ["A golden platter, a row of jewelled lamps,", "painted wicks soaked in ghee;", "with lovely vermilion, dūrvā grass, curd", "and unbroken rice she applies the tilaka in many ways."],
+"aarti.pad3": ["There is food of four kinds", "and offerings of many sorts; kettledrums of many kinds are sounding.", "The cowherds dance,", "sprinkle saffron water and give gifts of jewels to all."],
+"aarti.pad4": ["Hosts of gods, men and sages shower flowers;", "the young women of Vraja smile.", "", "Seeing the face of Giridhara, Kṛṣṇadāsa's Lord, the lovely moon is put to shame."]
 }
 }

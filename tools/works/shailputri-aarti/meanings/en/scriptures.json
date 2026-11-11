@@ -2,10 +2,10 @@
 "order": 1,
 "numbers": "verse",
 "m": {
-"aarti.pad1": "Mother Śailaputrī, you ride a bull; the gods hail you with cries of victory. You are Bhavānī, beloved of Śiva; no one has known your glory.",
-"aarti.pad2": "You are Pārvatī, you are called Umā; whoever remembers you finds happiness. You grant ṛddhi and siddhi, prosperity and accomplishment; you show mercy and make one wealthy.",
-"aarti.pad3": "Whoever on a Monday, O beloved companion of Śiva, has performed your āratī: fulfil all his hopes, and wipe away all his sorrows and hardships.",
-"aarti.pad4": "Lighting a beautiful lamp of ghee and offering a dried coconut, chant the mantras with faith and feeling, then bow your head with love.",
-"aarti.pad5": "Victory to you, Ambā, young daughter of the king of mountains; Ambā, the cakorī bird to the moon of Śiva's face. Fulfil the heart's desire; fill Chaman always with happiness and wealth."
+"aarti.pad1": ["Mother Śailaputrī, you ride a bull;", "the gods hail you with cries of victory.", "You are Bhavānī, beloved of Śiva;", "no one has known your glory."],
+"aarti.pad2": ["You are Pārvatī, you are called Umā;", "whoever remembers you finds happiness.", "You grant ṛddhi and siddhi, prosperity and accomplishment;", "you show mercy and make one wealthy."],
+"aarti.pad3": ["Whoever on a Monday, O beloved companion of Śiva,", "has performed your āratī:", "fulfil all his hopes,", "and wipe away all his sorrows and hardships."],
+"aarti.pad4": ["Lighting a beautiful lamp of ghee", "and offering a dried coconut,", "chant the mantras with faith and feeling,", "then bow your head with love."],
+"aarti.pad5": ["Victory to you, Ambā, young daughter of the king of mountains;", "Ambā, the cakorī bird to the moon of Śiva's face.", "Fulfil the heart's desire;", "fill Chaman always with happiness and wealth."]
 }
 }

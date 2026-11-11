@@ -2,10 +2,10 @@
 "order": 1,
 "numbers": "verse",
 "m": {
-"aarti.pad1": "Victory to you, Ambā, Mother Brahmacāriṇī; victory to you, beloved of four-faced Brahmā, giver of happiness. You delight the heart of Brahmā, and you teach knowledge to all.",
-"aarti.pad2": "Your japa is the mantra of Brahman, which the simple-hearted world chants. Victory to you, Gāyatrī, mother of the Vedas. On whatever day a person meditates on you —",
-"aarti.pad3": "no lack is left to him, and he has to bear no sorrow at all. The dispassion of one who knows your greatness stays steady.",
-"aarti.pad4": "Whoever takes a rosary of rudrākṣa and chants the mantra with faith, and, putting aside sloth, sings your praises — Mother, bring him happiness.",
-"aarti.pad5": "Brahmacāriṇī is your name; fulfil all my works. This devotee is the worshipper of your feet; keep my honour, Mother."
+"aarti.pad1": ["Victory to you, Ambā, Mother Brahmacāriṇī;", "victory to you, beloved of four-faced Brahmā, giver of happiness.", "You delight the heart of Brahmā,", "and you teach knowledge to all."],
+"aarti.pad2": ["Your japa is the mantra of Brahman,", "which the simple-hearted world chants.", "Victory to you, Gāyatrī, mother of the Vedas.", "On whatever day a person meditates on you —"],
+"aarti.pad3": ["no lack is left to him,", "and he has to bear no sorrow at all.", "", "The dispassion of one who knows your greatness stays steady."],
+"aarti.pad4": ["Whoever takes a rosary of rudrākṣa", "and chants the mantra with faith,", "and, putting aside sloth, sings your praises —", "Mother, bring him happiness."],
+"aarti.pad5": ["Brahmacāriṇī is your name;", "fulfil all my works.", "This devotee is the worshipper of your feet;", "keep my honour, Mother."]
 }
 }

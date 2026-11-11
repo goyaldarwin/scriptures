@@ -2,13 +2,13 @@
 "order": 1,
 "numbers": "verse",
 "m": {
-"aarti.tek": "Victory to Mother Pārvatī, victory to Mother Pārvatī. You are Brahman, the eternal Goddess, the giver of auspicious fruit.",
-"aarti.pad1": "You destroy the lotus-like clans of your enemies; victory to you, protector of your servants. You are the life of the world, the Mother of the world; Hari and Hara (Viṣṇu and Śiva) sing your praises.",
-"aarti.pad2": "Your lion mount looks splendid, and you wear earrings as well. The wives of the gods sing your glory and dance to the beat of tā-thā.",
-"aarti.pad3": "In the Satya age, most beautiful in form and character, you were known by the name Satī. Born in the house of Himācala, you delighted in the company of your friends.",
-"aarti.pad4": "You tore apart Śumbha and Niśumbha, you who dwell on the Himālaya; taking on a body with a thousand arms, you took the discus in your hand.",
-"aarti.pad5": "You yourself are the form of creation, Mother, steeped in love with Śiva. Nandī and Bhṛṅgī have taken up the vīṇā, and the whole world is rapt with joy.",
-"aarti.pad6": "The gods make their plea and bring it to your heart; clapping again and again, they sing, their hearts steeped in love.",
-"aarti.pad7": "Śrī Pratāp says: whoever sings the Mother's āratī is ever happy, day after day, and gains happiness and wealth."
+"aarti.tek": ["Victory to Mother Pārvatī, victory to Mother Pārvatī.", "You are Brahman, the eternal Goddess, the giver of auspicious fruit."],
+"aarti.pad1": ["You destroy the lotus-like clans of your enemies; victory to you, protector of your servants.", "You are the life of the world, the Mother of the world; Hari and Hara (Viṣṇu and Śiva) sing your praises."],
+"aarti.pad2": ["Your lion mount looks splendid, and you wear earrings as well.", "The wives of the gods sing your glory and dance to the beat of tā-thā."],
+"aarti.pad3": ["In the Satya age, most beautiful in form and character, you were known by the name Satī.", "Born in the house of Himācala, you delighted in the company of your friends."],
+"aarti.pad4": ["You tore apart Śumbha and Niśumbha, you who dwell on the Himālaya;", "taking on a body with a thousand arms, you took the discus in your hand."],
+"aarti.pad5": ["You yourself are the form of creation, Mother, steeped in love with Śiva.", "Nandī and Bhṛṅgī have taken up the vīṇā, and the whole world is rapt with joy."],
+"aarti.pad6": ["The gods make their plea and bring it to your heart;", "clapping again and again, they sing, their hearts steeped in love."],
+"aarti.pad7": ["Śrī Pratāp says: whoever sings the Mother's āratī", "is ever happy, day after day, and gains happiness and wealth."]
 }
 }

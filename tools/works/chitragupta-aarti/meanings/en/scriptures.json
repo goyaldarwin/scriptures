@@ -2,16 +2,16 @@
 "order": 1,
 "numbers": "verse",
 "m": {
-"aarti.tek": "Om, victory to you, Citragupta, O Lord; Master, victory to you, Citragupta, O Lord. You bring to fulfilment the fruit your devotees wish for.",
-"aarti.pad1": "You destroy obstacles, bring good fortune and give joy to the saints. You protect your devotees; your glory has spread over the three worlds.",
-"aarti.pad2": "Your form is four-armed, your image dark, and a yellow silk robe shines upon you. Mother Irāvatī and Dakṣiṇā adorn your left side.",
-"aarti.pad3": "You remove suffering and destroy the wicked; you are the Lord who dwells within all. Destroyer of creation, remover of people's sorrow, you appeared, Master.",
-"aarti.pad4": "Pen, inkpot, conch and record look most splendid in your hand. The vaijayantī garland of forest flowers charms the hearts of the three worlds.",
-"aarti.pad5": "You took up the office of the throne, and Brahmā rejoiced. The thirty-three crore gods hastened to your feet.",
-"aarti.pad6": "King Saudāsa and Bhīṣma the grandsire remembered you; swiftly, without delay, you gave them the fruit they wished for.",
-"aarti.pad7": "Wife, son and sister all act for their own well-being. Where shall I go, whose refuge shall I seek? Leaving you, O sustainer, where could I go?",
-"aarti.pad8": "You are my brother, my father and my master; whose refuge should I take? Without you there is no other in whom I could place my hope.",
-"aarti.pad9": "Those who sing the āratī of Citragupta with love are surely freed from the round of the eighty-four lakh births and gain the fruit they wish for.",
-"aarti.pad10": "You are the judge who dwells in Vaikuṇṭha, and you write down sin and merit. We are in your refuge; we hope in no other."
+"aarti.tek": ["Om, victory to you, Citragupta, O Lord;", "Master, victory to you, Citragupta, O Lord.", "", "You bring to fulfilment the fruit your devotees wish for."],
+"aarti.pad1": ["You destroy obstacles, bring good fortune", "and give joy to the saints.", "You protect your devotees;", "your glory has spread over the three worlds."],
+"aarti.pad2": ["Your form is four-armed, your image dark,", "and a yellow silk robe shines upon you.", "Mother Irāvatī and Dakṣiṇā", "adorn your left side."],
+"aarti.pad3": ["You remove suffering and destroy the wicked;", "you are the Lord who dwells within all.", "Destroyer of creation, remover of people's sorrow,", "you appeared, Master."],
+"aarti.pad4": ["Pen, inkpot, conch and record", "look most splendid in your hand.", "The vaijayantī garland of forest flowers", "charms the hearts of the three worlds."],
+"aarti.pad5": ["You took up the office of the throne,", "and Brahmā rejoiced.", "The thirty-three crore gods", "hastened to your feet."],
+"aarti.pad6": ["King Saudāsa and Bhīṣma the grandsire", "remembered you;", "swiftly, without delay,", "you gave them the fruit they wished for."],
+"aarti.pad7": ["Wife, son and sister", "all act for their own well-being.", "Where shall I go, whose refuge shall I seek?", "Leaving you, O sustainer, where could I go?"],
+"aarti.pad8": ["You are my brother, my father and my master;", "whose refuge should I take?", "Without you there is no other", "in whom I could place my hope."],
+"aarti.pad9": ["", "Those who sing the āratī of Citragupta with love", "are surely freed from the round of the eighty-four lakh births", "and gain the fruit they wish for."],
+"aarti.pad10": ["You are the judge who dwells in Vaikuṇṭha,", "and you write down sin and merit.", "We are in your refuge;", "we hope in no other."]
 }
 }

@@ -2,11 +2,11 @@
 "order": 1,
 "numbers": "verse",
 "m": {
-"aarti.tek": "Śrī Govardhana Mahārāja, O Mahārāja, a crown shines on your head.",
-"aarti.pad1": "Betel leaves are offered to you, flowers are offered to you, and a stream of milk is poured over you.",
-"aarti.pad2": "Your parikramā is seven kos long; Cakaleśvara is its resting place.",
-"aarti.pad3": "A necklace adorns your neck; on your chin are a diamond and a ruby.",
-"aarti.pad4": "Earrings gleam in your ears; the adorned sight of you is grand.",
-"aarti.pad5": "Lord, holder of Girirāja, I am in your refuge: carry the devotee's boat across."
+"aarti.tek": ["Śrī Govardhana Mahārāja, O Mahārāja,", "a crown shines on your head."],
+"aarti.pad1": ["Betel leaves are offered to you, flowers are offered to you,", "and a stream of milk is poured over you."],
+"aarti.pad2": ["Your parikramā is seven kos long;", "Cakaleśvara is its resting place."],
+"aarti.pad3": ["A necklace adorns your neck;", "on your chin are a diamond and a ruby."],
+"aarti.pad4": ["Earrings gleam in your ears;", "the adorned sight of you is grand."],
+"aarti.pad5": ["Lord, holder of Girirāja, I am in your refuge:", "carry the devotee's boat across."]
 }
 }
