@@ -210,40 +210,6 @@
           "With the Upanishads and the Brahma Sutras it forms the Prasthanatrayi, the three foundations of Vedanta, and Adi Shankaracharya and the other acharyas wrote commentaries on it. A reading often begins with the nine verses of the Gita Dhyanam, given first here."
          ]
         }
-       },
-       {
-        "id": "durga-saptashati",
-        "work": "durga-saptashati",
-        "path": "hinduism/granth/vyasa/durga-saptashati",
-        "title": {
-         "hi": "श्रीदुर्गासप्तशती",
-         "en": "Shri Durga Saptashati"
-        },
-        "by": {
-         "hi": "महर्षि वेदव्यास",
-         "en": "Maharshi Ved Vyas"
-        },
-        "edition": {
-         "hi": "sanskritdocuments.org का पाठ",
-         "en": "sanskritdocuments.org's text"
-        },
-        "desc": {
-         "hi": "देवीमाहात्म्य: १३ अध्याय, ७०० मन्त्र · कवच, अर्गला, कीलक",
-         "en": "Devi Mahatmya: 13 adhyays, 700 mantras · Kavach, Argala, Kilak"
-        },
-        "salute": "॥ श्रीदुर्गायै नमः ॥",
-        "intro": {
-         "hi": [
-          "श्रीदुर्गासप्तशती, जिसे देवीमाहात्म्य और चण्डीपाठ भी कहते हैं, मार्कण्डेयपुराणके अध्याय ८१ से ९३ है। 'सप्तशती' का अर्थ है 'सात सौ': इसके तेरह अध्यायोंमें सात सौ मन्त्र हैं, जिनमें वक्ताके 'ऋषिरुवाच' जैसे एक पंक्तिके वचन भी मन्त्र गिने जाते हैं। शाक्त परम्पराके सबसे प्रमुख ग्रन्थोंमें यह एक है।",
-          "कथा मार्कण्डेय ऋषि सुनाते हैं। राज्य खो चुके राजा सुरथ और अपने ही परिवारसे ठुकराये गये समाधि वैश्य मेधा ऋषिके आश्रममें पहुँचते हैं, और ऋषि उन्हें देवीके तीन चरित्र सुनाते हैं: पहले अध्यायमें मधु-कैटभका वध (महाकाली), दूसरेसे चौथेमें महिषासुरका वध (महालक्ष्मी), और पाँचवेंसे तेरहवेंमें शुम्भ-निशुम्भ और उनकी सेनाका वध (महासरस्वती)। बीच-बीचमें देवताओंकी स्तुतियाँ हैं — शक्रादिस्तुति, 'या देवी सर्वभूतेषु' और नारायणीस्तुति।",
-          "पाठ अपने अंगोंके साथ होता है: पहले चण्डिकाध्यान, अर्गला, कीलक और देवीकवच, अन्तमें अपराधक्षमापण और देवीसूक्त — यहाँ सब उसी क्रममें हैं, जैसे इसकी रिकॉर्डिंगमें। नवरात्रमें इसका विशेष पाठ होता है, और इसका सात दिनोंका पाठ भी यहाँ दिया है।"
-         ],
-         "en": [
-          "The Shri Durga Saptashati, also called the Devi Mahatmya and the Chandi Path, is chapters 81 to 93 of the Markandeya Puran. Saptashati means \"seven hundred\": its thirteen adhyays hold seven hundred mantras, a speaker's one-line words such as \"the sage said\" counted among them. It is among the most important texts of the Shakta tradition.",
-          "The sage Markandeya tells the story. King Surath, who has lost his kingdom, and the merchant Samadhi, cast out by his own family, come to the hermitage of the sage Medhas, who tells them of the Devi's three deeds: the slaying of Madhu and Kaitabh in the first adhyay (Mahakali), of Mahishasur in the second to fourth (Mahalakshmi), and of Shumbh, Nishumbh and their armies in the fifth to thirteenth (Mahasaraswati). Between the battles come the gods' hymns: the Shakradi Stuti, \"Ya Devi Sarvabhuteshu\" and the Narayani Stuti.",
-          "It is recited with its limbs: first the Chandika Dhyan, the Argala, the Kilak and the Devi Kavach, and at the end the Aparadh Kshamapan Stotram and the Devi Suktam, all given here in that order, as in its recording. It is read above all at Navaratri; a seven-day reading of it is given here too."
-         ]
-        }
        }
       ]
      }
@@ -520,6 +486,49 @@
          "en": "Viniyoga · Nyas · 31 shlokas"
         },
         "salute": "॥ ॐ आदित्याय नमः ॥"
+       }
+      ]
+     },
+     {
+      "id": "durga",
+      "title": {
+       "hi": "माँ दुर्गा",
+       "en": "Mother Durga"
+      },
+      "children": [
+       {
+        "id": "durga-saptashati",
+        "work": "durga-saptashati",
+        "path": "hinduism/stotra/durga/durga-saptashati",
+        "title": {
+         "hi": "श्रीदुर्गासप्तशती",
+         "en": "Shri Durga Saptashati"
+        },
+        "by": {
+         "hi": "महर्षि वेदव्यास",
+         "en": "Maharshi Ved Vyas"
+        },
+        "edition": {
+         "hi": "sanskritdocuments.org का पाठ",
+         "en": "sanskritdocuments.org's text"
+        },
+        "desc": {
+         "hi": "देवीमाहात्म्य: १३ अध्याय, ७०० मन्त्र · कवच, अर्गला, कीलक",
+         "en": "Devi Mahatmya: 13 adhyays, 700 mantras · Kavach, Argala, Kilak"
+        },
+        "salute": "॥ श्रीदुर्गायै नमः ॥",
+        "intro": {
+         "hi": [
+          "श्रीदुर्गासप्तशती, जिसे देवीमाहात्म्य और चण्डीपाठ भी कहते हैं, मार्कण्डेयपुराणके अध्याय ८१ से ९३ है। 'सप्तशती' का अर्थ है 'सात सौ': इसके तेरह अध्यायोंमें सात सौ मन्त्र हैं, जिनमें वक्ताके 'ऋषिरुवाच' जैसे एक पंक्तिके वचन भी मन्त्र गिने जाते हैं। शाक्त परम्पराके सबसे प्रमुख ग्रन्थोंमें यह एक है।",
+          "कथा मार्कण्डेय ऋषि सुनाते हैं। राज्य खो चुके राजा सुरथ और अपने ही परिवारसे ठुकराये गये समाधि वैश्य मेधा ऋषिके आश्रममें पहुँचते हैं, और ऋषि उन्हें देवीके तीन चरित्र सुनाते हैं: पहले अध्यायमें मधु-कैटभका वध (महाकाली), दूसरेसे चौथेमें महिषासुरका वध (महालक्ष्मी), और पाँचवेंसे तेरहवेंमें शुम्भ-निशुम्भ और उनकी सेनाका वध (महासरस्वती)। बीच-बीचमें देवताओंकी स्तुतियाँ हैं — शक्रादिस्तुति, 'या देवी सर्वभूतेषु' और नारायणीस्तुति।",
+          "पाठ अपने अंगोंके साथ होता है: पहले चण्डिकाध्यान, अर्गला, कीलक और देवीकवच, अन्तमें अपराधक्षमापण और देवीसूक्त — यहाँ सब उसी क्रममें हैं, जैसे इसकी रिकॉर्डिंगमें। नवरात्रमें इसका विशेष पाठ होता है, और इसका सात दिनोंका पाठ भी यहाँ दिया है।"
+         ],
+         "en": [
+          "The Shri Durga Saptashati, also called the Devi Mahatmya and the Chandi Path, is chapters 81 to 93 of the Markandeya Puran. Saptashati means \"seven hundred\": its thirteen adhyays hold seven hundred mantras, a speaker's one-line words such as \"the sage said\" counted among them. It is among the most important texts of the Shakta tradition.",
+          "The sage Markandeya tells the story. King Surath, who has lost his kingdom, and the merchant Samadhi, cast out by his own family, come to the hermitage of the sage Medhas, who tells them of the Devi's three deeds: the slaying of Madhu and Kaitabh in the first adhyay (Mahakali), of Mahishasur in the second to fourth (Mahalakshmi), and of Shumbh, Nishumbh and their armies in the fifth to thirteenth (Mahasaraswati). Between the battles come the gods' hymns: the Shakradi Stuti, \"Ya Devi Sarvabhuteshu\" and the Narayani Stuti.",
+          "It is recited with its limbs: first the Chandika Dhyan, the Argala, the Kilak and the Devi Kavach, and at the end the Aparadh Kshamapan Stotram and the Devi Suktam, all given here in that order, as in its recording. It is read above all at Navaratri; a seven-day reading of it is given here too."
+         ]
+        }
        }
       ]
      }
@@ -2449,8 +2458,8 @@
         "work": "mangalmay-ganesha-chalisa",
         "path": "hinduism/chalisa/ganesha/mangalmay-ganesha-chalisa",
         "title": {
-         "hi": "श्री गणेश चालीसा",
-         "en": "Shri Ganesh Chalisa"
+         "hi": "मंगलमय गणेश चालीसा",
+         "en": "Mangalmay Ganesh Chalisa"
         },
         "desc": {
          "hi": "मंगलमय मंगल करन करिवर वदन विशाल",
@@ -2756,8 +2765,8 @@
         "work": "shanishchar-chalisa",
         "path": "hinduism/chalisa/shani/shanishchar-chalisa",
         "title": {
-         "hi": "श्री शनि चालीसा",
-         "en": "Shri Shani Chalisa"
+         "hi": "श्री शनिश्चर चालीसा",
+         "en": "Shri Shanishchar Chalisa"
         },
         "desc": {
          "hi": "श्री शनिश्चर देवजी सुनहु श्रवण मम् टेर",
@@ -3856,7 +3865,6 @@
      "hi": "गुरुओंकी वाणी",
      "en": "The Gurus' hymns"
     },
-    "shelf": "granth",
     "children": [
      {
       "id": "guru-granth-sahib",

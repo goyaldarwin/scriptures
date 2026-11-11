@@ -71,6 +71,20 @@ fillTiming();
 // Audio timing is a tool for the person checking timings, never left on by chance: it turns itself off when the site is
 // opened 12 hours after it was last used, and it never travels in a saved file
 if (S.timing.on && Date.now() - (S.timing.used || 0) > 12 * 3600e3) S.timing.on = false;
+// Audio timing and the listeners' timing flags are for the admins only (docs/PLAYBOOK.md §8): a phone becomes an admin's when it
+// opens the site with ?admin=<pass phrase> (its SHA-256 below; the owner has the phrase), and stays so until turned off in
+// ☰ › More settings. A phone that has already sent times to the library is an admin's. The real gate is the timing workflow,
+// which takes times only from the admins' GitHub accounts; this keeps the tools out of every other reader's way.
+const ADMIN_SHA = 'a4d3fbea4de1915fa89e75d627af5e5936c5012c33fcec376f9aad33fa7fadc4';
+if (S.admin == null && Object.keys(S.timing.sent || {}).length) S.admin = 1;
+const ADMIN = () => !!S.admin;
+if (!ADMIN()) S.timing.on = false;
+async function adminFromLink(){
+  const q = new URLSearchParams(location.search), pass = q.get('admin'); if (pass == null) return;
+  q.delete('admin'); history.replaceState(history.state, '', location.pathname + (q.toString() ? '?' + q : '') + location.hash);   // the phrase never stays in the address bar
+  try { const h = [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pass)))].map(b => b.toString(16).padStart(2, '0')).join('');
+    if (h === ADMIN_SHA){ S.admin = 1; save(); toast(T('इस फ़ोनपर ऑडियोका समय चालू', 'Audio timing is on for this phone')); } } catch (e) {}
+}
 function migrate(){
   if ((S.v || 1) < 2) migrate2();
   if (S.settings && !S.settings.ui) S.settings.ui = S.settings.layers && S.settings.layers.e ? 'en' : 'hi';   // an older saved file has no ui: it follows the English meaning
@@ -162,9 +176,9 @@ function toast(msg){ $('#toast').classList.remove('act'); const t = $('#toast');
 function applyLang(){ const en = LANG() === 'en'; document.documentElement.lang = en ? 'en' : 'hi';
   $$('[data-en]').forEach(el => { if (el.dataset.hi == null) el.dataset.hi = el.innerHTML; el.innerHTML = en ? el.dataset.en : el.dataset.hi; });
   $$('[data-en-ph]').forEach(el => { if (el.dataset.hiPh == null) el.dataset.hiPh = el.placeholder; el.placeholder = en ? el.dataset.enPh : el.dataset.hiPh; }); }
-function applyTheme(){ const r = document.documentElement; if (S.settings.theme === 'auto') r.removeAttribute('data-theme'); else r.setAttribute('data-theme', S.settings.theme); r.style.setProperty('--verse-size', S.settings.size + 'px'); r.style.setProperty('--mean-size', Math.round(S.settings.size * 0.78 * 10) / 10 + 'px'); r.style.setProperty('--ui-zoom', (1 + (S.settings.size - 21) * 0.025).toFixed(3)); }   // A−/A+ also scale the library and work pages
+function applyTheme(){ const r = document.documentElement; if (S.settings.theme === 'auto') r.removeAttribute('data-theme'); else r.setAttribute('data-theme', S.settings.theme); r.style.setProperty('--verse-size', S.settings.size + 'px'); r.style.setProperty('--mean-size', Math.round(S.settings.size * 0.78 * 10) / 10 + 'px'); r.style.setProperty('--ui-zoom', (1 + (S.settings.size - 21) * 0.025).toFixed(3));
+  const m = document.querySelector('meta[name=theme-color]'); if (m) m.setAttribute('content', S.settings.theme === 'dark' ? '#14130F' : '#2B3A8C'); }   // the phone's own bar dark too at night   // A−/A+ also scale the library and work pages
 function show(id, push = true){ { const was = LANG(); CURVIEW = id; if (LANG() !== was) applyLang(); }
-  if ((id === 'library' || id === 'home' || id === 'reader') && S.view !== id){ S.view = id; save(); }   // where the app opens next time
   $$('.view').forEach(v => v.classList.toggle('on', v.id === id)); if (push) history.pushState(snap(id), ''); else history.replaceState(snap(id), ''); if (id !== 'reader') window.scrollTo(0, 0); onView(id); }
 // Every page is an entry in the browser's history that carries where you are: the page, the open work and the library
 // shelf. Back (the button or the phone's gesture) returns to exactly the previous one — a shelf
@@ -530,7 +544,7 @@ function verseHTML(i){
     // ⚑ (bottom left) for the reader who turned on "Review timing" (☰ › More settings › Audio timing), outside timing
     // mode (where ↶ has that corner): shown while playing on the verse being recited and the verses just before and after it
     // (the light may already have moved on), and always once marked "Review audio timing" (filled blue; ▶ then needs no dot)
-    const flagOn = S.timing.flagsOn && !S.timing.on, flag = last && flagOn && hasAu(i) ? '<span class="vflag"><button class="vb' + (SRC.au && flagsNow()[id] ? ' on' : '') + '" data-a="tflag" aria-label="' + T('ऑडियोका समय जाँचें', 'Review audio timing') + '"><svg><use href="#i-flag"/></svg></button></span>' : '';
+    const flagOn = ADMIN() && S.timing.flagsOn && !S.timing.on, flag = last && flagOn && hasAu(i) ? '<span class="vflag"><button class="vb' + (SRC.au && flagsNow()[id] ? ' on' : '') + '" data-a="tflag" aria-label="' + T('ऑडियोका समय जाँचें', 'Review audio timing') + '"><svg><use href="#i-flag"/></svg></button></span>' : '';
     const tail = last ? '<span class="vend"><button class="vb" data-a="menu" aria-label="more"><svg><use href="#i-more"/></svg></button></span>' + undo + flag : '';
     return '<p' + (vv.v.length === 1 ? ' class="one"' : '') + '>' + top + w + tail + '</p>'; });
   let h = '<div class="verse' + (toCheck(i) ? ' tocheck' : '') + '" id="v' + i + '" data-i="' + i + '">';
@@ -920,7 +934,7 @@ function noteSheet(i, k){
 }
 function itemMenu(i){
   const id = IT[i].id, edited = verseOf(i).edited || MK().some(k => { const m = mean(k, i); return m && m.edited; });
-  openSheet('<p class="small muted">' + esc(itemLabel(i)) + '</p><div class="menu">' + (hasAu(i) ? '<button data-x="play"><svg><use href="#i-play"/></svg>' + T('यहाँसे सुनें', 'Play from here') + '</button>' : '') + '<button data-x="note"><svg><use href="#i-note"/></svg>' + T('टिप्पणी लिखें', 'Write a note') + '</button>' + (hasAu(i) ? '<button data-x="flag"' + (SRC.au && flagsNow()[id] ? ' class="on"' : '') + '><svg><use href="#i-clock"/></svg>' + T('ऑडियोका समय जाँचें', 'Review audio timing') + (SRC.au && flagsNow()[id] ? REVB : '') + '</button>' : '') + '<button data-x="copy"><svg><use href="#i-copy"/></svg>' + T('पद और अर्थ कॉपी करें', 'Copy verse and meaning') + '</button>' + (EDITS ? '<button data-x="edit"><svg><use href="#i-edit"/></svg>' + T('पद या अर्थ सुधारें', 'Improve verse or meaning') + '</button>' : '') + (edited ? '<button data-x="revert"><svg><use href="#i-edit"/></svg>' + T('मेरा सुधार हटाएँ (पद लौटाएँ)', 'Remove my correction (restore the verse)') + '</button>' : '') + '</div>');
+  openSheet('<p class="small muted">' + esc(itemLabel(i)) + '</p><div class="menu">' + (hasAu(i) ? '<button data-x="play"><svg><use href="#i-play"/></svg>' + T('यहाँसे सुनें', 'Play from here') + '</button>' : '') + '<button data-x="note"><svg><use href="#i-note"/></svg>' + T('टिप्पणी लिखें', 'Write a note') + '</button>' + (hasAu(i) && ADMIN() ? '<button data-x="flag"' + (SRC.au && flagsNow()[id] ? ' class="on"' : '') + '><svg><use href="#i-clock"/></svg>' + T('ऑडियोका समय जाँचें', 'Review audio timing') + (SRC.au && flagsNow()[id] ? REVB : '') + '</button>' : '') + '<button data-x="copy"><svg><use href="#i-copy"/></svg>' + T('पद और अर्थ कॉपी करें', 'Copy verse and meaning') + '</button>' + (EDITS ? '<button data-x="edit"><svg><use href="#i-edit"/></svg>' + T('पद या अर्थ सुधारें', 'Improve verse or meaning') + '</button>' : '') + (edited ? '<button data-x="revert"><svg><use href="#i-edit"/></svg>' + T('मेरा सुधार हटाएँ (पद लौटाएँ)', 'Remove my correction (restore the verse)') + '</button>' : '') + '</div>');
   $$('#sheetBody [data-x]').forEach(b => b.onclick = () => {
     const x = b.dataset.x; closeSheet();
     if (x === 'play'){ playFrom(i, R.b); PL.whole = false; PL.endMsg = RNAME() + T(' पूर्ण', ' finished'); }   // to the end of what is open: the kāṇḍa, or the vishram
@@ -1399,7 +1413,7 @@ function playRange(org, a, b){ const st = firstAu(a, b); if (st == null) return;
 
 /* ---------------- library (any depth: genre › group … › work) ---------------- */
 // The library shows no tradition: index.json's top shelves (hinduism, sikhism) keep the paths, and the reader sees their
-// genres as the top shelves. A genre with "shelf" is shown inside that genre (the Sikh gurbani among the Granthas), and
+// genres as the top shelves. A genre with "shelf" is shown inside that genre (none is now: Gurbani is its own shelf), and
 // shelves with the same id are one shelf. Work nodes are kept as they are, so their path and work id still find the files.
 function libView(traditions){
   const out = [], copy = n => Object.assign({}, n, {children: []});
@@ -1432,21 +1446,37 @@ function renderLibrary(){
   $('#libTitle').textContent = libPath.length ? TT(node.title) : LB.lib();
   // two levels per screen: a shelf inside this one is shown as a heading with its own items under it
   // a shelf shows the works on it by name: tap a work to open it straight away, or the shelf's name to browse it
-  const worksIn = c => { const r = []; (function w(n){ (n.children || []).forEach(x => x.work ? r.push(x) : w(x)); })(c); return r; };
+  const MAXW = 4, worksIn = c => { const r = []; (function w(n){ (n.children || []).forEach(x => x.work ? r.push(x) : w(x)); })(c); return r; };
+  const at = w => (S.w[w.work] || {}).at || 0;
+  const recent = list => list.map((w, k) => [w, k]).sort((x, y) => at(y[0]) - at(x[0]) || x[1] - y[1]).map(x => x[0]);
+  const chips = (ws, key) => '<div class="lworks">' + ws.slice(0, MAXW).map(w => '<button data-open-work="' + esc(w.work) + '">' + esc(TT(w.title)) + '</button>').join('') +
+    (ws.length > MAXW && key ? '<button class="more" data-node="' + esc(key) + '">' + T('सभी ', 'All ') + DEV(ws.length) + ' ›</button>' : '') + '</div>';
   const row = (c, key) => {
-    // a shelf shows two works — the ones used most recently on this phone first (S.w[id].at: last opened, read or played) — then “+N” for the rest
-    const at = w => (S.w[w.work] || {}).at || 0, ws = c.work ? [] : worksIn(c).map((w, k) => [w, k]).sort((x, y) => at(y[0]) - at(x[0]) || x[1] - y[1]).map(x => x[0]), MAX = 2;
-    return '<li><button class="it" data-node="' + esc(key) + '"><span class="grow"><span class="ti">' + esc(TT(c.title)) + '</span>' + (ws.length ? '' : '<br><span class="ds">' + esc(TT(c.desc || c.by) || '') + '</span>') + '</span><span class="chev">›</span></button>' +
-      (ws.length ? '<div class="lworks">' + ws.slice(0, MAX).map(w => '<button data-open-work="' + esc(w.work) + '">' + esc(TT(w.title)) + '</button>').join('') + (ws.length > MAX ? '<button class="more" data-node="' + esc(key) + '">+' + DEV(ws.length - MAX) + '</button>' : '') + '</div>' : '') + '</li>';
+    // a shelf shows four works on one line that swipes sideways — the ones used most recently on this phone first (S.w[id].at:
+    // last opened, read or played) — and how many it holds beside its name; “All N ›” at the end of the line opens it
+    const ws = c.work ? [] : recent(worksIn(c));
+    return '<li><button class="it" data-node="' + esc(key) + '"><span class="grow"><span class="ti">' + esc(TT(c.title)) + '</span>' + (ws.length ? '' : '<br><span class="ds">' + esc(TT(c.desc || c.by) || '') + '</span>') + '</span>' + (ws.length > 1 ? '<span class="cnt">' + DEV(ws.length) + '</span>' : '') + '<span class="chev">›</span></button>' +
+      (ws.length ? chips(ws, key) : '') + '</li>';
+  };
+  // a shelf of many shelves that each hold only works (Aarti, Chalisa: one per deity) is an index, not a long list: the four
+  // works used most recently anywhere on it, then every deity as a chip with how many works it has; a tap opens that shelf
+  // on the index the shelf names say who, without the honorific the heading already implies (Bhagwan Shri Ganesh → Ganesh)
+  const shortDeity = t => t.replace(/^(Bhagwan (Shri )?|Mother )/, '').replace(/^(भगवान (श्री ?)?|माँ |माता )/, '');
+  const index = node => {
+    const all = recent(worksIn(node)), used = all.filter(w => at(w)).slice(0, MAXW);
+    return (used.length ? '<li class="lhead">' + T('हालमें खोले', 'Recently opened') + '</li><li>' + chips(used) + '</li>' : '') +
+      '<li class="lhead">' + esc(TT(node.groupBy) || T('देवता', 'By deity')) + '</li><li><div class="lindex">' +
+      kids.map(c => '<button data-node="' + esc(c.id) + '">' + esc(shortDeity(TT(c.title))) + '<span class="cnt">' + DEV(worksIn(c).length) + '</span></button>').join('') + '</div></li>';
   };
   // the library itself is one row per genre, with no headings (the owner: no partitioning on the library screen). On a
   // shelf's page, a shelf that holds shelves is a heading over them and a shelf that holds only works is one row with its
   // works as buttons, so every shelf page looks the same however deep its shelves go (Āratī › Śrī Rāma like Vedas › Yajurveda)
-  // a work that stands beside shelves (Sri Guru Granth Sahib among the authors of the Granthas) is shown like a shelf of
+  // a work that stands beside shelves (Sri Guru Granth Sahib beside the Gurus on the Gurbani shelf) is shown like a shelf of
   // one: its author over it, and the work as its button
   const mixed = kids.some(c => !c.work) && kids.some(c => c.work);
   const one = (c, key) => mixed && c.work ? row({id: c.id, title: c.by || c.title, children: [c]}, key) : row(c, key);
-  $('#libList').innerHTML = kids.map(c => libPath.length && c.children && c.children.some(g => g.children) ? '<li class="lhead">' + esc(TT(c.title)) + '</li>' + c.children.map(g => one(g, c.id + '/' + g.id)).join('') : one(c, c.id)).join('');
+  const isIndex = libPath.length && kids.length > 12 && kids.every(c => c.children && !c.children.some(g => g.children));
+  $('#libList').innerHTML = isIndex ? index(node) : kids.map(c => libPath.length && c.children && c.children.some(g => g.children) ? '<li class="lhead">' + esc(TT(c.title)) + '</li>' + c.children.map(g => one(g, c.id + '/' + g.id)).join('') : one(c, c.id)).join('');
   $$('#libList [data-node]').forEach(b => b.onclick = () => {
     const ids = b.dataset.node.split('/'); let n = node, c = null; ids.forEach(id => { c = (n.children || []).find(x => x.id === id); n = c; });
     if (c.work) openWork(c.work); else { libPath.push(...ids); history.pushState(snap('library'), ''); renderLibrary(); window.scrollTo(0, 0); }
@@ -1465,20 +1495,45 @@ function holdFor(el, fn){
   ['pointerup', 'pointercancel', 'pointerleave'].forEach(k => el.addEventListener(k, stop));
   el.addEventListener('contextmenu', e => { e.preventDefault(); if (t){ stop(); go(); } else if (!el.dataset.held){ el.dataset.held = 1; fn(); } });
 }
-/* library search: finds works and shelves by title, author, edition, description or id, in either script */
-const normQ = x => (x || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[\u093c]/g, '').normalize('NFC');
-function libSearch(q){
+/* library search: finds works and shelves by title, author, edition, description or id, in either script, and the verses of
+   the shorter works by a line remembered (“jai ambe gauri”). Opened from a shelf (Aarti) it looks only on that shelf; two
+   chips, the shelf and “Whole library”, say which, and one tap widens it (LSIN: the shelf's path; LALL: the whole library). */
+const normQ = x => (x || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[़]/g, '').normalize('NFC');
+let LSIN = null, LALL = false, LINES = null;
+// app/lines.json (made by build.py): every work of up to 1,000 verses, {work: [[verse id, verse, transliteration]]}; folded once
+function linesNow(){
+  if (!LINES) LINES = (async () => { try { const raw = BUNDLE ? BUNDLE.lines : await (await fetch('app/lines.json', {cache: 'no-cache'})).json(); const out = {};
+    for (const w in raw || {}) out[w] = raw[w].map(([id, v, t]) => [id, v, fD(v).join(''), fL(t || '').join('')]); return out; } catch (e) { LINES = null; return {}; } })();
+  return LINES;
+}
+function libScopeNode(){ let n = {children: LIB}; if (LSIN && !LALL) for (const id of LSIN) n = (n.children || []).find(x => x.id === id) || n; return n; }
+async function libSearch(q){
   // as in verse search, both sides are folded to a sound key (fD, fL); a longer word may also differ by a letter or two
   // (none under 5 letters, one up to 7, then one in four): सुंदरकांड finds सुन्दरकाण्ड, Sunderkand finds Sundarakāṇḍa
   const nq = normQ(q.trim()), latin = /[a-zA-Z]/.test(q), fq = (latin ? fL(q) : fD(q)).join(''), k = fq.length < 5 ? 0 : fq.length < 8 ? 1 : Math.floor(fq.length / 4), out = [];
+  const root = libScopeNode(), base = LSIN && !LALL ? LSIN.map((id, j) => { let n = {children: LIB}; LSIN.slice(0, j + 1).forEach(x => n = n.children.find(c => c.id === x)); return n; }) : [];
+  const works = {};
   (function walk(nodes, trail){ (nodes || []).forEach(n => {
     const raw = [n.id, n.path, n.work, ...['title', 'by', 'edition', 'desc'].map(k => n[k] ? (n[k].hi || '') + ' ' + (n[k].en || '') : '')].join(' ');
     if (normQ(raw).includes(nq) || (fq.length >= 2 && near(fq, (latin ? fL(raw) : fD(raw)).join(''), k) <= k)) out.push({n, trail});
+    if (n.work) works[n.work] = {n, trail};
     if (n.children) walk(n.children, trail.concat([n]));
-  }); })(LIB, []);
-  $('#sRes').innerHTML = out.length ? out.map((r, k) => '<button class="res" data-hit="' + k + '"><div class="where">' + esc(r.trail.map(x => TT(x.title)).join(' › ') || TT(r.n.desc || r.n.by) || '') + '</div><div class="snip" style="font-weight:700">' + esc(TT(r.n.title)) + '</div></button>').join('')
+  }); })(root.children, base);
+  // a verse line of a work in scope: the folded line holds what was typed, or nearly (one letter in six may differ)
+  const hits = [];
+  if (fq.length >= 4){
+    const L = await linesNow(), kl = Math.floor(fq.length / 6);
+    if (q !== $('#q').value) return;   // typed on meanwhile
+    for (const w in works){ for (const [id, v, fv, ft] of L[w] || []){ const key = latin ? ft : fv; if (!key) continue;
+      const d = key.includes(fq) ? 0 : kl ? near(fq, key, kl) : 1; if (d <= kl) hits.push({w, id, v, d}); } }
+    hits.sort((x, y) => x.d - y.d); hits.length = Math.min(hits.length, 60);
+  }
+  const where = r => esc(r.trail.slice(base.length ? 1 : 0).map(x => TT(x.title)).join(' › ') || TT(r.n.desc || r.n.by) || '');
+  $('#sRes').innerHTML = out.length || hits.length ? out.map((r, j) => '<button class="res" data-hit="' + j + '"><div class="where">' + where(r) + '</div><div class="snip" style="font-weight:700">' + esc(TT(r.n.title)) + '</div></button>').join('') +
+      hits.map((h, j) => '<button class="res" data-line="' + j + '"><div class="where">' + esc(TT(works[h.w].n.title)) + '</div><div class="snip">' + esc(h.v) + '</div></button>').join('')
     : '<div class="empty">' + T('कुछ नहीं मिला', 'Nothing found') + '</div>';
   $$('#sRes [data-hit]').forEach(b => b.onclick = () => { const r = out[+b.dataset.hit]; if (r.n.work) openWork(r.n.work); else { libPath = r.trail.map(x => x.id).concat([r.n.id]); show('library'); } });
+  $$('#sRes [data-line]').forEach(b => b.onclick = async () => { const h = hits[+b.dataset.line]; await openWork(h.w); if (W && W.id === h.w && ID[h.id] != null){ show('home', false); openReader('k', ID[h.id], true); } });
 }
 // one search page for the whole app: opened from the library it finds works and shelves; from a work, its verses
 let SCOPE = 'text';
@@ -1491,18 +1546,23 @@ function readerRange(){
   if (R.a > 0 || R.b < IT.length - 1) return {a: R.a, b: R.b, name: R.org === 'k' ? KNAME(R.n) : VN(R.n)};
   const t = TOPICS.length > 1 && curSection(topVisibleItem()); return t ? {a: t.i, b: t.end, name: TT(t)} : null;
 }
-function renderSIn(){ const el = $('#sIn'); el.hidden = !SIN || SCOPE === 'lib'; if (el.hidden) return;
+function renderSIn(){ const el = $('#sIn');
+  if (SCOPE === 'lib'){ el.hidden = !LSIN; if (el.hidden) return;   // from a shelf: that shelf, or the whole library
+    let n = {children: LIB}; LSIN.forEach(id => n = (n.children || []).find(x => x.id === id) || n);
+    el.innerHTML = '<button class="chip' + (LALL ? '' : ' on') + '" data-in="part">' + esc(TT(n.title)) + '</button><button class="chip' + (LALL ? ' on' : '') + '" data-in="all">' + T('पूरी लाइब्रेरी', 'Whole library') + '</button>';
+    $$('#sIn .chip').forEach(c => c.onclick = () => { LALL = c.dataset.in === 'all'; renderSIn(); const q = $('#q').value; if (q.trim()) libSearch(q); }); return; }
+  el.hidden = !SIN; if (el.hidden) return;
   el.innerHTML = '<button class="chip' + (SALL ? '' : ' on') + '" data-in="part">' + esc(SIN.name) + '</button><button class="chip' + (SALL ? ' on' : '') + '" data-in="all">' + T('पूरा ग्रन्थ', 'Whole work') + '</button>';
   $$('#sIn .chip').forEach(c => c.onclick = () => { SALL = c.dataset.in === 'all'; renderSIn(); if ($('#q').value.trim()) runSearch(); }); }
 const inSearch = i => !SIN || SALL || (SIN.set ? SIN.set.has(i) : i >= SIN.a && i <= SIN.b);
 function setScope(scope){ SCOPE = scope; const lib = scope === 'lib'; $('#scope').hidden = lib;
   $$('#scope .chip').forEach(c => { if (!['v', 'h', 'e', 'n'].includes(c.dataset.s)) c.hidden = !workKinds().includes(c.dataset.s); });   // a third meaning language's chip, on works that have it
-  $('#q').placeholder = lib ? T('ग्रन्थ, रचयिता या विषय खोजें', 'Search works, authors or shelves') : T('शब्द, अर्थ या English में खोजें', 'Search a verse or a meaning'); }
+  $('#q').placeholder = lib ? T('ग्रन्थ, रचयिता या कोई पंक्ति खोजें', 'Search works, authors or a line') : T('शब्द, अर्थ या English में खोजें', 'Search a verse or a meaning'); }
 function openSearch(scope, stay, fromReader){   // stay: only reset the page (the box was cleared), without another history entry
   setScope(scope); const lib = scope === 'lib';
-  if (!stay){ SIN = fromReader && !lib ? readerRange() : null; SALL = false; } renderSIn();
+  if (!stay){ SIN = fromReader && !lib ? readerRange() : null; SALL = false; LSIN = lib && libPath.length ? libPath.slice() : null; LALL = false; } renderSIn();
   $('#q').value = '';
-  $('#sRes').innerHTML = '<div class="empty">' + (lib ? T('ग्रन्थका नाम, रचयिता या विषय लिखें।', 'Type the name of a work, an author or a shelf.') : T('चौपाई, दोहे या अर्थका कोई भी शब्द लिखें।', 'Type any word from a verse, its Hindi meaning or its English meaning.')) + '</div>';
+  $('#sRes').innerHTML = '<div class="empty">' + (lib ? T('ग्रन्थका नाम, रचयिता, विषय या पदकी कोई पंक्ति लिखें।', 'Type the name of a work, an author or a shelf, or a line of a verse.') : T('चौपाई, दोहे या अर्थका कोई भी शब्द लिखें।', 'Type any word from a verse, its Hindi meaning or its English meaning.')) + '</div>';
   if (!stay) show('search');
 }
 $('#libSearchBtn').onclick = () => openSearch('lib');
@@ -1878,9 +1938,11 @@ function renderSettings(){   // the "More settings" page: the rare things only �
    the workflow .github/workflows/timing.yml applies (tools/audio/apply_owner_timing.py). */
 function pendingStarts(){ if (!SRC.au) return {}; const fx = myStarts(), sent = S.timing.sent[tkey()] || {}, out = {}; for (const id in fx) if (ID[id] != null && !fromOf(id) && JSON.stringify(sent[id]) !== JSON.stringify(fx[id])) out[id] = fx[id]; return out; }
 function timingHTML(){
+  if (!ADMIN()) return '';   // the timing tools are the admins' only
   if (!W) return '';
   let h = '<h2>' + T('ऑडियोका समय', 'Audio timing') + '</h2>' + sw('stm', T('ऑडियोका समय', 'Audio timing'), T('ऑडियो और पदका मेल ठीक करें', 'Fix audio and verse mismatches'), S.timing.on) +
-    sw('stf', T('समय जाँचें', 'Review timing'), T('झंडा दबानेसे पद जाँच-सूचीमें जुड़ता है', 'Tapping the flag adds a verse to the checklist'), !!S.timing.flagsOn);
+    sw('stf', T('समय जाँचें', 'Review timing'), T('झंडा दबानेसे पद जाँच-सूचीमें जुड़ता है', 'Tapping the flag adds a verse to the checklist'), !!S.timing.flagsOn) +
+    '<div class="acts"><button class="btn ghost" id="sAdminOff">' + T('इस फ़ोनपर ये औज़ार बंद करें', 'Turn these tools off on this phone') + '</button></div>';
   if (S.timing.on && SRC.au){
     const n = Object.keys(myStarts()).filter(id => ID[id] != null).length, p = Object.keys(pendingStarts()).length;
     h += (SRC.au.meta.draft ? sw('stp', T('यह रिकॉर्डिंग जाँच ली — सबके लिये चालू करें', 'This recording is checked: publish it for everyone'), (Object.keys(pendingStarts()).length > SEND_MAX ? T('भेजनेके अन्तिम भागके साथ जाएगा', 'Goes with the last part of the send') : T('भेजनेके साथ जाएगा', 'Goes with the next send')), !!(S.timing.publish || {})[tkey()]) : '') +
@@ -1907,6 +1969,7 @@ function bindTiming(){
   if (!$('#stm')) return;
   $('#stm').onchange = async e => { S.timing.on = e.target.checked; save(); applyTiming(); stopAudio(); await loadSources(); renderSettings(); };
   if ($('#stf')) $('#stf').onchange = e => { S.timing.flagsOn = e.target.checked; save(); renderSettings(); };
+  if ($('#sAdminOff')) $('#sAdminOff').onclick = () => { S.admin = 0; S.timing.on = false; save(); applyTiming(); renderSettings(); if (CURVIEW === 'reader') refreshReader(); };
   if ($('#stp')) $('#stp').onchange = e => { S.timing.publish = S.timing.publish || {}; if (e.target.checked) S.timing.publish[tkey()] = true; else delete S.timing.publish[tkey()]; save(); renderSettings(); };
   if ($('#tClear')) $('#tClear').onclick = clearTimingAsk;
   if ($('#tSend')) $('#tSend').onclick = sendStarts;
@@ -1973,7 +2036,7 @@ function sendStarts(){
 }
 function todayStr(){ const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
 async function exportFile(){
-  const fname = 'scriptures-my-file-' + todayStr() + '.json', text = JSON.stringify(Object.assign({kind: 'manas-personal', exported: new Date().toISOString()}, S, {timing: Object.assign({}, S.timing, {on: false})}), null, 1);
+  const fname = 'scriptures-my-file-' + todayStr() + '.json', text = JSON.stringify(Object.assign({kind: 'manas-personal', exported: new Date().toISOString()}, S, {timing: Object.assign({}, S.timing, {on: false}), admin: undefined}), null, 1);   // an admin's phone stays one phone
   try { if (window.claude && window.claude.use){ const dl = await window.claude.use('downloads'); if (dl){ try { const r = await dl.save({filename: fname, data: text}); if (r && r.status === 'saved') toast(T('फ़ाइल सेव हुई', 'File saved')); } catch (e) {} return; } } } catch (e) {}
   const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([text], {type: 'application/json'})); a.download = fname; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1500); toast(T('फ़ाइल डाउनलोडमें सेव हुई', 'File saved to Downloads'));
 }
@@ -1986,7 +2049,7 @@ $('#fileIn').onchange = async e => {
   const tmp = S; S = X; migrate(); X = S; S = tmp;
   openSheet('<h2>' + T('फ़ाइल खोलें', 'Open a file') + '</h2><p>' + T('इस फ़ाइलमें: ', 'This file has: ') + '<b>' + DEV(Object.values(X.profiles[0].bm).length) + T(' बुकमार्क · ', ' bookmarks · ') + DEV(Object.values(X.profiles[0].notes).reduce((a, b) => a + b.length, 0)) + T(' टिप्पणी', Object.values(X.profiles[0].notes).reduce((a, b) => a + b.length, 0) === 1 ? ' note' : ' notes') + '</b></p><div class="menu"><button id="imAdd">' + T('इन्हें इस फ़ोनमें जोड़ें', 'Add them to this phone') + '<br><small class="muted">' + T('यहाँकी आपकी चीज़ें भी रहेंगी', 'Your existing data stays') + '</small></button><button id="imRep">' + T('इस फ़ोनका सब कुछ इस फ़ाइलसे बदलें', 'Replace everything on this phone') + '<br><small class="muted">' + T('सेटिंग्स और प्रगति भी फ़ाइल जैसी हो जाएँगी', 'Settings and progress also come from the file') + '</small></button></div>');
   $('#imAdd').onclick = () => { X.profiles.forEach(p => mergeInto(ME(), p)); save(); closeSheet(); toast(T('फ़ाइल जोड़ी गई', 'File added')); onView(CURVIEW); };
-  $('#imRep').onclick = () => askYes(T('इस फ़ोनका वर्तमान डेटा फ़ाइलके डेटासे बदल जाएगा।', 'Data on this phone will be replaced by the file.'), T('हाँ, बदलें', 'Yes, replace'), () => { const on = !!S.timing.on; S = Object.assign(defaults(), X); migrate(); delete S.kind; delete S.exported; S.timing.on = on; save(); closeSheet(); applyState(); toast(T('फ़ाइल खोली गई', 'File opened')); });
+  $('#imRep').onclick = () => askYes(T('इस फ़ोनका वर्तमान डेटा फ़ाइलके डेटासे बदल जाएगा।', 'Data on this phone will be replaced by the file.'), T('हाँ, बदलें', 'Yes, replace'), () => { const on = !!S.timing.on, adm = S.admin; S = Object.assign(defaults(), X); migrate(); delete S.kind; delete S.exported; S.timing.on = on; S.admin = adm; save(); closeSheet(); applyState(); toast(T('फ़ाइल खोली गई', 'File opened')); });
 };
 function askText(title, val, cb){ openSheet('<h2>' + esc(title) + '</h2><input id="askT" value="' + esc(val) + '"><div class="acts"><button class="btn" id="askOk">' + T('ठीक है', 'OK') + '</button><button class="btn ghost" id="askNo">' + T('रहने दें', 'Cancel') + '</button></div>'); setTimeout(() => $('#askT').focus(), 250); $('#askOk').onclick = () => { const v = $('#askT').value.trim(); closeSheet(); if (v) cb(v); }; $('#askNo').onclick = () => closeSheet(); }
 function askYes(msg, yes, cb){ openSheet('<p style="font-size:17px">' + msg + '</p><div class="acts"><button class="btn" id="askOk">' + esc(yes) + '</button><button class="btn ghost" id="askNo">' + T('रहने दें', 'Cancel') + '</button></div>'); $('#askOk').onclick = () => { closeSheet(); cb(); }; $('#askNo').onclick = () => closeSheet(); }
@@ -2039,7 +2102,9 @@ function tourSteps(){
     {t: () => $('#rLayers [data-l="r"]'), allow: '#rLayers [data-l="r"]', p: T('पुस्तक छूकर पाठ मोड चालू करें — केवल मूल पाठ। फिर छूनेपर अर्थ लौट आते हैं।', 'Tap the book for recitation mode — the verses alone. Tap it again to bring the meanings back.'), done: () => !!S.settings.recite},
     {t: () => firstVisible('#rBody .vbm'), allow: '#rBody .vbm', p: T('बुकमार्क चिह्न छूकर यह पद सहेजें — ☰ › बुकमार्कमें मिलेगा।', 'Tap the bookmark sign to save this verse — find it in ☰ › Bookmarks.'),
      enter: () => { TOUR.bmAdded = false; }, done: () => !!TOUR.bmAdded},   // any bookmark made in this step — even one taken off and put back
-    {t: () => firstVisible('#rBody .vplay'), allow: '#rBody .vplay', p: T('▶ छूकर केवल यह पद सुनें — जो गाया जा रहा है वह चमकेगा।', 'Tap ▶ to play just this verse — it lights up as it is sung.'), done: () => PL.on},
+    // search looks where the reader is (this part first, a chip widens it); the next step brings the reader back
+    {t: () => $('#rSearch'), allow: '#rSearch', p: T('खोज छुएँ: इस भागमें कोई भी शब्द या पंक्ति ढूँढ़ें — ऊपरकी चिपसे पूरा ग्रन्थ।', 'Tap search to find any word or line in this part — a chip at the top widens it to the whole work.'), done: () => CURVIEW === 'search'},
+    {enter: () => { if (CURVIEW === 'search') history.back(); }, t: () => CURVIEW === 'reader' ? firstVisible('#rBody .vplay') : null, allow: '#rBody .vplay', p: T('▶ छूकर केवल यह पद सुनें — जो गाया जा रहा है वह चमकेगा।', 'Tap ▶ to play just this verse — it lights up as it is sung.'), done: () => PL.on},
   ];
 }
 // while the tour runs, only what the current step asks for can be tapped (a ▶ on the work's page would start the audio
@@ -2129,10 +2194,11 @@ function pruneLib(nodes, shelves){
   const nav = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || {};
   const was = !asked && (nav.type === 'reload' || nav.type === 'back_forward') && history.state && history.state.v ? history.state : null;
   if (was){ await restore(was); if (!W) await hideSalute(); }   // a refresh: the same page, with the same way back
-  // opened again: the screen last used — the library, or the work's page, or the reader at your place (S.view); a link to a work opens it
-  else if (start && (asked || S.view !== 'library')){ const lastView = S.view; await openWork(start, true); history.replaceState(snap('library'), ''); show('home'); if (!asked && lastView === 'reader') reopenReader(); }
+  // opened again (not a refresh or Back): always the library (readers asked for it; Resume on the work's page is a tap away);
+  // a link to a work opens that work, and a library of one work opens it
+  else if (start && (asked || leafs.length === 1)){ await openWork(start, true); history.replaceState(snap('library'), ''); show('home'); }
   else { history.replaceState(snap('library'), ''); renderLibrary(); await hideSalute(); }
-  cloudInit();
+  cloudInit(); adminFromLink();
   if (!S.settings.tour) startTour();
   // offline reading: the service worker keeps the app and every library file it has fetched (sw.js, build.py)
   if ('serviceWorker' in navigator && (location.protocol === 'https:' || window.__SW_TEST) && !BUNDLE) navigator.serviceWorker.register('sw.js').catch(() => {});

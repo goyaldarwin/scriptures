@@ -1,4 +1,4 @@
-# श्री गणेश चालीसा (Shri Ganesh Chalisa), "मंगलमय मंगल करन"
+# मंगलमय गणेश चालीसा (Mangalmay Ganesh Chalisa), "मंगलमय मंगल करन"
 
 The second chālīsā of Gaṇeśa, the one that opens "मंगलमय मंगल करन", in Awadhi (`awa`); it tells how Pārvatī made Gaṇeśa her doorkeeper, how Śiva beheaded him and gave him the elephant head, and the circling of the earth.
 
@@ -13,3 +13,5 @@ Verse types: the Mānas's own (`do` dohā, `cau` chaupāī).
 - **Numbering:** the 40 chaupāīs are numbered 1–40 and cited by it ("Chaupai 12"); the two dohās have no number of their own and are cited by their section ("Opening · Doha", "Closing · Doha").
 - **Ids:** as the Hanumān Chālīsā's in the Sundarakāṇḍa (`chalisa.do1`, `chalisa.cau1` …).
 - **Topics:** Gaṇeśa's form and glory, the doorkeeper, the beheading and the elephant head, the circling of the earth, the prayer. **Reading plans:** none.
+
+Its title is "मंगलमय गणेश चालीसा" / "Mangalmay Ganesh Chalisa", by its opening words, so it is told apart on the shelf from the Ganesh Chalisa that opens "जय गणपति सदगुण सदन" (`ganesha-chalisa`); the book prints both as श्री गणेश चालीसा.

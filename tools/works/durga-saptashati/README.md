@@ -1,6 +1,6 @@
 # श्रीदुर्गासप्तशती (Shri Durga Saptashati)
 
-Shelf: हिन्दू धर्म › ग्रन्थ › महर्षि वेदव्यास › श्रीदुर्गासप्तशती (`library/hinduism/granth/vyasa/durga-saptashati/`, work id `durga-saptashati`). The Devī Māhātmya of the Mārkaṇḍeya Purāṇa, the sage Medhas's account to King Suratha and the merchant Samādhi of the Devī's three deeds, as Mārkaṇḍeya tells it: 13 adhyāyas, 700 mantras, in Sanskrit (`sa`), with the stotras recited before and after it in the owner's recording.
+Shelf: हिन्दू धर्म › ग्रन्थ › महर्षि वेदव्यास › श्रीदुर्गासप्तशती (`library/hinduism/stotra/durga/durga-saptashati/`, work id `durga-saptashati`). The Devī Māhātmya of the Mārkaṇḍeya Purāṇa, the sage Medhas's account to King Suratha and the merchant Samādhi of the Devī's three deeds, as Mārkaṇḍeya tells it: 13 adhyāyas, 700 mantras, in Sanskrit (`sa`), with the stotras recited before and after it in the owner's recording.
 
 | Part | Items | Part | Mantras | Part | Mantras |
 |---|---|---|---|---|---|
@@ -35,7 +35,7 @@ Braja Beats (`audio/braja-beats/`, YouTube `zmGU9QbLUVM`, 3 h 28 min): the whole
 
 ## How it is made
 ```bash
-D=<clone of scriptures-data>/hinduism/granth/vyasa/durga-saptashati
+D=<clone of scriptures-data>/hinduism/stotra/durga/durga-saptashati
 J=$D/printouts/sanskritdocuments/durga-saptashati.json
 python3 tools/works/durga-saptashati/source/make_text.py $J     # text.txt
 python3 tools/works/durga-saptashati/source/meanings.py $J      # meanings/

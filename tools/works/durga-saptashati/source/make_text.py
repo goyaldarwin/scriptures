@@ -2,7 +2,7 @@
 
     python3 tools/works/durga-saptashati/source/make_text.py <durga-saptashati.json>
 
-<durga-saptashati.json> is in scriptures-data at hinduism/granth/vyasa/durga-saptashati/printouts/sanskritdocuments/:
+<durga-saptashati.json> is in scriptures-data at hinduism/stotra/durga/durga-saptashati/printouts/sanskritdocuments/:
 the owner's structured copy of https://sanskritdocuments.org/doc_devii/durga700.html (19 sections in the order the
 recording sings them: the Caṇḍikā-dhyāna, Argalā, Kīlaka, Kavaca, the 13 adhyāyas, the Aparādha-kṣamāpaṇa stotra and
 the Devī Sūkta), each item with its lines, with his drafts of the meanings. The text is read as the copy prints it, with

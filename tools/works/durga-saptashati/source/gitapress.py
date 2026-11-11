@@ -2,7 +2,7 @@
 
     python3 tools/works/durga-saptashati/source/gitapress.py <sanskrit-hindi.pdf>
 
-<sanskrit-hindi.pdf> is in scriptures-data at hinduism/granth/vyasa/durga-saptashati/books/gitapress/. Its text layer
+<sanskrit-hindi.pdf> is in scriptures-data at hinduism/stotra/durga/durga-saptashati/books/gitapress/. Its text layer
 is in the Chanakya font, read without OCR by tools/works/valmiki-ramayana/source/chanakya.py (docs/PLAYBOOK.md §11),
 with the codes this book adds (ADD: the nukta, ! and ?, ट्ठ and ड्ड in the Hindi, the half ह of वह्नि and चिह्न), each
 confirmed by the words it occurs in. The mantras are its large lines (the Sanskrit is set in ChanakyaBold at 15–17.5 pt

@@ -1,4 +1,4 @@
-# श्री शनि चालीसा (Shri Shani Chalisa)
+# श्री शनिश्चर चालीसा (Shri Shanishchar Chalisa)
 
 The chālīsā of Śanideva that opens "श्री शनिश्चर देवजी", in Awadhi (`awa`). The book prints it as its first Śani Chālīsā, "श्री शनि चालीसा (१)"; the second is `shani-chalisa`.
 
@@ -15,3 +15,5 @@ The closing dohās name its makers: 'विमल' (Vimala) prepared the pāṭh
 - **Numbering:** the 39 chaupāīs (the book prints 39) are numbered 1–39 and cited by it ("Chaupai 12"); the dohās and the soraṭhā have no number of their own and are cited by their section ("Opening · Doha", "Opening · Sortha", "Closing · Doha").
 - **Ids:** as the Hanumān Chālīsā's in the Sundarakāṇḍa (`chalisa.do1`, `chalisa.so1`, `chalisa.cau1` …).
 - **Topics:** his names and his power, prayer and offerings, journeys on a Saturday, the three gods and Śani, the fruit of reading. **Reading plans:** none.
+
+Its title is "श्री शनिश्चर चालीसा" / "Shri Shanishchar Chalisa", by the name its opening invokes (श्री शनिश्चर देवजी), so it is told apart on the shelf from the Shani Chalisa that opens "जय गणेश गिरिजा सुवन" (`shani-chalisa`); the book prints both as श्री शनि चालीसा.

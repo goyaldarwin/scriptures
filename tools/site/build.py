@@ -37,7 +37,7 @@ from library import prepare, LibraryError
 try: WORKS = prepare(os.path.join(ROOT, 'library'))
 except LibraryError as e: sys.exit('LIBRARY PROBLEM: ' + str(e))
 print('works', WORKS)
-import catalogue; catalogue.main()   # docs/WORKS.md: every work's structure, numbering, sources and recordings, made from the library
+import catalogue; catalogue.main(); catalogue.pending()   # docs/WORKS.md: every work's structure, numbering, sources and recordings; docs/PENDING.md: what each still lacks
 # keep shared files one entry per line (tools/jsonio.py) so parallel branches merge cleanly
 sys.path.insert(0, os.path.dirname(HERE)); import jsonio
 for f in glob.glob(os.path.join(ROOT, 'library', 'glossary', '*.json')):
@@ -84,6 +84,13 @@ def _walk(ns):
         if 'work' in n: _works.append(n)
         else: _walk(n.get('children', []))
 _walk(json.load(open(os.path.join(SITE, 'library', 'index.json'))))
+# the library's search finds a work by a line of a verse too (app.js libSearch): every work on the shelf of up to 1,000 verses,
+# {work id: [[verse id, verse, transliteration]]}, the lines joined with " / "; read when the library is first searched
+LINES = {}
+for _n in _works:
+    _w = json.load(open(os.path.join(SITE, 'library', _n['path'], 'work.json'), encoding='utf-8'))
+    if len(_w['items']) <= 1000: LINES[_n['work']] = [[x['id'], ' / '.join(x['v']), ' / '.join(x.get('t') or [])] for x in _w['items']]
+open(os.path.join(APPD, 'lines.json'), 'w', encoding='utf-8').write(json.dumps(LINES, ensure_ascii=False, separators=(',', ':')))
 json.dump({'id': './', 'name': 'शास्त्र · Scriptures', 'short_name': 'Scriptures', 'description': 'Read and listen to the scriptures: Ramcharitmanas, Sundarkand, Shri Rudram and more, with Hindi and English meanings and word-by-word meanings.',
            'lang': 'hi', 'start_url': './', 'scope': './', 'display': 'standalone', 'orientation': 'portrait', 'background_color': '#F6F6F2', 'theme_color': '#2B3A8C', 'categories': ['books', 'education', 'lifestyle'],
            'icons': [{'src': 'app/icon-192.png', 'sizes': '192x192', 'type': 'image/png'}, {'src': 'app/icon-512.png', 'sizes': '512x512', 'type': 'image/png'},
@@ -129,7 +136,7 @@ json.dump([{'relation': ['delegate_permission/common.handle_all_urls'], 'target'
            for a in _apps.values() if a.get('sha256')], open(os.path.join(SITE, '.well-known', 'assetlinks.json'), 'w'), indent=1)
 # ---------- single-file bundle ---------- (every library file, the part files of a work loaded by part included: the app's getJSON reads them by path)
 LIBD = os.path.join(SITE, 'library')
-bundle = {'files': {}}
+bundle = {'files': {}, 'lines': LINES}
 # a work exported but not on the shelf yet is left out: the app cannot open it
 _off = [os.path.dirname(os.path.relpath(f, LIBD)) + '/' for f in glob.glob(LIBD + '/**/work.json', recursive=True)
         if os.path.dirname(os.path.relpath(f, LIBD)) not in {n['path'] for n in _works}]
