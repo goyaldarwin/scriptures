@@ -191,14 +191,14 @@ async def main():
                     await ev(f"setTime({vi}, 1, {s0}); setTime({vi}, 2, {s2} + 5)")
                     nxt = await ev(f"[1, 2, 3].map(d => AUT[0][{g} + d][1])")
                     check(f'{tag}: guessed starts after your end follow it, in order', nxt[0] >= s2 + 5 - 0.05 and nxt[0] < nxt[1] < nxt[2], [s2 + 5, nxt])
-                    # the light waits for you: it stays on the verse you marked while the next start is only a guess
+                    # the light follows a predicted start too: it moves on from the verse you marked when the next one's guessed start comes
                     await ev("S.timing.fix[tkey()] = {}; save(); buildAudio()")
                     va, sa = await ev(f"[AUT[0][{g}][0], AUT[0][{g}][1]]"); vb, sb = await ev(f"[AUT[0][{g} + 1][0], AUT[0][{g} + 1][1]]")
                     await ev(f"PL.on = true; PL.t = 0; PL.end = null; ytOK = true; ytInfo.t = {sa} + 0.2; setTime({va}, 1, {sa})")
                     await ev(f"ytInfo.t = {sb} + 1; tick()")
                     held = await ev("PL.cur")
                     await ev(f"setTime({vb}, 1, {sb} + 0.8)")
-                    check(f'{tag}: the light waits on your verse past a guessed start, and moves when you mark the next', held == va and await ev("PL.cur") == vb, [held, va, await ev("PL.cur"), vb])
+                    check(f'{tag}: the light moves to the next verse at its predicted start, and marking it keeps it there', held == vb and await ev("PL.cur") == vb, [held, va, await ev("PL.cur"), vb])
                     await ev("PL.on = false; ytOK = false")
                     await ev("delete S.timing.fix[tkey()]; save(); buildAudio()")
                 # a helper's file: saved from the marks, opened by the owner as marks "from <helper>" that are not sent until checked
@@ -797,13 +797,13 @@ async def main():
             const r = [bar.includes('data-a="tn"'), /sent|भेजा/.test(bar), Math.round(SRC.au.at[own[2]][1] * 10) / 10 === Math.round((ns + 1) * 10) / 10, !!myStarts()[own[2]]];
             S.timing.fix[tkey()] = JSON.parse(keep); S.timing.on = false; save(); applyTiming(); await loadSources(); return r; })()""")
         check('timing: a time already in the library shows − / + and is carried along like one set here', pubown == [True, True, True, True], pubown)
-        # the light never moves on to a start placed again by the order rule (it is only a guess now), even for a heard verse
+        # the light follows a start placed again by the order rule, as with Audio timing off, and then the next heard one
         mv = await ev("""(async () => { S.timing.on = true; applyTiming(); await openWork('manas', true); await loadSources(); show('home');
             const keep = JSON.stringify(S.timing.fix[tkey()] || {}); delete S.timing.fix[tkey()]; buildAudio(); const a = AUT[0]; let k = a.findIndex((x, q) => q > 5 && [0, 1, 2].every(d => !toCheck(a[q + d][0]) && !ownAt(IT[a[q + d][0]].id)) && a[q + 2][1] - a[q][1] > 8);   // three heard verses, none set by ear (the owner's sent times would be kept, not placed again) if (k < 0) return 'no run';
             const x = a[k][0], y = a[k + 1][0], z = a[k + 2][0], ys = a[k + 1][1], zs = a[k + 2][1]; setTime(x, 1, ys + 1);   // x starts after y's heard start: y is placed again
             const moved = toCheck(y) && SRC.au.at[IT[y].id][1] > ys; PL.on = true; PL.t = 0; PL.end = null; ytOK = true; PL.seekT = null; PL.cur = x; ytInfo.t = SRC.au.at[IT[y].id][1] + 0.3; tick(); const lit = PL.cur;
-            ytInfo.t = zs + 0.3; tick(); const lit2 = PL.cur; PL.on = false; ytOK = false; S.timing.fix[tkey()] = JSON.parse(keep); S.timing.on = false; save(); applyTiming(); await loadSources(); return [moved, lit === x, lit2 === z]; })()""")
-        check('timing: the light waits on your verse past a start that was placed again, and follows the next heard one', mv == [True, True, True], mv)
+            ytInfo.t = zs + 0.3; tick(); const lit2 = PL.cur; PL.on = false; ytOK = false; S.timing.fix[tkey()] = JSON.parse(keep); S.timing.on = false; save(); applyTiming(); await loadSources(); return [moved, lit === y, lit2 === z]; })()""")
+        check('timing: the light moves to a start that was placed again, as with Audio timing off, and follows the next heard one', mv == [True, True, True], mv)
         # the library's workflow (tools/audio/apply_owner_timing.py): a second send that gives a moved verse its own start back is applied
         # (on a recording timed only from its transcript: the fixture tools/site/fixtures/shirdi-transcribed, placed in a temporary library)
         tmp = tempfile.mkdtemp(); wp = 'hinduism/aarti/shirdi-sai/dhoop-aarti'; sp = 'tools/works/shirdi-sai-dhoop-aarti/audio/pramod-medhi'
