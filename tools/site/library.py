@@ -117,6 +117,14 @@ def check_work(lib, leaf, LANGS):
             en = [str(v) for f in glob.glob(os.path.join(lib, path, 'meanings', 'en-scriptures*.json')) for v in json.load(open(f, encoding='utf-8')).get('m', {}).values()]
             bad = sorted({v for t in en for v in N['en_variants'] if re.search(r'\b' + v + r'\b', t)})
             _need(not bad, f"{name}: our English meaning writes {N['en']}, never {bad} (tools/text/names.json)")
+    # our English meanings write names in IAST, whose anusvāra is ṃ (Kaṃsa, hrīṃ); ṁ is the transliteration's ISO 15919
+    # letter, and a word spelled with it is another word to the dictionary (tools/meanings/style.md §5); a work loaded by
+    # part keeps its meanings in en-scriptures/<part>.json
+    en = [(i, str(v)) for f in glob.glob(os.path.join(lib, path, 'meanings', 'en-scriptures*.json')) + glob.glob(os.path.join(lib, path, 'meanings', 'en-scriptures', '*.json')) for i, v in json.load(open(f, encoding='utf-8')).get('m', {}).items()]
+    bad = [i for i, t in en if 'ṁ' in t]
+    _need(not bad, f"{name}: our English meaning writes ṃ for the anusvāra, never ṁ: {bad[:5]}")
+    bad = [i for i, t in en if re.search(r'\bOṃ\b', t)]   # the syllable is the English word Om; a lowercase IAST mantra keeps oṃ
+    _need(not bad, f"{name}: our English meaning writes the syllable Om, never Oṃ: {bad[:5]}")
     if '/aarti/' in '/' + path + '/':
         bad = [x['id'] for x in items if any(',' in l for l in x['v'])]
         _need(not bad, f"{name}: an āratī's verse has no comma (a pause is a space): {bad[:5]}")
@@ -327,6 +335,8 @@ def prepare(lib):
             _need(isinstance(v, dict) and ('hi' in v or 'en' in v), f"glossary/{code}.json: {k!r} needs hi/en")
             # a hard word of our meanings (tappable in the Hindi or English meaning): both senses, simply put
             _need(v.get('hard', True) is True and (not v.get('hard') or (v.get('hi') and v.get('en'))), f"glossary/{code}.json: {k!r}: \"hard\" is true, with hi and en")
+            # English is written in IAST: the anusvāra is ṃ, so the key is the word as our English meaning spells it
+            if code == 'en': _need('ṁ' not in k + str(v.get('en', '')), f"glossary/en.json: {k!r} writes ṁ; IAST's anusvāra is ṃ")
             # a shared entry opens in every work: it gives the word's general senses and names the work a sense belongs
             # to, never "here" or "this āratī" (docs/PLAYBOOK.md §5); a word that itself says "this" (एतत्, इदम्) may
             bad = [s for s in _texts(v) if CONTEXT.search(s)] if not THIS.search(k) else []
