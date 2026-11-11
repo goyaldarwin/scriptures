@@ -38,7 +38,7 @@ Columns: the work and its permanent id · its shelf path (tradition first, the s
 
 | Work | Path | Languages | Levels | Verse types | Cited as | Meanings | Line by line | Word meanings | Recordings |
 |---|---|---|---|---|---|---|---|---|---|
-| Jai Ganesh Jai Ganesh Jai Ganesh Deva (`ganesh-aarti`) | `hinduism/aarti/ganesha/ganesh-aarti` | Hindi | 1 aarti › 1 sections › 6 verses | Refrain (tek) (`tek`), Stanza (`pad`) | verse (`1`) | hi: hi-scriptures; en: en-scriptures | no | every word | anuradha-paudwal (MMS) |
+| Jai Ganesh Jai Ganesh Jai Ganesh Deva (`ganesh-aarti`) | `hinduism/aarti/ganesha/ganesh-aarti` | Hindi | 1 aarti › 1 sections › 6 verses | Refrain (tek) (`tek`), Stanza (`pad`) | verse (`1`) | hi: hi-scriptures; en: en-scriptures | no | every word | anuradha-paudwal (MMS, 4 by ear) |
 | Aarti Gajbadan Vinayak Ki (`gajvadan-vinayak-aarti`) | `hinduism/aarti/ganesha/gajvadan-vinayak-aarti` | Hindi | 1 aarti › 1 sections › 4 verses | Refrain (tek) (`tek`), Stanza (`pad`) | verse (`1`) | hi: hi-scriptures; en: en-scriptures | no | every word | none |
 | Ganpati Ki Seva Mangal Meva (`ganpati-seva-aarti`) | `hinduism/aarti/ganesha/ganpati-seva-aarti` | Hindi | 1 aarti › 1 sections › 10 verses | Refrain (tek) (`tek`), Stanza (`pad`) | verse (`1`) | hi: hi-scriptures; en: en-scriptures | no | every word | none |
 | Shri Ramchandra Kripalu (`shri-ramchandra-kripalu`) | `hinduism/aarti/rama/shri-ramchandra-kripalu` | Braj, Awadhi | 1 aarti › 1 sections › 7 verses | Chhand (`cha`), Soratha (`so`) | verse (`1`) | hi: hi-scriptures, hi-gitapress; en: en-scriptures, en-gitapress | yes | every word | satya-adhikari (transcript) |
