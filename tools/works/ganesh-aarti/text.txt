@@ -4,7 +4,7 @@
 
 @part aarti
 @section aarti
-@topic जय गणेश देवा | Jai Ganesh Deva
+@topic जय गणेश जय गणेश जय गणेश देवा | Jai Ganesh Jai Ganesh Jai Ganesh Deva
 [aarti.tek tek]
 जय गणेश जय गणेश जय गणेश देवा ।
 माता जाकी पार्वती पिता महादेवा ॥

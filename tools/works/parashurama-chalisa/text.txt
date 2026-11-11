@@ -97,7 +97,7 @@
 [chalisa.cau40 cau 40]
 पूर्णेन्दु निसि बासर स्वामी । बसहु हृदय प्रभु अन्तरयामी ॥
 @section chalisa-ant
-@topic समापन | The close
+@topic समापनका दोहा और श्लोक | The closing doha and shloka
 [chalisa.do3 do]
 परशुराम को चारू चरित मेटत सकल अज्ञान ।
 शरण पड़े को देत प्रभु सदा सुयश सम्मान ॥

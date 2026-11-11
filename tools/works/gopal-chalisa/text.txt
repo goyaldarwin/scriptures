@@ -96,7 +96,7 @@
 [chalisa.cau41 cau 41]
 जो सत बार पढ़ै चालीसा । देहि सकल बाँछित फल शीशा ॥
 @section chalisa-ant
-@topic समापन | The closing verses
+@topic समापनका छन्द और दोहा | The closing chhand and doha
 [chalisa.cha1 cha]
 गोपाल चालीसा पढ़ै नित नेम सों चित्त लावई ।
 सो दिव्य तन धरि अन्त महँ गोलोक धाम सिधावई ॥

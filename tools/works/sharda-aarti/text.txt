@@ -3,7 +3,7 @@
 
 @part aarti
 @section aarti
-@topic मैया शारदा तोरे दरबार | Maiya Sharda Tore Darbar
+@topic मैया शारदा तोरे दरबार आरती नित गाऊँ | Maiya Sharda Tore Darbar Aarti Nit Gaun
 [aarti.do1 do]
 भुवन विराजी शारदा महिमा अपरम्पार ।
 भक्तों के कल्याण को धरो मात अवतार ॥

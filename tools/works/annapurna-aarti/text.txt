@@ -3,7 +3,7 @@
 
 @part aarti
 @section aarti
-@topic बारम्बार प्रणाम | Barambar Pranam
+@topic बारम्बार प्रणाम मैया बारम्बार प्रणाम | Barambar Pranam Maiya Barambar Pranam
 [aarti.tek tek]
 बारम्बार प्रणाम मैया बारम्बार प्रणाम ॥
 [aarti.pad1 pad 1]

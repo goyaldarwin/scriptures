@@ -3,7 +3,7 @@
 
 @part chalisa
 @section chalisa-do
-@topic आरम्भका दोहा और सोरठा | The opening doha and sortha
+@topic आरम्भका दोहा और सोरठा | The opening doha and soratha
 [chalisa.do1 do]
 श्री शनिश्चर देवजी सुनहु श्रवण मम् टेर ।
 कोटि विघ्ननाशक प्रभो करो न मम् हित बेर ॥

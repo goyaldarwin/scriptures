@@ -3,7 +3,7 @@
 
 @part aarti
 @section aarti
-@topic जय जानकीनाथा | Jai Janakinatha
+@topic जय जानकीनाथा जय श्रीरघुनाथा | Jai Janakinatha Jai Shri Raghunatha
 [aarti.tek tek]
 जय जानकीनाथा ।
 जय श्रीरघुनाथा ।
