@@ -136,7 +136,12 @@
  },
  "type": {},
  "gap": [],
- "colophon": {},
+ "colophon": {
+  "1.20": {
+   "v": "इति श्रीशिवमहापुराणे प्रथमायां विद्येश्वरसंहितायां साध्यसाधनखण्डे पार्थिवशिवलिङ्गपूजाविधिवर्णनं नाम विंशोऽध्यायः ॥ १.२०॥",
+   "why": "a stray @ before नाम (the copy's slip, not a letter): the closing words of every other adhyāya read …वर्णनं नाम"
+  }
+ },
  "insert": {
   "5.49#19": {
    "n": "20",

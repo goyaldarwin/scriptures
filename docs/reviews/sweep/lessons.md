@@ -33,3 +33,6 @@ From the history of `scriptures` (`git log`: every "fix", "the owner:" and owner
 | An empty timing file broke a UX check (Durgā Saptaśatī before its transcript) | §8 a recording waits for its transcript | `regen_check.py` |
 | A regenerated file undid a hand edit | §3 change data in its generator | `regen_check.py` |
 | A transcribe run of 232 ids never started (concurrency group name too long) | §10 | none (workflow) |
+| Our English wrote ṁ (the transliteration's letter) in some works and ṃ in others, so a hard entry keyed one way left the other un-underlined (hrīṃ, Narasiṃha, Kaṃsa) | style §5 IAST: ṃ | `library.py` (ṁ in our English or `en.json`) |
+| The sacred syllable written Om and Oṃ in the same uses | style §5: Om | `library.py` (Oṃ in our English) |
+| A source copy's stray character kept in a verse (@नाम) | §2 correct a clear slip | none: the Unicode scan (sweep §A2) is run by hand |
