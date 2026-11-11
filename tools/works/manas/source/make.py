@@ -53,6 +53,11 @@ for x in IT:
         parts = split_joint(o); JOINT[o['id']] = [q['id'] for q in parts]; items += parts
     else: items.append(o)
 for o in items: o.pop('t')
+# a verse that the book numbers into a dohā's lettered group (the śloka ॥१२२ (ग)॥ after dohās 122क and 122ख) belongs to that
+# dohā's section, as the dohās do; the book data starts the next section after the last dohā
+for k, o in enumerate(items):
+    m = re.fullmatch(r'(\d+)[^\d]+', o['n'])
+    if m and o['s'] != m.group(1) and k and items[k - 1]['p'] == o['p'] and items[k - 1]['s'] == m.group(1): o['s'] = m.group(1)
 assert len({x['id'] for x in items}) == len(items), 'duplicate ids after splitting'
 FIRST = {k: v[0] for k, v in JOINT.items()}; LAST = {k: v[-1] for k, v in JOINT.items()}
 ids = [x['id'] for x in IT]

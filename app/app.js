@@ -367,8 +367,6 @@ const SECW = () => W && W.cite && W.cite.sec ? TT(W.cite.sec) : '';
 // a numbered section's number: the number its id ends with ("106"; the Valmiki's "sundara.15" → 15), none for a named section
 const SNUM = s => { const m = /(\d+)$/.exec(s || ''); return m && +m[1] && !SECN(s) ? String(+m[1]) : ''; };
 const isNum = s => !!SECW() && !!SNUM(s);
-// a verse cited by its own number alone (the Mānas's dohā: cite.types.do = ["n"]), not by its section's
-const ALONE = it => { const t = W && W.cite && W.cite.types && W.cite.types[it.y]; return !!t && t.length === 1; };
 // a work may name its sections (work.json → "sections": {section id: {hi, en}}, e.g. bala.1 → सर्ग १ / Sarga 1)
 const SECN = s => W && W.sections && W.sections[s] ? TT(W.sections[s]) : '';
 const hasSec = p => isNum(p.s) || !!SECN(p.s);
@@ -378,13 +376,12 @@ function secLabel(p){ if (SECN(p.s)) return SECN(p.s); if (isNum(p.s)) return SE
   // another label, so it reads like every other ("Refrain (tek) – Stanza 7"), never as its first verse alone
   let k = p.to; while (k > p.from && vLabel(IT[k]) === vLabel(a)) k--;
   return k === p.from ? vLabel(a) : vLabel(a) + ' – ' + vLabel(IT[k]); }
-// a verse's place: its section's label and its own number under it ("Doha 106 · Chaupai 3", "Namaskarashtak · Stanza 1"), or its citation
-// (a section named as its verse, the Japji's Pauri 12, is said once)
-function posLabel(i){ const it = IT[i], p = PAGES[itemPage[i]], own = n => TYPE[it.y] + (vNum(n) ? ' ' + vNum(n) : '');
-  if (SECN(p.s)){ const a = secLabel(p), b = own(it.n); return a === b ? a : a + ' · ' + b; } if (!isNum(p.s) || ALONE(it)) return vLabel(it); return secLabel(p) + ' · ' + own(it.n); }
 // names joined with " · ", a name said once where a part and its one section share it (the Gītā Dhyānam, the Argalā Stotram)
 const joinPlace = xs => xs.filter((x, k) => x && x !== xs[k - 1]).join(' · ');
-function itemLabel(i){ return joinPlace([KNAME(IT[i].p), ...posLabel(i).split(' · ')]); }
+// a verse's place (bookmarks, notes, search results, the verse menu, the to-check list): its part, a named section, and the
+// player's label, the citation (“Bal Kand · Verse 106.3”, “Dhoop Aarti · Namaskarashtak · Stanza 1”), as Resume says it, so a
+// verse is called by one number everywhere; a section named as its verse (the Japji's Pauri 12) is said once
+function itemLabel(i){ return joinPlace([KNAME(IT[i].p), SECN(PAGES[itemPage[i]].s), playLabel(i)]); }
 function spanLabel(a, b){
   const pa = PAGES[itemPage[a]], pb = PAGES[itemPage[b]];
   if (SECN(pa.s) && SECN(pb.s)) return secSpan(secLabel(pa), secLabel(pb));
@@ -1763,6 +1760,8 @@ function numHits(Q, hits){
   // a bare number in a work counted by dohā: the dohā of that number in each part (not an opening soratha of the same number)
   const bare = !Q.word && Q.ty, inSec = bare ? all.filter(i => isNum(IT[i].s)) : null;
   let got = bare ? find(Q.ty).filter(i => inSec.includes(i)) : find(Q.ty);
+  // a lettered number typed bare is that citation whatever the verse's type (the Mānas's śloka 122ग beside dohās 122क, 122ख)
+  if (bare && Q.c !== Q.base){ const ex = all.filter(i => K[i] === Q.c); if (ex.length) got = ex; }
   const atV = VIEWS.find(v => v.at && W.cite && W.cite.sec && TT(v.name) === TT(W.cite.sec));
   if (bare && atV && !Q.base.includes('.') && Q.c === Q.base && +Q.base >= 1 && +Q.base <= atV.at.length){
     const first = ID[atV.at[+Q.base - 1]]; got = [first].concat(IT.map((x, i) => i).filter(i => i !== first && SNUM(IT[i].s) === Q.base)); }

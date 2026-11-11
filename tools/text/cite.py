@@ -1,7 +1,7 @@
 """A verse's number as it is cited: one rule per work, the one source of every number the app shows or finds.
 
 Every number a reader sees for a verse comes from here: the player ("Verse 106.3", "Mantra 2.1.1"), Resume, the
-footer's ranges, a verse's place, the number search ("2.1.1", "106.3", "दोहा ४५") and the number at the end of our
+footer's ranges, a verse's place (bookmarks, notes, search results, the verse menu, the to-check list), the number search ("2.1.1", "106.3", "दोहा ४५") and the number at the end of our
 meanings where the verse prints none (the Śrī Rudram). The exporter (tools/works/export.py) writes it into every item as
 `c`; the app reads `c` and never builds a number of its own; tools/site/library.py checks it (`check`).
 
@@ -63,6 +63,10 @@ def of(item, R, part_key, named=()):
     n = (item.get('n') or '').translate(DIGITS)
     if not n: return ''
     val = {'part': str(part_key or ''), 'sec': '' if item.get('s') in named else sec_num(item.get('s')), 'n': n}
+    # a verse numbered as its section with a letter (the Mānas's śloka ॥१२२ (ग)॥ in Doha 122, after dohās 122क and 122ख)
+    # is a member of that lettered group: it is cited by its own number, as the dohās are, never "122.122ग"
+    m = re.fullmatch(r'(\d+)[^\d.]+', n)
+    if m and val['sec'] and str(int(m.group(1))) == val['sec']: val['sec'] = ''
     return '.'.join(val[lv] for lv in R['types'].get(item['y'], R['by']) if val[lv])
 
 def compute(items, M):
@@ -108,6 +112,8 @@ CASES = [
     (_MANAS, {'p': 0, 's': '3', 'y': 'do', 'n': '३क'}, '3क'),            # Devanagari digits, a lettered doha
     (_MANAS, {'p': 0, 's': '0', 'y': 'shloka', 'n': '1'}, '1'),          # the opening ślokas: section 0 is no number
     (_MANAS, {'p': 0, 's': 'end', 'y': 'shloka', 'n': '2'}, '2'),
+    (_MANAS, {'p': 0, 's': '108', 'y': 'shloka', 'n': '9'}, '108.9'),    # a śloka under a dohā (the Rudrāṣṭaka)
+    (_MANAS, {'p': 0, 's': '122', 'y': 'shloka', 'n': '१२२ग'}, '122ग'),  # a śloka of a dohā's lettered group: its own number
     (_KATHA, {'p': 1, 's': 'v2.1', 'y': 'mantra', 'n': '1'}, '2.1.1'),   # adhyāya.vallī.mantra, from the part key and the section
     (_KATHA, {'p': 0, 's': 'shanti', 'y': 'shanti', 'n': ''}, ''),       # no number: no citation
     ({'cite': {'by': ['sec', 'n']}, 'parts': {'list': [{}]}}, {'p': 0, 's': 'sundara.15', 'y': 'shloka', 'n': '30'}, '15.30'),   # a sarga in a dotted id
