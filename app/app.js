@@ -1446,13 +1446,17 @@ function renderLibrary(){
   $('#libTitle').textContent = libPath.length ? TT(node.title) : LB.lib();
   // two levels per screen: a shelf inside this one is shown as a heading with its own items under it
   // a shelf shows the works on it by name: tap a work to open it straight away, or the shelf's name to browse it
-  const MAXW = 4, worksIn = c => { const r = []; (function w(n){ (n.children || []).forEach(x => x.work ? r.push(x) : w(x)); })(c); return r; };
+  const MAXW = 3, worksIn = c => { const r = []; (function w(n){ (n.children || []).forEach(x => x.work ? r.push(x) : w(x)); })(c); return r; };
   const at = w => (S.w[w.work] || {}).at || 0;
   const recent = list => list.map((w, k) => [w, k]).sort((x, y) => at(y[0]) - at(x[0]) || x[1] - y[1]).map(x => x[0]);
   const chips = (ws, key) => '<div class="lworks">' + ws.slice(0, MAXW).map(w => '<button data-open-work="' + esc(w.work) + '">' + esc(TT(w.title)) + '</button>').join('') +
     (ws.length > MAXW && key ? '<button class="more" data-node="' + esc(key) + '">' + T('सभी ', 'All ') + DEV(ws.length) + ' ›</button>' : '') + '</div>';
+  // a work on a shelf of works is a large capsule like the chips that name works elsewhere: its title, and under it what it holds
+  const card = (c, key) => '<li class="lw"><button class="it wcard" data-node="' + esc(key) + '" data-card-work="' + esc(c.work) + '"><span class="grow"><span class="ti">' + esc(TT(c.title)) + '</span>' +
+    (TT(c.desc || c.by) ? '<span class="ds">' + esc(TT(c.desc || c.by)) + '</span>' : '') + '</span><span class="chev">›</span></button></li>';
   const row = (c, key) => {
-    // a shelf shows four works on one line that swipes sideways — the ones used most recently on this phone first (S.w[id].at:
+    if (c.work) return card(c, key);
+    // a shelf shows three works on one line that swipes sideways — the ones used most recently on this phone first (S.w[id].at:
     // last opened, read or played) — and how many it holds beside its name; “All N ›” at the end of the line opens it
     const ws = c.work ? [] : recent(worksIn(c));
     return '<li><button class="it" data-node="' + esc(key) + '"><span class="grow"><span class="ti">' + esc(TT(c.title)) + '</span>' + (ws.length ? '' : '<br><span class="ds">' + esc(TT(c.desc || c.by) || '') + '</span>') + '</span>' + (ws.length > 1 ? '<span class="cnt">' + DEV(ws.length) + '</span>' : '') + '<span class="chev">›</span></button>' +
@@ -1461,12 +1465,12 @@ function renderLibrary(){
   // a shelf of many shelves that each hold only works (Aarti, Chalisa: one per deity) is an index, not a long list: the four
   // works used most recently anywhere on it, then every deity as a chip with how many works it has; a tap opens that shelf
   // on the index the shelf names say who, without the honorific the heading already implies (Bhagwan Shri Ganesh → Ganesh)
-  const shortDeity = t => t.replace(/^(Bhagwan (Shri )?|Mother )/, '').replace(/^(भगवान (श्री ?)?|माँ |माता )/, '');
+  const shortDeity = t => t.replace(/^(Bhagwan |Mother )?(Shri )?/, '').replace(/^(भगवान |माँ |माता )?(श्री ?(?!मद्))?/, '');
   const index = node => {
     const all = recent(worksIn(node)), used = all.filter(w => at(w)).slice(0, MAXW);
     return (used.length ? '<li class="lhead">' + T('हालमें खोले', 'Recently opened') + '</li><li>' + chips(used) + '</li>' : '') +
       '<li class="lhead">' + esc(TT(node.groupBy) || T('देवता', 'By deity')) + '</li><li><div class="lindex">' +
-      kids.map(c => '<button data-node="' + esc(c.id) + '">' + esc(shortDeity(TT(c.title))) + '<span class="cnt">' + DEV(worksIn(c).length) + '</span></button>').join('') + '</div></li>';
+      kids.map(c => [c, shortDeity(TT(c.title))]).sort((x, y) => x[1].localeCompare(y[1], S.settings.ui === 'hi' ? 'hi' : 'en')).map(([c]) => c).map(c => '<button data-node="' + esc(c.id) + '"><span>' + esc(shortDeity(TT(c.title))) + '</span><span class="cnt">' + DEV(worksIn(c).length) + '</span></button>').join('') + '</div></li>';
   };
   // the library itself is one row per genre, with no headings (the owner: no partitioning on the library screen). On a
   // shelf's page, a shelf that holds shelves is a heading over them and a shelf that holds only works is one row with its
@@ -1478,9 +1482,11 @@ function renderLibrary(){
   const isIndex = libPath.length && kids.length > 12 && kids.every(c => c.children && !c.children.some(g => g.children));
   $('#libList').innerHTML = isIndex ? index(node) : kids.map(c => libPath.length && c.children && c.children.some(g => g.children) ? '<li class="lhead">' + esc(TT(c.title)) + '</li>' + c.children.map(g => one(g, c.id + '/' + g.id)).join('') : one(c, c.id)).join('');
   $$('#libList [data-node]').forEach(b => b.onclick = () => {
+    if (b.dataset.held){ delete b.dataset.held; return; }   // the press opened About
     const ids = b.dataset.node.split('/'); let n = node, c = null; ids.forEach(id => { c = (n.children || []).find(x => x.id === id); n = c; });
     if (c.work) openWork(c.work); else { libPath.push(...ids); history.pushState(snap('library'), ''); renderLibrary(); window.scrollTo(0, 0); }
   });
+  $$('#libList [data-card-work]').forEach(b => holdFor(b, () => aboutWork(b.dataset.cardWork)));   // a long press: About, as on a chip
   $$('#libList [data-open-work]').forEach(b => { b.onclick = () => { if (b.dataset.held){ delete b.dataset.held; return; } openWork(b.dataset.openWork); }; holdFor(b, () => aboutWork(b.dataset.openWork)); });
   $$('#libCrumbs [data-lp]').forEach(b => b.onclick = () => { libPath = libPath.slice(0, +b.dataset.lp + 1); history.pushState(snap('library'), ''); renderLibrary(); window.scrollTo(0, 0); });
 }
