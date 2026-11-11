@@ -134,6 +134,21 @@ def merges(only):
                         if not os.path.exists(os.path.join(src, f)) or not same(os.path.join(cp, f), os.path.join(src, f))]
     return bad
 
+def listed(only):
+    """Every verse a recording's check.json lists (and the owner has not set by ear) is on its to-check list in library/."""
+    bad = []
+    for w in sorted(only):
+        for c in sorted(glob.glob(os.path.join(WORKS, w, 'audio', '*', 'check.json'))):
+            src = os.path.dirname(c); S = json.load(open(os.path.join(src, 'source.json'), encoding='utf-8'))
+            if S.get('take'): continue
+            O = json.load(open(os.path.join(src, 'owner.json'), encoding='utf-8')) if os.path.exists(os.path.join(src, 'owner.json')) else {}
+            own = {k for v in O.values() for k in v}
+            A = json.load(open(os.path.join(REPO, 'library', S['work'], 'audio', S['id'] + '.json'), encoding='utf-8'))
+            at = A.get('at') or {}
+            miss = [i for i in json.load(open(c, encoding='utf-8'))['ids'] if i not in own and i in at and i not in (A.get('check') or [])]
+            if miss: bad.append(f'{os.path.relpath(src, WORKS)}: check.json lists {miss[:5]}, which the to-check list leaves out')
+    return bad
+
 def groups(wids):
     """The works in sets that take nothing from one another's, each in the order export.py makes them."""
     left, out = set(wids), []
@@ -172,6 +187,8 @@ def main(argv):
         print(f'regen check: nothing has changed since the last pass ({len(wids)} works; --full makes them all again)'); return
     bad = generators(dirty)
     if bad: fail("FAIL: a work's source file differs from what its generator makes (put the change in the generator, or run it):", bad)
+    bad = listed(dirty)
+    if bad: fail("FAIL: a start in doubt is not on the owner's to-check list (tools/audio/make_timings.py):", bad)
     bad = merges(dirty)
     if bad: fail("FAIL: a recording's MMS starts or to-check list differ from what tools/audio/mms_merge.py makes from its raw results:", bad)
     need = set().union(*(deps(w) for w in dirty))
