@@ -8,7 +8,8 @@ docs/HOW-TO.md) into a work's meaning files.
 For every batch-NN.ids in BATCH_DIR: takes the writer's batch-NN.hi.json / .en.json / .topics.json, then applies, in
 this order, the fixes of batch-NN.review.jsonl (the reviewer), batch-NN.audit.jsonl (the copy audit) and
 batch-NN.dict.jsonl (the accuracy and dictionary check): lines with lang "hi", "en" or "topic" and a non-empty "fix";
-a later step's fix wins. Each step named in --steps must have its file (empty when it found nothing). A meaning is a string or, line by line, a list with one piece per verse line; a fix with
+a later step's fix wins. Footnotes (batch-NN.notes.json, {id: {"hi": [..], "en": [..]}}, and checkers' lines with lang
+"note" whose fix is that object) replace the verse's footnotes in both languages. Each step named in --steps must have its file (empty when it found nothing). A meaning is a string or, line by line, a list with one piece per verse line; a fix with
 "line" (0-based) replaces that one piece. Checks that each batch covers exactly its ids, both languages, no empty value and no
 verse number. Writes into the work's folder, in its reading order:
   meanings/hi/scriptures.json, meanings/en/scriptures.json   our meanings (other entries and the settings are kept)
@@ -71,6 +72,7 @@ def main():
         b = idf[:-4]; ids = [l.strip() for l in open(idf) if l.strip()]
         M = {lg: json.load(open(f'{b}.{lg}.json', encoding='utf-8')) for lg in ('hi', 'en')}
         top = json.load(open(f'{b}.topics.json', encoding='utf-8')) if os.path.exists(f'{b}.topics.json') else {}
+        notes = json.load(open(f'{b}.notes.json', encoding='utf-8')) if os.path.exists(f'{b}.notes.json') else {}   # {id: {hi: [..], en: [..]}}
         for s in steps:
             assert os.path.exists(f'{b}.{s}.jsonl'), f'{b}: no {s} step yet ({b}.{s}.jsonl)'
         rev = [r for s in ('review', 'audit', 'dict') for r in jl(f'{b}.{s}.jsonl')]
@@ -90,6 +92,9 @@ def main():
                 if fx is None:   # an empty fix with "remove": the heading goes
                     top.pop(r['id'], None); fixed['topic'] += 1; continue
                 top[r['id']] = {**top.get(r['id'], {}), **fx}; fixed['topic'] += 1
+            elif r.get('lang') == 'note' and isinstance(r.get('fix'), dict):   # a verse's footnotes, both languages, whole
+                assert r['id'] in ids, f"{b}: note fix for unknown id {r['id']}"
+                notes[r['id']] = r['fix']; fixed['note'] = fixed.get('note', 0) + 1
             elif r.get('lang') == 'word':
                 words.append({'source': 'review', 'batch': os.path.basename(b), **r})
             elif r.get('lang') == 'doubt' and r.get('issue'):   # a doubt raised by a checker
@@ -110,13 +115,23 @@ def main():
                 if lg == 'en' and isinstance(h, list) and isinstance(e, list):
                     assert [not p.strip() for p in h] == [not p.strip() for p in e], f'{b}: {i}: Hindi and English must cut at the same lines'
             D[lg].update(M[lg])
+            N = F[lg].setdefault('notes', {})
+            for i in ids:   # the batch's footnotes replace the verse's earlier ones; a verse with none has none
+                fs = [x.strip() for x in ((notes.get(i) or {}).get(lg) or []) if x and x.strip()]
+                assert not any(NUM.search(x) for x in fs), f'{b}.{lg}: verse number in a footnote of {i}'
+                if fs: N[i] = fs
+                else: N.pop(i, None)
+            assert all(bool((notes.get(i) or {}).get('hi')) == bool((notes.get(i) or {}).get('en')) for i in ids), f'{b}: a footnote in one language only'
         T.update(top)
         doubts += [dict(d, batch=os.path.basename(b)) for d in jl(f'{b}.doubts.jsonl')]
         words += [{'source': 'writer', 'batch': os.path.basename(b), **w} for w in jl(f'{b}.words.jsonl')]
     for lg in ('hi', 'en'):
         F[lg]['m'] = {i: D[lg][i] for i in order if i in D[lg]}
+        if F[lg].get('notes'): F[lg]['notes'] = {i: F[lg]['notes'][i] for i in order if i in F[lg]['notes']}
+        else: F[lg].pop('notes', None)
         jsonio.dump_meanings(mine(lg), F[lg])
-    T = {i: T[i] for i in order if i in T}; dump_map(tp, T)
+    T = {i: T[i] for i in order if i in T}
+    if T or os.path.exists(tp): dump_map(tp, T)   # a work with no headings of ours gets no topics.json
     if a.doubts:
         with open(os.path.join(REPO, a.doubts), 'a', encoding='utf-8') as f:
             for d in doubts: f.write(json.dumps(d, ensure_ascii=False) + '\n')

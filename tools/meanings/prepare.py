@@ -1,10 +1,11 @@
 """Prepare batches of verses for writing our own meanings (tools/meanings/style.md).
 
     python3 tools/meanings/prepare.py OUT_DIR FIRST_ID LAST_ID [--size 50] [--context 6]
-            [--work manas]   (a work's id: its folder in tools/works)
+            [--work manas] [--within]   (a work's id: its folder in tools/works)
 
 Splits the verses FIRST_ID..LAST_ID (reading order, inclusive) into batches that end on a section (dohā) boundary,
-about --size verses each, and writes OUT_DIR/batch-NN.md for each: the topic headings, the verses just before the batch
+about --size verses each (with --within, a batch may end inside a section, never leaving fewer than 10 of its verses
+for the next), and writes OUT_DIR/batch-NN.md for each: the topic headings, the verses just before the batch
 (for context), then every verse of the batch with its transliteration and the meaning of each of its words from our
 dictionaries (language of the verse, then its fallbacks, then the suffix rules, as the app looks words up). Verses that
 already have both our meanings are marked so the writer keeps them unless they are wrong. Also writes
@@ -23,6 +24,7 @@ def main():
     ap.add_argument('out'); ap.add_argument('first'); ap.add_argument('last')
     ap.add_argument('--size', type=int, default=50); ap.add_argument('--context', type=int, default=6)
     ap.add_argument('--work', default='manas')
+    ap.add_argument('--within', action='store_true', help='a batch may end inside a section (a work whose sections are whole adhyāyas)')
     a = ap.parse_args()
     import sanskrit_dict   # Monier-Williams and Apte check the hard words (style.md); no batch is made without them
     missing = sanskrit_dict.missing()
@@ -64,7 +66,8 @@ def main():
     for i in range(i0, i1 + 1):
         cur.append(i)
         nxt = items[i + 1]['s'] if i + 1 < len(items) else None
-        if len(cur) >= a.size and (i == i1 or nxt != items[i]['s']): batches.append(cur); cur = []
+        left = next((j for j in range(i + 1, i1 + 1) if items[j]['s'] != items[i]['s']), i1 + 1) - i - 1   # verses left in this section
+        if len(cur) >= a.size and (i == i1 or nxt != items[i]['s'] or (a.within and left >= 10)): batches.append(cur); cur = []
     if cur: batches.append(cur)
     os.makedirs(a.out, exist_ok=True)
     for n, b in enumerate(batches, 1):
