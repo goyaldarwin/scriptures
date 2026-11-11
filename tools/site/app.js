@@ -442,11 +442,13 @@ function srcList(kind){ return ((W.sources || {})[kind] || []).filter(s => !s.dr
 function srcChoice(kind){ const list = srcList(kind); const sel = ((S.src[W.id] || {})[kind]); if (sel === 'off' || (kind === 'cm' && !sel)) return null; return (list.find(s => s.id === sel) || list[0] || null); }
 // only: 'au' the recording alone (all the work's page needs), 'meanings' the meaning sources alone; nothing: both. The
 // sources are fetched together, not one after another; ALT keeps each kind's sources in their listed order.
+let PREAU = null;   // the recording fetched alongside the work (openWork), taken by loadSources if it is still the one chosen
 async function loadSources(only){
   if (!Object.keys(LANGS).length) LANGS = await getJSON('glossary/languages');   // the meaning languages are listed there
   // a work loaded by part starts each meaning source empty; loadPart fills in each part it opens
   const get = async c => c.personal ? (PERS.src[c.id] ? {meta: c, id: c.id, title: c.title, m: PERS.src[c.id].m, p: PERS.src[c.id].p || {}} : null) : BYPART() ? {meta: c, id: c.id, title: c.title, m: {}, p: {}, got: new Set()} : Object.assign({meta: c}, await getJSON(W.path + '/' + c.file));
-  if (only !== 'meanings'){ const c = srcChoice('au'); SRC.au = null; if (c){ try { SRC.au = Object.assign({meta: c}, await getJSON(W.path + '/' + c.file)); } catch (e) {} } buildAudio(); }
+  if (only !== 'meanings'){ const c = srcChoice('au'), pre = PREAU; PREAU = null; SRC.au = null;
+    if (c){ try { SRC.au = Object.assign({meta: c}, (pre && pre.file === c.file && await pre.got) || await getJSON(W.path + '/' + c.file)); WS().au = c.file; } catch (e) {} } buildAudio(); }
   if (only === 'au') return;
   await Promise.all(MK().concat('cm').map(async kind => { const c = srcChoice(kind); SRC[kind] = null; if (c){ try { SRC[kind] = await get(c); } catch (e) {} } }));
   // the other meaning sources of a kind fill in verses the chosen one doesn't cover (e.g. a stotra appended to a kāṇḍa)
@@ -1620,7 +1622,10 @@ async function openWork(id, noShow){
   if (greeted) coverOn(saluteOf(id), SALUTE_AFTER);
   else if (W === null || W.id !== id) coverOn('', $('#loading').hidden ? 200 : 0);   // a quiet open: blank, and only if it is slow
   try {
-    if (!W || W.id !== id){ $('#rAnchor').hidden = true; $('#rAnchor').innerHTML = ''; AN.cand = null; AN.calm = 0; const path = workPath(id); W = await getJSON(path + '/work'); W.path = path;   /* another work: nothing of the last one's reading stays */ partReset(); buildWork(); moveRenamed(); fixLast();
+    if (!W || W.id !== id){ $('#rAnchor').hidden = true; $('#rAnchor').innerHTML = ''; AN.cand = null; AN.calm = 0; const path = workPath(id), auf = (S.w[id] || {}).au;   /* fetched together, not one after another: the work, the meaning languages (once) and, on a phone that has opened it before, the recording it played */
+      const pre = auf ? getJSON(path + '/' + auf).catch(() => null) : null;
+      const [w0] = await Promise.all([getJSON(path + '/work'), Object.keys(LANGS).length ? null : getJSON('glossary/languages').then(l => { LANGS = l; })]);
+      W = w0; W.path = path; PREAU = pre && {file: auf, got: pre};   /* another work: nothing of the last one's reading stays */ partReset(); buildWork(); moveRenamed(); fixLast();
       await loadSources('au'); await persJoin();
       wReady = false; const w = W;
       WREADY = Promise.all([loadSources('meanings'), loadGlossaries()]).then(() => { if (W !== w) return; if (BYPART()){ const l = WS().last; loadPart(l && IT[l.i] ? IT[l.i].p : 0); } })   // the part “Continue” opens
