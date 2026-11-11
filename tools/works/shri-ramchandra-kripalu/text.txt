@@ -2,7 +2,7 @@
 
 @part aarti
 @section kripalu
-@topic श्रीरामचन्द्र कृपालु (श्रीराम-स्तुति) | Shri Ramchandra Kripalu (Shri Ram Stuti)
+@topic श्रीरामचन्द्र कृपालु | Shri Ramchandra Kripalu
 [kripalu.cha1 cha 1]
 श्री रामचन्द्र कृपालु भजु मन हरण भव भय दारुणं ।
 नव कंजलोचन कंज-मुख कर-कंज पद कंजारुणं ॥१॥
