@@ -15,7 +15,7 @@ that fits no class is logged. Inside an adhyāya:
 Everything after an <hr> in a file is the notes; a mark in the text is a link to its note.
 The output keeps every block as printed (after normalize()); make_text.py builds the text and meanings from it.
 """
-import html, json, re, sys, zipfile, posixpath
+import html, json, os, re, sys, zipfile, posixpath
 
 HALF = '½'
 
@@ -324,5 +324,5 @@ if __name__ == '__main__':
     vol['log'] = log
     json.dump(vol, open(sys.argv[2], 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
     from collections import Counter
-    print(sys.argv[1].split('(')[1].split(')')[0], 'parvas', [(p['name'], len(p['adh'])) for p in vol['parvas']])
+    print(os.path.basename(sys.argv[1]), 'parvas', [(p['name'], len(p['adh'])) for p in vol['parvas']])
     print(' log', Counter(l['kind'] for l in log))

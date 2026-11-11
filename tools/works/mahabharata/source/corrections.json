@@ -12,5 +12,26 @@
    "शार्ङ्ग्यां",
    "the e-book's glyphs give शाङ्गर्या, not a word; Sørensen's index of the Mahābhārata (the Calcutta edition, the vulgate Gita Press follows) reads maharṣer Mandapālasya śārṅgyāṃ tanayasambhavaḥ, and the book's Hindi reads शार्ङ्गी पक्षीके गर्भसे"
   ]
+ ],
+ "3.192.3": [
+  [
+   "‘अयोध्याया",
+   "अयोध्याया",
+   "the e-book prints the Hindi's opening quotation mark (‘, Mārkaṇḍeya's story begins) before the Sanskrit too; no Sanskrit verse of the adhyāya has one and it never closes"
+  ]
+ ],
+ "3.236.22": [
+  [
+   "‘मोक्षः",
+   "मोक्षः",
+   "a quotation mark (‘) before the fourth pāda, in the middle of the verse, that never closes: the Hindi paragraphs' continuing-speech mark printed into the Sanskrit"
+  ]
+ ],
+ "13.61.9d2": [
+  [
+   "ज्ञानदानांशभाग् (भवेत्",
+   "ज्ञानदानांशभाग् भवेत्",
+   "the book prints the dākṣiṇātya passage in ( … ) and closes it after this line's daṇḍa, “(भवेत् ।)”; the second “(” before भवेत् closes nowhere; भवेत् is the line's own word (the half-verse needs its two syllables, and the Hindi reads भागी होता है)"
+  ]
  ]
 }
