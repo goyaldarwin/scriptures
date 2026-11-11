@@ -6,9 +6,7 @@ The transcript (`transcripts/faxIif-3F8o.jsonl`, the identify run) begins each s
 
 | Verse | Start | Evidence |
 |---|---|---|
-| aarti.tek | 1882.8 | 1882.8 "पुंजे पार्वत्ति माता", 1887.8 "मैंया जेए गोरा माता", 1892.7 "ब्रम्हस्नावा कम देवी" = the refrain; 1860.0–1882.8 music (the transcript dates its first line 1863.5). |
-| aarti.pad5 | 2162.9 | 2162.9 "सिस्टिलुपा" = सृष्टिरूप; 2143.6–2162.9 music. |
-| aarti.pad7 | 2262.2 | 2262.2 "मैं आखी की आपी …", 2269.6 "जो कोई लर्गाता" = (श्री प्रताप) आरती मैया की जो कोई (नर) गाता; 2245.4–2262.2 music. The automatic match found no start. |
+| aarti.pad7 | 2262.2 | 2262.2 "मैं आखी की आपी …", 2269.6 "जो कोई लर्गाता" = (श्री प्रताप) आरती मैया की जो कोई (नर) गाता; 2245.4–2262.2 music. The automatic match found no start. Heard in 5-s windows: windows from 2261.2 to 2264.2 s begin “मैं आजे की आपी” … “वाँ अची की यार ती” (…प्रताप आरती मैया की), those from 2266.2 to 2268.2 s “…से जो कोई लर जाता” (…की जो कोई नर गाता): the line starts at about 2261.5 s; MMS (2270.7) took जो कोई. |
 
 ## Starts left to the forced aligner (MMS), checked
 These verses have no hand start: a transcript segment's start is not the line's, and 5-s windows a second apart (Whisper small, the ONNX export of `tools/audio/transcribe_onnx.py`) show that MMS's start is the line's.

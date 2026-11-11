@@ -13,7 +13,8 @@
     pace        its length (to the next start) for its letters is under half or over double the median of the 20 verses
                 around it (an overrun shows as one verse too long and the next too short);
     order       it starts before the verse before it.
-  A verse the owner has set by ear (owner.json) is never listed.
+  A verse the owner has set by ear (owner.json), or a session by hand from 5-s windows (fixes.json), is not listed, but for
+  those the session lists itself because the windows did not settle them (check.json → "also", the reason in fixes.md).
 Prints the counts, for the recording's aligned.md.
 """
 import collections, json, os, statistics, sys
@@ -25,7 +26,9 @@ def main(src, lean):
         for l in w['lines']:
             if l['id'] in w['keep']: rough[l['id']] = l['rough']; order[w['yt']].append(l['id']); rom[l['id']] = len(l['rom'].replace(' ', ''))
     OWN = json.load(open(os.path.join(src, 'owner.json'))) if os.path.exists(os.path.join(src, 'owner.json')) else {}
-    own = {k for v in OWN.values() for k in v}
+    FIX = json.load(open(os.path.join(src, 'fixes.json'))) if os.path.exists(os.path.join(src, 'fixes.json')) else {}
+    # neither a start the owner set by ear nor one set by hand from 5-s windows (fixes.json, its windows in fixes.md) is left to check
+    own = {k for v in OWN.values() for k in v} | {k for v in FIX.values() if isinstance(v, dict) for k in v}
     aligned, flags = {}, collections.defaultdict(set)
     for yt, ids in order.items():
         p = os.path.join(src, 'mms', yt + '.json')
@@ -48,12 +51,15 @@ def main(src, lean):
             near = [y for _, y in r[max(0, k - 10):k + 11] if y > 0]
             m = statistics.median(near) if near else 0
             if m and (x < m / 2 or x > 2 * m): flags['pace'].add(i)
-    allf = {i for s in flags.values() for i in s} - own
+    # a session may list a verse its windows did not settle (check.json → "also", the reason in fixes.md): kept, and listed
+    prev = json.load(open(os.path.join(src, 'check.json'), encoding='utf-8')) if os.path.exists(os.path.join(src, 'check.json')) else {}
+    also = [i for i in prev.get('also', []) if i not in {k for v in OWN.values() for k in v}]
+    allf = ({i for s in flags.values() for i in s} - own) | set(also)
     ids_order = [i for yt in order for i in order[yt]]
     json.dump({yt: A for yt, A in aligned.items()}, open(os.path.join(src, 'aligned.json'), 'w'), ensure_ascii=False, separators=(',', ':'))
     with open(os.path.join(src, 'check.json'), 'w', encoding='utf-8') as f:
         json.dump({'why': f"Verses the automatic checks of tools/audio/METHOD.md step 4 flag, for the owner's ear: MMS's score below 0.5 (the transcript's start is kept), MMS and the transcript more than 2 s apart, a length out of pace with the verses around it, or a start before the verse before (tools/audio/mms_merge.py, lean {lean} s).",
-                   'ids': [i for i in ids_order if i in allf]}, f, ensure_ascii=False, indent=1); f.write('\n')
+                   'ids': [i for i in ids_order if i in allf], **({'also': also} if also else {})}, f, ensure_ascii=False, indent=1); f.write('\n')
     n = sum(len(A) for A in aligned.values())
     print(f'{n} starts from MMS (lean {lean} s) of {len(rough)} verses; flagged: ' + ', '.join(f'{k} {len(v - own)}' for k, v in sorted(flags.items())) + f'; to check {len(allf)}')
 

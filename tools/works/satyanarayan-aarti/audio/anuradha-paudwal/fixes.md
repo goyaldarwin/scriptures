@@ -4,9 +4,7 @@
 
 The āratī is the jukebox's track from 27:15 to 33:12 (1635–1992 s). Starts not listed here come from the transcript's anchors.
 
-| Verse | Start | Evidence |
-|---|---|---|
-| aarti.pad5 | 1823.24 | "भाव भाव्ती के कारन" = भाव भक्ति के कारण, after the refrain at 1817.8; the automatic alignment took the repeated "छिन छिन रूप धर्यो" at 1830.3. |
+No start is set by hand.
 
 ## Starts left to the forced aligner (MMS), checked
 These verses have no hand start: a transcript segment's start is not the line's, and 5-s windows a second apart (Whisper small, the ONNX export of `tools/audio/transcribe_onnx.py`) show that MMS's start is the line's.

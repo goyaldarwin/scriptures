@@ -1,0 +1,9 @@
+{
+ "why": "Starts the 5-s windows (tools/audio/windows.py) do not settle within a second (fixes.md), for the owner's ear.",
+ "ids": [
+  "sh2",
+  "sh19",
+  "sh26",
+  "sh30"
+ ]
+}

@@ -4,8 +4,7 @@
 
 The text is the version sung (`../../reconciliation.md`). Starts not listed here come from the forced aligner (MMS, `aligned.json`), else from the transcript's matches (the identify transcript, `transcripts/lCwPg0LRRjk.jsonl`).
 
-| Verse | Start | Evidence |
-|---|---|---|
+No start is set by hand.
 
 ## Starts left to the forced aligner (MMS), checked
 These verses have no hand start: a transcript segment's start is not the line's, and 5-s windows a second apart (Whisper small, the ONNX export of `tools/audio/transcribe_onnx.py`) show that MMS's start is the line's.
