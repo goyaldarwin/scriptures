@@ -10,7 +10,7 @@ You are writing the Hindi and English meanings ("bhāvārtha") for a batch of ve
 | Work (`--work`) | Library folder | Traditional reading | Copied sources (the copy check) |
 |---|---|---|---|
 | `bhagavad-gita` | `library/hinduism/granth/vyasa/bhagavad-gita/` | Śaṅkara's bhāṣya; where Rāmānuja or Madhva read a verse materially otherwise, a short footnote | `meanings/en-besant.json`, `meanings/en-telang.json` (English) |
-| `durga-saptashati` | `library/hinduism/granth/vyasa/durga-saptashati/` | the plain reading of the words and the grammar, as the recitation tradition (Gita Press's edition, Nāgojībhaṭṭa, the Guptavatī) takes it; a footnote only for a well-known second reading | `meanings/en-pargiter.json` (English) |
+| `durga-saptashati` | `library/hinduism/stotra/durga/durga-saptashati/` | the plain reading of the words and the grammar, as the recitation tradition (Gita Press's edition, Nāgojībhaṭṭa, the Guptavatī) takes it; a footnote only for a well-known second reading | `meanings/en-pargiter.json` (English) |
 
 ## Read first
 1. `tools/meanings/style.md` — the style sheet, all of it; §1, §2, §4, §5 and §8 above all. It is binding.

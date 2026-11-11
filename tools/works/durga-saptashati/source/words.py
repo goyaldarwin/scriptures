@@ -2,7 +2,7 @@
 
     python3 tools/works/durga-saptashati/source/words.py <durga-saptashati.json>
 
-<durga-saptashati.json> is in scriptures-data at hinduism/granth/vyasa/durga-saptashati/printouts/sanskritdocuments/:
+<durga-saptashati.json> is in scriptures-data at hinduism/stotra/durga/durga-saptashati/printouts/sanskritdocuments/:
 each item of the owner's copy with its words glossed one by one in Hindi and English, in their split, pausal forms
 (तम् "उससे / to him", आविष्टम् "घिरे हुए / overcome"). The verse prints them joined by sandhi (कृपयाविष्टमश्रुपूर्णाकुलेक्षणम्),
 and a reader taps the word as printed, so:
