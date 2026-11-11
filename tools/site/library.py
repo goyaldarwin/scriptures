@@ -53,7 +53,8 @@ def word_rule():
     return lambda t: unicodedata.normalize('NFC', S.sub('', P.sub('', t)))
 
 # a doubt is settled and recorded in the work's reconciliation.md, never left in the data (docs/PLAYBOOK.md §2)
-DOUBT = re.compile(r'\b(?:text|reading|sense) (?:is )?(?:uncertain|unclear|doubtful)\b|\b(?:uncertain|unclear) reading\b|\b(?:prob\.|probably|likely) for\b|\btext reads\b|\(\?\)|\?\?|पाठ (?:अनिश्चित|संदिग्ध)|अर्थ (?:अनिश्चित|स्पष्ट नहीं)', re.I)
+DOUBT = re.compile(r'\b(?:text|reading|sense) (?:is )?(?:uncertain|unclear|doubtful)\b|\b(?:uncertain|unclear) reading\b|\b(?:prob\.|probably|likely) for\b|\btext reads\b|\(\?\)|\?\?|पाठ (?:अनिश्चित|संदिग्ध)|अर्थ (?:अनिश्चित|स्पष्ट नहीं)'
+                   r'|\bTODO\b|\bFIXME\b|\bre-?gloss|\(record\b|\bplaceholder\b', re.I)   # and a helper's note or instruction
 CONTEXT = re.compile(r'\(here\b[^)]*\)|(?<!के )\((?:यहाँ|यहीं)[ )]|\bhere (?:held|as an?|the poet|for)\b|\bthis (?:āratī|aarti|pada|poem|chālīsā|chalisa|stotra|hymn|work|verse|line)\b'
                      r'|इस (?:आरती|पद|पदके|स्तोत्र|ग्रन्थ|चालीसा|पंक्ति)|[—;]\s*यहाँ (?!समाप्त)|जो यहाँ |यहाँ (?:सम्बोधन|संबोधन)', re.I)
 THIS = re.compile(r'[एे]त[तदम]|इदं|इदम|इमं|इमम|अयं|अयम')   # a word that says "this" itself (स्तोत्रमेतत्पठेद्भक्त्या: "this hymn")
@@ -320,6 +321,12 @@ def check_folders():
         rd = open(os.path.join(f, 'README.md'), encoding='utf-8').read()
         _need(re.search(r'^## Structure$', rd, re.M) and '**Hierarchy:**' in rd and '**Numbering:**' in rd,
               f"tools/works/{d}/README.md: needs a '## Structure' section with its **Hierarchy:** (part › section › verse) and **Numbering:** (how a verse is cited)")
+        # a start set by hand is checked in 5-s windows and its evidence written down (docs/PLAYBOOK.md §8): every verse of a
+        # recording's fixes.json is named, by its id, in the fixes.md beside it
+        for fx in glob.glob(os.path.join(f, 'audio', '*', 'fixes.json')):
+            md = os.path.join(os.path.dirname(fx), 'fixes.md'); ev = open(md, encoding='utf-8').read() if os.path.exists(md) else ''
+            bad = sorted({i for v in json.load(open(fx, encoding='utf-8')).values() if isinstance(v, dict) for i in v if not re.search(r'(?<![\w.])' + re.escape(i) + r'(?![\w])', ev)})
+            _need(not bad, f"{os.path.relpath(fx, WORKS)}: hand starts without their evidence in fixes.md (name each verse by its id beside the windows it was read from): {bad[:6]}")
         out[d] = m['path']
     return out
 
