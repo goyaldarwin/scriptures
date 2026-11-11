@@ -19923,11 +19923,11 @@
 [uttar.122.do122ख do 122ख]
 मसकहि करइ बिरंचि प्रभु अजहि मसक ते हीन ।
 अस बिचारि तजि संसय रामहि भजहिं प्रबीन ।।१२२ (ख)।।
-@section 123
 @lang sa
 [uttar.123.shloka122ग shloka 122ग]
 विनिश्चितं वदामि ते न अन्यथा वचांसि मे ।
 हरिं नरा भजन्ति येऽतिदुस्तरं तरन्ति ते ।।१२२ (ग)।।
+@section 123
 @lang awa
 @topic रामायण-माहात्म्य, तुलसी-विनय और फलस्तुति | Greatness of the Ramayan; Tulsidas’s prayer and reward of reciting this poem
 [uttar.123.cau1 cau 1]

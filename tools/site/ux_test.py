@@ -287,6 +287,9 @@ async def main():
                 await ev("show('bookmarks')"); await pg.wait_for_timeout(500); await shot(f'{tag}-bookmarks')
                 listed = await ev("document.querySelectorAll('#bookmarks [data-i], #bookmarks .res, #bookmarks li').length")
                 check(f'{tag}: bookmark appears in Bookmarks', listed > 0, listed)
+                # the bookmark names its verse by the player's number (docs/PLAYBOOK.md §3: one number per verse), as Resume does
+                bw = await ev("(() => { const r = document.querySelector('#bmBody .bmrow .res'); if (!r) return null; const i = +r.dataset.i; return [r.querySelector('.where').textContent, playLabel(i)]; })()")
+                check(f'{tag}: a bookmark is named by the number the player shows', bw and bw[0].endswith(bw[1]), bw)
                 await ev("history.back()"); await pg.wait_for_timeout(500)
                 await ev("Object.keys(ME().bm).filter(k => k.startsWith(W.id + ':')).forEach(k => delete ME().bm[k]); save()")
             # search for a word of the first verse
@@ -357,6 +360,12 @@ async def main():
                   if (t && !['sec', 'none'].includes((W.cite || {}).mark)){ const last = CKEY(c).split('.').pop().replace(/[^0-9]/g, ''); if (CKEY(t) !== last) pr.push(IT[i].id + ': ॥' + t + '॥ but ' + c); } }
                 return [bad.slice(0, 3), miss.slice(0, 3), pr.slice(0, 3)]; })()""")
             check(f'{tag}: every verse number the player shows finds that verse; the number at a verse\'s end is its citation\'s', cit == [[], [], []], cit)
+            # a verse's place (bookmarks, notes, search results, the verse menu, the to-check list) ends with the player's label:
+            # one number, never one built from the section and the verse's own number beside it ("Doha 106 · Chaupai 3")
+            pl = await ev("""(() => { const bad = [], step = Math.max(1, Math.floor(IT.length / 4000));
+                for (let i = 0; i < IT.length; i += step) if (!itemLabel(i).endsWith(playLabel(i))) bad.push(itemLabel(i) + ' ≠ ' + playLabel(i));
+                return bad.slice(0, 3); })()""")
+            check(f'{tag}: a verse\'s place says the number the player shows', pl == [], pl)
             # a verse's place, a section's label and a range never say one name twice ("Pauri 12 · Pauri 12", "Refrain – Refrain")
             rp = await ev("""(() => { const bad = [], dup = l => l.split(/ · | – /).some((x, k, a) => k && x === a[k - 1]), step = Math.max(1, Math.floor(IT.length / 4000));
                 for (let i = 0; i < IT.length; i += step) if (dup(itemLabel(i))) bad.push(itemLabel(i));
@@ -1320,15 +1329,17 @@ async def main():
             return [mOk, kands, cOk, hOk, sOk, rOk, m.length, c.length]; })()""")
         check('a number in a work search finds that doha in each kand, N.M a chaupai under it; elsewhere the verse of that number', all(nums[:6]), nums)
         # the citation (tools/text/cite.py) is the one number: the Katha's 2.1.1 (its verse prints ॥१॥) in the player and search,
-        # the Rudram's 11.17, a Manas chhand apart from the chaupai of the same number, a lettered doha, and Bhaja Govindam's 13a
+        # the Rudram's 11.17, a Manas chhand apart from the chaupai of the same number, a lettered doha, Bhaja Govindam's 13a, and the
+        # Manas's śloka of a dohā's lettered group (Uttar ॥१२२ (ग)॥, after dohās 122क and 122ख)
         cn = await ev("""(async () => { const find = async (w, q) => { await openWork(w, true); setScope('text'); $('#q').value = q; runSearch(); await new Promise(r => setTimeout(r, 50)); return $$('#sRes .res').map(b => IT[+b.dataset.i].id); };
             const k = await find('katha-upanishad', '2.1.1'), kl = playLabel(ID['2.1.1']), kv = IT[ID['2.1.1']].v.slice(-1)[0].includes('॥१॥');
             const k2 = await find('katha-upanishad', '1.2'), r = await find('shri-rudram', '11.17'), rl = playLabel(ID['chamakam.a11.m17']);
             const s = await find('sukhmani-sahib', '3.5'), sl = playLabel(ID['a03.p5']);
             const c = await find('manas', 'chhand 10.1'), cl = playLabel(ID['bal.10.cha1']), ul = playLabel(ID['bal.10.cau1']), d = await find('manas', '3'), b = await find('bhaja-govindam', '13a');
-            return [k, kl, kv, k2, r, rl, s, sl, c, cl, ul, d.includes('bal.3.do3क') && d.includes('bal.3.do3ख'), b]; })()""")
-        check('one number per verse: Katha 2.1.1, Rudram 11.17 and Sukhmani 3.5 in the player and search; a Manas chhand is not the chaupai of its number; 3 finds 3क, 3ख',
-              cn == [['2.1.1'], 'Mantra 2.1.1', True, ['1.2.1'], ['chamakam.a11.m17'], 'Mantra 11.17', ['a03.p5'], 'Pauri 3.5', ['bal.10.cha1', 'kishkindha.10.cha1'], 'Chhand 10.1', 'Verse 10.1', True, ['sh13a']], cn)
+            const g = await find('manas', '122ग'), gl = playLabel(ID['uttar.123.shloka122ग']), gs = IT[ID['uttar.123.shloka122ग']].s;
+            return [k, kl, kv, k2, r, rl, s, sl, c, cl, ul, d.includes('bal.3.do3क') && d.includes('bal.3.do3ख'), b, g, gl, gs]; })()""")
+        check('one number per verse: Katha 2.1.1, Rudram 11.17 and Sukhmani 3.5 in the player and search; a Manas chhand is not the chaupai of its number; 3 finds 3क, 3ख; the śloka ॥१२२ (ग)॥ is in Doha 122, cited 122ग, and 122ग finds it',
+              cn == [['2.1.1'], 'Mantra 2.1.1', True, ['1.2.1'], ['chamakam.a11.m17'], 'Mantra 11.17', ['a03.p5'], 'Pauri 3.5', ['bal.10.cha1', 'kishkindha.10.cha1'], 'Chhand 10.1', 'Verse 10.1', True, ['sh13a'], ['uttar.123.shloka122ग'], 'Shloka 122ग', '122'], cn)
         # searched from the reader, a work's search stays in the part (or day, or the section of a one-part work) on screen; a chip widens it
         sin = await ev("""(async () => { const go = async q => { $('#q').value = q; runSearch(); await new Promise(r => setTimeout(r, 80)); return $$('#sRes .res').map(b => +b.dataset.i); };
             await openWork('manas', true); await loadSources(); show('home'); openReader('k', PARTS[1].a + 40); await new Promise(r => setTimeout(r, 400));
