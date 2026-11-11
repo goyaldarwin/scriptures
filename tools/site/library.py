@@ -65,6 +65,8 @@ def _texts(v):
 
 NAMES = json.load(open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'text', 'names.json'), encoding='utf-8'))
 _FOLDED = {}
+SCRIPT = {'Deva': r'[\u0900-\u0963\u0966-\u097F\uA8E0-\uA8FF]', 'Guru': r'[\u0A00-\u0A7F]', 'Latn': r'[A-Za-z]'}   # a script's letters (the daṇḍas । ॥ are shared)
+
 def _folded(D, lang):
     """The lookup forms (standard.fold) of a dictionary's words."""
     key = (id(D), lang)
@@ -156,6 +158,13 @@ def check_work(lib, leaf, LANGS):
               f"{name}: an āratī's title is its opening words: {w['title']['hi']!r} is not how {items[0]['v'][0]!r} begins (a name of its own: \"named\": true in work.json)")
     _need(w.get('lang') in LANGS, f"{name}: work.json lang {w.get('lang')!r} is not in glossary/languages.json")
     bad = sorted({x['l'] for x in items if 'l' in x} - set(LANGS)); _need(not bad, f"{name}: verse languages {bad} are not in glossary/languages.json")
+    # a verse is written in its language's script (glossary/languages.json → script): a Gurmukhi line catalogued as Hindi, or a
+    # Devanagari verse as Punjabi, would be looked up in the wrong dictionary and named wrongly in the word sheet (। ॥ are shared)
+    bad = [x['id'] for x in items if x.get('l', w.get('lang')) in LANGS and any(re.search(r, ' '.join(x.get('v', []))) for k, r in SCRIPT.items() if k != LANGS[x.get('l', w['lang'])]['script'])]
+    _need(not bad, f"{name}: verses not in their language's script (glossary/languages.json → script; set the verse's @lang): {bad[:5]}")
+    # a bracket or quotation mark that opens in a verse closes in it: one that never closes is a slip of the source copy (docs/PLAYBOOK.md §2)
+    bad = [x['id'] for x in items if any(' '.join(x.get('v', [])).count(a) != ' '.join(x.get('v', [])).count(b) for a, b in ('()', '[]', '‘’', '“”'))]
+    _need(not bad, f"{name}: a bracket or quotation mark that does not close in its verse (a slip of the source: correct it in the generator): {bad[:5]}")
     # "load": "parts": the meanings and the work's own senses come one file per part (the app fetches a part when it opens it)
     _need(w.get('load') in (None, 'parts'), f"{name}: load must be \"parts\" or absent")
     bypart = w.get('load') == 'parts'; NP = len(w['parts']['list'])
