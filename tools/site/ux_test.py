@@ -272,6 +272,11 @@ async def main():
                 where = await ev("topVisibleItem()")
                 check(f'{tag}: picking a section jumps there', where is not None, where)
             # meaning layers
+            # a pair chosen in another work never names a language this work lacks (a reader's ਪੰ · हिं from the Sukhmani Sahib hid the Granth's English)
+            badpair = await ev("""(() => { const old = S.settings.pair, ks = workKinds(), bad = [];
+              for (const p of ['pa,hi', 'pa,en', 'hi,en', 'sa,hi']) { S.settings.pair = p; const c = capKinds(); if (ks.length >= 2 && c.some(k => !ks.includes(k))) bad.push(p + '→' + c); }
+              S.settings.pair = old; return bad; })()""")
+            check(f'{tag}: the meaning pair names only languages the work has', not badpair, badpair)
             for lang, sel in (('h', '.layer.h'), ('e', '.layer.e')):
                 # a work with a third meaning language shows a chosen pair: choose one with this language
                 await ev(f"S.settings.layers.{lang} = true; {{ const k = '{'hi' if lang == 'h' else 'en'}', o = pairOptions().find(p => p.includes(k)); if (workKinds().length > 2 && o) S.settings.pair = o.join(','); }} syncLayers(); refreshReader()"); await pg.wait_for_timeout(500)

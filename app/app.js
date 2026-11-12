@@ -45,7 +45,7 @@ const LCLS = kind => kind === 'hi' ? 'h' : kind === 'en' ? 'e' : 'x ' + kind;   
 function workKinds(){ return W ? MK().filter(k => ((W.sources || {})[k] || []).length) : []; }
 function pairOptions(){ const ks = workKinds(), extra = ks.filter(k => k !== 'hi' && k !== 'en'), out = [];
   extra.forEach(x => { out.push([x, 'en'], [x, 'hi']); }); out.push(['hi', 'en']); for (let a = 0; a < extra.length; a++) for (let b = a + 1; b < extra.length; b++) out.push([extra[a], extra[b]]);
-  return out.filter(p => p.every(k => ks.includes(k) || k === 'hi' || k === 'en')); }
+  return out.filter(p => p.every(k => ks.includes(k))); }   // only pairs of languages this work has (Sri Guru Granth Sahib: ਪੰ · En, never a pair with हिं)
 // only the languages the work has a meaning in: none for a work without meanings yet (Sri Guru Granth Sahib), one for a work
 // with one (its other switch is hidden), two otherwise
 function capKinds(){ const ks = workKinds(); if (W && ks.length < 2) return ks; if (ks.filter(k => k !== 'hi' && k !== 'en').length === 0) return ['hi', 'en'];
