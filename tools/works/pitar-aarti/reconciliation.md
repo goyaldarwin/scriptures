@@ -17,3 +17,6 @@ Kept as the book has them (Drik Panchang agrees): पितरजी joined, प
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## The recording
+Divine Devika (YouTube `3QrtNqYV-rE`, `audio/divine-devika/`) sings this text in its order.

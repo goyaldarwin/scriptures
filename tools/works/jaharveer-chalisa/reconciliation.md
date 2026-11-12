@@ -21,3 +21,8 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 - **dohā 2**, आप बने सुर भूप: 'a king among the gods' as printed (सुर, god; Gūgā is worshipped as a deity); सूर ('hero') is not what the book or Drik Panchang prints.
 - **chaupāī 48**, who clasped whose feet, and सिंह भवन माड़ी: Anaṅgpāl, the subject of chaupāī 47's second half, clasps Gūgā's feet; the shrine's builder is left unnamed as the verse leaves him; सिंह भवन read as 'a lion's abode' (Gūgā, the lion of dohā 1), माड़ी as मढ़ी, a shrine. Plain reading of the printed words.
 - **chaupāī 49**, गोरख टीला धूनी रमाये (Gūgā's or Gorakh's dhūnī): Gūgā, the subject of the first half (समाये … रमाये, one subject). Gorakh Ṭīlā is the place's name (Gorakhnāth's tapobhūmi beside Gogāmeḍī; Bhakti Bharat, Gogamedi Mandir), so the name does not make Gorakh the subject.
+
+## The recording
+K. C. Nimesh (YouTube `SJ5zU5wSe3U`, `audio/kc-nimesh/`) sings this text.
+- Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau8`, `chalisa.cau11`, `chalisa.cau20`, `chalisa.cau21`, `chalisa.cau23`, `chalisa.cau27`, `chalisa.cau29`, `chalisa.cau34`, `chalisa.cau36`, `chalisa.cau39`, `chalisa.cau41`, `chalisa.cau43`, `chalisa.cau46`, `chalisa.cau50`, `chalisa.cau52`.
+- A draft (it plays only with Audio timing on): it sings another wording of about fifteen lines that no written witness has, and another order.

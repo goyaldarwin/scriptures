@@ -23,3 +23,7 @@ Kept as the book has them, where Drik Panchang differs: शीश पर (Drik �
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## The recording
+Shemaroo Bhakti (YouTube `OMt-BtXI_HA`, `audio/shemaroo-bhakti/`) sings this text in its order.
+- Sung with words that another written witness prints, against the base kept here: `aarti.pad1`, `aarti.pad3`.

@@ -22,3 +22,7 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 - **chalisa.cau9** — तापर राजति हरि चतुरानन: the plain words, "on it (the throne) shine Hari and the four-faced (Brahmā)"; the Goddess is not named in the line. Meaning unchanged.
 - **chalisa.cau22** — शम्भु पहआयी: kept as printed (the book, Drik Panchang, Shubh Panchang and tring.co.in all print पहआयी; no independent text prints पहँ आयी, so no correction under §2). The sense is पहँ ("to, near") आयी, "came to Śambhu", which the meaning already gives. Meaning unchanged.
 - **chalisa.do2** — कूट चंद्रिका सुभग शिर: कूट "top, summit, crest" (Monier-Williams, Apte): moonlight on the crown of her fair head. Meaning unchanged.
+
+## The recording
+Bhakti Bhajan Sangrah (YouTube `8baNCuz3kg4`, `audio/bhakti-bhajan-sangrah/`) sings this text.
+- A draft (it plays only with Audio timing on): its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed.

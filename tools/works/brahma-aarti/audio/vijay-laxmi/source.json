@@ -1,0 +1,13 @@
+{
+ "id": "vijay-laxmi",
+ "work": "hinduism/aarti/brahma/brahma-aarti",
+ "type": "youtube",
+ "lang": "hi",
+ "title": {
+  "hi": "विजय लक्ष्मी",
+  "en": "Vijay Laxmi"
+ },
+ "fill": 0,
+ "draft": "its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed",
+ "window": 6
+}

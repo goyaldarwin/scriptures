@@ -4,7 +4,7 @@ The chālīsā of Mother Narmadā that opens "देवि पूजिता �
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 261–264), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/ras-mantra/`: Ras Mantra (YouTube `fYDQig0lk90`, "Shri Narmada Chalisa | श्री नर्मदा चालीसा | Powerful Narmada Mata Bhakti Path"), its track 0:00–4:52 of the video (after 4:52: music). Its starts come from the transcript for now; MMS (`tools/audio/METHOD.md`) is still to time it. A draft (it plays only with Audio timing on): its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed.
 
 Verse types: the Mānas's own (`do` dohā, `cau` chaupāī).
 

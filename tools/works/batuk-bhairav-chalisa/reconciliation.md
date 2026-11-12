@@ -22,3 +22,6 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 - chalisa.cau32 — आपहि वारे छीजन धाये: the plain reading stands ("you yourself hastened to Chījana", छीजन as a place). Platts has only छीजना "to waste away" and no place; no other witness or web source tells the Ailādī story; the book, Drik Panchang and Shubh Panchang print the same words.
 - chalisa.cau34 — गये हिवारे मैं तुम जाकर, to whom: the words say only that he went into Hivārā (मैं = में); nothing says whose village it is or whether he went to Ailādī or away from her. The Hindi was already neutral ("हिवारेमें जा पहुँचे"); the English "went off to Hivārā" leaned to "away" and is now "went to Hivārā".
 - chalisa.cau36 — which प्रभु sent him: left unnamed, "the Lord", as the verse has it. cau35 has Śiva's throne shaking and cau37 Viṣṇu speaking, so either could be meant; no witness names him, and the meaning does not choose.
+
+## The recording
+VedicQB (YouTube `31qpt74j9ag`, `audio/vedicqb/`) sings this text in its order.

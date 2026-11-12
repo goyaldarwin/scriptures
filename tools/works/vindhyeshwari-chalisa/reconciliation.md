@@ -22,3 +22,7 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## Readings settled
 - **chalisa.cau13** (उत्राणी): kept as a name of the Goddess, as all three witnesses print it (the book, Drik Panchang उत्रानी, Chalisa Mala); not a slip for रुद्राणी, which the chālīsā already names (chaupāī 8, रुद्रानी). Meaning unchanged.
 - **chalisa.cau16** (दन्त कुमारी): kept as one name, Danta Kumārī, as the line's words give it; splitting it (Danteśvarī, Kumārī) would supply names the text does not print. Meaning unchanged.
+
+## The recording
+Sanjay Giri (YouTube `-PDbE4xHy9Y`, `audio/sanjay-giri/`) sings this text in its order.
+- Sung with words that another written witness prints, against the base kept here: `chalisa.cau3`, `chalisa.cau13`, `chalisa.cau14`, `chalisa.cau18`, `chalisa.cau21`, `chalisa.cau23`, `chalisa.cau31`, `chalisa.cau35`, `chalisa.cau37`.

@@ -18,3 +18,6 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## Readings settled
 - chalisa.cau41 — देहि सकल बाँछित फल शीशा: kept शीशा as "head" ("is given every fruit he desires, upon his head"). The book, Drik Panchang and Shubh Panchang (shubhpanchang.com) all print शीशा; ईशा is in none, so the plain word stands.
 - chalisa.cha1 — जो भक्तजन सन महँ चहैं: सन now read as printed, the dialect postposition "from" (Platts san, postpn. = se), not as मन: every witness (the book, Drik Panchang, Shubh Panchang) prints सन. The meaning changes from "devotees desire in their hearts" to "that devotees seek from him"; the work's own word entry सन = मन is removed (the shared dictionary's सन "से / साथ" covers it).
+
+## The recording
+Nova Spiritual India (YouTube `hiZB_bwV0R4`, `audio/nova-spiritual-india/`) sings this text in its order.

@@ -20,3 +20,8 @@ Kept as the book has them, where Drik Panchang differs: श्रीश्या
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## The recording
+Spiritual Activity (YouTube `JZmGQyKfonA`, `audio/spiritual-activity/`) sings this text.
+- Sung with words that another written witness prints, against the base kept here: `aarti.tek`, `aarti.pad2`, `aarti.pad1`, `aarti.pad3`, `aarti.pad4`, `aarti.pad5`, `aarti.pad6`.
+- A draft (it plays only with Audio timing on): it sings Drik Panchang's version, not the book's: the text is to follow it first.

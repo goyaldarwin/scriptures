@@ -4,7 +4,7 @@ The chālīsā of Śrī Rādhā that opens "श्री राधे वृष�
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 221–224), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/krishnadas-brajdevi/`: Krishnadas Brajdevi (YouTube `f9y8qFDHRWU`, "Radha Chalisa ।। राधा चालीसा ।।"), its track 0:00–9:36 of the video (after 9:36: two more dohās not in our text or any witness). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 Verse types: the Mānas's own (`do` dohā, `cau` chaupāī).
 

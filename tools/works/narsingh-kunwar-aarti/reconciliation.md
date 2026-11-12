@@ -21,3 +21,6 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 - aarti.tek — वेद विमल यश गाऊँ: "your pure glory, of which the Vedas sing". वेद stands before विमल यश as the ones whose glory-song it is (the stock वेद जस गावहिं); "pure as the Vedas" would need a word of likeness (सम, सा) the line does not have. Drik Panchang is the only witness.
 - aarti.pad2 — भक्त विभीषण लंक पधारे: Vibhīṣaṇa is the subject, as the words say: "his devotee Vibhīṣaṇa went to Laṅkā" (back to Laṅkā as its king, after the Lord slew the demons). "For his devotee, the Lord went" would need a postposition (के हित, के लिये) the line does not have; a web search found no other printing.
 - aarti.pad3 — तुलसी को पत्र कण्ठ मणि हीरा: read as a list, the plain reading of the words (a tulasī leaf; at his throat a gem and a diamond); the line has no verb or particle that makes the leaf "his gem and diamond".
+
+## The recording
+Panditjee (YouTube `eTcpAiR-k-c`, `audio/panditjee/`) sings this text in its order.

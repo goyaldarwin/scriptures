@@ -4,7 +4,7 @@ The chālīsā of Bhagavān Sūrya that opens "कनक बदन कुण्�
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 74–77), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/anant-bhakti-geet/`: Anant Bhakti Geet (YouTube `GNBcwOjQS0A`, "श्री सूर्य चालीसा | Surya Chalisa Lyrics In Hindi | Powerful Surya Dev Mantra | ANANT BHAKTI GEET"). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list. Not sung, so untimed: `chalisa.cau36`.
 
 Verse types: the Mānas's own (`do` dohā, `cau` chaupāī).
 

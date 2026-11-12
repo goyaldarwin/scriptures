@@ -4,7 +4,7 @@ The āratī of Dhanvantari, the physician of the gods who rose from the churned 
 
 - **Text** (`text.txt`): Drik Panchang, "Lord Dhanvantari Aarti" (drikpanchang.com/lyrics/aarti/lord-dhanvantari/lord-dhanvantari-aarti.html); the āratī is not in the book. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/bhakti-bhajan-sagar/`: Bhakti Bhajan Sagar (YouTube `ohGqcV4JRso`, "धनतेरस दिवाली Special 2026: जय धन्वन्तरि देवा | धन्वंतरि भगवान की आरती | Dhanvantari Aarti"), its track 2:37–4:14 of the video (before 2:37: another āratī of Dhanvantari, not in the text; after 4:14: music). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list. Not sung, so untimed: `aarti.pad1`, `aarti.pad2`; the refrain `aarti.tek`, first sung after stanza 3 begins, is untimed too (`recordings.json` → `from`).
 
 Verse types: टेक (refrain, `tek`, shown once at the start although it is sung after every stanza) and पद (stanza, `pad`). The folder's format: `tools/works/README.md`.
 

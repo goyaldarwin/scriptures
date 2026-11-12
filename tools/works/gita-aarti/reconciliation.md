@@ -17,3 +17,6 @@ Kept as the base has them: भगवद् गीते written apart with the h
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## The recording
+Anup Jalota (YouTube `-UE9JVIJD7Y`, `audio/anup-jalota/`) sings this text in its order.

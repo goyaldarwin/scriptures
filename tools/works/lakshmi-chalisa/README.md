@@ -4,7 +4,7 @@ The chālīsā of Lakṣmī that opens "मातु लक्ष्मी क�
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 183–186), checked against Drik Panchang and Chalisa Mala. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/bhakti-mantras-india/`: Bhakti Mantras India (YouTube `p88Tkkuz0W8`, "लक्ष्मी चालीसा || होंगी सभी इच्छाये पूरी आज || Laxmi Chalisa | Lakshmi Chalisa with Lyrics"). Its starts come from the transcript for now; MMS (`tools/audio/METHOD.md`) is still to time it. Not sung, so untimed: `chalisa.so1`. A draft (it plays only with Audio timing on): it sings Drik Panchang's version and order: the text is to follow it first.
 
 The poet names himself in the last dohā: "रामदास धरि ध्यान नित" (Rāmadāsa).
 

@@ -4,7 +4,7 @@ The āratī of Gau Mātā, the cow as mother, in Hindi (`hi`).
 
 - **Text** (`text.txt`): Aarti Mala (page image i-342), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/anup-jalota/`: Anup Jalota (YouTube `99ijEFwVaqQ`, "Aarti Gaiya Maiya Ki - Lyrical Video | Anup Jalota"), its track 0:00–5:50 of the video (after 5:50: a spoken promotion). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 Verse types: टेक (refrain, `tek`, shown once at the start although it is sung after every stanza) and पद (stanza, `pad`). The folder's format: `tools/works/README.md`.
 

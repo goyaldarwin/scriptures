@@ -21,3 +21,7 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## Readings settled
 - **pad 6**, मेरी बिरद संभारो: as printed, 'uphold my honour'. Platts: बिरद *birad*, 'fame, reputation, honour'; both witnesses print मेरी.
 - **pad 7**, पूर्णेन्दु शिव साखि: the signature line, 'Pūrṇendu says it with Śiva as his witness' (साखि = साक्षी, Platts); शिव as 'auspicious' would leave साखि without a sense.
+
+## The recording
+Supertone Digital (YouTube `TkZjHxhDtA8`, `audio/supertone-digital/`) sings this text in its order.
+- Sung with a few words that no written witness has, so the text keeps its own there: `aarti.pad5`.

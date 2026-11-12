@@ -27,3 +27,7 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 - **aarti.pad4** — सुरगम ध्यान धरे: read as the hosts of gods (सुर + गण), beside the seven Mothers of the same line; सरगम (the scale), the only other sense, cannot take ध्यान धरे ("meditate"), and neither Platts nor the Sanskrit dictionaries has सुरगम. Text as printed; meaning unchanged.
 - **aarti.pad5** — सेवक जन हृदय पटले मृदुल करन सुमति: read as printed, हृदय पटले "on the surface (पटल) of the heart", करन "who brings about", मृदुल qualifying सुमति: "on the hearts of your servants you bring gentle good sense". Meaning unchanged.
 - **aarti.pad7** — सदनसिद्धि: kept as printed (both witnesses; a web search found no other text) and read as its parts, सदन + सिद्धि, "success in the home"; सदा सिद्धि or ऋद्धि-सिद्धि would be guesses. Meaning unchanged.
+
+## The recording
+Jaswant Singh, Pamela Jain (YouTube `O4TLKQdJ0UU`, `audio/jaswant-singh-pamela-jain/`) sings this text in its order.
+- Sung with a few words that no written witness has, so the text keeps its own there: `aarti.tek`, `aarti.pad2`, `aarti.pad4`.

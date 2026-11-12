@@ -25,3 +25,8 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 - chalisa.cau20 — the sense of तबहीं मोहि करयो यह धारन: "for this reason alone: that it bears me" stays; मोहि is the object, the lotus the subject of करयो (it bore me), so "I formed a conviction" would need a subject मैं; Brahmā's conclusion follows in cau21–22 (यह निश्चय करि).
 - chalisa.cau40 — सब in ब्रह्मरूप सब त्रिभुवन मांहीं: "we all (three)", meaning changed. Viṣṇu has just said ब्रह्मरूप हम दोउ (cau39), names Śiva as the third (तीजे), and goes on to the three's tasks (cau41–42) and हम साकार रूप त्रयदेवा (cau44): सब gathers the three, not everything in the worlds.
 - chalisa.cau46 — what सो सब refers to: "all that", Brahmā's praise of the Supreme Brahman just sung (cau45), known as the Veda, stays; सब fits a body of praise, not one person, and the plain words give it.
+
+## The recording
+Saroj Amarnath Yadav (YouTube `7lfOLotn17A`, `audio/saroj-amarnath-yadav/`) sings this text.
+- Sung with words that another written witness prints, against the base kept here: `chalisa.cau25`.
+- A draft (it plays only with Audio timing on): its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed.

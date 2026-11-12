@@ -4,7 +4,7 @@ The chālīsā of Mahālakṣmī that opens "जय जय श्री मह�
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 187–190), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/anuradha-paudwal/`: Anuradha Paudwal (YouTube `otWnO-2pwuM`, "Lakshmi Chalisa By Anuradha Paudwal I Sampoorna Mahalakshmi Poojan"), its track 0:00–9:46 of the video (after 9:46: music). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 The last chaupāī names the poet: "गोविंद निशदिन शरण तिहारी" (Govinda).
 

@@ -20,3 +20,7 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 
 ## Readings settled
 - chalisa.cau7 — मुनिवर संघ … लखि ब्रजभूमि यहाँ ठहराये: read as printed, संघ "company" (Platts saṅgh) and ठहराये transitive, "set (you) down" (Platts ṭhahrānā, v.t. "to cause to stay"): "When the company of great sages came into Braja, they saw the land of Braja and set you down here", as Pulastya set Govardhana down in Braja. Both witnesses print संघ; the meaning no longer reads it as संग.
+
+## The recording
+Ved Puraan (YouTube `ae43Hp90buA`, `audio/ved-puraan/`) sings this text in its order.
+- Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau1`, `chalisa.cau16`, `chalisa.cau17`, `chalisa.cau35`, `chalisa.cau36`.

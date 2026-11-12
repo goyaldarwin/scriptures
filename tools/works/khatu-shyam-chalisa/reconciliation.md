@@ -19,3 +19,7 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## Readings settled
 - chalisa.cau18 — करि कोविद करि: kept as printed, "the learned tried (करि, having done) but could not count them". Book and Drik Panchang agree; the one web copy with कवि कोविद (tring.co.in) shares Drik's own slip रच for रज (chaupāī 23), so it is a copy of Drik, not an independent witness, and the print stands. Meaning unchanged.
 - chalisa.cau23 — नित: kept as printed (every witness), "receiving the dust of Śyāma's feet for ever"; नित is "always", and nothing shows निज. Meaning unchanged.
+
+## The recording
+Lakhbir Singh Lakkha (YouTube `9GLVkIigVbw`, `audio/lakhbir-singh-lakkha/`) sings this text in its order.
+- Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau13`, `chalisa.cau31`.

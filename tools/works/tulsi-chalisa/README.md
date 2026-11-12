@@ -4,7 +4,7 @@ The chālīsā of Tulasī that opens "जय जय तुलसी भगवत
 
 - **Text** (`text.txt`): Drik Panchang (lyrics/chalisa/tulasi-mata/tulasi-mata-chalisa); the book (५१ चालीसा संग्रह आरतियों सहित) has no copy. Every choice: `reconciliation.md`; the doubtful readings settled: `reconciliation.md`, "Readings settled".
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/stutiras/`: Stutiras (YouTube `ylGcnnrJ9HQ`, "Tulsi Chalisa | तुलसी चालीसा | Maa Tulsi Chalisa with Meaning full Images  | Devotional Song 🌿"), its track 0:00–8:22 of the video (after 8:22: music). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 - **Poet:** chaupāīs 38–39 name him, the poet Sundara, living near Durvāsā's hermitage east of Prayāga (the place of the Gaṅgā and Śītalā Chālīsās' poets).
 
 Verse types: the Mānas's own (`do` dohā, `cau` chaupāī).

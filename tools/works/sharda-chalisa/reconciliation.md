@@ -20,3 +20,6 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## Readings settled
 - chalisa.cau7 — शचि: the text stays as every witness prints it (book, Drik Panchang, Shubh Panchang; a web search found no other), read as the spelling of शुचि, "pure", as our glossary (awa शचि) has it: Śacī, Indra's queen (MW), has no place beside Sarasvatī's swan. The meaning now gives the word, "the royal swan is your pure vehicle" (before, it was left out). Meaning changed (Hindi and English).
 - chalisa.cau15 — सूर्य: Sūradāsa. It stands beside Tulasī among learned men (विद्वाना) who sang Śāradā's fame, which the Sun is not; the metre keeps the printed form. Meaning unchanged.
+
+## The recording
+Kumar Vishu (YouTube `x1yCoZPcRos`, `audio/kumar-vishu/`) sings this text in its order.

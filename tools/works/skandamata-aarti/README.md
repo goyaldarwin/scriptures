@@ -4,7 +4,7 @@ The āratī of Devī Skandamātā, one of the nine forms of Durgā (Navadurgā; 
 
 - **Text** (`text.txt`): Drik Panchang, "Skandamata Mata Aarti" (the book has no copy of it). Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/quantext-bhakti/`: Quantext Bhakti (YouTube `icSfuY1AXzk`, "जय तेरी हो स्कंद माता 🙏 | Skandamata Ki Aarti | 5th Day Navratri Aarti | Navratri Special Song 2026"). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 Verse types: पद (stanza, `pad`); the source prints no refrain, so there is no टेक (`tek` is declared, as in every āratī, but unused). The folder's format: `tools/works/README.md`.
 

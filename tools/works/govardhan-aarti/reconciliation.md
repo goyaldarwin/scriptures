@@ -16,3 +16,8 @@ No reading of the base is changed. Kept as the base has them: रहेओ, त�
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## The recording
+Supertone Digital (YouTube `FXhcAncuBXk`, `audio/supertone-digital/`) sings this text.
+- Not sung, so untimed: `aarti.pad5`.
+- A draft (it plays only with Audio timing on): it sings the stanzas in another order (1, 4, 3, 2): the text is to follow it first.

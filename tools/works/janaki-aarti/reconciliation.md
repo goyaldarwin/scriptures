@@ -17,3 +17,7 @@ Kept as the base has them: कीजै, श्रीजनक लली, रा
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## The recording
+Vrat Katha (YouTube `d7nooBAWoAg`, `audio/vrat-katha/`) sings this text in its order.
+- Sung with a few words that no written witness has, so the text keeps its own there: `aarti.pad1`.

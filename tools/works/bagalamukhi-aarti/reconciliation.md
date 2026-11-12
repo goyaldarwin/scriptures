@@ -20,3 +20,8 @@ Kept as the book has them (Drik Panchang the same): आरति करहुँ
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## The recording
+Shemaroo Bhakti (YouTube `0NuZPH_tW3k`, `audio/shemaroo-bhakti/`) sings this text.
+- Sung with a few words that no written witness has, so the text keeps its own there: `aarti.tek`, `aarti.pad1`, `aarti.pad4`, `aarti.pad6`, `aarti.pad8`, `aarti.pad9`, `aarti.pad10`.
+- A draft (it plays only with Audio timing on): it sings another wording of this āratī (refrain and six stanzas) that no written witness has.

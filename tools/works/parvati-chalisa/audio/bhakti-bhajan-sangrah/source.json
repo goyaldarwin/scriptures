@@ -1,0 +1,12 @@
+{
+ "id": "bhakti-bhajan-sangrah",
+ "work": "hinduism/chalisa/parvati/parvati-chalisa",
+ "type": "youtube",
+ "lang": "awa",
+ "title": {
+  "hi": "भक्ति भजन संग्रह",
+  "en": "Bhakti Bhajan Sangrah"
+ },
+ "fill": 0,
+ "draft": "its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed"
+}

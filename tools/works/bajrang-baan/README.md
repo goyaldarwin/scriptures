@@ -4,7 +4,7 @@ The Bajrang Bāṇ, the "arrow of Bajrang", a prayer to Hanumān in chālīsā f
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 28–31), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/aditya-bhakti-sagar/`: Aditya Bhakti Sagar (YouTube `aH8PEBlOCSg`, "Bajrang Baan with lyrics in Hindi by Anup Jalota hariharan Gulshan Kumar बजरंग बाण अनूप जलोटा 2020"), its track 0:00–6:28 of the video (after 6:28: a closing dohā not in the text). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list. Not sung, so untimed: `chalisa.do2`.
 
 Verse types: the Mānas's own (`do` dohā, `cau` chaupāī).
 

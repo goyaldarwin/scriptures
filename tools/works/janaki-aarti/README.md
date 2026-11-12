@@ -4,7 +4,7 @@ The āratī of Sītā, Janaka's daughter, in Hindi (`hi`). Its last stanza names
 
 - **Text** (`text.txt`): Drik Panchang, "Janaki Mata Aarti" (no copy in the owner's books). Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/vrat-katha/`: Vrat Katha (YouTube `d7nooBAWoAg`, "जानकी माता की आरती | Janki Mata Ki Aarti | आरती कीजै श्रीजनक लली की | Sita Mata Ki Aarti"), its track 0:09–5:04 of the video (before 0:09: a spoken introduction; after 5:04: a spoken jaikāra after the last refrain). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 Verse types: टेक (refrain, `tek`, shown once at the start although it is sung after every stanza) and पद (stanza, `pad`). The folder's format: `tools/works/README.md`.
 

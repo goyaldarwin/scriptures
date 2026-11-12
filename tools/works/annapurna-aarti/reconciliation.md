@@ -22,3 +22,7 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 
 ## Readings settled
 - aarti.pad4 — देवी देव दयनीय दशा में: "to goddesses and gods in a pitiable plight, your name is mercy, mercy" stays; the half has no verb of crying out or addressing, and देवी देव is a pair as in the stanza before (चतुरानन, चक्रधर, चन्द्रचूड़); the plain words give it.
+
+## The recording
+Golden Sphere Music (YouTube `fSh5k2m8-P0`, `audio/golden-sphere-music/`) sings this text in its order.
+- Sung with words that another written witness prints, against the base kept here: `aarti.pad1`, `aarti.pad5`.

@@ -22,3 +22,6 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 
 ## Readings settled
 - **aarti.pad4** — अतुलित अहि अघ मूषक-भक्षक: kept as Drik Panchang, the base, prints it (a web search found only Bhakti Bharat, its copy). Every epithet of the stanza in -क is Kṛṣṇa's (रक्षक, भक्षक, निरीक्षक), so भक्षक is he: he made an end of Agha the serpent as if he were a mouse, भक्षक in its figurative sense "devourer, destroyer". Meaning unchanged.
+
+## The recording
+Ek Bhajan Ki Baat (YouTube `UCMSasezfCo`, `audio/ek-bhajan-ki-baat/`) sings this text in its order.

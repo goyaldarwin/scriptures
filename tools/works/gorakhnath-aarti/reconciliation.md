@@ -18,3 +18,7 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 
 ## Readings settled
 - aarti.pad8 — विनवत बाल त्रिलोकी: "the child Trilokī prays" stays; बाल, "child", is the poet's humility before his guru, as signatures often have it, and the words read that way; no source found names a poet Bāl Trilokī.
+
+## The recording
+Bhakti Dhaam (YouTube `XZCXrZhDNGI`, `audio/bhakti-dhaam/`) sings this text in its order.
+- Sung with a few words that no written witness has, so the text keeps its own there: `aarti.pad2`, `aarti.pad5`, `aarti.pad6`.

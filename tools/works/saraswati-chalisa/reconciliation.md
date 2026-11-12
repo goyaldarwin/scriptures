@@ -25,3 +25,8 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## Readings settled
 - chalisa.do1 — the book's पदम दुरज: the text's पद कमल रज stands (the table above): the only witnessed form whole in sense and metre (Drik Panchang, AstroVed).
 - chalisa.cau29 — दुर्ग आदि हरनी: read as "slayer of the demon Durga (Durgama) and the others". cau27–28 follow Devī Māhātmya 11 (Raktadantikā, Śatākṣī), where the Goddess slays the great asura Durgama and so is named Durgā (11.45–46: दुर्गमाख्यं महासुरम् … दुर्गा देवीति विख्यातं); cau28 names her Durgā for that deed, and Monier-Williams gives Durga as the Asura slain by Durgā (SkandaP.). The meaning changes from "remover of hardships".
+
+## The recording
+Shemaroo Bhakti (YouTube `AETjP9K4u3M`, `audio/shemaroo-bhakti/`) sings this text.
+- Sung with words that another written witness prints, against the base kept here: `chalisa.do2`, `chalisa.cau5`, `chalisa.cau7`, `chalisa.cau8`, `chalisa.cau12`, `chalisa.cau19`, `chalisa.cau34`.
+- A draft (it plays only with Audio timing on): its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed.

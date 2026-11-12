@@ -19,3 +19,9 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## Readings settled
 - **chalisa.cau17** (हर or हम शरण): हर, as the book prints it clearly (page image i-095). Drik Panchang is a typed copy of the same collection, and InstaAstro follows Drik, so their हम is not an independent witness; हर, "O Hara", is a valid reading of a chālīsā that calls Gorakhnāth शिव गोरख and शंकर रूप (cau13–14). Meaning unchanged: "take away our sins; O Hara, we are in your refuge".
 - **chalisa.cau23** (हरो रस भोगी): the plain reading: रस भोगी, "the enjoying of pleasures" (भोगी for the rhyme with योगी), the thing the yogī is asked to take away, beside "grant siddhi"; the book and Drik agree. Meaning unchanged: "take away the craving to enjoy pleasures".
+
+## The recording
+Sanjay Giri (YouTube `yaIV5sB1ASM`, `audio/sanjay-giri/`) sings this text in its order.
+- Not sung, so untimed: `chalisa.do2`, `chalisa.do3`, `chalisa.do4`.
+- Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau4`, `chalisa.cau23`, `chalisa.cau28`, `chalisa.cau34`, `chalisa.cau38`.
+- Sung with words that another written witness prints, against the base kept here: `chalisa.cau17`.

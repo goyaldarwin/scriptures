@@ -4,7 +4,7 @@ The āratī of Kṛṣṇa Kanhaiyā, in Hindi (`hi`; its words are Braj).
 
 - **Text** (`text.txt`): Drik Panchang, Shri Krishna Kanhaiya Aarti; none of the printed booklets has it. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/anup-jalota/`: Anup Jalota (YouTube `ghbHyy9HBj4`, "Aarti Krishna Kanhaiya Ki आरती श्री कृष्णा कन्हैया की | Aarti Sangrah | Anup Jalota | Popular Aarti"), its track 0:00–6:54 of the video (after 6:54: music). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 Verse types: टेक (refrain, `tek`, shown once at the start although it is sung after every stanza) and पद (stanza, `pad`). The folder's format: `tools/works/README.md`.
 

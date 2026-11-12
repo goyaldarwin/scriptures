@@ -32,3 +32,7 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 - chalisa.cau30 — अपूर्णे: "O Aparṇā" (Pārvatī) stays; the line is a row of praises (अज, अनवद्य, अनंत) where "O incomplete one" contradicts सदपूर्णे beside it, and Aparṇā, the name Pārvatī won by her penance (Kumārasambhava 5.28), is the name of the penance this chālīsā has just told (cau15–27), its spelling bent to rhyme with पूर्णे.
 - chalisa.cau31 — भव-विभूति: "the world's riches" stays; the Mother praised as Annapūrṇā, giver of plenty, and the half pairs विभूति with आनंद, plenty and bliss; the glossary keeps Śiva's glory as its second sense.
 - chalisa.cau39 — the subject of राज विमुखको राज दिवावै: the reading (पाठ) stays; cau36–40 are its fruits, cau40 names it (पाठ महा मुद मंगल दाता), and the Mother herself is addressed (तेरो) in the second half, not spoken of.
+
+## The recording
+Upchar Mantra (YouTube `FgL1LLrx3LY`, `audio/upchar-mantra/`) sings this text in its order.
+- Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau14`, `chalisa.cau38`.

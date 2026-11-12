@@ -25,3 +25,7 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## Readings settled
 - **aarti.pad4** (कहुँ जागेस): the print stays; no second copy of this āratī was found (a web search for the line found none), and जागेस keeps the half's sixteen mātrās (जगेस would drop one). Read as "the lord", whose glory the Vedas sing. Meaning unchanged.
 - **aarti.pad4** (कहुँ नृप कर): कर as the verb, "makes (kings)", the sense that pairs with the other verbs of the stanza (चढ़ै, जावै, चरावै); Kṛṣṇa set Ugrasena and Yudhiṣṭhira on their thrones. Meaning unchanged.
+
+## The recording
+Anup Jalota (YouTube `ghbHyy9HBj4`, `audio/anup-jalota/`) sings this text in its order.
+- Sung with a few words that no written witness has, so the text keeps its own there: `aarti.pad4`.

@@ -21,3 +21,6 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 The readings the words alone leave open, each decided (docs/PLAYBOOK.md §2).
 
 - **aarti.pad3** — वज्रांकुश-कर: a dvandva, "with the thunderbolt and the goad in his hands". MW knows वज्राङ्कुश only as a mountain's name, so no compound "adamantine goad" is attested, and a pair joined in one compound with -कर ("in whose hands") is the plain reading. Meaning unchanged.
+
+## The recording
+BhaktPriti (YouTube `c9yc9nWgM5Q`, `audio/bhaktpriti/`) sings this text in its order.

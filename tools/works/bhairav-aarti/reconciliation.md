@@ -16,3 +16,7 @@ Kept as the book has them, against Drik Panchang: छूता (Drik छुत�
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## The recording
+Brijwani (YouTube `Zye96yeM2NI`, `audio/brijwani/`) sings this text in its order.
+- Sung with a few words that no written witness has, so the text keeps its own there: `aarti.pad2`, `aarti.pad5`.

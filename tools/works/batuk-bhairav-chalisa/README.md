@@ -4,7 +4,7 @@ The chālīsā of Baṭuka Bhairava that opens "विश्वनाथ को 
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 69–72), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/vedicqb/`: VedicQB (YouTube `31qpt74j9ag`, "श्री बटुक भैरव चालीसा | Batuk Bhairav Chalisa Full | बटुक भैरव चालीसा हिंदी | VedicQB"). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 The poet names himself in the second opening dohā: Chhītaramala ("छीतरमल पर कर कृपा").
 

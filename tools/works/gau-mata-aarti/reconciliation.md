@@ -21,3 +21,6 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## Readings settled
 - aarti.tek — हरनि and धैया: "her who takes away sorrow, the nurse of the world" stays; हरनि is "she who takes away" (हरना, "to take away", with the feminine agent -नि, as in कलिमलहरनि), its object the sorrow and ills the āratī itself says she removes (रोग शोक संकट परित्राता, दुख दैन्य दारिद्र्य विनाशिनि); धैया is धाय, a wet-nurse (Platts), the cow that feeds all with her milk (stanza 2).
 - aarti.pad4 — जैया: "the mother of the world" stays; -ैया makes a doer, as in this āratī's own दैया ("giver", stanza 3), from जाना "to bear, give birth" (Platts जाया, "born"): she who bears the world.
+
+## The recording
+Anup Jalota (YouTube `99ijEFwVaqQ`, `audio/anup-jalota/`) sings this text in its order.

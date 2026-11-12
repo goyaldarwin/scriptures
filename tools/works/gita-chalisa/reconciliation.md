@@ -15,3 +15,7 @@ Kept as Drik Panchang has them: कुण (chaupāī 9, the Rajasthani "which"),
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## The recording
+Mellow Bhajan (YouTube `1sphcXspUYU`, `audio/mellow-bhajan/`) sings this text.
+- A draft (it plays only with Audio timing on): its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed.

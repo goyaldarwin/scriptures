@@ -19,3 +19,6 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 
 ## Readings settled
 - aarti.pad7 — प्रभुदास: the poet's name, "says Prabhudāsa", stays; an āratī's last stanza carries its poet's signature (README), and वे is already the subject, so प्रभुदास as "the Lord's servants" would repeat it.
+
+## The recording
+DevPriya Bhakti ka Sagar (YouTube `UFdSv6yJ5As`, `audio/devpriya-bhakti-ka-sagar/`) sings this text in its order.

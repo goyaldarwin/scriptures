@@ -1,0 +1,13 @@
+{
+ "id": "spiritual-activity",
+ "work": "hinduism/aarti/vishnu/ekadashi-aarti",
+ "type": "youtube",
+ "lang": "hi",
+ "title": {
+  "hi": "स्पिरिचुअल एक्टिविटी",
+  "en": "Spiritual Activity"
+ },
+ "fill": 0,
+ "draft": "its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed",
+ "window": 6
+}

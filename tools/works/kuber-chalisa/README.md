@@ -4,7 +4,7 @@ The chālīsā of Kubera, the lord of wealth, that opens "जैसे अटल
 
 - **Text** (`text.txt`): Drik Panchang (Shri Kubera Chalisa); our book (५१ चालीसा संग्रह आरतियों सहित, Randhir Prakashan) has no copy. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/snehvardhan-shukla/`: Snehvardhan Shukla (YouTube `-q7_O0tbJe8`, "शीघ्र धन प्राप्ति के लिए रोज सुनें कुबेर चालीसा - Kuber Chalisa | Kuber Chalisa With Lyrics"), its track 0:00–6:22 of the video (after 6:22: the Shiv Chalisa's closing dohas). Its starts come from the transcript for now; MMS (`tools/audio/METHOD.md`) is still to time it. A draft (it plays only with Audio timing on): its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed.
 
 The last chaupāī names its makers: "मानस परिवार" (the Mānas Parivāra), a modern devotional group; the text is modern (it speaks of court cases and elections).
 

@@ -29,3 +29,7 @@ The readings the words alone leave open, each decided (docs/PLAYBOOK.md §2).
 - **chalisa.cau15** — लगत-लगत: the doubled imperfective participle of continuance, "on and on, keeping it up" (the rain of chaupāī 14 going on); both witnesses agree. Meaning unchanged.
 - **chalisa.cau22** — महि से: "from the earth", as the words say; the Bhāgavata's Sutala lies below the earth, but the line does not say so and the meaning adds nothing. Meaning unchanged.
 - **chalisa.cau34** — जीवन मुक्त भयो शिशुपाला: read as two words, as both witnesses print them, "was set free from life" (slain, and released), not the term जीवन्मुक्त "liberated while living", which does not fit his death. Meaning unchanged.
+
+## The recording
+Stutiras (YouTube `rWlwZiV7Pjc`, `audio/stutiras/`) sings this text in its order.
+- Sung with words that another written witness prints, against the base kept here: `chalisa.do1`, `chalisa.do2`, `chalisa.cau5`, `chalisa.cau29`, `chalisa.cau37`.

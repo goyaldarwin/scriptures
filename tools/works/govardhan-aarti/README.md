@@ -4,7 +4,7 @@ The āratī of Govardhana Mahārāja, the sacred hill of Braj worshipped as Kṛ
 
 - **Text** (`text.txt`): Drik Panchang, Shri Govardhan Aarti; none of the printed booklets has it. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/supertone-digital/`: Supertone Digital (YouTube `FXhcAncuBXk`, "श्री गोवर्धन महाराज तेरे माथे मुकुट बिराज रहयो Govardhan Maharaj Bhajan - Govardhan Puja Song  2026"). Its starts come from the transcript for now; MMS (`tools/audio/METHOD.md`) is still to time it. Not sung, so untimed: `aarti.pad5`. A draft (it plays only with Audio timing on): it sings the stanzas in another order (1, 4, 3, 2): the text is to follow it first.
 
 Verse types: टेक (refrain, `tek`, shown once at the start although it is sung after every stanza) and पद (stanza, `pad`). The folder's format: `tools/works/README.md`.
 

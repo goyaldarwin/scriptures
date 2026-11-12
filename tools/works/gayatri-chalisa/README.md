@@ -4,7 +4,7 @@ The chālīsā of Gāyatrī that opens "ह्रीं श्रीं क्�
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 197–200), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/ranjanba/`: Ranjanba (YouTube `0Bs8o9P4oo0`, "Re:GAYATRI CHALISA,श्री गायत्री चालीसा"), its track 0:00–5:46 of the video (after 5:46: music). Its starts come from the transcript for now; MMS (`tools/audio/METHOD.md`) is still to time it. A draft (it plays only with Audio timing on): its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed.
 
 Verse types: the Mānas's own (`do` dohā, `cau` chaupāī).
 

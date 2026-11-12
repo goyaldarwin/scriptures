@@ -4,7 +4,7 @@ The chālīsā of Vindhyeśvarī, the Mother of the Vindhya hills, that opens "�
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 179–182), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/sanjay-giri/`: Sanjay Giri (YouTube `-PDbE4xHy9Y`, "श्री विन्ध्येश्वरी चालीसा I Shri Vindhyeshwari Chalisa  I SANJAY GIRI I New Latest Audio Song I"), its track 0:00–8:22 of the video (after 8:22: an extra closing dohā not in our text). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 Verse types: the Mānas's own (`do` dohā, `cau` chaupāī).
 

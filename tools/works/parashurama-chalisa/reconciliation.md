@@ -21,3 +21,6 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 - **chalisa.cau33** (who earns the fame): Paraśurāma: देह ("giving") makes the giver of the science of weapons the subject, and गुरु प्रताप is his own glory as guru. Meaning unchanged.
 - **chalisa.cau35** (भाई): an address to the listener, the common rhyme-word of Awadhi verse ("brother"); भाई as "pleased" would need a construction the line does not have. Meaning unchanged.
 - **chalisa.cau40** (पूर्णेन्दु): the poet's name in the signature line, not an epithet: the Paraśurāma Āratī that the same book prints after this chālīsā (`tools/works/parashuram-aarti`, stanza 7) signs पूर्णेन्दु शिव साखि, with Śiva as witness, as this chālīsā names गौरीसा in chaupāī 39. Meaning changed: "Master, Lord who know every heart, dwell night and day in the heart of Pūrṇendu."
+
+## The recording
+Snehvardhan Shukla (YouTube `duUrb46o_NU`, `audio/snehvardhan-shukla/`) sings this text in its order.

@@ -17,3 +17,6 @@ Kept as the page has them: बिनवौं, प्रान, सज्जन-
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## The recording
+Bhakti Ras (YouTube `jpMTbdIVO8I`, `audio/bhakti-ras/`) sings this text in its order.

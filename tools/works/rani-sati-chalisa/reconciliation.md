@@ -24,3 +24,7 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 - **dohā 2**, शरण गहि करुणामयी सुख सम्पत्ति संचार (a statement or a prayer): a statement, as printed; संचार is a noun, with no verb of asking: taking the Mother's refuge, happiness and wealth flow in.
 - **chaupāī 28**, देश देश में भव भौति है: 'its glory is great'. Platts: भव, 'prosperity, welfare, excellence'; भौत (dialect) = बहुत, 'much'.
 - **chaupāī 34**, तेरहुँ मण्ड: 'all thirteen pavilions' (मण्ड for मण्डप), as the words say; that they are the shrines of the thirteen satīs of chaupāī 31 is not printed and is not added.
+
+## The recording
+Babiita Ki Pratibha (YouTube `hHH1PS_8NDI`, `audio/babiita-ki-pratibha/`) sings this text in its order.
+- Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau38`, `chalisa.cau40`.

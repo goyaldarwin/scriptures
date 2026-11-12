@@ -4,7 +4,7 @@ The chālīsā of Bhairava that opens "श्री भैरव संकट �
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 64–67), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/anuradha-paudwal/`: Anuradha Paudwal (YouTube `eyRjpWwgLjE`, "SHRI BHAIRAV CHALISA by ANURADHA PAUDWAL I FULL AUDIO SONG I ART TRACK I SHRI KAAL BHAIRAV VANDANA"). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 Verse types: the Mānas's own (`do` dohā, `cau` chaupāī).
 

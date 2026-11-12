@@ -20,3 +20,7 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 - **chalisa.cau2** — पवन वेग सम सम तनु: kept as Drik Panchang prints it, the base; its only other copy (InstaAstro) is a copy, and the metre of this Chālīsā is too loose to prove a slip (the first half, तप तेज पुंज निर्भय भय हारी, is as long). Read as printed: "swift as the wind (पवन वेग सम), of even, well-proportioned body (सम तनु)". Meaning unchanged.
 - **chalisa.cau39** — कला हो सदा सवाई: सवाई "one and a quarter" (Platts sawāyā = sawaiyā), the idiom of a thing that keeps growing; कला "power, skill". "His powers ever grow by a quarter more." Meaning unchanged.
 - **chalisa.cau40** — कुबेर की माई: the plain words, "Kubera's mother" (Iḍaviḍā, named in cau8); no witness names Lakṣmī here. Meaning unchanged.
+
+## The recording
+Snehvardhan Shukla (YouTube `-q7_O0tbJe8`, `audio/snehvardhan-shukla/`) sings this text.
+- A draft (it plays only with Audio timing on): its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed.

@@ -23,3 +23,6 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 The readings the words alone leave open, each decided (docs/PLAYBOOK.md §2).
 
 - **aarti.pad4** — दस अठा अठसठे चारे खानी इहै वरतणि है सगल संसारे: the traditional reading kept, "the eighteen Purāṇas, the sixty-eight places of pilgrimage, the four sources of birth: this is the way of the whole world". The Faridkot Teeka on this hymn (Guru Granth Sahib, Ang 694, shabad 4; our `guru-granth-sahib/commentary/pa/faridkot.json`) reads it so: the eighteen Purāṇas, the sixty-eight tīrthas and the four khāṇīs, in which the whole world's occupation lies. Meaning unchanged.
+
+## The recording
+Kanth Kaler (YouTube `1fiI7Eh4sLI`, `audio/kanth-kaler/`) sings this text in its order.

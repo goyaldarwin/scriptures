@@ -20,3 +20,7 @@ Kept as the book has them, against Drik Panchang: अदिति-नन्द�
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## The recording
+Divine Bhakti Pravaah (YouTube `Xqbnz-j2tSQ`, `audio/divine-bhakti-pravaah/`) sings this text in its order.
+- Sung with a few words that no written witness has, so the text keeps its own there: `aarti.pad4`.

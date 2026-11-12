@@ -21,3 +21,8 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 - chalisa.cau6 — उसी दृष्टि का: kept दृष्टि, "vision". The book and Drik Panchang both print it; सृष्टि would only repeat the rhyme word of the first half, so it is no correction.
 - chalisa.cau7 — प्रथम पूजन प्रभु आज्ञा सुनाते: kept "the Lord's command is proclaimed, that you be worshipped first". A plural verb with no subject is the Hindi impersonal "they say, it is said" (कहते हैं); the ancestors as subject is not in the words.
 - chalisa.cau20 — सब पूजे पित्तर भाई: kept भाई as an address ("brother"), the common line-end address of such songs; "as brothers" would need a postposition.
+
+## The recording
+Plus Bhakti (YouTube `WpNJv_iLX00`, `audio/plus-bhakti/`) sings this text.
+- Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau37`, `chalisa.cau40`, `chalisa.do3`.
+- A draft (it plays only with Audio timing on): its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed.

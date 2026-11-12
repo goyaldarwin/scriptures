@@ -4,7 +4,7 @@ The chālīsā of Gopāla (Kṛṣṇa) that opens "श्री राधाप
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 43–47), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/nova-spiritual-india/`: Nova Spiritual India (YouTube `hiZB_bwV0R4`, "गोपाल चालीसा Gopal Chalisa with Lyrics | Santan Gopal Mantra | Garbh Sanskar | Krishna Bhajan"), its track 0:00–10:44 of the video (after 10:44: music). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 - **Poet:** the text names him in its closing chhanda: Jayarāmadeva (जयरामदेव).
 
 Verse types: the Mānas's own (`do` dohā, `cau` chaupāī, `cha` chhanda).

@@ -18,3 +18,7 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 
 ## Readings settled
 - aarti.pad5, चमन: the poet's signature, Chaman, as the meaning and the README have it; the closing stanza is where an āratī names its poet, and "fill the garden" would need a word (जीवन, of one's life) the line does not have; the hi glossary's चमन already lists both senses.
+
+## The recording
+Divine Sanatan (YouTube `H42Jg1fgTKY`, `audio/divine-sanatan/`) sings this text in its order.
+- Sung with a few words that no written witness has, so the text keeps its own there: `aarti.pad3`, `aarti.pad4`, `aarti.pad5`.

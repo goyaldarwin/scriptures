@@ -1,0 +1,12 @@
+{
+ "id": "vrat-katha",
+ "work": "hinduism/aarti/shakambhari/shakambhari-aarti",
+ "type": "youtube",
+ "lang": "hi",
+ "title": {
+  "hi": "व्रत कथा",
+  "en": "Vrat Katha"
+ },
+ "fill": 0,
+ "draft": "its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed"
+}
