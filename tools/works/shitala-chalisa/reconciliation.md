@@ -26,3 +26,9 @@ The readings the words alone leave open, each decided (docs/PLAYBOOK.md §2).
 - **chalisa.cau37** — पुरी तिवारी, a place or the poet's caste: read as the place-name the words give ("Purī Tivārī is my home"), with Kakarā on the Gaṅgā by Durvāsā's hermitage; "I am a Tivārī" needs words the line does not have. Meaning unchanged.
 - **chalisa.cau38** — अब विलम्ब with no verb: the plain reading "now it grows late" (विलम्ब, "delay", the glossary; Monier-Williams vilamba) kept; "(make no) delay" needs a negative the line does not have. Meaning unchanged.
 - **chalisa.cau39** — पड़ा क्षर: kept as printed (the page image i-217 prints क्षर clearly, Drik Panchang the same) and read "this perishable one lies here" (क्षर, "perishable", Monier-Williams, Apte). द्वार ("at your door") is attested by no witness (Shubh Panchang has क्षति), so the print is not shown to be a corruption. Meaning unchanged.
+
+## The recording
+Mantra Duniya (YouTube `kyTMnUnElYo`, `audio/mantra-duniya/`) sings this text.
+- Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau27`.
+- Sung with words that another written witness prints, against the base kept here: `chalisa.do2`, `chalisa.cau16`.
+- A draft (it plays only with Audio timing on): it sings the dohā घट-घट वासी last: the text is to follow its order first.

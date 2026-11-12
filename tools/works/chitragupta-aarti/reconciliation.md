@@ -24,3 +24,7 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 The readings the words alone leave open, each decided (docs/PLAYBOOK.md §2).
 
 - **aarti.pad7** — तुम तज मैं भर्ता: kept as printed (every witness found prints it: Drik Panchang, Bhakti Bharat its copy) and read with the half before it, जाऊँ कहाँ शरण में किसकी: "where shall I go, whose refuge shall I seek? Leaving you, O sustainer (भर्ता, "cherisher, supporter, lord", Platts), where could I go?" No other reading is attested. Meaning unchanged.
+
+## The recording
+Sapt Swar Sargam Bhakti (YouTube `RRLj-2TkGj0`, `audio/sapt-swar-sargam-bhakti/`) sings this text.
+- A draft (it plays only with Audio timing on): not every verse it sings is timed yet: the transcript heard too little of it for the forced aligner.

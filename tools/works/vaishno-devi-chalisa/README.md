@@ -4,7 +4,7 @@ The chālīsā of Vaiṣṇo Devī, the Mother of the Trikūṭa hill, that open
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 231–234), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/anuradha-paudwal/`: Anuradha Paudwal (YouTube `yL-POtbc7ss`, "Vaishno Devi Chalisa By ANURADHA PAUDWAL I Full Audio Song I Art Track"), its track 0:00–9:04 of the video (after 9:04: music only to the video's end). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 The poet names himself in the last chaupāī: "सेवक शर्मा" (Śarmā), a modern author.
 

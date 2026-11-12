@@ -4,7 +4,7 @@ The āratī of Śiva who dwells on Kailāsa (Kailāsavāsī), in Hindi (`hi`).
 
 - **Text** (`text.txt`): Drik Panchang, "Lord Kailasavasi Aarti", the only witness; the āratī is not in ५१ चालीसा संग्रह आरतियों सहित. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/hari-om-mantravibe/`: Hari Om MantraVibe (YouTube `M2_1lVDLFwg`, "Bhagwan Kailasvasi Aarti | भगवान कैलाशवासी की सबसे प्रसिद्ध आरती"). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 Verse types: पद (stanza, `pad`); the page marks no refrain, so the āratī has no टेक. The folder's format: `tools/works/README.md`.
 

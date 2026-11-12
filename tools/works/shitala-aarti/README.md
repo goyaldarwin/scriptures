@@ -4,7 +4,7 @@ The āratī of Mother Śītalā, in Hindi (`hi`). Its last stanza names its poet
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 219–220), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/shemaroo-bhakti/`: Shemaroo Bhakti (YouTube `WAKr_PU7rL0`, "Shitala Mata Ki Aarti | Sheetla Mata Ki Aarti | Shitala Mata Aarti | शीतला माता की आरती"). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 Verse types: टेक (refrain, `tek`, shown once at the start although it is sung after every stanza) and पद (stanza, `pad`). The folder's format: `tools/works/README.md`.
 

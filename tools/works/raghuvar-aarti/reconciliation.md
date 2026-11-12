@@ -17,3 +17,7 @@ Kept as the book has them (Drik Panchang the same unless noted): कीजै, �
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## The recording
+Suresh Wadkar (YouTube `7Ko2hFK2DaY`, `audio/suresh-wadkar/`) sings this text in its order.
+- Sung with a few words that no written witness has, so the text keeps its own there: `aarti.pad1`, `aarti.pad2`.

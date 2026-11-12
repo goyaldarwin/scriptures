@@ -17,3 +17,6 @@ Kept as the base has them: रघुबीर, करहि, हरण, दु�
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## The recording
+Mandala Music (YouTube `hWSNsrIX3LM`, `audio/mandala-music/`) sings this text in its order.

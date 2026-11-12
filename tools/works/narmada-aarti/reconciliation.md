@@ -24,3 +24,7 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 - aarti.pad2 — धूमक: kept, in splendour (Platts dhūm, s.f., display, parade, pomp). The other senses (MW dhūmaka, smoke; a pot-herb) do not fit a mount.
 - aarti.pad3 — the musical words: kept, सुरमण्डल the svaramaṇḍala (MW svara-maṇḍala, a kind of vīṇā), तोड़ीतान tāns in Toḍī (Platts toṛī, ṭoṛī, a rāginī), तुरड़ड़ the instruments' sound, सुरवन्ती melodious. The stanza is about music (ताल, मृदंग).
 - aarti.pad6 — who repeats Hari and भजत शिवानंद स्वामी: kept, those who read and sing the āratī, repeating Hari's name, gain the fruit desired; Svāmī Śivānanda sings it in worship. भजत is printed in both witnesses (not कहत/भणत, the signature verb of other āratīs); the plain words stand.
+
+## The recording
+Spiritual Activity (YouTube `ZklH-ydA8LU`, `audio/spiritual-activity/`) sings this text in its order.
+- Sung with a few words that no written witness has, so the text keeps its own there: `aarti.pad5`, `aarti.pad6`.

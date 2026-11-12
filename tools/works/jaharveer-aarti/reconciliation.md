@@ -22,3 +22,9 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 - **aarti.tek** (हरे): the vocative of हरि, "O Hari": the refrain is modelled on जय जगदीश हरे and stands in a row of vocatives after जय जय; as a verb it would want an object the line does not give. Meaning unchanged.
 - **aarti.pad6** (भवन पधारो अटल क्षत्र कह भक्तों की सेवा करे): the devotees serve, saying "come into the house, O unshakeable canopy" (क्षत्र for छत्र); the next line (प्रेम से सेवा करे जो कोई) speaks of the devotees' service too. Meaning unchanged.
 - **aarti.pad5** (माड़ी): मढ़ी (Platts, maṛhī: a small temple, a jogī's hut); the book's Jāharvīr Chālīsā on the same page (i-104) uses माड़ी for the shrine built for Gūgā (सिंह भवन माड़ी बनवाया). Meaning unchanged.
+
+## The recording
+Ramawtar Sharma (YouTube `cKYi3i6-jPM`, `audio/ramawtar-sharma/`) sings this text.
+- Sung with a few words that no written witness has, so the text keeps its own there: `aarti.tek`, `aarti.pad1`, `aarti.pad2`, `aarti.pad4`, `aarti.pad6`.
+- Sung with words that another written witness prints, against the base kept here: `aarti.pad5`.
+- A draft (it plays only with Audio timing on): it sings stanza 5 before stanza 4: the text is to follow its order first.

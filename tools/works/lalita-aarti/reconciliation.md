@@ -21,3 +21,8 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 
 ## Readings settled
 - **aarti.tek** (शरणं वरणं, no verb): "I choose your refuge": वरण is "the act of choosing, choice" (Monier-Williams 2. varaṇa); its other senses ("rampart", "surrounding, keeping off", 1. varaṇa) give no "protection" or "chosen one". Meaning unchanged.
+
+## The recording
+Lyrical Bhajan Sangrah (YouTube `NplFFxsTOUc`, `audio/lyrical-bhajan-sangrah/`) sings this text in its order.
+- Sung with a few words that no written witness has, so the text keeps its own there: `aarti.pad4`.
+- Sung with words that another written witness prints, against the base kept here: `aarti.tek`.

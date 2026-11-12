@@ -22,3 +22,8 @@ The readings the words alone leave open, each decided (docs/PLAYBOOK.md §2).
 - **chalisa.cau14** — शिव कहँ भजहु असुर आराती, who worships whom: Bhairava (the one addressed, as in every chaupāī round it) worships Śiva, and असुर आराती, standing beside शिव, is Śiva, "the foe of the demons"; the line has no word that turns it to the reader. Meaning unchanged.
 - **chalisa.cau27** — साद भक्त: kept as printed (the page image i-065 prints साद, Drik Panchang the same) and read as the devotee's name, Sāda, beside the name Ailādī in the first half; साधु is attested by no witness. Meaning unchanged.
 - **chalisa.cau28** — the book's तब against Drik Panchang's तव: the book's तब kept (the page image i-065 prints तब). It is a valid word and gives a plain sense, "you are called Kālī's son; so I bow my head daily at your feet" ("your" understood), so it is not clearly wrong; Drik Panchang is a typed copy of the same edition. Meaning unchanged.
+
+## The recording
+Anuradha Paudwal (YouTube `eyRjpWwgLjE`, `audio/anuradha-paudwal/`) sings this text in its order.
+- Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau16`.
+- Sung with words that another written witness prints, against the base kept here: `chalisa.cau5`, `chalisa.cau26`.

@@ -4,7 +4,7 @@ The āratī of Devī Kālarātri, one of the nine forms of Durgā (Navadurgā), 
 
 - **Text** (`text.txt`): Drik Panchang, "Kalaratri Mata Aarti" (the book has no copy of it). Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/paramsoul/`: ParamSoul (YouTube `5GZ3lDsLlCA`, "कालरात्रि जय-जय महाकाली 🔱 | Maa Kalaratri Bhajan | महाकाली माता भजन"), its track 0:00–2:45 of the video (after 2:45: silence/end of video). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 Verse types: पद (stanza, `pad`); the source prints no refrain, so there is no टेक (`tek` is declared, as in every āratī, but unused). The folder's format: `tools/works/README.md`.
 

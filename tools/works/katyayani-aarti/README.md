@@ -4,7 +4,7 @@ The āratī of Devī Kātyāyanī, one of the nine forms of Durgā (Navadurgā),
 
 - **Text** (`text.txt`): Drik Panchang, "Katyayani Mata Aarti" (the book has no copy of it). Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/astroyogi/`: Astroyogi (YouTube `SKMJ-dFAjHo`, "माँ कात्यायनी आरती | नवरात्रि का 6वां दिन | जय जय अम्बे जय कात्यायनी | Jai Katyayani Aarti"). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 Verse types: पद (stanza, `pad`); the source prints no refrain, so there is no टेक (`tek` is declared, as in every āratī, but unused). The folder's format: `tools/works/README.md`.
 

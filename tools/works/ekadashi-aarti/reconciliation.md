@@ -21,3 +21,8 @@ Kept as Drik Panchang has them: गिनाऊं, गण गौरव की �
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## The recording
+Spiritual Activity (YouTube `b3xCDF85gek`, `audio/spiritual-activity/`) sings this text.
+- Sung with a few words that no written witness has, so the text keeps its own there: `aarti.pad2`.
+- A draft (it plays only with Audio timing on): not every verse it sings is timed yet: the transcript heard too little of it for the forced aligner.

@@ -21,3 +21,8 @@ Aarti Mala's version differs in: दुःख दारिद्र्य मि
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## The recording
+Rajkumar Raj (YouTube `q80aV5gMpoI`, `audio/rajkumar-raj/`) sings this text in its order.
+- Sung with a few words that no written witness has, so the text keeps its own there: `aarti.pad1`, `aarti.pad7`.
+- Sung with words that another written witness prints, against the base kept here: `aarti.pad4`, `aarti.pad5`, `aarti.pad6`.

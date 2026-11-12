@@ -4,7 +4,7 @@ The chālīsā of Bhagavān Paraśurāma that opens "श्री गुरु �
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 146–150), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/snehvardhan-shukla/`: Snehvardhan Shukla (YouTube `duUrb46o_NU`, "परशुराम जयंती को सुनें परशुराम चालीसा सभी संकट भय का नाश होगा | Parshuram Chalisa |Parshuram Jayanti"). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 Verse types: the Mānas's own (`do` dohā, `cau` chaupāī, `shloka` śloka).
 

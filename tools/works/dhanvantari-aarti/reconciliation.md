@@ -17,3 +17,6 @@ Kept as the base has them: जय धन्वन्तरि जी देव�
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## The recording
+Bhakti Bhajan Sagar (YouTube `ohGqcV4JRso`, `audio/bhakti-bhajan-sagar/`) sings this text in its order.

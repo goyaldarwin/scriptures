@@ -26,3 +26,7 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 
 ## Readings settled
 - aarti.pad9, नारायण: the poet naming himself, as the meaning has it; the third-person verb (चाहत, "he longs") needs a third-person subject, and the closing stanza is the āratī's signature, as in other āratīs; the hi glossary's नारायण already lists both senses (the Lord / the poet of this āratī).
+
+## The recording
+Renuka Rani Singh (YouTube `zchHd_OI7KE`, `audio/renuka-rani-singh/`) sings this text.
+- A draft (it plays only with Audio timing on): not every verse it sings is timed yet: the transcript heard too little of it for the forced aligner.

@@ -22,3 +22,8 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 
 ## Readings settled
 - **aarti.pad4** (शक्ति मेरी बिगड़ी बना दो): शक्ति is the vocative, "O Śakti", and मेरी बिगड़ी बना दो the set phrase "set right what has gone wrong for me" (बिगड़ी बनाना); "make good my failing strength" would need बिगड़ी शक्ति. Meaning unchanged.
+
+## The recording
+Quantext Bhakti (YouTube `icSfuY1AXzk`, `audio/quantext-bhakti/`) sings this text in its order.
+- Sung with a few words that no written witness has, so the text keeps its own there: `aarti.pad2`.
+- Sung with words that another written witness prints, against the base kept here: `aarti.pad5`.

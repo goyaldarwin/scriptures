@@ -32,3 +32,8 @@ The readings the words alone leave open, each decided (docs/PLAYBOOK.md §2).
 - **chalisa.cau23** — सुउष्णकर: read as an epithet of Tvaṣṭā and Varuṇa ("of fair warm rays"), the plain reading: उष्णकर "hot-rayed" (MW) is an adjective before it is a name of the Sun, and the half has one verb (रहत) for the pair. Drik Panchang and Aaj Tak print the same words. Meaning unchanged.
 - **chalisa.cau24** — भानुमान उरसर्म सुउदरचन: kept as printed (the book, Drik Panchang, Aaj Tak agree) and read with उरसर्म as उरः + शर्म "guard of the chest" and सु-उदर "the belly well (guarded)"; no source of the armour could be read to restore other names, so the plain reading stands. Meaning unchanged.
 - **chalisa.cau40** — अगहन भिन्न: kept as printed. मित्र (the Sun of Mārgaśīrṣa in some lists) is a likely original, but every witness (the book i-076, Drik Panchang, Aaj Tak) prints भिन्न and no source of this chālīsā with मित्र was found, so nothing shows the print is a corruption; भिन्न read as the words say, "another (name)". Meaning unchanged.
+
+## The recording
+Anant Bhakti Geet (YouTube `GNBcwOjQS0A`, `audio/anant-bhakti-geet/`) sings this text in its order.
+- Not sung, so untimed: `chalisa.cau36`.
+- Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau37`.

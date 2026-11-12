@@ -4,7 +4,7 @@ The chālīsā of Viśvakarmā, the divine craftsman, that opens "विनय �
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 85–89), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/bhakti-bhajan-mantra/`: Bhakti Bhajan Mantra (YouTube `I1YnwKqv7CM`, "Vishwakarma Chalisa Fast : Shree Vishwakarma Chalisa : श्री विश्वकर्मा चालीसा"). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 Verse types: the Mānas's own (`do` dohā, `cau` chaupāī, `cha` chhanda).
 

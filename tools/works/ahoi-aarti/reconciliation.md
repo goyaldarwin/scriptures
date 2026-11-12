@@ -26,3 +26,9 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## Readings settled
 - **aarti.pad1** (जग दाता or जगमाता): जग माता. The base's दाता is a valid word, but independent sources show it is a slip: Drik Panchang and India TV (indiatvnews.com, Ahoi Ashtami 2017) read माता, and the line is taken whole from the Lakṣmī āratī, which the Randhir book prints as ब्रह्माणी कमला तू ही है जग माता (i-190); the address to the goddesses (Brahmāṇī, Rudrāṇī, Kamalā) calls for "mother". Text corrected; meaning changed: "you alone are the mother of the world" (was "the giver to the world").
 - **aarti.pad6** (रतन चतुर्दश तोकूं कोई नहीं पाता): as printed: तोकूं is "you" (object), so "of the fourteen jewels, none attains to you"; the Lakṣmī āratī's तुम बिन ("without you") is not in this text (the base, Drik Panchang and the Randhir book's ताको all lack it), and जगनिधि stays "the ocean of the world" (as भवनिधि). Meaning unchanged.
+
+## The recording
+Ambey Bhakti (YouTube `ecr8xZKBBOo`, `audio/ambey-bhakti/`) sings this text.
+- Sung with a few words that no written witness has, so the text keeps its own there: `aarti.pad7`.
+- Sung with words that another written witness prints, against the base kept here: `aarti.pad3`, `aarti.pad4`, `aarti.pad5`.
+- A draft (it plays only with Audio timing on): not every verse it sings is timed yet: the transcript heard too little of it for the forced aligner.

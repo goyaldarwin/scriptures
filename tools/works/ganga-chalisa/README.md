@@ -4,7 +4,7 @@ The chālīsā of the Gaṅgā that opens "जय जय जय जग पाव
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 256–259), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/shemaroo-bhakti/`: Shemaroo Bhakti (YouTube `Gyo8l4SqenM`, "Shree Ganga Chalisa |Most Popular Hindi Devotional Songs | Shemaroo Bhakti"). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 - **Poet:** chaupāī 39 names him, Sundaradāsa of Kakarā village (by Durvāsā's hermitage); the last dohā gives the date of writing as a chronogram, saṁvat "भुज नभ दिशि", on Rāma's birthday in Caitra.
 
 Verse types: the Mānas's own (`do` dohā, `cau` chaupāī).

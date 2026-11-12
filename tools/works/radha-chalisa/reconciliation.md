@@ -27,3 +27,8 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 
 ## Readings settled
 - chalisa.cau40 — वृन्दावन है शरण तिहारी: changed, Vṛndāvana is in your refuge (was "is your refuge"). In Hindi "X आपकी शरण है" says X is in your refuge (मैं आपकी शरण हूँ), and Rādhā is the one who shelters; the book's two printings and Drik Panchang agree on the words.
+
+## The recording
+Krishnadas Brajdevi (YouTube `f9y8qFDHRWU`, `audio/krishnadas-brajdevi/`) sings this text in its order.
+- Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau40`, `chalisa.cau25`, `chalisa.cau18`.
+- Sung with words that another written witness prints, against the base kept here: `chalisa.cau21`.

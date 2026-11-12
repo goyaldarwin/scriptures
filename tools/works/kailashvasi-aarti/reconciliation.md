@@ -15,3 +15,6 @@ No word is changed. Kept as Drik Panchang has them: अर्धन्ग, भ�
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## The recording
+Hari Om MantraVibe (YouTube `M2_1lVDLFwg`, `audio/hari-om-mantravibe/`) sings this text in its order.

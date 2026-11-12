@@ -4,7 +4,7 @@ The chālīsā of Śrī Kṛṣṇa that opens "बंशी शोभित क
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 33–36), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/stutiras/`: Stutiras (YouTube `rWlwZiV7Pjc`, "Krishna Chalisa | श्रीकृष्ण चालीसा | New Version With Lyrics"). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 Verse types: the Mānas's own (`do` dohā, `cau` chaupāī).
 

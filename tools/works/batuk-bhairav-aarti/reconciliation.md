@@ -22,3 +22,8 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## Readings settled
 - **aarti.pad3** (चतुर्वतिका): the print stays (the book and Drik Panchang agree, and no witness or web copy prints चतुर्वर्तिका, so no source gives the corrected form); it is read as चतुर्वर्तिका, "four-wicked" (वर्तिका, wick), the sense Aarti Mala's चौमुख दीपक and mantra.tips's text confirm. Meaning unchanged.
 - **aarti.pad4** (तेल चटकि दधि मिश्रित भाषावलि): the printed words stand; all witnesses (the book, Drik Panchang, Aarti Mala, mantra.tips) have भाषावलि, and माषावलि is not attested. Meaning unchanged.
+
+## The recording
+T-Series Bhakti Sagar (YouTube `EAS1Pc85Pto`, `audio/t-series-bhakti-sagar/`) sings this text in its order.
+- Sung with a few words that no written witness has, so the text keeps its own there: `aarti.pad3`, `aarti.pad4`, `aarti.pad6`.
+- Sung with words that another written witness prints, against the base kept here: `aarti.pad1`, `aarti.pad5`.

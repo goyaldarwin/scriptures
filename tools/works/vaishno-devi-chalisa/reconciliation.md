@@ -23,3 +23,7 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 - chalisa.cau27, who strikes "for protection": the Mother, as the meaning has it; in the story (and in chaupāī 28, where she goes to the fallen head, forgives him and grants the boon) she is the one who beheads Bhairava, and the chālīsā's subject throughout the episode is she.
 - chalisa.cau37, जम्बू द्वीप महाराज: the great king of Jambūdvīpa, as printed; the book, Drik Panchang and Shubh Panchang all print जम्बू द्वीप, and द्वीप makes it the continent, not the city of Jammu.
 - chalisa.do2, प्रगट हो अवतार: "may the incarnation appear", the plain grammar (अवतार is the subject of प्रगट हो); the dohā echoes the Gītā's promise (4.7) that the incarnation comes when dharma declines.
+
+## The recording
+Anuradha Paudwal (YouTube `yL-POtbc7ss`, `audio/anuradha-paudwal/`) sings this text in its order.
+- Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau32`.

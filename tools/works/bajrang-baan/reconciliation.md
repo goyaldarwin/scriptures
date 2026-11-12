@@ -21,3 +21,9 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 - **chaupāī 3**, सिन्धु महि पारा … सुरसा बदन पैठि विस्तारा: महि as the book prints it ('to the land beyond'; Drik Panchang वहि is not clearly better), and विस्तारा with Surasā's mouth, the noun beside it: 'entered Surasā's mouth when she spread it wide'.
 - **chaupāī 6**, सिंधु मँह बोरा … यम कातर तोरा: the garden, the only object in the half, is what was sunk; यम कातर as Yama's dagger (कातर for कटार). 'Like Yama you broke the frightened ones' would add a comparison and an object the verse does not print. Plain reading.
 - **chaupāī 25**, जनक सुता हरिदास कहावो । ताकी शपथ: 'the servant of Janaka's daughter and of Hari; by her oath', as the book prints it (हरिदास joined); Rāma's oath was invoked in chaupāī 24, and ताकी follows जनक सुता. Plain reading kept.
+
+## The recording
+Aditya Bhakti Sagar (YouTube `aH8PEBlOCSg`, `audio/aditya-bhakti-sagar/`) sings this text in its order.
+- Not sung, so untimed: `chalisa.do2`.
+- Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau16`, `chalisa.cau35`, `chalisa.do2`.
+- Sung with words that another written witness prints, against the base kept here: `chalisa.cau1`, `chalisa.cau7`, `chalisa.cau8`, `chalisa.cau10`, `chalisa.cau12`, `chalisa.cau14`, `chalisa.cau15`, `chalisa.cau24`.

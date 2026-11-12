@@ -18,3 +18,6 @@ No word is changed. Kept as Drik Panchang has them: जग-निवास, स�
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## The recording
+Bhakti Sindhu (YouTube `Z_ta24un1Q8`, `audio/bhakti-sindhu/`) sings this text in its order.

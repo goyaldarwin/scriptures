@@ -22,3 +22,9 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## Readings settled
 - **chalisa.cau19** — त्रिपुर-प्यारी: "beloved of the three worlds" (त्रिपुर, the three worlds, as in the Goddess's names Tripurasundarī and Tripureśvarī); Śiva is Tripurāri, not त्रिपुर, so "beloved of Śiva" would need a word the line does not have. Meaning unchanged.
 - **chalisa.cau32** — चक्र-कपाली: the plain words, "bearer of the discus and the skull", in a line naming her as Lakṣmī, Durgā, Kālī and Śāradā. Meaning unchanged.
+
+## The recording
+VedicQB (YouTube `zAGrcGMkh90`, `audio/vedicqb/`) sings this text.
+- Not sung, so untimed: `chalisa.cau46`.
+- Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau18`.
+- A draft (it plays only with Audio timing on): not every verse it sings is timed yet: the transcript heard too little of it for the forced aligner.

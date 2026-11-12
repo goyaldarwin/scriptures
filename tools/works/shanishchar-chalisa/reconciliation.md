@@ -23,3 +23,9 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 - **chalisa.cau32** (शनि सम ध्यान): सम as 'with an even mind', as our meaning has it: 'like Śani' gives no sense, and 'such meditation' would need a word the line does not have.
 - **chalisa.do2** (कीन्हौं विमल तैयार): Vimala, the preparer's name, as our meaning has it: the book (page image) and Drik Panchang print 'विमल' in quotation marks, the printers' sign for a name.
 - **chalisa.do3** (ललिता लिखें सुधार): Lalitā, the poet's name, as our meaning has it: ललिता is a name and the subject of लिखें; 'graceful' would be ललित, and the language is already described (सरस सुभाषा).
+
+## The recording
+Shivhare Bhakti (YouTube `x7hwDcrZpiU`, `audio/shivhare-bhakti/`) sings this text.
+- Not sung, so untimed: `chalisa.so1`.
+- Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.do1`, `chalisa.cau3`, `chalisa.cau4`, `chalisa.cau9`, `chalisa.cau10`, `chalisa.cau12`, `chalisa.cau13`, `chalisa.cau15`, `chalisa.cau16`, `chalisa.cau17`, `chalisa.cau22`, `chalisa.cau23`, `chalisa.cau24`, `chalisa.cau27`, `chalisa.cau29`, `chalisa.cau30`, `chalisa.cau32`, `chalisa.cau35`, `chalisa.cau38`, `chalisa.do2`, `chalisa.do3`.
+- A draft (it plays only with Audio timing on): not every verse it sings is timed yet: the transcript heard too little of it for the forced aligner.

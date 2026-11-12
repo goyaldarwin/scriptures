@@ -5,7 +5,7 @@ The chālīsā of Pretarāja Sarakāra, the deity of the Mehandipur Balaji shrin
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 107–110), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Poet:** the last dohā names भक्त सुखराम ("कहत भक्त सुखराम").
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/abhi-sharma/`: Abhi Sharma (YouTube `4kAPUWJwMf4`, "Pretraj Sarkar Chalisa with Lyrics | श्री प्रेतराज सरकार चालीसा | Abhi Sharma | Mehandipur Balaji"). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 Verse types: the Mānas's own (`do` dohā, `cau` chaupāī).
 

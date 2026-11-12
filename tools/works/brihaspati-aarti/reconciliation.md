@@ -22,3 +22,7 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## Readings settled
 - **aarti.pad5** — सब संशय तारो, which does not rhyme with सुखकारी: kept as printed (the book and Drik Panchang agree; Shubh Panchang's हारो does not rhyme either, and no rhyming text is attested). Read as printed, तारो "carry (us) across". Meaning unchanged.
 - **aarti.pad6** — जेष्टानन्द बन्द सो सो निश्चय पावे: kept as printed (both witnesses agree; Shubh Panchang's जेठानन्द आनन्दकर is another wording that settles nothing, and the other pages a web search found could not be read). Read as the poet's signature, जेष्टानन्द, with बन्द = वन्दना ("bows"), सो सो "each such one". Meaning unchanged.
+
+## The recording
+Tara Devi (YouTube `C6HqjnuArlE`, `audio/tara-devi/`) sings this text in its order.
+- Sung with a few words that no written witness has, so the text keeps its own there: `aarti.pad6`.

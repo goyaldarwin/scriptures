@@ -23,3 +23,6 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## Readings settled
 - aarti.pad2 — दुस्यु जियो मारी: the correction दस्यु stands. दुस्यु is not a word; दस्यु (MW, enemy of the gods) is the word the sense needs, one vowel sign away; जियो, the life (जी). A web search found only Bhakti Bharat, which copies Drik Panchang.
 - aarti.pad2 — सबके हृदय विदारण: kept, you who tear open the hearts of all (MW vidāraṇa, tearing asunder, piercing). The plain words; no witness reads otherwise.
+
+## The recording
+Spiritual Activity (YouTube `MvHInypYUDo`, `audio/spiritual-activity/`) sings this text in its order.

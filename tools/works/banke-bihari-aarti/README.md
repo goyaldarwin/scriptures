@@ -4,7 +4,7 @@ The āratī of Kṛṣṇa as Bāṅke Bihārī of Vṛndāvana, in Hindi (`hi`)
 
 - **Text** (`text.txt`): Drik Panchang, Shri Banke Bihari Ki Aarti; none of the printed booklets has it. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/krsna-the-god-himself/`: KRSNA The God Himself (YouTube `ssWmkFd1y_0`, "Sri Banke Bihariji ki Arti"), its track 1:36–7:38 of the video (before 1:36: music). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 Verse types: टेक (refrain, `tek`, shown once at the start although it is sung after every stanza) and पद (stanza, `pad`). The folder's format: `tools/works/README.md`.
 

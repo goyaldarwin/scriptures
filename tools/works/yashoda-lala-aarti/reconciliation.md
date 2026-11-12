@@ -24,3 +24,7 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 - aarti.pad3 — बहु जात: "of many kinds": Platts jāt (S. जाति) "kind, sort", the same turn as बहु भाँत at the end of stanza 2; बाजत … जात as "keep sounding" would need बाजत जात together.
 - aarti.pad3 — who sprinkles and gives: the cowherds. नाचत गोप कुम्कुमा छिरकत देत … is one clause with one subject, गोप; Yaśodā or Nanda are not named in the stanza.
 - aarti.pad4 — ससि-काँत: "the lovely moon" (ससि "moon" + काँत "lovely"), shamed by the face. Monier-Williams's शशिकान्त (moonstone, night lotus) does not fit लजत: the face outshining the moon is the line's image, and the hyphened ससि-काँत reads as moon + epithet.
+
+## The recording
+BhaktPriti (YouTube `JI-YVZrQqTc`, `audio/bhaktpriti/`) sings this text.
+- A draft (it plays only with Audio timing on): not every verse it sings is timed yet: the transcript heard too little of it for the forced aligner.

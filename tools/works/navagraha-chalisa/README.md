@@ -4,7 +4,7 @@ The chālīsā of the nine planets (navagraha) that opens "श्री गण�
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 79–83), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/asc-digital/`: ASC Digital (YouTube `siASaJ0KfKs`, "Shree Navagraha Chalisa l श्री नवग्रह चालीसा"). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list. A draft (it plays only with Audio timing on): not every verse it sings is timed yet: the transcript heard too little of it for the forced aligner.
 
 The poet names himself in the closing chaupāīs and dohā: Sundaradāsa, a devotee of Rāma, of Kakarā village (Pure-Tiwari) near Prayāga.
 

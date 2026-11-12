@@ -18,3 +18,6 @@ Kept as the base has them: the hyphens (मुनि-चय, चकोर-चन
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## The recording
+Govatsa (YouTube `IdAp7Pw8id4`, `audio/govatsa/`) sings this text in its order.

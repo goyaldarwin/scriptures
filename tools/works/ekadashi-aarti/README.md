@@ -4,7 +4,7 @@ The āratī of Ekādaśī Mātā, the eleventh-day vow of Viṣṇu as a goddess
 
 - **Text** (`text.txt`): Drik Panchang, "Ekadashi Aarti", the only witness; the āratī is not in ५१ चालीसा संग्रह आरतियों सहित. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/spiritual-activity/`: Spiritual Activity (YouTube `b3xCDF85gek`, "जया एकादशी स्पेशल आरती | Om Jai Ekadashi Mata | ॐ जय एकादशी माता |  Ekadashi Aarti Hindi Lyrics🙏"), its track 0:00–10:02 of the video (after 10:02: music only to the video's end). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list. A draft (it plays only with Audio timing on): not every verse it sings is timed yet: the transcript heard too little of it for the forced aligner.
 
 Its last stanza names its poet, Gurditta (जन गुरदिता).
 

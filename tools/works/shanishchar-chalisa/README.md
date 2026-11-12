@@ -4,7 +4,7 @@ The chālīsā of Śanideva that opens "श्री शनिश्चर द�
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 54–57), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/shivhare-bhakti/`: Shivhare Bhakti (YouTube `x7hwDcrZpiU`, "शनि महाराज चालीसा :- श्री शनिश्चर देव जी | Shri Shanidev Maharaj Chalisa | Shanidev Bhakti Song 2023"). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list. Not sung, so untimed: `chalisa.so1`. A draft (it plays only with Audio timing on): not every verse it sings is timed yet: the transcript heard too little of it for the forced aligner.
 
 Verse types: the Mānas's own (`do` dohā, `so` soraṭhā, `cau` chaupāī).
 

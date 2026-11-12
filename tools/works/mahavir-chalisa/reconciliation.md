@@ -19,3 +19,7 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 
 ## Readings settled
 - chalisa.cau5 — तमसे (the book, read on page image i-140, and Drik Panchang): read as तुमसे, "great delusion grew afraid of you", as our glossary (awa तमसे) has it. डर खाना needs a से-object, which तम "darkness" would leave without one; the line goes with chaupāī 4's कर्म-शत्रु भी तुम से हारा. Text kept as printed. Meaning unchanged.
+
+## The recording
+Jain Bhajans (YouTube `oy5T6bMSXfc`, `audio/jain-bhajans/`) sings this text in its order.
+- Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau5`, `chalisa.cau6`, `chalisa.cau7`, `chalisa.cau26`, `chalisa.cau31`, `chalisa.cau33`, `chalisa.cau34`.

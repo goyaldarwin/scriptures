@@ -4,7 +4,7 @@ The chālīsā of Girirāja Govardhana, the hill of Braj worshipped as Kṛṣ�
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 135–139), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/ved-puraan/`: Ved Puraan (YouTube `ae43Hp90buA`, "⁠ગિરિરાજ ચાલીસા | Gujarati Meaning"), its track 0:00–6:25 of the video (after 6:25: the closing words 'इति श्री गिरिराज चालीसा सम्पूर्ण'). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 - **Poet:** the text names him in its last closing dohā (and as "श्याम" in chaupāī 37): Śyāma Bihārī.
 
 Verse types: the Mānas's own (`do` dohā, `cau` chaupāī).

@@ -4,7 +4,7 @@ The āratī of Mahākālī, in Hindi (`hi`).
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 212–214), checked against Drik Panchang and Aarti Mala. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/lakhbir-singh-lakkha/`: Lakhbir Singh Lakkha (YouTube `l-1jMvJSKp0`, "Mangal ki sewa sun meri deva 🙏। Lakhbir Singh Lakkha Bhajan । Navratri Special Song । Jai Mata Di 🔱🚩"), its track 0:00–8:48 of the video (after 8:48: music only, ~527-532.6). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list. A draft (it plays only with Audio timing on): not every verse it sings is timed yet: the transcript heard too little of it for the forced aligner.
 
 Verse types: टेक (refrain, `tek`, shown once at the start although its last line is sung after every stanza) and पद (stanza, `pad`). The folder's format: `tools/works/README.md`.
 

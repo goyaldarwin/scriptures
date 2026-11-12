@@ -19,3 +19,9 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 - chalisa.cau10 — शारद शतमुख: "Śāradā, singing your virtues with a hundred mouths", not "the hundred-mouthed Śeṣa". MW gives śatamukha only as "having a hundred mouths/outlets" (and an Asura), never Śeṣa, who is the thousand-mouthed; Drik Panchang prints शत मुख apart, an adverb to Śāradā's singing; our glossary (awa) has the sense "with a hundred mouths". Meaning changed (Hindi and English).
 - chalisa.cau31 — सदा सुखदाई describes her wedded fortune (सुहाग), the noun it follows in the same half; nothing names Gāyatrī there. Meaning unchanged.
 - chalisa.cau37 — चिन्तत (the book; Drik चिन्तित): "the thoughtful". Platts: चिन्तना "to think, to reflect on, to study"; the list आरत अर्थी चिन्तत follows the Gītā's (7.16) ārta, arthārthī, jijñāsu. Meaning unchanged.
+
+## The recording
+Ranjanba (YouTube `0Bs8o9P4oo0`, `audio/ranjanba/`) sings this text.
+- Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau16`, `chalisa.cau21`.
+- Sung with words that another written witness prints, against the base kept here: `chalisa.cau2`, `chalisa.cau24`, `chalisa.cau37`.
+- A draft (it plays only with Audio timing on): not every verse it sings is timed yet: the transcript heard too little of it for the forced aligner.

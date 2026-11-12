@@ -18,3 +18,7 @@ Kept as the base has them: बाँकेबिहारी, शीश पे, 
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## The recording
+KRSNA The God Himself (YouTube `ssWmkFd1y_0`, `audio/krsna-the-god-himself/`) sings this text in its order.
+- Sung with a few words that no written witness has, so the text keeps its own there: `aarti.tek`, `aarti.pad3`.

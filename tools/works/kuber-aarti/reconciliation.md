@@ -22,3 +22,6 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 The readings the words alone leave open, each decided (docs/PLAYBOOK.md §2).
 
 - **aarti.pad7** — कहत प्रेमपाल स्वामी, स्वामी part of the name or an address: part of the poet's signature, "Premapāla Svāmī says", as कहत शिवानन्द स्वामी in the āratīs this one is modelled on (ॐ जय जगदीश हरे, जय अम्बे गौरी); the address स्वामी of this āratī stands at the head of its repeat lines (स्वामी जो कोई नर गावे), not at a line's end. Meaning unchanged.
+
+## The recording
+choovill (YouTube `zJRIWAo3ZWg`, `audio/choovill/`) sings this text in its order.

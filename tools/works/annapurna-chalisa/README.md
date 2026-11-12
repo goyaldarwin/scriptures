@@ -4,7 +4,7 @@ The chālīsā of Annapūrṇā that opens "विश्वेश्वर-प�
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 241–244), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/upchar-mantra/`: Upchar Mantra (YouTube `FgL1LLrx3LY`, "Maa Annapurna Chalisa || माँ अन्नपूर्णा चालीसा || Most Popular Devi Annapurna Chalisa Bhajans"). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 Verse types: the Mānas's own (`do` dohā, `cau` chaupāī).
 

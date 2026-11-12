@@ -7,5 +7,7 @@
   "hi": "रेणुका रानी सिंह",
   "en": "Renuka Rani Singh"
  },
- "fill": 0
+ "fill": 0,
+ "draft": "not every verse it sings is timed yet: the transcript heard too little of it for the forced aligner",
+ "window": 6
 }

@@ -15,3 +15,6 @@ Kept as the base has them: the page's line breaks and words throughout, सं�
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## The recording
+ParamSoul (YouTube `5GZ3lDsLlCA`, `audio/paramsoul/`) sings this text in its order.

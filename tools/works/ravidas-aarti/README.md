@@ -4,7 +4,7 @@ The āratī sung for Guru Ravidās, in Hindi (`hi`; the old Sant language of its
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, p. 94), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/kanth-kaler/`: Kanth Kaler (YouTube `1fiI7Eh4sLI`, "Aarti | Kanth Kaler I Aarti Shri Guru Ravidas Maharaj ji | Devotional Full hd song 2020"), its track 0:00–5:08 of the video (after 5:08: music only to the video's end). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 Verse types: टेक (refrain, `tek`, shown once at the start) and पद (stanza, `pad`). The folder's format: `tools/works/README.md`.
 

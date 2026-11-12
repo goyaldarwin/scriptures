@@ -20,3 +20,6 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 - chalisa.cau17 — ब्रह्मा विश्वकर्मा भय धारा: "your name became Brahmā Viśvakarmā, and you took it on" stays; नाम तुम्हारा in the first half is the subject, so the half names one name (भय for भये, "became"; धारा, "bore"), Viśvakarmā as the creator Brahmā (the Ṛgveda's Viśvakarman, 10.81–82).
 - chalisa.cau22 — भवोभव: read as भव + उद्भव (भवोद्भव, "the origin of the world") with कारी, "bringing the world into being", as the glossary has it; भवाभव would need the long ā the witnesses do not print, and भव-भव ("birth after birth") gives no sense with कारी.
 - chalisa.do3 — विनय करो: the poet's own prayer stays (करो for करौं, as in dohā 1 विनय करौं कर जोड़कर); तुम्हार ("your") addresses Viśvakarmā, which an order to the reader would not.
+
+## The recording
+Bhakti Bhajan Mantra (YouTube `I1YnwKqv7CM`, `audio/bhakti-bhajan-mantra/`) sings this text in its order.

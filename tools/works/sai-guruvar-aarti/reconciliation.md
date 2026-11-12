@@ -28,3 +28,8 @@ The readings the words alone leave open, each decided (docs/PLAYBOOK.md §2).
 
 - **aarti.pad4** — the word the book drops before इच्छित: कर, as Drik Panchang has it (दर्शन कर, "having had his darśana"), the shelf's own witness; Aarti Mala's से also fills the 16 mātrās, but a web search found no independent text to prefer it, and दर्शन कर is the ordinary idiom. Text and meaning unchanged.
 - **aarti.pad5** — साईदास: the poet's signature. All three witnesses (the book, Drik Panchang, Aarti Mala) set it in quotation marks, as the book marks the signature 'प्रताप' in the Brahmā āratī; a common noun would not be marked. Meaning unchanged.
+
+## The recording
+Sanjeev Abhyankar (YouTube `qFfCclypbFg`, `audio/sanjeev-abhyankar/`) sings this text.
+- Sung with a few words that no written witness has, so the text keeps its own there: `aarti.pad1`, `aarti.pad4`, `aarti.pad5`.
+- A draft (it plays only with Audio timing on): it sings another wording of about seven lines that no written witness has.

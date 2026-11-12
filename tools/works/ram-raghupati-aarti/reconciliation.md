@@ -19,3 +19,6 @@ Kept as the base has them: बन्दौं, करुना, ग्यान,
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## The recording
+RamcharitManas Kashi (YouTube `VtDCaE8sf-k`, `audio/ramcharitmanas-kashi/`) sings this text in its order.

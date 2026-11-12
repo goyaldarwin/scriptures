@@ -4,7 +4,7 @@ The āratī of Śrī Bālājī (Hanumān, as worshipped at Mehandipur), in Hindi
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, p. 116), checked against Drik Panchang and Aarti Mala. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/rajkumar-raj/`: Rajkumar Raj (YouTube `q80aV5gMpoI`, "om jai hanumat veera arti ॐ जय हनुमत वीरा आरती स्वर -राजकुमार राज"). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 Verse types: टेक (refrain, `tek`, shown once at the start although it is sung after every stanza) and पद (stanza, `pad`). The folder's format: `tools/works/README.md`.
 

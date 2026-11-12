@@ -21,3 +21,7 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## Readings settled
 - chalisa.cau40 — गोविंद: kept as the words say, Govinda as the one in her refuge night and day ("Govinda is in your refuge"). The closing chaupāī is where a Chālīsā signs its poet, and the line goes on to हमारी अभिलाष; Viṣṇu as one sheltering in Lakṣmī's refuge would be odd. The meaning names no more than the verse.
 - chalisa.cau34 — हृदय निवास भक्त बर दीजै: one request: "grant your devotee the boon of your dwelling in his heart". There is one verb (दीजै) and हृदय निवास stands before बर as what the boon is; "dwell in my heart" would need a verb of its own (कीजै).
+
+## The recording
+Anuradha Paudwal (YouTube `otWnO-2pwuM`, `audio/anuradha-paudwal/`) sings this text in its order.
+- Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau9`, `chalisa.cau10`, `chalisa.cau24`, `chalisa.cau35`, `chalisa.cau37`, `chalisa.cau39`, `chalisa.do2`.

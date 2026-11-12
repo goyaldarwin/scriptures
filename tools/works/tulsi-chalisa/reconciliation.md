@@ -28,3 +28,7 @@ Every copy found on the web (Navbharat Live, InstaAstro, Bhakti Bharat) is Drik 
 - **chalisa.do6** (सुखराम / तुलसीदास, no rhyme): as printed: "Sukharāma, son (सूत, सुत) of Tulasī, Tulasīdāsa, composed this Mānasa Chālīsā"; nothing shows another reading. Meaning unchanged.
 - **chalisa.cau38** (कवि सुन्दर इक): the poet's signature, "Sundara, a poet (इक, 'one, a')", as in the Gaṅgā and Śītalā Chālīsās; cau39 goes on with where he lives (near Durvāsā's hermitage), so the subject is the poet, not anyone who sings. Meaning unchanged.
 - **chalisa.do4** (हार, लड़हि, अत्र): हरि हार ह्वै, "Hari becomes the remover" (हार, "taking away", Platts hār, rt. hṛ); लड़हि read as लहहि, "obtain" (ड़ for ह; "fight" makes no sense); अत्र kept as the word it is, "here" (Platts atra), not अन्न. Meaning unchanged.
+
+## The recording
+Stutiras (YouTube `ylGcnnrJ9HQ`, `audio/stutiras/`) sings this text in its order.
+- Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau22`.

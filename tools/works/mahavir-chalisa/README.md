@@ -5,7 +5,7 @@ The chālīsā of Mahāvīra, the twenty-fourth Jaina Tīrthaṅkara (not Hanum�
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 141–144), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Poet:** chaupāī 36 names चन्द्र ("चालीसे को चन्द्र बनावे").
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/jain-bhajans/`: Jain Bhajans (YouTube `oy5T6bMSXfc`, "श्री महावीर स्वामी चालीसा | Shri Mahaveer Swami Chalisa | जैन चालीसा संग्रह"). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 Verse types: the Mānas's own (`do` dohā, `so` sorathā, `cau` chaupāī).
 

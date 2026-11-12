@@ -4,7 +4,7 @@ The chālīsā of Śāradā of Maihar that opens "मूर्ति स्व�
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 266–269), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/kumar-vishu/`: Kumar Vishu (YouTube `x1yCoZPcRos`, "Shri Sharda Chalisa | शारदा चालीसा | Sharda Chalisa Lyrics | Kumar Vishu | Bhakti Song 2024"), its track 0:00–9:46 of the video (after 9:46: music only to the video's end). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 Verse types: the Mānas's own (`do` dohā, `cau` chaupāī).
 

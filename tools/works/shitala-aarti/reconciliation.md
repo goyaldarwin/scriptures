@@ -21,3 +21,8 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 
 ## Readings settled
 - **aarti.pad9** (उत्पत्ति बाला बिनाशन): as printed. The book, Drik Panchang, InstaAstro and Pujasthan (pujasthan.com) have बाला; only Bhakti Bharat, whose text is otherwise Drik's, has उत्पत्ति व्याधि बिनाशन … घाता. बाला is a word (Bālā, the goddess as the maiden), so the plain reading stands: "creation, the maiden Bālā, destruction: you are the mother of all". Meaning unchanged.
+
+## The recording
+Shemaroo Bhakti (YouTube `WAKr_PU7rL0`, `audio/shemaroo-bhakti/`) sings this text in its order.
+- Sung with a few words that no written witness has, so the text keeps its own there: `aarti.pad4`, `aarti.pad5`, `aarti.pad7`, `aarti.pad9`, `aarti.pad10`.
+- Sung with words that another written witness prints, against the base kept here: `aarti.pad1`.

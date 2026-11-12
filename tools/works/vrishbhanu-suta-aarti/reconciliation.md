@@ -17,3 +17,7 @@ Kept as the book has them: every word; Drik Panchang has no reading that differs
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## The recording
+Ambey Bhakti (YouTube `EvXXThG-J6k`, `audio/ambey-bhakti/`) sings this text.
+- A draft (it plays only with Audio timing on): not every verse it sings is timed yet: the transcript heard too little of it for the forced aligner.

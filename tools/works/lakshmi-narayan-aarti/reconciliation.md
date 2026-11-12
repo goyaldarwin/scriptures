@@ -19,3 +19,6 @@ Kept as the base has them: the hyphens (लक्ष्मी-विष्णो
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## The recording
+BK Videography (YouTube `CQ110lVQlrE`, `audio/bk-videography/`) sings this text in its order.

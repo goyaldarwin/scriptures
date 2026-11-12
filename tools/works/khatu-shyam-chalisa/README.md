@@ -4,7 +4,7 @@ The chālīsā of Khāṭū Śyāma (Barbarīka, worshipped as Kṛṣṇa at Kh
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 152–155), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/lakhbir-singh-lakkha/`: Lakhbir Singh Lakkha (YouTube `9GLVkIigVbw`, "श्याम चालीसा Shyam Chalisa with Lyrics | Lakhbir Singh Lakha | Shyam Bhajan | Khatu Shyam Chalisa"), its track 0:00–9:34 of the video (after 9:34: music only). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 Verse types: the Mānas's own (`do` dohā, `cau` chaupāī).
 

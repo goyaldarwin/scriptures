@@ -4,7 +4,7 @@ The āratī of Śrī Kṛṣṇa as Naṭavara (the best of dancers), in Hindi (
 
 - **Text** (`text.txt`): Drik Panchang, "Lord Natavara Aarti" (the book has no copy of it). Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/ek-bhajan-ki-baat/`: Ek Bhajan Ki Baat (YouTube `UCMSasezfCo`, "आरती कीजै श्रीनटवर जी की | Aarti Kijai Shri Natavar Ji Ki | गोवर्धनधर बंशीधर"). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 Verse types: टेक (refrain, `tek`, shown once at the start although it is sung after every stanza) and पद (stanza, `pad`). The folder's format: `tools/works/README.md`.
 

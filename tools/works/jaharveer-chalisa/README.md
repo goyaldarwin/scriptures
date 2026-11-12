@@ -4,7 +4,7 @@ The chālīsā of Jāharvīr Gogājī (Gūgā Vīr, the Chauhān hero of Bāga�
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 101–105), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/kc-nimesh/`: K. C. Nimesh (YouTube `SJ5zU5wSe3U`, "गोगाजी चालीसा- जय जय जाहर रणधीरा | Hindi Devotional | by. K.C. Nimesh"), its track 0:25–17:28 of the video (before 0:25: music only 0–26. From 26 to about 84 the singer sings a Sanskrit dhyāna śloka that is not in our text; after 17:28: chalisa.cau53 ends about 1020). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list. A draft (it plays only with Audio timing on): it sings another wording of about fifteen lines that no written witness has, and another order.
 
 Verse types: the Mānas's own (`do` dohā, `cau` chaupāī).
 

@@ -17,3 +17,6 @@ Kept as the base has them: सुख धाम, कीजो, दाती, म�
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
+
+## The recording
+Bhakti Dhaara (YouTube `_2MA82Q6WcM`, `audio/bhakti-dhaara/`) sings this text in its order.

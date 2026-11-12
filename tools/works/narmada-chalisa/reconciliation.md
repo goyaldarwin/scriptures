@@ -18,3 +18,9 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## Readings settled
 - **chalisa.cau21** (जटा शंकरी): one name, Jaṭāśaṅkarī: the line says नाम तुम्हारा, "your name", in the singular. Meaning unchanged.
 - **chalisa.cau22** (समोद्भवा): read as सोमोद्भवा, "born of the moon", the Narmadā's name (MW somodbhavā, Raghuvaṃśa); समोद्भवा is not a word and its half-line has 15 mātrās against 16. Both witnesses print समोद्भवा, so the text stays as printed; the meaning and the word entry give सोमोद्भवा.
+
+## The recording
+Ras Mantra (YouTube `fYDQig0lk90`, `audio/ras-mantra/`) sings this text.
+- Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau28`, `chalisa.cau23`.
+- Sung with words that another written witness prints, against the base kept here: `chalisa.cau19`, `chalisa.cau17`.
+- A draft (it plays only with Audio timing on): not every verse it sings is timed yet: the transcript heard too little of it for the forced aligner.

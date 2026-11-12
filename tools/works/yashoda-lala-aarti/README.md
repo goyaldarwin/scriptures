@@ -5,7 +5,7 @@ A pada of Yaśodā performing the āratī of the child Kṛṣṇa, in Hindi (`h
 - **Text** (`text.txt`): Drik Panchang, "Shri Yashodalala Aarti" (the book has no copy of it). Every choice: `reconciliation.md`.
 - **Poet:** the signature line names कृष्णदास (stanza 4).
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/bhaktpriti/`: BhaktPriti (YouTube `JI-YVZrQqTc`, "श्री यशोदालाल आरती |आरति करत यसोदा प्रमुदित |श्रीकृष्ण बाल रूप की आरती |कृष्ण जन्माष्टमी स्पेशल भजन"). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list. A draft (it plays only with Audio timing on): not every verse it sings is timed yet: the transcript heard too little of it for the forced aligner.
 
 Verse types: पद (stanza, `pad`); the source prints no refrain, so there is no टेक (`tek` is declared, as in every āratī, but unused). The folder's format: `tools/works/README.md`.
 

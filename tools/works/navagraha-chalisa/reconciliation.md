@@ -21,3 +21,7 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 - chalisa.do2 — रवि शशि सोम बुध: kept as printed, शशि and सोम both the Moon, Maṅgala unnamed here. The book, Drik Panchang, Shubh Panchang (shubhpanchang.com) and Aaj Tak (aajtak.in) all have सोम; no source has भौम or सौम्य, so no correction (Maṅgala has his own chaupāīs 9–12).
 - chalisa.cau27 — पिप्पल तन साजा: kept "your form graces the pipal tree". पिप्पल is the pipal (MW pippala), the tree of Śani's Saturday worship; Pippalāda of the Śani śloka is "praised by", which the line (तन साजा) does not say. All witnesses agree.
 - chalisa.cau28 — ललत स्वर्ण पद: kept पद as "feet" ("with your lovely golden feet you make men blessed"), the word's plain sense; the astrologer's golden pāyā is a different word.
+
+## The recording
+ASC Digital (YouTube `siASaJ0KfKs`, `audio/asc-digital/`) sings this text.
+- A draft (it plays only with Audio timing on): not every verse it sings is timed yet: the transcript heard too little of it for the forced aligner.

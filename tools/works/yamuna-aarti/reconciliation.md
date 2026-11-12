@@ -21,3 +21,7 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## Readings settled
 - aarti.tek — सुख दुःख की दाता: "the giver of joy and sorrow", what the words say (सुख दुःख a pair under one की). Drik Panchang is the only witness; "joy in place of sorrow" would need a word the line does not have.
 - aarti.pad5 — तुम बिन वैतरणी, no verb: the least is supplied: "without you, the Vaitaraṇī lies before me" (the restless mind facing the river of death); "who will take me across" adds a question and a crossing the line does not say.
+
+## The recording
+Ganga Bhakti Dham (YouTube `gLAHjdZHH0g`, `audio/ganga-bhakti-dham/`) sings this text in its order.
+- Sung with a few words that no written witness has, so the text keeps its own there: `aarti.tek`.

@@ -21,3 +21,8 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 - **chalisa.cau3** (सुन for सुर?): सुन, as the book (page image) and Drik Panchang print it, and a web search found no other copy; सुन, "hearing", reads plainly beside देखत: "on seeing it and hearing of it, men and sages are enchanted". Meaning unchanged.
 - **chalisa.cau30** (whose red body?): the messengers of cau29, the subject the couplet runs on from; nothing in the line names another. Meaning unchanged.
 - **chalisa.do4** (अंजिन सुवन and प्रेतराज: one or two?): two, addressed together: अंजिन सुवन is Hanumān's own epithet (Añjanī's son), and at Mehandipur, the shrine this chālīsā belongs to, Pretarāja is a deity of his own beside Hanumān (Bālājī), never Añjanī's son. Meaning unchanged.
+
+## The recording
+Abhi Sharma (YouTube `4kAPUWJwMf4`, `audio/abhi-sharma/`) sings this text in its order.
+- Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau22`, `chalisa.cau27`, `chalisa.cau3`, `chalisa.do4`.
+- Sung with words that another written witness prints, against the base kept here: `chalisa.cau25`.

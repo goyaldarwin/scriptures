@@ -4,7 +4,7 @@ The chālīsā of the Pitaras (the ancestors) that opens "हे पितरे
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 162–166), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/plus-bhakti/`: Plus Bhakti (YouTube `WpNJv_iLX00`, "पितृपक्ष में नित्य सुनिए पितर चालीसा. श्री पित्र चालीसा Shri Pitar chalisa. पितृदोष मुक्ति."), its track 0:28–4:10 of the video (before 0:28: spoken introduction; after 4:10: spoken close). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list. A draft (it plays only with Audio timing on): not every verse it sings is timed yet: the transcript heard too little of it for the forced aligner.
 
 Verse types: the Mānas's own (`do` dohā, `cau` chaupāī).
 

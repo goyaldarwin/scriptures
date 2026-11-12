@@ -5,7 +5,7 @@ The āratī of Śrī Rāma as Jānakīnātha, in Hindi (`hi`).
 - **Text** (`text.txt`): Drik Panchang (`aarti/shree-rama/shri-janakinatha-aarti`, "श्री जानकीनाथ आरती"); the book (५१ चालीसा संग्रह आरतियों सहित, Randhir Prakashan) does not print this āratī. Every choice: `reconciliation.md`.
 - **Poet:** stanza 5 names मनीराम ("मनीराम दर्शन करि").
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/bhakti-ras/`: Bhakti Ras (YouTube `jpMTbdIVO8I`, "Jai Janakinath Aarti (Ram Aarti)"). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 Verse types: टेक (refrain, `tek`, shown once at the start although it is sung after every stanza) and पद (stanza, `pad`). The folder's format: `tools/works/README.md`.
 

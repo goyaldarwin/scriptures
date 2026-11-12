@@ -4,7 +4,7 @@ The chālīsā of Śītalā that opens "जय-जय माता शीतल�
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 215–218), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** none yet.
+- **Recordings:** `audio/mantra-duniya/`: Mantra Duniya (YouTube `kyTMnUnElYo`, "Shree Sheetala Mata Chalisa"), its track 0:00–11:52 of the video (after 11:52: the singer's refrain 'पापनाशिनी दुखहरणी माँ शीतला'). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list. A draft (it plays only with Audio timing on): it sings the dohā घट-घट वासी last: the text is to follow its order first.
 - **Poet:** chaupāīs 36–37 name him, Rāmasundara Prabhudāsa, of Purī Tiwārī east of Prayāga, by Kakarā on the Gaṅgā (the same signature as the Gaṇeśa Chālīsā's chaupāī 37).
 
 Verse types: the Mānas's own (`do` dohā, `cau` chaupāī).

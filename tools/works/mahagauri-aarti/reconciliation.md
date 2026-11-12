@@ -22,3 +22,7 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 
 ## Readings settled
 - aarti.pad3 — सती (सत) हवन कुंड: kept सती हवन कुंड में था जलाया. सत is set off in every source (Drik Panchang in brackets, Aaj Tak and InstaAstro in quotation marks), none prints it as part of the line, and the stanza's lines are too uneven for the metre to decide; the base reading stands.
+
+## The recording
+Sangeet Audio (YouTube `cB6iL5se7HM`, `audio/sangeet-audio/`) sings this text in its order.
+- Sung with words that another written witness prints, against the base kept here: `aarti.pad3`.
