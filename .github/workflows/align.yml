@@ -80,7 +80,7 @@ jobs:
         # download fails, so the same file is taken from a copy and accepted only if its SHA-256 is the one pinned here
         # (the file whose alignments equal those made with Meta's download: tools/audio/METHOD.md, "Where it runs")
         env:
-          PIN: ""
+          PIN: 20ef12963ab4924bef49ac4fc7f58ad5da2ee43b2c11bc8c853c9b90ecdbc680
         run: |
           d="$HOME/.cache/torch/hub/checkpoints"; mkdir -p "$d"; f="$d/model.pt"
           curl -fsSL --retry 3 -m 900 -o "$f" https://dl.fbaipublicfiles.com/mms/torchaudio/ctc_alignment_mling_uroman/model.pt \

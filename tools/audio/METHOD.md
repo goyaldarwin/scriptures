@@ -72,6 +72,10 @@ switch before he has set any start (the Gītā's, the Vālmīki Rāmāyaṇa's):
 In the public repo's Actions (free), the `align` workflow, like `transcribe`, and like it with at most 14 jobs at once, so the checks, the site's
 publishing and the owner's timing submissions are never queued behind it (`docs/PLAYBOOK.md`, "GitHub Actions minutes").
 The whole Mānas with MMS is about 2,350 runner minutes.
+MMS's weights (`model.pt`, about 1.2 GB) come from Meta's `dl.fbaipublicfiles.com`; when that download fails (its certificate
+expired once), the `align` workflow takes the same file from its copy on Hugging Face (`seanghay/khmer-forced-aligner`) and
+accepts it only with the SHA-256 pinned in `align.yml`: the file whose alignments of two recordings already aligned with
+Meta's download (the Kuber and Chandraghanta āratīs) came out identical, start, end and score of every verse.
 
 ## Still to apply it to
 
