@@ -9,6 +9,11 @@ verse before's rough start to PAD seconds after the verse after's. A verse with 
 neighbours by its length, only to cut the windows: the aligner times it. The text given to the aligner is each verse's
 transliteration in plain letters (a–z), its numbers dropped.
 Window: {"yt", "a", "b" (seconds), "keep": [ids], "lines": [{"id", "rom", "rough"}]}.
+
+    python3 tools/audio/mms_windows.py <source> --whole [--skip id,id]
+A song whose transcript placed too few of its verses to cut windows by (fast singing, chant): one window for each track,
+its whole stretch (recordings.json start/end), holding every verse from the recording's "from" to its "to" (else the work's
+first and last), less those --skip names (verses the recording does not sing), each with its rough start where it has one.
 """
 import json, os, re, sys, unicodedata
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.dirname(os.path.dirname(HERE))
@@ -20,7 +25,7 @@ def rom(lines):
     t = re.sub(r'[^a-z\s]', ' ', t)
     return ' '.join(t.split())
 
-def main(src):
+def main(src, whole=False, skip=()):
     meta = json.load(open(os.path.join(src, 'source.json')))
     lib = os.path.join(REPO, 'library', meta['work'])
     work = json.load(open(os.path.join(lib, 'work.json'), encoding='utf-8'))
@@ -28,7 +33,15 @@ def main(src):
     IT = work['items']; ID = {x['id']: k for k, x in enumerate(IT)}
     L = lambda i: max(8, len(''.join(IT[i]['v'])))
     out = []
+    R = {r['yt']: r for r in json.load(open(os.path.join(src, 'recordings.json')))}
     for ti, tr in enumerate(au['tracks']):
+        if whole:
+            r = R[tr['yt']]
+            idx = [i for i in range(ID[r['from']] if r.get('from') else 0, (ID[r['to']] if r.get('to') else len(IT) - 1) + 1) if IT[i]['id'] not in skip]
+            got = {IT[i]['id']: au['at'][IT[i]['id']][1] for i in idx if IT[i]['id'] in au['at'] and au['at'][IT[i]['id']][0] == ti}
+            out.append({'yt': tr['yt'], 'a': tr.get('start', 0.0), 'b': tr.get('end', tr['dur']), 'keep': [IT[i]['id'] for i in idx],
+                        'lines': [{'id': IT[i]['id'], 'rom': rom(IT[i].get('t') or []), 'rough': got.get(IT[i]['id'])} for i in idx]})
+            continue
         idx = list(range(ID[tr['first']], ID[tr['last']] + 1))
         rough = {i: au['at'][IT[i]['id']][1] for i in idx if IT[i]['id'] in au['at'] and au['at'][IT[i]['id']][0] == ti}
         # a verse without a rough start: between its neighbours by length (or at the pace of the recording at its ends)
@@ -59,4 +72,6 @@ def main(src):
     bad = [l['id'] for w in out for l in w['lines'] if not l['rom']]
     print(len(out), 'windows,', sum(len(w['keep']) for w in out), 'verses', '(no letters:', bad[:5], ')' if bad else '')
 
-if __name__ == '__main__': main(os.path.abspath(sys.argv[1]))
+if __name__ == '__main__':
+    A = sys.argv[1:]
+    main(os.path.abspath(A[0]), '--whole' in A, set(A[A.index('--skip') + 1].split(',')) if '--skip' in A else set())
