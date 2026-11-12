@@ -15,7 +15,7 @@ The rule: keep the book; correct it only where it is clearly wrong, and follow t
 | after stanzas | जय. | (not shown) | The refrain cue; the refrain is the first item (टेक). |
 | stanza 2, line 2 | रक्तपुष्प की माला (Aarti Mala: रक्तपुष्प गलमाला) | रक्तपुष्प गल माला | As she sings it ("रख्त पूश्बगल माला" in the transcript): Drik Panchang's words, as it writes them. |
 | stanza 4, line 2 | राजत सम ज्योति (Aarti Mala the same) | सम राजत ज्योति | As she sings it ("सम राजित जोदी"): Drik Panchang's order. |
-| stanza 12, line 1 | अम्बे की आरती (Aarti Mala: (श्री)अम्बेजी की आरती) | श्री अम्बेजी की आरती | As she sings it ("श्री आम्टे खी आरती"): Drik Panchang's words. The transcript does not show जी; no witness has श्री without it, so the line is Drik Panchang's until the owner hears it. |
+| stanza 12, line 1 | अम्बे की आरती (Aarti Mala: (श्री)अम्बेजी की आरती) | श्री अम्बेजी की आरती | As she sings it (the transcript: "श्री आम्टे खी आरती"; the 5-s windows from 1293 to 1296 s: "श्रीयम भेची किया", "वश्री आमबेची की आज़े ती", "बेजी की आरती": श्री and जी both sung): Drik Panchang's words. |
 
 Kept as the book has them, against Drik Panchang: निशि दिन (Drik निशिदिन), मांग सिंदूर (Drik माँग सिन्दूर), उज्ज्वल (Drik उज्जवल), दोऊ (Drik दोउ), कंठन, खड्ग खप्पर धारी (Drik खप्परधारी), सुर-नर-मुनिजन (Drik सुर-नर-मुनि-जन), शुम्भ निशुम्भ विदारे (Drik शुम्भ-निशुम्भ बिदारे), निशदिन, ब्रह्माणी (Drik ब्रहमाणी), आगम निगम बखानी (Drik आगम-निगम-बखानी), चौंसठ योगिनी गावत (Drik चौंसठ योगिनी मंगल गावत; she sings the book's words), भैरू (Drik भैरूँ), अरु, डमरू (Drik डमरु), भक्तन की दुःख हरता (as Drik), वरमुद्रा (Drik वर-मुद्रा), मनवांछित (Drik मनवान्छित), नर नारी (Drik नर-नारी), कंचन (Drik कन्चन), श्रीमालकेतु, गावे, पावे (Drik गावै, पावै), सुख-सम्पत्ति (Drik सुख सम्पत्ति).
 

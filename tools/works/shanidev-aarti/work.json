@@ -3,8 +3,8 @@
  "path": "hinduism/aarti/shani/shanidev-aarti",
  "lang": "hi",
  "title": {
-  "hi": "जय जय जय श्री शनि देव",
-  "en": "Jai Jai Jai Shri Shani Dev"
+  "hi": "जय जय श्री शनि देव",
+  "en": "Jai Jai Shri Shani Dev"
  },
  "by": {
   "hi": "शनिदेव",
@@ -18,8 +18,8 @@
   "list": [
    {
     "key": "aarti",
-    "hi": "जय जय जय श्री शनि देव",
-    "en": "Jai Jai Jai Shri Shani Dev"
+    "hi": "जय जय श्री शनि देव",
+    "en": "Jai Jai Shri Shani Dev"
    }
   ]
  },

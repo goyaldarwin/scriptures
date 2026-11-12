@@ -2,7 +2,7 @@
 
 The chālīsā of Śanideva that opens "जय गणेश गिरिजा सुवन", in Awadhi (`awa`). The book prints it as its second Śani Chālīsā, "श्री शनि चालीसा (२)"; the first is `shanishchar-chalisa`.
 
-- **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 59–62), checked against Drik Panchang, with one line as the recording sings it (Drik Panchang's reading). Every choice: `reconciliation.md`.
+- **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 59–62), checked against Drik Panchang, its recording's other readings recorded. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
 - **Recordings:** `audio/bhaktidhaam/`: BhaktiDhaam (भक्तिधाम; the singers are not named), "सम्पूर्ण चालीसा संग्रह", a jukebox (YouTube `lCwPg0LRRjk`), this chālīsā at 35:11–44:56. The starts come from the transcript (`transcripts/`, with hand-checked starts in `fixes.md`), to be set by ear.
 

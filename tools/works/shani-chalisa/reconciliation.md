@@ -12,18 +12,14 @@ The rule: keep the book; correct it only where it is clearly wrong, and only on 
 |---|---|---|---|
 | chaupāī 7 | सौरीमन्द, शनी, दशनामा | सौरी मन्द शनी दशनामा | A missing space: Saurī and Manda are two of the ten names; Drik Panchang सौरी, मन्द. |
 | chaupāī 8 | जापर प्रभु प्रसन्न हवैं जाहीं | जापर प्रभु प्रसन्न ह्वैं जाहीं | हवैं has lost the virāma of ह्वैं ("having become"), the book's own form in chaupāī 18 (प्रभु ह्वै सुख दीन्हयों); Drik Panchang है. |
-| chaupāī 32 | जब आवहिं प्रभु स्वान सवार | जब आवहिं प्रभु स्वान सवारी | The rhyme with भारी needs सवारी ("mount"), as the chaupāī's sense; Drik Panchang सवारी. |
-| chaupāī 35 | स्वर्ण सर्व सर्वसुख मंगल भारी | स्वर्ण सर्वसुख मंगल कारी | सर्व printed twice: the half has 16 mātrās without it, 19 with it; Drik Panchang स्वर्ण सर्वसुख. मंगल कारी as the recording sings it (Recording, below). |
+| chaupāī 32 | जब आवहिं प्रभु स्वान सवार | = | Kept: सवार ("riding") is sound and gives the half its 16 mātrās (सवारी makes 17); only the rhyme with भारी and Drik Panchang's सवारी speak against it, and the recording cannot tell them apart. |
+| chaupāī 35 | स्वर्ण सर्व सर्वसुख मंगल भारी | स्वर्ण सर्वसुख मंगल भारी | सर्व printed twice: the half has 16 mātrās without it, 19 with it; Drik Panchang स्वर्ण सर्वसुख. मंगल भारी is the book's, kept (Recording, below). |
 | closing dohā | कीहों 'भक्त' तैयार | कीन्हों भक्त तैयार | कीहों has lost the न् of कीन्हों ("made"); Drik Panchang कीन्हों. The quotation marks round the preparer's name are the printer's. Drik Panchang has 'विमल' here, the name the book prints in the same dohā of the other Śani Chālīsā (`shanishchar-chalisa`); the book's भक्त is kept. |
 
 Kept as the book has them, against Drik Panchang: दमकै; कृष्णो; दुःखभंजन; शनी; जापर; रंकहुँ; होइ; बन, दीन्हयो / लीन्हयो, कैकेइहुँ, बनहूँ; गई (chaupāīs 11, 20); लषणहिं (Drik लखनहिं); नौलखा; तेलहिं; कीन्हयों / दीन्हयों, ह्वै (chaupāī 18; Drik है); आपहुं; भूंजी; शंकरहिं गह्यो; पारवती; कहँ, महँ; उपजावैं, करावैं; अद्भुत; शांति; शनीश्चर. Chaupāī 27 keeps the book's जग दिग्गज गर्दभ मृग स्वाना (Aaj Tak the same): जग ("world") is not one of the seven mounts, but the witnesses differ on the word it stands for (Drik Panchang हय "horse", AstroVed गज "elephant"), the reading is settled below (Readings settled).
 
 ## Recording
-The text follows the version sung in the chosen recording, BhaktiDhaam's "सम्पूर्ण चालीसा संग्रह" (YouTube `lCwPg0LRRjk`, this Śani Chālīsā, the one that opens जय गणेश गिरिजा सुवन मंगल करण कृपाल, from 35:11 to 44:56): it sings the book's text (in the closing dohā the book's भक्त, not Drik Panchang's विमल; in chaupāī 27 the book's जग दिग्गज), except in one place, where it sings Drik Panchang's reading, written as Drik Panchang spells it. In chaupāī 2 it is heard as मुकुट छवि साजे, which no witness has; the book's छाजै is kept.
-
-| Place | Book | Drik Panchang | Ours |
-|---|---|---|---|
-| chaupāī 35 | स्वर्ण सर्वसुख मंगल भारी (after the correction above) | स्वर्ण सर्वसुख मंगल कारी | मंगल कारी, as the recording sings it |
+A chālīsā's text is the base's, corrected only where the base is clearly wrong (docs/PLAYBOOK.md §2–3); the recording is evidence for a reading, never the reason for a change alone. The chosen recording, BhaktiDhaam's "सम्पूर्ण चालीसा संग्रह" (YouTube `lCwPg0LRRjk`, this Śani Chālīsā, the one that opens जय गणेश गिरिजा सुवन मंगल करण कृपाल, from 35:11 to 44:56), sings the book's text (in the closing dohā the book's भक्त, not Drik Panchang's विमल; in chaupāī 27 the book's जग दिग्गज), except that it sings Drik Panchang's मंगल कारी for the book's मंगल भारी in chaupāī 35 (the book's is kept: it is sound), and कीन्हों / दीन्हों, है, लखन for the book's कीन्हयों / दीन्हयों, ह्वैं, लषण (forms of the same words). In chaupāī 2 it is heard as मुकुट छवि साजे, which no witness has; the book's छाजै is kept.
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).

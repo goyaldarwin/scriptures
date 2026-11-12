@@ -4,7 +4,7 @@ What the recording sings: music to ~18 s; the refrain (जय जय श्र�
 and its first line again (18.7–64); music; stanza 1 and the refrain (93.2–127); music; stanza 2 and the refrain (145.7–180);
 music; stanza 3 and the refrain (209.3–247.6); then the refrain's first line, over and over, to the end (255–338).
 **Stanza 4 (देव दनुज ऋषि मुनी…) is not sung**, so it has no time (`source.json` → `"fill": 0`). This is the āratī
-जय जय जय श्री शनि देव, not जय शनि देवा (`jai-shani-deva-aarti`).
+जय जय श्री शनि देव, not जय शनि देवा (`jai-shani-deva-aarti`).
 
 The identify transcript (`transcripts/JtJ4P0302FY.jsonl`) has only 15 segments, some misplaced (its first, at 0–10 s, is
 music). Evidence: the same Whisper small model (its ONNX export, `tools/audio/transcribe_onnx.py`) on 4–9 s pieces.

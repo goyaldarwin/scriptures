@@ -13,15 +13,18 @@ The rule: keep the book; correct it only where it is clearly wrong, and follow t
 | stanza numbers | none | ॥१॥ … ॥७॥ | The standard. |
 | stanza 2, line 2 | देवबंधु जस गावत नृत्य करत ता था | देववधू जस गावत नृत्य करत ता था | A misprint (ब for व, ं for the ू mark): those who sing her praise and dance "tā thā" are the wives of the gods (देववधू, the apsarās); देवबंधु ("kin of the gods") does not dance in any witness. Drik Panchang and Aarti Mala have देव वधू, and InstaAstro (<https://instaastro.com/blog/maa-parvati-ji-ki-aarti/>), an independent web copy, renders the line as celestial women singing her praise while dancing. Written as one word, as the book joins it. |
 | stanza 4, line 2 | सहस्त्र भुज | सहस्र भुज | सहस्त्र is a common misspelling of सहस्र ("thousand"); Drik Panchang सहस्र. |
+| stanza 4, line 2 | सहस्र भुज तनु धरिके | सहस्र भुजा तनु धरिके | As she sings it (the 5-s windows from 2124 to 2126 s: "शाहस्त्र भुजा तनुदरी के"; scored on the audio, भुजा against भुज: −26.8 against −32.3), Drik Panchang's word; धरिके as the book writes it (Drik धरि के, sung alike). |
 | stanza 5, line 2 | नन्दी भृंगी बीन लही है हाथन मदमाता (Aarti Mala: बीन लही सारा मदमाता) | नन्दी भृंगी बीन लही सारा जग मदमाता | As she sings it ("नंदी बंदी भीन लही · सारा जद मद माता" in the transcript): Drik Panchang's line, as it writes it. |
 
-Kept as the book has them, where Drik Panchang differs: शुभफल (Drik शुभ फल), अरिकुलपद्म विनासनी (Drik अरिकुल पद्म विनाशिनि), सेवकत्राता, जगजीवन जगदंबा (Drik separate, जगदम्बा), सिंह का बाहन (Drik सिंह को वाहन), ता था (Drik ताथा), रूप शील (Drik रूपशील), भुज (Drik भुजा), धरिके (Drik धरि के), सृष्टिरूप (Drik सृष्टि रूप), देवन अरज करत तव चित को लाता (Drik हम), सदा सुखी (Drik सदासुखी).
+| stanza 6, line 1 | देवन अरज करत तव चित को लाता | देवन अरज करत हम चित को लाता | As she sings it (the 5-s windows from 2213 to 2215 s: "…जगकरत हुं", "…जकरत हम"; scored: −37.7 against −53.4 for तव), Drik Panchang's word: the gods make their plea, and we bring the Mother into our hearts. |
 
-Where she sings words no witness has, the text keeps the book until the owner decides by ear: the refrain's second line as मैया जय गौरा माता (the witnesses: जय पार्वती माता); stanza 1, जग जननी जगदंबा (the witnesses: जगजीवन); stanza 6, line 2, apparently not गावत दे दे ताली मन में रंगराता (the transcript is unclear: "तेरी ख्रिपार हे तो · मन नहीं भर माता"); stanza 7, जो कोई नर गाता and, perhaps, धन संपत्ति (the witnesses: जो कोई गाता, सुख सम्पत्ति).
+Kept as the book has them, where Drik Panchang differs: शुभफल (Drik शुभ फल), अरिकुलपद्म विनासनी (Drik अरिकुल पद्म विनाशिनि), सेवकत्राता, जगजीवन जगदंबा (Drik separate, जगदम्बा), सिंह का बाहन (Drik सिंह को वाहन), ता था (Drik ताथा), रूप शील (Drik रूपशील), धरिके (Drik धरि के), सृष्टिरूप (Drik सृष्टि रूप), सदा सुखी (Drik सदासुखी).
+
+Where she sings words no witness has, the text keeps the book (docs/PLAYBOOK.md §3: each word as a written witness has it), heard in 5-s windows: the refrain's second line as मैया जय गौरा माता (1887–1889 s; the witnesses: जय पार्वती माता); stanza 1, जग जननी जगदंबा (1970–1972 s; the witnesses: जगजीवन); stanza 6, line 2, another line (2225–2236 s: "तेरी क्रिपार हे तो", "मन नहीं भर माता"; the witnesses: गावत दे दे ताली मन में रंगराता); stanza 7, जो कोई नर गाता and धन सम्पत्ति (2266–2287 s; the witnesses: जो कोई गाता, सुख सम्पत्ति).
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
 
 ## Readings settled
 - **aarti.pad7** (श्री प्रताप आरती मैया की): प्रताप is the poet's signature, as a name closes many āratīs (the Brahmā āratī's प्रताप, the Śiva āratī's स्वामी शिवानन्द); "the glorious āratī" would want प्रतापी. Meaning as given.
-- **aarti.pad6** (देवन अरज करत तव चित को लाता): the gods make their plea and bring it to your heart (चित, attention), the book's देवन kept against Drik Panchang's हम. Meaning as given.
+- **aarti.pad6** (देवन अरज करत हम चित को लाता): the gods make their plea, and we bring the Mother into our hearts (चित, the mind's attention); लाता is the singular verb the line's rhyme keeps, read with हम. Meaning as given.

@@ -1,4 +1,4 @@
-# श्री दुर्गा चालीसा (Shri Durga Chalisa): the verse text, as BhaktiDhaam sings it, from ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 173–176).
+# श्री दुर्गा चालीसा (Shri Durga Chalisa): the verse text, from ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 173–176).
 # The witnesses and every choice: reconciliation.md.
 
 @part chalisa
@@ -56,11 +56,11 @@
 परी गाढ़ सन्तन पर जब जब । भई सहाय मातु तुम तब-तब ॥
 @topic माँकी महिमा | Her glory
 [chalisa.cau25 cau 25]
-अमरपुरी अरु बासव लोका । तब महिमा सब रहे अशोका ॥
+अमर पुरी औरों सब लोका । तब महिमा सब रहे अशोका ॥
 [chalisa.cau26 cau 26]
 ज्वाला में है ज्योति तुम्हारी । तुम्हें सदा पूजें नर नारी ॥
 [chalisa.cau27 cau 27]
-प्रेम भक्ति से जो यश गावै । दुःख दारिद्र निकट नहिं आवे ॥
+प्रेम भक्ति से जो जस गावै । दुःख दारिद्र निकट नहिं आवे ॥
 [chalisa.cau28 cau 28]
 ध्यावै तुम्हें जो नर मन लाई । जन्म मरण ताको छुटि जाई ॥
 [chalisa.cau29 cau 29]
@@ -86,7 +86,7 @@
 [chalisa.cau38 cau 38]
 करो कृपा हे मातु दयाला । ऋद्धि सिद्धि दे करहु निहाला ॥
 [chalisa.cau39 cau 39]
-जब लगि जियौं दया फल पाऊँ । तुम्हरो यश मैं सदा सुनाऊँ ॥
+जब लगि जियौं दया फल पाऊँ । तुम्हरो जस मैं सदा सुनाऊँ ॥
 [chalisa.cau40 cau 40]
 दुर्गा चालीसा जो गावैं । सब सुख भोग परम पद पावैं ॥
 [chalisa.cau41 cau 41]
