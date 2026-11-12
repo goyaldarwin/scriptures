@@ -36,7 +36,7 @@ def main(src, show=False):
     lean = statistics.median(leans) if leans else float(re.search(r'lean ([\d.]+) s', C.get('why', '')).group(1))
     assert all(abs(x - lean) < 0.011 or x < lean for x in leans), f'aligned.json is not MMS less one lean: {sorted(set(leans))[:8]}'
     n_all = sum(len(v) for v in kept.values()); n_al = sum(len(v) for v in A.values())
-    vids = 'YouTube ' + ', '.join(f'`{r["yt"]}`' + (f', its track {r["start"]}–{r["end"]} s' if 'start' in r else '') for r in REC)
+    vids = 'YouTube ' + ', '.join(f'`{r["yt"]}`' + (f', its track {r["start"]}–{r.get("end", r["dur"])} s' if 'start' in r else '') for r in REC)
     own = sum(len(v) for v in O.values()) if O else 0
     owned = {i for v in O.values() for i in v}
     out = ['# Verse starts from Meta\'s MMS forced aligner (`aligned.json`)', '',
