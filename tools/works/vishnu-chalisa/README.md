@@ -2,7 +2,7 @@
 
 The chālīsā of Viṣṇu that opens "विष्णु सुनिए विनय सेवक की चितलाय", in Awadhi (`awa`).
 
-- **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 38–41), checked against Drik Panchang, with one line as the recording sings it (Drik Panchang's reading). Every choice: `reconciliation.md`.
+- **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 38–41), checked against Drik Panchang, its recording's other reading recorded. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
 - **Recordings:** `audio/bhaktidhaam/`: BhaktiDhaam (भक्तिधाम; the singers are not named), "सम्पूर्ण चालीसा संग्रह", a jukebox (YouTube `lCwPg0LRRjk`), this chālīsā at 19:12–24:37. The starts come from the transcript (`transcripts/`, with hand-checked starts in `fixes.md`), to be set by ear.
 

@@ -1,12 +1,12 @@
-# जय जय जय श्री शनि देव (Jai Jai Jai Shri Shani Dev): the verse text, from ५१ चालीसा संग्रह आरतियों सहित
+# जय जय श्री शनि देव (Jai Jai Shri Shani Dev): the verse text, from ५१ चालीसा संग्रह आरतियों सहित
 # (Randhir Prakashan, p. 58), the refrain's second line as Chand Kumar sings it in the owner's recording (YouTube JtJ4P0302FY),
 # written as Drik Panchang writes it. The witnesses and every choice: reconciliation.md.
 
 @part aarti
 @section aarti
-@topic जय जय जय श्री शनि देव | Jai Jai Jai Shri Shani Dev
+@topic जय जय श्री शनि देव | Jai Jai Shri Shani Dev
 [aarti.tek tek]
-जय जय जय श्री शनि देव भक्तन हितकारी ।
+जय जय श्री शनि देव भक्तन हितकारी ।
 सूरज के पुत्र प्रभु छाया महतारी ॥
 [aarti.pad1 pad 1]
 श्याम अंग वक्र-दृष्टि चतुर्भुजा धारी ।

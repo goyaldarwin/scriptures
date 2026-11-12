@@ -1,4 +1,4 @@
-# श्री विष्णु चालीसा (Shri Vishnu Chalisa): the verse text, as BhaktiDhaam sings it, from ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 38–41).
+# श्री विष्णु चालीसा (Shri Vishnu Chalisa): the verse text, from ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 38–41).
 # The witnesses and every choice: reconciliation.md.
 
 @part chalisa
@@ -70,7 +70,7 @@
 [chalisa.cau29 cau 29]
 हरहु सकल संताप हमारे । कृपा करहु हरि सिरजन हारे ॥
 [chalisa.cau30 cau 30]
-देखहुँ मैं निज दरश तुम्हारे । दीन बन्धु भक्तन हितकारे ॥
+देखहुँ मैं नित दरश तुम्हारे । दीन बन्धु भक्तन हितकारे ॥
 [chalisa.cau31 cau 31]
 चहत आपका सेवक दर्शन । करहु दया अपनी मधुसूदन ॥
 [chalisa.cau32 cau 32]

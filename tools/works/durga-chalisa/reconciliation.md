@@ -6,17 +6,17 @@
 - **Chalisa Mala** (the indif.com printout in the same scriptures-data folder, images i-404 … i-406): another copy of the web text, opening with a Sanskrit dhyāna (दुर्गा दुर्गतिहारिणी …) that is not part of the chālīsā; used only as a check.
 - **For a doubtful reading only:** Green Message (greenmesg.org, Durga Chalisa), found by web search, an independent typed copy.
 
-The book's version differs from the web text in a few places. Where the recording sings the web text's reading, the text has it (below); elsewhere the book's is kept: रिपु मुरख मोहि अति डरपावे (chaupāī 36's second half, as the recording sings it; web मोह मदादिक सब विनशावै), दुर्गा चालीसा जो गावैं (web जो नित गावै), and the closing dohā शरणागत रक्षा करे, which the web text does not have.
+The book's version differs from the web text in a few places. Where the recording sings the web text's reading, the text keeps the book's unless the book is clearly wrong (below); the book's is kept also in: रिपु मुरख मोहि अति डरपावे (chaupāī 36's second half, as the recording sings it; web मोह मदादिक सब विनशावै), दुर्गा चालीसा जो गावैं (web जो नित गावै), and the closing dohā शरणागत रक्षा करे, which the web text does not have.
 
 ## Recording
-The text follows the version sung in the chosen recording, BhaktiDhaam's "सम्पूर्ण चालीसा संग्रह" (YouTube `lCwPg0LRRjk`, the Durgā Chālīsā from 24:46 to 29:49), as far as it sings another written witness's reading: in the four places below it sings Drik Panchang's (and Chalisa Mala's) reading, written as they spell it; elsewhere it sings the book's text. It sings chaupāī 40 as दुर्गा चालीसा जो कोई गावै, which no witness has; the book's line is kept. Chaupāī 41 and the closing dohā are not heard in the transcript; they stay, untimed if they are not sung.
+A chālīsā's text is the base's, corrected only where the base is clearly wrong (docs/PLAYBOOK.md §2–3); the recording is evidence for a reading, never the reason for a change alone. The chosen recording, BhaktiDhaam's "सम्पूर्ण चालीसा संग्रह" (YouTube `lCwPg0LRRjk`, the Durgā Chālīsā from 24:46 to 29:49), sings the book's text except in the four places below, where it sings Drik Panchang's (and Chalisa Mala's) reading. It sings chaupāī 40 as दुर्गा चालीसा जो कोई गावै, which no witness has; the book's line is kept. Chaupāī 41 and the closing dohā are not heard in the transcript; they stay, untimed if they are not sung.
 
 | Place | Book | Drik Panchang, Chalisa Mala | Ours |
 |---|---|---|---|
-| chaupāī 23 | रूप कराल काली को धारा | रूप कराल कालिका धारा | कालिका, as the recording sings it |
-| chaupāī 25 | अमर पुरी औरों सब लोका | अमरपुरी अरु बासव लोका | अमरपुरी अरु बासव लोका, as the recording sings it (the second half stays the book's: तब महिमा सब रहे अशोका) |
-| chaupāī 27 | जो जस गावै | जो यश गावै | यश, as the recording sings it |
-| chaupāī 39 | तुम्हरो जस मैं | तुम्हरो यश मैं | यश, as the recording sings it |
+| chaupāī 23 | रूप कराल काली को धारा | रूप कराल कालिका धारा | The book's half has 17 mātrās, कालिका gives the caupāī's 16; Drik Panchang has कालिका, and the recording sings it (the transcript at 1652 s: "रूप कराल का लिका दारा"). |
+| chaupāī 25 | अमर पुरी औरों सब लोका | = | Kept: the book's line is sound ("Amarāvatī and all the other worlds") and keeps the metre. The recording sings Drik Panchang's अमरपुरी अरु बासव लोका (1671 s: "आमर पुरी आरुबा सविलो का"): a recording and one witness against a sound base. |
+| chaupāī 27 | जो जस गावै | = | Kept: जस is the Hindi form of यश, the same word. The recording sings यश, as Drik Panchang writes it. |
+| chaupāī 39 | तुम्हरो जस मैं | = | Kept, as chaupāī 27; the recording sings यश. |
 
 ## Corrections
 The rule: keep the book; correct it only where it is clearly wrong, and only on the witnesses. The library's writing standard (docs/PLAYBOOK.md §3): a chaupāī's two halves on one line, `।` between them and `॥` at its end; a dohā's two lines, each ending `।` and `॥`; the book's commas are not kept.

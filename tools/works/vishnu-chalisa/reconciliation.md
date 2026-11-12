@@ -13,11 +13,11 @@ The rule: keep the book; correct it only where it is clearly wrong, and only on 
 Kept as the book has them, against Drik Panchang: भगवान् (Drik भगवान), कौन भांति मैं करहु समर्पण (Drik भाँति … करहुँ). Otherwise the two texts agree word for word, including the readings that look odd (अमिलख, मन्द्राचल, मझाया, हिरणाकुश, धुरू, शैतानी), which both print.
 
 ## Recording
-The text follows the version sung in the chosen recording, BhaktiDhaam's "सम्पूर्ण चालीसा संग्रह" (YouTube `lCwPg0LRRjk`, the Viṣṇu Chālīsā from 19:12 to 24:37): it sings the book's text, except in one place, where it sings Drik Panchang's reading, written as Drik Panchang spells it.
+A chālīsā's text is the base's, corrected only where the base is clearly wrong (docs/PLAYBOOK.md §2–3); the recording is evidence for a reading, never the reason for a change alone. The chosen recording, BhaktiDhaam's "सम्पूर्ण चालीसा संग्रह" (YouTube `lCwPg0LRRjk`, the Viṣṇu Chālīsā from 19:12 to 24:37), sings the book's text except in chaupāī 30, where it sings Drik Panchang's निज for the book's नित; the book's is kept.
 
 | Place | Book | Drik Panchang | Ours |
 |---|---|---|---|
-| chaupāī 30 | देखहुँ मैं नित दरश तुम्हारे | देखहुँ मैं निज दरश तुम्हारे | निज, as the recording sings it (its sense: Readings settled, below) |
+| chaupāī 30 | देखहुँ मैं नित दरश तुम्हारे | = | Kept: "may I see your sight every day" is sound. The recording sings Drik Panchang's निज. |
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
@@ -28,5 +28,5 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 - **chalisa.cau15** (अमिलख): अमिय लखि, 'seeing the nectar', as our meaning has it: both witnesses print अमिलख, and seeing the nectar is what starts the demons' quarrel that Mohinī ends in the next half.
 - **chalisa.cau22** (हार पार शिव सकल बनाई): 'Śiva tried every means and still was defeated', as our meaning has it: हार 'defeat' with सकल बनाई 'made every effort'; the story (Śiva Purāṇa) is Śiva's failure to overcome Jalandhara while Vṛndā's chastity guarded him.
 - **chalisa.cau25** (देखत तीन दनुज): तीन as printed, 'three', as our meaning has it: both witnesses print it, and no source shows तिन.
-- **chalisa.cau30** (देखहुँ मैं निज दरश तुम्हारे): निज with मैं, 'may I myself behold you', as our meaning has it; दरश तुम्हारे already says 'your sight'.
+- **chalisa.cau30** (देखहुँ मैं नित दरश तुम्हारे): नित, 'every day', as our meaning has it.
 - **chalisa.cau40** (निगम: the Veda or a poet?): the Veda, as our meaning has it: no source names a poet Nigama for this chālīsā, and निगम is the common word for the Veda.
