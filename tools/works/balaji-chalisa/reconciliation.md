@@ -23,3 +23,8 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 - chalisa.cau26 — जब (book and Drik Panchang) or जय: kept जब, "when the devotees call out to Bābā", leading into chaupāī 27. Both witnesses are one edition; Shubh Panchang and Bhakti Bharat (copies of Drik) do not differ; no independent source shows a corruption, so the print stands.
 - chalisa.cau28 — कल्याणा: "who brings good", as the same word in chaupāī 16; the poet signs as कल्याण स्नेही (opening dohā, chaupāī 40, closing dohā), not with the bare name mid-prayer. Meaning unchanged.
 - chalisa.cau39 — सत is "a hundred (times)", as the Hanumān Chālīsā's जो सत बार पाठ कर कोई; बागीसा is Vāgīśa, "the Lord of Speech" (MW vāgīśa: Bṛhaspati, Brahmā), rendered by its sense. Meaning unchanged.
+
+## The recording
+Divya Dhwani (YouTube `PMXa9iFo1Hs`, `audio/divya-dhwani/`) sings this text in its order, three times through; its track is the first singing.
+- Sung with words that another written witness prints, against the base kept here: `chalisa.cau6`.
+- A draft (it plays only with Audio timing on): MMS is still to time it.
