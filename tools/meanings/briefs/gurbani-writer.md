@@ -36,7 +36,7 @@ You are writing the Punjabi and English meanings, line by line, of a batch of sh
 - Do **not** edit any file in the repository: write only in the batch folder.
 
 ## The copy rule
-Your wording is your own. Check it: `python3 tools/meanings/overlap.py OUT/batch-NN.en.json OUT/copied-en-sant-singh-khalsa.json --report`, and the same against `copied-en-manmohan-singh.json`; the Punjabi against `copied-pa-sahib-singh.json`, `copied-pa-manmohan-singh.json`, `copied-pa-faridkot.json`. Each must end with "0 with a shared run of 10+ words". A shorter run that is the natural words, a name or the line's own order is fine; reword only what plainly follows their phrasing, changing **only the wording**.
+Your wording is your own. Check it: `python3 tools/meanings/overlap.py OUT/batch-NN.en.json OUT/copied-en-sant-singh-khalsa.json --report`, and the same against `copied-en-manmohan-singh.json`; the Punjabi against `copied-pa-sahib-singh.json`, `copied-pa-manmohan-singh.json`, `copied-pa-faridkot.json`. Each must end with "0 with a shared run of 10+ words". A shorter run that is the natural words, a name or the line's own order is fine; reword only what plainly follows their phrasing, changing **only the wording**. The one exception: a run made only of the fixed Ik Oankar sentence and the settled heading after it (both are ours, set for every shabad) stays as it is; never bend a heading to escape it.
 
 ## Output (in the batch folder; NN = your batch number)
 - `batch-NN.pa.json` and `batch-NN.en.json`: `{"<id>": ["<piece for line 0>", …]}` — exactly the ids of `batch-NN.ids`, in order; each list exactly as long as the verse's lines. UTF-8, `ensure_ascii=False`.

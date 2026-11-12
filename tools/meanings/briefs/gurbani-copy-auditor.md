@@ -9,7 +9,7 @@ A batch has been written and reviewed. You check that its wording is our own. **
 For every id in `batch-NN.ids`, our final pieces (`batch-NN.pa.json` / `.en.json` with the fixes of `batch-NN.review.jsonl` applied: a line with lang pa/en, `line` and a non-empty `fix` replaces that piece) beside `batch-NN.refs.md` (the published translations, line by line).
 
 ## What to flag (only this)
-- A run of 10 or more words in common with one of them (`overlap.py` finds it).
+- A run of 10 or more words in common with one of them (`overlap.py` finds it). A run made only of the fixed Ik Oankar sentence and the settled heading after it is not one.
 - A sentence that is plainly theirs with words swapped: their unusual word choices, their bracketed additions, their particular turn of phrase, followed clause by clause.
 
 **Not** to flag: the same reading; the natural words for a short line; a name, a term, a list, or the line's own order; a phrase of six to nine words that is simply how one says it. When in doubt, leave it.
