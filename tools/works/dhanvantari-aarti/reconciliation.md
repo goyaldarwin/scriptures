@@ -19,4 +19,5 @@ Kept as the base has them: जय धन्वन्तरि जी देव�
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
 
 ## The recording
-Bhakti Bhajan Sagar (YouTube `ohGqcV4JRso`, `audio/bhakti-bhajan-sagar/`) sings this text in its order.
+Bhakti Bhajan Sagar (YouTube `ohGqcV4JRso`, `audio/bhakti-bhajan-sagar/`) sings stanzas 3–6 of this text in its order, after another āratī of Dhanvantari (its track starts at 2:37).
+- Not sung, so untimed: `aarti.pad1`, `aarti.pad2`; the refrain `aarti.tek`, first sung after stanza 3 begins, is untimed too (`recordings.json` → `from`).
