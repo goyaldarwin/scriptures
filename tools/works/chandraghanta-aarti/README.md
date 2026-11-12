@@ -4,7 +4,7 @@ The āratī of Candraghaṇṭā, one of the nine forms of Durgā (Navadurgā), 
 
 - **Text** (`text.txt`): Drik Panchang, "Chandraghanta Mata Aarti" (drikpanchang.com/lyrics/aarti/navdurga/chandraghanta/devi-chandraghanta-aarti.html); the āratī is not in the book. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** `audio/bhakti-dhaara/`: Bhakti Dhaara (YouTube `_2MA82Q6WcM`, "जय माँ चन्द्रघण्टा सुख धाम 🙏 | Maa Chandraghanta Ki Aarti | Navratri Day 3 | नवरात्रि Special 2026"), its track 0:00–2:10 of the video (after 2:10: music only to the video's end). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
+- **Recordings:** `audio/bhakti-dhaara/`: Bhakti Dhaara (YouTube `_2MA82Q6WcM`, "जय माँ चन्द्रघण्टा सुख धाम 🙏 | Maa Chandraghanta Ki Aarti | Navratri Day 3 | नवरात्रि Special 2026"), its track 0:00–2:10 of the video (after 2:10: music). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 Verse types: पद (stanza, `pad`). The āratī has no refrain (टेक): the witness prints none. The folder's format: `tools/works/README.md`.
 

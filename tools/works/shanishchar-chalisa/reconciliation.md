@@ -28,4 +28,4 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 Shivhare Bhakti (YouTube `x7hwDcrZpiU`, `audio/shivhare-bhakti/`) sings this text.
 - Not sung, so untimed: `chalisa.so1`.
 - Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.do1`, `chalisa.cau3`, `chalisa.cau4`, `chalisa.cau9`, `chalisa.cau10`, `chalisa.cau12`, `chalisa.cau13`, `chalisa.cau15`, `chalisa.cau16`, `chalisa.cau17`, `chalisa.cau22`, `chalisa.cau23`, `chalisa.cau24`, `chalisa.cau27`, `chalisa.cau29`, `chalisa.cau30`, `chalisa.cau32`, `chalisa.cau35`, `chalisa.cau38`, `chalisa.do2`, `chalisa.do3`.
-- A draft (it plays only with Audio timing on): not every verse it sings is timed yet: the transcript heard too little of it for the forced aligner.
+- A draft (it plays only with Audio timing on): its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed.

@@ -24,4 +24,4 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 
 ## The recording
 ASC Digital (YouTube `siASaJ0KfKs`, `audio/asc-digital/`) sings this text.
-- A draft (it plays only with Audio timing on): not every verse it sings is timed yet: the transcript heard too little of it for the forced aligner.
+- A draft (it plays only with Audio timing on): its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed.

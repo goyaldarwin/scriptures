@@ -4,7 +4,7 @@ The chālīsā of Bhagavān Brahmā that opens "जय ब्रह्मा ज
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 48–52), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** `audio/saroj-amarnath-yadav/`: Saroj Amarnath Yadav (YouTube `7lfOLotn17A`, "श्री ब्रह्मा चालीसा पाठ ll Shri Brahma Chalisa Paath ll श्री ब्रह्मा चालीसा का महत्व"), its track 0:52–5:49 of the video (before 0:52: music). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list. A draft (it plays only with Audio timing on): not every verse it sings is timed yet: the transcript heard too little of it for the forced aligner.
+- **Recordings:** `audio/saroj-amarnath-yadav/`: Saroj Amarnath Yadav (YouTube `7lfOLotn17A`, "श्री ब्रह्मा चालीसा पाठ ll Shri Brahma Chalisa Paath ll श्री ब्रह्मा चालीसा का महत्व"), its track 0:52–5:49 of the video (before 0:52: music, then a spoken introduction). Its starts come from the transcript for now; MMS (`tools/audio/METHOD.md`) is still to time it. A draft (it plays only with Audio timing on): its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed.
 
 Verse types: the Mānas's own (`do` dohā, `cau` chaupāī).
 

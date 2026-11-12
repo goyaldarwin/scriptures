@@ -30,5 +30,4 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 
 ## The recording
 Amal Bhakti (YouTube `TP1GQ9veSuU`, `audio/amal-bhakti/`) sings this text.
-- Not sung, so untimed: `aarti.pad9`.
-- A draft (it plays only with Audio timing on): not every verse it sings is timed yet: the transcript heard too little of it for the forced aligner.
+- A draft (it plays only with Audio timing on): its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed.

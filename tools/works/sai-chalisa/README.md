@@ -4,7 +4,7 @@ The chālīsā of Shirdi Sai Baba that opens "पहले साई के च�
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 117–133), checked against Drik Panchang and the Chalisa Mala printout. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** `audio/sai-aashirwad/`: Sai Aashirwad (YouTube `mZ2KP0p-NYo`, "साई चालीसा |Sai Chalisa | Sai Baba Song | Shri Sai Chalisa | Bhakti Song | Sai Baba Bhajan |"), its track 0:00–13:32 of the video (after 13:32: music only to the video's end). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
+- **Recordings:** `audio/sai-aashirwad/`: Sai Aashirwad (YouTube `mZ2KP0p-NYo`, "साई चालीसा |Sai Chalisa | Sai Baba Song | Shri Sai Chalisa | Bhakti Song | Sai Baba Bhajan |"), its track 0:00–13:32 of the video (after 13:32: music). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 Verse types: the Mānas's own (`cau` chaupāī), used for the couplets.
 

@@ -29,4 +29,4 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## The recording
 Shemaroo Bhakti (YouTube `AETjP9K4u3M`, `audio/shemaroo-bhakti/`) sings this text.
 - Sung with words that another written witness prints, against the base kept here: `chalisa.do2`, `chalisa.cau5`, `chalisa.cau7`, `chalisa.cau8`, `chalisa.cau12`, `chalisa.cau19`, `chalisa.cau34`.
-- A draft (it plays only with Audio timing on): not every verse it sings is timed yet: the transcript heard too little of it for the forced aligner.
+- A draft (it plays only with Audio timing on): its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed.

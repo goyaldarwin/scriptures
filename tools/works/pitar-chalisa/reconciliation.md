@@ -25,4 +25,4 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## The recording
 Plus Bhakti (YouTube `WpNJv_iLX00`, `audio/plus-bhakti/`) sings this text.
 - Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau37`, `chalisa.cau40`, `chalisa.do3`.
-- A draft (it plays only with Audio timing on): not every verse it sings is timed yet: the transcript heard too little of it for the forced aligner.
+- A draft (it plays only with Audio timing on): its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed.

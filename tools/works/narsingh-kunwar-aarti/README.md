@@ -5,7 +5,7 @@ The āratī of Bhagavān Nṛsiṁha, counting his descents (Nṛsiṁha, Vāman
 - **Text** (`text.txt`): Drik Panchang, "Narsingh Bhagwan Ki Aarti" (aarti-kijai-narsingh-kunwarki; the book has no copy of it). Every choice: `reconciliation.md`.
 - **Poet:** the signature line names दास कबीरा (stanza 3).
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** `audio/panditjee/`: Panditjee (YouTube `eTcpAiR-k-c`, "आरती कीजै नरसिंह कुंवर की | Female Voice | Narasimha Bhagwan Aarti"), its track 0:00–1:56 of the video (after 1:56: about 97 s with no singing). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
+- **Recordings:** `audio/panditjee/`: Panditjee (YouTube `eTcpAiR-k-c`, "आरती कीजै नरसिंह कुंवर की | Female Voice | Narasimha Bhagwan Aarti"), its track 0:00–1:56 of the video (after 1:56: no singing). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 Verse types: टेक (refrain, `tek`, shown once at the start) and पद (stanza, `pad`). The folder's format: `tools/works/README.md`.
 

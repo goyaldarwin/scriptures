@@ -28,6 +28,5 @@ The readings the words alone leave open, each decided (docs/PLAYBOOK.md §2).
 
 ## The recording
 Vijay Laxmi (YouTube `EvCraLQF3XM`, `audio/vijay-laxmi/`) sings this text.
-- Not sung, so untimed: `aarti.pad4`.
 - Sung with a few words that no written witness has, so the text keeps its own there: `aarti.pad3`.
-- A draft (it plays only with Audio timing on): not every verse it sings is timed yet: the transcript heard too little of it for the forced aligner.
+- A draft (it plays only with Audio timing on): its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed.

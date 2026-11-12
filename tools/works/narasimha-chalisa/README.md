@@ -4,7 +4,7 @@ The chālīsā of Bhagavān Nṛsiṁha that opens "मास वैशाख �
 
 - **Text** (`text.txt`): Drik Panchang (Shri Narasimha Chalisa); the chālīsā is not in the book. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** `audio/gyan-of-vedas/`: Gyan of Vedas (YouTube `1dfJrAgnjIU`, ""श्री नरसिंह चालीसा | Shri Narsingh Chalisa for Protection & Strength #Narasimha"), its track 0:10–7:38 of the video (before 0:10: music, then the title announced 'श्री नरसिंह चालीसा'; after 7:38: music to the end of the video). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list. A draft (it plays only with Audio timing on): not every verse it sings is timed yet: the transcript heard too little of it for the forced aligner.
+- **Recordings:** `audio/gyan-of-vedas/`: Gyan of Vedas (YouTube `1dfJrAgnjIU`, ""श्री नरसिंह चालीसा | Shri Narsingh Chalisa for Protection & Strength #Narasimha"), its track 0:10–7:38 of the video (before 0:10: music, then the title announced; after 7:38: music). Its starts come from the transcript for now; MMS (`tools/audio/METHOD.md`) is still to time it. A draft (it plays only with Audio timing on): its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed.
 
 Verse types: the Mānas's own (`do` dohā, `cau` chaupāī).
 

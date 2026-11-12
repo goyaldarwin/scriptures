@@ -4,7 +4,7 @@ The āratī of Śrī Rāma offered in the mind (each lamp, incense and offering 
 
 - **Text** (`text.txt`): Drik Panchang, "Shri Rama Raghuvira Aarti" (no copy in the owner's books). Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** `audio/mandala-music/`: Mandala Music (YouTube `hWSNsrIX3LM`, "Aisi Aarti Ram Raghubir Ki | The Inner Aarti, Lyrics-Insights-Meditation | Tulsidas, Vinaya Patrika"), its track 0:00–3:42 of the video (after 3:42: humming and music from 221 s to the video's end). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
+- **Recordings:** `audio/mandala-music/`: Mandala Music (YouTube `hWSNsrIX3LM`, "Aisi Aarti Ram Raghubir Ki | The Inner Aarti, Lyrics-Insights-Meditation | Tulsidas, Vinaya Patrika"), its track 0:00–3:42 of the video (after 3:42: humming and music). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 Verse types: टेक (refrain, `tek`, shown once at the start although it is sung after every stanza) and पद (stanza, `pad`). The folder's format: `tools/works/README.md`.
 

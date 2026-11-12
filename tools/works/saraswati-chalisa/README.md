@@ -4,7 +4,7 @@ The chālīsā of Sarasvatī that opens "जनक जननि पद कमल
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 192–195), checked against Chalisa Mala and Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** `audio/shemaroo-bhakti/`: Shemaroo Bhakti (YouTube `AETjP9K4u3M`, "Shri Saraswati Chalisa With Lyrics | श्री सरस्वती चालीसा | Saraswati Song |Saraswati Puja"), its track 0:00–7:02 of the video (after 7:02: music to the video's end). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list. A draft (it plays only with Audio timing on): not every verse it sings is timed yet: the transcript heard too little of it for the forced aligner.
+- **Recordings:** `audio/shemaroo-bhakti/`: Shemaroo Bhakti (YouTube `AETjP9K4u3M`, "Shri Saraswati Chalisa With Lyrics | श्री सरस्वती चालीसा | Saraswati Song |Saraswati Puja"), its track 0:00–7:02 of the video (after 7:02: music). Its starts come from the transcript for now; MMS (`tools/audio/METHOD.md`) is still to time it. A draft (it plays only with Audio timing on): its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed.
 
 The poet names himself in the second opening dohā, the last chaupāī and the last dohā: रामसागर (Rāmasāgara).
 

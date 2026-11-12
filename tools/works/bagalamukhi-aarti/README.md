@@ -4,7 +4,7 @@ The āratī of Mother Bagalāmukhī, in Hindi (`hi`). Its closing dohā names it
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, p. 255), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** `audio/shemaroo-bhakti/`: Shemaroo Bhakti (YouTube `0NuZPH_tW3k`, "Baglamukhi Aarti | Baglamukhi Song | Baglamukhi Mata Aarti | माँ बगलामुखी आरती"), its track 0:00–4:18 of the video (after 4:18: music only to the video's end). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list. A draft (it plays only with Audio timing on): it sings another wording of this āratī (refrain and six stanzas) that no written witness has.
+- **Recordings:** `audio/shemaroo-bhakti/`: Shemaroo Bhakti (YouTube `0NuZPH_tW3k`, "Baglamukhi Aarti | Baglamukhi Song | Baglamukhi Mata Aarti | माँ बगलामुखी आरती"), its track 0:00–4:18 of the video (after 4:18: music). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list. A draft (it plays only with Audio timing on): it sings another wording of this āratī (refrain and six stanzas) that no written witness has.
 
 Verse types: टेक (refrain, `tek`, shown once at the start although it is sung after every stanza), पद (stanza, `pad`) and दोहा (`do`, the closing dohā). The folder's format: `tools/works/README.md`.
 

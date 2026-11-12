@@ -4,7 +4,7 @@ The chālīsā of Guru Gorakhnāth that opens "गणपति गिरजा �
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 95–99), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** `audio/sanjay-giri/`: Sanjay Giri (YouTube `yaIV5sB1ASM`, "श्री गोरखनाथ चालीसा Shree Gorakhnath Chalisa I SANJAY GIRI I Gorakhnath Bhajan I Full Audio Song"), its track 0:00–9:09 of the video (after 9:09: another text, 549–590 s: a Śābar mantra, not part of the chālīsā). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list. Not sung, so untimed: `chalisa.do2`, `chalisa.do3`, `chalisa.do4`.
+- **Recordings:** `audio/sanjay-giri/`: Sanjay Giri (YouTube `yaIV5sB1ASM`, "श्री गोरखनाथ चालीसा Shree Gorakhnath Chalisa I SANJAY GIRI I Gorakhnath Bhajan I Full Audio Song"), its track 0:00–9:09 of the video (after 9:09: another text, 549–590 s). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list. Not sung, so untimed: `chalisa.do2`, `chalisa.do3`, `chalisa.do4`.
 
 Verse types: the Mānas's own (`do` dohā, `cau` chaupāī).
 

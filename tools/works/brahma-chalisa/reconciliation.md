@@ -29,4 +29,4 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## The recording
 Saroj Amarnath Yadav (YouTube `7lfOLotn17A`, `audio/saroj-amarnath-yadav/`) sings this text.
 - Sung with words that another written witness prints, against the base kept here: `chalisa.cau25`.
-- A draft (it plays only with Audio timing on): not every verse it sings is timed yet: the transcript heard too little of it for the forced aligner.
+- A draft (it plays only with Audio timing on): its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed.
