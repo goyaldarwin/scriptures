@@ -25,4 +25,4 @@ Bhakti Mantras India (YouTube `p88Tkkuz0W8`, `audio/bhakti-mantras-india/`) sing
 - Not sung, so untimed: `chalisa.so1`.
 - Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau4`, `chalisa.cau11`, `chalisa.cau32`.
 - Sung with words that another written witness prints, against the base kept here: `chalisa.cau1`, `chalisa.cau3`, `chalisa.cau9`, `chalisa.cau12`, `chalisa.cau15`, `chalisa.cau16`, `chalisa.cau22`, `chalisa.cau24`, `chalisa.cau27`, `chalisa.cau28`, `chalisa.cau36`, `chalisa.do3`.
-- A draft (it plays only with Audio timing on): it sings Drik Panchang's version and order: the text is to follow it first.
+- A draft (it plays only with Audio timing on): it sings Drik Panchang's version and order; a chālīsā keeps its base where the base is sound (docs/PLAYBOOK.md §3), so before it goes live its other readings are recorded, not taken.

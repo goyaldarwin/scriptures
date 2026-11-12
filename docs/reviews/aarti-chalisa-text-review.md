@@ -547,3 +547,7 @@ The two places where neither the transcript, the 5-s windows nor the scoring set
 - **Chālīsās reverted to the base**, where a sound reading had been changed only because the recording sings Drik Panchang's: the Durgā Chālīsā (cau. 25, 27, 39), the Gaṇeśa Chālīsā (cau. 38; closing dohā 2's अपना), the Śani Chālīsā (cau. 32, 35), the Viṣṇu Chālīsā (cau. 30); and the Lakṣmī Chālīsā's मन में (cau. 38), changed on one witness.
 - **Settled in the files:** the Ambe āratī's श्री अम्बेजी (heard); the Pārvatī and Satyanārāyaṇa āratīs' lines with no witness (heard, the base kept); the Tulasī āratī's `fixes.md` gloss.
 - Every other change from the base in the 152 works stands, on the grounds given above.
+
+## Recordings added during this review
+
+While this review ran, the recordings of the Chālīsā and Āratī shelves were extended on `main` (62 āratīs and 31 chālīsās now live, more as drafts). This review heard the recordings each work had before then. Each newly added recording's `reconciliation.md` section ("The recording") lists the verses where it sings another witness's words against the base, and the verses where it sings words no witness has; for an āratī whose recording is now live, those verses are the next to hear and decide as above (an āratī follows its recording; a chālīsā keeps its sound base).
