@@ -75,6 +75,18 @@ jobs:
             echo "$(ls -d "$RUNNER_TEMP"/ffmpeg-*/bin)" >> "$GITHUB_PATH"; exit 0; fi
           for i in 1 2 3; do sudo timeout 240 apt-get update -qq && sudo timeout 240 apt-get install -y -qq --no-install-recommends ffmpeg && exit 0; sleep 5; done; exit 1
       - run: pip install -q "torch==2.8.*" "torchaudio==2.8.*" numpy --index-url https://download.pytorch.org/whl/cpu --extra-index-url https://pypi.org/simple
+      - name: MMS's weights (Meta's file; else the same file from its copy on Hugging Face, checked by its SHA-256)
+        # torchaudio's MMS_FA downloads model.pt from dl.fbaipublicfiles.com; while that host's certificate is expired the
+        # download fails, so the same file is taken from a copy and accepted only if its SHA-256 is the one pinned here
+        # (the file whose alignments equal those made with Meta's download: tools/audio/METHOD.md, "Where it runs")
+        env:
+          PIN: 20ef12963ab4924bef49ac4fc7f58ad5da2ee43b2c11bc8c853c9b90ecdbc680
+        run: |
+          d="$HOME/.cache/torch/hub/checkpoints"; mkdir -p "$d"; f="$d/model.pt"
+          curl -fsSL --retry 3 -m 900 -o "$f" https://dl.fbaipublicfiles.com/mms/torchaudio/ctc_alignment_mling_uroman/model.pt \
+            || curl -fsSL --retry 3 -m 900 -o "$f" https://huggingface.co/seanghay/khmer-forced-aligner/resolve/main/ctc_alignment_mling_uroman_model.pt
+          s=$(sha256sum "$f" | cut -d' ' -f1); echo "model.pt sha256 $s"
+          if [ -n "$PIN" ] && [ "$s" != "$PIN" ]; then echo "::error::model.pt is not the pinned file"; exit 1; fi
       - name: align ${{ matrix.id }}
         # stop a little before the job's limit, so what is done is still committed
         timeout-minutes: 335

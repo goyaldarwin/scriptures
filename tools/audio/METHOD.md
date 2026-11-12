@@ -28,7 +28,8 @@ through the refrain because it has no end.
    runs `mms_align.py` on each recording in this repository's free Actions, `mms_merge.py` writes `aligned.json`, read by
    `make_timings.py`; the Mānas's first run is in `scriptures-data`, `experiments/align/`). In windows of a minute or two from step 1, overlapping by a verse,
    MMS is given the known text (romanised) with a wildcard between every two lines and at both ends, which absorbs
-   refrains and music not in the text. Each start is moved by the recording's lean against the owner's starts (0.64 s
+   refrains and music not in the text. A song whose transcript placed too few verses to cut windows by (fast singing, chant) is given
+   one window, its whole track, with every verse it sings (`mms_windows.py --whole`). Each start is moved by the recording's lean against the owner's starts (0.64 s
    for the Mānas; a new recording uses 0.6 s until the owner has set 20 or so by ear). A start MMS scores below 0.5
    keeps step 1's start and goes on the to-check list (`check.json`).
    Mānas, on the owner's 637 starts: within 1 s 78% (Whisper alone 46%), more than 3 s off 5% (34%).
@@ -72,6 +73,10 @@ switch before he has set any start (the Gītā's, the Vālmīki Rāmāyaṇa's):
 In the public repo's Actions (free), the `align` workflow, like `transcribe`, and like it with at most 14 jobs at once, so the checks, the site's
 publishing and the owner's timing submissions are never queued behind it (`docs/PLAYBOOK.md`, "GitHub Actions minutes").
 The whole Mānas with MMS is about 2,350 runner minutes.
+MMS's weights (`model.pt`, about 1.2 GB) come from Meta's `dl.fbaipublicfiles.com`; when that download fails (its certificate
+expired once), the `align` workflow takes the same file from its copy on Hugging Face (`seanghay/khmer-forced-aligner`) and
+accepts it only with the SHA-256 pinned in `align.yml`: the file whose alignments of two recordings already aligned with
+Meta's download (the Kuber and Chandraghanta āratīs) came out identical, start, end and score of every verse.
 
 ## Still to apply it to
 
