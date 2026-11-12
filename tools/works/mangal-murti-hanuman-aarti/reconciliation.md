@@ -29,5 +29,4 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 - aarti.pad11 — सहितासु and जब: kept as printed, "sung together with Hanumān's" (सहित + सु) and "when wishes are fulfilled, at the end one goes to Viṣṇu's abode". The only witness; web searches found no independent copy; the plain reading of the printed words stands.
 
 ## The recording
-Amal Bhakti (YouTube `TP1GQ9veSuU`, `audio/amal-bhakti/`) sings this text.
-- A draft (it plays only with Audio timing on): its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed.
+Amal Bhakti (YouTube `TP1GQ9veSuU`, `audio/amal-bhakti/`) sings this text in its order.

@@ -23,5 +23,4 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 - chalisa.cau28 — ललत स्वर्ण पद: kept पद as "feet" ("with your lovely golden feet you make men blessed"), the word's plain sense; the astrologer's golden pāyā is a different word.
 
 ## The recording
-ASC Digital (YouTube `siASaJ0KfKs`, `audio/asc-digital/`) sings this text.
-- A draft (it plays only with Audio timing on): its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed.
+ASC Digital (YouTube `siASaJ0KfKs`, `audio/asc-digital/`) sings this text in its order.

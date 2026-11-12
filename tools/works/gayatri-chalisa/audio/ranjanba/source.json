@@ -7,6 +7,6 @@
   "hi": "रंजनबा",
   "en": "Ranjanba"
  },
- "fill": 0,
- "draft": "its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed"
+ "fill": 3,
+ "draft": "MMS could not time every verse it sings (some it scored too low, others it placed nowhere: `aligned.md`); they are left untimed rather than guessed"
 }

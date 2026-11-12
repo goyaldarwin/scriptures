@@ -22,5 +22,4 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 - **chalisa.cau40** — कुबेर की माई: the plain words, "Kubera's mother" (Iḍaviḍā, named in cau8); no witness names Lakṣmī here. Meaning unchanged.
 
 ## The recording
-Snehvardhan Shukla (YouTube `-q7_O0tbJe8`, `audio/snehvardhan-shukla/`) sings this text.
-- A draft (it plays only with Audio timing on): its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed.
+Snehvardhan Shukla (YouTube `-q7_O0tbJe8`, `audio/snehvardhan-shukla/`) sings this text in its order.

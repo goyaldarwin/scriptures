@@ -23,6 +23,5 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 - chalisa.cau20 — सब पूजे पित्तर भाई: kept भाई as an address ("brother"), the common line-end address of such songs; "as brothers" would need a postposition.
 
 ## The recording
-Plus Bhakti (YouTube `WpNJv_iLX00`, `audio/plus-bhakti/`) sings this text.
+Plus Bhakti (YouTube `WpNJv_iLX00`, `audio/plus-bhakti/`) sings this text in its order.
 - Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau37`, `chalisa.cau40`, `chalisa.do3`.
-- A draft (it plays only with Audio timing on): its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed.

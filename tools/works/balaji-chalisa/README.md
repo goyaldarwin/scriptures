@@ -4,7 +4,7 @@ The chālīsā of the Bālājī of Mehandipur (Hanumān as a child, with Pretar�
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 112–115), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** `audio/divya-dhwani/`: Divya Dhwani (YouTube `PMXa9iFo1Hs`, "Listen Daily To This BALAJI CHALISA | Every Problem Will End | Jai Bajrang Bali"), its track 0:00–5:36 of the video (after 5:36: the chālīsā sung twice more). Its starts come from the transcript for now; MMS (`tools/audio/METHOD.md`) is still to time it. A draft (it plays only with Audio timing on): MMS is still to time it: the video sings the chālīsā three times, and the forced aligner's first run took the second singing; its track is the first (0:00–5:36).
+- **Recordings:** `audio/divya-dhwani/`: Divya Dhwani (YouTube `PMXa9iFo1Hs`, "Listen Daily To This BALAJI CHALISA | Every Problem Will End | Jai Bajrang Bali"), its track 0:00–5:36 of the video (after 5:36: the chālīsā sung twice more). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 - **Poet:** the text names him in its first opening dohā, its last chaupāī and its closing dohā: Kalyāṇa "Snehī" (दास स्नेही कल्याण); it also names Mahant Gaṇeśapurī of the Mehandipur temple.
 
 Verse types: the Mānas's own (`do` dohā, `cau` chaupāī).

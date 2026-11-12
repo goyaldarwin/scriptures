@@ -27,4 +27,4 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 VedicQB (YouTube `zAGrcGMkh90`, `audio/vedicqb/`) sings this text.
 - Not sung, so untimed: `chalisa.cau46`.
 - Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau18`.
-- A draft (it plays only with Audio timing on): its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed.
+- A draft (it plays only with Audio timing on): MMS could not time every verse it sings (some it scored too low, others it placed nowhere: `aligned.md`); they are left untimed rather than guessed.

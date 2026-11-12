@@ -4,7 +4,7 @@ The āratī of Citragupta, the keeper of the record of every soul's deeds, in Hi
 
 - **Text** (`text.txt`): Drik Panchang, "Lord Chitragupta Aarti" (drikpanchang.com/lyrics/aarti/lord-chitragupta/lord-chitragupta-aarti.html); the āratī is not in the book. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** `audio/sapt-swar-sargam-bhakti/`: Sapt Swar Sargam Bhakti (YouTube `RRLj-2TkGj0`, "चित्रगुप्त महाराज की आरती |ॐ जय चित्रगुप्त हरे | Chitragupta Ji Aarti | Kayastha Puja | Hindi Bhajan"), its track 0:00–2:54 of the video (after 2:54: music). Its starts come from the transcript for now; MMS (`tools/audio/METHOD.md`) is still to time it. A draft (it plays only with Audio timing on): its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed.
+- **Recordings:** `audio/sapt-swar-sargam-bhakti/`: Sapt Swar Sargam Bhakti (YouTube `RRLj-2TkGj0`, "चित्रगुप्त महाराज की आरती |ॐ जय चित्रगुप्त हरे | Chitragupta Ji Aarti | Kayastha Puja | Hindi Bhajan"), its track 0:00–2:54 of the video (after 2:54: music). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 Verse types: टेक (refrain, `tek`, shown once at the start although it is sung after every stanza) and पद (stanza, `pad`). The folder's format: `tools/works/README.md`.
 

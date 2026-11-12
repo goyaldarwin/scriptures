@@ -29,7 +29,6 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 - aarti.pad4, आदित वारी: "on Sunday", as the meaning has it; 'आदित' is quoted as a day name in the book and Drik Panchang, in the āratī's run of weekdays.
 
 ## The recording
-Lakhbir Singh Lakkha (YouTube `l-1jMvJSKp0`, `audio/lakhbir-singh-lakkha/`) sings this text.
+Lakhbir Singh Lakkha (YouTube `l-1jMvJSKp0`, `audio/lakhbir-singh-lakkha/`) sings this text in its order.
 - Sung with a few words that no written witness has, so the text keeps its own there: `aarti.pad1`, `aarti.pad2`, `aarti.pad4`.
 - Sung with words that another written witness prints, against the base kept here: `aarti.tek`, `aarti.pad3`, `aarti.pad5`, `aarti.pad7`.
-- A draft (it plays only with Audio timing on): its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed.

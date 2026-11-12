@@ -4,7 +4,7 @@ The chālīsā of the Bhagavad Gītā that opens "प्रथमहिं ग�
 
 - **Text** (`text.txt`): Drik Panchang's Gita Chalisa page (the book, ५१ चालीसा संग्रह आरतियों सहित, has no copy). Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** `audio/mellow-bhajan/`: Mellow Bhajan (YouTube `1sphcXspUYU`, "🕉️ Bhagwat Geeta Chalisa | भगवद गीता चालीसा | भक्तिमय पाठ 🕉️"), its track 0:00–6:36 of the video (after 6:36: a sung closing words 'इति श्री भगवद् गीता चालीसा'). Its starts come from the transcript for now; MMS (`tools/audio/METHOD.md`) is still to time it. A draft (it plays only with Audio timing on): its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed.
+- **Recordings:** `audio/mellow-bhajan/`: Mellow Bhajan (YouTube `1sphcXspUYU`, "🕉️ Bhagwat Geeta Chalisa | भगवद गीता चालीसा | भक्तिमय पाठ 🕉️"), its track 0:00–6:36 of the video (after 6:36: a sung closing words 'इति श्री भगवद् गीता चालीसा'). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list.
 
 Verse types: the Mānas's own (`cau` chaupāī).
 
