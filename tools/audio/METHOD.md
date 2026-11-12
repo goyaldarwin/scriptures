@@ -28,7 +28,8 @@ through the refrain because it has no end.
    runs `mms_align.py` on each recording in this repository's free Actions, `mms_merge.py` writes `aligned.json`, read by
    `make_timings.py`; the Mānas's first run is in `scriptures-data`, `experiments/align/`). In windows of a minute or two from step 1, overlapping by a verse,
    MMS is given the known text (romanised) with a wildcard between every two lines and at both ends, which absorbs
-   refrains and music not in the text. Each start is moved by the recording's lean against the owner's starts (0.64 s
+   refrains and music not in the text. A song whose transcript placed too few verses to cut windows by (fast singing, chant) is given
+   one window, its whole track, with every verse it sings (`mms_windows.py --whole`). Each start is moved by the recording's lean against the owner's starts (0.64 s
    for the Mānas; a new recording uses 0.6 s until the owner has set 20 or so by ear). A start MMS scores below 0.5
    keeps step 1's start and goes on the to-check list (`check.json`).
    Mānas, on the owner's 637 starts: within 1 s 78% (Whisper alone 46%), more than 3 s off 5% (34%).
