@@ -7,7 +7,7 @@ timed), so it always says what the library is: never edit docs/WORKS.md by hand.
 the same in every work (a meaning not given line by line, word meanings still partial, a recording not yet timed by the
 forced aligner), so the gaps are seen where the works are.
 """
-import glob, json, os
+import glob, json, os, re
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(os.path.dirname(HERE))
 LIB = os.path.join(ROOT, 'library'); WORKS = os.path.join(ROOT, 'tools', 'works')
 OUT = os.path.join(ROOT, 'docs', 'WORKS.md')
@@ -121,6 +121,19 @@ def pending():
             for d in glob.glob(os.path.join(WORKS, wid, 'audio', '*', 'check.json')):
                 c = j(d); chk += len(c.get('ids', [])) if isinstance(c, dict) else len(c)
             if chk: todo.append(f'{chk} starts to check by ear')
+            for d in sorted(glob.glob(os.path.join(WORKS, wid, 'audio', '*', 'source.json'))):
+                s = j(d)
+                if s.get('draft'): todo.append(f"recording {s['id']} a draft: {s['draft']}"); note('recording a draft')
+        # reconciliation.md → "The recording": verses its recording sings as another written witness prints them; the text is to
+        # follow it (docs/PLAYBOOK.md §3), with its meanings and word meanings
+        rc = os.path.join(WORKS, wid, 'reconciliation.md')
+        if os.path.exists(rc):
+            sec = open(rc, encoding='utf-8').read().split('## The recording', 1)
+            m = re.search(r'Sung with words that another written witness prints[^:]*: ([^\n]*)', sec[1]) if len(sec) > 1 else None
+            if m:
+                ids = re.findall(r'`([^`]+)`', m.group(1))
+                todo.append(f"the text to follow its recording in {len(ids)} verse{'s' if len(ids) > 1 else ''} ({', '.join(ids)}), with their meanings")
+                note('text to follow its recording')
         if not leaf.get('intro'): todo.append('no About introduction'); note('no About introduction')
         if n > 50 and not w.get('topics'): todo.append('no topic headings'); note('no topic headings')
         rows.append(f"| {leaf['title']['en']} (`{wid}`) | {n} | {'; '.join(todo) or '—'} |")
@@ -128,7 +141,8 @@ def pending():
           '## In short', '', '| Gap | Works |', '|---|---|'] + [f'| {k} | {v} |' for k, v in sorted(count.items(), key=lambda x: -x[1])] + ['',
           '## Who does what', '',
           '- **Claude, with bandwidth:** our meanings (written, or drafts reviewed: the four steps of `docs/HOW-TO.md`), splitting a meaning line by line (`tools/meanings/LINES-BRIEF.md`), word meanings and their root and grammar, About introductions (from the verses, the README and reliable web sources; live once checked against the verses and confirmed online), topic headings.',
-          '- **The owner:** a recording for a work that has none (its audio file into `scriptures-data`; the timing then runs by itself), the starts to check by ear (☰ › More settings › Audio timing, on an admin phone), a source a text or a meaning needs.', '',
+          '- **Claude, when a tool allows:** a draft recording waiting for MMS (`tools/audio/METHOD.md`; its model downloads from `dl.fbaipublicfiles.com`), each draft as its row says; a text to follow its recording (`docs/PLAYBOOK.md` §3, each work\'s `reconciliation.md` → "The recording").',
+          '- **The owner:** a recording for a work that has none (its audio file into `scriptures-data`; the timing then runs by itself; for the āratīs and chālīsās, his search found none to match the text, so a link to the right video), the starts to check by ear (☰ › More settings › Audio timing, on an admin phone), a source a text or a meaning needs.', '',
           '## By work', '', '| Work | Verses | Still to do |', '|---|---|---|'] + rows + ['']
     text = '\n'.join(md)
     if not os.path.exists(PENDING) or open(PENDING, encoding='utf-8').read() != text:
