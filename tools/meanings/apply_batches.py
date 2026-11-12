@@ -2,8 +2,9 @@
 docs/HOW-TO.md) into a work's meaning files.
 
     python3 tools/meanings/apply_batches.py BATCH_DIR [--work manas] [--doubts docs/reviews/<work>-doubts.jsonl]
-            [--steps review,audit,dict]
-            (--work: the work's id, its folder in tools/works; --steps: the checks every batch must have had)
+            [--steps review,audit,dict] [--langs hi,en]
+            (--work: the work's id, its folder in tools/works; --steps: the checks every batch must have had;
+             --langs: the languages of our meaning, hi,en by default; Sri Guru Granth Sahib: pa,en)
 
 For every batch-NN.ids in BATCH_DIR: takes the writer's batch-NN.hi.json / .en.json / .topics.json, then applies, in
 this order, the fixes of batch-NN.review.jsonl (the reviewer), batch-NN.audit.jsonl (the copy audit) and
@@ -53,8 +54,10 @@ def main():
     ap.add_argument('dir'); ap.add_argument('--work', default='manas')
     ap.add_argument('--doubts')
     ap.add_argument('--steps', default='review,audit,dict')
+    ap.add_argument('--langs', default='hi,en')
     a = ap.parse_args()
     steps = [s for s in a.steps.split(',') if s]
+    LG = tuple(x for x in a.langs.split(',') if x)
     sys.path.insert(0, os.path.join(REPO, 'tools', 'meanings')); import sanskrit_dict
     if sanskrit_dict.missing():   # the batches must have been written and checked with Monier-Williams and Apte (style.md §10)
         raise SystemExit('The Sanskrit dictionaries are not downloaded: run python3 tools/meanings/sanskrit_dict.py fetch, and make sure the batches were written and reviewed with them')
@@ -63,21 +66,21 @@ def main():
     W = json.load(open(os.path.join(REPO, 'library', path, 'work.json'), encoding='utf-8'))
     order = [x['id'] for x in W['items']]
     mine = lambda lg: os.path.join(folder, 'meanings', lg, 'scriptures.json')
-    F = {lg: json.load(open(mine(lg), encoding='utf-8')) for lg in ('hi', 'en')}
-    D = {lg: F[lg].setdefault('m', {}) for lg in ('hi', 'en')}
+    F = {lg: json.load(open(mine(lg), encoding='utf-8')) for lg in LG}
+    D = {lg: F[lg].setdefault('m', {}) for lg in LG}
     tp = os.path.join(folder, 'topics.json')
     T = json.load(open(tp, encoding='utf-8')) if os.path.exists(tp) else {}
-    doubts, words, fixed = [], [], {'hi': 0, 'en': 0, 'topic': 0}
+    doubts, words, fixed = [], [], {**{lg: 0 for lg in LG}, 'topic': 0}
     for idf in sorted(glob.glob(os.path.join(a.dir, 'batch-*.ids'))):
         b = idf[:-4]; ids = [l.strip() for l in open(idf) if l.strip()]
-        M = {lg: json.load(open(f'{b}.{lg}.json', encoding='utf-8')) for lg in ('hi', 'en')}
+        M = {lg: json.load(open(f'{b}.{lg}.json', encoding='utf-8')) for lg in LG}
         top = json.load(open(f'{b}.topics.json', encoding='utf-8')) if os.path.exists(f'{b}.topics.json') else {}
         notes = json.load(open(f'{b}.notes.json', encoding='utf-8')) if os.path.exists(f'{b}.notes.json') else {}   # {id: {hi: [..], en: [..]}}
         for s in steps:
             assert os.path.exists(f'{b}.{s}.jsonl'), f'{b}: no {s} step yet ({b}.{s}.jsonl)'
         rev = [r for s in ('review', 'audit', 'dict') for r in jl(f'{b}.{s}.jsonl')]
         for r in rev:
-            if r.get('lang') in ('hi', 'en') and r.get('fix') is not None and not (isinstance(r['fix'], str) and not r['fix'].strip()):
+            if r.get('lang') in LG and r.get('fix') is not None and not (isinstance(r['fix'], str) and not r['fix'].strip()):
                 assert r['id'] in M[r['lang']], f"{b}: review fix for unknown id {r['id']}"
                 cur = M[r['lang']][r['id']]
                 if isinstance(cur, list) and r.get('line') is not None:   # line by line: the fix is one line's piece
@@ -86,7 +89,7 @@ def main():
                 elif isinstance(r['fix'], list): M[r['lang']][r['id']] = [x.strip() for x in r['fix']]
                 else: M[r['lang']][r['id']] = r['fix'].strip()
                 fixed[r['lang']] += 1
-            elif r.get('lang') in ('hi', 'en'): pass   # a comment with no fix
+            elif r.get('lang') in LG: pass   # a comment with no fix
             elif r.get('lang') == 'topic' and r.get('fix'):
                 fx = topic_fix(r)
                 if fx is None:   # an empty fix with "remove": the heading goes
@@ -101,7 +104,7 @@ def main():
                 doubts.append({k: v for k, v in r.items() if k != 'lang'})
             elif r.get('lang') == 'doubt':
                 doubts.append({'review': r.get('problem'), 'id': r.get('id'), 'reviewer_fix': r.get('fix')})
-        for lg in ('hi', 'en'):
+        for lg in LG:
             assert list(M[lg]) == ids, f'{b}.{lg}: ids differ from the batch'
             NL = {x['id']: len(x['v']) for x in W['items']}
             for i, t in M[lg].items():
@@ -111,9 +114,9 @@ def main():
                 assert not isinstance(t, list) or len(t) == NL[i], f'{b}.{lg}: {i} has {len(t)} pieces for {NL[i]} verse lines'
                 assert not any(NUM.search(p) for p in ps), f'{b}.{lg}: verse number in {i}'
             for i in ids:
-                h, e = M['hi'].get(i), M['en'].get(i)
-                if lg == 'en' and isinstance(h, list) and isinstance(e, list):
-                    assert [not p.strip() for p in h] == [not p.strip() for p in e], f'{b}: {i}: Hindi and English must cut at the same lines'
+                h, e = M[LG[0]].get(i), M[lg].get(i)
+                if lg != LG[0] and isinstance(h, list) and isinstance(e, list):
+                    assert [not p.strip() for p in h] == [not p.strip() for p in e], f'{b}: {i}: every language must cut at the same lines'
             D[lg].update(M[lg])
             N = F[lg].setdefault('notes', {})
             for i in ids:   # the batch's footnotes replace the verse's earlier ones; a verse with none has none
@@ -121,11 +124,11 @@ def main():
                 assert not any(NUM.search(x) for x in fs), f'{b}.{lg}: verse number in a footnote of {i}'
                 if fs: N[i] = fs
                 else: N.pop(i, None)
-            assert all(bool((notes.get(i) or {}).get('hi')) == bool((notes.get(i) or {}).get('en')) for i in ids), f'{b}: a footnote in one language only'
+            assert all(len({bool((notes.get(i) or {}).get(x)) for x in LG}) == 1 for i in ids), f'{b}: a footnote in one language only'
         T.update(top)
         doubts += [dict(d, batch=os.path.basename(b)) for d in jl(f'{b}.doubts.jsonl')]
         words += [{'source': 'writer', 'batch': os.path.basename(b), **w} for w in jl(f'{b}.words.jsonl')]
-    for lg in ('hi', 'en'):
+    for lg in LG:
         F[lg]['m'] = {i: D[lg][i] for i in order if i in D[lg]}
         if F[lg].get('notes'): F[lg]['notes'] = {i: F[lg]['notes'][i] for i in order if i in F[lg]['notes']}
         else: F[lg].pop('notes', None)
@@ -137,7 +140,7 @@ def main():
             for d in doubts: f.write(json.dumps(d, ensure_ascii=False) + '\n')
     with open(os.path.join(a.dir, 'words-to-settle.jsonl'), 'w', encoding='utf-8') as f:
         for w in words: f.write(json.dumps(w, ensure_ascii=False) + '\n')
-    print(f"{len(D['hi'])} verses in our Hindi and English; fixes applied {fixed}; {len(T)} topic headings; "
+    print(f"{len(D[LG[0]])} verses in our meaning ({', '.join(LG)}); fixes applied {fixed}; {len(T)} topic headings; "
           f'{len(doubts)} doubts; {len(words)} word issues to settle')
 
 if __name__ == '__main__':

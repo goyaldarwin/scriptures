@@ -64,6 +64,17 @@ The same four steps as the Mānas, with the briefs for Sanskrit works (`tools/me
 3. **Apply:** `python3 tools/meanings/apply_batches.py <scratch folder> --work <work> --doubts docs/reviews/<work>-doubts.jsonl` on a branch `meanings-<work>`: it also replaces each verse's footnotes from the batches.
 4. **Consistency pass** over the work (names, address, speaker openings, recurring terms), then the dictionary step and the copy check of the whole file (`overlap.py` against each copied source), then `export.py` and the checks; settle every doubt before the pull request merges.
 
+## Write our own meanings for Sri Guru Granth Sahib
+
+Punjabi and English (`pa-scriptures`, `en-scriptures`; no Hindi), line by line with a few notes (`docs/PLAYBOOK.md` §4; `tools/meanings/style.md` §12, §13). One part at a time (the Nitnem banis first, then the parts in the Granth's order), one branch and pull request per part (`ggs-meanings-<part>`). The Japji and the Sukhmani are taken with their own meanings.
+
+0. **Materials:** `python3 tools/meanings/sanskrit_dict.py fetch && python3 tools/meanings/sanskrit_dict.py check`; a checkout of `scriptures-data` (its `reference/pa/` and `sikhism/gurbani/guru-granth-sahib/` folders); `python3 tools/meanings/teeka.py fetch <checkout>` and `python3 tools/meanings/platts.py fetch <checkout>`; the Shabad OS database, unpacked from the checkout's `sikhism/gurbani/guru-granth-sahib/printouts/shabados/shabados-database-4.8.7.tgz` into a folder outside both repositories.
+1. **Batches:** `python3 tools/meanings/gurbani_prepare.py <scratch folder> <first id> <last id> --db <database.sqlite> --lines 150` (the scratch folder outside the repository): `batch-NN.md`, `.ids`, `.refs.md` (the published translations line by line, private) and `copied-*.json` for the overlap checks.
+2. **For every batch, each step by its own agent**, many batches in parallel, each told its brief, the scratch folder, its batch number and the checkout: writer (`tools/meanings/briefs/gurbani-writer.md`), reviewer (`gurbani-reviewer.md`), copy auditor (`gurbani-copy-auditor.md`: lenient, the owner), accuracy checker (`gurbani-accuracy-checker.md`). A later step's fix wins.
+3. **Apply:** `python3 tools/meanings/apply_batches.py <scratch folder> --work guru-granth-sahib --langs pa,en --doubts docs/reviews/guru-granth-sahib-doubts.jsonl`; check that no verse outside the batches changed.
+4. **Consistency pass** over the part (`gurbani-consistency.md`), its fixes applied the same way; then the word issues into `library/glossary/pa.json` (as for the Japji's), and the copy check of the whole files: `overlap.py` of `meanings/pa/scriptures.json` and `en/scriptures.json` against each `copied-*.json` of their language, 0 runs of 10+.
+5. Settle every doubt (`docs/PLAYBOOK.md` §2) and empty the doubts file; `python3 tools/works/export.py guru-granth-sahib`, every check of `CLAUDE.md`, then the pull request. The batch folder (it quotes copyrighted translations) goes to `scriptures-data`, `sikhism/gurbani/guru-granth-sahib/meaning-records/scriptures/<part>/`, never here.
+
 ## Add the Punjabi sense to the Gurbani word meanings (`library/glossary/pa.json`)
 Every entry has `pa` beside `hi` and `en`, the same senses in the same order (" / " between). For new words:
 1. `python3 tools/meanings/teeka.py fetch`, then `python3 tools/meanings/pa_words_prepare.py DIR`: batches of 125 words, each with its entry, up to three lines where it occurs and the Darpan/Faridkot word glosses.
