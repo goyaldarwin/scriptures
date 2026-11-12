@@ -3,7 +3,7 @@
 Shelf: सिख धर्म › गुरबाणी › श्री गुरु ग्रन्थ साहिब (`library/sikhism/gurbani/guru-granth-sahib/`, work id
 `guru-granth-sahib`, language `pa`, Gurmukhi script). The whole Granth, 1,430 Angs, in its 51 parts; the Japji Sahib and
 the Sukhmani Sahib are taken from their works. Loaded by part (`"load": "parts"`); word meanings are not written yet
-(`"words": "partial"`). Meanings in Punjabi only (`docs/PLAYBOOK.md` §4; the plan: `docs/ROADMAP.md`, item 0).
+(`"words": "partial"`). Meanings: ours in Punjabi and English (`meanings/pa/scriptures.json`, `meanings/en/scriptures.json`), written part by part (`docs/PLAYBOOK.md` §4; `docs/HOW-TO.md`); the copied Santhya and Shabdarth to come as second Punjabi meanings (`docs/ROADMAP.md`, item 0).
 
 ## Sources and permissions
 

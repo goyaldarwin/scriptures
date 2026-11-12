@@ -27,6 +27,7 @@ tools/
     apply_owner_timing.py          a "Timing:" issue from the app → the source's owner.json (run by the timing workflow)
   meanings/                      our own meanings (style.md)
     prepare.py, apply_batches.py   batches of verses for writers and reviewers → a work's meanings/<lang>/scriptures.json
+    gurbani_prepare.py             batches of Sri Guru Granth Sahib with the published translations line by line (scratch, private)
     overlap.py                     no sentence copied from a copyrighted meaning
     platts.py                      look a Hindi, Awadhi or Braj word up in Platts (read from the private copy in scriptures-data)
     teeka.py                       search Prof. Sahib Singh's Darpan and the Faridkot Teeka for a Gurbani word (private copies, converted to Unicode)
