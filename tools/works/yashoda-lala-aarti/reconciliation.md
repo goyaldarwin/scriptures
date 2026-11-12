@@ -26,5 +26,4 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 - aarti.pad4 — ससि-काँत: "the lovely moon" (ससि "moon" + काँत "lovely"), shamed by the face. Monier-Williams's शशिकान्त (moonstone, night lotus) does not fit लजत: the face outshining the moon is the line's image, and the hyphened ससि-काँत reads as moon + epithet.
 
 ## The recording
-BhaktPriti (YouTube `JI-YVZrQqTc`, `audio/bhaktpriti/`) sings this text.
-- A draft (it plays only with Audio timing on): its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed.
+BhaktPriti (YouTube `JI-YVZrQqTc`, `audio/bhaktpriti/`) sings this text in its order.

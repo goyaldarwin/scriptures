@@ -20,7 +20,6 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 - **chalisa.cau22** (समोद्भवा): read as सोमोद्भवा, "born of the moon", the Narmadā's name (MW somodbhavā, Raghuvaṃśa); समोद्भवा is not a word and its half-line has 15 mātrās against 16. Both witnesses print समोद्भवा, so the text stays as printed; the meaning and the word entry give सोमोद्भवा.
 
 ## The recording
-Ras Mantra (YouTube `fYDQig0lk90`, `audio/ras-mantra/`) sings this text.
+Ras Mantra (YouTube `fYDQig0lk90`, `audio/ras-mantra/`) sings this text in its order.
 - Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau28`, `chalisa.cau23`.
 - Sung with words that another written witness prints, against the base kept here: `chalisa.cau19`, `chalisa.cau17`.
-- A draft (it plays only with Audio timing on): its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed.

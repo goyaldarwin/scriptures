@@ -27,4 +27,3 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## The recording
 Divya Dhwani (YouTube `PMXa9iFo1Hs`, `audio/divya-dhwani/`) sings this text in its order, three times through; its track is the first singing.
 - Sung with words that another written witness prints, against the base kept here: `chalisa.cau6`.
-- A draft (it plays only with Audio timing on): MMS is still to time it.

@@ -24,4 +24,4 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 Ranjanba (YouTube `0Bs8o9P4oo0`, `audio/ranjanba/`) sings this text.
 - Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau16`, `chalisa.cau21`.
 - Sung with words that another written witness prints, against the base kept here: `chalisa.cau2`, `chalisa.cau24`, `chalisa.cau37`.
-- A draft (it plays only with Audio timing on): its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed.
+- A draft (it plays only with Audio timing on): MMS could not time every verse it sings (some it scored too low, others it placed nowhere: `aligned.md`); they are left untimed rather than guessed.

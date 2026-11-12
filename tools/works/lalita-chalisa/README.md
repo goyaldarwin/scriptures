@@ -4,7 +4,7 @@ The chālīsā of Lalitā (Tripurasundarī) that opens "जयति जयत�
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 278–281), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** `audio/vedicqb/`: VedicQB (YouTube `zAGrcGMkh90`, "श्री ललिता चालीसा | Lalita Chalisa Full | ललिता चालीसा हिंदी | VedicQB"), its track 0:00–3:54 of the video (after 3:54: music). Its starts come from the transcript for now; MMS (`tools/audio/METHOD.md`) is still to time it. Not sung, so untimed: `chalisa.cau46`. A draft (it plays only with Audio timing on): its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed.
+- **Recordings:** `audio/vedicqb/`: VedicQB (YouTube `zAGrcGMkh90`, "श्री ललिता चालीसा | Lalita Chalisa Full | ललिता चालीसा हिंदी | VedicQB"), its track 0:00–3:54 of the video (after 3:54: music). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list. Not sung, so untimed: `chalisa.cau46`. A draft (it plays only with Audio timing on): MMS could not time every verse it sings (some it scored too low, others it placed nowhere: `aligned.md`); they are left untimed rather than guessed.
 
 Chaupāī 46 names the poet: "जितेन्द्र चन्द्र भारतीय बतावें" (Jitendra Chandra Bharatiya, a modern author).
 

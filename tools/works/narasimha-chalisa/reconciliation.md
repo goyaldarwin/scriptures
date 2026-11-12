@@ -23,5 +23,4 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 - chalisa.cau40 — शिव स्वरूप है शरण तुम्हारी: "your refuge is blessing itself" stays; है makes शरण the subject and शिवस्वरूप its predicate ("auspicious in nature", MW śiva), and the chālīsā is addressed to Narasiṁha throughout.
 
 ## The recording
-Gyan of Vedas (YouTube `1dfJrAgnjIU`, `audio/gyan-of-vedas/`) sings this text.
-- A draft (it plays only with Audio timing on): its starts are still to be timed by the forced aligner (MMS): the transcript alone leaves verses it sings untimed or guessed.
+Gyan of Vedas (YouTube `1dfJrAgnjIU`, `audio/gyan-of-vedas/`) sings this text in its order.
