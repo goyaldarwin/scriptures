@@ -30,7 +30,8 @@ except ImportError: np = None      # checks run them where numpy is not installe
 END = re.compile(r'॥\s*[੦-੯0-9]+\s*॥')
 HEAD = ('ਮਹਲਾ', 'ਮਃ', 'ੴ', 'ਸਲੋਕੁ', 'ਸਲੋਕ', 'ਪਉੜੀ', 'ਪਵੜੀ', 'ਛੰਤੁ', 'ਛੰਤ', 'ਘਰੁ', 'ਬਾਣੀ', 'ਅਸਟਪਦੀ', 'ਡਖਣਾ', 'ਦੁਪਦੇ', 'ਤਿਪਦੇ', 'ਚਉਪਦੇ', 'ਪੰਚਪਦੇ', 'ਵਾਰ')
 NEG = -1e30
-# the search's costs, in log-probability: tuned on the pilot's recordings (aligned.md of the source that uses them)
+# the search's costs, in log-probability: tuned on the Shabad Guru pilot's emissions (scriptures-data experiments/kirtan),
+# against the lines read from MMS's letters and starts heard in 5-s windows (that source's fixes.md)
 P = {'filler': 2.0,     # per frame of filler where MMS hears a letter, below that letter (sung words the text does not hold)
      'quiet': 0.1,      # per frame of filler where MMS hears no letter (alaap, music, a pause)
      'blank': 0.11,     # per frame between a line's letters, below the blank: more than 'quiet', so a line does not
@@ -38,7 +39,7 @@ P = {'filler': 2.0,     # per frame of filler where MMS hears a letter, below th
      'sub': 1.5,        # the most a frame costs a line, below the frame's best letter (a letter sung otherwise than written)
      'enter': 1.0,      # per line sung (a line must earn its place)
      'skip': 6.0,       # per line of a pada left out
-     'pada': 8.0}       # per pada passed over, opened after or ended before (a stanza sung on its own)       # per pada passed over, opened after or ended before (a stanza sung on its own)       # per pada passed over (a stanza sung on its own)
+     'pada': 8.0}       # per pada passed over, opened after or ended before (a stanza sung on its own)
 
 def rom(s):
     """A line's transliteration in plain letters a–z as MMS spells what it hears (a long ā, ī, ū doubled: aa, ii, uu), its
@@ -107,11 +108,9 @@ class Graph:
         if inorder:
             order = [k for g in groups for k in sung(g['lines'])]
             for i, k in enumerate(order):
-                skipped = 0.0
-                for j in range(i + 1, len(order)):
-                    edge(('t', k), ('t', order[j]), skipped)
+                for j in range(i + 1, len(order)):          # the next line, or past headings (not always sung) to the line after
+                    edge(('t', k), ('t', order[j]))
                     if not U[order[j]]['head']: break
-                    skipped += 0.0
                 if all(U[x]['head'] for x in order[:i]): start[M[('t', k)]] = -p['enter']
             final[:] = NEG
             last = max(i for i, k in enumerate(order) if not U[k]['head'])
@@ -227,10 +226,7 @@ def viterbi(em, G, p=P):
         else:
             e = ent[t, x]
             close(); cur = None
-            if e < 0:
-                t -= 1
-                while t >= 0: t -= 1          # the opening filler to the start
-                break
+            if e < 0: break                   # entered from the opening filler: the path's first line
             fx, kind = divmod(int(e), 3)
             t -= 1
             if kind == 0: s = G.last[fx] - 1
