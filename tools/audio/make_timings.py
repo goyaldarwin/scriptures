@@ -20,6 +20,10 @@ The source folder holds:
   owner.json       optional starts (and ends) the owner set by ear in the app, written by apply_owner_timing.py
   check.json       optional {"why": "<how the list was found>", "ids": [item ids]}: verses whose start is in doubt, listed
                    for the owner to check by ear (☰ › More settings › Audio timing, Next ▸) until a start is set for them
+  lines.json       optional {video id: {item id: [[line, start, end], …]}}: every singing of every line (a source timed
+                   line by line, source.json "lines": true; mms_merge.py), passed on as the audio file's "lines"; such a
+                   source needs no transcript: a recording without one takes its verse starts from aligned.json, the
+                   verses it does not time spread by length
 Only finished transcripts are used. The alignment is cached per recording in transcripts/<video id>.align.json:
 one row per transcript segment, [start, end, [[item id, characters of that half-line], …]]. Delete it to realign.
 A segment that covers several half-lines is shared among them by length, so a verse that begins in the
@@ -97,15 +101,17 @@ def BOUNDS(r):
 tracks, at, heard = [], {}, set()   # heard: verses whose start was found in the recording (matched, or checked by hand)
 for r in REC:
     v = r['yt']; p = os.path.join(TR, v + '.jsonl')
-    if not os.path.exists(p + '.done') and meta.get('estimate'):
+    if not os.path.exists(p + '.done') and (meta.get('estimate') or meta.get('lines')):
         # source.json "estimate": true and no transcript: spread the verses over the recording by their length, as a
         # starting point for the owner to mark by ear (☰ › More settings › Audio timing); every start is listed to be checked
         a0 = ID[r['from']] if r.get('from') else 0; a1 = ID[r['to']] if r.get('to') else len(IT) - 1
         t0, t1 = float(r.get('lead', r.get('start', 0))), r.get('end', r['dur'] * 0.98); tot = sum(L(x) for x in range(a0, a1 + 1)); acc = 0; ti = len(tracks)
         tracks.append({'yt': v, 'dur': r['dur'], **BOUNDS(r), 'first': IT[a0]['id'], 'last': IT[a1]['id']})
         for x in range(a0, a1 + 1): at.setdefault(IT[x]['id'], [ti, round(t0 + (t1 - t0) * acc / tot, 1)]); acc += L(x)
+        for iid, t in (ALIGNED.get(v, {}) if meta.get('lines') else {}).items():   # a source timed line by line has no transcript: the aligner's starts
+            if at.get(iid, [ti])[0] == ti: at[iid] = [ti, t[0] if isinstance(t, list) else t]; heard.add(iid)
         for iid, t in FIX.get(v, {}).items(): at[iid] = [ti, round(max(0, t - 0.4), 2)]; heard.add(iid)
-        print(v, 'estimated by length:', a1 - a0 + 1, 'verses'); continue
+        print(v, 'aligned' if meta.get('lines') and v in ALIGNED else 'estimated by length:', a1 - a0 + 1, 'verses'); continue
     if not os.path.exists(p + '.done'): continue
     if ONLY and v not in ONLY: continue
     cache = os.path.join(TR, v + '.align.json')
@@ -227,6 +233,17 @@ for k, v in at.items():
     tr = tracks[v[0]]; lo, hi = tr.get('start', 0), tr.get('end', tr['dur'])
     assert lo <= v[1] < hi and (len(v) < 3 or v[2] <= hi + 0.5), f"{k}: timed at {v[1:]}, outside its track's stretch {lo}–{hi} of {tr['yt']}"
 doc.update(tracks=tracks, at=at)
+# lines.json: every singing of every line, [track, start, line, end] in time order per verse (the app lights the line)
+LP = os.path.join(SRC, 'lines.json')
+if os.path.exists(LP):
+    TI = {tr['yt']: k for k, tr in enumerate(tracks)}
+    LN = {}
+    for v, per in json.load(open(LP)).items():
+        if v not in TI: continue
+        for iid, occ in per.items():
+            if iid in at: LN.setdefault(iid, []).extend([TI[v], o[1], o[0], o[2]] for o in occ)
+    for iid in LN: LN[iid].sort(key=lambda o: (o[0], o[1]))
+    if LN: doc['lines'] = {x['id']: LN[x['id']] for x in IT if x['id'] in LN}
 if meta.get('check_only'): doc['checkOnly'] = True   # the to-check list is a fixed sample: the app does not add verses it moves
 if check: doc['check'] = check
 guess = [x['id'] for x in IT if x['id'] in at and x['id'] not in heard and x['id'] not in own_ids]

@@ -10,6 +10,11 @@ announcement that is not in the text falls into a wildcard. A verse's start is i
 letter's; its score is the mean score of its letters. Emissions are made in 30-s pieces with 2 s of context each side
 (the model's attention grows with the square of the length). The raw starts are kept here; their lean against the
 owner's by-ear starts is removed when they are merged (mms_merge.py). The audio is only read.
+
+A window that carries its verses' text ("items", a source timed line by line: mms_windows.py) is searched line by line
+instead (tools/audio/line_align.py): every singing of every line, and the plain in-order alignment beside it; the file is
+then {"verses": {item id: [start, end, score]}, "lines": {item id: [[line, start, end, score], …]} (every singing, in time
+order), "inorder": {…} (each line once, in the text's order), "read": the letters MMS hears}.
 """
 import json, os, subprocess, sys, time
 import numpy as np
@@ -19,6 +24,23 @@ def load(path, a, b):
     raw = subprocess.run(['ffmpeg', '-v', 'error', '-ss', str(a), '-to', str(b), '-i', path, '-ac', '1', '-ar', str(SR), '-f', 'f32le', '-'],
                          check=True, capture_output=True).stdout
     return np.frombuffer(raw, dtype=np.float32).copy()
+
+def by_line(res, w, em, sec, D, labels):
+    """Every singing of every line of the window's verses (line_align.py), as one text: the verses one after another."""
+    import line_align as LA
+    res = res if 'verses' in res else {'verses': {}, 'lines': {}, 'inorder': {}, 'read': ''}
+    v, t, where = [], [], []
+    for it in w['items']:
+        for k, (a, b) in enumerate(zip(it['v'], it['t'])): v.append(a); t.append(b); where.append((it['id'], k))
+    one = {'v': v, 't': t}
+    for key, inorder in (('lines', False), ('inorder', True)):
+        for k, a, b, sc in LA.lines(em, sec, one, D, inorder):
+            iid, kk = where[k]
+            res[key].setdefault(iid, []).append([kk, round(w['a'] + a, 2), round(w['a'] + b, 2), sc])
+    for iid, occ in res['lines'].items():
+        if iid in w['keep']: res['verses'][iid] = [min(o[1] for o in occ), max(o[2] for o in occ), round(float(np.mean([o[3] for o in occ])), 3)]
+    res['read'] += LA.read(em, labels)
+    return res
 
 def main(src):
     import torch, torchaudio
@@ -34,7 +56,7 @@ def main(src):
     torch.set_num_threads(int(os.environ.get('THREADS', '4')))
     t_all = time.time()
     for n, w in enumerate(wins):
-        if all(k in res for k in w['keep']): continue
+        if all(k in res.get('verses', res) for k in w['keep']): continue
         t0 = time.time()
         x = torch.from_numpy(load(audio, w['a'], w['b']))[None]
         step, ctx, ems = 30 * SR, 2 * SR, []
@@ -45,6 +67,10 @@ def main(src):
                 fr = e.shape[1] / (hi - lo)
                 ems.append(e[:, int(round((s - lo) * fr)):int(round((min(s + step, x.shape[1]) - lo) * fr))])
         em = torch.cat(ems, 1); sec = (x.shape[1] / SR) / em.shape[1]
+        if w.get('items'):
+            res = by_line(res, w, em[0, :, :-1].numpy(), sec, D, bundle.get_labels(star=None))   # the star's column dropped
+            print(vid, f'window {n + 1}/{len(wins)}', round(time.time() - t0, 1), 's', flush=True)
+            continue
         words, owner = ['*'], [None]
         for k, l in enumerate(w['lines']):
             for wd in l['rom'].split(): words.append(wd); owner.append(k)
@@ -61,6 +87,6 @@ def main(src):
             json.dump(res, open(out_p, 'w'), ensure_ascii=False, separators=(',', ':'))
             print(vid, f'window {n + 1}/{len(wins)}', round(time.time() - t0, 1), 's;', round((time.time() - t_all) / 60, 1), 'min in all', flush=True)
     json.dump(res, open(out_p, 'w'), ensure_ascii=False, separators=(',', ':'))
-    print(vid, len(res), 'verses aligned', flush=True)
+    print(vid, len(res.get('verses', res)), 'verses aligned', flush=True)
 
 if __name__ == '__main__': main(os.path.abspath(sys.argv[1]))

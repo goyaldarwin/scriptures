@@ -16,11 +16,71 @@
   A verse the owner has set by ear (owner.json), or a session by hand from 5-s windows (fixes.json), is not listed, but for
   those the session lists itself because the windows did not settle them (check.json → "also", the reason in fixes.md).
 Prints the counts, for the recording's aligned.md.
+
+A source timed line by line (mms/<video id>.json with "verses" and "lines", from line_align.py) also gets lines.json,
+{video id: {item id: [[line, start, end], …]}}: every singing of every line MMS scores 0.5 or more, its start less the
+lean, in time order; a verse's start in aligned.json is its first singing's. check.json then lists, for the owner's ear:
+    title       what MMS hears (its letters) is unlike the verse, or more like another verse of the work: the recording may
+                not sing the verse its title names;
+    unsung      a line of the verse (not a heading) has no singing scored 0.5 or more;
+    first       a line's first singing in the text's order differs by more than 2 s between the search for every singing
+                and the plain in-order alignment, for more than a quarter of the verse's lines.
 """
 import collections, json, os, statistics, sys
 
+def by_line(src, lean, W):
+    import line_align as LA
+    meta = json.load(open(os.path.join(src, 'source.json')))
+    repo = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    IT = json.load(open(os.path.join(repo, 'library', meta['work'], 'work.json'), encoding='utf-8'))['items']
+    TXT = {x['id']: ''.join(LA.rom(t) for t in (x.get('t') or [])) for x in IT}
+    GR = {k: LA.trigrams(v) for k, v in TXT.items()}
+    OWN = json.load(open(os.path.join(src, 'owner.json'))) if os.path.exists(os.path.join(src, 'owner.json')) else {}
+    own = {k for v in OWN.values() for k in v}
+    aligned, lines, flags = {}, {}, collections.defaultdict(set)
+    n = collections.Counter(); order = []
+    for w in W:
+        p = os.path.join(src, 'mms', w['yt'] + '.json')
+        if not os.path.exists(p): print(w['yt'], 'not aligned yet'); continue
+        M = json.load(open(p))
+        heard = LA.trigrams(M.get('read', ''))
+        for it in w['items']:
+            i = it['id']
+            if i not in w['keep']: continue
+            order.append(i)
+            U, _ = LA.units(it)
+            want = [u['k'] for u in U if u['rom'] and not u['head']]
+            occ = M['lines'].get(i, [])
+            good = [o for o in occ if o[3] >= 0.5]
+            n['lines'] += len(want); n['singings'] += len(good); n['dropped'] += len(occ) - len(good)
+            got = {o[0] for o in good}
+            n['started'] += len([k for k in want if k in got])
+            if [k for k in want if k not in got]: flags['unsung'].add(i)
+            # the title: what is heard, against this verse and against the best other verse of the work
+            like = len(heard & GR[i]) / max(1, len(heard))
+            other = max((len(heard & g) / max(1, len(heard)), k) for k, g in GR.items() if k != i)
+            if like < 0.5 or other[0] > like + 0.05: flags['title'].add(i); print(w['yt'], i, 'heard like', round(like, 2), '; most like', other[1], round(other[0], 2))
+            first = {}
+            for o in good: first.setdefault(o[0], o[1])
+            ino = {o[0]: o[1] for o in M.get('inorder', {}).get(i, []) if o[3] >= 0.5}
+            off = [k for k in first if k in ino and abs(first[k] - ino[k]) > 2]
+            n['first differs'] += len(off)
+            if len(off) > len(want) / 4: flags['first'].add(i)
+            if good:
+                aligned.setdefault(w['yt'], {})[i] = [round(max(0.0, good[0][1] - lean), 2), round(max(o[2] for o in good), 2)]
+                lines.setdefault(w['yt'], {})[i] = [[o[0], round(max(0.0, o[1] - lean), 2), o[2]] for o in good]
+    allf = {i for s in flags.values() for i in s} - own
+    json.dump(aligned, open(os.path.join(src, 'aligned.json'), 'w'), ensure_ascii=False, separators=(',', ':'))
+    json.dump(lines, open(os.path.join(src, 'lines.json'), 'w'), ensure_ascii=False, separators=(',', ':'))
+    with open(os.path.join(src, 'check.json'), 'w', encoding='utf-8') as f:
+        json.dump({'why': f"Verses the line-by-line checks flag, for the owner's ear: the recording may not sing the verse its title names, a line with no singing MMS scores 0.5 or more, or first singings that differ between the search for every singing and the in-order alignment (tools/audio/mms_merge.py, lean {lean} s).",
+                   'ids': [i for i in order if i in allf]}, f, ensure_ascii=False, indent=1); f.write('\n')
+    print(f"{n['started']} of {n['lines']} lines have a start; {n['singings']} singings (MMS scored {n['dropped']} more below 0.5, dropped); "
+          f"first singings differing from the in-order alignment by more than 2 s: {n['first differs']}; verses flagged: " + ', '.join(f'{k} {len(v - own)}' for k, v in sorted(flags.items())) + f'; to check {len(allf)}')
+
 def main(src, lean):
     W = json.load(open(os.path.join(src, 'mms', 'windows.json'), encoding='utf-8'))
+    if any(w.get('items') for w in W): return by_line(src, lean, W)
     rough, order, rom = {}, collections.defaultdict(list), {}
     for w in W:
         for l in w['lines']:
