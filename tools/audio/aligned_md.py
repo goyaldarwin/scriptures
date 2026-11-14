@@ -14,8 +14,33 @@ def load(src, f, default=None):
     p = os.path.join(src, f)
     return json.load(open(p, encoding='utf-8')) if os.path.exists(p) else default
 
+def by_line(src, S, REC, W, C, show):
+    """aligned.md of a source timed line by line (source.json "lines": kirtan): the figures mms_merge.py prints."""
+    r = subprocess.run([sys.executable, os.path.join(HERE, 'mms_merge.py'), src, '--lean', re.search(r'lean ([\d.]+) s', C['why']).group(1), '--dry'], capture_output=True, text=True)
+    figs = r.stdout.strip().split('\n')[-1]
+    title = S['title']['en']
+    n = len(REC); hours = sum(x['dur'] for x in REC) / 3600
+    out = ['# Line starts from Meta\'s MMS (`aligned.json`, `lines.json`)', '',
+           f'**What:** for {title}\'s {n} recording{"s" if n > 1 else ""} ({hours:.1f} h; `recordings.json`), every singing of every line of '
+           'the verse each sings, found in MMS\'s frame-by-frame letter probabilities (torchaudio `MMS_FA`, the whole track at once) by '
+           '`tools/audio/line_align.py`: a search through how a shabad is sung (the rahao before the first pada and after each, '
+           'lines and padas sung again, a stanza on its own) with a filler for what the text does not hold (alaap, music, a '
+           'dhaarna, lines of another shabad), and the plain in-order alignment beside it (`tools/audio/METHOD.md`, "Line by '
+           'line"); one run per recording in the public `align` workflow (`mms_align.py`, raw results in `mms/<video id>.json`); '
+           f'`mms_merge.py` writes `aligned.json` (each verse\'s first singing), `lines.json` (the singings MMS scores 0.5 or '
+           'more) and `check.json`. Each start is MMS\'s less the lean, 0.6 s until the owner has set starts by ear here.', '',
+           f'**Figures:** {figs}.', '',
+           '**How good:** not scored yet: the owner has not set starts by ear on these recordings, and his marks are per verse; '
+           'starts heard in 5-s windows (`tools/audio/windows.py`) are the check until then (`fixes.md`, where any are recorded).', '',
+           f'**To check** (`check.json`, verses the owner has not set): {len(C["ids"])}; the source is published for review '
+           '(`source.json` "review"), so every verse not set by ear is on his to-check list.']
+    text = '\n'.join(out) + '\n'
+    if show: print(text)
+    else: open(os.path.join(src, 'aligned.md'), 'w', encoding='utf-8').write(text)
+
 def main(src, show=False):
     S, REC = load(src, 'source.json'), load(src, 'recordings.json', [])
+    if S.get('lines'): return by_line(src, S, REC, load(src, 'mms/windows.json', []), load(src, 'check.json', {'ids': [], 'why': 'lean 0.6 s'}), show)
     W, A, C = load(src, 'mms/windows.json', []), load(src, 'aligned.json', {}), load(src, 'check.json', {'ids': []})
     F, O = load(src, 'fixes.json', {}), load(src, 'owner.json', {})
     work = json.load(open(os.path.join(os.path.dirname(os.path.dirname(src)), 'work.json'), encoding='utf-8'))
