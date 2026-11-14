@@ -45,6 +45,13 @@ def by_line(src, lean, W, dry=False):
         p = os.path.join(src, 'mms', w['yt'] + '.json')
         if not os.path.exists(p): print(w['yt'], 'not aligned yet'); continue
         M = json.load(open(p))
+        # the recording goes on after its verses (a video of several shabads): letters heard well after the last singing
+        ends = [o[2] for i in w['keep'] for o in M['lines'].get(i, []) if o[3] >= 0.35]
+        if ends:
+            last = max(ends); after = sum(len(c) for t, c in M.get('read_at', []) if t > last + 30)
+            if after > 150:
+                flags['beyond'].add(w['keep'][-1])
+                if not dry: print(w['yt'], w['keep'][-1], f'sings on after its last line ({last:.0f} s): {after} letters heard after {last + 30:.0f} s')
         for it in w['items']:
             i = it['id']
             if i not in w['keep']: continue
@@ -60,16 +67,11 @@ def by_line(src, lean, W, dry=False):
             if len([k for k in want if k not in got]) > len(want) / 4: flags['unsung'].add(i)
             # the title: what is heard, against this verse and every other verse of the work (letter trigrams, rarer ones weigh more)
             mine, best = TI.like(M.get('read', ''), i)
-            if best[1] != i and len([k for k in want if k in got]) < len(want) / 2:   # most of its lines unfound, and it sounds like another verse
+            if len(w['keep']) == 1 and best[1] != i and len([k for k in want if k in got]) < len(want) / 2:   # most of its lines unfound, and it sounds like another verse
                 flags['title'].add(i)
                 if not dry: print(w['yt'], i, 'heard like it', round(mine, 3), '; most like', best[1], round(best[0], 3))
-            # the recording goes on after the verse (a video of several shabads): letters heard well after its last singing
             if good:
                 last = max(o[2] for o in good)
-                after = sum(len(c) for t, c in M.get('read_at', []) if t > last + 30)
-                if after > 150:
-                    flags['beyond'].add(i)
-                    if not dry: print(w['yt'], i, f'sings on after its last line ({last:.0f} s): {after} letters heard after {last + 30:.0f} s')
                 aligned.setdefault(w['yt'], {})[i] = [round(max(0.0, good[0][1] - lean), 2), round(last, 2)]
                 lines.setdefault(w['yt'], {})[i] = [[o[0], round(max(0.0, o[1] - lean), 2), o[2]] for o in good]
     allf = {i for s in flags.values() for i in s} - own
