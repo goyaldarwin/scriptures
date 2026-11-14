@@ -61,7 +61,7 @@ through the refrain because it has no end.
 In kirtan a verse (a whole shabad) is one recording of a few minutes, and its lines are sung again and again: the rahao
 (refrain) opens the song and returns after every pada, lines are sung twice, padas again, and a ragi adds an alaap, a
 manglacharan or a dhaarna, or lines of another shabad. A source like this (`source.json` `"lines": true`) is timed line by
-line, and every singing lights its line (the app's `lines`, `docs/LIBRARY.md` §4):
+line: MMS finds every singing of every line, and the app lights the lines moving forward only, each from its first singing after the line before (the app's `lines`, `docs/LIBRARY.md` §4):
 
 1. **No transcript:** Whisper places little in singing, and each recording is one verse (`recordings.json` `from`/`to`),
    so the step 1 windows are not needed: each track is one window, its whole length, carrying its verses' text
