@@ -1096,12 +1096,20 @@ function buildAudio(){
     a.forEach(([i, s, e]) => { const id = IT[i].id, t = A.at[id][0]; A.at[id] = e != null ? [t, s, e] : [t, s]; });   // the menus and buttons show these
     a.sort((x, y) => x[1] - y[1]);
   });
+  // a verse timed line by line ("lines") that is sung on further tracks too (a chhant's stanzas, one video each): each such
+  // track lights it from its first singing there, so the recording is played as the verse's
+  A.lineSet = {};
+  if (A.lines) for (const id in A.lines){ const i = ID[id]; if (i == null) continue; A.lineSet[id] = true;
+    const seen = new Set(AUT.map((a, t) => a.some(x => x[0] === i) ? t : -1));
+    A.lines[id].forEach(o => { if (!seen.has(o[0]) && AUT[o[0]]){ seen.add(o[0]); AUT[o[0]].push([i, o[1], null]); AUT[o[0]].sort((x, y) => x[1] - y[1]); } }); }
 }
 // Where a recording begins for this work: at 0, so the opening music is heard, when the first verse follows a short
 // opening; at the first verse when the work is a part of a longer video (the Hanumān āratī at the end of a Sundarakāṇḍa video)
 // A track that is a stretch of a longer video ("start" / "end": a song in a jukebox) begins at its first verse and ends at its "end".
 const INTRO_MAX = 90;
-function trStart(tr){ const a = SRC.au && SRC.au.at[(IT[tr.fi] || {}).id]; const s = a ? a[1] : 0; return tr.start == null && s <= INTRO_MAX ? 0 : s; }
+function trStart(tr){ const k = SRC.au ? SRC.au.tracks.indexOf(tr) : -1, a = SRC.au && SRC.au.at[(IT[tr.fi] || {}).id];
+  const s = a && a[0] === k ? a[1] : AUT[k] && AUT[k].length ? AUT[k][0][1] : a ? a[1] : 0;   // a verse whose start is on another track (sung there too): this track's first singing
+  return tr.start == null && s <= INTRO_MAX ? 0 : s; }
 function trEnd(tr){ return tr.end != null ? tr.end : tr.dur; }   // where a track ends: its own end inside the video, else the video's
 function hasAu(i){ return !!(SRC.au && SRC.au.at[IT[i].id]); }
 function firstAu(a, b){ for (let i = a; i <= b; i++) if (hasAu(i)) return i; return null; }
@@ -1213,12 +1221,12 @@ function snippet(i, k){
     if (now >= PL.snip - 0.05){ ytPost('pauseVideo'); PL.snip = null; clearInterval(snipT); setTimeout(syncPlayer, 300); }
   }, 50);
 }
-function playFrom(i, end){
+function playFrom(i, end, tk){
   if (!SRC.au) return;
   PL.snip = null;
   if (!hasAu(i)){ const j = firstAu(i, Math.min(IT.length - 1, i + 80)); if (j == null) return; i = j; }
-  const [t, st0] = SRC.au.at[IT[i].id], tr = SRC.au.tracks[t];
-  const st = (end != null && i === tr.fi) ? trStart(tr) : st0;
+  const t = tk != null ? tk : SRC.au.at[IT[i].id][0], st0 = SRC.au.at[IT[i].id][1], tr = SRC.au.tracks[t];
+  const st = tk != null ? trStart(tr) : (end != null && i === tr.fi) ? trStart(tr) : st0;   // tk: a further track of the same verse, from its start
   PL.on = true; PL.t = t; PL.end = end; PL.one = end === i; PL.cur = -1; PL.whole = false; PL.endMsg = ''; AN.playT0 = Date.now();   // PL.one: a single verse
   $('#player').hidden = false; document.body.classList.add('playing'); wake(true);
   seekGuard(st);
@@ -1241,6 +1249,9 @@ function onEnded(){
   // go on with the next recording; where a stretch has no recording yet, skip ahead to the next verse that has one (said in the
   // white capsule: the reading speaking, not an answer to a tap)
   const tr = SRC.au.tracks[PL.t], last = PL.end == null ? IT.length - 1 : PL.end, nx = firstAu(tr.li + 1, last);
+  // a verse sung on several tracks (a chhant's stanzas, one video each): its next track first
+  const LN = PL.cur >= 0 && SRC.au.lines && SRC.au.lines[IT[PL.cur].id], more = LN && LN.map(o => o[0]).filter(t => t > PL.t).sort((a, b) => a - b)[0];
+  if (more != null && !PL.one){ const whole = PL.whole, msg = PL.endMsg, cur = PL.cur; playFrom(cur, PL.end, more); PL.whole = whole; PL.endMsg = msg; return; }
   if (nx != null){ if (nx > tr.li + 1) toastLight(T('आगेके अंशकी रिकॉर्डिंग नहीं है — अगली रिकॉर्डिंगसे जारी', 'No recording for the next part — continuing with the next one')); const whole = PL.whole, msg = PL.endMsg; playFrom(nx, PL.end); PL.whole = whole; PL.endMsg = msg; return; }   // the reading goes on in the next recording: what was asked for (the whole work, a part, a day) is kept
   stopAudio();
 }
@@ -1273,7 +1284,8 @@ function tick(anchor){
   // that verse starts a little later; the same in ☰ › More settings › Audio timing on or off
   const m = at(show), e2 = endOf(show);
   if (e2 != null && time >= e2 && m >= 0 && m + 1 < a.length) show = a[m + 1][0];
-  setCur(show); followLines(show, time);
+  setCur(show);
+  if (SRC.au.lineSet && SRC.au.lineSet[IT[show].id]) sungLine(show, time); else { sungLine(-1); followLines(show, time); }
   // the bar runs over this work's part of the recording only (a work that is a slice of a longer video starts at 0%)
   const tr = SRC.au.tracks[PL.t], d = tr.end != null ? tr.end : ytInfo.d || tr.dur, s0 = trStart(tr);
   $('#pProg').style.width = Math.max(0, Math.min(100, 100 * (time - s0) / Math.max(1, d - s0))) + '%';
@@ -1314,6 +1326,26 @@ function followLines(i, time){
   if (r.top >= top && (end <= bot - 4 || r.top <= top + 24)) PL.line = i + ':' + k;
   else window.scrollTo({top: Math.max(0, scrollY + r.top - (top + 6)), behavior: 'smooth'});
 }
+// a verse timed line by line (the audio file's "lines": kirtan, where lines and the rahao are sung again and again): the line
+// being sung is lit, every time it is sung, and the page does not move with it (the owner: scrolling at every repeat
+// strains the eyes) — it moves only when a new verse starts (setCur). A lit line out of view is shown in the strip just above
+// the player instead, its text replaced in place; nothing on the page moves
+function sungLine(i, time){
+  let k = null;
+  const L = i >= 0 && SRC.au && SRC.au.lines && SRC.au.lines[IT[i].id];
+  if (L) for (const o of L){ if (o[0] !== PL.t) continue; if (o[1] > time) break; k = o[3] == null || time < o[3] ? o[2] : null; }
+  const key = k == null ? null : i + ':' + k, el = k != null && document.getElementById('v' + i), p = el && el.querySelectorAll('.vtext p')[k];
+  if (PL.sung !== key || (p && !p.classList.contains('sung'))){ PL.sung = key; $$('#rBody .vtext p.sung').forEach(x => x.classList.remove('sung')); if (p) p.classList.add('sung'); }
+  let out = false;
+  if (k != null && $('#reader').classList.contains('on')){
+    const top = $('#reader .bar').getBoundingClientRect().bottom, bot = $('#player').getBoundingClientRect().top, r = p && p.getBoundingClientRect();
+    out = !r || r.top < top || r.bottom > bot;
+  }
+  const s = $('#pLine'), txt = out ? verseOf(i).v[k] : '';
+  if (s.hidden === out) s.hidden = !out;
+  if (s.textContent !== txt) s.textContent = txt;
+}
+addEventListener('scroll', () => { if (PL.on && PL.sung){ const i = +PL.sung.split(':')[0]; sungLine(i, playTime()); } }, {passive: true});   // scrolled by hand: the strip shows or hides with the line
 function setCur(i){
   if (PL.cur === i) return; PL.cur = i; PL.line = null;
   $$('#rBody .verse.now').forEach(v => v.classList.remove('now'));
@@ -1329,7 +1361,7 @@ function setCur(i){
   if (el){ el.classList.add('now'); if (!(S.timing.on && inView(el))) keepInView(el); }
   markNear();
 }
-function stopAudio(){ ytPost('pauseVideo'); PL.on = false; PL.snip = null; $('#player').hidden = true; $('#pJump').hidden = true; document.body.classList.remove('playing'); $$('#rBody .verse.now').forEach(v => v.classList.remove('now')); }
+function stopAudio(){ ytPost('pauseVideo'); PL.on = false; PL.snip = null; sungLine(-1); $('#player').hidden = true; $('#pJump').hidden = true; document.body.classList.remove('playing'); $$('#rBody .verse.now').forEach(v => v.classList.remove('now')); }
 function playing(){ return ytInfo.st === 1 || ytInfo.st === 3; }
 function syncPlayer(){ $('#pPlay').innerHTML = '<svg><use href="#i-' + (playing() ? 'pause' : 'play') + '"/></svg>'; $('#pRate').textContent = RATE() + '×'; syncStep(); }
 $('#pPlay').onclick = () => { if (playing()) ytPost('pauseVideo'); else ytPost('playVideo'); setTimeout(syncPlayer, 400); };

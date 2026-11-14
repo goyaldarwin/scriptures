@@ -14,6 +14,8 @@ Window: {"yt", "a", "b" (seconds), "keep": [ids], "lines": [{"id", "rom", "rough
 A song whose transcript placed too few of its verses to cut windows by (fast singing, chant): one window for each track,
 its whole stretch (recordings.json start/end), holding every verse from the recording's "from" to its "to" (else the work's
 first and last), less those --skip names (verses the recording does not sing), each with its rough start where it has one.
+A source timed line by line (source.json "lines": true, kirtan: tools/audio/line_align.py) is always cut this way, needs no
+transcript, and its windows also carry the verses' text ("items": [{"id", "v", "t"}]) for the line-by-line search.
 """
 import json, os, re, sys, unicodedata
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.dirname(os.path.dirname(HERE))
@@ -30,6 +32,7 @@ def main(src, whole=False, skip=()):
     lib = os.path.join(REPO, 'library', meta['work'])
     work = json.load(open(os.path.join(lib, 'work.json'), encoding='utf-8'))
     au = json.load(open(os.path.join(lib, 'audio', meta['id'] + '.json'), encoding='utf-8'))
+    whole = whole or bool(meta.get('lines'))
     IT = work['items']; ID = {x['id']: k for k, x in enumerate(IT)}
     L = lambda i: max(8, len(''.join(IT[i]['v'])))
     out = []
@@ -41,6 +44,7 @@ def main(src, whole=False, skip=()):
             got = {IT[i]['id']: au['at'][IT[i]['id']][1] for i in idx if IT[i]['id'] in au['at'] and au['at'][IT[i]['id']][0] == ti}
             out.append({'yt': tr['yt'], 'a': tr.get('start', 0.0), 'b': tr.get('end', tr['dur']), 'keep': [IT[i]['id'] for i in idx],
                         'lines': [{'id': IT[i]['id'], 'rom': rom(IT[i].get('t') or []), 'rough': got.get(IT[i]['id'])} for i in idx]})
+            if meta.get('lines'): out[-1]['items'] = [{'id': IT[i]['id'], 'v': IT[i]['v'], 't': IT[i].get('t') or IT[i]['v']} for i in idx]
             continue
         idx = list(range(ID[tr['first']], ID[tr['last']] + 1))
         rough = {i: au['at'][IT[i]['id']][1] for i in idx if IT[i]['id'] in au['at'] and au['at'][IT[i]['id']][0] == ti}
