@@ -981,8 +981,9 @@ async def main():
             PL.on = true; PL.t = 0; PL.end = null; PL.cur = -1; ytOK = true; PL.seekT = null; const r = [];
             for (const f of [0.1, 0.5, 0.8]){ ytInfo.t = s + f * d; tick(); await new Promise(r => setTimeout(r, 300));
               const el = document.getElementById('v' + v1); r.push(PL.cur === v1 && el.classList.contains('now') && !el.querySelector('.vtext p.sung')); }
+            r.push(JSON.stringify([0.1, 0.5, 0.8].map(f => lineAt(v1, s + f * d))) === '[0,1,1]');   // the page follows the line times, forward only
             stopAudio(); ytOK = false; delete SRC.au.lines; buildAudio(); return r; })()""")
-        check('playing a verse timed line by line: it is lit as a whole like any verse, no line marked on its own', ln == [True] * 3, ln)
+        check('playing a verse timed line by line: lit as a whole like any verse, no line marked; the page follows its line times forward only', ln == [True] * 4, ln)
         # offline reading: a work opened once is readable with no network at all; a work never opened says so
         srv2 = serve(); url2 = f'http://127.0.0.1:{srv2.server_address[1]}/'
         ctx2 = await b.new_context(viewport={'width': 390, 'height': 844}, is_mobile=True, has_touch=True); pg3 = await ctx2.new_page(); errs3 = []
