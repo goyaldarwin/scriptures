@@ -61,28 +61,34 @@ through the refrain because it has no end.
 In kirtan a verse (a whole shabad) is one recording of a few minutes, and its lines are sung again and again: the rahao
 (refrain) opens the song and returns after every pada, lines are sung twice, padas again, and a ragi adds an alaap, a
 manglacharan or a dhaarna, or lines of another shabad. A source like this (`source.json` `"lines": true`) is timed line by
-line: MMS finds every singing of every line, and the app lights the lines moving forward only, each from its first singing after the line before (the app's `lines`, `docs/LIBRARY.md` §4):
+line: MMS finds every singing of every line (the audio file's `lines`, `docs/LIBRARY.md` §4). The app plays such a verse
+like any other, lit as a whole with no line marked, and the page follows its lines by these times instead of a guess by
+length, forward only (`docs/PLAYBOOK.md` §7).
 
-1. **No transcript:** Whisper places little in singing, and each recording is one verse (`recordings.json` `from`/`to`),
-   so the step 1 windows are not needed: each track is one window, its whole length, carrying its verses' text
-   (`mms_windows.py`, which a "lines" source always cuts so).
+1. **No transcript:** Whisper places little in singing, and each recording names the verses it sings (`recordings.json`
+   `from`/`to`: a shabad; a salok with the rest of its vaar stanza; a bani of pauris), so the step 1 windows are not
+   needed: each track is one window, its whole length, carrying its verses' text (`mms_windows.py`, which a "lines"
+   source always cuts so). A track over 40 minutes is beyond one machine's memory this way and waits for windows of its own.
 2. **MMS on the whole track** (`mms_align.py` → `line_align.py`): from MMS's frame-by-frame letter probabilities, the best
    path through a grammar of how a shabad is sung: a pada line by line (a line again, back to an earlier line of the
    pada, a line left out at a cost, a heading — ਮਹਲਾ, ਸਲੋਕੁ, ੴ … — at none); the rahao before the first pada and after
-   each, as often as sung; the next pada, or a later one at a cost (a chhant's stanza sung on its own, one recording
-   each); and between any two lines a filler for what the text does not hold, which costs a frame its best letter less a
-   penalty, so a line is placed only where its own letters are heard about as well as anything else. Beside it the plain
-   in-order alignment (each line once, in order, a filler between: step 2 above) gives each line's first singing.
-3. **Checks** (`mms_merge.py` → `check.json`): the letters MMS hears are compared with the verse and with every other
-   verse of the work (`title`: the recording may not sing the verse its title names); a line with no singing scored 0.5
-   or more (`unsung`); first singings that differ by more than 2 s between the two searches for more than a quarter of
-   the verse's lines (`first`). Singings MMS scores below 0.5 are dropped. Starts move by the lean (0.6 s until the
-   owner has set some by ear).
+   each, as often as sung; the next pada, or a later one at a cost, and so opening on a later pada or ending before the
+   last (a chhant's stanza sung on its own, one recording each); and between any two lines a filler for what the text
+   does not hold, which costs a frame its best letter less a penalty (small where MMS hears no letter), so a line is
+   placed only where its own letters are heard about as well as anything else. Beside it the plain in-order alignment
+   (each line once, in order, a filler between: step 2 above).
+3. **Merge and checks** (`mms_merge.py`): kept are the search's singings it scores 0.35 or more, and the in-order
+   alignment's first singing of a line the search left out where the lines around it place it (`line_align.merge`); a
+   singing's end is cut to the next singing's start. Starts move by the lean (0.6 s until the owner has set some by ear).
+   `check.json` lists a verse when fewer than half its lines are found and the letters MMS hears are more like another
+   verse of the work (`title`: the recording may not sing the verse its title names, or only part of it), when more than
+   a quarter of its lines are not found (`unsung`), or when MMS hears letters well after the track's last singing
+   (`beyond`: a video of several shabads; its track's `end` is set by hand, the evidence in `fixes.md`).
 4. **By ear:** a flagged line is heard in 5-s windows (`windows.py`), as in step 5 above. The owner's marks in the app are
    per verse (its first singing); the lines are MMS's.
 
-The search's costs (`line_align.py` `P`) were tuned on the first recordings of the source that uses them; its `aligned.md`
-gives the figures.
+The search's costs (`line_align.py` `P`) were tuned on the Shabad Guru pilot's emissions (`scriptures-data`,
+`experiments/kirtan/`), against the lines read from MMS's letters and the starts heard in 5-s windows (its `fixes.md`).
 
 ## When a recording uses steps 2–5
 
