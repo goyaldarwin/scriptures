@@ -1189,6 +1189,16 @@ async def main():
             const ang = [R.org, !!document.getElementById('v' + ID['607.3'])]; WS().org = 'k'; S.settings.atOpen = {}; save();
             return {seg, rows, n: G.list.length, o1, o2, shown, chip, own: chip === GNAME('writer.guru-tegh-bahadur'), ang}; })()""")
         check('Sri Guru Granth Sahib: Part · Writer · Ang; a writer opens a reading of only their verses, search from it narrowed to them; Ang 608 opens its part at the verse it begins in', vw['seg'] == ['k', 'writer', 'ang'] and vw['rows'] == 34 and vw['o1'] and vw['o2'] and vw['shown'] > 20 and vw['own'] and vw['ang'] == ['k', True], vw)
+        # an Ang that begins inside a verse begun on the page before (Ang 110 at ਸੇਵਾ ਸੁਰਤਿ, the third line of 109.3): it opens at that
+        # line, and the footer names the page of the line at the top of the screen (110 there, 109 above it)
+        ap = await ev("""(async () => { await openWork('guru-granth-sahib', true); show('home'); WS().org = 'ang'; S.settings.atOpen = {}; renderHome();
+            document.querySelector('[data-hund="101"]').click(); [...document.querySelectorAll('#orgList [data-at]')][9].click(); await new Promise(r => setTimeout(r, 500));
+            const bar = $('#reader .bar').getBoundingClientRect().bottom, p = lineEl(ID['109.3'], 2), top = p ? Math.round(p.getBoundingClientRect().top - bar) : null;
+            updateHeader(); const f110 = $('#rMid .ml').textContent;
+            window.scrollBy(0, -(lineEl(ID['109.3'], 2).getBoundingClientRect().top - lineEl(ID['109.3'], 0).getBoundingClientRect().top)); await new Promise(r => setTimeout(r, 300));
+            updateHeader(); const f109 = $('#rMid .ml').textContent; WS().org = 'k'; S.settings.atOpen = {}; save();
+            return {txt: p && p.textContent, top, f110, f109}; })()""")
+        check('Sri Guru Granth Sahib: an Ang that begins inside a verse opens at its first line, and the footer names the page of the line at the top', ap['txt'] and ap['txt'].startswith('ਸੇਵਾ ਸੁਰਤਿ') and ap['top'] is not None and 0 <= ap['top'] <= 30 and ap['f110'].startswith('Ang 110') and ap['f109'].startswith('Ang 109'), ap)
         # “Review audio timing” in the verse's ⋮ menu: only that verse joins the to-check list (seen in timing mode); one blue dot on ▶
         # and in the menu shows it is marked; it leaves the list once its start is set
         fg = await ev("""(async () => { const k0 = JSON.stringify(S.timing.flags); await openWork('manas', true); await loadSources(); show('home');

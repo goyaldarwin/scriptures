@@ -320,6 +320,26 @@ function glossEdit(w, lang){
 }
 
 /* ---------------- work structure ---------------- */
+// the numbered pages (the Angs) that begin inside a verse: verse index → [[line, page number], …] (work.json views → at,
+// line); a page begins at a line of its verse, and the footer names the page of the line at the top of the screen
+let PGL = null;
+function pageLines(){
+  if (PGL) return PGL; PGL = new Map();
+  const v = VIEWS.find(x => x.at && x.line); if (!v) return PGL;
+  v.at.forEach((id, n) => { const i = ID[id]; if (i != null && v.line[n] > 0){ if (!PGL.has(i)) PGL.set(i, []); PGL.get(i).push([v.line[n], n + 1]); } });
+  return PGL;
+}
+function lineEl(i, k){ const el = document.getElementById('v' + i); return el && el.querySelectorAll('.vtext p')[k]; }
+// scroll so that line k of verse i is just below the top bar (a page that begins inside a verse)
+function scrollToLine(i, k){ const p = lineEl(i, k); if (!p) return; window.scrollTo({top: Math.max(0, p.getBoundingClientRect().top + scrollY - $('#reader .bar').getBoundingClientRect().bottom - 6), behavior: 'auto'}); }
+// the page the line at the top of the screen is on, in a work whose pages begin inside verses; else null
+function pageAtTop(i){
+  const L = pageLines().get(i); if (!pageLines().size) return null;
+  let n = +SNUM(IT[i].s); if (!L) return n;
+  const top = $('#reader .bar').getBoundingClientRect().bottom + 12;
+  for (const [k, pg] of L){ const p = lineEl(i, k); if (p && p.getBoundingClientRect().top <= top) n = pg; }
+  return n;
+}
 let PAGES = [], itemPage = null, PARTS = [], TOPICS = [], topicAt = new Map(), PLANS = [], PLAN = {}, pauseAfter = {}, VIEWS = [], VIEW = {}, GROUP = {};
 function buildWork(){
   applyTypes();
@@ -336,7 +356,7 @@ function buildWork(){
   // a work's other classifications beside its parts (work.json → views; docs/LIBRARY.md §2): named groups of verses, each read
   // on its own (the Granth's writers: the reader "writer.bhagat-kabir" shows only Bhagat Kabir Ji's verses, in the Granth's
   // order), and numbered pages that open where they begin (its Angs, read in their part)
-  VIEWS = W.views || []; VIEW = {}; GROUP = {};
+  VIEWS = W.views || []; VIEW = {}; GROUP = {}; PGL = null;
   VIEWS.forEach(v => { VIEW[v.id] = v; (v.groups || []).forEach(g => g.list.forEach(m => {
     const key = v.id + '.' + m.id, list = m.items.map(id => ID[id]).filter(i => i != null), pgs = [...new Set(list.map(i => itemPage[i]))];
     GROUP[key] = {key, m, list, set: new Set(list), ix: new Map(list.map((i, n) => [i, n])), pgs, pos: new Map(pgs.map((p, n) => [p, n]))}; })); });
@@ -664,7 +684,8 @@ function curSection(i){ const t = topicOf(i); return t && t.i <= R.b && t.end >=
 function updateHeader(){
   if (!IT.length) return; const i = topVisibleItem(), t = topicOf(i);
   const s = curSection(i), where = R.org === 'k' ? (PARTS.length > 1 ? KNAME(R.n) : '') : RNAME(), topic = s ? TNAME(s) : '';
-  $('#rMid').innerHTML = '<span class="ml">' + (s ? spanLabel(Math.max(s.i, R.a), Math.min(s.end, R.b)) : spanLabel(R.a, R.b)) + ' ▾</span><small>' + esc(where || TT(W.title)) + '</small>';   // only the part (or reading day): a small footer; the topic heads the page
+  const pg = pageAtTop(i);   // a work whose pages begin inside verses (the Angs): the page of the line at the top
+  $('#rMid').innerHTML = '<span class="ml">' + (pg != null ? SECW() + ' ' + DEV(pg) : s ? spanLabel(Math.max(s.i, R.a), Math.min(s.end, R.b)) : spanLabel(R.a, R.b)) + ' ▾</span><small>' + esc(where || TT(W.title)) + '</small>';   // only the part (or reading day): a small footer; the topic heads the page
 }
 let scT;
 // a timer set while reading acts only if the reader is still open on the same work and reading (Back, then another work
@@ -771,14 +792,15 @@ function fixLast(){
   if (IT[l.i]) l.id = IT[l.i].id; else ws.last = null;
   for (const o in ws.pos) ws.pos[o] += sh(ws.pos[o]);
 }
-function openReader(org, i, flash){
-  if (!wReady){ whenReady().then(() => openReader(org, i, flash)); return; }   // the meanings are still on their way (openWork)
+function openReader(org, i, flash, line){
+  if (!wReady){ whenReady().then(() => openReader(org, i, flash, line)); return; }   // the meanings are still on their way (openWork)
   if (!S.hinted && !TOUR){ S.hinted = 1; save(); setTimeout(() => toast(T('किसी शब्दको छूकर अर्थ देखें · नीचेसे प्रसंग चुनें', 'Tap any word for its meaning · choose a section at the bottom')), 900); }
   if (!isOrg(org)) org = 'k';
   const g0 = GROUP[org]; if (g0 && !g0.set.has(i)){ const f = gFirst(g0, i, IT.length - 1); i = f >= 0 ? f : g0.list[g0.list.length - 1]; }
   R.org = org; [R.a, R.b, R.n] = rangeFor(org, i);
   if (!$('#reader').classList.contains('on')) show('reader');
   renderAround(i); if (flash){ const el = document.getElementById('v' + i); if (el) el.classList.add('flash'); }
+  if (line > 0){ scrollToLine(i, line); updateHeader(); }   // a page that begins inside the verse: at its first line
   savePos(i); anchorJump(i); setTimeout(backPill, 80);
 }
 function reopenReader(){ fixLast(); const l = WS().last; if (l && IT[l.i]) openReader(l.org, l.i); else show('home', false); }
@@ -1685,7 +1707,7 @@ function renderHome(){
     const at = VIEW[org].at.map(id => ID[id]), nm = TT(VIEW[org].name), open = (S.settings.atOpen || {})[W.id];
     for (let a = 1; a <= at.length; a += 100){ const b = Math.min(at.length, a + 99), on = open === a, pa = IT[at[a - 1]].p, pb = IT[at[b - 1]].p;
       h += '<li class="rowp"><button class="it" data-hund="' + a + '"><span class="no">' + DEV(Math.ceil(a / 100)) + '</span><span class="grow"><span class="ti">' + esc(nm + ' ' + DEV(a) + '–' + DEV(b)) + '</span><br><span class="ds">' + esc(KNAME(pa) + (pb !== pa ? ' – ' + KNAME(pb) : '')) + '</span></span><span class="chev">' + (on ? '⌄' : '›') + '</span></button></li>';
-      if (on) h += '<li class="angs"><div class="pick days">' + Array.from({length: b - a + 1}, (_, x) => '<button data-at="' + at[a + x - 1] + '" aria-label="' + esc(nm + ' ' + (a + x)) + '">' + DEV(a + x) + '</button>').join('') + '</div></li>'; } }
+      if (on) h += '<li class="angs"><div class="pick days">' + Array.from({length: b - a + 1}, (_, x) => '<button data-at="' + at[a + x - 1] + '" data-ln="' + ((VIEW[org].line || [])[a + x - 1] || 0) + '" aria-label="' + esc(nm + ' ' + (a + x)) + '">' + DEV(a + x) + '</button>').join('') + '</div></li>'; } }
   else if (org === 'k') PARTS.forEach(p => { const tps = TOPICS.filter(t => IT[t.i].p === p.k).length || (W.sections ? PAGES.filter(g => g.k === p.k && SECN(g.s)).length : 0);   /* its topics, else its named sections */ h += '<li class="rowp">' + play('k', p.a, p.b) + '<button class="it" data-open="' + p.a + '"><span class="no">' + DEV(p.no != null ? p.no : p.k + 1) + '</span><span class="grow"><span class="ti">' + esc(KNAME(p.k)) + '</span><br><span class="ds">' + DEV(tps) + T(' प्रसंग', tps === 1 ? ' section' : ' sections') + '</span></span><span class="chev">›</span></button></li>'; });
   else { const P = PLAN[org]; const dn = Object.keys(DONE(ME(), org)).length; h += '<li class="pdone" aria-label="' + DEV(dn) + ' / ' + DEV(P.n) + T(' ' + UNIT(org).hi + ' पूर्ण', ' ' + UNIT(org).en.toLowerCase() + 's completed') + '"><span class="pdbar"><span style="width:' + Math.round(100 * dn / P.n) + '%"></span></span><span class="pdn">' + DEV(dn) + ' / ' + DEV(P.n) + '</span></li>';   // how much of the plan is done; a vishram's number marks it done
     // pages read before the first day and after the reading (pūrvāṅga / uttarāṅga), when the plan names them
@@ -1698,7 +1720,7 @@ function renderHome(){
   $$('#orgList [data-group]').forEach(b => b.onclick = () => { const G = GROUP[b.dataset.group]; openReader(G.key, G.list[0]); });
   $$('#orgList [data-hund]').forEach(b => b.onclick = () => { const a = +b.dataset.hund, o = S.settings.atOpen = S.settings.atOpen || {}; if (o[W.id] === a) delete o[W.id]; else o[W.id] = a; save(); renderHome();
     const at = $('#orgList .angs'); if (at) at.scrollIntoView({block: 'nearest'}); });
-  $$('#orgList [data-at]').forEach(b => b.onclick = () => openReader('k', +b.dataset.at, true));   // an Ang opens in its part, at the verse its first line is in
+  $$('#orgList [data-at]').forEach(b => b.onclick = () => openReader('k', +b.dataset.at, true, +b.dataset.ln));   // an Ang opens in its part, at its first line (inside a verse that began on the page before)
   // a page that is also a work of its own (the Mānas's āratī, with its meanings and recording: vidhi.open) opens that work's reading
   $$('#orgList [data-page]').forEach(b => b.onclick = () => openPage(b.dataset.page));
   $$('#orgList [data-ppg]').forEach(b => b.onclick = ev => { ev.stopPropagation(); openPage(b.dataset.ppg, true); });

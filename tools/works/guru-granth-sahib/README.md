@@ -71,7 +71,7 @@ Rebuild: `python3 tools/works/guru-granth-sahib/source/make.py && python3 tools/
   (`cite.mark` "none"). The Japji and the Sukhmani keep their own citations (Pauri 5, Pauri 1.8).
 - **Views** (`views.json`, made by `make.py`, joined to the manifest by `include`): beside its parts the Granth is
   classified by **writer** (the Gurus, the Bhagats, the Bhatts, Satta and Balwand and Baba Sundar; each writer's verses
-  in the Granth's order, read on their own) and by **Ang** (for each of the 1,430 Angs, the verse its first line is in).
+  in the Granth's order, read on their own) and by **Ang** (for each of the 1,430 Angs, the verse its first line is in and which line of it: an Ang opens at that line, and the reader's footer names the Ang of the line at the top of the screen).
   How a writer is settled: `reconciliation.md` §6.
 - **Topics:** every shabad, and every salok and swayya of the closing compositions, by its first line (as the Japji's);
   a composition (a vaar, a bani of pauris or stanzas) once, at its start, by its heading line.

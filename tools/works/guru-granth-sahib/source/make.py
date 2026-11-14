@@ -289,10 +289,10 @@ def views(U, items):
             dl = [l for k in ks for l in U[k]['lines']]; mine = [(v['id'], n) for v in vs for n in range(len(v['v']))]
             if x['take'] == 'japji': mine = [mine[0]] + mine[4:]
             assert len(dl) == len(mine)
-            for l, (vid, _) in zip(dl, mine): ang.setdefault(l['ang'], vid)
+            for l, (vid, n) in zip(dl, mine): ang.setdefault(l['ang'], (vid, n))
             by.setdefault(wr, []).extend(v['id'] for v in vs)
             continue
-        for l in x['lines']: ang.setdefault(l['ang'], x['id'])
+        for n, l in enumerate(x['lines']): ang.setdefault(l['ang'], (x['id'], n))
         by.setdefault(writer_of(x, W), []).append(x['id'])
     assert sorted(ang) == list(range(1, 1431)), 'an Ang without a line'
     groups, named = [], set()
@@ -306,7 +306,8 @@ def views(U, items):
     assert set(by) - named == NO_WRITER, set(by) - named
     return {'views': [
         {'id': 'writer', 'name': {'hi': 'बाणीकार', 'en': 'Writer', 'pa': 'ਬਾਣੀਕਾਰ'}, 'groups': groups},
-        {'id': 'ang', 'name': {'hi': 'अंग', 'en': 'Ang', 'pa': 'ਅੰਗ'}, 'at': [ang[n] for n in range(1, 1431)]}]}
+        {'id': 'ang', 'name': {'hi': 'अंग', 'en': 'Ang', 'pa': 'ਅੰਗ'}, 'at': [ang[n][0] for n in range(1, 1431)],
+         'line': [ang[n][1] for n in range(1, 1431)]}]}   # the line of that verse each Ang begins with (0: its first)
 
 
 def write(items, topics):

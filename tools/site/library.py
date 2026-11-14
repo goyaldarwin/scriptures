@@ -247,6 +247,10 @@ def check_work(lib, leaf, LANGS):
         else:
             pos = [IX.get(x, -1) for x in v['at']]
             _need(min(pos) >= 0 and pos == sorted(pos), f"{name}: view {v['id']}: its pages' verses are missing or out of order")
+            if 'line' in v:   # the line each page begins with, within its verse: in the verse, and later on a page that shares it
+                VL = {x['id']: len(x['v']) for x in w['items']}
+                _need(len(v['line']) == len(v['at']) and all(isinstance(k, int) and 0 <= k < VL[x] for x, k in zip(v['at'], v['line'])), f"{name}: view {v['id']}: a page's line is not a line of its verse")
+                _need(all(not (a == b and k2 <= k1) for a, b, k1, k2 in zip(v['at'], v['at'][1:], v['line'], v['line'][1:])), f"{name}: view {v['id']}: two pages begin at the same line or out of order")
     # sources
     # meaning languages: those with a "meaning" block in glossary/languages.json (hi, en, pa);
     # hi, en and au are always listed, another only when the work has one
