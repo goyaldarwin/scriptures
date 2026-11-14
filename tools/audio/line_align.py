@@ -28,13 +28,17 @@ HEAD = ('ਮਹਲਾ', 'ਮਃ', 'ੴ', 'ਸਲੋਕੁ', 'ਸਲੋਕ', 'ਪ
 NEG = -1e30
 # the search's costs, in log-probability: tuned on the pilot's recordings (aligned.md of the source that uses them)
 P = {'filler': 0.3,     # per frame of filler, below the frame's best letter
+     'sub': 1.5,        # the most a frame costs a line, below the frame's best letter (a letter sung otherwise than written)
      'enter': 3.0,      # per line sung (a line must earn its place)
      'skip': 6.0,       # per line of a pada left out
      'pada': 8.0}       # per pada passed over (a stanza sung on its own)
 
 def rom(s):
-    """A line's transliteration in plain letters a–z, its numbers and the word rahāu dropped (they are not sung)."""
-    t = unicodedata.normalize('NFD', s.lower()); t = ''.join(c for c in t if not unicodedata.combining(c))
+    """A line's transliteration in plain letters a–z as MMS spells what it hears (a long ā, ī, ū doubled: aa, ii, uu), its
+    numbers and the word rahāu dropped (they are not sung)."""
+    t = unicodedata.normalize('NFD', s.lower())
+    for a, b in (('a\u0304', 'aa'), ('i\u0304', 'ii'), ('u\u0304', 'uu')): t = t.replace(a, b)
+    t = ''.join(c for c in t if not unicodedata.combining(c))
     w = re.sub(r'[^a-z\s]', ' ', t).split()
     while w and w[-1] in ('rahau', 'duja', 'duji'): w.pop()
     return ''.join(w)
@@ -153,7 +157,7 @@ def viterbi(em, G, p=P):
     """The best path through G over the emissions em [frames, letters] (log-probabilities, blank = 0).
     Returns [(instance, first frame, last frame, [(state, first frame, last frame), …])] in time order."""
     T, N, n = em.shape[0], len(G.tok), len(G.inst)
-    fill = em.max(1) - p['filler']
+    top = em.max(1); fill = top - p['filler']; floor = top - p['sub']
     isfirst = np.zeros(N, bool); isfirst[G.first] = True
     isc1 = np.zeros(N, bool); isc1[G.first + 1] = True
     m1 = np.ones(N, bool); m1[G.first] = False
@@ -163,7 +167,7 @@ def viterbi(em, G, p=P):
     ent = np.zeros((T, n), np.int32)                   # where an entry came from: x*3 + (0 last letter, 1 last blank, 2 filler); -1 the opening filler
     fbp = np.zeros((T, n), np.uint8)                   # filler: 0 stay, 1 from the last letter, 2 from the last blank
     for t in range(T):
-        e = em[t, G.tok]
+        e = np.maximum(em[t, G.tok], floor[t])
         a0 = V
         a1 = np.where(m1, np.concatenate(([NEG], V[:-1])), NEG)
         a2 = np.where(m2, np.concatenate(([NEG, NEG], V[:-2])), NEG)
