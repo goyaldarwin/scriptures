@@ -11,12 +11,14 @@ downloaded; the "review" and "unmatched" rows are the owner's to decide) is a re
   - the Mool Mantar: the whole Japji (to its closing salok);
   - a shabad or pad: itself.
 A video that sings more after its verses is found by mms_merge.py ("beyond") and its track ended by hand ("end", with the
-evidence in fixes.md), kept here in END. The order is the Granth's (a verse's videos by video id). "dur" is the original's
+evidence in fixes.md), kept here in END; a second video of the same song is left out (DROP, README.md). The order is the Granth's (a verse's videos by video id). "dur" is the original's
 length from its .meta.json.
 """
 import bisect, csv, json, os, re, sys
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.abspath(os.path.join(HERE, '..', '..', '..', '..', '..'))
 END = {'uEFQLir74Fo': 147.0}          # fixes.md
+# a verse sung in two videos alike (the same song): the one MMS fits best is kept, the other left out (README.md)
+DROP = {'u3MgY7-tOq0': '41.2', 'zkEKqNFvmhM': '353.3', 'IDDWa0LeJfw': '528.1'}
 CLOSE = re.compile(r'॥\s*[੦-੯]+\s*॥\s*[੦-੯]+\s*॥(\s*[੦-੯]+\s*॥)*\s*(ਸੁਧੁ\s*)?$')
 W = json.load(open(os.path.join(REPO, 'library/sikhism/gurbani/guru-granth-sahib/work.json')))
 IT = W['items']; IX = {x['id']: n for n, x in enumerate(IT)}
@@ -45,6 +47,7 @@ def main(data):
     rows = [r for r in csv.DictReader(open(os.path.join(D, 'printouts/shabad-guru/videos.csv'))) if r['status'] == 'downloaded']
     out = []
     for r in rows:
+        if r['video_id'] in DROP: continue
         v = r['video_id']; mp = os.path.join(D, 'audio/shabad-guru', v + '.opus.meta.json')
         dur = json.load(open(mp))['original']['duration_s'] if os.path.exists(mp) else float(r['duration_s'])
         rec = {'yt': v, 'file': r['file'], 'data': f'sikhism/gurbani/guru-granth-sahib/audio/shabad-guru/{v}.opus', 'dur': dur,
