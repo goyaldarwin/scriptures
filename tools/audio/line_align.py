@@ -24,7 +24,8 @@ their frames (as torchaudio's MMS_FA scores a word). `read()` gives the letters 
 frame, repeats and blanks dropped), to check that a recording sings the verse its title names.
 """
 import re, unicodedata
-import numpy as np
+try: import numpy as np            # the search needs it; the merge's helpers (units, merge, Titles) do not, and the
+except ImportError: np = None      # checks run them where numpy is not installed
 
 END = re.compile(r'॥\s*[੦-੯0-9]+\s*॥')
 HEAD = ('ਮਹਲਾ', 'ਮਃ', 'ੴ', 'ਸਲੋਕੁ', 'ਸਲੋਕ', 'ਪਉੜੀ', 'ਪਵੜੀ', 'ਛੰਤੁ', 'ਛੰਤ', 'ਘਰੁ', 'ਬਾਣੀ', 'ਅਸਟਪਦੀ', 'ਡਖਣਾ', 'ਦੁਪਦੇ', 'ਤਿਪਦੇ', 'ਚਉਪਦੇ', 'ਪੰਚਪਦੇ', 'ਵਾਰ')
