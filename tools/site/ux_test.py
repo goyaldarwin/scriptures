@@ -973,22 +973,16 @@ async def main():
             ytInfo.t = a[4][1] + 0.2; tick(); await new Promise(r => setTimeout(r, 1200)); jumpPill(); r.push(pill.hidden, PL.cur === v2);   // the next verse starts: the page follows, no pill
             stopAudio(); ytOK = false; r.push(pill.hidden); return r; })()""")
         check('playing: the “now playing” pill shows only while the lit verse is off screen, points the way, and brings it back on a tap', jp == [True, True, True, True, True, True, True, True, True], jp)
-        # a verse timed line by line (kirtan, the audio file's "lines"): the light moves forward only — a line is lit from its first
-        # singing until the next line starts, and stays lit while it is sung again (the owner: as an āratī's repeated first line)
+        # a verse timed line by line (kirtan, the audio file's "lines") plays like any other verse: lit as a whole, no line marked
         ln = await ev("""(async () => { await openWork('ramraksha', true); show('home'); S.timing.on = false; openReader('k', 0); await new Promise(r => setTimeout(r, 500));
             const a = AUT[0], v1 = a[3][0], s = a[3][1], d = a[4][1] - a[3][1], id = IT[v1].id;
             SRC.au.lines = {[id]: [[0, s, 0, s + 0.2 * d], [0, s + 0.4 * d, 1, null], [0, s + 0.7 * d, 0, null]]}; buildAudio();
-            const sung = () => [...document.getElementById('v' + v1).querySelectorAll('.vtext p')].map(p => p.classList.contains('sung'));
             document.querySelector('#player').hidden = false; document.body.classList.add('playing');
-            PL.on = true; PL.t = 0; PL.end = null; PL.cur = -1; ytOK = true; PL.seekT = null; ytInfo.t = s + 0.1 * d; tick(); await new Promise(r => setTimeout(r, 900));
-            const r = []; r.push(PL.cur === v1, sung()[0] && !sung()[1]);                              // the first line lights
-            ytInfo.t = s + 0.3 * d; tick(); r.push(sung()[0] && !sung()[1]);                           // after its singing, until the next starts: still lit
-            ytInfo.t = s + 0.5 * d; tick(); r.push(sung()[1] && !sung()[0]);                           // the next line
-            ytInfo.t = s + 0.8 * d; tick(); r.push(sung()[1] && !sung()[0]);                           // the first sung again: the light does not go back
-            r.push(document.querySelector('#pLine').hidden);
-            stopAudio(); ytOK = false; r.push(!sung().some(x => x));
-            delete SRC.au.lines; buildAudio(); return r; })()""")
-        check('playing a verse timed line by line: the light moves forward only, each line lit from its first singing until the next starts', ln == [True] * 7, ln)
+            PL.on = true; PL.t = 0; PL.end = null; PL.cur = -1; ytOK = true; PL.seekT = null; const r = [];
+            for (const f of [0.1, 0.5, 0.8]){ ytInfo.t = s + f * d; tick(); await new Promise(r => setTimeout(r, 300));
+              const el = document.getElementById('v' + v1); r.push(PL.cur === v1 && el.classList.contains('now') && !el.querySelector('.vtext p.sung')); }
+            stopAudio(); ytOK = false; delete SRC.au.lines; buildAudio(); return r; })()""")
+        check('playing a verse timed line by line: it is lit as a whole like any verse, no line marked on its own', ln == [True] * 3, ln)
         # offline reading: a work opened once is readable with no network at all; a work never opened says so
         srv2 = serve(); url2 = f'http://127.0.0.1:{srv2.server_address[1]}/'
         ctx2 = await b.new_context(viewport={'width': 390, 'height': 844}, is_mobile=True, has_touch=True); pg3 = await ctx2.new_page(); errs3 = []

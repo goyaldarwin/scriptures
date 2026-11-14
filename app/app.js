@@ -1098,7 +1098,7 @@ function buildAudio(){
   });
   // a verse timed line by line ("lines") that is sung on further tracks too (a chhant's stanzas, one video each): each such
   // track lights it from its first singing there, so the recording is played as the verse's
-  A.lineSet = {}; A.fwd = {};
+  A.lineSet = {};
   if (A.lines) for (const id in A.lines){ const i = ID[id]; if (i == null) continue; A.lineSet[id] = true;
     const seen = new Set(AUT.map((a, t) => a.some(x => x[0] === i) ? t : -1));
     A.lines[id].forEach(o => { if (!seen.has(o[0]) && AUT[o[0]]){ seen.add(o[0]); AUT[o[0]].push([i, o[1], null]); AUT[o[0]].sort((x, y) => x[1] - y[1]); } }); }
@@ -1285,7 +1285,7 @@ function tick(anchor){
   const m = at(show), e2 = endOf(show);
   if (e2 != null && time >= e2 && m >= 0 && m + 1 < a.length) show = a[m + 1][0];
   setCur(show);
-  if (SRC.au.lineSet && SRC.au.lineSet[IT[show].id]){ const k = sungLine(show, time); followLines(show, time, k == null ? 0 : k); } else { sungLine(-1); followLines(show, time); }
+  followLines(show, time);   // a verse timed line by line (kirtan) too: the owner wants the same scrolling, which forgives a line's time being a little off
   // the bar runs over this work's part of the recording only (a work that is a slice of a longer video starts at 0%)
   const tr = SRC.au.tracks[PL.t], d = tr.end != null ? tr.end : ytInfo.d || tr.dur, s0 = trStart(tr);
   $('#pProg').style.width = Math.max(0, Math.min(100, 100 * (time - s0) / Math.max(1, d - s0))) + '%';
@@ -1309,7 +1309,7 @@ function keepInView(el){
 // a verse taller than the space between the bar and the player: the page turns inside it while it is recited. The line being
 // recited is guessed from the time spent in the verse (its lines share the verse's time by their length); when that line —
 // line by line, with its meaning — runs under the player, it is brought up to just below the bar
-function followLines(i, time, sung){   // sung: the line being sung, when the verse is timed line by line (else guessed by length)
+function followLines(i, time){
   if (S.timing.on || !$('#reader').classList.contains('on')) return; const el = document.getElementById('v' + i); if (!el) return;
   const top = $('#reader .bar').getBoundingClientRect().bottom, bot = $('#player').getBoundingClientRect().top;
   if (el.offsetHeight <= bot - top - 12) return;
@@ -1319,31 +1319,12 @@ function followLines(i, time, sung){   // sung: the line being sung, when the ve
   if (!(e > s) || ls.length < 2) return;
   const w = ls.map(l => l.textContent.length || 1), f = (time - s) / (e - s) * w.reduce((x, y) => x + y);
   let k = 0, acc = w[0]; while (k < ls.length - 1 && acc <= f){ k++; acc += w[k]; }
-  if (sung != null) k = sung;
   if (k === 0 || PL.line === i + ':' + k) return;   // once for each line, so the reader can still scroll by hand within the verse
   const r = ls[k].getBoundingClientRect(), end = !vl.length ? r.bottom : k + 1 < ls.length ? ls[k + 1].getBoundingClientRect().top : el.getBoundingClientRect().bottom;
   // in place (in view, or at the top when it is taller than the space): this line is done; otherwise each tick moves it up
   // until it is (a smooth scroll can be cut short when verses are added above)
   if (r.top >= top && (end <= bot - 4 || r.top <= top + 24)) PL.line = i + ':' + k;
   else window.scrollTo({top: Math.max(0, scrollY + r.top - (top + 6)), behavior: 'smooth'});
-}
-// a verse timed line by line (the audio file's "lines": kirtan, where lines and the rahao are sung again and again): the light
-// moves forward only (the owner: as in an āratī whose first line is sung again) — each line is lit from its first singing after
-// the line before it starts until the next line starts, and stays lit while it is sung again; the page follows the lit line as
-// it follows any verse's lines (followLines). The rahao sung before the first pada lights at its singing after that pada.
-function fwdLines(i, t){
-  const A = SRC.au, id = IT[i].id, key = id + ':' + t; A.fwd = A.fwd || {};
-  if (A.fwd[key]) return A.fwd[key];
-  const L = (A.lines && A.lines[id] || []).filter(o => o[0] === t), out = []; let last = -Infinity;
-  for (let k = 0; k < IT[i].v.length; k++){ const o = L.find(o => o[2] === k && o[1] > last); if (o){ out.push([o[1], k]); last = o[1]; } }
-  return A.fwd[key] = out;
-}
-function sungLine(i, time){
-  let k = null;
-  if (i >= 0 && SRC.au && SRC.au.lines && SRC.au.lines[IT[i].id]) for (const [st, kk] of fwdLines(i, PL.t)){ if (st > time) break; k = kk; }
-  const key = k == null ? null : i + ':' + k, el = k != null && document.getElementById('v' + i), p = el && el.querySelectorAll('.vtext p')[k];
-  if (PL.sung !== key || (p && !p.classList.contains('sung'))){ PL.sung = key; $$('#rBody .vtext p.sung').forEach(x => x.classList.remove('sung')); if (p) p.classList.add('sung'); }
-  return k;
 }
 function setCur(i){
   if (PL.cur === i) return; PL.cur = i; PL.line = null;
@@ -1360,7 +1341,7 @@ function setCur(i){
   if (el){ el.classList.add('now'); if (!(S.timing.on && inView(el))) keepInView(el); }
   markNear();
 }
-function stopAudio(){ ytPost('pauseVideo'); PL.on = false; PL.snip = null; sungLine(-1); $('#player').hidden = true; $('#pJump').hidden = true; document.body.classList.remove('playing'); $$('#rBody .verse.now').forEach(v => v.classList.remove('now')); }
+function stopAudio(){ ytPost('pauseVideo'); PL.on = false; PL.snip = null; $('#player').hidden = true; $('#pJump').hidden = true; document.body.classList.remove('playing'); $$('#rBody .verse.now').forEach(v => v.classList.remove('now')); }
 function playing(){ return ytInfo.st === 1 || ytInfo.st === 3; }
 function syncPlayer(){ $('#pPlay').innerHTML = '<svg><use href="#i-' + (playing() ? 'pause' : 'play') + '"/></svg>'; $('#pRate').textContent = RATE() + '×'; syncStep(); }
 $('#pPlay').onclick = () => { if (playing()) ytPost('pauseVideo'); else ytPost('playVideo'); setTimeout(syncPlayer, 400); };
