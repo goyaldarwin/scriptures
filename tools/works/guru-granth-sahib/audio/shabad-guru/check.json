@@ -1,0 +1,9 @@
+{
+ "why": "Verses the line-by-line checks flag, for the owner's ear: the recording may not sing the verse its title names (or only part of it), more than a quarter of its lines have no singing, or the recording sings on after the verse (tools/audio/mms_merge.py, lean 0.6 s).",
+ "ids": [
+  "32.3",
+  "509.4",
+  "598.3",
+  "704.1"
+ ]
+}
