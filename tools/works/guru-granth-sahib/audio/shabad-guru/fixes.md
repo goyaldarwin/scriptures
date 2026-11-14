@@ -8,3 +8,12 @@ last line, ਕਹਿ ਕਬੀਰ ਹਉ ਤਾ ਕੋ ਦਾਸੁ, at about 14
 shabad's words and its own rahao ("ajaniamirasampaanet…rahao…"), unlike any line of 1157.2. `mms_merge.py` flagged it
 (`beyond`): the line search placed the verse's lines up to 114–119 s and then only scattered matches of its last two
 lines over the rest of the video.
+
+## mVXVLYxz-Ag (509.2): it sings 509.2 to 509.4 (`recordings.json` "to")
+
+The video's title names the salok 509.2, ਸਾਹਿਬੁ ਮੇਰਾ ਸਦਾ ਹੈ, but it sings the stanza of the vaar it opens: the salok, the
+next salok 509.3 and the pauri 509.4. The letters MMS hears (`mms/mVXVLYxz-Ag.json` "read_at", from the run that was
+given 509.2 alone) end 509.2 with ਨਾਨਕ ਏਵ ਨ ਜਾਪਈ … ਦੇਇ ਸਜਾਇ at about 98–108 s ("naanakelajapaikaretaketide sajai"), then
+sing a heading and 509.3 (108–175 s: "…mahalatinja", "…sajanahamdeaa…", "kathenibadanitaritaapirehukam…") and 509.4
+(from about 185 s: "…jogavijogopaionsisttiikamulela…", "…jotijotamilaaya"). Given 509.2 alone, the line search
+had placed the later saloks' lines as repeats of 509.2's.
