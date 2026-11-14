@@ -23,7 +23,7 @@ Results are line occurrences [line index, start s, end s, score], score the mean
 their frames (as torchaudio's MMS_FA scores a word). `read()` gives the letters MMS hears (its most likely letter at each
 frame, repeats and blanks dropped), to check that a recording sings the verse its title names.
 """
-import re, unicodedata
+import collections, re, unicodedata
 try: import numpy as np            # the search needs it; the merge's helpers (units, merge, Titles) do not, and the
 except ImportError: np = None      # checks run them where numpy is not installed
 
@@ -294,18 +294,26 @@ class Titles:
     """Which verse of a work a recording sounds most like: the letters MMS hears against each verse's text, as letter
     trigrams weighted by how rare they are in the work (cosine)."""
     def __init__(self, texts):
-        import collections, math
+        import math
         self.math = math
         g = {k: collections.Counter(v[i:i + 3] for i in range(len(v) - 2)) for k, v in texts.items()}
         df = collections.Counter(x for c in g.values() for x in c); self.N = len(g)
         self.idf = {x: math.log(self.N / n) for x, n in df.items()}
         self.V = {k: self.vec(c) for k, c in g.items()}
+        self.post = collections.defaultdict(list)          # trigram → the verses that hold it
+        for k, c in g.items():
+            for x in c: self.post[x].append(k)
     def vec(self, c):
         v = {x: n * self.idf.get(x, self.math.log(self.N)) for x, n in c.items()}
         z = self.math.sqrt(sum(y * y for y in v.values())) or 1
         return {x: y / z for x, y in v.items()}
     def like(self, heard, iid):
+        """(likeness to verse iid, (best likeness, its verse)). Only the verses sharing one of the heard letters' 40 rarest
+        trigrams are compared: the most alike verse always shares them, and comparing every verse of a large work for
+        thousands of recordings is slow."""
         import collections
         h = self.vec(collections.Counter(heard[i:i + 3] for i in range(len(heard) - 2)))
         cos = lambda v: sum(y * v.get(x, 0) for x, y in h.items())
-        return cos(self.V[iid]), max((cos(v), k) for k, v in self.V.items())
+        rare = sorted((x for x in h if x in self.post), key=lambda x: -self.idf[x])[:40]
+        cand = {iid} | {k for x in rare for k in self.post[x]}
+        return cos(self.V[iid]), max((cos(self.V[k]), k) for k in cand)

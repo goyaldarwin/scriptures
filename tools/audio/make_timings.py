@@ -22,8 +22,9 @@ The source folder holds:
                    for the owner to check by ear (☰ › More settings › Audio timing, Next ▸) until a start is set for them
   lines.json       optional {video id: {item id: [[line, start, end], …]}}: every singing of every line (a source timed
                    line by line, source.json "lines": true; mms_merge.py), passed on as the audio file's "lines"; such a
-                   source needs no transcript: a recording without one takes its verse starts from aligned.json, the
-                   verses it does not time spread by length
+                   source needs no transcript: a recording without one takes its verse starts from aligned.json, those going
+                   forward in the text's order (as a transcript's matches), the others spread by length between them, and the
+                   order rule (order.py, the app's) applied to every track
 Only finished transcripts are used. The alignment is cached per recording in transcripts/<video id>.align.json:
 one row per transcript segment, [start, end, [[item id, characters of that half-line], …]]. Delete it to realign.
 A segment that covers several half-lines is shared among them by length, so a verse that begins in the
@@ -108,8 +109,25 @@ for r in REC:
         t0, t1 = float(r.get('lead', r.get('start', 0))), r.get('end', r['dur'] * 0.98); tot = sum(L(x) for x in range(a0, a1 + 1)); acc = 0; ti = len(tracks)
         tracks.append({'yt': v, 'dur': r['dur'], **BOUNDS(r), 'first': IT[a0]['id'], 'last': IT[a1]['id']})
         for x in range(a0, a1 + 1): at.setdefault(IT[x]['id'], [ti, round(t0 + (t1 - t0) * acc / tot, 1)]); acc += L(x)
-        for iid, t in (ALIGNED.get(v, {}) if meta.get('lines') else {}).items():   # a source timed line by line has no transcript: the aligner's starts
-            if at.get(iid, [ti])[0] == ti: at[iid] = [ti, t[0] if isinstance(t, list) else t]; heard.add(iid)
+        if meta.get('lines') and ALIGNED.get(v):
+            # a source timed line by line has no transcript: the aligner's starts, kept only where they go forward in the
+            # text's order (as matches from a transcript are), the verses between placed by length between them
+            mine = [x for x in range(a0, a1 + 1) if at.get(IT[x]['id'], [ti])[0] == ti]
+            got, last = {}, -1.0
+            for x in mine:
+                t = ALIGNED[v].get(IT[x]['id'])
+                if t is None: continue
+                t = t[0] if isinstance(t, list) else t
+                if t > last: got[x] = t; last = t
+            keys = sorted(got); lo0, hi0 = t0, t1
+            for x in mine:
+                if x in got: at[IT[x]['id']] = [ti, got[x]]; heard.add(IT[x]['id']); continue
+                pv = max((k for k in keys if k < x), default=None); nx = min((k for k in keys if k > x), default=None)
+                a_, ta = (pv, got[pv]) if pv is not None else (mine[0] - 1, lo0)
+                b_, tb = (nx, got[nx]) if nx is not None else (mine[-1] + 1, hi0)
+                tot = sum(L(y) for y in range(max(a_, mine[0]), min(b_, mine[-1] + 1))) or 1
+                acc = sum(L(y) for y in range(max(a_, mine[0]), x))
+                at[IT[x]['id']] = [ti, round(ta + (tb - ta) * acc / tot, 1)]
         for iid, t in FIX.get(v, {}).items(): at[iid] = [ti, round(max(0, t - 0.4), 2)]; heard.add(iid)
         print(v, 'aligned' if meta.get('lines') and v in ALIGNED else 'estimated by length:', a1 - a0 + 1, 'verses'); continue
     if not os.path.exists(p + '.done'): continue
@@ -203,7 +221,7 @@ for ti, tr in enumerate(tracks):
 # start is cut back to it. The start each moved verse had before the rule is kept as "raw", so the app can apply the same
 # rule from the same starting point and show exactly what the next send will publish.
 moved, raw = [], {}
-if own_ids:
+if own_ids or meta.get('lines'):   # a source timed line by line: its aligned starts can meet out of order across a track's verses
     for ti in range(len(tracks)):
         a = sorted([[ID[k], v[1], v[2] if len(v) > 2 else None] for k, v in at.items() if v[0] == ti])
         before = {i: st for i, st, _ in a}
