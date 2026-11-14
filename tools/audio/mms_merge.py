@@ -79,7 +79,7 @@ def by_line(src, lean, W, dry=False):
     if not dry: json.dump(lines, open(os.path.join(src, 'lines.json'), 'w'), ensure_ascii=False, separators=(',', ':'))
     with open(os.path.join(src, 'check.json') if not dry else os.devnull, 'w', encoding='utf-8') as f:
         json.dump({'why': f"Verses the line-by-line checks flag, for the owner's ear: the recording may not sing the verse its title names (or only part of it), more than a quarter of its lines have no singing, or the recording sings on after the verse (tools/audio/mms_merge.py, lean {lean} s).",
-                   'ids': [i for i in order if i in allf]}, f, ensure_ascii=False, indent=1); f.write('\n')
+                   'ids': list(dict.fromkeys(i for i in order if i in allf))}, f, ensure_ascii=False, indent=1); f.write('\n')
     print(f"{n['started']} of {n['lines']} lines have a start; {n['singings']} singings ({n['from in-order']} first singings from the in-order alignment; {n['dropped']} more MMS scored below 0.35, dropped); verses flagged: " + ', '.join(f'{k} {len(v - own)}' for k, v in sorted(flags.items())) + f'; to check {len(allf)}')
 
 def main(src, lean, dry=False):

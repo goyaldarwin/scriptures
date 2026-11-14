@@ -27,8 +27,9 @@ def by_line(src, S, REC, W, C, show):
            'lines and padas sung again, a stanza on its own) with a filler for what the text does not hold (alaap, music, a '
            'dhaarna, lines of another shabad), and the plain in-order alignment beside it (`tools/audio/METHOD.md`, "Line by '
            'line"); one run per recording in the public `align` workflow (`mms_align.py`, raw results in `mms/<video id>.json`); '
-           f'`mms_merge.py` writes `aligned.json` (each verse\'s first singing), `lines.json` (the singings MMS scores 0.5 or '
-           'more) and `check.json`. Each start is MMS\'s less the lean, 0.6 s until the owner has set starts by ear here.', '',
+           f'`mms_merge.py` writes `aligned.json` (each verse\'s first singing), `lines.json` (the singings the search scores 0.35 or '
+           'more, and the in-order alignment\'s first singings of lines it left out, where the lines around place them: '
+           '`line_align.merge`) and `check.json`. Each start is MMS\'s less the lean, 0.6 s until the owner has set starts by ear here.', '',
            f'**Figures:** {figs}.', '',
            '**How good:** not scored yet: the owner has not set starts by ear on these recordings, and his marks are per verse; '
            'starts heard in 5-s windows (`tools/audio/windows.py`) are the check until then (`fixes.md`, where any are recorded).', '',
