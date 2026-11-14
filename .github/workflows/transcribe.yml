@@ -20,6 +20,9 @@ on:
       ref:
         description: "branch that holds the audio source folder; the transcripts are committed to it"
         default: main
+      data_ref:
+        description: "branch of scriptures-data that holds the recordings (empty: its default branch)"
+        default: ""
 permissions:
   contents: write
 jobs:
@@ -64,6 +67,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: goyaldarwin/scriptures-data
+          ref: ${{ inputs.data_ref }}
           token: ${{ secrets.DATA_TOKEN }}
           path: data
           filter: blob:none

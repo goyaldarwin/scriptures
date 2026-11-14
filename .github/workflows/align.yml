@@ -6,7 +6,10 @@
 # The recordings stay private, as in transcribe.yml: each job fetches only its own speech-quality copy from
 # goyaldarwin/scriptures-data with the read-only token in DATA_TOKEN, onto its own throwaway machine; the audio is never
 # committed, uploaded or printed. Only the result is kept: <source>/mms/<video id>.json, committed to `ref` (also when a job
-# runs out of time, so a second run goes on from there). The scripts come from main. At most 256 ids per run.
+# runs out of time, so a second run goes on from there). The scripts come from the branch the workflow is run from (`-f ref=`,
+# main unless a pull request's scripts are being tried); the recordings from scriptures-data's `data_ref` (its default branch
+# unless given). At most 256 jobs per run; `per_job` recordings share one job (many short recordings: kirtan), so a run
+# holds up to 256 × per_job ids and the machines' setup is paid once per job.
 name: align
 on:
   workflow_dispatch:
@@ -20,6 +23,12 @@ on:
       ref:
         description: "branch that holds the audio source folder and its mms/windows.json; the results are committed to it"
         default: main
+      data_ref:
+        description: "branch of scriptures-data that holds the recordings (empty: its default branch)"
+        default: ""
+      per_job:
+        description: "recordings aligned one after another in each job"
+        default: "1"
 permissions:
   contents: write
 jobs:
@@ -29,9 +38,10 @@ jobs:
       ids: ${{ steps.m.outputs.ids }}
     steps:
       - id: m
-        run: python3 -c "import json,os; ids=[x.strip() for x in os.environ['IDS'].split(',') if x.strip()]; assert 0 < len(ids) <= 256, len(ids); print('ids='+json.dumps(ids))" >> "$GITHUB_OUTPUT"
+        run: python3 -c "import json,os; ids=[x.strip() for x in os.environ['IDS'].split(',') if x.strip()]; n=max(1,int(os.environ['PER'])); g=[' '.join(ids[k:k+n]) for k in range(0,len(ids),n)]; assert 0 < len(g) <= 256, len(g); print('ids='+json.dumps(g))" >> "$GITHUB_OUTPUT"
         env:
           IDS: ${{ inputs.ids }}
+          PER: ${{ inputs.per_job }}
   align:
     needs: plan
     runs-on: ubuntu-latest
@@ -45,7 +55,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: main
+          ref: ${{ github.ref }}
           path: pub
           sparse-checkout: tools/audio
           persist-credentials: false
@@ -54,15 +64,21 @@ jobs:
           ref: ${{ inputs.ref }}
           path: src
           sparse-checkout: ${{ inputs.source }}
-      - name: the recording's path in scriptures-data
+      - name: the recordings' paths in scriptures-data
         id: rec
         env:
           SRC: src/${{ inputs.source }}
-          VID: ${{ matrix.id }}
-        run: python3 -c "import json,os; r=[x for x in json.load(open(os.environ['SRC']+'/recordings.json')) if x['yt']==os.environ['VID']]; assert len(r)==1 and r[0].get('data'), 'no data path for this id'; print('data='+r[0]['data'])" >> "$GITHUB_OUTPUT"
+          VIDS: ${{ matrix.id }}
+        run: |
+          python3 -c "
+          import json,os
+          R={x['yt']:x for x in json.load(open(os.environ['SRC']+'/recordings.json'))}
+          v=os.environ['VIDS'].split(); assert all(i in R and R[i].get('data') for i in v), 'no data path for ' + str([i for i in v if i not in R])
+          print('data<<EOF'); print('\n'.join(R[i]['data'] for i in v)); print('EOF')" >> "$GITHUB_OUTPUT"
       - uses: actions/checkout@v4
         with:
           repository: goyaldarwin/scriptures-data
+          ref: ${{ inputs.data_ref }}
           token: ${{ secrets.DATA_TOKEN }}
           path: data
           filter: blob:none
@@ -93,13 +109,13 @@ jobs:
         env:
           DATA_DIR: ${{ github.workspace }}/data
           THREADS: "4"
-          ONLY: ${{ matrix.id }}
-        run: python3 pub/tools/audio/mms_align.py "src/${{ inputs.source }}"
+          VIDS: ${{ matrix.id }}
+        run: for v in $VIDS; do ONLY=$v python3 pub/tools/audio/mms_align.py "src/${{ inputs.source }}" || exit 1; done
       - name: commit the result to ${{ inputs.ref }}
         if: always()
         run: |
           rm -rf data
-          ls "src/${{ inputs.source }}/mms/${{ matrix.id }}.json" || exit 0
           cd src && git config user.name "align workflow" && git config user.email "actions@users.noreply.github.com"
-          git add "${{ inputs.source }}/mms/${{ matrix.id }}.json" && git commit -q -m "MMS starts ${{ matrix.id }} (${{ inputs.source }})" || exit 0
+          for v in ${{ matrix.id }}; do [ -f "${{ inputs.source }}/mms/$v.json" ] && git add "${{ inputs.source }}/mms/$v.json"; done
+          git commit -q -m "MMS starts ${{ matrix.id }} (${{ inputs.source }})" || exit 0
           for i in $(seq 1 15); do git pull -q --rebase origin "${{ inputs.ref }}" && git push -q origin "HEAD:${{ inputs.ref }}" && exit 0; sleep $((RANDOM % 40 + 5)); done; exit 1

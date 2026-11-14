@@ -32,4 +32,10 @@ The method as a whole (rough placement, exact starts, ends, finding and fixing e
    - `mms_merge.py <source> [--lean s]` → `aligned.json` (starts less the lean, ends) and `check.json` (the verses step 4 flags); then `make_timings.py`. Score first: `mms_score.py <source>` compares MMS's starts and the transcript's alone with the owner's starts set by ear and prints the lean and the table; switch only when MMS is better, and record the figures in the source's `aligned.md` (a run not yet used: `mms/score.md`, why).
    - `aligned_md.py <source>` writes the recording's `aligned.md` from its files (how its starts were made, how many MMS gives, what is listed to check, and the score on the owner's starts where he has set 20 or more); `regen_check.py` refuses a recording that uses MMS without one, or whose `aligned.json` and `check.json` differ from what `mms_merge.py` makes. A verse set by hand (`fixes.json`) or by the owner leaves the to-check list; one a session lists by hand stays (`check.json` → `also`).
 
+5. **Line by line** (kirtan, `source.json` `"lines": true`; `METHOD.md`, "Line by line"): no transcript; `mms_windows.py` gives each
+   track one window with its verses' text, `mms_align.py` runs `line_align.py` on MMS's emissions (every singing of every line,
+   and the in-order alignment beside it), `mms_merge.py` writes `aligned.json` (each verse's first singing), `lines.json` (every
+   singing of every line) and `check.json`, and `make_timings.py` passes `lines` on to the app. Workflow inputs: `data_ref` (the
+   recordings on a branch of `scriptures-data`), `per_job` (several short recordings per job).
+
 Reading the verse ids in a recording's first/last printout is the quickest check. The key works for Devanagari and Gurmukhi texts; another script needs its own mapping in `align.py`'s `key()`.
