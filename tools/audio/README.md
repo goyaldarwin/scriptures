@@ -34,8 +34,8 @@ The method as a whole (rough placement, exact starts, ends, finding and fixing e
 
 5. **Line by line** (kirtan, `source.json` `"lines": true`; `METHOD.md`, "Line by line"): no transcript; `mms_windows.py` gives each
    track one window with its verses' text, `mms_align.py` runs `line_align.py` on MMS's emissions (every singing of every line,
-   and the in-order alignment beside it), `mms_merge.py` writes `aligned.json` (each verse's first singing), `lines.json` (every
-   singing of every line) and `check.json`, and `make_timings.py` passes `lines` on to the app. Workflow inputs: `data_ref` (the
+   and the in-order alignment beside it), `mms_merge.py` writes `aligned.json` (each verse's first singing), `lines.json` (the singings kept: `line_align.merge`)
+   and `check.json`, and `make_timings.py` passes `lines` on to the app. Workflow inputs: `data_ref` (the
    recordings on a branch of `scriptures-data`), `per_job` (several short recordings per job).
 
 Reading the verse ids in a recording's first/last printout is the quickest check. The key works for Devanagari and Gurmukhi texts; another script needs its own mapping in `align.py`'s `key()`.
