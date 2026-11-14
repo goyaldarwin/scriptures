@@ -991,7 +991,7 @@ async def main():
             window.scrollTo(0, y0); await new Promise(r => setTimeout(r, 400)); tick(); r.push(st.hidden);       // back in view: no strip
             stopAudio(); ytOK = false; r.push(!sung().some(x => x), st.hidden);
             delete SRC.au.lines; buildAudio(); return r; })()""")
-        check('playing a verse timed line by line: each singing lights its line, the page stays still, a line out of view is shown above the player', ln == [True] * 10, ln)
+        check('playing a verse timed line by line: each singing lights its line, the page stays still, a line out of view is shown above the player', ln == [True] * 11, ln)
         # offline reading: a work opened once is readable with no network at all; a work never opened says so
         srv2 = serve(); url2 = f'http://127.0.0.1:{srv2.server_address[1]}/'
         ctx2 = await b.new_context(viewport={'width': 390, 'height': 844}, is_mobile=True, has_touch=True); pg3 = await ctx2.new_page(); errs3 = []
