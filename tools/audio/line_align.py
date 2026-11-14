@@ -8,10 +8,13 @@ through it:
   - a pada (the lines up to a ॥n॥) is sung line by line; a line may be sung again, the pada may start again from any of
     its earlier lines, and a line may be left out at a cost (a heading — ਮਹਲਾ, ਸਲੋਕੁ, ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ … — at none);
   - the rahao (the lines up to ॥੧॥ ਰਹਾਉ ॥) may open the song and follows each pada, and is sung as often as liked;
-  - after a pada and its rahao comes the next pada, or a later one at a cost (a stanza sung on its own);
+  - after a pada and its rahao comes the next pada, or a later one at a cost; so do opening on a later pada and ending
+    before the last (a stanza sung on its own);
   - between any two lines, and before and after, a filler takes what the text does not hold: the alaap, music, a
     manglacharan or dhaarna, lines of another shabad. A frame costs the filler its best letter's probability less a
-    penalty, so a line wins only where its own letters are heard about as well as anything else could be.
+    penalty (small where MMS hears no letter, larger where it hears one), so a line wins only where its own letters are
+    heard about as well as anything else could be, and the frames between a line's letters cost a little more than the
+    filler's quiet ones, so a line does not stretch over the music around it.
 
 `inorder=True` is the plain forced alignment of METHOD.md step 2 instead: every line once, in the text's order (headings
 optional), with a filler between lines; its starts are each line's first singing in the text's order.
@@ -27,11 +30,14 @@ END = re.compile(r'॥\s*[੦-੯0-9]+\s*॥')
 HEAD = ('ਮਹਲਾ', 'ਮਃ', 'ੴ', 'ਸਲੋਕੁ', 'ਸਲੋਕ', 'ਪਉੜੀ', 'ਪਵੜੀ', 'ਛੰਤੁ', 'ਛੰਤ', 'ਘਰੁ', 'ਬਾਣੀ', 'ਅਸਟਪਦੀ', 'ਡਖਣਾ', 'ਦੁਪਦੇ', 'ਤਿਪਦੇ', 'ਚਉਪਦੇ', 'ਪੰਚਪਦੇ', 'ਵਾਰ')
 NEG = -1e30
 # the search's costs, in log-probability: tuned on the pilot's recordings (aligned.md of the source that uses them)
-P = {'filler': 0.3,     # per frame of filler, below the frame's best letter
+P = {'filler': 2.0,     # per frame of filler where MMS hears a letter, below that letter (sung words the text does not hold)
+     'quiet': 0.1,      # per frame of filler where MMS hears no letter (alaap, music, a pause)
+     'blank': 0.11,     # per frame between a line's letters, below the blank: more than 'quiet', so a line does not
+                        # stretch over the music around it
      'sub': 1.5,        # the most a frame costs a line, below the frame's best letter (a letter sung otherwise than written)
-     'enter': 3.0,      # per line sung (a line must earn its place)
+     'enter': 1.0,      # per line sung (a line must earn its place)
      'skip': 6.0,       # per line of a pada left out
-     'pada': 8.0}       # per pada passed over (a stanza sung on its own)
+     'pada': 8.0}       # per pada passed over, opened after or ended before (a stanza sung on its own)       # per pada passed over, opened after or ended before (a stanza sung on its own)       # per pada passed over (a stanza sung on its own)
 
 def rom(s):
     """A line's transliteration in plain letters a–z as MMS spells what it hears (a long ā, ī, ū doubled: aa, ii, uu), its
@@ -119,8 +125,8 @@ class Graph:
             for pi, g in enumerate(padas):
                 ks = sung(g['lines'])
                 for i, k in enumerate(ks):
-                    for j in range(i + 1):                                  # again: this line or an earlier one of the pada
-                        edge(('p', pi, k), ('p', pi, ks[j]))
+                    for j in range(i + 1):                                  # again: this line or an earlier one of the pada (not a heading)
+                        if not U[ks[j]]['head']: edge(('p', pi, k), ('p', pi, ks[j]))
                     cost = 0.0                                              # on: the next line, or a later one at a cost
                     for j in range(i + 1, len(ks)):
                         edge(('p', pi, k), ('p', pi, ks[j]), cost)
@@ -130,7 +136,8 @@ class Graph:
                         if ri == pi and rks: edge(('p', pi, k), ('r', pi, rks[0]), tail)
                     for qi in range(pi + 1, len(padas)):                   # the next pada, or a later one at a cost
                         for f in firsts(sung(padas[qi]['lines'])): edge(('p', pi, k), ('p', qi, f), tail + p['pada'] * (qi - pi - 1))
-                for f in firsts(ks): start[M[('p', pi, f)]] = -(p['enter'] + p['pada'] * 0)
+                for f in firsts(ks): start[M[('p', pi, f)]] = -(p['enter'] + p['pada'] * pi)   # a song that opens on a later pada: those before cost
+                for k in ks: final[M[('p', pi, k)]] = -p['pada'] * (len(padas) - 1 - pi)              # and so do those it ends before
             for (ri, rks) in self.rcopies:
                 for i, k in enumerate(rks):
                     for j in range(i + 1): edge(('r', ri, k), ('r', ri, rks[j]))
@@ -139,7 +146,8 @@ class Graph:
                         for f in firsts(sung(padas[qi]['lines'])): edge(('r', ri, k), ('p', qi, f), p['pada'] * (qi - ri - 1))
                     if ri >= 0:                                            # back to the pada just sung (a ragi often sings it again)
                         for f in firsts(sung(padas[ri]['lines'])): edge(('r', ri, k), ('p', ri, f))
-                if rks: start[M[('r', ri, rks[0])]] = -p['enter']
+                if rks: start[M[('r', ri, rks[0])]] = -(p['enter'] + p['pada'] * max(0, ri))
+                for k in rks: final[M[('r', ri, k)]] = -p['pada'] * (len(padas) - 1 - max(ri, 0))
         self.pen, self.start, self.final = pen, start, final
         # the states: per instance [blank, c1, blank, c2, …, cn, blank]
         tok, off, skip, own = [], [], [], []
@@ -157,7 +165,8 @@ def viterbi(em, G, p=P):
     """The best path through G over the emissions em [frames, letters] (log-probabilities, blank = 0).
     Returns [(instance, first frame, last frame, [(state, first frame, last frame), …])] in time order."""
     T, N, n = em.shape[0], len(G.tok), len(G.inst)
-    top = em.max(1); fill = top - p['filler']; floor = top - p['sub']
+    top = em.max(1); fill = top - np.where(em.argmax(1) == 0, p['quiet'], p['filler']); floor = top - p['sub']
+    blank = G.tok == 0
     isfirst = np.zeros(N, bool); isfirst[G.first] = True
     isc1 = np.zeros(N, bool); isc1[G.first + 1] = True
     m1 = np.ones(N, bool); m1[G.first] = False
@@ -167,7 +176,7 @@ def viterbi(em, G, p=P):
     ent = np.zeros((T, n), np.int32)                   # where an entry came from: x*3 + (0 last letter, 1 last blank, 2 filler); -1 the opening filler
     fbp = np.zeros((T, n), np.uint8)                   # filler: 0 stay, 1 from the last letter, 2 from the last blank
     for t in range(T):
-        e = np.maximum(em[t, G.tok], floor[t])
+        e = np.maximum(em[t, G.tok] - np.where(blank, p['blank'], 0.0), floor[t])
         a0 = V
         a1 = np.where(m1, np.concatenate(([NEG], V[:-1])), NEG)
         a2 = np.where(m2, np.concatenate(([NEG, NEG], V[:-2])), NEG)
@@ -190,7 +199,7 @@ def viterbi(em, G, p=P):
         F0 = F0 + fill[t]
         V = Vn; bp[t] = code
     # the end: any state, the filler after any instance (and the final rule of an in-order alignment)
-    endv = np.concatenate([np.where(G.final[G.own] > NEG / 2, V, NEG), np.where(G.final > NEG / 2, F, NEG)])
+    endv = np.concatenate([V + G.final[G.own], F + G.final])   # ending before the last pada costs (G.final)
     k = int(endv.argmax())
     if endv[k] <= NEG / 2: return []
     occ, cur = [], None
@@ -247,10 +256,59 @@ def read(em, labels):
     a = em.argmax(1); keep = np.concatenate(([True], a[1:] != a[:-1])) & (a != 0)
     return ''.join(labels[i] for i in a[keep] if labels[i] not in ('-', '*', "'"))
 
-def trigrams(s):
-    return {s[i:i + 3] for i in range(len(s) - 2)}
+def read_at(em, labels, sec, every=10.0):
+    """read() in stretches: [[start s, letters], …], one per `every` seconds."""
+    a = em.argmax(1); keep = np.concatenate(([True], a[1:] != a[:-1])) & (a != 0); out = []
+    for t in np.nonzero(keep)[0]:
+        c = labels[a[t]]
+        if c in ('-', '*', "'"): continue
+        if not out or t * sec >= out[-1][0] + every: out.append([round(float(t * sec), 1), ''])
+        out[-1][1] += c
+    return out
 
-def likeness(heard, text):
-    """How much of what is heard is in the text: the share of the heard letters' trigrams that the text holds."""
-    h = trigrams(heard)
-    return len(h & trigrams(text)) / max(1, len(h))
+def merge(every, inorder, lens, thr=0.35):
+    """The singings to keep: [line, start, end, score, how]. The search for every singing where it scores thr or more
+    ("every"), and for a line it left out, the in-order alignment's singing ("inorder") where the kept singings of the
+    lines before and after it in the text (the nearest each side) start before and after it: the in-order alignment is
+    right where the song goes through the verse in order, and this keeps it only there. A singing's end is cut to the next
+    singing's start and to 2.5 times the line's length at the song's pace (a line's last letter can be matched far off,
+    over music). lens: letters per line. Returns (kept, those from in-order)."""
+    def trim(occ):
+        occ = sorted(occ, key=lambda o: o[1])
+        pace = sorted((o[2] - o[1]) / max(1, lens[o[0]]) for o in occ) or [0.25]
+        m = pace[len(pace) // 2]
+        for n, o in enumerate(occ):
+            o[2] = round(min(o[2], o[1] + 2.5 * m * max(1, lens[o[0]]), occ[n + 1][1] if n + 1 < len(occ) else o[2]), 2)
+        return occ
+    good = trim([o[:4] + ['every'] for o in every if o[3] >= thr])
+    inorder = trim([list(o) for o in inorder])
+    first = {}
+    for o in good: first.setdefault(o[0], o[1])
+    fill = []
+    for o in inorder:
+        k = o[0]
+        if k in first: continue
+        before = [first[j] for j in first if j < k]; after = [first[j] for j in first if j > k]
+        if before and after and max(before) < o[1] < min(after) and not any(g[1] < o[2] and o[1] < g[2] for g in good):
+            fill.append(o[:4] + ['inorder'])
+    return sorted(good + fill, key=lambda o: o[1]), fill
+
+class Titles:
+    """Which verse of a work a recording sounds most like: the letters MMS hears against each verse's text, as letter
+    trigrams weighted by how rare they are in the work (cosine)."""
+    def __init__(self, texts):
+        import collections, math
+        self.math = math
+        g = {k: collections.Counter(v[i:i + 3] for i in range(len(v) - 2)) for k, v in texts.items()}
+        df = collections.Counter(x for c in g.values() for x in c); self.N = len(g)
+        self.idf = {x: math.log(self.N / n) for x, n in df.items()}
+        self.V = {k: self.vec(c) for k, c in g.items()}
+    def vec(self, c):
+        v = {x: n * self.idf.get(x, self.math.log(self.N)) for x, n in c.items()}
+        z = self.math.sqrt(sum(y * y for y in v.values())) or 1
+        return {x: y / z for x, y in v.items()}
+    def like(self, heard, iid):
+        import collections
+        h = self.vec(collections.Counter(heard[i:i + 3] for i in range(len(heard) - 2)))
+        cos = lambda v: sum(y * v.get(x, 0) for x, y in h.items())
+        return cos(self.V[iid]), max((cos(v), k) for k, v in self.V.items())

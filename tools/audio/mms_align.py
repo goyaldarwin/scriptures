@@ -14,7 +14,8 @@ owner's by-ear starts is removed when they are merged (mms_merge.py). The audio 
 A window that carries its verses' text ("items", a source timed line by line: mms_windows.py) is searched line by line
 instead (tools/audio/line_align.py): every singing of every line, and the plain in-order alignment beside it; the file is
 then {"verses": {item id: [start, end, score]}, "lines": {item id: [[line, start, end, score], …]} (every singing, in time
-order), "inorder": {…} (each line once, in the text's order), "read": the letters MMS hears}.
+order), "inorder": {…} (each line once, in the text's order), "read": the letters MMS hears, "read_at": the same in
+10-s stretches [[start, letters], …]}.
 """
 import json, os, subprocess, sys, time
 import numpy as np
@@ -28,7 +29,7 @@ def load(path, a, b):
 def by_line(res, w, em, sec, D, labels):
     """Every singing of every line of the window's verses (line_align.py), as one text: the verses one after another."""
     import line_align as LA
-    res = res if 'verses' in res else {'verses': {}, 'lines': {}, 'inorder': {}, 'read': ''}
+    res = res if 'verses' in res else {'verses': {}, 'lines': {}, 'inorder': {}, 'read': '', 'read_at': []}
     v, t, where = [], [], []
     for it in w['items']:
         for k, (a, b) in enumerate(zip(it['v'], it['t'])): v.append(a); t.append(b); where.append((it['id'], k))
@@ -40,6 +41,7 @@ def by_line(res, w, em, sec, D, labels):
     for iid, occ in res['lines'].items():
         if iid in w['keep']: res['verses'][iid] = [min(o[1] for o in occ), max(o[2] for o in occ), round(float(np.mean([o[3] for o in occ])), 3)]
     res['read'] += LA.read(em, labels)
+    res['read_at'] += [[round(w['a'] + t, 1), c] for t, c in LA.read_at(em, labels, sec)]
     return res
 
 def main(src):
