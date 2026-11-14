@@ -1,0 +1,13 @@
+{
+ "id": "shabad-guru",
+ "work": "sikhism/gurbani/guru-granth-sahib",
+ "type": "youtube",
+ "lang": "pa",
+ "title": {
+  "hi": "शबद गुरु (कीर्तन)",
+  "en": "Shabad Guru (Kirtan)",
+  "pa": "ਸ਼ਬਦ ਗੁਰੂ (ਕੀਰਤਨ)"
+ },
+ "lines": true,
+ "review": "line starts from MMS (every singing of every line); not yet set by ear"
+}
