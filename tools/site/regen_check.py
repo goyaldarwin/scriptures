@@ -130,7 +130,7 @@ def merges(only):
                 cp = os.path.join(tmp, 's'); shutil.copytree(src, cp, ignore=shutil.ignore_patterns('transcripts'))
                 r = subprocess.run([sys.executable, os.path.join(REPO, 'tools', 'audio', 'mms_merge.py'), cp, '--lean', m.group(1) if m else '0.6'], capture_output=True, text=True)
                 if r.returncode: bad.append(f'{rel}: mms_merge.py failed: {(r.stdout + r.stderr)[-300:]}'); continue
-                bad += [f'{rel}/{f}: differs from what mms_merge.py makes (run it with --lean {m.group(1) if m else "0.6"})' for f in ('aligned.json', 'check.json')
+                bad += [f'{rel}/{f}: differs from what mms_merge.py makes (run it with --lean {m.group(1) if m else "0.6"})' for f in ('aligned.json', 'check.json') + (('lines.json',) if os.path.exists(os.path.join(cp, 'lines.json')) else ())
                         if not os.path.exists(os.path.join(src, f)) or not same(os.path.join(cp, f), os.path.join(src, f))]
     return bad
 
