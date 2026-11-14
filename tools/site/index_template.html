@@ -188,7 +188,7 @@ body.timing .verse.tocheck{box-shadow:inset 3px 0 0 var(--saffron)}.tcheck{margi
 .player .pinfo b{display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .player .pinfo small{display:block;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .player .pinfo.go small{color:var(--indigo);font-weight:600}.player .pinfo small:empty{display:none}   /* outside the reader “Go to verse ›” in the link colour, the same size as in the reader */
-.pline{position:absolute;left:0;right:0;bottom:100%;padding:8px 14px;background:var(--surface);border-top:1px solid var(--rule);box-shadow:0 -4px 14px rgba(0,0,0,.06);font-size:var(--verse-size);line-height:1.5;color:var(--ink);text-align:center}.pline::before{content:'';position:absolute;inset:0;background:color-mix(in srgb,var(--saffron) 14%,transparent);pointer-events:none}   /* the line being sung, when it is out of view (a verse timed line by line): replaced in place, the page never moves */
+.pline{display:none}   /* a strip the previous release's app.js writes to (the line being sung, out of view): kept empty and hidden until the release after this */
 .vtext p.sung{background:color-mix(in srgb,var(--saffron) 22%,transparent);border-radius:6px;box-shadow:0 0 0 4px color-mix(in srgb,var(--saffron) 22%,transparent)}   /* the line being sung: colour only, so no line changes size and nothing moves */
 .pbar{height:3px;background:var(--rule)}.pbar span{display:block;height:3px;width:0;background:var(--saffron)}
 body.playing #rBody{padding-bottom:150px}

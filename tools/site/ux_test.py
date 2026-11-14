@@ -973,25 +973,22 @@ async def main():
             ytInfo.t = a[4][1] + 0.2; tick(); await new Promise(r => setTimeout(r, 1200)); jumpPill(); r.push(pill.hidden, PL.cur === v2);   // the next verse starts: the page follows, no pill
             stopAudio(); ytOK = false; r.push(pill.hidden); return r; })()""")
         check('playing: the “now playing” pill shows only while the lit verse is off screen, points the way, and brings it back on a tap', jp == [True, True, True, True, True, True, True, True, True], jp)
-        # a verse timed line by line (kirtan, the audio file's "lines"): the line being sung lights every time it is sung, the page
-        # stays still while the lines change (the owner: no scrolling at every repeat), a lit line out of view is shown in the
-        # strip above the player, and nothing is lit once playing stops
+        # a verse timed line by line (kirtan, the audio file's "lines"): the light moves forward only — a line is lit from its first
+        # singing until the next line starts, and stays lit while it is sung again (the owner: as an āratī's repeated first line)
         ln = await ev("""(async () => { await openWork('ramraksha', true); show('home'); S.timing.on = false; openReader('k', 0); await new Promise(r => setTimeout(r, 500));
             const a = AUT[0], v1 = a[3][0], s = a[3][1], d = a[4][1] - a[3][1], id = IT[v1].id;
             SRC.au.lines = {[id]: [[0, s, 0, s + 0.2 * d], [0, s + 0.4 * d, 1, null], [0, s + 0.7 * d, 0, null]]}; buildAudio();
             const sung = () => [...document.getElementById('v' + v1).querySelectorAll('.vtext p')].map(p => p.classList.contains('sung'));
             document.querySelector('#player').hidden = false; document.body.classList.add('playing');
             PL.on = true; PL.t = 0; PL.end = null; PL.cur = -1; ytOK = true; PL.seekT = null; ytInfo.t = s + 0.1 * d; tick(); await new Promise(r => setTimeout(r, 900));
-            const r = [], y0 = scrollY; r.push(PL.cur === v1, sung()[0] && !sung()[1]);          // the first line lights
-            ytInfo.t = s + 0.3 * d; tick(); r.push(!sung().some(x => x));                             // after its end, before the next: none
-            ytInfo.t = s + 0.5 * d; tick(); await new Promise(r => setTimeout(r, 400)); r.push(sung()[1] && !sung()[0], scrollY === y0);   // the next line; the page has not moved
-            ytInfo.t = s + 0.8 * d; tick(); await new Promise(r => setTimeout(r, 400)); r.push(sung()[0] && !sung()[1], scrollY === y0);   // the first again (a repeat)
-            window.scrollBy(0, 1500); await new Promise(r => setTimeout(r, 400)); tick();
-            const st = document.querySelector('#pLine'); r.push(!st.hidden && st.textContent === verseOf(v1).v[0]);   // out of view: in the strip
-            window.scrollTo(0, y0); await new Promise(r => setTimeout(r, 400)); tick(); r.push(st.hidden);       // back in view: no strip
-            stopAudio(); ytOK = false; r.push(!sung().some(x => x), st.hidden);
+            const r = []; r.push(PL.cur === v1, sung()[0] && !sung()[1]);                              // the first line lights
+            ytInfo.t = s + 0.3 * d; tick(); r.push(sung()[0] && !sung()[1]);                           // after its singing, until the next starts: still lit
+            ytInfo.t = s + 0.5 * d; tick(); r.push(sung()[1] && !sung()[0]);                           // the next line
+            ytInfo.t = s + 0.8 * d; tick(); r.push(sung()[1] && !sung()[0]);                           // the first sung again: the light does not go back
+            r.push(document.querySelector('#pLine').hidden);
+            stopAudio(); ytOK = false; r.push(!sung().some(x => x));
             delete SRC.au.lines; buildAudio(); return r; })()""")
-        check('playing a verse timed line by line: each singing lights its line, the page stays still, a line out of view is shown above the player', ln == [True] * 11, ln)
+        check('playing a verse timed line by line: the light moves forward only, each line lit from its first singing until the next starts', ln == [True] * 7, ln)
         # offline reading: a work opened once is readable with no network at all; a work never opened says so
         srv2 = serve(); url2 = f'http://127.0.0.1:{srv2.server_address[1]}/'
         ctx2 = await b.new_context(viewport={'width': 390, 'height': 844}, is_mobile=True, has_touch=True); pg3 = await ctx2.new_page(); errs3 = []
