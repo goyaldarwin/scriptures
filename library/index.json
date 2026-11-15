@@ -5231,6 +5231,46 @@
     },
     "children": [
      {
+      "id": "rigveda",
+      "title": {
+       "hi": "ऋग्वेद",
+       "en": "Rigveda"
+      },
+      "children": [
+       {
+        "id": "upanishad",
+        "title": {
+         "hi": "उपनिषद्",
+         "en": "Upanishads"
+        },
+        "children": [
+         {
+          "id": "aitareya-upanishad",
+          "work": "aitareya-upanishad",
+          "path": "hinduism/veda/rigveda/upanishad/aitareya-upanishad",
+          "title": {
+           "hi": "ऐतरेयोपनिषद्",
+           "en": "Aitareya Upanishad"
+          },
+          "by": {
+           "hi": "ऋग्वेद, ऐतरेय आरण्यक",
+           "en": "Rigveda, Aitareya Aranyaka"
+          },
+          "edition": {
+           "hi": "सन्दीपनी (स्वामी गुरुभक्तानन्द); sanskritdocuments.org",
+           "en": "Sandeepany (Swami Gurubhaktananda); sanskritdocuments.org"
+          },
+          "desc": {
+           "hi": "सृष्टि, तीन जन्म और प्रज्ञान · ३ अध्याय · ५ खण्ड · ३३ मन्त्र",
+           "en": "Creation, the three births and consciousness · 3 adhyays · 5 khands · 33 mantras"
+          },
+          "salute": "॥ ॐ श्री परमात्मने नमः ॥"
+         }
+        ]
+       }
+      ]
+     },
+     {
       "id": "yajurveda",
       "title": {
        "hi": "यजुर्वेद",
