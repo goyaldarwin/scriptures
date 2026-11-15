@@ -40,21 +40,22 @@ def by_line(src, lean, W, dry=False):
     OWN = json.load(open(os.path.join(src, 'owner.json'))) if os.path.exists(os.path.join(src, 'owner.json')) else {}
     own = {k for v in OWN.values() for k in v}
     aligned, lines, flags = {}, {}, collections.defaultdict(set)
-    n = collections.Counter(); order = []
+    n = collections.Counter(); order = []; seen = set()
     for w in W:
         p = os.path.join(src, 'mms', w['yt'] + '.json')
         if not os.path.exists(p): print(w['yt'], 'not aligned yet'); continue
         M = json.load(open(p))
         # the recording goes on after its verses (a video of several shabads): letters heard well after the last singing
         ends = [o[2] for i in w['keep'] for o in M['lines'].get(i, []) if o[3] >= 0.35]
-        if ends:
+        if ends and not w.get('core'):   # (a piece of a long track: its song goes on after the piece)
             last = max(ends); after = sum(len(c) for t, c in M.get('read_at', []) if t > last + 30)
             if after > 150:
                 flags['beyond'].add(w['keep'][-1])
                 if not dry: print(w['yt'], w['keep'][-1], f'sings on after its last line ({last:.0f} s): {after} letters heard after {last + 30:.0f} s')
         for it in w['items']:
             i = it['id']
-            if i not in w['keep']: continue
+            if (i not in w['keep'] and not w.get('core')) or (w['yt'], i) in seen: continue   # a long track's pieces: each verse once
+            seen.add((w['yt'], i))
             order.append(i)
             U, _ = LA.units(it)
             want = [u['k'] for u in U if u['rom'] and not u['head']]
