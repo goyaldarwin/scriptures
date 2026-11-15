@@ -82,6 +82,9 @@ def main():
 
 PENDING = os.path.join(ROOT, 'docs', 'PENDING.md')
 
+LINE_FLAG = {'unsung': 'with more than a quarter of their lines not found', 'title': 'perhaps not the verse the video title names',
+             'beyond': 'sung on past the verse'}   # tools/audio/mms_merge.py, check.json "flags"
+
 def pending():
     """docs/PENDING.md: what each work still lacks, so work can be picked up as time and Claude's bandwidth allow. Made from the
     same files as docs/WORKS.md; never edited by hand."""
@@ -119,11 +122,23 @@ def pending():
             if any('(transcript' in x for x in au): todo.append('a recording timed from the transcript alone'); note('recording not yet timed by MMS')
             chk = 0
             for d in glob.glob(os.path.join(WORKS, wid, 'audio', '*', 'check.json')):
-                c = j(d); chk += len(c.get('ids', [])) if isinstance(c, dict) else len(c)
+                c = j(d)
+                if isinstance(c, dict) and 'flags' in c: continue   # timed line by line: its own entry below
+                chk += len(c.get('ids', [])) if isinstance(c, dict) else len(c)
             if chk: todo.append(f'{chk} starts to check by ear')
             for d in sorted(glob.glob(os.path.join(WORKS, wid, 'audio', '*', 'source.json'))):
-                s = j(d)
+                s = j(d); sd = os.path.dirname(d)
                 if s.get('draft'): todo.append(f"recording {s['id']} a draft: {s['draft']}"); note('recording a draft')
+                if s.get('lines') and os.path.exists(os.path.join(sd, 'check.json')):
+                    # a source timed line by line (tools/audio/METHOD.md, "Line by line"): what it sings, what its checks flag
+                    A = j(os.path.join(LIB, leaf['path'], 'audio', s['id'] + '.json')); c = j(os.path.join(sd, 'check.json'))
+                    timed = {i for v in j(os.path.join(sd, 'lines.json')).values() for i in v}
+                    why = ', '.join(f"{len(v)} {LINE_FLAG.get(k, k)}" for k, v in c.get('flags', {}).items() if v)
+                    todo.append(f"recording {s['id']} (line by line{', live for review' if s.get('review') else ''}): sings {len(A['at'])} of {n} verses, "
+                                f"{len(timed)} with line times; {len(c.get('ids', []))} verses to hear" + (f' ({why})' if why else ''))
+                    note('recording line by line, verses to hear')
+                for x in s.get('pending') or []: todo.append(f"recording {s['id']}: {x}")
+                if s.get('pending'): note('recording: for the owner to decide')
         # reconciliation.md → "The recording": verses its recording sings as another written witness prints them; the text is to
         # follow it (docs/PLAYBOOK.md §3), with its meanings and word meanings
         rc = os.path.join(WORKS, wid, 'reconciliation.md')
@@ -142,7 +157,7 @@ def pending():
           '## Who does what', '',
           '- **Claude, with bandwidth:** our meanings (written, or drafts reviewed: the four steps of `docs/HOW-TO.md`), splitting a meaning line by line (`tools/meanings/LINES-BRIEF.md`), word meanings and their root and grammar, About introductions (from the verses, the README and reliable web sources; live once checked against the verses and confirmed online), topic headings.',
           '- **Claude, when a tool allows:** a draft recording waiting for MMS (`tools/audio/METHOD.md`; its model downloads from `dl.fbaipublicfiles.com`), each draft as its row says; a text to follow its recording (`docs/PLAYBOOK.md` §3, each work\'s `reconciliation.md` → "The recording").',
-          '- **The owner:** a recording for a work that has none (its audio file into `scriptures-data`; the timing then runs by itself; for the āratīs and chālīsās, his search found none to match the text, so a link to the right video), the starts to check by ear (☰ › More settings › Audio timing, on an admin phone), a source a text or a meaning needs.', '',
+          '- **The owner:** a recording for a work that has none (its audio file into `scriptures-data`; the timing then runs by itself; for the āratīs and chālīsās, his search found none to match the text, so a link to the right video), the starts and verses to check by ear (☰ › More settings › Audio timing, on an admin phone), what a recording\'s `source.json` \"pending\" leaves to him (which verse a video sings, say), a source a text or a meaning needs.', '',
           '## By work', '', '| Work | Verses | Still to do |', '|---|---|---|'] + rows + ['']
     text = '\n'.join(md)
     if not os.path.exists(PENDING) or open(PENDING, encoding='utf-8').read() != text:

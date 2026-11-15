@@ -1,0 +1,79 @@
+{
+ "id": "mundaka-upanishad",
+ "path": "hinduism/veda/atharvaveda/upanishad/mundaka-upanishad",
+ "lang": "sa",
+ "title": {
+  "hi": "मुण्डकोपनिषद्",
+  "en": "Mundaka Upanishad"
+ },
+ "by": {
+  "hi": "अथर्ववेद",
+  "en": "Atharvaveda"
+ },
+ "edition": {
+  "hi": "shlokam.org",
+  "en": "shlokam.org"
+ },
+ "parts": {
+  "name": {
+   "hi": "मुण्डक",
+   "en": "Mundaka"
+  },
+  "list": [
+   {
+    "key": "1",
+    "hi": "प्रथम मुण्डक",
+    "en": "Mundaka 1"
+   },
+   {
+    "key": "2",
+    "hi": "द्वितीय मुण्डक",
+    "en": "Mundaka 2"
+   },
+   {
+    "key": "3",
+    "hi": "तृतीय मुण्डक",
+    "en": "Mundaka 3"
+   }
+  ]
+ },
+ "cite": {
+  "by": [
+   "part",
+   "sec",
+   "n"
+  ]
+ },
+ "types": {
+  "shanti": {
+   "name": {
+    "hi": "शान्तिमन्त्र",
+    "en": "Shanti Mantra"
+   },
+   "short": {
+    "hi": "शा॰",
+    "en": "Shan."
+   }
+  },
+  "mantra": {
+   "name": {
+    "hi": "मन्त्र",
+    "en": "Mantra"
+   },
+   "short": {
+    "hi": "मं॰",
+    "en": "Man."
+   }
+  },
+  "iti": {
+   "name": {
+    "hi": "समापन (पुष्पिका)",
+    "en": "Closing words (iti)"
+   },
+   "short": {
+    "hi": "इति",
+    "en": "Iti"
+   }
+  }
+ }
+}
