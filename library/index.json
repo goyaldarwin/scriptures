@@ -5414,7 +5414,17 @@
            "hi": "छह जिज्ञासुओंके छह प्रश्न और पिप्पलादके उत्तर · ६ प्रश्न · ६७ मन्त्र",
            "en": "Six seekers' six questions and Pippalada's answers · 6 prashnas · 67 mantras"
           },
-          "salute": "॥ ॐ श्री परमात्मने नमः ॥"
+          "salute": "॥ ॐ श्री परमात्मने नमः ॥",
+          "intro": {
+           "hi": [
+            "प्रश्नोपनिषद् अथर्ववेदकी पिप्पलाद शाखाका और प्रमुख उपनिषदोंमें एक है। ब्रह्ममें निष्ठा रखनेवाले और परब्रह्मको खोजते छः जिज्ञासु — सुकेशा भारद्वाज, शैब्य सत्यकाम, सौर्यायणी गार्ग्य, कौसल्य आश्वलायन, भार्गव वैदर्भि और कबन्धी कात्यायन — हाथोंमें समिधा लेकर ऋषि पिप्पलादके पास आते हैं। ऋषि उनसे कहते हैं कि तप, ब्रह्मचर्य और श्रद्धाके साथ एक वर्ष और यहाँ रहो, फिर जो चाहो पूछना; और फिर हर एक अपना प्रश्न पूछता है। इसके छः प्रश्नोंमें ६७ मन्त्र हैं।",
+            "प्रश्न ये हैं: प्राणी कहाँसे उत्पन्न होते हैं — उत्तरमें प्रजापति रयि और प्राणका जोड़ा रचते हैं; शरीरको कौन-से देवता धारण करते हैं और उनमें श्रेष्ठ कौन है — प्राण; प्राण कहाँसे जन्मता है, शरीरमें कैसे आता और कैसे बँटता है; मनुष्यमें कौन सोता है, कौन जागता है और स्वप्न कौन देखता है; जीवनभर ॐका ध्यान करनेवाला कौन-सा लोक पाता है; और सोलह कलाओंवाला पुरुष कहाँ है — जिसका उत्तर है: यहीं, इस शरीरके भीतर। आदि शंकराचार्यने इसपर भाष्य लिखा।"
+           ],
+           "en": [
+            "The Prashna Upanishad belongs to the Pippalada branch of the Atharvaveda and is one of the principal Upanishads. Six seekers devoted to Brahman and in search of the highest, Sukesha Bharadvaja, Shaibya Satyakama, Sauryayani Gargya, Kausalya Ashvalayana, Bhargava Vaidarbhi and Kabandhi Katyayana, come to the sage Pippalada with fuel in their hands. He tells them to live there one more year in austerity, chastity and faith, and then to ask what they will; and then each asks his question. Its 67 mantras are in six prashnas, \"questions\".",
+            "The questions are: where do living beings come from, answered with Prajapati making a pair, matter and life (rayi and prana); which powers hold up the body and which is the greatest, answered: prana; where prana is born, how it enters the body and how it divides itself; what in a person sleeps, what stays awake, and who sees dreams; what world one reaches who meditates on Om until the end of life; and where the Person of sixteen parts is, answered: here, within this body. Adi Shankaracharya wrote a commentary on it."
+           ]
+          }
          },
          {
           "id": "mandukya-upanishad",
