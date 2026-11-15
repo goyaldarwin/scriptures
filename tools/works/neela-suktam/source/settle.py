@@ -19,6 +19,9 @@ FIX = [   # missing spaces between words that make no sandhi, and one misspelt w
     ('3', 'वा॒युस्स॑न्धुवा॒नावाता॑', 'वा॒युस्स॑न्धुवा॒ना वाता॑'),     # सन्धुवानाः वाताः
     ('3', 'दि॒वोध॒रुणः॑', 'दि॒वो ध॒रुणः॑'),                          # दिवः धरुणः
     ('3', 'अ॒स्येश्या॑ना॒', 'अ॒स्येशा॑ना॒'),       # ईशाना, as in the mantra before (अस्येशाना): ईश्याना is no word
+    # on the witness (Wikisource's accented Taittirīya Saṃhitā 4.4.12.5, source/check.py): after दि॒शां the svarita
+    # falls on वि (वि॑ष्णुप॒त्न्य); the page puts it on ष्णु, as in mantra 2, where it follows जग॑तो॒
+    ('2', 'विँष्णु॑प॒त्न्य', 'विँ॑ष्णुप॒त्न्य'),
 ]
 
 def item(id_, s, y, n, v):

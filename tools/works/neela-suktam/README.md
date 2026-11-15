@@ -6,7 +6,8 @@ Shelf: हिन्दू धर्म › वेद › यजुर्वे�
 
 ## Sources
 - **Text (source of truth).** shlokam.org's page [Neela Suktam](https://shlokam.org/shloka/neela-suktam.htm), saved as HTML. The private copy is in scriptures-data at `hinduism/veda/yajurveda/krishna-yajurveda/samhita/neela-suktam/printouts/shlokam/neela-suktam.html`. The Devanagari, with its svaras, follows the page exactly, except for the corrections in `reconciliation.md`; the page's own transliteration is the second witness of every line.
-- **Recording.** Soul Sadhana, YouTube `NZF4y9MDkSQ` (105.4 s), whose downloaded file names it "Neela Suktam (Vishnu Patni Suktam) Lyrics Meaning, Soul Sadhana". Audio source id `soul-sadhana`: `audio/soul-sadhana/` (`source.json`, `recordings.json`); the private speech-quality copy is in scriptures-data at `…/neela-suktam/audio/soul-sadhana/NZF4y9MDkSQ.opus`. Not yet transcribed or timed (a draft). What it sings is known here only from its title (the sūkta); whether it sings the invocation, the Gāyatrī and the śānti, in what order, and any opening the page lacks, the transcript will show; an opening it sings is then added as text from a written witness (PLAYBOOK §3).
+- **Witnesses.** Sanskrit Wikisource's Taittirīya Saṃhitā, accented (kāṇḍas 1–4) and unaccented (4.4), raw wikitext in scriptures-data at `…/neela-suktam/printouts/wikisource/`; every word, and every svara, is checked against them (`source/check.py`, `reconciliation.md`).
+- **Recording.** Soul Sadhana, YouTube `NZF4y9MDkSQ` (105.4 s), whose downloaded file names it "Neela Suktam (Vishnu Patni Suktam) Lyrics Meaning, Soul Sadhana". Audio source id `soul-sadhana`: `audio/soul-sadhana/` (`source.json`, `recordings.json`); the private speech-quality copy is in scriptures-data at `…/neela-suktam/audio/soul-sadhana/NZF4y9MDkSQ.opus`. Transcribed (`transcripts/`), not yet timed (a draft). It sings the invocation, the two mantras and the śānti; it does not sing the Gāyatrī, which stays, untimed.
 - **Meanings, word meanings, introduction:** not written yet.
 
 ## Files
@@ -14,6 +15,8 @@ The folder's format: `tools/works/README.md`.
 - `source/extract.py <neela-suktam.html>` → `source/neela-suktam_raw.json`: the page's verse blocks (Devanagari and transliteration). Run it again only if the page changes.
 - `source/settle.py` → `text.txt`: the settled text, with the corrections (`FIX`), the sections and our topic headings; `tools/site/regen_check.py` runs it. The export writes it by the library's standard and makes the transliteration (PLAYBOOK §3).
 - `tools/works/shlokam.py`, shared by the six Sūktas: reads a shlokam.org page's HTML, converts its transliteration to Devanagari and compares the two (the Śrī Rudram's and the Taittirīya Upaniṣad's method, with one helper for the six alike pages).
+- `source/witnesses.py <dir>` → `source/witness/<site>.txt`: each independent witness's words, from its raw download (in scriptures-data at `printouts/<site>/`, with `.meta.json`), as runs of Devanagari headed by the verses they cover.
+- `source/check.py`: compares `text.txt` with every witness, word for word and, where a witness has svaras, svara for svara (`tools/works/sukta_witness.py`, shared by the six Sūktas: what is read alike); it fails on any difference `reconciliation.md` does not record.
 - `audio/soul-sadhana/`: `source.json`, `recordings.json`.
 
 Rebuild: `python3 tools/works/neela-suktam/source/settle.py && python3 tools/works/export.py neela-suktam && python3 tools/site/build.py`.

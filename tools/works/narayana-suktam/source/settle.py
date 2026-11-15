@@ -15,7 +15,16 @@ WITNESS = set()
 HEADING = {}
 FIX = [
     ('13', 'द्वि॒ध्युल्ले॑खेव॒', 'द्वि॒द्युल्ले॑खेव॒'),   # विद्युत्, "lightning" (वि + द्युत्): ध्यु is a misspelling
+    # on the witnesses (Wikisource's accented Taittirīya Āraṇyaka and its Mahānārāyaṇa Upaniṣad, source/check.py):
+    ('7', 'स॑मु॒द्रें-ऽतं॑', 'स॑मु॒द्रे-ऽन्तं॑'),     # समुद्रे + अन्तम्: the anusvāra is on the wrong syllable
+    ('8', 'वि॑तस्या॒न्ते॒', 'वि॑तस्त्या॒न्ते॒'),       # वितस्त्या, "by a span" (वितस्ति): वितस्या is no word
+    ('9', 'शि॒लाभि॑स्तु॒', 'सि॒राभि॑स्तु॒'),         # सिराभिः, "with veins": शिला, "stone", has no sense here
+    ('11', 'सन्त॑ता ।', 'सन्त॑ताः ।'),             # रश्मयः … सन्तताः: the visarga of the plural, dropped at the pause
+    ('3', 'स्तद्विश्व-मुप॑', 'स्तद्विश्व॒-मुप॑'),     # the anudātta before उप (úpa), dropped (the accented witness: विश्व॒मुप॑)
+    ('15', 'ऋतग्ं स॒त्य', 'ऋ॒तग्ं स॒त्य'),          # ऋतम् (ṛtám): the anudātta on ऋ, dropped (the accented witness: ऋ॒तꣳ)
 ]
+# the recording sings Puruṣa Sūkta mantra 17 (धाता पुरस्ताद्…) before the sūkta (its transcript): taken from there
+OPENING = ['@topic आरम्भ: धाता पुरस्तात् | Opening: Dhata purastat', '[take purusha-suktam m17]']
 
 def item(id_, s, y, n, v):
     return {'id': id_, 'p': 0, 's': s, 'y': y, 'n': n, 'v': v}
@@ -34,4 +43,7 @@ if __name__ == '__main__':
     textfile.write(os.path.join(HERE, '..', 'text.txt'), I, topics, ['sukta'], 'sa', [
         'Nārāyaṇa Sūkta (Taittirīya Āraṇyaka, prapāṭhaka 10), shlokam.org. Made by source/settle.py from the page',
         '(scriptures-data); do not edit here. Every correction and choice: reconciliation.md.'])
-    print(len(I), 'items')
+    t = open(os.path.join(HERE, '..', 'text.txt'), encoding='utf-8').read().split('\n')
+    k = t.index('@section sukta') + 1
+    open(os.path.join(HERE, '..', 'text.txt'), 'w', encoding='utf-8').write('\n'.join(t[:k] + OPENING + t[k:]))
+    print(len(I), 'items and the opening')

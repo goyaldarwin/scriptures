@@ -1,26 +1,23 @@
 # Bhū Sūkta — how the text is settled
 
-**Source of truth:** shlokam.org's page "Bhoomi Suktam", <https://shlokam.org/shloka/bhoomi-suktam.htm>, saved as HTML by the session from the URL the owner allowed (private copy in scriptures-data at `hinduism/veda/atharvaveda/samhita/bhu-suktam/printouts/shlokam/bhoomi-suktam.html`). It gives 18 verse blocks, each with the Devanagari (no svaras), a transliteration, an English rendering and word glosses; every block ends with its number (॥१॥ … ॥१८॥).
+**Which text.** The recording (Soul Sadhana, `RBrq8UeM1N4`, "Bhu Suktam") sings, by its Whisper transcript (`audio/soul-sadhana/transcripts/`): "बूमिर बहुम नान्दियोर बरिना … तरिक्शम महित्वाः उपस्तेः … तन्ना द्याया ददे" (भूमिर्भूम्ना द्यौर्वरिणाऽन्तरिक्षं महित्वा । उपस्थे … अन्नाद्यायाऽऽदधे), "मातरं पुनः पितरं" (आयं गौः … मातरं पुनः । पितरं च प्रयन्त्सुवः), "विराजति … पतंगाय" (त्रिꣳशद्धाम वि राजति वाक्पतङ्गाय शिश्रिये), "प्राणादपान…", "यत्त्वा क्रुद्धः परोवप मन्युना यदवर्त्या सुकल्पमग्ने … पुनस्त्वोद्दीपयामसि", "यत्ते मन्युपरोप्तस्य पृथिवीमनु दध्वसे आदित्या विश्वे तद्देवा", "मनो ज्योतिर्जुषताम् … बृहस्पतिस्तनुतामिमं … मादयन्ताम्", then the śānti. That is Taittirīya Saṃhitā 1.5.3.1–2, not the Atharvaveda's Pṛthivī Sūkta (12.1) that shlokam.org gives as "Bhoomi Suktam". A written witness of it is in the owner's download folder, so the text is made from that witness, and the work moves from the Atharvaveda's shelf to the Kṛṣṇa Yajurveda's Saṃhitā (its ids were not published).
 
-**Which text it is.** The Atharvaveda's Pṛthivī Sūkta (12.1), whose first verse begins सत्यं बृहदृतमुग्रं दीक्षा तपो ब्रह्म यज्ञः पृथिवीं धारयन्ति: eighteen of its verses. Hindupedia's article "Bhusukta" (<https://hindupedia.com/en/Bhusukta>) names two Bhū Sūktas, Atharvaveda Saṃhitā 12.1 and Taittirīya Saṃhitā 1.5.3, the latter the better known; the page is the former. Whether the recording sings this text is for its transcript to show (README).
+**Source of truth:** Sanskrit Wikisource's Taittirīya Saṃhitā kāṇḍas 1–4 with svaras (`तैत्तिरीयसंहिता-१-४`, raw wikitext, fetched by the owner's download script; private copy in scriptures-data at `hinduism/veda/yajurveda/krishna-yajurveda/samhita/bhu-suktam/printouts/wikisource/`). The page names no edition; it is a user transcription with svaras throughout, the same site's Saṃhitā that witnesses the Nīlā Sūkta.
 
 ## Method
-1. **Extract.** `source/extract.py` reads the page's HTML, never its rendered text (`tools/works/shlokam.py` → `page`): for each verse block (`div.verse-section`), the page's verse number, the Devanagari (`div.detail-sanskrit`) and the transliteration after it, split at `<br>`, zero-width spaces removed, empty lines dropped. The page's English is © shlokam.org and is not kept in this repository.
-2. **Second witness.** `source/settle.py` converts the page's own transliteration back to Devanagari (`shlokam.tr2deva`) and compares it with the Devanagari line by line (`shlokam.compare`), folding only the two scripts' conventions (a nasal before a consonant written as its class letter or as ṃ). All 41 lines agree letter for letter.
-3. **Corrections** (`FIX`). The transliteration is a copy of the page's own Devanagari, so it cannot expose a slip the two share: the one correction rests on the grammar and the page itself, where the page is clearly wrong. The check against independent witnesses is a later step.
-4. **The writing standard** (docs/PLAYBOOK.md §3) applies at export: ॥ and compact verse numbers, Pāṇini's spelling (a class nasal inside a word: the page's असंबाधं, संबभूवुः), the ISO 15919 transliteration made from the verse.
+1. **Extract.** `source/extract.py` takes the page's 1.5.3.1 and 1.5.3.2 from भूमि॑र्भू॒म्ना to मा॑दयन्ताम् ।।: the sūkta as the Pañca Sūkta recites it and the recording sings it. The rest of 1.5.3.2 (स॒प्त ते॑ अग्ने…) is the Saṃhitā's next mantra, not recited with it. The page writes ꣳ, the svarita ᳚ and a visarga with private-use characters of its font, read by their places (`tools/works/sukta_witness.py` → `PUA`): here त्रि॒ꣳ॒शद्धाम॒, य॒ज्ञꣳ and त्वा᳚. Its labels (1.5.3.2) and section numbers ([10]) are dropped.
+2. **Settle.** `source/settle.py`: one item per ṛk, as the page ends each with ।।; the lines at its daṇḍas (।).
+3. **Check.** `source/check.py` compares the text with the page word for word and svara for svara: the only difference is the ॐ below.
+4. **The writing standard** (docs/PLAYBOOK.md §3) applies at export: ॥, Pāṇini's spelling, ꣳ (a Yajurveda text), the ISO 15919 transliteration with the svaras as accents.
 
-## Corrections (all in `source/settle.py` → `FIX`)
-
-| Verse | Page (both scripts) | Text used | Why |
-|---|---|---|---|
-| 16 | …वाचो मधु पृथिवी धेहि मह्यम् | …वाचो मधु पृथिवि धेहि मह्यम् | The Earth is addressed (धेहि, "give"): the vocative पृथिवि, as the page writes it in verses 11, 12 and 15; पृथिवी is the nominative. |
+## Added from the recording
+- **ॐ before the first ṛk:** the recording opens with it (its transcript).
+- **The closing śānti,** ॐ शान्ति॒-श्शान्ति॒-श्शान्तिः॑ ॥, which the recording sings after the sūkta: worded as the same site's accented Taittirīya Āraṇyaka closes its Upaniṣad prapāṭhakas (ओं शान्ति॒श्शान्ति॒श्शान्तिः॑), in the hyphenated spelling of the Sūktas' other texts.
 
 ## Kept as the page has it
-- **Verse 16** is one line (ता नः प्रजाः सं दुह्रतां …). The page's Devanagari has an empty line before it (an empty `<br>` line); its transliteration has the one line only. The empty line is dropped.
-- **The page's selection and its numbers** (1–18), not the hymn's own verse numbers.
-- **Readings, as printed:** बध्यतो (verse 2), अजीतेऽहतो (verse 11): valid words, kept.
+- **The Taittirīya spellings:** पृश्ञि॑ (pṛśni, as the Taittirīya reciters say it), आऽयं, स॒माभ॑रन्न् (the doubled final न्न्), यत् त्वा and तत् तव written apart.
+- **No second written witness** of Taittirīya Saṃhitā 1.5.3 was found: Wikisource's unaccented Saṃhitā is downloaded for 4.4 only, and GRETIL has no Taittirīya Saṃhitā or Bhū Sūkta. Nothing in the passage is a non-word or broken, so the page stands as it is.
 
 ## Structure (not on the page as such)
-- **Numbering.** Each mantra keeps the number the page prints (1–18).
-- **Sections:** one, `sukta`.
+- **Numbering:** the ṛks 1–7 by their place.
+- **Sections:** `sukta` (the seven ṛks), `end` (the śānti).

@@ -6,7 +6,8 @@ Shelf: हिन्दू धर्म › वेद › ऋग्वेद › 
 
 ## Sources
 - **Text (source of truth).** shlokam.org's page [Sri Suktam](https://shlokam.org/shloka/sri-suktam.htm), saved as HTML. The private copy is in scriptures-data at `hinduism/veda/rigveda/samhita/shri-suktam/printouts/shlokam/sri-suktam.html`. The page has no svaras, so neither does the text. The Devanagari follows the page exactly, except for its two headings and the corrections in `reconciliation.md`; the page's own transliteration is the second witness of every line.
-- **Recording.** Sri Sathya Sai Official, YouTube `r-HQ8MrQiDM` (487.3 s), whose downloaded file names it "Sri Suktam With Lyrics & Meaning, Vedic Chants". `audio/sri-sathya-sai/` (`source.json`, `recordings.json`); the private speech-quality copy is in scriptures-data at `…/shri-suktam/audio/sri-sathya-sai/r-HQ8MrQiDM.opus`. Not yet transcribed or timed (a draft). What it sings is known here only from its title (the sūkta); whether it sings the phalaśruti and the later verses, in the page's order, and any opening the page lacks, the transcript will show. A verse it leaves out stays in the text, untimed; an opening it sings is added as text from a written witness (PLAYBOOK §3). It is a Vedic chant: it may sing the ṛks with svaras the page does not print.
+- **Witnesses.** Sanskrit Wikisource's श्रीसूक्तम् (two texts) and GRETIL's Ṛgveda khilāni (Scheftelowitz), raw downloads in scriptures-data at `…/shri-suktam/printouts/wikisource/` and `…/gretil/`; every word is checked against them (`source/check.py`, `reconciliation.md`).
+- **Recording.** Sri Sathya Sai Official, YouTube `r-HQ8MrQiDM` (487.3 s), whose downloaded file names it "Sri Suktam With Lyrics & Meaning, Vedic Chants". `audio/sri-sathya-sai/` (`source.json`, `recordings.json`); the private speech-quality copy is in scriptures-data at `…/shri-suktam/audio/sri-sathya-sai/r-HQ8MrQiDM.opus`. Transcribed (`transcripts/`), not yet timed (a draft). As far as its transcript shows, it sings verses 1–31 and the Gāyatrī (34), in the page's order, then the śānti; verses it leaves out stay in the text, untimed. It is a Vedic chant: it may sing the ṛks with svaras the page does not print.
 - **Meanings, word meanings, introduction:** not written yet.
 
 ## Files
@@ -14,6 +15,8 @@ The folder's format: `tools/works/README.md`.
 - `source/extract.py <sri-suktam.html>` → `source/sri-suktam_raw.json`: the page's verse blocks (Devanagari and transliteration). Run it again only if the page changes.
 - `source/settle.py` → `text.txt`: the settled text, with the corrections (`FIX`), the page's headings left out (`HEADING`), the sections and our topic headings; `tools/site/regen_check.py` runs it. The export writes it by the library's standard and makes the transliteration (PLAYBOOK §3).
 - `tools/works/shlokam.py`, shared by the six Sūktas: reads a shlokam.org page's HTML, converts its transliteration to Devanagari and compares the two (the Śrī Rudram's and the Taittirīya Upaniṣad's method, with one helper for the six alike pages).
+- `source/witnesses.py <dir>` → `source/witness/<site>.txt`: each independent witness's words, from its raw download (in scriptures-data at `printouts/<site>/`, with `.meta.json`), as Devanagari runs headed by the verses they cover.
+- `source/check.py`: compares `text.txt` with every witness, word for word (`tools/works/sukta_witness.py`, shared by the six Sūktas: what is read alike); it fails on any difference `reconciliation.md` does not record.
 - `audio/sri-sathya-sai/`: `source.json`, `recordings.json`.
 
 Rebuild: `python3 tools/works/shri-suktam/source/settle.py && python3 tools/works/export.py shri-suktam && python3 tools/site/build.py`.

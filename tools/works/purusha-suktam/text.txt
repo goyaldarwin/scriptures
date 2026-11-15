@@ -2,6 +2,14 @@
 # do not edit here. Every correction and choice: reconciliation.md.
 
 @part sukta
+@section shanti
+@topic शान्तिपाठ | Shanti Paath
+[shanti.1 shanti]
+तच्छं॒-योँरावृ॑णीमहे । गा॒तुं-यँ॒ज्ञाय॑ ।
+गा॒तुं-यँ॒ज्ञप॑तये । दैवी᳚ स्व॒स्तिर॑स्तु नः ।
+स्व॒स्तिर्मानु॑षेभ्यः । ऊ॒र्ध्व-ञ्जि॑गातु भेष॒जम् ।
+श-न्नो॑ अस्तु द्वि॒पदे᳚ । श-ञ्चतु॑ष्पदे ।
+ॐ शान्ति॒-श्शान्ति॒-श्शान्तिः॑ ॥
 @section purusha
 @topic सहस्रशीर्षा पुरुष | The Person of a thousand heads
 [m01 mantra 1]
@@ -81,8 +89,8 @@
 ह्रीश्च॑ ते ल॒क्ष्मीश्च॒ पत्न्यौ᳚ । अ॒हो॒रा॒त्रे पा॒र्श्वे ।
 नक्ष॑त्राणि रू॒पम् । अ॒श्विनौ॒ व्यात्तम्᳚ ।
 इ॒ष्ट-म्म॑निषाण । अ॒मु-म्म॑निषाण । सर्व॑-म्मनिषाण ॥
-@section shanti
-@topic शान्तिपाठ | Shanti Paath
+@section end
+@topic समापन शान्तिपाठ | Closing Shanti Paath
 [shanti.end shanti]
 तच्छं॒-योँरावृ॑णीमहे । गा॒तुं-यँ॒ज्ञाय॑ ।
 गा॒तुं-यँ॒ज्ञप॑तये । दैवी᳚ स्व॒स्तिर॑स्तु नः ।

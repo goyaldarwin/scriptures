@@ -5324,6 +5324,28 @@
             }
            },
            {
+            "id": "bhu-suktam",
+            "work": "bhu-suktam",
+            "path": "hinduism/veda/yajurveda/krishna-yajurveda/samhita/bhu-suktam",
+            "title": {
+             "hi": "भूसूक्तम्",
+             "en": "Bhu Suktam"
+            },
+            "by": {
+             "hi": "कृष्ण यजुर्वेद, तैत्तिरीय संहिता १.५.३",
+             "en": "Krishna Yajurveda, Taittiriya Samhita 1.5.3"
+            },
+            "edition": {
+             "hi": "विकिस्रोत (sa.wikisource.org)",
+             "en": "Sanskrit Wikisource (sa.wikisource.org)"
+            },
+            "desc": {
+             "hi": "भूमि, अदिति और अग्नि · ७ मन्त्र",
+             "en": "Earth, Aditi and the fire · 7 mantras"
+            },
+            "salute": "॥ ॐ श्री परमात्मने नमः ॥"
+           },
+           {
             "id": "neela-suktam",
             "work": "neela-suktam",
             "path": "hinduism/veda/yajurveda/krishna-yajurveda/samhita/neela-suktam",
@@ -5524,37 +5546,6 @@
        "en": "Atharvaveda"
       },
       "children": [
-       {
-        "id": "samhita",
-        "title": {
-         "hi": "संहिता",
-         "en": "Samhita"
-        },
-        "children": [
-         {
-          "id": "bhu-suktam",
-          "work": "bhu-suktam",
-          "path": "hinduism/veda/atharvaveda/samhita/bhu-suktam",
-          "title": {
-           "hi": "भूसूक्तम्",
-           "en": "Bhu Suktam"
-          },
-          "by": {
-           "hi": "अथर्ववेद १२.१ (पृथ्वी सूक्त)",
-           "en": "Atharvaveda 12.1 (Prithvi Sukta)"
-          },
-          "edition": {
-           "hi": "श्लोकम् (shlokam.org)",
-           "en": "Shlokam (shlokam.org)"
-          },
-          "desc": {
-           "hi": "पृथ्वी माताकी स्तुति · १८ मन्त्र",
-           "en": "Praise of Mother Earth · 18 mantras"
-          },
-          "salute": "॥ ॐ श्री परमात्मने नमः ॥"
-         }
-        ]
-       },
        {
         "id": "upanishad",
         "title": {

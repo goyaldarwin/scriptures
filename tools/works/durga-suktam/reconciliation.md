@@ -6,7 +6,7 @@
 1. **Extract.** `source/extract.py` reads the page's HTML, never its rendered text (`tools/works/shlokam.py` → `page`): for each verse block (`div.verse-section`), the page's verse number, the Devanagari (`div.detail-sanskrit`) and the transliteration after it, split at `<br>`, zero-width spaces removed, empty lines dropped. The svaras are kept as the page has them (॑ ॒ ᳚). The page's English is © shlokam.org and is not kept in this repository.
 2. **Second witness.** `source/settle.py` converts the page's own transliteration back to Devanagari, accents included (`shlokam.tr2deva`), and compares it with the Devanagari line by line (`shlokam.compare`), folding only the two scripts' conventions: ॐ / ōṃ, the ँ the Devanagari writes before य व ल (`ज्वल॒न्तीं-वैँ॑रोच॒नीम्`, jvala̠ntīṃ vai̍rōcha̠nīm), and a nasal before a consonant written as its class letter or as ṃ (the transliteration's tavē̎mdra for तवे᳚न्द्र). All 19 lines agree letter for letter and svara for svara.
 3. **Heading left out** (`HEADING`): अथ दुर्गा सूक्तम्, the first line of block 1, is the editor's heading, as the Śrī Rudram's अथ श्रीरुद्रप्रश्नः; our topic names the place. Its pair at the end, इति दुर्गा सूक्तम्, is kept as the closing words (type `iti`), as the library keeps a work's closing words.
-4. **Corrections** (`FIX`). The transliteration is a copy of the page's own Devanagari, so it cannot expose a slip the two share: these rest on the grammar, each where the page is clearly wrong. The check against independent witnesses is a later step.
+4. **Corrections** (`FIX`). The transliteration is a copy of the page's own Devanagari, so it cannot expose a slip the two share: these rest on the grammar, each where the page is clearly wrong. Both independent witnesses read both corrections as made (below).
 5. **The writing standard** (docs/PLAYBOOK.md §3) applies at export: ॥, Pāṇini's spelling (ओम् ॥ and ॐ are the sacred syllable), ꣳ (a Yajurveda text: the page's typed ग्ं), the ISO 15919 transliteration made from the verse, with the svaras as accents.
 
 ## Corrections (all in `source/settle.py` → `FIX`)
@@ -24,3 +24,11 @@
 ## Structure (not on the page as such)
 - **Numbering.** The page's Devanagari has no verse numbers; its blocks are numbered 1–9 in the HTML (`data-verse`). Blocks 1–7 are mantras 1–7, block 8 the Gāyatrī; block 9 holds the closing words and the śānti, made two items (`iti`, `shanti.end`) as the library writes a work's closing words and its śānti.
 - **Sections:** `sukta` (mantras 1–7), `end` (the Gāyatrī, the closing words, the śānti).
+
+## Witnesses (`source/check.py`)
+- **Sanskrit Wikisource, the Taittirīya Āraṇyaka with svaras** (`तैत्तिरीय-आरण्यकम्`, no edition named; its private-use font characters read as `tools/works/sukta_witness.py` → `PUA`): mantras 1–6 (its 6.1.11; it has no mantra 7) and the Gāyatrī (its 6.1.6), compared letter for letter and svara for svara (`source/witness/wikisource-ta.txt`). Every svara agrees wherever the two spell the same words.
+- **Sanskrit Wikisource, the Mahānārāyaṇa Upaniṣad** (Āndhra recension, unaccented): mantras 1–7 (its anuvāka 2) and the Gāyatrī (`source/witness/wikisource-mnu.txt`).
+- **Both corrections** (सोम॑मरातीय॒तो, पृ॒त॒ना॒जित॒ग्ं॒) are the witnesses' readings.
+- **Kept:** the ओम् before mantra 1 and the Gāyatrī (neither witness has it); निद॑हाति (the Mahānārāyaṇa; the Āraṇyaka निज॑हाति); सह॑मानमु॒ग्रम॒ग्निग्ं (the Mahānārāyaṇa's order; the Āraṇyaka सह॑मानम॒ग्निमु॒ग्रꣳ); कन्यकु॒मारि॑ (the Āraṇyaka; the Mahānārāyaṇa कन्याकुमारि).
+- **The Mahānārāyaṇa's slips:** सिन्धुं न वावा (for नावा), उग्नम्, सधस्तात् (for सधस्थात्).
+- **Not compared:** the closing words इति दुर्गा सूक्तम् and the śānti (no witness has them as such).

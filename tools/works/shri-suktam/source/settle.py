@@ -21,9 +21,11 @@ FIX = [
     ('22', 'मात्सर्य न', 'मात्सर्यं न'),                   # मात्सर्यम्, subject like क्रोधः and लोभः
     ('30', 'भजेहमाद्यां', 'भजेऽहमाद्यां'),                  # भजे + अहम्: the elided a's avagraha
     ('30', 'जगदीस्वरीं', 'जगदीश्वरीं'),                    # ईश्वरी
-    ('34', 'महालक्ष्मी च विद्महे विष्णुपत्नी च', 'महालक्ष्म्यै च विद्महे विष्णुपत्न्यै च'),   # the gāyatrī's datives,
-    ('37', 'विष्णुपत्नी च', 'विष्णुपत्न्यै च'),              # as महादेव्यै (37) and the page's Nīlā Gāyatrī
     ('35', 'महियते', 'महीयते'),                            # the verb महीयते
+    # on the witnesses (Wikisource's two texts, GRETIL's khila 2.6: source/check.py)
+    ('17', 'पद्मासम्भवे', 'पद्मसम्भवे'),                   # "lotus-born", as all three; पद्मा-, "born of Padmā", has no sense here
+    ('22', 'श्रीसूक्तं जपेत्सदा', 'श्रीसूक्तं जपेत्'),        # सदा breaks the anuṣṭubh (ten syllables); the khila and Wikisource 1 lack it
+    ('30', 'त्रिणेत्रां', 'त्रिनेत्रां'),                     # त्रिनेत्र, as all three: no ण in it
 ]
 
 def item(id_, s, y, n, v):

@@ -30,16 +30,20 @@ def item(id_, s, y, n, v):
 if __name__ == '__main__':
     L = shlokam.settled(os.path.join(HERE, 'purusha-suktam_raw.json'), HEADING, WITNESS, FIX)
     assert list(L) == [str(k) for k in range(1, 26)]
-    I = [item('m%02d' % k, 'purusha' if k <= 18 else 'uttara', 'mantra', str(k), L[str(k)]) for k in range(1, 25)]
     # the page prints the śānti pāṭha's eight short phrases on one line: two to a line here, as they pair in sense
     ph = L['25'][0].rstrip(' ।').split(' । ')
     assert len(ph) == 8 and len(L['25']) == 2
-    I.append(item('shanti.end', 'shanti', 'shanti', '', [' । '.join(ph[k:k + 2]) + ' ।' for k in range(0, 8, 2)] + L['25'][1:]))
-    topics = [{'id': 'm01', 'hi': 'सहस्रशीर्षा पुरुष', 'en': 'The Person of a thousand heads'},
+    shanti = [' । '.join(ph[k:k + 2]) + ' ।' for k in range(0, 8, 2)] + L['25'][1:]
+    # the recording sings the śānti pāṭha before the sūkta as well as after it (its transcript): the page's words, twice
+    I = [item('shanti.1', 'shanti', 'shanti', '', shanti)]
+    I += [item('m%02d' % k, 'purusha' if k <= 18 else 'uttara', 'mantra', str(k), L[str(k)]) for k in range(1, 25)]
+    I.append(item('shanti.end', 'end', 'shanti', '', shanti))
+    topics = [{'id': 'shanti.1', 'hi': 'शान्तिपाठ', 'en': 'Shanti Paath'},
+              {'id': 'm01', 'hi': 'सहस्रशीर्षा पुरुष', 'en': 'The Person of a thousand heads'},
               {'id': 'm06', 'hi': 'पुरुषका यज्ञ और सृष्टि', 'en': 'The sacrifice of the Person, and creation'},
               {'id': 'm16', 'hi': 'पुरुषको जानकर अमृतत्व', 'en': 'Knowing the Person, one becomes immortal'},
               {'id': 'm19', 'hi': 'उत्तरनारायण', 'en': 'Uttara Narayana'},
-              {'id': 'shanti.end', 'hi': 'शान्तिपाठ', 'en': 'Shanti Paath'}]
+              {'id': 'shanti.end', 'hi': 'समापन शान्तिपाठ', 'en': 'Closing Shanti Paath'}]
     textfile.write(os.path.join(HERE, '..', 'text.txt'), I, topics, ['sukta'], 'sa', [
         'Puruṣa Sūkta (Taittirīya Āraṇyaka 3.12–13), shlokam.org. Made by source/settle.py from the page (scriptures-data);',
         'do not edit here. Every correction and choice: reconciliation.md.'])

@@ -1,29 +1,28 @@
 # Bhū Sūkta (भूसूक्तम्)
 
-Shelf: हिन्दू धर्म › वेद › अथर्ववेद › संहिता › भूसूक्तम् (`library/hinduism/veda/atharvaveda/samhita/bhu-suktam/`, work id `bhu-suktam`). The text is shlokam.org's "Bhoomi Suktam": eighteen verses of the Atharvaveda's Pṛthivī Sūkta (12.1, the hymn to the Earth), numbered 1–18 as the page prints them.
+Shelf: हिन्दू धर्म › वेद › यजुर्वेद › कृष्ण यजुर्वेद › संहिता › भूसूक्तम् (`library/hinduism/veda/yajurveda/krishna-yajurveda/samhita/bhu-suktam/`, work id `bhu-suktam`). The text is the Taittirīya Saṃhitā's Bhū Sūkta, 1.5.3.1–2 (भूमिर्भूम्ना द्यौर्वरिणा … इह मादयन्ताम्): seven ṛks, the Bhū Sūkta of the Vaiṣṇava Pañca Sūkta, as the recording sings it.
 
-**Why this shelf.** A Vedic text sits by its Veda and division (`docs/LIBRARY.md` §1), as the Śrī Rudram does. The page's text is the Atharvaveda's Pṛthivī Sūkta (its first verse, सत्यं बृहदृतमुग्रं दीक्षा तपो ब्रह्म यज्ञः पृथिवीं धारयन्ति, opens Atharvaveda 12.1; Hindupedia's "Bhusukta" names two Bhū Sūktas, Atharvaveda Saṃhitā 12.1 and Taittirīya Saṃhitā 1.5.3), so it goes on a new Saṃhitā shelf of the Atharvaveda, beside its Upaniṣads. The id `bhu-suktam` is the work's name in the Vaiṣṇava Pañca Sūkta, which is to be a work of its own that takes these verses.
-
-**The text and the recording may differ.** The Bhū Sūkta of the Vaiṣṇava Pañca Sūkta is usually the Taittirīya one (Hindupedia: "the one from the Taittirīya Samhitā is better known of the two"); shlokam.org has only the Atharvaveda's. The recording is titled "Bhu Suktam", not "Bhoomi Suktam", and is short (164.5 s). If its transcript shows it sings the Taittirīya Bhū Sūkta, the text is to be taken from a written witness of that sūkta (sanskritdocuments.org, which the owner supplies) and the work moves to the Kṛṣṇa Yajurveda's shelf (moving a work keeps readers' places, `docs/LIBRARY.md` §1); the ids here are not yet published.
+**Why this shelf.** A Vedic text sits by its Veda, śākhā and division (`docs/LIBRARY.md` §1), as the Śrī Rudram sits at `…/krishna-yajurveda/samhita/`: the sūkta is the Taittirīya Saṃhitā's, so it sits beside the Śrī Rudram and the Nīlā Sūkta. Hindupedia's "Bhusukta" names two Bhū Sūktas, Atharvaveda 12.1 (the Pṛthivī Sūkta, the only one on shlokam.org) and Taittirīya Saṃhitā 1.5.3, the better known; the recording sings the Taittirīya one (its transcript), and a written witness of it is at hand, so the text is that one (`reconciliation.md`). The Vaiṣṇava Pañca Sūkta (Puruṣa, Nārāyaṇa, Śrī, Bhū, Nīlā) is to be a work of its own that takes these verses.
 
 ## Sources
-- **Text (source of truth).** shlokam.org's page [Bhoomi Suktam](https://shlokam.org/shloka/bhoomi-suktam.htm), saved as HTML. The private copy is in scriptures-data at `hinduism/veda/atharvaveda/samhita/bhu-suktam/printouts/shlokam/bhoomi-suktam.html`. The page has no svaras, so neither does the text. The Devanagari follows the page exactly, except for the one correction in `reconciliation.md`; the page's own transliteration is the second witness of every line.
-- **Recording.** Soul Sadhana, YouTube `RBrq8UeM1N4` (164.5 s), whose downloaded file names it "Bhu Suktam Lyrics Meaning, Soul Sadhana". Audio source id `soul-sadhana`: `audio/soul-sadhana/` (`source.json`, `recordings.json`); the private speech-quality copy is in scriptures-data at `…/bhu-suktam/audio/soul-sadhana/RBrq8UeM1N4.opus`. Not yet transcribed or timed (a draft). What it sings is known here only from its title; which Bhū Sūkta it sings, how much of it, in what order, and any opening, the transcript will show (above).
+- **Text (source of truth).** Sanskrit Wikisource's Taittirīya Saṃhitā, kāṇḍas 1–4, with svaras ([तैत्तिरीयसंहिता-१-४](https://sa.wikisource.org/wiki/तैत्तिरीयसंहिता-१-४), no edition named), its raw wikitext in scriptures-data at `hinduism/veda/yajurveda/krishna-yajurveda/samhita/bhu-suktam/printouts/wikisource/तैत्तिरीयसंहिता-१-४.wiki.txt`. The words and svaras follow the page exactly; the recording's ॐ and closing śānti are added (`reconciliation.md`).
+- **Not used:** shlokam.org's page "Bhoomi Suktam" (Atharvaveda 12.1, eighteen verses), kept in scriptures-data at `…/bhu-suktam/printouts/shlokam/`: it is not the sūkta the recording sings.
+- **Recording.** Soul Sadhana, YouTube `RBrq8UeM1N4` (164.5 s), whose downloaded file names it "Bhu Suktam Lyrics Meaning, Soul Sadhana". Audio source id `soul-sadhana`: `audio/soul-sadhana/` (`source.json`, `recordings.json`); the private speech-quality copy is in scriptures-data at `…/bhu-suktam/audio/soul-sadhana/RBrq8UeM1N4.opus`. Transcribed (`transcripts/`), not yet timed (a draft). It sings ॐ, the seven ṛks and the śānti.
 - **Meanings, word meanings, introduction:** not written yet.
 
 ## Files
 The folder's format: `tools/works/README.md`.
-- `source/extract.py <bhoomi-suktam.html>` → `source/bhoomi-suktam_raw.json`: the page's verse blocks (Devanagari and transliteration). Run it again only if the page changes.
-- `source/settle.py` → `text.txt`: the settled text, with our topic headings; `tools/site/regen_check.py` runs it. The export writes it by the library's standard and makes the transliteration (PLAYBOOK §3).
-- `tools/works/shlokam.py`, shared by the six Sūktas: reads a shlokam.org page's HTML, converts its transliteration to Devanagari and compares the two (the Śrī Rudram's and the Taittirīya Upaniṣad's method, with one helper for the six alike pages).
-- `audio/soul-sadhana/`: `source.json`, `recordings.json`.
+- `source/extract.py <dir>` → `source/ts-1.5.3_raw.txt`: the passage from the page's raw wikitext (its private-use font characters read as `tools/works/sukta_witness.py` → `PUA` says). Run it again only if the page changes.
+- `source/settle.py` → `text.txt`: one item per ṛk, its lines at the page's daṇḍas, the recording's ॐ and closing śānti, our topic headings; `tools/site/regen_check.py` runs it. The export writes it by the library's standard (ꣳ, a Yajurveda text) and makes the transliteration (PLAYBOOK §3).
+- `source/witnesses.py <dir>` → `source/witness/wikisource-ts.txt`, and `source/check.py`: proves the text keeps the page's words and svaras (`tools/works/sukta_witness.py`, shared by the six Sūktas).
+- `audio/soul-sadhana/`: `source.json`, `recordings.json`, `transcripts/`.
 
 Rebuild: `python3 tools/works/bhu-suktam/source/settle.py && python3 tools/works/export.py bhu-suktam && python3 tools/site/build.py`.
 
 ## Structure
-- **Hierarchy:** one part (the sūkta) › one section (`sukta`) › mantras.
-- **Numbering:** each mantra's `n` is the number the page prints at its end (॥१॥ … ॥१८॥), and it is cited by it (Mantra 12). These are the page's numbers, not the verse numbers of Atharvaveda 12.1.
-- **Items:** `m01`–`m18` (type `mantra`). 18 items. Ids are permanent once published.
-- **Types** (`work.json` → `types`): mantra (मं॰ / Man.).
-- **Topics** (ours): truth, order and austerity uphold the Earth (1); the Earth is my mother, I her son (10).
+- **Hierarchy:** one part (the sūkta) › two sections (`sukta`: the seven ṛks; `end`: the śānti) › items.
+- **Numbering:** the page prints no numbers within the passage; each ṛk's `n` is its place, 1–7, as the page ends each with ।।, and it is cited by it (Mantra 5).
+- **Items:** `m01`–`m07` (type `mantra`), `shanti.end` (type `shanti`). 8 items. Ids are permanent once published.
+- **Types** (`work.json` → `types`): mantra (मं॰ / Man.), śānti mantra (शा॰ / Shan.).
+- **Topics** (ours): Earth, sky and mid-air; the fire laid down (1); kindling again the fire scattered in anger (5); Shanti Paath.
 - **Reading plans:** none.
