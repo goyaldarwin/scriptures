@@ -5373,6 +5373,28 @@
               "In eighteen verses (this is the Kanva recension) it teaches how to live in the world: enjoy through renunciation, covet no one's wealth, and do your work, for action rightly done does not bind. It holds knowledge and action, vidya and avidya, together rather than setting one above the other, and closes with a prayer to the Sun to uncover the face of Truth, hidden by a golden vessel."
              ]
             }
+           },
+           {
+            "id": "brihadaranyaka-upanishad",
+            "work": "brihadaranyaka-upanishad",
+            "path": "hinduism/veda/yajurveda/shukla-yajurveda/upanishad/brihadaranyaka-upanishad",
+            "title": {
+             "hi": "बृहदारण्यकोपनिषद्",
+             "en": "Brihadaranyaka Upanishad"
+            },
+            "by": {
+             "hi": "शुक्ल यजुर्वेद, काण्व पाठ",
+             "en": "Shukla Yajurveda, Kanva recension"
+            },
+            "edition": {
+             "hi": "sanskritdocuments.org",
+             "en": "sanskritdocuments.org"
+            },
+            "desc": {
+             "hi": "याज्ञवल्क्य, मैत्रेयी और जनक · ६ अध्याय · ४७ ब्राह्मण · ४३५ मन्त्र",
+             "en": "Yajnavalkya, Maitreyi and Janaka · 6 adhyays · 47 brahmanas · 435 mantras"
+            },
+            "salute": "॥ ॐ श्री परमात्मने नमः ॥"
            }
           ]
          }
