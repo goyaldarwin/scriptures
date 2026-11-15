@@ -20,13 +20,16 @@ Each is a slip in both scripts that the page's own word list for the mantra give
 
 | Item | Page | Settled | Why |
 |---|---|---|---|
+| 1.1.2 | …ब्रह्माऽथर्वा तं पुरोवाच… | …ब्रह्माऽथर्वा तां पुरोवाच… | तां, the feminine accusative: it takes up यां … ब्रह्मविद्याम्, the knowledge Atharvan told Aṅgir, as in the word list (tāṃ); the masculine तं has no noun to refer to. |
 | 1.1.9 | …ज्ञानमयं तापः | …ज्ञानमयं तपः | The word list has तपः; ताप ("heat, pain") breaks the sense and the metre (the even pāda of the anuṣṭubh needs a short seventh syllable: ज्ञा-न-म-यं-त-पः after यस्य). |
 | 1.1.9 | …अन्नं च जायाते | …अन्नं च जायते | जायाते is not a word; the word list has जायते. |
 | 1.2.9 | अविद्यायं बहुधा… | अविद्यायां बहुधा… | A dropped ā: the locative अविद्यायाम्, as in 1.2.8 (अविद्यायामन्तरे) and the word list. |
 | 2.1.4 | अग्नीर्मूर्धा… | अग्निर्मूर्धा… | "Fire is his head": the nominative अग्निः, as in the word list; अग्नीः is an accusative plural. |
 | 2.2.4 | …धनुः शारो ह्यात्मा | …धनुः शरो ह्यात्मा | The arrow, शरः, as in 2.2.3 (शरं) and the same mantra's शरवत्; the word list has शरः. |
 | 2.2.9 | तच्छुभ्रं ज्योतिषं ज्योतिः… | तच्छुभ्रं ज्योतिषां ज्योतिः… | "The light of lights": the genitive plural ज्योतिषाम्, as in the word list. |
+| 3.1.2 | …निमग्नोऽनिशया शोचति… | …निमग्नोऽनीशया शोचति… | "By helplessness": the instrumental of अनीशा (अन् + ईशा, "lack of mastery"), as in the word list (anīśayā); अनिशा is not the word. |
 | 3.1.4 | प्रणो ह्येष… | प्राणो ह्येष… | प्राणः, the life of all, as in the word list; प्रण is not the word. |
+| 3.1.7 | …पश्यन्त्विहैव निहितं… | …पश्यत्स्विहैव निहितं… | "In those who see": the locative plural पश्यत्सु (with इहैव, पश्यत्स्विहैव), as in the word list (paśyatsu); पश्यन्तु ("let them see") breaks the sentence. |
 | 3.1.8 | …तपसा कर्मण वा | …तपसा कर्मणा वा | The instrumental कर्मणा beside चक्षुषा, वाचा, तपसा, as in the word list; the dropped ā also breaks the triṣṭubh's cadence (⏑ – –). |
 | 3.1.10 | …ह्यर्चयेत् भूतिकामः | …ह्यर्चयेद्भूतिकामः | The sandhi: a final त् before a voiced consonant becomes द् (Pāṇini 8.2.39), as the page itself writes it elsewhere (यद्भूतयोनिं 1.1.6, तद्भावगतेन 2.2.3); the word list gives the two words, अर्चयेत् and भूतिकामः. |
 | 3.2.5 | …वीतरागाः प्रशान्ताः | …वीतरागाः प्रशान्ताः । | The half-verse's daṇḍa, dropped: every other half-verse of the page has one. |
