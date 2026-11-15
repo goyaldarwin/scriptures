@@ -5231,6 +5231,56 @@
     },
     "children": [
      {
+      "id": "rigveda",
+      "title": {
+       "hi": "ऋग्वेद",
+       "en": "Rigveda"
+      },
+      "children": [
+       {
+        "id": "upanishad",
+        "title": {
+         "hi": "उपनिषद्",
+         "en": "Upanishads"
+        },
+        "children": [
+         {
+          "id": "aitareya-upanishad",
+          "work": "aitareya-upanishad",
+          "path": "hinduism/veda/rigveda/upanishad/aitareya-upanishad",
+          "title": {
+           "hi": "ऐतरेयोपनिषद्",
+           "en": "Aitareya Upanishad"
+          },
+          "by": {
+           "hi": "ऋग्वेद, ऐतरेय आरण्यक",
+           "en": "Rigveda, Aitareya Aranyaka"
+          },
+          "edition": {
+           "hi": "सन्दीपनी (स्वामी गुरुभक्तानन्द); sanskritdocuments.org",
+           "en": "Sandeepany (Swami Gurubhaktananda); sanskritdocuments.org"
+          },
+          "desc": {
+           "hi": "सृष्टि, तीन जन्म और प्रज्ञान · ३ अध्याय · ५ खण्ड · ३३ मन्त्र",
+           "en": "Creation, the three births and consciousness · 3 adhyays · 5 khands · 33 mantras"
+          },
+          "salute": "॥ ॐ श्री परमात्मने नमः ॥",
+          "intro": {
+           "hi": [
+            "ऐतरेयोपनिषद् ऋग्वेदका और प्रमुख उपनिषदोंमें एक है: यह ऐतरेय आरण्यकके दूसरे भागके चौथे, पाँचवें और छठे अध्याय हैं। यह गद्यमें है, और इसके तीन अध्यायोंमें, जिनमेंसे पहलेमें तीन खण्ड हैं, ३३ मन्त्र हैं। यह 'आत्मा वा इदमेक एवाग्र आसीत्' से आरम्भ होता है: आरम्भमें केवल एक आत्मा था, और उसने सोचा कि लोकोंको रचूँ। उसने लोक और लोकपाल रचे; अग्नि, वायु, सूर्य आदि देवता वाणी, प्राण, नेत्र आदि बनकर मनुष्यके शरीरमें बसे; फिर उसने अन्न रचा, और सिरकी सीमा चीरकर स्वयं उस शरीरमें प्रवेश किया।",
+            "दूसरा अध्याय आत्माके तीन जन्म बताता है: पिताके बीजके रूपमें माताके गर्भमें आना, बालकके रूपमें जन्म लेना, और देह छोड़कर फिर जन्म लेना; और ऋषि वामदेवका वचन देता है, जिन्होंने गर्भमें रहते हुए ही यह जान लिया। तीसरा अध्याय पूछता है कि आत्मा कौन है, जिससे हम देखते, सुनते, सूँघते, बोलते और स्वाद पहचानते हैं; और उत्तर देता है कि सब कुछ प्रज्ञानमें प्रतिष्ठित है: 'प्रज्ञानं ब्रह्म' — चेतना ही ब्रह्म है, जो महावाक्योंमें एक है। आदि शंकराचार्यने इसपर भाष्य लिखा।"
+           ],
+           "en": [
+            "The Aitareya Upanishad belongs to the Rigveda and is one of the principal Upanishads: it is the fourth, fifth and sixth chapters of the second book of the Aitareya Aranyaka. It is in prose, with 33 mantras in three adhyayas, the first of them in three khandas. It opens with \"atma va idam eka evagra asit\": in the beginning there was only the Self, and it thought, let me create the worlds. It made the worlds and their guardians; fire, wind, the sun and the other gods entered the human body as speech, breath, sight and the other powers; then it made food, and, opening the crown of the head, entered that body itself.",
+            "The second adhyaya tells of the three births of the self: as seed carried into the mother's womb, as a child born, and, after leaving the body, born again; and it gives the words of the sage Vamadeva, who knew this while still in the womb. The third asks who the Self is, by which we see, hear, smell, speak and know sweet from bitter, and answers that all rests on consciousness: \"prajnanam brahma\", consciousness is Brahman, one of the great sayings, the mahavakyas. Adi Shankaracharya wrote a commentary on it."
+           ]
+          }
+         }
+        ]
+       }
+      ]
+     },
+     {
       "id": "yajurveda",
       "title": {
        "hi": "यजुर्वेद",
