@@ -5381,6 +5381,46 @@
       ]
      },
      {
+      "id": "samaveda",
+      "title": {
+       "hi": "सामवेद",
+       "en": "Samaveda"
+      },
+      "children": [
+       {
+        "id": "upanishad",
+        "title": {
+         "hi": "उपनिषद्",
+         "en": "Upanishads"
+        },
+        "children": [
+         {
+          "id": "chandogya-upanishad",
+          "work": "chandogya-upanishad",
+          "path": "hinduism/veda/samaveda/upanishad/chandogya-upanishad",
+          "title": {
+           "hi": "छान्दोग्योपनिषद्",
+           "en": "Chandogya Upanishad"
+          },
+          "by": {
+           "hi": "सामवेद, कौथुम शाखा",
+           "en": "Samaveda, Kauthuma shakha"
+          },
+          "edition": {
+           "hi": "shlokam.org",
+           "en": "shlokam.org"
+          },
+          "desc": {
+           "hi": "ॐ, उद्गीथ और तत्त्वमसि · ८ अध्याय · १५४ खण्ड · ६३० मन्त्र",
+           "en": "Om, the Udgitha and tat tvam asi · 8 adhyays · 154 khands · 630 mantras"
+          },
+          "salute": "॥ ॐ श्री परमात्मने नमः ॥"
+         }
+        ]
+       }
+      ]
+     },
+     {
       "id": "atharvaveda",
       "title": {
        "hi": "अथर्ववेद",
