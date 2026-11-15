@@ -1538,7 +1538,12 @@ function renderLibrary(){
   const mixed = kids.some(c => !c.work) && kids.some(c => c.work);
   const one = (c, key) => mixed && c.work ? row({id: c.id, title: c.by || c.title, children: [c]}, key) : row(c, key);
   const isIndex = libPath.length && kids.length > 12 && kids.every(c => c.children && !c.children.some(g => g.children));
-  $('#libList').innerHTML = isIndex ? index(node) : kids.map(c => libPath.length && c.children && c.children.some(g => g.children) ? '<li class="lhead">' + esc(TT(c.title)) + '</li>' + c.children.map(g => one(g, c.id + '/' + g.id)).join('') : one(c, c.id)).join('');
+  // a shelf whose shelves all hold shelves gives way to them, each its own heading (Vedas: Rigveda, Krishna Yajurveda, Shukla
+  // Yajurveda, Samaveda, Atharvaveda; never a Yajurveda heading over two rows of śākhās), so every row under a heading holds works
+  const holdsShelves = c => !c.work && (c.children || []).some(g => !g.work);
+  const section = (c, key) => (c.children || []).length && c.children.every(holdsShelves) ? c.children.map(g => section(g, key + '/' + g.id)).join('') :
+    '<li class="lhead">' + esc(TT(c.title)) + '</li>' + c.children.map(g => one(g, key + '/' + g.id)).join('');
+  $('#libList').innerHTML = isIndex ? index(node) : kids.map(c => libPath.length && holdsShelves(c) ? section(c, c.id) : one(c, c.id)).join('');
   $$('#libList [data-node]').forEach(b => b.onclick = () => {
     if (b.dataset.held){ delete b.dataset.held; return; }   // the press opened About
     const ids = b.dataset.node.split('/'); let n = node, c = null; ids.forEach(id => { c = (n.children || []).find(x => x.id === id); n = c; });

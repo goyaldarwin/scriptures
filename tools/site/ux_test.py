@@ -531,6 +531,16 @@ async def main():
         check('library: one row per genre, no headings, no tradition', not heads and rows == [g['id'] for g in genres], [heads, rows])
         sukh = await ev("(async () => { libPath = ['gurbani']; renderLibrary(); const n = document.querySelectorAll('#libList [data-node=\"guru-arjan-dev\"]').length; libPath = []; renderLibrary(); return [n, !!document.querySelector('#libList button.it[data-node=\"gurbani\"]')]; })()")
         check('library: Gurbani is a shelf of its own, the Sukhmani Sahib’s Guru on it', sukh == [1, True], sukh)
+        # a shelf page: a shelf whose shelves all hold shelves gives way to them, each its own heading (the owner: Krishna and
+        # Shukla Yajurveda as two headings, like Rigveda, not one Yajurveda heading over two rows), so every row holds works
+        flat = await ev("""(() => { const out = []; (function w(ns, at){ ns.forEach(n => { if (n.work) return;
+            if (at.length === 0) { libPath = [n.id]; renderLibrary();
+              const bad = [...document.querySelectorAll('#libList button.it[data-node]')].map(b => b.dataset.node).filter(k => { let m = n; k.split('/').forEach(id => m = (m.children || []).find(x => x.id === id) || m); return !m.work && (m.children || []).some(g => !g.work); });
+              if (bad.length) out.push([n.id, bad]); }
+            w(n.children || [], at.concat(n.id)); }); })(LIB, []); libPath = []; renderLibrary();
+          libPath = ['veda']; renderLibrary(); const h = [...document.querySelectorAll('#libList .lhead')].map(x => x.textContent); libPath = []; renderLibrary();
+          return [out, h]; })()""")
+        check('library: on a genre’s page every row holds works (Yajurveda shows Krishna and Shukla as headings)', not flat[0] and 'Yajurveda' not in flat[1] and 'Krishna Yajurveda' in flat[1] and 'Shukla Yajurveda' in flat[1], flat)
         # each shelf names its works; tapping one opens it straight away
         chip = await ev("(() => { const b = document.querySelector('#libList [data-open-work]'); return b ? b.dataset.openWork : null; })()")
         check('library: a shelf lists its works by name', bool(chip), chip)
