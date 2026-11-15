@@ -5381,6 +5381,56 @@
       ]
      },
      {
+      "id": "samaveda",
+      "title": {
+       "hi": "सामवेद",
+       "en": "Samaveda"
+      },
+      "children": [
+       {
+        "id": "upanishad",
+        "title": {
+         "hi": "उपनिषद्",
+         "en": "Upanishads"
+        },
+        "children": [
+         {
+          "id": "kena-upanishad",
+          "work": "kena-upanishad",
+          "path": "hinduism/veda/samaveda/upanishad/kena-upanishad",
+          "title": {
+           "hi": "केनोपनिषद्",
+           "en": "Kena Upanishad"
+          },
+          "by": {
+           "hi": "सामवेद, तलवकार शाखा",
+           "en": "Samaveda, Talavakara shakha"
+          },
+          "edition": {
+           "hi": "सन्दीपनी (स्वामी गुरुभक्तानन्द); upanishads.org.in",
+           "en": "Sandeepany (Swami Gurubhaktananda); upanishads.org.in"
+          },
+          "desc": {
+           "hi": "मन, इन्द्रियोंको कौन चलाता है; यक्ष और उमा · ४ खण्ड · ३४ मन्त्र",
+           "en": "Who moves the mind and senses; the yaksha and Uma · 4 khands · 34 mantras"
+          },
+          "salute": "॥ ॐ श्री परमात्मने नमः ॥",
+          "intro": {
+           "hi": [
+            "केनोपनिषद् सामवेदकी तलवकार शाखाका और प्रमुख उपनिषदोंमें एक है। इसका नाम इसके पहले शब्द 'केन' — 'किसके द्वारा?' — से है: मन किसकी प्रेरणासे अपने विषयपर जाता है, प्राण किससे चलता है, लोग किसकी प्रेरणासे यह वाणी बोलते हैं, और आँख-कानको कौन देवता लगाता है? उत्तर है: वह जो कानका कान, मनका मन और वाणीकी वाणी है; जिसे वाणी नहीं कह सकती पर जिससे वाणी बोलती है, वही ब्रह्म है। जो उसे जाननेका दावा करता है वह उसे नहीं जानता, और जो उसे अपने जाननेसे परे मानता है, वही उसे जानता है।",
+            "तीसरे और चौथे खण्डमें एक कथा है। ब्रह्मने देवताओंके लिए विजय पाई, पर देवता उसे अपनी विजय और अपनी महिमा मान बैठे। तब ब्रह्म उनके सामने एक यक्षके रूपमें प्रकट हुआ, जिसे वे पहचान न सके: अग्नि उसके रखे एक तिनकेको जला न सके, वायु उसे उठा न सके, और इन्द्रके पहुँचते ही वह अन्तर्धान हो गया; उसी आकाशमें शोभामयी उमा हैमवती प्रकट हुईं और उन्होंने इन्द्रको बताया कि वह ब्रह्म था। इसके चार खण्डोंके ३४ मन्त्रोंमें पहले दो खण्ड पद्यमें हैं और अन्तिम दो गद्यमें, और आदि शंकराचार्यने इसपर दो भाष्य लिखे।"
+           ],
+           "en": [
+            "The Kena Upanishad belongs to the Talavakara branch of the Samaveda and is one of the principal Upanishads. It is named from its first word, kena, \"by whom?\": by whom is the mind sent out to its objects, by whom does the breath move, by whom do people speak this speech, and what power joins the eye and the ear to their work? The answer is the one that is the ear of the ear, the mind of the mind and the speech of speech: what speech cannot express, but by which speech is spoken, is Brahman. Those who claim to know it do not know it; it is known to those who hold it beyond their knowing.",
+            "The third and fourth khandas tell a story. Brahman won a victory for the gods, but the gods took the victory and the glory for their own. So Brahman appeared before them as a mysterious being, a yaksha, whom they could not recognise: Agni could not burn a blade of grass it set before him, Vayu could not carry it off, and when Indra came near it vanished; in that same sky appeared the radiant Uma Haimavati, who told Indra that it was Brahman. Of its 34 mantras in four khandas, the first two khandas are in verse and the last two in prose, and Adi Shankaracharya wrote two commentaries on it."
+           ]
+          }
+         }
+        ]
+       }
+      ]
+     },
+     {
       "id": "atharvaveda",
       "title": {
        "hi": "अथर्ववेद",
