@@ -5231,6 +5231,56 @@
     },
     "children": [
      {
+      "id": "rigveda",
+      "title": {
+       "hi": "ऋग्वेद",
+       "en": "Rigveda"
+      },
+      "children": [
+       {
+        "id": "upanishad",
+        "title": {
+         "hi": "उपनिषद्",
+         "en": "Upanishads"
+        },
+        "children": [
+         {
+          "id": "aitareya-upanishad",
+          "work": "aitareya-upanishad",
+          "path": "hinduism/veda/rigveda/upanishad/aitareya-upanishad",
+          "title": {
+           "hi": "ऐतरेयोपनिषद्",
+           "en": "Aitareya Upanishad"
+          },
+          "by": {
+           "hi": "ऋग्वेद, ऐतरेय आरण्यक",
+           "en": "Rigveda, Aitareya Aranyaka"
+          },
+          "edition": {
+           "hi": "सन्दीपनी (स्वामी गुरुभक्तानन्द); sanskritdocuments.org",
+           "en": "Sandeepany (Swami Gurubhaktananda); sanskritdocuments.org"
+          },
+          "desc": {
+           "hi": "सृष्टि, तीन जन्म और प्रज्ञान · ३ अध्याय · ५ खण्ड · ३३ मन्त्र",
+           "en": "Creation, the three births and consciousness · 3 adhyays · 5 khands · 33 mantras"
+          },
+          "salute": "॥ ॐ श्री परमात्मने नमः ॥",
+          "intro": {
+           "hi": [
+            "ऐतरेयोपनिषद् ऋग्वेदका और प्रमुख उपनिषदोंमें एक है: यह ऐतरेय आरण्यकके दूसरे भागके चौथे, पाँचवें और छठे अध्याय हैं। यह गद्यमें है, और इसके तीन अध्यायोंमें, जिनमेंसे पहलेमें तीन खण्ड हैं, ३३ मन्त्र हैं। यह 'आत्मा वा इदमेक एवाग्र आसीत्' से आरम्भ होता है: आरम्भमें केवल एक आत्मा था, और उसने सोचा कि लोकोंको रचूँ। उसने लोक और लोकपाल रचे; अग्नि, वायु, सूर्य आदि देवता वाणी, प्राण, नेत्र आदि बनकर मनुष्यके शरीरमें बसे; फिर उसने अन्न रचा, और सिरकी सीमा चीरकर स्वयं उस शरीरमें प्रवेश किया।",
+            "दूसरा अध्याय आत्माके तीन जन्म बताता है: पिताके बीजके रूपमें माताके गर्भमें आना, बालकके रूपमें जन्म लेना, और देह छोड़कर फिर जन्म लेना; और ऋषि वामदेवका वचन देता है, जिन्होंने गर्भमें रहते हुए ही यह जान लिया। तीसरा अध्याय पूछता है कि आत्मा कौन है, जिससे हम देखते, सुनते, सूँघते, बोलते और स्वाद पहचानते हैं; और उत्तर देता है कि सब कुछ प्रज्ञानमें प्रतिष्ठित है: 'प्रज्ञानं ब्रह्म' — चेतना ही ब्रह्म है, जो महावाक्योंमें एक है। आदि शंकराचार्यने इसपर भाष्य लिखा।"
+           ],
+           "en": [
+            "The Aitareya Upanishad belongs to the Rigveda and is one of the principal Upanishads: it is the fourth, fifth and sixth chapters of the second book of the Aitareya Aranyaka. It is in prose, with 33 mantras in three adhyayas, the first of them in three khandas. It opens with \"atma va idam eka evagra asit\": in the beginning there was only the Self, and it thought, let me create the worlds. It made the worlds and their guardians; fire, wind, the sun and the other gods entered the human body as speech, breath, sight and the other powers; then it made food, and, opening the crown of the head, entered that body itself.",
+            "The second adhyaya tells of the three births of the self: as seed carried into the mother's womb, as a child born, and, after leaving the body, born again; and it gives the words of the sage Vamadeva, who knew this while still in the womb. The third asks who the Self is, by which we see, hear, smell, speak and know sweet from bitter, and answers that all rests on consciousness: \"prajnanam brahma\", consciousness is Brahman, one of the great sayings, the mahavakyas. Adi Shankaracharya wrote a commentary on it."
+           ]
+          }
+         }
+        ]
+       }
+      ]
+     },
+     {
       "id": "yajurveda",
       "title": {
        "hi": "यजुर्वेद",
@@ -5381,6 +5431,88 @@
       ]
      },
      {
+      "id": "samaveda",
+      "title": {
+       "hi": "सामवेद",
+       "en": "Samaveda"
+      },
+      "children": [
+       {
+        "id": "upanishad",
+        "title": {
+         "hi": "उपनिषद्",
+         "en": "Upanishads"
+        },
+        "children": [
+         {
+          "id": "chandogya-upanishad",
+          "work": "chandogya-upanishad",
+          "path": "hinduism/veda/samaveda/upanishad/chandogya-upanishad",
+          "title": {
+           "hi": "छान्दोग्योपनिषद्",
+           "en": "Chandogya Upanishad"
+          },
+          "by": {
+           "hi": "सामवेद, कौथुम शाखा",
+           "en": "Samaveda, Kauthuma shakha"
+          },
+          "edition": {
+           "hi": "shlokam.org",
+           "en": "shlokam.org"
+          },
+          "desc": {
+           "hi": "ॐ, उद्गीथ और तत्त्वमसि · ८ अध्याय · १५४ खण्ड · ६२९ मन्त्र",
+           "en": "Om, the Udgitha and tat tvam asi · 8 adhyays · 154 khands · 629 mantras"
+          },
+          "salute": "॥ ॐ श्री परमात्मने नमः ॥",
+          "intro": {
+           "hi": [
+            "छान्दोग्योपनिषद् सामवेदकी कौथुम शाखाका उपनिषद् है, और सबसे प्राचीन उपनिषदोंमें एक। यह छान्दोग्य ब्राह्मणके दस अध्यायोंमेंसे अन्तिम आठ है। यह ॐको उद्गीथ कहकर उसकी उपासनासे आरम्भ होता है, और इसके पहले दो अध्याय उद्गीथ और सामकी उपासनाके हैं। इसके आठ अध्यायोंमें १५४ खण्ड और ६२९ मन्त्र हैं।",
+            "आगेके अध्यायोंमें उपनिषदोंके कई प्रसिद्ध उपदेश हैं: शाण्डिल्यका वचन 'सर्वं खल्विदं ब्रह्म' — यह सब ब्रह्म है; सत्यकाम जाबालकी कथा, जिसे सच बोलनेके कारण गुरुने शिष्य स्वीकार किया; छठे अध्यायमें उद्दालक आरुणिका अपने पुत्र श्वेतकेतुको अनेक दृष्टान्तोंसे दिया उपदेश, 'तत्त्वमसि' — वह तू है; सातवेंमें सनत्कुमारका नारदको नामसे आरम्भ करके एक-एक सीढ़ी ऊपर भूमातक ले जाना: 'जो भूमा (अनन्त) है वही सुख है'; और आठवेंमें हृदयके भीतरका छोटा आकाश, तथा प्रजापतिका इन्द्र और विरोचनको आत्माका उपदेश। आदि शंकराचार्यने इसपर भाष्य लिखा।"
+           ],
+           "en": [
+            "The Chandogya Upanishad belongs to the Kauthuma branch of the Samaveda and is one of the oldest Upanishads. It is the last eight of the ten chapters of the Chandogya Brahmana. It opens with meditation on Om, which it calls the Udgitha, and its first two adhyayas are meditations on the Udgitha and the saman. Its eight adhyayas hold 154 khandas and 629 mantras.",
+            "The later adhyayas hold some of the best known teachings of the Upanishads: Shandilya's \"all this is Brahman\"; the story of Satyakama Jabala, accepted as a pupil because he told the truth; in the sixth adhyaya, Uddalaka Aruni teaching his son Shvetaketu through example after example, \"tat tvam asi\", that you are; in the seventh, Sanatkumara leading Narada step by step upward from name to the infinite, \"the infinite alone is joy\"; and in the eighth, the small space within the heart, and Prajapati teaching Indra and Virochana about the Self. Adi Shankaracharya wrote a commentary on it."
+           ]
+          }
+         },
+         {
+          "id": "kena-upanishad",
+          "work": "kena-upanishad",
+          "path": "hinduism/veda/samaveda/upanishad/kena-upanishad",
+          "title": {
+           "hi": "केनोपनिषद्",
+           "en": "Kena Upanishad"
+          },
+          "by": {
+           "hi": "सामवेद, तलवकार शाखा",
+           "en": "Samaveda, Talavakara shakha"
+          },
+          "edition": {
+           "hi": "सन्दीपनी (स्वामी गुरुभक्तानन्द); upanishads.org.in",
+           "en": "Sandeepany (Swami Gurubhaktananda); upanishads.org.in"
+          },
+          "desc": {
+           "hi": "मन, इन्द्रियोंको कौन चलाता है; यक्ष और उमा · ४ खण्ड · ३४ मन्त्र",
+           "en": "Who moves the mind and senses; the yaksha and Uma · 4 khands · 34 mantras"
+          },
+          "salute": "॥ ॐ श्री परमात्मने नमः ॥",
+          "intro": {
+           "hi": [
+            "केनोपनिषद् सामवेदकी तलवकार शाखाका और प्रमुख उपनिषदोंमें एक है। इसका नाम इसके पहले शब्द 'केन' — 'किसके द्वारा?' — से है: मन किसकी प्रेरणासे अपने विषयपर जाता है, प्राण किससे चलता है, लोग किसकी प्रेरणासे यह वाणी बोलते हैं, और आँख-कानको कौन देवता लगाता है? उत्तर है: वह जो कानका कान, मनका मन और वाणीकी वाणी है; जिसे वाणी नहीं कह सकती पर जिससे वाणी बोलती है, वही ब्रह्म है। जो उसे जाननेका दावा करता है वह उसे नहीं जानता, और जो उसे अपने जाननेसे परे मानता है, वही उसे जानता है।",
+            "तीसरे और चौथे खण्डमें एक कथा है। ब्रह्मने देवताओंके लिए विजय पाई, पर देवता उसे अपनी विजय और अपनी महिमा मान बैठे। तब ब्रह्म उनके सामने एक यक्षके रूपमें प्रकट हुआ, जिसे वे पहचान न सके: अग्नि उसके रखे एक तिनकेको जला न सके, वायु उसे उठा न सके, और इन्द्रके पहुँचते ही वह अन्तर्धान हो गया; उसी आकाशमें शोभामयी उमा हैमवती प्रकट हुईं और उन्होंने इन्द्रको बताया कि वह ब्रह्म था। इसके चार खण्डोंके ३४ मन्त्रोंमें पहले दो खण्ड पद्यमें हैं और अन्तिम दो गद्यमें, और आदि शंकराचार्यने इसपर दो भाष्य लिखे।"
+           ],
+           "en": [
+            "The Kena Upanishad belongs to the Talavakara branch of the Samaveda and is one of the principal Upanishads. It is named from its first word, kena, \"by whom?\": by whom is the mind sent out to its objects, by whom does the breath move, by whom do people speak this speech, and what power joins the eye and the ear to their work? The answer is the one that is the ear of the ear, the mind of the mind and the speech of speech: what speech cannot express, but by which speech is spoken, is Brahman. Those who claim to know it do not know it; it is known to those who hold it beyond their knowing.",
+            "The third and fourth khandas tell a story. Brahman won a victory for the gods, but the gods took the victory and the glory for their own. So Brahman appeared before them as a mysterious being, a yaksha, whom they could not recognise: Agni could not burn a blade of grass it set before him, Vayu could not carry it off, and when Indra came near it vanished; in that same sky appeared the radiant Uma Haimavati, who told Indra that it was Brahman. Of its 34 mantras in four khandas, the first two khandas are in verse and the last two in prose, and Adi Shankaracharya wrote two commentaries on it."
+           ]
+          }
+         }
+        ]
+       }
+      ]
+     },
+     {
       "id": "atharvaveda",
       "title": {
        "hi": "अथर्ववेद",
@@ -5423,6 +5555,38 @@
            "en": [
             "The Prashna Upanishad belongs to the Pippalada branch of the Atharvaveda and is one of the principal Upanishads. Six seekers devoted to Brahman and in search of the highest, Sukesha Bharadvaja, Shaibya Satyakama, Sauryayani Gargya, Kausalya Ashvalayana, Bhargava Vaidarbhi and Kabandhi Katyayana, come to the sage Pippalada with fuel in their hands. He tells them to live there one more year in austerity, chastity and faith, and then to ask what they will; and then each asks his question. Its 67 mantras are in six prashnas, \"questions\".",
             "The questions are: where do living beings come from, answered with Prajapati making a pair, matter and life (rayi and prana); which powers hold up the body and which is the greatest, answered: prana; where prana is born, how it enters the body and how it divides itself; what in a person sleeps, what stays awake, and who sees dreams; what world one reaches who meditates on Om until the end of life; and where the Person of sixteen parts is, answered: here, within this body. Adi Shankaracharya wrote a commentary on it."
+           ]
+          }
+         },
+         {
+          "id": "mundaka-upanishad",
+          "work": "mundaka-upanishad",
+          "path": "hinduism/veda/atharvaveda/upanishad/mundaka-upanishad",
+          "title": {
+           "hi": "मुण्डकोपनिषद्",
+           "en": "Mundaka Upanishad"
+          },
+          "by": {
+           "hi": "अथर्ववेद",
+           "en": "Atharvaveda"
+          },
+          "edition": {
+           "hi": "shlokam.org",
+           "en": "shlokam.org"
+          },
+          "desc": {
+           "hi": "परा और अपरा विद्या · ३ मुण्डक · ६ खण्ड · ६४ मन्त्र",
+           "en": "The higher and the lower knowledge · 3 mundakas · 6 khandas · 64 mantras"
+          },
+          "salute": "॥ ॐ श्री परमात्मने नमः ॥",
+          "intro": {
+           "hi": [
+            "मुण्डकोपनिषद् अथर्ववेदका और प्रमुख उपनिषदोंमें एक है। यह बताता है कि ब्रह्मविद्या ब्रह्माजीसे गुरु-शिष्य परम्परामें अंगिरा ऋषितक पहुँची। महागृहस्थ शौनक विधिपूर्वक उनके पास जाकर पूछते हैं: 'भगवन्, किसको जान लेनेपर यह सब जाना हुआ हो जाता है?' अंगिरा बताते हैं कि जाननेयोग्य विद्याएँ दो हैं: अपरा, जिसमें चारों वेद और छः वेदांग हैं, और परा, जिससे वह अक्षर (अविनाशी) जाना जाता है।",
+            "आगेके मन्त्र कहते हैं कि यज्ञकर्म पार ले जानेवाली दृढ़ नौका नहीं, इसलिए ब्रह्मको जाननेके लिए गुरुके पास जाना चाहिए; और जैसे जलती आगसे चिनगारियाँ, वैसे ही उस अक्षरसे सारी सृष्टि निकलती है। इसके चित्र प्रसिद्ध हैं: ॐ धनुष है, आत्मा बाण और ब्रह्म लक्ष्य; एक ही वृक्षपर दो पक्षी, जिनमें एक मीठा फल खाता है और दूसरा बिना खाये देखता रहता है; और जैसे नदियाँ नाम-रूप छोड़कर समुद्रमें मिल जाती हैं, वैसे ही ज्ञानी परम पुरुषको पाता है, और ब्रह्मको जाननेवाला ब्रह्म ही हो जाता है। इसका 'सत्यमेव जयते' भारतका राष्ट्रीय आदर्श-वाक्य है। इसके तीन मुण्डक, दो-दो खण्डोंके, ६४ मन्त्रोंमें हैं, और आदि शंकराचार्यने इसपर भाष्य लिखा।"
+           ],
+           "en": [
+            "The Mundaka Upanishad belongs to the Atharvaveda and is one of the principal Upanishads. It tells how the knowledge of Brahman came down from Brahma, teacher to pupil, to the sage Angiras. The great householder Shaunaka comes to him in the proper way and asks, \"Lord, what is it that, once known, makes all this known?\" Angiras answers that there are two kinds of knowledge to be known: the lower, which is the four Vedas and the six sciences that serve them, and the higher, by which the Imperishable is reached.",
+            "The verses that follow say that ritual is no sound boat to cross over in, so one who seeks Brahman should go to a teacher; and that as sparks fly from a blazing fire, all creation comes from the Imperishable. Its images are famous: Om is the bow, the self the arrow and Brahman the target; two birds on one tree, one eating the sweet fruit while the other looks on without eating; and as rivers lose name and form in the sea, the wise reach the highest Person, and the one who knows Brahman becomes Brahman. Its words \"satyameva jayate\", truth alone prevails, are the national motto of India. Its 64 mantras are in three mundakas of two khandas each, and Adi Shankaracharya wrote a commentary on it."
            ]
           }
          },

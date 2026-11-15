@@ -1,0 +1,98 @@
+{
+ "id": "chandogya-upanishad",
+ "path": "hinduism/veda/samaveda/upanishad/chandogya-upanishad",
+ "lang": "sa",
+ "title": {
+  "hi": "छान्दोग्योपनिषद्",
+  "en": "Chandogya Upanishad"
+ },
+ "by": {
+  "hi": "सामवेद, कौथुम शाखा",
+  "en": "Samaveda, Kauthuma shakha"
+ },
+ "edition": {
+  "hi": "shlokam.org",
+  "en": "shlokam.org"
+ },
+ "parts": {
+  "name": {
+   "hi": "अध्याय",
+   "en": "Adhyay"
+  },
+  "list": [
+   {
+    "key": "1",
+    "hi": "प्रथम अध्याय",
+    "en": "Adhyay 1"
+   },
+   {
+    "key": "2",
+    "hi": "द्वितीय अध्याय",
+    "en": "Adhyay 2"
+   },
+   {
+    "key": "3",
+    "hi": "तृतीय अध्याय",
+    "en": "Adhyay 3"
+   },
+   {
+    "key": "4",
+    "hi": "चतुर्थ अध्याय",
+    "en": "Adhyay 4"
+   },
+   {
+    "key": "5",
+    "hi": "पञ्चम अध्याय",
+    "en": "Adhyay 5"
+   },
+   {
+    "key": "6",
+    "hi": "षष्ठ अध्याय",
+    "en": "Adhyay 6"
+   },
+   {
+    "key": "7",
+    "hi": "सप्तम अध्याय",
+    "en": "Adhyay 7"
+   },
+   {
+    "key": "8",
+    "hi": "अष्टम अध्याय",
+    "en": "Adhyay 8"
+   }
+  ]
+ },
+ "cite": {
+  "by": [
+   "part",
+   "sec",
+   "n"
+  ],
+  "sec": {
+   "hi": "खण्ड",
+   "en": "Khand"
+  }
+ },
+ "types": {
+  "shanti": {
+   "name": {
+    "hi": "शान्तिमन्त्र",
+    "en": "Shanti Mantra"
+   },
+   "short": {
+    "hi": "शा॰",
+    "en": "Shan."
+   }
+  },
+  "mantra": {
+   "name": {
+    "hi": "मन्त्र",
+    "en": "Mantra"
+   },
+   "short": {
+    "hi": "मं॰",
+    "en": "Man."
+   }
+  }
+ }
+}
