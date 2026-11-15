@@ -4,55 +4,71 @@
   "file": "orig_1_OhCjI726VAk.opus",
   "data": "hinduism/veda/samaveda/upanishad/chandogya-upanishad/audio/himalaya-swamyji/1_OhCjI726VAk.opus",
   "dur": 2449.0,
-  "order": 1
+  "order": 1,
+  "from": "shanti.1",
+  "to": "1.13.4"
  },
  {
   "yt": "k3aTyQeXJW4",
   "file": "orig_2_k3aTyQeXJW4.opus",
   "data": "hinduism/veda/samaveda/upanishad/chandogya-upanishad/audio/himalaya-swamyji/2_k3aTyQeXJW4.opus",
   "dur": 2258.1,
-  "order": 2
+  "order": 2,
+  "from": "2.1.1",
+  "to": "2.24.16"
  },
  {
   "yt": "Mc1Q13Fnrt4",
   "file": "orig_3_Mc1Q13Fnrt4.opus",
   "data": "hinduism/veda/samaveda/upanishad/chandogya-upanishad/audio/himalaya-swamyji/3_Mc1Q13Fnrt4.opus",
   "dur": 2058.7,
-  "order": 3
+  "order": 3,
+  "from": "3.1.1",
+  "to": "3.19.4"
  },
  {
   "yt": "hb70MYF1N70",
   "file": "orig_4_hb70MYF1N70.opus",
   "data": "hinduism/veda/samaveda/upanishad/chandogya-upanishad/audio/himalaya-swamyji/4_hb70MYF1N70.opus",
   "dur": 2081.1,
-  "order": 4
+  "order": 4,
+  "from": "4.1.1",
+  "to": "4.17.10"
  },
  {
   "yt": "foAEXZosBfM",
   "file": "orig_5_foAEXZosBfM.opus",
   "data": "hinduism/veda/samaveda/upanishad/chandogya-upanishad/audio/himalaya-swamyji/5_foAEXZosBfM.opus",
   "dur": 2318.2,
-  "order": 5
+  "order": 5,
+  "from": "5.1.1",
+  "to": "5.24.5"
  },
  {
   "yt": "jCHUgtLF9Cg",
   "file": "orig_6_jCHUgtLF9Cg.opus",
   "data": "hinduism/veda/samaveda/upanishad/chandogya-upanishad/audio/himalaya-swamyji/6_jCHUgtLF9Cg.opus",
   "dur": 1784.7,
-  "order": 6
+  "order": 6,
+  "from": "6.1.1",
+  "to": "6.16.3"
  },
  {
   "yt": "a_9YayMp_H0",
   "file": "orig_7_a_9YayMp_H0.opus",
   "data": "hinduism/veda/samaveda/upanishad/chandogya-upanishad/audio/himalaya-swamyji/7_a_9YayMp_H0.opus",
   "dur": 2181.5,
-  "order": 7
+  "order": 7,
+  "from": "7.1.1",
+  "to": "7.26.2"
  },
  {
   "yt": "x6yyfqQfZI4",
   "file": "orig_8_x6yyfqQfZI4.opus",
   "data": "hinduism/veda/samaveda/upanishad/chandogya-upanishad/audio/himalaya-swamyji/8_x6yyfqQfZI4.opus",
   "dur": 2254.4,
-  "order": 8
+  "order": 8,
+  "from": "8.1.1",
+  "to": "8.15.1"
  }
 ]
