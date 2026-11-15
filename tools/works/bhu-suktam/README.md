@@ -10,7 +10,7 @@ Shelf: हिन्दू धर्म › वेद › यजुर्वे�
 - **Recording.** Soul Sadhana, YouTube `RBrq8UeM1N4` (164.5 s), whose downloaded file names it "Bhu Suktam Lyrics Meaning, Soul Sadhana". Audio source id `soul-sadhana`: `audio/soul-sadhana/` (`source.json`, `recordings.json`); the private speech-quality copy is in scriptures-data at `…/bhu-suktam/audio/soul-sadhana/RBrq8UeM1N4.opus`. Transcribed (`transcripts/`), not yet timed (a draft). It sings ॐ, the seven ṛks and the śānti.
 - **Word meanings:** every word, in the shared dictionary (`library/glossary/sa.json`; the readings decided: `reconciliation.md`, "Word meanings").
 - **Meanings.** Written for this library (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`), line by line, from the mantra's words, their grammar and Monier-Williams and Apte; no reading is put to any commentator (Sāyaṇa's commentary is not at hand). Brief context and well-known second readings are in the footnotes (`notes`); the readings decided are in `reconciliation.md`, "Meanings". No published English of this text is at hand to audit our meanings against (shlokam.org's Bhoomi Suktam English is the Atharvaveda's hymn, another text), so its batches have the review and the dictionary check without a copy audit (`apply_batches.py --steps review,dict`).
-- **Introduction:** not written yet.
+- **Introduction:** written and checked (`intro` in `library/index.json`, Hindi and English alike): every sentence matched against the mantras and our meanings, every fact about the work confirmed online.
 
 ## Files
 The folder's format: `tools/works/README.md`.

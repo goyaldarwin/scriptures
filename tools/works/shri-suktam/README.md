@@ -10,7 +10,7 @@ Shelf: हिन्दू धर्म › वेद › ऋग्वेद › 
 - **Recording.** Sri Sathya Sai Official, YouTube `r-HQ8MrQiDM` (487.3 s), whose downloaded file names it "Sri Suktam With Lyrics & Meaning, Vedic Chants". `audio/sri-sathya-sai/` (`source.json`, `recordings.json`); the private speech-quality copy is in scriptures-data at `…/shri-suktam/audio/sri-sathya-sai/r-HQ8MrQiDM.opus`. Transcribed (`transcripts/`), not yet timed (a draft). As far as its transcript shows, it sings verses 1–31 and the Gāyatrī (34), in the page's order, then the śānti; verses it leaves out stay in the text, untimed. It is a Vedic chant: it may sing the ṛks with svaras the page does not print.
 - **Word meanings:** every word, in the shared dictionary (`library/glossary/sa.json`; the readings decided: `reconciliation.md`, "Word meanings").
 - **Meanings.** Written for this library (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`), line by line, from the mantra's words, their grammar and Monier-Williams and Apte; no reading is put to any commentator (Sāyaṇa's commentary is not at hand). Brief context and well-known second readings are in the footnotes (`notes`); the readings decided are in `reconciliation.md`, "Meanings". The English on the shlokam.org page was read only to check ours, which shares no run of ten words with it (`tools/meanings/overlap.py`).
-- **Introduction:** not written yet.
+- **Introduction:** written and checked (`intro` in `library/index.json`, Hindi and English alike): every sentence matched against the mantras and our meanings, every fact about the work confirmed online.
 
 ## Files
 The folder's format: `tools/works/README.md`.
