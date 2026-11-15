@@ -9,5 +9,9 @@
   "pa": "ਸ਼ਬਦ ਗੁਰੂ (ਕੀਰਤਨ)"
  },
  "lines": true,
- "review": "line starts from MMS (every singing of every line); not yet set by ear"
+ "review": "line starts from MMS (every singing of every line); not yet set by ear",
+ "pending": [
+  "4 videos whose title matches two shabads, not downloaded: which one each sings (YeAKLlAi5J4 and wIn9KsRHjjU: 32.1 or 64.2; blBZnwmAuBQ: 250.1 or 262.1; MCuHvD9UGQU: 522.1 or 524.2)",
+  "8 videos whose title matches no verse, not downloaded: which verse each sings, or none (C4k7dRTPHaY, Eh3J-L4ad7c, HSd1RzdBEPY, NlGUvGHOMQU, RGrLDJOmOQk, wIKmZXWnxeM; fQfO-SITz_c and p0zWiXiyaJY are the channel's trailers)"
+ ]
 }
