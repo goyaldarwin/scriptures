@@ -21,8 +21,8 @@ Videos of the same verse that sing different parts of it (a chhant's stanzas: 80
 1321.3) are all kept; the app plays them in turn. The Anand Sahib's two videos (917.1–922.6, 12 and 55 minutes) are both
 kept.
 
-## Not yet timed
+## Long videos
 
-Three videos longer than 40 minutes are beyond one machine's memory when aligned whole (METHOD.md): QiPepd5nRs8 (the Anand
-Sahib, 55 min), the Oankar (929.9–938.1, 84 min) and the Sidh Gosht (938.2–946.6, 75 min). Their verses are spread by
-length and listed to check until they are aligned in windows.
+Three videos longer than 40 minutes are aligned in overlapping 8-minute pieces (METHOD.md): QiPepd5nRs8 (the Anand
+Sahib, 55 min, 66% of its lines found), 0R00aEoBFek (the Oankar, 929.9–938.1, 84 min, 52%) and -k1q_bxnErk (the Sidh
+Gosht, 938.2–946.6, 75 min, 63%); in each, the first singings of the verses come in the bani's order.
