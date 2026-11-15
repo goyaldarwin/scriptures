@@ -86,14 +86,15 @@ async def main():
         # every check of one work, as a reader goes through it; with --shard K/N the works are shared among N processes (tools/site/check.py)
         async def per_work(leaf, trail):
             wid = leaf['work']; tag = wid
-            # walk the shelf exactly as a reader would: tap down the path, two levels at a time
+            # walk the shelf exactly as a reader would: tap down the path, as many levels at a time as a page shows
             await ev("libPath=[]; show('library')"); await pg.wait_for_timeout(200)
             path = await ev(f"(() => {{ let r = null; (function w(ns, at){{ ns.forEach(n => n.work === {json.dumps(leaf['work'])} ? r = at.concat(n.id) : w(n.children || [], at.concat(n.id))); }})(LIB, []); return r; }})()")   # its place in the library the reader sees
             k = 0; opened = False
             while k < len(path):
-                key = '/'.join(path[k:k + 2]) if k + 1 < len(path) else path[k]
-                btn = await pg.query_selector(f'#libList [data-node="{key}"]')
-                if not btn: key = path[k]; btn = await pg.query_selector(f'#libList [data-node="{key}"]')
+                btn = None   # the deepest shelf (or the work) this page shows a button for: a heading may stand for several levels
+                for j in range(len(path), k, -1):
+                    key = '/'.join(path[k:j]); btn = await pg.query_selector(f'#libList [data-node="{key}"]')
+                    if btn: break
                 if not btn: break
                 await btn.click()
                 if k + key.count('/') + 1 >= len(path): await until(f"document.querySelector('#home').classList.contains('on') && W && W.id === {json.dumps(wid)} && !!document.querySelector('#orgList [data-open]')")
