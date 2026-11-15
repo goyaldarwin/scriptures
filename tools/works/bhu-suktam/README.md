@@ -8,7 +8,8 @@ Shelf: हिन्दू धर्म › वेद › यजुर्वे�
 - **Text (source of truth).** Sanskrit Wikisource's Taittirīya Saṃhitā, kāṇḍas 1–4, with svaras ([तैत्तिरीयसंहिता-१-४](https://sa.wikisource.org/wiki/तैत्तिरीयसंहिता-१-४), no edition named), its raw wikitext in scriptures-data at `hinduism/veda/yajurveda/krishna-yajurveda/samhita/bhu-suktam/printouts/wikisource/तैत्तिरीयसंहिता-१-४.wiki.txt`. The words and svaras follow the page exactly; the recording's ॐ and closing śānti are added (`reconciliation.md`).
 - **Not used:** shlokam.org's page "Bhoomi Suktam" (Atharvaveda 12.1, eighteen verses), kept in scriptures-data at `…/bhu-suktam/printouts/shlokam/`: it is not the sūkta the recording sings.
 - **Recording.** Soul Sadhana, YouTube `RBrq8UeM1N4` (164.5 s), whose downloaded file names it "Bhu Suktam Lyrics Meaning, Soul Sadhana". Audio source id `soul-sadhana`: `audio/soul-sadhana/` (`source.json`, `recordings.json`); the private speech-quality copy is in scriptures-data at `…/bhu-suktam/audio/soul-sadhana/RBrq8UeM1N4.opus`. Transcribed (`transcripts/`), not yet timed (a draft). It sings ॐ, the seven ṛks and the śānti.
-- **Meanings, word meanings, introduction:** not written yet.
+- **Word meanings:** every word, in the shared dictionary (`library/glossary/sa.json`; the readings decided: `reconciliation.md`, "Word meanings").
+- **Meanings, introduction:** not written yet.
 
 ## Files
 The folder's format: `tools/works/README.md`.

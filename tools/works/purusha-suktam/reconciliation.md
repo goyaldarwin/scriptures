@@ -37,3 +37,11 @@
 - **Not used:** Wikisource's separate page पुरुषसूक्तम् (the Ṛgveda's sixteen-verse order, typed with S for ऽ and slips, by one contributor); Wikisource's accented Taittirīya Āraṇyaka lacks prapāṭhaka 3; GRETIL has no Taittirīya Āraṇyaka.
 - **Agreement.** Every word of the 24 mantras and the śānti agrees, the Taittirīya spellings and the anusvāra's writing aside (`tools/works/sukta_witness.py`). The four corrections are the witness's readings: अमृतत्वस्येशानः, शरद्धविः, कतिधा, and no comma.
 - **The witness's one slip:** mantra 17, तमेवं विद्वानमृतं इह भवति, where its own mantra 20 and the page read अमृत इह (अमृतः इह): the page stays.
+
+## Word meanings
+Every word has an entry in the shared dictionary (`library/glossary/sa.json`), checked in Monier-Williams and Apte. Sāyaṇa's commentary is not at hand here, so where a reading is open the dictionaries and the grammar decide, and no sense is put to any commentator. A word the recitation joins with a hyphen (the Taittirīya way) is one key, its words in `p`.
+- **मनिषाण** (mantra 24, three times): in neither dictionary. Read by the grammar as √मन् with the -आन imperative (as गृभाण), "will it, wish it (for me)".
+- **यस्त्वैवम्** (23): यः त्वा एवम्, "who (knows) you thus"; तु एवम् would be त्वेवम्.
+- **पुरः** (5): both readings, the adverb "before" and पुर् "cities, bodies" (acc. pl.), the adverb first.
+- **आभवात्** (4), **असन्** (23): Vedic subjunctives (लेट्) of आ-√भू and √अस्.
+- **विचित्य** (16): वि-√चि, "having distinguished, made distinct" (Monier-Williams).

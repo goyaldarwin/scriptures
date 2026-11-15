@@ -8,7 +8,8 @@ Shelf: हिन्दू धर्म › वेद › यजुर्वे�
 - **Text (source of truth).** shlokam.org's page [Purusha Suktam](https://shlokam.org/shloka/purusha-suktam.htm), saved as HTML. The private copy is in scriptures-data at `hinduism/veda/yajurveda/krishna-yajurveda/aranyaka/purusha-suktam/printouts/shlokam/purusha-suktam.html`. The Devanagari, with its svaras, follows the page exactly, except for its two headings and the four corrections in `reconciliation.md`; the page's own transliteration is the second witness of every line.
 - **Witness.** Sanskrit Wikisource's Taittirīya Āraṇyaka, prapāṭhaka 3 (unaccented), raw wikitext in scriptures-data at `…/purusha-suktam/printouts/wikisource/`; every word is checked against it (`source/check.py`, `reconciliation.md`).
 - **Recording.** Sri Sathya Sai Official, YouTube `TngWQ6zweBc` (498.9 s), whose downloaded file names it "Full Purusha Suktam With Lyrics, Ancient Vedic Chants In Sanskrit, Powerful Mantra". `audio/sri-sathya-sai/` (`source.json`, `recordings.json`); the private speech-quality copy is in scriptures-data at `…/purusha-suktam/audio/sri-sathya-sai/TngWQ6zweBc.opus`. Transcribed (`transcripts/`), not yet timed (a draft). It sings the śānti pāṭha, the eighteen mantras, the Uttaranārāyaṇa and the śānti pāṭha again, so the text opens with the śānti pāṭha as well (`reconciliation.md`).
-- **Meanings, word meanings, introduction:** not written yet.
+- **Word meanings:** every word, in the shared dictionary (`library/glossary/sa.json`; the readings decided: `reconciliation.md`, "Word meanings").
+- **Meanings, introduction:** not written yet.
 
 ## Files
 The folder's format: `tools/works/README.md`.

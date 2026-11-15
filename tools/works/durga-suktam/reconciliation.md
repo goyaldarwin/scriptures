@@ -32,3 +32,11 @@
 - **Kept:** the ओम् before mantra 1 and the Gāyatrī (neither witness has it); निद॑हाति (the Mahānārāyaṇa; the Āraṇyaka निज॑हाति); सह॑मानमु॒ग्रम॒ग्निग्ं (the Mahānārāyaṇa's order; the Āraṇyaka सह॑मानम॒ग्निमु॒ग्रꣳ); कन्यकु॒मारि॑ (the Āraṇyaka; the Mahānārāyaṇa कन्याकुमारि).
 - **The Mahānārāyaṇa's slips:** सिन्धुं न वावा (for नावा), उग्नम्, सधस्तात् (for सधस्थात्).
 - **Not compared:** the closing words इति दुर्गा सूक्तम् and the śānti (no witness has them as such).
+
+## Word meanings
+Every word has an entry in the shared dictionary (`library/glossary/sa.json`), checked in Monier-Williams and Apte. Sāyaṇa's commentary is not at hand here, so where a reading is open the dictionaries and the grammar decide, and no sense is put to any commentator. A word the recitation joins with a hyphen (the Taittirīya way) is one key, its words in `p`.
+- **सुतरसि** (2): सु + तरसि (√तॄ, 2 sg.), "you carry (us) well across"; **तरसे**: dative of तरस्, Apte's adjective "swift, energetic" first, then the noun "ferry" (Monier-Williams).
+- **क्षामत्** (in क्षामद्देवो, 5): Monier-Williams' क्षाम, "burning to ashes".
+- **प्रत्नोषि** (6): प्रत्नः असि, "you are ancient".
+- **वेदः** (1): both senses, "the Veda, knowledge" and the Vedic वेदस् "wealth"; the mantra's is the second.
+- **कन्यकुमारि** (Gāyatrī): the vocative of कन्याकुमारी with the short a the text has; **कात्यायनाय**: the masculine dative, glossed with Kātyāyanī.

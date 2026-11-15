@@ -39,3 +39,10 @@
 - **Kept against one witness:** the order of mantra 4's two lines (ज्योति first; both witnesses put ब्रह्म first, the Āraṇyaka without the ध्याता line, the Mahānārāyaṇa with नारायणः for नारायण-); व्य॒वस्थि॑तः (the Āraṇyaka; the Mahānārāyaṇa व्यवस्थिता); स हरिः and नमो नमः (the Mahānārāyaṇa; the Āraṇyaka lacks them); the तिर्यगूर्ध्व… line and भास्वत्यणूपमा (the Mahānārāyaṇa; the Āraṇyaka lacks the line and reads पीताभास्यात्तनूपमा); the Āraṇyaka's वितस्त्यान्तु for -न्ते.
 - **The Mahānārāyaṇa's slips:** नारयणः, नीवारशूक्वत्, भास्वत्यणूपम.
 - **Svaras the Āraṇyaka places otherwise, kept:** ना॒राय॒णपर॑-म्ब्र॒ह्म॒ (Āraṇyaka प॑रं), तत्त्व-न्ना॑ (त॒त्वं), अनन्त॒मव्यय॑- (अन॑न्त॒मव्य॑य-): the page's accentuation, not clearly wrong; the svaras are otherwise the same wherever the two spell the same words.
+
+## Word meanings
+Every word has an entry in the shared dictionary (`library/glossary/sa.json`), checked in Monier-Williams and Apte. Sāyaṇa's commentary is not at hand here, so where a reading is open the dictionaries and the grammar decide, and no sense is put to any commentator. A word the recitation joins with a hyphen (the Taittirīya way) is one key, its words in `p`.
+- **नारायणपरः** (4, 5), written as one word: "Nārāyaṇa the supreme" first, "devoted to Nārāyaṇa" second (पर at the end of a compound).
+- **निष्ट्या** (7): निष्टि, "the joint of the neck" (Monier-Williams, from the Taittirīya Āraṇyaka's scholiast), ablative निष्ट्याः before व.
+- **भाती** (8): Monier-Williams gives भाती as a feminine of the present participle of √भा; the entry also gives "shines".
+- **अणीयोर्ध्वा** (11): अणीयः ("most subtle") + ऊर्ध्वा ("rising upward").

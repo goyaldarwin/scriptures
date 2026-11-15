@@ -21,3 +21,8 @@
 ## Structure (not on the page as such)
 - **Numbering:** the ṛks 1–7 by their place.
 - **Sections:** `sukta` (the seven ṛks), `end` (the śānti).
+
+## Word meanings
+Every word has an entry in the shared dictionary (`library/glossary/sa.json`), checked in Monier-Williams and Apte. Sāyaṇa's commentary is not at hand here, so where a reading is open the dictionaries and the grammar decide, and no sense is put to any commentator. A word the recitation joins with a hyphen (the Taittirīya way) is one key, its words in `p`.
+- **भूम्ना** (1): both senses, भूमन् "abundance" and "the earth" (Monier-Williams).
+- **परोवप** (5): परा + उवप (√वप्, perfect), "scattered away"; **दध्वसे** (6): the Vedic perfect of √ध्वंस्, "fell scattered".

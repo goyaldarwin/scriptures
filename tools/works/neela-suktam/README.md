@@ -8,7 +8,8 @@ Shelf: हिन्दू धर्म › वेद › यजुर्वे�
 - **Text (source of truth).** shlokam.org's page [Neela Suktam](https://shlokam.org/shloka/neela-suktam.htm), saved as HTML. The private copy is in scriptures-data at `hinduism/veda/yajurveda/krishna-yajurveda/samhita/neela-suktam/printouts/shlokam/neela-suktam.html`. The Devanagari, with its svaras, follows the page exactly, except for the corrections in `reconciliation.md`; the page's own transliteration is the second witness of every line.
 - **Witnesses.** Sanskrit Wikisource's Taittirīya Saṃhitā, accented (kāṇḍas 1–4) and unaccented (4.4), raw wikitext in scriptures-data at `…/neela-suktam/printouts/wikisource/`; every word, and every svara, is checked against them (`source/check.py`, `reconciliation.md`).
 - **Recording.** Soul Sadhana, YouTube `NZF4y9MDkSQ` (105.4 s), whose downloaded file names it "Neela Suktam (Vishnu Patni Suktam) Lyrics Meaning, Soul Sadhana". Audio source id `soul-sadhana`: `audio/soul-sadhana/` (`source.json`, `recordings.json`); the private speech-quality copy is in scriptures-data at `…/neela-suktam/audio/soul-sadhana/NZF4y9MDkSQ.opus`. Transcribed (`transcripts/`), not yet timed (a draft). It sings the invocation, the two mantras and the śānti; it does not sing the Gāyatrī, which stays, untimed.
-- **Meanings, word meanings, introduction:** not written yet.
+- **Word meanings:** every word, in the shared dictionary (`library/glossary/sa.json`; the readings decided: `reconciliation.md`, "Word meanings").
+- **Meanings, introduction:** not written yet.
 
 ## Files
 The folder's format: `tools/works/README.md`.

@@ -8,7 +8,8 @@ Shelf: हिन्दू धर्म › वेद › यजुर्वे�
 - **Text (source of truth).** shlokam.org's page [Durga Suktam](https://shlokam.org/shloka/durga-suktam.htm), saved as HTML. The private copy is in scriptures-data at `hinduism/veda/yajurveda/krishna-yajurveda/aranyaka/durga-suktam/printouts/shlokam/durga-suktam.html`. The Devanagari, with its svaras, follows the page exactly, except for its heading and the two corrections in `reconciliation.md`; the page's own transliteration is the second witness of every line.
 - **Witnesses.** Sanskrit Wikisource's accented Taittirīya Āraṇyaka and its Mahānārāyaṇa Upaniṣad, raw wikitext in scriptures-data at `…/durga-suktam/printouts/wikisource/`; every word, and every svara the accented one has, is checked against them (`source/check.py`, `reconciliation.md`).
 - **Recording.** The Sri Sathya Sai International Organization's Young Adults Veda Programme (SSSIO), YouTube `eAlAmnM9UGM` (186.6 s), whose downloaded file names it "Durga Suktam with Lyrics and Meaning, Sri Sathya Sai Young Adults Veda Programme". Audio source id `sssio` (the organisation, as `sri-sathya-sai` names Sri Sathya Sai Official): `audio/sssio/` (`source.json`, `recordings.json`); the private speech-quality copy is in scriptures-data at `…/durga-suktam/audio/sssio/eAlAmnM9UGM.opus`. Transcribed (`transcripts/`), not yet timed (a draft). It sings the seven mantras, the Gāyatrī and the śānti, in the page's order, with no opening the page lacks.
-- **Meanings, word meanings, introduction:** not written yet.
+- **Word meanings:** every word, in the shared dictionary (`library/glossary/sa.json`; the readings decided: `reconciliation.md`, "Word meanings").
+- **Meanings, introduction:** not written yet.
 
 ## Files
 The folder's format: `tools/works/README.md`.

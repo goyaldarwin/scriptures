@@ -34,3 +34,9 @@ Four are spaces missing between words that make no sandhi with each other, so th
 - **Sanskrit Wikisource, the same prapāṭhaka unaccented** (`तैत्तिरीयसंहिता(विस्वरः)/काण्डम् ४/प्रपाठकः ४`, its words divided after a final consonant, सवितर् आधिपत्यैः): `source/witness/wikisource-ts-plain.txt`. The two are separate transcriptions on one site.
 - **Agreement.** Every word agrees but the ओ- the recitation puts before गृणाहि (kept); the five corrections are the witnesses' readings (पय॑स्वती॒ रन्ति॒राशा॑ नो, ईशा॑ना॒ सह॑सो॒ या, सन्धुवा॒ना वाता॑, दि॒वो ध॒रुणः॑, अ॒स्येशा॑ना॒); the svaras agree but for the one corrected above.
 - **No witness** has the invocation (नीळां देवीं…) or the Gāyatrī: they are not the Saṃhitā's, and stay as the page gives them.
+
+## Word meanings
+Every word has an entry in the shared dictionary (`library/glossary/sa.json`), checked in Monier-Williams and Apte. Sāyaṇa's commentary is not at hand here, so where a reading is open the dictionaries and the grammar decide, and no sense is put to any commentator. A word the recitation joins with a hyphen (the Taittirīya way) is one key, its words in `p`.
+- **सुतरसि**, **तरसे**: as in the Durgā Sūkta (its `reconciliation.md`).
+- **मनोता** (1): Monier-Williams' मनोतृ, "disposer", feminine in the Taittirīya Saṃhitā.
+- **सन्धुवानाः** (2): सम्-√धू, "distributing liberally" (Monier-Williams).

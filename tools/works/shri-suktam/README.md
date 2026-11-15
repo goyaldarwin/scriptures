@@ -8,7 +8,8 @@ Shelf: हिन्दू धर्म › वेद › ऋग्वेद › 
 - **Text (source of truth).** shlokam.org's page [Sri Suktam](https://shlokam.org/shloka/sri-suktam.htm), saved as HTML. The private copy is in scriptures-data at `hinduism/veda/rigveda/samhita/shri-suktam/printouts/shlokam/sri-suktam.html`. The page has no svaras, so neither does the text. The Devanagari follows the page exactly, except for its two headings and the corrections in `reconciliation.md`; the page's own transliteration is the second witness of every line.
 - **Witnesses.** Sanskrit Wikisource's श्रीसूक्तम् (two texts) and GRETIL's Ṛgveda khilāni (Scheftelowitz), raw downloads in scriptures-data at `…/shri-suktam/printouts/wikisource/` and `…/gretil/`; every word is checked against them (`source/check.py`, `reconciliation.md`).
 - **Recording.** Sri Sathya Sai Official, YouTube `r-HQ8MrQiDM` (487.3 s), whose downloaded file names it "Sri Suktam With Lyrics & Meaning, Vedic Chants". `audio/sri-sathya-sai/` (`source.json`, `recordings.json`); the private speech-quality copy is in scriptures-data at `…/shri-suktam/audio/sri-sathya-sai/r-HQ8MrQiDM.opus`. Transcribed (`transcripts/`), not yet timed (a draft). As far as its transcript shows, it sings verses 1–31 and the Gāyatrī (34), in the page's order, then the śānti; verses it leaves out stay in the text, untimed. It is a Vedic chant: it may sing the ṛks with svaras the page does not print.
-- **Meanings, word meanings, introduction:** not written yet.
+- **Word meanings:** every word, in the shared dictionary (`library/glossary/sa.json`; the readings decided: `reconciliation.md`, "Word meanings").
+- **Meanings, introduction:** not written yet.
 
 ## Files
 The folder's format: `tools/works/README.md`.
