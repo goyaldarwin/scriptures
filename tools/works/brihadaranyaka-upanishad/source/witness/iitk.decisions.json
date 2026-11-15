@@ -116,7 +116,7 @@
 "2.5.5": [["ु", "ू", "junction"], ["ो", "ः", "junction"], ["ु", "ू", "junction"], ["ो", "ःअ", "junction"], ["े", "ाःइ", "junction"]],
 "2.5.6": [["म", "स", "witness"], ["ु", "ू", "junction"], ["ो", "ः", "junction"], ["ौ", "ो", "witness"]],
 "2.5.7": [["िं", "", "witness"], ["्र", "", "junction"], ["ु", "ू", "junction"], ["ो", "ः", "junction"], ["ु", "ू", "junction"], ["ो", "ःअ", "junction"], ["", "त्", "junction"], ["े", "ाइ", "junction"]],
-"2.5.8": [["", "ा", "junction"], ["्व", "ुअ", "junction"], ["ु", "ू", "junction"], ["ो", "ःअ", "junction"]],
+"2.5.8": [["ु", "ू", "junction"], ["ो", "ःअ", "junction"]],
 "2.5.9": [["ु", "ू", "junction"], ["ो", "ः", "junction"], ["ु", "ू", "junction"], ["ो", "ःअ", "junction"]],
 "2.5.10": [["श्", "", "junction"], ["ु", "ू", "junction"], ["ो", "ःअ", "junction"]],
 "2.5.12": [["ु", "ू", "junction"], ["ो", "ः", "junction"]],
@@ -129,7 +129,7 @@
 "2.5.19": [["ृ", "्द", "witness"], ["", "त्", "witness"], ["य", "म", "junction"], ["्", "", "junction"], ["ं", "मिति", "junction"]],
 "2.6.1": [["ौ", "ो", "witness"], ["द", "त", "junction"], ["ं", "णि", "junction"], ["ि", "", "witness"], ["च्", "ं", "junction"], ["च्", "ं", "junction"]],
 "2.6.2": [["न", "र", "witness"], ["च्", "ं", "witness"], ["", "ं", "junction"], ["्चा", "आ", "junction"], ["च्", "ं", "junction"], ["च्", "ं", "junction"], ["व", "ब", "junction"], ["द", "त", "junction"], ["व", "ब", "junction"]],
-"2.6.3": [["", "ा", "witness"], ["", "य", "junction"], ["च्", "ं", "junction"], ["", "ं", "junction"], ["्चा", "आ", "junction"], ["ु", "ू", "junction"], ["ु", "ू", "junction"]],
+"2.6.3": [["", "य", "junction"], ["च्", "ं", "junction"], ["", "ं", "junction"], ["्चा", "आ", "junction"], ["ु", "ू", "junction"], ["ु", "ू", "junction"]],
 "3.1.1": [["ु", "ू", "witness"], ["", "त्", "witness"], ["ु", "ू", "witness"], ["", "्र", "junction"], ["", "ध्", "witness"], ["्ध", "", "witness"]],
 "3.1.2": [["ौ", "ो", "witness"], ["ुन", "", "junction"], ["ा", "ो", "witness"], ["ब", "व", "junction"], ["प्", "ं", "junction"], ["ठ", "ट", "witness"], ["श्", "", "junction"]],
 "3.1.3": [["", "ं", "junction"], ["ं", "", "junction"], ["", "ं", "junction"], ["ं", "", "junction"], ["", "त्", "witness"], ["्त", "", "witness"], ["", "ं", "witness"], ["्न", "", "witness"], ["", "ं", "witness"], ["्न", "", "junction"], ["ा", "", "junction"]],
@@ -161,10 +161,9 @@
 "3.7.9": [["े", "ै", "junction"], ["शरीरं", "", "witness"]],
 "3.7.11": [["", "श्", "witness"]],
 "3.7.12": [["ा", "", "witness"], ["ो", "ः", "junction"]],
-"3.7.15": [["ु", "ू", "junction"]],
 "3.7.20": [["न", "", "witness"], ["ो", "ः", "junction"]],
 "3.7.21": [["्", "", "witness"], ["ो", "ः", "junction"], ["्", "", "witness"]],
-"3.7.23": [["ो", "ःअ", "junction"], ["ृ", "्द", "witness"], ["ो", "ी", "junction"], ["", "अ", "junction"], ["", "अ", "junction"], ["", "ा", "junction"], ["्र", "ृ", "witness"], ["ै", "ाए", "junction"], ["ु", "ू", "junction"], ["ु", "ू", "witness"]],
+"3.7.23": [["ो", "ःअ", "junction"], ["ृ", "्द", "witness"], ["ो", "ी", "junction"], ["", "अ", "junction"], ["", "अ", "junction"], ["्र", "ृ", "witness"], ["ै", "ाए", "junction"], ["ु", "ू", "junction"], ["ु", "ू", "witness"]],
 "3.8.2": [["्", "", "junction"]],
 "3.8.3": [["ू", "ु", "junction"], ["ू", "", "junction"], ["च्", "ं", "junction"], ["च्", "ं", "witness"], ["ं", "", "junction"]],
 "3.8.4": [["ू", "ु", "junction"], ["ि", "ी", "junction"], ["ो", "ः", "junction"], ["च्", "ं", "junction"], ["च्", "ं", "witness"]],
@@ -349,6 +348,5 @@
 "6.4.28": [["यच", "त", "junction"], ["छ", "श", "witness"]],
 "6.5.1": [["ात्", "", "junction"], ["ा", "", "junction"], ["च्", "ं", "junction"], ["च्", "ं", "junction"], ["च्", "ं", "junction"], ["च्", "ं", "junction"]],
 "6.5.2": [["ु", "ू", "witness"], ["द", "त", "junction"], ["ा", "", "witness"], ["ायन", "", "witness"], ["ौ", "ो", "witness"]],
-"6.5.3": [["ी", "ि", "junction"], ["ज", "त", "junction"], ["ी", "ि", "junction"]],
-"6.5.4": [["", "ा", "junction"], ["ि", "ी", "witness"], ["्", "", "junction"], ["ु", "ू", "junction"]]
+"6.5.4": [["्", "", "junction"], ["ु", "ू", "junction"]]
 }}
