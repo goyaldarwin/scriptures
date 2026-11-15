@@ -8,6 +8,17 @@
 3. **Headings left out.** 21 blocks open with an editor's title (प्रथमा शीक्षावल्ली, संहितोपासनम्, व्याहृत्युपासनम् …; `HEADING` in settle.py). They are not the Upaniṣad's words and are not recited; our own topic headings stand in their place.
 4. **The library's standard** (PLAYBOOK §3) is applied by the exporter: ꣳ before श ष स ह र (a Yajurveda text), a word-final ं before a vowel as म् (2.8.3 शतं आजानजानां → शतम् आजानजानां), the class nasal, ॥ and compact numbers (॥१॥), and the ISO 15919 transliteration made from the verse.
 
+## Witnesses
+Five web witnesses are compared with every paragraph by `source/check.py` (raw downloads in scriptures-data at `hinduism/veda/yajurveda/krishna-yajurveda/upanishad/taittiriya-upanishad/printouts/<site>/`, each with its `.meta.json`; `source/witnesses.py` makes `source/witness/<site>.txt` from them):
+- **Vedic Heritage Portal** (`vedicheritage/`, the three vallīs, accented): the page's own text with its svaras. It has every slip the page has (सर्वेलोक, अधिजौतिषम्, अन्तहृदय, पाङ्क्तग्, भुतानि, आनन्दाध्येव, एदद्वा, लोकन्, तदात्मान …): the page is this text with the svaras taken out, so the two count as **one** witness. It runs 2.3 and 2.4 into one paragraph.
+- **IIT Kanpur Heritage** (`iitk/`, text TTU, the primary मूल of each ref): independent of the page; many typing slips (ए and a final म्'s virama dropped, ध्द for द्ध, रू for रु, ड्ग for ङ्ग). Its ref 1.5.2 holds 1.5.3 again, so it lacks 1.5.2 (`check.py` → `LACKS`); it has no śānti pāṭhas for vallīs 2 and 3.
+- **upanishads.org.in** (`upanishads-org/`, one page per anuvāka): close to the page (it shares उत्तराहनूत्तररूपम्, उपास्व), with fewer slips; no ॐ before the śānti pāṭhas, and हरिः ॐ around them (left out, as an invocation).
+- **Sanskrit Wikisource** (`wikisource/`, with Śaṅkara's bhāṣya in vallīs 2 and 3): shares some of the page's slips (अधिजौतिषम्, आनन्दाध्येव, एदद्वा, लोकन्, पितृणां), so it and the page have a common digital ancestor; its own slips are many in 1.11 and 2.6.
+- **GRETIL** (`gretil/sa_taittirIyopaniSad-zaMkarabhASya.xml`, Motilal Banarsidass 1964, with Śaṅkara's bhāṣya; IAST, read into Devanagari by `source/taittiriya_text.py`): shares several of the page's slips too (सर्वे लोक, सर्वे प्राण, चतुर्ध, सुमेध, तत्वेव, भुतानि, एदद्वै, लोकन्); its bhāṣya often quotes the right form.
+- **How they weigh.** IIT Kanpur and upanishads.org.in are the witnesses independent of the page's slips; GRETIL and Wikisource are half-independent. A correction needs the page to be clearly wrong (a non-word, a broken form or sandhi, a member that breaks its list) and the witnesses to give the right form; a valid reading of the page stays.
+- **What is compared.** Each anuvāka as one run of letters (the witnesses divide some anuvākas into paragraphs differently); the śānti pāṭhas of vallīs 2 and 3 where a witness has them. Not compared: the closing words of anuvākas and vallīs, which the witnesses word differently; spacing, daṇḍas, numbers, the avagraha (written or not), the nasal spellings the standard folds.
+- **The witnesses' own readings** (`source/witness-readings.tsv`: witness, our paragraph, the witness's letters, ours, kind). Kinds: `own` (the witness's slip or variant: IIT Kanpur 126, GRETIL 33, Wikisource 18, the Vedic Heritage Portal 6, upanishads.org.in 6), `page` (the witness has the page's reading, which the text corrects: the Vedic Heritage Portal 17, GRETIL 8, Wikisource 4, IIT Kanpur 1, upanishads.org.in 1), `omits` / `adds` (Wikisource leaves out a sentence of 2.8.2; GRETIL adds a line शामायन्तु ब्रह्मचारिणः स्वाहा in 1.4.2–3; IIT Kanpur adds ऋतुं वदिष्यामि in 1.1.1). The lines are made by `check.py --write` only after each difference is reviewed; `check.py` then finds **no unexplained difference** with any witness.
+
 ## Corrections (source/settle.py → FIX)
 
 | Where | Page (both scripts) | Text | Why |
@@ -23,6 +34,8 @@
 | 1.5.3 | चतस्रश्चतुर्ध | चतस्रश्चतुर्धा | The adverb चतुर्धा, "fourfold"; चतुर्ध is no word here. |
 | 1.5.3 | सर्वेऽस्मैदेवा | सर्वेऽस्मै देवा | A missing space (अस्मै देवाः). |
 | 1.6.1 | एषोऽन्तहृदय | एषोऽन्तर्हृदय | अन्तः + हृदय: the र् is dropped. |
+| 1.6.2 | प्राचीन योग्योपास्व | प्राचीन योग्योपास्स्व | उप + आस् + स्व, the imperative: IIT Kanpur, GRETIL and Wikisource read उपास्स्व, and so does Śaṅkara (prācīnayogya, upāssva); only the page, the Vedic Heritage Portal and upanishads.org.in drop an s. |
+| 1.7.1 | चर्ममाꣳस स्नावास्थि | चर्ममाꣳसꣳ स्नावास्थि | Every member of the list is a nominative (चर्म, स्नावा, अस्थि, मज्जा): माꣳसम्, ꣳ before स. All four other witnesses read मांसं. |
 | 1.7.1 | पाङ्क्तग् स्पृणोतीति | पाङ्क्तꣳ स्पृणोतीति | The page writes the anusvāra before a sibilant as ꣳ (gͫ) everywhere else; here only the g of it is left. |
 | 1.8.1 | ॐꣳशोमिति | ओꣳशोमिति | ॐ already holds the nasal; with ꣳ after it the nasal is written twice. The syllable is ओꣳ (om̐ before श). |
 | 1.9.1 | सत्यवचा राथी तरः | सत्यवचा राथीतरः | One name, Rāthītara (as पौरुशिष्टिः and नाको मौद्गल्यः after it). |
@@ -35,6 +48,7 @@
 | 2.6.1 | बहुस्यां | बहु स्यां | Two words, "may I be many". |
 | 2.7.1 | तदात्मान स्वयमकुरुत | तदात्मानꣳ स्वयमकुरुत | The accusative आत्मानम्, ꣳ before स; आत्मान is no form. |
 | 2.7.1 | तत्वेव | तत्त्वेव | तत् + तु + एव. |
+| 2.8.2 | पितृणां (twice) | पितॄणां | The genitive plural of पितृ has a long ॄ; GRETIL and upanishads.org.in read पितॄणां (IIT Kanpur and Wikisource share the page's short ृ). |
 | 2.9.1 | आत्मान स्पृणुते (twice) | आत्मानꣳ स्पृणुते | As 2.7.1. |
 | 3.2.1 | भुतानि | भूतानि | A typing slip; भूतानि in 3.1, 3.3–3.6. |
 | 3.6.1 | आनन्दाध्येव | आनन्दाद्ध्येव | As अन्नाद्ध्येव, प्राणाद्ध्येव, विज्ञानाद्ध्येव (आनन्दात् + हि + एव). |
@@ -48,9 +62,9 @@
 | every सह नाववतु | तेजस्विनावधीतमस्तु (2.0.1, 2.9.1, 3.0.1) | तेजस्वि नावधीतमस्तु | तेजस्वि नौ अधीतम्: the page itself divides the words so in the closing śānti of 3.10.6, and the library's Kaṭha writes it so. One śānti pāṭha, one spelling. |
 
 ## Kept as the page has it
+- **Readings the witnesses part on, where the page's is valid** (`source/witness-readings.tsv`): उत्तराहनूत्तररूपम् (1.3.4; upanishads.org.in and the Vedic Heritage Portal with the page; IIT Kanpur, GRETIL and Wikisource उत्तरा हनुरुत्तररूपम्); अन्तर्हृदय (1.6.1; IIT Kanpur and upanishads.org.in; GRETIL and Wikisource अन्तरहृदय); आशिष्ठो दृढिष्ठो (2.8.1; GRETIL, upanishads.org.in and Śaṅkara, dṛḍhiṣṭho dṛḍhatamaḥ; IIT Kanpur and Wikisource द्रढिष्ठो); ना३भाइ (3.10.6; the four others ना३भायि, the same pluta written another way); सुवर्न ज्योतीः (3.10.6; Wikisource सुवर्णज्योतीः, GRETIL ज्योतिः).
 - **शीक्षा** with a long ī (ॐ शीक्षां व्याख्यास्यामः, इत्युक्तः शीक्षाध्यायः, शीक्षावल्ली): the page's spelling in the text and the closing words alike, a valid Vedic form; the part's title follows it.
 - Words written together that the grammar allows either way: अनुकृतिर्हस्म, अप्योश्रावयेत्याश्रावयन्ति, आमायन्तु, प्रमाभाहि प्रमापद्यस्व, भूरिविश्रुवम्, य एषस्तन, प्राचीन योग्योपास्व, ओमितीदꣳसर्वम्, इदꣳसर्वम्, प्रवचनꣳसन्धानम्.
-- उपास्व (1.6.2), a valid form of the imperative of उप + आस्.
 - कदाचनेति (2.4.1) beside कुतश्चनेति (2.9.1): the Upaniṣad has both.
 - The pluta in the sāman of 3.10.6 (ऋता३स्य, ना३भाइ, मा३ऽवाः, अदन्तमा३द्मि, अभ्यभवा३म्) and the page's ऽ३ order in अहमन्नादोऽ३हम्.
 
@@ -60,4 +74,4 @@
 - **The vallīs' closing words** (॥ इति शीक्षावल्ली समाप्ता ॥ …) are items of type `iti`, and the सह नाववतु the page prints after those of vallīs 2 and 3 are items of type `shanti` (`shanti.2.end`, `shanti.3.end`), as the page places them (README, "Differences from the other Upaniṣads").
 
 ## Open
-- None. A second edition (sanskritdocuments.org) joins `source/witness/` when the owner supplies its printout; it is a check, and every reading above is settled without it.
+- None.
