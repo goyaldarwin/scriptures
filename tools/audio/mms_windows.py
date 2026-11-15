@@ -15,11 +15,14 @@ A song whose transcript placed too few of its verses to cut windows by (fast sin
 its whole stretch (recordings.json start/end), holding every verse from the recording's "from" to its "to" (else the work's
 first and last), less those --skip names (verses the recording does not sing), each with its rough start where it has one.
 A source timed line by line (source.json "lines": true, kirtan: tools/audio/line_align.py) is always cut this way, needs no
-transcript, and its windows also carry the verses' text ("items": [{"id", "v", "t"}]) for the line-by-line search.
+transcript, and its windows also carry the verses' text ("items": [{"id", "v", "t"}]) for the line-by-line search. A
+track over LONG seconds is cut into overlapping pieces instead, each with the verses its stretch may sing and its "core",
+the stretch it answers for (mms_align.py).
 """
 import json, os, re, sys, unicodedata
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.dirname(os.path.dirname(HERE))
 WIN, PAD = 90.0, 6.0
+LONG, PIECE, OVER, MARGIN = 2400.0, 480.0, 60.0, 300.0   # a "lines" track over 40 min: pieces of 8 min, overlapping 1 min each side
 
 def rom(lines):
     t = unicodedata.normalize('NFD', ' '.join(lines).lower())
@@ -44,7 +47,25 @@ def main(src, whole=False, skip=()):
             got = {IT[i]['id']: au['at'][IT[i]['id']][1] for i in idx if IT[i]['id'] in au['at'] and au['at'][IT[i]['id']][0] == ti}
             out.append({'yt': tr['yt'], 'a': tr.get('start', 0.0), 'b': tr.get('end', tr['dur']), 'keep': [IT[i]['id'] for i in idx],
                         'lines': [{'id': IT[i]['id'], 'rom': rom(IT[i].get('t') or []), 'rough': got.get(IT[i]['id'])} for i in idx]})
-            if meta.get('lines'): out[-1]['items'] = [{'id': IT[i]['id'], 'v': IT[i]['v'], 't': IT[i].get('t') or IT[i]['v']} for i in idx]
+            if meta.get('lines'):
+                a0, b0 = out[-1]['a'], out[-1]['b']
+                if b0 - a0 > LONG:
+                    # a track too long to search whole (beyond one machine's memory): overlapping pieces of PIECE seconds, each
+                    # with the verses its stretch may sing, judged by where the verses fall if sung evenly by length (± MARGIN s)
+                    out.pop()
+                    tot = sum(L(i) for i in idx); acc, pos = 0, {}
+                    for i in idx: pos[i] = a0 + (b0 - a0) * acc / tot; acc += L(i)
+                    t = a0
+                    while t < b0:
+                        a1, b1 = max(a0, t - OVER), min(b0, t + PIECE + OVER)
+                        mine = [i for i in idx if a1 - MARGIN <= pos[i] <= b1 + MARGIN]
+                        out.append({'yt': tr['yt'], 'a': round(a1, 2), 'b': round(b1, 2), 'core': [round(t, 2), round(min(b0, t + PIECE), 2)],
+                                    'keep': [IT[i]['id'] for i in mine if t <= pos[i] < t + PIECE] or [IT[mine[0]]['id']],
+                                    'lines': [{'id': IT[i]['id'], 'rom': rom(IT[i].get('t') or []), 'rough': None} for i in mine],
+                                    'items': [{'id': IT[i]['id'], 'v': IT[i]['v'], 't': IT[i].get('t') or IT[i]['v']} for i in mine]})
+                        t += PIECE
+                    continue
+                out[-1]['items'] = [{'id': IT[i]['id'], 'v': IT[i]['v'], 't': IT[i].get('t') or IT[i]['v']} for i in idx]
             continue
         idx = list(range(ID[tr['first']], ID[tr['last']] + 1))
         rough = {i: au['at'][IT[i]['id']][1] for i in idx if IT[i]['id'] in au['at'] and au['at'][IT[i]['id']][0] == ti}

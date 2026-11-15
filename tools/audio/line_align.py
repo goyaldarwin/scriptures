@@ -73,7 +73,7 @@ def units(item):
 class Graph:
     """Line instances (a line in its pada, or in one of the rahao's copies), each a CTC chain of states, and the moves
     between their ends and starts."""
-    def __init__(self, item, D, inorder=False, p=P):
+    def __init__(self, item, D, inorder=False, p=P, free=False):   # free: a piece of a longer song, opening and ending anywhere
         U, groups = units(item)
         self.U = U
         inst = []                      # (line k, copy tag)
@@ -136,8 +136,8 @@ class Graph:
                         if ri == pi and rks: edge(('p', pi, k), ('r', pi, rks[0]), tail)
                     for qi in range(pi + 1, len(padas)):                   # the next pada, or a later one at a cost
                         for f in firsts(sung(padas[qi]['lines'])): edge(('p', pi, k), ('p', qi, f), tail + p['pada'] * (qi - pi - 1))
-                for f in firsts(ks): start[M[('p', pi, f)]] = -(p['enter'] + p['pada'] * pi)   # a song that opens on a later pada: those before cost
-                for k in ks: final[M[('p', pi, k)]] = -p['pada'] * (len(padas) - 1 - pi)              # and so do those it ends before
+                for f in firsts(ks): start[M[('p', pi, f)]] = -(p['enter'] + (0 if free else p['pada'] * pi))   # a song that opens on a later pada: those before cost
+                for k in ks: final[M[('p', pi, k)]] = 0 if free else -p['pada'] * (len(padas) - 1 - pi)              # and so do those it ends before
             for (ri, rks) in self.rcopies:
                 for i, k in enumerate(rks):
                     for j in range(i + 1): edge(('r', ri, k), ('r', ri, rks[j]))
@@ -146,8 +146,8 @@ class Graph:
                         for f in firsts(sung(padas[qi]['lines'])): edge(('r', ri, k), ('p', qi, f), p['pada'] * (qi - ri - 1))
                     if ri >= 0:                                            # back to the pada just sung (a ragi often sings it again)
                         for f in firsts(sung(padas[ri]['lines'])): edge(('r', ri, k), ('p', ri, f))
-                if rks: start[M[('r', ri, rks[0])]] = -(p['enter'] + p['pada'] * max(0, ri))
-                for k in rks: final[M[('r', ri, k)]] = -p['pada'] * (len(padas) - 1 - max(ri, 0))
+                if rks: start[M[('r', ri, rks[0])]] = -(p['enter'] + (0 if free else p['pada'] * max(0, ri)))
+                for k in rks: final[M[('r', ri, k)]] = 0 if free else -p['pada'] * (len(padas) - 1 - max(ri, 0))
         self.pen, self.start, self.final = pen, start, final
         # the states: per instance [blank, c1, blank, c2, …, cn, blank]
         tok, off, skip, own = [], [], [], []
@@ -236,10 +236,10 @@ def viterbi(em, G, p=P):
     occ.reverse()
     return [(x, a, b, sorted(toks, key=lambda q: q[1])) for x, a, b, toks in occ]
 
-def lines(em, sec, item, D, inorder=False, p=P):
+def lines(em, sec, item, D, inorder=False, p=P, free=False):
     """[[line index, start s, end s, score]] for every singing found (in time order). A line's start and end are its first
     and last letter's."""
-    G = Graph(item, D, inorder, p)
+    G = Graph(item, D, inorder, p, free)
     if not len(G.inst): return []
     out = []
     for x, a, b, toks in viterbi(em, G, p):

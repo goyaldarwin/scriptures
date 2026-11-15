@@ -34,12 +34,18 @@ def by_line(res, w, em, sec, D, labels):
     for it in w['items']:
         for k, (a, b) in enumerate(zip(it['v'], it['t'])): v.append(a); t.append(b); where.append((it['id'], k))
     one = {'v': v, 't': t}
-    for key, inorder in (('lines', False), ('inorder', True)):
-        for k, a, b, sc in LA.lines(em, sec, one, D, inorder):
+    # a piece of a long track (mms_windows.py: "core"): free to open and end anywhere, no in-order alignment (the piece holds
+    # only part of the song), and it answers only for the singings that start in its core (the pieces overlap)
+    core = w.get('core')
+    for key, inorder in (('lines', False),) + ((('inorder', True),) if not core else ()):
+        for k, a, b, sc in LA.lines(em, sec, one, D, inorder, free=bool(core)):
             iid, kk = where[k]
+            if core and not core[0] <= w['a'] + a < core[1]: continue
             res[key].setdefault(iid, []).append([kk, round(w['a'] + a, 2), round(w['a'] + b, 2), sc])
+    for iid in res['lines']: res['lines'][iid].sort(key=lambda o: o[1])
     for iid, occ in res['lines'].items():
         if iid in w['keep']: res['verses'][iid] = [min(o[1] for o in occ), max(o[2] for o in occ), round(float(np.mean([o[3] for o in occ])), 3)]
+    if core: res.setdefault('done', []).append(core)
     res['read'] += LA.read(em, labels)
     res['read_at'] += [[round(w['a'] + t, 1), c] for t, c in LA.read_at(em, labels, sec)]
     return res
@@ -58,7 +64,8 @@ def main(src):
     torch.set_num_threads(int(os.environ.get('THREADS', '4')))
     t_all = time.time()
     for n, w in enumerate(wins):
-        if all(k in res.get('verses', res) for k in w['keep']): continue
+        if w.get('core') and any(c[0] == w['core'][0] for c in res.get('done', [])): continue   # a piece already searched
+        if not w.get('core') and all(k in res.get('verses', res) for k in w['keep']): continue
         t0 = time.time()
         x = torch.from_numpy(load(audio, w['a'], w['b']))[None]
         step, ctx, ems = 30 * SR, 2 * SR, []
