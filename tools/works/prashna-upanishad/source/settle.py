@@ -4,7 +4,8 @@ The Devanagari is the page's own. Two witnesses settle it (../reconciliation.md)
   1. the page's own transliteration, converted back to Devanagari (tr2deva) and compared word by word with the page's
      Devanagari; the comparison folds only the writing standard's conventions (standard.fold: a class nasal or ꣳ as ं).
      Every difference must be one listed in TRANSLIT (where the two halves of the page disagree), or the run fails;
-  2. the corrections in FIX: the page's slips, each settled in ../reconciliation.md.
+  2. the corrections in FIX: the page's slips, each settled in ../reconciliation.md (some by the grammar alone, some on
+     the independent witnesses that check.py compares the text with).
 Then: each praśna's closing words (इति प्रश्नोपनिषदि … प्रश्नः) become an item of their own, the page's numbers ॥ १.१॥
 are written as the mantra's own number (॥१॥), and the opening śānti is laid out as the Māṇḍūkya's, which it must equal.
 The transliteration is made by the exporter (tools/text/standard.py).
@@ -69,17 +70,23 @@ FIX = {   # (praśna, verse): [(page, settled)]
     (1, 0): [('स्थिरैरङ्गैस्तुष्तुवाꣳसस्', 'स्थिरैरङ्गैस्तुष्टुवांसस्')],
     (1, 3): [('भगवन् कुते ह', 'भगवन् कुतो ह')],
     (1, 12): [('शुक्लः प्रणस्', 'शुक्लः प्राणस्')],
-    (2, 4): [('तस्मिंष्च', 'तस्मिंश्च'), ('प्रातिष्टन्त', 'प्रातिष्ठन्त'), ('वाङ्मनष्चक्षुः', 'वाङ्मनश्चक्षुः')],
+    (2, 4): [('तस्मिंष्च', 'तस्मिंश्च'), ('प्रातिष्टन्त', 'प्रातिष्ठन्त'), ('वाङ्मनष्चक्षुः', 'वाङ्मनश्चक्षुः'),
+             ('सर्व एवोत्क्रमन्ते', 'सर्वा एवोत्क्रमन्ते'), ('सर्व एव प्रातिष्ठन्त', 'सर्वा एव प्रातिष्ठन्त')],
     (2, 11): [('प्राणैकर्षरत्ता', 'प्राणैकर्षिरत्ता')],
     (3, 1): [('कौशल्यश्चाश्वलायनः', 'कौसल्यश्चाश्वलायनः')],
     (3, 4): [('सम्रादेवाधिकृतान्', 'सम्राडेवाधिकृतान्'), ('एतन् ग्रामानोतान्', 'एतान् ग्रामानेतान्')],
+    (3, 10): [('तथासङ्कल्पितं', 'यथासङ्कल्पितं')],
     (3, 11): [('तदेषः श्लोकः', 'तदेष श्लोकः')],
+    (4, 1): [('सौर्यायणि', 'सौर्यायणी')],
+    (4, 6): [('यदैतस्मिञ्शरीर', 'तदैतस्मिञ्शरीर')],
     (4, 7): [('सोभ्य', 'सोम्य'), ('वसोवृक्षं', 'वासोवृक्षं')],
     (4, 8): [('यादौ च गन्तव्यं', 'पादौ च गन्तव्यं')],
     (5, 4): [('विभुतिमनुभूय', 'विभूतिमनुभूय')],
     (5, 5): [('पुरुषमभि-\nध्यायीत स तेजसि', 'पुरुषमभिध्यायीत\nस तेजसि')],
+    (5, 6): [('अन्योन्यसक्ताः', 'अन्योन्यसक्ता')],
     (6, 1): [('नार्हम्यनृतं', 'नार्हाम्यनृतं')],
     (6, 2): [('यस्मिन्नताः', 'यस्मिन्नेताः')],
+    (6, 3): [('ईक्षाचक्रे', 'ईक्षांचक्रे')],
     (6, 4): [('नाम च\n॥ ६.४॥', 'नाम च ॥ ६.४॥')],
     (6, 6): [('वेद यथ मा', 'वेद यथा मा')],
 }
