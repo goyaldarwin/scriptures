@@ -1,0 +1,137 @@
+# Bṛhadāraṇyaka Upaniṣad — how the text is settled
+
+## The source
+The base text is the owner's printout of sanskritdocuments.org's *Brihadaranyaka Upanishad (basic without accent)* (`bribasic.html`, from `bribasic.itx`; encoded by Sunder Hattangadi, proofread by him and Rupali Bhatnagar), printed from Chrome in 79 pages. The site is named by the printout itself: every page's footer carries "sanskritdocuments.org", the page title and the URL <https://sanskritdocuments.org/doc_upanishhat/bribasic.html>, and the last page its file header (`% File name : bribasic.itx`). It is not upanishads.org.in, whose pages have another layout (one mantra per page, the words written apart, Max Müller's English), so that site is a second, separate edition (below). The printout heads the text with the kāṇḍas and adhyāyas, the śānti mantra, then each adhyāya and brāhmaṇa with its opening and closing line (अथ प्रथमं ब्राह्मणम् । … इति प्रथमं ब्राह्मणम् ॥) and each mantra as "मन्त्र N [I.ii.N]".
+
+## The text layer
+Chrome writes a Devanagari cluster whose glyphs are not one per letter (a conjunct, a reph, a pre-base ि) as a marked-content span carrying the cluster's letters (`/ActualText`), and every other glyph with its letter in the font's ToUnicode map. A plain extraction (PyMuPDF `get_text`) reads both the span's letters and its glyphs' own, which doubles vowel signs and whole syllables: मधुु, वैै, यज्ञेेन, and also सूर्यश्चश्चक्षुु, वातःतः, पूर्णात्त्पूर्ण. The Śrī Rudram's `norm_deva` rules (a repeated svara or vowel sign, ःः) mend the first kind but not the second: applied to the plain extraction they leave 1,938 places that differ from the page. So `source/extract.py` reads the content stream itself: inside an `/ActualText` span the span's letters once, outside it each glyph's ToUnicode letters, a line being one row of the text matrix. The result has no doubled sign (`settle.py` asserts that no vowel sign, anusvāra, visarga or candrabindu stands twice), so `norm_deva`'s mending is not needed. It was checked against the page images (pages 1, 2 and 9, and sixteen of the places the corrections below touch): the decoded rows read exactly as printed, including the page's own slips (पूर्णमदुच्यते, दिक्षिरो, मनो ंअन्ता, प्रोष्या।आ।आगत्य). The ꣳ sign is set in a second font (AnnaiMN) and is read like the rest. Two glyphs have no letter (a nasal before ल्, printed as an empty box in 2.1.10 and 2.1.12); they are ँ, as the printout writes the same word in 1.5.17 (अस्मिंॅल्लोके, ं with a candra sign; written ँ).
+
+## The witnesses
+- **upanishads.org.in**, *Bṛhadāraṇyaka Upanishad* (<https://upanishads.org.in/u/brihadaranyaka>), one page per mantra, all 435 fetched on 2026-11-14 (`source/witness_upanishads_org.py` → `source/witness/upanishads-org-in.txt`; the pages are private in scriptures-data). It writes the words apart (सूर्यश् चक्षुर्), cuts the prose into sentences with the word before each cut in pausa (आसीत् । मृत्युना, where the printout runs on: आसीन् मृत्युना), and has no svaras.
+- **IIT Kanpur Heritage** (heritage.iitk.ac.in, text BRU: the mūla beside Śaṅkara's bhāṣya, so the Kāṇva text), fetched on 2026-11-14 from the site's reader (`source/witness_iitk.py` → `source/witness/iitk.txt`; the JSON is private in scriptures-data). It separates its phrases with commas in pausa and has many typing slips of its own (मेस्य, व्यात्तमन्गिर्, तम्मात्, स्त्राव, एतध्दि).
+
+Both number the mantras exactly as the printout's headings do (435, the same in every brāhmaṇa). `source/check.py` joins each of a witness's word breaks with the sandhi the printout uses wherever the printout runs the words together, reduces both texts to the letters that carry the reading, and compares every mantra letter by letter. After the corrections below, every remaining difference is listed with its decision in `source/witness/<witness>.decisions.json`: for upanishads.org.in 354 places (257 a letter or two at a word's end or where two words meet, that is sandhi, pausa or a word the printout writes apart, such as प्रिया भवन्ति आत्मनस्तु; 34 its own slips, such as पाण्दर, नाद्यो, वयुना, व्यनिति, ब्रामणः, पशुतिमाष्यात्, ऽव्शिभ्याम्, विप्रजित्ति, परमेष्टिणः, नमौक्तिं; 63 readings, below); for IIT Kanpur 1,645 (861 at word ends and junctions; 782 where it alone differs and upanishads.org.in reads with the printout: its slips and its own readings; 2 readings, below). The printout is kept in every one of them.
+
+Every place where the two witnesses agree against the printout was read (73): most are sandhi at a sentence break; where they show the printout dropped, added or changed a word, it is corrected ("Both witnesses against the printout", below); where the printout's word is good Sanskrit and fits, it stays (listed below). They also share two slips that the grammar settles (2.5.19 सहस्रणि, 6.5.3 आख्ययन्ते), so their agreement alone is not proof. upanishads.org.in prints GRETIL's text (`sa_bRhadAraNyakopaniSadkANva-recension-comm.xml`, read beside it: the same slips in the same places), so the two count as one witness.
+
+## Structure (settle.py → mantras)
+- **Adhyāya and brāhmaṇa** come from the printout's heading lines (अथ … ऽध्यायः, अथ … ब्राह्मणम्); a mantra's number from its heading "मन्त्र N". The printout's own reference in brackets is checked against them and slips three times: 3.2.9 is printed "[II.ii.9]", 1.5.5 "[I.v.5.]" and 1.5.8 "[.I.v.8]"; the headings decide. Its own headings slip too (अथ चतुर्थं ब्रह्मणम्, अथ अथाष्टमं, एकादशं without अथ, इति पज्ञ्चमं); they are not part of the text. 5.12.1 has no "मन्त्र" heading; its reference rides on the brāhmaṇa's heading line.
+- **Counts.** 80, 66, 92, 92, 30 and 75 mantras in the six adhyāyas, 435 in all, as the witness has them. The printout's table of contents says ३३ for adhyāya 5; its own headings number 30.
+- **The closing number** (॥N॥, the mantra's own): added where the printout leaves it out (1.5.6, 3.2.6, 3.9.24, 4.5.6, 6.2.15); written ॥१३॥ where it prints "। १३॥" (6.2.13); ॥१॥ for the only mantra of brāhmaṇas 11 and 12 of adhyāya 5, which print the brāhmaṇa's number (॥११॥, ॥१२॥), so a verse's number is its own (PLAYBOOK §3).
+- **4.3.14** prints ॥ १४॥ in the middle of the mantra, after प्रतिपद्यते, and again at its end; the first is a daṇḍa (।), as the witness has it.
+- **3.9.28** is one mantra of seven ślokas (तान्हैतैः श्लोकैः पप्रच्छ …) that the printout numbers ॥१॥ … ॥७॥ inside it, the last followed by the mantra's own ॥२८॥. One number per verse (PLAYBOOK §3): each śloka ends ॥ and the mantra ends ॥२८॥; the witness has the ślokas unnumbered too.
+- **The śānti mantra** is the one the printout sets before 1.1.1 (ॐ पूर्णमदः … ॐ शान्तिः शान्तिः शान्तिः ॥), with one correction: the printout's पूर्णमदुच्यते is पूर्णमुदच्यते (the page image shows the slip; 5.1.1, the same verse inside the text, and the witness have उदच्यते). The printout prints no closing śānti.
+- **Lines.** The printout runs each mantra as one paragraph that the browser wrapped (only 5.12.1 keeps short lines of its own), so its rows are joined and the mantra is set one sentence per line, a line ending at each daṇḍa (।) or ॥.
+
+## Left out: the encoder's notes (settle.py → NOTES, NOTES_AFTER_END)
+The page carries, after a mantra's closing number or inside the mantra, notes of its encoder that repeat the words just before, written apart or with स् for the visarga (एतेभ्यस्भूतेभ्यस्समुत्थाय, अमृतमयस्पुरुषस), or a word twice. They are not the text: each breaks the sentence, none is in the witness. Left out:
+- after the closing number: 1.4.10 (a stray line मनुष्यास्विद्युर्मन्त्र ११), 1.5.14 (अपचित्यै), 2.1.18, 4.3.17, 4.3.18, 4.3.19, 4.3.35, 4.3.36, 4.4.4, 4.5.11 (the words before the number again, apart);
+- inside the mantra: 1.3.6 पाप्मभिसुपासृजन्; 2.1.20 सर्वे ॥ । व्युच्चरन्ति; 2.4.10 the list from सामवेदसथर्वाङ्गिरस… to व्याख्याननि; 2.4.12 न हास्योद्ग्रहणायैव and एतेभ्यस्भूतेभ्यस्समुत्थाय; 2.5.1 अमृतमयस्पुरुषस (the text: पुरुषोऽयमेव); 2.5.16 उवाच twice; 3.3.1 थैतद; 3.5.1 पप्रच्छ twice and य एवं वेद एवातोऽन्यदार्तम्; 3.8.6 आचक्षते twice; 3.8.10 लोको भवति; 3.9.10, 3.9.15, 3.9.16 परायणं twice; 4.1.2 सर्वाणि च भूतानि वाचा एव; 4.2.1 असि (समाहितात्माऽस्येवं); 4.2.3 एवमस्य एताशितास्नाम … प्रतिष्ठितास्भवन्ति; 4.2.4 व्यथते असङ्गस्न हि सज्यते असितस्न व्यथते न रिष्यति; 4.3.1 स मेने न वदिष्य इति twice; 4.3.7 विज्ञानमयः प्राणेषु हृद्यन्तर्ज्योतिः and पुरुषस्स; 4.3.9 पश्यति twice; 4.3.15 एव; 4.3.16 आद्रवति बुद्धान्ताय एव; 4.3.19 ध्रियते; 4.3.20 नीलस्य … पूर्णास; 4.3.21 सम्परिष्वक्तस्न … अन्तरं; 4.3.22 अश्रमणस्तापसस … अनन्वागतस्पापेन; 4.3.33 अन्येषां सम्पन्नतमस्स; 4.4.5 श्रोत्रमयसाकाशमयस … हर्षमयस्; 4.4.6 भवति (निष्काम आप्तकाम); 4.4.22 विदित्वा मुनिस्भवति; 4.5.13 the garbled विनयष्यतिति … अनुविनयति (the text: तान्येवानुविनश्यति, the printout's own words in 2.4.12); 5.6.1 सर्वस्य twice; 5.14.4 एव; 6.3.7, 6.3.8, 6.3.10 शुष्के स्थाणौ निषिञ्चेत् (and यसेनम्) repeated before जायेरञ्, written as 6.3.9 and 6.3.11 print it; 6.4.4 एतद् ध स्म वै तद् विद्वान् कुमारहारितसाह; 6.4.13 अपहन्यात्.
+- The printout's commas (परायणꣳ, स वै; धर्मꣳ, स) and its zero-width joiners (श‍ृ) are not kept.
+
+## Corrections to the printout (settle.py → FIX)
+Each is a slip of the printout: a dropped or doubled sign, a mistyped letter, a broken form, or a word dropped, added or changed where both witnesses agree against it. upanishads.org.in has the corrected form in every case but those marked (grammar), where the grammar decides, and the name in 4.6.2, which it writes as the printout does in 2.6.2.
+- 1.2.2 अर्कस्तद्यदपाꣳ (अर्क तद्: the visarga dropped); 1.2.3 दिक्शिरोऽसौ (दिक्षिरो), 6.3.6 प्राक्शिराः (प्राक्षिराः).
+- 1.4.7 श‍ृण्वञ्छ्रोत्रं (ञ्ह्रोत्रं); 1.4.10 ब्रह्मास्मीति स (इति twice); 1.5.16 मनुष्यलोकः पितृलोको (मनुष्यलोका).
+- पितॄणाम् for पितृणाम् (1.4.16, 4.3.33 twice, 6.2.2), the genitive plural.
+- 1.5.17, 2.1.10, 2.1.12 अस्मिँल्लोके (above, "The text layer"); 2.1.10 पश्चाच्छब्दो (पश्चाछब्दो).
+- 2.1.20 यथोर्णवाभिस्तन्तुनोच्चरेद् (यथोर्णभिः, not a word; the witness's ऊर्णवाभि, a spider).
+- 2.2.3 प्राणानेतदाह (प्राणाणे-); 2.3.3 तस्यैतस्यामूर्तस्यैतस्यामृतस्य (a space inside the word) and रस इत्यधिदैवतम् (a daṇḍa inside the sentence).
+- 2.5.10 पुरुषोऽयमेव (पुरुषः ऽयमेव); 2.5.19 दशेत्ययं (दशेतिययं) and सहस्राणि (सहस्रणि; grammar: both witnesses have the slip).
+- Names in the lines of teachers, written as the same list writes them elsewhere: 2.6.2 and 4.6.2 आग्निवेश्यादाग्निवेश्यः; 2.6.2 आनभिम्लातादानभिम्लात आनभिम्लातादानभिम्लातो; 2.6.3 यास्काच्चाऽऽसुरायणस्, औपजन्धनिरासुरेरासुरिर्, आत्रेयादात्रेयो; 4.6.2 पाराशर्यायणो (पाराशार्यायणो); 4.6.3 बाभ्रवः पथः, त्वाष्ट्रोऽश्विभ्याम् (ऽव्श्विभ्याम्); 6.5.2 शौङ्गीपुत्राच्छौङ्गीपुत्रः; 6.5.3 याज्ञवल्क्य उद्दालकादुद्दालको (ऊद्दालक) and कश्यपाद्धरितः (पाद्द् हरितः); 6.3.11 जानकिरायस्थूणः, as 6.3.10 prints the name (आयस्थूणाय).
+- 3.1.3 होत्रर्त्विजाऽग्निना (ऽइना); 3.1.6 केनाऽऽक्रमेण (ण after र, the witness's reading); 3.1.9 मनोऽनन्ता (मनो ंअन्ता).
+- 3.2.11 क्रामन्त्याहो३ नेति ("or not": आहो, not the cry अहो); 3.2.13 भवतीत्याहर सौम्य हस्तमार्तभागाऽऽवामेवैतस्य (the printout's अहर and "इति होवाऽऽचावामेव" inside Yājñavalkya's own words) and प्रशशꣳसतुः twice (the perfect; the witness has it once, grammar).
+- 3.4.1 हैनमुषस्त, 3.7.1 and 6.3.7 हैनमुद्दालक / हैतमुद्दालक (ऊ: the names are Uṣasta, Uddālaka, as the printout writes them elsewhere); 3.4.2 होषस्तश्चाक्रायण (स्च).
+- 3.7.1 याज्ञिकाꣳश्च वेत्थ (श्चः); 3.7.14 and 3.7.19 यमयत्येष (यमयत्य्स एष), as eighteen other places in 3.7 write it.
+- 3.8.8 तदक्षरं गार्गि (तदक्षरऽ) and अतमोऽवाय्व (a hyphen and space inside the word); 3.8.11 द्रष्ट्रश्रुतꣳ श्रोत्रमतं (द्रष्टृश्रुतꣳ श्रोत्त्रमतं) and विज्ञात्रेतस्मिन्नु (विज्ञात्त्रे-): the sandhi of -ṛ before a vowel.
+- 3.9.1 याज्ञवल्क्येति द्वावित्योमिति (याज्ञवल्क्येत्य्द्वाव-); 3.9.9 यदयमेक इवैव (एक एव एक) and अथ कथम् (आथ); 3.9.22 रेतः प्रतिष्ठितमिति (प्रतिष्ठितेति इति; रेतस् is neuter).
+- 4.1.2 तच्छैलिनिरब्रवीद् (शैलिर्; Jitvā Śailini, named so in the same mantra); 4.1.3 म उदङ्कः (ऊदङ्कः) and तच्छौल्बायनोऽब्रवीत् (शौल्वायनो, the same mantra's शौल्बायनः); 4.1.4 वार्ष्णोऽब्रवीच्चक्षुर्वै (ब्रवीत्च्च-); 4.1.6 जाबालोऽब्रवीन् (जाबालो अब्रवीन्), as 4.1.3, 4.1.4, 4.1.5 and 4.1.7 write the same phrase.
+- 4.3.20 परमो लोकः (लोकाः); 4.3.22 अपौल्कसः श्रमणोऽश्रमणस्तापसो (अपौल्कसो श्रमणो, अश्रमण स्तापसो); 4.3.25 रसयतेर्विपरिलोपो (रसयितेर्); 4.3.33 मनुष्याणाꣳ (मनूष्याणाꣳ) and बिभयांचकार (चकारः).
+- 4.4.6 कर्मण इति (कर्मण् इति); 4.4.7 अहिनिर्ल्वयनी (निर्व्लयनी, a slough); 4.5.2 कात्यायन्याऽन्तं (कात्यायान्या); 4.5.13 एवैवं (एवै वं).
+- 5.1.1 वेदोऽयं (वेदोऽयम्ं); 5.5.1 आप एवेदमग्र (अप); 5.9.1 अयमग्निर्वैश्वानरो (आग्नि); 5.13.1 उद्धास्मादुक्थविद् (उद्धास्मा धस्माद्); 5.13.4 क्षत्रमत्रमाप्नोति (अप्नोति); 5.14.7 समृध्यते (समृद्ध्यते).
+- 6.1.8 प्रोष्यागत्योवाच (प्रोष्या।आ।आगत्य); 6.1.14 तदन्नमनग्नं (तदनम-); 6.2.1 भो३ इति (भोः ३); 6.2.4 उदकमाहारयां (उदकमहारयां); 6.2.13 योषा वा अग्निर्गौतम (आग्निर्), as 6.2.10 and 6.2.12.
+- 6.3.5 उद्यच्छत्यामꣳस्यामꣳ (अमꣳसि: the mantra plays on आमꣳसि and आमं).
+- 6.4.12 एवंविच्छ्रोत्रियस्य (वित्छ्रो-); 6.4.21 and 6.4.22 अश्विनौ (आश्विनौ, the two gods); 6.4.23 तमिन्द्र (तमीन्द्र).
+- 6.5.3 आख्यायन्ते (आख्ययन्ते; grammar: both witnesses have the slip).
+- Slips the printout shares with upanishads.org.in (and GRETIL), where IIT Kanpur and the grammar have the word: 2.3.4 मूर्तस्यैतस्य (मूर्तस्यै तस्य, a space inside the word, as 2.3.3 writes the same phrase); 2.3.6 य एवं वेदाथात आदेशो (वेदा थात: वेद + अथ, the sandhi split wrongly); 2.5.8 भूतानां (भूतानं, as the other thirteen mantras of 2.5 have it); 2.6.3 पाराशर्यायणात् पाराशर्यायणः (पारशर्यायणः, the teacher's own name in the same pair, and 4.6.2); 3.7.15 भूतानि (भुतानि; the same mantra has भूतानि and भूतान्यन्तरो); 3.7.23 मन्ताऽविज्ञातो (अविज्ञतो, as 3.8.11 अविज्ञातं); 6.5.3 जिह्वावतो, जिह्वावान् (जीह्वा-: the name Jihvāvat, "having a tongue", Monier-Williams); 6.5.4 साञ्जीवीपुत्रात् साञ्जीवीपुत्रो (सञ्जिवीपुत्रो: the same teacher as the pair's first name).
+- Words split at the wrong place: 4.3.11 शारीरमभिप्रहत्याऽसुप्तः सुप्तान् (अभिप्रहत्या सुप्तः: "stilling the body, himself not asleep, he watches the sleeping", as Śaṅkara reads it; both witnesses join it); 4.3.31 मन्वीतान्योऽन्यत् (मन्वीता न्योऽन्यत्; both witnesses); 6.3.5 आमꣳस्यामꣳहि ते महि (आमꣳ हि: आमंहि, "we know", is one verb, as IIT Kanpur prints it and Śaṅkara cites it; upanishads.org.in and GRETIL split it).
+- Both witnesses against the printout: 1.3.7 पाप्मनाऽविव्यत्सन् ("they wished to pierce" the breath, and were scattered; the printout's पाप्मनाविध्यन्, "they pierced", repeats 1.3.2–6 against the story); 1.4.16 निपृणाति यत्प्रजामिच्छते (an अथ the printout adds, its sandhi left undone); 2.3.3 पुरुषस्त्यस्य ह्येष रस (तस्य; 2.3.5, its pair, has त्यस्य) and 2.3.5 एतत्त्यत् (त्यं; the neuter, as 2.3.3 and 2.3.1 have it); 3.6.1 कस्मिन्नु खलु गन्धर्वलोका (खलु, which every other question of the series has); 3.8.8 असङ्गमरसमगन्धमचक्षुष्कम् (अरसम् अगन्धम् dropped from the list); 4.3.12 रक्षन्नवरं कुलायं (अपरं; the lower nest, the body); 4.4.23 सम्राडेनं प्रापितोऽसीति होवाच (एनं प्रापितोऽसि dropped); 5.5.1 नैवंविद्वाꣳसम् (नैनं-); 5.14.5 गायत्रीमेव सावित्रीमनुब्रूयाद् (सावित्रीम् dropped); 6.2.16 जायन्ते लोकान् (जायन्ते ते, a word written twice); 6.3.4 प्रत्याश्रावितमस्यार्द्रे (अस्यर्द्रे).
+
+## Readings kept where a witness reads otherwise
+The printout's edition is the base; where both readings are good Sanskrit and fit the sense, the base stays (PLAYBOOK §2). Ours first, then upanishads.org.in's (IIT Kanpur reads with the printout unless it is named):
+- 1.2.1 एवमेतदर्कस्यार्कत्वं / अर्क्यस्य; 1.2.5 सर्वस्यैतस्यात्ता / सर्वस्यात्ता; 1.2.7 एष ह वा / एष वा; 1.3.18 प्रतिप्रतिर्बुभूषति / प्रतिर्बुभूषति; 1.5.21 रूपमसाम / रूपं भवाम; 1.5.22 अधिदैवतं, यथादैवतꣳ / अधिदेवतं, यथादेवतम्.
+- ॐ at the opening of adhyāyas 2, 3, 4, 5 and 6 (2.1.1, 3.1.1, 4.1.1, 5.1.1, 6.1.1) and in 5.1.1 ॐ३ खं ब्रह्म, 5.15.1 ॐ३ क्रतो: upanishads.org.in has none (ओं in 5.15.1).
+- 2.1.3 अहरहर्ह सुतः / अहरहर् सुतः; 2.2.3 यशो निहितं विश्वरूपं / यशो विश्वरूपम्; 2.3.1 यच्च सच्च त्यच्च (IIT Kanpur: यं च सं च त्यं च); 2.4.14 upanishads.org.in has तदितर इतरं जिघ्रति and तत्केन कं जिघ्रेत् twice; 2.5.15 सर्वेषां भूतानामधिपतिः / सर्वेषामधिपतिः; 2.6.3 गौतमाद्गौतमो twice / once.
+- 3.2.2–3.2.9 अतिग्राहेण / अतिग्रहेण (IIT Kanpur too in 3.2.9); 3.4.1 कतमो याज्ञवल्क्य सर्वान्तरः (upanishads.org.in lacks it once); 3.7.1 हैनम् / अथैनम्, येनायं / यस्मिन्नयं, भूतानि योऽन्तरो / भूतान्यन्तरो, स भूतवित् (upanishads.org.in lacks it); 3.7.14 and 3.7.15 end with अथाधिभूतम्, अथाध्यात्मम्, which upanishads.org.in sets at the start of 3.7.15 and 3.7.16.
+- 3.8.9 सूर्याचन्द्रमसौ / सूर्यचन्द्रमसौ; 3.8.10 upanishads.org.in has a stray line वा अक्षरस्य् and a second अविदित्वा; 3.8.12 मन्येध्वं / मन्यध्वं; 3.9.15 चक्षुर्लोको / हृदयं लोको; 3.9.21 श्रद्धां जानाति / श्रद्धाम्; 3.9.26 न हि सज्यते / न सज्यते; 3.9.28 upanishads.org.in repeats the last śloka.
+- 4.4.2 सविज्ञानमेव / संजानमेव; 4.4.5 पुण्येन कर्मणा भवति / कर्मणा; 4.4.23 न वर्धते कर्मणा नो कनीयान् / न कर्मणा वर्धते (both a triṣṭubh); 4.5.6 पशवः प्रिया भवन्ति / प्रियं भवति; 4.5.7 ब्रह्म वेद / वेदान्वेद; 4.5.13 अनुविनश्यति / अनुविनयति.
+- 4.6.2 आग्निवेश्याद् / अग्निवेश्याद्; 4.6.3 जातूकर्ण्य / जातुकर्ण्य, कुमारहारित / कुमारहरित, प्रध्वꣳसन / प्राध्वꣳसन.
+- 5.14.7 समृद्धीति / समर्धीति; 6.1.13 पड्वीशशङ्कून् / -शङ्खून्; 6.2.1 श्वेतकेतुर्ह वा / श्वेतकेतुर्वा; 6.4.28 प्रापयच्छ्रिया / प्राप श्रिया.
+- Where both witnesses read otherwise and the printout's word is still good and fits: 1.3.12 स वै वाचमेव (the breath) / सा (the deity); 1.3.28 कामयेत तꣳ / कामयेत् तम्; 1.5.22 वायुर्निम्लोचन्ति / वायुः । म्लोचन्ति; 2.4.11 नासिकैकायनं / नासिके एकायनम्; 3.1.5 and 3.1.6 सा मुक्तिः / स मुक्तिः (the printout's सा, as in 3.1.3 and 3.1.4); 4.3.4 and 4.3.6 ज्योतिर्भवत्यग्निनैवायं / भवतीति । अग्निनैव; 6.3.1 स यः कामयते / कामयेत.
+
+## Left as printed
+- Where the printout writes two words apart without their sandhi (प्रिया भवन्ति आत्मनस्तु, स्वाहेति अग्नौ, स्यात् अथ, पुरुषः यश्चायम्) or puts a daṇḍa after a word in its sandhi form (सर्वान्तरो ।), the words are its own and stay as printed.
+- The writing standard (PLAYBOOK §3) is applied by the exporter: ꣳ before श ष स ह र (a Yajurveda text), a nasal before a stop as its class letter, a final म् before a consonant as ं, ॐ, and the ISO 15919 transliteration `t` made from the verse.
+
+## Meanings
+`meanings/hi/scriptures.json` and `meanings/en/scriptures.json` follow Śaṅkara's reading; every reading attributed to him, in the meanings and the footnotes, is checked against his Sanskrit bhāṣya (IIT Kanpur, and GRETIL where IIT Kanpur has none). Where the words allow more than one reading:
+
+| Mantra | Settled reading | Why |
+|---|---|---|
+| 1.1.1 | पाजस्यम्: the earth is the ground for its feet | Śaṅkara reads पादस्यम्; Monier-Williams' "belly, flanks" would repeat the mid-region and the quarters named in the same line |
+| 1.1.2 | समुद्र एवास्य बन्धुः: "the sea alone is its bond, that in which it is bound"; "kin" in the footnote | Śaṅkara, बन्धुर्बन्धनम्, बध्यतेऽस्मिन् |
+| 1.3.10 | जनमियात्: "the people there", with no gloss on who they are | the words say no more; "there" is the ends of the quarters where the evil was laid, which is Śaṅkara's reading |
+| 1.3.24 | त्यस्य मूर्धानं: "the head of this man (myself)" | Śaṅkara, तस्य मम अनृतवादिनः |
+| 1.3.28 | न हैवालोक्यताया आशास्ति: he need never pray against being left without a world | Śaṅkara, आशा आशंसनं प्रार्थनम्; ā-śās "to wish, pray for" (Monier-Williams, Apte) |
+| 1.4.8 | प्रियं रोत्स्यति … ईश्वरः: what he holds dear will be cut off (will perish); he has the power to say so | Śaṅkara, रुध् (प्राणसंरोधं प्राप्स्यति) and ईश्वरः समर्थः; "will weep" (रुद्) is not in the bhāṣya, and ईश्वर as "quickly" he names only to doubt it |
+| 1.4.17 | अथ प्रजायेय: "then may I be born (as offspring)" | Śaṅkara, प्रजारूपेणाहमेवोत्पद्येय |
+| 1.5.3 | सैषा ह्यन्तमायत्तैषा हि न: speech follows an end, the thing meant, but is not itself made known; his lamp in the footnote | Śaṅkara, अन्तम् अभिधेयावसानम्, आयत्ता अनुगता |
+| 1.5.17 | अभुनजत्: (the father thinks:) this son, being all this, will protect me from this world | Śaṅkara, a past form for the future (छन्दसि) |
+| 1.5.23 | प्राण्याच्चैवापान्याच्च: one should breathe with prāṇa and with apāna, no direction named | Śaṅkara names only the work of each; which of the two is the out-breath is read both ways (Monier-Williams and Apte: apān, to breathe out) |
+| 2.1.7 | विषासहि: "the all-withstanding" | Śaṅkara, मर्षयिता परेषाम्; Monier-Williams' "victorious" is within it |
+| 2.2.3 | वागष्टमी ब्रह्मणा संविदाना: in converse with brahman, unglossed | Śaṅkara does not say what brahman is here; "the Veda" is not his |
+| 2.3.6 | न ह्येतस्मादिति नेत्यन्यत्परमस्ति: there is no other, higher (teaching) than this "not thus" | Śaṅkara, इति न इति न इत्येतस्मात् … अन्यत् परं निर्देशनं नास्ति |
+| 2.4.7 | दुन्दुभ्याघातस्य: "the striking of the drum"; the word list gives Monier-Williams' "drum-beater" second | Śaṅkara, दुन्दुभेराहननम् आघातः |
+| 2.5.6, 3.9.13 | प्रातिश्रुत्क: present at (each) hearing; Monier-Williams' "in the echo" stays in the word list | Śaṅkara, प्रतिश्रवणवेलायां भवः |
+| 2.5.19 | शता दश: "hundreds and ten"; "a thousand" in the footnote | Śaṅkara, शतानि दश च, for the many kinds of beings |
+| 3.1.8 | अतिनेदन्ते: the oblations that roar loudly | Śaṅkara, अतीव शब्दं कुर्वन्ति; Monier-Williams' "foam over" is not needed |
+| 3.1.10 | कतमास्ता या अध्यात्मम्: Aśvala asks it | as he asks every कतम … इति of 3.1.7–10; Śaṅkara's उच्यते names no other speaker |
+| 3.9.3 | वसु: "in them all this is placed to dwell (vasu)"; his reason in the footnote | Śaṅkara derives the name from वस्, वासयन्ति वसन्ति च |
+| 3.9.9 | तदाहुः … कथमध्यर्धः: Yājñavalkya cites the objection and answers it | Śaṅkara, तत्र आहुः चोदयन्ति; Śākalya's next question is कतम एको देवः |
+| 3.9.10–17 | लोकः: loka, the means of seeing, glossed once | Śaṅkara, लोकयत्यनेनेति लोकः; "whose world is fire" is not his |
+| 3.9.24 | ध्रुवायां दिशि: "the fixed quarter"; his upper quarter in the footnote | Śaṅkara, ऊर्ध्वा दिक् ध्रुवेत्युच्यते |
+| 3.9.25 | अहल्लिक: kept as a name in address | Śaṅkara, नामान्तरेण संबोधनम्; no insult is added |
+| 3.9.26 | स एष नेति नेत्यात्मा …: no speaker named; his reading in the footnote | Śaṅkara: the śruti speaks here in its own voice, out of the story's order |
+| 3.9.28 | जात एव न जायते: if you say he is born already: no, he is born again; another reading in the footnote | Śaṅkara, मृतः पुनरपि जायत एव |
+| 4.1.2–7 | अभिक्षरन्ति: all beings flow to him, "(with offerings)" at 4.1.2 only | Śaṅkara, बलिदानादिभिः |
+| 4.3.7 | स समानः सन्: "being like (the intellect)" | Śaṅkara, समानः सदृशः; "remaining the same" is the bare words only |
+| 4.3.23–30 | the refrain न तु तद्द्वितीयमस्ति …: one wording in all eight | the same Sanskrit |
+| 4.3.33 | उदरौत्सीत्: "he has hemmed me in"; Monier-Williams' "driven out" second in the word list | Śaṅkara, आवृणोत्, अवरोधं कृतवान् |
+| 4.4.2 | एकीभवति: (the organ) becomes one (with him); he does not see, they say | Śaṅkara, एकी भवति करणजातं स्वेन लिङ्गात्मना |
+| 4.4.4 | पेशस्कारी: a goldsmith; the embroiderer in the footnote | Śaṅkara, पेशः सुवर्णम् |
+| 4.4.7 | the Kaṭha's verse (2.3.14): "the desires lodged in his heart"; the Kaṭha's own meaning stays | the Kaṭha's wording beside the fixed "On this there is a verse:" makes a run of ten words with a published English |
+| 4.4.9 | ब्रह्मणा हानुवित्तः: found by the brāhmaṇa; "by Brahman, by Brahmā" not taken | Śaṅkara, ब्राह्मणेन त्यक्तसर्वैषणेन |
+| 4.4.10 | Īśa 9: the Īśa's wording without "alone" (केवल); his reading here in the footnote | here Śaṅkara takes avidyā as ritual work and vidyā as the Veda for ritual, with no "alone" |
+| 4.4.13 | स विश्वकृत्: he who has found the Self is the maker of all | the correlative यस्य … सः; Śaṅkara identifies the knower with that Self (पर एवास्मि) |
+| 4.4.15 | न ततो विजुगुप्सते: "he no longer seeks to hide himself from him"; the first half keeps the Kaṭha's (2.1.5) | Śaṅkara here, तस्मादीशानाद्देवात् आत्मानं गोपायितुमिच्छति; the Kaṭha's own meaning stays |
+| 4.4.17 | पञ्च पञ्चजनाः: the five pañcajanas (the five kinds of beings) | Śaṅkara here (gandharvas, pitṛs, gods, asuras, rākṣasas; or the four varṇas with the Niṣādas); "five groups of five" is not his |
+| 5.4.1 | जित इन्न्वसावसत्: in the same way that one, his enemy, is conquered and comes to nothing | Śaṅkara, इन्नु इत्थम्, असौ शत्रुः (वाक्यशेषः), असत् भवेत् |
+| 5.14.4 | बलꣳ सत्यादोगीय (as printed): strength is mightier (ogīya) than the true | Śaṅkara, ओगीयः = ओजीयः; the text is not changed |
+| 5.14.4 | स यस्मा अन्वाह तस्य प्राणाꣳस्त्रायते: she, the Gāyatrī, protects the prāṇas of the one he teaches | the Gāyatrī is named from गयत्राण; स is the teacher, subject of अन्वाह |
+| 5.14.8 | तस्या अग्निरेव मुखम् …: Janaka's reply, named | Śaṅkara, शृणु तर्हि, after Buḍila's answer |
+| 5.15.1 | Īśa 15–18: line 6 "I am immortal: let my breath go to the air outside …", line 8 "who knows the thoughts of all beings"; the other lines keep the Īśa's; the footnote gives the difference | Śaṅkara here, सोऽहमस्म्यमृतम्, अनिलं बाह्यं वायुम्, वयुनानि प्रज्ञानानि |
+| 6.1.14 | तदन्नमनग्नम्: food (the text); his अनम् (prāṇa) in the footnote | the text reads अन्नम् |
+| 6.2.7 | प्रवाराणाम्: retinues | Śaṅkara, परिवाराणाम्; Monier-Williams' "coverings" is not needed, the clothing is परिधान |
+| 6.2.13 | योनिरर्चिः: "the vulva is the flame" | Śaṅkara, by likeness of colour (वर्णसामान्यात्); this text and bhāṣya decide over the Chāndogya's "womb" |
+| 6.2.15 | श्रद्धां सत्यमुपासते: they worship with faith the True (satya); the other reading in the footnote | Śaṅkara, श्रद्धायुक्ताः सन्तः, न पुनः श्रद्धां च उपासते |
+| 6.3.1 | सꣳराधनी: "the bringer of success" | Śaṅkara does not gloss it; rādh "to accomplish", as the word list has it; Monier-Williams' "conciliating" fits the address less |
+| 6.3.1 | विधरणी: "the one who holds all back" | Monier-Williams, vidharaṇa (ŚBr.) checking, restraining; Śaṅkara does not gloss it |
+| 6.3.1 | सन्नीय: sets the mantha in the middle | Śaṅkara, मध्ये संस्थाप्य; its mixing is in the gloss |
+| 6.4.3 | चर्माधिषवणे … तौ मुष्कौ: the two labia are the two boards of the soma-press; the other reading in the footnote | Śaṅkara joins अधिषवणे with मुष्कौ (व्यवहितेन संबन्धः) |
+| 6.4.13 | अहतवासा: after bathing at the end of three nights she puts on new clothes; his कंसेन पिबेत् in the footnote | Śaṅkara joins it with आप्लुत्य |
+| 6.4.17 | पण्डिता: "learned"; his restriction to household matters in the footnote | the plain word; his view is given as his |
+| 6.4.23 | तमिन्द्र निर्जहि गर्भेण सावराꣳ सह: drive it out, together with the child and the afterbirth | the plain words; Śaṅkara does not comment |
+| 6.4.28 | प्रापयत् (as printed): he "has reached" the highest summit; the printed causative in the footnote | Śaṅkara, प्रापत्; the causative names no object, and none is added |
+
+## Open
+- None.
