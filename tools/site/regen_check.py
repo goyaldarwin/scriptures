@@ -36,7 +36,7 @@ sys.path.insert(0, WORKS); import export as EXPORT
 
 # the scripts that make a work's text.txt (and its other source files) from data in its source/ folder, in the order they run
 GENERATORS = [('manas', ['make_appdata.py', 'make.py']), ('ramayan-aarti', ['make.py']), ('ramraksha', ['make.py']), ('sukhmani-sahib', ['make.py']),
-              ('katha-upanishad', ['settle.py']), ('shri-rudram', ['settle.py']), ('brihadaranyaka-upanishad', ['settle.py']), ('prashna-upanishad', ['settle.py']), ('chandogya-upanishad', ['settle.py']), ('aitareya-upanishad', ['settle.py']), ('kena-upanishad', ['settle.py']), ('mundaka-upanishad', ['settle.py']),
+              ('katha-upanishad', ['settle.py']), ('shri-rudram', ['settle.py']), ('brihadaranyaka-upanishad', ['settle.py']), ('prashna-upanishad', ['settle.py']), ('chandogya-upanishad', ['settle.py']), ('aitareya-upanishad', ['settle.py']), ('kena-upanishad', ['settle.py']), ('mundaka-upanishad', ['settle.py']), ('taittiriya-upanishad', ['settle.py']),
               ('guru-granth-sahib', ['make.py'])]
 BY_HAND = ['index.json', 'removed.json', 'apps.json', 'glossary']   # library/ files no generator makes
 GENERATED_KEYS = ('sources', 'glossary')   # work.json keys build.py writes
