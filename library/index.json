@@ -5344,7 +5344,17 @@
              "hi": "शिक्षा, पञ्चकोश और भृगुकी ब्रह्मजिज्ञासा · ३ वल्ली · ३१ अनुवाक",
              "en": "Shiksha, the five sheaths and Bhrigu's search for Brahman · 3 vallis · 31 anuvakas"
             },
-            "salute": "॥ ॐ श्री परमात्मने नमः ॥"
+            "salute": "॥ ॐ श्री परमात्मने नमः ॥",
+            "intro": {
+             "hi": [
+              "तैत्तिरीयोपनिषद् कृष्ण यजुर्वेदकी तैत्तिरीय शाखाका और प्रमुख उपनिषदोंमें एक है; यह तैत्तिरीय आरण्यकके सातवें, आठवें और नवें अध्याय हैं। इसकी तीन वल्लियोंमें ३१ अनुवाक हैं। पहली, शीक्षावल्ली, वर्ण, स्वर और मात्राके उच्चारणकी शिक्षासे आरम्भ होती है, और इसमें वेद पढ़ा चुके आचार्यका शिष्यको उपदेश है: 'सत्यं वद, धर्मं चर' — सच बोलो, धर्मपर चलो — और 'मातृदेवो भव, पितृदेवो भव, आचार्यदेवो भव, अतिथिदेवो भव' — माता, पिता, आचार्य और अतिथिको देवता मानो।",
+              "दूसरी, ब्रह्मानन्दवल्ली, 'सत्यं ज्ञानमनन्तं ब्रह्म' — ब्रह्म सत्य, ज्ञान और अनन्त है — से आरम्भ होकर मनुष्यके भीतर एकके भीतर एक पाँच आत्मा बताती है: अन्नमय, प्राणमय, मनोमय, विज्ञानमय और सबसे भीतर आनन्दमय; और उस ब्रह्मके आनन्दको, जहाँसे वाणी मनके साथ उसे पाये बिना लौट आती है। तीसरी, भृगुवल्लीमें, भृगु अपने पिता वरुणसे ब्रह्मके विषयमें पूछते हैं, और वरुण कहते हैं: जिससे सब प्राणी जन्मते हैं, जिससे जीते हैं और जिसमें लौटकर समा जाते हैं, उसे जाननेकी इच्छा करो, वही ब्रह्म है। भृगु तप करके क्रमशः अन्न, प्राण, मन और विज्ञानको ब्रह्म जानते हैं, और अन्तमें जानते हैं कि आनन्द ही ब्रह्म है। आदि शंकराचार्यने इसपर भाष्य लिखा।"
+             ],
+             "en": [
+              "The Taittiriya Upanishad belongs to the Taittiriya branch of the Krishna Yajurveda and is one of the principal Upanishads; it is the seventh, eighth and ninth chapters of the Taittiriya Aranyaka. Its three vallis hold 31 anuvakas. The first, the Shiksha Valli, opens with the teaching of how to pronounce letters, accent and length, and holds the teacher's counsel to the pupil he has taught the Veda: \"satyam vada, dharmam chara\", speak the truth, walk in dharma, and \"matri devo bhava, pitri devo bhava, acharya devo bhava, atithi devo bhava\", let your mother, your father, your teacher and your guest be as gods to you.",
+              "The second, the Brahmananda Valli, opens with \"satyam jnanam anantam brahma\", Brahman is truth, knowledge and the infinite, and tells of the five selves, one within another, in a person: made of food, of breath, of mind, of understanding, and innermost, of bliss; and of the bliss of Brahman, from which words turn back with the mind, not reaching it. In the third, the Bhrigu Valli, Bhrigu asks his father Varuna about Brahman, and Varuna says: that from which all beings are born, by which they live and into which they return, seek to know that; that is Brahman. Through austerity Bhrigu comes to know food, breath, mind and understanding as Brahman in turn, and at last that bliss is Brahman. Adi Shankaracharya wrote a commentary on it."
+             ]
+            }
            }
           ]
          }
