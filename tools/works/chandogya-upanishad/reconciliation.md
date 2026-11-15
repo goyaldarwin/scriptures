@@ -152,6 +152,7 @@ The text has the śānti and **629 mantras**; upanishads.org.in has the same 629
 | 4.4.2 | जाबालो ब्रवीथा | जाबालो ब्रुवीथा | GRETIL ब्रुवीथा (IITK lacks the mantra); Wikisource ब्रवीथा | the optative middle of √brū is ब्रुवीथाः; ब्रवीथाः is no form |
 | 4.16.2 | ब्रह्मा व्यवदति | ब्रह्मा व्यववदति | IITK, GRETIL व्यववदति; Wikisource व्यवदति | vi-ava-√vad, “breaks the silence”; व्यवदति is no form of it |
 | 4.16.4 | ब्रह्मा व्यवदत्युभे | ब्रह्मा व्यववदत्युभे | IITK, GRETIL; Wikisource व्यवदत्युभे | the same verb, as 4.16.2 |
+| 5.10.5 | तस्मिन्यवात्सम्पातम् | तस्मिन्यावत्सम्पातम् | IITK यावत्सम्पातम्, Śaṅkara's bhāṣya (यावत्संपातं यावत्कर्मणः क्षयः); GRETIL, upanishads.org.in and Wikisource यवात्संपातम् | यावत्-सम्पातम्, “as long as the remainder (of their works) lasts”, an avyayībhāva; यवात्, “from barley”, gives the sentence no sense |
 | 5.11.5 | न कर्दर्यो | न कदर्यो | IITK, GRETIL कदर्यो; Wikisource कर्दर्यो | कदर्य, “a miser”; कर्दर्य is no word |
 | 5.13.2 | चक्षुषेतदात्मन | चक्षुष्ट्वेतदात्मन | IITK चक्षुष्ट्वेतदात्मन, GRETIL चक्षुष् ट्व् एतद्; Wikisource चक्षुषेतदात्मन | “this is but the eye of the Self”: चक्षुस्तु एतत्, as मूर्धा त्वेष (5.12.2), प्राणस्त्वेष (5.14.2), पादौ त्वेतौ (5.17.2) |
 | 7.6.1 | ध्यायन्तीव पर्वता देवमनुष्या | ध्यायन्तीव पर्वता ध्यायन्तीव देवमनुष्या | IITK, GRETIL; Wikisource lacks it | a dropped word: every member of the list has its own ध्यायतीव / ध्यायन्तीव |
@@ -176,10 +177,29 @@ Each is a valid reading, so it stays (§2 of the playbook):
 - Readings the page and every witness share stay, though a word writer asked: **6.7.6 प्राज्वाली** (all four).
 
 ## The witnesses' own readings (`source/witness-readings.tsv`)
-Every other difference is a witness's own reading, where the text follows the page and at least one other witness; each is one line of `source/witness-readings.tsv` (witness, our item, the witness's letters, ours, kind), which `check.py` applies and requires to be found. Kinds: `own` (the witness's slip or variant: IIT Kanpur 453, GRETIL 129, upanishads.org.in 129, Wikisource 29), `page` (the witness has the page's reading, which the text corrects: Wikisource 57, GRETIL 20, upanishads.org.in 20), `omits` / `adds` (a passage the witness leaves out or adds: GRETIL's abbreviations, IIT Kanpur's moved sentences in 4.7, Wikisource's order in 2.3.1 and its note “रथन्तरोपरिटिप्पणी” in 2.12.2). The lines are made by `check.py --write` only after each difference has been reviewed. `check.py` then finds **no unexplained difference** with any witness.
+Every other difference is a witness's own reading, where the text follows the page and at least one other witness; each is one line of `source/witness-readings.tsv` (witness, our item, the witness's letters, ours, kind), which `check.py` applies and requires to be found. Kinds: `own` (the witness's slip or variant: IIT Kanpur 452, GRETIL 129, upanishads.org.in 129, Wikisource 29), `page` (the witness has the page's reading, which the text corrects: Wikisource 58, GRETIL 21, upanishads.org.in 21), `omits` / `adds` (a passage the witness leaves out or adds: GRETIL's abbreviations, IIT Kanpur's moved sentences in 4.7, Wikisource's order in 2.3.1 and its note “रथन्तरोपरिटिप्पणी” in 2.12.2). The lines are made by `check.py --write` only after each difference has been reviewed. `check.py` then finds **no unexplained difference** with any witness.
 
 ## The page's Devanagari against its transliteration
 
 | Block | Devanagari | Transliteration | Text |
 |---|---|---|---|
 | 8.5.2 | …मनुते ऽ॥ | …manute, with no avagraha | मनुते ॥ (the stray avagraha is a slip; above) |
+
+## Meanings
+
+`meanings/hi/scriptures.json` and `meanings/en/scriptures.json` are written for this library, never copied: each mantra rendered in full and in its order, following Śaṅkara's bhāṣya (IIT Kanpur, checked against GRETIL), other readings briefly in a footnote. Fifteen batches went through the writer, reviewer, copy audit and accuracy check, then one consistency pass; the English shares no run of ten words with shlokam.org's or Swami Gambhirananda's. The batch records (they quote those translations) are in `scriptures-data`, `hinduism/veda/samaveda/upanishad/chandogya-upanishad/meaning-records/scriptures/`.
+
+Readings settled where the dictionaries and Śaṅkara part:
+
+| Mantra | Our reading (Śaṅkara) | The other reading, in a footnote where it matters |
+|---|---|---|
+| 1.2.7–1.2.8 | आखण, a rock that cannot be dug (अखननीयम्; Apte) | a target (Monier-Williams) |
+| 1.3.8 | उपसरणानि, what is to be approached in thought | refuges (Monier-Williams) |
+| 2.1.4 | अभ्याशः, quickly (क्षिप्रम्; Apte) | prospect (Monier-Williams) |
+| 2.11.2–2.20.2, 4.11.2–4.13.2 | ज्योग्जीवति, lives brightly (उज्ज्वलः, नाप्रख्यातः) | lives long |
+| 3.10.1 | ब्रह्मणा मुखेन, with Brahmā at their head, beside the other four chiefs (Śaṅkara has no comment here) | brahman as Om |
+| 5.11.2–5.11.6 | सम्प्रति, well (सम्यक्) | at present |
+| 7.1.2 | निधि, the science of treasures (महाकालादिनिधिशास्त्रम्) | the science of chronology (Monier-Williams); the word entry gives both |
+| 7.5.3 | चित्तान्, built up and full (उपचितान् बुद्धिमद्गुणैः); every witness reads चित्तान् | worlds conceived by awareness |
+| 8.9.1–8.10.4 | स्राम, one-eyed (एकनेत्रः) | lame or sick (the dictionaries) |
+| 8.14.1 | अनुप्रापत्सि, I wish to attain (अनुप्राप्तुमिच्छामि) | I have attained (the aorist) |
