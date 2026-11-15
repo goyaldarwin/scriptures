@@ -1,5 +1,5 @@
-# Muṇḍaka Upaniṣad: the śānti mantra, mantras 1.1.1 … 3.2.10 and the closing words of each khaṇḍa. Made by source/settle.py
-# from the shlokam.org page; do not edit here. Every correction and choice: reconciliation.md.
+# Muṇḍaka Upaniṣad: the śānti mantra, mantras 1.1.1 … 3.2.11 and the closing words of each khaṇḍa. Made by source/settle.py
+# from the shlokam.org page and, for what it lacks, the witnesses; do not edit here. Every correction and choice: reconciliation.md.
 
 @part 1
 @section shanti
@@ -329,3 +329,9 @@
 स्वयं जुह्वत एकर्षिं श्रद्धयन्तः ।
 तेषामेवैतां ब्रह्मविद्यां वदेत
 शिरोव्रतं विधिवद् यैस्तु चीर्णम् ॥१०॥
+[3.2.11 mantra 11]
+तदेतत्सत्यमृषिरङ्गिराः
+पुरोवाच नैतदचीर्णव्रतोऽधीते ।
+नमः परमऋषिभ्यो नमः परमऋषिभ्यः ॥११॥
+[3.2.iti iti]
+॥ इति मुण्डकोपनिषदि तृतीयमुण्डके द्वितीयः खण्डः ॥

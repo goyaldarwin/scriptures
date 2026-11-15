@@ -6,8 +6,9 @@ page's slips below are in both scripts and are corrected on the page's own word-
 the grammar and the metre (../reconciliation.md). The page has no svara marks, so neither does the text. The
 transliteration is made by the exporter (tools/text/standard.py).
 
-Items: shanti.1 (the śānti), 1.1.1 … 3.2.10 (ids and citations muṇḍaka.khaṇḍa.mantra; n is the mantra's number in its
-khaṇḍa, as printed), and the closing words of each khaṇḍa the page prints (1.1.iti …). Parts are the three muṇḍakas,
+Items: shanti.1 (the śānti), 1.1.1 … 3.2.11 (ids and citations muṇḍaka.khaṇḍa.mantra; n is the mantra's number in its
+khaṇḍa, as printed), and the closing words of each khaṇḍa (1.1.iti … 3.2.iti). The page stops at 3.2.10: 3.2.11 and
+3.2.iti are ADDED from the witnesses (source/witness/, settled word by word in ../reconciliation.md). Parts are the three muṇḍakas,
 sections (pages) the six khaṇḍas.
 Run: python3 settle.py   (then python3 tools/works/export.py mundaka-upanishad)
 """
@@ -70,6 +71,12 @@ FIX = {
     '3.2.5': [('वीतरागाः प्रशान्ताः', 'वीतरागाः प्रशान्ताः ।')],
     '3.2.8': [('समुद्रेऽ', 'समुद्रेऽ-')],
 }
+# ---- what the page lacks, from the witnesses (IIT Kanpur, upanishads.org.in, Wikisource, Vedic Heritage Portal) ----
+ADDED = [
+    {'id': '3.2.11', 'p': 2, 's': 'k3.2', 'y': 'mantra', 'n': '11',
+     'v': ['तदेतत्सत्यमृषिरङ्गिराः', 'पुरोवाच नैतदचीर्णव्रतोऽधीते ।', 'नमः परमऋषिभ्यो नमः परमऋषिभ्यः ॥११॥']},
+    {'id': '3.2.iti', 'p': 2, 's': 'k3.2', 'y': 'iti', 'n': '', 'v': ['॥ इति मुण्डकोपनिषदि तृतीयमुण्डके द्वितीयः खण्डः ॥']},
+]
 TITLE = 'मुण्डकोपनिषत्'          # the page's heading above the śānti, not part of it
 ITI = re.compile(r'^॥ इति मुण्डकोपनिषदि \S+मुण्डके \S+ खण्डः ॥$')
 
@@ -100,6 +107,8 @@ def items(B):
             assert sum(l.count(a) for l in x['v']) == 1, (x['id'], a)
             x['v'] = [l.replace(a, b_) for l in x['v']]
         x['v'] = [house(l) for l in x['v']]
+    out += [dict(x) for x in ADDED]
+    for x in out:
         if x['y'] == 'mantra': assert x['v'][-1].endswith('॥%s॥' % ''.join('०१२३४५६७८९'[int(c)] for c in x['n'])), (x['id'], x['v'][-1])
     return out
 
@@ -119,6 +128,6 @@ if __name__ == '__main__':
     I = items(B)
     ids = [x['id'] for x in I]; assert len(ids) == len(set(ids))
     textfile.write(os.path.join(HERE, '..', 'text.txt'), I, [{'id': a, 'hi': h, 'en': e} for a, h, e in TOPICS], ['1', '2', '3'], 'sa', [
-        'Muṇḍaka Upaniṣad: the śānti mantra, mantras 1.1.1 … 3.2.10 and the closing words of each khaṇḍa. Made by source/settle.py',
-        'from the shlokam.org page; do not edit here. Every correction and choice: reconciliation.md.'])
+        'Muṇḍaka Upaniṣad: the śānti mantra, mantras 1.1.1 … 3.2.11 and the closing words of each khaṇḍa. Made by source/settle.py',
+        'from the shlokam.org page and, for what it lacks, the witnesses; do not edit here. Every correction and choice: reconciliation.md.'])
     print(sum(x['y'] == 'mantra' for x in I), 'mantras,', len(I), 'items')
