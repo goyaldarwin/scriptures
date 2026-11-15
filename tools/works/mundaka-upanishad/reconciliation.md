@@ -78,3 +78,21 @@ The line division is upanishads.org.in's and Wikisource's (the Heritage Portal a
 
 ## What the page lacks and the text leaves out
 After 3.2.iti, Wikisource and the Heritage Portal print the Upaniṣad's colophon (॥ इत्यथर्ववेदीय मुण्डकोपनिषत्समाप्ता ॥) and the śānti again; IIT Kanpur and upanishads.org.in print neither. Only the sanskritdocuments family has them, one witness, so the text ends with 3.2.iti.
+
+## Meanings
+`meanings/en/scriptures.json` and `meanings/hi/scriptures.json` are written for this library, line by line, following Śaṅkara's reading, with other readings and brief context in the footnotes. shlokam.org's English and word glosses, Swami Sitarama Sastri's translation of the bhāṣya, Sri Aurobindo's English of 3.2.11 (upanishads.org.in) and Swami Gambhirananda's English of the mantras and the bhāṣya (IIT Kanpur) were read only to check a reading; our meanings share no run of ten words with any of them (`tools/meanings/overlap.py`). Every reading attributed to Śaṅkara, in the meanings and the footnotes, is checked against his Sanskrit bhāṣya as IIT Kanpur prints it. IIT Kanpur splits 2.2.7 in two, so its bhāṣya for our 2.2.7–2.2.10 sits under the next number and it has none for 2.2.11, whose meaning is the plain words and names no reading of Śaṅkara's.
+
+| Mantra | Settled reading | Why |
+|---|---|---|
+| 1.1.1 | प्रथमः: Brahmā, foremost of the gods; "first in time" in the footnote | Śaṅkara's first reading, गुणैः प्रधानः; his second, अग्रे वा |
+| 1.1.2 | परावराम्: handed down from teacher to pupil; "covering every subject of knowledge, the higher and the lower" in the footnote | Śaṅkara's first reading, परस्मात्परस्मादवरेणावरेण प्राप्ता; his second, परावरसर्वविद्याविषयव्याप्तेः |
+| 1.2.7 | प्लवाः: perishable; "rafts" in the footnote | Śaṅkara, प्लवाः विनाशिन इत्यर्थः |
+| 1.2.12 | नास्त्यकृतः कृतेन: here nothing is unmade, so what use is what is done? | Śaṅkara, नास्ति कश्चिदपि अकृतः पदार्थः … अतः किं कृतेन कर्मणा |
+| 2.1.9 | अन्तरात्मा: the inner self, the subtle body | Śaṅkara, अन्तरात्मा लिङ्गं सूक्ष्मं शरीरम् |
+| 2.2.1 | जानथ: the command "know" | Śaṅkara, जानथ हे शिष्याः; the sentence construed as he construes it |
+| 2.2.5 | अमृतस्यैष सेतुः: this (knowledge of the Self) is the bridge | Śaṅkara, एतदात्मज्ञानममृतस्य … सेतुः |
+| 2.2.6 | बहुधा जायमानः: as though born in many ways | Śaṅkara, जायमान इव, through the mind's moods |
+| 3.1.7 | पश्यत्सु: in all beings that see | Śaṅkara, पश्यत्सु चेतनावत्सु |
+| 3.1.9 | प्राणैश्चित्तं सर्वमोतम्: the whole mind, with the senses, is pervaded by the Self | Śaṅkara, प्राणैः सहेन्द्रियैः चित्तं … ओतं व्याप्तं येन |
+| 3.2.1 | "that person": the knower of the Self, honoured as the supreme God | Śaṅkara, आत्मज्ञं पुरुषं … उपासते परमिव देवम्, continuing 3.1.10 |
+| 3.2.3 | यमेवैष वृणुते: the Kaṭha's wording (1.2.23), the Self chooses; Śaṅkara's reading in the footnote | the same mantra keeps the same meaning in both Upaniṣads; on the Muṇḍaka Śaṅkara reads it as the seeker choosing the Self, reached by that very choosing (तेन वरणेन … नान्येन साधनान्तरेण) |

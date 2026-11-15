@@ -5,7 +5,9 @@ Shelf: हिन्दू धर्म › वेद › अथर्ववे�
 ## Sources
 - **Text:** the shlokam.org page <https://shlokam.org/text/mundaka-upanishad.htm> (the owner allowed it), saved as HTML in scriptures-data at `hinduism/veda/atharvaveda/upanishad/mundaka-upanishad/printouts/shlokam/mundaka-upanishad.html`. Its Devanagari is the base; its own transliteration is the first check of every line; its word-by-word lists (the Devanagari headwords only) settle its slips. The page has no svara marks, so neither does the text. Every choice is in `reconciliation.md`.
 - **Witnesses:** IIT Kanpur's Heritage reader (MNU), upanishads.org.in, Sanskrit Wikisource and the Vedic Heritage Portal, raw downloads in scriptures-data at `hinduism/veda/atharvaveda/upanishad/mundaka-upanishad/printouts/<site>/`. Mantra 3.2.11 and the closing words of khaṇḍa 3.2, which the page lacks, are taken from them.
-- **Meanings, word meanings, introduction:** not written yet.
+- **Meanings:** written for this library (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`), line by line, following Śaṅkara's reading, checked against his bhāṣya (IIT Kanpur's Sanskrit). Other readings and brief context are in the footnotes (`notes`). shlokam.org's English and word glosses, Swami Sitarama Sastri's translation of the bhāṣya and Sri Aurobindo's English (upanishads.org.in) were read only to check a reading; our meanings share no run of ten words with them (`tools/meanings/overlap.py`). The readings that were weighed are in `reconciliation.md`.
+- **Word meanings:** written for this library, in `library/glossary/sa.json`.
+- **Introduction:** not written yet.
 - **Audio:** SMVedroad, "Mundaka Upanishad Chant | मुण्डक उपनिषद् गान | With Lyrics" (YouTube `kIJO1xhPs-Q`, 1538.8 s), in `audio/smvedroad/` (`source.json`, `recordings.json`). The speech-quality copy is in scriptures-data at `hinduism/veda/atharvaveda/upanishad/mundaka-upanishad/audio/smvedroad/kIJO1xhPs-Q.opus`. Not transcribed or timed yet. The video's title and description name no structure and carry no lyrics, so whether it chants the whole text, in which order and with which opening is read from its transcript when it is timed.
 
 ## Files
@@ -15,6 +17,7 @@ The folder's format: `tools/works/README.md`.
 - `source/witnesses.py <printouts folder>`: the witnesses' raw downloads → `source/witness/<site>.txt` (Devanagari, one block per mantra).
 - `source/check.py`: compares every item of `text.txt` with every witness; the only differences allowed are those `reconciliation.md` records.
 - `text.txt`: the settled text; the export writes it by the library's standard and makes the transliteration (PLAYBOOK §3).
+- `meanings/hi/scriptures.json`, `meanings/en/scriptures.json`: our meanings, with footnotes (`notes`).
 
 ## Structure
 - **Hierarchy:** three parts (the muṇḍakas, keys `1`–`3`) › one section per khaṇḍa (`k1.1` … `k3.2`) › the mantras. The śānti is in its own section, `shanti`, in part 1.
