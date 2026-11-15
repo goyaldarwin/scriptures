@@ -1,0 +1,52 @@
+{
+ "id": "purusha-suktam",
+ "path": "hinduism/veda/yajurveda/krishna-yajurveda/aranyaka/purusha-suktam",
+ "lang": "sa",
+ "title": {
+  "hi": "पुरुषसूक्तम्",
+  "en": "Purusha Suktam"
+ },
+ "by": {
+  "hi": "कृष्ण यजुर्वेद, तैत्तिरीय आरण्यक ३.१२–१३",
+  "en": "Krishna Yajurveda, Taittiriya Aranyaka 3.12–13"
+ },
+ "edition": {
+  "hi": "श्लोकम् (shlokam.org)",
+  "en": "Shlokam (shlokam.org)"
+ },
+ "parts": {
+  "name": {
+   "hi": "सूक्त",
+   "en": "Sukta"
+  },
+  "list": [
+   {
+    "key": "sukta",
+    "hi": "पुरुषसूक्तम्",
+    "en": "Purusha Suktam"
+   }
+  ]
+ },
+ "types": {
+  "mantra": {
+   "name": {
+    "hi": "मन्त्र",
+    "en": "Mantra"
+   },
+   "short": {
+    "hi": "मं॰",
+    "en": "Man."
+   }
+  },
+  "shanti": {
+   "name": {
+    "hi": "शान्तिमन्त्र",
+    "en": "Shanti Mantra"
+   },
+   "short": {
+    "hi": "शा॰",
+    "en": "Shan."
+   }
+  }
+ }
+}

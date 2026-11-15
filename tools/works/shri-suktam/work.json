@@ -1,0 +1,82 @@
+{
+ "id": "shri-suktam",
+ "path": "hinduism/veda/rigveda/samhita/shri-suktam",
+ "lang": "sa",
+ "title": {
+  "hi": "श्रीसूक्तम्",
+  "en": "Shri Suktam"
+ },
+ "by": {
+  "hi": "ऋग्वेद, खिल २.६",
+  "en": "Rigveda, khila 2.6"
+ },
+ "edition": {
+  "hi": "श्लोकम् (shlokam.org)",
+  "en": "Shlokam (shlokam.org)"
+ },
+ "parts": {
+  "name": {
+   "hi": "सूक्त",
+   "en": "Sukta"
+  },
+  "list": [
+   {
+    "key": "sukta",
+    "hi": "श्रीसूक्तम्",
+    "en": "Shri Suktam"
+   }
+  ]
+ },
+ "types": {
+  "mantra": {
+   "name": {
+    "hi": "मन्त्र",
+    "en": "Mantra"
+   },
+   "short": {
+    "hi": "मं॰",
+    "en": "Man."
+   }
+  },
+  "phalashruti": {
+   "name": {
+    "hi": "फलश्रुति",
+    "en": "Phalashruti"
+   },
+   "short": {
+    "hi": "फल॰",
+    "en": "Phala."
+   }
+  },
+  "shloka": {
+   "name": {
+    "hi": "श्लोक",
+    "en": "Shloka"
+   },
+   "short": {
+    "hi": "श्लो॰",
+    "en": "Shl."
+   }
+  },
+  "gayatri": {
+   "name": {
+    "hi": "गायत्री मन्त्र",
+    "en": "Gayatri mantra"
+   },
+   "short": {
+    "hi": "गा॰",
+    "en": "Gay."
+   }
+  },
+  "uttara": {
+   "name": {
+    "hi": "उत्तर मन्त्र",
+    "en": "Closing mantra"
+   },
+   "short": {
+    "hi": "उ॰",
+    "en": "Cl."
+   }
+  }
+ }
+}

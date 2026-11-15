@@ -1,0 +1,23 @@
+# Nīlā Sūkta (Taittirīya Saṃhitā 4.4.12), shlokam.org. Made by source/settle.py from the page (scriptures-data);
+# do not edit here. Every correction and choice: reconciliation.md.
+
+@part sukta
+@section sukta
+@topic नीळा देवीकी शरण | Refuge in Neela Devi
+[mangala mangala]
+नी॒ळां दे॒वीग्ं शर॑णम॒हं प्रप॑द्ये सुत॒र॑सि तरसे॒ नमः॑ ।
+@topic विष्णुपत्नी, दिशाओंकी ध्रुव स्वामिनी | Vishnu’s consort, steadfast ruler of the quarters
+[m01 mantra 1]
+ओ-ङ्गृ॒णा॒हि॒ ।
+घृ॒तव॑ती सवित॒राधि॑पत्यैः॒ पय॑स्वती॒ रन्ति॒राशा॑ नो अस्तु ।
+ध्रु॒वा दि॒शां-विँष्णु॑प॒त्न्यघो॑रा॒-ऽस्येशा॑ना॒ सह॑सो॒ या म॒नोता᳚ ।
+[m02 mantra 2]
+बृह॒स्पति॑-र्मात॒रिश्वो॒त वा॒युस्स॑न्धुवा॒ना वाता॑ अ॒भि नो॑ गृणन्तु ।
+वि॒ष्ट॒म्भो दि॒वो ध॒रुणः॑ पृथि॒व्या अ॒स्येशा॑ना॒ जग॑तो॒ विष्णु॑पत्नी ॥
+@section end
+@topic नीळा गायत्री और शान्ति | Neela Gayatri and shanti
+[gayatri gayatri]
+ओं म॒हा॒दे॒व्यै च॑ वि॒द्महे॑ विष्णुप॒त्न्यै च॑ धीमहि ।
+तन्नो॑ नीळा प्रचो॒दया᳚त् ॥
+[shanti.end shanti]
+ॐ शान्ति॒-श्शान्ति॒-श्शान्तिः॑ ॥

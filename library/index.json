@@ -5231,6 +5231,46 @@
     },
     "children": [
      {
+      "id": "rigveda",
+      "title": {
+       "hi": "ऋग्वेद",
+       "en": "Rigveda"
+      },
+      "children": [
+       {
+        "id": "samhita",
+        "title": {
+         "hi": "संहिता",
+         "en": "Samhita"
+        },
+        "children": [
+         {
+          "id": "shri-suktam",
+          "work": "shri-suktam",
+          "path": "hinduism/veda/rigveda/samhita/shri-suktam",
+          "title": {
+           "hi": "श्रीसूक्तम्",
+           "en": "Shri Suktam"
+          },
+          "by": {
+           "hi": "ऋग्वेद, खिल २.६",
+           "en": "Rigveda, khila 2.6"
+          },
+          "edition": {
+           "hi": "श्लोकम् (shlokam.org)",
+           "en": "Shlokam (shlokam.org)"
+          },
+          "desc": {
+           "hi": "लक्ष्मीका आवाहन · १५ मन्त्र · फलश्रुति · लक्ष्मीकी स्तुति",
+           "en": "Calling Lakshmi · 15 mantras · Phalashruti · verses in praise of Lakshmi"
+          },
+          "salute": "॥ ॐ श्री परमात्मने नमः ॥"
+         }
+        ]
+       }
+      ]
+     },
+     {
       "id": "yajurveda",
       "title": {
        "hi": "यजुर्वेद",
@@ -5282,6 +5322,103 @@
               "The Chamakam asks, with the refrain \"cha me\" (\"and for me\"), for every blessing, from food, health and strength to wisdom and the rites of the yajna. The two are recited together in great Vedic rites and are at the heart of the Rudrabhishek."
              ]
             }
+           },
+           {
+            "id": "neela-suktam",
+            "work": "neela-suktam",
+            "path": "hinduism/veda/yajurveda/krishna-yajurveda/samhita/neela-suktam",
+            "title": {
+             "hi": "नीलासूक्तम्",
+             "en": "Neela Suktam"
+            },
+            "by": {
+             "hi": "कृष्ण यजुर्वेद, तैत्तिरीय संहिता ४.४.१२",
+             "en": "Krishna Yajurveda, Taittiriya Samhita 4.4.12"
+            },
+            "edition": {
+             "hi": "श्लोकम् (shlokam.org)",
+             "en": "Shlokam (shlokam.org)"
+            },
+            "desc": {
+             "hi": "विष्णुपत्नी नीळा देवी · २ मन्त्र · नीळा गायत्री",
+             "en": "Neela Devi, Vishnu’s consort · 2 mantras · Neela Gayatri"
+            },
+            "salute": "॥ ॐ श्री परमात्मने नमः ॥"
+           }
+          ]
+         },
+         {
+          "id": "aranyaka",
+          "title": {
+           "hi": "आरण्यक",
+           "en": "Aranyaka"
+          },
+          "children": [
+           {
+            "id": "purusha-suktam",
+            "work": "purusha-suktam",
+            "path": "hinduism/veda/yajurveda/krishna-yajurveda/aranyaka/purusha-suktam",
+            "title": {
+             "hi": "पुरुषसूक्तम्",
+             "en": "Purusha Suktam"
+            },
+            "by": {
+             "hi": "कृष्ण यजुर्वेद, तैत्तिरीय आरण्यक ३.१२–१३",
+             "en": "Krishna Yajurveda, Taittiriya Aranyaka 3.12–13"
+            },
+            "edition": {
+             "hi": "श्लोकम् (shlokam.org)",
+             "en": "Shlokam (shlokam.org)"
+            },
+            "desc": {
+             "hi": "विराट् पुरुष · १८ मन्त्र और उत्तरनारायण (६) · शान्तिपाठ",
+             "en": "The cosmic Person · 18 mantras and the Uttara Narayana (6) · Shanti Paath"
+            },
+            "salute": "॥ ॐ श्री परमात्मने नमः ॥"
+           },
+           {
+            "id": "narayana-suktam",
+            "work": "narayana-suktam",
+            "path": "hinduism/veda/yajurveda/krishna-yajurveda/aranyaka/narayana-suktam",
+            "title": {
+             "hi": "नारायणसूक्तम्",
+             "en": "Narayana Suktam"
+            },
+            "by": {
+             "hi": "कृष्ण यजुर्वेद, तैत्तिरीय आरण्यक, प्रपाठक १० (महानारायण)",
+             "en": "Krishna Yajurveda, Taittiriya Aranyaka, prapathaka 10 (Mahanarayana)"
+            },
+            "edition": {
+             "hi": "श्लोकम् (shlokam.org)",
+             "en": "Shlokam (shlokam.org)"
+            },
+            "desc": {
+             "hi": "शान्तिपाठ · १४ मन्त्र · नारायण गायत्री",
+             "en": "Shanti Paath · 14 mantras · Narayana Gayatri"
+            },
+            "salute": "॥ ॐ श्री परमात्मने नमः ॥"
+           },
+           {
+            "id": "durga-suktam",
+            "work": "durga-suktam",
+            "path": "hinduism/veda/yajurveda/krishna-yajurveda/aranyaka/durga-suktam",
+            "title": {
+             "hi": "दुर्गासूक्तम्",
+             "en": "Durga Suktam"
+            },
+            "by": {
+             "hi": "कृष्ण यजुर्वेद, तैत्तिरीय आरण्यक, प्रपाठक १० (महानारायण)",
+             "en": "Krishna Yajurveda, Taittiriya Aranyaka, prapathaka 10 (Mahanarayana)"
+            },
+            "edition": {
+             "hi": "श्लोकम् (shlokam.org)",
+             "en": "Shlokam (shlokam.org)"
+            },
+            "desc": {
+             "hi": "अग्नि और दुर्गा · ७ मन्त्र · दुर्गा गायत्री",
+             "en": "Agni and Durga · 7 mantras · Durga Gayatri"
+            },
+            "salute": "॥ ॐ श्री परमात्मने नमः ॥"
            }
           ]
          },
@@ -5387,6 +5524,37 @@
        "en": "Atharvaveda"
       },
       "children": [
+       {
+        "id": "samhita",
+        "title": {
+         "hi": "संहिता",
+         "en": "Samhita"
+        },
+        "children": [
+         {
+          "id": "bhu-suktam",
+          "work": "bhu-suktam",
+          "path": "hinduism/veda/atharvaveda/samhita/bhu-suktam",
+          "title": {
+           "hi": "भूसूक्तम्",
+           "en": "Bhu Suktam"
+          },
+          "by": {
+           "hi": "अथर्ववेद १२.१ (पृथ्वी सूक्त)",
+           "en": "Atharvaveda 12.1 (Prithvi Sukta)"
+          },
+          "edition": {
+           "hi": "श्लोकम् (shlokam.org)",
+           "en": "Shlokam (shlokam.org)"
+          },
+          "desc": {
+           "hi": "पृथ्वी माताकी स्तुति · १८ मन्त्र",
+           "en": "Praise of Mother Earth · 18 mantras"
+          },
+          "salute": "॥ ॐ श्री परमात्मने नमः ॥"
+         }
+        ]
+       },
        {
         "id": "upanishad",
         "title": {

@@ -1,0 +1,42 @@
+{
+ "id": "bhu-suktam",
+ "path": "hinduism/veda/atharvaveda/samhita/bhu-suktam",
+ "lang": "sa",
+ "title": {
+  "hi": "भूसूक्तम्",
+  "en": "Bhu Suktam"
+ },
+ "by": {
+  "hi": "अथर्ववेद १२.१ (पृथ्वी सूक्त)",
+  "en": "Atharvaveda 12.1 (Prithvi Sukta)"
+ },
+ "edition": {
+  "hi": "श्लोकम् (shlokam.org)",
+  "en": "Shlokam (shlokam.org)"
+ },
+ "parts": {
+  "name": {
+   "hi": "सूक्त",
+   "en": "Sukta"
+  },
+  "list": [
+   {
+    "key": "sukta",
+    "hi": "भूसूक्तम्",
+    "en": "Bhu Suktam"
+   }
+  ]
+ },
+ "types": {
+  "mantra": {
+   "name": {
+    "hi": "मन्त्र",
+    "en": "Mantra"
+   },
+   "short": {
+    "hi": "मं॰",
+    "en": "Man."
+   }
+  }
+ }
+}
