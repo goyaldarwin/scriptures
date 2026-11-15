@@ -13,7 +13,7 @@ OUT_DIR/batch-NN.ids (one id per line), which is what the writer must cover exac
 
 It reads only; it never writes into library/ or the meaning files.
 """
-import argparse, json, os, re, sys
+import argparse, json, os, re, sys, unicodedata
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -49,18 +49,32 @@ def main():
     mine = lambda lg: os.path.join(folder, 'meanings', lg, 'scriptures.json')   # our own meanings (tools/works/README.md)
     ours = {lg: json.load(open(mine(lg), encoding='utf-8')).get('m', {}) if os.path.exists(mine(lg)) else {} for lg in ('hi', 'en')}
 
+    sys.path.insert(0, os.path.join(REPO, 'tools', 'text')); import standard   # the app's lookup form (standard.fold, app.js fold)
+    FOLD = {}
+    def folded(D):
+        if id(D) not in FOLD:
+            f = {}
+            for k in D: f.setdefault(standard.fold(k), k)
+            FOLD[id(D)] = f
+        return FOLD[id(D)]
+    def find(D, w):   # the word as written, else its folded form (गङ्गा · गंगा, ꣳ · ं), as the app looks it up
+        if w in D: return w
+        return folded(D).get(standard.fold(w))
+
     def lookup(w, lg):
         chain = [lg] + LANGS[lg].get('fallback', [])
         for c in chain:
             for D in (OWN.get(c, {}), gloss(c)):
-                if w in D: return c, w, D[w]
+                k = find(D, w)
+                if k: return c, k, D[k]
         for c in chain:
             for suf in LANGS[c].get('suffixes', []):
                 if w.endswith(suf) and len(w) > len(suf):
                     for st in LANGS[c].get('stems', ['']):
                         r = w[:-len(suf)] + st
                         for D in (OWN.get(c, {}), gloss(c)):
-                            if r in D: return c, r, D[r]
+                            k = find(D, r)
+                            if k: return c, k, D[k]
         return None
 
     items = W['items']; ids = [x['id'] for x in items]
@@ -95,7 +109,7 @@ def main():
             seen = set()
             for l in x['v']:
                 for t in l.split():
-                    w = PUNCT.sub('', t)
+                    w = unicodedata.normalize('NFC', standard.SVARA.sub('', PUNCT.sub('', t)))   # svaras are shown, not looked up (app.js cleanWord)
                     if not w or w in seen: continue
                     seen.add(w); f = lookup(w, lg) or lookup(fold(w), lg)
                     if not f: L.append(f'- {w}: (no entry)')

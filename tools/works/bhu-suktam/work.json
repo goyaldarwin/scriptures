@@ -1,0 +1,52 @@
+{
+ "id": "bhu-suktam",
+ "path": "hinduism/veda/yajurveda/krishna-yajurveda/samhita/bhu-suktam",
+ "lang": "sa",
+ "title": {
+  "hi": "भूसूक्तम्",
+  "en": "Bhu Suktam"
+ },
+ "by": {
+  "hi": "कृष्ण यजुर्वेद, तैत्तिरीय संहिता १.५.३",
+  "en": "Krishna Yajurveda, Taittiriya Samhita 1.5.3"
+ },
+ "edition": {
+  "hi": "विकिस्रोत (sa.wikisource.org)",
+  "en": "Sanskrit Wikisource (sa.wikisource.org)"
+ },
+ "parts": {
+  "name": {
+   "hi": "सूक्त",
+   "en": "Sukta"
+  },
+  "list": [
+   {
+    "key": "sukta",
+    "hi": "भूसूक्तम्",
+    "en": "Bhu Suktam"
+   }
+  ]
+ },
+ "types": {
+  "mantra": {
+   "name": {
+    "hi": "मन्त्र",
+    "en": "Mantra"
+   },
+   "short": {
+    "hi": "मं॰",
+    "en": "Man."
+   }
+  },
+  "shanti": {
+   "name": {
+    "hi": "शान्तिमन्त्र",
+    "en": "Shanti Mantra"
+   },
+   "short": {
+    "hi": "शा॰",
+    "en": "Shan."
+   }
+  }
+ }
+}

@@ -1,0 +1,72 @@
+{
+ "id": "durga-suktam",
+ "path": "hinduism/veda/yajurveda/krishna-yajurveda/aranyaka/durga-suktam",
+ "lang": "sa",
+ "title": {
+  "hi": "दुर्गासूक्तम्",
+  "en": "Durga Suktam"
+ },
+ "by": {
+  "hi": "कृष्ण यजुर्वेद, तैत्तिरीय आरण्यक, प्रपाठक १० (महानारायण)",
+  "en": "Krishna Yajurveda, Taittiriya Aranyaka, prapathaka 10 (Mahanarayana)"
+ },
+ "edition": {
+  "hi": "श्लोकम् (shlokam.org)",
+  "en": "Shlokam (shlokam.org)"
+ },
+ "parts": {
+  "name": {
+   "hi": "सूक्त",
+   "en": "Sukta"
+  },
+  "list": [
+   {
+    "key": "sukta",
+    "hi": "दुर्गासूक्तम्",
+    "en": "Durga Suktam"
+   }
+  ]
+ },
+ "types": {
+  "mantra": {
+   "name": {
+    "hi": "मन्त्र",
+    "en": "Mantra"
+   },
+   "short": {
+    "hi": "मं॰",
+    "en": "Man."
+   }
+  },
+  "gayatri": {
+   "name": {
+    "hi": "गायत्री मन्त्र",
+    "en": "Gayatri mantra"
+   },
+   "short": {
+    "hi": "गा॰",
+    "en": "Gay."
+   }
+  },
+  "iti": {
+   "name": {
+    "hi": "समापन (पुष्पिका)",
+    "en": "Closing words (iti)"
+   },
+   "short": {
+    "hi": "इति",
+    "en": "Iti"
+   }
+  },
+  "shanti": {
+   "name": {
+    "hi": "शान्तिमन्त्र",
+    "en": "Shanti Mantra"
+   },
+   "short": {
+    "hi": "शा॰",
+    "en": "Shan."
+   }
+  }
+ }
+}
