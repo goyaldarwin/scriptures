@@ -5381,6 +5381,46 @@
       ]
      },
      {
+      "id": "samaveda",
+      "title": {
+       "hi": "सामवेद",
+       "en": "Samaveda"
+      },
+      "children": [
+       {
+        "id": "upanishad",
+        "title": {
+         "hi": "उपनिषद्",
+         "en": "Upanishads"
+        },
+        "children": [
+         {
+          "id": "kena-upanishad",
+          "work": "kena-upanishad",
+          "path": "hinduism/veda/samaveda/upanishad/kena-upanishad",
+          "title": {
+           "hi": "केनोपनिषद्",
+           "en": "Kena Upanishad"
+          },
+          "by": {
+           "hi": "सामवेद, तलवकार शाखा",
+           "en": "Samaveda, Talavakara shakha"
+          },
+          "edition": {
+           "hi": "सन्दीपनी (स्वामी गुरुभक्तानन्द); upanishads.org.in",
+           "en": "Sandeepany (Swami Gurubhaktananda); upanishads.org.in"
+          },
+          "desc": {
+           "hi": "मन, इन्द्रियोंको कौन चलाता है; यक्ष और उमा · ४ खण्ड · ३४ मन्त्र",
+           "en": "Who moves the mind and senses; the yaksha and Uma · 4 khands · 34 mantras"
+          },
+          "salute": "॥ ॐ श्री परमात्मने नमः ॥"
+         }
+        ]
+       }
+      ]
+     },
+     {
       "id": "atharvaveda",
       "title": {
        "hi": "अथर्ववेद",

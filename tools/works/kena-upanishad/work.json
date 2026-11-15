@@ -1,0 +1,83 @@
+{
+ "id": "kena-upanishad",
+ "path": "hinduism/veda/samaveda/upanishad/kena-upanishad",
+ "lang": "sa",
+ "title": {
+  "hi": "केनोपनिषद्",
+  "en": "Kena Upanishad"
+ },
+ "by": {
+  "hi": "सामवेद, तलवकार शाखा",
+  "en": "Samaveda, Talavakara shakha"
+ },
+ "edition": {
+  "hi": "स्वामी गुरुभक्तानन्द (सन्दीपनी) की पुस्तक; upanishads.org.in, विकिस्रोत, IIT कानपुर",
+  "en": "Swami Gurubhaktananda (Sandeepany); upanishads.org.in, Wikisource, IIT Kanpur"
+ },
+ "parts": {
+  "name": {
+   "hi": "खण्ड",
+   "en": "Khanda"
+  },
+  "list": [
+   {
+    "key": "1",
+    "hi": "प्रथम खण्ड",
+    "en": "Khanda 1"
+   },
+   {
+    "key": "2",
+    "hi": "द्वितीय खण्ड",
+    "en": "Khanda 2"
+   },
+   {
+    "key": "3",
+    "hi": "तृतीय खण्ड",
+    "en": "Khanda 3"
+   },
+   {
+    "key": "4",
+    "hi": "चतुर्थ खण्ड",
+    "en": "Khanda 4"
+   }
+  ]
+ },
+ "cite": {
+  "by": [
+   "part",
+   "n"
+  ]
+ },
+ "types": {
+  "shanti": {
+   "name": {
+    "hi": "शान्तिमन्त्र",
+    "en": "Shanti Mantra"
+   },
+   "short": {
+    "hi": "शा॰",
+    "en": "Shan."
+   }
+  },
+  "mantra": {
+   "name": {
+    "hi": "मन्त्र",
+    "en": "Mantra"
+   },
+   "short": {
+    "hi": "मं॰",
+    "en": "Man."
+   }
+  },
+  "iti": {
+   "name": {
+    "hi": "समापन (पुष्पिका)",
+    "en": "Closing words (iti)"
+   },
+   "short": {
+    "hi": "इति",
+    "en": "Iti"
+   }
+  }
+ }
+}
