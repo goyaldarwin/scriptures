@@ -5264,7 +5264,17 @@
            "hi": "लक्ष्मीका आवाहन · १५ मन्त्र · फलश्रुति · लक्ष्मीकी स्तुति",
            "en": "Calling Lakshmi · 15 mantras · Phalashruti · verses in praise of Lakshmi"
           },
-          "salute": "॥ ॐ श्री परमात्मने नमः ॥"
+          "salute": "॥ ॐ श्री परमात्मने नमः ॥",
+          "intro": {
+           "hi": [
+            "श्रीसूक्तम् सौभाग्यकी देवी श्री, लक्ष्मीका वैदिक सूक्त है: ऋग्वेदका एक खिल, यानी परिशिष्ट सूक्त। इसके पन्द्रह मन्त्र अग्नि जातवेदासे लक्ष्मीको लानेकी विनती करते हैं — सुवर्ण-वर्णा, चन्द्रमा-सी दीप्त, कमलोंकी माला पहने, जो कभी न जाएँ — और उनके साथ सोना, गौएँ, घोड़े और जन। वे लक्ष्मीसे विनती करते हैं कि भूख-प्यास और अलक्ष्मी, यानी दुर्भाग्यको घरसे निकाल दें, और माता श्रीके रूपमें कुलमें निवास करें।",
+            "फिर फलश्रुति है: जो शुद्ध और संयमी होकर प्रतिदिन अग्निमें घीकी आहुति दे और श्रीकी कामनासे इस पन्द्रह ऋचाओंके सूक्तका निरन्तर जप करे। उसके बाद विष्णुपत्नी लक्ष्मीकी स्तुतिके श्लोक हैं, जिनमें लक्ष्मी गायत्री भी है; सब मिलाकर सैंतीस पद्य। यह वैष्णव और शैव दोनों पञ्चसूक्तोंमें है।"
+           ],
+           "en": [
+            "The Shri Suktam is the Vedic hymn to Shri, Lakshmi, the goddess of fortune: a khila, an appendix hymn, of the Rigveda. Its fifteen mantras ask Agni, Jatavedas, to bring Lakshmi, golden of hue, shining like the moon, garlanded with lotuses, she who never goes away, and with her gold, cows, horses and people. They ask her to drive hunger, thirst and Alakshmi, misfortune, out of the house, and to dwell in the family as its mother.",
+            "A phalashruti follows: let one who is pure and self-restrained offer ghee into the fire every day and, desiring Shri, recite the fifteen-verse hymn constantly. Then come verses in praise of Lakshmi, Vishnu's consort, among them the Lakshmi Gayatri; thirty-seven verses in all. It is among the Pancha Suktas of both the Vaishnava and the Shaiva traditions."
+           ]
+          }
          }
         ]
        }
@@ -5343,7 +5353,17 @@
              "hi": "भूमि, अदिति और अग्नि · ७ मन्त्र",
              "en": "Earth, Aditi and the fire · 7 mantras"
             },
-            "salute": "॥ ॐ श्री परमात्मने नमः ॥"
+            "salute": "॥ ॐ श्री परमात्मने नमः ॥",
+            "intro": {
+             "hi": [
+              "भूसूक्तम् पृथ्वीका वैदिक सूक्त है, कृष्ण यजुर्वेदकी तैत्तिरीय संहिता (१.५.३) से; अथर्ववेदका पृथ्वीका लम्बा सूक्त (१२.१) भी भूसूक्त कहलाता है। इसके सात मन्त्र अपनी विपुलतासे पृथ्वी, अपने विस्तारसे द्युलोक और अपनी महिमासे अन्तरिक्षसे आरम्भ होते हैं, और अन्नके भोक्ता अग्निको देवी अदितिकी गोदमें स्थापित करते हैं।",
+              "फिर वे क्रोधमें बिखेरी गई अग्निको फिर प्रज्वलित करते हैं: जो पृथ्वीपर बिखरा था, उसे आदित्यों, विश्वेदेवों और वसुओंने बटोर लिया; मन, जो ज्योति है, टूटे यज्ञको फिरसे जोड़े, और बृहस्पति उसे आगे बढ़ाएँ। अन्नकी प्राप्तिके लिए इसका पाठ होता है, और यह वैष्णव और शैव दोनों पञ्चसूक्तोंमें है।"
+             ],
+             "en": [
+              "The Bhu Suktam is a Vedic hymn to the Earth from the Taittiriya Samhita of the Krishna Yajurveda (1.5.3); the Atharvaveda's long hymn to the Earth (12.1) is also called a Bhu Suktam. Its seven mantras open with the earth in its abundance, the sky in its breadth and the mid-air in its greatness, and lay down Agni, the eater of food, in the lap of the goddess Aditi.",
+              "Then they kindle again the fire scattered in anger: what lay strewn over the earth the Adityas, the Vishvedevas and the Vasus gathered up; may the mind, which is light, join together the broken sacrifice, and Brihaspati extend it. It is chanted to obtain food, and is among the Pancha Suktas of both the Vaishnava and the Shaiva traditions."
+             ]
+            }
            },
            {
             "id": "neela-suktam",
@@ -5365,7 +5385,17 @@
              "hi": "विष्णुपत्नी नीळा देवी · २ मन्त्र · नीळा गायत्री",
              "en": "Neela Devi, Vishnu’s consort · 2 mantras · Neela Gayatri"
             },
-            "salute": "॥ ॐ श्री परमात्मने नमः ॥"
+            "salute": "॥ ॐ श्री परमात्मने नमः ॥",
+            "intro": {
+             "hi": [
+              "नीलासूक्तम्, जिसे विष्णुपत्नी सूक्त भी कहते हैं, विष्णुकी पत्नी नीळा देवीका छोटा-सा वैदिक सूक्त है; इसके दो मन्त्र कृष्ण यजुर्वेदकी तैत्तिरीय संहिता (४.४.१२) के हैं। यह शरणसे आरम्भ होता है — 'मैं देवी नीळाकी शरण लेता हूँ' — नामको छोड़कर उन्हीं शब्दोंमें जिनमें दुर्गासूक्तम् दुर्गाकी शरण लेता है। मन्त्र उन्हें दिशाओंमें ध्रुव, सौम्य, द्युलोकका आधार, पृथ्वीकी धारक और इस जगत्‌की स्वामिनी कहते हैं, और बृहस्पति, मातरिश्वा और वायुसे विनती करते हैं कि वे हमारा अभिनन्दन करें।",
+              "अन्तमें नीळा गायत्री और शान्ति हैं। नीळा देवी श्री और भूके साथ विष्णुकी तीसरी पत्नी मानी जाती हैं, और पुरुष और नारायण सूक्तोंके साथ इन तीनोंके सूक्त वैष्णव पञ्चसूक्त बनाते हैं।"
+             ],
+             "en": [
+              "The Neela Suktam, also called the Vishnupatni Suktam, is a short Vedic hymn to Neela Devi, Vishnu's consort; its two mantras are from the Taittiriya Samhita of the Krishna Yajurveda (4.4.12). It opens with refuge, \"I take refuge in the goddess Neela\", in the same words, but for the name, in which the Durga Suktam takes refuge in Durga. The mantras call her steadfast among the quarters, gentle, the prop of heaven, the support of the earth and the ruler of this world, and ask Brihaspati, Matarishvan and Vayu to greet us.",
+              "The Neela Gayatri and the shanti close it. Neela Devi is revered as Vishnu's third consort, with Shri and Bhu, and with the Purusha and Narayana Suktas the hymns to these three make up the Vaishnava Pancha Suktas."
+             ]
+            }
            }
           ]
          },
@@ -5396,7 +5426,17 @@
              "hi": "विराट् पुरुष · १८ मन्त्र और उत्तरनारायण (६) · शान्तिपाठ",
              "en": "The cosmic Person · 18 mantras and the Uttara Narayana (6) · Shanti Paath"
             },
-            "salute": "॥ ॐ श्री परमात्मने नमः ॥"
+            "salute": "॥ ॐ श्री परमात्मने नमः ॥",
+            "intro": {
+             "hi": [
+              "पुरुषसूक्तम् विराट् पुरुषका वैदिक सूक्त है, उस रूपमें जो कृष्ण यजुर्वेदके तैत्तिरीय आरण्यक (३.१२–१३) में है; ऋग्वेदमें यह सूक्त सोलह मन्त्रोंमें (१०.९०) है। पुरुषके सहस्र सिर, सहस्र नेत्र और सहस्र पैर हैं; जो हो चुका और जो होगा, यह सब पुरुष ही है, और सारे प्राणी उसका एक चौथाई ही हैं, शेष तीन चौथाई द्युलोकमें अमृत है। देवता पुरुषको ही हवि बनाकर यज्ञ करते हैं, और उस यज्ञसे वेद, पशु, चारों वर्ण, उसके मनसे चन्द्रमा, नेत्रसे सूर्य और सब लोक उत्पन्न होते हैं।",
+              "अठारह मन्त्रोंके बाद उत्तरनारायणके छह मन्त्र हैं, जो जलसे पुरुषके जन्मकी बात कहते हैं और ह्री और लक्ष्मीको उसकी दो पत्नियाँ कहते हैं; 'तच्छं योः' शान्तिपाठ इसके आरम्भ और अन्तमें है। 'मैं इस महान् पुरुषको जानता हूँ, जो सूर्यके वर्णका है, अन्धकारसे परे': उसे जानकर मनुष्य यहीं अमृत हो जाता है, दूसरा कोई मार्ग नहीं। यह वैष्णव और शैव दोनों पञ्चसूक्तोंमें है, उन पाँच सूक्तोंमें जिनका पाठ मन्दिरोंमें अभिषेकके समय होता है।"
+             ],
+             "en": [
+              "The Purusha Suktam is the Vedic hymn of the Purusha, the cosmic Person, in the form the Taittiriya Aranyaka of the Krishna Yajurveda gives it (3.12–13); the Rigveda has the hymn in sixteen mantras (10.90). The Purusha has a thousand heads, a thousand eyes and a thousand feet; he is all this, what has been and what is to be, and all beings are only a quarter of him, the other three quarters immortal in heaven. The gods offer the Purusha himself in sacrifice, and from that sacrifice are born the Vedas, the animals, the four varnas, the moon from his mind, the sun from his eye, and all the worlds.",
+              "Its eighteen mantras are followed by the six of the Uttara Narayana, which tells of the Purusha's birth from the waters and names Hri and Lakshmi his two wives; the Shanti Paath \"Taccham yoh\" opens and closes it. \"I know this great Purusha, the colour of the sun, beyond darkness\": knowing him, one becomes immortal here, and there is no other path. It is among the Pancha Suktas of both the Vaishnava and the Shaiva traditions, the five hymns recited in temples at the abhishek."
+             ]
+            }
            },
            {
             "id": "narayana-suktam",
@@ -5418,7 +5458,17 @@
              "hi": "शान्तिपाठ · १४ मन्त्र · नारायण गायत्री",
              "en": "Shanti Paath · 14 mantras · Narayana Gayatri"
             },
-            "salute": "॥ ॐ श्री परमात्मने नमः ॥"
+            "salute": "॥ ॐ श्री परमात्मने नमः ॥",
+            "intro": {
+             "hi": [
+              "नारायणसूक्तम् नारायणका वैदिक सूक्त है, कृष्ण यजुर्वेदके तैत्तिरीय आरण्यकके दसवें प्रपाठक — महानारायण — से, जो उपनिषद्के रूपमें भी पढ़ा जाता है। यह नारायणको सारा विश्व भी देखता है और उससे परे भी: वे परम ज्योति, परम आत्मा और परम ब्रह्म हैं, और जो कुछ जगत्में दिखता या सुना जाता है, उस सबमें भीतर-बाहर व्याप्त होकर स्थित हैं।",
+              "फिर सूक्त हृदयकी ओर मुड़ता है, जो नीचेको मुख किए कमलकी कलीके समान है, कण्ठसे एक बित्ता नीचे और नाभिसे ऊपर। उसके सिरेपर एक सूक्ष्म छिद्र है, जिसके बीच एक महान् अग्नि है, और उस अग्निके बीच एक सूक्ष्म शिखा, नीवार धानके शूक-सी पतली, काले मेघके बीच बिजलीकी रेखा-सी चमकती; उस शिखाके बीच परमात्मा स्थित हैं, जो ब्रह्मा हैं, शिव हैं, हरि हैं, इन्द्र हैं। इसके चौदह मन्त्रोंसे पहले 'सह नाववतु' शान्तिपाठ है और अन्तमें नारायण गायत्री; पूजाके अन्तमें पुष्प अर्पित करते समय प्रायः इसीका पाठ होता है, और यह वैष्णव पञ्चसूक्तोंमें एक है।"
+             ],
+             "en": [
+              "The Narayana Suktam is a Vedic hymn to Narayana from the tenth prapathaka of the Taittiriya Aranyaka of the Krishna Yajurveda, the Mahanarayana, which is also read as an Upanishad. It sees Narayana as the whole universe and as beyond it: he is the supreme light, the supreme Self and the supreme Brahman, and he abides pervading, within and without, all that is seen or heard of in the world.",
+              "Then the hymn turns to the heart, like a lotus bud turned downward, a span below the neck and above the navel. At its tip is a fine opening with a great fire in its midst, and in that fire a fine tongue of flame, slender as the awn of wild rice, shining like lightning in a dark cloud; in that flame abides the Supreme Self, who is Brahma, Shiv, Hari and Indra. Its fourteen mantras have the Shanti Paath \"Saha navavatu\" before them and the Narayana Gayatri after; it is often recited to offer flowers at the end of a puja, and is one of the Vaishnava Pancha Suktas."
+             ]
+            }
            },
            {
             "id": "durga-suktam",
@@ -5440,7 +5490,17 @@
              "hi": "अग्नि और दुर्गा · ७ मन्त्र · दुर्गा गायत्री",
              "en": "Agni and Durga · 7 mantras · Durga Gayatri"
             },
-            "salute": "॥ ॐ श्री परमात्मने नमः ॥"
+            "salute": "॥ ॐ श्री परमात्मने नमः ॥",
+            "intro": {
+             "hi": [
+              "दुर्गासूक्तम् कृष्ण यजुर्वेदके तैत्तिरीय आरण्यकके दसवें प्रपाठक — महानारायण — का वैदिक सूक्त है। इसके सात मन्त्रोंमें केवल दूसरा देवी दुर्गाको पुकारता है — अग्निके वर्णवाली, अपने तपसे दीप्त, जिनकी शरण स्तोता लेता है; पाँच मन्त्र अग्नि जातवेदाकी स्तुति हैं, और सातवाँ इन्द्र और विष्णुकी। बार-बार ये अग्निसे विनती करते हैं कि जैसे नाव नदीके पार ले जाती है, वैसे वे हमें सब दुर्गतियों ('दुर्गाणि') के पार ले जाएँ, शत्रुका धन जला दें, हमारे शरीरोंकी रक्षा करें और हमारी सन्तानको सुख दें।",
+              "अन्तमें दुर्गा गायत्री है, जो देवीको कात्यायनी, कन्याकुमारी और दुर्गा नामोंसे पुकारती है। जीवनकी कठिनाइयोंसे पार पानेके लिए इसका पाठ विशेष रूपसे बताया गया है, और यह शैव पञ्चसूक्तोंमें एक है, जो रुद्रम्के साथ मन्दिरोंमें अभिषेकके समय पढ़े जाते हैं।"
+             ],
+             "en": [
+              "The Durga Suktam is a Vedic hymn from the tenth prapathaka of the Taittiriya Aranyaka of the Krishna Yajurveda, the Mahanarayana. Of its seven mantras only the second calls on the goddess Durga, fire-coloured, blazing with her own ardour, in whom the singer takes refuge; five are prayers to Agni, Jatavedas, and the seventh is to Indra and Vishnu. Again and again they ask Agni to carry us across all hardships (\"durgani\") as a boat carries one across a river, to burn up the wealth of the hostile, to protect our bodies and to bring happiness to our children.",
+              "It closes with the Durga Gayatri, which calls the goddess Katyayani, Kanyakumari and Durga. Its recitation is commended for overcoming the difficulties of life, and it is one of the Shaiva Pancha Suktas, recited with the Rudram in temples at the abhishek."
+             ]
+            }
            }
           ]
          },
