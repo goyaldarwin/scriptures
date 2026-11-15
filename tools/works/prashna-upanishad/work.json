@@ -1,0 +1,93 @@
+{
+ "id": "prashna-upanishad",
+ "path": "hinduism/veda/atharvaveda/upanishad/prashna-upanishad",
+ "lang": "sa",
+ "title": {
+  "hi": "प्रश्नोपनिषद्",
+  "en": "Prashna Upanishad"
+ },
+ "by": {
+  "hi": "अथर्ववेद",
+  "en": "Atharvaveda"
+ },
+ "edition": {
+  "hi": "shlokam.org",
+  "en": "shlokam.org"
+ },
+ "parts": {
+  "name": {
+   "hi": "प्रश्न",
+   "en": "Prashna"
+  },
+  "list": [
+   {
+    "key": "1",
+    "hi": "प्रथम प्रश्न",
+    "en": "Prashna 1"
+   },
+   {
+    "key": "2",
+    "hi": "द्वितीय प्रश्न",
+    "en": "Prashna 2"
+   },
+   {
+    "key": "3",
+    "hi": "तृतीय प्रश्न",
+    "en": "Prashna 3"
+   },
+   {
+    "key": "4",
+    "hi": "चतुर्थ प्रश्न",
+    "en": "Prashna 4"
+   },
+   {
+    "key": "5",
+    "hi": "पञ्चम प्रश्न",
+    "en": "Prashna 5"
+   },
+   {
+    "key": "6",
+    "hi": "षष्ठ प्रश्न",
+    "en": "Prashna 6"
+   }
+  ]
+ },
+ "cite": {
+  "by": [
+   "part",
+   "n"
+  ]
+ },
+ "types": {
+  "shanti": {
+   "name": {
+    "hi": "शान्तिमन्त्र",
+    "en": "Shanti Mantra"
+   },
+   "short": {
+    "hi": "शा॰",
+    "en": "Shan."
+   }
+  },
+  "mantra": {
+   "name": {
+    "hi": "मन्त्र",
+    "en": "Mantra"
+   },
+   "short": {
+    "hi": "मं॰",
+    "en": "Man."
+   }
+  },
+  "iti": {
+   "name": {
+    "hi": "समापन (पुष्पिका)",
+    "en": "Closing words (iti)"
+   },
+   "short": {
+    "hi": "इति",
+    "en": "Iti"
+   }
+  }
+ }
+}
