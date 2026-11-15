@@ -42,5 +42,14 @@ The owner's book (Swami Gurubhaktananda, Sandeepany Text 38) prints every mantra
 - **Candrabindu** (चक्षूँषि, मीमाँस्यम्, तस्मिँस्त्वयि, अपीदँ, उमाँ, ताँहोवाच, अभीक्ष्णँ): kept where the book's IAST has `m̐`.
 - **The library's writing standard** (docs/PLAYBOOK.md §3) is applied by the exporter: a nasal before a stop as its class letter (सङ्कल्पः, संवाञ्छन्ति), a final म् at a pause (दग्धुम् ।), ॐ, and the ISO 15919 transliteration `t` made from the verse.
 
+## Meanings
+Our Hindi and English follow Śaṅkara's padabhāṣya. The readings settled while writing them:
+- **2.1–2.2, the speakers.** The teacher's words end at मीमाँस्यमेव ते ("it is still to be inquired into by you"); मन्ये विदितम् is the disciple's reply after reflecting, and he goes on in 2.2 ("I know, and I do not know": Śaṅkara reads वेद च as "and I do not know too").
+- **2.3–2.5, the speaker.** From यस्यामतं the Upaniṣad speaks in its own voice, leaving the dialogue of teacher and disciple (Śaṅkara), so 2.3 opens "The Upaniṣad says:".
+- **4.2, प्रथमो विदाञ्चकार with the plural ते.** Śaṅkara glosses प्रथमः as प्रथमाः and the verb as viditavantaḥ: the three gods were the first to know it.
+- **4.2–4.3, इव in अतितरामिव.** Śaṅkara takes इव as without meaning or emphatic, so the meaning says "far above the other gods", with no "as it were".
+- **4.5, the construction.** The mind's seeming to go to Brahman, the seeker's remembering it again and again by the mind, and the mind's resolve are the teaching with regard to the self (Śaṅkara); the reading of the mind as a likeness of Brahman is not taken.
+- **4.8, प्रतिष्ठा वेदाः सर्वाङ्गानि.** Śaṅkara's first reading in the meaning (austerity, self-restraint and rites are the foundation, and so are the Vedas and all their auxiliary sciences); his second (the three its feet, the Vedas its other limbs) in the footnote.
+
 ## Open
 - None.

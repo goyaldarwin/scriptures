@@ -19,6 +19,12 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 PUNCT = re.compile(r"[।॥|,.;:!?\-—‘’“”'\"()\[\]०-९੦-੯0-9]")   # the app's rule (tools/site/app.js): Devanagari and Gurmukhi digits are verse numbers
 
+def fold(w):
+    """The app's spelling fold (tools/site/app.js `fold`): a nasal before a stop and a word-final म् are ं, so श्रोत्रम् finds श्रोत्रं."""
+    w = w.replace('ग्ं', 'ं').replace('ꣳ', 'ं')
+    w = re.sub('[ङञणनम]्(?=[कखगघचछजझटठडढतथदधपफबभ])', 'ं', w)
+    return re.sub('म्$', 'ं', w)
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('out'); ap.add_argument('first'); ap.add_argument('last')
@@ -91,7 +97,7 @@ def main():
                 for t in l.split():
                     w = PUNCT.sub('', t)
                     if not w or w in seen: continue
-                    seen.add(w); f = lookup(w, lg)
+                    seen.add(w); f = lookup(w, lg) or lookup(fold(w), lg)
                     if not f: L.append(f'- {w}: (no entry)')
                     else:
                         c, r, e = f
