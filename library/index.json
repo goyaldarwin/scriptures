@@ -5445,6 +5445,38 @@
         },
         "children": [
          {
+          "id": "mundaka-upanishad",
+          "work": "mundaka-upanishad",
+          "path": "hinduism/veda/atharvaveda/upanishad/mundaka-upanishad",
+          "title": {
+           "hi": "मुण्डकोपनिषद्",
+           "en": "Mundaka Upanishad"
+          },
+          "by": {
+           "hi": "अथर्ववेद",
+           "en": "Atharvaveda"
+          },
+          "edition": {
+           "hi": "shlokam.org",
+           "en": "shlokam.org"
+          },
+          "desc": {
+           "hi": "परा और अपरा विद्या · ३ मुण्डक · ६ खण्ड · ६४ मन्त्र",
+           "en": "The higher and the lower knowledge · 3 mundakas · 6 khandas · 64 mantras"
+          },
+          "salute": "॥ ॐ श्री परमात्मने नमः ॥",
+          "intro": {
+           "hi": [
+            "मुण्डकोपनिषद् अथर्ववेदका और प्रमुख उपनिषदोंमें एक है। यह बताता है कि ब्रह्मविद्या ब्रह्माजीसे गुरु-शिष्य परम्परामें अंगिरा ऋषितक पहुँची। महागृहस्थ शौनक विधिपूर्वक उनके पास जाकर पूछते हैं: 'भगवन्, किसको जान लेनेपर यह सब जाना हुआ हो जाता है?' अंगिरा बताते हैं कि जाननेयोग्य विद्याएँ दो हैं: अपरा, जिसमें चारों वेद और छः वेदांग हैं, और परा, जिससे वह अक्षर (अविनाशी) जाना जाता है।",
+            "आगेके मन्त्र कहते हैं कि यज्ञकर्म पार ले जानेवाली दृढ़ नौका नहीं, इसलिए ब्रह्मको जाननेके लिए गुरुके पास जाना चाहिए; और जैसे जलती आगसे चिनगारियाँ, वैसे ही उस अक्षरसे सारी सृष्टि निकलती है। इसके चित्र प्रसिद्ध हैं: ॐ धनुष है, आत्मा बाण और ब्रह्म लक्ष्य; एक ही वृक्षपर दो पक्षी, जिनमें एक मीठा फल खाता है और दूसरा बिना खाये देखता रहता है; और जैसे नदियाँ नाम-रूप छोड़कर समुद्रमें मिल जाती हैं, वैसे ही ज्ञानी परम पुरुषको पाता है, और ब्रह्मको जाननेवाला ब्रह्म ही हो जाता है। इसका 'सत्यमेव जयते' भारतका राष्ट्रीय आदर्श-वाक्य है। इसके तीन मुण्डक, दो-दो खण्डोंके, ६४ मन्त्रोंमें हैं, और आदि शंकराचार्यने इसपर भाष्य लिखा।"
+           ],
+           "en": [
+            "The Mundaka Upanishad belongs to the Atharvaveda and is one of the principal Upanishads. It tells how the knowledge of Brahman came down from Brahma, teacher to pupil, to the sage Angiras. The great householder Shaunaka comes to him in the proper way and asks, \"Lord, what is it that, once known, makes all this known?\" Angiras answers that there are two kinds of knowledge to be known: the lower, which is the four Vedas and the six sciences that serve them, and the higher, by which the Imperishable is reached.",
+            "The verses that follow say that ritual is no sound boat to cross over in, so one who seeks Brahman should go to a teacher; and that as sparks fly from a blazing fire, all creation comes from the Imperishable. Its images are famous: Om is the bow, the self the arrow and Brahman the target; two birds on one tree, one eating the sweet fruit while the other looks on without eating; and as rivers lose name and form in the sea, the wise reach the highest Person, and the one who knows Brahman becomes Brahman. Its words \"satyameva jayate\", truth alone prevails, are the national motto of India. Its 64 mantras are in three mundakas of two khandas each, and Adi Shankaracharya wrote a commentary on it."
+           ]
+          }
+         },
+         {
           "id": "mandukya-upanishad",
           "work": "mandukya-upanishad",
           "path": "hinduism/veda/atharvaveda/upanishad/mandukya-upanishad",
