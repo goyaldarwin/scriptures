@@ -83,5 +83,15 @@ Where the page's reading is a valid form, it stays, though some printed editions
 - सर्व एवोत्क्रामन्ते … सर्वा एवोत्क्रमन्ते (2.4): both forms of the verb, as printed.
 - पुरिशयं (5.5): as printed, and as IIT Kanpur and GRETIL.
 
+## Meanings
+`meanings/hi/scriptures.json` and `meanings/en/scriptures.json` follow Śaṅkara's reading; every reading attributed to him, in the meanings and the footnotes, is checked against his Sanskrit bhāṣya (IIT Kanpur, and GRETIL). Where the words allow more than one reading:
+
+| Mantra | Settled reading | Why |
+|---|---|---|
+| 4.9 | पुरुषः: the individual knower, "the person" (the capital Person is kept for the supreme, 5.5 and 6.1–6.6) | Śaṅkara takes this puruṣa as the knowing self that has entered the body, the person of 4.1–4.2 |
+| 5.5 | त्रिमात्रेणोमित्येतेनैवाक्षरेण … परं पुरुषमभिध्यायीत: he meditates on this Om of three measures as the supreme Person; the plain grammar (Om as the means of the meditation) in the footnote | Śaṅkara, ओंकारमिति द्वितीया … प्रकृतानुरोधात् … द्वितीयैव परिणेया: the instrumental is taken as the object, by the context |
+| 5.6 | अनविप्रयुक्ताः: each applied to its own object | अन् + अविप्रयुक्त, a double negation (before a consonant the negative is अ-); Śaṅkara, न अविप्रयुक्ता अनविप्रयुक्ताः |
+| 6.6 | वेद … यथा मा वो मृत्युः परिव्यथाः: "know him … so that death may not afflict you", an injunction to the seekers | Śaṅkara glosses वेद as जानाति but addresses the seekers (हे शिष्याः, युष्मान्); the address and यथा … मा require the injunction |
+
 ## Divisions
 The page divides the text into six "chapters", the six praśnas; they are the six parts, each one section. The topics are the śānti pāṭha and one per praśna, under our own names (the question each praśna answers). The page's mantra numbers, restarting in each praśna, are the text's; every witness numbers them the same (16, 13, 12, 11, 7, 8), IIT Kanpur's copies aside.
