@@ -5,10 +5,16 @@
 ## Witnesses
 - **The page's transliteration.** `source/settle.py` reads it back into Devanagari and compares it with the page's Devanagari, block by block. They agree everywhere but one place (8.5.2, below) and the page's ways of writing one sound twice (the candrabindu of अस्मिँल्लोके, which the transliteration writes m̐). They share most slips (निराकरणंं / nirākaraṇaṃṃ, तब्ब्रह्म / tabbrahma, the ; of 3.17.7): the transliteration is the page's own copy of its Devanagari, so it confirms what the page has, not what is right.
 - **The text's own parallels and the grammar.** The Chāndogya repeats its formulas many times (the honey teaching's five directions, the Vaiśvānara's six questions, the tat tvam asi refrain, Nārada's list of learning). Each mantra was read against its parallels and against sandhi and the forms of the words; a place the page writes in a way that is no word, breaks the sandhi it keeps everywhere else, or departs from its own formula by a dropped or extra letter or word, is corrected (below). A valid reading the page has is kept.
-- **sanskritdocuments.org.** The owner's printout of its Chāndogya is to be added to scriptures-data as the second written witness; its text then goes in `source/witness/` and every mantra is compared with it word by word, the way the Kaṭha's are (`tools/works/katha-upanishad/source/check.py`).
+- **Four web witnesses**, compared with every mantra by `source/check.py` (raw downloads in scriptures-data at `hinduism/veda/samaveda/upanishad/chandogya-upanishad/printouts/<site>/`, each with its `.meta.json`; `source/witnesses.py` makes `source/witness/<site>.txt` from them):
+  - **IIT Kanpur Heritage** (`heritage.iitk.ac.in`, text CHU; `iitk/`): the primary mūla of each ref. No printed edition named; many typing slips of the old Gita Supersite data: ध्द for द्ध and ड्ग for ङ्ग, which `check.py` reads as the letter they stand for (`NORM`), and श्र for भ, ष्र्ट for र्ष्ट, dropped or doubled signs, recorded as its readings.
+  - **upanishads.org.in** (`upanishads-org/`, one page per mantra): the same text as GRETIL letter for letter, with GRETIL's word division and slips (nearly every difference it has from the base, GRETIL has too): a copy of GRETIL, so the two count as **one** witness.
+  - **Sanskrit Wikisource** (`wikisource/`, one page per adhyāya): the page's own edition. It shares the page's slips in most places the text corrects (57 of its readings are the page's), so it confirms what the page prints, not what is right.
+  - **GRETIL** (`gretil/sa_chAndogyopaniSad-comm.xml`, with Śaṅkara's bhāṣya, IAST read into Devanagari word by word). It shares 20 of the page's slips (प्रावहणो, भूतन्य, प्रजपति, मूधा, ब्रह्मचार्यम्, वार्षाण्य, सर्वमयुरेति, उदाङ्मुख, सर्ष्टितां, उपासित …), so it and the page come from one digital ancestor; where they part, it often has the right form.
+  - The Vedic Heritage Portal's Chāndogya page has no text (video only).
+- **How they weigh.** IIT Kanpur is the one witness independent of the page; GRETIL (with upanishads.org.in) is half-independent; Wikisource is the page. A correction needs the base to be clearly wrong (a non-word, a broken form, a sense the sentence cannot carry, a word dropped from the text's own formula) and the witnesses to give the right form; a valid reading of the page stays, whatever the others read.
 
 ## Structure
-- **Blocks and mantras.** Nine blocks hold more than one mantra (2.13.1–2, 3.12.7–9, 3.17.7–8, 4.1.5–6, 4.16.2–3, 5.8.1–2, 5.10.1–2, 6.11.1–2, 6.13.1–2): they are split at the page's ॥ a.k.m ॥ marks. Every khaṇḍa then runs 1 … N without a gap, every adhyāya's khaṇḍas run 1 … N, and `settle.py` checks it.
+- **Blocks and mantras.** Nine blocks hold more than one mantra (2.13.1–2, 3.12.7–9, 3.17.7–8 (below, "3.17.7"), 4.1.5–6, 4.16.2–3, 5.8.1–2, 5.10.1–2, 6.11.1–2, 6.13.1–2): they are split at the page's ॥ a.k.m ॥ marks. Every khaṇḍa then runs 1 … N without a gap, every adhyāya's khaṇḍas run 1 … N, and `settle.py` checks it.
 - **6.6.5.** The page numbers the last mantra of 6.6 “६.६.६” and has no 6.6.5. Nothing is missing: the khaṇḍa is the four likenesses (curd 6.6.1, food 6.6.2, water 6.6.3, fire 6.6.4, each “योऽणिमा स ऊर्ध्वः समुदीषति”) and the mantra that sums them up (अन्नमयं हि सोम्य मन आपोमयः प्राणस्तेजोमयी वाक्), which closes the khaṇḍa with ॥ इति षष्ठः खण्डः ॥, as 6.5.4 closes 6.5 with the same words after three likenesses. It is 6.6.5 (`RENUMBER`).
 - **Headings and closing lines.** The page's ॥ प्रथमोऽध्यायः ॥ before each adhyāya and its ॥ इति … खण्डः ॥ and ॥ इति … अध्यायः ॥ lines are not part of any mantra and are left out (the page has no adhyāya closing after 8.15.1, and none for khaṇḍa 4.17). One closing line stands at the start of 5.4.1 on the page; it is left out too.
 - **The śānti mantra** is the page's opening block (“1.1.0”), and the work's `shanti.1`. The page does not give it again at the end.
@@ -22,14 +28,12 @@
 | shanti.1 | निराकरणंं | निराकरणं | a doubled anusvāra (ṃṃ in the transliteration too) |
 | 1.2.1 | संयेतिरे उभये | संयेतिर उभये | sandhi: -e before a vowel becomes -a (संयेतिरे is a plural, not a dual) |
 | 1.2.6 | संकल्पनीयंच चासंकल्पनीयं | संकल्पनीयं चासंकल्पनीयं | an extra च: the parallels 1.2.3–1.2.5 read X चाX च |
-| 1.2.9 | प्राणानवति एतमु | प्राणानवत्येतमु | sandhi: -i before a vowel becomes -y |
 | 1.6.1 | च्यध्यूढ़ं साम | च्यध्यूढं साम | ढ़ with a nukta is not a Sanskrit letter; the same word in 1.6.2–1.7.4 is अध्यूढं |
 | 1.6.4 | नक्षत्रान्येवर्क् | नक्षत्राण्येवर्क् | ṇatva: नक्षत्राणि, as in the same mantra |
 | 1.6.6 | आप्रणस्वात् | आप्रणखात् | a non-word: आ प्रणखात्, “to the tips of the nails” (ख typed as स्व) |
 | 1.7.7 | स एष चामुष्मात् | स एष ये चामुष्मात् | a dropped ये: the relative is needed for लोकास्तांश्च, as in the parallel 1.6.8 |
 | 1.8.2 | प्रावहणो | प्रवाहणो | the name is प्रवाहण, as in 1.8.1 and 1.8.8 |
 | 1.9.1 | ज्यायानकाशः | ज्यायानाकाशः | आकाश lost its long ā; the same mantra has आकाशो, आकाशादेव |
-| 1.11.2 | अहमवित्त्यान्यान | अहमवित्त्वान्यान | a non-word: the gerund अवित्त्वा, as अवित्त्वोत्क्रमति in 1.2.9 |
 | 1.11.9 | भूतन्यन्नमेव | भूतान्यन्नमेव | a dropped ā: भूतानि, as in 1.11.5 and 1.11.7 |
 | 1.12.5 | प्रजपतिः | प्रजापतिः | a non-word: प्रजापति |
 | 1.13.1 | हाउकारः वायु | हाउकारो वायु | sandhi: -aḥ before a voiced consonant becomes -o |
@@ -58,7 +62,6 @@
 | 3.14.2 | मभ्यत्तोऽवाक्य | मभ्यात्तोऽवाक्य | अभि + आत्तः is अभ्यात्तः, as in 3.14.4 |
 | 3.16.6 | प्राणा अदित्या | प्राणा आदित्या | wrong vowel length: आदित्याः, as आदित्यानां in the same mantra |
 | 3.17.6 | घोर् आङ्गिरसः | घोर आङ्गिरसः | sandhi: घोरः before a vowel is घोर, never घोर् |
-| 3.17.7 | वासरम्; परो | वासरम् । परो | a stray semicolon (in both scripts) where the quoted ṛc’s half-verse ends, after its second pāda: a daṇḍa |
 | 3.18.2 | पादा अदित्यः | पाद आदित्यः | sandhi: पादः + आदित्यः is पाद आदित्यः (the page moved the ā of आदित्य onto पाद) |
 | 3.18.4 | तपति च् भाति | तपति च भाति | a stray virama under च |
 | 3.19.2 | समेघो | स मेघो | a missing space: स मेघो, as स समुद्रः in the same list |
@@ -123,6 +126,57 @@
 | 8.15.1 | प्रजाभ्यः आचार्यकुलाद् | प्रजाभ्य आचार्यकुलाद् | sandhi: -aḥ before a vowel becomes -a |
 | 8.15.1 | धर्मिकान्विदधदा | धार्मिकान्विदधदा | the adjective is धार्मिक (vṛddhi) |
 | 8.15.1 | सर्वैन्द्रियाणि | सर्वेन्द्रियाणि | sandhi: सर्व + इन्द्रियाणि is सर्वेन्द्रियाणि |
+
+## Numbering: the text and each witness
+The text has the śānti and **629 mantras**; upanishads.org.in has the same 629 in the same places, and so do the other witnesses once their own ways of dividing are read as below. `check.py` compares each khaṇḍa as one run of letters, so a witness that divides a khaṇḍa otherwise is still compared word for word.
+
+- **3.17.7.** The page writes, after आदित्प्रत्नस्य रेतसः, the rest of that ṛc (ज्योतिः पश्यन्ति वासरम्; परो यदिध्यते दिवि) and then numbers the next ṛc's words (उद्वयं तमसस्परि …) 3.17.8. No witness has the added half-verse, Wikisource neither, and every witness has one mantra, 3.17.7, running आदित्प्रत्नस्य रेतसः । उद्वयं तमसस्परि … ज्योतिरुत्तममिति: the half-verse is left out and the two are one mantra (`settle.py` → `BLOCK_FIX`). Item `3.17.8` is gone; khaṇḍa 3.17 has 7 mantras, adhyāya 3 has 95.
+- **6.6** has 5 mantras in every witness (the page's “६.६.६” is 6.6.5, above).
+- **IIT Kanpur** lists 632 refs and has text for 621: khaṇḍa 4.3 (4.3.1–8) is empty, and 6.13 has three empty refs after 6.13.3 (6.13.4–6), so its 6.13 is the text's 3 mantras. It also files mantras under the number before their own, so two refs hold the same text and a mantra is missing: 1.3.7 holds 1.3.8, likewise 1.4.2, 1.6.4, 1.7.4, 1.7.6, 1.8.4, 1.9.1, 1.10.1, 1.12.2, 1.12.4, 2.22.1, 2.24.4, 3.13.5, 3.18.1, 3.18.3, 4.1.7, 4.8.2, 4.16.1, 5.24.4, 6.2.1, 6.4.3, 6.11.2, 7.2.1, 7.13.1, 7.15.3; and 4.4.1 holds 4.4.2's text and 4.4.2 4.4.3's, 5.1.7 holds 5.1.8 and 5.1.8 5.1.9, 7.3.2 holds 7.4.1, 7.10.1 holds 7.10.2 and 7.10.2 7.11.1. `witnesses.py` leaves out the earlier copy of each pair (29 refs, 592 mantras kept) and `check.py` → `LACKS` skips the 29 mantras of ours whose text IIT Kanpur does not have; within 4.7.1 and 4.7.4 it moves a sentence (recorded as its readings). So IIT Kanpur's 629 = 632 refs − 3 empty in 6.13, with 4.3 and those 29 mantras not in it.
+- **GRETIL** marks 623 mantras: in 3.13, 3.15, 6.2 and 8.3 one of its refs covers two of ours, and in 4.7 one covers three; it also abbreviates repeated passages (2.1.2, 3.15.5, 4.7.1–2, 5.24.5, 6.2.4, 8.3.5), each recorded as an omission of the witness. upanishads.org.in divides as the text does, with GRETIL's omissions.
+- **Wikisource** has 631 numbers: its 4.15 has 6 and its 5.2 has 9 (it numbers within a mantra), and its 2.3.1 is in a different order; the letters are the text's.
+
+## Corrections from the witnesses (`source/settle.py` → `WITNESS_FIX`, `BLOCK_FIX`)
+
+| Item | The page | The text | Witnesses | Why |
+|---|---|---|---|---|
+| 1.1.2 | पृथिव्या अपो रसः | पृथिव्या आपो रसः | IITK, GRETIL (and upanishads.org.in) आपो; Wikisource अपो | the nominative āpaḥ, “water is the essence of earth”; अपः is accusative |
+| 1.2.6 | तेनोभयंसंकल्पते | तेनोभयंसंकल्पयते | IITK सङ्कलप्यते (for सङ्कल्पयते), GRETIL संकल्पयते; Wikisource संकल्पते | it takes the object उभयं (“thinks both”), as जिघ्रति, वदति, पश्यति, शृणोति in 1.2.2–5: the causative, not the intransitive middle |
+| 1.2.9 | ऽवित्त्वोत्क्रमति | ऽवित्त्वोत्क्रामति | IITK, GRETIL उत्क्रामति; Wikisource उत्क्रमति | √kram lengthens in the active present (Pāṇini 7.3.76): क्रामति |
+| 1.8.5, 1.8.7 | लोकमिति नयेदिति | लोकमतिनयेदिति | all four (Wikisource लोकमति नयेदिति) | “one should not lead (the sāman) beyond the heavenly world”: अति-नयेत्; इति there is no sense |
+| 2.1.4 | विद्वानसाधु | विद्वान्साधु | IITK, GRETIL विद्वान्साधु; Wikisource विद्वानसाधु | “knowing this, meditates on the sāman as good (साधु)”: असाधु reverses the sense of the khaṇḍa |
+| 2.11.2 | स एवमेतद्गायत्रं | स य एवमेतद्गायत्रं | GRETIL स य एवम्, IITK स वमेतद्; Wikisource स एवमेतद् | the relative for वेद, as in every parallel (2.12.2–2.20.2: स य एवमेतद्) |
+| 2.20.2 | सलोकतांसर्ष्टितां | सलोकतांसार्ष्टितां | IITK साष्र्टिताँ (its way of typing सार्ष्टिताँ); GRETIL and Wikisource सर्ष्टितां | सार्ष्टिता, “equality of rank”, beside सलोकता and सायुज्य; सर्ष्टिता is no word |
+| 2.21.4 | सर्वमस्मीत्युपासित | सर्वमस्मीत्युपासीत | IITK उपासीत; GRETIL and Wikisource उपासित | the optative “let him meditate”, as उपासीत throughout; उपासित is no form of upa-√ās |
+| 3.17.7–8 | रेतसः ज्योतिः पश्यन्ति वासरम्; परो यदिध्यते दिवि ॥ ३.१७.७ ॥ उद्वयं | रेतसः । उद्वयं | all four | the page adds the rest of the ṛc; one mantra (“Numbering”) |
+| 4.4.2 | जाबालो ब्रवीथा | जाबालो ब्रुवीथा | GRETIL ब्रुवीथा (IITK lacks the mantra); Wikisource ब्रवीथा | the optative middle of √brū is ब्रुवीथाः; ब्रवीथाः is no form |
+| 4.16.2 | ब्रह्मा व्यवदति | ब्रह्मा व्यववदति | IITK, GRETIL व्यववदति; Wikisource व्यवदति | vi-ava-√vad, “breaks the silence”; व्यवदति is no form of it |
+| 4.16.4 | ब्रह्मा व्यवदत्युभे | ब्रह्मा व्यववदत्युभे | IITK, GRETIL; Wikisource व्यवदत्युभे | the same verb, as 4.16.2 |
+| 5.11.5 | न कर्दर्यो | न कदर्यो | IITK, GRETIL कदर्यो; Wikisource कर्दर्यो | कदर्य, “a miser”; कर्दर्य is no word |
+| 5.13.2 | चक्षुषेतदात्मन | चक्षुष्ट्वेतदात्मन | IITK चक्षुष्ट्वेतदात्मन, GRETIL चक्षुष् ट्व् एतद्; Wikisource चक्षुषेतदात्मन | “this is but the eye of the Self”: चक्षुस्तु एतत्, as मूर्धा त्वेष (5.12.2), प्राणस्त्वेष (5.14.2), पादौ त्वेतौ (5.17.2) |
+| 7.6.1 | ध्यायन्तीव पर्वता देवमनुष्या | ध्यायन्तीव पर्वता ध्यायन्तीव देवमनुष्या | IITK, GRETIL; Wikisource lacks it | a dropped word: every member of the list has its own ध्यायतीव / ध्यायन्तीव |
+| 7.15.1 | प्राणो वा आशाया | प्राणो वाव आशाया | IITK, GRETIL वाव; Wikisource वा | the formula of 7.2–7.14, “X वाव Y-आद्भूयः”: वा (“or”) breaks it |
+| 7.26.2 | विंशतिराहारशुद्धौ सत्त्वशुद्धौ | विंशतिराहारशुद्धौ सत्त्वशुद्धिः सत्त्वशुद्धौ | IITK, GRETIL; Wikisource lacks it | a dropped word: “when food is pure, the being is pure; when the being is pure, memory is firm” |
+| 8.5.3 | ब्रह्मचर्यमेव तदरश्च | ब्रह्मचर्यमेव तत्तदरश्च | IITK तत्तदरश्च, GRETIL तत् तद् अरश् च; Wikisource तदरश्च | a dropped word: each clause of 8.5.1–3 ends ब्रह्मचर्यमेव तत्, and the next sentence begins तद् |
+| 8.7.3 | किमिच्छन्तावास्तमिति | किमिच्छन्ताववास्तमिति | IITK, GRETIL अवास्तम्; Wikisource as the page | “wishing what have you two lived (here)?”: अवास्तम्, as तमिच्छन्ताववास्तमिति at the end of the same mantra |
+
+## Readings of the page kept against witnesses
+Each is a valid reading, so it stays (§2 of the playbook):
+- **1.2.9 प्राणानवति एतमु**: all four witnesses keep अवति and एतमु apart; a sentence ends after अवति (GRETIL prints the daṇḍa), so there is no sandhi.
+- **1.11.2 अहमवित्त्यान्यानवृषि**: all four read अवित्त्या, the instrumental of अवित्ति, “for want of finding (you), I chose others”.
+- **4.1.2 अथ हंसा** (IITK and GRETIL अथ ह हंसा): ह is a particle; the sentence is whole without it.
+- **4.2.5 उवास स तस्मै होवाच** (IITK, GRETIL उवास तस्मै): the pronoun is grammatical.
+- **4.17.5 स यदि यजुष्टो** (IITK, GRETIL अथ यदि): “he, if …”, grammatical.
+- **5.2.8 स्वप्नेषु पश्यन्ति** (IITK, GRETIL पश्यति): a valid plural, “(people) see”.
+- **5.5.1 अङ्गाराह्रादनयो** (GRETIL ह्रादुनयो; IITK हादनयो, with the page): ह्रादन, “roaring, thunder”, is a word and IIT Kanpur shares it.
+- **6.4.7 यथा तु खलु** (GRETIL and Wikisource नु, IITK खलु नु) and **6.8.6 यथा तु खलु** (IITK तु, with the page): both particles are valid.
+- **7.4.3 संकॢप्तान्वै** (IITK, GRETIL कॢप्तान्): a valid word, as संकल्प in the same mantra.
+- **3.16.7 न प्रेष्यामीति** (IITK प्रेष्यामिति, GRETIL प्रेष्याम् इति): प्रेष्यामि + इति; the witnesses' form is no word.
+- **8.12.4 शृणवानीति** (GRETIL शृण्वानीति): शृणवानि is the imperative of √śru.
+- Readings the page and every witness share stay, though a word writer asked: **6.7.6 प्राज्वाली** (all four).
+
+## The witnesses' own readings (`source/witness-readings.tsv`)
+Every other difference is a witness's own reading, where the text follows the page and at least one other witness; each is one line of `source/witness-readings.tsv` (witness, our item, the witness's letters, ours, kind), which `check.py` applies and requires to be found. Kinds: `own` (the witness's slip or variant: IIT Kanpur 453, GRETIL 129, upanishads.org.in 129, Wikisource 29), `page` (the witness has the page's reading, which the text corrects: Wikisource 57, GRETIL 20, upanishads.org.in 20), `omits` / `adds` (a passage the witness leaves out or adds: GRETIL's abbreviations, IIT Kanpur's moved sentences in 4.7, Wikisource's order in 2.3.1 and its note “रथन्तरोपरिटिप्पणी” in 2.12.2). The lines are made by `check.py --write` only after each difference has been reviewed. `check.py` then finds **no unexplained difference** with any witness.
 
 ## The page's Devanagari against its transliteration
 
