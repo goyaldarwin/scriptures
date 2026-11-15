@@ -1,0 +1,79 @@
+{
+ "id": "taittiriya-upanishad",
+ "path": "hinduism/veda/yajurveda/krishna-yajurveda/upanishad/taittiriya-upanishad",
+ "lang": "sa",
+ "title": {
+  "hi": "तैत्तिरीयोपनिषद्",
+  "en": "Taittiriya Upanishad"
+ },
+ "by": {
+  "hi": "कृष्ण यजुर्वेद, तैत्तिरीय आरण्यक",
+  "en": "Krishna Yajurveda, Taittiriya Aranyaka"
+ },
+ "edition": {
+  "hi": "श्लोकम् (shlokam.org)",
+  "en": "Shlokam (shlokam.org)"
+ },
+ "parts": {
+  "name": {
+   "hi": "वल्ली",
+   "en": "Valli"
+  },
+  "list": [
+   {
+    "key": "1",
+    "hi": "शीक्षावल्ली",
+    "en": "Shiksha Valli"
+   },
+   {
+    "key": "2",
+    "hi": "ब्रह्मानन्दवल्ली",
+    "en": "Brahmananda Valli"
+   },
+   {
+    "key": "3",
+    "hi": "भृगुवल्ली",
+    "en": "Bhrigu Valli"
+   }
+  ]
+ },
+ "cite": {
+  "by": [
+   "part",
+   "sec",
+   "n"
+  ]
+ },
+ "types": {
+  "shanti": {
+   "name": {
+    "hi": "शान्तिमन्त्र",
+    "en": "Shanti Mantra"
+   },
+   "short": {
+    "hi": "शा॰",
+    "en": "Shan."
+   }
+  },
+  "mantra": {
+   "name": {
+    "hi": "मन्त्र",
+    "en": "Mantra"
+   },
+   "short": {
+    "hi": "मं॰",
+    "en": "Man."
+   }
+  },
+  "iti": {
+   "name": {
+    "hi": "समापन (पुष्पिका)",
+    "en": "Closing words (iti)"
+   },
+   "short": {
+    "hi": "इति",
+    "en": "Iti"
+   }
+  }
+ }
+}
