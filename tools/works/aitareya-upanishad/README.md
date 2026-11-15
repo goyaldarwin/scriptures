@@ -26,5 +26,5 @@ Rebuild: `python3 tools/works/aitareya-upanishad/source/settle.py && python3 too
 - **Numbering:** a mantra's `n` is its number within the khaṇḍa (॥१॥); it is cited adhyāya.khaṇḍa.mantra, the standard numbering (`work.json` → `cite`: Mantra 1.3.12), as the Kaṭha is. The book numbers its own six "chapters" (1–3 the first adhyāya's khaṇḍas, 4 and 5 the second and third adhyāyas, 6 the śānti) and splits 3.1.3 in two ("5.3A", "5.3B"); its numbers are not used.
 - **Types:** `shanti` (शा॰ / Śā.) and `mantra` (मं॰ / Man.).
 - **Topics:** one per khaṇḍa with its theme, plus the śānti pāṭha.
-- **The śānti:** the book prints it once, after 3.1.4, as its chapter 6 (Śaṅkara's placing); here it opens the work, as in the library's other Upaniṣads and in sanskritdocuments.org, and is not repeated at the end (PLAYBOOK §11).
+- **The śānti:** the book prints it once, after 3.1.4, as its chapter 6; here it opens the work, as in the library's other Upaniṣads and in sanskritdocuments.org, and is not repeated at the end (PLAYBOOK §11).
 - **Reading plans:** none; the Upaniṣad is read in one sitting.
