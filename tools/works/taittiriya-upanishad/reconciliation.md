@@ -72,5 +72,19 @@ Five web witnesses are compared with every paragraph by `source/check.py` (raw d
 - **The anuvāka's closing words** (इति प्रथमोऽनुवाकः ॥) stand on their own line at the end of its last paragraph; the page sometimes runs them on after the number.
 - **The vallīs' closing words** (॥ इति शीक्षावल्ली समाप्ता ॥ …) are items of type `iti`, and the सह नाववतु the page prints again after those of vallīs 2 and 3 is left out: the recording does not sing it there (its transcript goes from इति आनन्दवल्ली समाप्ता to अथ भृगुवल्ली and vallī 3's opening सह नाववतु, and ends समाप्ता च तैत्तिरीयोपनिषत्, हरिः ॐ), and a śānti printed again at the end is not an item (PLAYBOOK §11; the Kaṭha, Kena and Muṇḍaka). Of the witnesses, upanishads.org.in and the Vedic Heritage Portal print it after both vallīs, Wikisource and GRETIL after vallī 3 only, IIT Kanpur after neither; the vallīs' opening सह नाववतु (`shanti.2`, `shanti.3`) stay, as the recording sings them.
 
+## Meanings
+`meanings/hi/scriptures.json` and `meanings/en/scriptures.json` follow Śaṅkara's reading; every reading attributed to him, in the meanings and the footnotes, is checked against his Sanskrit bhāṣya (IIT Kanpur, and GRETIL). Where the words allow more than one reading:
+
+| Paragraph | Settled reading | Why |
+|---|---|---|
+| 1.10.1 | ऊर्ध्वपवित्रो वाजिनीव स्वमृतमस्मि: "my pure source is on high; as the immortal is in the sun, rich in food, so I am the pure immortal" | Śaṅkara: the purifying cause on high is the supreme Brahman, वाजिनि a locative (the sun, rich in food), स्वमृतम् as सु + अमृतम्; "my own immortality" (स्व + अमृतम्) is not needed beside it |
+| 2.8.1 | आशिष्ठः: "most able to command"; "quickest" (Monier-Williams, the superlative of आशु) in the footnote | Śaṅkara, आशिष्ठः आशास्तृतमः |
+| 2.9.1 | एते आत्मानꣳ स्पृणुते: he treats both as the Self and strengthens himself | Śaṅkara, स्पृणुते प्रीणाति बलयति वा, परमात्मभावेन उभे पश्यति; "delivers himself from both" (Apte's स्पृ) is not his reading |
+| 3.10.2 | समाज्ञाः: the meditations | Śaṅkara, समाज्ञा ज्ञानानि विज्ञानान्युपासनानि; the passage says what to meditate on as what (Monier-Williams' "appellation" fits the words less) |
+| 3.10.3 | मानवान् भवति: he becomes able to think | Śaṅkara, मननं मनः, मानवान् भवति मननसमर्थो भवति, matching तन्मन इत्युपासीत as महः → महान्; "honoured" (मान, Monier-Williams) is not his reading |
+| 3.10.5 | अस्माल्लोकात्प्रेत्य: "turning away from this world", the same words and rendering as 2.8.5; "after death", the common sense, in the footnote | Śaṅkara (on 2.8.5): turning back from all objects, seen and unseen |
+| 3.10.6, 3.10.2, 2.9.1 | य एवं वेद standing alone: "He who knows this.", no predicate supplied | the words supply none; Śaṅkara's fruit is the passage's own, and the same formula reads the same in all three |
+| 3.10.6 | अभ्यभवा३म्: "I have overcome the whole world" | a past form; Śaṅkara's present (अभिभवामि) is the state it leaves, not another reading |
+
 ## Open
 - None.
