@@ -5395,6 +5395,28 @@
         },
         "children": [
          {
+          "id": "mundaka-upanishad",
+          "work": "mundaka-upanishad",
+          "path": "hinduism/veda/atharvaveda/upanishad/mundaka-upanishad",
+          "title": {
+           "hi": "मुण्डकोपनिषद्",
+           "en": "Mundaka Upanishad"
+          },
+          "by": {
+           "hi": "अथर्ववेद",
+           "en": "Atharvaveda"
+          },
+          "edition": {
+           "hi": "shlokam.org",
+           "en": "shlokam.org"
+          },
+          "desc": {
+           "hi": "परा और अपरा विद्या · ३ मुण्डक · ६ खण्ड · ६३ मन्त्र",
+           "en": "The higher and the lower knowledge · 3 mundakas · 6 khandas · 63 mantras"
+          },
+          "salute": "॥ ॐ श्री परमात्मने नमः ॥"
+         },
+         {
           "id": "mandukya-upanishad",
           "work": "mandukya-upanishad",
           "path": "hinduism/veda/atharvaveda/upanishad/mandukya-upanishad",
