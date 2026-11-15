@@ -60,5 +60,13 @@ Each is a slip in the book's IAST (a non-word, a broken form, or a form its own 
 - **ॐ** is written with the sign ॐ, the book's *om̐* (1.1.1, 2.1.1, 3.1.1 and the śānti, as sanskritdocuments.org).
 - **The library's writing standard** (docs/PLAYBOOK.md §3) is applied by the exporter: a nasal before a stop as its class letter (किञ्चन, सन्तमिन्द्र, गन्धान्), ॐ, and the ISO 15919 transliteration `t` made from the verse. A Ṛgveda text: the anusvāra stays ं (no ꣳ).
 
+## Meanings
+Our own Hindi and English, written from the Sanskrit, its word meanings, Monier-Williams and Apte and Śaṅkara's reading, through the four steps of `docs/HOW-TO.md` ("Write our own meanings for a Sanskrit work"). The book's English is read only by the copy audit, and our meanings share no run of ten words with it (`tools/meanings/overlap.py`). The readings settled:
+- **1.3.13 किमिहान्यं वावदिषदिति**: the Self, looking over the beings, asks what else is here, other than itself, to speak of (Śaṅkara); the verse's own next words, that it saw this very Puruṣa as Brahman, answer it.
+- **3.1.1 येन वा पश्यति …**: these lines go on with the question कतरः स आत्मा (is it that by which one sees …?), which 3.1.2–3 answer; so the meaning keeps them as a question.
+- **3.1.2, the faculties**: as Śaṅkara glosses them: विज्ञान knowledge of the arts, मनीषा independence of thought, सङ्कल्प conceiving, क्रतु determination, and जूति distress of mind (from illness and the like). Monier-Williams and Apte give जूति as impulse; the list is read as the tradition of this text reads it, and the word meaning gives both senses.
+- **2.1.6 and 3.1.4 स्वर्गे लोके**: the meaning keeps the words, "in that heavenly world"; a footnote gives Śaṅkara's reading, that the knower who becomes immortal reaches Brahman, the Self, not a heaven won by rites.
+- **The śānti, अनेनाधीतेन**: instrumental, "with (by) this study", joining day and night.
+
 ## Open
 - None.
