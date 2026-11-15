@@ -38,6 +38,7 @@ Each is a slip of the page (a non-word, a broken form or a broken sandhi), shown
 | 4.7 | वसोवृक्षं | वासोवृक्षं | वास (dwelling) + वृक्ष: the tree the birds live in; वसो- is no stem here; the commentary: the tree meant for their abode |
 | 4.8 | यादौ च गन्तव्यं च | पादौ च गन्तव्यं च | the organs are listed with their objects: हस्तौ … पादौ च गन्तव्यं च (the feet and what is walked to); यादौ is no word; the commentary: feet and what must be reached |
 | 5.4 | विभुतिमनुभूय | विभूतिमनुभूय | विभूति (greatness, glory), with the long ū of the root भू; the commentary: having enjoyed greatness |
+| 6.1 | तस्मान्नार्हम्यनृतं | तस्मान्नार्हाम्यनृतं | अर्हमि is no form: the verb is अर्ह् (1st person singular अर्हामि, ‘I ought’), न अर्हामि अनृतं वक्तुम् ‘I may not speak an untruth’; the page's transliteration (nārhamy-) has the same slip; the commentary: I ought not to speak falsehood |
 | 6.2 | यस्मिन्नताः षोडशकलाः | यस्मिन्नेताः षोडशकलाः | एताः (these) agreeing with षोडशकलाः; नताः does not fit the sense; the commentary: of whom these sixteen kalās are born |
 | 6.6 | यथ मा वो मृत्युः | यथा मा वो मृत्युः | यथ is no word; यथा मा … परिव्यथाः "so that death may not trouble you"; the commentary: so that death may not harm you |
 
