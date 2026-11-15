@@ -5395,6 +5395,28 @@
         },
         "children": [
          {
+          "id": "prashna-upanishad",
+          "work": "prashna-upanishad",
+          "path": "hinduism/veda/atharvaveda/upanishad/prashna-upanishad",
+          "title": {
+           "hi": "प्रश्नोपनिषद्",
+           "en": "Prashna Upanishad"
+          },
+          "by": {
+           "hi": "अथर्ववेद",
+           "en": "Atharvaveda"
+          },
+          "edition": {
+           "hi": "shlokam.org",
+           "en": "shlokam.org"
+          },
+          "desc": {
+           "hi": "छह जिज्ञासुओंके छह प्रश्न और पिप्पलादके उत्तर · ६ प्रश्न · ६७ मन्त्र",
+           "en": "Six seekers' six questions and Pippalada's answers · 6 prashnas · 67 mantras"
+          },
+          "salute": "॥ ॐ श्री परमात्मने नमः ॥"
+         },
+         {
           "id": "mandukya-upanishad",
           "work": "mandukya-upanishad",
           "path": "hinduism/veda/atharvaveda/upanishad/mandukya-upanishad",
