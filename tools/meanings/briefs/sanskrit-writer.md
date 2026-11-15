@@ -11,6 +11,7 @@ You are writing the Hindi and English meanings ("bhāvārtha") for a batch of ve
 |---|---|---|---|
 | `bhagavad-gita` | `library/hinduism/granth/vyasa/bhagavad-gita/` | Śaṅkara's bhāṣya; where Rāmānuja or Madhva read a verse materially otherwise, a short footnote | `meanings/en-besant.json`, `meanings/en-telang.json` (English) |
 | `durga-saptashati` | `library/hinduism/stotra/durga/durga-saptashati/` | the plain reading of the words and the grammar, as the recitation tradition (Gita Press's edition, Nāgojībhaṭṭa, the Guptavatī) takes it; a footnote only for a well-known second reading | `meanings/en-pargiter.json` (English) |
+| `brihadaranyaka-upanishad` | `library/hinduism/veda/yajurveda/shukla-yajurveda/upanishad/brihadaranyaka-upanishad/` | Śaṅkara's bhāṣya; another well-known reading in a short footnote | none in the library; the base printout (sanskritdocuments.org) has no English, so the copy audit reads IIT Kanpur's (Swami Madhavananda's translation and his translation of Śaṅkara's bhāṣya) and upanishads.org.in's (F. Max Müller's translation, R. E. Hume's for 6.4), the owner's saved pages (scratch only) |
 
 ## Read first
 1. `tools/meanings/style.md` — the style sheet, all of it; §1, §2, §4, §5 and §8 above all. It is binding.
