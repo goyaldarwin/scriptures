@@ -73,5 +73,65 @@ The printout's edition is the base; where both readings are good Sanskrit and fi
 - Where the printout writes two words apart without their sandhi (प्रिया भवन्ति आत्मनस्तु, स्वाहेति अग्नौ, स्यात् अथ, पुरुषः यश्चायम्) or puts a daṇḍa after a word in its sandhi form (सर्वान्तरो ।), the words are its own and stay as printed.
 - The writing standard (PLAYBOOK §3) is applied by the exporter: ꣳ before श ष स ह र (a Yajurveda text), a nasal before a stop as its class letter, a final म् before a consonant as ं, ॐ, and the ISO 15919 transliteration `t` made from the verse.
 
+## Meanings
+`meanings/hi/scriptures.json` and `meanings/en/scriptures.json` follow Śaṅkara's reading; every reading attributed to him, in the meanings and the footnotes, is checked against his Sanskrit bhāṣya (IIT Kanpur, and GRETIL where IIT Kanpur has none). Where the words allow more than one reading:
+
+| Mantra | Settled reading | Why |
+|---|---|---|
+| 1.1.1 | पाजस्यम्: the earth is the ground for its feet | Śaṅkara reads पादस्यम्; Monier-Williams' "belly, flanks" would repeat the mid-region and the quarters named in the same line |
+| 1.1.2 | समुद्र एवास्य बन्धुः: "the sea alone is its bond, that in which it is bound"; "kin" in the footnote | Śaṅkara, बन्धुर्बन्धनम्, बध्यतेऽस्मिन् |
+| 1.3.10 | जनमियात्: "the people there", with no gloss on who they are | the words say no more; "there" is the ends of the quarters where the evil was laid, which is Śaṅkara's reading |
+| 1.3.24 | त्यस्य मूर्धानं: "the head of this man (myself)" | Śaṅkara, तस्य मम अनृतवादिनः |
+| 1.3.28 | न हैवालोक्यताया आशास्ति: he need never pray against being left without a world | Śaṅkara, आशा आशंसनं प्रार्थनम्; ā-śās "to wish, pray for" (Monier-Williams, Apte) |
+| 1.4.8 | प्रियं रोत्स्यति … ईश्वरः: what he holds dear will be cut off (will perish); he has the power to say so | Śaṅkara, रुध् (प्राणसंरोधं प्राप्स्यति) and ईश्वरः समर्थः; "will weep" (रुद्) is not in the bhāṣya, and ईश्वर as "quickly" he names only to doubt it |
+| 1.4.17 | अथ प्रजायेय: "then may I be born (as offspring)" | Śaṅkara, प्रजारूपेणाहमेवोत्पद्येय |
+| 1.5.3 | सैषा ह्यन्तमायत्तैषा हि न: speech follows an end, the thing meant, but is not itself made known; his lamp in the footnote | Śaṅkara, अन्तम् अभिधेयावसानम्, आयत्ता अनुगता |
+| 1.5.17 | अभुनजत्: (the father thinks:) this son, being all this, will protect me from this world | Śaṅkara, a past form for the future (छन्दसि) |
+| 1.5.23 | प्राण्याच्चैवापान्याच्च: one should breathe with prāṇa and with apāna, no direction named | Śaṅkara names only the work of each; which of the two is the out-breath is read both ways (Monier-Williams and Apte: apān, to breathe out) |
+| 2.1.7 | विषासहि: "the all-withstanding" | Śaṅkara, मर्षयिता परेषाम्; Monier-Williams' "victorious" is within it |
+| 2.2.3 | वागष्टमी ब्रह्मणा संविदाना: in converse with brahman, unglossed | Śaṅkara does not say what brahman is here; "the Veda" is not his |
+| 2.3.6 | न ह्येतस्मादिति नेत्यन्यत्परमस्ति: there is no other, higher (teaching) than this "not thus" | Śaṅkara, इति न इति न इत्येतस्मात् … अन्यत् परं निर्देशनं नास्ति |
+| 2.4.7 | दुन्दुभ्याघातस्य: "the striking of the drum"; the word list gives Monier-Williams' "drum-beater" second | Śaṅkara, दुन्दुभेराहननम् आघातः |
+| 2.5.6, 3.9.13 | प्रातिश्रुत्क: present at (each) hearing; Monier-Williams' "in the echo" stays in the word list | Śaṅkara, प्रतिश्रवणवेलायां भवः |
+| 2.5.19 | शता दश: "hundreds and ten"; "a thousand" in the footnote | Śaṅkara, शतानि दश च, for the many kinds of beings |
+| 3.1.8 | अतिनेदन्ते: the oblations that roar loudly | Śaṅkara, अतीव शब्दं कुर्वन्ति; Monier-Williams' "foam over" is not needed |
+| 3.1.10 | कतमास्ता या अध्यात्मम्: Aśvala asks it | as he asks every कतम … इति of 3.1.7–10; Śaṅkara's उच्यते names no other speaker |
+| 3.9.3 | वसु: "in them all this is placed to dwell (vasu)"; his reason in the footnote | Śaṅkara derives the name from वस्, वासयन्ति वसन्ति च |
+| 3.9.9 | तदाहुः … कथमध्यर्धः: Yājñavalkya cites the objection and answers it | Śaṅkara, तत्र आहुः चोदयन्ति; Śākalya's next question is कतम एको देवः |
+| 3.9.10–17 | लोकः: loka, the means of seeing, glossed once | Śaṅkara, लोकयत्यनेनेति लोकः; "whose world is fire" is not his |
+| 3.9.24 | ध्रुवायां दिशि: "the fixed quarter"; his upper quarter in the footnote | Śaṅkara, ऊर्ध्वा दिक् ध्रुवेत्युच्यते |
+| 3.9.25 | अहल्लिक: kept as a name in address | Śaṅkara, नामान्तरेण संबोधनम्; no insult is added |
+| 3.9.26 | स एष नेति नेत्यात्मा …: no speaker named; his reading in the footnote | Śaṅkara: the śruti speaks here in its own voice, out of the story's order |
+| 3.9.28 | जात एव न जायते: if you say he is born already: no, he is born again; another reading in the footnote | Śaṅkara, मृतः पुनरपि जायत एव |
+| 4.1.2–7 | अभिक्षरन्ति: all beings flow to him, "(with offerings)" at 4.1.2 only | Śaṅkara, बलिदानादिभिः |
+| 4.3.7 | स समानः सन्: "being like (the intellect)" | Śaṅkara, समानः सदृशः; "remaining the same" is the bare words only |
+| 4.3.23–30 | the refrain न तु तद्द्वितीयमस्ति …: one wording in all eight | the same Sanskrit |
+| 4.3.33 | उदरौत्सीत्: "he has hemmed me in"; Monier-Williams' "driven out" second in the word list | Śaṅkara, आवृणोत्, अवरोधं कृतवान् |
+| 4.4.2 | एकीभवति: (the organ) becomes one (with him); he does not see, they say | Śaṅkara, एकी भवति करणजातं स्वेन लिङ्गात्मना |
+| 4.4.4 | पेशस्कारी: a goldsmith; the embroiderer in the footnote | Śaṅkara, पेशः सुवर्णम् |
+| 4.4.7 | the Kaṭha's verse (2.3.14): "the desires lodged in his heart"; the Kaṭha's own meaning stays | the Kaṭha's wording beside the fixed "On this there is a verse:" makes a run of ten words with a published English |
+| 4.4.9 | ब्रह्मणा हानुवित्तः: found by the brāhmaṇa; "by Brahman, by Brahmā" not taken | Śaṅkara, ब्राह्मणेन त्यक्तसर्वैषणेन |
+| 4.4.10 | Īśa 9: the Īśa's wording without "alone" (केवल); his reading here in the footnote | here Śaṅkara takes avidyā as ritual work and vidyā as the Veda for ritual, with no "alone" |
+| 4.4.13 | स विश्वकृत्: he who has found the Self is the maker of all | the correlative यस्य … सः; Śaṅkara identifies the knower with that Self (पर एवास्मि) |
+| 4.4.15 | न ततो विजुगुप्सते: "he no longer seeks to hide himself from him"; the first half keeps the Kaṭha's (2.1.5) | Śaṅkara here, तस्मादीशानाद्देवात् आत्मानं गोपायितुमिच्छति; the Kaṭha's own meaning stays |
+| 4.4.17 | पञ्च पञ्चजनाः: the five pañcajanas (the five kinds of beings) | Śaṅkara here (gandharvas, pitṛs, gods, asuras, rākṣasas; or the four varṇas with the Niṣādas); "five groups of five" is not his |
+| 5.4.1 | जित इन्न्वसावसत्: in the same way that one, his enemy, is conquered and comes to nothing | Śaṅkara, इन्नु इत्थम्, असौ शत्रुः (वाक्यशेषः), असत् भवेत् |
+| 5.14.4 | बलꣳ सत्यादोगीय (as printed): strength is mightier (ogīya) than the true | Śaṅkara, ओगीयः = ओजीयः; the text is not changed |
+| 5.14.4 | स यस्मा अन्वाह तस्य प्राणाꣳस्त्रायते: she, the Gāyatrī, protects the prāṇas of the one he teaches | the Gāyatrī is named from गयत्राण; स is the teacher, subject of अन्वाह |
+| 5.14.8 | तस्या अग्निरेव मुखम् …: Janaka's reply, named | Śaṅkara, शृणु तर्हि, after Buḍila's answer |
+| 5.15.1 | Īśa 15–18: line 6 "I am immortal: let my breath go to the air outside …", line 8 "who knows the thoughts of all beings"; the other lines keep the Īśa's; the footnote gives the difference | Śaṅkara here, सोऽहमस्म्यमृतम्, अनिलं बाह्यं वायुम्, वयुनानि प्रज्ञानानि |
+| 6.1.14 | तदन्नमनग्नम्: food (the text); his अनम् (prāṇa) in the footnote | the text reads अन्नम् |
+| 6.2.7 | प्रवाराणाम्: retinues | Śaṅkara, परिवाराणाम्; Monier-Williams' "coverings" is not needed, the clothing is परिधान |
+| 6.2.13 | योनिरर्चिः: "the vulva is the flame" | Śaṅkara, by likeness of colour (वर्णसामान्यात्); this text and bhāṣya decide over the Chāndogya's "womb" |
+| 6.2.15 | श्रद्धां सत्यमुपासते: they worship with faith the True (satya); the other reading in the footnote | Śaṅkara, श्रद्धायुक्ताः सन्तः, न पुनः श्रद्धां च उपासते |
+| 6.3.1 | सꣳराधनी: "the bringer of success" | Śaṅkara does not gloss it; rādh "to accomplish", as the word list has it; Monier-Williams' "conciliating" fits the address less |
+| 6.3.1 | विधरणी: "the one who holds all back" | Monier-Williams, vidharaṇa (ŚBr.) checking, restraining; Śaṅkara does not gloss it |
+| 6.3.1 | सन्नीय: sets the mantha in the middle | Śaṅkara, मध्ये संस्थाप्य; its mixing is in the gloss |
+| 6.4.3 | चर्माधिषवणे … तौ मुष्कौ: the two labia are the two boards of the soma-press; the other reading in the footnote | Śaṅkara joins अधिषवणे with मुष्कौ (व्यवहितेन संबन्धः) |
+| 6.4.13 | अहतवासा: after bathing at the end of three nights she puts on new clothes; his कंसेन पिबेत् in the footnote | Śaṅkara joins it with आप्लुत्य |
+| 6.4.17 | पण्डिता: "learned"; his restriction to household matters in the footnote | the plain word; his view is given as his |
+| 6.4.23 | तमिन्द्र निर्जहि गर्भेण सावराꣳ सह: drive it out, together with the child and the afterbirth | the plain words; Śaṅkara does not comment |
+| 6.4.28 | प्रापयत् (as printed): he "has reached" the highest summit; the printed causative in the footnote | Śaṅkara, प्रापत्; the causative names no object, and none is added |
+
 ## Open
 - None.
