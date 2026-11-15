@@ -65,9 +65,8 @@ FIX = [
     ('3.10.5', 'हा ३ वु हा ३ वु हा ३ वु', 'हा३वु हा३वु हा३वु'),     # the pluta joined to its syllable, as ऋता३स्य
     ('3.10.6', 'दोऽ३अहमन्नादः', 'दोऽ३हमन्नादः'),       # written as the repetition before it
     ('3.10.6', 'मा३अऽवाः', 'मा३ऽवाः'),                           # the elided अ is the avagraha
-    ('3.10.6', '॥ ॐ शान्तिः शान्तिः शान्तिः ॥', 'ॐ शान्तिः शान्तिः शान्तिः ॥'),   # as the page's other śānti pāṭhas
 ]
-# the śānti pāṭha's words as the page writes them at the end of the Upaniṣad (तेजस्वि नावधीतमस्तु: तेजस्वि अधीतम्, नौ)
+# the śānti pāṭha's words as the page writes them after the Upaniṣad's last paragraph (तेजस्वि नावधीतमस्तु: तेजस्वि अधीतम्, नौ)
 SAHA = 'तेजस्विनावधीतमस्तु'
 
 def blocks():
@@ -159,7 +158,7 @@ def build():
                 # the printed number of the paragraph is its own (॥२॥ ends 1.3.2)
                 y = 'shanti' if r in ('1.1.1', '1.12.1') else 'mantra'
                 tail = []
-                if r in ('1.12.1', '2.9.1', '3.10.6'):   # the vallī's closing words (and śānti pāṭha) are items of their own
+                if r in ('1.12.1', '2.9.1', '3.10.6'):   # the vallī's closing words are an item of its own
                     k = next(i for i, l in enumerate(lines) if l.startswith('॥ इति') and 'वल्ली समाप्ता' in l)
                     lines, tail = lines[:k], lines[k:]
                 I.append(item(r, p, 'a%d.%d' % (v, a), y, n, lines))
@@ -167,9 +166,9 @@ def build():
                     h, e = THEME[v][a - 1]
                     topics.append({'id': r, 'hi': '%s अनुवाक — %s' % (ORD[a - 1], h), 'en': 'Anuvak %d — %s' % (a, e)})
                 if tail:
+                    # the सह नाववतु the page prints again after vallīs 2 and 3 is not an item: the recording does not
+                    # sing it there (PLAYBOOK §11; reconciliation.md, "Structure")
                     I.append(item('iti.%d' % v, p, 'iti.%d' % v, 'iti', '', tail[:1]))
-                    if tail[1:]:
-                        I.append(item('shanti.%d.end' % v, p, 'iti.%d' % v, 'shanti', '', tail[1:]))
     assert [x['id'] for x in I].count('2.0.2') == 0 and len({x['id'] for x in I}) == len(I)
     return I, topics
 

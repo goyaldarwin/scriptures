@@ -1,7 +1,7 @@
 """Checks text.txt (the Taittirīya Upaniṣad) against the witnesses in source/witness/ (made by witnesses.py).
 
 A witness file: paragraphs separated by blank lines; a line "# 1.3" names the anuvāka the following paragraphs belong
-to, "# shanti.2" the śānti pāṭha opening vallī 2, "# end.2" the one after it (our shanti.2.end). The witnesses divide
+to, "# shanti.2" the śānti pāṭha opening vallī 2, "# end.2" the one a witness prints after it (not compared: the text has no such item, reconciliation.md, "Structure"). The witnesses divide
 some anuvākas into paragraphs differently, so each anuvāka is compared as one run of letters, and every difference is
 printed with the paragraph of ours it falls in. Not compared: the closing words of an anuvāka (इति … ऽनुवाकः, the last
 line of our last paragraph) and of a vallī (our `iti` items), which the witnesses word differently; spaces, daṇḍas,
@@ -105,8 +105,8 @@ def resolve(w, o):
     return T[0]
 
 def section(i):
-    """Our item id → the witness files' section: 1.3.2 → 1.3, shanti.2 → shanti.2, shanti.2.end → end.2."""
-    if i.startswith('shanti.'): return 'end.' + i.split('.')[1] if i.endswith('.end') else i
+    """Our item id → the witness files' section: 1.3.2 → 1.3, shanti.2 → shanti.2."""
+    if i.startswith('shanti.'): return i
     return i.rsplit('.', 1)[0]
 
 def ours():
