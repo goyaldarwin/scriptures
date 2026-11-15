@@ -5414,7 +5414,17 @@
            "hi": "ॐ, उद्गीथ और तत्त्वमसि · ८ अध्याय · १५४ खण्ड · ६३० मन्त्र",
            "en": "Om, the Udgitha and tat tvam asi · 8 adhyays · 154 khands · 630 mantras"
           },
-          "salute": "॥ ॐ श्री परमात्मने नमः ॥"
+          "salute": "॥ ॐ श्री परमात्मने नमः ॥",
+          "intro": {
+           "hi": [
+            "छान्दोग्योपनिषद् सामवेदकी कौथुम शाखाका उपनिषद् है, और सबसे प्राचीन उपनिषदोंमें एक। यह छान्दोग्य ब्राह्मणके दस अध्यायोंमेंसे अन्तिम आठ है। यह ॐको उद्गीथ कहकर उसकी उपासनासे आरम्भ होता है, और इसके पहले दो अध्याय उद्गीथ और सामकी उपासनाके हैं। इसके आठ अध्यायोंमें १५४ खण्ड और ६२९ मन्त्र हैं।",
+            "आगेके अध्यायोंमें उपनिषदोंके कई प्रसिद्ध उपदेश हैं: शाण्डिल्यका वचन 'सर्वं खल्विदं ब्रह्म' — यह सब ब्रह्म है; सत्यकाम जाबालकी कथा, जिसे सच बोलनेके कारण गुरुने शिष्य स्वीकार किया; छठे अध्यायमें उद्दालक आरुणिका अपने पुत्र श्वेतकेतुको अनेक दृष्टान्तोंसे दिया उपदेश, 'तत्त्वमसि' — वह तू है; सातवेंमें सनत्कुमारका नारदको नामसे आरम्भ करके एक-एक सीढ़ी ऊपर भूमातक ले जाना: 'जो भूमा (अनन्त) है वही सुख है'; और आठवेंमें हृदयके भीतरका छोटा आकाश, तथा प्रजापतिका इन्द्र और विरोचनको आत्माका उपदेश। आदि शंकराचार्यने इसपर भाष्य लिखा।"
+           ],
+           "en": [
+            "The Chandogya Upanishad belongs to the Kauthuma branch of the Samaveda and is one of the oldest Upanishads. It is the last eight of the ten chapters of the Chandogya Brahmana. It opens with meditation on Om, which it calls the Udgitha, and its first two adhyayas are meditations on the Udgitha and the saman. Its eight adhyayas hold 154 khandas and 629 mantras.",
+            "The later adhyayas hold some of the best known teachings of the Upanishads: Shandilya's \"all this is Brahman\"; the story of Satyakama Jabala, accepted as a pupil because he told the truth; in the sixth adhyaya, Uddalaka Aruni teaching his son Shvetaketu through example after example, \"tat tvam asi\", that you are; in the seventh, Sanatkumara leading Narada step by step upward from name to the infinite, \"the infinite alone is joy\"; and in the eighth, the small space within the heart, and Prajapati teaching Indra and Virochana about the Self. Adi Shankaracharya wrote a commentary on it."
+           ]
+          }
          }
         ]
        }
