@@ -9,10 +9,12 @@ Shelf: हिन्दू धर्म › वेद › यजुर्वे�
 - **Witness.** Sanskrit Wikisource's Taittirīya Āraṇyaka, prapāṭhaka 3 (unaccented), raw wikitext in scriptures-data at `…/purusha-suktam/printouts/wikisource/`; every word is checked against it (`source/check.py`, `reconciliation.md`).
 - **Recording.** Sri Sathya Sai Official, YouTube `TngWQ6zweBc` (498.9 s), whose downloaded file names it "Full Purusha Suktam With Lyrics, Ancient Vedic Chants In Sanskrit, Powerful Mantra". `audio/sri-sathya-sai/` (`source.json`, `recordings.json`); the private speech-quality copy is in scriptures-data at `…/purusha-suktam/audio/sri-sathya-sai/TngWQ6zweBc.opus`. Transcribed (`transcripts/`), not yet timed (a draft). It sings the śānti pāṭha, the eighteen mantras, the Uttaranārāyaṇa and the śānti pāṭha again, so the text opens with the śānti pāṭha as well (`reconciliation.md`).
 - **Word meanings:** every word, in the shared dictionary (`library/glossary/sa.json`; the readings decided: `reconciliation.md`, "Word meanings").
-- **Meanings, introduction:** not written yet.
+- **Meanings.** Written for this library (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`), line by line, from the mantra's words, their grammar and Monier-Williams and Apte; no reading is put to any commentator (Sāyaṇa's commentary is not at hand). Brief context and well-known second readings are in the footnotes (`notes`); the readings decided are in `reconciliation.md`, "Meanings". The English on the shlokam.org page was read only to check ours, which shares no run of ten words with it (`tools/meanings/overlap.py`).
+- **Introduction:** not written yet.
 
 ## Files
 The folder's format: `tools/works/README.md`.
+- `meanings/hi/scriptures.json`, `meanings/en/scriptures.json`: our meanings, with footnotes (`notes`).
 - `source/extract.py <purusha-suktam.html>` → `source/purusha-suktam_raw.json`: the page's verse blocks (Devanagari and transliteration). Run it again only if the page changes.
 - `source/settle.py` → `text.txt`: the settled text, with the corrections (`FIX`), the page's headings left out (`HEADING`), the lines where the page's two scripts differ (`WITNESS`), the sections and our topic headings; `tools/site/regen_check.py` runs it. The export writes it by the library's standard and makes the transliteration (PLAYBOOK §3).
 - `tools/works/shlokam.py`, shared by the six Sūktas: reads a shlokam.org page's HTML, converts its transliteration to Devanagari and compares the two. The Śrī Rudram (from PDF printouts) and the Taittirīya Upaniṣad have helpers of their own doing the same; the Sūktas share one because their pages are alike.

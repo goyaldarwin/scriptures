@@ -9,10 +9,12 @@ Shelf: हिन्दू धर्म › वेद › यजुर्वे�
 - **Witnesses.** Sanskrit Wikisource's Taittirīya Saṃhitā, accented (kāṇḍas 1–4) and unaccented (4.4), raw wikitext in scriptures-data at `…/neela-suktam/printouts/wikisource/`; every word, and every svara, is checked against them (`source/check.py`, `reconciliation.md`).
 - **Recording.** Soul Sadhana, YouTube `NZF4y9MDkSQ` (105.4 s), whose downloaded file names it "Neela Suktam (Vishnu Patni Suktam) Lyrics Meaning, Soul Sadhana". Audio source id `soul-sadhana`: `audio/soul-sadhana/` (`source.json`, `recordings.json`); the private speech-quality copy is in scriptures-data at `…/neela-suktam/audio/soul-sadhana/NZF4y9MDkSQ.opus`. Transcribed (`transcripts/`), not yet timed (a draft). It sings the invocation, the two mantras and the śānti; it does not sing the Gāyatrī, which stays, untimed.
 - **Word meanings:** every word, in the shared dictionary (`library/glossary/sa.json`; the readings decided: `reconciliation.md`, "Word meanings").
-- **Meanings, introduction:** not written yet.
+- **Meanings.** Written for this library (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`), line by line, from the mantra's words, their grammar and Monier-Williams and Apte; no reading is put to any commentator (Sāyaṇa's commentary is not at hand). Brief context and well-known second readings are in the footnotes (`notes`); the readings decided are in `reconciliation.md`, "Meanings". The English on the shlokam.org page was read only to check ours, which shares no run of ten words with it (`tools/meanings/overlap.py`).
+- **Introduction:** not written yet.
 
 ## Files
 The folder's format: `tools/works/README.md`.
+- `meanings/hi/scriptures.json`, `meanings/en/scriptures.json`: our meanings, with footnotes (`notes`).
 - `source/extract.py <neela-suktam.html>` → `source/neela-suktam_raw.json`: the page's verse blocks (Devanagari and transliteration). Run it again only if the page changes.
 - `source/settle.py` → `text.txt`: the settled text, with the corrections (`FIX`), the sections and our topic headings; `tools/site/regen_check.py` runs it. The export writes it by the library's standard and makes the transliteration (PLAYBOOK §3).
 - `tools/works/shlokam.py`, shared by the six Sūktas: reads a shlokam.org page's HTML, converts its transliteration to Devanagari and compares the two (the Śrī Rudram's and the Taittirīya Upaniṣad's method, with one helper for the six alike pages).

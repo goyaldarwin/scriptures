@@ -9,10 +9,12 @@ Shelf: हिन्दू धर्म › वेद › यजुर्वे�
 - **Witnesses.** Sanskrit Wikisource's accented Taittirīya Āraṇyaka and its Mahānārāyaṇa Upaniṣad, raw wikitext in scriptures-data at `…/durga-suktam/printouts/wikisource/`; every word, and every svara the accented one has, is checked against them (`source/check.py`, `reconciliation.md`).
 - **Recording.** The Sri Sathya Sai International Organization's Young Adults Veda Programme (SSSIO), YouTube `eAlAmnM9UGM` (186.6 s), whose downloaded file names it "Durga Suktam with Lyrics and Meaning, Sri Sathya Sai Young Adults Veda Programme". Audio source id `sssio` (the organisation, as `sri-sathya-sai` names Sri Sathya Sai Official): `audio/sssio/` (`source.json`, `recordings.json`); the private speech-quality copy is in scriptures-data at `…/durga-suktam/audio/sssio/eAlAmnM9UGM.opus`. Transcribed (`transcripts/`), not yet timed (a draft). It sings the seven mantras, the Gāyatrī and the śānti, in the page's order, with no opening the page lacks.
 - **Word meanings:** every word, in the shared dictionary (`library/glossary/sa.json`; the readings decided: `reconciliation.md`, "Word meanings").
-- **Meanings, introduction:** not written yet.
+- **Meanings.** Written for this library (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`), line by line, from the mantra's words, their grammar and Monier-Williams and Apte; no reading is put to any commentator (Sāyaṇa's commentary is not at hand). Brief context and well-known second readings are in the footnotes (`notes`); the readings decided are in `reconciliation.md`, "Meanings". The English on the shlokam.org page was read only to check ours, which shares no run of ten words with it (`tools/meanings/overlap.py`).
+- **Introduction:** not written yet.
 
 ## Files
 The folder's format: `tools/works/README.md`.
+- `meanings/hi/scriptures.json`, `meanings/en/scriptures.json`: our meanings, with footnotes (`notes`).
 - `source/extract.py <durga-suktam.html>` → `source/durga-suktam_raw.json`: the page's verse blocks (Devanagari and transliteration). Run it again only if the page changes.
 - `source/settle.py` → `text.txt`: the settled text, with the corrections (`FIX`), the page's heading left out (`HEADING`), the sections and our topic headings; `tools/site/regen_check.py` runs it. The export writes it by the library's standard and makes the transliteration (PLAYBOOK §3).
 - `tools/works/shlokam.py`, shared by the six Sūktas: reads a shlokam.org page's HTML, converts its transliteration to Devanagari and compares the two (the Śrī Rudram's and the Taittirīya Upaniṣad's method, with one helper for the six alike pages).

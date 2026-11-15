@@ -46,3 +46,15 @@ Every word has an entry in the shared dictionary (`library/glossary/sa.json`), c
 - **निष्ट्या** (7): निष्टि, "the joint of the neck" (Monier-Williams, from the Taittirīya Āraṇyaka's scholiast), ablative निष्ट्याः before व.
 - **भाती** (8): Monier-Williams gives भाती as a feminine of the present participle of √भा; the entry also gives "shines".
 - **अणीयोर्ध्वा** (11): अणीयः ("most subtle") + ऊर्ध्वा ("rising upward").
+
+## Meanings
+`meanings/hi/scriptures.json` and `meanings/en/scriptures.json` rest on the mantra's words, their grammar and Monier-Williams and Apte; no reading is put to any commentator. Where the words allow more than one reading:
+
+| Mantra | Settled reading | Why |
+|---|---|---|
+| m01, m02, m03, m06 | the accusatives with no verb close with "on him we meditate" (उनका हम ध्यान करते हैं) | the sūkta goes on to the heart as the seat of meditation (m07–m13); the same verb supplied in all four |
+| m02 | परमान्नित्यम्: परमात् + नित्यम्, "beyond even the highest, eternal" | त् becomes न् before न्; परमम् + नित्यम् would print परमन्नित्यम् |
+| m03 | आत्मेश्वरम्: "the ruler of all selves" | beside पतिं विश्वस्य; Monier-Williams' "master of one's self" is said of a person |
+| m04, m05 | नारायणपरः …: "Nārāyaṇa is the supreme light …", परः "supreme" throughout | the lines are parallel (नारायणः परः); "devoted to Nārāyaṇa" would break the parallel |
+| m06 | समुद्रेऽन्तम्: "the goal in the ocean of worldly existence" | अन्त, "end, limit" (Monier-Williams), as our word meaning |
+| m13 | स ब्रह्म: Brahmā; "he is Brahman" in the footnote | a list of gods (Śiva, Hari, Indra) |

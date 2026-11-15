@@ -25,4 +25,14 @@
 ## Word meanings
 Every word has an entry in the shared dictionary (`library/glossary/sa.json`), checked in Monier-Williams and Apte. Sāyaṇa's commentary is not at hand here, so where a reading is open the dictionaries and the grammar decide, and no sense is put to any commentator. A word the recitation joins with a hyphen (the Taittirīya way) is one key, its words in `p`.
 - **भूम्ना** (1): both senses, भूमन् "abundance" and "the earth" (Monier-Williams).
-- **परोवप** (5): परा + उवप (√वप्, perfect), "scattered away"; **दध्वसे** (6): the Vedic perfect of √ध्वंस्, "fell scattered".
+- **परोवप** (5): परा + उवप (√वप्, perfect, first person), "(I) scattered away"; **दध्वसे** (6): the Vedic perfect of √ध्वंस्, "fell scattered".
+
+## Meanings
+`meanings/hi/scriptures.json` and `meanings/en/scriptures.json` rest on the mantra's words, their grammar and Monier-Williams and Apte; no reading is put to any commentator. Where the words allow more than one reading:
+
+| Mantra | Settled reading | Why |
+|---|---|---|
+| m01 | the first line, without a verb, leads into the second; Aditi the goddess addressed | the words supply no verb; a wish would add one |
+| m03 | प्रत्यस्य वह द्युभिः: "carry it towards him day after day" | द्युभिः, "by days" (Monier-Williams' द्यु); the one addressed is not named |
+| m05 | परोवप: "I in anger scattered you" | the perfect with short a, उवप, is first person only (the third is उवाप); उद्दीपयामसि, plural: the sacrificers |
+| m07 | the subject of दधातु: the mind (मनो ज्योतिः) | Bṛhaspati has his own verb (तनुताम्) in the second line |

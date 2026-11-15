@@ -39,4 +39,13 @@ Four are spaces missing between words that make no sandhi with each other, so th
 Every word has an entry in the shared dictionary (`library/glossary/sa.json`), checked in Monier-Williams and Apte. Sāyaṇa's commentary is not at hand here, so where a reading is open the dictionaries and the grammar decide, and no sense is put to any commentator. A word the recitation joins with a hyphen (the Taittirīya way) is one key, its words in `p`.
 - **सुतरसि**, **तरसे**: as in the Durgā Sūkta (its `reconciliation.md`).
 - **मनोता** (1): Monier-Williams' मनोतृ, "disposer", feminine in the Taittirīya Saṃhitā.
-- **सन्धुवानाः** (2): सम्-√धू, "distributing liberally" (Monier-Williams).
+- **सन्धुवानाः** (2): the ātmanepada participle of सम्-√धू, "shaking, blowing together"; Monier-Williams' "distribute liberally" is the parasmaipada's.
+
+## Meanings
+`meanings/hi/scriptures.json` and `meanings/en/scriptures.json` rest on the mantra's words, their grammar and Monier-Williams and Apte; no reading is put to any commentator. Where the words allow more than one reading:
+
+| Mantra | Settled reading | Why |
+|---|---|---|
+| m01 | ओं गृणाहि: "Om. Sing praise." | the second person imperative of √गॄ, addressed to the reciter |
+| m01 | अस्येशाना सहसो या मनोता: "ruling over this might, she who is the disposer" | अस्य agrees with सहसः, as m02's अस्येशाना जगतः; Monier-Williams' मनोतृ, feminine in the Taittirīya Saṃhitā |
+| m02 | सन्धुवानाः: "(the winds) blowing together" | the ātmanepada participle of सम्-√धू, "shake"; Monier-Williams' "bestow" is the parasmaipada's |

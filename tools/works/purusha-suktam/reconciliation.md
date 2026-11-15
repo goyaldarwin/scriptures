@@ -40,8 +40,21 @@
 
 ## Word meanings
 Every word has an entry in the shared dictionary (`library/glossary/sa.json`), checked in Monier-Williams and Apte. Sāyaṇa's commentary is not at hand here, so where a reading is open the dictionaries and the grammar decide, and no sense is put to any commentator. A word the recitation joins with a hyphen (the Taittirīya way) is one key, its words in `p`.
-- **मनिषाण** (mantra 24, three times): in neither dictionary. Read by the grammar as √मन् with the -आन imperative (as गृभाण), "will it, wish it (for me)".
+- **मनिषाण** (mantra 24, three times): in neither dictionary. मे + इषाण, the -आण imperative of √इष् (as गृभाण), "wish (it) for me", by the Vājasaneyī Saṃhitā's parallel (31.22, म इषाण).
 - **यस्त्वैवम्** (23): यः त्वा एवम्, "who (knows) you thus"; तु एवम् would be त्वेवम्.
 - **पुरः** (5): both readings, the adverb "before" and पुर् "cities, bodies" (acc. pl.), the adverb first.
-- **आभवात्** (4), **असन्** (23): Vedic subjunctives (लेट्) of आ-√भू and √अस्.
+- **आभवात्** (4), **असन्** (23): Vedic subjunctive (लेट्) forms of आ-√भू and √अस्; आभवात् is read in the past, "came to be", as the verse's other verbs and the Ṛgveda's आभवत्.
 - **विचित्य** (16): वि-√चि, "having distinguished, made distinct" (Monier-Williams).
+
+## Meanings
+`meanings/hi/scriptures.json` and `meanings/en/scriptures.json` rest on the mantra's words, their grammar and Monier-Williams and Apte; no reading is put to any commentator. Where the words allow more than one reading:
+
+| Mantra | Settled reading | Why |
+|---|---|---|
+| m02 | यदन्नेनातिरोहति: "since he grows higher by food"; "lord of immortality and of what grows by food" in the footnote | यत् as the conjunction; Monier-Williams cites this ṛk for अति-√रुह्, "to grow higher"; the relative reading needs an antecedent the line does not give |
+| m04 | आभवात्: "a quarter of him came to be here again" | past, as the verse's other verbs (उदैत्, व्यक्रामत्) and the Ṛgveda's आभवत्; पुनः is "again" |
+| m05 | पश्चाद्भूमिमथो पुरः: "he reached beyond the earth, behind it and before it"; the creation reading (then the earth, then the bodies) in the footnote | अति-√रिच् with the accusative, "surpass" (Monier-Williams, Apte); पुरः the adverb "in front" |
+| m16 | यदाऽऽस्ते: "when he … abides" | यदा + आस्ते |
+| m19 | तत्पुरुषस्य विश्वमाजानमग्रे: "that, in the beginning, was the whole birth of the Puruṣa" | तत् and विश्वम् neuter with आजानम्, "birth" (Monier-Williams); "the world" would need विश्वम् as a noun the line does not mark |
+| m21 | मरीचीनां पदम्: "the station of Marīci and the other seers"; "of the rays" in the footnote | वेधसः, "creators"; Monier-Williams' masculine मरीचि "ray" is cited from this very text, so the rays stay as the second reading |
+| m24 | मनिषाण: "wish for me" (मे + इषाण); अमुम्: "that (world) yonder" | the Vājasaneyī Saṃhitā's parallel (31.22) has म इषाण, and सर्वलोकम् for the third; √इष्, "wish"; अमुम् is masculine between the neuter इष्टम् and सर्वम्, so it implies लोकम् |

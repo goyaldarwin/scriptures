@@ -51,3 +51,19 @@ Every word has an entry in the shared dictionary (`library/glossary/sa.json`), c
 - **चिक्लीत** (12): not in Monier-Williams; the vocative of a name, its sense from Apte's चिक्लिद, "moisture" (√क्लिद्). **कर्दम** (11): the name, and "mud, clay".
 - **Words the page prints apart inside a compound** (पद्म ऊरु, पुत्रपौत्र धनं, गम्भीरा वर्तनाभिः, स्तनभर नमिता, क्षीरसमुद्र राजतनयां, …): the first word's entry gives its own sense as the compound's first member; the last word's gives the whole compound's sense in brackets.
 - **पुरुषान्** / **पूरुषान्** (2, 15) and the Gāyatrī's nominatives (34, 37) are glossed as printed.
+
+## Meanings
+`meanings/hi/scriptures.json` and `meanings/en/scriptures.json` rest on the mantra's words, their grammar and Monier-Williams and Apte; no reading is put to any commentator. Where the words allow more than one reading:
+
+| Mantra | Settled reading | Why |
+|---|---|---|
+| m01 | हरिणीम्: "like a doe" | Monier-Williams' and Apte's first sense; हिरण्यवर्णाम् already gives the hue |
+| m04 | कां: "her who is bliss" | क, "joy" (Monier-Williams); the interrogative leaves the sentence without a frame |
+| m06 | मायान्तरायाश्च बाह्या अलक्ष्मीः: "the illusions within and the misfortunes without" | मायाः अन्तराः याः च बाह्याः, as our word meanings split it |
+| m13 | पुष्करिणीम्: "like a lotus pool" | Monier-Williams' first, Ṛgvedic sense; m14 has करिणी for the elephant |
+| m14 | यः left unrendered; करिणी "a she-elephant", यष्टि "a staff to lean on" | a masculine relative with no referent in the line; the refrain as in m13; Monier-Williams' यष्टि, "any support" |
+| m20 | वरुणं धनमश्नुते: "wealth reaches Varuṇa" | वरुणम् accusative, धनम् nominative |
+| m21 | the subject of ददातु is Indra (वृत्रहा), carried over | no other subject is in the words |
+| m23 | अव ब्रह्म द्विषो जहि: "protect the Veda, strike down those who hate" | the words as printed apart: अव "protect", ब्रह्म "the Veda"; अव … जहि with ब्रह्मद्विषः ("strike down the haters of the sacred word") is also grammatical, but the text does not join the compound |
+| m33 | क्षमाम्: "forbearance itself" | Monier-Williams' and Apte's first sense; "the earth" is their later one |
+| m35 | पवमानम् the subject of both verbs: "the purifying Pavamāna is glorified; may it bestow …" | पवमानम् neuter nominative; no other subject is in the words |

@@ -40,3 +40,14 @@ Every word has an entry in the shared dictionary (`library/glossary/sa.json`), c
 - **प्रत्नोषि** (6): प्रत्नः असि, "you are ancient".
 - **वेदः** (1): both senses, "the Veda, knowledge" and the Vedic वेदस् "wealth"; the mantra's is the second.
 - **कन्यकुमारि** (Gāyatrī): the vocative of कन्याकुमारी with the short a the text has; **कात्यायनाय**: the masculine dative, glossed with Kātyāyanī.
+
+## Meanings
+`meanings/hi/scriptures.json` and `meanings/en/scriptures.json` rest on the mantra's words, their grammar and Monier-Williams and Apte; no reading is put to any commentator. Where the words allow more than one reading:
+
+| Mantra | Settled reading | Why |
+|---|---|---|
+| m02 | तरसे: "the swift and mighty one" (the Nīlā Sūkta's मङ्गल the same) | Monier-Williams and Apte give speed and strength first; "ferry" stays in the word meaning |
+| m03 | नव्यः: "worthy of praise" | Monier-Williams' 2. नव्य, Ṛgvedic |
+| m03 | पूश्च पृथ्वी बहुला न उर्वी: "a stronghold, broad, ample and wide" | पृथ्वी the feminine of पृथु with पूः, in a row of three adjectives; न is नः before उ |
+| m05 | क्षामत्: "who burns to ashes" | Monier-Williams' क्षाम (√क्षै); "forgive" rests on no dictionary sense |
+| m07 | "that which, cherished with cows and poured out, is yours, the peerless one's, and Viṣṇu's … may they gladden Vaiṣṇavī here" | अयुजः genitive with तव; मादयन्ताम् causative, with वैष्णवीम् its object; the singular संवसानः with the plural verb is rendered as the words stand |
