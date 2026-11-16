@@ -256,7 +256,9 @@ async def main():
             check(f'{tag}: verse icons never touch the words', overlap == 0, overlap)
             # the verse type is a heading shown only where the type changes (never twice in a row for the same type)
             dup = await ev("""(() => { const els = [...document.querySelectorAll('#reader .pg > .vtype, #reader .pg > .verse')]; let bad = 0, last = null, prevHead = false;
-              els.forEach(e => { if (e.classList.contains('vtype')){ if (prevHead) bad++; prevHead = true; } else { const y = IT[+e.dataset.i].y; if (!prevHead && last != null && y !== last && TYPEN[y]) bad++; last = y; prevHead = false; } }); return bad; })()""")
+              els.forEach(e => { if (e.classList.contains('vtype')){ if (prevHead) bad++; prevHead = true; } else { const i = +e.dataset.i, y = IT[i].y; if (!prevHead && last != null && y !== last && TYPEN[y]) bad++;
+                if (prevHead && last != null && y === last && i !== R.a && IT[i - 1] && IT[i - 1].p === IT[i].p && !RG()) bad++;   // a run of one type is headed once (forty chaupais: one heading)
+                last = y; prevHead = false; } }); return bad; })()""")
             check(f'{tag}: the verse type heads each run of one type, once', dup == 0, dup)
             wide = await ev("document.documentElement.scrollWidth - document.documentElement.clientWidth")
             check(f'{tag}: nothing runs off the side of the screen', wide <= 0, f'{wide}px')
@@ -1067,7 +1069,7 @@ async def main():
         nx.append(await ev("window.__got.map(i => window.__nx.indexOf(i))"))
         nx.append(await ev("(() => { const i = window.__nx[0]; setTime(i, 1, SRC.au.at[IT[i].id][1]); refreshMarks({}, i); return $('#pCheck').textContent === T('अगला ▸ ', 'Next ▸ ') + DEV(2); })()"))
         # ✓ Correct under a verse the library lists to check keeps its start as it is, as one set by ear: it leaves the list
-        nx.append(await ev("(() => { const i = window.__nx[1], id = IT[i].id, t = SRC.au.at[id][1]; rerenderItem(i); const b = document.querySelector('#v' + i + ' .vundo [data-a=tok]'); if (!b) return 'no ✓ Correct in the corner'; b.click(); return [myStarts()[id] && myStarts()[id][1] === Math.round(t * 10) / 10, $('#pCheck').textContent === T('अगला ▸ ', 'Next ▸ ') + DEV(1)]; })()"))
+        nx.append(await ev("(() => { const i = window.__nx[1], id = IT[i].id, t = SRC.au.at[id][1]; if (!document.getElementById('v' + i)) renderAround(i); rerenderItem(i); const b = document.querySelector('#v' + i + ' .vundo [data-a=tok]'); if (!b) return 'no ✓ Correct in the corner'; b.click(); return [myStarts()[id] && myStarts()[id][1] === Math.round(t * 10) / 10, $('#pCheck').textContent === T('अगला ▸ ', 'Next ▸ ') + DEV(1)]; })()"))
         lay = await ev("(() => { const r = s => document.querySelector(s).getBoundingClientRect(), v = r('.ytw'), c = r('#pCheck'), t = r('#pStep'), x = r('#pClose'); return [c.left >= v.right, t.left >= v.right, x.bottom <= Math.min(c.top, t.top) + 1, Math.abs(c.top - t.top) < 2]; })()")
         check('timing: in the player bar ✕ sits on its own line above Next ▸ and ±step, which stay clear of the video', lay == [True, True, True, True], lay)
         RT = "(() => { const r = s => document.querySelector(s).getBoundingClientRect(), t = r('#pRate'), x = r('#pClose'), p = r('#pPlay'); return [t.right <= innerWidth, t.top < p.top ? 'top' : 'controls', Math.abs((t.top + t.bottom) / 2 - (x.top + x.bottom) / 2) < 4]; })()"
