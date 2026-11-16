@@ -1346,12 +1346,16 @@ async def main():
         check('Aarti is an index of deities with their counts, each with its salutation (Shri Ganesh, Durga Mata, Bhairav Baba, Shani Dev), A to Z by name, no heading; a tap opens that deity’s works', sv[0] > 12 and sv[1] and sv[2] == ['Shri Ganesh', 'Durga Mata', 'Bhairav Baba', 'Shani Dev'] and sv[3] == 'aarti/rama' and sv[4] >= 2 and sv[5] and sv[6] == 0, sv)
         # searched from a shelf, the library looks on that shelf only, and finds a work by a line of a verse; a chip widens it
         ls3 = await ev("""(async () => { libPath = ['aarti']; show('library'); openSearch('lib'); const chips = [...document.querySelectorAll('#sIn .chip')].map(c => c.textContent);
-            $('#q').value = 'jai ambe gauri'; await libSearch('jai ambe gauri'); const lines = [...document.querySelectorAll('#sRes [data-line]')].length;
+            $('#q').value = 'jai ambe gauri'; await libSearch('jai ambe gauri'); const lines = [...document.querySelectorAll('#sRes .res .snip')].filter(x => /ambe gauri|अम्बे गौरी|अंबे गौरी/i.test(x.textContent)).length;   // its āratī by name (then not again by its line)
             const wr = [...document.querySelectorAll('#sRes .res .where')].map(x => x.textContent);
+            $('#q').value = 'Lakshmi'; await libSearch('Lakshmi'); const lk = [...document.querySelectorAll('#sRes .res')].map(b => [b.querySelector('.where').textContent, b.querySelector('.snip').textContent]);
             $('#q').value = 'hanuman'; await libSearch('hanuman'); const onShelf = [...document.querySelectorAll('#sRes [data-hit]')].every(b => !/Chalisa|चालीसा/.test(b.textContent));
             document.querySelector('#sIn [data-in="all"]').click(); await new Promise(r => setTimeout(r, 400)); await libSearch('hanuman'); const wide = [...document.querySelectorAll('#sRes [data-hit]')].some(b => /Chalisa|चालीसा/.test(b.textContent));
-            history.back(); await new Promise(r => setTimeout(r, 300)); libPath = []; show('library'); return [chips, lines, wr.slice(0, 3), onShelf, wide]; })()""")
-        check('library search from Aarti: only āratīs, a line finds its āratī, “Whole library” widens it', len(ls3[0]) == 2 and ls3[1] >= 1 and ls3[3] and ls3[4], ls3)
+            history.back(); await new Promise(r => setTimeout(r, 300)); libPath = []; show('library'); return [chips, lines, wr.slice(0, 3), onShelf, wide, lk]; })()""")
+        check('library search from Aarti: only āratīs, a line finds its āratī (once), “Whole library” widens it', len(ls3[0]) == 2 and ls3[1] >= 1 and ls3[3] and ls3[4], ls3)
+        lk = ls3[5]; lkw = [r[1] for r in lk if not any(ch in r[1] for ch in '।॥')]
+        check('library search ranks and places: “Lakshmi” in Aarti finds Lakshmi Mata first (her place on its row), each work once, a line found shown as its one line with the word, no near spelling (लक्ष्मण) when the word itself is found',
+              bool(lk) and lk[0] == ['Aarti', 'Lakshmi Mata'] and len(lkw) == len(set(lkw)) and all('लक्ष्मण' not in r[1] and ' / ' not in r[1] for r in lk) and all(r[0] for r in lk), lk)
         # the timing tools are the admins' only: on another phone no Audio timing, no ⚑, no Review audio timing in ⋮
         ad = await ev("""(async () => { const a0 = S.admin, f0 = S.timing.flagsOn; S.admin = 0; S.timing.flagsOn = true; await openWork('sundarkand', true); await loadSources(); show('home');
             show('settings'); renderSettings(); const set = !!document.querySelector('#stm') || !!document.querySelector('#stf');

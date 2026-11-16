@@ -1576,10 +1576,15 @@ let LSIN = null, LALL = false, LINES = null;
 // app/lines.json (made by build.py): every work of up to 1,000 verses, {work: [[verse id, verse, transliteration]]}; folded once
 function linesNow(){
   if (!LINES) LINES = (async () => { try { const raw = BUNDLE ? BUNDLE.lines : await (await fetch('app/lines.json', {cache: 'no-cache'})).json(); const out = {};
-    for (const w in raw || {}) out[w] = raw[w].map(([id, v, t]) => [id, v, fD(v).join(''), fL(t || '').join('')]); return out; } catch (e) { LINES = null; return {}; } })();
+    for (const w in raw || {}) out[w] = raw[w].map(([id, v, t]) => [id, v, fD(v).join(''), fL(t || '').join(''), t || '']); return out; } catch (e) { LINES = null; return {}; } })();
   return LINES;
 }
 function libScopeNode(){ let n = {children: LIB}; if (LSIN && !LALL) for (const id of LSIN) n = (n.children || []).find(x => x.id === id) || n; return n; }
+// a Roman line's words, each folded to its sound key as a typed word is (lakṣmī and Lakshmi both fold alike)
+const foldWords = t => normL(t).split(/[^a-z]+/).filter(Boolean).map(x => fL(x).join(''));
+// the typed word as a whole word of the text (Durga in "durga mata", not inside "durgama"); Devanagari words end at a space or ।॥
+const wordIn = (text, w) => { if (!w) return false; let p = text.indexOf(w); const edge = c => !c || /[\s।॥,;:!?'"()\/\-–—.]/.test(c);
+  while (p >= 0){ if (edge(text[p - 1]) && edge(text[p + w.length])) return true; p = text.indexOf(w, p + 1); } return false; };
 async function libSearch(q){
   // as in verse search, both sides are folded to a sound key (fD, fL); a longer word may also differ by a letter or two
   // (none under 5 letters, one up to 7, then one in four): सुंदरकांड finds सुन्दरकाण्ड, Sunderkand finds Sundarakāṇḍa
@@ -1592,18 +1597,37 @@ async function libSearch(q){
     if (n.work) works[n.work] = {n, trail};
     if (n.children) walk(n.children, trail.concat([n]));
   }); })(root.children, base);
+  // the best match first (the owner: Lakshmi finds Lakshmi Mata before an aarti of Vishnu's that names her): a shelf whose own
+  // name matches, then the works on it, then works with the word in their title, then what matched elsewhere (its author, its
+  // line); in each, the shelf's order
+  const inName = n => { const t = n.title ? (n.title.hi || '') + ' ' + (n.title.en || '') : ''; return normQ(t).includes(nq) || (fq.length >= 2 && near(fq, (latin ? fL(t) : fD(t)).join(''), k) <= k); };
+  const named = out.filter(r => !r.n.work && inName(r.n)).map(r => r.n);
+  const rank = r => !r.n.work && inName(r.n) ? 0 : r.n.work && r.trail.some(x => named.includes(x)) ? 1 : inName(r.n) ? 2 : 3;
+  out.forEach((r, j) => r.o = j); out.sort((x, y) => rank(x) - rank(y) || x.o - y.o);
+  const listed = new Set(out.filter(r => r.n.work).map(r => r.n.work));
   // a verse line of a work in scope: the folded line holds what was typed, or nearly (one letter in six may differ)
   const hits = [];
   if (fq.length >= 4){
     const L = await linesNow(), kl = Math.floor(fq.length / 6);
     if (q !== $('#q').value) return;   // typed on meanwhile
-    for (const w in works){ for (const [id, v, fv, ft] of L[w] || []){ const key = latin ? ft : fv; if (!key) continue;
-      const d = key.includes(fq) ? 0 : kl ? near(fq, key, kl) : 1; if (d <= kl) hits.push({w, id, v, d}); } }
+    for (const w in works){ if (listed.has(w)) continue;   // a work already found by its name is not listed again for its lines
+      for (const [id, v, fv, ft, t] of L[w] || []){ const key = latin ? ft : fv; if (!key) continue;
+      const d = key.includes(fq) ? 0 : kl ? near(fq, key, kl) : 1; if (d > kl) continue;
+      // the word as written (vowels and all: Durga, not durgam or Vidur) before a near one
+      const exact = latin ? foldWords(t).includes(fq) : wordIn(normD(v), normD(q.trim()));
+      hits.push({w, id, v, t, d: exact ? 0 : d + 1}); } }
+    // near lines (a letter off: Lakshman for Lakshmi) only when nothing else is found: they are for a misspelling
+    if (out.length || hits.some(h => h.d === 0)) for (let j = hits.length - 1; j >= 0; j--) if (hits[j].d) hits.splice(j, 1);
     hits.sort((x, y) => x.d - y.d); hits.length = Math.min(hits.length, 60);
   }
-  const where = r => esc(r.trail.slice(base.length ? 1 : 0).map(x => TT(x.title)).join(' › ') || TT(r.n.desc || r.n.by) || '');
+  // a verse found by a line: that line alone (the owner: not the whole verse run together), the word marked where it is written
+  const lineOf = h => { const vs = String(h.v).split(' / '), ts = String(h.t || '').split(' / ');
+    const nw = normD(q.trim()), has = (x, j) => latin ? foldWords(ts[j] || '').includes(fq) : wordIn(normD(x), nw);
+    let at = vs.findIndex(has); if (at < 0) at = vs.findIndex((x, j) => (latin ? fL(ts[j] || '') : fD(x)).join('').includes(fq)); if (at < 0) at = 0;
+    return snip(vs[at], q.trim(), false); };
+  const where = r => esc(r.trail.slice(base.length ? 1 : 0).map(x => TT(x.title)).join(' › ') || (root.title ? TT(root.title) : LB.lib()));   // every row says where it is (inside Aarti: Aarti)
   $('#sRes').innerHTML = out.length || hits.length ? out.map((r, j) => '<button class="res" data-hit="' + j + '"><div class="where">' + where(r) + '</div><div class="snip" style="font-weight:700">' + esc(TT(r.n.title)) + '</div></button>').join('') +
-      hits.map((h, j) => '<button class="res" data-line="' + j + '"><div class="where">' + esc(TT(works[h.w].n.title)) + '</div><div class="snip">' + esc(h.v) + '</div></button>').join('')
+      hits.map((h, j) => '<button class="res" data-line="' + j + '"><div class="where">' + esc(TT(works[h.w].n.title)) + '</div><div class="snip">' + lineOf(h) + '</div></button>').join('')
     : '<div class="empty">' + T('कुछ नहीं मिला', 'Nothing found') + '</div>';
   $$('#sRes [data-hit]').forEach(b => b.onclick = () => { const r = out[+b.dataset.hit]; if (r.n.work) openWork(r.n.work); else { libPath = r.trail.map(x => x.id).concat([r.n.id]); show('library'); } });
   $$('#sRes [data-line]').forEach(b => b.onclick = async () => { const h = hits[+b.dataset.line]; await openWork(h.w); if (W && W.id === h.w && ID[h.id] != null){ show('home', false); openReader('k', ID[h.id], true); } });
