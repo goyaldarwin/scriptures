@@ -352,6 +352,48 @@ def check_folders():
         out[d] = m['path']
     return out
 
+# The owner's decisions on the shelf (docs/PLAYBOOK.md §6), held here so a new work keeps them:
+# - the genres in the tradition's own order (Śruti, Smṛti, later works, songs of worship);
+# - a deity named with its salutation, the same on its shelf, as an aarti's or chalisa's subject (`by`) and in "The aarti of …";
+# - a Stotra on its author's shelf (its `by` is the shelf's title);
+# - a Chalisa titled "Shri <name> Chalisa", in separate words in both languages;
+# - prasangs (topicWord) only in a story work: the Itihasa and the Puranas.
+GENRES = ['veda', 'itihasa', 'purana', 'stotra', 'namavali', 'chalisa', 'aarti']
+SAL_EN = re.compile(r'^(Shri |Bhagwan |Baba |Guru )|( Mata| Devi| Dev| Devta| Baba| Ji| Sarkar)( \(.+\))?$|^Rani Sati \(Dadi Ji\)$')
+SAL_HI = re.compile(r'^(श्री |भगवान |बाबा |गुरु )|( माता| देवी|देव| देवता| बाबा|बाबा|जी| सरकार)( \(.+\))?$|^राणी सती \(दादीजी\)$')
+STORY = {'itihasa', 'purana'}
+def check_classes(shelf):
+    hindu = next((t for t in shelf if t['id'] == 'hinduism'), None)
+    if not hindu: return
+    ids = [g['id'] for g in hindu['children']]
+    _need(ids == [g for g in GENRES if g in ids] and set(ids) <= set(GENRES), f"shelf: the genres go in the tradition's order {GENRES} (docs/PLAYBOOK.md §6); a new genre is the owner's decision, added there and here: {ids}")
+    G = {g['id']: g for g in hindu['children']}
+    def works_of(n):
+        if n.get('work'): yield n
+        for c in n.get('children', []): yield from works_of(c)
+    def wj(leaf): return json.load(open(os.path.join(WORKS, leaf['work'], 'work.json'), encoding='utf-8'))
+    for gid in ('aarti', 'chalisa', 'namavali'):
+        for d in G.get(gid, {}).get('children', []):
+            if d.get('work'): continue
+            t = d['title']
+            _need(SAL_EN.search(t['en']) and SAL_HI.search(t['hi']), f"shelf: {gid}/{d['id']}: a deity is named with its salutation (Shri Ganesh, Durga Mata, Shani Dev, Bhairav Baba …; docs/PLAYBOOK.md §6), not {t['en']!r} / {t['hi']!r}")
+            for w in works_of(d):
+                b = (wj(w).get('by') or {}).get('en', '')
+                if gid != 'namavali' and b and not any(b.startswith(x) for x in ('Goswami', 'Maharshi', 'Adi ', 'Sant ', 'Swami ')) and not b.startswith('Shri Rama') and b != 'Shri Sitaram':
+                    _need(SAL_EN.search(b), f"tools/works/{w['work']}/work.json: by {b!r}: an aarti's or chalisa's subject is the deity named with its salutation, as its shelf ({t['en']!r})")
+                m = re.match(r'^The aarti of (.+)$', (w.get('desc') or {}).get('en', ''))
+                if m: _need(SAL_EN.search(m.group(1)) or m.group(1).startswith('the ') or m.group(1) in ('Shri Ramayanji', 'Shri Sitaram'), f"shelf: {w['work']}: “The aarti of …” names the deity with its salutation, not {m.group(1)!r}")
+                if gid == 'chalisa' and w['title']['en'].endswith('Chalisa'):
+                    _need(w['title']['en'].startswith(('Shri ', 'Mangalmay ')) and ' (' not in w['title']['en'] and re.search(r' चालीसा$', w['title']['hi']) and not re.search(r'श्री\S', w['title']['hi']),
+                          f"shelf: {w['work']}: a Chalisa is titled “Shri <name> Chalisa” in separate words in both languages (श्री हनुमान चालीसा), not {w['title']['en']!r} / {w['title']['hi']!r}")
+    for a in G.get('stotra', {}).get('children', []):
+        for w in works_of(a):
+            b = (wj(w).get('by') or {}).get('en', '')
+            _need(b == a['title']['en'], f"shelf: stotra/{a['id']}: the Stotras are grouped by author; {w['work']} is by {b!r}, not {a['title']['en']!r}")
+    for g in hindu['children']:
+        for w in works_of(g):
+            if wj(w).get('topicWord'): _need(g['id'] in STORY, f"tools/works/{w['work']}/work.json: topicWord (prasangs) is for a story work only, on Itihasa or Puranas, not {g['id']}")
+
 def prepare(lib):
     bad = standard.selftest()
     _need(not bad, 'tools/text/standard.py fails its own cases: ' + '; '.join(f'{c}: wants {w!r}, makes {g!r}' for c, w, g in bad))
@@ -392,6 +434,7 @@ def prepare(lib):
             _need('shelf' not in g or g['shelf'] in genres and g['shelf'] != g['id'], f"shelf: {t['id']}/{g['id']}: shelf {g.get('shelf')!r} must be the id of another genre")
             for n in g.get('children', []):
                 _need('shelf' not in n, f"shelf: only a genre has shelf ({t['id']}/{g['id']}/{n['id']})")
+    check_classes(shelf)
     folders = check_folders()
     # one word for one thing (docs/PLAYBOOK.md §7): a verse type has the same name and short tag in every work that declares it
     TY = {}
