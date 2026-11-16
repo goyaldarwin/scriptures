@@ -10,7 +10,7 @@ import os, re, subprocess, sys, difflib, unicodedata
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 WORK = os.path.dirname(HERE)
-PDF = 'hinduism/stotra/surya/aditya-hridayam/printouts/sanskritdocuments/adityahriday.pdf'
+PDF = 'hinduism/stotra/valmiki/aditya-hridayam/printouts/sanskritdocuments/adityahriday.pdf'
 
 def norm(s):
     s = unicodedata.normalize('NFC', s).replace('‍', '').replace('‌', '')

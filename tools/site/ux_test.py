@@ -91,6 +91,9 @@ async def main():
             path = await ev(f"(() => {{ let r = null; (function w(ns, at){{ ns.forEach(n => n.work === {json.dumps(leaf['work'])} ? r = at.concat(n.id) : w(n.children || [], at.concat(n.id))); }})(LIB, []); return r; }})()")   # its place in the library the reader sees
             k = 0; opened = False
             while k < len(path):
+                row = await pg.query_selector(f'#libList [data-open-work="{wid}"]')   # the work's own row, where this page lists it
+                if row:
+                    await row.click(); await until(f"document.querySelector('#home').classList.contains('on') && W && W.id === {json.dumps(wid)} && !!document.querySelector('#orgList [data-open]')"); opened = True; break
                 btn = None   # the deepest shelf (or the work) this page shows a button for: a heading may stand for several levels
                 for j in range(len(path), k, -1):
                     key = '/'.join(path[k:j]); btn = await pg.query_selector(f'#libList [data-node="{key}"]')
@@ -477,9 +480,9 @@ async def main():
         check('a quick open shows no greeting screen', not quick[0] and quick[1] < 400 and quick[2] == 'home', quick)
         # a slow open (the work takes 0.8 s to arrive): the greeting shows while it loads, and goes when it is here
         async def late(route): await asyncio.sleep(0.8); await route.continue_()
-        await pg2.route('**/hinduism/stotra/shiva/bilvashtakam/work.json*', late)
+        await pg2.route('**/hinduism/stotra/shankaracharya/bilvashtakam/work.json*', late)
         slow = await pg2.evaluate("(async () => { const p = openWork('bilvashtakam'); await new Promise(r => setTimeout(r, 500)); const r = [!$('#loading').hidden, $('#loading').textContent]; await p; r.push($('#loading').hidden, CURVIEW); return r; })()")
-        await pg2.unroute('**/hinduism/stotra/shiva/bilvashtakam/work.json*')
+        await pg2.unroute('**/hinduism/stotra/shankaracharya/bilvashtakam/work.json*')
         check('a slow open greets the work while it loads, then shows its page', slow[0] and slow[1] == await pg2.evaluate("saluteOf('bilvashtakam')") and slow[2] and slow[3] == 'home', slow)
         # opening the work that is already open: no greeting, no wait
         again = await pg2.evaluate("(async () => { const t0 = performance.now(); const p = openWork('bilvashtakam'); const t = document.querySelector('#loading').hidden; await p; return [t, performance.now() - t0]; })()")
@@ -524,24 +527,24 @@ async def main():
             check(f'app {aid}: only its shelves', ok, got)
         await pg.goto(url); await pg.wait_for_timeout(2000)
 
-        # ---- library: one row per genre, no headings and no tradition; the Sikh gurbani among the Granthas ----
+        # ---- library: one card per genre, no headings and no tradition; Gurbani among them ----
         await ev("libPath=[]; show('library')"); await pg.wait_for_timeout(300); await shot('library')
         heads = await ev("Array.from(document.querySelectorAll('#libList .lhead')).map(x => x.textContent)")
         genres = [g for t in shelf for g in t['children'] if 'shelf' not in g]
-        rows = await ev("[...document.querySelectorAll('#libList button.it[data-node]')].map(b => b.dataset.node)")   # not the '+N' chip of a shelf with more works
-        check('library: one row per genre, no headings, no tradition', not heads and rows == [g['id'] for g in genres], [heads, rows])
-        sukh = await ev("(async () => { libPath = ['gurbani']; renderLibrary(); const n = document.querySelectorAll('#libList [data-node=\"guru-arjan-dev\"]').length; libPath = []; renderLibrary(); return [n, !!document.querySelector('#libList button.it[data-node=\"gurbani\"]')]; })()")
+        rows = await ev("[...document.querySelectorAll('#libList .lch[data-node]')].map(b => b.dataset.node)")
+        check('library: one card per genre, in the tradition\'s order (Vedas, Itihasa, Puranas, Stotras, Namavali, Chalisa, Aarti, Gurbani), no headings, no tradition', not heads and rows == [g['id'] for g in genres] and rows[:2] == ['veda', 'itihasa'], [heads, rows])
+        sukh = await ev("(async () => { libPath = ['gurbani']; renderLibrary(); const n = document.querySelectorAll('#libList [data-node=\"guru-arjan-dev\"]').length; libPath = []; renderLibrary(); return [n, !!document.querySelector('#libList .lch[data-node=\"gurbani\"]')]; })()")
         check('library: Gurbani is a shelf of its own, the Sukhmani Sahib’s Guru on it', sukh == [1, True], sukh)
         # a shelf page: a shelf whose shelves all hold shelves gives way to them, each its own heading (the owner: Krishna and
         # Shukla Yajurveda as two headings, like Rigveda, not one Yajurveda heading over two rows), so every row holds works
         flat = await ev("""(() => { const out = []; (function w(ns, at){ ns.forEach(n => { if (n.work) return;
             if (at.length === 0) { libPath = [n.id]; renderLibrary();
-              const bad = [...document.querySelectorAll('#libList button.it[data-node]')].map(b => b.dataset.node).filter(k => { let m = n; k.split('/').forEach(id => m = (m.children || []).find(x => x.id === id) || m); return !m.work && (m.children || []).some(g => !g.work); });
+              const bad = [...document.querySelectorAll('#libList .lgh[data-node]')].map(b => b.dataset.node).filter(k => { let m = n; k.split('/').forEach(id => m = (m.children || []).find(x => x.id === id) || m); return !m.work && (m.children || []).some(g => !g.work); });
               if (bad.length) out.push([n.id, bad]); }
             w(n.children || [], at.concat(n.id)); }); })(LIB, []); libPath = []; renderLibrary();
           libPath = ['veda']; renderLibrary(); const h = [...document.querySelectorAll('#libList .lhead')].map(x => x.textContent); libPath = []; renderLibrary();
           return [out, h]; })()""")
-        check('library: on a genre’s page every row holds works (Yajurveda shows Krishna and Shukla as headings)', not flat[0] and 'Yajurveda' not in flat[1] and 'Krishna Yajurveda' in flat[1] and 'Shukla Yajurveda' in flat[1], flat)
+        check('library: on a genre’s page every card holds works (Yajurveda shows Krishna and Shukla as headings)', not flat[0] and 'Yajurveda' not in flat[1] and 'Krishna Yajurveda' in flat[1] and 'Shukla Yajurveda' in flat[1], flat)
         # each shelf names its works; tapping one opens it straight away
         chip = await ev("(() => { const b = document.querySelector('#libList [data-open-work]'); return b ? b.dataset.openWork : null; })()")
         check('library: a shelf lists its works by name', bool(chip), chip)
@@ -1087,15 +1090,15 @@ async def main():
             itemMenu(0); await new Promise(r => setTimeout(r, 200)); const play = getComputedStyle(document.querySelector('#sheetBody [data-x=play] svg')).color, copy = getComputedStyle(document.querySelector('#sheetBody [data-x=copy] svg')).stroke; closeSheet();
             S.settings.size = 21; S.settings.tr = false; applyTheme(); save(); return [a.every((v, k) => b[k] > v * 1.4), play === copy, a.map(Math.round)]; })()""")
         check('reader: the part and topic headings and the transliteration grow with the text size; the ⋮ menu’s ▶ is blue like its other icons', hs[0] and hs[1], hs)
-        # a shelf shows two works, the most recently used first, then +N
+        # a genre's card: its first three works, the one used most recently first, each one row in the language chosen with the
+        # book that opens About, and "All N ›" by its name
         sh2 = await ev("""(async () => { const keep = JSON.stringify(Object.fromEntries(Object.entries(S.w).map(([k, v]) => [k, v.at]))); Object.values(S.w).forEach(v => delete v.at);
             await openWork('isha-upanishad', true); libPath = []; show('library'); await new Promise(r => setTimeout(r, 200));
-            const row = [...document.querySelectorAll('#libList li')].find(li => li.querySelector('[data-node="veda"]')); const chips = [...row.querySelectorAll('[data-open-work]')].map(b => b.dataset.openWork), more = row.querySelector('.more');
-            const g = [...document.querySelectorAll('#libList li')].find(li => li.querySelector('[data-node="granth"]')); const gchips = g.querySelectorAll('[data-open-work]').length;
-            const a = [...document.querySelectorAll('#libList li')].find(li => li.querySelector('button.it[data-node="aarti"]')), lw = a.querySelector('.lworks'), cnt = a.querySelector('.it .cnt').textContent;
-            const oneLine = getComputedStyle(lw).flexWrap === 'nowrap' && lw.scrollWidth > lw.clientWidth && document.documentElement.scrollWidth <= innerWidth, all = a.querySelector('.lworks .more');
-            JSON.parse(keep); Object.entries(JSON.parse(keep)).forEach(([k, v]) => { if (S.w[k]) { if (v) S.w[k].at = v; else delete S.w[k].at; } }); save(); return [chips[0], chips.length, !!more, gchips, a.querySelectorAll('[data-open-work]').length, cnt, oneLine, !!all && all.dataset.node === 'aarti']; })()""")
-        check('library: a shelf shows three works on one line that swipes, the one used most recently first, its count beside its name and “All N” at the end', sh2[0] == 'isha-upanishad' and sh2[1] <= 3 and sh2[3] <= 3 and sh2[4] == 3 and sh2[5].strip().isdigit() and int(sh2[5]) > 3 and sh2[6] and sh2[7], sh2)
+            const card = id => document.querySelector('#libList .lch[data-node="' + id + '"]').closest('.lcard');
+            const v = card('veda'), rows = [...v.querySelectorAll('[data-open-work]')].map(b => b.dataset.openWork), books = v.querySelectorAll('.lbk[data-about]').length;
+            const a = card('aarti'), all = a.querySelector('.lch .all').textContent, one = [...a.querySelectorAll('.lw1')].every(b => b.textContent === TT(workNode(b.dataset.openWork).title));
+            JSON.parse(keep); Object.entries(JSON.parse(keep)).forEach(([k, v]) => { if (S.w[k]) { if (v) S.w[k].at = v; else delete S.w[k].at; } }); save(); return [rows[0], rows.length, books, a.querySelectorAll('[data-open-work]').length, all, one]; })()""")
+        check('library: a genre’s card shows three works, the one used most recently first, each with the book for About, and “All N ›”', sh2[0] == 'isha-upanishad' and sh2[1] == 3 and sh2[2] == 3 and sh2[3] == 3 and '99' in sh2[4] and sh2[5], sh2)
         # one word for one thing: no "text" for a verse, no "listen/hear" for play, no "translation", no "Adjust audio timing"
         words = await ev("""(() => { const src = [...document.querySelectorAll('[data-en]')].map(e => e.dataset.en).join(' | '); return src; })()""")
         bad = [w for w in ('Listen', 'translation', 'Adjust audio timing', 'the text') if w in words]
@@ -1329,14 +1332,16 @@ async def main():
         await pg.fill('#q', 'Sunderkand'); await pg.wait_for_timeout(600)
         ls2 = await ev("[...document.querySelectorAll('#sRes .snip')].map(x => x.textContent)")
         check('library search: “सुंदरकांड” and “Sunderkand” find the Sundarkand', any(t in x for x in ls for t in ('सुन्दरकाण्ड', 'Sundarkand')) and any(t in x for x in ls2 for t in ('सुन्दरकाण्ड', 'Sundarkand')), [ls[:3], ls2[:3]])
-        # a shelf of many deity shelves is an index: every deity a chip with its count; a tap opens its shelf, one row of its works
-        sv = await ev("""(async () => { libPath = ['aarti']; show('library'); await new Promise(r => setTimeout(r, 300));
+        # a shelf of many deity shelves is an index: every deity a tile with its count, named with its salutation and sorted by the
+        # name itself, no heading over it; a tap opens its shelf, a card of its works
+        sv = await ev("""(async () => { libPath = ['aarti']; S.settings.ui = 'en'; applyLang(); show('library'); await new Promise(r => setTimeout(r, 300));
             const chip = document.querySelector('#libList .lindex [data-node="rama"]'), n = document.querySelectorAll('#libList .lindex [data-node]').length, label = chip ? chip.textContent : '';
-            const g = document.querySelector('#libList .lindex [data-node="ganesha"]'), short = g ? !/Bhagwan|भगवान/.test(g.textContent) : false;
-            chip.click(); await new Promise(r => setTimeout(r, 300)); const works = document.querySelectorAll('#libList button.it[data-node]').length, path = libPath.join('/');
-            const names = [...document.querySelectorAll('#libList .lindex [data-node] span:first-child')].map(x => x.textContent), sorted = names.join() === [...names].sort((a, b) => a.localeCompare(b, 'en')).join();
-            libPath = []; show('library'); return [n, /\\d/.test(label), short, path, works, sorted]; })()""")
-        check('Aarti is an index of deities with their counts (no honorific), A to Z; a tap opens that deity’s shelf with its works', sv[0] > 12 and sv[1] and sv[2] and sv[3] == 'aarti/rama' and sv[4] >= 2 and sv[5], sv)
+            const nm = id => (document.querySelector('#libList .lindex [data-node="' + id + '"] span') || {}).textContent, heads = [...document.querySelectorAll('#libList .lhead')].filter(h => h.textContent !== TT({hi: 'हालमें खोले', en: 'Recently opened'})).length;   // only the recently opened have one
+            const names = [...document.querySelectorAll('#libList .lindex [data-node] span:first-child')].map(x => x.textContent.replace(/^(Shri |Bhagwan |Baba |Guru )/, '')), sorted = names.join() === [...names].sort((a, b) => a.localeCompare(b, 'en')).join();
+            const said = [nm('ganesha'), nm('durga'), nm('bhairava'), nm('shani')];
+            chip.click(); await new Promise(r => setTimeout(r, 300)); const works = document.querySelectorAll('#libList [data-open-work]').length, path = libPath.join('/');
+            libPath = []; show('library'); return [n, /\\d/.test(label), said, path, works, sorted, heads]; })()""")
+        check('Aarti is an index of deities with their counts, each with its salutation (Shri Ganesh, Durga Mata, Bhairav Baba, Shani Dev), A to Z by name, no heading; a tap opens that deity’s works', sv[0] > 12 and sv[1] and sv[2] == ['Shri Ganesh', 'Durga Mata', 'Bhairav Baba', 'Shani Dev'] and sv[3] == 'aarti/rama' and sv[4] >= 2 and sv[5] and sv[6] == 0, sv)
         # searched from a shelf, the library looks on that shelf only, and finds a work by a line of a verse; a chip widens it
         ls3 = await ev("""(async () => { libPath = ['aarti']; show('library'); openSearch('lib'); const chips = [...document.querySelectorAll('#sIn .chip')].map(c => c.textContent);
             $('#q').value = 'jai ambe gauri'; await libSearch('jai ambe gauri'); const lines = [...document.querySelectorAll('#sRes [data-line]')].length;
@@ -1387,10 +1392,10 @@ async def main():
         # ⓘ About this work: under the title, with the work's language and length
         ab = await ev("(async () => { await openWork('ramraksha', true); show('home'); $('#hAbout').click(); await new Promise(r => setTimeout(r, 300)); const t = $('#sheetBody').innerText; closeSheet(); return t; })()")
         check('About this work shows the language and length', ('Sanskrit' in ab or 'संस्कृत' in ab) and ('verses' in ab or 'पद' in ab), ab[:120])
-        # the work's page: About on the author's line; a plan shows its progress as a bar; a vishram's number marks it done and back
+        # the work's page: two lines of its introduction, then About this work; a plan shows its progress as a bar; a vishram's number marks it done and back
         wp = await ev("""(async () => { await openWork('manas', true); WS().org = 'M'; show('home'); await new Promise(r => setTimeout(r, 300));
             const d = DONE(ME(), 'M'), had = Object.assign({}, d); for (const k in d) delete d[k]; d[1] = 1; save(); renderHome();
-            const inRow = !!$('.hsubrow #hAbout'), bar = $('.pdn') && $('.pdn').textContent, w0 = $('.pdbar span').style.width;
+            const inRow = !!$('#hIntro + #hAbout') && !!$('#hIntro').textContent, bar = $('.pdn') && $('.pdn').textContent, w0 = $('.pdbar span').style.width;
             const m = $('#orgList [data-mark="2"]'); m.click(); const on = !!DONE(ME(), 'M')[2], bar2 = $('.pdn').textContent, view = CURVIEW;
             $('#orgList [data-mark="2"]').click(); const off = !DONE(ME(), 'M')[2];
             for (const k in d) delete d[k]; Object.assign(d, had); save(); renderHome(); return [inRow, bar, w0, on, bar2, view, off]; })()""")
@@ -1509,9 +1514,9 @@ async def main():
             show('home'); const goneHome = $('#rAnchor').hidden; libPath = []; show('library'); await openWork('manas'); await new Promise(r => setTimeout(r, 200));
             const goneOther = $('#rAnchor').hidden && !$('#rAnchor').textContent.includes('Mantra'); AN.manual = false; return [up, goneHome, goneOther]; })()""")
         check('"Back to" hides on leaving the reader, and another work never shows the last one\'s place', all(xw), xw)
-        # the library lists works by name only (ⓘ About is on the work's own page)
-        nolib = await ev("(async () => { libPath = []; show('library'); await new Promise(r => setTimeout(r, 300)); return [$$('#libList [data-open-work]').length, $$('#libList .winfo, #libList [data-info-work]').length]; })()")
-        check('the library shows works by name, without ⓘ', nolib[0] > 0 and nolib[1] == 0, nolib)
+        # the library lists works by name, each with the open book that opens About this work (never ⓘ)
+        nolib = await ev("(async () => { libPath = []; show('library'); await new Promise(r => setTimeout(r, 300)); const b = $('#libList .lbk[data-about]'); b.click(); await new Promise(r => setTimeout(r, 300)); const t = $('#sheet').classList.contains('on') && $('#sheetBody h2').textContent === TT(workNode(b.dataset.about).title); closeSheet(); return [$$('#libList [data-open-work]').length, $$('#libList .lbk[data-about]').length, $$('#libList .winfo, #libList [data-info-work]').length, t]; })()")
+        check('the library shows works by name, each with the book that opens About (no ⓘ)', nolib[0] > 0 and nolib[0] == nolib[1] and nolib[2] == 0 and nolib[3], nolib)
         # a long press on a work opens About this work (and not the work); a tap still opens the work
         hold = await ev("""(async () => { libPath = []; show('library'); await new Promise(r => setTimeout(r, 300));
             const b = $('#libList [data-open-work]'), id = b.dataset.openWork, ev = (k) => b.dispatchEvent(new PointerEvent(k, {bubbles: true, button: 0, clientX: 5, clientY: 5}));

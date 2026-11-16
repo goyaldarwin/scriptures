@@ -3,8 +3,8 @@
  "path": "hinduism/chalisa/mahavir/mahavir-chalisa",
  "lang": "awa",
  "title": {
-  "hi": "श्री महावीर (तीर्थंकर) चालीसा",
-  "en": "Shri Mahavir (Tirthankar) Chalisa"
+  "hi": "श्री महावीर चालीसा",
+  "en": "Shri Mahavir Chalisa"
  },
  "by": {
   "hi": "भगवान महावीर",
@@ -18,8 +18,8 @@
   "list": [
    {
     "key": "chalisa",
-    "hi": "श्री महावीर (तीर्थंकर) चालीसा",
-    "en": "Shri Mahavir (Tirthankar) Chalisa"
+    "hi": "श्री महावीर चालीसा",
+    "en": "Shri Mahavir Chalisa"
    }
   ]
  },

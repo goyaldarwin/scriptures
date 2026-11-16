@@ -19,8 +19,8 @@ def plain(w): return unicodedata.normalize('NFC', w).replace('‌', '').replace(
 def vocab():
     V = collections.Counter()
     for p in ['library/hinduism/purana/mahapurana/bhagavata/meanings/hi-gitapress.json',
-              'library/hinduism/granth/valmiki/ramayana/meanings/hi-gitapress.json',
-              'library/hinduism/granth/tulsidas/ramcharitmanas/meanings/hi-gitapress.json']:
+              'library/hinduism/itihasa/ramayan/ramayana/meanings/hi-gitapress.json',
+              'library/hinduism/itihasa/ramayan/ramcharitmanas/meanings/hi-gitapress.json']:
         for v in jsonio.read_meanings(os.path.join(ROOT, p))['m'].values():
             t = v[0] if isinstance(v, list) else v
             t = ' '.join(t) if isinstance(t, list) else t

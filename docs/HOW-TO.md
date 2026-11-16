@@ -40,7 +40,7 @@ Our own meanings (`meanings/<lang>/scriptures.json`) follow `tools/meanings/styl
 The rules are `tools/meanings/style.md` (above all §1) and `docs/PLAYBOOK.md` §4; each step has its brief in `tools/meanings/briefs/`, and every step reads its brief, `style.md` and the owner-approved Sundarakāṇḍa samples (the `sundar.` entries of `tools/works/manas/meanings/hi/scriptures.json` and `en/scriptures.json`) first.
 
 0. **Dictionaries:** `python3 tools/meanings/sanskrit_dict.py fetch`, then `check`. They live outside the repository, so a new machine or cloud session never has them; nothing below runs without them (`prepare.py` and `apply_batches.py` refuse).
-1. **Batches:** `python3 tools/meanings/prepare.py <scratch folder> <first id> <last id> --work manas --size 50`, the scratch folder outside the repository (e.g. `/home/claude/work/bal/`), the ids the kāṇḍa's first and last (`library/hinduism/granth/tulsidas/ramcharitmanas/work.json`; the Bāla-kāṇḍa is `bal.0.shloka1` to `bal.361.so361`, 1,957 verses). It writes `batch-NN.md` (verses, transliteration, word meanings, context) and `batch-NN.ids`, and marks a verse that already has our meaning ALREADY WRITTEN (an owner-approved one, such as the Sundarakāṇḍa's opening prayer `bal.17.so17`, stays as it is).
+1. **Batches:** `python3 tools/meanings/prepare.py <scratch folder> <first id> <last id> --work manas --size 50`, the scratch folder outside the repository (e.g. `/home/claude/work/bal/`), the ids the kāṇḍa's first and last (`library/hinduism/itihasa/ramayan/ramcharitmanas/work.json`; the Bāla-kāṇḍa is `bal.0.shloka1` to `bal.361.so361`, 1,957 verses). It writes `batch-NN.md` (verses, transliteration, word meanings, context) and `batch-NN.ids`, and marks a verse that already has our meaning ALREADY WRITTEN (an owner-approved one, such as the Sundarakāṇḍa's opening prayer `bal.17.so17`, stays as it is).
 2. **For every batch, in this order, each step by its own agent** (the session launches them with its agent tool, many batches in parallel; each is told its brief, the scratch folder and its batch number, writes only into the scratch folder, names any helper file with the kāṇḍa and batch, and never edits the repository; a step whose agent stopped without its output file is run again):
    1. writer — `manas-writer.md`: the whole draft from the verse, its word meanings, the dictionaries and its context in the work overall and in the nearby verses, before opening any published meaning;
    2. reviewer — `manas-reviewer.md` → `batch-NN.review.jsonl`;
@@ -51,7 +51,7 @@ The rules are `tools/meanings/style.md` (above all §1) and `docs/PLAYBOOK.md` �
 3. **Apply:** `python3 tools/meanings/apply_batches.py <scratch folder> --work manas --doubts docs/reviews/manas-<kāṇḍa>-doubts.jsonl` on a branch `manas-meanings-<kāṇḍa>` (one doubts file per kāṇḍa). It applies the writer's files and then the three steps' fixes, refuses a batch that missed a step (`--steps` names the steps required, all three by default), appends the doubts, and gathers every word issue into `<scratch folder>/words-to-settle.jsonl`. Check that no entry outside the kāṇḍa changed.
 4. **Consistency pass** over the kāṇḍa — `manas-consistency.md`.
 5. **Dictionary:** each issue of `words-to-settle.jsonl` that is clearly right for the word goes into `library/glossary/<lang>.json` as an added sense (old senses stay: other verses use them); the rest into `docs/reviews/dictionary-doubts.jsonl`.
-6. **Copy check of the whole file:** `python3 tools/meanings/overlap.py tools/works/manas/meanings/hi/scriptures.json library/hinduism/granth/tulsidas/ramcharitmanas/meanings/hi-gitapress.json` and `python3 tools/meanings/overlap.py tools/works/manas/meanings/en/scriptures.json library/hinduism/granth/tulsidas/ramcharitmanas/meanings/en-gitapress.json`, 0 runs of 10+ for both.
+6. **Copy check of the whole file:** `python3 tools/meanings/overlap.py tools/works/manas/meanings/hi/scriptures.json library/hinduism/itihasa/ramayan/ramcharitmanas/meanings/hi-gitapress.json` and `python3 tools/meanings/overlap.py tools/works/manas/meanings/en/scriptures.json library/hinduism/itihasa/ramayan/ramcharitmanas/meanings/en-gitapress.json`, 0 runs of 10+ for both.
 7. `python3 tools/works/export.py`, then every check of `CLAUDE.md`; diff the regenerated data; one pull request per kāṇḍa. Before it merges, the session settles every doubt the writer or reviewer recorded (`docs/PLAYBOOK.md` §2): it applies the decision and removes the doubt from its file (`docs/reviews/README.md`).
 
 ## Write our own meanings for a Sanskrit work (the Bhagavad Gītā, the Durgā Saptaśatī)
@@ -87,7 +87,7 @@ Every entry has `pa` beside `hi` and `en`, the same senses in the same order (" 
 1. Choose the id: the reciter's name, e.g. `anup-jalota`. Create `tools/works/<work>/audio/<id>/`.
 2. In it, write `source.json`:
    ```json
-   {"id": "anup-jalota", "work": "hinduism/granth/tulsidas/ramcharitmanas", "type": "youtube", "lang": "hi",
+   {"id": "anup-jalota", "work": "hinduism/itihasa/ramayan/ramcharitmanas", "type": "youtube", "lang": "hi",
     "title": {"hi": "अनूप जलोटा", "en": "Anup Jalota"}}
    ```
    Optional fields (`order`, `draft`, `estimate`, `window`, `align`, `fill`, `anchor_min`) are described at the top of `tools/audio/make_timings.py` and `tools/audio/transcribe.py`.

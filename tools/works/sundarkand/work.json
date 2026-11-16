@@ -1,6 +1,6 @@
 {
  "id": "sundarkand",
- "path": "hinduism/granth/tulsidas/sundarkand",
+ "path": "hinduism/itihasa/ramayan/sundarkand",
  "lang": "awa",
  "title": {
   "hi": "सुन्दरकाण्ड",
@@ -45,7 +45,7 @@
    },
    {
     "key": "chalisa",
-    "hi": "श्रीहनुमानचालीसा",
+    "hi": "श्री हनुमान चालीसा",
     "en": "Shri Hanuman Chalisa"
    },
    {
@@ -78,6 +78,10 @@
     "en": "Verse"
    }
   }
+ },
+ "topicWord": {
+  "hi": "प्रसंग",
+  "en": "Prasang"
  },
  "types": {
   "tek": {

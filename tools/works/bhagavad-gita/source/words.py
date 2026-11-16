@@ -2,7 +2,7 @@
 
     python3 tools/works/bhagavad-gita/source/words.py <bhagavad-gita.json>
 
-<bhagavad-gita.json> is in scriptures-data at hinduism/granth/vyasa/bhagavad-gita/printouts/sanskritdocuments/: each
+<bhagavad-gita.json> is in scriptures-data at hinduism/itihasa/mahabharat/bhagavad-gita/printouts/sanskritdocuments/: each
 verse of the owner's copy with its words glossed one by one in Hindi and English, in their split, pausal forms
 (तम् "उससे / to him", आविष्टम् "घिरे हुए / overcome"). The verse prints them joined by sandhi (कृपयाविष्टमश्रुपूर्णाकुलेक्षणम्),
 and a reader taps the word as printed, so:

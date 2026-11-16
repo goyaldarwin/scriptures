@@ -7,7 +7,7 @@ A batch has been written and reviewed. You check it for copying: `overlap.py` ca
 
 ## What to read
 For every verse id in `batch-NN.ids`, our final piece for each line — `batch-NN.hi.json` / `.en.json` with the fixes of `batch-NN.review.jsonl` applied on top (a line with lang hi/en, `line` and a non-empty `fix` replaces that piece) — side by side with Gita Press's meaning:
-`python3 -c "import json,sys; L='library/hinduism/granth/tulsidas/ramcharitmanas/meanings/'; H=json.load(open(L+'hi-gitapress.json'))['m']; E=json.load(open(L+'en-gitapress.json'))['m']; [print(i,'\n HI:',H[i][0],'\n EN:',E.get(i,[''])[0]) for i in sys.argv[1:]]" <ids…>`
+`python3 -c "import json,sys; L='library/hinduism/itihasa/ramayan/ramcharitmanas/meanings/'; H=json.load(open(L+'hi-gitapress.json'))['m']; E=json.load(open(L+'en-gitapress.json'))['m']; [print(i,'\n HI:',H[i][0],'\n EN:',E.get(i,[''])[0]) for i in sys.argv[1:]]" <ids…>`
 
 ## What to flag
 A sentence of ours that follows theirs: the same sentence shape and order of clauses, the same added ideas, their bracketed insertions or unusual word choices, with words swapped. **Not** a sentence that matches theirs only because both say what the verse says, and **not** the same reading: the sense of the verse belongs to no one, and where Gita Press reads the verse rightly, ours must say the same thing.

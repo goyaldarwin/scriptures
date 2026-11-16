@@ -1,7 +1,7 @@
 # Reconciliation: आरति श्रीरामायनजी की
 
 ## Source
-The āratī printed at the end of the owner's Gita Press Śrī Rāmacaritamānasa (`scriptures-data`: `hinduism/granth/tulsidas/ramcharitmanas/books/gitapress/hindi.pdf`, under the heading श्रीरामायणजीकी आरती), as the Mānas's generator reads it from the PDF's glyphs (`tools/works/manas/source/make_appdata.py` → `book.json`, `vidhi.aarti`). It is the text's only witness; read again on the page image, every word agrees. The recording sings the same words in the same order.
+The āratī printed at the end of the owner's Gita Press Śrī Rāmacaritamānasa (`scriptures-data`: `hinduism/itihasa/ramayan/ramcharitmanas/books/gitapress/hindi.pdf`, under the heading श्रीरामायणजीकी आरती), as the Mānas's generator reads it from the PDF's glyphs (`tools/works/manas/source/make_appdata.py` → `book.json`, `vidhi.aarti`). It is the text's only witness; read again on the page image, every word agrees. The recording sings the same words in the same order.
 
 The rule (docs/PLAYBOOK.md §2): keep the source; correct it only where it is clearly wrong. Nothing here is.
 

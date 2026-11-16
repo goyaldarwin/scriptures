@@ -1,6 +1,6 @@
 # आदित्यहृदयम् (Āditya Hṛdayam)
 
-Shelf: हिन्दू धर्म › स्तोत्र › भगवान सूर्य › आदित्यहृदयम् (`library/hinduism/stotra/surya/aditya-hridayam/`, work id
+Shelf: हिन्दू धर्म › स्तोत्र › महर्षि वाल्मीकि › आदित्यहृदयम् (`library/hinduism/stotra/valmiki/aditya-hridayam/`, work id
 `aditya-hridayam`). The hymn to the Sun that the sage Agastya teaches Śrī Rāma on the battlefield before his last fight
 with Rāvaṇa, in Sanskrit (`sa`): Śrīmad Vālmīki Rāmāyaṇa, Yuddha-kāṇḍa, sarga 105 in the Gita Press edition (107 in the
 southern recension). Recited as a stotra: the viniyoga, three nyāsas, the 31 ślokas and the sarga's closing words.
@@ -8,9 +8,9 @@ southern recension). Recited as a stotra: the viniyoga, three nyāsas, the 31 ś
 ## Sources
 - **Text:** the owner's printout of sanskritdocuments.org, *आदित्यहृदयम्* (M. Giridhar; <https://sanskritdocuments.org>,
   file `adityahriday.itx`; private copy in scriptures-data at
-  `hinduism/stotra/surya/aditya-hridayam/printouts/sanskritdocuments/adityahriday.pdf`), its recitation text (स्तोत्रपाठ).
+  `hinduism/stotra/valmiki/aditya-hridayam/printouts/sanskritdocuments/adityahriday.pdf`), its recitation text (स्तोत्रपाठ).
   Checked word for word against this library's Vālmīki Rāmāyaṇa (Gita Press, `yuddha.105`), the owner's IIT Kanpur copy
-  of the sarga (scriptures-data `hinduism/granth/valmiki/ramayana/printouts/iitk/`, Yuddha 107) and the recording.
+  of the sarga (scriptures-data `hinduism/itihasa/ramayan/ramayana/printouts/iitk/`, Yuddha 107) and the recording.
   The closing words are the Gita Press book's colophon of the sarga, which the recording sings. Every choice is in
   `reconciliation.md`; `source/compare.py` prints every difference from the printout and the Gita Press sarga.
 - **Meanings:** ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`), line by line, shown first.
@@ -18,7 +18,7 @@ southern recension). Recited as a stotra: the viniyoga, three nyāsas, the 31 ś
   already gives with the same sense (the Gītā's, the Durgā Saptaśatī's, the Vālmīki Rāmāyaṇa's) are in this work's
   `glossary/sa.json`, since the shared dictionary may not repeat a work's sense.
 - **Recordings:** the owner's three, each with its speech-quality copy in scriptures-data under
-  `hinduism/stotra/surya/aditya-hridayam/audio/<source>/`:
+  `hinduism/stotra/valmiki/aditya-hridayam/audio/<source>/`:
   - `sri-sathya-sai` (the default): Sri Sathya Sai Official, "Aditya Hrudayam Stotram – Prayer that Pleases the Heart of
     Sun God | Offering on Ratha Saptami Day" (YouTube `Z7W59S6fH98`): the 31 ślokas, then a closing Om śānti, which no
     written source gives, so it is not in the text and stays untimed after śloka 31.

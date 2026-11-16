@@ -2,7 +2,7 @@
 
 **Source of truth:** the owner's printout of sanskritdocuments.org, *आदित्यहृदयम्* (file `adityahriday.itx`, transliterated by
 M. Giridhar, proofread by Kirk Wortman, updated 13 June 2020, typeset 8 October 2023; private copy in scriptures-data at
-`hinduism/stotra/surya/aditya-hridayam/printouts/sanskritdocuments/adityahriday.pdf`). Its text layer is Unicode. It gives
+`hinduism/stotra/valmiki/aditya-hridayam/printouts/sanskritdocuments/adityahriday.pdf`). Its text layer is Unicode. It gives
 the stotra twice: with an English meaning, and as the recitation text (स्तोत्रपाठ: the viniyoga, the ṛṣyādi-, kara- and
 hṛdayādi-ṣaḍaṅga-nyāsa, then the 31 ślokas). The text is the recitation text, which has the same 31 ślokas as the first.
 
@@ -11,7 +11,7 @@ hṛdayādi-ṣaḍaṅga-nyāsa, then the 31 ślokas). The text is the recitati
 sarga in the Gita Press reading, which differs from the printout in some 25 words.
 
 **Third witness:** the owner's IIT Kanpur copy of the sarga (valmiki.gitasupersite.in, the southern recension, Yuddha
-107; scriptures-data `hinduism/granth/valmiki/ramayana/printouts/iitk/valmiki-ramayana.json`). Its text runs the words of a
+107; scriptures-data `hinduism/itihasa/ramayan/ramayana/printouts/iitk/valmiki-ramayana.json`). Its text runs the words of a
 pāda together; it agrees with the printout against Gita Press in most places (भगवान् ऋषिः, जपेन्नित्यम्, भास्करो, तदेव,
 वधिष्यसि) and with Gita Press in a few (मार्तण्डकोऽंशुमान्, हरये, सर्वेषु परमप्रभुः, ततोऽगस्त्यो … स, युद्धार्थं).
 

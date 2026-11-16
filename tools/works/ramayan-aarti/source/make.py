@@ -1,7 +1,7 @@
 """आरति श्रीरामायनजी की (the āratī of the Śrī Rāmacaritamānasa): the Mānas's Gita Press āratī → ../text.txt.
 
 Source of truth for the text: the āratī printed at the end of the owner's Gita Press Mānas (scriptures-data:
-hinduism/granth/tulsidas/ramcharitmanas/books/gitapress/hindi.pdf), as the Mānas's own generator reads it
+hinduism/itihasa/ramayan/ramcharitmanas/books/gitapress/hindi.pdf), as the Mānas's own generator reads it
 (tools/works/manas/source/make_appdata.py → tools/works/manas/book.json, vidhi.aarti: the āratī page of its plans).
 Taken from there line by line, never retyped, so the two can never differ.
 

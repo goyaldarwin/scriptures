@@ -40,9 +40,9 @@
  ],
  "shortcuts": [
   {
-   "name": "Shrimad Valmiki Ramayan",
-   "short_name": "Shrimad Valm",
-   "url": "./?w=valmiki-ramayana",
+   "name": "Shri Suktam",
+   "short_name": "Shri Suktam",
+   "url": "./?w=shri-suktam",
    "icons": [
     {
      "src": "app/icon-192.png",
@@ -51,9 +51,9 @@
    ]
   },
   {
-   "name": "Shri Ramcharitmanas",
-   "short_name": "Shri Ramchar",
-   "url": "./?w=manas",
+   "name": "Aitareya Upanishad",
+   "short_name": "Aitareya Upa",
+   "url": "./?w=aitareya-upanishad",
    "icons": [
     {
      "src": "app/icon-192.png",
@@ -62,9 +62,9 @@
    ]
   },
   {
-   "name": "Sundarkand",
-   "short_name": "Sundarkand",
-   "url": "./?w=sundarkand",
+   "name": "Shri Rudram",
+   "short_name": "Shri Rudram",
+   "url": "./?w=shri-rudram",
    "icons": [
     {
      "src": "app/icon-192.png",
@@ -73,9 +73,9 @@
    ]
   },
   {
-   "name": "Mahabharat",
-   "short_name": "Mahabharat",
-   "url": "./?w=mahabharata",
+   "name": "Bhu Suktam",
+   "short_name": "Bhu Suktam",
+   "url": "./?w=bhu-suktam",
    "icons": [
     {
      "src": "app/icon-192.png",

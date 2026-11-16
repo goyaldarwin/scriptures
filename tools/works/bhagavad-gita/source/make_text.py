@@ -2,7 +2,7 @@
 
     python3 tools/works/bhagavad-gita/source/make_text.py <bhagavad-gita.json>
 
-<bhagavad-gita.json> is in scriptures-data at hinduism/granth/vyasa/bhagavad-gita/printouts/sanskritdocuments/: the
+<bhagavad-gita.json> is in scriptures-data at hinduism/itihasa/mahabharat/bhagavad-gita/printouts/sanskritdocuments/: the
 owner's structured copy of https://sanskritdocuments.org/doc_giitaa/bhagvadnew.html (18 chapters, 701 verses, each with
 its speaker, its lines and the page's variant readings; each chapter's colophon), with his drafts of the meanings.
 The text is read as the copy prints it, with these rules (reconciliation.md):
