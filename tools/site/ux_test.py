@@ -1204,7 +1204,7 @@ async def main():
         check('footnotes: sized with A−/A+, below their meaning at every size (13.5px at the default)', all(fz) and all(f < m for f, m in fz) and fz[0][0] < fz[1][0] < fz[2][0] and abs(fz[1][0] - 13.5) < .2, fz)
         # a Roman-letter search shows the verse itself; Play from here ends with the open section
         rs = await ev("(async () => { await openWork('manas', true); show('home'); openSearch('text'); document.querySelector('#q').value = 'asur chal chonip'; runSearch(); await new Promise(r => setTimeout(r, 300)); const r = document.querySelector('#sRes .res'); return r ? [r.querySelector('.where').textContent, r.querySelector('.snip').textContent.slice(0, 12)] : 'none'; })()")
-        check('search: a verse found by Roman letters is shown as the verse', rs != 'none' and ('Verses' in rs[0] or 'मूल पाठ' in rs[0]) and 'रहे' in rs[1], rs)
+        check('search: a verse found by Roman letters is shown as the verse, its place alone above it (no “· Verses”)', rs != 'none' and 'Verses' not in rs[0] and 'मूल पाठ' not in rs[0] and 'रहे' in rs[1], rs)
         # search forgives spelling: Tulsīdās's forms, sound-alike letters, a missing word, spaces, Roman letters, Hindi letters for Gurmukhi
         fz = await ev("""(async () => { const top = async (w, q) => { await openWork(w, true); show('home'); await loadSources(); openSearch('text'); document.querySelector('#q').value = q; runSearch(); const r = document.querySelector('#sRes .res'); return r ? IT[+r.dataset.i].id : null; };
             const out = {};
@@ -1540,7 +1540,7 @@ async def main():
         await (await pg.query_selector('#imRep')).click(); await pg.wait_for_timeout(300); await (await pg.query_selector('#askOk')).click(); await pg.wait_for_timeout(600)
         await ev("openReader('k', 0)"); await pg.wait_for_timeout(800)
         rep = await ev("[document.querySelectorAll('#rBody .verse').length, !!(S.timing && S.timing.fix)]")
-        check('a saved file: “1 note” (not “1 notes”); added bookmarks show at once; Replace with an older file keeps the reader working', '1 note' in one and '1 notes' not in one and 'Bookmarks (1)' in added and rep[0] > 0 and rep[1] and len(errs) == n_err, [one[:80], added[:40], rep, errs[n_err:]])
+        check('a saved file: “1 note” (not “1 notes”); added bookmarks show at once; Replace with an older file keeps the reader working', '1 note' in one and '1 notes' not in one and 'Bookmarks 1' in added and rep[0] > 0 and rep[1] and len(errs) == n_err, [one[:80], added[:40], rep, errs[n_err:]])
         # a personal source (a meaning file kept on this phone only): Open a file adds it as the work's first meaning in its
         # language, shown at once; it stays after a reload; Sources removes it
         ps = {'kind': 'scriptures-source', 'work': 'isha-upanishad', 'source': {'id': 'pa-test', 'lang': 'pa', 'title': {'hi': 'परख', 'en': 'Test', 'pa': 'ਪਰਖ'}},
