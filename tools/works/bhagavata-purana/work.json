@@ -153,6 +153,10 @@
    "en": "Adhyay"
   }
  },
+ "topicWord": {
+  "hi": "प्रसंग",
+  "en": "Prasang"
+ },
  "load": "parts",
  "words": "partial",
  "plans": [
