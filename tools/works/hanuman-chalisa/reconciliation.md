@@ -1,4 +1,4 @@
-# Reconciliation: श्रीहनुमानचालीसा
+# Reconciliation: श्री हनुमान चालीसा
 
 The text is the Sundarakāṇḍa work's Chālīsā, taken unchanged; its witnesses and every choice are in `tools/works/sundarkand/reconciliation.md`. Drik Panchang's page (scriptures-data `hinduism/chalisa/hanuman/hanuman-chalisa/printouts/drikpanchang/`) and the book's (५१ चालीसा संग्रह आरतियों सहित, Randhir Prakashan, images i-021 … i-024) are kept there as further witnesses; a reading they prove better is corrected in the Sundarakāṇḍa work, so it reaches both.
 
@@ -6,3 +6,6 @@ The text is the Sundarakāṇḍa work's Chālīsā, taken unchanged; its witnes
 
 ## Meanings
 The Sundarakāṇḍa's own (taken with the verses).
+
+## Title
+The title is written as every Chalisa in the library is: Shri, the deity's name, Chalisa, in separate words (the owner: one form for every title).

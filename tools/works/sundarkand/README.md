@@ -1,6 +1,6 @@
 # Sundarakāṇḍa (standalone work, with the Hanumān Chālīsā and āratī)
 
-Shelf: हिन्दू धर्म › ग्रन्थ › गोस्वामी तुलसीदास › सुन्दरकाण्ड (`library/hinduism/granth/tulsidas/sundarkand/`, work id `sundarkand`), next to the Śrī Rāmacaritamānasa.
+Shelf: हिन्दू धर्म › इतिहास › रामायण › सुन्दरकाण्ड (`library/hinduism/itihasa/ramayan/sundarkand/`, work id `sundarkand`), next to the Śrī Rāmacaritamānasa.
 
 The Sundarakāṇḍa is the most often recited part of the Mānas, so it is also a work of its own, read in one sitting and followed, as it usually is in practice, by the Śrī Hanumān Chālīsā and the āratī "आरती कीजै हनुमान लला की". It has five parts: प्रारम्भिक वन्दना (the opening prayers sung in the recording), किष्किन्धाकाण्ड (अन्तिम अंश) (the lead-in from Kiṣkindhā dohā 29), सुन्दरकाण्ड, श्रीहनुमानचालीसा, आरती. It has no reading plans.
 
@@ -12,7 +12,7 @@ What Pt. Ashwin Kumar Pathak's recording sings before the text: ॐ श्री
 
 `text.txt` takes them by id: `[take manas kishkindha.29.do29 .. kishkindha.30.so30ख]` and `[take manas sundar.0.shloka1 .. sundar.60.do60]`. The export takes every one of those verses with everything it has: the same ids (`sundar.12.cau3`), sections (dohā numbers, so pages are labelled "Dohā 12" as in the Mānas), types, numbers, lines, transliteration and language (`sa` for the three opening ślokas), and the topics inside the runs, named by our own headings (`work.json` → `"topics": "ours"`, from `tools/works/manas/topics.json`). The meaning files of the same sources with no entries of their own (`meanings/<lang>/gitapress.json`, and our `scriptures.json` for the taken verses) give those verses the Mānas's meanings, under the same source ids and titles. The Mānas has no closing colophon item for the kāṇḍa, so there is none here either.
 
-**So a correction to the Mānas reaches the Sundarakāṇḍa on the next export.** Fix the Mānas as usual (`docs/HOW-TO.md` → "Fix a word or meaning in the Rāmacaritamānasa"), then run `python3 tools/works/export.py` (each work after the works it takes from; the Hanumān āratī takes its āratī from this work), make the timings again (`tools/audio/make_timings.py`, this work's recording and then the Hanumān āratī's, which takes it) and build. Never edit `library/hinduism/granth/tulsidas/sundarkand/` by hand. The Mānas itself is not touched: this work only reads it.
+**So a correction to the Mānas reaches the Sundarakāṇḍa on the next export.** Fix the Mānas as usual (`docs/HOW-TO.md` → "Fix a word or meaning in the Rāmacaritamānasa"), then run `python3 tools/works/export.py` (each work after the works it takes from; the Hanumān āratī takes its āratī from this work), make the timings again (`tools/audio/make_timings.py`, this work's recording and then the Hanumān āratī's, which takes it) and build. Never edit `library/hinduism/itihasa/ramayan/sundarkand/` by hand. The Mānas itself is not touched: this work only reads it.
 
 Readers' bookmarks, notes and progress are stored per work id, so those made in the Sundarakāṇḍa stay separate from those made in the Mānas, even though the item ids are the same.
 
@@ -26,7 +26,7 @@ Readers' bookmarks, notes and progress are stored per work id, so those made in 
 
 ## Audio
 
-`audio/ashwin-pathak/`: Pt. Ashwin Kumar Pathak's recording (YouTube `QjSpUgnEPLU`), transcribed (`transcripts/`) and timed by `tools/audio/make_timings.py` → `library/hinduism/granth/tulsidas/sundarkand/audio/ashwin-pathak.json` (all 408 verses; 8 placed by estimate, listed under `check`). `fixes.json` holds the hand-checked starts, with the evidence in `fixes.md`. The Chālīsā and āratī as sung are still to be compared with `text.txt` (the open points in `reconciliation.md`).
+`audio/ashwin-pathak/`: Pt. Ashwin Kumar Pathak's recording (YouTube `QjSpUgnEPLU`), transcribed (`transcripts/`) and timed by `tools/audio/make_timings.py` → `library/hinduism/itihasa/ramayan/sundarkand/audio/ashwin-pathak.json` (all 408 verses; 8 placed by estimate, listed under `check`). `fixes.json` holds the hand-checked starts, with the evidence in `fixes.md`. The Chālīsā and āratī as sung are still to be compared with `text.txt` (the open points in `reconciliation.md`).
 
 ## Structure
 - **Hierarchy:** five parts (Opening prayers, Kishkindha Kand (closing verses), Sundarkand, Shri Hanuman Chalisa, Aarti) › sections › verses. The two Mānas parts keep the Mānas's dohā sections (`kishkindha.30`, `sundar.1` …).

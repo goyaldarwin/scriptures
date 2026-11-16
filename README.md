@@ -6,15 +6,15 @@ A personal, ad-free library for studying scriptures. Each work has the same read
 
 | Shelf | Work | Edition |
 |---|---|---|
-| Granthas › Gosvāmī Tulasīdāsa | Śrī Rāmacaritamānasa: 7 kāṇḍas, 30-day and 9-day pārāyaṇa | Gita Press, Gorakhpur |
-| Granthas › Gosvāmī Tulasīdāsa | Sundarakāṇḍa, with the Hanumān Chālīsā and the āratī | Gita Press (generated from the Mānas) |
-| Granthas › Maharṣi Vedavyāsa | Śrī Durgā Saptaśatī (Devī Māhātmya): 13 adhyāyas, 700 mantras, with the Argalā, Kīlaka and Kavaca, the Aparādha-kṣamāpaṇa stotra and the Devī Sūkta | sanskritdocuments.org (the owner's copy), checked against Gita Press
-| Stotras › Śrī Rāma | Śrī Rāma Rakṣā Stotram (Budha Kauśika): viniyoga, dhyāna, 38 ślokas | Vande Guru Paramparaam (video) |
+| Itihāsa › Rāmāyaṇa | Śrī Rāmacaritamānasa: 7 kāṇḍas, 30-day and 9-day pārāyaṇa | Gita Press, Gorakhpur |
+| Itihāsa › Rāmāyaṇa | Sundarakāṇḍa, with the Hanumān Chālīsā and the āratī | Gita Press (generated from the Mānas) |
+| Stotras › Maharṣi Vedavyāsa | Śrī Durgā Saptaśatī (Devī Māhātmya): 13 adhyāyas, 700 mantras, with the Argalā, Kīlaka and Kavaca, the Aparādha-kṣamāpaṇa stotra and the Devī Sūkta | sanskritdocuments.org (the owner's copy), checked against Gita Press
+| Stotras › Budha Kauśika Ṛṣi | Śrī Rāma Rakṣā Stotram (Budha Kauśika): viniyoga, dhyāna, 38 ślokas | Vande Guru Paramparaam (video) |
 | Chālīsā › 46 deities | 55 chālīsās: Śrī Gaṇeśa, Hanumān (with the Bajaraṅga Bāṇa), Rāma, Kṛṣṇa, Śiva, Durgā and her forms, the Navagrahas, the saints and folk deities … | ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, 2000), and Drik Panchang for those it lacks |
 | Āratī › 52 deities | 99 āratīs, among them Śrī Rāmacandra Kṛpālu, Om Jaya Jagadīśa Hare, Om Jaya Śiva Oṅkārā, Om Jaya Gaṅge Mātā, Jaya Gaṇeśa Devā, the nine Durgās | the same book, Drik Panchang, and the owner's printouts and screenshots |
-| Nāmāvalī › Bhagavān Viṣṇu | Śrī Viṣṇu Sahasranāma Stotram (Mahābhārata, Anuśāsana-parva): opening prayers, pūrva-pīṭhikā, nyāsa, dhyāna, 108 ślokas, uttara-pīṭhikā | vishnusahasranamam.in (the owner's PDF), checked against the critical edition |
-| Nāmāvalī › Śrī Sathya Sai Bābā | Śrī Sathya Sai Aṣṭottara Śatanāmāvalī: the 108 names | Bhakti Bharat (the owner's PDF), checked against the Sathya Sai Organisation's list |
-| Āratī › Shirdi Sāī Bābā | Dhūpa Āratī (evening āratī): Marathi, Sanskrit, Hindi | Shirdi tradition |
+| Nāmāvalī › Śrī Viṣṇu | Śrī Viṣṇu Sahasranāma Stotram (Mahābhārata, Anuśāsana-parva): opening prayers, pūrva-pīṭhikā, nyāsa, dhyāna, 108 ślokas, uttara-pīṭhikā | vishnusahasranamam.in (the owner's PDF), checked against the critical edition |
+| Nāmāvalī › Sathya Sai Bābā | Śrī Sathya Sai Aṣṭottara Śatanāmāvalī: the 108 names | Bhakti Bharat (the owner's PDF), checked against the Sathya Sai Organisation's list |
+| Āratī › Sāī Bābā | Dhūpa Āratī (evening āratī): Marathi, Sanskrit, Hindi | Shirdi tradition |
 | Veda › Kṛṣṇa Yajurveda › Saṃhitā | Śrī Rudram: Namakam and Chamakam, 11 + 11 anuvākas, with svaras | shlokam.org (printout) |
 | Veda › Kṛṣṇa Yajurveda › Upaniṣads | Kaṭha Upaniṣad: 2 adhyāyas, 6 vallīs, 119 mantras | Swami Gurubhaktananda (Sandeepany) |
 | Veda › Śukla Yajurveda › Upaniṣads | Īśāvāsya Upaniṣad: śānti pāṭha, 18 mantras | shlokam.org (printout) |
@@ -31,7 +31,7 @@ library/                             the scriptures, as data (docs/LIBRARY.md)
   index.json                           the shelf: tradition / genre / group… / work
   apps.json                            which shelves each store app shows
   glossary/                            word meanings, one dictionary per language (sa, awa, hi, mr, bra, pa) + languages.json
-  <tradition>/<genre>/<group…>/<work>/ one folder per work, e.g. hinduism/granth/tulsidas/ramcharitmanas/:
+  <tradition>/<genre>/<group…>/<work>/ one folder per work, e.g. hinduism/itihasa/ramayan/ramcharitmanas/:
     work.json                          verses and numbers, parts, topics, plans
     meanings/<source>.json             one file per meaning source (hi-gitapress, en-scriptures, …)
     audio/<source>.json                one file per reciter: YouTube video ids + verse times   [generated]

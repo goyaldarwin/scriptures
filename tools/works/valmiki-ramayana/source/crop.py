@@ -1,7 +1,7 @@
 """Crop the printed lines of a verse from the Gita Press PDF (for checking a reading by eye)."""
 import fitz, json, sys, pickle
 sys.path.insert(0, __file__.rsplit('/', 1)[0]); import layout
-PDF = '/home/claude/scriptures-data/hinduism/granth/valmiki/ramayana/books/gitapress/sanskrit-english.pdf'
+PDF = '/home/claude/scriptures-data/hinduism/itihasa/ramayan/ramayana/books/gitapress/sanskrit-english.pdf'
 _d = fitz.open(PDF)
 _lines = None
 def verse_lines(page, texts):

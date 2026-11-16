@@ -1,6 +1,6 @@
 # Gita Press Vālmīki-Rāmāyaṇa, Hindi translation (code 77) — extraction report
 
-Source: `scriptures-data/hinduism/granth/valmiki/ramayana/books/gitapress/hindi.pdf` (2,406 pages, sha256 a820aadf…). It is a calibre/Ghostscript print of an e-book, not a scan of the printed book: one column, no running heads, Devanagari in an embedded Noto Sans Devanagari subset, Latin punctuation in Times New Roman. No OCR was used anywhere.
+Source: `scriptures-data/hinduism/itihasa/ramayan/ramayana/books/gitapress/hindi.pdf` (2,406 pages, sha256 a820aadf…). It is a calibre/Ghostscript print of an e-book, not a scan of the printed book: one column, no running heads, Devanagari in an embedded Noto Sans Devanagari subset, Latin punctuation in Times New Roman. No OCR was used anywhere.
 
 ## Files
 

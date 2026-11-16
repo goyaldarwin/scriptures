@@ -17,6 +17,6 @@ The kāṇḍa's batches, written by different writers, have been applied to `to
 ## How
 - Change only what is inconsistent; keep each piece's meaning and the number of pieces per verse; do not move a piece toward Gita Press's wording. Do not touch entries of other kāṇḍas, or an owner-approved entry except for a plain spelling.
 - Edit with a Python script that asserts each old string exists before replacing, and write with `tools/jsonio.py` (`dump_meanings`).
-- Then run `python3 tools/meanings/overlap.py tools/works/manas/meanings/hi/scriptures.json library/hinduism/granth/tulsidas/ramcharitmanas/meanings/hi-gitapress.json` (and en): 0 runs of 10+. Read this kāṇḍa's sentences it lists as nearly theirs, and reword any that follow Gita Press's sentence rather than simply the verse.
+- Then run `python3 tools/meanings/overlap.py tools/works/manas/meanings/hi/scriptures.json library/hinduism/itihasa/ramayan/ramcharitmanas/meanings/hi-gitapress.json` (and en): 0 runs of 10+. Read this kāṇḍa's sentences it lists as nearly theirs, and reword any that follow Gita Press's sentence rather than simply the verse.
 
 Reply in under 120 words: what you changed (counts by kind), sentences reworded, overlap result. Do not commit.

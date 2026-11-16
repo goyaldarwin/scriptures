@@ -30,7 +30,7 @@ All the sources are the owner's copies, used for personal study: the Gita Press 
 ## How it is made
 ```bash
 S=tools/works/valmiki-ramayana/source
-python3 $S/extract.py <scriptures-data>/hinduism/granth/valmiki/ramayana/books/gitapress/sanskrit-english.pdf   # → spans
+python3 $S/extract.py <scriptures-data>/hinduism/itihasa/ramayan/ramayana/books/gitapress/sanskrit-english.pdf   # → spans
 python3 $S/build_lines.py $S <spans> <lines>          # every line decoded, well-formedness checked
 python3 $S/parse.py <lines> <book>                    # kāṇḍa → sarga → verses and English paragraphs
 python3 $S/run_wit.py $S <book> <iitk scrape> <diffs> iitk   # and the same for valmikiramayan.net (vr)

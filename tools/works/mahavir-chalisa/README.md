@@ -1,4 +1,4 @@
-# श्री महावीर (तीर्थंकर) चालीसा (Shri Mahavir (Tirthankar) Chalisa)
+# श्री महावीर चालीसा (Shri Mahavir Chalisa)
 
 The chālīsā of Mahāvīra, the twenty-fourth Jaina Tīrthaṅkara (not Hanumān), that opens "शीश नवा अरिहन्त को", in Awadhi (`awa`); it tells of the miracle of Chāṁdanapura (Shri Mahavirji, Rajasthan).
 

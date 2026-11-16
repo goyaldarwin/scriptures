@@ -1,6 +1,6 @@
 # महाभारत (Mahabharat)
 
-Shelf: हिन्दू धर्म › ग्रन्थ › महर्षि वेदव्यास › महाभारत (`library/hinduism/granth/vyasa/mahabharata/`, work id `mahabharata`). The Mahābhārata of Maharṣi Vedavyāsa in its eighteen parvas, as printed by Gita Press, Gorakhpur, with its simple Hindi translation: 83,926 numbered verses and prose passages, 6,755 verses of the southern (dākṣiṇātya) reading that the book prints among them, in 2,107 adhyāyas, in Sanskrit (`sa`).
+Shelf: हिन्दू धर्म › इतिहास › महाभारत › महाभारत (`library/hinduism/itihasa/mahabharat/mahabharata/`, work id `mahabharata`). The Mahābhārata of Maharṣi Vedavyāsa in its eighteen parvas, as printed by Gita Press, Gorakhpur, with its simple Hindi translation: 83,926 numbered verses and prose passages, 6,755 verses of the southern (dākṣiṇātya) reading that the book prints among them, in 2,107 adhyāyas, in Sanskrit (`sa`).
 
 | Part | Parva | Adhyāyas | Numbered | Dākṣiṇātya |
 |---|---|---|---|---|
@@ -26,7 +26,7 @@ Shelf: हिन्दू धर्म › ग्रन्थ › महर्�
 (`source/check.md`, made with the text, gives the exact counts of every kind.)
 
 ## Sources
-- **Text and Hindi meaning:** the owner's Gita Press *Mahābhārata, saral Hindī-anuvādasahit*, parts 1–6 (codes 32–37, the 2017 e-books), in `scriptures-data` at `hinduism/granth/vyasa/mahabharata/books/gitapress/bhag-1.epub` … `bhag-6.epub`. The e-books carry Unicode text, so the text is read as it is, never by OCR (`source/epub.py`): calibre names its styles afresh in each volume, so every block is classed by its resolved style (font, size, alignment, margins), and every block that fits no class is logged and was read.
+- **Text and Hindi meaning:** the owner's Gita Press *Mahābhārata, saral Hindī-anuvādasahit*, parts 1–6 (codes 32–37, the 2017 e-books), in `scriptures-data` at `hinduism/itihasa/mahabharat/mahabharata/books/gitapress/bhag-1.epub` … `bhag-6.epub`. The e-books carry Unicode text, so the text is read as it is, never by OCR (`source/epub.py`): calibre names its styles afresh in each volume, so every block is classed by its resolved style (font, size, alignment, margins), and every block that fits no class is logged and was read.
 - **Meanings:** Gita Press's Hindi (`meanings/hi/gitapress.json`), copied as printed, with the book's footnotes. No English, no word meanings yet (`"words": "partial"`, the owner's choice: the verses and Hindi first; English, word meanings and recordings later).
 
 ## Sources and permissions
@@ -40,13 +40,13 @@ The Gita Press e-books are the owner's, used for personal study; the text and th
 - **Topics:** each adhyāya's Hindi title as printed (the Gītā's adhyāyas with the book's "(श्रीमद्भगवद्गीतायां प्रथमोऽध्यायः)" before it); in English its sub-parva and number ("Paulom Parv · Adhyay 5", `source/upaparva_en.tsv`) until English headings are written. The book's bracketed headings inside a few long dākṣiṇātya passages (95) are not shown yet.
 - **Meanings:** each of the book's Hindi paragraphs sits under the last verse its mark names (॥ ९—११ ॥ under 11), else under the last verse before it; a paragraph printed before its verse ends (॥ ८½ ॥) joins the next one; every mark is kept as printed. The book's notes go under the meaning that carries their mark (१. …, as printed), or, for a mark in a verse line, under that verse's meaning. The Gītā's "सम्बन्ध—" paragraphs (215, linking a verse to the ones before) are notes on the meaning of the verse they introduce. **Loading:** whole, verses and meanings together (the owner's choice: a phone downloads the whole work once, about 80 MB, 20 MB compressed).
 - **Reading plan:** none (the owner's choice; the book prints no day-wise method).
-- **The Śrīmad Bhagavad Gītā** is Bhīṣma 25–42 here, as Gita Press prints it in the Mahābhārata; the library's own Gītā (`granth/vyasa/bhagavad-gita`) is a separate work from another source, and neither takes from the other.
+- **The Śrīmad Bhagavad Gītā** is Bhīṣma 25–42 here, as Gita Press prints it in the Mahābhārata; the library's own Gītā (`itihasa/mahabharat/bhagavad-gita`) is a separate work from another source, and neither takes from the other.
 
 ## How it is made
 Run from an empty working folder; the steps write `v1.json` … `v6.json` there.
 ```bash
 S=<this repository>/tools/works/mahabharata/source
-D=<clone of scriptures-data>/hinduism/granth/vyasa/mahabharata/books/gitapress
+D=<clone of scriptures-data>/hinduism/itihasa/mahabharat/mahabharata/books/gitapress
 for n in 1 2 3 4 5 6; do python3 $S/epub.py $D/bhag-$n.epub v$n.json; done   # each volume: parvas › adhyāyas › blocks, and a log of every odd block
 python3 $S/make_text.py <this repository>/tools/works/mahabharata              # text.txt, meanings/hi/gitapress.json, source/check.md
 ```

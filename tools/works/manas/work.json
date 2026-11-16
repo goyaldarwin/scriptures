@@ -1,6 +1,6 @@
 {
  "id": "manas",
- "path": "hinduism/granth/tulsidas/ramcharitmanas",
+ "path": "hinduism/itihasa/ramayan/ramcharitmanas",
  "lang": "awa",
  "title": {
   "hi": "श्रीरामचरितमानस",
@@ -89,6 +89,10 @@
    "lanka.101.cha1_2",
    "lanka.101.cha2_2"
   ]
+ },
+ "topicWord": {
+  "hi": "प्रसंग",
+  "en": "Prasang"
  },
  "sections": {
   "end": {

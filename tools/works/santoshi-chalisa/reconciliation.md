@@ -1,4 +1,4 @@
-# Reconciliation: श्री संतोषी माँ चालीसा
+# Reconciliation: श्री संतोषी चालीसा
 
 ## Witnesses
 - **The book (base):** ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, Haridwar, first edition 2000), pp. 236–239; scriptures-data `hinduism/chalisa/books/aarti-chalisa-sangrah/` (page images i-235 … i-238), read on the page images.
@@ -19,3 +19,6 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## Readings settled
 - chalisa.cau25, व्याकुलयारी: व्याकुल + यारी ("help, aid", Platts: yārī, assistance, aid), as the meaning has it; the book and Drik Panchang both print व्याकुलयारी, a web search found no copy with व्याकुलहारी, so the printed word is kept and read as it stands.
 - chalisa.cau38, जगदीशा: the Lord of the world, as the meaning has it; जगदीश is a masculine word (the Mother would be जगदीश्वरी), and the ā is the rhyme's (चालीसा / जगदीशा).
+
+## Title
+The title is written as every Chalisa in the library is: Shri, the deity's name, Chalisa, in separate words (the owner: one form for every title).

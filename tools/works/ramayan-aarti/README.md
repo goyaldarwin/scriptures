@@ -2,10 +2,10 @@
 
 The āratī of the Śrī Rāmacaritamānasa in Awadhi (`awa`), in a refrain and four stanzas, sung at the end of a pārāyaṇa of the Mānas. The Mānas's 30-day and 9-day plans list it after their last day ("Śrī Rāmāyaṇajī kī Āratī"); there it opens this work, so it plays with the Mānas's recording.
 
-- **Text** (`text.txt`, made by `source/make.py`): the āratī printed at the end of the owner's Gita Press Mānas (`scriptures-data`: `hinduism/granth/tulsidas/ramcharitmanas/books/gitapress/hindi.pdf`), taken line by line from the Mānas's own extraction of that page (`tools/works/manas/book.json` → `vidhi.aarti`), so the two never differ. Every choice: `reconciliation.md`.
+- **Text** (`text.txt`, made by `source/make.py`): the āratī printed at the end of the owner's Gita Press Mānas (`scriptures-data`: `hinduism/itihasa/ramayan/ramcharitmanas/books/gitapress/hindi.pdf`), taken line by line from the Mānas's own extraction of that page (`tools/works/manas/book.json` → `vidhi.aarti`), so the two never differ. Every choice: `reconciliation.md`.
 - **Meanings:** ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`); Gita Press prints no meaning of the āratī.
 - **Word meanings:** the Awadhi dictionary (`library/glossary/awa.json`), which already had every word from the Mānas's āratī page.
-- **Recording:** Pt. Kamlesh Upadhyay "Haripuri" (`audio/kamlesh-upadhyay`), the end of the 30th day of his Māsa-pārāyaṇa of the Mānas (YouTube `Yi9TFXQYL-4`, 55:12–57:37; the audio in `scriptures-data` at `hinduism/granth/tulsidas/ramcharitmanas/audio/kamlesh-upadhyay/masa-30_Yi9TFXQYL-4.opus`). Its transcript is the āratī's stretch (3300 s on) of the Mānas's transcript of the same video; the starts: `fixes.md`, `aligned.md`.
+- **Recording:** Pt. Kamlesh Upadhyay "Haripuri" (`audio/kamlesh-upadhyay`), the end of the 30th day of his Māsa-pārāyaṇa of the Mānas (YouTube `Yi9TFXQYL-4`, 55:12–57:37; the audio in `scriptures-data` at `hinduism/itihasa/ramayan/ramcharitmanas/audio/kamlesh-upadhyay/masa-30_Yi9TFXQYL-4.opus`). Its transcript is the āratī's stretch (3300 s on) of the Mānas's transcript of the same video; the starts: `fixes.md`, `aligned.md`.
 
 Verse types: टेक (refrain, `tek`, shown once at the start although it is sung after every stanza) and पद (stanza, `pad`). The folder's format: `tools/works/README.md`.
 

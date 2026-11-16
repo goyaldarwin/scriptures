@@ -1,6 +1,6 @@
 # श्रीमद्भगवद्गीता (Shrimad Bhagavad Gita)
 
-Shelf: हिन्दू धर्म › ग्रन्थ › महर्षि वेदव्यास › श्रीमद्भगवद्गीता (`library/hinduism/granth/vyasa/bhagavad-gita/`, work id `bhagavad-gita`). The dialogue of Śrī Kṛṣṇa and Arjuna in the Bhīṣma-parva of the Mahābhārata, as Sañjaya tells it to Dhṛtarāṣṭra: 18 adhyāyas, 701 ślokas, in Sanskrit (`sa`), each adhyāya closing with its colophon (ॐ तत्सदिति …); before them, as an opening part, the nine verses of the Gītā Dhyānam (ॐ पार्थाय प्रतिबोधितां …), which the recordings chant first.
+Shelf: हिन्दू धर्म › इतिहास › महाभारत › श्रीमद्भगवद्गीता (`library/hinduism/itihasa/mahabharat/bhagavad-gita/`, work id `bhagavad-gita`). The dialogue of Śrī Kṛṣṇa and Arjuna in the Bhīṣma-parva of the Mahābhārata, as Sañjaya tells it to Dhṛtarāṣṭra: 18 adhyāyas, 701 ślokas, in Sanskrit (`sa`), each adhyāya closing with its colophon (ॐ तत्सदिति …); before them, as an opening part, the nine verses of the Gītā Dhyānam (ॐ पार्थाय प्रतिबोधितां …), which the recordings chant first.
 
 | Adhyāya | Ślokas | Adhyāya | Ślokas | Adhyāya | Ślokas |
 |---|---|---|---|---|---|
@@ -33,7 +33,7 @@ The Sanskrit text is public domain (sanskritdocuments.org: for personal study an
 
 ## How it is made
 ```bash
-J=<clone of scriptures-data>/hinduism/granth/vyasa/bhagavad-gita/printouts/sanskritdocuments/bhagavad-gita.json
+J=<clone of scriptures-data>/hinduism/itihasa/mahabharat/bhagavad-gita/printouts/sanskritdocuments/bhagavad-gita.json
 python3 tools/works/bhagavad-gita/source/make_text.py $J     # text.txt
 python3 tools/works/bhagavad-gita/source/meanings.py $J      # meanings/
 python3 tools/works/bhagavad-gita/source/words.py $J         # glossary/sa.json

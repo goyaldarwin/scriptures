@@ -1,4 +1,4 @@
-# Reconciliation: श्री महावीर (तीर्थंकर) चालीसा
+# Reconciliation: श्री महावीर चालीसा
 
 ## Witnesses
 - **The book (base):** ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, Haridwar, 2000), pp. 141–144; scriptures-data `hinduism/chalisa/books/aarti-chalisa-sangrah/` (page images i-140 … i-143), read on the page images.
@@ -23,3 +23,6 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## The recording
 Jain Bhajans (YouTube `oy5T6bMSXfc`, `audio/jain-bhajans/`) sings this text in its order.
 - Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau5`, `chalisa.cau6`, `chalisa.cau7`, `chalisa.cau26`, `chalisa.cau31`, `chalisa.cau33`, `chalisa.cau34`.
+
+## Title
+The title is written as every Chalisa in the library is: Shri, the deity's name, Chalisa, in separate words (the owner: one form for every title).

@@ -10,9 +10,9 @@ Gosvāmī Tulasīdāsa's Rāmāyaṇa in Awadhi (`awa`, with Sanskrit `sa` ślok
 Verse ids look like `bal.86.cau4`: kāṇḍa, dohā section, type, number. Verse types: `cau` (caupāī), `do` (dohā), `so` (sorathā), `cha` (chanda), `shloka`. The folder's format: `tools/works/README.md`.
 
 ## Sources (private repo `scriptures-data`)
-- `hinduism/granth/tulsidas/ramcharitmanas/books/gitapress/hindi.pdf`, `english.pdf`: the two Gita Press editions read by `source/` (set `HINDI_PDF`, `ENGLISH_PDF` to these).
-- `hinduism/granth/tulsidas/ramcharitmanas/books/visarjan-print/visarjan.jpg`: the owner's printed page of the Kathā-visarjana.
-- `hinduism/granth/tulsidas/ramcharitmanas/audio/kamlesh-upadhyay/`: the recordings transcribed into `audio/kamlesh-upadhyay/transcripts/` (set `DATA_DIR` to the clone of `scriptures-data`; `recordings.json` → `data` names each file).
+- `hinduism/itihasa/ramayan/ramcharitmanas/books/gitapress/hindi.pdf`, `english.pdf`: the two Gita Press editions read by `source/` (set `HINDI_PDF`, `ENGLISH_PDF` to these).
+- `hinduism/itihasa/ramayan/ramcharitmanas/books/visarjan-print/visarjan.jpg`: the owner's printed page of the Kathā-visarjana.
+- `hinduism/itihasa/ramayan/ramcharitmanas/audio/kamlesh-upadhyay/`: the recordings transcribed into `audio/kamlesh-upadhyay/transcripts/` (set `DATA_DIR` to the clone of `scriptures-data`; `recordings.json` → `data` names each file).
 
 ## Structure
 - **Hierarchy:** seven kāṇḍas (parts) › dohā sections › verses. A section is a dohā with the caupāīs, chhandas and ślokas before it ("Dohā 2" = the caupāīs before dohā 2 and dohā 2); the opening ślokas and sorathās of a kāṇḍa are section `0`, the closing ślokas of the Uttara-kāṇḍa the section `end` ("Closing", `work.json` → `sections`).

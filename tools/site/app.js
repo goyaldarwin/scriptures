@@ -1508,54 +1508,52 @@ function renderLibrary(){
   }
   cr.scrollLeft = 1e5;   // if it still does not fit, the end (the shelf you are on) shows
   $('#libTitle').textContent = libPath.length ? TT(node.title) : LB.lib();
-  // two levels per screen: a shelf inside this one is shown as a heading with its own items under it
-  // a shelf shows the works on it by name: tap a work to open it straight away, or the shelf's name to browse it
-  const MAXW = 3, worksIn = c => { const r = []; (function w(n){ (n.children || []).forEach(x => x.work ? r.push(x) : w(x)); })(c); return r; };
+  const worksIn = c => { const r = []; (function w(n){ (n.children || []).forEach(x => x.work ? r.push(x) : w(x)); })(c); return r; };
   const at = w => (S.w[w.work] || {}).at || 0;
   const recent = list => list.map((w, k) => [w, k]).sort((x, y) => at(y[0]) - at(x[0]) || x[1] - y[1]).map(x => x[0]);
-  const chips = (ws, key) => '<div class="lworks">' + ws.slice(0, MAXW).map(w => '<button data-open-work="' + esc(w.work) + '">' + esc(TT(w.title)) + '</button>').join('') +
-    (ws.length > MAXW && key ? '<button class="more" data-node="' + esc(key) + '">' + T('सभी ', 'All ') + DEV(ws.length) + ' ›</button>' : '') + '</div>';
-  // a work on a shelf of works is a large capsule like the chips that name works elsewhere: its title, and under it what it holds
-  const card = (c, key) => '<li class="lw"><button class="it wcard" data-node="' + esc(key) + '" data-card-work="' + esc(c.work) + '"><span class="grow"><span class="ti">' + esc(TT(c.title)) + '</span>' +
-    (TT(c.desc || c.by) ? '<span class="ds">' + esc(TT(c.desc || c.by)) + '</span>' : '') + '</span><span class="chev">›</span></button></li>';
-  const row = (c, key) => {
-    if (c.work) return card(c, key);
-    // a shelf shows three works on one line that swipes sideways — the ones used most recently on this phone first (S.w[id].at:
-    // last opened, read or played) — and how many it holds beside its name; “All N ›” at the end of the line opens it
-    const ws = c.work ? [] : recent(worksIn(c));
-    return '<li><button class="it" data-node="' + esc(key) + '"><span class="grow"><span class="ti">' + esc(TT(c.title)) + '</span>' + (ws.length ? '' : '<br><span class="ds">' + esc(TT(c.desc || c.by) || '') + '</span>') + '</span>' + (ws.length > 1 ? '<span class="cnt">' + DEV(ws.length) + '</span>' : '') + '<span class="chev">›</span></button>' +
-      (ws.length ? chips(ws, key) : '') + '</li>';
-  };
-  // a shelf of many shelves that each hold only works (Aarti, Chalisa: one per deity) is an index, not a long list: the four
-  // works used most recently anywhere on it, then every deity as a chip with how many works it has; a tap opens that shelf
-  // on the index the shelf names say who, without the honorific the heading already implies (Bhagwan Shri Ganesh → Ganesh)
-  const shortDeity = t => t.replace(/^(Bhagwan |Mother )?(Shri )?/, '').replace(/^(भगवान |माँ |माता )?(श्री ?(?!मद्))?/, '');
-  const index = node => {
-    const all = recent(worksIn(node)), used = all.filter(w => at(w)).slice(0, MAXW);
-    return (used.length ? '<li class="lhead">' + T('हालमें खोले', 'Recently opened') + '</li><li>' + chips(used) + '</li>' : '') +
-      '<li class="lhead">' + esc(TT(node.groupBy) || T('देवता', 'By deity')) + '</li><li><div class="lindex">' +
-      kids.map(c => [c, shortDeity(TT(c.title))]).sort((x, y) => x[1].localeCompare(y[1], S.settings.ui === 'hi' ? 'hi' : 'en')).map(([c]) => c).map(c => '<button data-node="' + esc(c.id) + '"><span>' + esc(shortDeity(TT(c.title))) + '</span><span class="cnt">' + DEV(worksIn(c).length) + '</span></button>').join('') + '</div></li>';
-  };
-  // the library itself is one row per genre, with no headings (the owner: no partitioning on the library screen). On a
-  // shelf's page, a shelf that holds shelves is a heading over them and a shelf that holds only works is one row with its
-  // works as buttons, so every shelf page looks the same however deep its shelves go (Āratī › Śrī Rāma like Vedas › Yajurveda)
-  // a work that stands beside shelves (Sri Guru Granth Sahib beside the Gurus on the Gurbani shelf) is shown like a shelf of
-  // one: its author over it, and the work as its button
-  const mixed = kids.some(c => !c.work) && kids.some(c => c.work);
-  const one = (c, key) => mixed && c.work ? row({id: c.id, title: c.by || c.title, children: [c]}, key) : row(c, key);
-  const isIndex = libPath.length && kids.length > 12 && kids.every(c => c.children && !c.children.some(g => g.children));
-  // a shelf whose shelves all hold shelves gives way to them, each its own heading (Vedas: Rigveda, Krishna Yajurveda, Shukla
-  // Yajurveda, Samaveda, Atharvaveda; never a Yajurveda heading over two rows of śākhās), so every row under a heading holds works
+  const works = c => DEV(c) + T(' रचनाएँ', c === 1 ? ' work' : ' works');   // one way to say how many, everywhere
+  // a work is one row: its title in the language chosen (the owner: never the other language under it), the row opening it, and
+  // at its end a small open book that opens About this work (the owner: a sign for "read about this", not ⓘ, which reads as an
+  // alert); a long press on the row opens About too
+  const wrow = (w, big) => '<div class="lrow' + (big ? ' big' : '') + '"><button class="lw1" data-open-work="' + esc(w.work) + '">' + esc(TT(w.title)) + '</button>' +
+    '<button class="lbk" data-about="' + esc(w.work) + '" aria-label="' + T('इस रचनाके बारेमें', 'About this work') + '"><svg><use href="#i-book"/></svg></button></div>';
+  // the library: one card per genre (the owner: the medium look), its name in Hindi (and in English when the app is in English),
+  // "All N ›", and its first three works, the ones used most recently on this phone first; the name or "All N" opens the shelf
+  const shelfCard = c => { const ws = recent(worksIn(c));
+    return '<li class="lcli"><div class="lcard"><button class="lch" data-node="' + esc(c.id) + '"><span class="lhi">' + esc(c.title.hi) + '</span>' +
+      (S.settings.ui === 'hi' ? '' : '<span class="len">' + esc(c.title.en) + '</span>') + '<span class="all">' + T('सभी ', 'All ') + DEV(ws.length) + ' ›</span></button>' +
+      ws.slice(0, 3).map(w => wrow(w)).join('') + '</div></li>'; };
+  // a shelf's page: every shelf of works is a heading (its name and how many) over a card of its works; a shelf that holds
+  // shelves is a saffron heading over them; a shelf whose shelves all hold shelves gives way to them, each its own heading
+  // (Vedas: Rigveda, Krishna Yajurveda, Shukla Yajurveda, Samaveda, Atharvaveda), so every card holds works; a work that stands
+  // beside shelves (Sri Guru Granth Sahib beside the Gurus) is a card of one under its author
+  const group = (c, key, head) => { const ws = c.work ? [c] : worksIn(c);
+    return '<li class="lcli">' + (head ? '<button class="lgh" data-node="' + esc(key) + '"><span>' + esc(TT(head)) + '</span><span class="cnt">' + DEV(ws.length) + '</span></button>' : '') +
+      '<div class="lcard">' + ws.map(w => wrow(w, true)).join('') + '</div></li>'; };
   const holdsShelves = c => !c.work && (c.children || []).some(g => !g.work);
   const section = (c, key) => (c.children || []).length && c.children.every(holdsShelves) ? c.children.map(g => section(g, key + '/' + g.id)).join('') :
-    '<li class="lhead">' + esc(TT(c.title)) + '</li>' + c.children.map(g => one(g, key + '/' + g.id)).join('');
-  $('#libList').innerHTML = isIndex ? index(node) : kids.map(c => libPath.length && holdsShelves(c) ? section(c, c.id) : one(c, c.id)).join('');
+    '<li class="lhead">' + esc(TT(c.title)) + '</li>' + c.children.map(g => g.work ? group(g, key + '/' + g.id, g.by || g.title) : group(g, key + '/' + g.id, g.title)).join('');
+  const mixed = kids.some(c => !c.work) && kids.some(c => c.work);
+  // a shelf of many shelves that each hold only works (Aarti, Chalisa: one per deity) is an index (the owner: no heading over it,
+  // the deities being the only classification there): the three works opened most recently on it, then every deity in a tidy
+  // grid, named with its salutation (docs/PLAYBOOK.md §6) and sorted by the name itself (Shri Ram under R, Durga Mata under D)
+  const isIndex = libPath.length && kids.length > 12 && kids.every(c => c.children && !c.children.some(g => g.children));
+  const sortName = t => t.replace(/^(Shri |Bhagwan |Baba |Guru )/, '').replace(/^(श्री |भगवान |बाबा |गुरु )/, '');
+  const index = node => {
+    const used = recent(worksIn(node)).filter(w => at(w)).slice(0, 3);
+    return (used.length ? '<li class="lhead">' + T('हालमें खोले', 'Recently opened') + '</li><li class="lcli"><div class="lcard">' + used.map(w => wrow(w, true)).join('') + '</div></li>' : '') +
+      '<li class="lcli"><div class="lindex">' + kids.map(c => [c, sortName(TT(c.title))]).sort((x, y) => x[1].localeCompare(y[1], S.settings.ui === 'hi' ? 'hi' : 'en')).map(([c]) =>
+        '<button data-node="' + esc(c.id) + '"><span>' + esc(TT(c.title)) + '</span><span class="cnt">' + DEV(worksIn(c).length) + '</span></button>').join('') + '</div></li>';
+  };
+  const sub = $('#libSub'); sub.textContent = libPath.length ? (S.settings.ui === 'hi' ? node.title.en : node.title.hi) + ' · ' + works(worksIn(node).length) : '';
+  $('#libList').innerHTML = !libPath.length ? kids.map(shelfCard).join('') : isIndex ? index(node) :
+    kids.every(c => c.work) ? group(node, '', null) :
+    kids.map(c => holdsShelves(c) ? section(c, c.id) : c.work ? group(c, c.id, mixed ? (c.by || c.title) : null) : group(c, c.id, c.title)).join('');
   $$('#libList [data-node]').forEach(b => b.onclick = () => {
-    if (b.dataset.held){ delete b.dataset.held; return; }   // the press opened About
     const ids = b.dataset.node.split('/'); let n = node, c = null; ids.forEach(id => { c = (n.children || []).find(x => x.id === id); n = c; });
     if (c.work) openWork(c.work); else { libPath.push(...ids); history.pushState(snap('library'), ''); renderLibrary(); window.scrollTo(0, 0); }
   });
-  $$('#libList [data-card-work]').forEach(b => holdFor(b, () => aboutWork(b.dataset.cardWork)));   // a long press: About, as on a chip
+  $$('#libList [data-about]').forEach(b => b.onclick = () => aboutWork(b.dataset.about));
   $$('#libList [data-open-work]').forEach(b => { b.onclick = () => { if (b.dataset.held){ delete b.dataset.held; return; } openWork(b.dataset.openWork); }; holdFor(b, () => aboutWork(b.dataset.openWork)); });
   $$('#libCrumbs [data-lp]').forEach(b => b.onclick = () => { libPath = libPath.slice(0, +b.dataset.lp + 1); history.pushState(snap('library'), ''); renderLibrary(); window.scrollTo(0, 0); });
 }
@@ -1724,9 +1722,23 @@ addEventListener('resize', () => { if ($('#hTitle') && $('#hTitle').offsetParent
 const VEDIC = /[\u0951\u0952\u1CD0-\u1CFF\uA8E0-\uA8FF]/;   // verses with svara marks are set in the Vedic font
 // a plan's page before or after the reading, titled by the work (work.json → vidhi.titles; the visarjana by its own title)
 function pageTitle(pg){ const V = W.vidhi || {}, t = pg === 'visarjan' ? V.visarjan && V.visarjan.title : (V.titles || {})[pg]; return t ? TT(t) : pg === 'vidhi' ? LB.vidhi() : pg; }
+// how many verses a stretch of a work holds, in the work's own word (the owner: one rule on every row of every work): a work
+// cited by sections counts its sections (the Manas's dohas, the Valmiki Ramayan's sargas); otherwise its verses by type
+// (47 shlokas; 2 dohas; 40 chaupais), the plural made the language's way (दोहा → दोहे); closing words, peace mantras,
+// headings and refrains are not counted, and a dhyana shloka is a shloka
+const NOCOUNT = new Set(['iti', 'shanti', 'heading', 'mool', 'tek', 'gadya']);
+function verseCount(a, b, k){
+  const word = (nm, n) => S.settings.ui === 'hi' ? DEV(n) + ' ' + (n > 1 ? nm[0].replace(/ा$/, 'े') : nm[0]) : n + ' ' + (n === 1 ? nm[1].toLowerCase() : nm[1].toLowerCase().replace(/([^s])$/, '$1s'));
+  const sec = W.cite && W.cite.sec;
+  if (sec && k != null){ const n = PAGES.filter(g => g.k === k && +String(g.s).split('.').pop() > 0).length; if (n) return word([sec.hi, sec.en], n); }
+  const c = new Map();
+  for (let i = a; i <= b; i++){ const y = IT[i].y === 'dhyana' ? 'shloka' : IT[i].y; if (!y || NOCOUNT.has(y)) continue; c.set(y, (c.get(y) || 0) + 1); }
+  return [...c].map(([y, n]) => { const nm = TYPEN[y] || [T('पद्य', 'Verse'), 'Verse']; return /\(/.test(nm[1]) ? word([T('पद्य', 'Verse'), 'Verse'], n) : word(nm, n); }).join(' · ');
+}
 function renderHome(){
   if (!W) return;
   $('#hTitle').textContent = TT(W.title); fitTitle(); $('#hSub').textContent = [TT(W.by), TT(W.from)].filter(Boolean).join(' · ');   // the author and, where there is one, the parent text — never the publisher or source
+  { const nd = workNode(W.id), it = nd && nd.intro ? [].concat(TT(nd.intro) || []) : []; $('#hIntro').textContent = it[0] || ''; }   // two lines of its introduction; "About this work ›" opens the rest
   // ▶ the whole work, start to end, across every part and recording
   const pa = $('#hPlayAll'), fa = firstAu(0, IT.length - 1); pa.hidden = fa == null; pa.onclick = () => playRange('k', 0, IT.length - 1);
   $('#hPlayT').textContent = fa != null ? durLabel(spanSecs(0, IT.length - 1)) : '';   // the whole recording's time, under it
@@ -1744,7 +1756,7 @@ function renderHome(){
   $('#orgSeg').hidden = !PLANS.length && !VIEWS.length;   // a work without reading plans or other views needs no switch
   if (org === 'k' && PARTS.length === 1){   // a single-part work (an āratī, a stotra): list its sections straight away
     const P = PARTS[0], ts = TOPICS.length || !W.sections ? TOPICS.slice() : PAGES.filter(p => SECN(p.s)).map(p => ({i: p.from, end: p.to})); if (!ts.length || ts[0].i > P.a) ts.unshift({i: P.a, end: ts.length ? ts[0].i - 1 : P.b});
-    ts.forEach((t, n) => { const name = t.hi || t.en ? TNAME(t) : KNAME(P.k); h += '<li class="rowp">' + play('k', t.i, t.end) + '<button class="it" data-open="' + t.i + '"><span class="no">' + DEV(n + 1) + '</span><span class="grow"><span class="ti">' + esc(name) + '</span><br><span class="ds">' + esc(spanLabel(t.i, t.end)) + '</span></span><span class="chev">›</span></button></li>'; });
+    ts.forEach((t, n) => { const name = t.hi || t.en ? TNAME(t) : KNAME(P.k); h += '<li class="rowp">' + play('k', t.i, t.end) + '<button class="it" data-open="' + t.i + '"><span class="no">' + DEV(n + 1) + '</span><span class="grow"><span class="ti">' + esc(name) + '</span><br><span class="ds">' + esc(verseCount(t.i, t.end)) + '</span></span><span class="chev">›</span></button></li>'; });
   }
   else if (VIEW[org] && VIEW[org].groups) VIEW[org].groups.forEach(gr => {   // the writers, under their headings (Gurus, Bhagats …)
     h += '<li class="lhead">' + esc(TT(gr)) + '</li>';
@@ -1756,7 +1768,13 @@ function renderHome(){
     for (let a = 1; a <= at.length; a += 100){ const b = Math.min(at.length, a + 99), on = open === a, pa = IT[at[a - 1]].p, pb = IT[at[b - 1]].p;
       h += '<li class="rowp"><button class="it" data-hund="' + a + '"><span class="no">' + DEV(Math.ceil(a / 100)) + '</span><span class="grow"><span class="ti">' + esc(nm + ' ' + DEV(a) + '–' + DEV(b)) + '</span><br><span class="ds">' + esc(KNAME(pa) + (pb !== pa ? ' – ' + KNAME(pb) : '')) + '</span></span><span class="chev">' + (on ? '⌄' : '›') + '</span></button></li>';
       if (on) h += '<li class="angs"><div class="pick days">' + Array.from({length: b - a + 1}, (_, x) => '<button data-at="' + at[a + x - 1] + '" data-ln="' + ((VIEW[org].line || [])[a + x - 1] || 0) + '" aria-label="' + esc(nm + ' ' + (a + x)) + '">' + DEV(a + x) + '</button>').join('') + '</div></li>'; } }
-  else if (org === 'k') PARTS.forEach(p => { const tps = TOPICS.filter(t => IT[t.i].p === p.k).length || (W.sections ? PAGES.filter(g => g.k === p.k && SECN(g.s)).length : 0);   /* its topics, else its named sections */ h += '<li class="rowp">' + play('k', p.a, p.b) + '<button class="it" data-open="' + p.a + '"><span class="no">' + DEV(p.no != null ? p.no : p.k + 1) + '</span><span class="grow"><span class="ti">' + esc(KNAME(p.k)) + '</span><br><span class="ds">' + DEV(tps) + T(' प्रसंग', tps === 1 ? ' section' : ' sections') + '</span></span><span class="chev">›</span></button></li>'; });
+  else if (org === 'k') PARTS.forEach(p => { const tps = TOPICS.filter(t => IT[t.i].p === p.k).length;
+    // its line: how many verses, in the work's own word (361 dohas, 47 shlokas), and its episodes where the work names them
+    // (work.json → topicWord: the Mānas's prasangs; elsewhere a part's topics are its own sections, vallis or sargas); a part
+    // outside the numbered ones (the Gita Dhyanam) has the diya, as a plan's pages do
+    const tw = W.topicWord, line = [verseCount(p.a, p.b, p.k), tw && tps > 1 ? DEV(tps) + ' ' + (S.settings.ui === 'hi' ? tw.hi : (tw.en + 's').toLowerCase()) : ''].filter(Boolean).join(' · ');
+    const no = p.no != null && !/^[0-9०-९]+$/.test(String(p.no)) ? '<span class="no pg"><svg><use href="#i-lamp"/></svg></span>' : '<span class="no">' + DEV(p.no != null ? p.no : p.k + 1) + '</span>';
+    h += '<li class="rowp">' + play('k', p.a, p.b) + '<button class="it" data-open="' + p.a + '">' + no + '<span class="grow"><span class="ti">' + esc(KNAME(p.k)) + '</span><br><span class="ds">' + esc(line) + '</span></span><span class="chev">›</span></button></li>'; });
   else { const P = PLAN[org]; const dn = Object.keys(DONE(ME(), org)).length; h += '<li class="pdone" aria-label="' + DEV(dn) + ' / ' + DEV(P.n) + T(' ' + UNIT(org).hi + ' पूर्ण', ' ' + UNIT(org).en.toLowerCase() + 's completed') + '"><span class="pdbar"><span style="width:' + Math.round(100 * dn / P.n) + '%"></span></span><span class="pdn">' + DEV(dn) + ' / ' + DEV(P.n) + '</span></li>';   // how much of the plan is done; a vishram's number marks it done
     // pages read before the first day and after the reading (pūrvāṅga / uttarāṅga), when the plan names them
     const page = (pg, when) => { const t = pageTitle(pg); if (pg === 'visarjan') when = T('पारायणके अन्तिम दिन', 'On the last day of the parayan'); return '<li class="rowp">' + pagePlay(pg) + '<button class="it" data-page="' + pg + '"><span class="no pg"><svg><use href="#i-lamp"/></svg></span><span class="grow"><span class="ti">' + t + '</span><br><span class="ds">' + when + '</span></span><span class="chev">›</span></button></li>'; };

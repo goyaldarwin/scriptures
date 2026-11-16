@@ -3,12 +3,12 @@
  "path": "hinduism/chalisa/santoshi/santoshi-chalisa",
  "lang": "awa",
  "title": {
-  "hi": "श्री संतोषी माँ चालीसा",
-  "en": "Shri Santoshi Maa Chalisa"
+  "hi": "श्री संतोषी चालीसा",
+  "en": "Shri Santoshi Chalisa"
  },
  "by": {
-  "hi": "माँ संतोषी",
-  "en": "Mother Santoshi"
+  "hi": "संतोषी माता",
+  "en": "Santoshi Mata"
  },
  "parts": {
   "name": {
@@ -18,8 +18,8 @@
   "list": [
    {
     "key": "chalisa",
-    "hi": "श्री संतोषी माँ चालीसा",
-    "en": "Shri Santoshi Maa Chalisa"
+    "hi": "श्री संतोषी चालीसा",
+    "en": "Shri Santoshi Chalisa"
    }
   ]
  },

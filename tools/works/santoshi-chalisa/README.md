@@ -1,4 +1,4 @@
-# श्री संतोषी माँ चालीसा (Shri Santoshi Maa Chalisa)
+# श्री संतोषी चालीसा (Shri Santoshi Chalisa)
 
 The chālīsā of Santoṣī Mā that opens "श्री गणपति पद नाय सिर धरि हिय शारदा ध्यान", in Awadhi (`awa`).
 

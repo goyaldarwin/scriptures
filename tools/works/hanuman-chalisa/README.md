@@ -1,4 +1,4 @@
-# श्रीहनुमानचालीसा (Shri Hanuman Chalisa)
+# श्री हनुमान चालीसा (Shri Hanuman Chalisa)
 
 The Hanumān Chālīsā of Gosvāmī Tulasīdāsa, in Awadhi (`awa`): the Chālīsā of the Sundarakāṇḍa work, taken from it unchanged (`[take sundarkand …]`), so a correction there reaches this work at the next export.
 
