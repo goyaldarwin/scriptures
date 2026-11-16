@@ -59,6 +59,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 html,body{overflow-x:clip}
 .hero h1{font-size:40px;line-height:1.15;margin:0;overflow-wrap:anywhere;color:var(--indigo);font-weight:700;letter-spacing:.5px}
 .hero p{margin:6px 0 0;color:var(--muted);font-size:14px}
+.ptitle{padding:22px 0 4px}.ptitle h1{font-size:30px}   /* a page's name (Bookmarks & notes, More settings, Parayan vidhi): under the header, as the library's */
 .card{background:var(--surface);border:1px solid var(--rule);border-radius:16px;padding:14px 16px;margin:12px 0}
 .card h3{margin:0 0 2px;font-size:15px;color:var(--muted);font-weight:600}
 .card .big{font-size:19px;font-weight:700}
@@ -327,7 +328,7 @@ input[type=checkbox],input[type=radio],input[type=range]{accent-color:var(--indi
 .toprow .ib svg{stroke:var(--indigo)}
 .libsearch{margin:0 0 10px}.libsearch input{width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:11px 14px;border:1px solid var(--rule);border-radius:12px;background:var(--surface);color:var(--ink)}
 .sz{display:flex;border:1px solid var(--rule);border-radius:999px;overflow:hidden}.sz button{padding:0 11px;min-height:32px;font-weight:700;color:var(--indigo);font-size:15px}.sz button+button{border-left:1px solid var(--rule);font-size:19px}.sz sup{font-size:.6em}
-.libbtn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
+.libbtn svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8}.bar .libbtn{padding-left:10px}@media (max-width:400px){.bar .libbtn{padding-left:7px}}   /* its ‹ where every other page has ‹ */
 .crumbs{font-size:14px;color:var(--muted);margin:0 0 6px}.crumbs button{color:var(--indigo)}
 .loading{position:fixed;inset:0;z-index:70;background:var(--bg);display:grid;place-items:center;color:var(--saffron);font-size:30px;text-align:center;padding:0 16px}.loading:empty::after{content:"";width:30px;height:30px;border-radius:50%;border:3px solid var(--rule);border-top-color:var(--saffron);opacity:0;animation:spin .8s linear infinite,show .2s .3s forwards}@keyframes spin{to{transform:rotate(360deg)}}@keyframes show{to{opacity:1}}   /* the blank screen while loading: a spinner, after 0.3 s */
 .part-h{margin:30px 0 6px;text-align:center}.part-h b{font-size:calc(var(--verse-size) * 1.15);color:var(--indigo)}   /* headings follow the text size: 24 / 18 / 13 px at the default 21 px */
@@ -463,6 +464,7 @@ body.playing .view.on:not(#reader){padding-bottom:calc(240px + env(safe-area-ins
  <div class="bar"><div class="wrap">
   <button class="ib" data-back aria-label="वापस"><svg><use href="#i-back"/></svg></button>
   <input id="q" type="search" placeholder="शब्द, अर्थ या English में खोजें" data-en-ph="Search a word, meaning or English" autocomplete="off" style="flex:1">
+  <button class="ib hmenu" data-hmenu aria-label="मेनू"><svg><use href="#i-menu"/></svg></button>
  </div></div>
  <div class="wrap">
   <div class="scope" id="sIn" hidden></div>
@@ -475,19 +477,22 @@ body.playing .view.on:not(#reader){padding-bottom:calc(240px + env(safe-area-ins
 
 <!-- BOOKMARKS -->
 <section id="bookmarks" class="view">
- <div class="bar"><div class="wrap"><button class="ib" data-back aria-label="वापस"><svg><use href="#i-back"/></svg></button><div class="bt"><div class="t" data-en="Bookmarks &amp; notes">बुकमार्क और टिप्पणियाँ</div></div><div class="sz"><button class="szm" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div><div class="lyr uilang"><button data-u="hi">हिं</button><button data-u="en" class="lat">En</button></div></div></div>
+ <div class="bar"><div class="wrap"><button class="ib hback" data-back aria-label="वापस"><svg><use href="#i-back"/></svg></button><span class="grow"></span><div class="sz"><button class="szm" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div><div class="lyr uilang"><button data-u="hi">हिं</button><button data-u="en" class="lat">En</button></div><button class="ib hsearch" data-hsearch aria-label="खोजें"><svg><use href="#i-search"/></svg></button><button class="ib hmenu" data-hmenu aria-label="मेनू"><svg><use href="#i-menu"/></svg></button></div></div>
+ <div class="wrap"><div class="hero ptitle"><h1 data-en="Bookmarks &amp; notes">बुकमार्क और टिप्पणियाँ</h1></div></div>
  <div class="wrap zoomable" id="bmBody"></div>
 </section>
 
 <!-- SETTINGS -->
 <section id="settings" class="view page">
- <div class="bar"><div class="wrap"><button class="ib" data-back aria-label="वापस"><svg><use href="#i-back"/></svg></button><div class="bt"><div class="t" data-en="More settings">और सेटिंग</div></div><div class="sz"><button class="szm" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div><div class="lyr uilang"><button data-u="hi">हिं</button><button data-u="en" class="lat">En</button></div></div></div>
+ <div class="bar"><div class="wrap"><button class="ib hback" data-back aria-label="वापस"><svg><use href="#i-back"/></svg></button><span class="grow"></span><div class="sz"><button class="szm" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div><div class="lyr uilang"><button data-u="hi">हिं</button><button data-u="en" class="lat">En</button></div><button class="ib hsearch" data-hsearch aria-label="खोजें"><svg><use href="#i-search"/></svg></button><button class="ib hmenu" data-hmenu aria-label="मेनू"><svg><use href="#i-menu"/></svg></button></div></div>
+ <div class="wrap"><div class="hero ptitle"><h1 data-en="More settings">और सेटिंग</h1></div></div>
  <div class="wrap zoomable" id="setBody"></div>
 </section>
 
 <!-- VIDHI -->
 <section id="vidhi" class="view vidhi">
- <div class="bar"><div class="wrap"><button class="ib" data-back aria-label="वापस"><svg><use href="#i-back"/></svg></button><div class="bt"><div class="t" data-en="Parayan vidhi">पारायण-विधि</div></div><div class="sz"><button class="szm" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div><div class="lyr" id="vidLang"><button data-l="h">हिं</button><button data-l="e" class="lat">En</button></div></div></div>
+ <div class="bar"><div class="wrap"><button class="ib hback" data-back aria-label="वापस"><svg><use href="#i-back"/></svg></button><span class="grow"></span><div class="sz"><button class="szm" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div><div class="lyr" id="vidLang"><button data-l="h">हिं</button><button data-l="e" class="lat">En</button></div><button class="ib hsearch" data-hsearch aria-label="खोजें"><svg><use href="#i-search"/></svg></button><button class="ib hmenu" data-hmenu aria-label="मेनू"><svg><use href="#i-menu"/></svg></button></div></div>
+ <div class="wrap"><div class="hero ptitle"><h1 data-en="Parayan vidhi">पारायण-विधि</h1></div></div>
  <div class="wrap">
   <div class="seg" id="vidSeg"><button data-v="v" class="on" data-en="Parayan vidhi">पारायण-विधि</button><button data-v="aarti" data-en="Aarti">आरती</button><button data-v="visarjan" data-en="Visarjana" hidden>विसर्जन</button></div>
   <div id="vidBody" class="zoomable" style="padding-bottom:40px"></div>
