@@ -631,7 +631,7 @@ function pageHTML(pg){
   for (let i = a; i <= b; i++){
     if (g && !g.set.has(i)) continue;
     // in a group's reading, the part and the composition a verse is in head it where they change (a salok in another writer's vaar)
-    const pv = g ? g.list[g.ix.get(i) - 1] : null;
+    const pv = g ? g.list[g.ix.get(i) - 1] : undefined;   // undefined: not a group's reading, so typeHead looks at the verse before
     if (g ? pv == null || IT[pv].p !== IT[i].p : i === PARTS[IT[i].p].a) h += '<div class="part-h"><b>' + esc(KNAME(IT[i].p)) + '</b></div>';
     const t = g ? topicOf(i) : topicAt.get(i);
     if (t && (!g || t.i === i || pv == null || topicOf(pv) !== t)) h += '<div class="topic-h" id="t' + i + '"><b>' + esc(TNAME(t)) + '</b></div>';

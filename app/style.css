@@ -90,7 +90,7 @@ html,body{overflow-x:clip}
 @keyframes flash{from{background:var(--saffron-soft)}to{background:transparent}}
 .vtype{font-size:12.5px;color:var(--saffron);font-weight:600;margin-right:2px}
 .vtext{font-weight:700;font-size:var(--verse-size);line-height:1.6;text-align:center}
-.vtext p{margin:0;position:relative}
+.vtext p{margin:0;position:relative;text-wrap:balance}   /* a long line breaks into halves of like length, never one word alone (the Gita's "च ।") */
 .vtext{padding:0 30px;overflow-wrap:anywhere}
 .vtext.vedic{font-family:'Vedic','NSDev',serif}
 /* line by line: each verse line sits on its own meaning, with no ॰; a short faint saffron dash parts one pair from the next,
