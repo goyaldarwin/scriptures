@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#2B3A8C">
 <title>शास्त्र · Scriptures</title>
 <meta property="og:type" content="website"><meta property="og:site_name" content="शास्त्र · Scriptures"><meta property="og:title" content="शास्त्र · Scriptures"><meta property="og:description" content="श्रीरामचरितमानस, सुन्दरकाण्ड, हनुमान चालीसा, उपनिषद्, आरती — मूल पाठ, अर्थ, शब्दार्थ और ऑडियो। निःशुल्क। · Shri Ramcharitmanas, Sundarkand, Hanuman Chalisa, Upanishads, aartis: the text, Hindi and English meanings, the meaning of every word, recitation audio. Free, no ads."><meta property="og:image" content="https://scriptures.craadle.org/app/share-card.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:url" content="https://scriptures.craadle.org/"><meta name="description" content="श्रीरामचरितमानस, सुन्दरकाण्ड, हनुमान चालीसा, उपनिषद्, आरती — मूल पाठ, अर्थ, शब्दार्थ और ऑडियो। निःशुल्क। · Shri Ramcharitmanas, Sundarkand, Hanuman Chalisa, Upanishads, aartis: the text, Hindi and English meanings, the meaning of every word, recitation audio. Free, no ads.">
-<link rel="manifest" href="manifest.json"><link rel="icon" href="app/icon.svg"><link rel="apple-touch-icon" href="app/apple-touch-icon.png"><link rel="stylesheet" href="app/fonts.css?v=6ce0da9346"><link rel="stylesheet" href="app/style.css?v=2e99c8f9ff">
+<link rel="manifest" href="manifest.json"><link rel="icon" href="app/icon.svg"><link rel="apple-touch-icon" href="app/apple-touch-icon.png"><link rel="stylesheet" href="app/fonts.css?v=6ce0da9346"><link rel="stylesheet" href="app/style.css?v=953ffcca44">
 
 </head>
 <body>
@@ -113,6 +113,7 @@
  <div class="bar"><div class="wrap">
   <button class="ib" data-back aria-label="वापस"><svg><use href="#i-back"/></svg></button>
   <input id="q" type="search" placeholder="शब्द, अर्थ या English में खोजें" data-en-ph="Search a word, meaning or English" autocomplete="off" style="flex:1">
+  <button class="ib hmenu" data-hmenu aria-label="मेनू"><svg><use href="#i-menu"/></svg></button>
  </div></div>
  <div class="wrap">
   <div class="scope" id="sIn" hidden></div>
@@ -125,19 +126,22 @@
 
 <!-- BOOKMARKS -->
 <section id="bookmarks" class="view">
- <div class="bar"><div class="wrap"><button class="ib" data-back aria-label="वापस"><svg><use href="#i-back"/></svg></button><div class="bt"><div class="t" data-en="Bookmarks &amp; notes">बुकमार्क और टिप्पणियाँ</div></div><div class="sz"><button class="szm" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div><div class="lyr uilang"><button data-u="hi">हिं</button><button data-u="en" class="lat">En</button></div></div></div>
+ <div class="bar"><div class="wrap"><button class="ib hback" data-back aria-label="वापस"><svg><use href="#i-back"/></svg></button><span class="grow"></span><div class="sz"><button class="szm" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div><div class="lyr uilang"><button data-u="hi">हिं</button><button data-u="en" class="lat">En</button></div><button class="ib hsearch" data-hsearch aria-label="खोजें"><svg><use href="#i-search"/></svg></button><button class="ib hmenu" data-hmenu aria-label="मेनू"><svg><use href="#i-menu"/></svg></button></div></div>
+ <div class="wrap"><div class="hero ptitle"><h1 data-en="Bookmarks &amp; notes">बुकमार्क और टिप्पणियाँ</h1></div></div>
  <div class="wrap zoomable" id="bmBody"></div>
 </section>
 
 <!-- SETTINGS -->
 <section id="settings" class="view page">
- <div class="bar"><div class="wrap"><button class="ib" data-back aria-label="वापस"><svg><use href="#i-back"/></svg></button><div class="bt"><div class="t" data-en="More settings">और सेटिंग</div></div><div class="sz"><button class="szm" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div><div class="lyr uilang"><button data-u="hi">हिं</button><button data-u="en" class="lat">En</button></div></div></div>
+ <div class="bar"><div class="wrap"><button class="ib hback" data-back aria-label="वापस"><svg><use href="#i-back"/></svg></button><span class="grow"></span><div class="sz"><button class="szm" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div><div class="lyr uilang"><button data-u="hi">हिं</button><button data-u="en" class="lat">En</button></div><button class="ib hsearch" data-hsearch aria-label="खोजें"><svg><use href="#i-search"/></svg></button><button class="ib hmenu" data-hmenu aria-label="मेनू"><svg><use href="#i-menu"/></svg></button></div></div>
+ <div class="wrap"><div class="hero ptitle"><h1 data-en="More settings">और सेटिंग</h1></div></div>
  <div class="wrap zoomable" id="setBody"></div>
 </section>
 
 <!-- VIDHI -->
 <section id="vidhi" class="view vidhi">
- <div class="bar"><div class="wrap"><button class="ib" data-back aria-label="वापस"><svg><use href="#i-back"/></svg></button><div class="bt"><div class="t" data-en="Parayan vidhi">पारायण-विधि</div></div><div class="sz"><button class="szm" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div><div class="lyr" id="vidLang"><button data-l="h">हिं</button><button data-l="e" class="lat">En</button></div></div></div>
+ <div class="bar"><div class="wrap"><button class="ib hback" data-back aria-label="वापस"><svg><use href="#i-back"/></svg></button><span class="grow"></span><div class="sz"><button class="szm" aria-label="छोटा अक्षर">A<sup>−</sup></button><button class="szp" aria-label="बड़ा अक्षर">A<sup>+</sup></button></div><div class="lyr" id="vidLang"><button data-l="h">हिं</button><button data-l="e" class="lat">En</button></div><button class="ib hsearch" data-hsearch aria-label="खोजें"><svg><use href="#i-search"/></svg></button><button class="ib hmenu" data-hmenu aria-label="मेनू"><svg><use href="#i-menu"/></svg></button></div></div>
+ <div class="wrap"><div class="hero ptitle"><h1 data-en="Parayan vidhi">पारायण-विधि</h1></div></div>
  <div class="wrap">
   <div class="seg" id="vidSeg"><button data-v="v" class="on" data-en="Parayan vidhi">पारायण-विधि</button><button data-v="aarti" data-en="Aarti">आरती</button><button data-v="visarjan" data-en="Visarjana" hidden>विसर्जन</button></div>
   <div id="vidBody" class="zoomable" style="padding-bottom:40px"></div>
@@ -152,6 +156,6 @@
 <div class="toast" id="toast"></div>
 <input type="file" id="fileIn" accept="application/json,.json" style="display:none">
 
-<script src="app/app.js?v=7f43731df3"></script>
+<script src="app/app.js?v=f26e5b2966"></script>
 </body>
 </html>

@@ -178,12 +178,17 @@ function applyLang(){ const en = LANG() === 'en'; document.documentElement.lang 
   $$('[data-en-ph]').forEach(el => { if (el.dataset.hiPh == null) el.dataset.hiPh = el.placeholder; el.placeholder = en ? el.dataset.enPh : el.dataset.hiPh; }); }
 function applyTheme(){ const r = document.documentElement; if (S.settings.theme === 'auto') r.removeAttribute('data-theme'); else r.setAttribute('data-theme', S.settings.theme); r.style.setProperty('--verse-size', S.settings.size + 'px'); r.style.setProperty('--mean-size', Math.round(S.settings.size * 0.78 * 10) / 10 + 'px'); r.style.setProperty('--ui-zoom', (1 + (S.settings.size - 21) * 0.025).toFixed(3));
   const m = document.querySelector('meta[name=theme-color]'); if (m) m.setAttribute('content', S.settings.theme === 'dark' ? '#14130F' : '#2B3A8C'); }   // the phone's own bar dark too at night   // A−/A+ also scale the library and work pages
-function show(id, push = true){ { const was = LANG(); CURVIEW = id; if (LANG() !== was) applyLang(); }
+let FROMV = 'library';   // the page a page was opened from: More settings opened from the library searches the library
+function show(id, push = true){ { const was = LANG(); if (id !== CURVIEW && !['settings', 'bookmarks', 'vidhi', 'search'].includes(CURVIEW)) FROMV = CURVIEW; CURVIEW = id; if (LANG() !== was) applyLang(); }
+  if (push && history.state) history.replaceState(Object.assign({}, history.state, {y: scrollY}), '');   // the height of the page left, for Back (not the reader: it returns to its verse)
   $$('.view').forEach(v => v.classList.toggle('on', v.id === id)); if (push) history.pushState(snap(id), ''); else history.replaceState(snap(id), ''); if (id !== 'reader') window.scrollTo(0, 0); onView(id); }
 // Every page is an entry in the browser's history that carries where you are: the page, the open work and the library
 // shelf. Back (the button or the phone's gesture) returns to exactly the previous one — a shelf
 // included — and a refresh reopens the same page, because the browser keeps these entries across a reload.
 function snap(v){ return {v, w: W ? W.id : null, lib: libPath.slice(), scope: v === 'search' ? SCOPE : undefined, r: v === 'reader' && R.at ? Object.assign({}, R.at) : undefined}; }
+// Back lands where the app puts it (the reader: the verse you left), never at the browser's remembered height: the page is
+// drawn again on the way back, often with other heights (another meaning source), so that height is another verse
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 let popping = Promise.resolve();
 async function restore(st){
   closeSheet();
@@ -193,6 +198,7 @@ async function restore(st){
   const v = document.getElementById(st.v) && (W || !['home', 'reader', 'bookmarks', 'vidhi'].includes(st.v)) ? st.v : 'library';
   if (v === 'search') setScope(st.scope === 'lib' || !W ? 'lib' : 'text');   // Back to a search: the same kind of search, the query kept
   show(v, false);
+  if (v !== 'reader' && st.y > 0) requestAnimationFrame(() => window.scrollTo(0, st.y));   // Back to a list: where it was left
   if (v === 'reader'){ const r = st.r, i = r && W && ID[r.id]; if (i != null && isOrg(r.org)) openReader(r.org, i); else reopenReader(); }   // the reader's own place: a plan day stays that day
 }
 function back(){ history.back(); }
@@ -1638,6 +1644,9 @@ $('#libSearchBtn').onclick = () => openSearch('lib');
 $('#hSearch').onclick = () => openSearch('text');
 $('#rSearch').onclick = () => openSearch('text', false, true);
 $('#libMenu').onclick = mainMenu;
+// the same search and ☰ in the header of every other page (bookmarks, More settings, the vidhi, search itself)
+$$('[data-hmenu]').forEach(b => b.onclick = mainMenu);
+$$('[data-hsearch]').forEach(b => b.onclick = () => openSearch(W && FROMV !== 'library' ? 'text' : 'lib'));
 // a plan's page (vidhi, aarti, visarjan): its page, or, when it is a work of its own (vidhi.open: the Mānas's āratī, with its
 // meanings and recording), that work's reading, played from its start with play; Back returns to where it was opened
 const PAGEWORK = pg => W && ((W.vidhi || {}).open || {})[pg];
@@ -1987,6 +1996,33 @@ function renderBookmarks(){
 // "Meanings in the bar": which two meaning switches the header capsule shows, for a work with more than two meaning languages
 function pairPick(){ if (!W || workKinds().filter(k => k !== 'hi' && k !== 'en').length === 0) return ''; const cur = capKinds().join(','), nm = k => (LANGS[k].meaning || {}).short || k;
   return '<div class="field"><label>' + T('बारमें अर्थ', 'Meanings in the bar') + '</label><select id="sPair">' + pairOptions().map(p => '<option value="' + p.join(',') + '"' + (p.join(',') === cur ? ' selected' : '') + '>' + p.map(nm).join(' · ') + '</option>').join('') + '</select></div>'; }
+/* Contact us (☰ › More settings › Help): a problem or a suggestion goes as an email the reader sends from their own mail
+   app, written for them with where they are (the work, the verse, the app's version, the phone), so nothing is sent by the app
+   and there is no form for a robot to fill. Against spam: the address is put together only when tapped (never in the page for
+   a harvester to read), each kind opens at most once a minute on a phone (a double tap is one email), and the subject starts
+   with "[Scriptures]" and the kind, for the inbox's filters. */
+const MAILTO = () => ['support', 'craadle.org'].join('@');
+function contactSheet(){
+  const kinds = [['bug', T('समस्या बताएँ', 'Report a problem'), T('कुछ ठीक नहीं चल रहा', 'Something is not working')],
+    ['idea', T('सुझाव दें', 'Share a suggestion'), T('ऐपको और अच्छा बनानेका विचार', 'An idea to make the app better')],
+    ['mail', T('हमें लिखें', 'Write to us'), T('कोई और बात', 'Anything else')]];
+  openSheet('<h2>' + T('संपर्क करें', 'Contact us') + '</h2><div class="menu">' + kinds.map(([k, t, d]) => '<button data-mail="' + k + '"><span style="display:flex;flex-direction:column;align-items:flex-start;text-align:left"><b>' + t + '</b><small style="color:var(--muted)">' + d + '</small></span></button>').join('') + '</div>' +
+    '<p style="color:var(--muted);font-size:14px;margin:12px 4px 0">' + T('ईमेल आपके अपने मेल ऐपसे जाता है। हमें ईमेल पता: ', 'The email goes from your own mail app. Our address: ') + '<span id="mailAddr"></span></p>');
+  $('#mailAddr').textContent = MAILTO();
+  $$('#sheetBody [data-mail]').forEach(b => b.onclick = () => sendMail(b.dataset.mail));
+}
+function sendMail(kind){
+  let last = {}; try { last = JSON.parse(localStorage.getItem('mailAt') || '{}'); } catch (e) {}
+  if (Date.now() - (last[kind] || 0) < 60000){ toast(T('ईमेल अभी खुला था: अपना मेल ऐप देखें', 'The email was just opened: check your mail app')); return; }
+  last[kind] = Date.now(); try { localStorage.setItem('mailAt', JSON.stringify(last)); } catch (e) {}
+  const en = LANG() === 'en', l = W && WS().last, i = l && IT[l.i] ? l.i : null;
+  const ver = ((document.querySelector('script[src*="app.js"]') || {}).src || '').split('v=')[1] || '';
+  const where = [W ? TT(W.title) + (i != null ? ' · ' + itemLabel(i) + ' (' + IT[i].id + ')' : '') : '', 'App ' + ver, navigator.userAgent, innerWidth + '×' + innerHeight].filter(Boolean).join('\n');
+  const subj = {bug: en ? 'Problem' : 'समस्या', idea: en ? 'Suggestion' : 'सुझाव', mail: en ? 'Message' : 'संदेश'}[kind];
+  const ask = {bug: en ? 'What happened, and what did you expect?' : 'क्या हुआ, और क्या होना चाहिये था?', idea: en ? 'Your suggestion:' : 'आपका सुझाव:', mail: ''}[kind];
+  const body = (ask ? ask + '\n\n\n' : '') + (kind === 'mail' ? '' : '— ' + (en ? 'Where (please keep)' : 'कहाँ (कृपया रहने दें)') + ' —\n' + where);
+  closeSheet(); location.href = 'mailto:' + MAILTO() + '?subject=' + encodeURIComponent('[Scriptures] ' + subj) + '&body=' + encodeURIComponent(body);
+}
 function renderSettings(){   // the "More settings" page: the rare things only — transliteration, sources, audio timing, privacy
   const cur = S.src[W ? W.id : ''] || {};
   const pick = (kind, label, off) => { const list = W ? srcList(kind) : []; if (!list.length) return ''; const sel = cur[kind] || (kind === 'cm' ? 'off' : list[0].id); return '<div class="field"><label>' + label + '</label><select data-src="' + kind + '">' + list.map(s => '<option value="' + s.id + '"' + (sel === s.id ? ' selected' : '') + '>' + esc(TT(s.title)) + (s.draft ? T(' (जाँच बाकी)', ' (to be checked)') : '') + '</option>').join('') + (off ? '<option value="off"' + (sel === 'off' ? ' selected' : '') + '>' + T('बंद', 'Off') + '</option>' : '') + '</select></div>'; };
@@ -1994,7 +2030,7 @@ function renderSettings(){   // the "More settings" page: the rare things only �
     (W ? '<h2>' + LB.src() + ' · ' + esc(TT(W.title)) + '</h2>' + MK().map(k => pick(k, LBM(k))).join('') + pairPick() + pick('cm', LB.cm(), true) + pick('au', LB.au(), true) +
       Object.values(W.sources || {}).flat().filter(o => o.personal).map(o => '<div class="acts"><button class="btn ghost" data-prm="' + esc(o.id) + '">' + T('इस फ़ोनसे हटाएँ: ', 'Remove from this phone: ') + esc(TT(o.title)) + '</button></div>').join('') : '') +
     timingHTML() +
-    '<h2>' + T('सहायता', 'Help') + '</h2><div class="acts"><a class="btn ghost" href="privacy.html" target="_blank" rel="noopener">' + T('गोपनीयता', 'Privacy') + '</a></div>' +
+    '<h2>' + T('सहायता', 'Help') + '</h2><div class="acts"><a class="btn ghost" href="privacy.html" target="_blank" rel="noopener">' + T('गोपनीयता', 'Privacy') + '</a><button class="btn ghost" id="sContact">' + T('संपर्क करें', 'Contact us') + '</button></div>' +
     '<div style="height:50px"></div>';
   $('#setBody').innerHTML = h;
   $('#str').onchange = e => { S.settings.tr = e.target.checked; save(); };   // seen in the reader on the next open
@@ -2003,6 +2039,7 @@ function renderSettings(){   // the "More settings" page: the rare things only �
   bindTiming();
   if ($('#sPair')) $('#sPair').onchange = e => { S.settings.pair = e.target.value; save(); syncLayers(); toast(T('बार बदला', 'Bar changed')); };
   $$('[data-prm]').forEach(b => b.onclick = () => askYes(T('यह स्रोत इस फ़ोनसे हटेगा।', 'This source will be removed from this phone.'), T('हाँ, हटाएँ', 'Yes, remove'), async () => { await persRemove(b.dataset.prm); renderSettings(); }));
+  if ($('#sContact')) $('#sContact').onclick = contactSheet;
   $$('[data-src]').forEach(s => s.onchange = async () => { const c = S.src[W.id] = S.src[W.id] || {}; c[s.dataset.src] = s.value; save(); if (s.dataset.src === 'au') stopAudio(); await loadSources(); IDX = null; toast(T('स्रोत बदला', 'Source changed')); });
 }
 /* timing review: ☰ › More settings › Audio timing. While it is on, each verse shows its times and “Starts now” / “Ends now” (markBar), and the player bar the ± step;

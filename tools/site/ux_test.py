@@ -555,6 +555,25 @@ async def main():
             need = ['.lyr.layers' if v == 'reader' else '.lyr.uilang', '.hsearch', '.hmenu'] + ([] if v == 'library' else ['.szm', '.szp'])   # the library's left side is its breadcrumbs
             parts = await ev(f"(() => {{ const b = document.querySelector('#{v} .bar'); return b ? {need!r}.map(c => !!b.querySelector(c)) : []; }})()")
             check(f'{v}: the same header (हिं·En — with शब्द in the reader —, search, menu; A−/A+ on a work and the reader)', parts and all(parts), parts)
+        # bookmarks, More settings and the vidhi: the same header (‹, A−/A+, हिं·En, search, ☰), each in the same place as on a work's page
+        await ev("(async () => { await openWork('manas', true); show('home'); })()"); await pg.wait_for_timeout(500)
+        place = "(v => { const b = document.querySelector('#' + v + ' .bar'); return ['.hback,[data-back]', '.szm', '.lyr', '.hsearch', '.hmenu'].map(c => { const e = b.querySelector(c); return e && e.offsetParent ? Math.round(e.getBoundingClientRect().left) : null; }); })"
+        ref = await ev(place + "('home')")
+        for v in ('bookmarks', 'settings', 'vidhi'):
+            await ev(f"show('{v}')"); await pg.wait_for_timeout(300)
+            got = await ev(place + f"('{v}')")
+            check(f'{v}: the same header as a work\'s page, in the same places', got == ref and None not in got, [got, ref])
+        await ev("show('search')"); await pg.wait_for_timeout(200)
+        check('search: ☰ in its header too', await ev("!!document.querySelector('#search .bar .hmenu')"))
+        # Back to the reader after changing a meaning source lands on the same verse (not the browser's remembered height)
+        await ev("(async () => { await openWork('manas', true); show('home'); openReader('k', 400); })()"); await pg.wait_for_timeout(1500)
+        await pg.mouse.wheel(0, 3000); await pg.wait_for_timeout(1200); v0 = await ev("topVisibleItem()")
+        await ev("show('settings')"); await pg.wait_for_timeout(600)
+        await ev("(() => { const s = document.querySelector('[data-src=e]') || document.querySelector('[data-src=en]'); if (s){ s.value = [...s.options].map(o => o.value).find(v => v !== s.value); s.dispatchEvent(new Event('change')); } })()"); await pg.wait_for_timeout(1500)
+        await pg.go_back(); await pg.wait_for_timeout(1500)
+        v1 = await ev("topVisibleItem()")
+        check('reader: Back after changing a source keeps the verse', v1 == v0, [v0, v1])
+        await ev("delete S.src.manas; save(); libPath=[]; show('library')"); await pg.wait_for_timeout(3000)   # the other source's files are in before the library's checks
         hgt = await ev("document.querySelector('#library .bar').getBoundingClientRect().height")
         check('library: the header is one row, even inside a shelf', hgt < 70, hgt)
         # the library's way back is the breadcrumb row in its header; inside a work, “‹ Library” goes to the library
