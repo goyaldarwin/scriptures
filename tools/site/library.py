@@ -363,6 +363,13 @@ SAL_EN = re.compile(r'^(Shri |Bhagwan |Baba |Guru )|( Mata| Devi| Dev| Devta| Ba
 SAL_HI = re.compile(r'^(श्री |भगवान |बाबा |गुरु )|( माता| देवी|देव| देवता| बाबा|बाबा|जी| सरकार)( \(.+\))?$|^राणी सती \(दादीजी\)$')
 STORY = {'itihasa', 'purana'}
 def check_classes(shelf):
+    def leaves(n):
+        if n.get('work'): yield n
+        for c in n.get('children', []): yield from leaves(c)
+    for t in shelf:
+        if t['id'] != 'sikhism': continue
+        for w in leaves(t):
+            _need(w.get('salute') == 'ੴ', f"shelf: {w['work']}: every Gurbani work opens with ੴ (salute; docs/PLAYBOOK.md §6, the greeting), not {w.get('salute')!r}")
     hindu = next((t for t in shelf if t['id'] == 'hinduism'), None)
     if not hindu: return
     ids = [g['id'] for g in hindu['children']]

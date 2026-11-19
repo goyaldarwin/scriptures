@@ -466,7 +466,7 @@ async def main():
           g.dispatchEvent(new TouchEvent('touchend', {bubbles: true, touches: []})); })()"""); await pg.wait_for_timeout(300)
         check('the drawer closes when dragged down', not await ev("document.querySelector('#sheet').classList.contains('on')"))
         # the opening screen greets each work with its own salutation (library/index.json "salute"; default ॐ श्री परमात्मने नमः)
-        for wid, want in (('manas', '॥ जय श्रीराम ॥'), ('sukhmani-sahib', 'ੴ'), ('ramraksha', '॥ ॐ श्री परमात्मने नमः ॥')):
+        for wid, want in (('manas', '॥ जय श्रीराम ॥'), ('sukhmani-sahib', 'ੴ'), ('guru-granth-sahib', 'ੴ'), ('ramraksha', '॥ ॐ श्री परमात्मने नमः ॥')):
             got = await ev(f"(async () => {{ const p = openWork({json.dumps(wid)}); await new Promise(r => setTimeout(r, 0)); const t = document.querySelector('#loading').textContent; await p; return [saluteOf({json.dumps(wid)}), t]; }})()")
             check(f'opening {wid} from the library greets it', got == [want, want], got)
         # no greeting when the app starts, on a refresh, or on a quiet open
