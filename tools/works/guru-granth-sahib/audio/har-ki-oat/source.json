@@ -1,0 +1,14 @@
+{
+ "id": "har-ki-oat",
+ "work": "sikhism/gurbani/guru-granth-sahib",
+ "type": "youtube",
+ "lang": "pa",
+ "title": {
+  "hi": "हरि की ओट (कीर्तन)",
+  "en": "Har Ki Oat (Kirtan)",
+  "pa": "ਹਰਿ ਕੀ ਓਟ (ਕੀਰਤਨ)"
+ },
+ "order": 110,
+ "lines": true,
+ "review": "line starts from MMS (every singing of every line); not yet set by ear"
+}
