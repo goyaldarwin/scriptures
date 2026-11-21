@@ -4,9 +4,9 @@
  "type": "youtube",
  "lang": "pa",
  "title": {
-  "hi": "शबद गुरु (कीर्तन)",
-  "en": "Shabad Guru (Kirtan)",
-  "pa": "ਸ਼ਬਦ ਗੁਰੂ (ਕੀਰਤਨ)"
+  "hi": "कीर्तन (शबद गुरु, हरि की ओट, गुरमत संगीत दरबार, सहज पाठ कीर्तन)",
+  "en": "Kirtan (Shabad Guru, Har Ki Oat, Gurmat Sangeet Darbar, Sehaj Path Kirtan)",
+  "pa": "ਕੀਰਤਨ (ਸ਼ਬਦ ਗੁਰੂ, ਹਰਿ ਕੀ ਓਟ, ਗੁਰਮਤਿ ਸੰਗੀਤ ਦਰਬਾਰ, ਸਹਿਜ ਪਾਠ ਕੀਰਤਨ)"
  },
  "lines": true,
  "review": "line starts from MMS (every singing of every line); not yet set by ear",

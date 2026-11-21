@@ -1,10 +1,21 @@
-# Shabad Guru (Kirtan)
+# Kirtan (Shabad Guru, Har Ki Oat, Gurmat Sangeet Darbar, Sehaj Path Kirtan)
 
-Kirtan in raag from the YouTube channel Shabad Guru: one shabad (or a salok with its vaar stanza, or a bani) per video,
-timed line by line (`tools/audio/METHOD.md`, "Line by line"). `recordings.json` is made by `make_recordings.py` from the
-channel's table in `scriptures-data` (`sikhism/gurbani/guru-granth-sahib/printouts/shabad-guru/videos.csv`); the
-recordings are in `scriptures-data` at `sikhism/gurbani/guru-granth-sahib/audio/shabad-guru/`. How the starts were made
-and what is listed to check: `aligned.md`; hand-set data and starts heard in 5-s windows: `fixes.md`.
+The Granth's one kirtan source: every singer's recordings together, so a reader hears kirtan of every shabad that has one
+without choosing a singer (`docs/PLAYBOOK.md` §8). The folder keeps its first channel's id, `shabad-guru`. Timed line by
+line (`tools/audio/METHOD.md`, "Line by line"). `recordings.json` is made by `make_recordings.py` from the channels' tables
+in `scriptures-data` (`sikhism/gurbani/guru-granth-sahib/printouts/<channel>/videos.csv`); each recording's `data` names
+its file there (`sikhism/gurbani/guru-granth-sahib/audio/<channel>/`). How the starts were made and what is listed to
+check: `aligned.md`; hand-set data and starts heard in 5-s windows: `fixes.md`.
+
+| Channel | Recordings | What |
+|---|---|---|
+| Shabad Guru | 3363 | kirtan in raag, one shabad (or a salok with its vaar stanza, or a bani) per video |
+| Har Ki Oat (Sri Darbar Sahib's hazuri ragis) | 50 | one item each, of the items Shabad Guru has no kirtan of (`../kirtan_recordings.py`) |
+| Gurmat Sangeet Darbar | 13 | the same |
+| Sehaj Path Kirtan (Bhai Parminder Singh, Bhai Jagjit Singh) | 7 | Ang 1353–1429 sung through, which Shabad Guru has no kirtan of (below) |
+
+The other channels' videos of items Shabad Guru already sings are listed in `scriptures-data`, not used
+(`printouts/<channel>/downloads.csv`).
 
 ## Videos left out
 
@@ -26,3 +37,18 @@ kept.
 Three videos longer than 40 minutes are aligned in overlapping 8-minute pieces (METHOD.md): QiPepd5nRs8 (the Anand
 Sahib, 55 min, 66% of its lines found), 0R00aEoBFek (the Oankar, 929.9–938.1, 84 min, 52%) and -k1q_bxnErk (the Sidh
 Gosht, 938.2–946.6, 75 min, 63%); in each, the first singings of the verses come in the bani's order.
+
+## Sehaj Path Kirtan's tracks
+
+Each track starts at the heading of the banis its title names (`../kirtan_recordings.py`, `SPK`); the four over 40 minutes
+(34, 35, 37, 38) are aligned in overlapping 8-minute pieces. The Raag Mala (1429.13) is in none.
+
+| Track | Video | Items | Banis |
+|---|---|---|---|
+| 34 | n7URwrfz4Rk | 1353.1–1364.9 | Salok Sahaskriti (Mahalla 1 and 5), Gatha, Phunhe, Chaubole |
+| 35 | a5b1rLmEhCA | 1364.10–1377.12 | Salok Bhagat Kabir |
+| 36 | 9D8RHUl1o3s | 1377.13–1384.19 | Salok Sheikh Farid |
+| 37 | VOHKq_zLdls | 1385.1–1409.6 | the Savaiye |
+| 38 | 7SQfAZdZMUA | 1410.1–1426.7 | Salok Varan te Vadheek |
+| 39 | f49qLLK8mPE | 1426.8–1429.10 | Salok Mahalla 9 |
+| 40 | 3U383GeE7Fw | 1429.11–1429.12 | Mundavani, Salok Mahalla 5 |

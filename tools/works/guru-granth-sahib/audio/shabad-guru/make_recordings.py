@@ -1,4 +1,6 @@
-"""recordings.json of the Shabad Guru kirtan source, from the channel's table in scriptures-data.
+"""recordings.json of the Granth's kirtan source: Shabad Guru's videos, from the channel's table in scriptures-data, and the
+other channels' (../kirtan_recordings.py: Har Ki Oat, Gurmat Sangeet Darbar, Sehaj Path Kirtan, for the items Shabad Guru
+has no kirtan of).
 
     python3 tools/works/guru-granth-sahib/audio/shabad-guru/make_recordings.py <clone of scriptures-data>
 
@@ -54,6 +56,8 @@ def main(data):
                'from': r['verse_id'], 'to': span(r['verse_id'], r['verse_type'])}
         if v in END: rec['end'] = END[v]
         out.append(rec)
+    sys.path.insert(0, os.path.dirname(HERE)); import kirtan_recordings
+    out += kirtan_recordings.others(data)
     out.sort(key=lambda x: (IX[x['from']], x['yt']))
     for n, x in enumerate(out, 1): x['order'] = n
     keys = ['yt', 'file', 'data', 'dur', 'order', 'from', 'to', 'end']
