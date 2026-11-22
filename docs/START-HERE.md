@@ -26,6 +26,7 @@ This repository holds everything about the scriptures library: the website, the 
 | `tools/meanings/briefs/` | the brief for each step of writing our meanings (the Mānas, the Sanskrit works, Sri Guru Granth Sahib): writer, reviewer, copy auditor, accuracy checker, consistency pass (`docs/HOW-TO.md`) |
 | `tools/README.md` | every script, folder by folder, and how to rebuild everything |
 | `tools/audio/README.md` | the audio sources: how a recording is transcribed, aligned and timed |
+| `tools/group/README.md` | the group paath relay (one phone plays, the others follow): what it does and how to deploy it on Cloudflare |
 | `tools/works/README.md` | the format of a work's folder (`work.json`, `text.txt`, meanings, recordings) and the one exporter |
 | `tools/works/<work>/README.md` | each work: its sources, files and structure; `reconciliation.md`: every difference from its sources and why |
 

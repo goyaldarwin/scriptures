@@ -1586,6 +1586,7 @@ async def main():
         dups = await ev(DUP_IDS); check('every element id is used once in the page (a second one takes the first one\'s tap)', not dups, dups[:5])
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await split_work(b, SHOTS)
+        await group_paath(b, url, SHOTS)
         if NSHARD > 1:   # shard 0's share of the works, after every check of the whole app (those change the reader's settings), as a reader who has seen the tour
             await pg.goto(url); await pg.wait_for_timeout(2500)
             await ev("(() => { S.settings.tour = 1; S.admin = 1; closeTour(); S.settings.layers.h = false; save(); })()"); await pg.reload(); await until("typeof LIB !== 'undefined' && !!LIB && LIB.length > 0 && !!document.querySelector('#libList [data-node]')", 20000)
@@ -1595,6 +1596,93 @@ async def main():
         await b.close()
     print(f'\n{sum(results)}/{len(results)} checks passed')
     sys.exit(0 if all(results) else 'UX TEST FAILED')
+async def group_paath(b, url, shots):
+    """Group paath (docs/PLAYBOOK.md §7): one phone plays, the others follow it without sound. Two phones, each its own
+    context, joined through a stand-in for the relay (tools/group/worker.js: the same messages), so the test needs no network:
+    the leader starts it from ☰ (a code and a QR code), the follower joins by the link and lights the leader's verse with no
+    player of its own, stops when the leader pauses, and leaves when the leader ends it. Without a relay address it is not offered."""
+    sess = {'lead': None, 'follow': [], 'state': None}
+    def count():
+        if sess['lead']: sess['lead'].send(json.dumps({'type': 'count', 'n': len(sess['follow'])}))
+    def relay(ws):   # the Worker's protocol, in memory
+        role = 'lead' if 'role=lead' in ws.url else 'follow'
+        if role == 'lead':
+            sess['lead'] = ws; count()
+            def msg(m):
+                if m == 'ping': ws.send('pong'); return
+                d = json.loads(m)
+                if d.get('type') == 'state':
+                    sess['state'] = d['s']
+                    for f in sess['follow']: f.send(json.dumps({'type': 'state', 's': d['s']}))
+            def closed(code, reason):
+                if code == 4100:
+                    for f in sess['follow']: f.send(json.dumps({'type': 'end'}))
+                    sess['state'] = None
+                sess['lead'] = None
+            ws.on_message(msg); ws.on_close(closed)
+        else:
+            sess['follow'].append(ws)
+            ws.send(json.dumps({'type': 'state', 's': sess['state']}) if sess['state'] else json.dumps({'type': 'wait'}))
+            count()
+            ws.on_message(lambda m: ws.send('pong') if m == 'ping' else None)
+            def gone(code, reason):
+                if ws in sess['follow']: sess['follow'].remove(ws)
+                count()
+            ws.on_close(gone)
+    mk = lambda: b.new_context(viewport={'width': 390, 'height': 844}, device_scale_factor=1, is_mobile=True, has_touch=True)
+    cl, cf = await mk(), await mk(); errs = []
+    for c in (cl, cf): await c.route_web_socket('**/s/*', relay)
+    L, F = await cl.new_page(), await cf.new_page()
+    for pg in (L, F):
+        await pg.add_init_script("window.__SALUTE_MS = 0; window.__GROUP_URL = 'ws://group.test'")
+        pg.on('pageerror', lambda e: None if YT_ERR(e) else errs.append(str(e)))
+    async def shot(pg, tag):
+        if shots: os.makedirs(shots, exist_ok=True); await pg.screenshot(path=os.path.join(shots, f'group-{tag}.png'))
+    await L.goto(url); await L.wait_for_function("typeof LIB !== 'undefined' && !!LIB")
+    # the leader plays Bhaja Govindam; its YouTube player is a stand-in that reports its time as the real one does
+    await L.evaluate("""(async () => { S.settings.tour = 1; S.settings.ui = 'en'; save(); closeTour(); await openWork('bhaja-govindam'); openReader('k', 0);
+      window.ytLoad = () => { ytOK = true; ytInfo.st = 1; ytInfo.at = performance.now(); };
+      window.ytPost = (f, a) => { if (f === 'seekTo'){ ytInfo.t = a[0]; ytInfo.at = performance.now(); } if (f === 'playVideo') ytInfo.st = 1; if (f === 'pauseVideo') ytInfo.st = 2; };
+      setInterval(() => { if (ytInfo.st === 1){ ytInfo.t += 0.25 * RATE(); ytInfo.at = performance.now(); } }, 250);
+      playFrom(0); })()""")
+    await L.wait_for_function("PL.on && PL.cur >= 0")
+    await (await L.query_selector('#rMore')).click(); await L.wait_for_timeout(200)
+    item = await L.query_selector('#sheetBody [data-m="group"]'); check('group paath: ☰ offers it where a relay is set', bool(item))
+    await item.click(); await L.wait_for_timeout(200); await (await L.query_selector('#gpLead')).click()
+    await L.wait_for_function("GP.live", timeout=8000)
+    code = await L.evaluate('GP.code')
+    check('group paath: the leader gets a 6-digit code, shown with its QR code', len(code) == 6 and code.isdigit() and await L.is_visible('#gpBody svg.qr') and code[:3] in await L.inner_text('.gpcode'), code)
+    await shot(L, 'leader')
+    keys = await L.wait_for_function("GP.sent && Object.keys(GP.sent).sort().join(',')"); keys = await keys.json_value()
+    check('group paath: the leader sends only where the recording is (no reader\'s data)', keys == 'au,i,k,on,org,p,r,t,w', keys)
+    await (await L.query_selector('#gpEnd')).is_visible(); await L.evaluate('closeSheet()')
+    # the follower: a fresh phone opens the join link
+    await F.goto(url + '?join=' + code)
+    await F.wait_for_function("GP.role === 'follow' && PL.on && PL.cur >= 0 && document.querySelector('#reader').classList.contains('on')", timeout=20000)
+    check('group paath: the follower opens the leader\'s work at its verse, with no tour, no player of its own and the link out of the address bar',
+          await F.evaluate("W.id === 'bhaja-govindam' && !TOUR && !document.querySelector('#ytf') && !location.search.includes('join')"))
+    await L.wait_for_function("GP.n === 1", timeout=5000); check('group paath: the leader sees 1 phone following', '1 phone following' in await L.inner_text('#pTrack'), await L.inner_text('#pTrack'))
+    a = await L.evaluate("AUT[PL.t].map(x => [x[0], x[1]])"); i, t = a[len(a) // 2]
+    await L.evaluate(f"stepVerse(0); seekGuard({t + 0.5}); ytPost('seekTo', [{t + 0.5}, true])")
+    try: await F.wait_for_function(f"PL.cur === {i}", timeout=5000)
+    except Exception: pass
+    check('group paath: the leader moves on, the follower lights the same verse', await F.evaluate('PL.cur') == i, f"{await F.evaluate('PL.cur')} want {i}")
+    check('group paath: the follower\'s bar has only the verse, "Following" and ✕', await F.evaluate("document.querySelector('#player').classList.contains('follow') && !document.querySelector('#pPlay').offsetParent") and 'Following' in await F.inner_text('#pTrack'))
+    await shot(F, 'follower')
+    await L.evaluate("ytPost('pauseVideo')"); await F.wait_for_function("ytInfo.st === 2", timeout=5000)
+    t1 = await F.evaluate('ytInfo.t'); await F.wait_for_timeout(800); t2 = await F.evaluate('ytInfo.t')
+    check('group paath: the leader pauses, the follower stops', t1 == t2 and 'Paused' in await F.inner_text('#pTrack'), f'{t1} {t2}')
+    await L.evaluate("gpStop()"); await F.wait_for_function("GP.role === null", timeout=5000)
+    check('group paath: the leader ends it, the follower leaves and its bar goes', await F.evaluate("document.querySelector('#player').hidden && !document.body.classList.contains('gpf')"))
+    check('group paath: no script errors', not errs, '; '.join(errs[:3]))
+    await cl.close(); await cf.close()
+    # no relay address (apps/app.json → "group" empty): not offered
+    c = await mk(); pg = await c.new_page(); await pg.add_init_script('window.__SALUTE_MS = 0'); await pg.goto(url); await pg.wait_for_function("typeof LIB !== 'undefined' && !!LIB")
+    if not await pg.evaluate("!!GROUP_URL"):
+        await pg.evaluate("S.settings.tour = 1; save(); closeTour(); mainMenu()"); await pg.wait_for_timeout(200)
+        check('group paath: not offered without a relay address', not await pg.query_selector('#sheetBody [data-m="group"]'))
+    await c.close()
+
 async def split_work(b, shots):
     """A work loaded by part ("load": "parts", docs/LIBRARY.md §3): it opens without fetching any other part, shows the
     meanings and word meanings of a second part once the reader goes there (the footer's section picker, tapped), finds

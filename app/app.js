@@ -887,6 +887,7 @@ function mainMenu(){
   openSheet('<div class="menu">' + (inWork ? '<button data-m="bm"><svg><use href="#i-bm"/></svg>' + LB.bm() + '</button>' : '') +
     '<div class="menusw">' + sw('mth', T('गहरा रंग (रात)', 'Dark theme'), '', th === 'dark', 'theme') + '</div>' +
     (S.timing.on && inWork ? '<div class="menusw"><label class="sw tsw"><svg class="swic" style="stroke:var(--saffron)"><use href="#i-clock"/></svg><span style="flex:1">' + T('ऑडियोका समय', 'Audio timing') + '</span><span class="tg"><input type="checkbox" id="mtm" checked><span></span></span></label></div>' + (SRC.au && Object.keys(myStarts()).filter(id => ID[id] != null).length ? '<button data-m="tclear" class="tsaf"><svg><use href="#i-undo"/></svg>' + T('मेरे बदलाव हटाएँ', 'Clear adjustments') + '</button>' : '') : '') +
+    (gpOn() ? '<button data-m="group"><svg><use href="#i-group"/></svg>' + T('सामूहिक पाठ', 'Group paath') + (GP.role ? ' <span class="gpdot"></span>' : '') + '</button>' : '') +
     '<button data-m="share"><svg><use href="#i-share"/></svg>' + T('ऐप साझा करें', 'Share the app') + '</button>' +
     '<button data-tour><svg><use href="#i-tour"/></svg>' + LB.tour() + '</button>' +
     '<button data-m="set"><svg><use href="#i-set"/></svg>' + LB.more() + '</button></div>');
@@ -897,7 +898,7 @@ $('#rMore').onclick = mainMenu;
 $('#sheetBody').addEventListener('click', ev => {
   const b = ev.target.closest('[data-m]'); if (!b) return;
   const m = b.dataset.m; closeSheet();
-  if (m === 'bm') show('bookmarks'); if (m === 'set') show('settings'); if (m === 'tclear') clearTimingAsk(); if (m === 'share') shareApp();
+  if (m === 'bm') show('bookmarks'); if (m === 'set') show('settings'); if (m === 'tclear') clearTimingAsk(); if (m === 'share') shareApp(); if (m === 'group') gpSheet();
 });
 // ☰ › Share the app: one short line and one link, <site>/get, which sends an Android phone to the store app
 // (library/apps.json → "store") and anything else to the website; chat apps show the site's card under it (title, the
@@ -989,6 +990,10 @@ function editSheet(i){
 /* ---------------- audio from YouTube: hands-free recitation ---------------- */
 let AUT = [], ytVid = '', ytOK = false, ytInfo = {t: 0, st: -1, d: 0}, ytWait = null;
 let PL = {on: false, t: -1, end: null, cur: -1};
+// group paath (below, "group paath"): the relay's address (apps/app.json → "group", written in by build.py) and this phone's part in one
+const GROUP_URL = window.__GROUP_URL || "".replace(/^%.*%$/, '');
+const GPK = 'scriptures.group.v1';   // this phone's session (role, code, key), so a refresh stays in it
+const GP = {role: null, code: '', key: '', ws: null, live: false, n: 0, s: null, base: null, lat: 0.08, sent: null, sentAt: 0, wait: 1000, opened: false, prevAu: null};
 function tkey(){ return W.id + ':' + SRC.au.meta.id; }
 // timing review: under every verse, the verse's own buttons. You mark the verse you are looking at, never a guess:
 // "Starts now" when you hear its first word, "Ends now" when it is over (a refrain or music follows), ▶ to hear it.
@@ -1204,7 +1209,7 @@ function playLabel(i){ const it = IT[i], c = CIT(it), wd = W.cite && W.cite.word
 // where a verse is, around its label: the part (in a work of several) and a named section ("Uttar Kand · Closing", "Namaskarashtak")
 function placeOf(i){ const p = PAGES[itemPage[i]]; return joinPlace([PARTS.length > 1 ? KNAME(IT[i].p) : '', SECN(p.s)]); }
 // the player's small line: outside the reader it says the label can be tapped (“Go to verse ›”); in the reader, nothing
-function pSub(){ const out = CURVIEW !== 'reader'; $('#pTrack').textContent = out ? T('पदपर जाएँ ›', 'Go to verse ›') : ''; $('#pInfo').classList.toggle('go', out);
+function pSub(){ const out = CURVIEW !== 'reader', g = GP.role ? gpSub() : ''; $('#pTrack').textContent = g || (out ? T('पदपर जाएँ ›', 'Go to verse ›') : ''); $('#pInfo').classList.toggle('go', out);
   $('#pInfo').setAttribute('aria-label', T('चल रहे पदपर जाएँ', 'Go to the verse playing')); }
 function playingName(){ return (R.org === 'k' ? KNAME(R.n) : GROUP[R.org] ? GNAME(R.org) : TT(PLAN[R.org].name) + ' · ' + VN(R.n)) + ' · ' + TT(SRC.au.meta.title); }   // the speed has its own button in the bar
 // Fine-tuning preview: after − / + on a start, the first 2 s of the verse play from the new start; on an
@@ -1265,6 +1270,7 @@ function endOf(i){ const x = SRC.au && SRC.au.at[IT[i].id]; return x && x[2] != 
 function curAt(time){ const a = AUT[PL.t]; let lo = 0, hi = a.length - 1, r = a[0][0]; while (lo <= hi){ const m = (lo + hi) >> 1; if (a[m][1] <= time){ r = a[m][0]; lo = m + 1; } else hi = m - 1; } return r; }
 // every 300 ms while playing: light the verse being recited, stop at the end of what was asked, move the progress bar
 function tick(anchor){
+  if (GP.role === 'follow'){ gpTick(); return; }   // a following phone: the leader's time, not a player of its own
   if (!PL.on || !ytOK) return; if (typeof anchor !== 'number') anchor = PL.cur;
   const time = playTime(); const i = curAt(time);
   const e = endOf(i), tr0 = SRC.au.tracks[PL.t];
@@ -1369,11 +1375,11 @@ function setCur(i){
   if (el){ el.classList.add('now'); if (!(S.timing.on && inView(el))) keepInView(el); }
   markNear();
 }
-function stopAudio(){ ytPost('pauseVideo'); PL.on = false; PL.snip = null; $('#player').hidden = true; $('#pJump').hidden = true; document.body.classList.remove('playing'); $$('#rBody .verse.now').forEach(v => v.classList.remove('now')); }
+function stopAudio(){ ytPost('pauseVideo'); PL.on = false; PL.snip = null; $('#player').hidden = GP.role !== 'follow'; $('#pJump').hidden = true; document.body.classList.remove('playing'); $$('#rBody .verse.now').forEach(v => v.classList.remove('now')); }
 function playing(){ return ytInfo.st === 1 || ytInfo.st === 3; }
 function syncPlayer(){ $('#pPlay').innerHTML = '<svg><use href="#i-' + (playing() ? 'pause' : 'play') + '"/></svg>'; $('#pRate').textContent = RATE() + '×'; syncStep(); }
 $('#pPlay').onclick = () => { if (playing()) ytPost('pauseVideo'); else ytPost('playVideo'); setTimeout(syncPlayer, 400); };
-$('#pClose').onclick = stopAudio;
+$('#pClose').onclick = () => { if (GP.role === 'follow'){ gpStop(); toast(T('सामूहिक पाठ छोड़ा', 'Left the group paath')); } else stopAudio(); };
 // ⏮ ⏭: one verse back or on. After a single verse was played (▶ beside it), that verse alone is played and stops, as each
 // further press plays one more; past the end of a section being played, the same. Within it, playing goes on.
 function stepVerse(d){ PL.snip = null; const a = AUT[PL.t]; const k = a.findIndex(x => x[0] === PL.cur); const n = k + d; if (k >= 0 && n >= 0 && n < a.length){
@@ -2327,6 +2333,230 @@ function pruneLib(nodes, shelves){
   }).filter(Boolean);
   return walk(nodes, []);
 }
+/* ---------------- group paath: one phone plays, the others follow ---------------- */
+// People reading together in one room (docs/PLAYBOOK.md §7, "Group paath"): one phone, the leader's, plays the recording;
+// every other phone follows it without sound, lighting and turning to the verse being recited from the leader's place in
+// the recording and the verse times it already has (no second YouTube player, so no echo). The leader's phone sends where it
+// is (the work, the recording, the track, the time, playing or paused, the speed) through a small relay (tools/group/,
+// a Cloudflare Worker), to the phones that joined with its 6-digit code or QR code; nothing about a reader is sent or kept.
+// The relay's address is apps/app.json → "group" (written in by build.py); without one, Group paath is not offered.
+function gpOn(){ return !!GROUP_URL; }
+function gpSave(){ try { if (GP.role) localStorage.setItem(GPK, JSON.stringify({role: GP.role, code: GP.code, key: GP.key, at: Date.now()})); else localStorage.removeItem(GPK); } catch (e) {} }
+function gpCode(){ const a = new Uint32Array(1); crypto.getRandomValues(a); return String(100000 + a[0] % 900000); }
+function gpKey(){ const a = new Uint8Array(16); crypto.getRandomValues(a); return Array.from(a, b => b.toString(16).padStart(2, '0')).join(''); }
+function gpLink(){ const app = new URLSearchParams(location.search).get('app'); return location.origin + location.pathname + '?join=' + GP.code + (app ? '&app=' + encodeURIComponent(app) : ''); }
+function gpFmt(c){ return c.slice(0, 3) + ' ' + c.slice(3); }
+function gpConnect(){
+  clearTimeout(GP.retryT); if (!GP.role) return;
+  const ws = new WebSocket(GROUP_URL + '/s/' + GP.code + '?role=' + (GP.role === 'lead' ? 'lead&key=' + GP.key : 'follow'));
+  GP.ws = ws;
+  ws.onopen = () => { if (GP.ws !== ws) return; GP.live = true; GP.wait = 1000; gpPing(); if (GP.role === 'lead') gpLead(true); gpUI(); };
+  ws.onmessage = e => {
+    if (GP.ws !== ws) return;
+    if (e.data === 'pong'){ const r = (performance.now() - GP.pingAt) / 2000; if (r > 0 && r < 2) GP.lat = GP.lat * 0.6 + r * 0.4; return; }   // half the round trip: how late a state arrives
+    let d; try { d = JSON.parse(e.data); } catch (x) { return; }
+    if (d.type === 'count'){ GP.n = d.n; gpUI(); pSub(); }
+    else if (d.type === 'state' && GP.role === 'follow') gpApply(d.s, performance.now());
+    else if (d.type === 'wait' && GP.role === 'follow') gpUI();
+    else if (d.type === 'taken' && GP.role === 'lead'){ GP.code = gpCode(); gpSave(); GP.ws = null; try { ws.close(); } catch (x) {} gpConnect(); gpUI(); }   // the code is in use: another one
+    else if (d.type === 'end' && GP.role === 'follow') gpStop(T('सामूहिक पाठ समाप्त हुआ', 'The group paath has ended'));
+  };
+  ws.onclose = () => { if (GP.ws !== ws) return; GP.live = false; GP.ws = null; gpUI(); if (GP.role){ GP.retryT = setTimeout(gpConnect, GP.wait); GP.wait = Math.min(GP.wait * 2, 15000); } };   // the network dropped: try again, a little later each time
+}
+// keep the connection open through phone networks, and measure how long a message takes
+function gpPing(){ if (GP.ws && GP.live){ GP.pingAt = performance.now(); try { GP.ws.send('ping'); } catch (e) {} } }
+setInterval(gpPing, 20000);
+// the leader's place: the recording's time now (from the player's last report and the time since)
+function gpTime(){ const t = playTime(); return t + (ytInfo.st === 1 && ytInfo.at && PL.seekT == null ? RATE() * (performance.now() - ytInfo.at) / 1000 : 0); }
+function gpState(){
+  if (!W) return null; const on = !!(PL.on && SRC.au && PL.snip == null && PL.cur >= 0);
+  const s = {w: W.id, au: SRC.au ? SRC.au.meta.id : null, on: on ? 1 : 0};
+  if (on){ s.k = PL.t; s.t = Math.round(gpTime() * 100) / 100; s.p = ytInfo.st === 1 ? 1 : 0; s.r = RATE(); s.i = PL.cur; s.org = CURVIEW === 'reader' ? R.org : 'k'; }
+  return s;
+}
+// sent when something changes (the work, the recording, play or pause, the speed, a seek: the time is not where the last state
+// puts it), and every 10 s, so a phone that missed a message catches up
+function gpLead(force){
+  if (GP.role !== 'lead' || !GP.live) return; const s = gpState(); if (!s) return;
+  const o = GP.sent, now = performance.now();
+  const moved = o && s.on && o.on && o.k === s.k ? Math.abs(s.t - (o.t + (o.p ? o.r * (now - GP.sentAt) / 1000 : 0))) > 0.4 : true;
+  const changed = !o || ['w', 'au', 'on', 'k', 'p', 'r'].some(k => o[k] !== s[k]) || (s.on && moved);
+  if (!force && !changed && now - GP.sentAt < 10000) return;
+  try { GP.ws.send(JSON.stringify({type: 'state', s})); GP.sent = s; GP.sentAt = now; } catch (e) {}
+}
+setInterval(() => gpLead(false), 250);
+// a follower: the leader's state comes in; open its work and recording, and light its verse from its time
+async function gpApply(s, at){
+  GP.s = s; if (!s) return;
+  if (s.on) GP.base = {t: s.t, at: at - GP.lat * 1000, p: s.p, r: s.r || 1};
+  if (GP.busy){ GP.again = true; return; } GP.busy = true;
+  try {
+    const was = GP.last || {}; GP.last = s;
+    if (!W || W.id !== s.w){ GP.opened = false; await openWork(s.w, true); }
+    if (!W || W.id !== s.w) return;
+    if (s.au && (!SRC.au || SRC.au.meta.id !== s.au)){   // the leader's recording (this phone's own choice comes back on leaving)
+      const c = S.src[W.id] = S.src[W.id] || {}; if (!GP.prevAu) GP.prevAu = {w: W.id, au: c.au}; c.au = s.au; save(); await loadSources('au');
+    }
+    if (s.on && SRC.au && AUT[s.k] && AUT[s.k].length){
+      PL.on = true; PL.t = s.k; PL.end = null; PL.one = false; PL.snip = null; PL.seekT = null; PL.whole = false; ytOK = true; ytInfo.st = s.p ? 1 : 2;
+      // the reader opens at the leader's verse on joining, when the leader starts playing and in another work; after that the
+      // reader may look elsewhere ("↑ Go to …" brings the verse back)
+      if (!GP.opened || !was.on || was.w !== s.w){ GP.opened = true; PL.cur = -1; openReader(s.org || 'k', s.i); }
+      wake(true); gpTick();
+    } else if (PL.on){ PL.on = false; $$('#rBody .verse.now').forEach(v => v.classList.remove('now')); $('#pJump').hidden = true; }
+    if (!s.on && was.w !== s.w && CURVIEW === 'library') show('home');   // nothing playing yet: the work's page
+    gpBar();
+  } finally { GP.busy = false; if (GP.again){ GP.again = false; gpApply(GP.s, performance.now()); } }
+}
+// every 300 ms on a following phone (tick): the leader's time now, the verse it is on
+function gpTick(){
+  gpBar(); const b = GP.base; if (!b || !PL.on || !SRC.au || !AUT[PL.t] || !AUT[PL.t].length) return;
+  const time = b.t + (b.p ? b.r * (performance.now() - b.at) / 1000 : 0); ytInfo.t = time; ytInfo.at = performance.now(); ytInfo.st = b.p ? 1 : 2;
+  const a = AUT[PL.t], i = curAt(time), m = a.findIndex(x => x[0] === i), e = endOf(i); let show = i;
+  if (e != null && time >= e && m >= 0 && m + 1 < a.length) show = a[m + 1][0];
+  setCur(show); followLines(show, time, SRC.au.lineSet[IT[show].id] ? lineAt(show, time) : null);
+  const tr = SRC.au.tracks[PL.t], d = tr.end != null ? tr.end : tr.dur, s0 = trStart(tr);
+  $('#pProg').style.width = Math.max(0, Math.min(100, 100 * (time - s0) / Math.max(1, d - s0))) + '%';
+}
+// a following phone's bar: what is recited, and that it follows (no controls: the leader plays, pauses and moves on)
+function gpBar(){
+  if (GP.role !== 'follow') return;
+  $('#player').hidden = false; $('#player').classList.add('follow'); document.body.classList.add('playing', 'gpf');
+  if (!PL.on) $('#pVerse').textContent = T('सामूहिक पाठ', 'Group paath');
+  pSub();
+}
+function gpSub(){   // the player's small line in a group paath
+  if (GP.role === 'lead') return T('सामूहिक पाठ · ', 'Group paath · ') + (GP.live ? DEV(GP.n) + T(' फ़ोन साथ', GP.n === 1 ? ' phone following' : ' phones following') : T('जुड़ रहा है…', 'connecting…'));
+  if (GP.role !== 'follow') return '';
+  if (!GP.live) return T('जुड़ रहा है…', 'Connecting…');
+  if (!PL.on) return T('पाठ शुरू होनेकी प्रतीक्षा', 'Waiting for the leader to play');
+  return (ytInfo.st === 1 ? T('साथ चल रहे हैं', 'Following') : T('रुका हुआ', 'Paused')) + (CURVIEW !== 'reader' ? T(' · पदपर जाएँ ›', ' · Go to verse ›') : '');
+}
+function gpStart(role, code){
+  if (GP.role) gpStop();
+  GP.role = role; GP.code = code; GP.key = role === 'lead' ? gpKey() : ''; GP.n = 0; GP.sent = null; GP.s = null; GP.base = null; GP.opened = false; GP.last = null;
+  gpSave(); gpConnect();
+  if (role === 'follow'){ if (PL.on) stopAudio(); gpBar(); toast(T('सामूहिक पाठसे जुड़ रहे हैं', 'Joining the group paath')); }
+  gpUI(); pSub();
+}
+// leave (a follower) or end (the leader: every follower is told). msg: the white capsule's words, when the leader ended it
+function gpStop(msg){
+  const role = GP.role, ws = GP.ws; if (!role) return;
+  GP.role = null; GP.ws = null; GP.live = false; clearTimeout(GP.retryT); gpSave();
+  try { if (ws) ws.close(role === 'lead' ? 4100 : 1000, 'bye'); } catch (e) {}
+  if (role === 'follow'){
+    $('#player').classList.remove('follow'); document.body.classList.remove('gpf'); PL.on = false; ytOK = false; ytInfo = {t: 0, st: -1, d: 0}; stopAudio(); wake(false);
+    const p = GP.prevAu; GP.prevAu = null;
+    if (p && W && W.id === p.w){ const c = S.src[W.id] = S.src[W.id] || {}; if (p.au) c.au = p.au; else delete c.au; save(); loadSources('au'); }
+  }
+  gpUI(); pSub(); if (msg) toastLight(msg, 5000);
+}
+// ☰ › Group paath: start one (the leader, inside a work with a recording), join one by its code, or the one this phone is in
+function gpSheet(){
+  openSheet('<div id="gpBody"></div>'); gpUI();
+}
+function gpUI(){
+  const box = $('#gpBody'); if (!box) return;
+  const h = '<h2 class="gph">' + T('सामूहिक पाठ', 'Group paath') + '</h2>';
+  if (GP.role === 'lead'){
+    box.innerHTML = h + '<p class="gpi">' + T('इसी फ़ोनसे पाठ चलाएँ। बाकी सब यह कोड स्कैन करें या डालें — उनके फ़ोनपर बिना आवाज़के वही पद चलेगा।', 'Play the recording on this phone. Everyone else scans this code or types the number: their screens follow, without sound.') + '</p>' +
+      '<div class="gpqr">' + qrSVG(gpLink()) + '</div><div class="gpcode" aria-label="code">' + gpFmt(GP.code) + '</div>' +
+      '<p class="gpst">' + (GP.live ? DEV(GP.n) + T(' फ़ोन साथ हैं', GP.n === 1 ? ' phone following' : ' phones following') : T('जुड़ रहा है…', 'Connecting…')) + '</p>' +
+      '<div class="acts gpacts"><button class="btn" id="gpShare"><svg><use href="#i-share"/></svg>' + T('लिंक भेजें', 'Share the link') + '</button><button class="btn ghost" id="gpEnd">' + T('समाप्त करें', 'End') + '</button></div>';
+    $('#gpShare').onclick = gpShare;
+    $('#gpEnd').onclick = () => { closeSheet(); gpStop(); toast(T('सामूहिक पाठ समाप्त', 'Group paath ended')); };
+    return;
+  }
+  if (GP.role === 'follow'){
+    box.innerHTML = h + '<div class="gpcode">' + gpFmt(GP.code) + '</div><p class="gpst">' + gpSub() + '</p>' +
+      '<p class="gpi">' + T('पाठ लीडरके फ़ोनसे चलता है; यह फ़ोन बिना आवाज़के साथ चलता है। अर्थ, अक्षरका आकार और भाषा आप अपने अनुसार रखें।', 'The recording plays on the leader\'s phone; this phone follows it without sound. Your meanings, letter size and language stay as you choose.') + '</p>' +
+      '<div class="acts gpacts"><button class="btn ghost" id="gpLeave">' + T('छोड़ें', 'Leave') + '</button></div>';
+    $('#gpLeave').onclick = () => { closeSheet(); gpStop(); toast(T('सामूहिक पाठ छोड़ा', 'Left the group paath')); };
+    return;
+  }
+  const canLead = !!(W && CURVIEW !== 'library' && SRC.au);
+  box.innerHTML = h + '<p class="gpi">' + T('एक कमरेमें साथ पाठ: एक फ़ोन रिकॉर्डिंग चलाता है, बाकी सबके फ़ोनपर बिना आवाज़के वही पद चलता है।', 'Reading together in one room: one phone plays the recording, and everyone else\'s screen follows it, without sound.') + '</p>' +
+    '<div class="acts gpacts"><button class="btn" id="gpLead"' + (canLead ? '' : ' disabled') + '>' + T('इस फ़ोनसे शुरू करें', 'Start from this phone') + '</button></div>' +
+    (canLead ? '' : '<p class="gpst">' + T('शुरू करनेके लिए रिकॉर्डिंगवाला ग्रन्थ खोलें', 'To start, open a work that has a recording') + '</p>') +
+    '<h3 class="gph3">' + T('किसी औरके पाठसे जुड़ें', 'Join someone else\'s') + '</h3>' +
+    '<div class="gpjoin"><input id="gpIn" inputmode="numeric" autocomplete="off" maxlength="7" placeholder="' + T('6 अंकोंका कोड', '6-digit code') + '"><button class="btn" id="gpJoin">' + T('जुड़ें', 'Join') + '</button></div>';
+  if ($('#gpLead')) $('#gpLead').onclick = () => { if (!canLead) return; gpStart('lead', gpCode()); };
+  const join = () => { const c = ($('#gpIn').value || '').replace(/\D/g, ''); if (c.length !== 6){ toast(T('6 अंकोंका कोड डालें', 'Type the 6-digit code')); return; } closeSheet(); gpStart('follow', c); };
+  $('#gpJoin').onclick = join; $('#gpIn').onkeydown = e => { if (e.key === 'Enter') join(); };
+}
+async function gpShare(){
+  const link = gpLink(), text = T('सामूहिक पाठसे जुड़ें: ', 'Join the group paath: ') + link;
+  try { if (navigator.share){ await navigator.share({title: T('सामूहिक पाठ', 'Group paath'), text}); return; } } catch (e) { if (e && e.name === 'AbortError') return; }
+  try { await navigator.clipboard.writeText(link); toast(T('लिंक कॉपी हो गया', 'Copied')); } catch (e) { toast(link); }
+}
+// a link with ?join=<code> joins at once (the code leaves the address bar); a refresh stays in the session this phone was in
+function gpBoot(){
+  if (!gpOn()) return false;
+  const q = new URLSearchParams(location.search), j = (q.get('join') || '').replace(/\D/g, '');
+  if (q.has('join')){ q.delete('join'); history.replaceState(history.state, '', location.pathname + (q.toString() ? '?' + q : '') + location.hash); }
+  if (j.length === 6){ gpStart('follow', j); return true; }
+  let o = null; try { o = JSON.parse(localStorage.getItem(GPK) || 'null'); } catch (e) {}
+  if (o && o.role && /^\d{6}$/.test(o.code) && Date.now() - o.at < 8 * 3600 * 1000){ GP.role = o.role; GP.code = o.code; GP.key = o.key || ''; gpConnect(); if (o.role === 'follow') gpBar(); pSub(); return o.role === 'follow'; }
+  return false;
+}
+// A QR code for a short link (the group paath's join link): byte mode, error correction M, versions 1–10, the mask with the
+// lowest penalty (ISO/IEC 18004). Returns the module matrix (true = dark).
+function qrMatrix(text){
+  const ECC = [0, 10, 16, 26, 18, 24, 16, 18, 22, 22, 26], BLK = [0, 1, 1, 1, 2, 2, 4, 4, 4, 5, 5];
+  const rawMods = v => { let r = (16 * v + 128) * v + 64; if (v >= 2){ const n = Math.floor(v / 7) + 2; r -= (25 * n - 10) * n - 55; if (v >= 7) r -= 36; } return r; };
+  const dataCw = v => Math.floor(rawMods(v) / 8) - ECC[v] * BLK[v];
+  const mul = (x, y) => { let z = 0; for (let i = 7; i >= 0; i--){ z = (z << 1) ^ ((z >>> 7) * 0x11D); z ^= ((y >>> i) & 1) * x; } return z; };
+  const rsDiv = deg => { const r = new Array(deg).fill(0); r[deg - 1] = 1; let root = 1;
+    for (let i = 0; i < deg; i++){ for (let j = 0; j < deg; j++){ r[j] = mul(r[j], root); if (j + 1 < deg) r[j] ^= r[j + 1]; } root = mul(root, 2); } return r; };
+  const rsRem = (data, div) => { const r = div.map(() => 0); data.forEach(b => { const f = b ^ r.shift(); r.push(0); div.forEach((c, i) => { r[i] ^= mul(c, f); }); }); return r; };
+  const bytes = Array.from(new TextEncoder().encode(text));
+  let v = 1; while (v <= 10 && 12 + (v < 10 ? 0 : 8) + bytes.length * 8 > dataCw(v) * 8) v++;
+  if (v > 10) throw new Error('too long for a QR code here');
+  const bits = [], put = (x, n) => { for (let i = n - 1; i >= 0; i--) bits.push((x >>> i) & 1); };
+  put(4, 4); put(bytes.length, v < 10 ? 8 : 16); bytes.forEach(b => put(b, 8));
+  const cap = dataCw(v) * 8; put(0, Math.min(4, cap - bits.length)); put(0, (8 - bits.length % 8) % 8);
+  for (let p = 0xEC; bits.length < cap; p ^= 0xEC ^ 0x11) put(p, 8);
+  const data = []; for (let i = 0; i < bits.length; i += 8){ let b = 0; for (let j = 0; j < 8; j++) b = (b << 1) | bits[i + j]; data.push(b); }
+  // error correction, block by block, then interleaved
+  const nb = BLK[v], ec = ECC[v], raw = Math.floor(rawMods(v) / 8), nShort = nb - raw % nb, sLen = Math.floor(raw / nb), div = rsDiv(ec), blocks = [];
+  for (let i = 0, k = 0; i < nb; i++){ const dat = data.slice(k, k += sLen - ec + (i < nShort ? 0 : 1)), e = rsRem(dat, div); if (i < nShort) dat.push(0); blocks.push(dat.concat(e)); }
+  const cw = []; for (let i = 0; i < blocks[0].length; i++) blocks.forEach((b, j) => { if (i !== sLen - ec || j >= nShort) cw.push(b[i]); });
+  // the function patterns
+  const N = 4 * v + 17, M = [], F = [];
+  for (let y = 0; y < N; y++){ M.push(new Array(N).fill(false)); F.push(new Array(N).fill(false)); }
+  const setF = (x, y, d) => { M[y][x] = d; F[y][x] = true; };
+  for (let i = 0; i < N; i++){ setF(6, i, i % 2 === 0); setF(i, 6, i % 2 === 0); }
+  [[3, 3], [N - 4, 3], [3, N - 4]].forEach(([x, y]) => { for (let dy = -4; dy <= 4; dy++) for (let dx = -4; dx <= 4; dx++){ const d = Math.max(Math.abs(dx), Math.abs(dy)), xx = x + dx, yy = y + dy; if (xx >= 0 && xx < N && yy >= 0 && yy < N) setF(xx, yy, d !== 2 && d !== 4); } });
+  if (v > 1){ const n = Math.floor(v / 7) + 2, step = Math.ceil((v * 4 + 4) / (n * 2 - 2)) * 2, pos = [6]; for (let p = N - 7; pos.length < n; p -= step) pos.splice(1, 0, p);
+    pos.forEach((x, i) => pos.forEach((y, j) => { if ((i === 0 && j === 0) || (i === 0 && j === n - 1) || (i === n - 1 && j === 0)) return; for (let dy = -2; dy <= 2; dy++) for (let dx = -2; dx <= 2; dx++) setF(x + dx, y + dy, Math.max(Math.abs(dx), Math.abs(dy)) !== 1); })); }
+  const fmt = mask => { const d = mask; let r = d; for (let i = 0; i < 10; i++) r = (r << 1) ^ ((r >>> 9) * 0x537); const b = ((d << 10) | r) ^ 0x5412, g = i => ((b >>> i) & 1) === 1;   // level M: 00
+    for (let i = 0; i <= 5; i++) setF(8, i, g(i)); setF(8, 7, g(6)); setF(8, 8, g(7)); setF(7, 8, g(8)); for (let i = 9; i < 15; i++) setF(14 - i, 8, g(i));
+    for (let i = 0; i < 8; i++) setF(N - 1 - i, 8, g(i)); for (let i = 8; i < 15; i++) setF(8, N - 15 + i, g(i)); setF(8, N - 8, true); };
+  fmt(0);
+  if (v >= 7){ let r = v; for (let i = 0; i < 12; i++) r = (r << 1) ^ ((r >>> 11) * 0x1F25); const b = (v << 12) | r;
+    for (let i = 0; i < 18; i++){ const d = ((b >>> i) & 1) === 1, a = N - 11 + i % 3, c = Math.floor(i / 3); setF(a, c, d); setF(c, a, d); } }
+  // the data, in two-column zigzags from the bottom right
+  for (let right = N - 1, i = 0; right >= 1; right -= 2){ if (right === 6) right = 5;
+    for (let vert = 0; vert < N; vert++) for (let j = 0; j < 2; j++){ const x = right - j, up = ((right + 1) & 2) === 0, y = up ? N - 1 - vert : vert;
+      if (!F[y][x] && i < cw.length * 8){ M[y][x] = ((cw[i >>> 3] >>> (7 - (i & 7))) & 1) === 1; i++; } } }
+  const MASK = [(x, y) => (x + y) % 2 === 0, (x, y) => y % 2 === 0, x => x % 3 === 0, (x, y) => (x + y) % 3 === 0, (x, y) => (Math.floor(x / 3) + Math.floor(y / 2)) % 2 === 0,
+    (x, y) => x * y % 2 + x * y % 3 === 0, (x, y) => (x * y % 2 + x * y % 3) % 2 === 0, (x, y) => ((x + y) % 2 + x * y % 3) % 2 === 0];
+  const apply = k => { for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) if (!F[y][x] && MASK[k](x, y)) M[y][x] = !M[y][x]; };
+  // penalty: runs of five or more, 2×2 blocks, finder-like patterns, dark/light balance
+  const penalty = () => { let p = 0, dark = 0; const line = get => { let run = 1; for (let i = 1; i <= N; i++){ if (i < N && get(i) === get(i - 1)) run++; else { if (run >= 5) p += run - 2; run = 1; } }
+      for (let i = 0; i + 7 <= N; i++){ const s = [0, 1, 2, 3, 4, 5, 6].map(k => get(i + k)); if (s[0] && !s[1] && s[2] && s[3] && s[4] && !s[5] && s[6]){ const lt = k => k < 0 || k >= N || !get(k); if ([1, 2, 3, 4].every(k => lt(i - k)) || [7, 8, 9, 10].every(k => lt(i + k))) p += 40; } } };
+    for (let y = 0; y < N; y++){ line(x => M[y][x]); line(x => M[x][y]); for (let x = 0; x < N; x++){ if (M[y][x]) dark++; if (x + 1 < N && y + 1 < N){ const c = M[y][x]; if (c === M[y][x + 1] && c === M[y + 1][x] && c === M[y + 1][x + 1]) p += 3; } } }
+    return p + 10 * Math.floor(Math.abs(dark * 20 - N * N * 10) / (N * N)); };
+  let best = 0, bp = Infinity;
+  for (let k = 0; k < 8; k++){ apply(k); fmt(k); const p = penalty(); if (p < bp){ bp = p; best = k; } apply(k); }
+  apply(best); fmt(best);
+  return M;
+}
+// the code as an SVG, with its quiet zone, dark on light whatever the theme (a camera needs the contrast)
+function qrSVG(text){ const M = qrMatrix(text), N = M.length; let d = '';
+  M.forEach((row, y) => row.forEach((on, x) => { if (on) d += 'M' + (x + 4) + ' ' + (y + 4) + 'h1v1h-1z'; }));
+  return '<svg class="qr" viewBox="0 0 ' + (N + 8) + ' ' + (N + 8) + '" shape-rendering="crispEdges" role="img" aria-label="QR"><rect width="100%" height="100%" fill="#fff"/><path d="' + d + '" fill="#000"/></svg>'; }
+
 /* ---------------- boot ---------------- */
 (async function boot(){
   if (!S.settings.lightDefault){ if (S.settings.theme === 'auto') S.settings.theme = 'light'; S.settings.lightDefault = 1; save(); }
@@ -2350,8 +2580,8 @@ function pruneLib(nodes, shelves){
   // a link to a work opens that work, and a library of one work opens it
   else if (start && (asked || leafs.length === 1)){ await openWork(start, true); history.replaceState(snap('library'), ''); show('home'); }
   else { history.replaceState(snap('library'), ''); renderLibrary(); await hideSalute(); }
-  cloudInit(); adminFromLink();
-  if (!S.settings.tour) startTour();
+  cloudInit(); adminFromLink(); const joining = gpBoot();
+  if (!S.settings.tour && !joining) startTour();   // a phone that came to follow a group paath goes straight to it (the tour waits for another start)
   // offline reading: the service worker keeps the app and every library file it has fetched (sw.js, build.py)
   if ('serviceWorker' in navigator && (location.protocol === 'https:' || window.__SW_TEST) && !BUNDLE) navigator.serviceWorker.register('sw.js').catch(() => {});
 })();

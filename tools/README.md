@@ -17,6 +17,9 @@ tools/
     history_check.py               no work or verse id that readers' data points at has disappeared
     smoke_test.py, ux_test.py      every work in a browser; navigation and reading at phone size
     fixtures/                      data only the tests use (its README)
+  group/                         the group paath relay, a Cloudflare Worker (group/README.md): one phone plays, the others follow
+    worker.js, wrangler.toml       the relay and its settings (deployed by the group workflow, not by build.py)
+    test.mjs                       its protocol test, against wrangler dev
   audio/                         audio sources (shared by every work; see audio/README.md)
     transcribe.py                  recordings → transcripts (Whisper speech recognition)
     transcribe_onnx.py             the same with a Whisper model from GitHub, when the usual model can't be downloaded

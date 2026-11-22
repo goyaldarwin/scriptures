@@ -43,6 +43,11 @@ sys.path.insert(0, os.path.dirname(HERE)); import jsonio
 for f in glob.glob(os.path.join(ROOT, 'library', 'glossary', '*.json')):
     if os.path.basename(f) != 'languages.json': jsonio.dump_glossary(f, json.load(open(f)))
 jsonio.dump_shelf(os.path.join(ROOT, 'library', 'index.json'), json.load(open(os.path.join(ROOT, 'library', 'index.json'))))
+# the group paath relay's address (apps/app.json → "group", tools/group/README.md), written into the app; empty: not offered
+GROUP = json.load(open(os.path.join(ROOT, 'apps', 'app.json'))).get('group', '')
+if GROUP and not re.fullmatch(r'wss://[A-Za-z0-9.-]+', GROUP): sys.exit('APP PROBLEM: apps/app.json → "group" must be wss://<host> (tools/group/README.md)')
+if app.count("'%GROUP_URL%'") != 1: sys.exit('APP PROBLEM: tools/site/app.js must hold the placeholder \'%GROUP_URL%\' once')
+app = app.replace("'%GROUP_URL%'", json.dumps(GROUP))
 # the app must at least parse: a syntax error would leave every reader with a blank page
 import subprocess
 r = subprocess.run(['node', '--check', os.path.join(HERE, 'app.js')], capture_output=True, text=True)
