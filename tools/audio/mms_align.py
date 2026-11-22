@@ -78,6 +78,7 @@ def main(src):
         em = torch.cat(ems, 1); sec = (x.shape[1] / SR) / em.shape[1]
         if w.get('items'):
             res = by_line(res, w, em[0, :, :-1].numpy(), sec, D, bundle.get_labels(star=None))   # the star's column dropped
+            json.dump(res, open(out_p, 'w'), ensure_ascii=False, separators=(',', ':'))   # every piece: a job cut short keeps them
             print(vid, f'window {n + 1}/{len(wins)}', round(time.time() - t0, 1), 's', flush=True)
             continue
         words, owner = ['*'], [None]
