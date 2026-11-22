@@ -187,7 +187,7 @@ body.playing #rBody{padding-bottom:150px}
 #gpBody{text-align:center}.gph{margin:4px 0 6px;font-size:20px}.gph3{margin:22px 0 8px;font-size:16px;color:var(--muted);font-weight:600}.gpi{color:var(--muted);font-size:15px;margin:0 0 12px;line-height:1.5}
 .gpqr{margin:4px auto 6px;width:min(62vw,240px)}.gpqr .qr{display:block;width:100%;height:auto;border-radius:10px}
 .gpcode{font-size:34px;font-weight:700;letter-spacing:.08em;font-variant-numeric:tabular-nums;color:var(--indigo);margin:2px 0}.gpst{font-size:14px;color:var(--muted);margin:4px 0 12px}
-.gpacts{justify-content:center;flex-wrap:wrap}.gpacts .btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}.btn[disabled]{opacity:.45}
+.gpacts{justify-content:center;flex-wrap:wrap}.gpacts .btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
 .gpjoin{display:flex;gap:8px;justify-content:center}.gpjoin input{width:9.5em;font-size:20px;text-align:center;letter-spacing:.1em;border:1px solid var(--rule);border-radius:12px;padding:8px;background:var(--surface);color:var(--ink)}
 .gpdot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--saffron);margin-left:6px;vertical-align:middle}
 /* the verse being recited: a tint that covers exactly the verse's own box (its padding gives the text room), widened sideways

@@ -7,7 +7,8 @@ leader's phone sends where it is in the recording; this relay passes that on to 
 - `worker.js`: a Cloudflare Worker with one Durable Object per 6-digit code. It accepts WebSockets at
   `/s/<code>?role=lead&key=<key>` (the leader; the key reserves the code for its phone) and `/s/<code>?role=follow`,
   passes the leader's `{type: "state"}` messages to the followers, tells the leader how many follow (`{type: "count"}`),
-  sends a follower that joins late the last state, and tells everyone when the leader ends it (`{type: "end"}`).
+  sends a follower that joins late the last state, tells the followers when the leader's phone goes (`{type: "away"}`, also
+  to one that joins meanwhile) and when the leader ends it (`{type: "end"}`).
   WebSocket hibernation: an idle session costs nothing, and `ping` is answered (`pong`) without waking it. A session nobody
   is connected to is cleared after 8 hours. Only the origins in `wrangler.toml` → `ORIGINS` may connect.
 - `wrangler.toml`: its name (`scriptures-group`), the Durable Object, and the allowed origins.

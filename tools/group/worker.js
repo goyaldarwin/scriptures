@@ -8,7 +8,8 @@
 //   wss://<host>/s/<6-digit code>?role=follow                  a follower
 //
 // One Durable Object per code. WebSocket hibernation: an idle session costs nothing, and "ping" is answered without waking it.
-// Messages: leader → {type: "state", s: {...}}; relay → follower {type: "state", s}; relay → leader {type: "count", n}.
+// Messages: leader → {type: "state", s: {...}}; relay → follower {type: "state", s}, {type: "away"} while no leader is connected,
+// {type: "end"} when the leader ends it; relay → leader {type: "count", n}.
 // Refusals: {type: "taken"} then close 4009 (the code is another leader's), {type: "bad"} then close 4000 (a bad key).
 import {DurableObject} from 'cloudflare:workers';
 
@@ -50,6 +51,7 @@ export class Session extends DurableObject {
       const s = await this.lastState();
       if (s) server.send(JSON.stringify({type: 'state', s}));
       else server.send(JSON.stringify({type: 'wait'}));
+      if (s && !this.ctx.getWebSockets('lead').length) server.send(JSON.stringify({type: 'away'}));   // the leader's phone is not here now
       this.count();
     } else return new Response('role?\n', {status: 400});
     await this.ctx.storage.setAlarm(Date.now() + IDLE_MS);
@@ -75,6 +77,9 @@ export class Session extends DurableObject {
     const a = ws.deserializeAttachment();
     if (a && a.lead && a.s) await this.ctx.storage.put('state', a.s);   // a follower joining while the leader is away still opens the reading
     if (a && a.lead && code === 4100){ await this.end(); return; }      // the leader ended the session
+    if (a && a.lead && !this.ctx.getWebSockets('lead').some(w => w !== ws)){   // the leader's phone has gone (not replaced by itself): the followers stop where it was
+      const out = JSON.stringify({type: 'away'}); this.followers().forEach(w => { try { w.send(out); } catch (e) {} });
+    }
     if (!a || !a.lead) this.count(ws);
     try { ws.close(); } catch (e) {}
     await this.ctx.storage.setAlarm(Date.now() + IDLE_MS);

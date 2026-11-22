@@ -24,8 +24,10 @@ const X = await open(B + code + '?role=lead&key=' + 'z'.repeat(20)); await sleep
 ok(X.msgs[0]?.type === 'taken', 'another leader key is refused');
 F2.close(); await sleep(300); ok(L.msgs.at(-1).n === 1, 'count back to 1 after a follower leaves');
 L.close(1000); await sleep(300);
+ok(F1.msgs.at(-1)?.type === 'away', 'the leader\'s phone goes: followers are told');
 const F3 = await open(B + code + '?role=follow'); await sleep(200);
 ok(F3.msgs[0]?.type === 'state' && F3.msgs[0].s.t === 12.5, 'leader away: new follower still gets last state');
+ok(F3.msgs[1]?.type === 'away', 'a follower who joins while the leader is away is told so');
 const L2 = await open(B + code + '?role=lead&key=' + key); await sleep(200);
 ok(!L2.closed && L2.msgs[0].type === 'count', 'the same leader key reconnects');
 L2.close(4100, 'end'); await sleep(400);

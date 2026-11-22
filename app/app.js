@@ -990,10 +990,10 @@ function editSheet(i){
 /* ---------------- audio from YouTube: hands-free recitation ---------------- */
 let AUT = [], ytVid = '', ytOK = false, ytInfo = {t: 0, st: -1, d: 0}, ytWait = null;
 let PL = {on: false, t: -1, end: null, cur: -1};
-// group paath (below, "group paath"): the relay's address (apps/app.json → "group", written in by build.py) and this phone's part in one
+// group paath (its section is before boot): the relay's address (apps/app.json → "group", written in by build.py) and this phone's part in one
 const GROUP_URL = window.__GROUP_URL || "".replace(/^%.*%$/, '');
 const GPK = 'scriptures.group.v1';   // this phone's session (role, code, key), so a refresh stays in it
-const GP = {role: null, code: '', key: '', ws: null, live: false, n: 0, s: null, base: null, lat: 0.08, sent: null, sentAt: 0, wait: 1000, opened: false, prevAu: null};
+const GP = {role: null, code: '', key: '', ws: null, live: false, n: 0, s: null, base: null, lat: 0.08, sent: null, sentAt: 0, wait: 1000, opened: false, prevAu: null, lastAt: 0, away: false};
 function tkey(){ return W.id + ':' + SRC.au.meta.id; }
 // timing review: under every verse, the verse's own buttons. You mark the verse you are looking at, never a guess:
 // "Starts now" when you hear its first word, "Ends now" when it is over (a refrain or music follows), ▶ to hear it.
@@ -1219,6 +1219,7 @@ let snipT = null;
 // time, so marking can go on from what is heard; a preview that is itself playing is replaced by the next one
 function livePlay(){ return PL.on && playing() && PL.snip == null; }
 function snippet(i, k){
+  if (GP.role === 'follow'){ gpNoPlay(); return; }
   const x = SRC.au.at[IT[i].id]; if (!x) return; const tr = SRC.au.tracks[x[0]];
   const t0 = k === 1 ? x[1] : Math.max(x[1], x[2] - 2), t1 = k === 1 ? (x[2] != null ? Math.min(x[2], x[1] + 2) : x[1] + 2) : x[2];
   PL.on = true; PL.t = x[0]; PL.end = null; PL.one = false; PL.snip = t1; PL.whole = false; PL.endMsg = '';
@@ -1234,6 +1235,7 @@ function snippet(i, k){
 }
 function playFrom(i, end, tk){
   if (!SRC.au) return;
+  if (GP.role === 'follow'){ gpNoPlay(); return; }   // in a group paath only the leader's phone plays (two would echo)
   PL.snip = null;
   if (!hasAu(i)){ const j = firstAu(i, Math.min(IT.length - 1, i + 80)); if (j == null) return; i = j; }
   const t = tk != null ? tk : SRC.au.at[IT[i].id][0], st0 = SRC.au.at[IT[i].id][1], tr = SRC.au.tracks[t];
@@ -2348,9 +2350,9 @@ function gpLink(){ const app = new URLSearchParams(location.search).get('app'); 
 function gpFmt(c){ return c.slice(0, 3) + ' ' + c.slice(3); }
 function gpConnect(){
   clearTimeout(GP.retryT); if (!GP.role) return;
-  const ws = new WebSocket(GROUP_URL + '/s/' + GP.code + '?role=' + (GP.role === 'lead' ? 'lead&key=' + GP.key : 'follow'));
+  let ws; try { ws = new WebSocket(GROUP_URL + '/s/' + GP.code + '?role=' + (GP.role === 'lead' ? 'lead&key=' + GP.key : 'follow')); } catch (e) { gpRetry(); return; }
   GP.ws = ws;
-  ws.onopen = () => { if (GP.ws !== ws) return; GP.live = true; GP.wait = 1000; gpPing(); if (GP.role === 'lead') gpLead(true); gpUI(); };
+  ws.onopen = () => { if (GP.ws !== ws) return; GP.live = true; GP.wait = 1000; GP.sent = null; gpPing(); if (GP.role === 'lead') gpLead(true); gpUI(); };   // sent = null: the leader's state goes again, every 250 ms until a send gets through
   ws.onmessage = e => {
     if (GP.ws !== ws) return;
     if (e.data === 'pong'){ const r = (performance.now() - GP.pingAt) / 2000; if (r > 0 && r < 2) GP.lat = GP.lat * 0.6 + r * 0.4; return; }   // half the round trip: how late a state arrives
@@ -2359,10 +2361,13 @@ function gpConnect(){
     else if (d.type === 'state' && GP.role === 'follow') gpApply(d.s, performance.now());
     else if (d.type === 'wait' && GP.role === 'follow') gpUI();
     else if (d.type === 'taken' && GP.role === 'lead'){ GP.code = gpCode(); gpSave(); GP.ws = null; try { ws.close(); } catch (x) {} gpConnect(); gpUI(); }   // the code is in use: another one
+    else if (d.type === 'away' && GP.role === 'follow') gpAway();   // the leader's phone has gone (closed, locked, offline)
     else if (d.type === 'end' && GP.role === 'follow') gpStop(T('सामूहिक पाठ समाप्त हुआ', 'The group paath has ended'));
   };
-  ws.onclose = () => { if (GP.ws !== ws) return; GP.live = false; GP.ws = null; gpUI(); if (GP.role){ GP.retryT = setTimeout(gpConnect, GP.wait); GP.wait = Math.min(GP.wait * 2, 15000); } };   // the network dropped: try again, a little later each time
+  ws.onclose = () => { if (GP.ws !== ws) return; GP.live = false; GP.ws = null; gpUI(); gpRetry(); };
 }
+// the network dropped: try again, a little later each time (1 s, 2 s, 4 s … 15 s)
+function gpRetry(){ if (!GP.role) return; clearTimeout(GP.retryT); GP.retryT = setTimeout(gpConnect, GP.wait); GP.wait = Math.min(GP.wait * 2, 15000); }
 // keep the connection open through phone networks, and measure how long a message takes
 function gpPing(){ if (GP.ws && GP.live){ GP.pingAt = performance.now(); try { GP.ws.send('ping'); } catch (e) {} } }
 setInterval(gpPing, 20000);
@@ -2371,7 +2376,7 @@ function gpTime(){ const t = playTime(); return t + (ytInfo.st === 1 && ytInfo.a
 function gpState(){
   if (!W) return null; const on = !!(PL.on && SRC.au && PL.snip == null && PL.cur >= 0);
   const s = {w: W.id, au: SRC.au ? SRC.au.meta.id : null, on: on ? 1 : 0};
-  if (on){ s.k = PL.t; s.t = Math.round(gpTime() * 100) / 100; s.p = ytInfo.st === 1 ? 1 : 0; s.r = RATE(); s.i = PL.cur; s.org = CURVIEW === 'reader' ? R.org : 'k'; }
+  if (on){ s.k = PL.t; s.t = Math.round(gpTime() * 100) / 100; s.p = ytInfo.st === 1 ? 1 : 0; s.r = RATE(); s.i = PL.cur; s.org = CURVIEW === 'reader' ? R.org : 'k'; s.l = Math.round(GP.lat * 1000) / 1000; }   // l: how long this takes to reach the relay
   return s;
 }
 // sent when something changes (the work, the recording, play or pause, the speed, a seek: the time is not where the last state
@@ -2386,9 +2391,16 @@ function gpLead(force){
 }
 setInterval(() => gpLead(false), 250);
 // a follower: the leader's state comes in; open its work and recording, and light its verse from its time
+// a state is used only when it is well formed: a work on this library's shelf, finite numbers (the relay passes on what the
+// leader's phone sends, and a page must never break on it)
+function gpValid(s){
+  if (!s || typeof s.w !== 'string' || !/^[a-z0-9-]{1,80}$/.test(s.w) || workPath(s.w) === s.w) return false;
+  return !s.on || (Number.isInteger(s.k) && Number.isInteger(s.i) && [s.t, s.r].every(Number.isFinite) && s.r >= 0.25 && s.r <= 4 && (s.org == null || typeof s.org === 'string'));
+}
 async function gpApply(s, at){
-  GP.s = s; if (!s) return;
-  if (s.on) GP.base = {t: s.t, at: at - GP.lat * 1000, p: s.p, r: s.r || 1};
+  if (!gpValid(s)) return;
+  GP.s = s; GP.lastAt = performance.now(); GP.away = false;
+  if (s.on) GP.base = {t: s.t, at: at - (GP.lat + Math.min(2, Math.max(0, +s.l || 0))) * 1000, p: s.p, r: s.r};
   if (GP.busy){ GP.again = true; return; } GP.busy = true;
   try {
     const was = GP.last || {}; GP.last = s;
@@ -2401,16 +2413,17 @@ async function gpApply(s, at){
       PL.on = true; PL.t = s.k; PL.end = null; PL.one = false; PL.snip = null; PL.seekT = null; PL.whole = false; ytOK = true; ytInfo.st = s.p ? 1 : 2;
       // the reader opens at the leader's verse on joining, when the leader starts playing and in another work; after that the
       // reader may look elsewhere ("↑ Go to …" brings the verse back)
-      if (!GP.opened || !was.on || was.w !== s.w){ GP.opened = true; PL.cur = -1; openReader(s.org || 'k', s.i); }
+      if (!GP.opened || !was.on || was.w !== s.w){ GP.opened = true; PL.cur = -1; openReader(s.org || 'k', IT[s.i] ? s.i : firstAu(0, IT.length - 1)); }
       wake(true); gpTick();
     } else if (PL.on){ PL.on = false; $$('#rBody .verse.now').forEach(v => v.classList.remove('now')); $('#pJump').hidden = true; }
-    if (!s.on && was.w !== s.w && CURVIEW === 'library') show('home');   // nothing playing yet: the work's page
+    if (!s.on && was.w !== s.w) show('home');   // another work, nothing playing yet: its page (never the last work's pages under the new one)
     gpBar();
   } finally { GP.busy = false; if (GP.again){ GP.again = false; gpApply(GP.s, performance.now()); } }
 }
 // every 300 ms on a following phone (tick): the leader's time now, the verse it is on
 function gpTick(){
   gpBar(); const b = GP.base; if (!b || !PL.on || !SRC.au || !AUT[PL.t] || !AUT[PL.t].length) return;
+  if (b.p && performance.now() - GP.lastAt > 25000) gpAway();   // nothing from the leader for 25 s (it sends every 10 s)
   const time = b.t + (b.p ? b.r * (performance.now() - b.at) / 1000 : 0); ytInfo.t = time; ytInfo.at = performance.now(); ytInfo.st = b.p ? 1 : 2;
   const a = AUT[PL.t], i = curAt(time), m = a.findIndex(x => x[0] === i), e = endOf(i); let show = i;
   if (e != null && time >= e && m >= 0 && m + 1 < a.length) show = a[m + 1][0];
@@ -2418,23 +2431,29 @@ function gpTick(){
   const tr = SRC.au.tracks[PL.t], d = tr.end != null ? tr.end : tr.dur, s0 = trStart(tr);
   $('#pProg').style.width = Math.max(0, Math.min(100, 100 * (time - s0) / Math.max(1, d - s0))) + '%';
 }
+// the leader's phone has gone (closed, locked, offline): the light stops where the recording was, until it is back
+function gpAway(){ const b = GP.base; if (b && b.p) GP.base = {t: b.t + b.r * (performance.now() - b.at) / 1000, at: performance.now(), p: 0, r: b.r}; GP.away = true; gpBar(); }
+// a following phone tapped ▶: the recording plays only on the leader's phone
+function gpNoPlay(){ toast(T('सामूहिक पाठमें रिकॉर्डिंग लीडरके फ़ोनपर चलती है', 'In a group paath, the recording plays on the leader\'s phone')); }
 // a following phone's bar: what is recited, and that it follows (no controls: the leader plays, pauses and moves on)
 function gpBar(){
   if (GP.role !== 'follow') return;
   $('#player').hidden = false; $('#player').classList.add('follow'); document.body.classList.add('playing', 'gpf');
   if (!PL.on) $('#pVerse').textContent = T('सामूहिक पाठ', 'Group paath');
-  pSub();
+  pSub(); const st = $('#gpBody .gpst'); if (st) st.textContent = gpSub();   // the open sheet's status line follows too
 }
+function gpCount(){ return DEV(GP.n) + T(' फ़ोन साथ हैं', GP.n === 1 ? ' phone following' : ' phones following'); }   // the leader's bar and sheet, in the same words
 function gpSub(){   // the player's small line in a group paath
-  if (GP.role === 'lead') return T('सामूहिक पाठ · ', 'Group paath · ') + (GP.live ? DEV(GP.n) + T(' फ़ोन साथ', GP.n === 1 ? ' phone following' : ' phones following') : T('जुड़ रहा है…', 'connecting…'));
+  if (GP.role === 'lead') return T('सामूहिक पाठ · ', 'Group paath · ') + (GP.live ? gpCount() : T('जुड़ रहा है…', 'connecting…'));
   if (GP.role !== 'follow') return '';
   if (!GP.live) return T('जुड़ रहा है…', 'Connecting…');
-  if (!PL.on) return T('पाठ शुरू होनेकी प्रतीक्षा', 'Waiting for the leader to play');
+  if (GP.away) return T('लीडरके फ़ोनकी प्रतीक्षा', 'Waiting for the leader\'s phone');
+  if (!PL.on) return T('लीडरके रिकॉर्डिंग चलानेकी प्रतीक्षा', 'Waiting for the leader to play');
   return (ytInfo.st === 1 ? T('साथ चल रहे हैं', 'Following') : T('रुका हुआ', 'Paused')) + (CURVIEW !== 'reader' ? T(' · पदपर जाएँ ›', ' · Go to verse ›') : '');
 }
 function gpStart(role, code){
   if (GP.role) gpStop();
-  GP.role = role; GP.code = code; GP.key = role === 'lead' ? gpKey() : ''; GP.n = 0; GP.sent = null; GP.s = null; GP.base = null; GP.opened = false; GP.last = null;
+  GP.role = role; GP.code = code; GP.key = role === 'lead' ? gpKey() : ''; GP.n = 0; GP.sent = null; GP.s = null; GP.base = null; GP.opened = false; GP.last = null; GP.away = false; GP.wait = 1000;
   gpSave(); gpConnect();
   if (role === 'follow'){ if (PL.on) stopAudio(); gpBar(); toast(T('सामूहिक पाठसे जुड़ रहे हैं', 'Joining the group paath')); }
   gpUI(); pSub();
@@ -2442,7 +2461,7 @@ function gpStart(role, code){
 // leave (a follower) or end (the leader: every follower is told). msg: the white capsule's words, when the leader ended it
 function gpStop(msg){
   const role = GP.role, ws = GP.ws; if (!role) return;
-  GP.role = null; GP.ws = null; GP.live = false; clearTimeout(GP.retryT); gpSave();
+  GP.role = null; GP.ws = null; GP.live = false; GP.n = 0; GP.away = false; clearTimeout(GP.retryT); gpSave();
   try { if (ws) ws.close(role === 'lead' ? 4100 : 1000, 'bye'); } catch (e) {}
   if (role === 'follow'){
     $('#player').classList.remove('follow'); document.body.classList.remove('gpf'); PL.on = false; ytOK = false; ytInfo = {t: 0, st: -1, d: 0}; stopAudio(); wake(false);
@@ -2459,9 +2478,9 @@ function gpUI(){
   const box = $('#gpBody'); if (!box) return;
   const h = '<h2 class="gph">' + T('सामूहिक पाठ', 'Group paath') + '</h2>';
   if (GP.role === 'lead'){
-    box.innerHTML = h + '<p class="gpi">' + T('इसी फ़ोनसे पाठ चलाएँ। बाकी सब यह कोड स्कैन करें या डालें — उनके फ़ोनपर बिना आवाज़के वही पद चलेगा।', 'Play the recording on this phone. Everyone else scans this code or types the number: their screens follow, without sound.') + '</p>' +
-      '<div class="gpqr">' + qrSVG(gpLink()) + '</div><div class="gpcode" aria-label="code">' + gpFmt(GP.code) + '</div>' +
-      '<p class="gpst">' + (GP.live ? DEV(GP.n) + T(' फ़ोन साथ हैं', GP.n === 1 ? ' phone following' : ' phones following') : T('जुड़ रहा है…', 'Connecting…')) + '</p>' +
+    box.innerHTML = h + '<p class="gpi">' + T('रिकॉर्डिंग इसी फ़ोनपर चलाएँ। बाकी सब यह कोड स्कैन करें या अंक डालें — उनके फ़ोनपर बिना आवाज़के वही पद चमकेगा।', 'Play the recording on this phone. Everyone else scans this code or types the number: their screens follow, without sound.') + '</p>' +
+      '<div class="gpqr">' + qrSVG(gpLink(), T('जुड़नेका QR कोड', 'QR code to join')) + '</div><div class="gpcode">' + gpFmt(GP.code) + '</div>' +
+      '<p class="gpst">' + (GP.live ? gpCount() : T('जुड़ रहा है…', 'Connecting…')) + '</p>' +
       '<div class="acts gpacts"><button class="btn" id="gpShare"><svg><use href="#i-share"/></svg>' + T('लिंक भेजें', 'Share the link') + '</button><button class="btn ghost" id="gpEnd">' + T('समाप्त करें', 'End') + '</button></div>';
     $('#gpShare').onclick = gpShare;
     $('#gpEnd').onclick = () => { closeSheet(); gpStop(); toast(T('सामूहिक पाठ समाप्त', 'Group paath ended')); };
@@ -2469,17 +2488,17 @@ function gpUI(){
   }
   if (GP.role === 'follow'){
     box.innerHTML = h + '<div class="gpcode">' + gpFmt(GP.code) + '</div><p class="gpst">' + gpSub() + '</p>' +
-      '<p class="gpi">' + T('पाठ लीडरके फ़ोनसे चलता है; यह फ़ोन बिना आवाज़के साथ चलता है। अर्थ, अक्षरका आकार और भाषा आप अपने अनुसार रखें।', 'The recording plays on the leader\'s phone; this phone follows it without sound. Your meanings, letter size and language stay as you choose.') + '</p>' +
+      '<p class="gpi">' + T('रिकॉर्डिंग लीडरके फ़ोनपर चलती है; यह फ़ोन बिना आवाज़के साथ चलता है। अर्थ, अक्षरका आकार और भाषा आप अपने अनुसार रखें।', 'The recording plays on the leader\'s phone; this phone follows it without sound. Your meanings, letter size and language stay as you choose.') + '</p>' +
       '<div class="acts gpacts"><button class="btn ghost" id="gpLeave">' + T('छोड़ें', 'Leave') + '</button></div>';
     $('#gpLeave').onclick = () => { closeSheet(); gpStop(); toast(T('सामूहिक पाठ छोड़ा', 'Left the group paath')); };
     return;
   }
   const canLead = !!(W && CURVIEW !== 'library' && SRC.au);
-  box.innerHTML = h + '<p class="gpi">' + T('एक कमरेमें साथ पाठ: एक फ़ोन रिकॉर्डिंग चलाता है, बाकी सबके फ़ोनपर बिना आवाज़के वही पद चलता है।', 'Reading together in one room: one phone plays the recording, and everyone else\'s screen follows it, without sound.') + '</p>' +
+  box.innerHTML = h + '<p class="gpi">' + T('एक कमरेमें साथ पाठ: एक फ़ोन रिकॉर्डिंग चलाता है, बाकी सबके फ़ोनपर बिना आवाज़के वही पद चमकता है।', 'Reading together in one room: one phone plays the recording, and everyone else\'s screen follows it, without sound.') + '</p>' +
     '<div class="acts gpacts"><button class="btn" id="gpLead"' + (canLead ? '' : ' disabled') + '>' + T('इस फ़ोनसे शुरू करें', 'Start from this phone') + '</button></div>' +
     (canLead ? '' : '<p class="gpst">' + T('शुरू करनेके लिए रिकॉर्डिंगवाला ग्रन्थ खोलें', 'To start, open a work that has a recording') + '</p>') +
     '<h3 class="gph3">' + T('किसी औरके पाठसे जुड़ें', 'Join someone else\'s') + '</h3>' +
-    '<div class="gpjoin"><input id="gpIn" inputmode="numeric" autocomplete="off" maxlength="7" placeholder="' + T('6 अंकोंका कोड', '6-digit code') + '"><button class="btn" id="gpJoin">' + T('जुड़ें', 'Join') + '</button></div>';
+    '<div class="gpjoin"><input id="gpIn" inputmode="numeric" autocomplete="off" maxlength="7" placeholder="' + T('6 अंकोंका कोड', '6-digit code') + '" aria-label="' + T('6 अंकोंका कोड', '6-digit code') + '"><button class="btn" id="gpJoin">' + T('जुड़ें', 'Join') + '</button></div>';
   if ($('#gpLead')) $('#gpLead').onclick = () => { if (!canLead) return; gpStart('lead', gpCode()); };
   const join = () => { const c = ($('#gpIn').value || '').replace(/\D/g, ''); if (c.length !== 6){ toast(T('6 अंकोंका कोड डालें', 'Type the 6-digit code')); return; } closeSheet(); gpStart('follow', c); };
   $('#gpJoin').onclick = join; $('#gpIn').onkeydown = e => { if (e.key === 'Enter') join(); };
@@ -2553,9 +2572,9 @@ function qrMatrix(text){
   return M;
 }
 // the code as an SVG, with its quiet zone, dark on light whatever the theme (a camera needs the contrast)
-function qrSVG(text){ const M = qrMatrix(text), N = M.length; let d = '';
+function qrSVG(text, label){ const M = qrMatrix(text), N = M.length; let d = '';
   M.forEach((row, y) => row.forEach((on, x) => { if (on) d += 'M' + (x + 4) + ' ' + (y + 4) + 'h1v1h-1z'; }));
-  return '<svg class="qr" viewBox="0 0 ' + (N + 8) + ' ' + (N + 8) + '" shape-rendering="crispEdges" role="img" aria-label="QR"><rect width="100%" height="100%" fill="#fff"/><path d="' + d + '" fill="#000"/></svg>'; }
+  return '<svg class="qr" viewBox="0 0 ' + (N + 8) + ' ' + (N + 8) + '" shape-rendering="crispEdges" role="img" aria-label="' + esc(label || 'QR') + '"><rect width="100%" height="100%" fill="#fff"/><path d="' + d + '" fill="#000"/></svg>'; }
 
 /* ---------------- boot ---------------- */
 (async function boot(){

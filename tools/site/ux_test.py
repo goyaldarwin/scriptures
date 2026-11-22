@@ -362,7 +362,8 @@ async def main():
             await ev("show('home')"); await pg.wait_for_timeout(300)
             await (await pg.query_selector('#hMenu')).click(); await pg.wait_for_timeout(300)
             items = await ev("Array.from(document.querySelectorAll('#sheetBody [data-m], #sheetBody [data-tour], #sheetBody #mth, #sheetBody #mtm')).map(b => b.dataset.m || (b.dataset.tour != null ? 'tour' : b.id === 'mtm' ? 'timing' : 'dark-theme'))")
-            check(f'{tag}: ☰ holds Bookmarks, Dark theme, Share the app, Take the tour and More settings — nothing else', items == ['bm', 'dark-theme', 'share', 'tour', 'set'] and not await ev("!!document.querySelector('#sheetBody [data-rate], #sheetBody [data-m=sec], #sheetBody #mtr')"), items)
+            want_m = ['bm', 'dark-theme'] + (['group'] if await ev('gpOn()') else []) + ['share', 'tour', 'set']   # Group paath where a relay is set (apps/app.json → group)
+            check(f'{tag}: ☰ holds Bookmarks, Dark theme, (Group paath,) Share the app, Take the tour and More settings — nothing else', items == want_m and not await ev("!!document.querySelector('#sheetBody [data-rate], #sheetBody [data-m=sec], #sheetBody #mtr')"), items)
             await ev("closeSheet()")
             # back goes home
             await ev("show('home')"); await pg.wait_for_timeout(300)
@@ -1615,9 +1616,9 @@ async def group_paath(b, url, shots):
                     sess['state'] = d['s']
                     for f in sess['follow']: f.send(json.dumps({'type': 'state', 's': d['s']}))
             def closed(code, reason):
-                if code == 4100:
-                    for f in sess['follow']: f.send(json.dumps({'type': 'end'}))
-                    sess['state'] = None
+                if sess['lead'] is not ws: return   # replaced, or dropped by the test (it says "away" itself)
+                for f in sess['follow']: f.send(json.dumps({'type': 'end' if code == 4100 else 'away'}))
+                if code == 4100: sess['state'] = None
                 sess['lead'] = None
             ws.on_message(msg); ws.on_close(closed)
         else:
@@ -1654,7 +1655,7 @@ async def group_paath(b, url, shots):
     check('group paath: the leader gets a 6-digit code, shown with its QR code', len(code) == 6 and code.isdigit() and await L.is_visible('#gpBody svg.qr') and code[:3] in await L.inner_text('.gpcode'), code)
     await shot(L, 'leader')
     keys = await L.wait_for_function("GP.sent && Object.keys(GP.sent).sort().join(',')"); keys = await keys.json_value()
-    check('group paath: the leader sends only where the recording is (no reader\'s data)', keys == 'au,i,k,on,org,p,r,t,w', keys)
+    check('group paath: the leader sends only where the recording is (no reader\'s data)', keys == 'au,i,k,l,on,org,p,r,t,w', keys)
     await (await L.query_selector('#gpEnd')).is_visible(); await L.evaluate('closeSheet()')
     # the follower: a fresh phone opens the join link
     await F.goto(url + '?join=' + code)
@@ -1672,7 +1673,28 @@ async def group_paath(b, url, shots):
     await L.evaluate("ytPost('pauseVideo')"); await F.wait_for_function("ytInfo.st === 2", timeout=5000)
     t1 = await F.evaluate('ytInfo.t'); await F.wait_for_timeout(800); t2 = await F.evaluate('ytInfo.t')
     check('group paath: the leader pauses, the follower stops', t1 == t2 and 'Paused' in await F.inner_text('#pTrack'), f'{t1} {t2}')
-    await L.evaluate("gpStop()"); await F.wait_for_function("GP.role === null", timeout=5000)
+    # a follower's own ▶ plays nothing (the leader's phone plays; two would echo)
+    await F.evaluate(f"playFrom({i})"); await F.wait_for_timeout(300)
+    check('group paath: a follower\'s ▶ starts no player of its own', await F.evaluate("!document.querySelector('#ytf') && GP.role === 'follow'"))
+    # a broken state from the relay is ignored, never breaks the page
+    for bad in ["{w: '../x', on: 0}", "{w: 'bhaja-govindam', on: 1, k: 'x', t: 1, i: 0, r: 1}", "{w: 'bhaja-govindam', on: 1, k: 0, t: NaN, i: 0, r: 1}", "null"]:
+        await F.evaluate(f"gpApply({bad}, performance.now())")
+    check('group paath: a malformed state is ignored', await F.evaluate("W.id === 'bhaja-govindam' && GP.role === 'follow'"))
+    # the leader's phone goes (closed, locked, offline): the follower stops where it was and says so; it goes on when it is back
+    await L.evaluate("ytPost('playVideo')"); await F.wait_for_function("ytInfo.st === 1", timeout=5000)
+    for f in sess['follow']: f.send(json.dumps({'type': 'away'}))   # the network drops the leader's phone, as the Worker says it
+    await sess['lead'].close(code=4002, reason='dropped'); sess['lead'] = None
+    await F.wait_for_function("GP.away", timeout=5000)
+    await F.wait_for_timeout(350); t1 = await F.evaluate('ytInfo.t'); await F.wait_for_timeout(500); t2 = await F.evaluate('ytInfo.t')   # after a tick (300 ms), before the leader is back (1 s)
+    check('group paath: the leader\'s phone goes, the follower stops and says so', t1 == t2 and "leader's phone" in await F.inner_text('#pTrack'), await F.inner_text('#pTrack'))
+    await L.wait_for_function("GP.live && GP.sent", timeout=10000); await F.wait_for_function("!GP.away && ytInfo.st === 1", timeout=10000)   # it reconnects by itself and says where it is
+    check('group paath: the leader\'s phone is back, the follower goes on', True)
+    # nothing from the leader for 25 s while it plays (its phone locked, its socket still open): the same
+    await F.evaluate("GP.lastAt -= 30000"); await F.wait_for_function("GP.away", timeout=3000)
+    check('group paath: 25 s without a word from a playing leader, the follower stops', await F.evaluate("GP.away && GP.base.p === 0"))
+    await (await L.query_selector('#rMore')).click(); await L.wait_for_timeout(200)   # ☰ › Group paath › End, tapped
+    await (await L.query_selector('#sheetBody [data-m="group"]')).click(); await L.wait_for_timeout(200)
+    await (await L.query_selector('#gpEnd')).click(); await F.wait_for_function("GP.role === null", timeout=5000)
     check('group paath: the leader ends it, the follower leaves and its bar goes', await F.evaluate("document.querySelector('#player').hidden && !document.body.classList.contains('gpf')"))
     check('group paath: no script errors', not errs, '; '.join(errs[:3]))
     await cl.close(); await cf.close()
