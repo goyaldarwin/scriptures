@@ -1,0 +1,14 @@
+{
+ "id": "sehaj-path-kirtan",
+ "work": "sikhism/gurbani/guru-granth-sahib",
+ "type": "youtube",
+ "lang": "pa",
+ "title": {
+  "hi": "सहज पाठ कीर्तन (भाई परमिंदर सिंह, भाई जगजीत सिंह)",
+  "en": "Sehaj Path Kirtan (Bhai Parminder Singh, Bhai Jagjit Singh)",
+  "pa": "ਸਹਿਜ ਪਾਠ ਕੀਰਤਨ (ਭਾਈ ਪਰਮਿੰਦਰ ਸਿੰਘ, ਭਾਈ ਜਗਜੀਤ ਸਿੰਘ)"
+ },
+ "order": 10,
+ "lines": true,
+ "review": "line starts from MMS (every singing of every line); not yet set by ear"
+}
