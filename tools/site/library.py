@@ -444,11 +444,14 @@ def prepare(lib):
     check_classes(shelf)
     folders = check_folders()
     # one word for one thing (docs/PLAYBOOK.md §7): a verse type has the same name and short tag in every work that declares it
-    TY = {}
+    TY, TYP = {}, {}
     for d in folders:
         for k, t in (json.load(open(os.path.join(WORKS, d, 'work.json'), encoding='utf-8')).get('types') or {}).items():
-            key = json.dumps([t.get('name'), t.get('short')], ensure_ascii=False, sort_keys=True)
+            hi_en = lambda o: {f: o[f] for f in ('hi', 'en') if f in o} if isinstance(o, dict) else o   # a Gurbani work's Punjabi name ("pa") is its own addition
+            key = json.dumps([hi_en(t.get('name')), hi_en(t.get('short'))], ensure_ascii=False, sort_keys=True)
             _need(TY.setdefault(k, (key, d))[0] == key, f"tools/works/{d}/work.json: type {k!r} is named {key} but {TY[k][1]} names it {TY[k][0]}; one type, one name")
+            pa = json.dumps([(t.get('name') or {}).get('pa'), (t.get('short') or {}).get('pa')], ensure_ascii=False)
+            if pa != '[null, null]': _need(TYP.setdefault(k, (pa, d))[0] == pa, f"tools/works/{d}/work.json: type {k!r} is named {pa} in Punjabi but {TYP[k][1]} names it {TYP[k][0]}; one type, one name")
     works = {}; seen = {}
     for leaf in leaves(shelf):
         _need(leaf['work'] not in works, f"shelf: work id {leaf['work']!r} is used twice")

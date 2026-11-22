@@ -21,128 +21,153 @@
  "parts": {
   "name": {
    "hi": "अष्टपदी",
-   "en": "Ashtapadi"
+   "en": "Ashtapadi",
+   "pa": "ਅਸਟਪਦੀ"
   },
   "list": [
    {
     "key": "1",
     "hi": "अष्टपदी १",
-    "en": "Ashtapadi 1"
+    "en": "Ashtapadi 1",
+    "pa": "ਅਸਟਪਦੀ ੧"
    },
    {
     "key": "2",
     "hi": "अष्टपदी २",
-    "en": "Ashtapadi 2"
+    "en": "Ashtapadi 2",
+    "pa": "ਅਸਟਪਦੀ ੨"
    },
    {
     "key": "3",
     "hi": "अष्टपदी ३",
-    "en": "Ashtapadi 3"
+    "en": "Ashtapadi 3",
+    "pa": "ਅਸਟਪਦੀ ੩"
    },
    {
     "key": "4",
     "hi": "अष्टपदी ४",
-    "en": "Ashtapadi 4"
+    "en": "Ashtapadi 4",
+    "pa": "ਅਸਟਪਦੀ ੪"
    },
    {
     "key": "5",
     "hi": "अष्टपदी ५",
-    "en": "Ashtapadi 5"
+    "en": "Ashtapadi 5",
+    "pa": "ਅਸਟਪਦੀ ੫"
    },
    {
     "key": "6",
     "hi": "अष्टपदी ६",
-    "en": "Ashtapadi 6"
+    "en": "Ashtapadi 6",
+    "pa": "ਅਸਟਪਦੀ ੬"
    },
    {
     "key": "7",
     "hi": "अष्टपदी ७",
-    "en": "Ashtapadi 7"
+    "en": "Ashtapadi 7",
+    "pa": "ਅਸਟਪਦੀ ੭"
    },
    {
     "key": "8",
     "hi": "अष्टपदी ८",
-    "en": "Ashtapadi 8"
+    "en": "Ashtapadi 8",
+    "pa": "ਅਸਟਪਦੀ ੮"
    },
    {
     "key": "9",
     "hi": "अष्टपदी ९",
-    "en": "Ashtapadi 9"
+    "en": "Ashtapadi 9",
+    "pa": "ਅਸਟਪਦੀ ੯"
    },
    {
     "key": "10",
     "hi": "अष्टपदी १०",
-    "en": "Ashtapadi 10"
+    "en": "Ashtapadi 10",
+    "pa": "ਅਸਟਪਦੀ ੧੦"
    },
    {
     "key": "11",
     "hi": "अष्टपदी ११",
-    "en": "Ashtapadi 11"
+    "en": "Ashtapadi 11",
+    "pa": "ਅਸਟਪਦੀ ੧੧"
    },
    {
     "key": "12",
     "hi": "अष्टपदी १२",
-    "en": "Ashtapadi 12"
+    "en": "Ashtapadi 12",
+    "pa": "ਅਸਟਪਦੀ ੧੨"
    },
    {
     "key": "13",
     "hi": "अष्टपदी १३",
-    "en": "Ashtapadi 13"
+    "en": "Ashtapadi 13",
+    "pa": "ਅਸਟਪਦੀ ੧੩"
    },
    {
     "key": "14",
     "hi": "अष्टपदी १४",
-    "en": "Ashtapadi 14"
+    "en": "Ashtapadi 14",
+    "pa": "ਅਸਟਪਦੀ ੧੪"
    },
    {
     "key": "15",
     "hi": "अष्टपदी १५",
-    "en": "Ashtapadi 15"
+    "en": "Ashtapadi 15",
+    "pa": "ਅਸਟਪਦੀ ੧੫"
    },
    {
     "key": "16",
     "hi": "अष्टपदी १६",
-    "en": "Ashtapadi 16"
+    "en": "Ashtapadi 16",
+    "pa": "ਅਸਟਪਦੀ ੧੬"
    },
    {
     "key": "17",
     "hi": "अष्टपदी १७",
-    "en": "Ashtapadi 17"
+    "en": "Ashtapadi 17",
+    "pa": "ਅਸਟਪਦੀ ੧੭"
    },
    {
     "key": "18",
     "hi": "अष्टपदी १८",
-    "en": "Ashtapadi 18"
+    "en": "Ashtapadi 18",
+    "pa": "ਅਸਟਪਦੀ ੧੮"
    },
    {
     "key": "19",
     "hi": "अष्टपदी १९",
-    "en": "Ashtapadi 19"
+    "en": "Ashtapadi 19",
+    "pa": "ਅਸਟਪਦੀ ੧੯"
    },
    {
     "key": "20",
     "hi": "अष्टपदी २०",
-    "en": "Ashtapadi 20"
+    "en": "Ashtapadi 20",
+    "pa": "ਅਸਟਪਦੀ ੨੦"
    },
    {
     "key": "21",
     "hi": "अष्टपदी २१",
-    "en": "Ashtapadi 21"
+    "en": "Ashtapadi 21",
+    "pa": "ਅਸਟਪਦੀ ੨੧"
    },
    {
     "key": "22",
     "hi": "अष्टपदी २२",
-    "en": "Ashtapadi 22"
+    "en": "Ashtapadi 22",
+    "pa": "ਅਸਟਪਦੀ ੨੨"
    },
    {
     "key": "23",
     "hi": "अष्टपदी २३",
-    "en": "Ashtapadi 23"
+    "en": "Ashtapadi 23",
+    "pa": "ਅਸਟਪਦੀ ੨੩"
    },
    {
     "key": "24",
     "hi": "अष्टपदी २४",
-    "en": "Ashtapadi 24"
+    "en": "Ashtapadi 24",
+    "pa": "ਅਸਟਪਦੀ ੨੪"
    }
   ]
  },
@@ -157,37 +182,44 @@
   "heading": {
    "name": {
     "hi": "शीर्षक",
-    "en": "Heading"
+    "en": "Heading",
+    "pa": "ਸਿਰਲੇਖ"
    }
   },
   "salok": {
    "name": {
     "hi": "सलोक",
-    "en": "Salok"
+    "en": "Salok",
+    "pa": "ਸਲੋਕ"
    },
    "short": {
     "hi": "सलोक",
-    "en": "Salok"
+    "en": "Salok",
+    "pa": "ਸਲੋਕ"
    }
   },
   "pauri": {
    "name": {
     "hi": "पउड़ी",
-    "en": "Pauri"
+    "en": "Pauri",
+    "pa": "ਪਉੜੀ"
    },
    "short": {
     "hi": "पउड़ी",
-    "en": "Pauri"
+    "en": "Pauri",
+    "pa": "ਪਉੜੀ"
    }
   },
   "rahao": {
    "name": {
     "hi": "रहाउ",
-    "en": "Rahao"
+    "en": "Rahao",
+    "pa": "ਰਹਾਉ"
    },
    "short": {
     "hi": "रहाउ",
-    "en": "Rahao"
+    "en": "Rahao",
+    "pa": "ਰਹਾਉ"
    }
   }
  }

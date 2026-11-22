@@ -96,16 +96,17 @@ def gur2dev(s):
 
 
 def pratik(line):
-    """A passage of Gurbani is cited by its first line: the Hindi name in Devanagari letters, the English its ISO 15919."""
+    """A passage of Gurbani is cited by its first line: the Hindi name in Devanagari letters, the English its ISO 15919,
+    the Punjabi the line itself."""
     first = re.sub(r'\s*॥.*$', '', line)
     tr = standard.iso_line(standard.gurmukhi(first))
-    return {'hi': gur2dev(first), 'en': tr[:1].upper() + tr[1:]}
+    return {'hi': gur2dev(first), 'en': tr[:1].upper() + tr[1:], 'pa': first}
 
 
 if __name__ == '__main__':
     items = build(); check(items)
     for x in items: x['p'] = 0; x['s'] = x['id']
-    topics = [{'id': 'mool', 'hi': 'मूल मंत्र', 'en': 'Mool Mantar'},
+    topics = [{'id': 'mool', 'hi': 'मूल मंत्र', 'en': 'Mool Mantar', 'pa': 'ਮੂਲ ਮੰਤਰ'},
               {'id': 'salok.open', **pratik(items[2]['v'][0])}]
     topics += [{'id': x['id'], **pratik(x['v'][0])} for x in items if x['y'] == 'pauri']
     topics.append({'id': 'salok.close', **pratik(items[-1]['v'][1])})
