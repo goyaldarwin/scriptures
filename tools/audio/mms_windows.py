@@ -23,6 +23,7 @@ import json, os, re, sys, unicodedata
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.dirname(os.path.dirname(HERE))
 WIN, PAD = 90.0, 6.0
 LONG, PIECE, OVER, MARGIN = 2400.0, 480.0, 60.0, 300.0   # a "lines" track over 40 min: pieces of 8 min, overlapping 1 min each side
+DRIFT = 0.06   # where singing falls drifts from the even-by-length estimate by up to ~5% of the track (Sehaj Path Kirtan's Savaiye: 5.5 min in 106)
 
 def rom(lines):
     t = unicodedata.normalize('NFD', ' '.join(lines).lower())
@@ -51,14 +52,15 @@ def main(src, whole=False, skip=()):
                 a0, b0 = out[-1]['a'], out[-1]['b']
                 if b0 - a0 > LONG:
                     # a track too long to search whole (beyond one machine's memory): overlapping pieces of PIECE seconds, each
-                    # with the verses its stretch may sing, judged by where the verses fall if sung evenly by length (± MARGIN s)
+                    # with the verses its stretch may sing, judged by where the verses fall if sung evenly by length (± MARGIN s, or ± DRIFT of
+                    # the track where that is more: a track of hours drifts further)
                     out.pop()
                     tot = sum(L(i) for i in idx); acc, pos = 0, {}
                     for i in idx: pos[i] = a0 + (b0 - a0) * acc / tot; acc += L(i)
-                    t = a0
+                    t = a0; m = max(MARGIN, DRIFT * (b0 - a0))
                     while t < b0:
                         a1, b1 = max(a0, t - OVER), min(b0, t + PIECE + OVER)
-                        mine = [i for i in idx if a1 - MARGIN <= pos[i] <= b1 + MARGIN]
+                        mine = [i for i in idx if a1 - m <= pos[i] <= b1 + m]
                         out.append({'yt': tr['yt'], 'a': round(a1, 2), 'b': round(b1, 2), 'core': [round(t, 2), round(min(b0, t + PIECE), 2)],
                                     'keep': [IT[i]['id'] for i in mine if t <= pos[i] < t + PIECE] or [IT[mine[0]]['id']],
                                     'lines': [{'id': IT[i]['id'], 'rom': rom(IT[i].get('t') or []), 'rough': None} for i in mine],

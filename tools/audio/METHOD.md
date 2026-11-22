@@ -70,7 +70,8 @@ length, forward only (`docs/PLAYBOOK.md` §7).
    needed: each track is one window, its whole length, carrying its verses' text (`mms_windows.py`, which a "lines"
    source always cuts so). A track over 40 minutes (a whole bani: the Oankar, the Sidh Gosht) is beyond one machine's memory
    searched whole, so it is cut into overlapping pieces of 8 minutes, each with the verses its stretch may sing (where they
-   fall if the bani is sung evenly by length, give or take 5 minutes); a piece may open and end anywhere in the song, and
+   fall if the bani is sung evenly by length, give or take 5 minutes or 6% of the track, whichever is more: singing
+   drifts from that estimate by up to about 5% of the track, 5.5 minutes in Sehaj Path Kirtan's 106-minute Savaiye); a piece may open and end anywhere in the song, and
    answers for the singings that start in its middle stretch.
 2. **MMS on the whole track** (`mms_align.py` → `line_align.py`): from MMS's frame-by-frame letter probabilities, the best
    path through a grammar of how a shabad is sung: a pada line by line (a line again, back to an earlier line of the
