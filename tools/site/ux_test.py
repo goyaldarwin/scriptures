@@ -1150,6 +1150,12 @@ async def main():
             window.scrollBy(0, -300); await new Promise(r => setTimeout(r, 300)); const y3 = scrollY; for (let n = 0; n < 3; n++){ followLines(i, e - 0.2); await new Promise(r => setTimeout(r, 300)); } ok.push(Math.abs(scrollY - y3) < 2);   // scrolled back by hand: left there
             stopAudio(); return ok; })()""")
         check('playing a verse taller than the screen: the page follows its lines, from the first to the last, once each', all(tall), tall)
+        tallT = await ev("""(async () => { const i = IT.findIndex(x => x.id === 'a01.p3'); S.timing.on = true; openReader('k', i); await new Promise(r => setTimeout(r, 500));
+            PL.t = AUT.findIndex(a => a.some(x => x[0] === i)); const a = AUT[PL.t], m = a.findIndex(x => x[0] === i), s = a[m][1], e = endOf(i) ?? a[m + 1][1];
+            PL.on = true; PL.cur = -1; $('#player').hidden = false; document.body.classList.add('playing'); setCur(i); await new Promise(r => setTimeout(r, 900));
+            const y0 = scrollY; for (let n = 0; n < 5; n++){ followLines(i, e - 0.3); await new Promise(r => setTimeout(r, 300)); }
+            await new Promise(r => setTimeout(r, 500)); const y2 = scrollY; S.timing.on = false; stopAudio(); return [y0, y2]; })()""")
+        check('with Audio timing on too, the page follows the lines of a verse taller than the screen', tallT[1] > tallT[0] + 100, tallT)
         # a third meaning language: with a Punjabi source the capsule shows ਪੰ · En (English app) or ਪੰ · हिं
         # (Hindi app), always four places; Punjabi pieces sit under their lines; Sources lists it and "Meanings in the bar";
         # search finds it; recitation mode turns it off too
@@ -1245,6 +1251,28 @@ async def main():
             updateHeader(); const f109 = $('#rMid .ml').textContent; WS().org = 'k'; S.settings.atOpen = {}; save();
             return {txt: p && p.textContent, top, f110, f109}; })()""")
         check('Sri Guru Granth Sahib: an Ang that begins inside a verse opens at its first line, and the footer names the page of the line at the top', ap['txt'] and ap['txt'].startswith('ਸੇਵਾ ਸੁਰਤਿ') and ap['top'] is not None and 0 <= ap['top'] <= 30 and ap['f110'].startswith('Ang 110') and ap['f109'].startswith('Ang 109'), ap)
+        # the Granth's recordings sing many shabads in one video (a Sehaj Path Kirtan track): the progress bar runs over the section
+        # being heard, from its first singing to the next section's (work.json "bar": "topic"), not over the whole track
+        tb = await ev("""(async () => { await openWork('guru-granth-sahib', true); await loadSources(); show('home');
+            const i = ID['1360.5'], id = IT[i].id, a = SRC.au.at[id]; if (!a) return null;
+            PL.t = a[0]; TSPAN = null; const tp = topicOf(i), sp = topicSpan(i, 1e7), mine = AUT[PL.t].filter(x => topicOf(x[0]) === tp).map(x => x[1]);
+            const after = AUT[PL.t].filter(x => x[1] > Math.max(...mine) && topicOf(x[0]) !== tp).map(x => x[1]);
+            return {bar: W.bar, s0: sp && sp[0], e: sp && sp[1], first: Math.min(...mine), next: after.length ? Math.min(...after) : 1e7, whole: trStart(SRC.au.tracks[PL.t])}; })()""")
+        check('Sri Guru Granth Sahib: the progress bar runs over the section being heard (the Gatha within its Sehaj Path Kirtan track), not the whole track', tb and tb['bar'] == 'topic' and tb['s0'] == tb['first'] and tb['e'] == tb['next'] and tb['s0'] > tb['whole'], tb)
+        # the Sukhmani's verses inside the Granth keep their own sections (a19.salok): the footer names the Ang they are on, not "Ang 0"
+        fa = await ev("""(async () => { await openWork('guru-granth-sahib', true); show('home'); openReader('k', ID['a19.salok']); await new Promise(r => setTimeout(r, 500));
+            document.getElementById('v' + ID['a19.salok']).scrollIntoView(); await new Promise(r => setTimeout(r, 300)); updateHeader();
+            const t = $('#rMid .ml').textContent; show('home'); return [atPage(ID['a19.salok']), t]; })()""")
+        check('Sri Guru Granth Sahib: a Sukhmani verse shows the Ang it is on in the footer (288), not Ang 0', fa[0] == 288 and '288' in fa[1].replace('२', '2').replace('८', '8'), fa)
+        # Gurbani's headings in Gurmukhi with ਪੰ (the owner): the part, the section and the verse type over the Gatha read in Punjabi;
+        # with En, in English; the setting is put back
+        ph = await ev("""(async () => { const L0 = JSON.stringify(S.settings.layers); await openWork('guru-granth-sahib', true); show('home');
+            const look = async (pa, en) => { S.settings.layers.pa = pa; S.settings.layers.e = en; openReader('k', ID['1360.4']); await new Promise(r => setTimeout(r, 500));
+              const v = document.getElementById('v' + ID['1360.4']); let h = v.previousElementSibling, got = [];
+              while (h && h.matches('.part-h, .topic-h, .vtype')){ got.unshift(h.textContent.trim()); h = h.previousElementSibling; } return got; };
+            const pa = await look(true, false), en = await look(false, true); S.settings.layers = JSON.parse(L0); save(); show('home');
+            return {pa, en}; })()""")
+        check('Gurbani headings: with ਪੰ the part, section and verse type are in Gurmukhi (ਗਾਥਾ · ਮਹਲਾ 5 ਗਾਥਾ · ॥ ਪਦ ॥); with En in English', ph['pa'] == ['ਗਾਥਾ', 'ਮਹਲਾ 5 ਗਾਥਾ', '॥ ਪਦ ॥'] and ph['en'][0] == 'Gatha' and ph['en'][-1] == '॥ Stanza ॥', ph)
         # “Review audio timing” in the verse's ⋮ menu: only that verse joins the to-check list (seen in timing mode); one blue dot on ▶
         # and in the menu shows it is marked; it leaves the list once its start is set
         fg = await ev("""(async () => { const k0 = JSON.stringify(S.timing.flags); await openWork('manas', true); await loadSources(); show('home');

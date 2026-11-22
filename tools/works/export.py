@@ -81,7 +81,8 @@ def read_text(wid, M, lib):
             elif cmd == 'section': sec = arg
             elif cmd == 'lang': lang = arg
             elif cmd == 'topic':
-                f = [x.strip() for x in arg.split('|')]; need(len(f) == 2, f'{where}: @topic hi | en'); topic = {'hi': f[0], 'en': f[1]}
+                f = [x.strip() for x in arg.split('|')]; need(len(f) in (2, 3), f'{where}: @topic hi | en [| pa]')
+                topic = {'hi': f[0], 'en': f[1], **({'pa': f[2]} if len(f) == 3 else {})}
             else: need(False, f'{where}: unknown line {line!r}')
             continue
         m = TAKE.fullmatch(line)
@@ -107,7 +108,7 @@ def read_text(wid, M, lib):
                 for t in inside:
                     nm = names.get(t['id'], t) if names is not None else t
                     need(names is None or t['id'] in names or t is inside[0], f'{where}: no heading for topic {t["id"]} in {m.group("w")}/topics.json')
-                    topics.append({'id': t['id'], 'hi': nm['hi'], 'en': nm['en']})
+                    topics.append({'id': t['id'], 'hi': nm['hi'], 'en': nm['en'], **({'pa': nm['pa']} if nm.get('pa') else {})})
             continue
         m = HEAD.fullmatch(line)
         if m:
@@ -144,8 +145,8 @@ def export(wid, lib):
     M = manifest(wid); WP = M['path']
     need(M.get('load') in (None, 'parts'), f'{wid}/work.json: load must be "parts" (meanings and own senses one file per part) or absent')
     BYPART = M.get('load') == 'parts'; NP = len(M['parts']['list'])
-    need(not isinstance(M.get('sections'), dict) or all(isinstance(v, dict) and isinstance(v.get('hi'), str) and isinstance(v.get('en'), str) for v in M['sections'].values()),
-         f'{wid}/work.json: sections maps a section id to its label {{hi, en}}')
+    need(not isinstance(M.get('sections'), dict) or all(isinstance(v, dict) and isinstance(v.get('hi'), str) and isinstance(v.get('en'), str) and isinstance(v.get('pa', ''), str) for v in M['sections'].values()),
+         f'{wid}/work.json: sections maps a section id to its label {{hi, en, pa?}}')
     items, topics, taken = read_text(wid, M, lib)
     try: cite.compute([x for x in items if x['id'] not in taken], M)   # every verse's number as cited (tools/text/cite.py): the one source of every number shown
     except AssertionError as e: need(False, f'{wid}/work.json: {e}')

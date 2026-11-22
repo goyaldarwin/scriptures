@@ -24,7 +24,8 @@ library's verses (README.md, "Structure"; every choice in reconciliation.md):
 - types: shabad, pauri, salok, rahao, pad (a stanza of the Bara Mahas, the Ruti, the Gatha, the Phunhe, the Chaubole),
   swayya (the Swayye);
 - topics: every shabad, and every salok and swayya of the closing compositions, by its first line; a composition (a
-  vaar, a bani of pauris or stanzas) once, at its start, by its heading.
+  vaar, a bani of pauris or stanzas) once, at its start, by its heading; named in Devanagari, ISO 15919 and the Gurmukhi
+  line itself.
 """
 import json, os, re, sys
 HERE = os.path.dirname(os.path.abspath(__file__)); WORK = os.path.dirname(HERE); WORKS = os.path.dirname(WORK)
@@ -321,7 +322,7 @@ def write(items, topics):
         if x['part'] != part: part = x['part']; out += ['', f'@part {KEYS[part]}']
         if 'take' in x: out.append(RUN[x['take']]); sec = None; continue
         if x['s'] != sec: sec = x['s']; out.append(f'@section {sec}')
-        if x['id'] in T: out.append(f"@topic {T[x['id']]['hi']} | {T[x['id']]['en']}")
+        if x['id'] in T: t = T[x['id']]; out.append(f"@topic {t['hi']} | {t['en']}" + (f" | {t['pa']}" if t.get('pa') else ''))
         out.append(f"[{x['id']} {x['y']} {x['n']}]")
         out += x['v']
     open(os.path.join(WORK, 'text.txt'), 'w', encoding='utf-8').write('\n'.join(out) + '\n')

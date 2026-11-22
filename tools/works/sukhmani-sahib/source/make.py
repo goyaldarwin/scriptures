@@ -37,12 +37,12 @@ def gur2dev(s):
 
 # Two topics in each Ashtapadi: its Salok and its eight pauris, each named by its first line — the way a passage
 # of Gurbani is cited ("ਸਿਮਰਉ ਸਿਮਰਿ ਸਿਮਰਿ ਸੁਖੁ ਪਾਵਉ"). The Hindi name is the line in Devanagari letters, the English
-# name its ISO 15919 transliteration (tools/text/standard.py).
+# name its ISO 15919 transliteration (tools/text/standard.py), the Punjabi name the line itself.
 def pratik(x, skip):
     j = next(i for i, l in enumerate(x['v']) if not l.startswith(skip))
     first = re.sub(r'\s*॥.*$', '', x['v'][j])
     tr = standard.iso_line(standard.gurmukhi(first))
-    return {'hi': gur2dev(first), 'en': tr[:1].upper() + tr[1:]}
+    return {'hi': gur2dev(first), 'en': tr[:1].upper() + tr[1:], 'pa': first}
 
 
 topics = []
