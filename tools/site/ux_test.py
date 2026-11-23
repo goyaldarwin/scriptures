@@ -1037,12 +1037,12 @@ async def main():
         check('offline: a work opened once is readable without any network, with its meanings', kept[0] and kept[1] >= 4 and off[0] == 'ramraksha' and off[1] > 0 and off[2] > 0 and off[3] > 0 and off[4], (kept, off, errs3[:2]))
         check('offline: a work never opened on this phone says so', never[0] == 'ramraksha' and ('No internet' in never[1] or 'इंटरनेट' in never[1]), never)
         await ctx2.close()
-        # the speed button in the player bar cycles the speeds; ☰ has no speed and no reading timer
-        sp = await ev("""(async () => { await openWork('ramraksha', true); show('home'); openReader('k', 0); S.settings.rate = 1; applyRate(); playFrom(0, null); await new Promise(r => setTimeout(r, 300));
-            const b = document.querySelector('#pRate'), r = [b.textContent, !!b.offsetParent]; b.click(); r.push(b.textContent, S.settings.rate); for (let k = 0; k < 5; k++) b.click(); r.push(S.settings.rate);
-            document.querySelector('#rMore').click(); await new Promise(r => setTimeout(r, 200)); r.push(!document.querySelector('#sheetBody [data-rate]'), !!document.querySelector('#sheetBody [data-m=timer]'), !!document.querySelector('#timerPill'));   // six taps: round the six speeds, back to 1×; the speed is only in the bar
-            closeSheet(); S.settings.rate = 1; applyRate(); stopAudio(); return r; })()""")
-        check('player: a speed button in the bar steps through the speeds; speed is nowhere else; no reading timer', sp == ['1×', True, '1.25×', 1.25, 1, True, False, False], sp)
+        # the speed button in the player bar opens the speed sheet (one tap never changes the speed); ☰ has no speed and no reading timer
+        sp = await ev("""(async () => { await openWork('ramraksha', true); show('home'); openReader('k', 0); setRate(1); playFrom(0, null); await new Promise(r => setTimeout(r, 300));
+            const b = document.querySelector('#pRate'), r = [b.textContent, !!b.offsetParent]; b.click(); await new Promise(r => setTimeout(r, 150)); r.push(b.textContent, RATE(), document.querySelectorAll('#sheetBody [data-rate]').length); closeSheet();
+            document.querySelector('#rMore').click(); await new Promise(r => setTimeout(r, 200)); r.push(!document.querySelector('#sheetBody [data-rate]'), !!document.querySelector('#sheetBody [data-m=timer]'), !!document.querySelector('#timerPill'));   // the speed is only in the bar
+            closeSheet(); setRate(1); stopAudio(); return r; })()""")
+        check('player: a speed button in the bar opens the speed sheet without changing the speed; speed is nowhere else; no reading timer', sp == ['1×', True, '1×', 1, 4, True, False, False], sp)
         # Bookmarks & notes: each list folds under its heading, and a fold is remembered
         fd = await ev("""(async () => { await openWork('manas', true); show('home'); const me = ME(); me.bm[KEY(IT[3].id)] = 1; save(); show('bookmarks'); await new Promise(r => setTimeout(r, 300));
             const d = document.querySelector('#bmBody .bmsec[data-fold=bm]'), r = [d.open, d.querySelectorAll('.res').length]; d.querySelector('summary').click(); await new Promise(r => setTimeout(r, 200)); r.push(d.open, !!(S.settings.bmFold || {}).bm);
@@ -1252,27 +1252,46 @@ async def main():
             updateHeader(); const f109 = $('#rMid .ml').textContent; WS().org = 'k'; S.settings.atOpen = {}; save();
             return {txt: p && p.textContent, top, f110, f109}; })()""")
         check('Sri Guru Granth Sahib: an Ang that begins inside a verse opens at its first line, and the footer names the page of the line at the top', ap['txt'] and ap['txt'].startswith('ਸੇਵਾ ਸੁਰਤਿ') and ap['top'] is not None and 0 <= ap['top'] <= 30 and ap['f110'].startswith('Ang 110') and ap['f109'].startswith('Ang 109'), ap)
-        # the progress bar runs over the part being heard (the owner), however the recording is cut: Salok Mahala 9, a video of its
-        # own, once over its 57 saloks (not per salok); the Gita's one video starts again at 0% at each chapter; the Manas's Bal
-        # Kand, six videos, once over all six; a following phone in a group paath shows the same bar (partBar)
+        # the progress bar runs over the reading being heard (the owner), however the recording is cut: Salok Mahala 9, a video of
+        # its own, once over its 57 saloks (not per salok); the Gita's one video starts again at 0% at each chapter; the Manas's
+        # Bal Kand, six videos, once over all six; a day of a parayan (Navah day 7: four kandas; Masa day 1: inside Bal Kand) once
+        # over the day; a following phone in a group paath shows the same bar (partBar)
         pb = await ev("""(async () => {
-            const at = (wid, id) => { const i = ID[id], a = SRC.au.at[id]; PL.t = a[0]; partBar(i, a[1], null); return parseFloat($('#pProg').style.width); };
-            const mid = (wid, id) => { const i = ID[id], a = SRC.au.at[id]; PL.t = a[0]; partBar(i, a[1] + 5, null); return parseFloat($('#pProg').style.width); };
-            const r = {};
-            await openWork('guru-granth-sahib', true); await loadSources(); show('home');
+            const at = (id, dt) => { const i = ID[id], a = SRC.au.at[id]; PL.t = a[0]; partBar(i, a[1] + (dt || 0), null); return parseFloat($('#pProg').style.width); };
+            const r = {}, P0 = PL.org;
+            await openWork('guru-granth-sahib', true); await loadSources(); show('home'); PL.org = 'k';
             const m9 = IT.filter(x => x.p === 48).map(x => x.id);
-            r.m9first = at('ggs', m9[0]); r.m9mid = at('ggs', m9[11]); r.m9last = at('ggs', m9[m9.length - 1]); r.m9a = mid('ggs', m9[10]); r.m9b = mid('ggs', m9[11]);
-            await openWork('bhagavad-gita', true); await loadSources(); show('home');
+            r.m9first = at(m9[0]); r.m9mid = at(m9[11]); r.m9last = at(m9[m9.length - 1]); r.m9a = at(m9[10], 5); r.m9b = at(m9[11], 5);
+            await openWork('bhagavad-gita', true); await loadSources(); show('home'); PL.org = 'k';
             const g2 = IT.find(x => x.p === 2).id, g1 = IT.filter(x => x.p === 1).map(x => x.id);
-            r.gitaCh = at('gita', g2); r.gitaPrevEnd = at('gita', g1[g1.length - 1]); r.gitaOne = SRC.au.tracks.length;
-            await openWork('manas', true); await loadSources(); show('home');
+            r.gitaCh = at(g2); r.gitaPrevEnd = at(g1[g1.length - 1]); r.gitaOne = SRC.au.tracks.length;
+            await openWork('manas', true); await loadSources(); show('home'); PL.org = 'k';
             const bal = IT.filter(x => (x.p || 0) === 0 && SRC.au.at[x.id]), t1 = bal.find(x => SRC.au.at[x.id][0] === 1);
-            r.balVideos = new Set(bal.map(x => SRC.au.at[x.id][0])).size; r.balT1 = at('manas', t1.id); r.balFirst = at('manas', bal[0].id);
-            show('home'); return r; })()""")
+            r.balVideos = new Set(bal.map(x => SRC.au.at[x.id][0])).size; r.balT1 = at(t1.id); r.balFirst = at(bal[0].id);
+            PL.org = 'N'; const [na, nb] = dayRange('N', 7), d7 = IT.slice(na, nb + 1).filter(x => SRC.au.at[x.id]);
+            r.n7parts = new Set(d7.map(x => x.p || 0)).size; r.n7first = at(d7[0].id); r.n7last = at(d7[d7.length - 1].id);
+            const k3 = d7.find(x => x.p === 3); r.n7k3 = at(k3.id);
+            PL.org = 'M'; const [ma, mb] = dayRange('M', 1), m1 = IT.slice(ma, mb + 1).filter(x => SRC.au.at[x.id]);
+            r.m1last = at(m1[m1.length - 1].id); r.m1first = at(m1[0].id);
+            PL.org = P0; show('home'); return r; })()""")
         check('progress bar: Salok Mahala 9 runs once over the part (0% at its first salok, rising salok by salok, near 100% at its last), not per salok',
               pb and pb['m9first'] < 5 and 10 < pb['m9mid'] < 40 and pb['m9last'] > 90 and pb['m9b'] > pb['m9a'], pb)
         check('progress bar: a video holding several parts (the Gita) starts again at 0% at each chapter', pb and pb['gitaOne'] == 1 and pb['gitaCh'] < 1 and pb['gitaPrevEnd'] > 90, pb)
         check('progress bar: a part over several videos (the Manas\'s Bal Kand) runs once over all of them', pb and pb['balVideos'] > 1 and pb['balFirst'] < 1 and 5 < pb['balT1'] < 40, pb)
+        check('progress bar: a parayan day runs once over the day, across kandas (Navah day 7) and ending inside one (Masa day 1)',
+              pb and pb['n7parts'] > 1 and pb['n7first'] < 3 and 5 < pb['n7k3'] < 95 and pb['n7last'] > 90 and pb['m1first'] < 3 and pb['m1last'] > 90, pb)
+        # the playing speed (the owner, for elders): a tap on 1× only opens the speed sheet, Normal first; a speed chosen fills the
+        # button; it is never saved, so the next opening of the app starts at 1×
+        sp = await ev("""(async () => { $('#pRate').click(); await new Promise(r => setTimeout(r, 200));
+            const opts = [...document.querySelectorAll('#sheetBody [data-rate]')].map(b => +b.dataset.rate), still = RATE();
+            document.querySelector('#sheetBody [data-rate="1.25"]').click(); await new Promise(r => setTimeout(r, 100));
+            const now = RATE(), filled = $('#pRate').classList.contains('on'), open = $('#sheet').classList.contains('on'); save();
+            const kept = JSON.parse(localStorage.getItem(LS)).settings.rate;
+            S.settings.rate = 2; migrate(); const old = S.settings.rate;
+            setRate(1); return {opts, still, now, filled, open, kept: kept === undefined ? null : kept, old: old === undefined ? null : old, back: RATE(), plain: !$('#pRate').classList.contains('on')}; })()""")
+        check('playing speed: a tap only opens the sheet (Normal first: 1, 0.75, 1.25, 1.5); a choice sets it, fills the button and closes the sheet',
+              sp and sp['still'] == 1 and sp['opts'] == [1, 0.75, 1.25, 1.5] and sp['now'] == 1.25 and sp['filled'] and not sp['open'], sp)
+        check('playing speed: never saved, and a speed an older version saved is dropped, so every opening starts at 1×', sp and sp['kept'] is None and sp['old'] is None and sp['back'] == 1 and sp['plain'], sp)
         # the Sukhmani's verses inside the Granth keep their own sections (a19.salok): the footer names the Ang they are on, not "Ang 0"
         fa = await ev("""(async () => { await openWork('guru-granth-sahib', true); show('home'); openReader('k', ID['a19.salok']); await new Promise(r => setTimeout(r, 500));
             document.getElementById('v' + ID['a19.salok']).scrollIntoView(); await new Promise(r => setTimeout(r, 300)); updateHeader();
@@ -1328,7 +1347,7 @@ async def main():
         du = await ev("""(async () => { await openWork('manas', true); await loadSources(); const o = PLANS[0].id; WS().org = o; show('home'); renderHome(); await new Promise(r => setTimeout(r, 300));
             const rows = document.querySelectorAll('#orgList .lplay.timed[data-pa] + .ldur').length;   /* the days (a page's ▶, the āratī's, is not a day) */ let sum = 0; for (let n = 1; n <= PLAN[o].n; n++){ const [a, b] = dayRange(o, n); sum += spanSecs(a, b); }
             const tr = AUT.reduce((s, L, t) => s + trEnd(SRC.au.tracks[t]) - L[0][1], 0), [a1, b1] = dayRange(o, 1), one = spanSecs(a1, b1);
-            const r0 = S.settings.rate; S.settings.rate = 2; const two = spanSecs(a1, b1); S.settings.rate = r0;
+            const r0 = RATE(); RATE_NOW = 2; const two = spanSecs(a1, b1); RATE_NOW = r0;   /* a speed the sheet does not offer, to halve the time exactly */
             openReader(o, b1); await new Promise(r => setTimeout(r, 600)); const nx = document.querySelector('.endb [data-next] + .ndur'); WS().org = 'k';
             return [rows === PLAN[o].n, Math.abs(sum - tr) < 60, Math.abs(two * 2 - one) < 1, !!nx && nx.textContent.startsWith('▶')]; })()""")
         check('a plan day\'s ▶ shows how long it plays, at the speed set; so does the next day at a day\'s end', all(du), du)

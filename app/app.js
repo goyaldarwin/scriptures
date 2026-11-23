@@ -92,6 +92,7 @@ function migrate(){
     S.profiles.forEach(p => { const n = {}; for (const k in p.gloss || {}) n[k.includes(':') ? k : 'awa:' + k] = p.gloss[k]; p.gloss = n; });
     S.v = 3;
   }
+  if (S.settings) delete S.settings.rate;   // the playing speed is never kept: every opening starts at 1× (the owner, for elders)
   oneReader(); fillTiming();
 }
 // One reader per device: there is no list of readers. Older saved data that has several keeps
@@ -1161,10 +1162,13 @@ function ytWatch(ms){
 }
 function ytNote(html){ ytNoteOff(); const d = document.createElement('div'); d.className = 'ytno'; d.innerHTML = html; $('#ytBox').appendChild(d); }
 function ytNoteOff(){ $$('#ytBox .ytno').forEach(x => x.remove()); }
-// Playing speed: 0.5× to 2× — YouTube's own speed, so the verse times (in the recording's
-// time) stay right; the light follows the recording. Chosen with the speed button in the player bar; kept for next time.
-const RATES = [0.5, 0.75, 1, 1.25, 1.5, 2];
-function RATE(){ return S.settings.rate || 1; }
+// Playing speed: 0.75× to 1.5× — YouTube's own speed, so the verse times (in the recording's time) stay right; the light
+// follows the recording. Chosen in a small sheet opened by the speed button in the player bar. Fault tolerant (the owner: an
+// elder who changes it by mistake must not be stuck with it): a stray tap only opens the sheet, a speed other than 1× is
+// shown filled and named under the verse, and every opening of the app starts at 1× (the speed is never saved).
+const RATES = [0.75, 1, 1.25, 1.5];
+let RATE_NOW = 1;
+function RATE(){ return RATE_NOW; }
 // how long a stretch takes with the recording chosen, at the speed set: on each recording, from the start of its first verse
 // to the end of its last (its set end, else the next verse's start, else the recording's end), pauses between verses included
 function spanSecs(a, b){
@@ -1176,9 +1180,18 @@ function spanSecs(a, b){
 // 48 m · 4 h 58 m (४ घं ५८ मि), to the nearest minute: a listening time, so it is shown with ▶, never as the time to read
 function durLabel(sec){ if (!sec) return ''; const m = Math.max(1, Math.round(sec / 60)), h = Math.floor(m / 60), r = m % 60;
   return h ? DEV(h) + T(' घं', ' h') + (r ? ' ' + DEV(r) + T(' मि', ' m') : '') : DEV(m) + T(' मि', ' m'); }
-function applyRate(){ if (ytOK) ytPost('setPlaybackRate', [RATE()]); if (PL.on) pSub(); $('#pRate').textContent = RATE() + '×'; }
-// the speed button in the player bar: one tap moves to the next speed, round and round
-$('#pRate').onclick = () => { S.settings.rate = RATES[(RATES.indexOf(RATE()) + 1) % RATES.length]; save(); applyRate(); toast(T('गति ', 'Speed ') + RATE() + '×'); };
+function applyRate(){ if (ytOK) ytPost('setPlaybackRate', [RATE()]); if (PL.on) pSub(); syncRate(); }
+function syncRate(){ const b = $('#pRate'); b.textContent = RATE() + '×'; b.classList.toggle('on', RATE() !== 1); }
+function setRate(r){ RATE_NOW = RATES.includes(r) ? r : 1; applyRate(); }   // a group paath's leader sends it with its next state (gpLead)
+// the speed button opens the speed sheet: Normal first and largest, then slower and faster; a tap chooses and closes it
+const RATEN = {0.75: ['धीमी', 'Slower'], 1: ['सामान्य', 'Normal'], 1.25: ['तेज़', 'Faster'], 1.5: ['और तेज़', 'Fastest']};
+function openRate(){
+  const b = r => '<button class="btn' + (r === RATE() ? '' : ' ghost') + '" data-rate="' + r + '">' + (r === 1 ? '1× · ' + T(RATEN[1][0], RATEN[1][1]) : '<b>' + r + '×</b><small>' + T(RATEN[r][0], RATEN[r][1]) + '</small>') + '</button>';
+  openSheet('<h2>' + T('सुननेकी गति', 'Playing speed') + '</h2><div class="rates">' + b(1) + '<div class="acts">' + RATES.filter(r => r !== 1).map(b).join('') + '</div></div>' +
+    '<p class="small muted">' + T('ऐप दोबारा खोलनेपर गति फिर सामान्य (1×) हो जाती है।', 'The speed goes back to Normal (1×) each time the app is opened.') + '</p>');
+  $$('#sheetBody [data-rate]').forEach(x => x.onclick = () => { setRate(+x.dataset.rate); closeSheet(); });
+}
+$('#pRate').onclick = openRate;
 /* outside the website (e.g. a claude.ai artifact) YouTube cannot be embedded: open YouTube's own player page, which can stop at the end of what was asked */
 function ytWatchURL(){
   const A = SRC.au, st = Math.floor(ytInfo.t || 0); let end = '';
@@ -1220,7 +1233,8 @@ function playLabel(i){ const it = IT[i], c = CIT(it), wd = W.cite && W.cite.word
 // where a verse is, around its label: the part (in a work of several) and a named section ("Uttar Kand · Closing", "Namaskarashtak")
 function placeOf(i){ const p = PAGES[itemPage[i]]; return joinPlace([PARTS.length > 1 ? KNAME(IT[i].p) : '', SECN(p.s)]); }
 // the player's small line: outside the reader it says the label can be tapped (“Go to verse ›”); in the reader, nothing
-function pSub(){ const out = CURVIEW !== 'reader', g = GP.role ? gpSub() : ''; $('#pTrack').textContent = g || (out ? T('पदपर जाएँ ›', 'Go to verse ›') : ''); $('#pInfo').classList.toggle('go', out);
+function pSub(){ const out = CURVIEW !== 'reader', g = GP.role ? gpSub() : '', sp = RATE() !== 1 && GP.role !== 'follow' ? T('गति ', 'Speed ') + RATE() + '×' : '';   // a speed other than 1× is named (the owner: seen, so never a mystery)
+  $('#pTrack').textContent = g || [sp, out ? T('पदपर जाएँ ›', 'Go to verse ›') : ''].filter(Boolean).join(' · '); $('#pInfo').classList.toggle('go', out);
   $('#pInfo').setAttribute('aria-label', T('चल रहे पदपर जाएँ', 'Go to the verse playing')); }
 function playingName(){ return (R.org === 'k' ? KNAME(R.n) : GROUP[R.org] ? GNAME(R.org) : TT(PLAN[R.org].name) + ' · ' + VN(R.n)) + ' · ' + TT(SRC.au.meta.title); }   // the speed has its own button in the bar
 // Fine-tuning preview: after − / + on a start, the first 2 s of the verse play from the new start; on an
@@ -1233,7 +1247,7 @@ function snippet(i, k){
   if (GP.role === 'follow'){ gpNoPlay(); return; }
   const x = SRC.au.at[IT[i].id]; if (!x) return; const tr = SRC.au.tracks[x[0]];
   const t0 = k === 1 ? x[1] : Math.max(x[1], x[2] - 2), t1 = k === 1 ? (x[2] != null ? Math.min(x[2], x[1] + 2) : x[1] + 2) : x[2];
-  PL.on = true; PL.t = x[0]; PL.end = null; PL.one = false; PL.snip = t1; PL.whole = false; PL.endMsg = '';
+  PL.on = true; PL.t = x[0]; PL.org = R.org; PL.end = null; PL.one = false; PL.snip = t1; PL.whole = false; PL.endMsg = '';
   $('#player').hidden = false; document.body.classList.add('playing');
   seekGuard(t0);
   if (ytVid !== tr.yt || !ytFrame()) ytLoad(tr.yt, t0); else { ytPost('seekTo', [t0, true]); ytPost('playVideo'); ytInfo.t = t0; ytInfo.at = performance.now(); }
@@ -1251,7 +1265,7 @@ function playFrom(i, end, tk){
   if (!hasAu(i)){ const j = firstAu(i, Math.min(IT.length - 1, i + 80)); if (j == null) return; i = j; }
   const t = tk != null ? tk : SRC.au.at[IT[i].id][0], st0 = SRC.au.at[IT[i].id][1], tr = SRC.au.tracks[t];
   const st = tk != null ? trStart(tr) : (end != null && i === tr.fi) ? trStart(tr) : st0;   // tk: a further track of the same verse, from its start
-  PL.on = true; PL.t = t; PL.end = end; PL.one = end === i; PL.cur = -1; PL.whole = false; PL.endMsg = ''; AN.playT0 = Date.now();   // PL.one: a single verse
+  PL.on = true; PL.t = t; PL.org = R.org; PL.end = end; PL.one = end === i; PL.cur = -1; PL.whole = false; PL.endMsg = ''; AN.playT0 = Date.now();   // PL.one: a single verse
   $('#player').hidden = false; document.body.classList.add('playing'); wake(true);
   seekGuard(st);
   if (ytVid !== tr.yt || !ytFrame()) ytLoad(tr.yt, st); else { ytPost('seekTo', [st, true]); ytPost('playVideo'); ytInfo.t = st; ytInfo.at = performance.now(); }
@@ -1313,28 +1327,34 @@ function tick(anchor){
   followLines(show, time, SRC.au.lineSet[IT[show].id] ? lineAt(show, time) : null);   // the same scrolling for every verse; a verse timed line by line (kirtan) says which line is sung
   partBar(show, time, ytInfo.d);
 }
-// The progress bar runs over the part being heard (the owner): one of the parts the work's page lists (a kāṇḍa, a chapter, the
-// Granth's Salok Mahala 9), from 0% at its start to 100% at its end, however the recording is cut — a part sung over several
-// videos (the Mānas's Bal Kand) runs once over all of them, a video holding several parts (the Gita) starts again at each.
-// A part's stretch of a video: from its first verse's start (from 0 when the video opens with it after a short opening,
-// trStart) to the next part's first start there, else the video's end. The leader's and a following phone's bar are this one.
+// The progress bar runs over the reading being heard (the owner): what the reader has open — a part the work's page lists (a
+// kāṇḍa, a chapter, the Granth's Salok Mahala 9), a day of a pārāyaṇ (Vishram 3, which may end inside a kāṇḍa or hold two), a
+// writer's verses in the Granth — from 0% at its start to 100% at its end, however the recording is cut: a reading sung over
+// several videos (the Mānas's Bal Kand) runs once over all of them; a video holding several (the Gita's chapters) starts again
+// at 0% at each. Its stretch of a video: from its first verse's start (from 0 when the video opens with it after a short
+// opening, trStart) to the next verse's start there that is not in it, else the video's end. The leader's phone and a
+// following phone in a group paath show this one bar: the reading is the one playing began in (PL.org; the leader's s.org).
+function barUnit(i){
+  const o = PL.org && isOrg(PL.org) ? PL.org : 'k', g = GROUP[o]; if (g && g.set.has(i)) return {key: 'g:' + o, has: j => g.set.has(j)};
+  const org = g ? 'k' : o, [a, b] = rangeFor(org, i); return {key: org + ':' + a + '-' + b, has: j => j >= a && j <= b};
+}
 let PSPAN = null;
-function partSpans(p){
-  if (PSPAN && PSPAN.aut === AUT && PSPAN.p === p) return PSPAN.segs;
+function unitSpans(u){
+  if (PSPAN && PSPAN.aut === AUT && PSPAN.key === u.key) return PSPAN.segs;
   const segs = [];
   AUT.forEach((a, k) => {
-    const mine = a.filter(x => (IT[x[0]].p || 0) === p); if (!mine.length) return;
+    const mine = a.filter(x => u.has(x[0])); if (!mine.length) return;
     const tr = SRC.au.tracks[k], st = mine.map(x => x[1]), last = Math.max(...st);
-    const s0 = (IT[a[0][0]].p || 0) === p ? Math.min(trStart(tr), ...st) : Math.min(...st);
-    const nx = a.filter(x => x[1] > last && (IT[x[0]].p || 0) !== p).map(x => x[1]);
+    const s0 = u.has(a[0][0]) ? Math.min(trStart(tr), ...st) : Math.min(...st);
+    const nx = a.filter(x => x[1] > last && !u.has(x[0])).map(x => x[1]);
     segs.push({k, s0, e: nx.length ? Math.min(...nx) : null, first: Math.min(...mine.map(x => x[0]))});
   });
   segs.sort((x, y) => x.first - y.first || x.k - y.k);
-  PSPAN = {aut: AUT, p, segs}; return segs;
+  PSPAN = {aut: AUT, key: u.key, segs}; return segs;
 }
 function partBar(i, time, vd){
   const tr = SRC.au.tracks[PL.t], d = tr.end != null ? tr.end : vd || tr.dur;
-  const segs = partSpans(IT[i].p || 0), end = g => g.e != null ? g.e : g.k === PL.t ? d : trEnd(SRC.au.tracks[g.k]);
+  const segs = unitSpans(barUnit(i)), end = g => g.e != null ? g.e : g.k === PL.t ? d : trEnd(SRC.au.tracks[g.k]);
   let done = 0, tot = 0, here = null;
   for (const g of segs){ const len = Math.max(0, end(g) - g.s0); if (g.k === PL.t && here == null){ here = done + Math.max(0, Math.min(len, time - g.s0)); } done += len; tot += len; }
   if (here == null){ const s0 = trStart(tr); here = time - s0; tot = d - s0; }   // the verse is not on this video (never expected): the video
@@ -1416,7 +1436,7 @@ function setCur(i){
 }
 function stopAudio(){ ytPost('pauseVideo'); PL.on = false; PL.snip = null; $('#player').hidden = GP.role !== 'follow'; $('#pJump').hidden = true; document.body.classList.remove('playing'); $$('#rBody .verse.now').forEach(v => v.classList.remove('now')); }
 function playing(){ return ytInfo.st === 1 || ytInfo.st === 3; }
-function syncPlayer(){ $('#pPlay').innerHTML = '<svg><use href="#i-' + (playing() ? 'pause' : 'play') + '"/></svg>'; $('#pRate').textContent = RATE() + '×'; syncStep(); }
+function syncPlayer(){ $('#pPlay').innerHTML = '<svg><use href="#i-' + (playing() ? 'pause' : 'play') + '"/></svg>'; syncRate(); syncStep(); }
 $('#pPlay').onclick = () => { if (playing()) ytPost('pauseVideo'); else ytPost('playVideo'); setTimeout(syncPlayer, 400); };
 $('#pClose').onclick = () => { if (GP.role === 'follow'){ gpStop(); toast(T('सामूहिक पाठ छोड़ा', 'Left the group paath')); } else stopAudio(); };
 // ⏮ ⏭: one verse back or on. After a single verse was played (▶ beside it), that verse alone is played and stops, as each
@@ -2425,7 +2445,7 @@ function gpTime(){
 function gpState(){
   if (!W) return null; const on = !!(PL.on && SRC.au && PL.snip == null && PL.cur >= 0);
   const s = {w: W.id, au: SRC.au ? SRC.au.meta.id : null, on: on ? 1 : 0};
-  if (on){ s.k = PL.t; s.t = Math.round(gpTime() * 100) / 100; s.p = ytInfo.st === 1 ? 1 : 0; s.r = RATE(); s.i = PL.cur; s.org = CURVIEW === 'reader' ? R.org : 'k'; s.l = Math.round(GP.lat * 1000) / 1000; }   // l: how long this takes to reach the relay
+  if (on){ s.k = PL.t; s.t = Math.round(gpTime() * 100) / 100; s.p = ytInfo.st === 1 ? 1 : 0; s.r = RATE(); s.i = PL.cur; s.org = PL.org || 'k'; s.l = Math.round(GP.lat * 1000) / 1000; }   // l: how long this takes to reach the relay
   return s;
 }
 // sent when something changes (the work, the recording, play or pause, the speed, a seek: the time is not where the last state
@@ -2459,7 +2479,7 @@ async function gpApply(s, at){
       const c = S.src[W.id] = S.src[W.id] || {}; if (!(W.id in GP.prevAu)){ GP.prevAu[W.id] = c.au || null; gpSave(); } c.au = s.au; save(); await loadSources('au');
     }
     if (s.on && SRC.au && AUT[s.k] && AUT[s.k].length){
-      PL.on = true; PL.t = s.k; PL.end = null; PL.one = false; PL.snip = null; PL.seekT = null; PL.whole = false; ytOK = true; ytInfo.st = s.p ? 1 : 2;
+      PL.on = true; PL.t = s.k; PL.org = isOrg(s.org) ? s.org : 'k'; PL.end = null; PL.one = false; PL.snip = null; PL.seekT = null; PL.whole = false; ytOK = true; ytInfo.st = s.p ? 1 : 2;
       // the reader opens at the leader's verse on joining, when the leader starts playing and in another work; after that the
       // reader may look elsewhere ("↑ Go to …" brings the verse back)
       if (!GP.opened || !was.on || was.w !== s.w){ GP.opened = true; PL.cur = -1; openReader(s.org || 'k', IT[s.i] ? s.i : firstAu(0, IT.length - 1)); }
