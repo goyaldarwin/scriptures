@@ -1311,23 +1311,34 @@ function tick(anchor){
   if (e2 != null && time >= e2 && m >= 0 && m + 1 < a.length) show = a[m + 1][0];
   setCur(show);
   followLines(show, time, SRC.au.lineSet[IT[show].id] ? lineAt(show, time) : null);   // the same scrolling for every verse; a verse timed line by line (kirtan) says which line is sung
-  // the bar runs over this work's part of the recording only (a work that is a slice of a longer video starts at 0%); in a
-  // work whose recordings sing many sections in one video (work.json "bar": "topic", the Granth), over the section being heard
-  const tr = SRC.au.tracks[PL.t], d = tr.end != null ? tr.end : ytInfo.d || tr.dur, sp = topicSpan(show, d) || [trStart(tr), d];
-  $('#pProg').style.width = Math.max(0, Math.min(100, 100 * (time - sp[0]) / Math.max(1, sp[1] - sp[0]))) + '%';
+  partBar(show, time, ytInfo.d);
 }
-// the stretch of this track that sings verse i's section (topic): from its first singing to the next section's first, else the
-// track's end; kept while the same section plays
-let TSPAN = null;
-function topicSpan(i, d){
-  if (W.bar !== 'topic' || !TOPICS.length) return null;
-  const tp = topicOf(i); if (!tp) return null;
-  if (TSPAN && TSPAN.t === PL.t && TSPAN.tp === tp && TSPAN.d === d) return TSPAN.sp;
-  const a = AUT[PL.t]; let s0 = null, last = null, e = d;
-  for (const [j, st] of a){ if (topicOf(j) === tp){ if (s0 == null || st < s0) s0 = st; if (last == null || st > last) last = st; } }
-  if (s0 == null) return null;
-  for (const [j, st] of a) if (st > last && topicOf(j) !== tp && st < e) e = st;
-  TSPAN = {t: PL.t, tp, d, sp: [s0, e]}; return TSPAN.sp;
+// The progress bar runs over the part being heard (the owner): one of the parts the work's page lists (a kāṇḍa, a chapter, the
+// Granth's Salok Mahala 9), from 0% at its start to 100% at its end, however the recording is cut — a part sung over several
+// videos (the Mānas's Bal Kand) runs once over all of them, a video holding several parts (the Gita) starts again at each.
+// A part's stretch of a video: from its first verse's start (from 0 when the video opens with it after a short opening,
+// trStart) to the next part's first start there, else the video's end. The leader's and a following phone's bar are this one.
+let PSPAN = null;
+function partSpans(p){
+  if (PSPAN && PSPAN.aut === AUT && PSPAN.p === p) return PSPAN.segs;
+  const segs = [];
+  AUT.forEach((a, k) => {
+    const mine = a.filter(x => (IT[x[0]].p || 0) === p); if (!mine.length) return;
+    const tr = SRC.au.tracks[k], st = mine.map(x => x[1]), last = Math.max(...st);
+    const s0 = (IT[a[0][0]].p || 0) === p ? Math.min(trStart(tr), ...st) : Math.min(...st);
+    const nx = a.filter(x => x[1] > last && (IT[x[0]].p || 0) !== p).map(x => x[1]);
+    segs.push({k, s0, e: nx.length ? Math.min(...nx) : null, first: Math.min(...mine.map(x => x[0]))});
+  });
+  segs.sort((x, y) => x.first - y.first || x.k - y.k);
+  PSPAN = {aut: AUT, p, segs}; return segs;
+}
+function partBar(i, time, vd){
+  const tr = SRC.au.tracks[PL.t], d = tr.end != null ? tr.end : vd || tr.dur;
+  const segs = partSpans(IT[i].p || 0), end = g => g.e != null ? g.e : g.k === PL.t ? d : trEnd(SRC.au.tracks[g.k]);
+  let done = 0, tot = 0, here = null;
+  for (const g of segs){ const len = Math.max(0, end(g) - g.s0); if (g.k === PL.t && here == null){ here = done + Math.max(0, Math.min(len, time - g.s0)); } done += len; tot += len; }
+  if (here == null){ const s0 = trStart(tr); here = time - s0; tot = d - s0; }   // the verse is not on this video (never expected): the video
+  $('#pProg').style.width = Math.max(0, Math.min(100, 100 * here / Math.max(1, tot))) + '%';
 }
 setInterval(tick, 300);
 /* place the verse being recited in the space between the top bar and the player:
@@ -2466,8 +2477,7 @@ function gpTick(){
   const a = AUT[PL.t], i = curAt(time), m = a.findIndex(x => x[0] === i), e = endOf(i); let show = i;
   if (e != null && time >= e && m >= 0 && m + 1 < a.length) show = a[m + 1][0];
   setCur(show); followLines(show, time, SRC.au.lineSet[IT[show].id] ? lineAt(show, time) : null);
-  const tr = SRC.au.tracks[PL.t], d = tr.end != null ? tr.end : tr.dur, s0 = trStart(tr);
-  $('#pProg').style.width = Math.max(0, Math.min(100, 100 * (time - s0) / Math.max(1, d - s0))) + '%';
+  partBar(show, time, null);   // the leader's bar, over the part being heard
 }
 // the leader's phone has gone (closed, locked, offline): the light stops where the recording was, until it is back
 function gpAway(){ const b = GP.base; if (b && b.p) GP.base = {t: b.t + b.r * (performance.now() - b.at) / 1000, at: performance.now(), p: 0, r: b.r}; GP.away = true; gpBar(); }

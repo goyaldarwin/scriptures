@@ -1252,14 +1252,27 @@ async def main():
             updateHeader(); const f109 = $('#rMid .ml').textContent; WS().org = 'k'; S.settings.atOpen = {}; save();
             return {txt: p && p.textContent, top, f110, f109}; })()""")
         check('Sri Guru Granth Sahib: an Ang that begins inside a verse opens at its first line, and the footer names the page of the line at the top', ap['txt'] and ap['txt'].startswith('ਸੇਵਾ ਸੁਰਤਿ') and ap['top'] is not None and 0 <= ap['top'] <= 30 and ap['f110'].startswith('Ang 110') and ap['f109'].startswith('Ang 109'), ap)
-        # the Granth's recordings sing many shabads in one video (a Sehaj Path Kirtan track): the progress bar runs over the section
-        # being heard, from its first singing to the next section's (work.json "bar": "topic"), not over the whole track
-        tb = await ev("""(async () => { await openWork('guru-granth-sahib', true); await loadSources(); show('home');
-            const i = ID['1360.5'], id = IT[i].id, a = SRC.au.at[id]; if (!a) return null;
-            PL.t = a[0]; TSPAN = null; const tp = topicOf(i), sp = topicSpan(i, 1e7), mine = AUT[PL.t].filter(x => topicOf(x[0]) === tp).map(x => x[1]);
-            const after = AUT[PL.t].filter(x => x[1] > Math.max(...mine) && topicOf(x[0]) !== tp).map(x => x[1]);
-            return {bar: W.bar, s0: sp && sp[0], e: sp && sp[1], first: Math.min(...mine), next: after.length ? Math.min(...after) : 1e7, whole: trStart(SRC.au.tracks[PL.t])}; })()""")
-        check('Sri Guru Granth Sahib: the progress bar runs over the section being heard (the Gatha within its Sehaj Path Kirtan track), not the whole track', tb and tb['bar'] == 'topic' and tb['s0'] == tb['first'] and tb['e'] == tb['next'] and tb['s0'] > tb['whole'], tb)
+        # the progress bar runs over the part being heard (the owner), however the recording is cut: Salok Mahala 9, a video of its
+        # own, once over its 57 saloks (not per salok); the Gita's one video starts again at 0% at each chapter; the Manas's Bal
+        # Kand, six videos, once over all six; a following phone in a group paath shows the same bar (partBar)
+        pb = await ev("""(async () => {
+            const at = (wid, id) => { const i = ID[id], a = SRC.au.at[id]; PL.t = a[0]; partBar(i, a[1], null); return parseFloat($('#pProg').style.width); };
+            const mid = (wid, id) => { const i = ID[id], a = SRC.au.at[id]; PL.t = a[0]; partBar(i, a[1] + 5, null); return parseFloat($('#pProg').style.width); };
+            const r = {};
+            await openWork('guru-granth-sahib', true); await loadSources(); show('home');
+            const m9 = IT.filter(x => x.p === 48).map(x => x.id);
+            r.m9first = at('ggs', m9[0]); r.m9mid = at('ggs', m9[11]); r.m9last = at('ggs', m9[m9.length - 1]); r.m9a = mid('ggs', m9[10]); r.m9b = mid('ggs', m9[11]);
+            await openWork('bhagavad-gita', true); await loadSources(); show('home');
+            const g2 = IT.find(x => x.p === 2).id, g1 = IT.filter(x => x.p === 1).map(x => x.id);
+            r.gitaCh = at('gita', g2); r.gitaPrevEnd = at('gita', g1[g1.length - 1]); r.gitaOne = SRC.au.tracks.length;
+            await openWork('manas', true); await loadSources(); show('home');
+            const bal = IT.filter(x => (x.p || 0) === 0 && SRC.au.at[x.id]), t1 = bal.find(x => SRC.au.at[x.id][0] === 1);
+            r.balVideos = new Set(bal.map(x => SRC.au.at[x.id][0])).size; r.balT1 = at('manas', t1.id); r.balFirst = at('manas', bal[0].id);
+            show('home'); return r; })()""")
+        check('progress bar: Salok Mahala 9 runs once over the part (0% at its first salok, rising salok by salok, near 100% at its last), not per salok',
+              pb and pb['m9first'] < 5 and 10 < pb['m9mid'] < 40 and pb['m9last'] > 90 and pb['m9b'] > pb['m9a'], pb)
+        check('progress bar: a video holding several parts (the Gita) starts again at 0% at each chapter', pb and pb['gitaOne'] == 1 and pb['gitaCh'] < 1 and pb['gitaPrevEnd'] > 90, pb)
+        check('progress bar: a part over several videos (the Manas\'s Bal Kand) runs once over all of them', pb and pb['balVideos'] > 1 and pb['balFirst'] < 1 and 5 < pb['balT1'] < 40, pb)
         # the Sukhmani's verses inside the Granth keep their own sections (a19.salok): the footer names the Ang they are on, not "Ang 0"
         fa = await ev("""(async () => { await openWork('guru-granth-sahib', true); show('home'); openReader('k', ID['a19.salok']); await new Promise(r => setTimeout(r, 500));
             document.getElementById('v' + ID['a19.salok']).scrollIntoView(); await new Promise(r => setTimeout(r, 300)); updateHeader();
