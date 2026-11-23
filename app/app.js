@@ -991,7 +991,7 @@ function editSheet(i){
 let AUT = [], ytVid = '', ytOK = false, ytInfo = {t: 0, st: -1, d: 0}, ytWait = null;
 let PL = {on: false, t: -1, end: null, cur: -1};
 // group paath (its section is before boot): the relay's address (apps/app.json → "group", written in by build.py) and this phone's part in one
-const GROUP_URL = window.__GROUP_URL || "".replace(/^%.*%$/, '');
+const GROUP_URL = window.__GROUP_URL || "wss://group.craadle.org".replace(/^%.*%$/, '');
 const GPK = 'scriptures.group.v1';   // this phone's session (role, code, key), so a refresh stays in it
 const GP = {role: null, code: '', key: '', ws: null, live: false, n: 0, s: null, base: null, lat: 0.08, sent: null, sentAt: 0, wait: 1000, opened: false, prevAu: {}, lastAt: 0, away: false, none: false, pongDue: 0, rtts: []};
 function tkey(){ return W.id + ':' + SRC.au.meta.id; }
