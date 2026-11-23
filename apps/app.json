@@ -7,6 +7,8 @@
   "website": "https://craadle.org"
  },
  "host": "scriptures.craadle.org",
+ "group": "wss://group.craadle.org",
+ "_group": "the group paath relay (tools/group/README.md): wss://<the Worker's address>; empty, the app does not offer Group paath",
  "themeColor": "#2B3A8C",
  "backgroundColor": "#F6F6F2",
  "apps": {

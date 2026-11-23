@@ -26,6 +26,7 @@ One app per tradition, published by the owner's Canadian corporation (organizati
 ## The publisher
 - 16493041 Canada Inc., D-U-N-S 245128343, email darwin@craadle.org, website craadle.org. Developer name on Play: Craadle; support email support@craadle.org.
 - The library's address is `scriptures.craadle.org`: Cloudflare DNS CNAME `scriptures` → goyaldarwin.github.io (DNS only, grey cloud). `build.py` writes the `CNAME` file from `apps/app.json` → `host`; Pages deploys from the branch, so that file sets the custom domain, and goyaldarwin.github.io/scriptures/ redirects to it. Removing the DNS record breaks the site; change the file first.
+- **group.craadle.org** is the group paath relay, a Cloudflare Worker (`scriptures-group`) on that Cloudflare account, its custom domain made by Cloudflare (`tools/group/README.md`); the app reads it from `apps/app.json` → `group`.
 - **craadle.org** is a one-page company site from the public repo `goyaldarwin/craadle-site` (GitHub Pages from `main`, `CNAME` craadle.org; Cloudflare A records @ → 185.199.108–111.153, DNS only). It is verified in Google Search Console (TXT record: keep it) for Play's website check.
 - The public developer profile shows the business name, email and phone (address in some regions); name and address changes go through D&B first, then re-verification in Play Console.
 - The Hindu app's Play content rating: IARC Everyone / PEGI 3 / USK 0 / 3+ (contact support@craadle.org); "primarily a news or educational product?" → No.
