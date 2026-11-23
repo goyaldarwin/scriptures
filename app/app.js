@@ -1353,7 +1353,8 @@ function unitSpans(u){
   PSPAN = {aut: AUT, key: u.key, segs}; return segs;
 }
 function partBar(i, time, vd){
-  const tr = SRC.au.tracks[PL.t], d = tr.end != null ? tr.end : vd || tr.dur;
+  // the player's own length of the video, unless it is still another video's (just after a switch): then the track's known one
+  const tr = SRC.au.tracks[PL.t], d = tr.end != null ? tr.end : vd && tr.dur && Math.abs(vd - tr.dur) <= 0.05 * tr.dur ? vd : tr.dur || vd || 0;
   const segs = unitSpans(barUnit(i)), end = g => g.e != null ? g.e : g.k === PL.t ? d : trEnd(SRC.au.tracks[g.k]);
   let done = 0, tot = 0, here = null;
   for (const g of segs){ const len = Math.max(0, end(g) - g.s0); if (g.k === PL.t && here == null){ here = done + Math.max(0, Math.min(len, time - g.s0)); } done += len; tot += len; }
