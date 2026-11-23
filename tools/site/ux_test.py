@@ -1819,10 +1819,23 @@ async def group_paath(b, url, shots):
     await F.wait_for_timeout(2500)
     d = await F.evaluate("(() => { const b = GP.base, lt = b.t + (b.p ? b.r * (performance.now() - b.at) / 1000 : 0); return [ytInfo.t, lt, ytVid === SRC.au.tracks[PL.t].yt, document.querySelector('#player').classList.contains('hear')]; })()")
     check('group paath: a follower that plays the sound plays the leader\'s recording at the leader\'s place (within 1.5 s), its video shown', d[2] and d[3] and abs(d[0] - d[1]) < 1.5, d)
-    await F.evaluate("ytInfo.t += 6; ytInfo.at = performance.now(); GP.seekAt = 0; GP.syncAt = 0"); await F.wait_for_timeout(1500)
+    await F.evaluate("ytInfo.t += 6; ytInfo.at = performance.now(); GP.seekAt = 0"); await F.wait_for_timeout(1500)
     d = await F.evaluate("(() => { const b = GP.base, lt = b.t + (b.p ? b.r * (performance.now() - b.at) / 1000 : 0); return [ytInfo.t, lt]; })()")
     await shot(F, 'hear')
     check('group paath: a follower 6 s off (an advertisement, a slow network) is put back at the leader\'s place', abs(d[0] - d[1]) < 1.5, d)
+    # a small drift (0.5 s: too small to move mid-verse, where the move would be heard) is put right as the next verse
+    # begins, in its pause (the owner: as ⏭ does); the move aims by this device's own measured lead
+    nx = await L.evaluate("(() => { const a = AUT[PL.t], t = gpTime(), k = a.findIndex((x, j) => x[1] > t + 9 && j > 0 && x[1] - a[j - 1][1] > 7); return k > 0 ? a[k][1] : null; })()")
+    await L.evaluate(f"seekGuard({nx} - 6.5); ytPost('seekTo', [{nx} - 6.5, true])"); await F.wait_for_timeout(3800)   # the follower moves with the leader, then measures its lead
+    lead = await F.evaluate("GP.lead")
+    await F.evaluate("ytInfo.t += 0.5; ytInfo.at = performance.now(); window.__seeks = 0"); await F.wait_for_timeout(900)
+    mid = await F.evaluate("window.__seeks")
+    off = lambda: F.evaluate("(() => { const b = GP.base, lt = b.t + b.r * (performance.now() - b.at) / 1000; return ytInfo.t + (performance.now() - ytInfo.at) / 1000 - lt; })()")
+    await F.wait_for_function(f"(() => {{ const b = GP.base; return b.t + b.r * (performance.now() - b.at) / 1000 > {nx} + 1; }})()", timeout=8000)
+    after = [await F.evaluate("window.__seeks"), round(await off(), 2)]
+    check('group paath: a follower measures its own lead (this stand-in player moves at once: near 0 s)', lead is not None and lead < 0.15, lead)
+    check('group paath: a follower 0.5 s off is not moved mid-verse, and is put back in step as the next verse begins',
+          mid == 0 and after[0] >= 1 and abs(after[1]) < 0.2, {'lead': lead, 'seeks mid-verse': mid, 'after the verse began': after})
     await L.evaluate("ytPost('pauseVideo')"); await F.wait_for_timeout(1500)
     check('group paath: the leader pauses, a follower that plays the sound pauses too', await F.evaluate("ytInfo.st") == 2)
     await F.evaluate("gpHear(false)")
@@ -1847,10 +1860,20 @@ async def group_paath(b, url, shots):
     await (await L.query_selector('#gpBody [data-where="room"]')).click(); await L.wait_for_timeout(600)
     check('group paath: a code someone else holds says to choose another', await L.evaluate("GP.role === null") and 'Choose another' in await L.inner_text('#toast'), await L.inner_text('#toast'))
     sess['key'] = None; await L.evaluate("closeSheet()")
-    # a code nobody holds: the bar says to check the number
-    await F.evaluate("gpStart('follow', '000001')"); await F.wait_for_function("GP.none", timeout=5000)
-    check('group paath: a code nobody holds says to check the number', 'check the number' in await F.inner_text('#pTrack'), await F.inner_text('#pTrack'))
-    await F.evaluate("gpStop()")
+    # a code nobody holds: not joined at all (nothing stuck), and it says to check the number
+    await F.evaluate("gpStart('follow', '000001')"); await F.wait_for_function("GP.role === null", timeout=5000)
+    check('group paath: a code nobody holds is not joined, and says to check the number', 'Check the number' in await F.inner_text('#toast') and await F.evaluate("document.querySelector('#player').hidden && !document.body.classList.contains('gpf')"), await F.inner_text('#toast'))
+    # a leader never follows its own code (on its own device)
+    await L.evaluate("gpPut(GPM, {code: '108108', key: 'k'.repeat(32)}); gpStart('follow', '108108')"); await L.wait_for_timeout(300)
+    check('group paath: a device cannot join its own code', await L.evaluate("GP.role") is None and 'own code' in await L.inner_text('#toast'), await L.inner_text('#toast'))
+    await L.evaluate("gpPut(GPM, null)")
+    # a code held but not started: the follower waits; its ▶ leaves and plays here (nothing is playing to follow)
+    sess['key'] = 'held-key-123456789'; sess['live'] = False
+    await F.evaluate("gpStart('follow', '108108')"); await F.wait_for_function("GP.role === 'follow' && GP.live", timeout=5000); await F.wait_for_timeout(300)
+    check('group paath: a code held but not started waits for the leader', 'Waiting for the leader to start' in await F.inner_text('#pTrack'), await F.inner_text('#pTrack'))
+    await F.evaluate("(async () => { await openWork('bhaja-govindam', true); openReader('k', 0); playFrom(0); })()"); await F.wait_for_timeout(600)
+    check('group paath: waiting, a follower\'s ▶ leaves the group paath and plays here', await F.evaluate("GP.role === null && PL.on"))
+    await F.evaluate("stopAudio()"); sess['key'] = None
     check('group paath: no script errors', not errs, '; '.join(errs[:3]))
     await cl.close(); await cf.close()
     # no relay address (apps/app.json → "group" empty): not offered

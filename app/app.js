@@ -1264,7 +1264,7 @@ function snippet(i, k){
 }
 function playFrom(i, end, tk){
   if (!SRC.au) return;
-  if (GP.role === 'follow'){ gpNoPlay(); return; }   // in a group paath only the leader's phone plays (two would echo)
+  if (GP.role === 'follow'){ if (GP.on){ gpNoPlay(); return; } gpStop(); toast(T('सामूहिक पाठ छोड़ा', 'Left the group paath')); }   // in a group paath only the leader's device plays (two would echo); waiting for one not yet started, ▶ leaves it and plays here
   PL.snip = null;
   if (!hasAu(i)){ const j = firstAu(i, Math.min(IT.length - 1, i + 80)); if (j == null) return; i = j; }
   const t = tk != null ? tk : SRC.au.at[IT[i].id][0], st0 = SRC.au.at[IT[i].id][1], tr = SRC.au.tracks[t];
@@ -2432,9 +2432,9 @@ function gpConnect(){
     if (e.data === 'pong'){ GP.pongDue = 0; const r = (performance.now() - GP.pingAt) / 2000; if (r > 0 && r < 1){ GP.rtts = GP.rtts.concat(r).slice(-5); GP.lat = Math.min(...GP.rtts); } return; }   // how late a state arrives: half the quickest of the last 5 round trips (one slow ping never sets it)
     let d; try { d = JSON.parse(e.data); } catch (x) { return; }
     if (d.type === 'count'){ GP.n = d.n; gpUI(); pSub(); }
-    else if (d.type === 'mode' && GP.role === 'follow'){ GP.none = false; gpMode(d.m); }
+    else if (d.type === 'mode' && GP.role === 'follow'){ GP.none = false; GP.on = true; gpMode(d.m); }
     else if (d.type === 'state' && GP.role === 'follow') gpApply(d.s, performance.now() - Math.min(60000, Math.max(0, +d.age || 0)));   // age: a state kept by the relay for a device that joins later
-    else if (d.type === 'wait' && GP.role === 'follow'){ GP.none = !!d.none; gpBar(); gpUI(); }
+    else if (d.type === 'wait' && GP.role === 'follow'){ GP.on = false; if (d.none){ gpStop(T('इस कोडसे कोई सामूहिक पाठ नहीं। अंक जाँचें।', 'No group paath with this code. Check the number.')); return; } gpBar(); gpUI(); }   // a code no leader holds: not joined (the owner: nothing stuck)
     else if (d.type === 'taken' && GP.role === 'lead') gpTaken();
     else if (d.type === 'away' && GP.role === 'follow') gpAway();   // the leader's device has gone (closed, locked, offline)
     else if (d.type === 'end') gpEnded(d.why);
@@ -2487,7 +2487,7 @@ function gpValid(s){
 async function gpApply(s, at){
   if (!gpValid(s)) return;
   if (s.m) gpMode(s.m);
-  GP.s = s; GP.sAt = at; GP.lastAt = performance.now(); GP.away = false; GP.none = false;
+  GP.s = s; GP.sAt = at; GP.lastAt = performance.now(); GP.away = false; GP.none = false; GP.on = true;
   if (s.on) GP.base = {t: s.t, at: at - (GP.lat + Math.min(2, Math.max(0, +s.l || 0))) * 1000, p: s.p, r: s.r};
   if (GP.busy){ GP.again = true; return; } GP.busy = true;
   try {
@@ -2521,18 +2521,26 @@ function gpTick(){
   setCur(show); followLines(show, time, SRC.au.lineSet[IT[show].id] ? lineAt(show, time) : null);
   partBar(show, time, null);   // the leader's bar, over the part being heard
 }
-// a follower that plays the sound: its own YouTube player on the leader's recording, at the leader's place; a drift of more
-// than a second (a slow network, an advertisement) is put right by moving to the leader's place, at most every 3 s
+// a follower that plays the sound: its own YouTube player on the leader's recording, at the leader's place (checked every
+// tick). A drift is put right by moving to the leader's place (the owner: as ⏭ puts everyone in step):
+// - at the start of each verse, where the pause between verses hides the move, when it is more than 0.25 s;
+// - at any moment when it is more than a second (a stalled network, an advertisement), at most every 3 s.
+// A move takes the player a moment, so it aims ahead by this device's own lead: 1.5 s after each move, where it landed
+// against the leader corrects the lead for the next one (it starts at 0.3 s).
 function gpHearSync(time){
-  const b = GP.base, now = performance.now(); if (now - (GP.syncAt || 0) < 900) return; GP.syncAt = now;
-  const tr = SRC.au.tracks[PL.t];
+  const b = GP.base, now = performance.now(), tr = SRC.au.tracks[PL.t], since = now - (GP.seekAt || 0);
   if (!b.p || GP.away){ if (ytInfo.st === 1 || ytInfo.st === 3) ytPost('pauseVideo'); return; }
-  if (ytVid !== tr.yt || !ytFrame()){ ytLoad(tr.yt, time + 1); GP.seekAt = now; return; }   // loading takes a moment: start a little ahead
-  if (!ytOK) return;
-  if (ytInfo.st !== 1 && ytInfo.st !== 3){ ytPost('seekTo', [time + 0.3, true]); ytPost('playVideo'); GP.seekAt = now; return; }
-  const own = ytInfo.t + (ytInfo.st === 1 && ytInfo.at ? b.r * (now - ytInfo.at) / 1000 : 0);
-  if (Math.abs(own - time) > 1 && now - (GP.seekAt || 0) > 3000){ ytPost('seekTo', [time + 0.3, true]); GP.seekAt = now; }
+  if (ytVid !== tr.yt || !ytFrame()){ if (since > 900){ ytLoad(tr.yt, time + 1); GP.seekAt = now; GP.calAt = 0; } return; }   // loading takes a moment: start a little ahead
+  if (!ytOK || ytInfo.st === 3) return;   // still loading, or buffering: it plays on by itself
+  if (ytInfo.st !== 1){ if (since > 900) gpSeek(time, now); return; }
+  const off = ytInfo.t + (ytInfo.at ? b.r * (now - ytInfo.at) / 1000 : 0) - time;   // > 0: this device is ahead
+  if (GP.calAt && now >= GP.calAt){ GP.calAt = 0; if (Math.abs(off) < 1) GP.lead = Math.max(0, Math.min(1.2, (GP.lead == null ? 0.3 : GP.lead) - 0.7 * off)); }
+  const a = AUT[PL.t], v = curAt(time), at = a.find(x => x[0] === v), start = at ? at[1] : -1;
+  const fresh = v !== GP.hv; if (fresh) GP.hv = v;
+  if (fresh && start >= 0 && time - start < 0.8 && Math.abs(off) > 0.25 && since > 1500){ gpSeek(time, now); return; }   // a new verse has just begun
+  if (Math.abs(off) > 1 && since > 3000) gpSeek(time, now);
 }
+function gpSeek(time, now){ ytPost('seekTo', [time + (GP.lead == null ? 0.3 : GP.lead), true]); if (ytInfo.st !== 1) ytPost('playVideo'); GP.seekAt = now; GP.calAt = now + 1500; }
 // the leader's device has gone (closed, locked, offline): the light stops where the recording was, until it is back
 function gpAway(){ const b = GP.base; if (b && b.p) GP.base = {t: b.t + b.r * (performance.now() - b.at) / 1000, at: performance.now(), p: 0, r: b.r}; GP.away = true; if (GP.hear) ytPost('pauseVideo'); gpBar(); }
 // the sitting's mode, from the relay or the leader's state. "room": this device never plays. "apart": it asks once, on
@@ -2552,7 +2560,7 @@ function gpAsk(){
 }
 function gpHear(on){
   if (GP.role !== 'follow') return;
-  GP.hear = !!on && GP.m === 'apart'; GP.syncAt = 0; GP.seekAt = 0;
+  GP.hear = !!on && GP.m === 'apart'; GP.seekAt = 0; GP.calAt = 0; GP.hv = null;
   if (!GP.hear) gpQuiet(); else if (PL.on) gpTick();
   gpSave(); gpBar(); gpUI();
 }
@@ -2582,8 +2590,9 @@ function gpSub(){   // the player's small line in a group paath
 }
 // start leading (m: "room" or "apart", with the leader's own code) or join (a follower; hear is asked when the mode is known)
 function gpStart(role, code, m){
+  const own = gpMine(); if (role === 'follow' && own && own.code === code){ toast(T('यह इस डिवाइसका अपना कोड है। इसे “सब कहाँ हैं?” से शुरू करें।', 'This is this device\'s own code. Start it from Where is everyone?')); return; }   // a leader never follows itself
   if (GP.role) gpStop();
-  GP.role = role; GP.code = code; GP.n = 0; GP.sent = null; GP.s = null; GP.base = null; GP.opened = false; GP.last = null; GP.away = false; GP.none = false; GP.wait = 1000; GP.pongDue = 0; GP.asked = false;
+  GP.role = role; GP.code = code; GP.on = false; GP.n = 0; GP.sent = null; GP.s = null; GP.base = null; GP.opened = false; GP.last = null; GP.away = false; GP.none = false; GP.wait = 1000; GP.pongDue = 0; GP.asked = false;
   if (role === 'lead'){ const o = gpMine(); GP.key = o && o.code === code ? o.key : gpKey(); GP.m = m === 'apart' ? 'apart' : 'room'; gpPut(GPM, {code, key: GP.key}); }
   else { GP.key = ''; GP.m = 'room'; GP.hear = null; gpPut(GPJ, {code}); }
   gpSave(); gpConnect();
@@ -2702,7 +2711,7 @@ function gpBoot(){
   if (!gpOn()) return false;
   const q = new URLSearchParams(location.search), j = (q.get('join') || '').replace(/\D/g, '');
   if (q.has('join')){ q.delete('join'); history.replaceState(history.state, '', location.pathname + (q.toString() ? '?' + q : '') + location.hash); }
-  if (j.length === 6){ gpStart('follow', j); return true; }
+  if (j.length === 6){ gpStart('follow', j); return GP.role === 'follow'; }
   const o = gpGet(GPK);
   if (o && o.role && /^\d{6}$/.test(o.code) && Date.now() - o.at < GP_BACK){
     GP.role = o.role; GP.code = o.code; GP.key = o.key || ''; GP.m = o.m === 'apart' ? 'apart' : 'room'; GP.hear = o.role === 'follow' ? null : false; GP.asked = false; GP.prevAu = o.prev || {};

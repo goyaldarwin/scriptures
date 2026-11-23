@@ -232,8 +232,8 @@ async def main():
         await boot(F[4]); await F[4].evaluate(f"gpStart('follow', '{wrong}')"); await asyncio.sleep(2.5)
         sub = await F[4].inner_text('#pTrack'); await shot(F[4], '05-F5-wrong-code')
         notes.append(f'F5 joined an unused code: its bar says "{sub}"')
-        check('12: a wrong code: the bar says so (and it still waits, in case the leader starts later)', 'check the number' in sub and await F[4].evaluate("GP.role === 'follow' && !PL.on"), sub)
-        await F[4].evaluate("gpStop()")
+        sub = await F[4].inner_text('#toast')
+        check('12: a wrong code: not joined, and it says to check the number', 'Check the number' in sub and await F[4].evaluate("GP.role === null"), sub)
         # another phone claims the leader's code with another key: refused, it gets a new code
         await boot(F[5]); await F[5].evaluate(f"GP.role = 'lead'; GP.code = '{code}'; GP.key = 'x'.repeat(32); gpConnect()"); await asyncio.sleep(2)
         new = await F[5].evaluate('GP.code'); check('12: a second phone cannot take the leader\'s code: it is given a new one', new != code and await F[5].evaluate('GP.live') and await L.evaluate(f"GP.code === '{code}' && GP.live"), new)
