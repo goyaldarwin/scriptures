@@ -8,7 +8,8 @@
 //   wss://<host>/s/<6-digit code>?role=follow                  a follower
 //
 // One Durable Object per code. WebSocket hibernation: an idle session costs nothing, and "ping" is answered without waking it.
-// Messages: leader → {type: "state", s: {...}}; relay → follower {type: "state", s}, {type: "away"} while no leader is connected,
+// Messages: leader → {type: "state", s: {...}}; relay → follower {type: "state", s, age} (age: ms since the leader sent it, for a
+// phone that joins later), {type: "wait", none} (nothing yet; none: no session on this code), {type: "away"} while no leader is connected,
 // {type: "end"} when the leader ends it; relay → leader {type: "count", n}.
 // Refusals: {type: "taken"} then close 4009 (the code is another leader's), {type: "bad"} then close 4000 (a bad key).
 import {DurableObject} from 'cloudflare:workers';
@@ -48,20 +49,21 @@ export class Session extends DurableObject {
       server.send(JSON.stringify({type: 'count', n: this.followers().length}));
     } else if (role === 'follow'){
       this.ctx.acceptWebSocket(server, ['follow']);
-      const s = await this.lastState();
-      if (s) server.send(JSON.stringify({type: 'state', s}));
-      else server.send(JSON.stringify({type: 'wait'}));
-      if (s && !this.ctx.getWebSockets('lead').length) server.send(JSON.stringify({type: 'away'}));   // the leader's phone is not here now
+      const last = await this.lastState(), lead = this.ctx.getWebSockets('lead').length;
+      if (last) server.send(JSON.stringify({type: 'state', s: last.s, age: Date.now() - last.at}));   // how old it is: the follower allows for it
+      else server.send(JSON.stringify({type: 'wait', none: !lead}));   // none: no leader has this code (a mistyped code, or a session not started yet)
+      if (last && !lead) server.send(JSON.stringify({type: 'away'}));   // the leader's phone is not here now
       this.count();
     } else return new Response('role?\n', {status: 400});
     await this.ctx.storage.setAlarm(Date.now() + IDLE_MS);
     return new Response(null, {status: 101, webSocket: client});
   }
   followers(){ return this.ctx.getWebSockets('follow'); }
-  // the leader's last state: on its socket while it is connected (no storage write per message), else the copy kept when it left
-  lastState(){
-    for (const w of this.ctx.getWebSockets('lead')){ const a = w.deserializeAttachment(); if (a && a.s) return Promise.resolve(a.s); }
-    return this.ctx.storage.get('state');
+  // the leader's last state and when it came ({s, at}): on its socket while it is connected (no storage write per message), else
+  // the copy kept when it left
+  async lastState(){
+    for (const w of this.ctx.getWebSockets('lead')){ const a = w.deserializeAttachment(); if (a && a.s) return {s: a.s, at: a.at}; }
+    return (await this.ctx.storage.get('state')) || null;
   }
   count(except){ const n = this.followers().filter(w => w !== except).length; this.ctx.getWebSockets('lead').forEach(w => { try { w.send(JSON.stringify({type: 'count', n})); } catch (e) {} }); }
   async webSocketMessage(ws, msg){
@@ -69,13 +71,13 @@ export class Session extends DurableObject {
     const a = ws.deserializeAttachment(); if (!a || !a.lead) return;   // only the leader speaks
     let d; try { d = JSON.parse(msg); } catch (e) { return; }
     if (!d || d.type !== 'state' || typeof d.s !== 'object') return;
-    ws.serializeAttachment({lead: true, s: d.s});
+    ws.serializeAttachment({lead: true, s: d.s, at: Date.now()});
     const out = JSON.stringify({type: 'state', s: d.s});
     this.followers().forEach(w => { try { w.send(out); } catch (e) {} });
   }
   async webSocketClose(ws, code){
     const a = ws.deserializeAttachment();
-    if (a && a.lead && a.s) await this.ctx.storage.put('state', a.s);   // a follower joining while the leader is away still opens the reading
+    if (a && a.lead && a.s) await this.ctx.storage.put('state', {s: a.s, at: a.at});   // a follower joining while the leader is away still opens the reading
     if (a && a.lead && code === 4100){ await this.end(); return; }      // the leader ended the session
     if (a && a.lead && !this.ctx.getWebSockets('lead').some(w => w !== ws)){   // the leader's phone has gone (not replaced by itself): the followers stop where it was
       const out = JSON.stringify({type: 'away'}); this.followers().forEach(w => { try { w.send(out); } catch (e) {} });

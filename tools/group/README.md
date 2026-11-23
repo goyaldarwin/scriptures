@@ -13,12 +13,18 @@ leader's phone sends where it is in the recording; this relay passes that on to 
   is connected to is cleared after 8 hours. Only the origins in `wrangler.toml` → `ORIGINS` may connect.
 - `wrangler.toml`: its name (`scriptures-group`), the Durable Object, and the allowed origins.
 - `test.mjs`: its protocol test.
+- `simulate.py`: real use, end to end: a leader and six follower phones (each its own browser) and 50 more on raw
+  WebSockets, through the real relay, in 13 scenarios (joining by link, code and from another work; late joiners; quick
+  pause/play; speed; ⏭; a recording's end; another part, work, recording; Sri Guru Granth Sahib's kirtan; refreshes; a
+  dropped, a silent and a restarted relay connection; the leader's phone locking; wrong and taken codes; leaving and
+  ending), with every follower's place sampled against the leader's throughout. Run it after any change to Group paath.
 - The app reads the relay's address from `apps/app.json` → `group` (`wss://…`, written into `app.js` by `build.py`).
   While that is empty, the app does not offer Group paath.
 
 It runs on Cloudflare's **Workers Free plan** (Durable Objects with SQLite storage are included). A session sends one
-small message when the leader plays, pauses, seeks or changes the speed, and one every 10 seconds; the free 100,000
-requests a day (WebSocket messages count 1 in 20) cover hundreds of sessions a day.
+small message when the leader plays, pauses, seeks or changes the speed, and one every 5 seconds while it plays; the free
+100,000 requests a day (WebSocket messages count 1 in 20) cover hundreds of sessions a day. Measured on `wrangler dev`: 300
+phones in one session, every message delivered, the slowest in 39 ms.
 
 ## Deploy it (the owner, once)
 

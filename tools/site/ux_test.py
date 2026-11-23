@@ -1588,6 +1588,7 @@ async def main():
         check('no script errors anywhere', not errs, '; '.join(errs[:3]))
         await split_work(b, SHOTS)
         await group_paath(b, url, SHOTS)
+        await work_switch(b, url)
         if NSHARD > 1:   # shard 0's share of the works, after every check of the whole app (those change the reader's settings), as a reader who has seen the tour
             await pg.goto(url); await pg.wait_for_timeout(2500)
             await ev("(() => { S.settings.tour = 1; S.admin = 1; closeTour(); S.settings.layers.h = false; save(); })()"); await pg.reload(); await until("typeof LIB !== 'undefined' && !!LIB && LIB.length > 0 && !!document.querySelector('#libList [data-node]')", 20000)
@@ -1623,7 +1624,7 @@ async def group_paath(b, url, shots):
             ws.on_message(msg); ws.on_close(closed)
         else:
             sess['follow'].append(ws)
-            ws.send(json.dumps({'type': 'state', 's': sess['state']}) if sess['state'] else json.dumps({'type': 'wait'}))
+            ws.send(json.dumps({'type': 'state', 's': sess['state'], 'age': 0}) if sess['state'] else json.dumps({'type': 'wait', 'none': not sess['lead']}))
             count()
             ws.on_message(lambda m: ws.send('pong') if m == 'ping' else None)
             def gone(code, reason):
@@ -1689,13 +1690,25 @@ async def group_paath(b, url, shots):
     check('group paath: the leader\'s phone goes, the follower stops and says so', t1 == t2 and "leader's phone" in await F.inner_text('#pTrack'), await F.inner_text('#pTrack'))
     await L.wait_for_function("GP.live && GP.sent", timeout=10000); await F.wait_for_function("!GP.away && ytInfo.st === 1", timeout=10000)   # it reconnects by itself and says where it is
     check('group paath: the leader\'s phone is back, the follower goes on', True)
-    # nothing from the leader for 25 s while it plays (its phone locked, its socket still open): the same
-    await F.evaluate("GP.lastAt -= 30000"); await F.wait_for_function("GP.away", timeout=3000)
-    check('group paath: 25 s without a word from a playing leader, the follower stops', await F.evaluate("GP.away && GP.base.p === 0"))
+    # nothing from the leader for 16 s while it plays (its phone locked, its socket still open; it sends every 5 s): the same
+    await F.evaluate("GP.lastAt -= 20000"); await F.wait_for_function("GP.away", timeout=3000)
+    check('group paath: 16 s without a word from a playing leader, the follower stops', await F.evaluate("GP.away && GP.base.p === 0"))
+    # a connection that goes silent (its pings unanswered, as a phone network can hold one open): it connects again by itself
+    await F.evaluate("(() => { const ws = GP.ws; ws.send = () => {}; window.__dead = ws; gpPing(); })()")
+    try: await F.wait_for_function("GP.ws && GP.ws !== window.__dead && GP.live", timeout=15000); ok = True
+    except Exception: ok = False
+    check('group paath: a silent connection is noticed (8 s without its pong) and made again', ok)
+    # a state the relay kept for a phone that joins later says how old it is: the follower counts it
+    await F.evaluate("gpApply(Object.assign({}, GP.s, {p: 1}), performance.now() - 3000)"); age = await F.evaluate("[GP.base.t, (performance.now() - GP.base.at) / 1000]")
+    check('group paath: a state 3 s old is timed from when the leader sent it', age[1] >= 2.9, age)
     await (await L.query_selector('#rMore')).click(); await L.wait_for_timeout(200)   # ☰ › Group paath › End, tapped
     await (await L.query_selector('#sheetBody [data-m="group"]')).click(); await L.wait_for_timeout(200)
     await (await L.query_selector('#gpEnd')).click(); await F.wait_for_function("GP.role === null", timeout=5000)
     check('group paath: the leader ends it, the follower leaves and its bar goes', await F.evaluate("document.querySelector('#player').hidden && !document.body.classList.contains('gpf')"))
+    # a code nobody leads: the bar says to check the number (and it still waits, in case the leader starts later)
+    await F.evaluate("gpStart('follow', '000001')"); await F.wait_for_function("GP.none", timeout=5000)
+    check('group paath: a code nobody leads says to check the number', 'check the number' in await F.inner_text('#pTrack'), await F.inner_text('#pTrack'))
+    await F.evaluate("gpStop()")
     check('group paath: no script errors', not errs, '; '.join(errs[:3]))
     await cl.close(); await cf.close()
     # no relay address (apps/app.json → "group" empty): not offered
@@ -1703,6 +1716,18 @@ async def group_paath(b, url, shots):
     if not await pg.evaluate("!!GROUP_URL"):
         await pg.evaluate("S.settings.tour = 1; save(); closeTour(); mainMenu()"); await pg.wait_for_timeout(200)
         check('group paath: not offered without a relay address', not await pg.query_selector('#sheetBody [data-m="group"]'))
+    await c.close()
+
+async def work_switch(b, url):
+    """Opening another work while a recording plays stops it: a recording belongs to its work, and its clock never lights
+    another work's verses (it did, with a script error each tick while the new work's recording loaded)."""
+    c = await b.new_context(viewport={'width': 390, 'height': 844}, is_mobile=True, has_touch=True); pg = await c.new_page(); errs = []
+    pg.on('pageerror', lambda e: None if YT_ERR(e) else errs.append(str(e))); await pg.add_init_script('window.__SALUTE_MS = 0')
+    await pg.goto(url); await pg.wait_for_function("typeof LIB !== 'undefined' && !!LIB")
+    await pg.evaluate("""(async () => { S.settings.tour = 1; save(); closeTour(); window.ytLoad = () => { ytOK = true; ytInfo.st = 1; ytInfo.at = performance.now(); };
+      window.ytPost = () => {}; await openWork('bhaja-govindam'); await whenReady(); openReader('k', firstAu(0, IT.length - 1)); playFrom(firstAu(0, IT.length - 1)); })()""")
+    await pg.wait_for_function("PL.on"); await pg.evaluate("openWork('shiv-aarti')"); await pg.wait_for_function("W && W.id === 'shiv-aarti' && !!SRC.au", timeout=15000); await pg.wait_for_timeout(700)
+    check('opening another work while a recording plays stops it, with no script error', await pg.evaluate("!PL.on && !document.querySelector('#rBody .verse.now')") and not errs, '; '.join(errs[:2]))
     await c.close()
 
 async def split_work(b, shots):

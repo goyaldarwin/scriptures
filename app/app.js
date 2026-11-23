@@ -993,7 +993,7 @@ let PL = {on: false, t: -1, end: null, cur: -1};
 // group paath (its section is before boot): the relay's address (apps/app.json → "group", written in by build.py) and this phone's part in one
 const GROUP_URL = window.__GROUP_URL || "".replace(/^%.*%$/, '');
 const GPK = 'scriptures.group.v1';   // this phone's session (role, code, key), so a refresh stays in it
-const GP = {role: null, code: '', key: '', ws: null, live: false, n: 0, s: null, base: null, lat: 0.08, sent: null, sentAt: 0, wait: 1000, opened: false, prevAu: null, lastAt: 0, away: false};
+const GP = {role: null, code: '', key: '', ws: null, live: false, n: 0, s: null, base: null, lat: 0.08, sent: null, sentAt: 0, wait: 1000, opened: false, prevAu: {}, lastAt: 0, away: false, none: false, pongDue: 0, rtts: []};
 function tkey(){ return W.id + ':' + SRC.au.meta.id; }
 // timing review: under every verse, the verse's own buttons. You mark the verse you are looking at, never a guess:
 // "Starts now" when you hear its first word, "Ends now" when it is over (a refrain or music follows), ▶ to hear it.
@@ -1273,7 +1273,7 @@ function curAt(time){ const a = AUT[PL.t]; let lo = 0, hi = a.length - 1, r = a[
 // every 300 ms while playing: light the verse being recited, stop at the end of what was asked, move the progress bar
 function tick(anchor){
   if (GP.role === 'follow'){ gpTick(); return; }   // a following phone: the leader's time, not a player of its own
-  if (!PL.on || !ytOK) return; if (typeof anchor !== 'number') anchor = PL.cur;
+  if (!PL.on || !ytOK || !SRC.au || !AUT[PL.t]) return; if (typeof anchor !== 'number') anchor = PL.cur;   // a recording still on its way
   const time = playTime(); const i = curAt(time);
   const e = endOf(i), tr0 = SRC.au.tracks[PL.t];
   // a track inside a longer video ends at its own end: the reading goes on with the next recording, or stops there
@@ -1722,7 +1722,8 @@ async function openWork(id, noShow){
   if (greeted) coverOn(saluteOf(id), SALUTE_AFTER);
   else if (W === null || W.id !== id) coverOn('', $('#loading').hidden ? 200 : 0);   // a quiet open: blank, and only if it is slow
   try {
-    if (!W || W.id !== id){ $('#rAnchor').hidden = true; $('#rAnchor').innerHTML = ''; AN.cand = null; AN.calm = 0; const path = workPath(id), auf = (S.w[id] || {}).au;   /* fetched together, not one after another: the work, the meaning languages (once) and, on a phone that has opened it before, the recording it played */
+    if (!W || W.id !== id){ if (PL.on) stopAudio();   // a recording belongs to its work: another work's verses never light by its clock
+      $('#rAnchor').hidden = true; $('#rAnchor').innerHTML = ''; AN.cand = null; AN.calm = 0; const path = workPath(id), auf = (S.w[id] || {}).au;   /* fetched together, not one after another: the work, the meaning languages (once) and, on a phone that has opened it before, the recording it played */
       const pre = auf ? getJSON(path + '/' + auf).catch(() => null) : null;
       const [w0] = await Promise.all([getJSON(path + '/work'), Object.keys(LANGS).length ? null : getJSON('glossary/languages').then(l => { LANGS = l; })]);
       W = w0; W.path = path; PREAU = pre && {file: auf, got: pre};   /* another work: nothing of the last one's reading stays */ partReset(); buildWork(); moveRenamed(); fixLast();
@@ -2343,7 +2344,7 @@ function pruneLib(nodes, shelves){
 // a Cloudflare Worker), to the phones that joined with its 6-digit code or QR code; nothing about a reader is sent or kept.
 // The relay's address is apps/app.json → "group" (written in by build.py); without one, Group paath is not offered.
 function gpOn(){ return !!GROUP_URL; }
-function gpSave(){ try { if (GP.role) localStorage.setItem(GPK, JSON.stringify({role: GP.role, code: GP.code, key: GP.key, at: Date.now()})); else localStorage.removeItem(GPK); } catch (e) {} }
+function gpSave(){ try { if (GP.role) localStorage.setItem(GPK, JSON.stringify({role: GP.role, code: GP.code, key: GP.key, at: Date.now(), prev: GP.prevAu})); else localStorage.removeItem(GPK); } catch (e) {} }
 function gpCode(){ const a = new Uint32Array(1); crypto.getRandomValues(a); return String(100000 + a[0] % 900000); }
 function gpKey(){ const a = new Uint8Array(16); crypto.getRandomValues(a); return Array.from(a, b => b.toString(16).padStart(2, '0')).join(''); }
 function gpLink(){ const app = new URLSearchParams(location.search).get('app'); return location.origin + location.pathname + '?join=' + GP.code + (app ? '&app=' + encodeURIComponent(app) : ''); }
@@ -2352,14 +2353,14 @@ function gpConnect(){
   clearTimeout(GP.retryT); if (!GP.role) return;
   let ws; try { ws = new WebSocket(GROUP_URL + '/s/' + GP.code + '?role=' + (GP.role === 'lead' ? 'lead&key=' + GP.key : 'follow')); } catch (e) { gpRetry(); return; }
   GP.ws = ws;
-  ws.onopen = () => { if (GP.ws !== ws) return; GP.live = true; GP.wait = 1000; GP.sent = null; gpPing(); if (GP.role === 'lead') gpLead(true); gpUI(); };   // sent = null: the leader's state goes again, every 250 ms until a send gets through
+  ws.onopen = () => { if (GP.ws !== ws) return; GP.live = true; GP.wait = 1000; GP.sent = null; GP.pongDue = 0; gpPing(); if (GP.role === 'lead') gpLead(true); gpUI(); };   // sent = null: the leader's state goes again, every 250 ms until a send gets through
   ws.onmessage = e => {
     if (GP.ws !== ws) return;
-    if (e.data === 'pong'){ const r = (performance.now() - GP.pingAt) / 2000; if (r > 0 && r < 2) GP.lat = GP.lat * 0.6 + r * 0.4; return; }   // half the round trip: how late a state arrives
+    if (e.data === 'pong'){ GP.pongDue = 0; const r = (performance.now() - GP.pingAt) / 2000; if (r > 0 && r < 1){ GP.rtts = GP.rtts.concat(r).slice(-5); GP.lat = Math.min(...GP.rtts); } return; }   // how late a state arrives: half the quickest of the last 5 round trips (one slow ping never sets it)
     let d; try { d = JSON.parse(e.data); } catch (x) { return; }
     if (d.type === 'count'){ GP.n = d.n; gpUI(); pSub(); }
-    else if (d.type === 'state' && GP.role === 'follow') gpApply(d.s, performance.now());
-    else if (d.type === 'wait' && GP.role === 'follow') gpUI();
+    else if (d.type === 'state' && GP.role === 'follow') gpApply(d.s, performance.now() - Math.min(60000, Math.max(0, +d.age || 0)));   // age: a state kept by the relay for a phone that joins later
+    else if (d.type === 'wait' && GP.role === 'follow'){ GP.none = !!d.none; gpBar(); gpUI(); }
     else if (d.type === 'taken' && GP.role === 'lead'){ GP.code = gpCode(); gpSave(); GP.ws = null; try { ws.close(); } catch (x) {} gpConnect(); gpUI(); }   // the code is in use: another one
     else if (d.type === 'away' && GP.role === 'follow') gpAway();   // the leader's phone has gone (closed, locked, offline)
     else if (d.type === 'end' && GP.role === 'follow') gpStop(T('सामूहिक पाठ समाप्त हुआ', 'The group paath has ended'));
@@ -2369,10 +2370,21 @@ function gpConnect(){
 // the network dropped: try again, a little later each time (1 s, 2 s, 4 s … 15 s)
 function gpRetry(){ if (!GP.role) return; clearTimeout(GP.retryT); GP.retryT = setTimeout(gpConnect, GP.wait); GP.wait = Math.min(GP.wait * 2, 15000); }
 // keep the connection open through phone networks, and measure how long a message takes
-function gpPing(){ if (GP.ws && GP.live){ GP.pingAt = performance.now(); try { GP.ws.send('ping'); } catch (e) {} } }
-setInterval(gpPing, 20000);
-// the leader's place: the recording's time now (from the player's last report and the time since)
-function gpTime(){ const t = playTime(); return t + (ytInfo.st === 1 && ytInfo.at && PL.seekT == null ? RATE() * (performance.now() - ytInfo.at) / 1000 : 0); }
+function gpPing(){ if (GP.role) gpSave(); if (GP.ws && GP.live){ GP.pingAt = performance.now(); if (!GP.pongDue) GP.pongDue = GP.pingAt + 8000; try { GP.ws.send('ping'); } catch (e) {} } }
+setInterval(gpPing, 15000);
+// a ping not answered in 8 s: the connection is dead though it looks open (a phone network can keep one so for minutes): drop
+// it and connect again
+function gpWatch(){ if (!GP.pongDue || performance.now() < GP.pongDue || !GP.ws) return; const ws = GP.ws; GP.ws = null; GP.live = false; GP.pongDue = 0; try { ws.close(); } catch (e) {} gpUI(); gpRetry(); }
+setInterval(gpWatch, 1000);
+// back on the screen (a phone unlocked): check the connection at once
+document.addEventListener('visibilitychange', () => { if (!document.hidden && GP.role) gpPing(); });
+// the leader's place: the recording's time now, from the player's last report and the time since — never counting a pause
+// (the last report before a pause is old when playing resumes: time counts from the resume) or a report older than 1.5 s
+// (YouTube reports about 4 times a second while it plays)
+function gpTime(){
+  const t = playTime(), now = performance.now(); if (ytInfo.st === 1 && GP.lastSt !== 1) GP.playAt = now; GP.lastSt = ytInfo.st;
+  const since = now - Math.max(ytInfo.at || 0, GP.playAt || 0); return t + (ytInfo.st === 1 && ytInfo.at && PL.seekT == null && since < 1500 ? RATE() * since / 1000 : 0);
+}
 function gpState(){
   if (!W) return null; const on = !!(PL.on && SRC.au && PL.snip == null && PL.cur >= 0);
   const s = {w: W.id, au: SRC.au ? SRC.au.meta.id : null, on: on ? 1 : 0};
@@ -2380,13 +2392,13 @@ function gpState(){
   return s;
 }
 // sent when something changes (the work, the recording, play or pause, the speed, a seek: the time is not where the last state
-// puts it), and every 10 s, so a phone that missed a message catches up
+// puts it), and every 5 s while it plays (30 s otherwise), so a phone that missed a message, or got one late, catches up
 function gpLead(force){
   if (GP.role !== 'lead' || !GP.live) return; const s = gpState(); if (!s) return;
   const o = GP.sent, now = performance.now();
-  const moved = o && s.on && o.on && o.k === s.k ? Math.abs(s.t - (o.t + (o.p ? o.r * (now - GP.sentAt) / 1000 : 0))) > 0.4 : true;
+  const moved = o && s.on && o.on && o.k === s.k ? Math.abs(s.t - (o.t + (o.p ? o.r * (now - GP.sentAt) / 1000 : 0))) > 0.25 : true;
   const changed = !o || ['w', 'au', 'on', 'k', 'p', 'r'].some(k => o[k] !== s[k]) || (s.on && moved);
-  if (!force && !changed && now - GP.sentAt < 10000) return;
+  if (!force && !changed && now - GP.sentAt < (s.on && s.p ? 5000 : 30000)) return;
   try { GP.ws.send(JSON.stringify({type: 'state', s})); GP.sent = s; GP.sentAt = now; } catch (e) {}
 }
 setInterval(() => gpLead(false), 250);
@@ -2399,7 +2411,7 @@ function gpValid(s){
 }
 async function gpApply(s, at){
   if (!gpValid(s)) return;
-  GP.s = s; GP.lastAt = performance.now(); GP.away = false;
+  GP.s = s; GP.sAt = at; GP.lastAt = performance.now(); GP.away = false; GP.none = false;
   if (s.on) GP.base = {t: s.t, at: at - (GP.lat + Math.min(2, Math.max(0, +s.l || 0))) * 1000, p: s.p, r: s.r};
   if (GP.busy){ GP.again = true; return; } GP.busy = true;
   try {
@@ -2407,7 +2419,7 @@ async function gpApply(s, at){
     if (!W || W.id !== s.w){ GP.opened = false; await openWork(s.w, true); }
     if (!W || W.id !== s.w) return;
     if (s.au && (!SRC.au || SRC.au.meta.id !== s.au)){   // the leader's recording (this phone's own choice comes back on leaving)
-      const c = S.src[W.id] = S.src[W.id] || {}; if (!GP.prevAu) GP.prevAu = {w: W.id, au: c.au}; c.au = s.au; save(); await loadSources('au');
+      const c = S.src[W.id] = S.src[W.id] || {}; if (!(W.id in GP.prevAu)){ GP.prevAu[W.id] = c.au || null; gpSave(); } c.au = s.au; save(); await loadSources('au');
     }
     if (s.on && SRC.au && AUT[s.k] && AUT[s.k].length){
       PL.on = true; PL.t = s.k; PL.end = null; PL.one = false; PL.snip = null; PL.seekT = null; PL.whole = false; ytOK = true; ytInfo.st = s.p ? 1 : 2;
@@ -2418,12 +2430,12 @@ async function gpApply(s, at){
     } else if (PL.on){ PL.on = false; $$('#rBody .verse.now').forEach(v => v.classList.remove('now')); $('#pJump').hidden = true; }
     if (!s.on && was.w !== s.w) show('home');   // another work, nothing playing yet: its page (never the last work's pages under the new one)
     gpBar();
-  } finally { GP.busy = false; if (GP.again){ GP.again = false; gpApply(GP.s, performance.now()); } }
+  } finally { GP.busy = false; if (GP.again){ GP.again = false; gpApply(GP.s, GP.sAt); } }   // the newest state, timed from when it came
 }
 // every 300 ms on a following phone (tick): the leader's time now, the verse it is on
 function gpTick(){
   gpBar(); const b = GP.base; if (!b || !PL.on || !SRC.au || !AUT[PL.t] || !AUT[PL.t].length) return;
-  if (b.p && performance.now() - GP.lastAt > 25000) gpAway();   // nothing from the leader for 25 s (it sends every 10 s)
+  if (b.p && performance.now() - GP.lastAt > 16000) gpAway();   // nothing from a playing leader for 16 s (it sends every 5 s)
   const time = b.t + (b.p ? b.r * (performance.now() - b.at) / 1000 : 0); ytInfo.t = time; ytInfo.at = performance.now(); ytInfo.st = b.p ? 1 : 2;
   const a = AUT[PL.t], i = curAt(time), m = a.findIndex(x => x[0] === i), e = endOf(i); let show = i;
   if (e != null && time >= e && m >= 0 && m + 1 < a.length) show = a[m + 1][0];
@@ -2447,13 +2459,14 @@ function gpSub(){   // the player's small line in a group paath
   if (GP.role === 'lead') return T('सामूहिक पाठ · ', 'Group paath · ') + (GP.live ? gpCount() : T('जुड़ रहा है…', 'connecting…'));
   if (GP.role !== 'follow') return '';
   if (!GP.live) return T('जुड़ रहा है…', 'Connecting…');
+  if (GP.none) return T('इस कोडका कोई पाठ नहीं — अंक जाँचें', 'No group paath on this code — check the number');
   if (GP.away) return T('लीडरके फ़ोनकी प्रतीक्षा', 'Waiting for the leader\'s phone');
   if (!PL.on) return T('लीडरके रिकॉर्डिंग चलानेकी प्रतीक्षा', 'Waiting for the leader to play');
   return (ytInfo.st === 1 ? T('साथ चल रहे हैं', 'Following') : T('रुका हुआ', 'Paused')) + (CURVIEW !== 'reader' ? T(' · पदपर जाएँ ›', ' · Go to verse ›') : '');
 }
 function gpStart(role, code){
   if (GP.role) gpStop();
-  GP.role = role; GP.code = code; GP.key = role === 'lead' ? gpKey() : ''; GP.n = 0; GP.sent = null; GP.s = null; GP.base = null; GP.opened = false; GP.last = null; GP.away = false; GP.wait = 1000;
+  GP.role = role; GP.code = code; GP.key = role === 'lead' ? gpKey() : ''; GP.n = 0; GP.sent = null; GP.s = null; GP.base = null; GP.opened = false; GP.last = null; GP.away = false; GP.none = false; GP.wait = 1000; GP.pongDue = 0;
   gpSave(); gpConnect();
   if (role === 'follow'){ if (PL.on) stopAudio(); gpBar(); toast(T('सामूहिक पाठसे जुड़ रहे हैं', 'Joining the group paath')); }
   gpUI(); pSub();
@@ -2465,10 +2478,16 @@ function gpStop(msg){
   try { if (ws) ws.close(role === 'lead' ? 4100 : 1000, 'bye'); } catch (e) {}
   if (role === 'follow'){
     $('#player').classList.remove('follow'); document.body.classList.remove('gpf'); PL.on = false; ytOK = false; ytInfo = {t: 0, st: -1, d: 0}; stopAudio(); wake(false);
-    const p = GP.prevAu; GP.prevAu = null;
-    if (p && W && W.id === p.w){ const c = S.src[W.id] = S.src[W.id] || {}; if (p.au) c.au = p.au; else delete c.au; save(); loadSources('au'); }
+    gpGiveBack();
   }
   gpUI(); pSub(); if (msg) toastLight(msg, 5000);
+}
+// the recordings a following phone was given for each work go back to its own choices (on leaving, or on a later start when
+// the session has lapsed)
+function gpGiveBack(prev){
+  const p = prev || GP.prevAu; GP.prevAu = {}; let cur = false;
+  for (const w in p){ const c = S.src[w] = S.src[w] || {}; if (p[w]) c.au = p[w]; else delete c.au; if (W && W.id === w) cur = true; }
+  if (Object.keys(p).length){ save(); if (cur) loadSources('au'); }
 }
 // ☰ › Group paath: start one (the leader, inside a work with a recording), join one by its code, or the one this phone is in
 function gpSheet(){
@@ -2515,7 +2534,8 @@ function gpBoot(){
   if (q.has('join')){ q.delete('join'); history.replaceState(history.state, '', location.pathname + (q.toString() ? '?' + q : '') + location.hash); }
   if (j.length === 6){ gpStart('follow', j); return true; }
   let o = null; try { o = JSON.parse(localStorage.getItem(GPK) || 'null'); } catch (e) {}
-  if (o && o.role && /^\d{6}$/.test(o.code) && Date.now() - o.at < 8 * 3600 * 1000){ GP.role = o.role; GP.code = o.code; GP.key = o.key || ''; gpConnect(); if (o.role === 'follow') gpBar(); pSub(); return o.role === 'follow'; }
+  if (o && o.role && /^\d{6}$/.test(o.code) && Date.now() - o.at < 8 * 3600 * 1000){ GP.role = o.role; GP.code = o.code; GP.key = o.key || ''; GP.prevAu = o.prev || {}; gpConnect(); if (o.role === 'follow') gpBar(); pSub(); return o.role === 'follow'; }
+  if (o){ gpGiveBack(o.prev || {}); try { localStorage.removeItem(GPK); } catch (e) {} }   // a session that lapsed: this phone's own recordings back
   return false;
 }
 // A QR code for a short link (the group paath's join link): byte mode, error correction M, versions 1–10, the mask with the

@@ -20,6 +20,7 @@ tools/
   group/                         the group paath relay, a Cloudflare Worker (group/README.md): one phone plays, the others follow
     worker.js, wrangler.toml       the relay and its settings (deployed by the group workflow, not by build.py)
     test.mjs                       its protocol test, against wrangler dev
+    simulate.py                    real use with seven phones through the real relay, 13 scenarios (README)
   audio/                         audio sources (shared by every work; see audio/README.md)
     transcribe.py                  recordings → transcripts (Whisper speech recognition)
     transcribe_onnx.py             the same with a Whisper model from GitHub, when the usual model can't be downloaded
