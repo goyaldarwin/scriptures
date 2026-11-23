@@ -372,7 +372,10 @@ input[type=checkbox],input[type=radio],input[type=range]{accent-color:var(--indi
 body.playing #reader .navbar{display:none}
 .ytw{flex:none;width:200px;height:200px;border-radius:10px;overflow:hidden;background:#000}
 .pside{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:space-between;position:relative;container-type:inline-size}
-@container (max-width:155px){.pctl .prate{position:absolute;top:2px;right:38px;margin:0}}   /* a narrow phone (under 390 px): ⏮ ▶ ⏭ 1× do not fit beside the 200-px video, so 1× moves up beside ✕ (the owner); wider phones keep it after ⏭ */
+@container (max-width:155px){.pctl .prate{position:absolute;top:2px;right:38px;margin:0}}
+@container (max-width:180px){.pctl .prate.on{position:absolute;top:2px;right:38px;margin:0}}   /* a speed other than 1× ("1.25×", wider than "1×") moves up beside ✕ on any phone where it would not fit after ⏭ */   /* a narrow phone (under 390 px): ⏮ ▶ ⏭ 1× do not fit beside the 200-px video, so 1× moves up beside ✕ (the owner); wider phones keep it after ⏭ */
+.prate.on{background:var(--saffron);border-color:var(--saffron);color:#fff}   /* a speed other than 1× is filled (the owner: an elder sees at once that the speed is changed) */
+.rates{display:flex;flex-direction:column;gap:10px}.rates > .btn{justify-content:center;font-size:18px;padding:14px 16px}.rates .acts{display:flex;gap:8px;flex-wrap:nowrap}.rates .acts .btn{flex:1;justify-content:center;padding:10px 6px;font-size:14px;flex-direction:column;gap:0}   /* the speed sheet: Normal first and largest */
 .pctl{display:flex;align-items:center;gap:2px;flex-wrap:nowrap}.pctl .ib{width:36px}.pctl .pmain{width:44px;flex:none}
 .ptop{display:flex;justify-content:flex-end;align-items:center;min-width:0;margin:-4px -6px 0 0}   /* ✕ alone on the top line */
 .ptime{display:flex;justify-content:flex-end;align-items:center;flex-wrap:wrap;gap:4px;min-width:0}.ptime:not(:has(button:not([hidden]))){display:none}   /* Next ▸ and ±step on their own line under ✕ (Audio timing only), never over the video */

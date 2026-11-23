@@ -72,8 +72,7 @@ Rebuild: `python3 tools/works/guru-granth-sahib/source/make.py && python3 tools/
 - **Names in Gurmukhi** (shown with the Punjabi meaning chosen, `docs/PLAYBOOK.md` §7): each part's `pa` is the Shabad OS
   database's section name, the Granth's own spelling (ਰਾਗੁ ਗਉੜੀ, ਸਲੋਕੁ ਭਗਤ ਕਬੀਰ ਜੀਉ ਕੇ; the Gatha, Phunhe and Chaubole without
   ਮਹਲਾ ੫, as their Hindi and English names); each topic's is its first line itself (`make.py`); the verse types and the Ang
-  are ਸ਼ਬਦ, ਸਲੋਕ, ਪਉੜੀ, ਰਹਾਉ, ਪਦ, ਸਵਈਆ, ਅੰਗ. While one recording sings many shabads (a Sehaj Path Kirtan track), the
-  player's bar runs over the shabad being heard (`"bar": "topic"`).
+  are ਸ਼ਬਦ, ਸਲੋਕ, ਪਉੜੀ, ਰਹਾਉ, ਪਦ, ਸਵਈਆ, ਅੰਗ.
 - **Views** (`views.json`, made by `make.py`, joined to the manifest by `include`): beside its parts the Granth is
   classified by **writer** (the Gurus, the Bhagats, the Bhatts, Satta and Balwand and Baba Sundar; each writer's verses
   in the Granth's order, read on their own) and by **Ang** (for each of the 1,430 Angs, the verse its first line is in and which line of it: an Ang opens at that line, and the reader's footer names the Ang of the line at the top of the screen).

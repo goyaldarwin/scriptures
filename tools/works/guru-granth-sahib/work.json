@@ -16,7 +16,6 @@
  },
  "headings": "transliteration",
  "load": "parts",
- "bar": "topic",
  "include": [
   "views.json"
  ],
