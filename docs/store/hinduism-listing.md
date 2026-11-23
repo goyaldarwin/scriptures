@@ -37,7 +37,7 @@ LISTEN, HANDS-FREE
 
 DAILY PATH
 • 30-day (Masa Parayan) and 9-day (Navahn Parayan) Ramcharitmanas path, with the parayan vidhi, aarti and katha visarjan
-• Your place, progress, bookmarks and notes are kept on your phone
+• Your place, progress, bookmarks and notes are kept on your device
 
 PRIVATE BY DESIGN
 No account, no sign-in, no ads and no tracking. Your notes and progress stay on your device.

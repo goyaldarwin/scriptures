@@ -1,30 +1,42 @@
 # The group paath relay
 
-Group paath (`docs/PLAYBOOK.md` §7): people read together in one room, each on their own phone. One phone, the leader's,
-plays the recording; every other phone follows it without sound, lighting and turning to the verse being recited. The
-leader's phone sends where it is in the recording; this relay passes that on to the phones that joined with its code.
+Group paath (`docs/PLAYBOOK.md` §7): people read together, each on their own device. One device, the leader's, plays the
+recording; every other device follows it, lighting and turning to the verse being recited. Where the leader says some are
+elsewhere, a follower may also play the recording itself, in step. The leader's device sends where it is in the recording;
+this relay passes that on to the devices that joined with its code.
+
+**A code and a sitting are two things.** The code is held for the leader's device (its random key) until the leader ends the
+code or no device has been on it for 15 days, so a paath read every day keeps one link and one QR code. A sitting starts when
+the leader connects and ends when the leader ends it for today, or after an hour with nothing playing; every follower is
+then sent home. The relay stores per code only the key, the sitting's mode and the leader's last state (deleted when the
+sitting ends), and when a device was last on it. There are no queues.
 
 - `worker.js`: a Cloudflare Worker with one Durable Object per 6-digit code. It accepts WebSockets at
-  `/s/<code>?role=lead&key=<key>` (the leader; the key reserves the code for its phone) and `/s/<code>?role=follow`,
-  passes the leader's `{type: "state"}` messages to the followers, tells the leader how many follow (`{type: "count"}`),
-  sends a follower that joins late the last state, tells the followers when the leader's phone goes (`{type: "away"}`, also
-  to one that joins meanwhile) and when the leader ends it (`{type: "end"}`).
-  WebSocket hibernation: an idle session costs nothing, and `ping` is answered (`pong`) without waking it. A session nobody
-  is connected to is cleared after 8 hours. Only the origins in `wrangler.toml` → `ORIGINS` may connect.
-- `wrangler.toml`: its name (`scriptures-group`), the Durable Object, and the allowed origins.
-- `test.mjs`: its protocol test.
-- `simulate.py`: real use, end to end: a leader and six follower phones (each its own browser) and 50 more on raw
-  WebSockets, through the real relay, in 13 scenarios (joining by link, code and from another work; late joiners; quick
+  `/s/<code>?role=lead&key=<key>&m=<room|apart>` (the leader; the key holds the code for its device; `m` the sitting's mode,
+  `room` when absent) and `/s/<code>?role=follow`. It passes the leader's `{type: "state"}` messages to the followers, tells a
+  follower the sitting's mode (`{type: "mode", m}`: on joining, and when a sitting starts), tells the leader how many follow
+  (`{type: "count"}`), sends a follower that joins late the last state, tells the followers when the leader's device goes
+  (`{type: "away"}`, also to one that joins meanwhile), and sends everyone home when the sitting ends (`{type: "end", why}`:
+  `end` the leader closed with 4100, End for today; `code` the leader closed with 4101, End the code; `idle` an hour with
+  nothing playing, the leader too). A follower on a code with no sitting gets `{type: "wait", none}` (`none`: no leader holds
+  the code). Its alarm ends an idle sitting and lets an unused code go. WebSocket hibernation: an idle session costs nothing,
+  and `ping` is answered (`pong`) without waking it. Only the origins in `wrangler.toml` → `ORIGINS` may connect.
+- `wrangler.toml`: its name (`scriptures-group`), the Durable Object, and the allowed origins. The times can be set for a
+  test (`SESSION_IDLE_MS`, default an hour; `CODE_TTL_MS`, default 15 days).
+- `test.mjs`: its protocol test (run against `wrangler dev` with short times, below).
+- `simulate.py`: real use, end to end: a leader and six follower devices (each its own browser) and 50 more on raw
+  WebSockets, through the real relay, in 14 scenarios (joining by link, code and from another work; late joiners; quick
   pause/play; speed; ⏭; a recording's end; another part, work, recording; Sri Guru Granth Sahib's kirtan; refreshes; a
-  dropped, a silent and a restarted relay connection; the leader's phone locking; wrong and taken codes; leaving and
-  ending), with every follower's place sampled against the leader's throughout. Run it after any change to Group paath.
+  dropped, a silent and a restarted relay connection; the leader's device locking; wrong and taken codes; leaving and
+  ending; the next sitting on the same code with some elsewhere, a follower playing in step), with every follower's place
+  sampled against the leader's throughout. Run it after any change to Group paath.
 - The app reads the relay's address from `apps/app.json` → `group` (`wss://…`, written into `app.js` by `build.py`).
   While that is empty, the app does not offer Group paath.
 
 It runs on Cloudflare's **Workers Free plan** (Durable Objects with SQLite storage are included). A session sends one
 small message when the leader plays, pauses, seeks or changes the speed, and one every 5 seconds while it plays; the free
 100,000 requests a day (WebSocket messages count 1 in 20) cover hundreds of sessions a day. Measured on `wrangler dev`: 300
-phones in one session, every message delivered, the slowest in 39 ms.
+devices in one session, every message delivered, the slowest in 39 ms.
 
 ## Where it runs
 
@@ -72,7 +84,7 @@ Later changes to `worker.js` or `wrangler.toml` deploy by themselves when they r
 ## Test it here
 
 ```bash
-cd tools/group && npx wrangler dev --port 8787 &     # the relay on this machine (it allows http://localhost:8000)
+cd tools/group && npx wrangler dev --port 8787 --var SESSION_IDLE_MS:3000 --var CODE_TTL_MS:6000 &   # short times
 node tools/group/test.mjs                             # its protocol, message by message
 ```
 The app against it: serve the site (`python3 -m http.server 8000` at the repository root) and open
