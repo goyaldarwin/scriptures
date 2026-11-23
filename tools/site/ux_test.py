@@ -1659,32 +1659,56 @@ async def main():
     print(f'\n{sum(results)}/{len(results)} checks passed')
     sys.exit(0 if all(results) else 'UX TEST FAILED')
 async def group_paath(b, url, shots):
-    """Group paath (docs/PLAYBOOK.md §7): one phone plays, the others follow it without sound. Two phones, each its own
-    context, joined through a stand-in for the relay (tools/group/worker.js: the same messages), so the test needs no network:
-    the leader starts it from ☰ (a code and a QR code), the follower joins by the link and lights the leader's verse with no
-    player of its own, stops when the leader pauses, and leaves when the leader ends it. Without a relay address it is not offered."""
-    sess = {'lead': None, 'follow': [], 'state': None}
+    """Group paath (docs/PLAYBOOK.md §7): one device plays, the others follow. Devices, each its own context, joined through a
+    stand-in for the relay (tools/group/worker.js: the same messages), so the test needs no network: the leader starts it from ☰
+    (its code, "Where is everyone?"), the follower joins by the link and lights the leader's verse; in a room it has no sound and
+    can get none; elsewhere it is asked, and with sound plays its own recording at the leader's place. End for today keeps the
+    code; End the code lets it go; ✕ and an ended sitting offer "Join again"; a device away for 30 minutes is not put back.
+    Without a relay address it is not offered."""
+    # one word for one thing (docs/PLAYBOOK.md §6): a reader may be on a laptop, a tablet or a phone, so every text says device
+    here = os.path.dirname(os.path.abspath(__file__)); root = os.path.dirname(os.path.dirname(here))
+    src = open(os.path.join(here, 'app.js'), encoding='utf-8').read()
+    said = [x for pair in re.findall(r"T\(\s*'((?:[^'\\]|\\.)*)'\s*,\s*'((?:[^'\\]|\\.)*)'", src) for x in pair]
+    said += re.findall(r"toast(?:Light|Act)?\(\s*'((?:[^'\\]|\\.)*)'", src)
+    priv = re.sub(r'<style>.*?</style>', '', open(os.path.join(here, 'privacy.html'), encoding='utf-8').read(), flags=re.S)
+    bad = [x for x in said if re.search(r'[Pp]hone|फ़ोन|फोन', x)] + (['privacy.html'] if re.search(r'[Pp]hone|फ़ोन|फोन', priv) else [])
+    check('words: every text says device / डिवाइस, never phone / फ़ोन', len(said) > 500 and not bad, bad[:5])
+    emo = [x for x in said if re.search('[\U0001F300-\U0001FAFF]', x)]
+    check('words: no emoji in any text (docs/PLAYBOOK.md §6)', not emo, emo[:5])
+    sess = {'lead': None, 'follow': [], 'state': None, 'live': False, 'm': 'room', 'key': None}
     def count():
         if sess['lead']: sess['lead'].send(json.dumps({'type': 'count', 'n': len(sess['follow'])}))
+    def to_f(d):
+        for f in list(sess['follow']): f.send(json.dumps(d))
+    def end(why):
+        to_f({'type': 'end', 'why': why}); sess['live'] = False; sess['state'] = None
+        if why == 'code': sess['key'] = None
     def relay(ws):   # the Worker's protocol, in memory
-        role = 'lead' if 'role=lead' in ws.url else 'follow'
-        if role == 'lead':
-            sess['lead'] = ws; count()
+        q = dict(x.split('=', 1) for x in ws.url.split('?', 1)[1].split('&') if '=' in x)
+        if q.get('role') == 'lead':
+            if sess['key'] and q.get('key') != sess['key']:
+                ws.send(json.dumps({'type': 'taken'})); return
+            sess['key'] = q.get('key'); sess['lead'] = ws; was = (sess['live'], sess['m'])
+            sess['live'] = True; sess['m'] = 'apart' if q.get('m') == 'apart' else 'room'; count()
+            if was != (True, sess['m']): to_f({'type': 'mode', 'm': sess['m']})
             def msg(m):
                 if m == 'ping': ws.send('pong'); return
                 d = json.loads(m)
                 if d.get('type') == 'state':
-                    sess['state'] = d['s']
-                    for f in sess['follow']: f.send(json.dumps({'type': 'state', 's': d['s']}))
+                    sess['state'] = d['s']; to_f({'type': 'state', 's': d['s']})
             def closed(code, reason):
                 if sess['lead'] is not ws: return   # replaced, or dropped by the test (it says "away" itself)
-                for f in sess['follow']: f.send(json.dumps({'type': 'end' if code == 4100 else 'away'}))
-                if code == 4100: sess['state'] = None
                 sess['lead'] = None
+                if code == 4100: end('end')
+                elif code == 4101: end('code')
+                else: to_f({'type': 'away'})
             ws.on_message(msg); ws.on_close(closed)
         else:
             sess['follow'].append(ws)
-            ws.send(json.dumps({'type': 'state', 's': sess['state'], 'age': 0}) if sess['state'] else json.dumps({'type': 'wait', 'none': not sess['lead']}))
+            if sess['live']:
+                ws.send(json.dumps({'type': 'mode', 'm': sess['m']}))
+                ws.send(json.dumps({'type': 'state', 's': sess['state'], 'age': 0}) if sess['state'] else json.dumps({'type': 'wait', 'none': False}))
+            else: ws.send(json.dumps({'type': 'wait', 'none': not sess['key']}))
             count()
             ws.on_message(lambda m: ws.send('pong') if m == 'ping' else None)
             def gone(code, reason):
@@ -1695,35 +1719,48 @@ async def group_paath(b, url, shots):
     cl, cf = await mk(), await mk(); errs = []
     for c in (cl, cf): await c.route_web_socket('**/s/*', relay)
     L, F = await cl.new_page(), await cf.new_page()
+    # a YouTube player stand-in that reports its time as the real one does (the leader's, and a follower's that plays the sound)
+    FAKE_YT = """window.ytLoad = (vid, st) => { ytVid = vid; ytOK = true; ytInfo.t = st || 0; ytInfo.st = 1; ytInfo.at = performance.now(); document.querySelector('#ytBox').innerHTML = '<div id="ytf"></div>'; };
+      window.ytPost = (f, a) => { if (f === 'seekTo'){ ytInfo.t = a[0]; ytInfo.at = performance.now(); window.__seeks = (window.__seeks || 0) + 1; } if (f === 'playVideo') ytInfo.st = 1; if (f === 'pauseVideo') ytInfo.st = 2; };
+      setInterval(() => { if (ytInfo.st === 1){ ytInfo.t += 0.25 * wantRate(); ytInfo.at = performance.now(); } }, 250);"""
     for pg in (L, F):
         await pg.add_init_script("window.__SALUTE_MS = 0; window.__GROUP_URL = 'ws://group.test'")
         pg.on('pageerror', lambda e: None if YT_ERR(e) else errs.append(str(e)))
     async def shot(pg, tag):
         if shots: os.makedirs(shots, exist_ok=True); await pg.screenshot(path=os.path.join(shots, f'group-{tag}.png'))
+    async def lead_menu():
+        await (await L.query_selector('#rMore')).click(); await L.wait_for_timeout(200)
+        await (await L.query_selector('#sheetBody [data-m="group"]')).click(); await L.wait_for_timeout(200)
     await L.goto(url); await L.wait_for_function("typeof LIB !== 'undefined' && !!LIB")
-    # the leader plays Bhaja Govindam; its YouTube player is a stand-in that reports its time as the real one does
-    await L.evaluate("""(async () => { S.settings.tour = 1; S.settings.ui = 'en'; save(); closeTour(); await openWork('bhaja-govindam'); openReader('k', 0);
-      window.ytLoad = () => { ytOK = true; ytInfo.st = 1; ytInfo.at = performance.now(); };
-      window.ytPost = (f, a) => { if (f === 'seekTo'){ ytInfo.t = a[0]; ytInfo.at = performance.now(); } if (f === 'playVideo') ytInfo.st = 1; if (f === 'pauseVideo') ytInfo.st = 2; };
-      setInterval(() => { if (ytInfo.st === 1){ ytInfo.t += 0.25 * RATE(); ytInfo.at = performance.now(); } }, 250);
-      playFrom(0); })()""")
+    # the leader plays Bhaja Govindam
+    await L.evaluate("(async () => { S.settings.tour = 1; S.settings.ui = 'en'; save(); closeTour(); await openWork('bhaja-govindam'); openReader('k', 0); " + FAKE_YT + " playFrom(0); })()")
     await L.wait_for_function("PL.on && PL.cur >= 0")
     await (await L.query_selector('#rMore')).click(); await L.wait_for_timeout(200)
     item = await L.query_selector('#sheetBody [data-m="group"]'); check('group paath: ☰ offers it where a relay is set', bool(item))
-    await item.click(); await L.wait_for_timeout(200); await (await L.query_selector('#gpLead')).click()
+    await item.click(); await L.wait_for_timeout(200)
+    draft = await L.evaluate("GP.draft")
+    check('group paath: the leader is shown a 6-digit code (with Change) and asked "Where is everyone?" with two buttons',
+          len(draft) == 6 and draft.isdigit() and 'Where is everyone?' in await L.inner_text('#gpBody') and await L.evaluate("document.querySelectorAll('#gpBody [data-where]').length") == 2 and bool(await L.query_selector('#gpChange')), draft)
+    await shot(L, 'start')
+    # the leader chooses its own code
+    await (await L.query_selector('#gpChange')).click(); await L.fill('#gpOwn', '108 108')
+    await (await L.query_selector('#gpBody [data-where="room"]')).click()
     await L.wait_for_function("GP.live", timeout=8000)
     code = await L.evaluate('GP.code')
-    check('group paath: the leader gets a 6-digit code, shown with its QR code', len(code) == 6 and code.isdigit() and await L.is_visible('#gpBody svg.qr') and code[:3] in await L.inner_text('.gpcode'), code)
+    check('group paath: the leader may choose its own code; it starts in a room, shown with its QR code', code == '108108' and await L.evaluate("GP.m") == 'room' and await L.is_visible('#gpBody svg.qr') and '108' in await L.inner_text('.gpcode'), code)
     await shot(L, 'leader')
     keys = await L.wait_for_function("GP.sent && Object.keys(GP.sent).sort().join(',')"); keys = await keys.json_value()
-    check('group paath: the leader sends only where the recording is (no reader\'s data)', keys == 'au,i,k,l,on,org,p,r,t,w', keys)
-    await (await L.query_selector('#gpEnd')).is_visible(); await L.evaluate('closeSheet()')
-    # the follower: a fresh phone opens the join link
+    check('group paath: the leader sends only where the recording is and the mode (no reader\'s data)', keys == 'au,i,k,l,m,on,org,p,r,t,w', keys)
+    check('group paath: the leader\'s sheet has End for today and End the code', bool(await L.query_selector('#gpEnd')) and bool(await L.query_selector('#gpEndCode')))
+    await L.evaluate('closeSheet()')
+    # the follower: a fresh device opens the join link; in a room it is not asked and has no sound
     await F.goto(url + '?join=' + code)
     await F.wait_for_function("GP.role === 'follow' && PL.on && PL.cur >= 0 && document.querySelector('#reader').classList.contains('on')", timeout=20000)
+    await F.evaluate(FAKE_YT)
     check('group paath: the follower opens the leader\'s work at its verse, with no tour, no player of its own and the link out of the address bar',
           await F.evaluate("W.id === 'bhaja-govindam' && !TOUR && !document.querySelector('#ytf') && !location.search.includes('join')"))
-    await L.wait_for_function("GP.n === 1", timeout=5000); check('group paath: the leader sees 1 phone following', '1 phone following' in await L.inner_text('#pTrack'), await L.inner_text('#pTrack'))
+    check('group paath: in a room the follower is not asked how to listen', await F.evaluate("GP.m === 'room' && !document.querySelector('#sheetBody [data-hear]') && !GP.hear"))
+    await L.wait_for_function("GP.n === 1", timeout=5000); check('group paath: the leader sees 1 device following', '1 device following' in await L.inner_text('#pTrack'), await L.inner_text('#pTrack'))
     a = await L.evaluate("AUT[PL.t].map(x => [x[0], x[1]])"); i, t = a[len(a) // 2]
     await L.evaluate(f"stepVerse(0); seekGuard({t + 0.5}); ytPost('seekTo', [{t + 0.5}, true])")
     try: await F.wait_for_function(f"PL.cur === {i}", timeout=5000)
@@ -1734,40 +1771,85 @@ async def group_paath(b, url, shots):
     await L.evaluate("ytPost('pauseVideo')"); await F.wait_for_function("ytInfo.st === 2", timeout=5000)
     t1 = await F.evaluate('ytInfo.t'); await F.wait_for_timeout(800); t2 = await F.evaluate('ytInfo.t')
     check('group paath: the leader pauses, the follower stops', t1 == t2 and 'Paused' in await F.inner_text('#pTrack'), f'{t1} {t2}')
-    # a follower's own ▶ plays nothing (the leader's phone plays; two would echo)
-    await F.evaluate(f"playFrom({i})"); await F.wait_for_timeout(300)
-    check('group paath: a follower\'s ▶ starts no player of its own', await F.evaluate("!document.querySelector('#ytf') && GP.role === 'follow'"))
+    # in a room a follower can get no sound: its ▶ plays nothing, and no way to turn sound on is offered
+    await F.evaluate(f"playFrom({i}); gpHear(true)"); await F.wait_for_timeout(300)
+    check('group paath: in a room a follower\'s ▶ starts no player of its own, and it cannot turn sound on', await F.evaluate("!document.querySelector('#ytf') && GP.role === 'follow' && !GP.hear && !document.querySelector('#toast .tact')"))
     # a broken state from the relay is ignored, never breaks the page
-    for bad in ["{w: '../x', on: 0}", "{w: 'bhaja-govindam', on: 1, k: 'x', t: 1, i: 0, r: 1}", "{w: 'bhaja-govindam', on: 1, k: 0, t: NaN, i: 0, r: 1}", "null"]:
+    for bad in ["{w: '../x', on: 0}", "{w: 'bhaja-govindam', on: 1, k: 'x', t: 1, i: 0, r: 1}", "{w: 'bhaja-govindam', on: 1, k: 0, t: NaN, i: 0, r: 1}", "{w: 'bhaja-govindam', on: 0, m: 'loud'}", "null"]:
         await F.evaluate(f"gpApply({bad}, performance.now())")
-    check('group paath: a malformed state is ignored', await F.evaluate("W.id === 'bhaja-govindam' && GP.role === 'follow'"))
-    # the leader's phone goes (closed, locked, offline): the follower stops where it was and says so; it goes on when it is back
+    check('group paath: a malformed state is ignored', await F.evaluate("W.id === 'bhaja-govindam' && GP.role === 'follow' && GP.m === 'room'"))
+    # the leader's device goes (closed, locked, offline): the follower stops where it was and says so; it goes on when it is back
     await L.evaluate("ytPost('playVideo')"); await F.wait_for_function("ytInfo.st === 1", timeout=5000)
-    for f in sess['follow']: f.send(json.dumps({'type': 'away'}))   # the network drops the leader's phone, as the Worker says it
+    to_f({'type': 'away'})   # the network drops the leader's device, as the Worker says it
     await sess['lead'].close(code=4002, reason='dropped'); sess['lead'] = None
     await F.wait_for_function("GP.away", timeout=5000)
     await F.wait_for_timeout(350); t1 = await F.evaluate('ytInfo.t'); await F.wait_for_timeout(500); t2 = await F.evaluate('ytInfo.t')   # after a tick (300 ms), before the leader is back (1 s)
-    check('group paath: the leader\'s phone goes, the follower stops and says so', t1 == t2 and "leader's phone" in await F.inner_text('#pTrack'), await F.inner_text('#pTrack'))
+    check('group paath: the leader\'s device goes, the follower stops and says so', t1 == t2 and "leader's device" in await F.inner_text('#pTrack'), await F.inner_text('#pTrack'))
     await L.wait_for_function("GP.live && GP.sent", timeout=10000); await F.wait_for_function("!GP.away && ytInfo.st === 1", timeout=10000)   # it reconnects by itself and says where it is
-    check('group paath: the leader\'s phone is back, the follower goes on', True)
-    # nothing from the leader for 16 s while it plays (its phone locked, its socket still open; it sends every 5 s): the same
+    check('group paath: the leader\'s device is back, the follower goes on', True)
     await F.evaluate("GP.lastAt -= 20000"); await F.wait_for_function("GP.away", timeout=3000)
     check('group paath: 16 s without a word from a playing leader, the follower stops', await F.evaluate("GP.away && GP.base.p === 0"))
-    # a connection that goes silent (its pings unanswered, as a phone network can hold one open): it connects again by itself
     await F.evaluate("(() => { const ws = GP.ws; ws.send = () => {}; window.__dead = ws; gpPing(); })()")
     try: await F.wait_for_function("GP.ws && GP.ws !== window.__dead && GP.live", timeout=15000); ok = True
     except Exception: ok = False
     check('group paath: a silent connection is noticed (8 s without its pong) and made again', ok)
-    # a state the relay kept for a phone that joins later says how old it is: the follower counts it
     await F.evaluate("gpApply(Object.assign({}, GP.s, {p: 1}), performance.now() - 3000)"); age = await F.evaluate("[GP.base.t, (performance.now() - GP.base.at) / 1000]")
     check('group paath: a state 3 s old is timed from when the leader sent it', age[1] >= 2.9, age)
-    await (await L.query_selector('#rMore')).click(); await L.wait_for_timeout(200)   # ☰ › Group paath › End, tapped
-    await (await L.query_selector('#sheetBody [data-m="group"]')).click(); await L.wait_for_timeout(200)
-    await (await L.query_selector('#gpEnd')).click(); await F.wait_for_function("GP.role === null", timeout=5000)
-    check('group paath: the leader ends it, the follower leaves and its bar goes', await F.evaluate("document.querySelector('#player').hidden && !document.body.classList.contains('gpf')"))
-    # a code nobody leads: the bar says to check the number (and it still waits, in case the leader starts later)
+    # ✕ leaves at once, with "Join again" (an undo, not a question)
+    await F.click('#pClose'); await F.wait_for_timeout(300)
+    left = await F.evaluate("[GP.role, (document.querySelector('#toast .tact') || {}).textContent || '']")
+    check('group paath: a follower\'s ✕ leaves at once, offering "Join again"', left[0] is None and 'Join again' in left[1], left)
+    await F.click('#toast .tact'); await F.wait_for_function("GP.role === 'follow' && GP.live && PL.on", timeout=8000)
+    check('group paath: "Join again" puts it back in the sitting', True)
+    # End for today: the follower goes home; the code stays the leader's, and the next sitting uses it again
+    await lead_menu(); await (await L.query_selector('#gpEnd')).click(); await F.wait_for_function("GP.role === null", timeout=5000)
+    check('group paath: End for today sends the follower home, its bar gone, saying the same code works next time',
+          await F.evaluate("document.querySelector('#player').hidden && !document.body.classList.contains('gpf')") and 'same code' in await F.inner_text('#toast'), await F.inner_text('#toast'))
+    check('group paath: after End for today the leader\'s device keeps its code', await L.evaluate("(gpMine() || {}).code") == code)
+    # some are elsewhere: the next sitting, the same code; the follower is asked, and with sound plays at the leader's place
+    await lead_menu()
+    check('group paath: the next sitting offers the same code', code[:3] in await L.inner_text('#gpBody'), await L.inner_text('#gpBody'))
+    await (await L.query_selector('#gpBody [data-where="apart"]')).click(); await L.wait_for_function("GP.live", timeout=8000)
+    check('group paath: the same code starts again', await L.evaluate("GP.code") == code and await L.evaluate("GP.m") == 'apart')
+    await L.evaluate("closeSheet(); ytPost('playVideo')")
+    await F.evaluate(f"gpStart('follow', '{code}')"); await F.wait_for_function("!!document.querySelector('#sheetBody [data-hear]') && document.querySelector('#sheet').classList.contains('on')", timeout=8000)
+    check('group paath: where some are elsewhere, the follower is asked about sound on its device (two buttons)', await F.evaluate("document.querySelectorAll('#sheetBody [data-hear]').length") == 2 and 'Play the recording here' in await F.inner_text('#sheetBody') and 'Follow without sound' in await F.inner_text('#sheetBody'))
+    await F.wait_for_timeout(400); await shot(F, 'ask')
+    await F.click('#sheetBody [data-hear="1"]'); await F.wait_for_function("GP.hear && PL.on && !!document.querySelector('#ytf')", timeout=8000)
+    await F.wait_for_timeout(2500)
+    d = await F.evaluate("(() => { const b = GP.base, lt = b.t + (b.p ? b.r * (performance.now() - b.at) / 1000 : 0); return [ytInfo.t, lt, ytVid === SRC.au.tracks[PL.t].yt, document.querySelector('#player').classList.contains('hear')]; })()")
+    check('group paath: a follower that plays the sound plays the leader\'s recording at the leader\'s place (within 1.5 s), its video shown', d[2] and d[3] and abs(d[0] - d[1]) < 1.5, d)
+    await F.evaluate("ytInfo.t += 6; ytInfo.at = performance.now(); GP.seekAt = 0; GP.syncAt = 0"); await F.wait_for_timeout(1500)
+    d = await F.evaluate("(() => { const b = GP.base, lt = b.t + (b.p ? b.r * (performance.now() - b.at) / 1000 : 0); return [ytInfo.t, lt]; })()")
+    await shot(F, 'hear')
+    check('group paath: a follower 6 s off (an advertisement, a slow network) is put back at the leader\'s place', abs(d[0] - d[1]) < 1.5, d)
+    await L.evaluate("ytPost('pauseVideo')"); await F.wait_for_timeout(1500)
+    check('group paath: the leader pauses, a follower that plays the sound pauses too', await F.evaluate("ytInfo.st") == 2)
+    await F.evaluate("gpHear(false)")
+    check('group paath: a follower can turn its sound off', await F.evaluate("!GP.hear && !document.querySelector('#ytf')"))
+    # the relay ends a sitting with nothing playing for an hour: the follower goes home with "Join again"
+    end('idle'); await F.wait_for_function("GP.role === null", timeout=5000)
+    check('group paath: a sitting the relay ended (an hour with nothing playing) sends the follower home with "Join again"', 'Join again' in await F.inner_text('#toast'), await F.inner_text('#toast'))
+    # a device away from its sitting for over 30 minutes is not put back when it opens; "Join again" waits under ☰
+    await F.evaluate(f"localStorage.setItem(GPK, JSON.stringify({{role: 'follow', code: '{code}', key: '', m: 'apart', at: Date.now() - 31 * 60000, prev: {{}}}}))")
+    await F.reload(); await F.wait_for_function("typeof LIB !== 'undefined' && !!LIB"); await F.wait_for_timeout(500)
+    check('group paath: a device away from its sitting for 30 minutes opens as the normal app', await F.evaluate("GP.role === null && !document.body.classList.contains('gpf')"))
+    await F.evaluate("gpSheet()"); await F.wait_for_timeout(200)
+    check('group paath: ☰ › Group paath offers "Join … again" with the last code', bool(await F.query_selector('#gpAgain')) and code[:3] in await F.inner_text('#gpAgain'))
+    await F.evaluate("closeSheet()")
+    # End the code: asked first; then the code is gone from the leader's device and the relay
+    await lead_menu(); await (await L.query_selector('#gpEndCode')).click(); await L.wait_for_timeout(200)
+    await (await L.query_selector('#askOk')).click(); await L.wait_for_function("GP.role === null", timeout=5000)
+    check('group paath: End the code (asked first) lets the code go', await L.evaluate("gpMine()") is None and sess['key'] is None)
+    # a code another leader holds: "choose another"
+    sess['key'] = 'someone-elses-key-123'
+    await lead_menu(); await (await L.query_selector('#gpChange')).click(); await L.fill('#gpOwn', '108108')
+    await (await L.query_selector('#gpBody [data-where="room"]')).click(); await L.wait_for_timeout(600)
+    check('group paath: a code someone else holds says to choose another', await L.evaluate("GP.role === null") and 'Choose another' in await L.inner_text('#toast'), await L.inner_text('#toast'))
+    sess['key'] = None; await L.evaluate("closeSheet()")
+    # a code nobody holds: the bar says to check the number
     await F.evaluate("gpStart('follow', '000001')"); await F.wait_for_function("GP.none", timeout=5000)
-    check('group paath: a code nobody leads says to check the number', 'check the number' in await F.inner_text('#pTrack'), await F.inner_text('#pTrack'))
+    check('group paath: a code nobody holds says to check the number', 'check the number' in await F.inner_text('#pTrack'), await F.inner_text('#pTrack'))
     await F.evaluate("gpStop()")
     check('group paath: no script errors', not errs, '; '.join(errs[:3]))
     await cl.close(); await cf.close()

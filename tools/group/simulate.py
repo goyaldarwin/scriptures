@@ -94,7 +94,7 @@ async def main():
         # ---------- 1. the Mānas, 30-day plan, day 1; the leader starts a group paath from ☰ ----------
         await L.evaluate("openWork('manas')"); await L.wait_for_function("!!document.querySelector('#orgList [data-open]')", timeout=30000)
         await lead_play('manas', 'M', "dayRange('M', 1)[0]")
-        await L.click('#rMore'); await L.click('[data-m="group"]'); await L.click('#gpLead')
+        await L.click('#rMore'); await L.click('[data-m="group"]'); await L.click('[data-where="room"]')
         await L.wait_for_function("GP.live", timeout=10000); code = await L.evaluate('GP.code'); await shot(L, '01-leader-sheet')
         await L.evaluate('closeSheet()')
         # F1: a fresh phone opens the shared link
@@ -109,7 +109,7 @@ async def main():
         await boot(F[3]); await F[3].evaluate("openWork('bhagavad-gita').then(() => openReader('k', 5))"); await F[3].wait_for_function("W && W.id === 'bhagavad-gita' && document.querySelector('#reader').classList.contains('on')", timeout=30000)
         await F[3].evaluate(f"gpStart('follow', '{code}')"); await F[3].wait_for_function("W.id === 'manas' && PL.on && PL.cur >= 0", timeout=30000)
         check('1: F4, reading the Gita, joins and is taken to the Mānas at the leader\'s verse', True)
-        await L.wait_for_function("GP.n === 3", timeout=5000); check('1: the leader counts 3 phones', '3 phones following' in await L.inner_text('#pTrack'), await L.inner_text('#pTrack'))
+        await L.wait_for_function("GP.n === 3", timeout=5000); check('1: the leader counts 3 phones', '3 devices following' in await L.inner_text('#pTrack'), await L.inner_text('#pTrack'))
         await sync([F[0], F[1], F[3]], 12, '1')
         # F3 joins late, mid-playback
         await F[2].goto(SITE + '?join=' + code); await F[2].wait_for_function("PL.on && PL.cur >= 0", timeout=30000)
@@ -124,10 +124,10 @@ async def main():
         st = [await f.evaluate("ytInfo.st") for f in F[:4]]; check('2: pause reaches every follower', all(x == 2 for x in st), st)
         await asyncio.sleep(3); await L.evaluate("ytPost('playVideo')")
         await sync(F[:4], 4, '2: after a 3 s pause')
-        await L.click('#pRate'); await L.click('#pRate'); await asyncio.sleep(1)   # 1× → 1.25× → 1.5×, tapped
+        await L.click('#pRate'); await L.click('#sheetBody [data-rate="1.5"]'); await asyncio.sleep(1)   # the speed sheet: 1.5×, tapped
         rates = [await f.evaluate("GP.base.r") for f in F[:4]]; check('2: speed 1.5× reaches every follower', all(r == 1.5 for r in rates), rates)
         await sync(F[:4], 6, '2: at 1.5×')
-        for _ in range(4): await L.click('#pRate')   # round to 1×
+        await L.click('#pRate'); await L.click('#sheetBody [data-rate="1"]')   # back to Normal
         await asyncio.sleep(1)
 
         # ---------- 3. ⏭ steps, and the end of a recording (day 1 → day 2's video) ----------
@@ -256,6 +256,23 @@ async def main():
         await shot(F[1], '06-F2-ended')
         await F[2].reload(); await F[2].wait_for_function("typeof LIB !== 'undefined' && !!LIB", timeout=20000); await asyncio.sleep(1)
         check('13: a follower that refreshes afterwards is not in a session any more', await F[2].evaluate("GP.role === null"))
+        # ---------- 14. the next sitting, the same code, some elsewhere: a follower plays the sound in step ----------
+        check('14: after End for today the leader keeps its code', await L.evaluate("(gpMine() || {}).code") == code)
+        await L.click('#rMore'); await L.click('[data-m="group"]'); await L.click('[data-where="apart"]'); await L.wait_for_function("GP.live", timeout=10000)
+        check('14: the next sitting starts with the same code', await L.evaluate("GP.code") == code and await L.evaluate("GP.m") == 'apart')
+        await L.evaluate("closeSheet(); ytPost('playVideo')")
+        await F[1].evaluate(FAKE_YT.replace('0.25 * RATE()', '0.25 * wantRate()')); await F[1].evaluate("(() => { const l = window.ytLoad; window.ytLoad = (v, s) => { l(v, s); const d = document.createElement('div'); d.id = 'ytf'; const box = document.querySelector('#ytBox'); box.innerHTML = ''; box.appendChild(d); }; })()")
+        await F[1].evaluate(f"gpStart('follow', '{code}')")
+        await F[1].wait_for_function("!!document.querySelector('#sheetBody [data-hear]')", timeout=15000)
+        check('14: some are elsewhere: the follower is asked about sound on its device', await F[1].evaluate("document.querySelectorAll('#sheetBody [data-hear]').length") == 2)
+        await F[1].click('#sheetBody [data-hear="1"]'); await F[1].wait_for_function("GP.hear && PL.on && GP.base && GP.base.p", timeout=15000); await asyncio.sleep(4)
+        d = await F[1].evaluate("(() => { const b = GP.base, lt = b.t + b.r * (performance.now() - b.at) / 1000; return [ytInfo.t, lt, ytVid === SRC.au.tracks[PL.t].yt]; })()")
+        lt = await L.evaluate("gpTime()")
+        check('14: the follower plays the leader\'s recording in step through the real relay (within 1.5 s)', d[2] and abs(d[0] - lt) < 1.5, f'follower {d[0]:.2f}, leader {lt:.2f}')
+        await L.evaluate("ytPost('pauseVideo')"); await asyncio.sleep(1.5)
+        check('14: the leader pauses: the follower\'s sound pauses', await F[1].evaluate("ytInfo.st") == 2)
+        await L.click('#rMore'); await L.click('[data-m="group"]'); await L.click('#gpEndCode'); await L.click('#askOk'); await asyncio.sleep(1.5)
+        check('14: End the code: the follower is sent home and the code is let go', await F[1].evaluate("GP.role === null") and await L.evaluate("gpMine()") is None)
 
         for k, v in errs.items():
             check(f'no script errors on {k}', not v, len(v))

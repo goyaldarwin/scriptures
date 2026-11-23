@@ -188,6 +188,9 @@ body.playing #rBody{padding-bottom:150px}
 .gpqr{margin:4px auto 6px;width:min(62vw,240px)}.gpqr .qr{display:block;width:100%;height:auto;border-radius:10px}
 .gpcode{font-size:34px;font-weight:700;letter-spacing:.08em;font-variant-numeric:tabular-nums;color:var(--indigo);margin:2px 0}.gpst{font-size:14px;color:var(--muted);margin:4px 0 12px}
 .gpacts{justify-content:center;flex-wrap:wrap}.gpacts .btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
+.player.follow.hear .ytw{display:block}   /* a follower that plays the sound shows its video (YouTube's player is always seen) */
+#gpBody .lnk,.gpask .lnk{color:var(--indigo);font-size:inherit;padding:0;text-decoration:underline;text-underline-offset:3px;background:none;border:0}
+.gpq{margin:14px 0 8px;font-weight:600}.gpwhere .btn,.gpask .btn{flex-direction:column;gap:2px;justify-content:center;font-size:17px}.gpwhere small{font-weight:400;font-size:13px;opacity:.85}   /* the leader's one question, and the follower's: two big buttons */
 .gpjoin{display:flex;gap:8px;justify-content:center}.gpjoin input{width:9.5em;font-size:20px;text-align:center;letter-spacing:.1em;border:1px solid var(--rule);border-radius:12px;padding:8px;background:var(--surface);color:var(--ink)}
 .gpdot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--saffron);margin-left:6px;vertical-align:middle}
 /* the verse being recited: a tint that covers exactly the verse's own box (its padding gives the text room), widened sideways
