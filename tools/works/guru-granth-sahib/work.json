@@ -16,6 +16,7 @@
  },
  "headings": "transliteration",
  "load": "parts",
+ "bar": "topic",
  "include": [
   "views.json"
  ],
@@ -27,1390 +28,1718 @@
   ],
   "sec": {
    "hi": "अंग",
-   "en": "Ang"
+   "en": "Ang",
+   "pa": "ਅੰਗ"
   },
   "mark": "none"
  },
  "parts": {
   "name": {
    "hi": "भाग",
-   "en": "Part"
+   "en": "Part",
+   "pa": "ਭਾਗ"
   },
   "list": [
    {
     "key": "jap",
     "hi": "जपु",
-    "en": "Jap"
+    "en": "Jap",
+    "pa": "ਜਪੁ"
    },
    {
     "key": "so-dar",
     "hi": "सो दरु",
-    "en": "So Dar"
+    "en": "So Dar",
+    "pa": "ਸੋ ਦਰੁ"
    },
    {
     "key": "so-purakh",
     "hi": "सो पुरखु",
-    "en": "So Purakh"
+    "en": "So Purakh",
+    "pa": "ਸੋ ਪੁਰਖੁ"
    },
    {
     "key": "sohila",
     "hi": "सोहिला",
-    "en": "Sohila"
+    "en": "Sohila",
+    "pa": "ਸੋਹਿਲਾ"
    },
    {
     "key": "sri-raag",
     "hi": "सिरीरागु",
-    "en": "Sri Raag"
+    "en": "Sri Raag",
+    "pa": "ਸਿਰੀ ਰਾਗੁ"
    },
    {
     "key": "majh",
     "hi": "राग माझ",
-    "en": "Raag Majh"
+    "en": "Raag Majh",
+    "pa": "ਰਾਗੁ ਮਾਝ"
    },
    {
     "key": "gauri",
     "hi": "राग गउड़ी",
-    "en": "Raag Gauri"
+    "en": "Raag Gauri",
+    "pa": "ਰਾਗੁ ਗਉੜੀ"
    },
    {
     "key": "asa",
     "hi": "राग आसा",
-    "en": "Raag Asa"
+    "en": "Raag Asa",
+    "pa": "ਰਾਗੁ ਆਸਾ"
    },
    {
     "key": "gujri",
     "hi": "राग गूजरी",
-    "en": "Raag Gujri"
+    "en": "Raag Gujri",
+    "pa": "ਰਾਗੁ ਗੂਜਰੀ"
    },
    {
     "key": "devgandhari",
     "hi": "राग देवगंधारी",
-    "en": "Raag Devgandhari"
+    "en": "Raag Devgandhari",
+    "pa": "ਰਾਗੁ ਦੇਵਗੰਧਾਰੀ"
    },
    {
     "key": "bihagra",
     "hi": "राग बिहागड़ा",
-    "en": "Raag Bihagra"
+    "en": "Raag Bihagra",
+    "pa": "ਰਾਗੁ ਬਿਹਾਗੜਾ"
    },
    {
     "key": "vadhans",
     "hi": "राग वडहंस",
-    "en": "Raag Vadhans"
+    "en": "Raag Vadhans",
+    "pa": "ਰਾਗੁ ਵਡਹੰਸੁ"
    },
    {
     "key": "sorath",
     "hi": "राग सोरठि",
-    "en": "Raag Sorath"
+    "en": "Raag Sorath",
+    "pa": "ਰਾਗੁ ਸੋਰਠਿ"
    },
    {
     "key": "dhanasari",
     "hi": "राग धनासरी",
-    "en": "Raag Dhanasari"
+    "en": "Raag Dhanasari",
+    "pa": "ਰਾਗੁ ਧਨਾਸਰੀ"
    },
    {
     "key": "jaitsri",
     "hi": "राग जैतसरी",
-    "en": "Raag Jaitsri"
+    "en": "Raag Jaitsri",
+    "pa": "ਰਾਗੁ ਜੈਤਸਰੀ"
    },
    {
     "key": "todi",
     "hi": "राग टोडी",
-    "en": "Raag Todi"
+    "en": "Raag Todi",
+    "pa": "ਰਾਗੁ ਟੋਡੀ"
    },
    {
     "key": "bairari",
     "hi": "राग बैराड़ी",
-    "en": "Raag Bairari"
+    "en": "Raag Bairari",
+    "pa": "ਰਾਗੁ ਬੈਰਾੜੀ"
    },
    {
     "key": "tilang",
     "hi": "राग तिलंग",
-    "en": "Raag Tilang"
+    "en": "Raag Tilang",
+    "pa": "ਰਾਗੁ ਤਿਲੰਗ"
    },
    {
     "key": "suhi",
     "hi": "राग सूही",
-    "en": "Raag Suhi"
+    "en": "Raag Suhi",
+    "pa": "ਰਾਗੁ ਸੂਹੀ"
    },
    {
     "key": "bilaval",
     "hi": "राग बिलावलु",
-    "en": "Raag Bilaval"
+    "en": "Raag Bilaval",
+    "pa": "ਰਾਗੁ ਬਿਲਾਵਲੁ"
    },
    {
     "key": "gond",
     "hi": "राग गोंड",
-    "en": "Raag Gond"
+    "en": "Raag Gond",
+    "pa": "ਰਾਗੁ ਗੋਂਡ"
    },
    {
     "key": "ramkali",
     "hi": "राग रामकली",
-    "en": "Raag Ramkali"
+    "en": "Raag Ramkali",
+    "pa": "ਰਾਗੁ ਰਾਮਕਲੀ"
    },
    {
     "key": "nat-narain",
     "hi": "राग नट नाराइन",
-    "en": "Raag Nat Narain"
+    "en": "Raag Nat Narain",
+    "pa": "ਰਾਗੁ ਨਟ ਨਾਰਾਇਨ"
    },
    {
     "key": "mali-gaura",
     "hi": "राग माली गउड़ा",
-    "en": "Raag Mali Gaura"
+    "en": "Raag Mali Gaura",
+    "pa": "ਰਾਗੁ ਮਾਲੀ ਗਉੜਾ"
    },
    {
     "key": "maru",
     "hi": "राग मारू",
-    "en": "Raag Maru"
+    "en": "Raag Maru",
+    "pa": "ਰਾਗੁ ਮਾਰੂ"
    },
    {
     "key": "tukhari",
     "hi": "राग तुखारी",
-    "en": "Raag Tukhari"
+    "en": "Raag Tukhari",
+    "pa": "ਰਾਗੁ ਤੁਖਾਰੀ"
    },
    {
     "key": "kedara",
     "hi": "राग केदारा",
-    "en": "Raag Kedara"
+    "en": "Raag Kedara",
+    "pa": "ਰਾਗੁ ਕੇਦਾਰਾ"
    },
    {
     "key": "bhairao",
     "hi": "राग भैरउ",
-    "en": "Raag Bhairao"
+    "en": "Raag Bhairao",
+    "pa": "ਰਾਗੁ ਭੈਰਉ"
    },
    {
     "key": "basant",
     "hi": "राग बसंतु",
-    "en": "Raag Basant"
+    "en": "Raag Basant",
+    "pa": "ਰਾਗੁ ਬਸੰਤੁ"
    },
    {
     "key": "sarang",
     "hi": "राग सारंग",
-    "en": "Raag Sarang"
+    "en": "Raag Sarang",
+    "pa": "ਰਾਗੁ ਸਾਰੰਗ"
    },
    {
     "key": "malar",
     "hi": "राग मलार",
-    "en": "Raag Malar"
+    "en": "Raag Malar",
+    "pa": "ਰਾਗੁ ਮਲਾਰ"
    },
    {
     "key": "kanra",
     "hi": "राग कानड़ा",
-    "en": "Raag Kanra"
+    "en": "Raag Kanra",
+    "pa": "ਰਾਗੁ ਕਾਨੜਾ"
    },
    {
     "key": "kalyan",
     "hi": "राग कलिआन",
-    "en": "Raag Kalyan"
+    "en": "Raag Kalyan",
+    "pa": "ਰਾਗੁ ਕਲਿਆਨ"
    },
    {
     "key": "prabhati",
     "hi": "राग प्रभाती",
-    "en": "Raag Prabhati"
+    "en": "Raag Prabhati",
+    "pa": "ਰਾਗੁ ਪ੍ਰਭਾਤੀ"
    },
    {
     "key": "jaijavanti",
     "hi": "राग जैजावंती",
-    "en": "Raag Jaijavanti"
+    "en": "Raag Jaijavanti",
+    "pa": "ਰਾਗੁ ਜੈਜਾਵੰਤੀ"
    },
    {
     "key": "salok-sahaskriti",
     "hi": "सलोक सहसक्रिती",
-    "en": "Salok Sahaskriti"
+    "en": "Salok Sahaskriti",
+    "pa": "ਸਲੋਕ ਸਹਸਕ੍ਰਿਤੀ"
    },
    {
     "key": "gatha",
     "hi": "गाथा",
-    "en": "Gatha"
+    "en": "Gatha",
+    "pa": "ਗਾਥਾ"
    },
    {
     "key": "phunhe",
     "hi": "फुनहे",
-    "en": "Phunhe"
+    "en": "Phunhe",
+    "pa": "ਫੁਨਹੇ"
    },
    {
     "key": "chaubole",
     "hi": "चउबोले",
-    "en": "Chaubole"
+    "en": "Chaubole",
+    "pa": "ਚਉਬੋਲੇ"
    },
    {
     "key": "salok-kabir",
     "hi": "सलोक भगत कबीर जीउ के",
-    "en": "Salok Kabir Ji"
+    "en": "Salok Kabir Ji",
+    "pa": "ਸਲੋਕੁ ਭਗਤ ਕਬੀਰ ਜੀਉ ਕੇ"
    },
    {
     "key": "salok-farid",
     "hi": "सलोक सेख फरीद के",
-    "en": "Salok Farid Ji"
+    "en": "Salok Farid Ji",
+    "pa": "ਸਲੋਕੁ ਸੇਖ ਫਰੀਦ ਕੇ"
    },
    {
     "key": "swayye-mukhbak",
     "hi": "सवईए स्री मुखबाक महला ५",
-    "en": "Swayye Sri Mukhbak Mahala 5"
+    "en": "Swayye Sri Mukhbak Mahala 5",
+    "pa": "ਸਵਈਏ ਸ੍ਰੀ ਮੁਖਬਾਕ ਮਹਲਾ ੫"
    },
    {
     "key": "swayye-m1",
     "hi": "सवईए महले पहिले के",
-    "en": "Swayye Mahala 1"
+    "en": "Swayye Mahala 1",
+    "pa": "ਸਵਈਏ ਮਹਲੇ ਪਹਿਲੇ ਕੇ"
    },
    {
     "key": "swayye-m2",
     "hi": "सवईए महले दूजे के",
-    "en": "Swayye Mahala 2"
+    "en": "Swayye Mahala 2",
+    "pa": "ਸਵਈਏ ਮਹਲੇ ਦੂਜੇ ਕੇ"
    },
    {
     "key": "swayye-m3",
     "hi": "सवईए महले तीजे के",
-    "en": "Swayye Mahala 3"
+    "en": "Swayye Mahala 3",
+    "pa": "ਸਵਈਏ ਮਹਲੇ ਤੀਜੇ ਕੇ"
    },
    {
     "key": "swayye-m4",
     "hi": "सवईए महले चउथे के",
-    "en": "Swayye Mahala 4"
+    "en": "Swayye Mahala 4",
+    "pa": "ਸਵਈਏ ਮਹਲੇ ਚਉਥੇ ਕੇ"
    },
    {
     "key": "swayye-m5",
     "hi": "सवईए महले पंजवे के",
-    "en": "Swayye Mahala 5"
+    "en": "Swayye Mahala 5",
+    "pa": "ਸਵਈਏ ਮਹਲੇ ਪੰਜਵੇ ਕੇ"
    },
    {
     "key": "salok-vadhik",
     "hi": "सलोक वारां ते वधीक",
-    "en": "Salok Varan te Vadhik"
+    "en": "Salok Varan te Vadhik",
+    "pa": "ਸਲੋਕੁ ਵਾਰਾ ਤੇ ਵਧੀਕ"
    },
    {
     "key": "salok-m9",
     "hi": "सलोक महला ९",
-    "en": "Salok Mahala 9"
+    "en": "Salok Mahala 9",
+    "pa": "ਸਲੋਕੁ ਮਹਲਾ ੯"
    },
    {
     "key": "mundavani",
     "hi": "मुंदावणी महला ५",
-    "en": "Mundavani Mahala 5"
+    "en": "Mundavani Mahala 5",
+    "pa": "ਮੁੰਦਾਵਣੀ ਮਹਲਾ ੫"
    },
    {
     "key": "raagmala",
     "hi": "रागमाला",
-    "en": "Raagmala"
+    "en": "Raagmala",
+    "pa": "ਰਾਗਮਾਲਾ"
    }
   ]
  },
  "sections": {
   "mool": {
    "hi": "मूल मंत्र",
-   "en": "Mool Mantar"
+   "en": "Mool Mantar",
+   "pa": "ਮੂਲ ਮੰਤਰ"
   },
   "jap": {
    "hi": "जपु",
-   "en": "Jap"
+   "en": "Jap",
+   "pa": "ਜਪੁ"
   },
   "salok.open": {
    "hi": "आरम्भका सलोक",
-   "en": "Opening Salok"
+   "en": "Opening Salok",
+   "pa": "ਆਰੰਭ ਦਾ ਸਲੋਕ"
   },
   "salok.close": {
    "hi": "अन्तिम सलोक",
-   "en": "Closing Salok"
+   "en": "Closing Salok",
+   "pa": "ਅੰਤਿਮ ਸਲੋਕ"
   },
   "p1": {
    "hi": "पउड़ी १",
-   "en": "Pauri 1"
+   "en": "Pauri 1",
+   "pa": "ਪਉੜੀ ੧"
   },
   "p2": {
    "hi": "पउड़ी २",
-   "en": "Pauri 2"
+   "en": "Pauri 2",
+   "pa": "ਪਉੜੀ ੨"
   },
   "p3": {
    "hi": "पउड़ी ३",
-   "en": "Pauri 3"
+   "en": "Pauri 3",
+   "pa": "ਪਉੜੀ ੩"
   },
   "p4": {
    "hi": "पउड़ी ४",
-   "en": "Pauri 4"
+   "en": "Pauri 4",
+   "pa": "ਪਉੜੀ ੪"
   },
   "p5": {
    "hi": "पउड़ी ५",
-   "en": "Pauri 5"
+   "en": "Pauri 5",
+   "pa": "ਪਉੜੀ ੫"
   },
   "p6": {
    "hi": "पउड़ी ६",
-   "en": "Pauri 6"
+   "en": "Pauri 6",
+   "pa": "ਪਉੜੀ ੬"
   },
   "p7": {
    "hi": "पउड़ी ७",
-   "en": "Pauri 7"
+   "en": "Pauri 7",
+   "pa": "ਪਉੜੀ ੭"
   },
   "p8": {
    "hi": "पउड़ी ८",
-   "en": "Pauri 8"
+   "en": "Pauri 8",
+   "pa": "ਪਉੜੀ ੮"
   },
   "p9": {
    "hi": "पउड़ी ९",
-   "en": "Pauri 9"
+   "en": "Pauri 9",
+   "pa": "ਪਉੜੀ ੯"
   },
   "p10": {
    "hi": "पउड़ी १०",
-   "en": "Pauri 10"
+   "en": "Pauri 10",
+   "pa": "ਪਉੜੀ ੧੦"
   },
   "p11": {
    "hi": "पउड़ी ११",
-   "en": "Pauri 11"
+   "en": "Pauri 11",
+   "pa": "ਪਉੜੀ ੧੧"
   },
   "p12": {
    "hi": "पउड़ी १२",
-   "en": "Pauri 12"
+   "en": "Pauri 12",
+   "pa": "ਪਉੜੀ ੧੨"
   },
   "p13": {
    "hi": "पउड़ी १३",
-   "en": "Pauri 13"
+   "en": "Pauri 13",
+   "pa": "ਪਉੜੀ ੧੩"
   },
   "p14": {
    "hi": "पउड़ी १४",
-   "en": "Pauri 14"
+   "en": "Pauri 14",
+   "pa": "ਪਉੜੀ ੧੪"
   },
   "p15": {
    "hi": "पउड़ी १५",
-   "en": "Pauri 15"
+   "en": "Pauri 15",
+   "pa": "ਪਉੜੀ ੧੫"
   },
   "p16": {
    "hi": "पउड़ी १६",
-   "en": "Pauri 16"
+   "en": "Pauri 16",
+   "pa": "ਪਉੜੀ ੧੬"
   },
   "p17": {
    "hi": "पउड़ी १७",
-   "en": "Pauri 17"
+   "en": "Pauri 17",
+   "pa": "ਪਉੜੀ ੧੭"
   },
   "p18": {
    "hi": "पउड़ी १८",
-   "en": "Pauri 18"
+   "en": "Pauri 18",
+   "pa": "ਪਉੜੀ ੧੮"
   },
   "p19": {
    "hi": "पउड़ी १९",
-   "en": "Pauri 19"
+   "en": "Pauri 19",
+   "pa": "ਪਉੜੀ ੧੯"
   },
   "p20": {
    "hi": "पउड़ी २०",
-   "en": "Pauri 20"
+   "en": "Pauri 20",
+   "pa": "ਪਉੜੀ ੨੦"
   },
   "p21": {
    "hi": "पउड़ी २१",
-   "en": "Pauri 21"
+   "en": "Pauri 21",
+   "pa": "ਪਉੜੀ ੨੧"
   },
   "p22": {
    "hi": "पउड़ी २२",
-   "en": "Pauri 22"
+   "en": "Pauri 22",
+   "pa": "ਪਉੜੀ ੨੨"
   },
   "p23": {
    "hi": "पउड़ी २३",
-   "en": "Pauri 23"
+   "en": "Pauri 23",
+   "pa": "ਪਉੜੀ ੨੩"
   },
   "p24": {
    "hi": "पउड़ी २४",
-   "en": "Pauri 24"
+   "en": "Pauri 24",
+   "pa": "ਪਉੜੀ ੨੪"
   },
   "p25": {
    "hi": "पउड़ी २५",
-   "en": "Pauri 25"
+   "en": "Pauri 25",
+   "pa": "ਪਉੜੀ ੨੫"
   },
   "p26": {
    "hi": "पउड़ी २६",
-   "en": "Pauri 26"
+   "en": "Pauri 26",
+   "pa": "ਪਉੜੀ ੨੬"
   },
   "p27": {
    "hi": "पउड़ी २७",
-   "en": "Pauri 27"
+   "en": "Pauri 27",
+   "pa": "ਪਉੜੀ ੨੭"
   },
   "p28": {
    "hi": "पउड़ी २८",
-   "en": "Pauri 28"
+   "en": "Pauri 28",
+   "pa": "ਪਉੜੀ ੨੮"
   },
   "p29": {
    "hi": "पउड़ी २९",
-   "en": "Pauri 29"
+   "en": "Pauri 29",
+   "pa": "ਪਉੜੀ ੨੯"
   },
   "p30": {
    "hi": "पउड़ी ३०",
-   "en": "Pauri 30"
+   "en": "Pauri 30",
+   "pa": "ਪਉੜੀ ੩੦"
   },
   "p31": {
    "hi": "पउड़ी ३१",
-   "en": "Pauri 31"
+   "en": "Pauri 31",
+   "pa": "ਪਉੜੀ ੩੧"
   },
   "p32": {
    "hi": "पउड़ी ३२",
-   "en": "Pauri 32"
+   "en": "Pauri 32",
+   "pa": "ਪਉੜੀ ੩੨"
   },
   "p33": {
    "hi": "पउड़ी ३३",
-   "en": "Pauri 33"
+   "en": "Pauri 33",
+   "pa": "ਪਉੜੀ ੩੩"
   },
   "p34": {
    "hi": "पउड़ी ३४",
-   "en": "Pauri 34"
+   "en": "Pauri 34",
+   "pa": "ਪਉੜੀ ੩੪"
   },
   "p35": {
    "hi": "पउड़ी ३५",
-   "en": "Pauri 35"
+   "en": "Pauri 35",
+   "pa": "ਪਉੜੀ ੩੫"
   },
   "p36": {
    "hi": "पउड़ी ३६",
-   "en": "Pauri 36"
+   "en": "Pauri 36",
+   "pa": "ਪਉੜੀ ੩੬"
   },
   "p37": {
    "hi": "पउड़ी ३७",
-   "en": "Pauri 37"
+   "en": "Pauri 37",
+   "pa": "ਪਉੜੀ ੩੭"
   },
   "p38": {
    "hi": "पउड़ी ३८",
-   "en": "Pauri 38"
+   "en": "Pauri 38",
+   "pa": "ਪਉੜੀ ੩੮"
   },
   "a01.title": {
    "hi": "सुखमनी साहिब",
-   "en": "Sukhmani Sahib"
+   "en": "Sukhmani Sahib",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ"
   },
   "a01.salok": {
    "hi": "सुखमनी साहिब · अष्टपदी १",
-   "en": "Sukhmani Sahib · Ashtapadi 1"
+   "en": "Sukhmani Sahib · Ashtapadi 1",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧"
   },
   "a01.p1": {
    "hi": "सुखमनी साहिब · अष्टपदी १",
-   "en": "Sukhmani Sahib · Ashtapadi 1"
+   "en": "Sukhmani Sahib · Ashtapadi 1",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧"
   },
   "a01.rahao": {
    "hi": "सुखमनी साहिब · अष्टपदी १",
-   "en": "Sukhmani Sahib · Ashtapadi 1"
+   "en": "Sukhmani Sahib · Ashtapadi 1",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧"
   },
   "a01.p2": {
    "hi": "सुखमनी साहिब · अष्टपदी १",
-   "en": "Sukhmani Sahib · Ashtapadi 1"
+   "en": "Sukhmani Sahib · Ashtapadi 1",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧"
   },
   "a01.p3": {
    "hi": "सुखमनी साहिब · अष्टपदी १",
-   "en": "Sukhmani Sahib · Ashtapadi 1"
+   "en": "Sukhmani Sahib · Ashtapadi 1",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧"
   },
   "a01.p4": {
    "hi": "सुखमनी साहिब · अष्टपदी १",
-   "en": "Sukhmani Sahib · Ashtapadi 1"
+   "en": "Sukhmani Sahib · Ashtapadi 1",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧"
   },
   "a01.p5": {
    "hi": "सुखमनी साहिब · अष्टपदी १",
-   "en": "Sukhmani Sahib · Ashtapadi 1"
+   "en": "Sukhmani Sahib · Ashtapadi 1",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧"
   },
   "a01.p6": {
    "hi": "सुखमनी साहिब · अष्टपदी १",
-   "en": "Sukhmani Sahib · Ashtapadi 1"
+   "en": "Sukhmani Sahib · Ashtapadi 1",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧"
   },
   "a01.p7": {
    "hi": "सुखमनी साहिब · अष्टपदी १",
-   "en": "Sukhmani Sahib · Ashtapadi 1"
+   "en": "Sukhmani Sahib · Ashtapadi 1",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧"
   },
   "a01.p8": {
    "hi": "सुखमनी साहिब · अष्टपदी १",
-   "en": "Sukhmani Sahib · Ashtapadi 1"
+   "en": "Sukhmani Sahib · Ashtapadi 1",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧"
   },
   "a02.salok": {
    "hi": "सुखमनी साहिब · अष्टपदी २",
-   "en": "Sukhmani Sahib · Ashtapadi 2"
+   "en": "Sukhmani Sahib · Ashtapadi 2",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨"
   },
   "a02.p1": {
    "hi": "सुखमनी साहिब · अष्टपदी २",
-   "en": "Sukhmani Sahib · Ashtapadi 2"
+   "en": "Sukhmani Sahib · Ashtapadi 2",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨"
   },
   "a02.p2": {
    "hi": "सुखमनी साहिब · अष्टपदी २",
-   "en": "Sukhmani Sahib · Ashtapadi 2"
+   "en": "Sukhmani Sahib · Ashtapadi 2",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨"
   },
   "a02.p3": {
    "hi": "सुखमनी साहिब · अष्टपदी २",
-   "en": "Sukhmani Sahib · Ashtapadi 2"
+   "en": "Sukhmani Sahib · Ashtapadi 2",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨"
   },
   "a02.p4": {
    "hi": "सुखमनी साहिब · अष्टपदी २",
-   "en": "Sukhmani Sahib · Ashtapadi 2"
+   "en": "Sukhmani Sahib · Ashtapadi 2",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨"
   },
   "a02.p5": {
    "hi": "सुखमनी साहिब · अष्टपदी २",
-   "en": "Sukhmani Sahib · Ashtapadi 2"
+   "en": "Sukhmani Sahib · Ashtapadi 2",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨"
   },
   "a02.p6": {
    "hi": "सुखमनी साहिब · अष्टपदी २",
-   "en": "Sukhmani Sahib · Ashtapadi 2"
+   "en": "Sukhmani Sahib · Ashtapadi 2",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨"
   },
   "a02.p7": {
    "hi": "सुखमनी साहिब · अष्टपदी २",
-   "en": "Sukhmani Sahib · Ashtapadi 2"
+   "en": "Sukhmani Sahib · Ashtapadi 2",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨"
   },
   "a02.p8": {
    "hi": "सुखमनी साहिब · अष्टपदी २",
-   "en": "Sukhmani Sahib · Ashtapadi 2"
+   "en": "Sukhmani Sahib · Ashtapadi 2",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨"
   },
   "a03.salok": {
    "hi": "सुखमनी साहिब · अष्टपदी ३",
-   "en": "Sukhmani Sahib · Ashtapadi 3"
+   "en": "Sukhmani Sahib · Ashtapadi 3",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੩"
   },
   "a03.p1": {
    "hi": "सुखमनी साहिब · अष्टपदी ३",
-   "en": "Sukhmani Sahib · Ashtapadi 3"
+   "en": "Sukhmani Sahib · Ashtapadi 3",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੩"
   },
   "a03.p2": {
    "hi": "सुखमनी साहिब · अष्टपदी ३",
-   "en": "Sukhmani Sahib · Ashtapadi 3"
+   "en": "Sukhmani Sahib · Ashtapadi 3",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੩"
   },
   "a03.p3": {
    "hi": "सुखमनी साहिब · अष्टपदी ३",
-   "en": "Sukhmani Sahib · Ashtapadi 3"
+   "en": "Sukhmani Sahib · Ashtapadi 3",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੩"
   },
   "a03.p4": {
    "hi": "सुखमनी साहिब · अष्टपदी ३",
-   "en": "Sukhmani Sahib · Ashtapadi 3"
+   "en": "Sukhmani Sahib · Ashtapadi 3",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੩"
   },
   "a03.p5": {
    "hi": "सुखमनी साहिब · अष्टपदी ३",
-   "en": "Sukhmani Sahib · Ashtapadi 3"
+   "en": "Sukhmani Sahib · Ashtapadi 3",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੩"
   },
   "a03.p6": {
    "hi": "सुखमनी साहिब · अष्टपदी ३",
-   "en": "Sukhmani Sahib · Ashtapadi 3"
+   "en": "Sukhmani Sahib · Ashtapadi 3",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੩"
   },
   "a03.p7": {
    "hi": "सुखमनी साहिब · अष्टपदी ३",
-   "en": "Sukhmani Sahib · Ashtapadi 3"
+   "en": "Sukhmani Sahib · Ashtapadi 3",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੩"
   },
   "a03.p8": {
    "hi": "सुखमनी साहिब · अष्टपदी ३",
-   "en": "Sukhmani Sahib · Ashtapadi 3"
+   "en": "Sukhmani Sahib · Ashtapadi 3",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੩"
   },
   "a04.salok": {
    "hi": "सुखमनी साहिब · अष्टपदी ४",
-   "en": "Sukhmani Sahib · Ashtapadi 4"
+   "en": "Sukhmani Sahib · Ashtapadi 4",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੪"
   },
   "a04.p1": {
    "hi": "सुखमनी साहिब · अष्टपदी ४",
-   "en": "Sukhmani Sahib · Ashtapadi 4"
+   "en": "Sukhmani Sahib · Ashtapadi 4",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੪"
   },
   "a04.p2": {
    "hi": "सुखमनी साहिब · अष्टपदी ४",
-   "en": "Sukhmani Sahib · Ashtapadi 4"
+   "en": "Sukhmani Sahib · Ashtapadi 4",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੪"
   },
   "a04.p3": {
    "hi": "सुखमनी साहिब · अष्टपदी ४",
-   "en": "Sukhmani Sahib · Ashtapadi 4"
+   "en": "Sukhmani Sahib · Ashtapadi 4",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੪"
   },
   "a04.p4": {
    "hi": "सुखमनी साहिब · अष्टपदी ४",
-   "en": "Sukhmani Sahib · Ashtapadi 4"
+   "en": "Sukhmani Sahib · Ashtapadi 4",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੪"
   },
   "a04.p5": {
    "hi": "सुखमनी साहिब · अष्टपदी ४",
-   "en": "Sukhmani Sahib · Ashtapadi 4"
+   "en": "Sukhmani Sahib · Ashtapadi 4",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੪"
   },
   "a04.p6": {
    "hi": "सुखमनी साहिब · अष्टपदी ४",
-   "en": "Sukhmani Sahib · Ashtapadi 4"
+   "en": "Sukhmani Sahib · Ashtapadi 4",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੪"
   },
   "a04.p7": {
    "hi": "सुखमनी साहिब · अष्टपदी ४",
-   "en": "Sukhmani Sahib · Ashtapadi 4"
+   "en": "Sukhmani Sahib · Ashtapadi 4",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੪"
   },
   "a04.p8": {
    "hi": "सुखमनी साहिब · अष्टपदी ४",
-   "en": "Sukhmani Sahib · Ashtapadi 4"
+   "en": "Sukhmani Sahib · Ashtapadi 4",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੪"
   },
   "a05.salok": {
    "hi": "सुखमनी साहिब · अष्टपदी ५",
-   "en": "Sukhmani Sahib · Ashtapadi 5"
+   "en": "Sukhmani Sahib · Ashtapadi 5",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੫"
   },
   "a05.p1": {
    "hi": "सुखमनी साहिब · अष्टपदी ५",
-   "en": "Sukhmani Sahib · Ashtapadi 5"
+   "en": "Sukhmani Sahib · Ashtapadi 5",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੫"
   },
   "a05.p2": {
    "hi": "सुखमनी साहिब · अष्टपदी ५",
-   "en": "Sukhmani Sahib · Ashtapadi 5"
+   "en": "Sukhmani Sahib · Ashtapadi 5",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੫"
   },
   "a05.p3": {
    "hi": "सुखमनी साहिब · अष्टपदी ५",
-   "en": "Sukhmani Sahib · Ashtapadi 5"
+   "en": "Sukhmani Sahib · Ashtapadi 5",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੫"
   },
   "a05.p4": {
    "hi": "सुखमनी साहिब · अष्टपदी ५",
-   "en": "Sukhmani Sahib · Ashtapadi 5"
+   "en": "Sukhmani Sahib · Ashtapadi 5",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੫"
   },
   "a05.p5": {
    "hi": "सुखमनी साहिब · अष्टपदी ५",
-   "en": "Sukhmani Sahib · Ashtapadi 5"
+   "en": "Sukhmani Sahib · Ashtapadi 5",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੫"
   },
   "a05.p6": {
    "hi": "सुखमनी साहिब · अष्टपदी ५",
-   "en": "Sukhmani Sahib · Ashtapadi 5"
+   "en": "Sukhmani Sahib · Ashtapadi 5",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੫"
   },
   "a05.p7": {
    "hi": "सुखमनी साहिब · अष्टपदी ५",
-   "en": "Sukhmani Sahib · Ashtapadi 5"
+   "en": "Sukhmani Sahib · Ashtapadi 5",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੫"
   },
   "a05.p8": {
    "hi": "सुखमनी साहिब · अष्टपदी ५",
-   "en": "Sukhmani Sahib · Ashtapadi 5"
+   "en": "Sukhmani Sahib · Ashtapadi 5",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੫"
   },
   "a06.salok": {
    "hi": "सुखमनी साहिब · अष्टपदी ६",
-   "en": "Sukhmani Sahib · Ashtapadi 6"
+   "en": "Sukhmani Sahib · Ashtapadi 6",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੬"
   },
   "a06.p1": {
    "hi": "सुखमनी साहिब · अष्टपदी ६",
-   "en": "Sukhmani Sahib · Ashtapadi 6"
+   "en": "Sukhmani Sahib · Ashtapadi 6",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੬"
   },
   "a06.p2": {
    "hi": "सुखमनी साहिब · अष्टपदी ६",
-   "en": "Sukhmani Sahib · Ashtapadi 6"
+   "en": "Sukhmani Sahib · Ashtapadi 6",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੬"
   },
   "a06.p3": {
    "hi": "सुखमनी साहिब · अष्टपदी ६",
-   "en": "Sukhmani Sahib · Ashtapadi 6"
+   "en": "Sukhmani Sahib · Ashtapadi 6",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੬"
   },
   "a06.p4": {
    "hi": "सुखमनी साहिब · अष्टपदी ६",
-   "en": "Sukhmani Sahib · Ashtapadi 6"
+   "en": "Sukhmani Sahib · Ashtapadi 6",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੬"
   },
   "a06.p5": {
    "hi": "सुखमनी साहिब · अष्टपदी ६",
-   "en": "Sukhmani Sahib · Ashtapadi 6"
+   "en": "Sukhmani Sahib · Ashtapadi 6",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੬"
   },
   "a06.p6": {
    "hi": "सुखमनी साहिब · अष्टपदी ६",
-   "en": "Sukhmani Sahib · Ashtapadi 6"
+   "en": "Sukhmani Sahib · Ashtapadi 6",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੬"
   },
   "a06.p7": {
    "hi": "सुखमनी साहिब · अष्टपदी ६",
-   "en": "Sukhmani Sahib · Ashtapadi 6"
+   "en": "Sukhmani Sahib · Ashtapadi 6",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੬"
   },
   "a06.p8": {
    "hi": "सुखमनी साहिब · अष्टपदी ६",
-   "en": "Sukhmani Sahib · Ashtapadi 6"
+   "en": "Sukhmani Sahib · Ashtapadi 6",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੬"
   },
   "a07.salok": {
    "hi": "सुखमनी साहिब · अष्टपदी ७",
-   "en": "Sukhmani Sahib · Ashtapadi 7"
+   "en": "Sukhmani Sahib · Ashtapadi 7",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੭"
   },
   "a07.p1": {
    "hi": "सुखमनी साहिब · अष्टपदी ७",
-   "en": "Sukhmani Sahib · Ashtapadi 7"
+   "en": "Sukhmani Sahib · Ashtapadi 7",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੭"
   },
   "a07.p2": {
    "hi": "सुखमनी साहिब · अष्टपदी ७",
-   "en": "Sukhmani Sahib · Ashtapadi 7"
+   "en": "Sukhmani Sahib · Ashtapadi 7",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੭"
   },
   "a07.p3": {
    "hi": "सुखमनी साहिब · अष्टपदी ७",
-   "en": "Sukhmani Sahib · Ashtapadi 7"
+   "en": "Sukhmani Sahib · Ashtapadi 7",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੭"
   },
   "a07.p4": {
    "hi": "सुखमनी साहिब · अष्टपदी ७",
-   "en": "Sukhmani Sahib · Ashtapadi 7"
+   "en": "Sukhmani Sahib · Ashtapadi 7",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੭"
   },
   "a07.p5": {
    "hi": "सुखमनी साहिब · अष्टपदी ७",
-   "en": "Sukhmani Sahib · Ashtapadi 7"
+   "en": "Sukhmani Sahib · Ashtapadi 7",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੭"
   },
   "a07.p6": {
    "hi": "सुखमनी साहिब · अष्टपदी ७",
-   "en": "Sukhmani Sahib · Ashtapadi 7"
+   "en": "Sukhmani Sahib · Ashtapadi 7",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੭"
   },
   "a07.p7": {
    "hi": "सुखमनी साहिब · अष्टपदी ७",
-   "en": "Sukhmani Sahib · Ashtapadi 7"
+   "en": "Sukhmani Sahib · Ashtapadi 7",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੭"
   },
   "a07.p8": {
    "hi": "सुखमनी साहिब · अष्टपदी ७",
-   "en": "Sukhmani Sahib · Ashtapadi 7"
+   "en": "Sukhmani Sahib · Ashtapadi 7",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੭"
   },
   "a08.salok": {
    "hi": "सुखमनी साहिब · अष्टपदी ८",
-   "en": "Sukhmani Sahib · Ashtapadi 8"
+   "en": "Sukhmani Sahib · Ashtapadi 8",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੮"
   },
   "a08.p1": {
    "hi": "सुखमनी साहिब · अष्टपदी ८",
-   "en": "Sukhmani Sahib · Ashtapadi 8"
+   "en": "Sukhmani Sahib · Ashtapadi 8",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੮"
   },
   "a08.p2": {
    "hi": "सुखमनी साहिब · अष्टपदी ८",
-   "en": "Sukhmani Sahib · Ashtapadi 8"
+   "en": "Sukhmani Sahib · Ashtapadi 8",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੮"
   },
   "a08.p3": {
    "hi": "सुखमनी साहिब · अष्टपदी ८",
-   "en": "Sukhmani Sahib · Ashtapadi 8"
+   "en": "Sukhmani Sahib · Ashtapadi 8",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੮"
   },
   "a08.p4": {
    "hi": "सुखमनी साहिब · अष्टपदी ८",
-   "en": "Sukhmani Sahib · Ashtapadi 8"
+   "en": "Sukhmani Sahib · Ashtapadi 8",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੮"
   },
   "a08.p5": {
    "hi": "सुखमनी साहिब · अष्टपदी ८",
-   "en": "Sukhmani Sahib · Ashtapadi 8"
+   "en": "Sukhmani Sahib · Ashtapadi 8",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੮"
   },
   "a08.p6": {
    "hi": "सुखमनी साहिब · अष्टपदी ८",
-   "en": "Sukhmani Sahib · Ashtapadi 8"
+   "en": "Sukhmani Sahib · Ashtapadi 8",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੮"
   },
   "a08.p7": {
    "hi": "सुखमनी साहिब · अष्टपदी ८",
-   "en": "Sukhmani Sahib · Ashtapadi 8"
+   "en": "Sukhmani Sahib · Ashtapadi 8",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੮"
   },
   "a08.p8": {
    "hi": "सुखमनी साहिब · अष्टपदी ८",
-   "en": "Sukhmani Sahib · Ashtapadi 8"
+   "en": "Sukhmani Sahib · Ashtapadi 8",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੮"
   },
   "a09.salok": {
    "hi": "सुखमनी साहिब · अष्टपदी ९",
-   "en": "Sukhmani Sahib · Ashtapadi 9"
+   "en": "Sukhmani Sahib · Ashtapadi 9",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੯"
   },
   "a09.p1": {
    "hi": "सुखमनी साहिब · अष्टपदी ९",
-   "en": "Sukhmani Sahib · Ashtapadi 9"
+   "en": "Sukhmani Sahib · Ashtapadi 9",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੯"
   },
   "a09.p2": {
    "hi": "सुखमनी साहिब · अष्टपदी ९",
-   "en": "Sukhmani Sahib · Ashtapadi 9"
+   "en": "Sukhmani Sahib · Ashtapadi 9",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੯"
   },
   "a09.p3": {
    "hi": "सुखमनी साहिब · अष्टपदी ९",
-   "en": "Sukhmani Sahib · Ashtapadi 9"
+   "en": "Sukhmani Sahib · Ashtapadi 9",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੯"
   },
   "a09.p4": {
    "hi": "सुखमनी साहिब · अष्टपदी ९",
-   "en": "Sukhmani Sahib · Ashtapadi 9"
+   "en": "Sukhmani Sahib · Ashtapadi 9",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੯"
   },
   "a09.p5": {
    "hi": "सुखमनी साहिब · अष्टपदी ९",
-   "en": "Sukhmani Sahib · Ashtapadi 9"
+   "en": "Sukhmani Sahib · Ashtapadi 9",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੯"
   },
   "a09.p6": {
    "hi": "सुखमनी साहिब · अष्टपदी ९",
-   "en": "Sukhmani Sahib · Ashtapadi 9"
+   "en": "Sukhmani Sahib · Ashtapadi 9",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੯"
   },
   "a09.p7": {
    "hi": "सुखमनी साहिब · अष्टपदी ९",
-   "en": "Sukhmani Sahib · Ashtapadi 9"
+   "en": "Sukhmani Sahib · Ashtapadi 9",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੯"
   },
   "a09.p8": {
    "hi": "सुखमनी साहिब · अष्टपदी ९",
-   "en": "Sukhmani Sahib · Ashtapadi 9"
+   "en": "Sukhmani Sahib · Ashtapadi 9",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੯"
   },
   "a10.salok": {
    "hi": "सुखमनी साहिब · अष्टपदी १०",
-   "en": "Sukhmani Sahib · Ashtapadi 10"
+   "en": "Sukhmani Sahib · Ashtapadi 10",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੦"
   },
   "a10.p1": {
    "hi": "सुखमनी साहिब · अष्टपदी १०",
-   "en": "Sukhmani Sahib · Ashtapadi 10"
+   "en": "Sukhmani Sahib · Ashtapadi 10",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੦"
   },
   "a10.p2": {
    "hi": "सुखमनी साहिब · अष्टपदी १०",
-   "en": "Sukhmani Sahib · Ashtapadi 10"
+   "en": "Sukhmani Sahib · Ashtapadi 10",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੦"
   },
   "a10.p3": {
    "hi": "सुखमनी साहिब · अष्टपदी १०",
-   "en": "Sukhmani Sahib · Ashtapadi 10"
+   "en": "Sukhmani Sahib · Ashtapadi 10",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੦"
   },
   "a10.p4": {
    "hi": "सुखमनी साहिब · अष्टपदी १०",
-   "en": "Sukhmani Sahib · Ashtapadi 10"
+   "en": "Sukhmani Sahib · Ashtapadi 10",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੦"
   },
   "a10.p5": {
    "hi": "सुखमनी साहिब · अष्टपदी १०",
-   "en": "Sukhmani Sahib · Ashtapadi 10"
+   "en": "Sukhmani Sahib · Ashtapadi 10",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੦"
   },
   "a10.p6": {
    "hi": "सुखमनी साहिब · अष्टपदी १०",
-   "en": "Sukhmani Sahib · Ashtapadi 10"
+   "en": "Sukhmani Sahib · Ashtapadi 10",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੦"
   },
   "a10.p7": {
    "hi": "सुखमनी साहिब · अष्टपदी १०",
-   "en": "Sukhmani Sahib · Ashtapadi 10"
+   "en": "Sukhmani Sahib · Ashtapadi 10",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੦"
   },
   "a10.p8": {
    "hi": "सुखमनी साहिब · अष्टपदी १०",
-   "en": "Sukhmani Sahib · Ashtapadi 10"
+   "en": "Sukhmani Sahib · Ashtapadi 10",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੦"
   },
   "a11.salok": {
    "hi": "सुखमनी साहिब · अष्टपदी ११",
-   "en": "Sukhmani Sahib · Ashtapadi 11"
+   "en": "Sukhmani Sahib · Ashtapadi 11",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੧"
   },
   "a11.p1": {
    "hi": "सुखमनी साहिब · अष्टपदी ११",
-   "en": "Sukhmani Sahib · Ashtapadi 11"
+   "en": "Sukhmani Sahib · Ashtapadi 11",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੧"
   },
   "a11.p2": {
    "hi": "सुखमनी साहिब · अष्टपदी ११",
-   "en": "Sukhmani Sahib · Ashtapadi 11"
+   "en": "Sukhmani Sahib · Ashtapadi 11",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੧"
   },
   "a11.p3": {
    "hi": "सुखमनी साहिब · अष्टपदी ११",
-   "en": "Sukhmani Sahib · Ashtapadi 11"
+   "en": "Sukhmani Sahib · Ashtapadi 11",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੧"
   },
   "a11.p4": {
    "hi": "सुखमनी साहिब · अष्टपदी ११",
-   "en": "Sukhmani Sahib · Ashtapadi 11"
+   "en": "Sukhmani Sahib · Ashtapadi 11",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੧"
   },
   "a11.p5": {
    "hi": "सुखमनी साहिब · अष्टपदी ११",
-   "en": "Sukhmani Sahib · Ashtapadi 11"
+   "en": "Sukhmani Sahib · Ashtapadi 11",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੧"
   },
   "a11.p6": {
    "hi": "सुखमनी साहिब · अष्टपदी ११",
-   "en": "Sukhmani Sahib · Ashtapadi 11"
+   "en": "Sukhmani Sahib · Ashtapadi 11",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੧"
   },
   "a11.p7": {
    "hi": "सुखमनी साहिब · अष्टपदी ११",
-   "en": "Sukhmani Sahib · Ashtapadi 11"
+   "en": "Sukhmani Sahib · Ashtapadi 11",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੧"
   },
   "a11.p8": {
    "hi": "सुखमनी साहिब · अष्टपदी ११",
-   "en": "Sukhmani Sahib · Ashtapadi 11"
+   "en": "Sukhmani Sahib · Ashtapadi 11",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੧"
   },
   "a12.salok": {
    "hi": "सुखमनी साहिब · अष्टपदी १२",
-   "en": "Sukhmani Sahib · Ashtapadi 12"
+   "en": "Sukhmani Sahib · Ashtapadi 12",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੨"
   },
   "a12.p1": {
    "hi": "सुखमनी साहिब · अष्टपदी १२",
-   "en": "Sukhmani Sahib · Ashtapadi 12"
+   "en": "Sukhmani Sahib · Ashtapadi 12",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੨"
   },
   "a12.p2": {
    "hi": "सुखमनी साहिब · अष्टपदी १२",
-   "en": "Sukhmani Sahib · Ashtapadi 12"
+   "en": "Sukhmani Sahib · Ashtapadi 12",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੨"
   },
   "a12.p3": {
    "hi": "सुखमनी साहिब · अष्टपदी १२",
-   "en": "Sukhmani Sahib · Ashtapadi 12"
+   "en": "Sukhmani Sahib · Ashtapadi 12",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੨"
   },
   "a12.p4": {
    "hi": "सुखमनी साहिब · अष्टपदी १२",
-   "en": "Sukhmani Sahib · Ashtapadi 12"
+   "en": "Sukhmani Sahib · Ashtapadi 12",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੨"
   },
   "a12.p5": {
    "hi": "सुखमनी साहिब · अष्टपदी १२",
-   "en": "Sukhmani Sahib · Ashtapadi 12"
+   "en": "Sukhmani Sahib · Ashtapadi 12",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੨"
   },
   "a12.p6": {
    "hi": "सुखमनी साहिब · अष्टपदी १२",
-   "en": "Sukhmani Sahib · Ashtapadi 12"
+   "en": "Sukhmani Sahib · Ashtapadi 12",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੨"
   },
   "a12.p7": {
    "hi": "सुखमनी साहिब · अष्टपदी १२",
-   "en": "Sukhmani Sahib · Ashtapadi 12"
+   "en": "Sukhmani Sahib · Ashtapadi 12",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੨"
   },
   "a12.p8": {
    "hi": "सुखमनी साहिब · अष्टपदी १२",
-   "en": "Sukhmani Sahib · Ashtapadi 12"
+   "en": "Sukhmani Sahib · Ashtapadi 12",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੨"
   },
   "a13.salok": {
    "hi": "सुखमनी साहिब · अष्टपदी १३",
-   "en": "Sukhmani Sahib · Ashtapadi 13"
+   "en": "Sukhmani Sahib · Ashtapadi 13",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੩"
   },
   "a13.p1": {
    "hi": "सुखमनी साहिब · अष्टपदी १३",
-   "en": "Sukhmani Sahib · Ashtapadi 13"
+   "en": "Sukhmani Sahib · Ashtapadi 13",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੩"
   },
   "a13.p2": {
    "hi": "सुखमनी साहिब · अष्टपदी १३",
-   "en": "Sukhmani Sahib · Ashtapadi 13"
+   "en": "Sukhmani Sahib · Ashtapadi 13",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੩"
   },
   "a13.p3": {
    "hi": "सुखमनी साहिब · अष्टपदी १३",
-   "en": "Sukhmani Sahib · Ashtapadi 13"
+   "en": "Sukhmani Sahib · Ashtapadi 13",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੩"
   },
   "a13.p4": {
    "hi": "सुखमनी साहिब · अष्टपदी १३",
-   "en": "Sukhmani Sahib · Ashtapadi 13"
+   "en": "Sukhmani Sahib · Ashtapadi 13",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੩"
   },
   "a13.p5": {
    "hi": "सुखमनी साहिब · अष्टपदी १३",
-   "en": "Sukhmani Sahib · Ashtapadi 13"
+   "en": "Sukhmani Sahib · Ashtapadi 13",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੩"
   },
   "a13.p6": {
    "hi": "सुखमनी साहिब · अष्टपदी १३",
-   "en": "Sukhmani Sahib · Ashtapadi 13"
+   "en": "Sukhmani Sahib · Ashtapadi 13",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੩"
   },
   "a13.p7": {
    "hi": "सुखमनी साहिब · अष्टपदी १३",
-   "en": "Sukhmani Sahib · Ashtapadi 13"
+   "en": "Sukhmani Sahib · Ashtapadi 13",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੩"
   },
   "a13.p8": {
    "hi": "सुखमनी साहिब · अष्टपदी १३",
-   "en": "Sukhmani Sahib · Ashtapadi 13"
+   "en": "Sukhmani Sahib · Ashtapadi 13",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੩"
   },
   "a14.salok": {
    "hi": "सुखमनी साहिब · अष्टपदी १४",
-   "en": "Sukhmani Sahib · Ashtapadi 14"
+   "en": "Sukhmani Sahib · Ashtapadi 14",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੪"
   },
   "a14.p1": {
    "hi": "सुखमनी साहिब · अष्टपदी १४",
-   "en": "Sukhmani Sahib · Ashtapadi 14"
+   "en": "Sukhmani Sahib · Ashtapadi 14",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੪"
   },
   "a14.p2": {
    "hi": "सुखमनी साहिब · अष्टपदी १४",
-   "en": "Sukhmani Sahib · Ashtapadi 14"
+   "en": "Sukhmani Sahib · Ashtapadi 14",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੪"
   },
   "a14.p3": {
    "hi": "सुखमनी साहिब · अष्टपदी १४",
-   "en": "Sukhmani Sahib · Ashtapadi 14"
+   "en": "Sukhmani Sahib · Ashtapadi 14",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੪"
   },
   "a14.p4": {
    "hi": "सुखमनी साहिब · अष्टपदी १४",
-   "en": "Sukhmani Sahib · Ashtapadi 14"
+   "en": "Sukhmani Sahib · Ashtapadi 14",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੪"
   },
   "a14.p5": {
    "hi": "सुखमनी साहिब · अष्टपदी १४",
-   "en": "Sukhmani Sahib · Ashtapadi 14"
+   "en": "Sukhmani Sahib · Ashtapadi 14",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੪"
   },
   "a14.p6": {
    "hi": "सुखमनी साहिब · अष्टपदी १४",
-   "en": "Sukhmani Sahib · Ashtapadi 14"
+   "en": "Sukhmani Sahib · Ashtapadi 14",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੪"
   },
   "a14.p7": {
    "hi": "सुखमनी साहिब · अष्टपदी १४",
-   "en": "Sukhmani Sahib · Ashtapadi 14"
+   "en": "Sukhmani Sahib · Ashtapadi 14",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੪"
   },
   "a14.p8": {
    "hi": "सुखमनी साहिब · अष्टपदी १४",
-   "en": "Sukhmani Sahib · Ashtapadi 14"
+   "en": "Sukhmani Sahib · Ashtapadi 14",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੪"
   },
   "a15.salok": {
    "hi": "सुखमनी साहिब · अष्टपदी १५",
-   "en": "Sukhmani Sahib · Ashtapadi 15"
+   "en": "Sukhmani Sahib · Ashtapadi 15",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੫"
   },
   "a15.p1": {
    "hi": "सुखमनी साहिब · अष्टपदी १५",
-   "en": "Sukhmani Sahib · Ashtapadi 15"
+   "en": "Sukhmani Sahib · Ashtapadi 15",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੫"
   },
   "a15.p2": {
    "hi": "सुखमनी साहिब · अष्टपदी १५",
-   "en": "Sukhmani Sahib · Ashtapadi 15"
+   "en": "Sukhmani Sahib · Ashtapadi 15",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੫"
   },
   "a15.p3": {
    "hi": "सुखमनी साहिब · अष्टपदी १५",
-   "en": "Sukhmani Sahib · Ashtapadi 15"
+   "en": "Sukhmani Sahib · Ashtapadi 15",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੫"
   },
   "a15.p4": {
    "hi": "सुखमनी साहिब · अष्टपदी १५",
-   "en": "Sukhmani Sahib · Ashtapadi 15"
+   "en": "Sukhmani Sahib · Ashtapadi 15",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੫"
   },
   "a15.p5": {
    "hi": "सुखमनी साहिब · अष्टपदी १५",
-   "en": "Sukhmani Sahib · Ashtapadi 15"
+   "en": "Sukhmani Sahib · Ashtapadi 15",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੫"
   },
   "a15.p6": {
    "hi": "सुखमनी साहिब · अष्टपदी १५",
-   "en": "Sukhmani Sahib · Ashtapadi 15"
+   "en": "Sukhmani Sahib · Ashtapadi 15",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੫"
   },
   "a15.p7": {
    "hi": "सुखमनी साहिब · अष्टपदी १५",
-   "en": "Sukhmani Sahib · Ashtapadi 15"
+   "en": "Sukhmani Sahib · Ashtapadi 15",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੫"
   },
   "a15.p8": {
    "hi": "सुखमनी साहिब · अष्टपदी १५",
-   "en": "Sukhmani Sahib · Ashtapadi 15"
+   "en": "Sukhmani Sahib · Ashtapadi 15",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੫"
   },
   "a16.salok": {
    "hi": "सुखमनी साहिब · अष्टपदी १६",
-   "en": "Sukhmani Sahib · Ashtapadi 16"
+   "en": "Sukhmani Sahib · Ashtapadi 16",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੬"
   },
   "a16.p1": {
    "hi": "सुखमनी साहिब · अष्टपदी १६",
-   "en": "Sukhmani Sahib · Ashtapadi 16"
+   "en": "Sukhmani Sahib · Ashtapadi 16",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੬"
   },
   "a16.p2": {
    "hi": "सुखमनी साहिब · अष्टपदी १६",
-   "en": "Sukhmani Sahib · Ashtapadi 16"
+   "en": "Sukhmani Sahib · Ashtapadi 16",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੬"
   },
   "a16.p3": {
    "hi": "सुखमनी साहिब · अष्टपदी १६",
-   "en": "Sukhmani Sahib · Ashtapadi 16"
+   "en": "Sukhmani Sahib · Ashtapadi 16",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੬"
   },
   "a16.p4": {
    "hi": "सुखमनी साहिब · अष्टपदी १६",
-   "en": "Sukhmani Sahib · Ashtapadi 16"
+   "en": "Sukhmani Sahib · Ashtapadi 16",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੬"
   },
   "a16.p5": {
    "hi": "सुखमनी साहिब · अष्टपदी १६",
-   "en": "Sukhmani Sahib · Ashtapadi 16"
+   "en": "Sukhmani Sahib · Ashtapadi 16",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੬"
   },
   "a16.p6": {
    "hi": "सुखमनी साहिब · अष्टपदी १६",
-   "en": "Sukhmani Sahib · Ashtapadi 16"
+   "en": "Sukhmani Sahib · Ashtapadi 16",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੬"
   },
   "a16.p7": {
    "hi": "सुखमनी साहिब · अष्टपदी १६",
-   "en": "Sukhmani Sahib · Ashtapadi 16"
+   "en": "Sukhmani Sahib · Ashtapadi 16",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੬"
   },
   "a16.p8": {
    "hi": "सुखमनी साहिब · अष्टपदी १६",
-   "en": "Sukhmani Sahib · Ashtapadi 16"
+   "en": "Sukhmani Sahib · Ashtapadi 16",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੬"
   },
   "a17.salok": {
    "hi": "सुखमनी साहिब · अष्टपदी १७",
-   "en": "Sukhmani Sahib · Ashtapadi 17"
+   "en": "Sukhmani Sahib · Ashtapadi 17",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੭"
   },
   "a17.p1": {
    "hi": "सुखमनी साहिब · अष्टपदी १७",
-   "en": "Sukhmani Sahib · Ashtapadi 17"
+   "en": "Sukhmani Sahib · Ashtapadi 17",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੭"
   },
   "a17.p2": {
    "hi": "सुखमनी साहिब · अष्टपदी १७",
-   "en": "Sukhmani Sahib · Ashtapadi 17"
+   "en": "Sukhmani Sahib · Ashtapadi 17",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੭"
   },
   "a17.p3": {
    "hi": "सुखमनी साहिब · अष्टपदी १७",
-   "en": "Sukhmani Sahib · Ashtapadi 17"
+   "en": "Sukhmani Sahib · Ashtapadi 17",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੭"
   },
   "a17.p4": {
    "hi": "सुखमनी साहिब · अष्टपदी १७",
-   "en": "Sukhmani Sahib · Ashtapadi 17"
+   "en": "Sukhmani Sahib · Ashtapadi 17",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੭"
   },
   "a17.p5": {
    "hi": "सुखमनी साहिब · अष्टपदी १७",
-   "en": "Sukhmani Sahib · Ashtapadi 17"
+   "en": "Sukhmani Sahib · Ashtapadi 17",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੭"
   },
   "a17.p6": {
    "hi": "सुखमनी साहिब · अष्टपदी १७",
-   "en": "Sukhmani Sahib · Ashtapadi 17"
+   "en": "Sukhmani Sahib · Ashtapadi 17",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੭"
   },
   "a17.p7": {
    "hi": "सुखमनी साहिब · अष्टपदी १७",
-   "en": "Sukhmani Sahib · Ashtapadi 17"
+   "en": "Sukhmani Sahib · Ashtapadi 17",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੭"
   },
   "a17.p8": {
    "hi": "सुखमनी साहिब · अष्टपदी १७",
-   "en": "Sukhmani Sahib · Ashtapadi 17"
+   "en": "Sukhmani Sahib · Ashtapadi 17",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੭"
   },
   "a18.salok": {
    "hi": "सुखमनी साहिब · अष्टपदी १८",
-   "en": "Sukhmani Sahib · Ashtapadi 18"
+   "en": "Sukhmani Sahib · Ashtapadi 18",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੮"
   },
   "a18.p1": {
    "hi": "सुखमनी साहिब · अष्टपदी १८",
-   "en": "Sukhmani Sahib · Ashtapadi 18"
+   "en": "Sukhmani Sahib · Ashtapadi 18",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੮"
   },
   "a18.p2": {
    "hi": "सुखमनी साहिब · अष्टपदी १८",
-   "en": "Sukhmani Sahib · Ashtapadi 18"
+   "en": "Sukhmani Sahib · Ashtapadi 18",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੮"
   },
   "a18.p3": {
    "hi": "सुखमनी साहिब · अष्टपदी १८",
-   "en": "Sukhmani Sahib · Ashtapadi 18"
+   "en": "Sukhmani Sahib · Ashtapadi 18",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੮"
   },
   "a18.p4": {
    "hi": "सुखमनी साहिब · अष्टपदी १८",
-   "en": "Sukhmani Sahib · Ashtapadi 18"
+   "en": "Sukhmani Sahib · Ashtapadi 18",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੮"
   },
   "a18.p5": {
    "hi": "सुखमनी साहिब · अष्टपदी १८",
-   "en": "Sukhmani Sahib · Ashtapadi 18"
+   "en": "Sukhmani Sahib · Ashtapadi 18",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੮"
   },
   "a18.p6": {
    "hi": "सुखमनी साहिब · अष्टपदी १८",
-   "en": "Sukhmani Sahib · Ashtapadi 18"
+   "en": "Sukhmani Sahib · Ashtapadi 18",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੮"
   },
   "a18.p7": {
    "hi": "सुखमनी साहिब · अष्टपदी १८",
-   "en": "Sukhmani Sahib · Ashtapadi 18"
+   "en": "Sukhmani Sahib · Ashtapadi 18",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੮"
   },
   "a18.p8": {
    "hi": "सुखमनी साहिब · अष्टपदी १८",
-   "en": "Sukhmani Sahib · Ashtapadi 18"
+   "en": "Sukhmani Sahib · Ashtapadi 18",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੮"
   },
   "a19.salok": {
    "hi": "सुखमनी साहिब · अष्टपदी १९",
-   "en": "Sukhmani Sahib · Ashtapadi 19"
+   "en": "Sukhmani Sahib · Ashtapadi 19",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੯"
   },
   "a19.p1": {
    "hi": "सुखमनी साहिब · अष्टपदी १९",
-   "en": "Sukhmani Sahib · Ashtapadi 19"
+   "en": "Sukhmani Sahib · Ashtapadi 19",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੯"
   },
   "a19.p2": {
    "hi": "सुखमनी साहिब · अष्टपदी १९",
-   "en": "Sukhmani Sahib · Ashtapadi 19"
+   "en": "Sukhmani Sahib · Ashtapadi 19",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੯"
   },
   "a19.p3": {
    "hi": "सुखमनी साहिब · अष्टपदी १९",
-   "en": "Sukhmani Sahib · Ashtapadi 19"
+   "en": "Sukhmani Sahib · Ashtapadi 19",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੯"
   },
   "a19.p4": {
    "hi": "सुखमनी साहिब · अष्टपदी १९",
-   "en": "Sukhmani Sahib · Ashtapadi 19"
+   "en": "Sukhmani Sahib · Ashtapadi 19",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੯"
   },
   "a19.p5": {
    "hi": "सुखमनी साहिब · अष्टपदी १९",
-   "en": "Sukhmani Sahib · Ashtapadi 19"
+   "en": "Sukhmani Sahib · Ashtapadi 19",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੯"
   },
   "a19.p6": {
    "hi": "सुखमनी साहिब · अष्टपदी १९",
-   "en": "Sukhmani Sahib · Ashtapadi 19"
+   "en": "Sukhmani Sahib · Ashtapadi 19",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੯"
   },
   "a19.p7": {
    "hi": "सुखमनी साहिब · अष्टपदी १९",
-   "en": "Sukhmani Sahib · Ashtapadi 19"
+   "en": "Sukhmani Sahib · Ashtapadi 19",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੯"
   },
   "a19.p8": {
    "hi": "सुखमनी साहिब · अष्टपदी १९",
-   "en": "Sukhmani Sahib · Ashtapadi 19"
+   "en": "Sukhmani Sahib · Ashtapadi 19",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੧੯"
   },
   "a20.salok": {
    "hi": "सुखमनी साहिब · अष्टपदी २०",
-   "en": "Sukhmani Sahib · Ashtapadi 20"
+   "en": "Sukhmani Sahib · Ashtapadi 20",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੦"
   },
   "a20.p1": {
    "hi": "सुखमनी साहिब · अष्टपदी २०",
-   "en": "Sukhmani Sahib · Ashtapadi 20"
+   "en": "Sukhmani Sahib · Ashtapadi 20",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੦"
   },
   "a20.p2": {
    "hi": "सुखमनी साहिब · अष्टपदी २०",
-   "en": "Sukhmani Sahib · Ashtapadi 20"
+   "en": "Sukhmani Sahib · Ashtapadi 20",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੦"
   },
   "a20.p3": {
    "hi": "सुखमनी साहिब · अष्टपदी २०",
-   "en": "Sukhmani Sahib · Ashtapadi 20"
+   "en": "Sukhmani Sahib · Ashtapadi 20",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੦"
   },
   "a20.p4": {
    "hi": "सुखमनी साहिब · अष्टपदी २०",
-   "en": "Sukhmani Sahib · Ashtapadi 20"
+   "en": "Sukhmani Sahib · Ashtapadi 20",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੦"
   },
   "a20.p5": {
    "hi": "सुखमनी साहिब · अष्टपदी २०",
-   "en": "Sukhmani Sahib · Ashtapadi 20"
+   "en": "Sukhmani Sahib · Ashtapadi 20",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੦"
   },
   "a20.p6": {
    "hi": "सुखमनी साहिब · अष्टपदी २०",
-   "en": "Sukhmani Sahib · Ashtapadi 20"
+   "en": "Sukhmani Sahib · Ashtapadi 20",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੦"
   },
   "a20.p7": {
    "hi": "सुखमनी साहिब · अष्टपदी २०",
-   "en": "Sukhmani Sahib · Ashtapadi 20"
+   "en": "Sukhmani Sahib · Ashtapadi 20",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੦"
   },
   "a20.p8": {
    "hi": "सुखमनी साहिब · अष्टपदी २०",
-   "en": "Sukhmani Sahib · Ashtapadi 20"
+   "en": "Sukhmani Sahib · Ashtapadi 20",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੦"
   },
   "a21.salok": {
    "hi": "सुखमनी साहिब · अष्टपदी २१",
-   "en": "Sukhmani Sahib · Ashtapadi 21"
+   "en": "Sukhmani Sahib · Ashtapadi 21",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੧"
   },
   "a21.p1": {
    "hi": "सुखमनी साहिब · अष्टपदी २१",
-   "en": "Sukhmani Sahib · Ashtapadi 21"
+   "en": "Sukhmani Sahib · Ashtapadi 21",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੧"
   },
   "a21.p2": {
    "hi": "सुखमनी साहिब · अष्टपदी २१",
-   "en": "Sukhmani Sahib · Ashtapadi 21"
+   "en": "Sukhmani Sahib · Ashtapadi 21",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੧"
   },
   "a21.p3": {
    "hi": "सुखमनी साहिब · अष्टपदी २१",
-   "en": "Sukhmani Sahib · Ashtapadi 21"
+   "en": "Sukhmani Sahib · Ashtapadi 21",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੧"
   },
   "a21.p4": {
    "hi": "सुखमनी साहिब · अष्टपदी २१",
-   "en": "Sukhmani Sahib · Ashtapadi 21"
+   "en": "Sukhmani Sahib · Ashtapadi 21",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੧"
   },
   "a21.p5": {
    "hi": "सुखमनी साहिब · अष्टपदी २१",
-   "en": "Sukhmani Sahib · Ashtapadi 21"
+   "en": "Sukhmani Sahib · Ashtapadi 21",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੧"
   },
   "a21.p6": {
    "hi": "सुखमनी साहिब · अष्टपदी २१",
-   "en": "Sukhmani Sahib · Ashtapadi 21"
+   "en": "Sukhmani Sahib · Ashtapadi 21",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੧"
   },
   "a21.p7": {
    "hi": "सुखमनी साहिब · अष्टपदी २१",
-   "en": "Sukhmani Sahib · Ashtapadi 21"
+   "en": "Sukhmani Sahib · Ashtapadi 21",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੧"
   },
   "a21.p8": {
    "hi": "सुखमनी साहिब · अष्टपदी २१",
-   "en": "Sukhmani Sahib · Ashtapadi 21"
+   "en": "Sukhmani Sahib · Ashtapadi 21",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੧"
   },
   "a22.salok": {
    "hi": "सुखमनी साहिब · अष्टपदी २२",
-   "en": "Sukhmani Sahib · Ashtapadi 22"
+   "en": "Sukhmani Sahib · Ashtapadi 22",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੨"
   },
   "a22.p1": {
    "hi": "सुखमनी साहिब · अष्टपदी २२",
-   "en": "Sukhmani Sahib · Ashtapadi 22"
+   "en": "Sukhmani Sahib · Ashtapadi 22",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੨"
   },
   "a22.p2": {
    "hi": "सुखमनी साहिब · अष्टपदी २२",
-   "en": "Sukhmani Sahib · Ashtapadi 22"
+   "en": "Sukhmani Sahib · Ashtapadi 22",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੨"
   },
   "a22.p3": {
    "hi": "सुखमनी साहिब · अष्टपदी २२",
-   "en": "Sukhmani Sahib · Ashtapadi 22"
+   "en": "Sukhmani Sahib · Ashtapadi 22",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੨"
   },
   "a22.p4": {
    "hi": "सुखमनी साहिब · अष्टपदी २२",
-   "en": "Sukhmani Sahib · Ashtapadi 22"
+   "en": "Sukhmani Sahib · Ashtapadi 22",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੨"
   },
   "a22.p5": {
    "hi": "सुखमनी साहिब · अष्टपदी २२",
-   "en": "Sukhmani Sahib · Ashtapadi 22"
+   "en": "Sukhmani Sahib · Ashtapadi 22",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੨"
   },
   "a22.p6": {
    "hi": "सुखमनी साहिब · अष्टपदी २२",
-   "en": "Sukhmani Sahib · Ashtapadi 22"
+   "en": "Sukhmani Sahib · Ashtapadi 22",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੨"
   },
   "a22.p7": {
    "hi": "सुखमनी साहिब · अष्टपदी २२",
-   "en": "Sukhmani Sahib · Ashtapadi 22"
+   "en": "Sukhmani Sahib · Ashtapadi 22",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੨"
   },
   "a22.p8": {
    "hi": "सुखमनी साहिब · अष्टपदी २२",
-   "en": "Sukhmani Sahib · Ashtapadi 22"
+   "en": "Sukhmani Sahib · Ashtapadi 22",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੨"
   },
   "a23.salok": {
    "hi": "सुखमनी साहिब · अष्टपदी २३",
-   "en": "Sukhmani Sahib · Ashtapadi 23"
+   "en": "Sukhmani Sahib · Ashtapadi 23",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੩"
   },
   "a23.p1": {
    "hi": "सुखमनी साहिब · अष्टपदी २३",
-   "en": "Sukhmani Sahib · Ashtapadi 23"
+   "en": "Sukhmani Sahib · Ashtapadi 23",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੩"
   },
   "a23.p2": {
    "hi": "सुखमनी साहिब · अष्टपदी २३",
-   "en": "Sukhmani Sahib · Ashtapadi 23"
+   "en": "Sukhmani Sahib · Ashtapadi 23",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੩"
   },
   "a23.p3": {
    "hi": "सुखमनी साहिब · अष्टपदी २३",
-   "en": "Sukhmani Sahib · Ashtapadi 23"
+   "en": "Sukhmani Sahib · Ashtapadi 23",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੩"
   },
   "a23.p4": {
    "hi": "सुखमनी साहिब · अष्टपदी २३",
-   "en": "Sukhmani Sahib · Ashtapadi 23"
+   "en": "Sukhmani Sahib · Ashtapadi 23",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੩"
   },
   "a23.p5": {
    "hi": "सुखमनी साहिब · अष्टपदी २३",
-   "en": "Sukhmani Sahib · Ashtapadi 23"
+   "en": "Sukhmani Sahib · Ashtapadi 23",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੩"
   },
   "a23.p6": {
    "hi": "सुखमनी साहिब · अष्टपदी २३",
-   "en": "Sukhmani Sahib · Ashtapadi 23"
+   "en": "Sukhmani Sahib · Ashtapadi 23",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੩"
   },
   "a23.p7": {
    "hi": "सुखमनी साहिब · अष्टपदी २३",
-   "en": "Sukhmani Sahib · Ashtapadi 23"
+   "en": "Sukhmani Sahib · Ashtapadi 23",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੩"
   },
   "a23.p8": {
    "hi": "सुखमनी साहिब · अष्टपदी २३",
-   "en": "Sukhmani Sahib · Ashtapadi 23"
+   "en": "Sukhmani Sahib · Ashtapadi 23",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੩"
   },
   "a24.salok": {
    "hi": "सुखमनी साहिब · अष्टपदी २४",
-   "en": "Sukhmani Sahib · Ashtapadi 24"
+   "en": "Sukhmani Sahib · Ashtapadi 24",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੪"
   },
   "a24.p1": {
    "hi": "सुखमनी साहिब · अष्टपदी २४",
-   "en": "Sukhmani Sahib · Ashtapadi 24"
+   "en": "Sukhmani Sahib · Ashtapadi 24",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੪"
   },
   "a24.p2": {
    "hi": "सुखमनी साहिब · अष्टपदी २४",
-   "en": "Sukhmani Sahib · Ashtapadi 24"
+   "en": "Sukhmani Sahib · Ashtapadi 24",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੪"
   },
   "a24.p3": {
    "hi": "सुखमनी साहिब · अष्टपदी २४",
-   "en": "Sukhmani Sahib · Ashtapadi 24"
+   "en": "Sukhmani Sahib · Ashtapadi 24",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੪"
   },
   "a24.p4": {
    "hi": "सुखमनी साहिब · अष्टपदी २४",
-   "en": "Sukhmani Sahib · Ashtapadi 24"
+   "en": "Sukhmani Sahib · Ashtapadi 24",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੪"
   },
   "a24.p5": {
    "hi": "सुखमनी साहिब · अष्टपदी २४",
-   "en": "Sukhmani Sahib · Ashtapadi 24"
+   "en": "Sukhmani Sahib · Ashtapadi 24",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੪"
   },
   "a24.p6": {
    "hi": "सुखमनी साहिब · अष्टपदी २४",
-   "en": "Sukhmani Sahib · Ashtapadi 24"
+   "en": "Sukhmani Sahib · Ashtapadi 24",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੪"
   },
   "a24.p7": {
    "hi": "सुखमनी साहिब · अष्टपदी २४",
-   "en": "Sukhmani Sahib · Ashtapadi 24"
+   "en": "Sukhmani Sahib · Ashtapadi 24",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੪"
   },
   "a24.p8": {
    "hi": "सुखमनी साहिब · अष्टपदी २४",
-   "en": "Sukhmani Sahib · Ashtapadi 24"
+   "en": "Sukhmani Sahib · Ashtapadi 24",
+   "pa": "ਸੁਖਮਨੀ ਸਾਹਿਬ · ਅਸਟਪਦੀ ੨੪"
   }
  },
  "types": {
   "shabad": {
    "name": {
     "hi": "शबद",
-    "en": "Shabad"
+    "en": "Shabad",
+    "pa": "ਸ਼ਬਦ"
    },
    "short": {
     "hi": "शबद",
-    "en": "Shabad"
+    "en": "Shabad",
+    "pa": "ਸ਼ਬਦ"
    }
   },
   "salok": {
    "name": {
     "hi": "सलोक",
-    "en": "Salok"
+    "en": "Salok",
+    "pa": "ਸਲੋਕ"
    },
    "short": {
     "hi": "सलोक",
-    "en": "Salok"
+    "en": "Salok",
+    "pa": "ਸਲੋਕ"
    }
   },
   "pauri": {
    "name": {
     "hi": "पउड़ी",
-    "en": "Pauri"
+    "en": "Pauri",
+    "pa": "ਪਉੜੀ"
    },
    "short": {
     "hi": "पउड़ी",
-    "en": "Pauri"
+    "en": "Pauri",
+    "pa": "ਪਉੜੀ"
    }
   },
   "rahao": {
    "name": {
     "hi": "रहाउ",
-    "en": "Rahao"
+    "en": "Rahao",
+    "pa": "ਰਹਾਉ"
    },
    "short": {
     "hi": "रहाउ",
-    "en": "Rahao"
+    "en": "Rahao",
+    "pa": "ਰਹਾਉ"
    }
   },
   "pad": {
    "name": {
     "hi": "पद",
-    "en": "Stanza"
+    "en": "Stanza",
+    "pa": "ਪਦ"
    },
    "short": {
     "hi": "पद",
-    "en": "St."
+    "en": "St.",
+    "pa": "ਪਦ"
    }
   },
   "swayya": {
    "name": {
     "hi": "सवईआ",
-    "en": "Swayya"
+    "en": "Swayya",
+    "pa": "ਸਵਈਆ"
    },
    "short": {
     "hi": "सवईआ",
-    "en": "Swayya"
+    "en": "Swayya",
+    "pa": "ਸਵਈਆ"
    }
   },
   "mool": {
    "name": {
     "hi": "मूल मंत्र",
-    "en": "Mool Mantar"
+    "en": "Mool Mantar",
+    "pa": "ਮੂਲ ਮੰਤਰ"
    },
    "short": {
     "hi": "मूल मंत्र",
-    "en": "Mool Mantar"
+    "en": "Mool Mantar",
+    "pa": "ਮੂਲ ਮੰਤਰ"
    }
   },
   "heading": {
    "name": {
     "hi": "शीर्षक",
-    "en": "Heading"
+    "en": "Heading",
+    "pa": "ਸਿਰਲੇਖ"
    }
   }
  }

@@ -24,7 +24,7 @@ new MutationObserver(ms => ms.forEach(m => m.type === 'characterData' ? latNode(
 latNode(document.body);
 const ORDH = ['', 'पहला', 'दूसरा', 'तीसरा', 'चौथा', 'पाँचवाँ', 'छठा', 'सातवाँ', 'आठवाँ', 'नवाँ', 'दसवाँ', 'ग्यारहवाँ', 'बारहवाँ', 'तेरहवाँ', 'चौदहवाँ', 'पंद्रहवाँ', 'सोलहवाँ', 'सत्रहवाँ', 'अठारहवाँ', 'उन्नीसवाँ', 'बीसवाँ', 'इक्कीसवाँ', 'बाईसवाँ', 'तेईसवाँ', 'चौबीसवाँ', 'पचीसवाँ', 'छब्बीसवाँ', 'सत्ताईसवाँ', 'अट्ठाईसवाँ', 'उनतीसवाँ', 'तीसवाँ'];
 const TYPEN = {do: ['दोहा', 'Doha'], so: ['सोरठा', 'Soratha'], cha: ['छंद', 'Chhand'], shloka: ['श्लोक', 'Shloka'], cau: ['चौपाई', 'Chaupai']};
-const TYPE = new Proxy({}, {get: (o, k) => TYPEN[k] ? T(TYPEN[k][0], TYPEN[k][1]) : ''});
+const TYPE = new Proxy({}, {get: (o, k) => TYPEN[k] ? (PAH() && TYPEN[k][2] ? TYPEN[k][2] : T(TYPEN[k][0], TYPEN[k][1])) : ''});
 const TT = o => o ? (typeof o === 'string' ? o : T(o.hi, o.en || o.hi)) : '';
 
 /* ---------------- loading ---------------- */
@@ -142,6 +142,10 @@ async function cloudInit(){
 // Inside a work's text (the reader) the words around the verses follow the meanings chosen there:
 // English meaning on → English; only the Hindi meaning → Hindi; neither → the app's language.
 let CURVIEW = 'library';
+// Gurbani's headings in Gurmukhi (the owner): in the reader of a work in Gurmukhi, with ਪੰ chosen and not En, a part's, a
+// section's and a verse type's name is its Punjabi one (work.json "pa"), where it has one
+const PAH = () => !!(W && W.lang === 'pa' && CURVIEW === 'reader' && S.settings.layers.pa && !S.settings.layers.e);
+const TP = o => o && typeof o === 'object' && o.pa && PAH() ? o.pa : TT(o);
 const LANG = () => CURVIEW === 'reader' ? (S.settings.layers.e ? 'en' : S.settings.layers.h ? 'hi' : (S.settings.ui === 'hi' ? 'hi' : 'en')) : (S.settings.ui === 'hi' ? 'hi' : 'en');
 function T(hi, en){ return LANG() === 'en' ? en : hi; }
 const ME = () => S.profiles.find(p => p.id === S.active) || S.profiles[0];
@@ -339,9 +343,16 @@ function lineEl(i, k){ const el = document.getElementById('v' + i); return el &&
 // scroll so that line k of verse i is just below the top bar (a page that begins inside a verse)
 function scrollToLine(i, k){ const p = lineEl(i, k); if (!p) return; window.scrollTo({top: Math.max(0, p.getBoundingClientRect().top + scrollY - $('#reader .bar').getBoundingClientRect().bottom - 6), behavior: 'auto'}); }
 // the page the line at the top of the screen is on, in a work whose pages begin inside verses; else null
+// the page (Ang) a verse begins on, from the work's page index (views → "at": each page's first verse), for a verse whose
+// section is not its page: the Japji's and the Sukhmani's verses inside the Granth keep their own sections (a19.salok)
+function atPage(i){
+  const v = (W.views || []).find(x => Array.isArray(x.at)); if (!v) return 0;
+  let lo = 0, hi = v.at.length - 1, r = 0; while (lo <= hi){ const m = (lo + hi) >> 1; if ((ID[v.at[m]] ?? Infinity) <= i){ r = m + 1; lo = m + 1; } else hi = m - 1; }
+  return r;
+}
 function pageAtTop(i){
   const L = pageLines().get(i); if (!pageLines().size) return null;
-  let n = +SNUM(IT[i].s); if (!L) return n;
+  let n = +SNUM(IT[i].s) || atPage(i); if (!L) return n;
   const top = $('#reader .bar').getBoundingClientRect().bottom + 12;
   for (const [k, pg] of L){ const p = lineEl(i, k); if (p && p.getBoundingClientRect().top <= top) n = pg; }
   return n;
@@ -388,8 +399,8 @@ function gFirst(g, a, b){ let lo = 0, hi = g.list.length; while (lo < hi){ const
 function topicOf(i){ let lo = 0, hi = TOPICS.length - 1, r = null; while (lo <= hi){ const m = (lo + hi) >> 1; if (TOPICS[m].i <= i){ r = TOPICS[m]; lo = m + 1; } else hi = m - 1; } return r && IT[r.i].p === IT[i].p ? r : null; }
 function dayRange(plan, n){ const P = PLAN[plan]; return [n === 1 ? 0 : P.ends[n - 2] + 1, P.ends[n - 1]]; }
 function dayOf(plan, i){ const P = PLAN[plan]; for (let n = 1; n <= P.n; n++){ if (i <= P.ends[n - 1]) return n; } return P.n; }
-const KNAME = k => TT(W.parts.list[k]);
-const TNAME = t => T(t.hi, t.en || t.hi);
+const KNAME = k => TP(W.parts.list[k]);
+const TNAME = t => t.pa && PAH() ? t.pa : T(t.hi, t.en || t.hi);
 // a plan's day by the plan's own word for it (work.json → plans[].unit: the Mānas's विश्राम / Vishram, a Saptāha's दिन / Day):
 // "Vishram 3", "तीसरा विश्राम", "Day 3", "तीसरा दिन"; o is the plan (the one open in the reader when not given)
 const UNIT = o => (PLAN[o || R.org] || {}).unit || {hi: 'विश्राम', en: 'Vishram'};
@@ -403,12 +414,12 @@ const CIT = it => it.c != null ? it.c : (it.n || '');
 function vNum(n){ return n && !/^u/.test(n) ? DEV(n) : ''; }
 function vLabel(it){ const n = vNum(CIT(it)); return TYPE[it.y] + (n ? ' ' + n : ''); }
 // a section counted by number has a name only where the work gives one (the Mānas: work.json → cite.sec, "Doha")
-const SECW = () => W && W.cite && W.cite.sec ? TT(W.cite.sec) : '';
+const SECW = () => W && W.cite && W.cite.sec ? TP(W.cite.sec) : '';
 // a numbered section's number: the number its id ends with ("106"; the Valmiki's "sundara.15" → 15), none for a named section
 const SNUM = s => { const m = /(\d+)$/.exec(s || ''); return m && +m[1] && !SECN(s) ? String(+m[1]) : ''; };
 const isNum = s => !!SECW() && !!SNUM(s);
 // a work may name its sections (work.json → "sections": {section id: {hi, en}}, e.g. bala.1 → सर्ग १ / Sarga 1)
-const SECN = s => W && W.sections && W.sections[s] ? TT(W.sections[s]) : '';
+const SECN = s => W && W.sections && W.sections[s] ? TP(W.sections[s]) : '';
 const hasSec = p => isNum(p.s) || !!SECN(p.s);
 // two section labels as one range: the same words before a number are written once (Sarga 1–3, सर्ग १–३)
 function secSpan(la, lb){ if (la === lb) return la; const x = /^(.*?)([0-9०-९੦-੯]+)$/.exec(la), y = /^(.*?)([0-9०-९੦-੯]+)$/.exec(lb); return x && y && x[1] === y[1] ? la + '–' + y[2] : la + ' – ' + lb; }
@@ -548,8 +559,8 @@ function applyTypes(){
   TYPES0.forEach(([o, b]) => { for (const k in o) delete o[k]; Object.assign(o, b); });
   for (const [k, t] of Object.entries(W.types || {})){
     const nm = t.name || {hi: k, en: k};
-    TYPEN[k] = [nm.hi, nm.en];
-    if (t.short) VSHORT[k] = [t.short.hi, t.short.en];
+    TYPEN[k] = nm.pa ? [nm.hi, nm.en, nm.pa] : [nm.hi, nm.en];
+    if (t.short) VSHORT[k] = t.short.pa ? [t.short.hi, t.short.en, t.short.pa] : [t.short.hi, t.short.en];
   }
 }
 function verseHTML(i){
@@ -622,7 +633,7 @@ function typeHead(i, pv){
   const y = IT[i].y, nm = TYPEN[y]; if (!nm) return '';
   const q = pv !== undefined ? pv : i !== R.a && i > 0 ? i - 1 : null;   // the verse before it in what is read (in a group: its own)
   if (q != null && IT[q].y === y && IT[q].p === IT[i].p) return '';
-  return '<div class="vtype">॥ ' + esc(T(nm[0], nm[1])) + ' ॥</div>';
+  return '<div class="vtype">॥ ' + esc(PAH() && nm[2] ? nm[2] : T(nm[0], nm[1])) + ' ॥</div>';
 }
 function pageHTML(pg){
   const g = RG(); if (g && !g.pos.has(pg)) return '';   // a group's reading: a page without its verses is not drawn
@@ -1300,9 +1311,23 @@ function tick(anchor){
   if (e2 != null && time >= e2 && m >= 0 && m + 1 < a.length) show = a[m + 1][0];
   setCur(show);
   followLines(show, time, SRC.au.lineSet[IT[show].id] ? lineAt(show, time) : null);   // the same scrolling for every verse; a verse timed line by line (kirtan) says which line is sung
-  // the bar runs over this work's part of the recording only (a work that is a slice of a longer video starts at 0%)
-  const tr = SRC.au.tracks[PL.t], d = tr.end != null ? tr.end : ytInfo.d || tr.dur, s0 = trStart(tr);
-  $('#pProg').style.width = Math.max(0, Math.min(100, 100 * (time - s0) / Math.max(1, d - s0))) + '%';
+  // the bar runs over this work's part of the recording only (a work that is a slice of a longer video starts at 0%); in a
+  // work whose recordings sing many sections in one video (work.json "bar": "topic", the Granth), over the section being heard
+  const tr = SRC.au.tracks[PL.t], d = tr.end != null ? tr.end : ytInfo.d || tr.dur, sp = topicSpan(show, d) || [trStart(tr), d];
+  $('#pProg').style.width = Math.max(0, Math.min(100, 100 * (time - sp[0]) / Math.max(1, sp[1] - sp[0]))) + '%';
+}
+// the stretch of this track that sings verse i's section (topic): from its first singing to the next section's first, else the
+// track's end; kept while the same section plays
+let TSPAN = null;
+function topicSpan(i, d){
+  if (W.bar !== 'topic' || !TOPICS.length) return null;
+  const tp = topicOf(i); if (!tp) return null;
+  if (TSPAN && TSPAN.t === PL.t && TSPAN.tp === tp && TSPAN.d === d) return TSPAN.sp;
+  const a = AUT[PL.t]; let s0 = null, last = null, e = d;
+  for (const [j, st] of a){ if (topicOf(j) === tp){ if (s0 == null || st < s0) s0 = st; if (last == null || st > last) last = st; } }
+  if (s0 == null) return null;
+  for (const [j, st] of a) if (st > last && topicOf(j) !== tp && st < e) e = st;
+  TSPAN = {t: PL.t, tp, d, sp: [s0, e]}; return TSPAN.sp;
 }
 setInterval(tick, 300);
 /* place the verse being recited in the space between the top bar and the player:
@@ -1324,7 +1349,8 @@ function keepInView(el){
 // recited is guessed from the time spent in the verse (its lines share the verse's time by their length); when that line —
 // line by line, with its meaning — runs under the player, it is brought up to just below the bar
 function followLines(i, time, sung){   // sung: the line being sung, known from the line times (kirtan); else guessed by length
-  if (S.timing.on || !$('#reader').classList.contains('on')) return; const el = document.getElementById('v' + i); if (!el) return;
+  // the same with Audio timing on (the owner): inside a tall verse the verse before is already off screen, so nothing to mark is lost
+  if (!$('#reader').classList.contains('on')) return; const el = document.getElementById('v' + i); if (!el) return;
   const top = $('#reader .bar').getBoundingClientRect().bottom, bot = $('#player').getBoundingClientRect().top;
   if (el.offsetHeight <= bot - top - 12) return;
   const a = AUT[PL.t], m = a.findIndex(x => x[0] === i); if (m < 0) return;

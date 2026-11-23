@@ -4,7 +4,7 @@
     @part <key>                    the part the following verses belong to (a key of work.json → parts.list)
     @section <id>                  the section (page) the following verses belong to
     @lang <code>                   the language of the following verses (from the start: the work's language)
-    @topic <hindi> | <english>     a topic heading that starts at the next verse
+    @topic <hindi> | <english> [| <punjabi>]   a topic heading that starts at the next verse (Punjabi: Gurbani's, in Gurmukhi)
     [<id> <type> <number>]         a verse (the number is left out when the verse has none) …
     <line>                         … and its lines, one per line
     [take <work> <id>]             a verse of another work, unchanged; it joins this text's part and section
@@ -18,7 +18,7 @@ HEAD = re.compile(r'\[(?P<id>[^\s\]]+) (?P<y>[a-z0-9_]+)(?: (?P<n>[^\s\]]+))?\]'
 TAKE = re.compile(r'\[take (?P<w>[a-z0-9-]+) (?P<a>[^\s\]]+)(?: \.\. (?P<b>[^\s\]]+))?\]')
 
 def write(path, items, topics, part_keys, lang, header):
-    """items: [{id, p, s, y, n, v, l?}] in order; topics: [{id, hi, en}]; part_keys: the key of each part by index;
+    """items: [{id, p, s, y, n, v, l?}] in order; topics: [{id, hi, en, pa?}]; part_keys: the key of each part by index;
     lang: the work's language; header: comment lines at the top (the file's source and how it is made)."""
     T = {t['id']: t for t in topics}
     out = ['# ' + h if h else '#' for h in header]
@@ -28,7 +28,7 @@ def write(path, items, topics, part_keys, lang, header):
         if x['s'] != sec: sec = x['s']; out.append(f'@section {sec}')
         l = x.get('l', lang)
         if l != cur: cur = l; out.append(f'@lang {l}')
-        if x['id'] in T: out.append(f"@topic {T[x['id']]['hi']} | {T[x['id']]['en']}")
+        if x['id'] in T: t = T[x['id']]; out.append(f"@topic {t['hi']} | {t['en']}" + (f" | {t['pa']}" if t.get('pa') else ''))
         out.append(f"[{x['id']} {x['y']}{' ' + x['n'] if x.get('n') else ''}]")
         out += x['v']
     open(path, 'w', encoding='utf-8').write('\n'.join(out) + '\n')
