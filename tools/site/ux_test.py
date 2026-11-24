@@ -1,6 +1,6 @@
 """End-to-end test of navigation and the reading experience, at phone size, for every work on the shelf.
 
-Usage:  python3 tools/site/ux_test.py [--shots DIR] [--shard K/N] [--works a,b]   (serves the repository root on a free port)
+Usage:  python3 tools/site/ux_test.py [--shots DIR] [--shard K/N] [--works a,b] [--sample a,b]   (serves the repository root on a free port)
         python3 tools/site/check.py runs it as shards side by side, with every other check
         --works a,b runs only these works' per-work checks (python3 tools/site/check.py --works a,b)
 Needs:  pip install playwright (Chromium; set CHROMIUM=/path/to/chrome if it is not found)
@@ -20,6 +20,8 @@ SHOTS = sys.argv[sys.argv.index('--shots') + 1] if '--shots' in sys.argv else No
 SHARD, NSHARD = (map(int, sys.argv[sys.argv.index('--shard') + 1].split('/')) if '--shard' in sys.argv else (0, 1))
 # --works a,b: the per-work checks of these works only (a change to their data); the checks of the whole app are left out
 ONLY = set(sys.argv[sys.argv.index('--works') + 1].split(',')) if '--works' in sys.argv else None
+# --sample a,b: every check of the whole app, and the per-work checks of these works only (tools/site/check.py --quick)
+SAMPLE = set(sys.argv[sys.argv.index('--sample') + 1].split(',')) if '--sample' in sys.argv else None
 # the checks of the whole app (shard 0) take about as long as 15% of all the per-work checks (measured: 654 s against
 # 1,350–1,580 s for each of three shards of the works), so shard 0 takes a share of the works too, after them
 APP_SHARE = 0.15
@@ -27,6 +29,7 @@ def mine(works):
     """This shard's share of the works, balanced by size: the biggest first, each to the shard with the least so far (a
     work's checks take longer the more parts and verses it has: the Valmiki's alone are a shard's worth); shard 0 starts
     with the checks of the whole app as its load (APP_SHARE)."""
+    if SAMPLE is not None: return [w for w in works if w[0]['work'] in SAMPLE]
     if ONLY is not None:
         works = [w for w in works if w[0]['work'] in ONLY]
         if NSHARD == 1: return works
@@ -607,7 +610,7 @@ async def main():
             check(f'library search “{q}” finds {leaf["work"]}', leaf['title']['hi'] in found or leaf['title']['en'] in found, found[:4])
         await shot('library-search')
 
-        if NSHARD == 1:
+        if NSHARD == 1 and SAMPLE is None:
             for leaf, trail in mine(list(leaves(shelf))): await per_work(leaf, trail)
 
         # a place saved before the Sundarakāṇḍa's opening prayers were added (an item position, no id) still opens the same verse
@@ -1649,7 +1652,7 @@ async def main():
         await split_work(b, SHOTS)
         await group_paath(b, url, SHOTS)
         await work_switch(b, url)
-        if NSHARD > 1:   # shard 0's share of the works, after every check of the whole app (those change the reader's settings), as a reader who has seen the tour
+        if NSHARD > 1 or SAMPLE is not None:   # shard 0's share of the works (or --sample's), as in the CI's order, after every check of the whole app (those change the reader's settings), as a reader who has seen the tour
             await pg.goto(url); await pg.wait_for_timeout(2500)
             await ev("(() => { S.settings.tour = 1; S.admin = 1; closeTour(); S.settings.layers.h = false; save(); })()"); await pg.reload(); await until("typeof LIB !== 'undefined' && !!LIB && LIB.length > 0 && !!document.querySelector('#libList [data-node]')", 20000)
             for leaf, trail in mine(list(leaves(shelf))): await per_work(leaf, trail)
@@ -1843,6 +1846,7 @@ async def group_paath(b, url, shots):
     # begins, in its pause (the owner: as ⏭ does); the move aims by this device's own measured lead
     nx = await L.evaluate("(() => { const a = AUT[PL.t], t = gpTime(), k = a.findIndex((x, j) => x[1] > t + 9 && j > 0 && x[1] - a[j - 1][1] > 7); return k > 0 ? a[k][1] : null; })()")
     await L.evaluate(f"seekGuard({nx} - 6.5); ytPost('seekTo', [{nx} - 6.5, true])"); await F.wait_for_timeout(3800)   # the follower moves with the leader, then measures its lead
+    await F.wait_for_function("GP.lead != null && !GP.calAt", timeout=8000)   # a slow machine (the CI's) measures later
     lead = await F.evaluate("GP.lead")
     await F.evaluate("ytInfo.t += 0.5; ytInfo.at = performance.now(); window.__seeks = 0"); await F.wait_for_timeout(900)
     mid = await F.evaluate("window.__seeks")

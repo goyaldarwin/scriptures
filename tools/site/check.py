@@ -8,6 +8,10 @@ them together and gates on their exit codes.
                                              the browser tests still run in CI on the pull request
     python3 tools/site/check.py --works a,b  the build, regen_check, history_check, the smoke test, and the UX test's
                                              per-work checks for these works only (a change to their data, not the app)
+    python3 tools/site/check.py --quick      an app change while working: the build, regen_check, history_check, the
+                                             smoke test, and one UX run of every check of the whole app with the per-work
+                                             checks of a sample of works (QUICK: one of each shape) instead of all of them
+                                             (about 15 minutes against about 28: the app-wide checks alone take 11); the full run, in CI, before merging
     python3 tools/site/check.py --browser    the smoke test and the UX test only (the CI runs the others as steps of their own)
     python3 tools/site/check.py --shards 6   more UX shards (default 4: shard 0 runs the checks of the whole app, the
                                              others share the per-work checks)
@@ -17,6 +21,9 @@ docstring says why that is safe); the CI makes every work (--full).
 A failed check prints its output's last lines and every FAIL line; the full output is in <tmp>/check-<name>.log.
 """
 import os, subprocess, sys, tempfile, time
+# --quick's sample: one work of each shape the reader meets: the Sundarakāṇḍa (parts, plans, the tour, a reading's bar),
+# a chalisa, a namavali, an Upanishad in parts, a Gurbani work (Gurmukhi), an aarti (a short single recording)
+QUICK = 'sundarkand,hanuman-chalisa,vishnu-sahasranama,katha-upanishad,japji-sahib,ramayan-aarti'
 from concurrent.futures import ThreadPoolExecutor
 HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.dirname(os.path.dirname(HERE))
 
@@ -26,7 +33,7 @@ def run(name, args):
     return name, rc, time.time() - t0, log
 
 def main(argv):
-    fast, browser = '--fast' in argv, '--browser' in argv
+    fast, browser, quick = '--fast' in argv, '--browser' in argv, '--quick' in argv
     only = argv[argv.index('--works') + 1] if '--works' in argv else None
     shards = int(argv[argv.index('--shards') + 1]) if '--shards' in argv else 4
     t0 = time.time(); jobs = []
@@ -37,7 +44,8 @@ def main(argv):
         jobs = [('regen_check', ['tools/site/regen_check.py']), ('history_check', ['tools/site/history_check.py'])]
     if not fast:
         jobs.append(('smoke_test', ['tools/site/smoke_test.py']))
-        if only:   # the per-work checks of these works, shared among the shards; the app-wide ones (shard 0) left to the CI
+        if quick: jobs.append(('ux_test', ['tools/site/ux_test.py', '--sample', QUICK]))
+        elif only:   # the per-work checks of these works, shared among the shards; the app-wide ones (shard 0) left to the CI
             n = min(shards - 1, len(only.split(','))) or 1
             jobs += [(f'ux_test-{k}', ['tools/site/ux_test.py', '--works', only, '--shard', f'{k}/{n + 1}']) for k in range(1, n + 1)]
         else: jobs += [(f'ux_test-{k}', ['tools/site/ux_test.py', '--shard', f'{k}/{shards}']) for k in range(shards)]
