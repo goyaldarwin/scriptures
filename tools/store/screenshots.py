@@ -16,7 +16,7 @@ LAT = base64.b64encode(open(os.path.join(ROOT, 'tools', 'fonts', 'literata-latin
 
 # (name, caption en, caption hi, small line en, small line hi, setup js run inside the app)
 SCENES = [
- ('play', 'Listen, hands-free', 'सुनते हुए पढ़ें', 'The verse being recited is highlighted and the page auto-scrolls to the next verse with the recitation', 'जो पद गाया जा रहा है वह हाइलाइट होता है, और पाठके साथ पन्ना अपने आप अगले पदपर बढ़ता है',
+ ('play', 'Read along as it plays', 'सुनते हुए पढ़ें', 'The verse being recited is highlighted and the page auto-scrolls to the next verse with the recitation', 'जो पद गाया जा रहा है वह हाइलाइट होता है, और पाठके साथ पन्ना अपने आप अगले पदपर बढ़ता है',
   """await openWork('sundarkand'); S.settings.layers.h = true; syncLayers();
      openReader('k', ID['chalisa.cau1']); await new Promise(r => setTimeout(r, 900));
      const i = ID['chalisa.cau2']; PL.on = true; PL.t = 0; PL.cur = -1; $('#player').hidden = false; document.body.classList.add('playing');
@@ -27,9 +27,12 @@ SCENES = [
      const w = [...document.querySelectorAll('#rBody .verse .vtext .w')].find(x => x.getBoundingClientRect().top > 160); w.click();"""),
  ('meanings', 'Hindi and English meanings', 'हिंदी और अंग्रेज़ी अर्थ', 'Under every verse — switch each on or off', 'हर पदके नीचे — जो चाहें वही दिखाएँ',
   """await openWork('sundarkand'); S.settings.layers.h = true; S.settings.layers.e = true; syncLayers(); openReader('k', ID['chalisa.do1']); await new Promise(r => setTimeout(r, 900));"""),
- ('verse', 'Play one verse — or from any verse', 'एक पद सुनें — या कहींसे भी', '▶ beside a verse plays just that one; “Listen from here” goes on', 'पदके पास ▶ केवल वही पद; “यहाँसे सुनें” आगे तक',
+ ('verse', 'Play one verse — or from any verse', 'एक पद सुनें — या कहींसे भी', '▶ beside a verse plays just that one; “Play from here” goes on', 'पदके पास ▶ केवल वही पद; “यहाँसे सुनें” आगे तक',
   """await openWork('sundarkand'); S.settings.layers.h = true; syncLayers(); openReader('k', ID['chalisa.cau9']); await new Promise(r => setTimeout(r, 900));
      const v = [...document.querySelectorAll('#rBody .verse')].find(x => x.getBoundingClientRect().top > 300); itemMenu(+v.dataset.i);"""),
+ ('group', 'Read together', 'सब मिलकर पाठ करें', 'One device plays; the others follow, near or far', 'एक डिवाइस चलाता है, बाकी साथ चलते हैं',
+  """await openWork('sundarkand'); S.settings.layers.h = true; syncLayers(); openReader('k', ID['chalisa.cau1']); await new Promise(r => setTimeout(r, 900));
+     GP.role = 'lead'; GP.code = '108108'; GP.key = 'k'.repeat(32); GP.m = 'apart'; GP.live = true; GP.n = 3; gpSheet(); document.querySelectorAll('.gpkeep').forEach(e => e.remove());"""),
  ('plans', '30-day and 9-day readings', '३० दिन और ९ दिनका पाठ', 'Your progress and place are kept', 'प्रगति और स्थान याद रहता है',
   """await openWork('manas'); WS().org = PLANS[0] ? PLANS[0].id : 'k'; show('home'); renderHome(); window.scrollTo(0, 0);"""),
  ('library', 'A growing library', 'बढ़ता हुआ पुस्तकालय', 'Rāmacaritamānasa, Sundarakāṇḍa, Śrī Rudram, Sukhmani Sahib and more', 'रामचरितमानस, सुन्दरकाण्ड, श्रीरुद्रम्, सुखमनी साहिब और भी',
