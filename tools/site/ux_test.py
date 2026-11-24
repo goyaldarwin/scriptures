@@ -1846,6 +1846,7 @@ async def group_paath(b, url, shots):
     # begins, in its pause (the owner: as ⏭ does); the move aims by this device's own measured lead
     nx = await L.evaluate("(() => { const a = AUT[PL.t], t = gpTime(), k = a.findIndex((x, j) => x[1] > t + 9 && j > 0 && x[1] - a[j - 1][1] > 7); return k > 0 ? a[k][1] : null; })()")
     await L.evaluate(f"seekGuard({nx} - 6.5); ytPost('seekTo', [{nx} - 6.5, true])"); await F.wait_for_timeout(3800)   # the follower moves with the leader, then measures its lead
+    await F.wait_for_function("GP.lead != null && !GP.calAt", timeout=8000)   # a slow machine (the CI's) measures later
     lead = await F.evaluate("GP.lead")
     await F.evaluate("ytInfo.t += 0.5; ytInfo.at = performance.now(); window.__seeks = 0"); await F.wait_for_timeout(900)
     mid = await F.evaluate("window.__seeks")
