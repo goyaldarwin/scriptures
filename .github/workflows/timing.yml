@@ -3,22 +3,37 @@
 # listed in `if:` below): the starts go into the source's owner.json, the
 # timings are re-made, the site is rebuilt and checked, and the result is pushed to main; the issue is then closed
 # with a summary (or left open with the error).
+# Runs wait for each other (concurrency). GitHub keeps only one run waiting, so in a burst of issues one can be dropped
+# unseen: every run ends by starting a run for the oldest of the owner's timing issues still open with no comment (none
+# has run for it). A run starts from main as it is then, never as it was when its issue was sent, so the run before it
+# is always included. One issue can be run by hand: Actions → timing → Run workflow, with its number.
 name: timing
 on:
   issues:
     types: [opened]
+  workflow_dispatch:
+    inputs:
+      issue:
+        description: "number of a Timing: issue of the owner's to apply"
+        required: true
 permissions:
   contents: write
   issues: write
+  actions: write
 concurrency:
   group: timing
   cancel-in-progress: false
 jobs:
   apply:
-    if: startsWith(github.event.issue.title, 'Timing:') && contains(fromJSON('["goyaldarwin", "darwingoyal"]'), github.event.issue.user.login)
+    if: github.event_name == 'workflow_dispatch' || (startsWith(github.event.issue.title, 'Timing:') && contains(fromJSON('["goyaldarwin", "darwingoyal"]'), github.event.issue.user.login))
     runs-on: ubuntu-latest
+    env:
+      NUM: ${{ github.event.issue.number || inputs.issue }}
+      OWNERS: goyaldarwin darwingoyal
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main   # main as it is now: a run that waited behind another includes what that one pushed
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -26,30 +41,47 @@ jobs:
       - name: apply the starts
         id: apply
         env:
-          BODY: ${{ github.event.issue.body }}
+          GH_TOKEN: ${{ github.token }}
         run: |
-          printf '%s' "$BODY" > /tmp/body.txt
+          gh api repos/${{ github.repository }}/issues/$NUM > /tmp/issue.json
+          python3 - <<'PY'
+          import json, os
+          d = json.load(open('/tmp/issue.json'))
+          assert d['title'].startswith('Timing:') and d['user']['login'] in os.environ['OWNERS'].split(), 'not a Timing: issue of the owner'
+          if d['state'] != 'open': open('/tmp/skip', 'w').write('already applied')   # a second run for it (queued twice): nothing to do
+          open('/tmp/body.txt', 'w').write(d['body'] or '')
+          PY
+          [ -f /tmp/skip ] && { echo "issue #$NUM is already closed: nothing to apply"; echo "skip=1" >> "$GITHUB_OUTPUT"; exit 0; }
           python3 tools/audio/apply_owner_timing.py /tmp/body.txt | tee /tmp/out.txt
       - name: build and check
         run: |
+          [ -f /tmp/skip ] && exit 0
           python3 tools/site/build.py
       - name: push
         run: |
+          [ -f /tmp/skip ] && exit 0
           git config user.name "timing workflow"; git config user.email "actions@users.noreply.github.com"
-          git add -A && git commit -q -m "Audio starts set by ear (issue #${{ github.event.issue.number }})" || exit 0
+          git add -A && git commit -q -m "Audio starts set by ear (issue #$NUM)" || exit 0
           for i in 1 2 3 4 5; do git pull -q --rebase origin main && git push -q origin HEAD:main && exit 0; sleep 10; done; exit 1
       - name: close the issue
-        if: success()
+        if: success() && steps.apply.outputs.skip != '1'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           { echo "Applied and published:"; echo; echo '```'; tail -n 5 /tmp/out.txt; echo '```'; } > /tmp/c.md
-          gh issue comment ${{ github.event.issue.number }} -F /tmp/c.md -R ${{ github.repository }}
-          gh issue close ${{ github.event.issue.number }} -R ${{ github.repository }}
+          gh issue comment $NUM -F /tmp/c.md -R ${{ github.repository }}
+          gh issue close $NUM -R ${{ github.repository }}
       - name: report a problem
         if: failure()
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           { echo "Could not apply these starts:"; echo; echo '```'; tail -n 20 /tmp/out.txt 2>/dev/null; echo '```'; } > /tmp/c.md
-          gh issue comment ${{ github.event.issue.number }} -F /tmp/c.md -R ${{ github.repository }}
+          gh issue comment $NUM -F /tmp/c.md -R ${{ github.repository }}
+      - name: start the next dropped issue
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          next=$(gh api "repos/${{ github.repository }}/issues?state=open&per_page=100&sort=created&direction=asc" --jq "[.[] | select(.title | startswith(\"Timing:\")) | select(.comments == 0) | select(.number != $NUM) | select(.user.login == \"goyaldarwin\" or .user.login == \"darwingoyal\")][0].number // empty")
+          if [ -n "$next" ]; then gh workflow run timing.yml -R ${{ github.repository }} -f issue=$next; echo "started issue #$next"; fi
