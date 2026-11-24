@@ -186,7 +186,7 @@ body.playing #rBody{padding-bottom:150px}
 .player.follow .ytw,.player.follow .pctl,.player.follow .ptime{display:none}.player.follow .pside{flex:1;display:flex;flex-direction:row-reverse;align-items:center}.player.follow .ptop{flex:none}
 #gpBody{text-align:center}.gph{margin:4px 0 6px;font-size:20px}.gph3{margin:22px 0 8px;font-size:16px;color:var(--muted);font-weight:600}.gpi{color:var(--muted);font-size:15px;margin:0 0 12px;line-height:1.5}
 .gpqr{margin:4px auto 6px;width:min(62vw,240px)}.gpqr .qr{display:block;width:100%;height:auto;border-radius:10px}
-.gpcode{font-size:34px;font-weight:700;letter-spacing:.08em;font-variant-numeric:tabular-nums;color:var(--indigo);margin:2px 0}.gpst{font-size:14px;color:var(--muted);margin:4px 0 12px}
+.gpcode{font-size:34px;font-weight:700;letter-spacing:.08em;font-variant-numeric:tabular-nums;color:var(--indigo);margin:2px 0}.gpst{font-size:14px;color:var(--muted);margin:4px 0 12px}.gpst .gpgo{border:0;background:none;padding:6px 2px;margin:-6px 0;font:inherit;color:var(--indigo);font-weight:600;cursor:pointer}
 .gpacts{justify-content:center;flex-wrap:wrap}.gpacts .btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
 .player.follow.hear .ytw{display:block}   /* a follower that plays the sound shows its video (YouTube's player is always seen) */
 #gpBody .lnk,.gpask .lnk{color:var(--indigo);font-size:inherit;padding:0;text-decoration:underline;text-underline-offset:3px;background:none;border:0}
