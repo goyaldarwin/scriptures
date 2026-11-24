@@ -97,5 +97,4 @@ library/ ─ tools/site/build.py (checks everything first) ─► index.html, ap
 
 ## Open with the owner
 - On hold by the owner's choice: a dictionary for every word of the meanings, Hindi and English (open dictionaries such as WordNet, Wiktionary and Shabdanjali, trimmed at build time to each work's words, our contextual senses always first); and a way to support the work (a payment link on the website; the Play app may not link to donations, since Craadle is not a tax-exempt organisation).
-- Private copies that would complete `scriptures-data` (nothing depends on them; only the owner has them, from earlier chats): the Gaṅgā āratī screenshot, the jansatta.com printout of Śrī Rāmacandra Kṛpālu, the Māṇḍūkya's sanskritdocuments.org and freepressjournal.in printouts and its recording.
-- Recordings missing from `scriptures-data`, so MMS cannot time them (`docs/WORKS.md`): the Māṇḍūkya's (SMVedroad), Śrī Rāmacandra Kṛpālu's (Satya Adhikari), and the Jagadīśa, Śiva and Gaṅgā āratīs' (Mahendra Kapoor, Anuradha Paudwal).
+- Private copies that would complete `scriptures-data` (nothing depends on them; only the owner has them, from earlier chats): the Gaṅgā āratī screenshot, the jansatta.com printout of Śrī Rāmacandra Kṛpālu, the Māṇḍūkya's sanskritdocuments.org and freepressjournal.in printouts.

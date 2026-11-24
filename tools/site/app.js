@@ -2401,8 +2401,9 @@ function pruneLib(nodes, shelves){
 /* ---------------- group paath: one device plays, the others follow ---------------- */
 // People reading together (docs/PLAYBOOK.md §7, "Group paath"): one device, the leader's, plays the recording; every other
 // device follows it, lighting and turning to the verse being recited from the leader's place in the recording and the verse
-// times it already has. The leader says where everyone is: "All in this room" (only the leader's device plays: two would
-// echo) or "Some are elsewhere" (each follower is asked whether to play the sound on its own device, in step with the leader).
+// times it already has. Only the leader's device plays (ten devices playing one recording in a room drift apart and echo),
+// unless the leader turns on "Followers can also play audio" (for those joining from another place): each follower is then
+// asked whether to play audio on its own device too, in step with the leader (Follow without audio is the default).
 // The leader's device sends where it is (the work, the recording, the track, the time, playing or paused, the speed, the
 // mode) through a small relay (tools/group/, a Cloudflare Worker), to the devices that joined with its 6-digit code or QR
 // code; nothing about a reader is sent or kept.
@@ -2576,17 +2577,25 @@ function gpBar(){
   if (GP.role !== 'follow') return;
   $('#player').hidden = false; $('#player').classList.add('follow'); $('#player').classList.toggle('hear', !!GP.hear); document.body.classList.add('playing', 'gpf');
   if (!PL.on) $('#pVerse').textContent = T('सामूहिक पाठ', 'Group paath');
-  pSub(); const st = $('#gpBody .gpst'); if (st) st.textContent = gpSub();   // the open sheet's status line follows too
+  pSub(); gpStLine($('#gpBody .gpst'));   // the open sheet's status line follows too
 }
 function gpCount(){ return GP.n ? DEV(GP.n) + T(' डिवाइस साथ हैं', GP.n === 1 ? ' device following' : ' devices following') : T('अभी कोई नहीं जुड़ा', 'No one has joined yet'); }   // the leader's bar and sheet, in the same words
-function gpSub(){   // the player's small line in a group paath
+// a follower may go to the verse being recited (from the library, a work's page or the Group paath sheet)
+function gpGo(){ return GP.role === 'follow' && GP.live && !GP.none && !GP.away && PL.on && PL.cur >= 0 && CURVIEW !== 'reader'; }
+// the Group paath sheet's status line: as the player's, with "Go to verse ›" a button that closes the sheet and opens the verse
+function gpStLine(st){
+  if (!st) return; st.textContent = gpSub(true); if (!gpGo()) return;
+  const b = document.createElement('button'); b.type = 'button'; b.className = 'gpgo'; b.textContent = T('पदपर जाएँ ›', 'Go to verse ›');
+  b.onclick = () => { closeSheet(); toPlaying(); }; st.append(' · ', b);
+}
+function gpSub(bare){   // the player's small line in a group paath (bare: without "Go to verse ›", which the sheet makes a button)
   if (GP.role === 'lead') return T('सामूहिक पाठ · ', 'Group paath · ') + (GP.live ? gpCount() : T('जुड़ रहा है…', 'connecting…'));
   if (GP.role !== 'follow') return '';
   if (!GP.live) return T('जुड़ रहा है…', 'Connecting…');
   if (GP.none) return T('इस कोडसे कोई सामूहिक पाठ नहीं — अंक जाँचें', 'No group paath with this code — check the number');
   if (GP.away) return T('लीडरके डिवाइसके फिर जुड़नेकी प्रतीक्षा', 'Waiting for the leader\'s device to reconnect');
   if (!PL.on) return T('लीडरके शुरू करनेकी प्रतीक्षा', 'Waiting for the leader to start');
-  return (GP.base && GP.base.p ? T('साथ चल रहे हैं', 'Following') : T('रुका हुआ', 'Paused')) + (GP.hear ? T(' · ऑडियोके साथ', ' · With audio') : '') + (CURVIEW !== 'reader' ? T(' · पदपर जाएँ ›', ' · Go to verse ›') : '');
+  return (GP.base && GP.base.p ? T('साथ चल रहे हैं', 'Following') : T('रुका हुआ', 'Paused')) + (GP.hear ? T(' · ऑडियोके साथ', ' · With audio') : '') + (!bare && CURVIEW !== 'reader' ? T(' · पदपर जाएँ ›', ' · Go to verse ›') : '');
 }
 // start leading (m: "room" or "apart", with the leader's own code) or join (a follower; hear is asked when the mode is known)
 function gpStart(role, code, m){
@@ -2683,11 +2692,12 @@ function gpUI(){
     return;
   }
   if (GP.role === 'follow'){
-    box.innerHTML = h + '<div class="gpcode">' + gpFmt(GP.code) + '</div><p class="gpst">' + gpSub() + '</p>' +
+    box.innerHTML = h + '<div class="gpcode">' + gpFmt(GP.code) + '</div><p class="gpst"></p>' +
       '<p class="gpi">' + (GP.hear ? T('ऑडियो लीडरके साथ इस डिवाइसपर भी चलता है। अर्थ, अक्षरका आकार और भाषा आपकी अपनी रहती हैं।', 'Audio also plays on this device, in step with the leader. Meanings, letter size and language remain your own.')
         : T('ऑडियो लीडरके डिवाइसपर चलता है; यह डिवाइस बिना ऑडियो साथ चलता है। अर्थ, अक्षरका आकार और भाषा आपकी अपनी रहती हैं।', 'Audio plays on the leader\'s device; this device follows without audio. Meanings, letter size and language remain your own.')) + '</p>' +
       '<div class="acts gpacts">' + (GP.m === 'apart' ? '<button class="btn" id="gpSound">' + (GP.hear ? T('बिना ऑडियो साथ चलें', 'Follow without audio') : T('ऑडियोके साथ चलें', 'Follow with audio')) + '</button>' : '') +
       '<button class="btn ghost" id="gpLeave">' + T('छोड़ें', 'Leave') + '</button></div>';
+    gpStLine($('#gpBody .gpst'));
     if ($('#gpSound')) $('#gpSound').onclick = () => gpHear(!GP.hear);
     $('#gpLeave').onclick = () => { closeSheet(); gpLeave(); };
     return;

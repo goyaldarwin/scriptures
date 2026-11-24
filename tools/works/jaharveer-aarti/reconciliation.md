@@ -26,5 +26,5 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## The recording
 Ramawtar Sharma (YouTube `cKYi3i6-jPM`, `audio/ramawtar-sharma/`) sings this text.
 - Sung with a few words that no written witness has, so the text keeps its own there: `aarti.tek`, `aarti.pad1`, `aarti.pad2`, `aarti.pad4`, `aarti.pad6`.
-- Sung with words that another written witness prints, against the base kept here: `aarti.pad5`.
-- A draft (it plays only with Audio timing on): it sings stanza 5 before stanza 4: the text is to follow its order first.
+- Sung with a word the transcript hears otherwise, kept as the written witnesses print it: `aarti.pad5` (चारों दिशा में; the book and Drik Panchang print the stanza alike, word for word, and a text is never changed on a recording alone, docs/PLAYBOOK.md §2–3).
+- It sings the book's stanza 5 (माड़ी में, `aarti.pad5`) before stanza 4 (सत्य अहिंसा, `aarti.pad4`), and the text follows it (docs/PLAYBOOK.md §3: an āratī's text follows the order of its chosen recording): माड़ी में is stanza 4, सत्य अहिंसा stanza 5. Each stanza keeps its id, so its meanings, bookmarks and times stay with it; only its number (ours, by the standard) follows its place.

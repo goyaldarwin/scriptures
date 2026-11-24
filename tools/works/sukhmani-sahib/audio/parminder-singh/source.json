@@ -1,1 +1,13 @@
-{"id": "parminder-singh", "work": "sikhism/gurbani/guru-arjan-dev/sukhmani-sahib", "type": "youtube", "lang": "pa", "title": {"hi": "भाई परमिन्दर सिंह (ऑस्ट्रेलिया)", "en": "Parminder Singh (Australia)"}, "window": 6, "align": "anchors", "review": "published as it is (the owner); every start not yet set by ear is listed to check in timing mode: kīrtan with long instrumental passages and repeated lines, so the starts from the 6-second-window transcript are only partly confirmed by the words heard"}
+{
+ "id": "parminder-singh",
+ "work": "sikhism/gurbani/guru-arjan-dev/sukhmani-sahib",
+ "type": "youtube",
+ "lang": "pa",
+ "title": {
+  "hi": "भाई परमिन्दर सिंह (ऑस्ट्रेलिया)",
+  "en": "Parminder Singh (Australia)"
+ },
+ "window": 6,
+ "align": "anchors",
+ "review": "starts from the transcript and MMS (the owner: publish); every start not yet set by ear is listed to check in timing mode"
+}

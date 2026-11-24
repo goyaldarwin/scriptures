@@ -20,6 +20,15 @@ def leaves(nodes, trail=()):
         if 'work' in n: yield n, trail
         else: yield from leaves(n.get('children', []), trail + (n,))
 
+def covered(path, src):
+    """How many verses a meaning source covers as published (library/<path>/meanings/<src>.json, and its parts for a work loaded
+    by part): a work that takes verses from another (the Sundarkand from the Manas) has their meanings there, not in its own file."""
+    f = os.path.join(LIB, path, 'meanings', src + '.json')
+    if not os.path.exists(f): return 0
+    ids = set(j(f).get('m', {}))
+    for q in glob.glob(os.path.join(LIB, path, 'meanings', src, '*.json')): ids |= set(j(q).get('m', {}))
+    return len(ids)
+
 def cited(w):
     """How a verse is cited, with the work's own example: the first verse whose citation has every level."""
     C = w.get('cite') or {}; by = C.get('by', ['n'])
@@ -34,7 +43,7 @@ def audio(wid, path):
     for f in sorted(glob.glob(os.path.join(LIB, path, 'audio', '*.json'))):
         a = j(f); d = os.path.join(WORKS, wid, 'audio', a['id']); src = j(os.path.join(d, 'source.json')) if os.path.exists(os.path.join(d, 'source.json')) else {}
         ready = [f for f in glob.glob(os.path.join(d, 'mms', '*.json')) if not f.endswith('windows.json')]
-        how = 'taken from ' + src['take'] if src.get('take') else 'MMS' if os.path.exists(os.path.join(d, 'aligned.json')) else 'transcript; MMS run, not yet used: mms/score.md' if ready else 'transcript'
+        how = 'taken from ' + src['take'] if src.get('take') else 'by ear, no MMS: ' + src['by_ear'] if src.get('by_ear') else 'MMS' if os.path.exists(os.path.join(d, 'aligned.json')) else 'transcript; MMS run, not yet used: mms/score.md' if ready else 'transcript'
         own = len(a.get('own') or [])
         out.append(f"{a['id']} ({how}{f', {own} by ear' if own else ''}{', draft' if a.get('draft') else ''}{', review' if src.get('review') else ''})")
     return out
@@ -53,13 +62,13 @@ def main():
         mean = '; '.join(f"{k}: " + ', '.join(s['id'] for s in S[k]) for k in S if k not in ('au', 'cm') and S[k])
         if S.get('cm'): mean += '; commentary: ' + ', '.join(s['id'] for s in S['cm'])
         ours = [s for k in S if k not in ('au', 'cm') for s in S[k] if s['id'].endswith('-scriptures')]
-        lines = 'yes' if ours and all(s.get('lines') for s in ours) else 'some' if any(s.get('lines') for s in ours) else 'no' if ours else '—'
+        lines = 'one line each' if ours and not any(len(it['v']) > 1 for it in w['items']) else 'yes' if ours and all(s.get('lines') for s in ours) else 'some' if any(s.get('lines') for s in ours) else 'no' if ours else '—'
         au = audio(wid, leaf['path'])
         nsec = len({it['s'] for it in w['items']})
         struct = f"{len(w['parts']['list'])} {w['parts']['name']['en'].lower()} › {nsec} sections › {len(w['items'])} verses"
         rows.setdefault((tradition['id'], tradition['title']['en']), {}).setdefault((genre['id'], genre['title']['en']), []).append(
             f"| {leaf['title']['en']} (`{wid}`) | `{leaf['path']}` | {', '.join(L(c) for c in vl)} | {struct} | {', '.join(f'{types.get(t, t)} (`{t}`)' for t in used)} | {cited(w)} | {mean or '—'} | {lines} | {'partial' if w.get('words') == 'partial' else 'every word'} | {'; '.join(au) or 'none'} |")
-        if ours and lines != 'yes': gaps['lines'].append(wid)
+        if ours and lines not in ('yes', 'one line each'): gaps['lines'].append(wid)
         if w.get('words') == 'partial': gaps['words'].append(wid)
         gaps['mms'] += [f'{wid}/{x.split(" ")[0]}' + (' (MMS run, not yet used)' if 'MMS run' in x else '') for x in au if '(transcript' in x]
         if not au: gaps['noaudio'].append(wid)
@@ -98,7 +107,7 @@ def pending():
         for lg in ('hi', 'en', 'pa'):
             f = os.path.join(WORKS, wid, 'meanings', lg, 'scriptures.json')
             if os.path.exists(f):
-                m = j(f); ours[lg] = (len(m.get('m', {})), 'drafts' in (m.get('about') or '') and 'until a reviewed meaning' in (m.get('about') or ''))
+                m = j(f); ours[lg] = (covered(leaf['path'], lg + '-scriptures'), 'drafts' in (m.get('about') or '') and 'until a reviewed meaning' in (m.get('about') or ''))
         copied = [s['id'] for k in S if k not in ('au', 'cm') for s in S[k] if not s['id'].endswith('-scriptures')]
         todo = []
         if not ours:
@@ -108,7 +117,8 @@ def pending():
             if short: todo.append('our meanings: ' + ', '.join(f'{lg} {ours[lg][0]}/{n}' for lg in short)); note('our meanings incomplete')
             if any(d for _, d in ours.values()): todo.append("our meanings: the owner's drafts, not yet reviewed"); note('meanings still drafts')
             lines = [s for k in S if k not in ('au', 'cm') for s in S[k] if s['id'].endswith('-scriptures')]
-            if lines and not all(s.get('lines') for s in lines): todo.append('meaning not line by line'); note('meaning not line by line')
+            multi = any(len(it['v']) > 1 for it in w['items'])   # a work whose every verse is one line (a namavali of single names) has its meaning under its line already
+            if multi and lines and not all(s.get('lines') for s in lines): todo.append('meaning not line by line'); note('meaning not line by line')
         if 'hi' not in ours and not S.get('hi') and wid != 'guru-granth-sahib': todo.append('no Hindi meaning'); note('no Hindi meaning')
         if 'en' not in ours and not S.get('en') and wid != 'guru-granth-sahib': todo.append('no English meaning'); note('no English meaning')
         if w.get('words') == 'partial': todo.append('word meanings partial'); note('word meanings partial')
@@ -145,7 +155,7 @@ def pending():
         if os.path.exists(rc):
             sec = open(rc, encoding='utf-8').read().split('## The recording', 1)
             m = re.search(r'Sung with words that another written witness prints[^:]*: ([^\n]*)', sec[1]) if len(sec) > 1 else None
-            if m:
+            if m and '/aarti/' in leaf['path']:   # an āratī follows its recording; a chālīsā keeps its base, the sung word recorded (PLAYBOOK §3)
                 ids = re.findall(r'`([^`]+)`', m.group(1))
                 todo.append(f"the text to follow its recording in {len(ids)} verse{'s' if len(ids) > 1 else ''} ({', '.join(ids)}), with their meanings")
                 note('text to follow its recording')
