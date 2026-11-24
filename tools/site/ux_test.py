@@ -1640,7 +1640,7 @@ async def main():
         check('a meaning word with an entry of its own is never taken for another hard word (परे is not परा); joined endings are still looked through', hk[:3] == [None, None, None] and hk[3] == 'सिद्धि' and hk[4] == 'अपकीर्ति' and hk[5] == 'विभीषण', hk)
         # ☰ › More settings › "Meaning per line": shown only for a work with a meaning line by line (as Footnotes, Commentary);
         # off by default; the switch turns it on
-        hidden = await ev("(async () => { show('settings'); await new Promise(r => setTimeout(r, 200)); return !document.querySelector('#slines') && !hasLines(); })()")   # the Īśāvāsya: whole meanings only
+        hidden = await ev("(async () => { await openWork('sathya-sai-ashtottara', true); show('settings'); await new Promise(r => setTimeout(r, 200)); return !document.querySelector('#slines') && !hasLines(); })()")   # a nāmāvalī: one line a name, whole meanings only
         await ev("openWork('sundarkand', true)"); await pg.wait_for_timeout(1500)
         await ev("delete S.settings.lines; save(); show('settings')"); await pg.wait_for_timeout(300)
         off0 = await ev("!!document.querySelector('#slines') && !document.querySelector('#slines').checked")
