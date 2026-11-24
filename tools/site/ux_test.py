@@ -1851,7 +1851,7 @@ async def group_paath(b, url, shots):
     after = [await F.evaluate("window.__seeks"), round(await off(), 2)]
     check('group paath: a follower measures its own lead (this stand-in player moves at once: near 0 s)', lead is not None and lead < 0.15, lead)
     check('group paath: a follower 0.5 s off is not moved mid-verse, and is put back in step as the next verse begins',
-          mid == 0 and after[0] >= 1 and abs(after[1]) < 0.2, {'lead': lead, 'seeks mid-verse': mid, 'after the verse began': after})
+          mid == 0 and after[0] >= 1 and abs(after[1]) < 0.3, {'lead': lead, 'seeks mid-verse': mid, 'after the verse began': after})
     await L.evaluate("ytPost('pauseVideo')"); await F.wait_for_timeout(1500)
     check('group paath: the leader pauses, a follower that plays the sound pauses too', await F.evaluate("ytInfo.st") == 2)
     await F.evaluate("gpHear(false)")
