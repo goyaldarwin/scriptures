@@ -2431,10 +2431,10 @@ function gpConnect(){
     if (GP.ws !== ws) return;
     if (e.data === 'pong'){ GP.pongDue = 0; const r = (performance.now() - GP.pingAt) / 2000; if (r > 0 && r < 1){ GP.rtts = GP.rtts.concat(r).slice(-5); GP.lat = Math.min(...GP.rtts); } return; }   // how late a state arrives: half the quickest of the last 5 round trips (one slow ping never sets it)
     let d; try { d = JSON.parse(e.data); } catch (x) { return; }
-    if (d.type === 'count'){ GP.n = d.n; gpUI(); pSub(); }
-    else if (d.type === 'mode' && GP.role === 'follow'){ GP.none = false; GP.on = true; gpMode(d.m); }
+    if (d.type === 'count'){ GP.n = d.n; if (GP.role === 'lead' && d.n){ const o = gpMine(); if (o && o.code === GP.code && !o.used) gpPut(GPM, Object.assign({}, o, {used: 1})); } gpUI(); pSub(); }   // a code someone has joined is never changed again
+    else if (d.type === 'mode' && GP.role === 'follow'){ GP.none = false; GP.on = true; gpPut(GPJ, {code: GP.code}); gpMode(d.m); }   // a code that answers is remembered ("Join … again")
     else if (d.type === 'state' && GP.role === 'follow') gpApply(d.s, performance.now() - Math.min(60000, Math.max(0, +d.age || 0)));   // age: a state kept by the relay for a device that joins later
-    else if (d.type === 'wait' && GP.role === 'follow'){ GP.on = false; if (d.none){ gpStop(T('इस कोडसे कोई सामूहिक पाठ नहीं। अंक जाँचें।', 'No group paath with this code. Check the number.')); return; } gpBar(); gpUI(); }   // a code no leader holds: not joined (the owner: nothing stuck)
+    else if (d.type === 'wait' && GP.role === 'follow'){ GP.on = false; if (d.none){ if (gpLast() === GP.code) gpPut(GPJ, null); gpStop(T('इस कोडसे कोई सामूहिक पाठ नहीं। अंक जाँचें।', 'No group paath with this code. Check the number.')); return; } gpPut(GPJ, {code: GP.code}); gpBar(); gpUI(); }   // a code no leader holds: not joined (the owner: nothing stuck)
     else if (d.type === 'taken' && GP.role === 'lead') gpTaken();
     else if (d.type === 'away' && GP.role === 'follow') gpAway();   // the leader's device has gone (closed, locked, offline)
     else if (d.type === 'end') gpEnded(d.why);
@@ -2553,9 +2553,9 @@ function gpMode(m){
 }
 function gpAsk(){
   $('#toast').classList.remove('on', 'act');   // "Joining…" must not cover the answers
-  openSheet('<h2 class="gph">' + T('इस डिवाइसपर भी चलाएँ?', 'Play on this device too?') + '</h2><p class="gpi">' + T('यदि आप लीडरके साथ एक ही कमरेमें हैं, तो “बिना आवाज़ साथ चलें” चुनें।', 'If you are in the same room as the leader, choose Follow without sound.') + '</p><div class="rates gpask">' +
-    '<button class="btn" data-hear="1">' + T('रिकॉर्डिंग यहाँ चलाएँ', 'Play the recording here') + '</button>' +
-    '<button class="btn ghost" data-hear="0">' + T('बिना आवाज़ साथ चलें', 'Follow without sound') + '</button></div>');
+  openSheet('<h2 class="gph">' + T('इस डिवाइसपर भी ऑडियो चलाएँ?', 'Play audio on this device too?') + '</h2><p class="gpi">' + T('यदि आप लीडरके साथ एक ही कमरेमें हैं, तो “बिना ऑडियो साथ चलें” चुनें।', 'If you are in the same room as the leader, choose Follow without audio.') + '</p><div class="rates gpask">' +
+    '<button class="btn" data-hear="0">' + T('बिना ऑडियो साथ चलें', 'Follow without audio') + '</button>' +   // the default, first (the owner): no echo in a room
+    '<button class="btn ghost" data-hear="1">' + T('ऑडियोके साथ चलें', 'Follow with audio') + '</button></div>');
   $$('#sheetBody [data-hear]').forEach(x => x.onclick = () => { closeSheet(); gpHear(x.dataset.hear === '1'); });
 }
 function gpHear(on){
@@ -2567,8 +2567,8 @@ function gpHear(on){
 function gpQuiet(){ ytPost('pauseVideo'); $('#ytBox').innerHTML = ''; ytVid = ''; ytOK = !!GP.base; if (GP.base) ytInfo.st = GP.base.p ? 1 : 2; }
 // a follower tapped ▶: in a room, only the leader's device plays; elsewhere, it may play the sound here instead
 function gpNoPlay(){
-  if (GP.m === 'apart' && !GP.hear){ toastAct(T('रिकॉर्डिंग लीडरके डिवाइसपर चल रही है', 'The recording is playing on the leader\'s device'), T('यहाँ भी चलाएँ', 'Play here too'), () => gpHear(true)); return; }
-  toast(T('इस सामूहिक पाठमें रिकॉर्डिंग केवल लीडरके डिवाइसपर चलती है', 'In this group paath, only the leader\'s device plays the recording'));
+  if (GP.m === 'apart' && !GP.hear){ toastAct(T('ऑडियो लीडरके डिवाइसपर चल रहा है', 'Audio is playing on the leader\'s device'), T('ऑडियोके साथ चलें', 'Follow with audio'), () => gpHear(true)); return; }
+  toast(T('इस सामूहिक पाठमें ऑडियो केवल लीडरके डिवाइसपर चलता है', 'In this group paath, only the leader\'s device plays audio'));
 }
 // a following device's bar: what is recited, and that it follows (no controls: the leader plays, pauses and moves on); a device
 // that plays the sound shows its video too
@@ -2578,7 +2578,7 @@ function gpBar(){
   if (!PL.on) $('#pVerse').textContent = T('सामूहिक पाठ', 'Group paath');
   pSub(); const st = $('#gpBody .gpst'); if (st) st.textContent = gpSub();   // the open sheet's status line follows too
 }
-function gpCount(){ return DEV(GP.n) + T(' डिवाइस साथ हैं', GP.n === 1 ? ' device following' : ' devices following'); }   // the leader's bar and sheet, in the same words
+function gpCount(){ return GP.n ? DEV(GP.n) + T(' डिवाइस साथ हैं', GP.n === 1 ? ' device following' : ' devices following') : T('अभी कोई नहीं जुड़ा', 'No one has joined yet'); }   // the leader's bar and sheet, in the same words
 function gpSub(){   // the player's small line in a group paath
   if (GP.role === 'lead') return T('सामूहिक पाठ · ', 'Group paath · ') + (GP.live ? gpCount() : T('जुड़ रहा है…', 'connecting…'));
   if (GP.role !== 'follow') return '';
@@ -2586,15 +2586,15 @@ function gpSub(){   // the player's small line in a group paath
   if (GP.none) return T('इस कोडसे कोई सामूहिक पाठ नहीं — अंक जाँचें', 'No group paath with this code — check the number');
   if (GP.away) return T('लीडरके डिवाइसके फिर जुड़नेकी प्रतीक्षा', 'Waiting for the leader\'s device to reconnect');
   if (!PL.on) return T('लीडरके शुरू करनेकी प्रतीक्षा', 'Waiting for the leader to start');
-  return (GP.base && GP.base.p ? T('साथ चल रहे हैं', 'Following') : T('रुका हुआ', 'Paused')) + (GP.hear ? T(' · यहाँ भी चल रही है', ' · Playing here') : '') + (CURVIEW !== 'reader' ? T(' · पदपर जाएँ ›', ' · Go to verse ›') : '');
+  return (GP.base && GP.base.p ? T('साथ चल रहे हैं', 'Following') : T('रुका हुआ', 'Paused')) + (GP.hear ? T(' · ऑडियोके साथ', ' · With audio') : '') + (CURVIEW !== 'reader' ? T(' · पदपर जाएँ ›', ' · Go to verse ›') : '');
 }
 // start leading (m: "room" or "apart", with the leader's own code) or join (a follower; hear is asked when the mode is known)
 function gpStart(role, code, m){
-  const own = gpMine(); if (role === 'follow' && own && own.code === code){ toast(T('यह इस डिवाइसका अपना कोड है। इसे “सब कहाँ हैं?” से शुरू करें।', 'This is this device\'s own code. Start it from Where is everyone?')); return; }   // a leader never follows itself
+  const own = gpMine(); if (role === 'follow' && own && own.code === code){ toast(T('यह आपका अपना कोड है। इसे चलानेके लिए वापस जाकर “सामूहिक पाठ शुरू करें” चुनें।', 'This is your own code. To use it, go back and choose Start a group paath.')); return; }   // a leader never follows itself
   if (GP.role) gpStop();
   GP.role = role; GP.code = code; GP.on = false; GP.n = 0; GP.sent = null; GP.s = null; GP.base = null; GP.opened = false; GP.last = null; GP.away = false; GP.none = false; GP.wait = 1000; GP.pongDue = 0; GP.asked = false;
-  if (role === 'lead'){ const o = gpMine(); GP.key = o && o.code === code ? o.key : gpKey(); GP.m = m === 'apart' ? 'apart' : 'room'; gpPut(GPM, {code, key: GP.key}); }
-  else { GP.key = ''; GP.m = 'room'; GP.hear = null; gpPut(GPJ, {code}); }
+  if (role === 'lead'){ const o = gpMine(); GP.key = o && o.code === code ? o.key : gpKey(); GP.m = m === 'apart' ? 'apart' : 'room'; gpPut(GPM, {code, key: GP.key, m: GP.m}); }   // the code keeps its answer for the next sitting
+  else { GP.key = ''; GP.m = 'room'; GP.hear = null; }
   gpSave(); gpConnect();
   if (role === 'follow'){ if (PL.on) stopAudio(); gpBar(); toast(T('सामूहिक पाठसे जुड़ रहे हैं', 'Joining the group paath')); }
   gpUI(); pSub();
@@ -2613,6 +2613,23 @@ function gpStop(msg, how, again){
   gpUI(); pSub();
   if (msg && again) toastAct(msg, T('फिर जुड़ें', 'Join again'), () => gpStart('follow', again)); else if (msg) toastLight(msg, 6000);
 }
+// a code nobody has joined yet, today or before: the leader may still change it (the owner: a code people know never changes)
+function gpNew(){ const o = gpMine(); return GP.role === 'lead' && GP.n === 0 && !(o && o.code === GP.code && o.used); }
+// the leader takes a code of its own choosing (only before anyone has joined): the code it had is let go, the new one is
+// tried; one another leader holds says so in red, and the code before comes back
+function gpOwnCode(c){
+  if (c.length !== 6){ gpJoinErr(T('6 अंकोंका कोड डालें।', 'Enter the 6-digit code.')); return; }
+  if (c === GP.code){ GP.edit = false; gpUI(); return; }
+  GP.prevCode = {code: GP.code, key: GP.key, m: GP.m}; const m = GP.m;
+  gpStop('', 'code'); GP.chosen = true; GP.edit = false; GP.err = ''; gpStart('lead', c, m);
+}
+// the leader changes its answer to "Is anyone joining from another place?": kept with the code, and the sitting goes on in
+// the new mode (its device connects again with it; the relay tells the followers, who are asked about sound, or lose it)
+function gpSetMode(m){
+  if (GP.role !== 'lead') return; GP.m = m === 'apart' ? 'apart' : 'room';
+  const o = gpMine(); if (o && o.code === GP.code) gpPut(GPM, Object.assign({}, o, {m: GP.m}));
+  gpSave(); gpConnect(); gpUI();
+}
 // a follower's ✕: it leaves, with a way back (the owner: an undo, not a question)
 function gpLeave(){ const c = GP.code; gpStop(); toastAct(T('सामूहिक पाठ छोड़ा', 'Left the group paath'), T('फिर जुड़ें', 'Join again'), () => gpStart('follow', c)); }
 // the relay ended the sitting: the leader ended it for today or ended the code, or nothing played for an hour
@@ -2628,7 +2645,7 @@ function gpEnded(why){
 function gpTaken(){
   const chosen = GP.chosen; GP.chosen = false; const m = GP.m;
   try { GP.ws && GP.ws.close(); } catch (e) {} GP.ws = null; GP.role = null; gpSave(); gpPut(GPM, null);
-  if (chosen){ openSheet('<div id="gpBody"></div>'); GP.edit = true; gpUI(); toast(T('यह कोड उपयोगमें है। दूसरा कोड चुनें।', 'This code is in use. Choose another.')); return; }
+  if (chosen){ const p = GP.prevCode; GP.prevCode = null; if (p) gpPut(GPM, p); gpStart('lead', p ? p.code : gpCode(), m); GP.edit = true; openSheet('<div id="gpBody"></div>'); gpUI(); gpJoinErr(T('यह कोड उपयोगमें है। दूसरा कोड चुनें।', 'This code is in use. Choose another.')); return; }
   gpStart('lead', gpCode(), m); toast(T('आपका पिछला कोड समाप्त हो गया था। नया कोड: ', 'Your previous code had expired. New code: ') + gpFmt(GP.code));
 }
 // the recordings a following device was given for each work go back to its own choices (on leaving, or on a later start when
@@ -2641,64 +2658,90 @@ function gpGiveBack(prev){
 // ☰ › Group paath: start one (the leader, inside a work with a recording: its own code, and where everyone is), join one by
 // its code (or the last one again), or the one this device is in
 function gpSheet(){
-  openSheet('<div id="gpBody"></div>'); GP.edit = false; gpUI();
+  openSheet('<div id="gpBody"></div>'); GP.edit = false; GP.step = ''; GP.err = ''; gpUI();
 }
 function gpUI(){
   const box = $('#gpBody'); if (!box) return;
   const h = '<h2 class="gph">' + T('सामूहिक पाठ', 'Group paath') + '</h2>';
   if (GP.role === 'lead'){
-    box.innerHTML = h + '<p class="gpi">' + (GP.m === 'apart'
-        ? T('रिकॉर्डिंग इसी डिवाइसपर चलाएँ। बाकी लोग QR कोड स्कैन करके या कोड डालकर जुड़ें; जो कहीं और हैं, वे इसे अपने डिवाइसपर भी चला सकते हैं।', 'Play the recording on this device. Others join by scanning the QR code or entering the code; those elsewhere can also play it on their own device.')
-        : T('रिकॉर्डिंग इसी डिवाइसपर चलाएँ। बाकी लोग QR कोड स्कैन करके या कोड डालकर जुड़ें; उनकी स्क्रीन बिना आवाज़के साथ चलेगी।', 'Play the recording on this device. Others join by scanning the QR code or entering the code; their screens follow without sound.')) + '</p>' +
-      '<div class="gpqr">' + qrSVG(gpLink(), T('जुड़नेका QR कोड', 'QR code to join')) + '</div><div class="gpcode">' + gpFmt(GP.code) + '</div>' +
+    box.innerHTML = h + '<p class="gpi">' + T('बाकी लोग नीचे दिए QR कोड या कोडसे जुड़ें।', 'Others join with the QR code or code below.') + '</p>' +
+      '<div class="gpqr">' + qrSVG(gpLink(), T('जुड़नेका QR कोड', 'QR code to join')) + '</div>' +
+      (GP.edit && gpNew()
+        ? '<div class="gpcoderow"><button class="gpshare gpl" id="gpEditNo" aria-label="' + T('रहने दें', 'Cancel') + '"><svg><use href="#i-x"/></svg></button><input class="gpcode gpcodein" id="gpOwn" inputmode="numeric" autocomplete="off" maxlength="7" value="' + gpFmt(GP.code) + '" aria-label="' + T('अपना 6 अंकोंका कोड', 'Your own 6-digit code') + '" aria-describedby="gpErr"><button class="gpshare" id="gpUse" aria-label="' + T('यह कोड लें', 'Use this code') + '"><svg><use href="#i-ok"/></svg></button></div><p class="gperr" id="gpErr" role="alert">' + esc(GP.err || '') + '</p>'
+        : '<div class="gpcoderow">' + (gpNew() ? '<button class="gpshare gpl" id="gpOwnCode" aria-label="' + T('अपना कोड चुनें', 'Choose your own code') + '"><svg><use href="#i-edit"/></svg></button>' : '<span></span>') + '<span class="gpcode">' + gpFmt(GP.code) + '</span><button class="gpshare" id="gpShare" aria-label="' + T('लिंक भेजें', 'Share the link') + '"><svg><use href="#i-share"/></svg></button></div>') +
       '<p class="gpst">' + (GP.live ? gpCount() : T('जुड़ रहा है…', 'Connecting…')) + '</p>' +
-      '<div class="acts gpacts"><button class="btn" id="gpShare"><svg><use href="#i-share"/></svg>' + T('लिंक भेजें', 'Share the link') + '</button><button class="btn ghost" id="gpEnd">' + T('आजके लिए समाप्त करें', 'End for today') + '</button></div>' +
-      '<p class="small muted">' + T('अगली बार भी यही कोड और लिंक चलेंगे।', 'The same code and link work next time.') + ' <button class="lnk" id="gpEndCode">' + T('कोड समाप्त करें', 'End the code') + '</button></p>';
-    $('#gpShare').onclick = gpShare;
-    $('#gpEnd').onclick = () => { closeSheet(); gpStop(); toast(T('आजका सामूहिक पाठ समाप्त हुआ', 'Today\'s group paath has ended')); };
-    $('#gpEndCode').onclick = () => askYes(T('कोड ' + gpFmt(GP.code) + ' समाप्त करें? इसका लिंक और QR कोड काम करना बंद कर देंगे।', 'End code ' + gpFmt(GP.code) + '? Its link and QR code will stop working.'), T('कोड समाप्त करें', 'End the code'), () => { gpStop('', 'code'); toast(T('कोड समाप्त हुआ', 'Code ended')); });
+      '<div class="gpjoinv"><button class="btn ghost" id="gpEnd">' + (GP.n ? T('साथ चलनेवालोंको अलग करें', 'Disconnect followers') : T('सामूहिक पाठ समाप्त करें', 'End group paath')) + '</button></div>' +   // says what it does: with followers, it disconnects them   // ends today's group paath: followers go home, the code stays (the owner)
+      '<p class="small muted gpkeep">' + T('कोड ' + gpFmt(GP.code) + ' अगले सामूहिक पाठके लिए तबतक सक्रिय रहेगा, जबतक आप इसे ', 'Code ' + gpFmt(GP.code) + ' stays active for next group paath till you ') + '<button class="lnk gpdel" id="gpEndCode">' + T('हटाएँ', 'Delete code') + '</button>' + T(' नहीं।', '') + '</p>' +
+      '<div class="gpsw">' + sw('gpMode', T('साथ चलनेवाले डिवाइस भी ऑडियो चला सकें', 'Followers can also play audio'), T('दूसरी जगहसे जुड़नेवालोंके लिए', 'For those joining from another place'), GP.m === 'apart') + '</div>';
+    if ($('#gpShare')) $('#gpShare').onclick = gpShare;
+    if ($('#gpOwnCode')) $('#gpOwnCode').onclick = () => { GP.edit = true; gpUI(); const i = $('#gpOwn'); i.focus(); i.select(); };
+    if ($('#gpEditNo')) $('#gpEditNo').onclick = () => { GP.edit = false; GP.err = ''; gpUI(); };
+    if ($('#gpUse')){ const use = () => gpOwnCode(($('#gpOwn').value || '').replace(/\D/g, '')); $('#gpUse').onclick = use; $('#gpOwn').onkeydown = e => { if (e.key === 'Enter') use(); }; gpDigits($('#gpOwn'), $('#gpUse')); }
+    $('#gpMode').onchange = e => gpSetMode(e.target.checked ? 'apart' : 'room');
+    $('#gpEnd').onclick = () => { const had = GP.n; closeSheet(); gpStop(); toast(had ? T('साथ चलनेवाले अलग किए गए', 'Followers disconnected') : T('सामूहिक पाठ समाप्त हुआ', 'Group paath ended')); };
+    $('#gpEndCode').onclick = () => askYes(T('कोड ' + gpFmt(GP.code) + ' हटाएँ? इसका लिंक और QR कोड काम करना बंद कर देंगे।', 'Delete code ' + gpFmt(GP.code) + '? Its link and QR code will stop working.'), T('कोड हटाएँ', 'Delete code'), () => { gpStop('', 'code'); toast(T('कोड हटाया गया', 'Code deleted')); });
     return;
   }
   if (GP.role === 'follow'){
     box.innerHTML = h + '<div class="gpcode">' + gpFmt(GP.code) + '</div><p class="gpst">' + gpSub() + '</p>' +
-      '<p class="gpi">' + (GP.hear ? T('रिकॉर्डिंग लीडरके साथ इस डिवाइसपर भी चलती है। अर्थ, अक्षरका आकार और भाषा आपकी अपनी रहती हैं।', 'The recording also plays on this device, in step with the leader. Meanings, letter size and language remain your own.')
-        : T('रिकॉर्डिंग लीडरके डिवाइसपर चलती है; यह डिवाइस बिना आवाज़के साथ चलता है। अर्थ, अक्षरका आकार और भाषा आपकी अपनी रहती हैं।', 'The recording plays on the leader\'s device; this device follows without sound. Meanings, letter size and language remain your own.')) + '</p>' +
-      '<div class="acts gpacts">' + (GP.m === 'apart' ? '<button class="btn" id="gpSound">' + (GP.hear ? T('बिना आवाज़ साथ चलें', 'Follow without sound') : T('रिकॉर्डिंग यहाँ चलाएँ', 'Play the recording here')) + '</button>' : '') +
+      '<p class="gpi">' + (GP.hear ? T('ऑडियो लीडरके साथ इस डिवाइसपर भी चलता है। अर्थ, अक्षरका आकार और भाषा आपकी अपनी रहती हैं।', 'Audio also plays on this device, in step with the leader. Meanings, letter size and language remain your own.')
+        : T('ऑडियो लीडरके डिवाइसपर चलता है; यह डिवाइस बिना ऑडियो साथ चलता है। अर्थ, अक्षरका आकार और भाषा आपकी अपनी रहती हैं।', 'Audio plays on the leader\'s device; this device follows without audio. Meanings, letter size and language remain your own.')) + '</p>' +
+      '<div class="acts gpacts">' + (GP.m === 'apart' ? '<button class="btn" id="gpSound">' + (GP.hear ? T('बिना ऑडियो साथ चलें', 'Follow without audio') : T('ऑडियोके साथ चलें', 'Follow with audio')) + '</button>' : '') +
       '<button class="btn ghost" id="gpLeave">' + T('छोड़ें', 'Leave') + '</button></div>';
     if ($('#gpSound')) $('#gpSound').onclick = () => gpHear(!GP.hear);
     $('#gpLeave').onclick = () => { closeSheet(); gpLeave(); };
     return;
   }
-  const canLead = !!(W && CURVIEW !== 'library' && SRC.au), mine = gpMine(), last = gpLast();
-  if (!GP.draft || (mine && GP.draft !== mine.code && !GP.edit)) GP.draft = mine ? mine.code : gpCode();
-  box.innerHTML = h + '<p class="gpi">' + T('साथ पाठ करें: एक डिवाइस रिकॉर्डिंग चलाता है, बाकी उसके साथ चलते हैं।', 'Read together: one device plays the recording and the others follow it.') + '</p>' +
-    (canLead ? '<h3 class="gph3">' + T('इस डिवाइससे शुरू करें', 'Start from this device') + '</h3>' +
-      (GP.edit ? '<div class="gpjoin"><input id="gpOwn" inputmode="numeric" autocomplete="off" maxlength="7" value="' + gpFmt(GP.draft) + '" aria-label="' + T('अपना 6 अंकोंका कोड', 'Your own 6-digit code') + '"><button class="btn ghost" id="gpNew">' + T('नया कोड', 'New code') + '</button></div>'
-        : '<p class="gpst">' + T('कोड ', 'Code ') + '<b>' + gpFmt(GP.draft) + '</b> · <button class="lnk" id="gpChange">' + T('बदलें', 'Change') + '</button></p>') +
-      '<p class="gpq">' + T('सब कहाँ हैं?', 'Where is everyone?') + '</p>' +
-      '<div class="rates gpwhere"><button class="btn" data-where="room">' + T('सब इसी कमरेमें', 'All in this room') + '<small>' + T('केवल यही डिवाइस रिकॉर्डिंग चलाएगा', 'Only this device plays the recording') + '</small></button>' +
-      '<button class="btn ghost" data-where="apart">' + T('कुछ लोग कहीं और हैं', 'Some are elsewhere') + '<small>' + T('वे इसे अपने डिवाइसपर भी चला सकते हैं', 'They can also play it on their own device') + '</small></button></div>' +
-      (mine ? '<p class="small muted"><button class="lnk" id="gpForget">' + T('कोड ' + gpFmt(mine.code) + ' समाप्त करें', 'End code ' + gpFmt(mine.code)) + '</button></p>' : '')
-      : '<p class="gpst">' + T('शुरू करनेके लिए रिकॉर्डिंगवाला ग्रन्थ खोलें', 'To start, open a work that has a recording') + '</p>') +
-    '<h3 class="gph3">' + T('किसी सामूहिक पाठसे जुड़ें', 'Join a group paath') + '</h3>' +
-    (last && (!mine || last !== mine.code) ? '<div class="acts gpacts"><button class="btn" id="gpAgain">' + T(gpFmt(last) + ' से फिर जुड़ें', 'Join ' + gpFmt(last) + ' again') + '</button></div>' : '') +
-    '<div class="gpjoin"><input id="gpIn" inputmode="numeric" autocomplete="off" maxlength="7" placeholder="' + T('6 अंकोंका कोड', '6-digit code') + '" aria-label="' + T('6 अंकोंका कोड', '6-digit code') + '"><button class="btn" id="gpJoin">' + T('जुड़ें', 'Join') + '</button></div>';
-  if ($('#gpChange')) $('#gpChange').onclick = () => { GP.edit = true; gpUI(); const i = $('#gpOwn'); i.focus(); i.select(); };
-  if ($('#gpNew')) $('#gpNew').onclick = () => { GP.draft = gpCode(); $('#gpOwn').value = gpFmt(GP.draft); };
-  $$('#gpBody [data-where]').forEach(x => x.onclick = () => {
-    if (!canLead) return;
-    const own = $('#gpOwn') ? ($('#gpOwn').value || '').replace(/\D/g, '') : GP.draft;
-    if (own.length !== 6){ toast(T('6 अंकोंका कोड डालें', 'Enter the 6-digit code')); return; }
-    if (mine && own !== mine.code) gpPut(GPM, null);   // another code: the old one is let go by the relay after 15 days unused
-    GP.chosen = !mine || own !== mine.code; GP.edit = false; gpStart('lead', own, x.dataset.where);
-  });
-  if ($('#gpForget')) $('#gpForget').onclick = () => askYes(T('कोड ' + gpFmt(mine.code) + ' समाप्त करें? इसका लिंक और QR कोड काम करना बंद कर देंगे।', 'End code ' + gpFmt(mine.code) + '? Its link and QR code will stop working.'), T('कोड समाप्त करें', 'End the code'), () => { gpEndCode(mine); gpPut(GPM, null); GP.draft = ''; gpSheet(); toast(T('कोड समाप्त हुआ', 'Code ended')); });
-  if ($('#gpAgain')) $('#gpAgain').onclick = () => { closeSheet(); gpStart('follow', last); };
-  const join = () => { const c = ($('#gpIn').value || '').replace(/\D/g, ''); if (c.length !== 6){ toast(T('6 अंकोंका कोड डालें', 'Enter the 6-digit code')); return; } closeSheet(); gpStart('follow', c); };
-  $('#gpJoin').onclick = join; $('#gpIn').onkeydown = e => { if (e.key === 'Enter') join(); };
+  // not in one: three small steps, each with one question (the owner: minimal, nothing to read before acting): Start or
+  // Join; then, to start, "Is anyone joining from another place?" (No: a room, only this device plays; Yes: those elsewhere
+  // may play it too), either answer starting it; to join, the code (the last one joined already in its box). A group paath
+  // starts anywhere, the library too: followers wait until the leader plays.
+  const mine = gpMine(), last = gpLast(), back = '<button class="lnk gpback" id="gpBack">‹ ' + T('वापस', 'Back') + '</button>';
+  if (GP.step === 'join'){
+    box.innerHTML = '<div class="gptop">' + back + h + '</div><div class="gpstep">' +   // the title stays where it was: Back sits beside it
+      '<div class="gpjoinv"><input id="gpIn" inputmode="numeric" autocomplete="off" maxlength="7" value="' + (last ? gpFmt(last) : '') + '" placeholder="' + T('6 अंकोंका कोड डालें', 'Enter the 6-digit code') + '" aria-label="' + T('6 अंकोंका कोड', '6-digit code') + '" aria-describedby="gpErr">' +
+      '<p class="gperr" id="gpErr" role="alert">' + esc(GP.err || '') + '</p><button class="btn" id="gpJoin">' + T('जुड़ें', 'Join') + '</button></div></div>';   // the box centred, Join under it (as Start and Join on the first step)
+    $('#gpBack').onclick = () => { GP.step = ''; gpUI(); };
+    const join = () => gpTryJoin(($('#gpIn').value || '').replace(/\D/g, ''));
+    $('#gpJoin').onclick = join; $('#gpIn').onkeydown = e => { if (e.key === 'Enter') join(); };
+    gpDigits($('#gpIn'), $('#gpJoin'));
+    return;
+  }
+  box.innerHTML = '<div class="gptop">' + h + '</div><div class="gpstep"><p class="gpi">' + T('एक डिवाइस चलाता है, बाकी साथ चलते हैं।', 'One device plays; the others follow.') + '</p>' +
+    '<div class="rates gpwhere"><button class="btn" id="gpGoStart">' + T('सामूहिक पाठ शुरू करें', 'Start a group paath') + '</button><button class="btn ghost" id="gpGoJoin">' + T('सामूहिक पाठसे जुड़ें', 'Join a group paath') + '</button></div></div>';
+  $('#gpGoStart').onclick = () => { GP.chosen = false; GP.edit = false; if (mine) gpStart('lead', mine.code, mine.m || 'room'); else gpStart('lead', gpCode(), 'room'); };   // at once: a kept code with its setting, a new one in a room (the safer default; the leader's toggle opens it)
+  $('#gpGoJoin').onclick = () => { GP.step = 'join'; GP.err = ''; gpUI(); const i = $('#gpIn'); if (!i.value) i.focus(); };
 }
-// end a code this device holds but is not leading on now: the relay is told (it ends any sitting on it and frees the code)
-function gpEndCode(o){ try { const ws = new WebSocket(GROUP_URL + '/s/' + o.code + '?role=lead&key=' + o.key); ws.onopen = () => { try { ws.close(4101, 'end code'); } catch (e) {} }; } catch (e) {} }
+// Join from the sheet: the code is checked while the sheet is open (the owner: a code that cannot be joined is said in red
+// under its box, which keeps it for correcting; the sheet closes only for a group paath that is there). again: the
+// last code joined, kept in the box, is forgotten when no longer there
+// a code box takes digits only, at most 6, shown as 123 456; its button waits for all 6 (the owner: no error to make)
+function gpDigits(inp, btn){
+  const fix = () => { const d = (inp.value || '').replace(/\D/g, '').slice(0, 6), v = d.length > 3 ? d.slice(0, 3) + ' ' + d.slice(3) : d; if (inp.value !== v) inp.value = v; if (btn) btn.disabled = d.length !== 6; gpJoinErr(''); };
+  inp.addEventListener('input', fix); const kept = GP.err; fix(); if (kept) gpJoinErr(kept);
+}
+function gpJoinErr(msg){ GP.err = msg; const e = $('#gpErr'), i = $('#gpIn') || $('#gpOwn'); if (e) e.textContent = msg; if (i) i.classList.toggle('bad', !!msg); }   // kept in GP.err: a redraw (a reconnection) keeps it
+async function gpTryJoin(c){
+  if (c.length !== 6){ gpJoinErr(T('6 अंकोंका कोड डालें।', 'Enter the 6-digit code.')); return; }
+  const own = gpMine(); if (own && own.code === c){ gpJoinErr(T('यह आपका अपना कोड है। इसे चलानेके लिए वापस जाकर “सामूहिक पाठ शुरू करें” चुनें।', 'This is your own code. To use it, go back and choose Start a group paath.')); return; }
+  const b = $('#gpJoin'); if (b) b.disabled = true; gpJoinErr(''); const st = $('#gpErr'); if (st) st.textContent = T('जाँच रहे हैं…', 'Checking…');
+  const r = await gpProbe(c); if (b) b.disabled = false;
+  if (!$('#gpBody')) return;   // the sheet was closed meanwhile
+  if (r === 'ok'){ closeSheet(); gpStart('follow', c); return; }
+  if (r === 'none'){ if (gpLast() === c) gpPut(GPJ, null); gpJoinErr(T('इस कोडसे कोई सामूहिक पाठ नहीं। अंक जाँचें।', 'No group paath with this code. Check the number.')); if ($('#gpIn')) $('#gpIn').focus(); return; }
+  gpJoinErr(T('जुड़ नहीं सके। इंटरनेट जाँचकर फिर कोशिश करें।', 'Could not connect. Check the internet connection and try again.'));
+}
+// ask the relay whether a group paath holds this code: 'ok' (one is there, started or waiting for its leader), 'none' (no
+// leader holds it), or 'error' (the relay could not be reached in 8 s)
+function gpProbe(c){
+  return new Promise(res => {
+    let ws, done = false; const end = r => { if (done) return; done = true; clearTimeout(t); try { ws && ws.close(1000, 'probe'); } catch (e) {} res(r); };
+    const t = setTimeout(() => end('error'), 8000);
+    try { ws = new WebSocket(GROUP_URL + '/s/' + c + '?role=follow'); } catch (e) { end('error'); return; }
+    ws.onmessage = e => { let d; try { d = JSON.parse(e.data); } catch (x) { return; } if (d.type === 'wait') end(d.none ? 'none' : 'ok'); else if (d.type === 'mode' || d.type === 'state') end('ok'); };
+    ws.onerror = () => end('error'); ws.onclose = () => end('error');
+  });
+}
 async function gpShare(){
   const link = gpLink(), text = T('सामूहिक पाठसे जुड़ें: ', 'Join the group paath: ') + link;
   try { if (navigator.share){ await navigator.share({title: T('सामूहिक पाठ', 'Group paath'), text}); return; } } catch (e) { if (e && e.name === 'AbortError') return; }

@@ -17,7 +17,7 @@ sitting ends), and when a device was last on it. There are no queues.
   follower the sitting's mode (`{type: "mode", m}`: on joining, and when a sitting starts), tells the leader how many follow
   (`{type: "count"}`), sends a follower that joins late the last state, tells the followers when the leader's device goes
   (`{type: "away"}`, also to one that joins meanwhile), and sends everyone home when the sitting ends (`{type: "end", why}`:
-  `end` the leader closed with 4100, End for today; `code` the leader closed with 4101, End the code; `idle` an hour with
+  `end` the leader closed with 4100, its End button; `code` the leader closed with 4101, Delete code; `idle` an hour with
   nothing playing, the leader too). A follower on a code with no sitting gets `{type: "wait", none}` (`none`: no leader holds
   the code). Its alarm ends an idle sitting and lets an unused code go. WebSocket hibernation: an idle session costs nothing,
   and `ping` is answered (`pong`) without waking it. Only the origins in `wrangler.toml` → `ORIGINS` may connect.

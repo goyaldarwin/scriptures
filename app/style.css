@@ -1,7 +1,7 @@
 :root{
   --bg:#F6F6F2; --surface:#FFFFFF; --ink:#1D1C1A; --muted:#6A6862; --rule:#E2E0DA;
   --indigo:#2B3A8C; --indigo-soft:#E7EAF6; --saffron:#C9741C; --saffron-soft:#FBEBD8;
-  --note:#7A4B12; --note-bg:#FFF6E9; --ok:#2F7A4F;
+  --note:#7A4B12; --note-bg:#FFF6E9; --ok:#2F7A4F; --err:#B3261E;
   --btn:var(--indigo); --btn-ink:var(--bg); --toast-bg:var(--ink); --toast-ink:var(--bg); --sheet:var(--surface);   /* the filled button, the dark capsule and the drawer: in the dark theme their own quieter colours */
   --verse-size:21px; --mean-size:16.5px;
   --dev:'NSDev','Noto Serif Devanagari','Nirmala UI','Mangal',serif;
@@ -11,14 +11,14 @@
   :root:not([data-theme="light"]){
     --bg:#14130F; --surface:#1D1B17; --ink:#E4DDCF; --muted:#A49C8C; --rule:#35312A;
     --indigo:#E3C08A; --indigo-soft:#2E2719; --saffron:#E6A055; --saffron-soft:#3A2C1B;
-    --note:#EBC58E; --note-bg:#2A2318; --ok:#A8B98A; color-scheme:dark;
+    --note:#EBC58E; --note-bg:#2A2318; --ok:#A8B98A; --err:#F2B8B5; color-scheme:dark;
     --btn:#4A3C24; --btn-ink:#F3E7CF; --toast-bg:#2C2A24; --toast-ink:#EDE6D8; --sheet:#24221D;
   }
 }
 :root[data-theme="dark"]{
   --bg:#14130F; --surface:#1D1B17; --ink:#E4DDCF; --muted:#A49C8C; --rule:#35312A;
   --indigo:#E3C08A; --indigo-soft:#2E2719; --saffron:#E6A055; --saffron-soft:#3A2C1B;
-  --note:#EBC58E; --note-bg:#2A2318; --ok:#A8B98A; color-scheme:dark;
+  --note:#EBC58E; --note-bg:#2A2318; --ok:#A8B98A; --err:#F2B8B5; color-scheme:dark;
   --btn:#4A3C24; --btn-ink:#F3E7CF; --toast-bg:#2C2A24; --toast-ink:#EDE6D8; --sheet:#24221D;
 }
 [hidden]{display:none!important}
@@ -191,6 +191,7 @@ body.playing #rBody{padding-bottom:150px}
 .player.follow.hear .ytw{display:block}   /* a follower that plays the sound shows its video (YouTube's player is always seen) */
 #gpBody .lnk,.gpask .lnk{color:var(--indigo);font-size:inherit;padding:0;text-decoration:underline;text-underline-offset:3px;background:none;border:0}
 .gpq{margin:14px 0 8px;font-weight:600}.gpwhere .btn,.gpask .btn{flex-direction:column;gap:2px;justify-content:center;font-size:17px}.gpwhere small{font-weight:400;font-size:13px;opacity:.85}   /* the leader's one question, and the follower's: two big buttons */
+.gpacts + .gpjoin{margin-top:14px}.gpcoderow{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px}.gpcoderow .gpcode{margin:0}.gpshare{justify-self:start;width:48px;height:48px;border:0;background:transparent;display:flex;align-items:center;justify-content:center;padding:0;color:var(--indigo)}.gpshare svg{width:28px;height:28px;stroke:currentColor;fill:none;stroke-width:2}.gpshare.gpl{justify-self:end}.gpcodein{width:5.4em;text-align:center;border:0;border-bottom:2px solid var(--indigo);background:transparent;padding:0;font-family:inherit;outline:none}.gpcodein.bad{border-bottom-color:var(--err)}   /* the code edited in place: pencil at its left, ✕ / ✓ while editing */   /* the code centred, share at its right */.gpends{flex-wrap:nowrap}.gpends .btn{flex:1;max-width:190px;justify-content:center}.gpdanger{color:var(--err);border-color:var(--err)}.gpkeep{margin:8px 0 0}.gpkeep .gpdel{color:var(--err);font-size:inherit}.gpsw{text-align:left;max-width:360px;margin:4px auto 0}.gpsw .sw{border-bottom:0;border-top:1px solid var(--rule);padding-top:12px}   /* the leader: share beside the code; the two ends side by side, the lasting one in red */.gpjoinv{display:flex;flex-direction:column;align-items:center}.gpjoinv input{width:100%;max-width:300px;box-sizing:border-box;font-size:20px;text-align:center;letter-spacing:.1em;border:1px solid var(--rule);border-radius:12px;padding:10px;background:var(--surface);color:var(--ink)}.gpjoinv input::placeholder{font-size:15px;letter-spacing:0}.gpjoinv input.bad{border-color:var(--err)}.gpjoinv .gperr{margin:6px 0 8px}.gpjoinv .btn{width:100%;max-width:300px;justify-content:center}.gpjoinv .btn:disabled,.gpshare:disabled{opacity:.4;cursor:default}   /* Join: the box centred, the button under it */.gptop{position:relative}.gptop .gpback{position:absolute;left:0;top:50%;transform:translateY(-50%);margin:0;font-size:15px;min-height:44px}.gpstep{min-height:150px}   /* steps of one height, the title in one place: Back beside it */.gpyn{justify-content:center;flex-wrap:nowrap}.gpyn .btn{flex:1;max-width:160px;justify-content:center;font-size:17px;padding:12px 16px}.gpsmall{font-size:14px;margin:10px 0 4px}   /* the start step: one question, No / Yes side by side */.gperr{color:var(--err);font-size:14px;margin:8px 0 0;min-height:1.2em}.gpjoin input.bad{border-color:var(--err)}   /* a code that cannot be joined: said in red under its box, the sheet stays open */
 .gpjoin{display:flex;gap:8px;justify-content:center}.gpjoin input{width:9.5em;font-size:20px;text-align:center;letter-spacing:.1em;border:1px solid var(--rule);border-radius:12px;padding:8px;background:var(--surface);color:var(--ink)}
 .gpdot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--saffron);margin-left:6px;vertical-align:middle}
 /* the verse being recited: a tint that covers exactly the verse's own box (its padding gives the text room), widened sideways
