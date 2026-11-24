@@ -21,6 +21,8 @@ The owner's priorities, in order: **accuracy**, then unambiguity, clarity, consi
 - **Audio times set by ear, safely.** The app's Audio timing mode sends the owner's times as a GitHub issue; the `timing` workflow applies them to `owner.json`. The order rule that places the other verses around them is the same in the app and the builder (`tools/audio/order.py`), and `ux_test.py` checks that they agree.
 - **Copying is checked.** `tools/meanings/overlap.py` stops any meaning of ours that shares 10 or more words in a row with a copyrighted one.
 - **The hard words of our meanings can be tapped.** Every work's hard Hindi and English meaning words have an entry (`"hard": true`, `docs/LIBRARY.md` §5), written from the dictionaries and reviewed; `tools/meanings/hard_words.py report --reach` shows what the app underlines, and every word sense left open was settled from the dictionaries (Monier-Williams, Apte, Platts) and the Gurbani commentaries (`tools/meanings/platts.py`, `teeka.py`), so `docs/reviews/dictionary-doubts.jsonl` holds only new doubts.
+- **The private repo is checked too.** `scriptures-data`'s `check` workflow runs its `check.py` on every push: every file under a work of the public shelf and one of its kinds, with its `.meta.json` matching its place, and every source folder named in its README (it fetches only the `.meta.json` files and READMEs).
+- **What each work and recording still lacks is a file.** `docs/PENDING.md`, made by the build from the library and each recording's files: our meanings, line by line, word meanings, recordings not yet timed by MMS, drafts and their reasons, starts to check by ear.
 - **Rules are written down.** `docs/PLAYBOOK.md` holds preferences and rules, `docs/LIBRARY.md` the format, and `docs/HOW-TO.md` the procedures. Git holds the history.
 
 ## Next (highest value first)
@@ -30,15 +32,10 @@ The owner's priorities, in order: **accuracy**, then unambiguity, clarity, consi
    - **Accuracy of the OCR (the owner's choice, "two-witness check"):** the 1936–41 print's OCR is compared word by word with the 2009–12 reprint's; every disagreement is settled on the page image of the 1936–41 print (the 1939 volume a third witness where it covers the page); the Santhya's doubtful words are read on its page images (pothi 6 has a second scan). Ang by Ang, a batch goes live when it is settled; the rest stays out (`partial`).
    - **Order:** the text and the Faridkot commentary (in place: `tools/works/guru-granth-sahib/`); our Punjabi and English, part by part; then the Santhya batch by batch from Ang 1 to its end (about Ang 607), then the Shabdarth.
 1. **Our own words for the rest of the Rāmacaritamānasa.** Ours cover every verse and every topic heading; Gita Press is still the only text of its pārāyaṇa vidhi prose (the mantras stay). Write it as the meanings were: from the original, never from the translation (`tools/meanings/style.md`), checked by `overlap.py`. Then, on the owner's word only, readers see only ours: a small switch (e.g. `"retired": true` in a meaning file, honoured by `build.py`), not deleted files.
-2. **Check the private repo too.** Add a `check.yml` in `scriptures-data`:
-   - every file has a `.meta.json`;
-   - every checksum matches;
-   - every path is a work in the public library;
-   - every public `recordings.json` → `data` exists.
-3. **Make each audio source's state visible.** Generate a table per recording (transcribed / timed / verses covered / hand fixes / verses to check) from the data, so "what's left?" is answered by a file, not by memory.
-4. **Run the whole audio chain with one command.** A single command per source: transcribe in the cloud, wait, sync, time, build, open a pull request.
-5. **Settle uncertain readings with the owner's printed copy.** Where a text came from the web (Chālīsā, āratīs), compare it with a Gita Press print when the owner provides one. Record the outcome in the work's `reconciliation.md`.
-6. **Check audio against what is sung.** After timing, read each verse's transcript segment against its text, and flag verses where the reciter's wording differs. This catches both text errors and timing errors.
-7. **Finish the timings by ear.** The Sukhmani Sahib recording is published with every start not yet set by ear listed to check; the owner checks them under ☰ › More settings › Audio timing (`docs/HOW-TO.md` → "Time a recording by ear"). Helpers can mark too and send the owner a file. The Mānas recording still has verses to check, and one dohā (`aranya.46.do46ख`) without a time.
-8. **Player buttons for timing** (offered to the owner): "⏹ End" and "⏱ Next starts" beside play/pause, so marking needs no scrolling.
-9. **The Android app** (`docs/APPS.md`): the content-rights decision, then the Play release. The iPhone app is parked.
+2. **Two more checks on the private repo.** Every file's checksum against its `.meta.json` (`original` / `derived` `sha256`; it needs the whole repository, so a run by hand, estimated first in Actions minutes: `docs/PLAYBOOK.md` §10), and every public `recordings.json` → `data` there (a recording the owner times by ear, `source.json` → `by_ear`, may have none there).
+3. **Run the whole audio chain with one command.** A single command per source: transcribe in the cloud, wait, sync, time, build, open a pull request.
+4. **Settle uncertain readings with the owner's printed copy.** Where a text came from the web (Chālīsā, āratīs), compare it with a Gita Press print when the owner provides one. Record the outcome in the work's `reconciliation.md`.
+5. **Check audio against what is sung.** After timing, read each verse's transcript segment against its text, and flag verses where the reciter's wording differs. This catches both text errors and timing errors.
+6. **Finish the timings by ear.** The starts each recording lists to check (`docs/PENDING.md`); the owner checks them under ☰ › More settings › Audio timing (`docs/HOW-TO.md` → "Time a recording by ear"). Helpers can mark too and send the owner a file. The Mānas recording still has verses to check, and one dohā (`aranya.46.do46ख`) without a time.
+7. **Player buttons for timing** (offered to the owner): "⏹ End" and "⏱ Next starts" beside play/pause, so marking needs no scrolling.
+8. **The Android app** (`docs/APPS.md`): the content-rights decision, then the Play release. The iPhone app is parked.

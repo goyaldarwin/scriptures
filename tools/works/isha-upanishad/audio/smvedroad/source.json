@@ -1,2 +1,11 @@
-{"id": "smvedroad", "work": "hinduism/veda/yajurveda/shukla-yajurveda/upanishad/isha-upanishad", "type": "youtube", "lang": "sa",
- "title": {"hi": "SMVedroad", "en": "SMVedroad"}}
+{
+ "id": "smvedroad",
+ "work": "hinduism/veda/yajurveda/shukla-yajurveda/upanishad/isha-upanishad",
+ "type": "youtube",
+ "lang": "sa",
+ "title": {
+  "hi": "SMVedroad",
+  "en": "SMVedroad"
+ },
+ "review": "starts from the transcript and MMS; not yet set by ear"
+}

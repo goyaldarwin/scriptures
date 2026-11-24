@@ -1,6 +1,3 @@
-# MMS on this recording: ready, not yet used
+# MMS on this recording: not used, the owner's choice
 
-`mms/xrNOEva86pA.json` holds MMS's starts for every verse (the `align` workflow on `mms/windows.json`). They are not used yet:
-`tools/audio/METHOD.md` switches a recording only after scoring MMS on the owner's starts set by ear, 20 or so, and he has
-set 0 on this one. Once he has, `python3 tools/audio/mms_score.py tools/works/bhaja-govindam/audio/chinmaya-mission-boston` scores them; if MMS is better,
-`mms_merge.py tools/works/bhaja-govindam/audio/chinmaya-mission-boston --lean <its lean>`, then `make_timings.py`, and `aligned.md` from the score.
+`mms/xrNOEva86pA.json` holds MMS's starts for every verse (the `align` workflow on `mms/windows.json`), but it scores none of the 32 verses 0.5 or more, and the owner times this recording by ear (`source.json` → `by_ear`). Where he has set a start, MMS is far from it (verse 2: his 67.1 s, MMS's 74.6 s after the 0.6 s lean).

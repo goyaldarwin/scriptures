@@ -29,9 +29,9 @@ The folder's format: `tools/works/README.md`.
 - `commentary/pa/faridkot.json` — the Faridkot Teeka, line by line, as typed in the Shabad OS database (CC BY-SA 4.0), made by
   `tools/works/guru-granth-sahib/source/faridkot.py` (its choices: `tools/works/guru-granth-sahib/reconciliation.md` §5).
 - `reconciliation.md` — how the text is settled: conversion decisions, check results, the one English fix.
-- `audio/parminder-singh/` — the recording (YouTube `KJ8D_ObQNzQ`), published for review (`source.json` → `review`): kīrtan
-  with long instrumental passages, so the automatic starts are only partly confirmed. Readers hear it; every start not yet
-  set by ear is listed for the owner to check in timing mode (`owner.json`, written by `tools/audio/apply_owner_timing.py`).
+- `audio/parminder-singh/` — the recording (YouTube `KJ8D_ObQNzQ`), its starts from the transcript and Meta's MMS aligner
+  (`aligned.md`), heard through and published by the owner (`source.json` → `checked`: nothing is listed to check); his
+  starts set by ear win (`owner.json`, written by `tools/audio/apply_owner_timing.py`).
 
 Rebuild: `python3 tools/works/sukhmani-sahib/source/make.py && python3 tools/works/export.py sukhmani-sahib && python3 tools/site/build.py`.
 

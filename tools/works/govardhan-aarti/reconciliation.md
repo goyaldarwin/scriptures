@@ -20,4 +20,4 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## The recording
 Supertone Digital (YouTube `FXhcAncuBXk`, `audio/supertone-digital/`) sings this text.
 - Not sung, so untimed: `aarti.pad5`.
-- A draft (it plays only with Audio timing on): it sings the stanzas in another order (1, 4, 3, 2): the text is to follow it first.
+- It sings Drik Panchang's stanzas 1, 4, 3, 2 in that order, and the text follows it (docs/PLAYBOOK.md §3: an āratī's text follows the order of its chosen recording): तेरे कानन कुण्डल (`aarti.pad4`) is stanza 2, तेरे गले में कण्ठा (`aarti.pad3`) stanza 3, तेरी सात कोस (`aarti.pad2`) stanza 4; गिरिराज धरण (`aarti.pad5`), which it does not sing, stays last as stanza 5. Each stanza keeps its id, so its meanings, bookmarks and times stay with it; only its number (ours, by the standard) follows its place.

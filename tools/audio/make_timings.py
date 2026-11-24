@@ -3,7 +3,9 @@
 Usage:  python3 tools/audio/make_timings.py tools/works/<work>/audio/<source-id>
 
 The source folder holds:
-  source.json      {"id", "work": "<library path>", "take"?: "<work id>" (then nothing else is needed), "type": "youtube", "title": {"hi", "en"}, "order"?, "draft"?: "<why it is not published yet>", "align"?: "anchors", "split"?: true, "fill"?: n, "anchor_min"?: 0.45, "estimate"?: true, "checked"?: true, "check_only"?: "<why>"}
+  source.json      {"id", "work": "<library path>", "take"?: "<work id>" (then nothing else is needed), "type": "youtube", "title": {"hi", "en"}, "order"?, "draft"?: "<why it is not published yet>", "align"?: "anchors", "split"?: true, "fill"?: n, "anchor_min"?: 0.45, "estimate"?: true, "checked"?: true, "check_only"?: "<why>", "unsung"?: [item ids]}
+                   "unsung": verses the recording does not sing: they get no time, whatever the transcript matched (the
+                   highlight never sits on words not sung, docs/PLAYBOOK.md §8)
                    "check_only": the to-check list is check.json alone (a sample the owner hears to score the timings), not
                    also the estimated starts
   recordings.json  [{"yt": video id, "file": original file name, "dur": seconds, "order": n, "from"?/"to"?: item id, "lead"?: seconds,
@@ -168,6 +170,7 @@ for r in REC:
             c = 0
             for i, nl in zip(SPLIT[old], lines): first[i] = h[2 * c]; c += nl
     items = {i: round(max(float(r.get('start', 0)), t - 0.4), 2) for i, t in first.items()}   # a segment may begin just before the track
+    for iid in meta.get('unsung', []): items.pop(ID[iid], None)   # a verse the recording does not sing gets no time (source.json "unsung")
     for iid, t in ALIGNED.get(v, {}).items(): items[ID[iid]] = t[0] if isinstance(t, list) else t   # the forced aligner's starts (aligned.json) replace the transcript's
     for iid, t in FIX.get(v, {}).items(): items[ID[iid]] = round(max(0, t - 0.4), 2)   # hand-checked starts win (fixes.json), with the same small lead
     items = sorted(items.items())

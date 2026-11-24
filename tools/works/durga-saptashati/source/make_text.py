@@ -99,7 +99,9 @@ def main(src):
     mantras = [x for x in items if x['y'] == 'mantra' and x['n']]
     assert len(mantras) == 700, len(mantras)
     keys = [SEC[s['id']] for s in J['sections']]
-    textfile.write(os.path.join(HERE, '..', 'text.txt'), items, [], keys, 'sa',
+    from topics import T   # our topic headings (source/topics.py), each before its first verse
+    ids = {x['id'] for x in items}; assert all(t[0] in ids for t in T), [t[0] for t in T if t[0] not in ids]
+    textfile.write(os.path.join(HERE, '..', 'text.txt'), items, [{'id': i, 'hi': hi, 'en': en} for i, hi, en in T], keys, 'sa',
                    ["Śrī Durgā Saptaśatī: made by source/make_text.py from the owner's copy of sanskritdocuments.org's text;",
                     'change it there, not here. Every correction and choice: reconciliation.md.'])
     print(len(items), 'items;', len(mantras), 'mantras of the adhyāyas')
