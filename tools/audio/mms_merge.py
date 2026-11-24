@@ -7,7 +7,8 @@
 - A verse MMS scores below 0.5 keeps the transcript's start (it is left out of aligned.json).
 - A verse's end is kept (aligned.json value [start, end]) when MMS heard it end; make_timings.py uses it only where the next
   verse starts more than 1.5 s later (a refrain, music, a pause), so the light leaves the verse when the reciting does.
-- check.json lists, for the owner's ear, every verse the checks of step 4 flag:
+- check.json lists, for the owner's ear, every verse the checks of step 4 flag (none for a source the owner has heard through
+  and published, source.json "checked": true):
     low score   MMS scored it below 0.5;
     disagree    MMS and the transcript's start (windows.json "rough") differ by more than 2 s;
     pace        its length (to the next start) for its letters is under half or over double the median of the 20 verses
@@ -77,6 +78,7 @@ def by_line(src, lean, W, dry=False):
                 aligned.setdefault(w['yt'], {})[i] = [round(max(0.0, good[0][1] - lean), 2), round(last, 2)]
                 lines.setdefault(w['yt'], {})[i] = [[o[0], round(max(0.0, o[1] - lean), 2), o[2]] for o in good]
     allf = {i for s in flags.values() for i in s} - own
+    if meta.get('checked'): allf = set()   # source.json "checked": the owner heard it through and published it
     if not dry: json.dump(aligned, open(os.path.join(src, 'aligned.json'), 'w'), ensure_ascii=False, separators=(',', ':'))
     if not dry: json.dump(lines, open(os.path.join(src, 'lines.json'), 'w'), ensure_ascii=False, separators=(',', ':'))
     with open(os.path.join(src, 'check.json') if not dry else os.devnull, 'w', encoding='utf-8') as f:
@@ -122,6 +124,7 @@ def main(src, lean, dry=False):
     prev = json.load(open(os.path.join(src, 'check.json'), encoding='utf-8')) if os.path.exists(os.path.join(src, 'check.json')) else {}
     also = [i for i in prev.get('also', []) if i not in {k for v in OWN.values() for k in v}]
     allf = ({i for s in flags.values() for i in s} - own) | set(also)
+    if json.load(open(os.path.join(src, 'source.json'), encoding='utf-8')).get('checked'): allf = set()   # source.json "checked": the owner heard it through and published it; nothing is listed
     ids_order = [i for yt in order for i in order[yt]]
     json.dump({yt: A for yt, A in aligned.items()}, open(os.path.join(src, 'aligned.json'), 'w'), ensure_ascii=False, separators=(',', ':'))
     with open(os.path.join(src, 'check.json'), 'w', encoding='utf-8') as f:

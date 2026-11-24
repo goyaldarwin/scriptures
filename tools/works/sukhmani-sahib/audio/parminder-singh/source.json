@@ -9,5 +9,5 @@
  },
  "window": 6,
  "align": "anchors",
- "review": "starts from the transcript and MMS (the owner: publish); every start not yet set by ear is listed to check in timing mode"
+ "checked": true
 }
