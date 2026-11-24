@@ -69,7 +69,9 @@ def main(src):
         assert col.endswith('॥' + str(c).translate(DIG) + '॥'), col
         items.append({'id': f'{c}.iti', 'p': p, 's': str(c), 'y': 'iti', 'n': '', 'v': [col]})
     keys = (['dhyana'] if base else []) + [str(i) for i in range(1, 19)]
-    textfile.write(os.path.join(HERE, '..', 'text.txt'), items, [], keys, 'sa',
+    from topics import T   # our topic headings (source/topics.py), each before its first verse
+    ids = {x['id'] for x in items}; assert all(t[0] in ids for t in T), [t[0] for t in T if t[0] not in ids]
+    textfile.write(os.path.join(HERE, '..', 'text.txt'), items, [{'id': i, 'hi': hi, 'en': en} for i, hi, en in T], keys, 'sa',
                    ['Śrīmad Bhagavad Gītā: made by source/make_text.py from the owner\'s copy of sanskritdocuments.org\'s text',
                     '(and source/dhyana.txt); change it there, not here. Every correction and choice: reconciliation.md.'])
     print(len(items), 'items;', sum(x['y'] == 'shloka' for x in items), 'ślokas')
