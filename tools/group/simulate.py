@@ -94,7 +94,7 @@ async def main():
         # ---------- 1. the Mānas, 30-day plan, day 1; the leader starts a group paath from ☰ ----------
         await L.evaluate("openWork('manas')"); await L.wait_for_function("!!document.querySelector('#orgList [data-open]')", timeout=30000)
         await lead_play('manas', 'M', "dayRange('M', 1)[0]")
-        await L.click('#rMore'); await L.click('[data-m="group"]'); await L.click('[data-where="room"]')
+        await L.click('#rMore'); await L.click('[data-m="group"]'); await L.click('#gpGoStart')
         await L.wait_for_function("GP.live", timeout=10000); code = await L.evaluate('GP.code'); await shot(L, '01-leader-sheet')
         await L.evaluate('closeSheet()')
         # F1: a fresh phone opens the shared link
@@ -102,7 +102,7 @@ async def main():
         await F[0].wait_for_function("GP.role === 'follow' && PL.on && PL.cur >= 0", timeout=30000)
         check('1: F1 joins by the link, opens the Mānas in the leader\'s plan and day', await F[0].evaluate("W.id === 'manas' && R.org === 'M' && R.n === 1"), await F[0].evaluate("[W.id, R.org, R.n]"))
         # F2: Hindi phone on the library types the code in ☰ › Group paath
-        await boot(F[1]); await F[1].evaluate('mainMenu()'); await F[1].click('[data-m="group"]'); await F[1].fill('#gpIn', code[:3] + ' ' + code[3:]); await F[1].click('#gpJoin')
+        await boot(F[1]); await F[1].evaluate('mainMenu()'); await F[1].click('[data-m="group"]'); await F[1].click('#gpGoJoin'); await F[1].fill('#gpIn', code[:3] + ' ' + code[3:]); await F[1].dispatch_event('#gpIn', 'input'); await F[1].click('#gpJoin')
         await F[1].wait_for_function("GP.role === 'follow' && PL.on && PL.cur >= 0", timeout=30000)
         check('1: F2 (Hindi) joins by typing the code with a space, from the library', await F[1].evaluate("W.id === 'manas' && S.settings.ui === 'hi'"), await F[1].evaluate("[W.id, S.settings.ui, LANG()]"))
         # F4: reading the Gita when it joins: switches to the Mānas
@@ -257,9 +257,10 @@ async def main():
         await F[2].reload(); await F[2].wait_for_function("typeof LIB !== 'undefined' && !!LIB", timeout=20000); await asyncio.sleep(1)
         check('13: a follower that refreshes afterwards is not in a session any more', await F[2].evaluate("GP.role === null"))
         # ---------- 14. the next sitting, the same code, some elsewhere: a follower plays the sound in step ----------
-        check('14: after End for today the leader keeps its code', await L.evaluate("(gpMine() || {}).code") == code)
-        await L.click('#rMore'); await L.click('[data-m="group"]'); await L.click('[data-where="apart"]'); await L.wait_for_function("GP.live", timeout=10000)
-        check('14: the next sitting starts with the same code', await L.evaluate("GP.code") == code and await L.evaluate("GP.m") == 'apart')
+        check('14: after Disconnect followers the leader keeps its code', await L.evaluate("(gpMine() || {}).code") == code)
+        await L.click('#rMore'); await L.click('[data-m="group"]'); await L.click('#gpGoStart'); await L.wait_for_function("GP.live", timeout=10000)
+        await L.click('#gpMode + span'); await L.wait_for_function("GP.m === 'apart' && GP.live", timeout=10000)
+        check('14: the next sitting starts with the same code; the toggle lets followers play audio', await L.evaluate("GP.code") == code and await L.evaluate("GP.m") == 'apart')
         await L.evaluate("closeSheet(); ytPost('playVideo')")
         await F[1].evaluate(FAKE_YT.replace('0.25 * RATE()', '0.25 * wantRate()')); await F[1].evaluate("(() => { const l = window.ytLoad; window.ytLoad = (v, s) => { l(v, s); const d = document.createElement('div'); d.id = 'ytf'; const box = document.querySelector('#ytBox'); box.innerHTML = ''; box.appendChild(d); }; })()")
         await F[1].evaluate(f"gpStart('follow', '{code}')")
@@ -272,7 +273,7 @@ async def main():
         await L.evaluate("ytPost('pauseVideo')"); await asyncio.sleep(1.5)
         check('14: the leader pauses: the follower\'s sound pauses', await F[1].evaluate("ytInfo.st") == 2)
         await L.click('#rMore'); await L.click('[data-m="group"]'); await L.click('#gpEndCode'); await L.click('#askOk'); await asyncio.sleep(1.5)
-        check('14: End the code: the follower is sent home and the code is let go', await F[1].evaluate("GP.role === null") and await L.evaluate("gpMine()") is None)
+        check('14: Delete code: the follower is sent home and the code is let go', await F[1].evaluate("GP.role === null") and await L.evaluate("gpMine()") is None)
 
         for k, v in errs.items():
             check(f'no script errors on {k}', not v, len(v))

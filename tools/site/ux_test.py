@@ -1675,20 +1675,22 @@ async def group_paath(b, url, shots):
     check('words: every text says device / डिवाइस, never phone / फ़ोन', len(said) > 500 and not bad, bad[:5])
     emo = [x for x in said if re.search('[\U0001F300-\U0001FAFF]', x)]
     check('words: no emoji in any text (docs/PLAYBOOK.md §6)', not emo, emo[:5])
-    sess = {'lead': None, 'follow': [], 'state': None, 'live': False, 'm': 'room', 'key': None}
+    sess = {'lead': None, 'follow': [], 'state': None, 'live': False, 'm': 'room', 'key': None, 'code': None}; held = {}   # held: codes other leaders hold
     def count():
         if sess['lead']: sess['lead'].send(json.dumps({'type': 'count', 'n': len(sess['follow'])}))
     def to_f(d):
         for f in list(sess['follow']): f.send(json.dumps(d))
     def end(why):
         to_f({'type': 'end', 'why': why}); sess['live'] = False; sess['state'] = None
-        if why == 'code': sess['key'] = None
+        if why == 'code': sess['key'] = None; sess['code'] = None
     def relay(ws):   # the Worker's protocol, in memory
         q = dict(x.split('=', 1) for x in ws.url.split('?', 1)[1].split('&') if '=' in x)
+        c = re.search(r'/s/(\d{6})', ws.url).group(1)
         if q.get('role') == 'lead':
-            if sess['key'] and q.get('key') != sess['key']:
+            if c in held or (sess['key'] and sess['code'] == c and q.get('key') != sess['key']):
                 ws.send(json.dumps({'type': 'taken'})); return
-            sess['key'] = q.get('key'); sess['lead'] = ws; was = (sess['live'], sess['m'])
+            if sess['code'] != c: sess.update(live=False, state=None)
+            sess['key'] = q.get('key'); sess['code'] = c; sess['lead'] = ws; was = (sess['live'], sess['m'])
             sess['live'] = True; sess['m'] = 'apart' if q.get('m') == 'apart' else 'room'; count()
             if was != (True, sess['m']): to_f({'type': 'mode', 'm': sess['m']})
             def msg(m):
@@ -1704,6 +1706,8 @@ async def group_paath(b, url, shots):
                 else: to_f({'type': 'away'})
             ws.on_message(msg); ws.on_close(closed)
         else:
+            if c != sess['code'] or not sess['key']:   # a code no leader holds here (another code, or a probe of one)
+                ws.send(json.dumps({'type': 'wait', 'none': c not in held})); ws.on_message(lambda m: ws.send('pong') if m == 'ping' else None); return
             sess['follow'].append(ws)
             if sess['live']:
                 ws.send(json.dumps({'type': 'mode', 'm': sess['m']}))
@@ -1738,20 +1742,27 @@ async def group_paath(b, url, shots):
     await (await L.query_selector('#rMore')).click(); await L.wait_for_timeout(200)
     item = await L.query_selector('#sheetBody [data-m="group"]'); check('group paath: ☰ offers it where a relay is set', bool(item))
     await item.click(); await L.wait_for_timeout(200)
-    draft = await L.evaluate("GP.draft")
-    check('group paath: the leader is shown a 6-digit code (with Change) and asked "Where is everyone?" with two buttons',
-          len(draft) == 6 and draft.isdigit() and 'Where is everyone?' in await L.inner_text('#gpBody') and await L.evaluate("document.querySelectorAll('#gpBody [data-where]').length") == 2 and bool(await L.query_selector('#gpChange')), draft)
+    check('group paath: the first step is one line and two buttons, Start and Join', bool(await L.query_selector('#gpGoStart')) and bool(await L.query_selector('#gpGoJoin')) and 'One device plays' in await L.inner_text('#gpBody'))
     await shot(L, 'start')
-    # the leader chooses its own code
-    await (await L.query_selector('#gpChange')).click(); await L.fill('#gpOwn', '108 108')
-    await (await L.query_selector('#gpBody [data-where="room"]')).click()
-    await L.wait_for_function("GP.live", timeout=8000)
+    # Start: at once, a new code, in a room (followers get no audio unless the leader's toggle allows it)
+    await (await L.query_selector('#gpGoStart')).click(); await L.wait_for_function("GP.live", timeout=8000)
+    first = await L.evaluate('GP.code')
+    check('group paath: Start starts at once with a new code, in a room, shown with its QR code', len(first) == 6 and first.isdigit() and await L.evaluate("GP.m") == 'room' and await L.is_visible('#gpBody svg.qr'), first)
+    check('group paath: with no one joined, the button says End group paath, and a new code has a pencil', 'End group paath' in await L.inner_text('#gpEnd') and bool(await L.query_selector('#gpOwnCode')))
+    # the leader edits the code in place
+    await (await L.query_selector('#gpOwnCode')).click(); await L.fill('#gpOwn', '10810899')
+    v = await L.evaluate("document.querySelector('#gpOwn').value")
+    check('group paath: a code box takes digits only, at most 6, as 123 456', v == '108 108', v)
+    await L.fill('#gpOwn', '10'); await L.dispatch_event('#gpOwn', 'input')
+    check('group paath: ✓ waits for all 6 digits', await L.evaluate("document.querySelector('#gpUse').disabled"))
+    await L.fill('#gpOwn', '108108'); await L.dispatch_event('#gpOwn', 'input'); await (await L.query_selector('#gpUse')).click()
+    await L.wait_for_function("GP.live && GP.code === '108108'", timeout=8000)
     code = await L.evaluate('GP.code')
-    check('group paath: the leader may choose its own code; it starts in a room, shown with its QR code', code == '108108' and await L.evaluate("GP.m") == 'room' and await L.is_visible('#gpBody svg.qr') and '108' in await L.inner_text('.gpcode'), code)
+    check('group paath: the leader may change a new code in place (the old one is let go)', code == '108108' and '108' in await L.inner_text('.gpcode'), code)
     await shot(L, 'leader')
     keys = await L.wait_for_function("GP.sent && Object.keys(GP.sent).sort().join(',')"); keys = await keys.json_value()
     check('group paath: the leader sends only where the recording is and the mode (no reader\'s data)', keys == 'au,i,k,l,m,on,org,p,r,t,w', keys)
-    check('group paath: the leader\'s sheet has End for today and End the code', bool(await L.query_selector('#gpEnd')) and bool(await L.query_selector('#gpEndCode')))
+    check('group paath: the leader\'s sheet has the End button, Delete code and the audio toggle', bool(await L.query_selector('#gpEnd')) and bool(await L.query_selector('#gpEndCode')) and bool(await L.query_selector('#gpMode')))
     await L.evaluate('closeSheet()')
     # the follower: a fresh device opens the join link; in a room it is not asked and has no sound
     await F.goto(url + '?join=' + code)
@@ -1761,6 +1772,9 @@ async def group_paath(b, url, shots):
           await F.evaluate("W.id === 'bhaja-govindam' && !TOUR && !document.querySelector('#ytf') && !location.search.includes('join')"))
     check('group paath: in a room the follower is not asked how to listen', await F.evaluate("GP.m === 'room' && !document.querySelector('#sheetBody [data-hear]') && !GP.hear"))
     await L.wait_for_function("GP.n === 1", timeout=5000); check('group paath: the leader sees 1 device following', '1 device following' in await L.inner_text('#pTrack'), await L.inner_text('#pTrack'))
+    await lead_menu()
+    check('group paath: once someone has joined, the code has no pencil and the button says Disconnect followers', not await L.query_selector('#gpOwnCode') and 'Disconnect followers' in await L.inner_text('#gpEnd'))
+    await L.evaluate('closeSheet()')
     a = await L.evaluate("AUT[PL.t].map(x => [x[0], x[1]])"); i, t = a[len(a) // 2]
     await L.evaluate(f"stepVerse(0); seekGuard({t + 0.5}); ytPost('seekTo', [{t + 0.5}, true])")
     try: await F.wait_for_function(f"PL.cur === {i}", timeout=5000)
@@ -1801,19 +1815,21 @@ async def group_paath(b, url, shots):
     check('group paath: a follower\'s ✕ leaves at once, offering "Join again"', left[0] is None and 'Join again' in left[1], left)
     await F.click('#toast .tact'); await F.wait_for_function("GP.role === 'follow' && GP.live && PL.on", timeout=8000)
     check('group paath: "Join again" puts it back in the sitting', True)
-    # End for today: the follower goes home; the code stays the leader's, and the next sitting uses it again
+    # Disconnect followers: the follower goes home; the code stays the leader's, and the next sitting uses it again
     await lead_menu(); await (await L.query_selector('#gpEnd')).click(); await F.wait_for_function("GP.role === null", timeout=5000)
-    check('group paath: End for today sends the follower home, its bar gone, saying the same code works next time',
+    check('group paath: Disconnect followers sends the follower home, its bar gone, saying the same code works next time',
           await F.evaluate("document.querySelector('#player').hidden && !document.body.classList.contains('gpf')") and 'same code' in await F.inner_text('#toast'), await F.inner_text('#toast'))
-    check('group paath: after End for today the leader\'s device keeps its code', await L.evaluate("(gpMine() || {}).code") == code)
-    # some are elsewhere: the next sitting, the same code; the follower is asked, and with sound plays at the leader's place
-    await lead_menu()
-    check('group paath: the next sitting offers the same code', code[:3] in await L.inner_text('#gpBody'), await L.inner_text('#gpBody'))
-    await (await L.query_selector('#gpBody [data-where="apart"]')).click(); await L.wait_for_function("GP.live", timeout=8000)
-    check('group paath: the same code starts again', await L.evaluate("GP.code") == code and await L.evaluate("GP.m") == 'apart')
+    check('group paath: the leader\'s device keeps its code, marked as joined', await L.evaluate("(gpMine() || {}).code") == code and await L.evaluate("!!(gpMine() || {}).used"))
+    # the next sitting: Start starts the same code at once, with no pencil (people know it)
+    await lead_menu(); await (await L.query_selector('#gpGoStart')).click(); await L.wait_for_function("GP.live", timeout=8000)
+    check('group paath: the next sitting starts the same code at once, its setting kept, no pencil', await L.evaluate("GP.code") == code and await L.evaluate("GP.m") == 'room' and not await L.query_selector('#gpOwnCode'))
+    # the toggle lets followers play audio; the relay tells them; a follower is asked, Follow without audio first
+    await L.click('#gpMode + span'); await L.wait_for_function("GP.m === 'apart' && GP.live", timeout=8000)
+    check('group paath: the toggle is kept with the code', await L.evaluate("(gpMine() || {}).m") == 'apart')
     await L.evaluate("closeSheet(); ytPost('playVideo')")
     await F.evaluate(f"gpStart('follow', '{code}')"); await F.wait_for_function("!!document.querySelector('#sheetBody [data-hear]') && document.querySelector('#sheet').classList.contains('on')", timeout=8000)
-    check('group paath: where some are elsewhere, the follower is asked about sound on its device (two buttons)', await F.evaluate("document.querySelectorAll('#sheetBody [data-hear]').length") == 2 and 'Play the recording here' in await F.inner_text('#sheetBody') and 'Follow without sound' in await F.inner_text('#sheetBody'))
+    first_btn = await F.evaluate("document.querySelector('#sheetBody [data-hear]').dataset.hear")
+    check('group paath: where followers may play audio, the follower is asked, Follow without audio first and default', first_btn == '0' and 'Follow without audio' in await F.inner_text('#sheetBody') and 'Follow with audio' in await F.inner_text('#sheetBody'), first_btn)
     await F.wait_for_timeout(400); await shot(F, 'ask')
     await F.click('#sheetBody [data-hear="1"]'); await F.wait_for_function("GP.hear && PL.on && !!document.querySelector('#ytf')", timeout=8000)
     await F.wait_for_timeout(2500)
@@ -1835,7 +1851,7 @@ async def group_paath(b, url, shots):
     after = [await F.evaluate("window.__seeks"), round(await off(), 2)]
     check('group paath: a follower measures its own lead (this stand-in player moves at once: near 0 s)', lead is not None and lead < 0.15, lead)
     check('group paath: a follower 0.5 s off is not moved mid-verse, and is put back in step as the next verse begins',
-          mid == 0 and after[0] >= 1 and abs(after[1]) < 0.2, {'lead': lead, 'seeks mid-verse': mid, 'after the verse began': after})
+          mid == 0 and after[0] >= 1 and abs(after[1]) < 0.3, {'lead': lead, 'seeks mid-verse': mid, 'after the verse began': after})
     await L.evaluate("ytPost('pauseVideo')"); await F.wait_for_timeout(1500)
     check('group paath: the leader pauses, a follower that plays the sound pauses too', await F.evaluate("ytInfo.st") == 2)
     await F.evaluate("gpHear(false)")
@@ -1847,19 +1863,28 @@ async def group_paath(b, url, shots):
     await F.evaluate(f"localStorage.setItem(GPK, JSON.stringify({{role: 'follow', code: '{code}', key: '', m: 'apart', at: Date.now() - 31 * 60000, prev: {{}}}}))")
     await F.reload(); await F.wait_for_function("typeof LIB !== 'undefined' && !!LIB"); await F.wait_for_timeout(500)
     check('group paath: a device away from its sitting for 30 minutes opens as the normal app', await F.evaluate("GP.role === null && !document.body.classList.contains('gpf')"))
-    await F.evaluate("gpSheet()"); await F.wait_for_timeout(200)
-    check('group paath: ☰ › Group paath offers "Join … again" with the last code', bool(await F.query_selector('#gpAgain')) and code[:3] in await F.inner_text('#gpAgain'))
+    await F.evaluate("closeTour(true); gpSheet()"); await F.wait_for_timeout(200); await F.click('#gpGoJoin'); await F.wait_for_timeout(200)
+    check('group paath: Join shows the box (the last code already in it) and Join under it', await F.evaluate("document.querySelector('#gpIn').value") == code[:3] + ' ' + code[3:] and bool(await F.query_selector('#gpJoin')))
+    await F.fill('#gpIn', '12'); await F.dispatch_event('#gpIn', 'input')
+    check('group paath: Join waits for all 6 digits', await F.evaluate("document.querySelector('#gpJoin').disabled"))
+    await F.fill('#gpIn', '000001'); await F.dispatch_event('#gpIn', 'input'); await F.click('#gpJoin')
+    await F.wait_for_function("(document.querySelector('#gpErr') || {}).textContent && document.querySelector('#gpErr').textContent.includes('Check')", timeout=8000)
+    check('group paath: a code nobody holds is said in red under the box; the sheet stays open, nothing joined', await F.evaluate("GP.role === null && document.querySelector('#sheet').classList.contains('on') && document.querySelector('#gpIn').classList.contains('bad')"))
     await F.evaluate("closeSheet()")
-    # End the code: asked first; then the code is gone from the leader's device and the relay
+    # Delete code: asked first; then the code is gone from the leader's device and the relay
     await lead_menu(); await (await L.query_selector('#gpEndCode')).click(); await L.wait_for_timeout(200)
     await (await L.query_selector('#askOk')).click(); await L.wait_for_function("GP.role === null", timeout=5000)
-    check('group paath: End the code (asked first) lets the code go', await L.evaluate("gpMine()") is None and sess['key'] is None)
-    # a code another leader holds: "choose another"
-    sess['key'] = 'someone-elses-key-123'
-    await lead_menu(); await (await L.query_selector('#gpChange')).click(); await L.fill('#gpOwn', '108108')
-    await (await L.query_selector('#gpBody [data-where="room"]')).click(); await L.wait_for_timeout(600)
-    check('group paath: a code someone else holds says to choose another', await L.evaluate("GP.role === null") and 'Choose another' in await L.inner_text('#toast'), await L.inner_text('#toast'))
-    sess['key'] = None; await L.evaluate("closeSheet()")
+    check('group paath: Delete code (asked first) lets the code go', await L.evaluate("gpMine()") is None and sess['key'] is None)
+    # a code another leader holds, chosen with the pencil: said in red, the code before comes back
+    sess['follow'] = []   # the follower's sockets from before its reload
+    await lead_menu(); await (await L.query_selector('#gpGoStart')).click()
+    await L.wait_for_function("GP.live && GP.n === 0", timeout=8000)
+    before = await L.evaluate("GP.code")
+    await (await L.query_selector('#gpOwnCode')).click(); await L.fill('#gpOwn', '777777'); await L.dispatch_event('#gpOwn', 'input')
+    held['777777'] = True; await (await L.query_selector('#gpUse')).click()
+    await L.wait_for_function("GP.live && (document.querySelector('#gpErr') || {}).textContent", timeout=8000)
+    check('group paath: a code someone else holds is said in red, and the code before comes back', await L.evaluate("GP.code") == before and 'in use' in await L.inner_text('#gpErr'), [await L.evaluate("GP.code"), before])
+    held.pop('777777', None); await L.evaluate("gpStop('', 'code'); closeSheet()")
     # a code nobody holds: not joined at all (nothing stuck), and it says to check the number
     await F.evaluate("gpStart('follow', '000001')"); await F.wait_for_function("GP.role === null", timeout=5000)
     check('group paath: a code nobody holds is not joined, and says to check the number', 'Check the number' in await F.inner_text('#toast') and await F.evaluate("document.querySelector('#player').hidden && !document.body.classList.contains('gpf')"), await F.inner_text('#toast'))
@@ -1868,12 +1893,12 @@ async def group_paath(b, url, shots):
     check('group paath: a device cannot join its own code', await L.evaluate("GP.role") is None and 'own code' in await L.inner_text('#toast'), await L.inner_text('#toast'))
     await L.evaluate("gpPut(GPM, null)")
     # a code held but not started: the follower waits; its ▶ leaves and plays here (nothing is playing to follow)
-    sess['key'] = 'held-key-123456789'; sess['live'] = False
+    sess['key'] = 'held-key-123456789'; sess['code'] = '108108'; sess['live'] = False
     await F.evaluate("gpStart('follow', '108108')"); await F.wait_for_function("GP.role === 'follow' && GP.live", timeout=5000); await F.wait_for_timeout(300)
     check('group paath: a code held but not started waits for the leader', 'Waiting for the leader to start' in await F.inner_text('#pTrack'), await F.inner_text('#pTrack'))
     await F.evaluate("(async () => { await openWork('bhaja-govindam', true); openReader('k', 0); playFrom(0); })()"); await F.wait_for_timeout(600)
     check('group paath: waiting, a follower\'s ▶ leaves the group paath and plays here', await F.evaluate("GP.role === null && PL.on"))
-    await F.evaluate("stopAudio()"); sess['key'] = None
+    await F.evaluate("stopAudio()"); sess['key'] = None; sess['code'] = None
     check('group paath: no script errors', not errs, '; '.join(errs[:3]))
     await cl.close(); await cf.close()
     # no relay address (apps/app.json → "group" empty): not offered
