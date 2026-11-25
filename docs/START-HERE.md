@@ -92,8 +92,6 @@ library/ ─ tools/site/build.py (checks everything first) ─► index.html, ap
 - Nothing open. A new work's or kāṇḍa's doubts go to `docs/reviews/` and are settled before its pull request is merged.
 
 ## To build next
-- The Lalitā āratī's refrain (`lalita-aarti`, `aarti.tek`): its recording sings the refrain in another written witness's words; the text to follow it (PLAYBOOK §3), with its meanings and word meanings, once it is settled which witness's refrain is sung (`reconciliation.md` → "The recording").
-- MMS on the four recordings still timed from the transcript alone (`docs/WORKS.md`, last section): the Lakṣmī, Śītalā and Jāharvīr chālīsās and the Vindhyeśvarī āratī, all drafts, so best done after the owner's choice below.
 - The timing method's fixes (`tools/audio/METHOD.md`, step 5: re-align between trusted neighbours, snap to the onset, spread and list); steps 2–4 run in the public `align` workflow.
 
 ## Open with the owner
