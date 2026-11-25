@@ -221,4 +221,11 @@ the published translations of the Bhagavad-guṇa-darpaṇa are not copied. Only
 sense, a different division of the words (समात्मा सम्मितः for समात्माऽसम्मितः, 12) or a different count (स्थविरो ध्रुवः, 6;
 गुरुर्गुरुतमः, 23; विश्वभुग्विभुः, 26), and the avatāra Bhaṭṭar reads a run of names as (the Fish, 23–24; Paraśurāma, 34;
 the churning of the ocean, 35). Where the two agree in substance, or Bhaṭṭar's reading is only a devotional extension of
-the same sense, there is no footnote. Written so far for stotra 1–35 (Krishnamachari's vol. 1); 36–107 are still to do.
+the same sense, there is no footnote. Written for stotra 1–108 (Krishnamachari's vols. 1–5): 23 ślokas of 1–35 and 62 of 36–108. Where Bhaṭṭar's text
+reads a different word, the footnote says so (निवृत्तात्मा for विमुक्तात्मा, 48; विधेयात्मा, 66; अशोकः, 67; स्तुतः, 73;
+वाजसनिः, 85; नैकदः, 95), and where he divides the words otherwise (स्थविष्ठो भूः, 47; समावर्तो निवृत्तात्मा, 83;
+आधारनिलयो धाता, 102) or counts otherwise (देवभृत् गुरुः, 52; महर्षिः कपिलाचार्यः, 57; ब्रह्मकृद्ब्रह्मा, 71; सः वः, 78;
+शत्रुजिच्छत्रुतापनः, न्यग्रोधोदुम्बरः, 88; हुतभुग्विभुः, 94; अनन्तहुतभुग्भोक्ता, 95; कपिरव्ययः, 96). Runs of names he reads
+as one story: Kṛṣṇa's childhood (40), Rāma (43), Kalki and the new age (45–46), the starry Śiśumāra (47), Mohinī (49–50),
+the Boar (57), Śrī (64–65), the temple image (67), the war (81), the Buddha descent (83–85), the fallen yogī (91), the
+path of light (94–95), Gajendra (97–99). Verse 108 (वनमाली गदी …) has a footnote that Bhaṭṭar does not comment on it.
