@@ -31,6 +31,10 @@
   "chalisa-cau": {
    "hi": "चालीसा",
    "en": "Chalisa"
+  },
+  "chalisa-ant": {
+   "hi": "समापन",
+   "en": "Closing"
   }
  }
 }

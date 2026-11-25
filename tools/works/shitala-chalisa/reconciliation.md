@@ -11,7 +11,7 @@ The rule: keep the book; correct it only where it is clearly wrong, and only on 
 | chaupāī 24 | नमो नमो त्रलोक्य वन्दिनी | नमो नमो त्रैलोक्य वन्दिनी | त्रलोक्य is a dropped ै: त्रैलोक्य ("the three worlds") is the word, and the half needs its 16 mātrās; Drik Panchang has त्रैलोक्य. |
 | chaupāī 37 | पुरी तिवारी मोर मोर निवासा | पुरी तिवारी मोर निवासा | मोर is printed twice (a typesetter's repeat): the half then has 19 mātrās for 16, and Drik Panchang has it once. |
 | chaupāī 36 | भनत 'रामसुन्दर' प्रभुदासा | भनत रामसुन्दर प्रभुदासा | The quotation marks are the printer's, not part of the verse. |
-| the dohā घट-घट वासी शीतला | second opening dohā (before the chaupāīs) | the same (`chalisa.do2`) | The book's order is kept; Drik Panchang has it as the closing dohā. |
+| the dohā घट-घट वासी शीतला | second opening dohā (before the chaupāīs) | the closing dohā (`chalisa.do2`) | Drik Panchang has it as the closing dohā, and the recording sings it there ("The recording", below), so the text follows that order. |
 
 Kept as the book has them, against Drik Panchang: शरदचंद्र (Drik शरदचन्द्र), बजावैं (Drik बजावै), पार न पावैं (Drik ना), हरिहैं in chaupāī 16 (Drik हरिहौं; neither is clearly wrong), निकन्दनी (Drik कन्दिनी, a syllable short), जग में (Drik मे). Kept as both have them: सक्यो न जब संकट टारी (a half one mātrā short), रुणलीह्युणनी, पड़ा क्षर.
 
@@ -30,5 +30,5 @@ The readings the words alone leave open, each decided (docs/PLAYBOOK.md §2).
 ## The recording
 Mantra Duniya (YouTube `kyTMnUnElYo`, `audio/mantra-duniya/`) sings this text.
 - Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau27`.
-- Sung with words that another written witness prints, against the base kept here: `chalisa.do2`, `chalisa.cau16`.
-- A draft (it plays only with Audio timing on): it sings the dohā घट-घट वासी last; a chālīsā keeps its base's order (docs/PLAYBOOK.md §3), so the order sung is recorded here, not taken.
+- `chalisa.cau16`: the base stays: the transcript does not settle what is sung (हरिहैं or हरिहौं).
+- A draft (it plays only with Audio timing on): it sings the dohā घट-घट वासी last; Drik Panchang prints it there, and the text follows that order (docs/PLAYBOOK.md §3).

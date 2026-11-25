@@ -11,7 +11,7 @@ The rule: keep the book; correct it only where it is clearly wrong, and only on 
 |---|---|---|---|
 | chaupāī 33 | दुष्टन कहँ प्रभु अहछु भयंकर | दुष्टन कहँ प्रभु अहहु भयंकर | अहछु is not a word, a damaged letter: the book has अहहु ("you are") in chaupāīs 13 and 25, and Drik Panchang has अहहु here. |
 
-Kept as the book has them, against Drik Panchang: निज दास (Drik जि दास), सफल एक ते एक (Drik सकल; Shubh Panchang the same as the book), घुँघुरू बाजैं / भाजैं (Drik घुँघरू बाजै / भाजै), लिए, अविनासी (Drik अविनाशी), कहुँ होइ (Drik कहुं होई), जपत (Drik जयत), अहहु अतीता (Drik अहहू), कालमयी (Drik कालजयी), सार्यो (Drik सारयो), तब चरणन (Drik तव), श्रीक्रोधेश, बूढ़त, तुम्हरो (Drik तम्हरो), परे (Drik परै), सुखकन्द, देहु (Drik देहुं).
+Kept as the book has them, against Drik Panchang: निज दास (Drik जि दास), घुँघुरू बाजैं / भाजैं (Drik घुँघरू बाजै / भाजै), लिए, अविनासी (Drik अविनाशी), कहुँ होइ (Drik कहुं होई), जपत (Drik जयत), अहहु अतीता (Drik अहहू), सार्यो (Drik सारयो), तब चरणन (Drik तव), श्रीक्रोधेश, बूढ़त, तुम्हरो (Drik तम्हरो), परे (Drik परै), सुखकन्द, देहु (Drik देहुं).
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
@@ -26,4 +26,4 @@ The readings the words alone leave open, each decided (docs/PLAYBOOK.md §2).
 ## The recording
 Anuradha Paudwal (YouTube `eyRjpWwgLjE`, `audio/anuradha-paudwal/`) sings this text in its order.
 - Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau16`.
-- Sung with words that another written witness prints, against the base kept here: `chalisa.cau5`, `chalisa.cau26`.
+- Sung with Drik Panchang's words, which the text takes (docs/PLAYBOOK.md §3: a written witness prints what is sung; each heard in the transcript at that verse): `chalisa.cau5` सफल → सकल; `chalisa.cau26` कालमयी → कालजयी.

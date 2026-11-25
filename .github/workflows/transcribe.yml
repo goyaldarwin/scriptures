@@ -8,6 +8,7 @@
 # The scripts (tools/audio) always come from main; the audio source folder (recordings.json, source.json, any partial
 # transcripts) from the branch `ref`. At most 256 ids per run (GitHub's matrix limit).
 name: transcribe
+run-name: transcribe ${{ inputs.source }} (${{ inputs.ref }})
 on:
   workflow_dispatch:
     inputs:

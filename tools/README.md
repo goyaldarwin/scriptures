@@ -22,6 +22,7 @@ tools/
     test.mjs                       its protocol test, against wrangler dev
     simulate.py                    real use with seven devices through the real relay, 14 scenarios (README)
   audio/                         audio sources (shared by every work; see audio/README.md)
+    chain.py                       the whole chain for one source in one command: transcribe, rough starts, MMS, timings, build, pull request
     transcribe.py                  recordings → transcripts (Whisper speech recognition)
     transcribe_onnx.py             the same with a Whisper model from GitHub, when the usual model can't be downloaded
     sync_transcripts.py            copies transcripts made in the cloud (private repo) into tools/works/…/transcripts/

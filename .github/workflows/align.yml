@@ -11,6 +11,7 @@
 # unless given). At most 256 jobs per run; `per_job` recordings share one job (many short recordings: kirtan), so a run
 # holds up to 256 × per_job ids and the machines' setup is paid once per job.
 name: align
+run-name: align ${{ inputs.source }} (${{ inputs.ref }})
 on:
   workflow_dispatch:
     inputs:

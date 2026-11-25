@@ -14,7 +14,7 @@ The rule: keep the book; correct it only where it is clearly wrong, and only on 
 | chaupāī 10 | वीणा वादिनि सब विधि मुन्दर | वीणा वादिनि सब विधि सुन्दर | मुन्दर is not a word: सुन्दर, rhyming with मनोहर; Shubh Panchang सुन्दर (Drik Panchang has the book's slip). |
 | chaupāī 29 | भैटहु जाइ | भैंटहु जाइ | भैटहु has lost its anusvāra: the verb is भेंटना, "to meet"; Drik Panchang's भ्ौटहु is garbled and gives no other form. |
 
-Kept as the book has them, against Drik Panchang: chaupāīs 35–36 (above); रूप, जटाजूट, महापद्म, प्राचीना, कहँ कोइ नाहीं, सब कछु, निज इच्छा उन सब (Drik इन सब), श्यामवर्ण, शिवशङ्कर, मांहीं, होइ, अगुणरूप श्री ब्रह्म बखानहु (Drik ब्रह्मा). In chaupāī 39 a stray dot over दोउ is a speck, not an anusvāra. The book and Drik Panchang also agree on सरस्वती तब सुता (तब for तव), गरब बढ़ायो / सुखपाये and करिहै.
+Kept as the book has them, against Drik Panchang: chaupāīs 35–36 (above); रूप, जटाजूट, महापद्म, प्राचीना, कहँ कोइ नाहीं, सब कछु, श्यामवर्ण, शिवशङ्कर, मांहीं, होइ, अगुणरूप श्री ब्रह्म बखानहु (Drik ब्रह्मा). In chaupāī 39 a stray dot over दोउ is a speck, not an anusvāra. The book and Drik Panchang also agree on सरस्वती तब सुता (तब for तव), गरब बढ़ायो / सुखपाये and करिहै.
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
@@ -28,5 +28,5 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 
 ## The recording
 Saroj Amarnath Yadav (YouTube `7lfOLotn17A`, `audio/saroj-amarnath-yadav/`) sings this text.
-- Sung with words that another written witness prints, against the base kept here: `chalisa.cau25`.
+- Sung with Drik Panchang's words, which the text takes (docs/PLAYBOOK.md §3: a written witness prints what is sung; each heard in the transcript at that verse): `chalisa.cau25` उन सब → इन सब.
 - Every verse it sings is timed: the starts MMS could not place were read by hand on 5-s windows (`audio/saroj-amarnath-yadav/fixes.md`).

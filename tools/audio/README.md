@@ -4,6 +4,8 @@ The website plays recordings from YouTube and highlights each verse as it is rec
 
 ## How the timings are made
 
+All of it for one source in one command: `chain.py tools/works/<work>/audio/<source>` (its header; `docs/HOW-TO.md`, "Add a new audio source").
+
 The method as a whole (rough placement, exact starts, ends, finding and fixing errors, the owner's ear), what is built and what is to build: `METHOD.md`.
 1. **`transcribe.py`**: Whisper small (CTranslate2 int8; e.g. `Systran/faster-whisper-small`) converts speech to text with times.
    - Audio is cut into 10-minute chunks with ffmpeg so memory stays low on a small machine.

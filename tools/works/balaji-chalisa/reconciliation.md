@@ -11,7 +11,7 @@ The rule: keep the book; correct it only where it is clearly wrong, and only on 
 | opening dohā 2 | …बालाजी भगवान। | …बालाजी भगवान ॥ | The standard: a dohā's second line ends ॥ (the book ends it with a single daṇḍa). |
 | chaupāī 40 | कल्याण स्नेही, स्नेह से गावे | कल्याण स्नेही स्नेह से गावे | The comma inside the half is not kept. |
 
-No word of the book is changed. Kept as the book has them, against Drik Panchang: सब भग जाते (chaupāī 6; Drik भाग), मेवा अरू मिष्ठान (chaupāī 30; Drik अरु), and the opening dohās' halves (Drik splits the first after चितलाय, putting के in the second half). Otherwise the two texts agree word for word (Drik's उध्दार is a typing of उद्धार).
+One word of the book is changed: भग → भाग (chaupāī 6), which the recording sings as Drik Panchang prints it ("The recording", below). Kept as the book has them, against Drik Panchang: मेवा अरू मिष्ठान (chaupāī 30; Drik अरु), and the opening dohās' halves (Drik splits the first after चितलाय, putting के in the second half). Otherwise the two texts agree word for word (Drik's उध्दार is a typing of उद्धार).
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
@@ -26,4 +26,4 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 
 ## The recording
 Divya Dhwani (YouTube `PMXa9iFo1Hs`, `audio/divya-dhwani/`) sings this text in its order, three times through; its track is the first singing.
-- Sung with words that another written witness prints, against the base kept here: `chalisa.cau6`.
+- Sung with Drik Panchang's words, which the text takes (docs/PLAYBOOK.md §3: a written witness prints what is sung; each heard in the transcript at that verse): `chalisa.cau6` सब भग जाते → सब भाग जाते.

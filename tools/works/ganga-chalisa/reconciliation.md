@@ -27,4 +27,5 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## The recording
 Shemaroo Bhakti (YouTube `Gyo8l4SqenM`, `audio/shemaroo-bhakti/`) sings this text in its order.
 - Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau4`, `chalisa.cau23`.
-- Sung with words that another written witness prints, against the base kept here: `chalisa.cau17`, `chalisa.cau33`.
+- Sung with Drik Panchang's words, which the text takes (docs/PLAYBOOK.md §3: a written witness prints what is sung; each heard in the transcript at that verse): `chalisa.cau33` भूखे नंगे → भूखा नंगा.
+- `chalisa.cau17`: the base stays: the transcript does not settle what is sung (मुनि or पुनि; भागीरथ, the king, where Drik Panchang prints भागीरथी).

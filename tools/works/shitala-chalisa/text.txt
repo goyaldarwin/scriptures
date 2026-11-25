@@ -3,13 +3,10 @@
 
 @part chalisa
 @section chalisa-do
-@topic आरम्भके दोहे | The opening dohas
+@topic आरम्भका दोहा | The opening doha
 [chalisa.do1 do]
 जय-जय माता शीतला तुमहिं धरै जो ध्यान ।
 होय विमल शीतल हृदय विकसै बुद्धि बलज्ञान ॥
-[chalisa.do2 do]
-घट-घट वासी शीतला शीतल प्रभा तुम्हार ।
-शीतल छइयां में झुलई मइया पलना डार ॥
 @section chalisa-cau
 @topic माँका स्वरूप | The Mother's form
 [chalisa.cau1 cau 1]
@@ -94,3 +91,8 @@
 अब विलम्ब मैं तोहि पुकारत । मातु कृपा कौ बाट निहारत ॥
 [chalisa.cau39 cau 39]
 पड़ा क्षर तव आस लगाई । रक्षा करहु शीतला माई ॥
+@section chalisa-ant
+@topic समापनका दोहा | The closing doha
+[chalisa.do2 do]
+घट-घट वासी शीतला शीतल प्रभा तुम्हार ।
+शीतल छइयां में झुलई मइया पलना डार ॥

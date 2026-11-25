@@ -17,7 +17,7 @@ The rule: keep the book; correct it only where it is clearly wrong, and only on 
 | chaupāī 26 | विष्णु रुद्र अज सकहिन मारी | विष्णु रुद्र अज सकहिं न मारी | सकहिन is सकहिं न run together without its anusvāra ("cannot kill"), as Drik Panchang and Shubh Panchang have it. |
 | chaupāī 36 | धूपादिक नवैद्य चढ़ावै | धूपादिक नैवेद्य चढ़ावै | नवैद्य is a misprint of नैवेद्य ("food offering"), as Chalisa Mala and Drik Panchang have it. |
 
-Kept as the book has them, against Drik Panchang: बन्दौं, अविनाशी, तबही धर्म की फीकी ज्योति (Drik जबहि … ज्योती), तबहि मातु का निज अवतारा (Drik ले), बाल्मीकि जी थे हत्यारा, रामचरित जो रचे बनाई । आदि कवि पदवी को पाई, विद्वाना (Drik विद्धाना), तिन्ह (Drik तिन्हहिं), सोई, करई, जननि, करऊ, विष्णु से (Drik विष्णू ते), नहीं मोरा, मातु सहाय कीन्ह … बुद्धि विपरीत भई (Drik भई … करी), छण महु संहारेउ तेहिमाता, सुरमुनि, काँपी, बिनऊं, जगप्रसिद्ध … शुंभनिशुंभा, छण में वधे (Drik छिन में बधे), बुद्धि फेरेऊ, एहिविधि … तू कीन्हा … सबको, रुद्र (Drik रूद्र), दुर्ग आदि हरनी, नृप कोपित को (Drik जो), पोत के भंजे (Drik भंगे), सबै छाँडि, ईशा, करैं हमेशा, सत बारा (Drik शत), रामसागर बाधि हेतु भवानी । कीजै कृपा दास निज जानी, मातु सूर्य कान्ति तव, डूबन से … परूँ न मैं भव कूप, बल बुद्धि विद्या देहु मोहि सुनहु सरस्वती मातु । राम सागर अधम को आश्रय तू ही ददातु (Chalisa Mala the same).
+Kept as the book has them, against Drik Panchang: बन्दौं, अविनाशी, तबही धर्म की फीकी ज्योति (Drik जबहि … ज्योती), तबहि मातु का निज अवतारा (Drik ले), बाल्मीकि जी थे हत्यारा, रामचरित जो रचे बनाई (Drik रामायण), विद्वाना (Drik विद्धाना), तिन्ह (Drik तिन्हहिं), सोई, करई, जननि, करऊ, विष्णु से (Drik विष्णू ते), नहीं मोरा, मातु सहाय कीन्ह … बुद्धि विपरीत भई (Drik भई … करी), छण महु संहारेउ तेहिमाता, सुरमुनि, काँपी, बिनऊं, जगप्रसिद्ध … शुंभनिशुंभा, छण में वधे (Drik छिन में बधे), बुद्धि फेरेऊ, एहिविधि … तू कीन्हा … सबको, रुद्र (Drik रूद्र), दुर्ग आदि हरनी, नृप कोपित को (Drik जो), पोत के भंजे (Drik भंगे), सबै छाँडि, ईशा, करैं हमेशा, सत बारा (Drik शत), रामसागर बाधि हेतु भवानी । कीजै कृपा दास निज जानी, मातु सूर्य कान्ति तव, डूबन से … परूँ न मैं भव कूप, बल बुद्धि विद्या देहु मोहि सुनहु सरस्वती मातु । राम सागर अधम को आश्रय तू ही ददातु (Chalisa Mala the same).
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
@@ -28,4 +28,10 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 
 ## The recording
 Shemaroo Bhakti (YouTube `AETjP9K4u3M`, `audio/shemaroo-bhakti/`) sings this text in its order.
-- Sung with words that another written witness prints, against the base kept here: `chalisa.do2`, `chalisa.cau5`, `chalisa.cau7`, `chalisa.cau8`, `chalisa.cau12`, `chalisa.cau19`, `chalisa.cau34`.
+- Sung with Drik Panchang's words, which the text takes (docs/PLAYBOOK.md §3: a written witness prints what is sung; each heard in the transcript at that verse): `chalisa.cau7` कवि पदवी को पाई → कवि की पदवी पाई.
+- `chalisa.do2`: the base stays: the transcript does not settle what is sung.
+- `chalisa.cau5`: the base stays: sung as the base (का).
+- `chalisa.cau8`: the base stays: Drik Panchang prints the base's words.
+- `chalisa.cau12`: the base stays: differs from the base only in spelling, which singing cannot tell apart.
+- `chalisa.cau19`: the base stays: differs from the base only in spelling, which singing cannot tell apart.
+- `chalisa.cau34`: the base stays: differs from the base only in spelling, which singing cannot tell apart.
