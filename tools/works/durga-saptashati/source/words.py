@@ -20,7 +20,10 @@ and a reader taps the word as printed, so:
   6. words_ours.json, beside this script, has the words the copy does not gloss (the colophons, the bījas):
      ours, written from Monier-Williams and Apte, which win over the gathered senses; and under "force" the long
      compounds whose pairing is right though its sounds score low (checked by eye).
-Root and grammar are not written yet (README.md). It prints the words of the verses still without a meaning.
+  7. words_grammar.json, beside this script, has each word's root (`r`) and grammar (`g`), in the Vālmīki
+     dictionary's style, decided word by word against the verse (a parser proposed, the reader chose); it is laid on
+     every entry that has no grammar of its own.
+It prints the words of the verses still without a meaning.
 """
 import json, re, sys, os, difflib, unicodedata, collections
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -133,6 +136,10 @@ def main(src):
         G[w] = {'hi': ' / '.join(hs), 'en': ' / '.join(es)}
         if parts[w] and len(S) == 1: G[w]['p'] = json.loads(parts[w].most_common(1)[0][0])
     for w, e in ours.items(): G[w] = e
+    RG = json.load(open(os.path.join(HERE, 'words_grammar.json'), encoding='utf-8')) if os.path.exists(os.path.join(HERE, 'words_grammar.json')) else {}
+    for w, rg in RG.items():
+        if w in G and 'g' not in G[w]:
+            e = G[w]; G[w] = {k: e[k] for k in ('hi', 'en') if k in e}; G[w].update(rg); G[w].update({k: v for k, v in e.items() if k not in G[w]})
     os.makedirs(os.path.join(HERE, '..', 'glossary'), exist_ok=True)
     jsonio.dump_glossary(os.path.join(HERE, '..', 'glossary', 'sa.json'), dict(sorted(G.items())))
     have = set(G) | shared
