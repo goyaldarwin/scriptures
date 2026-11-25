@@ -5,6 +5,12 @@
   "chalisa.cau27",
   "chalisa.cau33",
   "chalisa.cau36",
+  "chalisa.cau40",
+  "chalisa.cau41",
   "chalisa.cau42"
+ ],
+ "also": [
+  "chalisa.cau40",
+  "chalisa.cau41"
  ]
 }

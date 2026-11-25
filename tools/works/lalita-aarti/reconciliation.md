@@ -8,7 +8,7 @@ The rule: keep the book; correct it only where it is clearly wrong. The library'
 
 | Place | Book | Ours | Why |
 |---|---|---|---|
-| the refrain | the centred line जय शरणं वरणं नमो नमः (top and bottom), and lines 3 and 6, जय शरणं वरणं नमो नमः श्री मातेश्वरि जय त्रिपुरेश्वरि | `aarti.tek`: line 3 as printed, once | The centred line gives the refrain's words; lines 3 and 6 print it in full after the first and second couplet, as Drik Panchang does. Shown once, in its full form. |
+| the refrain | the centred line जय शरणं वरणं नमो नमः (top and bottom), and lines 3 and 6, जय शरणं वरणं नमो नमः श्री मातेश्वरि जय त्रिपुरेश्वरि | `aarti.tek`: the centred line, once | The recording sings the refrain in this short form, twice, at the start and after every stanza (its transcript; MMS, given line 3 in full, scores it below 0.5), and an āratī follows its recording (docs/PLAYBOOK.md §3); the centred line is the book's own. Lines 3 and 6 print the refrain in full after the first and second couplet, as Drik Panchang does: their last words, श्री मातेश्वरि जय त्रिपुरेश्वरि, are the opening words of stanza 1, sung there. |
 | the stanzas | lines 1–2, 4–5, 7–8, 9–10 | stanzas 1–4 | The couplets the refrain divides; the book's । / ॥ run on mechanically across the refrain lines. Lines 9–10 (जय त्रिपुर सुन्दरी …, जय ललिते माता …) are new words, a stanza of their own. |
 | the end | line 11 (श्री मातेश्वरी जय त्रिपुरेश्वरि राजेश्वरि जय नमो नमः) and the centred refrain | (not written) | The closing repeat of the opening line and of the refrain. |
 | stanza 2, line 1 | अशुभ विनाशिनी, सब सुख दायिनी | अशुभ विनाशिनी सब सुख दायिनी | The standard: no comma; a pause within a line is a space. |
@@ -25,4 +25,4 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## The recording
 Lyrical Bhajan Sangrah (YouTube `NplFFxsTOUc`, `audio/lyrical-bhajan-sangrah/`) sings this text in its order.
 - Sung with a few words that no written witness has, so the text keeps its own there: `aarti.pad4`.
-- Sung with words that another written witness prints, against the base kept here: `aarti.tek`.
+- Sings the refrain in the book's short form (the centred line), which the text follows (`aarti.tek`, above).
