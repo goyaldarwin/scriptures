@@ -212,3 +212,13 @@ the words, from Monier-Williams and Apte, wherever a sentence left a choice:
 - मम सन्निधौ (paryāya 9): the Lord speaks ("in my presence"), as paryāya 12 calls these words चक्रपाणेर्वचः; the meaning glosses "my" once as the Lord's.
 - शनैर्दहन्ति पापानि कल्पकोटिशतानि च (paryāya 10): दहन्ति is active and its subject unnamed; it is those who recite, of whom paryāya 9 speaks, so the meaning writes them in ("those who recite it burn away, little by little, sins …"). The line reads so in Sanskrit.Today's text as well; शनैः is the adverb "slowly, gradually", placed in the meaning so that it goes with "burn away", not with "recite".
 - पठते (paryāya 6): the epic middle form of √paṭh, "recites", as पठति.
+
+**Footnotes: Parāśara Bhaṭṭar's readings.** The meaning follows Śaṅkara's bhāṣya (above); where Parāśara Bhaṭṭar's
+Bhagavad-guṇa-darpaṇa, the Śrīvaiṣṇava commentary, reads a name differently, a footnote under the śloka gives his reading
+briefly, in our own words (hi and en), as `docs/PLAYBOOK.md` asks for other readings. The source is N. Krishnamachari's
+Śrī Viṣṇu Sahasranāmam (free e-books, sadagopan.org), which sets Bhaṭṭar's reading beside Śaṅkara's name by name;
+the published translations of the Bhagavad-guṇa-darpaṇa are not copied. Only plain differences are noted: a different
+sense, a different division of the words (समात्मा सम्मितः for समात्माऽसम्मितः, 12) or a different count (स्थविरो ध्रुवः, 6;
+गुरुर्गुरुतमः, 23; विश्वभुग्विभुः, 26), and the avatāra Bhaṭṭar reads a run of names as (the Fish, 23–24; Paraśurāma, 34;
+the churning of the ocean, 35). Where the two agree in substance, or Bhaṭṭar's reading is only a devotional extension of
+the same sense, there is no footnote. Written so far for stotra 1–35 (Krishnamachari's vol. 1); 36–107 are still to do.
