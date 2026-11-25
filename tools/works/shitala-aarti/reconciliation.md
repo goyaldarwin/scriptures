@@ -11,8 +11,9 @@ The rule: keep the book; correct it only where it is clearly wrong. The library'
 | every stanza | two printed lines, the first ending with a comma, the second with ॥ | two lines, ending । and ॥N॥ (the refrain ॥) | The book's own lines (each rhymes in -आता); the book halves a line with a comma only in the refrain and stanzas 1–2, so the printed line stays one line throughout, the commas inside it dropped (the standard). |
 | after every stanza | जय… | not written | The refrain cue; the refrain is shown once. |
 | stanza numbers | none | ॥१॥ … ॥१०॥ | The standard. |
+| stanza 1, line 2 | ऋद्धि सिद्धि मिल चँवर | ऋद्धि सिद्धि चँवर | The recording (Shemaroo Bhakti) sings it without मिल, as Drik Panchang prints it; an āratī follows its recording (PLAYBOOK §3). |
 
-Kept as the book has them (Drik Panchang the same unless noted): ऋद्धि सिद्धि मिल चँवर (Drik ऋद्धि-सिद्धि चँवर, without मिल), डोलावें, सेवें, वरणत, मृदंग (Drik मृदङ्ग), बजावै, घंटा शंख (Drik घण्टा शङ्ख), बाजै, करै, तुही, भक्तन, प्रेम शक्ति, दारिद्र, भजै, धुनि, उत्पत्ति बाला बिनाशन ("Readings settled" below), दास नारायण कर जोरी माता (a short line in both), दीजैं (Drik दीजै).
+Kept as the book has them (Drik Panchang the same unless noted): डोलावें, सेवें, वरणत, मृदंग (Drik मृदङ्ग), बजावै, घंटा शंख (Drik घण्टा शङ्ख), बाजै, करै, तुही, भक्तन, प्रेम शक्ति, दारिद्र, भजै, धुनि, उत्पत्ति बाला बिनाशन ("Readings settled" below), दास नारायण कर जोरी माता (a short line in both), दीजैं (Drik दीजै).
 
 The doubt (बाला) was searched on the web; the sites found ([Bhakti Bharat](https://www.bhaktibharat.com/amp/aarti/sheetla-mata-ki-aarti), which copies Drik Panchang; [InstaAstro](https://instaastro.com/blog/sheetla-mata-ki-aarti); [Bharat Discovery](https://bharatdiscovery.org/india/शीतला_माता_की_आरती), not reachable) did not settle it, so the book's reading stays.
 
@@ -25,4 +26,4 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## The recording
 Shemaroo Bhakti (YouTube `WAKr_PU7rL0`, `audio/shemaroo-bhakti/`) sings this text in its order.
 - Sung with a few words that no written witness has, so the text keeps its own there: `aarti.pad4`, `aarti.pad5`, `aarti.pad7`, `aarti.pad9`, `aarti.pad10`.
-- Sung with words that another written witness prints, against the base kept here: `aarti.pad1`.
+- The text follows the words it sings from another written witness (docs/PLAYBOOK.md §3): `aarti.pad1` (ऋद्धि सिद्धि चँवर, Drik Panchang’s).

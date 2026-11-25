@@ -4,7 +4,7 @@ The chālīsā of Pārvatī that opens "जय गिरी तनये दक�
 
 - **Text** (`text.txt`): ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, pp. 246–249), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** `audio/bhakti-bhajan-sangrah/`: Bhakti Bhajan Sangrah (YouTube `8baNCuz3kg4`, "Shri Parvati Chalisa - श्री पार्वती चालीसा - Parvati Chalisa lyrics in Hindi"), its track 0:00–4:22 of the video (after 4:22: music). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list. A draft (it plays only with Audio timing on): MMS could not time every verse it sings (some it scored too low, others it placed nowhere: `aligned.md`); they are left untimed rather than guessed.
+- **Recordings:** `audio/bhakti-bhajan-sangrah/`: Bhakti Bhajan Sangrah (YouTube `8baNCuz3kg4`, "Shri Parvati Chalisa - श्री पार्वती चालीसा - Parvati Chalisa lyrics in Hindi"), its track 0:00–4:22 of the video (after 4:22: music). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list. The starts MMS could not place were read by hand on 5-s windows (`fixes.md`).
 
 Verse types: the Mānas's own (`do` dohā, `cau` chaupāī).
 

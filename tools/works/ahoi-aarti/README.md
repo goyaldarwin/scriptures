@@ -4,7 +4,7 @@ The āratī of Ahoī Mātā, in Hindi (`hi`).
 
 - **Text** (`text.txt`): Aarti Mala (page image i-335), checked against Drik Panchang. Every choice: `reconciliation.md`.
 - **Meanings:** Ours (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
-- **Recordings:** `audio/ambey-bhakti/`: Ambey Bhakti (YouTube `ecr8xZKBBOo`, "ॐ जय अहोई माता - Om Jai Ahoi Mata - Ahoi Mata Ki Aarti - श्री अहोई माता की आरती - Ahoi Ashtami 2026"). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list. A draft (it plays only with Audio timing on): MMS could not time every verse it sings (some it scored too low, others it placed nowhere: `aligned.md`); they are left untimed rather than guessed.
+- **Recordings:** `audio/ambey-bhakti/`: Ambey Bhakti (YouTube `ecr8xZKBBOo`, "ॐ जय अहोई माता - Om Jai Ahoi Mata - Ahoi Mata Ki Aarti - श्री अहोई माता की आरती - Ahoi Ashtami 2026"). Starts from MMS (`aligned.md`); the verses the checks flag are on the to-check list. The starts MMS could not place were read by hand on 5-s windows (`fixes.md`).
 
 Verse types: टेक (refrain, `tek`, shown once at the start although it is sung after every stanza) and पद (stanza, `pad`). The folder's format: `tools/works/README.md`.
 

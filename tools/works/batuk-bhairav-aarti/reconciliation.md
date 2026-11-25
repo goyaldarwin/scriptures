@@ -13,8 +13,10 @@ The rule: keep the book; correct it only where it is clearly wrong. The library'
 | every stanza | one printed line, its halves joined by a comma | two lines, ending । and ॥N॥ | The standard; the comma marks the half. |
 | stanza numbers | none | ॥१॥ … ॥६॥ | The standard. |
 | stanza 6 | कहे 'धरणीधर' वह नर | कहे धरणीधर वह नर | The quotation marks are the printer's, not part of the verse. |
+| stanza 1, line 1 | तुम पाप उद्धारक | तुम्ही पाप उद्धारक | The recording (T-Series Bhakti Sagar) sings तुम ही, as Aarti Mala prints it (तुम्ही); an āratī follows its recording (PLAYBOOK §3). |
+| stanza 5, line 1 | पाँवों घूंघरू | पांव घूंघरू | Sung पांव, Aarti Mala’s word (its अरू before डमरू is not heard, so the line keeps the rest of the base). |
 
-Kept as the book has them (Drik Panchang agrees throughout): तुम्हरी, उद्धारक, चतुर्वतिका (read as चतुर्वर्तिका, "four-wicked"; settled below, Readings settled), चटकि, भाषावलि, कीजिये, नहिं, पाँवों घूंघरू, हरषावत, वांछित. Against Aarti Mala, the book's readings are kept everywhere (its wordings are listed above).
+Kept as the book has them (Drik Panchang agrees throughout): तुम्हरी, उद्धारक, चतुर्वतिका (read as चतुर्वर्तिका, "four-wicked"; settled below, Readings settled), चटकि, भाषावलि, कीजिये, नहिं, हरषावत, वांछित. Against Aarti Mala, the book's readings are kept everywhere but where the recording sings Aarti Mala's word (तुम्ही, पांव: the table; its other wordings are listed above).
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
@@ -26,4 +28,4 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## The recording
 T-Series Bhakti Sagar (YouTube `EAS1Pc85Pto`, `audio/t-series-bhakti-sagar/`) sings this text in its order.
 - Sung with a few words that no written witness has, so the text keeps its own there: `aarti.pad3`, `aarti.pad4`, `aarti.pad6`.
-- Sung with words that another written witness prints, against the base kept here: `aarti.pad1`, `aarti.pad5`.
+- The text follows the words it sings from another written witness (docs/PLAYBOOK.md §3): `aarti.pad1` (तुम्ही), `aarti.pad5` (पांव), Aarti Mala’s.

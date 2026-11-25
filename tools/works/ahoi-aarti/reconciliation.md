@@ -17,8 +17,11 @@ The rule: keep the base; correct it only where it is clearly wrong. The library'
 | stanzas 4, 5, 6 | नही (घबराता, आता, पाता) | नहीं | A dropped anusvāra; Drik Panchang has नहीं. |
 | after every stanza | जय· | not written | The refrain cue; the refrain is shown once. |
 | stanza numbers | none | ॥१॥ … ॥७॥ | The standard. |
+| stanza 3, line 1 | तू ही है पाताल बसन्ती तू ही है सुख दाता | तू ही पाताल बसन्ती तू ही है शुभदाता | The recording (Ambey Bhakti) sings Drik Panchang’s words (तुही पाताल बसन्ती … शुभ दाता); an āratī follows its recording (PLAYBOOK §3). The base’s spelling बसन्ती is kept. |
+| stanza 4, line 1 | थारो वास वही में | थारो वासा वाहि में | Sung वासा, as Drik Panchang prints it with वाहि; the base’s घबराता (Drik धड़काता) is kept in line 2, where the recording is not clear. |
+| stanza 5, line 1 | पुत्र न कोई पाता | न कोई पुत्र पाता | Sung in Drik Panchang’s order (ना कोई पुत्र पाता). |
 
-Kept as the base has them: निसदिन, सूर्य चन्द्रमा (Drik सूर्य-चन्द्रमा), सुख सम्पत्ति (Drik सुख-सम्पत्ति), तू ही है पाताल बसन्ती (Drik तू ही पाताल बसंती), सुख दाता (Drik शुभदाता), कर्म प्रभाव (Drik कर्म-प्रभाव), थारो वास वही में (Drik थारो वासा वाहि में), कर ले, घबराता (Drik धड़काता), पुत्र न कोई पाता (Drik न कोई पुत्र पाता), खान-पान, क्षीर निधि, तोकूं (Drik तोकू).
+Kept as the base has them: निसदिन, सूर्य चन्द्रमा (Drik सूर्य-चन्द्रमा), सुख सम्पत्ति (Drik सुख-सम्पत्ति), कर्म प्रभाव (Drik कर्म-प्रभाव), कर ले, घबराता (Drik धड़काता), खान-पान, क्षीर निधि, तोकूं (Drik तोकू).
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
@@ -30,5 +33,5 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## The recording
 Ambey Bhakti (YouTube `ecr8xZKBBOo`, `audio/ambey-bhakti/`) sings this text.
 - Sung with a few words that no written witness has, so the text keeps its own there: `aarti.pad7`.
-- Sung with words that another written witness prints, against the base kept here: `aarti.pad3`, `aarti.pad4`, `aarti.pad5`.
-- A draft (it plays only with Audio timing on): MMS could not time every verse it sings (some it scored too low, others it placed nowhere: `aligned.md`); they are left untimed rather than guessed.
+- The text follows the words it sings from another written witness (docs/PLAYBOOK.md §3): `aarti.pad3`, `aarti.pad4`, `aarti.pad5`, Drik Panchang’s (the table above).
+- Every verse it sings is timed: MMS scored them too low, so the starts were read by hand on 5-s windows (`audio/ambey-bhakti/fixes.md`).

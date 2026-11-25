@@ -3,7 +3,7 @@
 ## Witnesses
 - **The book (base):** ५१ चालीसा संग्रह आरतियों सहित (Randhir Prakashan, Haridwar, 2000), p. 277, under the heading "आरती श्री शाकम्भरी देवी जी की"; scriptures-data `hinduism/chalisa/books/aarti-chalisa-sangrah/` (page image i-276), read on the page image. The refrain (हरि ॐ श्री शाकम्भर अम्बा जी की आरती कीजो, with ऐसो अद्भुत रूप … आरती कीजो), then four stanzas, each followed by the refrain cue (शाकम्भर अम्बा जी की आरती कीजो in full after the first, श्री शाकम्भर… after the others): तुम परिपूर्ण, तुम्हीं हो शाकम्भरी, नित जो नर-नारी, जो नर आरती पढ़े.
 - **Drik Panchang** (`hinduism/aarti/shakambhari/shakambhari-aarti/printouts/drikpanchang/shakambhari-mata-aarti.html`): the same text, word for word, in the same order, a half-line per line; its first group holds the refrain and the first stanza together.
-- **Aarti Mala** (scriptures-data `hinduism/chalisa/books/aarti-chalisa-sangrah/`, page image i-351, a printout of indif.com): the same text with slips of its own (शाकुम्भरी, ऐसी अदभुत, सताक्षी, बस बैकुण्ठ; शिवमूर्ति माया प्रकाशी माँ, without तुम ही हो; जो नर आरती सुनावे); not used for any reading. (Its pages i-347 and i-353, also listed in the kit, are the Lakṣmī and Vaiṣṇo Devī āratīs.)
+- **Aarti Mala** (scriptures-data `hinduism/chalisa/books/aarti-chalisa-sangrah/`, page image i-351, a printout of indif.com): the same text with slips of its own (शाकुम्भरी, ऐसी अदभुत, सताक्षी, बस बैकुण्ठ; शिवमूर्ति माया प्रकाशी माँ, without तुम ही हो; जो नर आरती सुनावे); its बस बैकुण्ठ is taken, as the recording sings it (the table), the rest not used. (Its pages i-347 and i-353, also listed in the kit, are the Lakṣmī and Vaiṣṇo Devī āratīs.)
 
 The rule: keep the book; correct it only where it is clearly wrong. The library's writing standard (docs/PLAYBOOK.md §3): an āratī's verse has no comma (the book's comma between the halves of a line becomes a line break, a half per line); the refrain (टेक) is shown once; stanzas numbered (॥१॥).
 
@@ -14,6 +14,7 @@ The rule: keep the book; correct it only where it is clearly wrong. The library'
 | after every stanza | (श्री) शाकम्भर अम्बा जी की आरती कीजो / श्री शाकम्भर… | not written | The refrain cue; the refrain is shown once. |
 | line ends | the commas and । ending lines | । and ॥N॥ | The standard. |
 | stanza numbers | none | ॥१॥ … ॥४॥ | The standard. |
+| stanza 4, line 3 | बसे बैकुण्ठ | बस बैकुण्ठ | The recording (Vrat Katha) sings बस बैकुण्ठ, as Aarti Mala prints it; an āratī follows its recording (PLAYBOOK §3). बस, “dwelling”: the meaning is unchanged. |
 
 Kept as the book has them (Drik Panchang the same): शाकम्भर (in the refrain and stanza 4) beside शाकम्भरी (stanzas 2 and 3), ऐसो, धर लीजो, बखानी, तुम्हीं / तुम ही, शिव मूर्ति, प्रकाशी, पूरण, गावे, पढ़े पढ़ावे, बैकुण्ठ.
 
@@ -27,5 +28,5 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## The recording
 Vrat Katha (YouTube `DZ-7mUlZwMs`, `audio/vrat-katha/`) sings this text.
 - Sung with a few words that no written witness has, so the text keeps its own there: `aarti.tek`, `aarti.pad3`.
-- Sung with words that another written witness prints, against the base kept here: `aarti.pad4`.
-- A draft (it plays only with Audio timing on): MMS could not time every verse it sings (some it scored too low, others it placed nowhere: `aligned.md`); they are left untimed rather than guessed.
+- The text follows the words it sings from another written witness (docs/PLAYBOOK.md §3): `aarti.pad4` (बस बैकुण्ठ, Aarti Mala’s).
+- Every verse it sings is timed: the starts MMS scored too low were read by hand on 5-s windows (`audio/vrat-katha/fixes.md`).

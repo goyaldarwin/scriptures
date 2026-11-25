@@ -14,8 +14,11 @@ The rule: keep the book; correct it only where it is clearly wrong. The library'
 | stanza numbers | none | ॥१॥ … ॥८॥ | The standard. |
 | stanza 3, line 1 | स्·ीव (damaged) | सुग्रीव | The page is damaged there; Drik Panchang and Aarti Mala have सुग्रीव. |
 | stanza 4, line 1 | जारि ल·क (damaged) | जारि लंक | The same; Drik Panchang and Aarti Mala have लंक. |
+| stanza 4, line 1 | जारि लंक को ले सिय की सुधि | जारि लंक सिय-सुधि ले आए | The recording (Rajkumar Raj) sings Aarti Mala’s wording; an āratī follows its recording (PLAYBOOK §3). |
+| stanza 5, line 1 | लक्ष्मण के | लक्ष्मण को | Sung को, as Aarti Mala prints it. |
+| stanza 6, line 1 | ले पाताल अहिरावण जबहि पैठि गयो | रामहिं ले अहिरावण जब पाताल गयो | Sung as Aarti Mala prints it (…ले अहिरावण, then प्रभु जब पाताल गयो). |
 
-Kept as the book has them, against Drik Panchang: पवन-पुत्र अंजनी-सुत (Drik पवन-पुत्र-अंजनी-सुत), मेंहदीपुर (Drik मेहंदीपुर). The rest is word for word as Drik Panchang, including जारि लंक को ले सिय की सुधि.
+Kept as the book has them, against Drik Panchang: पवन-पुत्र अंजनी-सुत (Drik पवन-पुत्र-अंजनी-सुत), मेंहदीपुर (Drik मेहंदीपुर). The rest is word for word as Drik Panchang, but for stanzas 4 to 6, which follow the recording (below).
 
 Aarti Mala's version differs in: दुःख दारिद्र्य मिटाओ संकट छय हारी (stanza 1), तुरतहिं छोड़ दियो (stanza 2), अभिमानी बलि मेट्यो कीर्ति रही छाई (stanza 3, second half), जारि लंक सिय-सुधि ले आए (stanza 4), लक्ष्मण को (stanza 5), रामहिं ले अहिरावण जब पाताल गयो (stanza 6), राजत मेहंदीपुर में दर्शन सुखकारी (stanza 7), आरति, वंछित (stanza 8). The book's readings are kept.
 
@@ -25,4 +28,4 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## The recording
 Rajkumar Raj (YouTube `q80aV5gMpoI`, `audio/rajkumar-raj/`) sings this text in its order.
 - Sung with a few words that no written witness has, so the text keeps its own there: `aarti.pad1`, `aarti.pad7`.
-- Sung with words that another written witness prints, against the base kept here: `aarti.pad4`, `aarti.pad5`, `aarti.pad6`.
+- The text follows the words it sings from another written witness (docs/PLAYBOOK.md §3): `aarti.pad4`, `aarti.pad5`, `aarti.pad6`, Aarti Mala’s (the table above).

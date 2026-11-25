@@ -25,4 +25,4 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## The recording
 Spiritual Activity (YouTube `b3xCDF85gek`, `audio/spiritual-activity/`) sings this text.
 - Sung with a few words that no written witness has, so the text keeps its own there: `aarti.pad2`.
-- A draft (it plays only with Audio timing on): MMS could not time every verse it sings (some it scored too low, others it placed nowhere: `aligned.md`); they are left untimed rather than guessed.
+- Every verse it sings is timed: the starts MMS could not place were read by hand on 5-s windows (`audio/spiritual-activity/fixes.md`).
