@@ -25,4 +25,4 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 
 ## The recording
 Bhakti Bhajan Sangrah (YouTube `8baNCuz3kg4`, `audio/bhakti-bhajan-sangrah/`) sings this text.
-- A draft (it plays only with Audio timing on): MMS could not time every verse it sings (some it scored too low, others it placed nowhere: `aligned.md`); they are left untimed rather than guessed.
+- Every verse it sings is timed: the starts MMS could not place were read by hand on 5-s windows (`audio/bhakti-bhajan-sangrah/fixes.md`).

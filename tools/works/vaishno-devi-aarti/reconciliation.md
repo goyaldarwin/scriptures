@@ -18,12 +18,14 @@ The rule: keep the book; correct it only where it is clearly wrong. The library'
 | stanza 5, line 3 | दास खड़े चरणो में | दास खड़े चरणों में | A dropped anusvāra (the oblique plural चरणों); Drik Panchang चरणों. |
 | stanza 6, lines 3–4 | (missing) | उसकी इच्छा पूरण । माता हो जावे | The page drops the second line of the last two stanzas, joining the first halves of stanzas 6 and 7 as one couplet (…आवे । …गावे ।।): the sentence "जो जन निश्चय करके द्वार तेरे आवे" is left without its main clause. Taken from Drik Panchang. |
 | stanza 7, lines 3–4 | (missing) | कहते सेवक ध्यानू । सुख सम्पत्ति पावे | The same omission; taken from Drik Panchang. |
+| stanza 1, line 1 | शीश पर | शीश पे | The recording (Shemaroo Bhakti) sings पे, as Drik Panchang prints it; an āratī follows its recording (PLAYBOOK §3). |
+| stanza 3, line 3 | देखने को | देखन को | The same: sung देखन, Drik Panchang's word. |
 
-Kept as the book has them, where Drik Panchang differs: शीश पर (Drik पे), बिराजे (Drik विराजे), ज्योती (Drik ज्योति), देखने को (Drik देखन को), झूले (Drik झूलें), घन्टा (Drik घंटा), ऊंचा (Drik ऊँचा), निशदिन (Drik निश-दिन).
+Kept as the book has them, where Drik Panchang differs: बिराजे (Drik विराजे), ज्योती (Drik ज्योति), झूले (Drik झूलें), घन्टा (Drik घंटा), ऊंचा (Drik ऊँचा), निशदिन (Drik निश-दिन).
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
 
 ## The recording
 Shemaroo Bhakti (YouTube `OMt-BtXI_HA`, `audio/shemaroo-bhakti/`) sings this text in its order.
-- Sung with words that another written witness prints, against the base kept here: `aarti.pad1`, `aarti.pad3`.
+- The text follows the words it sings from another written witness (docs/PLAYBOOK.md §3): `aarti.pad1` (शीश पे), `aarti.pad3` (देखन को), both Drik Panchang's.

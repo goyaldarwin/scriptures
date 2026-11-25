@@ -11,7 +11,7 @@ The rule: keep the base; correct it only where it is clearly wrong. The library'
 |---|---|---|---|
 | stanza 1, line 4 | महागौरी तेरा वहा निवास | महागौरी तेरा वहाँ निवासा | वहा is वहाँ with its candrabindu dropped; निवास breaks the rhyme with पासा (every other couplet rhymes). Aaj Tak has वहां निवासा. |
 | stanza 2, line 4 | जग विख्यता | जग विख्याता | विख्यता is not a word, and it breaks the rhyme with माता; Aaj Tak has विख्याता. |
-| stanza 3, line 3 | सती (सत) हवन कुंड में था जलाया | सती हवन कुंड में था जलाया | The bracketed सत is a variant the page offers; the base reading is kept (Aaj Tak prints 'सत' in quotation marks after सती: settled under Readings settled). |
+| stanza 3, line 3 | सती (सत) हवन कुंड में था जलाया | सती सत हवन कुंड में था जलाया | The recording (Sangeet Audio) sings सती सत हवन कुंड, so the word the page sets off in brackets is read into the line, as Aaj Tak and Prabhat Khabar print it ('सत' in quotation marks); an āratī follows its recording (PLAYBOOK §3). Read as सत, Satī's truth, the power of her vow (Readings settled). |
 | line ends | । and ॥ alternating | । and, at a stanza's end, ॥N॥ | The standard. |
 | stanza numbers | none | ॥१॥ … ॥५॥ | The standard. |
 
@@ -21,8 +21,8 @@ Kept as the base has them: पासा, चन्द्रकली, ममत�
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
 
 ## Readings settled
-- aarti.pad3 — सती (सत) हवन कुंड: kept सती हवन कुंड में था जलाया. सत is set off in every source (Drik Panchang in brackets, Aaj Tak and InstaAstro in quotation marks), none prints it as part of the line, and the stanza's lines are too uneven for the metre to decide; the base reading stands.
+- aarti.pad3 — सती (सत) हवन कुंड: सती सत हवन कुंड में था जलाया, as the recording sings it (it was सती हवन कुंड, the bracket left out, until the recording was heard: every source sets सत off, Drik Panchang in brackets, Aaj Tak, Prabhat Khabar and InstaAstro in quotation marks). सत is read as Satī's truth, the power of her vow by which she entered the fire (सत, sat, "truth, virtue"; सत चढ़ना, the power that takes a satī into the fire). Meaning changed: "Satī, true to her vow (sat), burned in the sacrificial fire-pit".
 
 ## The recording
 Sangeet Audio (YouTube `cB6iL5se7HM`, `audio/sangeet-audio/`) sings this text in its order.
-- Sung with words that another written witness prints, against the base kept here: `aarti.pad3`.
+- The text follows the words it sings from another written witness (docs/PLAYBOOK.md §3): `aarti.pad3` (सती सत हवन कुंड, as Aaj Tak and Prabhat Khabar print it).

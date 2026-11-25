@@ -14,8 +14,10 @@ The rule: keep the base; correct it only where it is clearly wrong. The library'
 | stanza 5, line 2 | तू ही खण्ड हाथ उठाये | तू ही खण्डा हाथ उठाये | खण्ड ("a piece") gives no sense and leaves the line a mātrā short of 16; खण्डा is the sword she raises against the demons. DNA Hindi and Boldsky both have खंडा (written here as the base writes the nasal, ण्ड). |
 | line ends | । and ॥ alternating | । and, at a stanza's end, ॥N॥ | The standard. |
 | stanza numbers | none | ॥१॥ … ॥५॥ | The standard. |
+| stanza 5, line 2 | तू ही | तुम ही | The recording (Quantext Bhakti) sings तुम ही, as DNA Hindi prints it; an āratī follows its recording (PLAYBOOK §3). |
+| stanza 5, line 4 | भक्त की आस | चमन की आस | Sung चमन, the poet’s signature (छाप), as Aaj Tak (aajtak.in, Skandamata vrat katha), Patrika and Prabhat Khabar print it (found by web search); Drik Panchang and Bhakti Bharat have भक्त. The poet Chaman signs the Śailaputrī āratī too. |
 
-Kept as the base has them: स्कन्द माता, पाँचवाँ, जानन हारी, महतारी, जोत, नजारे, गुण गाये, बिगड़ी, करे पुकार, तू ही (DNA Hindi तुम ही), चढ़ कर, आये, उठाये, आयी, पुजाने.
+Kept as the base has them: स्कन्द माता, पाँचवाँ, जानन हारी, महतारी, जोत, नजारे, गुण गाये, बिगड़ी, करे पुकार, चढ़ कर, आये, उठाये, आयी, पुजाने.
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
@@ -26,4 +28,4 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## The recording
 Quantext Bhakti (YouTube `icSfuY1AXzk`, `audio/quantext-bhakti/`) sings this text in its order.
 - Sung with a few words that no written witness has, so the text keeps its own there: `aarti.pad2`.
-- Sung with words that another written witness prints, against the base kept here: `aarti.pad5`.
+- The text follows the words it sings from another written witness (docs/PLAYBOOK.md §3): `aarti.pad5` (तुम ही, DNA Hindi’s; चमन की आस, Aaj Tak’s).

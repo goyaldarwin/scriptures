@@ -8,6 +8,8 @@
   "en": "Vijay Laxmi"
  },
  "fill": 0,
- "draft": "MMS could not time every verse it sings (some it scored too low, others it placed nowhere: `aligned.md`); they are left untimed rather than guessed",
- "window": 6
+ "window": 6,
+ "unsung": [
+  "aarti.pad4"
+ ]
 }
