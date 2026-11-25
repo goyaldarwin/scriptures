@@ -37,5 +37,4 @@ The owner's priorities, in order: **accuracy**, then unambiguity, clarity, consi
 4. **Settle uncertain readings with the owner's printed copy.** Where a text came from the web (Chālīsā, āratīs), compare it with a Gita Press print when the owner provides one. Record the outcome in the work's `reconciliation.md`.
 5. **Check audio against what is sung.** After timing, read each verse's transcript segment against its text, and flag verses where the reciter's wording differs. This catches both text errors and timing errors.
 6. **Finish the timings by ear.** The starts each recording lists to check (`docs/PENDING.md`); the owner checks them under ☰ › More settings › Audio timing (`docs/HOW-TO.md` → "Time a recording by ear"). Helpers can mark too and send the owner a file. The Mānas recording has one dohā (`aranya.46.do46ख`) without a time.
-7. **Player buttons for timing** (offered to the owner): "⏹ End" and "⏱ Next starts" beside play/pause, so marking needs no scrolling.
-8. **The Android app** (`docs/APPS.md`): the content-rights decision, then the Play release. The iPhone app is parked.
+7. **The Android app** (`docs/APPS.md`): the content-rights decision, then the Play release. The iPhone app is parked.

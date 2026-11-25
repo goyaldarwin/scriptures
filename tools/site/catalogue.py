@@ -158,7 +158,7 @@ def pending():
         if os.path.exists(rc):
             sec = open(rc, encoding='utf-8').read().split('## The recording', 1)
             m = re.search(r'Sung with words that another written witness prints[^:]*: ([^\n]*)', sec[1]) if len(sec) > 1 else None
-            if m and '/aarti/' in leaf['path']:   # an āratī follows its recording; a chālīsā keeps its base, the sung word recorded (PLAYBOOK §3)
+            if m:   # an āratī follows its recording; a chālīsā too, where a written witness prints what is sung (PLAYBOOK §3)
                 ids = re.findall(r'`([^`]+)`', m.group(1))
                 todo.append(f"the text to follow its recording in {len(ids)} verse{'s' if len(ids) > 1 else ''} ({', '.join(ids)}), with their meanings")
                 note('text to follow its recording')
