@@ -131,10 +131,13 @@ def pending():
         else:
             if any('(transcript' in x for x in au): todo.append('a recording timed from the transcript alone'); note('recording not yet timed by MMS')
             chk = 0
-            for d in glob.glob(os.path.join(WORKS, wid, 'audio', '*', 'check.json')):
-                c = j(d)
-                if isinstance(c, dict) and 'flags' in c: continue   # timed line by line: its own entry below
-                chk += len(c.get('ids', [])) if isinstance(c, dict) else len(c)
+            # the starts the app lists to check (the published recording's "check", tools/audio/make_timings.py): a recording
+            # published for review (source.json "review") lists every start not yet set by ear, beyond what check.json flags
+            for d in glob.glob(os.path.join(WORKS, wid, 'audio', '*', 'source.json')):
+                s = j(d)
+                if s.get('lines'): continue   # timed line by line: its own entry below
+                p = os.path.join(LIB, leaf['path'], 'audio', s['id'] + '.json')
+                if os.path.exists(p): chk += len(j(p).get('check', []))
             if chk: todo.append(f'{chk} starts to check by ear')
             for d in sorted(glob.glob(os.path.join(WORKS, wid, 'audio', '*', 'source.json'))):
                 s = j(d); sd = os.path.dirname(d)

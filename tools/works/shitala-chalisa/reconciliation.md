@@ -31,4 +31,4 @@ The readings the words alone leave open, each decided (docs/PLAYBOOK.md §2).
 Mantra Duniya (YouTube `kyTMnUnElYo`, `audio/mantra-duniya/`) sings this text.
 - Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau27`.
 - Sung with words that another written witness prints, against the base kept here: `chalisa.do2`, `chalisa.cau16`.
-- A draft (it plays only with Audio timing on): it sings the dohā घट-घट वासी last: the text is to follow its order first.
+- A draft (it plays only with Audio timing on): it sings the dohā घट-घट वासी last; a chālīsā keeps its base's order (docs/PLAYBOOK.md §3), so the order sung is recorded here, not taken.
