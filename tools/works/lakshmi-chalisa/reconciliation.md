@@ -10,9 +10,9 @@ The rule: keep the book; correct it only where it is clearly wrong, and only on 
 | Place | Book | Ours | Why |
 |---|---|---|---|
 | chaupāī 21 | ताप भव बंधन हारिणी | त्रिविध ताप भव बंधन हारिणी | The book drops a word: the half-line is short of its 16 mātrās, and Drik Panchang and Chalisa Mala both have त्रिविध ताप ("the threefold affliction"). |
-| chaupāī 38 | नहिं मोहि ज्ञान बुद्धि है मन में | = | Kept: "I have no knowledge or wisdom in my mind" is sound and keeps the metre; only its rhyme repeats the second half's मन में. Drik Panchang and Chalisa Mala (one typed text) have तन में. |
+| chaupāī 38 | नहिं मोहि ज्ञान बुद्धि है मन में | नहिं मोहि ज्ञान बुद्धि है तन में | Drik Panchang and Chalisa Mala (one typed text) have तन में, and the recording sings it (the transcript: "कनने", not मन), so the text takes it; it no longer repeats the second half's मन में. |
 
-Kept as the book has them, against Drik Panchang: पुरवहु (Drik परुवहु), करूँ, सबविधि करौ, जगदंबिका, सुमिरों, दे मोही (Drik दो), नहीं, जय जय जय जननी जगदम्बा (Drik जय जय जगत जननि), तुम हो सब घट घट के वासी (Drik तुम ही हो सब घट घट वासी), जग जननी, बिनवों, करो, लीजै, चितवो (Drik चितववो), सब सुख का दाता (Drik जय सुख की), क्षीर सिन्धु, बन दासी (Drik बनि), जो जो जन्म प्रभु जहां लीना (Drik जब जब जन्म जहां प्रभु लीन्हा), तहँ, अपनायो, के स्वामी (Drik की), नहिं आनि, कहँ लौं, ताको कोई कष्ट न होई (Drik नोई), दुख, निवारिणी, जो यह पढ़े और पढ़ावे (Drik जो चालीसा पढ़ै पढ़ावै), सम्पति, अरु संपतिहीना, के पाठ, तापर, बहुत सो पावै (Drik सी), काहु, करै सो पूजा (Drik जो), मनमाहीं, कोई, कहुँ, बहु विधि, तुम्हारो, समकोउ, सुध, दीजै (Drik दजै), तुमहि अछत दुख, मोहि, रूप, दुख हारिणी, बेगि, करो दुश्मन का नाश (Drik करो शत्रु को नाश), दास पै (Drik पर).
+Kept as the book has them, against Drik Panchang: पुरवहु (Drik परुवहु), करूँ, सबविधि करौ, जगदंबिका, सुमिरों, दे मोही (Drik दो), नहीं, जय जय जय जननी जगदम्बा (Drik जय जय जगत जननि), तुम हो सब घट घट के वासी (Drik तुम ही हो सब घट घट वासी), जग जननी, बिनवों, करो, लीजै, चितवो (Drik चितववो), क्षीर सिन्धु, बन दासी (Drik बनि), लीना (Drik लीन्हा), तहँ, अपनायो, नहिं आनि, कहँ लौं, ताको कोई कष्ट न होई (Drik नोई), दुख, निवारिणी, यह (chaupāī 22; Drik has none, and the recording sings it), पढ़े / पढ़ावे (Drik पढ़ै / पढ़ावै), सम्पति, अरु संपतिहीना, के पाठ, तापर, काहु, मनमाहीं, कोई, कहुँ, बहु विधि, तुम्हारो, समकोउ, सुध, दीजै (Drik दजै), तुमहि अछत दुख, मोहि, रूप, दुख हारिणी, बेगि, का नाश (Drik को नाश), दास पै (Drik पर).
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
@@ -24,5 +24,11 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 Bhakti Mantras India (YouTube `p88Tkkuz0W8`, `audio/bhakti-mantras-india/`) sings this text.
 - Not sung, so untimed: `chalisa.so1`.
 - Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau4`, `chalisa.cau11`, `chalisa.cau32`.
-- Sung with words that another written witness prints, against the base kept here: `chalisa.cau1`, `chalisa.cau3`, `chalisa.cau9`, `chalisa.cau12`, `chalisa.cau15`, `chalisa.cau16`, `chalisa.cau22`, `chalisa.cau24`, `chalisa.cau27`, `chalisa.cau28`, `chalisa.cau36`, `chalisa.do3`.
-- A draft (it plays only with Audio timing on): it sings Drik Panchang's version and order; the text is to follow it where a written witness prints what is sung (docs/PLAYBOOK.md §3).
+- Sung with Drik Panchang's words, which the text takes (docs/PLAYBOOK.md §3: a written witness prints what is sung; each heard in the transcript at that verse): `chalisa.cau9` सब सुख का → जय सुख की; `chalisa.cau12` जो जो जन्म प्रभु जहां → जब जब जन्म जहां प्रभु; `chalisa.cau15` त्रिभुवन के स्वामी → त्रिभुवन की स्वामी; `chalisa.cau22` यह पढ़े और पढ़ावे → यह चालीसा पढ़े पढ़ावे; `chalisa.cau27` बहुत सो → बहुत सी; `chalisa.cau28` करै सो पूजा → करै जो पूजा; `chalisa.cau38` बुद्धि है मन में → बुद्धि है तन में; `chalisa.do2` दुश्मन का → शत्रु का.
+- `chalisa.cau1`: the base stays: the transcript does not settle what is sung (its transcript has a gap there).
+- `chalisa.cau3`: the base stays: the transcript does not settle what is sung (its transcript has a gap there).
+- `chalisa.cau16`: the base stays: differs from the base only in spelling, which singing cannot tell apart.
+- `chalisa.cau24`: the base stays: differs from the base only in spelling, which singing cannot tell apart.
+- `chalisa.cau36`: the base stays: its words are the base's; it is sung after chaupāī 39, as Drik Panchang prints it, and the text follows that order.
+- `chalisa.do3`: the base stays: the transcript does not settle what is sung (पै or पर).
+- A draft (it plays only with Audio timing on): it sings Drik Panchang's version and order; the text follows it where a written witness prints what is sung, its order too (docs/PLAYBOOK.md §3).

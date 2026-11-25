@@ -10,7 +10,7 @@ The rule: keep the book; correct it only where it is clearly wrong, and only on 
 |---|---|---|---|
 | chaupāī 20 | जानत तुमहिं तुमहिं ह्वैजाई | जानत तुमहिं तुमहिं ह्वै जाई | A missing space: two words (ह्वै, "having become", and जाई), as Drik Panchang has them and as the book itself prints "ह्वै जावें" in chaupāī 26. |
 
-Kept as the book has them, against Drik Panchang: शांति क्रांति जागृति (Drik शान्ति कान्ति जागृत), प्रचंड / अखंड, जगत जननि मंगल करनि, सुख धाम, चौबीस (Drik चौविस), इसमें बसे (Drik इनमें बसें), सतरूपा, हंसारूढ़ श्वेताम्बर (Drik हंसारूढ सिताम्बर), कांति, गगन बिहारी, हिय होई (Drik हित), दुःख-दुरमति (Drik दुर्मति), तुम्हारी (Drik तुम्हरी), शतमुख गुण, मातु पुनीता, कोऊ, जान कछु, दिपै, व्रतधारी, मम सन तरैं पातकी भारी (Drik तुम सन तरे; मम सन, "like me", is good Awadhi), जा पर, करे सब कोई, बुद्धि बल पावै, ह्वै जावें (Drik हो), दारिद मिटे कटे, सम्पति, सुमिरे, सुखप्रद, सत्यव्रत, जगदंब, सद्गुरु सों (Drik सतगुरु सो), बड़ भागी, यति, चिन्तत (Drik चिन्तित), आवै / पावै, बुद्धि, स्वभाऊ / उछाऊ, बढ़ें, जो यह पाठ (Drik जे), करें जो कोय (Drik करै जो कोई; कोय rhymes with होय).
+Kept as the book has them, against Drik Panchang: शांति क्रांति जागृति (Drik शान्ति कान्ति जागृत), प्रचंड / अखंड, जगत जननि मंगल करनि, सुख धाम, चौबीस (Drik चौविस), सतरूपा, हंसारूढ़ श्वेताम्बर (Drik हंसारूढ सिताम्बर), कांति, गगन बिहारी, हिय होई (Drik हित), दुःख-दुरमति (Drik दुर्मति), तुम्हारी (Drik तुम्हरी), शतमुख गुण, मातु पुनीता, कोऊ, जान कछु, दिपै, व्रतधारी, तरैं (Drik तरे), जा पर, करे सब कोई, बुद्धि बल पावै, ह्वै जावें (Drik हो), दारिद मिटे कटे, सम्पति, सुमिरे, सुखप्रद, सत्यव्रत, जगदंब, सद्गुरु सों (Drik सतगुरु सो), बड़ भागी, यति, चिन्तत (Drik चिन्तित), आवै / पावै, बुद्धि, स्वभाऊ / उछाऊ, बढ़ें, जो यह पाठ (Drik जे), करें जो कोय (Drik करै जो कोई; कोय rhymes with होय).
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
@@ -23,5 +23,6 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## The recording
 Ranjanba (YouTube `0Bs8o9P4oo0`, `audio/ranjanba/`) sings this text.
 - Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau16`, `chalisa.cau21`.
-- Sung with words that another written witness prints, against the base kept here: `chalisa.cau2`, `chalisa.cau24`, `chalisa.cau37`.
+- Sung with Drik Panchang's words, which the text takes (docs/PLAYBOOK.md §3: a written witness prints what is sung; each heard in the transcript at that verse): `chalisa.cau2` इसमें बसे → इनमें बसें; `chalisa.cau24` मम सन → तुम सन.
+- `chalisa.cau37`: the base stays: differs from the base only in spelling, which singing cannot tell apart.
 - Every verse it sings is timed: the starts MMS could not place were read by hand on 5-s windows (`audio/ranjanba/fixes.md`).

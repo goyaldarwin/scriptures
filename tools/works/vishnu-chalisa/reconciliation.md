@@ -13,11 +13,11 @@ The rule: keep the book; correct it only where it is clearly wrong, and only on 
 Kept as the book has them, against Drik Panchang: भगवान् (Drik भगवान), कौन भांति मैं करहु समर्पण (Drik भाँति … करहुँ). Otherwise the two texts agree word for word, including the readings that look odd (अमिलख, मन्द्राचल, मझाया, हिरणाकुश, धुरू, शैतानी), which both print.
 
 ## Recording
-A chālīsā's text is the base's, corrected only where the base is clearly wrong (docs/PLAYBOOK.md §2–3); the recording is evidence for a reading, never the reason for a change alone. The chosen recording, BhaktiDhaam's "सम्पूर्ण चालीसा संग्रह" (YouTube `lCwPg0LRRjk`, the Viṣṇu Chālīsā from 19:12 to 24:37), sings the book's text except in chaupāī 30, where it sings Drik Panchang's निज for the book's नित; the book's is kept.
+A chālīsā follows its recording where a written witness prints what is sung, and otherwise keeps the base, corrected only where the base is clearly wrong (docs/PLAYBOOK.md §2–3). The chosen recording, BhaktiDhaam's "सम्पूर्ण चालीसा संग्रह" (YouTube `lCwPg0LRRjk`, the Viṣṇu Chālīsā from 19:12 to 24:37), sings the book's text except in chaupāī 30, where it sings Drik Panchang's निज for the book's नित; the text takes निज.
 
 | Place | Book | Drik Panchang | Ours |
 |---|---|---|---|
-| chaupāī 30 | देखहुँ मैं नित दरश तुम्हारे | = | Kept: "may I see your sight every day" is sound. The recording sings Drik Panchang's निज. |
+| chaupāī 30 | देखहुँ मैं नित दरश तुम्हारे | देखहुँ मैं निज दरश तुम्हारे | The recording sings Drik Panchang's निज (the transcript: "वेनिज दर्षे"), "may I see you yourself"; the text takes it. |
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).

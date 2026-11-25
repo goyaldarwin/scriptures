@@ -11,7 +11,7 @@ The rule: keep the book; correct it only where it is clearly wrong, and only on 
 |---|---|---|---|
 | chaupāī 25 | रोगी, पागल सन्तति हीना | रोगी पागल सन्तति हीना | The comma inside the half is the printer's; the standard keeps no commas. |
 
-Kept as the book has them, against Drik Panchang: गुरू (Drik गुरु), अरू (chaupāīs 5, 31; Drik अरु), गजारूढ़, मगन ही मन में (Drik मगन हो), रूप, सुत अरु धन हीना (Drik धन छीना), भूपति. Kept as both have them: पड़ा हूँ चरण सहारे (chaupāī 22, short by about four mātrās; nothing shows the missing words: "Readings settled" below), लिखूं, अंजिन सुवन, चालीसा / लवलेशा.
+Kept as the book has them, against Drik Panchang: गुरू (Drik गुरु), अरू (chaupāīs 5, 31; Drik अरु), गजारूढ़, मगन ही मन में (Drik मगन हो), रूप, भूपति. Kept as both have them: पड़ा हूँ चरण सहारे (chaupāī 22, short by about four mātrās; nothing shows the missing words: "Readings settled" below), लिखूं, अंजिन सुवन, चालीसा / लवलेशा.
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
@@ -25,4 +25,4 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## The recording
 Abhi Sharma (YouTube `4kAPUWJwMf4`, `audio/abhi-sharma/`) sings this text in its order.
 - Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau22`, `chalisa.cau27`, `chalisa.cau3`, `chalisa.do4`.
-- Sung with words that another written witness prints, against the base kept here: `chalisa.cau25`.
+- Sung with Drik Panchang's words, which the text takes (docs/PLAYBOOK.md §3: a written witness prints what is sung; each heard in the transcript at that verse): `chalisa.cau25` धन हीना → धन छीना.

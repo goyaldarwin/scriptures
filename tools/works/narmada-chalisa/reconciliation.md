@@ -10,7 +10,7 @@ The rule: keep the book; correct it only where it is clearly wrong, and only on 
 |---|---|---|---|
 | chaupāī 17 | कुरूक्षेत्र में सरसुति महिमा | कुरुक्षेत्र में सरसुति महिमा | कुरूक्षेत्र is a misprint for the place name Kurukṣetra (कुरु, short u), as Drik Panchang has it. |
 
-Kept as the book has them, against Drik Panchang: सरसुति (chaupāī 17; Drik सरस्वती, which breaks the metre; the book has सरसुति again in chaupāī 28, as Drik does), तरत पीढ़ी है नर नाना (chaupāī 19; Drik नर नारा; नाना rhymes with असनाना), रुद्र लोक में (chaupāī 31; Drik मे). The spellings अश्वनि, साजैं / विराजैं, ध्यावै / जावैं, तुम्हरी भजन, राजें / साजें and पढ़ै are the book's, as Drik's.
+Kept as the book has them, against Drik Panchang: सरसुति (chaupāī 17; Drik सरस्वती, which breaks the metre; the book has सरसुति again in chaupāī 28, as Drik does), रुद्र लोक में (chaupāī 31; Drik मे). The spellings अश्वनि, साजैं / विराजैं, ध्यावै / जावैं, तुम्हरी भजन, राजें / साजें and पढ़ै are the book's, as Drik's.
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
@@ -22,4 +22,5 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## The recording
 Ras Mantra (YouTube `fYDQig0lk90`, `audio/ras-mantra/`) sings this text in its order.
 - Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau28`, `chalisa.cau23`.
-- Sung with words that another written witness prints, against the base kept here: `chalisa.cau19`, `chalisa.cau17`.
+- Sung with Drik Panchang's words, which the text takes (docs/PLAYBOOK.md §3: a written witness prints what is sung; each heard in the transcript at that verse): `chalisa.cau19` नर नाना → नर नारा.
+- `chalisa.cau17`: the base stays: सरस्वती breaks the metre and the book has सरसुति again in chaupāī 28, as Drik Panchang does there; the singer's सरस्वती is the word's everyday form, which singing does not tell apart from the written सरसुति.

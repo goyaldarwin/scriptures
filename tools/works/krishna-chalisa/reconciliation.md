@@ -17,7 +17,7 @@ The rule: keep the book; correct it only where it is clearly wrong, and only on 
 | closing dohā | अष्ट सिद्धि नवनिद्धि फल | अष्ट सिद्धि नवनिधि फल | नवनिद्धि is a misprint for नवनिधि, the nine treasures (Drik Panchang नवनिधि). |
 | closing dohā | लहै पदारथ चरि | लहै पदारथ चारि | चरि is a misprint: the four goals (पदारथ चारि), rhyming with धारि; Drik Panchang चारि. |
 
-Kept as the book has them, against Drik Panchang: the two opening dohās (above); बिम्ब फल (Drik बिम्बा फल); कृष्ण चन्द्र; नटनागर, नथइया, चरइया (Drik नट-नागर, नथैया, चरैया); बंशी मधुर अधर धरि टेरी, होवे पूर्ण विनय यह मेरी (Drik वंशी … धरी तेरी, होवे पूर्ण मनोरथ मेरो); बैजन्ती; सोहै / मोहै; बांसुरी; पूतनहिं; अगिन, भये शीतल (Drik अग्नि, भै शीतल); मूसर धार (Drik मसूर धार); मुख मँह (Drik महं); दे निर्भय कीन्हें (Drik दै … किन्हें); पूरण करि अभिलाषा; संहारियो (chaupāī 20); कहँ; षट दस सहस कुमारी; दें भीमहिं तृणचीर संहारा (Drik दै भिन्हीं तृण चीर सहारा; Shubh Panchang has the book's दें भीमहिं … संहारा: Bhīma is shown the split straw, and Jarāsandha is killed); मूठि; माँगे; लखी प्रेमकी; नहिं बल थांके (Drik ताके); बजा कर; राणा, साँप; उरते; तव शत निन्दा (Drik तब); द्रोपदी; तुरतहि, भये अरि मुँह काला; अस अनाथ के नाथ (Drik अस नाथ के नाथ); नइया; सुन्दरदास; की जय (Drik की जै); पाठ करे.
+Kept as the book has them, against Drik Panchang: the two opening dohās (above); बिम्ब फल (Drik बिम्बा फल); कृष्ण चन्द्र; नटनागर, नथइया, चरइया (Drik नट-नागर, नथैया, चरैया); बंशी मधुर अधर धरि टेरी (Drik वंशी … धरी तेरी); बैजन्ती; सोहै / मोहै; बांसुरी; पूतनहिं; अगिन, भये शीतल (Drik अग्नि, भै शीतल); मूसर धार (Drik मसूर धार); मुख मँह (Drik महं); दे निर्भय कीन्हें (Drik दै … किन्हें); पूरण करि अभिलाषा; संहारियो (chaupāī 20); कहँ; षट दस सहस कुमारी; दें भीमहिं तृणचीर संहारा (Drik दै भिन्हीं तृण चीर सहारा; Shubh Panchang has the book's दें भीमहिं … संहारा: Bhīma is shown the split straw, and Jarāsandha is killed); मूठि; माँगे; लखी प्रेमकी; नहिं बल थांके (Drik ताके); बजा कर; राणा, साँप; उरते; तव शत निन्दा (Drik तब); द्रोपदी; तुरतहि, भये अरि मुँह काला; अस अनाथ के नाथ (Drik अस नाथ के नाथ); नइया; सुन्दरदास; की जय (Drik की जै); पाठ करे.
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
@@ -32,4 +32,8 @@ The readings the words alone leave open, each decided (docs/PLAYBOOK.md §2).
 
 ## The recording
 Stutiras (YouTube `rWlwZiV7Pjc`, `audio/stutiras/`) sings this text in its order.
-- Sung with words that another written witness prints, against the base kept here: `chalisa.do1`, `chalisa.do2`, `chalisa.cau5`, `chalisa.cau29`, `chalisa.cau37`.
+- Sung with Drik Panchang's words, which the text takes (docs/PLAYBOOK.md §3: a written witness prints what is sung; each heard in the transcript at that verse): `chalisa.cau5` विनय यह मेरी → मनोरथ मेरो.
+- `chalisa.do1`: the base stays: differs from the base only in spelling, which singing cannot tell apart.
+- `chalisa.do2`: the base stays: differs from the base only in spelling, which singing cannot tell apart.
+- `chalisa.cau29`: the base stays: the transcript does not settle what is sung (भारथ, थांके: Drik Panchang भारत, ताके).
+- `chalisa.cau37`: the base stays: the transcript does not settle what is sung (अनाथ or नाथ).

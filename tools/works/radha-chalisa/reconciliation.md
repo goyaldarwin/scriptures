@@ -20,7 +20,7 @@ The rule: keep the book; correct it only where it is clearly wrong, and only on 
 | chaupāī 40 | शरण तिहारौ | शरण तिहारी | The rhyme with दुलारी needs तिहारी (शरण is feminine here); Drik Panchang, Shubh Panchang and Aaj Tak तिहारी. |
 | closing dohā | श्रीराधासर्वेश्वरी | श्रीराधा सर्वेश्वरी | A missing space: two words in apposition, "Śrī Rādhā, the queen of all" (Drik Panchang श्रीराधा सर्वेश्वरी). |
 
-Kept as the book has them, against Drik Panchang: प्रणवों; नंदिनि; बिहारिनि (chaupāīs 2, 6, 27), विस्तारिनी, उमंगिनि, विहारिनी (17), विहारिन (39); गावें / हरषावें; उचारे; निशदिन; नित्यधाम; पायें (Drik पाँइ); बनवारी; देई; बिहरत नित्य वृन्दाबन माँही (Drik नित वृन्दावन); नन्दा; दुख; भाँति; न गावे; लीला बपु (chaupāī 30); तरिहैं; भव बाधा; मन भावन; कोउ.
+Kept as the book has them, against Drik Panchang: प्रणवों; नंदिनि; बिहारिनि (chaupāīs 2, 6, 27), विस्तारिनी, उमंगिनि, विहारिनी (17), विहारिन (39); गावें / हरषावें; उचारे; निशदिन; नित्यधाम; पायें (Drik पाँइ); बनवारी; देई; वृन्दाबन (Drik वृन्दावन); नन्दा; दुख; भाँति; न गावे; लीला बपु (chaupāī 30); तरिहैं; भव बाधा; मन भावन; कोउ.
 
 ## Meanings
 Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.json`).
@@ -31,4 +31,4 @@ Our own, one per verse (`meanings/hi/scriptures.json`, `meanings/en/scriptures.j
 ## The recording
 Krishnadas Brajdevi (YouTube `f9y8qFDHRWU`, `audio/krishnadas-brajdevi/`) sings this text in its order.
 - Sung with a few words that no written witness has, so the text keeps its own there: `chalisa.cau40`, `chalisa.cau25`, `chalisa.cau18`.
-- Sung with words that another written witness prints, against the base kept here: `chalisa.cau21`.
+- Sung with Drik Panchang's words, which the text takes (docs/PLAYBOOK.md §3: a written witness prints what is sung; each heard in the transcript at that verse): `chalisa.cau21` नित्य → नित.
