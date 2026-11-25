@@ -1,7 +1,7 @@
 """The whole audio chain for one recording source, in one command (tools/audio/METHOD.md, docs/HOW-TO.md "Add a new audio source").
 
     python3 tools/audio/chain.py tools/works/<work>/audio/<source> [--branch B] [--data-ref R] [--per-job N] [--lean S]
-                                 [--whole] [--skip id,id] [--no-pr] [--trailer LINE]... [--dry-run]
+                                 [--whole] [--skip id,id] [--realign] [--no-pr] [--trailer LINE]... [--dry-run]
 
 Before it: source.json and recordings.json written, each recording's speech-quality copy in scriptures-data (its "data"
 path), as docs/HOW-TO.md says. Then, in order, each step skipped when it is already done, so a stopped run is started
@@ -13,7 +13,8 @@ again with the same command:
      for the runs and pulls;
   3. make_timings.py (the rough starts: the transcript's, or spread by length for "lines");
   4. mms_windows.py (--whole for "lines", or when asked, with --skip); where a recording's windows changed (a text changed),
-     its old MMS result (mms/<id>.json) is removed, because the align workflow keeps a result it finds;
+     its old MMS result (mms/<id>.json) is removed, because the align workflow keeps a result it finds; a source with MMS
+     starts made another way (aligned.json without mms/windows.json: the Mānas) is aligned again only with --realign;
   5. MMS: the recordings with no result go to the `align` workflow (--per-job for many short recordings); it waits and pulls;
   6. mms_merge.py --lean (--lean, else the lean the source's check.json names, else 0.6), make_timings.py, aligned_md.py;
   7. tools/site/build.py, so docs/PENDING.md and docs/WORKS.md follow;
@@ -73,6 +74,23 @@ def dispatch_and_wait(workflow, inputs, title):
             print(f'  run {run}: {r["conclusion"]}', flush=True); return r['conclusion']
     sys.exit(f'{workflow} run {run} still not finished after {WAIT_MAX // 3600} h: start this command again later; it goes on from there')
 
+def by_track(p):
+    if not os.path.exists(p): return {}
+    out = {}
+    for w in json.load(open(p, encoding='utf-8')): out.setdefault(w['yt'], []).append(w)
+    return {k: hashlib.sha1(json.dumps(v, sort_keys=True, ensure_ascii=False).encode()).hexdigest() for k, v in out.items()}
+
+def windows_stale(src, meta, wpath):
+    """No windows yet, a recording with none, or a verse whose text (as the aligner is given it) is no longer the work's."""
+    if not os.path.exists(wpath): return True
+    sys.path.insert(0, HERE); from mms_windows import rom
+    work = json.load(open(os.path.join(REPO, 'library', meta['work'], 'work.json'), encoding='utf-8'))
+    T = {x['id']: rom(x.get('t') or []) for x in work['items']}
+    W = json.load(open(wpath, encoding='utf-8'))
+    recs = {r['yt'] for r in json.load(open(os.path.join(src, 'recordings.json'), encoding='utf-8'))}
+    if recs - {w['yt'] for w in W}: return True
+    return any(l['id'] not in T or l['rom'] != T[l['id']] for w in W for l in w['lines'])
+
 def batches(ids, n): return [ids[k:k + n] for k in range(0, len(ids), n)]
 
 def main():
@@ -112,26 +130,33 @@ def main():
         left = [i for i in todo_t if not os.path.exists(os.path.join(tdir, i + '.jsonl.done'))]
         if left: sys.exit(f'not transcribed yet: {", ".join(left)} (a job ran out of time or failed): start this command again; it goes on from there')
 
-    # 3. rough starts
-    py('tools/audio/make_timings.py', rel)
-
-    # 4. MMS windows; a recording whose windows changed loses its old result
+    # 3–4. rough starts and MMS windows, cut only when there are none yet or the text they hold is no longer the work's;
+    # then from the rough starts alone (the transcript's, the owner's and the hand fixes), MMS's earlier result set aside,
+    # because windows cut from MMS's own starts would move on every run. A recording whose windows changed loses its old result.
     wpath = os.path.join(src, 'mms', 'windows.json')
-    def by_track(p):
-        if not os.path.exists(p): return {}
-        out = {}
-        for w in json.load(open(p, encoding='utf-8')): out.setdefault(w['yt'], []).append(w)
-        return {k: hashlib.sha1(json.dumps(v, sort_keys=True, ensure_ascii=False).encode()).hexdigest() for k, v in out.items()}
-    before = by_track(wpath)
-    a = [rel] + (['--whole'] if lines or flag('--whole') else []) + (['--skip', arg('--skip')] if arg('--skip') else [])
-    py('tools/audio/mms_windows.py', *a)
-    after = by_track(wpath)
-    for i in ids:
+    if os.path.exists(os.path.join(src, 'aligned.json')) and not os.path.exists(wpath) and not flag('--realign'):
+        sys.exit('this source has MMS starts (aligned.json) made another way, without mms/windows.json: aligning it again costs a '
+                 'run on every recording; ask with --realign if that is meant')
+    if not windows_stale(src, meta, wpath):
+        print('  MMS windows hold the current text: kept')
+        before = after = None
+    else:
+      al = os.path.join(src, 'aligned.json'); hold = al + '.hold'
+      if os.path.exists(al): os.replace(al, hold)
+      try:
+        py('tools/audio/make_timings.py', rel)
+        before = by_track(wpath)
+        a = [rel] + (['--whole'] if lines or flag('--whole') else []) + (['--skip', arg('--skip')] if arg('--skip') else [])
+        py('tools/audio/mms_windows.py', *a)
+        after = by_track(wpath)
+      finally:
+        if os.path.exists(hold): os.replace(hold, al)
+      for i in ids:
         res = os.path.join(src, 'mms', i + '.json')
         if os.path.exists(res) and before.get(i) != after.get(i):
             os.remove(res); print(f'  {i}: windows changed, its old MMS result removed')
-    git_commit(f'{meta["id"]}: rough starts and MMS windows ({rel})', [rel, 'library'], trailers)
-    git_push(branch)
+      git_commit(f'{meta["id"]}: rough starts and MMS windows ({rel})', [rel, 'library'], trailers)
+      git_push(branch)
 
     # 5. MMS (the align workflow commits mms/<id>.json to the branch)
     todo_a = [i for i in ids if not os.path.exists(os.path.join(src, 'mms', i + '.json'))]
