@@ -19,6 +19,9 @@ The other channels' videos of items Shabad Guru already sings are listed in `scr
 
 ## Videos left out
 
+Twelve videos are not used and their audio is not kept in `scriptures-data` (the owner: the kirtan already here is enough): four whose title matches two shabads (YeAKLlAi5J4 and wIn9KsRHjjU: 32.1 or 64.2; blBZnwmAuBQ: 250.1 or 262.1; MCuHvD9UGQU: 522.1 or 524.2), six whose title matches no verse (C4k7dRTPHaY, Eh3J-L4ad7c, HSd1RzdBEPY, NlGUvGHOMQU, RGrLDJOmOQk, wIKmZXWnxeM) and the channel's two trailers (fQfO-SITz_c, p0zWiXiyaJY).
+
+
 A verse sung in two videos alike (the same song, the lines MMS found in both largely the same) keeps the video MMS fits
 best (the most lines found); the other is left out (`make_recordings.py` → `DROP`):
 
