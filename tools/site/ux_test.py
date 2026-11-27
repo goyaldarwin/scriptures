@@ -210,7 +210,7 @@ async def main():
                     await ev("delete S.timing.fix[tkey()]; save(); buildAudio()")
                 # a helper's file: saved from the marks, opened by the owner as marks "from <helper>" that are not sent until checked
                 await ev("S.timing.fix[tkey()] = {}; S.timing.from = {}; save(); buildAudio()")
-                await ev(f"setTime({j}, 1, AUT[0].find(x => x[0] === {j})[1] + 0.7)")
+                await ev(f"(() => {{ const x = AUT[0].find(x => x[0] === {j}); setTime({j}, 1, x[1] + (x[2] != null ? Math.min(0.7, (x[2] - x[1]) / 2) : 0.7)); }})()")   # moved, but still before an end set by ear
                 doc = await ev("timingDoc('Asha')")
                 await ev("delete S.timing.fix[tkey()]; delete S.timing.sent[tkey()]; save(); buildAudio()")
                 await ev("importTiming(JSON.parse(JSON.stringify(Object.assign({}, " + json.dumps(doc) + ", {path: 'nowhere'}))))"); await pg.wait_for_timeout(300)
