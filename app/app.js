@@ -1140,6 +1140,11 @@ function trStart(tr){ const k = SRC.au ? SRC.au.tracks.indexOf(tr) : -1, a = SRC
 function trEnd(tr){ return tr.end != null ? tr.end : tr.dur; }   // where a track ends: its own end inside the video, else the video's
 function hasAu(i){ return !!(SRC.au && SRC.au.at[IT[i].id]); }
 function firstAu(a, b){ for (let i = a; i <= b; i++) if (hasAu(i)) return i; return null; }
+// the next verse to play from a on, up to b: in a group's reading (a writer's verses in the Granth, the bookmarked verses) only
+// its own verses, whichever recording holds each (the owner: the player went on with the verses the recording sings next,
+// which are not the writer's); elsewhere every verse in order
+function nextAu(a, b, org){ const g = GROUP[org]; if (!g) return firstAu(a, b);
+  for (let n = g.list.findIndex(i => i >= a); n >= 0 && n < g.list.length && g.list[n] <= b; n++) if (hasAu(g.list[n])) return g.list[n]; return null; }
 /* YouTube embed driven by postMessage (no external script needed) */
 function ytFrame(){ return $('#ytf'); }
 function ytPost(func, args){ const f = ytFrame(); if (f && f.contentWindow) f.contentWindow.postMessage(JSON.stringify({event: 'command', func, args: args || []}), '*'); }
@@ -1267,7 +1272,7 @@ function playFrom(i, end, tk){
   if (!SRC.au) return;
   if (GP.role === 'follow'){ if (GP.on){ gpNoPlay(); return; } gpStop(); toast(T('सामूहिक पाठ छोड़ा', 'Left the group paath')); }   // in a group paath only the leader's device plays (two would echo); waiting for one not yet started, ▶ leaves it and plays here
   PL.snip = null;
-  if (!hasAu(i)){ const j = firstAu(i, Math.min(IT.length - 1, i + 80)); if (j == null) return; i = j; }
+  if (!hasAu(i)){ const j = GROUP[R.org] ? nextAu(i, IT.length - 1, R.org) : firstAu(i, Math.min(IT.length - 1, i + 80)); if (j == null) return; i = j; }
   const t = tk != null ? tk : SRC.au.at[IT[i].id][0], st0 = SRC.au.at[IT[i].id][1], tr = SRC.au.tracks[t];
   const st = tk != null ? trStart(tr) : (end != null && i === tr.fi) ? trStart(tr) : st0;   // tk: a further track of the same verse, from its start
   PL.on = true; PL.t = t; PL.org = R.org; PL.end = end; PL.one = end === i; PL.cur = -1; PL.whole = false; PL.endMsg = ''; AN.playT0 = Date.now();   // PL.one: a single verse
@@ -1291,11 +1296,11 @@ function onEnded(){
   if (!PL.on || GP.role === 'follow') return;   // a follower's recording moves on with the leader's
   // go on with the next recording; where a stretch has no recording yet, skip ahead to the next verse that has one (said in the
   // white capsule: the reading speaking, not an answer to a tap)
-  const tr = SRC.au.tracks[PL.t], last = PL.end == null ? IT.length - 1 : PL.end, nx = firstAu(tr.li + 1, last);
+  const tr = SRC.au.tracks[PL.t], last = PL.end == null ? IT.length - 1 : PL.end, g = GROUP[PL.org], nx = nextAu(tr.li + 1, last, PL.org);
   // a verse sung on several tracks (a chhant's stanzas, one video each): its next track first
   const LN = PL.cur >= 0 && SRC.au.lines && SRC.au.lines[IT[PL.cur].id], more = LN && LN.map(o => o[0]).filter(t => t > PL.t).sort((a, b) => a - b)[0];
   if (more != null && !PL.one){ const whole = PL.whole, msg = PL.endMsg, cur = PL.cur; playFrom(cur, PL.end, more); PL.whole = whole; PL.endMsg = msg; return; }
-  if (nx != null){ if (nx > tr.li + 1) toastLight(T('आगेके अंशकी रिकॉर्डिंग नहीं है — अगली रिकॉर्डिंगसे जारी', 'No recording for the next part — continuing with the next one')); const whole = PL.whole, msg = PL.endMsg; playFrom(nx, PL.end); PL.whole = whole; PL.endMsg = msg; return; }   // the reading goes on in the next recording: what was asked for (the whole work, a part, a day) is kept
+  if (nx != null){ if (!g && nx > tr.li + 1) toastLight(T('आगेके अंशकी रिकॉर्डिंग नहीं है — अगली रिकॉर्डिंगसे जारी', 'No recording for the next part — continuing with the next one')); const whole = PL.whole, msg = PL.endMsg; playFrom(nx, PL.end); PL.whole = whole; PL.endMsg = msg; return; }   // the reading goes on in the next recording: what was asked for (the whole work, a part, a day) is kept
   stopAudio();
 }
 function endOf(i){ const x = SRC.au && SRC.au.at[IT[i].id]; return x && x[2] != null ? x[2] : null; }   // a verse's end, when one is set (otherwise it runs until the next verse starts)
@@ -1308,11 +1313,11 @@ function tick(anchor){
   const e = endOf(i), tr0 = SRC.au.tracks[PL.t];
   // a track inside a longer video ends at its own end: the reading goes on with the next recording, or stops there
   const trOver = tr0.end != null && time >= tr0.end && PL.snip == null;
-  if (trOver && firstAu(tr0.li + 1, PL.end == null ? IT.length - 1 : PL.end) != null){ onEnded(); return; }
+  if (trOver && nextAu(tr0.li + 1, PL.end == null ? IT.length - 1 : PL.end, PL.org) != null){ onEnded(); return; }
   if (trOver || (PL.end != null && (i > PL.end || (i === PL.end && e != null && time >= e)))){
     // the verse or stretch asked for has ended: stop, and offer to go on from the next verse
     const last = PL.end != null ? PL.end : tr0.li, whole = PL.whole, msg = whole ? T('पाठ पूर्ण', 'Recitation complete') : PL.endMsg || T('पूर्ण', 'Finished');
-    stopAudio(); const nx = whole ? null : firstAu(last + 1, Math.min(IT.length - 1, last + 80));
+    stopAudio(); const nx = whole ? null : GROUP[PL.org] ? nextAu(last + 1, IT.length - 1, PL.org) : firstAu(last + 1, Math.min(IT.length - 1, last + 80));
     if (TOUR && TOUR.waiting) return;   // the tour's verse has been heard: the tour finishes (no "Play on")
     const P = PLAN[R.org], af = P && R.n === P.n && last === P.ends[P.n - 1] && (P.after || [])[0];
     if (nx == null && af && PAGEWORK(af)) toastAct(msg, '▶ ' + pageTitle(af), () => openPage(af, true));
@@ -1328,6 +1333,14 @@ function tick(anchor){
   // that verse starts a little later; the same in ☰ › More settings › Audio timing on or off
   const m = at(show), e2 = endOf(show);
   if (e2 != null && time >= e2 && m >= 0 && m + 1 < a.length) show = a[m + 1][0];
+  // a group's reading (a writer's verses, the bookmarked verses): when the recording reaches a verse not in it, go on to the
+  // group's next verse, in whatever recording holds it, or stop where the group ends
+  const g = GROUP[PL.org];
+  if (g && !g.set.has(show) && PL.snip == null && PL.seekT == null && show > PL.cur){   // forward only: a report a hair before the verse's start is not a step
+    const last = PL.end == null ? IT.length - 1 : PL.end, nx = nextAu(show + 1, last, PL.org), whole = PL.whole, msg = PL.endMsg;
+    if (nx != null){ playFrom(nx, PL.end); PL.whole = whole; PL.endMsg = msg; return; }
+    stopAudio(); toastLight(msg || T('पूर्ण', 'Finished')); return;
+  }
   setCur(show);
   followLines(show, time, SRC.au.lineSet[IT[show].id] ? lineAt(show, time) : null);   // the same scrolling for every verse; a verse timed line by line (kirtan) says which line is sung
   partBar(show, time, ytInfo.d);
@@ -1937,6 +1950,9 @@ const fD = s => GUR((s || '').normalize('NFC')).normalize('NFD').replace(/[ङ�
 const fL = s => normL((s || '').normalize('NFD').replace(/m[̇̐]/g, 'n')).replace(/[^a-z]+/g, ' ')
   .replace(/(aa|ee|ii|oo|uu)/g, m => ({aa: 'a', ee: 'i', ii: 'i', oo: 'u', uu: 'u'})[m]).replace(/([bcdgjkptsr])h/g, '$1').replace(/[vw]/g, 'b').replace(/f/g, 'p').replace(/z/g, 'j').replace(/q/g, 'k')
   .replace(/ri/g, 'r').replace(/[nm](?=[bcdgjklpqrstxyz])/g, '').trim().split(/\s+/).filter(Boolean).map(w => w.length > 2 ? w.replace(FOLDPA ? /[aui]$/ : /[au]$/, '') : w);
+// Gurbani typed in Roman letters is spelt every which way in its vowels (rho, rahu, raho for ਰਹੁ; mere, meria for ਮੇਰਿਆ):
+// its consonants alone, doubles made single, are what a reader types the same (mnmrtsdrh for ਏ ਮਨ ਮੇਰਿਆ ਤੂ ਸਦਾ ਰਹੁ)
+const skel = ws => ws.map(w => w.replace(/[aeiou]/g, '')).join('').replace(/(.)\1+/g, '$1');
 let ROW0 = new Int32Array(256), ROW1 = new Int32Array(256);
 // the fewest letters to change, add or drop for p to appear somewhere in t (more than k: k + 1)
 function near(p, t, k){
@@ -1966,14 +1982,22 @@ const LATF = {'क': 'k', 'ख': 'k', 'ग': 'g', 'घ': 'g', 'ङ': 'n', 'च':
   'त': 't', 'थ': 't', 'द': 'd', 'ध': 'd', 'प': 'p', 'फ': 'p', 'ब': 'b', 'भ': 'b', 'म': 'm', 'य': 'y', 'र': 'r', 'ल': 'l', 'स': 's', 'ह': 'h', 'अ': 'a', 'इ': 'i', 'उ': 'u', 'ॴ': ''};
 const flLat = fd => [...fd].map(c => LATF[c] != null ? LATF[c] : c).join('');
 // one search scope per meaning language (h, e, and the code of any other: pa); Latin script is searched as Latin
-function buildIdx(){ FOLDPA = W.lang === 'pa'; IDX = IT.map((it, i) => { const h = SRC.hi && SRC.hi.m[it.id], e = SRC.en && SRC.en.m[it.id], vw = fD(it.v.join(' ')), tw = fL((it.t || []).join(' ')), r = {vw, v: vw.join(''), tw, t: tw.join(''), h: fD(h ? h[0] : '').join(' '), e: normL(e ? e[0] : ''), fd: it.v.map(flLine)}; r.fl = r.fd.map(flLat);
+function buildIdx(){ FOLDPA = W.lang === 'pa'; IDX = IT.map((it, i) => { const h = SRC.hi && SRC.hi.m[it.id], e = SRC.en && SRC.en.m[it.id], vw = fD(it.v.join(' ')), tw = fL((it.t || []).join(' ')), r = {vw, v: vw.join(''), tw, t: tw.join(''), sk: skel(tw), skl: (it.t || []).map(l => skel(fL(l))), h: fD(h ? h[0] : '').join(' '), e: normL(e ? e[0] : ''), fd: it.v.map(flLine)}; r.fl = r.fd.map(flLat);
   MK().forEach(k => { if (k !== 'hi' && k !== 'en'){ const x = SRC[k] && SRC[k].m[it.id]; r[k] = fD(x ? x[0] : '').join(' '); } }); return r; }); IDX.w = idxKey(); }
 const scopes = new Set(['v', 'h', 'e', 'n', 'pa']);
 $$('#scope .chip').forEach(c => c.onclick = () => { const s = c.dataset.s; if (scopes.has(s)) scopes.delete(s); else scopes.add(s); c.classList.toggle('on'); runSearch(); });
 let sT; $('#q').addEventListener('input', () => { clearTimeout(sT); sT = setTimeout(runSearch, 250); });
 // a verse found by its sound (ਹਰ ਹਰ ਨਾਮ for ਹਰਿ ਹਰਿ ਨਾਮੁ): its lines from the one holding most of the words typed
-function bestLines(i, q, latin){ const qs = latin ? fL(q) : fD(q), v = IT[i].v, t = IT[i].t || []; let best = 0, bs = -1;
-  v.forEach((l, n) => { const sc = wordsIn(qs, latin ? fL(t[n] || '') : fD(l)); if (sc > bs){ bs = sc; best = n; } }); return v.slice(best).join(' । '); }
+// the line it is found at (a result opens there: the owner, a long shabad is hard to search by eye): the line typed as it
+// is, else, in Roman letters, the line (with the next) whose consonants hold it, else the line holding most of its words
+function bestLine(i, q, latin){ const qs = latin ? fL(q) : fD(q), v = IT[i].v, t = IT[i].t || [], nq = latin ? '' : normD(q);
+  if (nq){ const n = v.findIndex(l => normD(l).includes(nq)); if (n >= 0) return n; }
+  if (latin){ const qk = skel(qs), sl = IDX[i].skl, kk = Math.floor(qk.length / 5); if (qk.length >= 5) for (let n = 0; n < sl.length; n++) if (near(qk, sl[n] + (sl[n + 1] || ''), kk) <= kk && near(qk.slice(0, 4), sl[n], 0) === 0) return n; }
+  let best = 0, bs = -1; v.forEach((l, n) => { const sc = wordsIn(qs, latin ? fL(t[n] || '') : fD(l)); if (sc > bs){ bs = sc; best = n; } }); return best; }
+function bestLines(i, q, latin){ return IT[i].v.slice(bestLine(i, q, latin)).join(' । '); }
+// the line of a meaning given line by line that holds what was typed (else 0: the verse's first line)
+function meanLine(i, kind, q){ const m = kind && mean(kind, i), nq = /[a-zA-Z]/.test(q) ? normL(q) : normD(q); if (!m || !Array.isArray(m.p)) return 0;
+  const n = m.p.findIndex(x => (/[a-zA-Z]/.test(q) ? normL(x || '') : normD(x || '')).includes(nq)); return n > 0 ? n : 0; }
 function snip(text, q, latin){ const src = text; const low = latin ? normL(src) : normD(src); const nq = latin ? normL(q) : normD(q); let p = low.indexOf(nq); if (p < 0) return esc(src.slice(0, 160)) + (src.length > 160 ? '…' : ''); let a = Math.max(0, p - 60), b = Math.min(src.length, p + nq.length + 80); if (a > 0){ const sp = src.indexOf(' ', a); if (sp > -1 && sp < p) a = sp + 1; } const s = src.slice(a, b); const pp = (latin ? normL(s) : normD(s)).indexOf(nq); let out; if (pp >= 0 && (latin ? normL(s) : normD(s)).length === s.length) out = esc(s.slice(0, pp)) + '<mark>' + esc(s.slice(pp, pp + nq.length)) + '</mark>' + esc(s.slice(pp + nq.length)); else out = esc(s); return (a > 0 ? '…' : '') + out + (b < src.length ? '…' : ''); }
 // A number typed into a work's search finds by number. In a work counted by dohas (the Manas, its kands), the doha is the main
 // counter and the chaupais count again under each: "45" (or "दोहा ४५") finds Doha 45 in each part, "45.3" (or "45 3") Chaupai 3
@@ -2028,6 +2052,7 @@ function runSearch(){
   const latin = /[a-zA-Z]/.test(q), nq = latin ? normL(q) : normD(q);
   const qs = latin ? fL(q) : fD(q), qj = qs.join(''), k = Math.floor(qj.length / 6), need = qs.length >= 3 ? qs.length - Math.max(1, Math.floor(qs.length / 3)) : qs.length;   // most words: all of two, all but one of three to five, then two in three
   // verses whose letters hold what was typed (closest first), then meanings that do, then texts holding most of its words
+  const qsk = latin ? skel(qs) : '', ksk = Math.floor(qsk.length / 5);   // five consonants or more: fewer match lines by chance
   const ew = latin ? nq.split(/\s+/).filter(Boolean) : [], meanK = MK().filter(k => k !== 'hi' && k !== 'en' && scopes.has(k)), hits = [];
   const mean = (x, words) => { const qm = qs.join(' '); if (!latin){ if (scopes.has('h') && (words ? wordsIn(qs, x.h.split(' ')) >= need : x.h.includes(qm))) return ['h', LB.h(), SRC.hi.m[IT[x.i].id][0], false];
       for (const m of meanK) if (x[m] && (words ? wordsIn(qs, x[m].split(' ')) >= need : x[m].includes(qm))) return [m, LBM(m), SRC[m].m[IT[x.i].id][0], false]; }
@@ -2039,6 +2064,8 @@ function runSearch(){
     const x = IDX[i]; x.i = i; const vt = latin ? x.t : x.v, vw = latin ? x.tw : x.vw;
     // a near match that holds few of the words typed is chance; among matches as near, the one holding more words comes first
     if (scopes.has('v') && vt){ const d = near(qj, vt, k), sc = d <= k && qs.length > 1 ? wordsIn(qs, vw) : 1; if (d <= k && (d === 0 || qs.length < 2 || sc >= qs.length / 2)){ hits.push([d - sc / 100, i, LB.verses(), IT[i].v.join(' । '), false]); continue; } }
+    // in Roman letters, a line whose consonants are what was typed (the vowels spelt any way): after the near matches
+    if (latin && qsk.length >= 5 && scopes.has('v') && x.sk){ const d = near(qsk, x.sk, ksk); if (d <= ksk){ hits.push([k + .6 + d, i, LB.verses(), IT[i].v.join(' । '), false]); continue; } }
     const m = mean(x, false); if (m){ hits.push([k + 1, i, m[1], m[2], m[3]]); continue; }
     const sc = qs.length >= 2 && scopes.has('v') && vw.length ? wordsIn(qs, vw) : 0; if (sc && sc >= need - .25){ hits.push([k + 3 - sc / 100, i, LB.verses(), IT[i].v.join(' । '), false]); continue; }
     const w = qs.length >= 2 && mean(x, true); if (w) hits.push([k + 4, i, w[1], w[2], w[3]]);
@@ -2049,18 +2076,20 @@ function runSearch(){
   const flq = !num && scopes.has('v') ? flQuery(q, latin) : '';
   if (flq){ const seen = new Set(hits.map(h => h[1])); for (let i = 0; i < IT.length; i++){ if (seen.has(i)) continue; const ls = latin ? IDX[i].fl : IDX[i].fd; let at = -1, k0 = -1;
     for (let n = 0; n < ls.length; n++){ const p = ls[n].indexOf(flq); if (p === 0){ at = n; k0 = 0; break; } if (p > 0 && at < 0) at = n; }
-    if (at >= 0) hits.push([k0 === 0 ? (FOLDPA && flq.length >= 4 ? -2 : k + .5) : k + 2, i, T('पहले अक्षर', 'First letters'), IT[i].v.slice(at, at + 2).join(' । '), false]); } }
+    if (at >= 0) hits.push([k0 === 0 ? (FOLDPA && flq.length >= 4 ? -2 : k + .5) : k + 2, i, T('पहले अक्षर', 'First letters'), IT[i].v.slice(at, at + 2).join(' । '), false, at]); } }
   const kept = hits.filter(h => inSearch(h[1])); kept.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
-  const res = kept.slice(0, 300).map(h => h.slice(1)).map(r => r[1] === LB.verses() && (latin || !normD(r[2]).includes(normD(q))) ? [r[0], r[1], bestLines(r[0], q, latin), false] : r);
-  if (scopes.has('n')) for (const p of SHOWN()) for (const k in p.notes){ if (!k.startsWith(W.id + ':')) continue; const i = ID[k.slice(W.id.length + 1)]; if (i == null || !inSearch(i)) continue; p.notes[k].forEach(n => { if ((latin ? normL(n.t) : normD(n.t)).includes(nq)) res.push([i, T('टिप्पणी', 'Note'), n.t, latin]); }); }
+  const MKIND = {[LB.h()]: 'hi', [LB.e()]: 'en'}; MK().forEach(m => { if (m !== 'hi' && m !== 'en') MKIND[LBM(m)] = m; });
+  const res = kept.slice(0, 300).map(h => h.slice(1)).map(r => r[1] === LB.verses() ? ((ln => [r[0], r[1], latin || !normD(r[2]).includes(normD(q)) ? IT[r[0]].v.slice(ln).join(' । ') : r[2], r[3], ln])(bestLine(r[0], q, latin)))
+    : r[4] != null ? r : [r[0], r[1], r[2], r[3], meanLine(r[0], MKIND[r[1]], q)]);
+  if (scopes.has('n')) for (const p of SHOWN()) for (const k in p.notes){ if (!k.startsWith(W.id + ':')) continue; const i = ID[k.slice(W.id.length + 1)]; if (i == null || !inSearch(i)) continue; p.notes[k].forEach(n => { if ((latin ? normL(n.t) : normD(n.t)).includes(nq)) res.push([i, T('टिप्पणी', 'Note'), n.t, latin, 0]); }); }
   const note = loading ? '<p class="small muted sload">' + T('सभी भागोंके अर्थ खोजे जा रहे हैं…', 'Searching the meanings of every part…') + '</p>' : '';
   // the parts and the groups (the Granth's raags and writers) named by what was typed open from the top of the results
   const jumps = num || SIN && !SALL ? [] : nameHits(q, latin), jl = jumps.map(j => '<button class="jmp" data-jump="' + j.key + '"><div class="where">' + esc(j.kind) + '</div><div class="snip"><b>' + esc(j.name) + '</b> ›</div></button>').join('');
-  const list = jl + (res.length ? '<p class="small muted">' + DEV(res.length) + (res.length >= 300 ? '+' : '') + T(' परिणाम', ' results') + '</p>' + res.map(r => '<button class="res" data-i="' + r[0] + '"><div class="where">' + esc(itemLabel(r[0])) + (r[1] === LB.verses() ? '' : ' · ' + esc(r[1])) + '</div><div class="snip' + (r[3] ? ' lat' : '') + '">' + snip(r[2], q, r[3]) + '</div></button>').join('') : jl ? '' : '<div class="empty">' + T('कुछ नहीं मिला। दूसरा रूप लिखकर देखें।', 'Nothing found. Try another spelling.') + '</div>');
+  const list = jl + (res.length ? '<p class="small muted">' + DEV(res.length) + (res.length >= 300 ? '+' : '') + T(' परिणाम', ' results') + '</p>' + res.map(r => '<button class="res" data-i="' + r[0] + '" data-ln="' + (r[4] || 0) + '"><div class="where">' + esc(itemLabel(r[0])) + (r[1] === LB.verses() ? '' : ' · ' + esc(r[1])) + '</div><div class="snip' + (r[3] ? ' lat' : '') + '">' + snip(r[2], q, r[3]) + '</div></button>').join('') : jl ? '' : '<div class="empty">' + T('कुछ नहीं मिला। दूसरा रूप लिखकर देखें।', 'Nothing found. Try another spelling.') + '</div>');
   // a part's meanings arriving while the same results show: only the note changes, so a result being tapped stays in place
   if (box._list === list && box._first && box.contains(box._first)){ const n = box.querySelector('.sload'); if (loading && !n) box.insertAdjacentHTML('afterbegin', note); else if (!loading && n) n.remove(); return; }
   box.innerHTML = note + list; box._list = list; box._first = box.querySelector('.res, .empty');
-  $$('#sRes .res[data-i]').forEach(b => b.onclick = () => openReader(readOrg(), +b.dataset.i, true));
+  $$('#sRes .res[data-i]').forEach(b => b.onclick = () => openReader(readOrg(), +b.dataset.i, true, +b.dataset.ln));   // at the line found (the owner)
   $$('#sRes [data-jump]').forEach(b => b.onclick = () => { const k = b.dataset.jump; if (GROUP[k]) openReader(k, GROUP[k].list[0]); else openReader('k', PARTS[+k.slice(5)].a); });
 }
 // what was typed as first letters, or '' (one word of three or more letters, or single letters with spaces between, with no

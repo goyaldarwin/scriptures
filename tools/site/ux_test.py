@@ -1259,6 +1259,15 @@ async def main():
             return {fl: await run('ਸਨਕਪ'), flr: await run('snkp'), fls: await run('ਸ ਨ ਕ ਪ'), sihari: s && IT[ID[s]].v.join(' ').includes('ਹਰਿ ਹਰਿ ਨਾਮੁ ਧਿਆ'), ang: await run('ਅੰਗ ੧੪'), ang608: await run('608'),
               raag: await jump('ਆਸਾ'), kabir: await jump('kabir')}; })()""")
         check('Gurbani search: first letters (ਸਨਕਪ, snkp), a final sihari or aunkar left off, an Ang by its number, a raag or writer by name', gg['fl'] == gg['flr'] == gg['fls'] == 'mool' and gg['sihari'] and gg['ang'] == '14.1' and gg['ang608'] == '607.3' and 'part.7' in gg['raag'] and 'writer.bhagat-kabir' in gg['kabir'], gg)
+        # Gurbani typed in Roman with its vowels spelt any way (rho for ਰਹੁ, mere for ਮੇਰਿਆ) finds the line by its consonants; a
+        # result opens at the line found, not at the shabad's start (the owner: a long shabad is hard to search by eye)
+        gs = await ev("""(async () => { await openWork('guru-granth-sahib', true); show('home');
+            const run = async q => { openSearch('text'); document.querySelector('#q').value = q; runSearch(); await new Promise(r => setTimeout(r, 50)); const r = document.querySelector('#sRes .res'); return r ? [IT[+r.dataset.i].id, +r.dataset.ln] : null; };
+            const rho = await run('Ae Man mere tu sada rho'), mid = await run('ਹਰਿ ਨਾਲਿ ਰਹੁ ਤੂ ਮੰਨ ਮੇਰੇ');
+            document.querySelector('#sRes .res').click(); await new Promise(r => setTimeout(r, 400));
+            const p = lineEl(ID['917.2'], 1), top = p ? Math.round(p.getBoundingClientRect().top - $('#reader .bar').getBoundingClientRect().bottom) : null;
+            return {rho, mid, top}; })()""")
+        check('Gurbani search: Roman with its vowels spelt any way finds the line (rho for ਰਹੁ); a result opens at the line found', gs['rho'] == ['917.2', 0] and gs['mid'] == ['917.2', 1] and gs['top'] is not None and 0 <= gs['top'] <= 30, gs)
         vw = await ev("""(async () => { await openWork('guru-granth-sahib', true); show('home'); WS().org = 'writer'; renderHome();
             const seg = [...document.querySelectorAll('#orgSeg button')].map(b => b.dataset.org), rows = document.querySelectorAll('#orgList [data-group]').length;
             document.querySelector('[data-group="writer.guru-tegh-bahadur"]').click(); await new Promise(r => setTimeout(r, 400));
@@ -1271,6 +1280,18 @@ async def main():
             const ang = [R.org, !!document.getElementById('v' + ID['607.3'])]; WS().org = 'k'; S.settings.atOpen = {}; save();
             return {seg, rows, n: G.list.length, o1, o2, shown, chip, own: chip === GNAME('writer.guru-tegh-bahadur'), ang}; })()""")
         check('Sri Guru Granth Sahib: Part · Writer · Ang; a writer opens a reading of only their verses, search from it narrowed to them; Ang 608 opens its part at the verse it begins in', vw['seg'] == ['k', 'writer', 'ang'] and vw['rows'] == 34 and vw['o1'] and vw['o2'] and vw['shown'] > 20 and vw['own'] and vw['ang'] == ['k', True], vw)
+        # a writer's verses play as their own reading (the owner: the player went on with the verses the recording sings next,
+        # which are not the writer's, and the light stopped): when the recording reaches a verse not the writer's, the player goes on
+        # to the writer's next verse, in whatever recording holds it; at a recording's end too
+        gp = await ev("""(async () => { await openWork('guru-granth-sahib', true); show('home'); const G = GROUP['writer.guru-tegh-bahadur']; openReader(G.key, G.list[0]);
+            for (let n = 0; n < 40 && !SRC.au; n++) await new Promise(r => setTimeout(r, 100));
+            const nextOf = i => { const x = SRC.au.at[IT[i].id], L = AUT[x[0]], k = L.findIndex(y => y[0] === i); return k >= 0 && k + 1 < L.length ? L[k + 1] : null; };
+            const a0 = G.list.find(i => hasAu(i) && nextOf(i) && !G.set.has(nextOf(i)[0])); if (a0 == null) return {none: true};
+            playFrom(a0, null); ytOK = true; PL.seekT = null; const nx = nextOf(a0), want = nextAu(nx[0] + 1, IT.length - 1, G.key);
+            ytInfo.t = nx[1] + 0.5; ytInfo.at = performance.now(); tick(); const step = [PL.on, PL.cur === want, G.set.has(PL.cur)];
+            PL.seekT = null; const c = PL.cur, tr = SRC.au.tracks[PL.t], want2 = nextAu(tr.li + 1, IT.length - 1, G.key); onEnded(); const end = [PL.cur === want2, G.set.has(PL.cur), PL.cur > c];
+            stopAudio(); ytOK = false; return {step, end}; })()""")
+        check("Sri Guru Granth Sahib: a writer's verses play on as their own reading — past a verse not the writer's, and at a recording's end, the player goes to the writer's next verse", not gp.get('none') and gp['step'] == [True, True, True] and gp['end'] == [True, True, True], gp)
         # an Ang that begins inside a verse begun on the page before (Ang 110 at ਸੇਵਾ ਸੁਰਤਿ, the third line of 109.3): it opens at that
         # line, and the footer names the page of the line at the top of the screen (110 there, 109 above it)
         ap = await ev("""(async () => { await openWork('guru-granth-sahib', true); show('home'); WS().org = 'ang'; S.settings.atOpen = {}; renderHome();
