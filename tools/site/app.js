@@ -184,13 +184,13 @@ function applyLang(){ const en = LANG() === 'en'; document.documentElement.lang 
 function applyTheme(){ const r = document.documentElement; if (S.settings.theme === 'auto') r.removeAttribute('data-theme'); else r.setAttribute('data-theme', S.settings.theme); r.style.setProperty('--verse-size', S.settings.size + 'px'); r.style.setProperty('--mean-size', Math.round(S.settings.size * 0.78 * 10) / 10 + 'px'); r.style.setProperty('--ui-zoom', (1 + (S.settings.size - 21) * 0.025).toFixed(3));
   const m = document.querySelector('meta[name=theme-color]'); if (m) m.setAttribute('content', S.settings.theme === 'dark' ? '#14130F' : '#2B3A8C'); }   // the phone's own bar dark too at night   // A−/A+ also scale the library and work pages
 let FROMV = 'library';   // the page a page was opened from: More settings opened from the library searches the library
-function show(id, push = true){ { const was = LANG(); if (id !== CURVIEW && !['settings', 'bookmarks', 'vidhi', 'search'].includes(CURVIEW)) FROMV = CURVIEW; CURVIEW = id; if (LANG() !== was) applyLang(); }
+function show(id, push = true, from){ { const was = LANG(); if (from) FROMV = from; else if (id !== CURVIEW && !['settings', 'bookmarks', 'vidhi', 'search'].includes(CURVIEW)) FROMV = CURVIEW; CURVIEW = id; if (LANG() !== was) applyLang(); }
   if (push && history.state) history.replaceState(Object.assign({}, history.state, {y: scrollY}), '');   // the height of the page left, for Back (not the reader: it returns to its verse)
   $$('.view').forEach(v => v.classList.toggle('on', v.id === id)); if (push) history.pushState(snap(id), ''); else history.replaceState(snap(id), ''); if (id !== 'reader') window.scrollTo(0, 0); onView(id); }
 // Every page is an entry in the browser's history that carries where you are: the page, the open work and the library
 // shelf. Back (the button or the phone's gesture) returns to exactly the previous one — a shelf
 // included — and a refresh reopens the same page, because the browser keeps these entries across a reload.
-function snap(v){ return {v, w: W ? W.id : null, lib: libPath.slice(), scope: v === 'search' ? SCOPE : undefined, r: v === 'reader' && R.at ? Object.assign({}, R.at) : undefined}; }
+function snap(v){ return {v, w: W ? W.id : null, from: FROMV, lib: libPath.slice(), scope: v === 'search' ? SCOPE : undefined, r: v === 'reader' && R.at ? Object.assign({}, R.at) : undefined}; }
 // Back lands where the app puts it (the reader: the verse you left), never at the browser's remembered height: the page is
 // drawn again on the way back, often with other heights (another meaning source), so that height is another verse
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -202,7 +202,7 @@ async function restore(st){
   if (st.v !== 'library' && st.w && (!W || W.id !== st.w)) await openWork(st.w, true);
   const v = document.getElementById(st.v) && (W || !['home', 'reader', 'bookmarks', 'vidhi'].includes(st.v)) ? st.v : 'library';
   if (v === 'search') setScope(st.scope === 'lib' || !W ? 'lib' : 'text');   // Back to a search: the same kind of search, the query kept
-  show(v, false);
+  show(v, false, st.from);   // the page it was opened from too: More settings reopened by Back stays the library's or the work's
   if (v !== 'reader' && st.y > 0) requestAnimationFrame(() => window.scrollTo(0, st.y));   // Back to a list: where it was left
   if (v === 'reader'){ const r = st.r, i = r && W && ID[r.id]; if (i != null && isOrg(r.org)) openReader(r.org, i); else reopenReader(); }   // the reader's own place: a plan day stays that day
 }
@@ -383,9 +383,10 @@ function buildWork(){
 // the bookmarked verses as a reading of their own (GROUP.bm, read like a writer's verses): every verse as the reader shows it,
 // with its meanings, words and ▶, in the work's order, each part and section heading the verses in it. Made again each
 // time it is opened from Bookmarks & notes, so a bookmark set or removed meanwhile is in it (or not)
-function bmGroup(){
+// part: one part's bookmarks only (Bookmarks & notes › a part's Read ›); none: every bookmark
+function bmGroup(part){
   const pre = W.id + ':', set = new Set();
-  for (const p of SHOWN()) for (const k in p.bm) if (k.startsWith(pre) && ID[k.slice(pre.length)] != null) set.add(ID[k.slice(pre.length)]);
+  for (const p of SHOWN()) for (const k in p.bm) if (k.startsWith(pre) && ID[k.slice(pre.length)] != null && (part == null || IT[ID[k.slice(pre.length)]].p === part)) set.add(ID[k.slice(pre.length)]);
   const list = [...set].sort((a, b) => a - b), pgs = [...new Set(list.map(i => itemPage[i]))];
   delete GROUP.bm; if (!list.length) return null;
   return GROUP.bm = {key: 'bm', m: {hi: 'बुकमार्क', en: 'Bookmarks'}, list, set, ix: new Map(list.map((i, n) => [i, n])), pgs, pos: new Map(pgs.map((p, n) => [p, n]))};
@@ -1616,7 +1617,7 @@ function renderLibrary(){
         '<button data-node="' + esc(c.id) + '"><span>' + esc(TT(c.title)) + '</span><span class="cnt">' + DEV(worksIn(c).length) + '</span></button>').join('') + '</div></li>';
   };
   const sub = $('#libSub'); sub.textContent = libPath.length ? (S.settings.ui === 'hi' ? node.title.en : node.title.hi) + ' · ' + works(worksIn(node).length) : '';
-  $('#libList').innerHTML = !libPath.length ? kids.map(shelfCard).join('') : isIndex ? index(node) :
+  $('#libList').innerHTML = !libPath.length ? kids.filter(c => !shelfHidden(c.id)).map(shelfCard).join('') : isIndex ? index(node) :
     kids.every(c => c.work) ? group(node, '', null) :
     kids.map(c => holdsShelves(c) ? section(c, c.id) : c.work ? group(c, c.id, mixed ? (c.by || c.title) : null) : group(c, c.id, c.title)).join('');
   $$('#libList [data-node]').forEach(b => b.onclick = () => {
@@ -2083,19 +2084,34 @@ function nameHits(q, latin){
 }
 
 /* ---------------- bookmarks ---------------- */
+// the part open in each grouped list (none at first: the owner) and how many of its rows show; not saved
+const BMGROUP = 25, BMSTEP = 50, BMOPEN = {bm: -1, notes: -1}, BMSHOW = {};
 function renderBookmarks(){
   const bms = [], notes = [], pre = W.id + ':';
   for (const p of SHOWN()){ for (const k in p.bm) if (k.startsWith(pre) && ID[k.slice(pre.length)] != null) bms.push([ID[k.slice(pre.length)], p]); for (const k in p.notes) if (k.startsWith(pre) && ID[k.slice(pre.length)] != null) p.notes[k].forEach(n => notes.push([ID[k.slice(pre.length)], p, n])); }
   bms.sort((a, b) => a[0] - b[0]); notes.sort((a, b) => a[0] - b[0]);
   // each list folds under its heading: open by default, and a fold is remembered
   const fold = S.settings.bmFold || {}, sec = (key, title, body) => '<details class="bmsec" data-fold="' + key + '"' + (fold[key] ? '' : ' open') + '><summary><h2>' + title + '</h2></summary>' + body + '</details>';
-  let h = '', bmh = '';
-  // each bookmark has its own ✕ to remove it
-  bmh += bms.length ? bms.map(b => '<div class="bmrow"><button class="res" data-i="' + b[0] + '"><div class="where">' + esc(itemLabel(b[0])) + '</div><div class="snip" style="font-weight:700">' + esc(IT[b[0]].v[0]) + '</div></button><button class="bmdel" data-del="' + b[0] + '" aria-label="' + T('बुकमार्क हटाएँ', 'Remove bookmark') + '"><svg><use href="#i-x"/></svg></button></div>').join('') : '<p class="muted">' + T('किसी भी पदके पास बुकमार्क चिह्न दबाएँ।', 'Tap the bookmark sign beside any verse.') + '</p>';
-  // read them all as the reader shows a verse (meanings, words, ▶), only the bookmarked ones
-  if (bms.length) bmh = '<button class="btn bmread" id="bmRead">' + T('बुकमार्क किये पद पढ़ें', 'Read the bookmarked verses') + ' ›</button>' + bmh;
+  let h = '';
+  // a long list (BMGROUP or more) of a work with parts is grouped by part (the owner: 882 bookmarks were too many to walk
+  // through): one row per part, its name and count, closed at first, one open at a time, showing BMSTEP at a time; a
+  // place there leaves out the part's name, its heading. Bookmarks have Read › on each part (that part's bookmarked verses)
+  // besides Read all; a shorter list stays one plain list
+  const grouped = list => list.length >= BMGROUP && PARTS.length > 1;
+  const where = (i, inPart) => esc(inPart ? joinPlace([SECN(PAGES[itemPage[i]].s), playLabel(i)]) : itemLabel(i));
+  const bmRow = (b, inPart) => '<div class="bmrow"><button class="res" data-i="' + b[0] + '"><div class="where">' + where(b[0], inPart) + '</div><div class="snip" style="font-weight:700">' + esc(IT[b[0]].v[0]) + '</div></button><button class="bmdel" data-del="' + b[0] + '" aria-label="' + T('बुकमार्क हटाएँ', 'Remove bookmark') + '"><svg><use href="#i-x"/></svg></button></div>';
+  const noteRow = (n, inPart) => '<button class="res" data-i="' + n[0] + '"><div class="where">' + where(n[0], inPart) + '</div><div class="snip">' + esc(n[2].t.slice(0, 200)) + '</div></button>';
+  const parts = (key, list, row, read) => { const by = new Map(); list.forEach(x => { const p = IT[x[0]].p; if (!by.has(p)) by.set(p, []); by.get(p).push(x); });
+    return '<div class="bmparts">' + [...by].map(([p, xs]) => { const open = BMOPEN[key] === p, n = Math.min(xs.length, BMSHOW[key] || BMSTEP), left = xs.length - n;
+      return '<div class="bmpart"><div class="bmph"><button class="bmpt" data-bmp="' + key + ':' + p + '" aria-expanded="' + open + '"><span class="chev' + (open ? ' on' : '') + '">›</span><b>' + esc(KNAME(p)) + '</b><span class="cnt">' + DEV(xs.length) + '</span></button>' +
+        (read ? '<button class="bmpr" data-bmr="' + p + '">' + T('पढ़ें', 'Read') + ' ›</button>' : '') + '</div>' +
+        (open ? '<div class="bmpl">' + xs.slice(0, n).map(x => row(x, true)).join('') + (left ? '<button class="bmmore" data-bmm="' + key + '">' + T('अगले ' + DEV(Math.min(BMSTEP, left)) + ' दिखाएँ (' + DEV(left) + ' बाकी)', 'Show the next ' + Math.min(BMSTEP, left) + ' of ' + left) + ' ›</button>' : '') + '</div>' : '') + '</div>'; }).join('') + '</div>'; };
+  // each bookmark has its own ✕ to remove it; read them all as the reader shows a verse (meanings, words, ▶), only the bookmarked ones
+  const bmh = !bms.length ? '<p class="muted">' + T('किसी भी पदके पास बुकमार्क चिह्न दबाएँ।', 'Tap the bookmark sign beside any verse.') + '</p>' :
+    '<button class="btn bmread" id="bmRead">' + (grouped(bms) ? T('सभी ' + DEV(bms.length) + ' बुकमार्क किये पद पढ़ें', 'Read all ' + bms.length + ' bookmarked verses') : T('बुकमार्क किये पद पढ़ें', 'Read the bookmarked verses')) + ' ›</button>' +
+    (grouped(bms) ? parts('bm', bms, bmRow, true) : bms.map(b => bmRow(b)).join(''));
   h += sec('bm', T('बुकमार्क ', 'Bookmarks ') + DEV(bms.length), bmh);
-  h += sec('notes', T('टिप्पणियाँ ', 'Notes ') + DEV(notes.length), notes.length ? notes.map(n => '<button class="res" data-i="' + n[0] + '"><div class="where">' + esc(itemLabel(n[0])) + '</div><div class="snip">' + esc(n[2].t.slice(0, 200)) + '</div></button>').join('') : '<p class="muted">' + T('किसी पदके ⋮ मेनूसे अपनी टिप्पणी लिखें।', 'Use the ⋮ menu of any verse to write a note.') + '</p>');
+  h += sec('notes', T('टिप्पणियाँ ', 'Notes ') + DEV(notes.length), notes.length ? (grouped(notes) ? parts('notes', notes, noteRow, false) : notes.map(n => noteRow(n)).join('')) : '<p class="muted">' + T('किसी पदके ⋮ मेनूसे अपनी टिप्पणी लिखें।', 'Use the ⋮ menu of any verse to write a note.') + '</p>');
   h += '<h2 style="font-size:19px;margin:26px 0 4px">' + T('मेरी फ़ाइल', 'My file') + '</h2><p class="small muted">' + T('आपके बुकमार्क, टिप्पणियाँ, प्रगति और सुधार इसी डिवाइसमें रहते हैं। फ़ाइल सेव करके बैकअप रखें या दूसरे डिवाइसपर खोलें।', 'Your bookmarks, notes, progress and corrections stay on this device. Save the file as a backup, or open it on another device.') + (canStore ? '' : ' <b>' + T('ध्यान दें: यह डिवाइस डेटा अपने-आप नहीं रख पा रहा — पाठके बाद “फ़ाइल सेव करें” दबाएँ।', 'This device is not keeping app data — tap Save my file after each reading.') + '</b>') + '</p>' +
     '<div class="acts"><button class="btn" id="exp">' + T('फ़ाइल सेव करें', 'Save my file') + '</button><button class="btn ghost" id="imp">' + T('फ़ाइल खोलें', 'Open a file') + '</button></div>';
   $('#bmBody').innerHTML = h + '<div style="height:40px"></div>';
@@ -2103,7 +2119,12 @@ function renderBookmarks(){
   $$('#bmBody .bmsec').forEach(d => d.ontoggle = () => { S.settings.bmFold = S.settings.bmFold || {}; if (d.open) delete S.settings.bmFold[d.dataset.fold]; else S.settings.bmFold[d.dataset.fold] = 1; save(); });
   $$('#bmBody .res').forEach(b => b.onclick = () => openReader(readOrg(), +b.dataset.i, true));
   if ($('#bmRead')) $('#bmRead').onclick = () => { const g = bmGroup(); if (g) openReader('bm', g.list[0]); };
-  $$('#bmBody [data-del]').forEach(b => b.onclick = () => { const k = KEY(IT[+b.dataset.del].id); for (const p of S.profiles) delete p.bm[k]; save(); renderBookmarks(); toast(T('बुकमार्क हटाया', 'Bookmark removed')); });
+  $$('#bmBody [data-bmr]').forEach(b => b.onclick = () => { const g = bmGroup(+b.dataset.bmr); if (g) openReader('bm', g.list[0]); });
+  // a part opened or closed stays where the finger is
+  $$('#bmBody [data-bmp]').forEach(b => b.onclick = () => { const [key, p] = b.dataset.bmp.split(':'), y = b.getBoundingClientRect().top; BMOPEN[key] = BMOPEN[key] === +p ? -1 : +p; BMSHOW[key] = BMSTEP; renderBookmarks();
+    const nb = document.querySelector('#bmBody [data-bmp="' + b.dataset.bmp + '"]'); if (nb) window.scrollBy(0, nb.getBoundingClientRect().top - y); });
+  $$('#bmBody [data-bmm]').forEach(b => b.onclick = () => { const key = b.dataset.bmm, y = scrollY; BMSHOW[key] = (BMSHOW[key] || BMSTEP) + BMSTEP; renderBookmarks(); window.scrollTo(0, y); });
+  $$('#bmBody [data-del]').forEach(b => b.onclick = () => { const k = KEY(IT[+b.dataset.del].id); for (const p of S.profiles) delete p.bm[k]; save(); const y = scrollY; renderBookmarks(); window.scrollTo(0, y); toast(T('बुकमार्क हटाया', 'Bookmark removed')); });
 }
 
 /* ---------------- settings ---------------- */
@@ -2137,7 +2158,11 @@ function sendMail(kind){
   const body = (ask ? ask + '\n\n\n' : '') + (kind === 'mail' ? '' : '— ' + (en ? 'Where (please keep)' : 'कहाँ (कृपया रहने दें)') + ' —\n' + where);
   closeSheet(); location.href = 'mailto:' + MAILTO() + '?subject=' + encodeURIComponent('[Scriptures] ' + subj) + '&body=' + encodeURIComponent(body);
 }
+// More settings opened from the library is the library's (the owner): its shelves to show or hide, and Help; opened from a
+// work it is that work's: Reading, Sources, Audio timing, Help. The work last opened (W) is never the library's
+const shelfHidden = id => (S.settings.hideShelves || []).includes(id);
 function renderSettings(){   // the "More settings" page: the rare things only — transliteration, sources, audio timing, privacy
+  if (!W || FROMV === 'library') return renderLibSettings();
   const cur = S.src[W ? W.id : ''] || {};
   const pick = (kind, label, off) => { const list = W ? srcList(kind) : []; if (!list.length) return ''; const sel = cur[kind] || (kind === 'cm' ? 'off' : list[0].id); return '<div class="field"><label>' + label + '</label><select data-src="' + kind + '">' + list.map(s => '<option value="' + s.id + '"' + (sel === s.id ? ' selected' : '') + '>' + esc(TT(s.title)) + (s.draft ? T(' (जाँच बाकी)', ' (to be checked)') : '') + '</option>').join('') + (off ? '<option value="off"' + (sel === 'off' ? ' selected' : '') + '>' + T('बंद', 'Off') + '</option>' : '') + '</select></div>'; };
   let h = '<h2>' + T('पढ़ना', 'Reading') + '</h2>' + sw('str', LB.tr(), LB.trSub(), S.settings.tr) + (hasLines() ? sw('slines', LB.lines(), LB.linesSub(), S.settings.lines) : '') + (hasNotes() ? sw('sfn', LB.fn(), LB.fnSub(), fnOn()) : '') +
@@ -2155,6 +2180,18 @@ function renderSettings(){   // the "More settings" page: the rare things only �
   $$('[data-prm]').forEach(b => b.onclick = () => askYes(T('यह स्रोत इस डिवाइससे हटेगा।', 'This source will be removed from this device.'), T('हाँ, हटाएँ', 'Yes, remove'), async () => { await persRemove(b.dataset.prm); renderSettings(); }));
   if ($('#sContact')) $('#sContact').onclick = contactSheet;
   $$('[data-src]').forEach(s => s.onchange = async () => { const c = S.src[W.id] = S.src[W.id] || {}; c[s.dataset.src] = s.value; save(); if (s.dataset.src === 'au') stopAudio(); await loadSources(); IDX = null; toast(T('स्रोत बदला', 'Source changed')); });
+}
+// the library's More settings: a switch per shelf (genre card), on = shown on the library page; at least one stays on.
+// A hidden shelf's works are still found by search and opened from bookmarks
+function renderLibSettings(){
+  $('#setBody').innerHTML = '<h2>' + T('शेल्फ़', 'Shelves') + '</h2>' + LIB.map(c => sw('ssh-' + c.id, TT(c.title), '', !shelfHidden(c.id))).join('') +
+    '<h2>' + T('सहायता', 'Help') + '</h2><div class="acts"><a class="btn ghost" href="privacy.html" target="_blank" rel="noopener">' + T('गोपनीयता', 'Privacy') + '</a><button class="btn ghost" id="sContact">' + T('संपर्क करें', 'Contact us') + '</button></div>' +
+    '<div style="height:50px"></div>';
+  LIB.forEach(c => { const el = document.getElementById('ssh-' + c.id); el.onchange = () => {
+    const h = new Set(S.settings.hideShelves || []);
+    if (el.checked) h.delete(c.id); else if (LIB.filter(x => !h.has(x.id)).length <= 1){ el.checked = true; toast(T('कम-से-कम एक शेल्फ़ दिखेगा', 'At least one shelf stays shown')); return; } else h.add(c.id);
+    S.settings.hideShelves = [...h]; if (!h.size) delete S.settings.hideShelves; save(); }; });
+  $('#sContact').onclick = contactSheet;
 }
 /* timing review: ☰ › More settings › Audio timing. While it is on, each verse shows its times and “Starts now” / “Ends now” (markBar), and the player bar the ± step;
    recordings still being checked (drafts) can be played. Starts set by ear go to the library through a GitHub issue, which

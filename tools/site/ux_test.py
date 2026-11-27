@@ -210,7 +210,7 @@ async def main():
                     await ev("delete S.timing.fix[tkey()]; save(); buildAudio()")
                 # a helper's file: saved from the marks, opened by the owner as marks "from <helper>" that are not sent until checked
                 await ev("S.timing.fix[tkey()] = {}; S.timing.from = {}; save(); buildAudio()")
-                await ev(f"setTime({j}, 1, AUT[0].find(x => x[0] === {j})[1] + 0.7)")
+                await ev(f"(() => {{ const x = AUT[0].find(x => x[0] === {j}); setTime({j}, 1, x[1] + (x[2] != null ? Math.min(0.7, (x[2] - x[1]) / 2) : 0.7)); }})()")   # moved, but still before an end set by ear
                 doc = await ev("timingDoc('Asha')")
                 await ev("delete S.timing.fix[tkey()]; delete S.timing.sent[tkey()]; save(); buildAudio()")
                 await ev("importTiming(JSON.parse(JSON.stringify(Object.assign({}, " + json.dumps(doc) + ", {path: 'nowhere'}))))"); await pg.wait_for_timeout(300)
@@ -368,6 +368,17 @@ async def main():
             want_m = ['bm', 'dark-theme'] + (['group'] if await ev('gpOn()') else []) + ['share', 'tour', 'set']   # Group paath where a relay is set (apps/app.json → group)
             check(f'{tag}: ☰ holds Bookmarks, Dark theme, (Group paath,) Share the app, Take the tour and More settings — nothing else', items == want_m and not await ev("!!document.querySelector('#sheetBody [data-rate], #sheetBody [data-m=sec], #sheetBody #mtr')"), items)
             await ev("closeSheet()")
+            # More settings belongs to the page it is opened from: the work's (Transliteration, Sources), then the library's
+            # (Shelves, never the work last opened); hiding a shelf hides its card, and the last shelf cannot be hidden
+            await ev("show('settings')"); await pg.wait_for_timeout(300)
+            check(f'{tag}: More settings from the work is the work\'s', await ev("!!document.querySelector('#setBody #str') && !document.querySelector('#setBody [id^=ssh-]')"))
+            await ev("show('library')"); await pg.wait_for_timeout(300); await ev("show('settings')"); await pg.wait_for_timeout(300)
+            libset = await ev("[!!document.querySelector('#setBody #str'), !!document.querySelector('#setBody [data-src]'), document.querySelectorAll('#setBody [id^=ssh-]').length, LIB.length]")
+            check(f'{tag}: More settings from the library is the library\'s, after a work was opened', not libset[0] and not libset[1] and libset[2] == libset[3], libset)
+            hid = await ev("""(() => { const ids = LIB.map(c => c.id); ids.forEach(id => { const e = document.getElementById('ssh-' + id); if (e.checked){ e.checked = false; e.onchange(); } });
+              const left = (S.settings.hideShelves || []).length, lp = libPath; libPath = []; show('library'); const cards = document.querySelectorAll('#libList .lcard').length;
+              delete S.settings.hideShelves; save(); libPath = lp; renderLibrary(); return [left, ids.length, cards]; })()""")
+            check(f'{tag}: hiding shelves hides their cards, one always stays', hid[0] == hid[1] - 1 and hid[2] == 1, hid)
             # back goes home
             await ev("show('home')"); await pg.wait_for_timeout(300)
             check(f'{tag}: back to the work home', await ev("document.querySelector('#home').classList.contains('on')"))
@@ -623,7 +634,7 @@ async def main():
         joined = await ev("""(() => { const a = newProfile('A'), b = newProfile('B'); a.notes['x:1'] = [{t: 'one', ts: 1}]; b.notes['x:1'] = [{t: 'two', ts: 2}]; b.bm['x:2'] = 5;
             const keep = S; S = {profiles: [a, b], active: b.id, show: [a.id], settings: {}, v: 3}; oneReader(); const r = [S.profiles.length, S.profiles[0].notes['x:1'].length, !!S.profiles[0].bm['x:2'], S.show.length]; S = keep; return r; })()""")
         check('several readers are joined into one, keeping every note and bookmark', joined == [1, 2, True, 1], joined)
-        await ev("show('settings')"); await pg.wait_for_timeout(500)
+        await ev("show('home'); show('settings')"); await pg.wait_for_timeout(500)
         st = await ev("document.querySelector('#setBody').innerText")
         bmf = await ev("(async () => { show('bookmarks'); await new Promise(r => setTimeout(r, 300)); return [!!document.querySelector('#bmBody #exp'), !!document.querySelector('#bmBody #imp')]; })()")
         check('Bookmarks & notes: Save my file / Open a file live there', bmf == [True, True], bmf)
@@ -966,6 +977,21 @@ async def main():
         br.append(await ev("CURVIEW")); await ev("(() => { const me = ME(); [40, 43, IT.length - 1].forEach(i => delete me.bm[KEY(IT[i].id)]); save(); })()")
         check('bookmarks: "Read the bookmarked verses" opens a reading of only them, in order, and ‹ returns to Bookmarks',
               br[0] == 'bm' and br[1][:2] == [40, 43] and set(br[1]) <= {40, 43, last} and br[2] and not br[3] and br[4] == 'Bookmarks' and br[5] == 'bookmarks', br)
+        # 25 bookmarks or more in a work with parts: one row per part, closed at first; a part opens to its own bookmarks (its
+        # name left out of each place), and its Read › reads only them; fewer stay one plain list
+        gb = await ev("""(async () => { await openWork('manas', true); const me = ME(), A = PARTS[0], B = PARTS[1], ids = [];
+            for (let k = 0; k < 20; k++) ids.push(A.a + k); for (let k = 0; k < 10; k++) ids.push(B.a + k); ids.forEach(i => me.bm[KEY(IT[i].id)] = 1); save();
+            show('bookmarks'); await new Promise(r => setTimeout(r, 300));
+            const r = [document.querySelectorAll('#bmBody .bmpart').length, document.querySelectorAll('#bmBody .bmpl').length];
+            document.querySelector('#bmBody [data-bmp="bm:1"]').click(); await new Promise(r => setTimeout(r, 300));
+            const rows = [...document.querySelectorAll('#bmBody .bmpl [data-del]')].map(b => +b.dataset.del), w = document.querySelector('#bmBody .bmpl .where').textContent;
+            r.push(rows.length, rows.every(i => IT[i].p === 1), !w.includes(KNAME(1)));
+            document.querySelector('#bmBody [data-bmr="1"]').click(); await new Promise(r => setTimeout(r, 600));
+            r.push(R.org, GROUP.bm.list.length, GROUP.bm.list.every(i => IT[i].p === 1));
+            ids.slice(6).forEach(i => delete me.bm[KEY(IT[i].id)]); save(); show('bookmarks'); await new Promise(r => setTimeout(r, 300));
+            r.push(document.querySelectorAll('#bmBody .bmpart').length, document.querySelectorAll('#bmBody [data-del]').length);
+            ids.forEach(i => delete me.bm[KEY(IT[i].id)]); save(); return r; })()""")
+        check('bookmarks: 25 or more are grouped by part, closed at first; a part lists its own and reads only them; fewer stay one list', gb == [2, 0, 10, True, True, 'bm', 10, True, 0, 6], gb)
         th = await ev("""(async () => { await openWork('manas', true); show('home'); openReader('k', 30); await new Promise(r => setTimeout(r, 400)); const t0 = S.settings.theme;
             document.querySelector('#rMore').click(); await new Promise(r => setTimeout(r, 300)); S.settings.theme = 'light'; applyTheme(); document.querySelector('#mth').checked = false; document.querySelector('#mth').click();
             const r = [S.settings.theme, document.documentElement.getAttribute('data-theme'), document.querySelector('#sheet').classList.contains('on'), document.querySelector('#mth').checked];
