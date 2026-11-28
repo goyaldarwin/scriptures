@@ -704,7 +704,7 @@ function updateHeader(){
   if (!IT.length) return; const i = topVisibleItem(), t = topicOf(i);
   const s = curSection(i), where = R.org === 'k' ? (PARTS.length > 1 ? KNAME(R.n) : '') : RNAME(), topic = s ? TNAME(s) : '';
   const pg = pageAtTop(i);   // a work whose pages begin inside verses (the Angs): the page of the line at the top
-  $('#rMid').innerHTML = '<span class="ml">' + (pg != null ? SECW() + ' ' + DEV(pg) : s ? spanLabel(Math.max(s.i, R.a), Math.min(s.end, R.b)) : spanLabel(R.a, R.b)) + ' ▾</span><small>' + esc(where || TT(W.title)) + '</small>';   // only the part (or reading day): a small footer; the topic heads the page
+  $('#rMid').innerHTML = '<span class="ml">' + (pg != null ? SECW() + ' ' + DEV(pg) : s ? spanLabel(Math.max(s.i, R.a), Math.min(s.end, R.b)) : spanLabel(R.a, R.b)) + ' ▾</span><small>' + esc(where || TT(W.title)) + '</small>'; navSibs();   // only the part (or reading day): a small footer; the topic heads the page
 }
 let scT;
 // a timer set while reading acts only if the reader is still open on the same work and reading (Back, then another work
@@ -840,19 +840,19 @@ function refreshReader(){
   updateHeader();
 }
 function rerenderItem(i){ const el = document.getElementById('v' + i); if (!el) return; const tmp = document.createElement('div'); tmp.innerHTML = verseHTML(i); el.replaceWith(tmp.firstChild); if (PL.on && PL.cur === i) document.getElementById('v' + i).classList.add('now'); if (PL.on && Math.abs(PL.cur - i) === 1) document.getElementById('v' + i).classList.add('near'); }
-// The section picker. A plan's reading: the row of its days on top only chooses which list shows below; nothing opens until a
-// section is tapped — the current one too. A part's reading (or a writer's) is the Go to sheet (sectionSheet, below).
-function planSheet(n){
-  const ti = topVisibleItem(), cur = curSection(ti), here = R.n; if (n == null) n = here;
-  const [A, B] = dayRange(R.org, n), P = PLAN[R.org];
-  let h = '<div class="pick days">' + Array.from({length: P.n}, (_, x) => x + 1).map(d => '<button data-pick="' + d + '" class="' + (d === n ? 'on' : '') + (DONE(ME(), R.org)[d] ? ' done' : '') + '">' + DEV(d) + '</button>').join('') + '</div>';
-  const rows = partRows(A, B, VN(n), null);
-  h += '<h2>' + PNAME(R.org) + ' · ' + VN(n) + '</h2><div class="secs">' + rows.map(r => '<button data-to="' + r.i + '" class="' + ((cur && r.t === cur || r.t && r.t.sec && ti >= r.i && ti <= r.end) && n === here ? 'on' : '') + '"><span class="sr">' + spanLabel(r.i, r.end) + '</span><span class="sn">' + esc(r.name) + '</span></button>').join('') + '</div>';
-  if ($('#sheet').classList.contains('on') && $('#sheetBody .pick')){ $('#sheetBody').innerHTML = h; $('#sheet').scrollTop = 0; } else openSheet(h);
-  $$('#sheetBody [data-pick]').forEach(b => b.onclick = () => planSheet(+b.dataset.pick));
-  $$('#sheetBody [data-to]').forEach(b => b.onclick = () => { closeSheet(); jumpTo(+b.dataset.to); });
-  const on = $('#sheetBody .secs .on'); if (on) setTimeout(() => on.scrollIntoView({block: 'center'}), 60);
-}
+// The footer (the owner's design "Footer and Go to, simpler" on the canvas, one way in every work): the previous and the
+// next part, or day of a plan, beside where you are (a writer's reading: the parts that hold the writer's verses); a tap
+// on where you are lists the sections of what is open, with a box to find an Ang, a number or a line in it.
+function sibs(){ const g = RG(), here = topVisibleItem();
+  if (R.org === 'k' || g){ const ks = PARTS.filter(p => !g || gFirst(g, p.a, p.b) >= 0).map(p => p.k), at = ks.indexOf(g ? IT[here].p : R.n);
+    const to = k => k == null ? null : {name: KNAME(k), i: g ? gFirst(g, PARTS[k].a, PARTS[k].b) : PARTS[k].a};
+    return [to(ks[at - 1]), to(ks[at + 1])]; }
+  const P = PLAN[R.org]; if (!P) return [null, null];
+  const to = n => n < 1 || n > P.n ? null : {name: VN(n), i: dayRange(R.org, n)[0]};
+  return [to(R.n - 1), to(R.n + 1)]; }
+function navSibs(){ const [a, b] = sibs(), set = (el, x, svg, first) => { el.hidden = !x; el.innerHTML = x ? (first ? svg : '') + '<span>' + esc(x.name) + '</span>' + (first ? '' : svg) : '';
+    el.setAttribute('aria-label', x ? x.name : ''); el.onclick = x ? () => openReader(R.org, x.i) : null; };
+  set($('#rPrev'), a, '<svg aria-hidden="true"><use href="#i-back"/></svg>', true); set($('#rNext'), b, '<svg aria-hidden="true"><use href="#i-fwd"/></svg>', false); }
 // a stretch's sections as rows {i, end, name, t}: its topics, else its named sections; in a group's reading (a writer) only
 // where the group's verses are, from its first there
 function partRows(A, B, name, g){
@@ -863,91 +863,23 @@ function partRows(A, B, name, g){
   if (g) rows = rows.map(r => Object.assign(r, {i: gFirst(g, r.i, r.end)})).filter(r => r.i >= 0);
   return rows;
 }
-// Gurbani's banis (the owner: a raag of 467 shabads was one long list): a verse whose heading names a composition (its ghar,
-// Chaupade, Ashtapadis, Chhants, a Var, Anand, Sidh Gosht, a Bhagat's bani …) begins a bani, named by our meaning of that
-// heading line where there is one (else the heading in Gurmukhi); a shabad headed only "ਰਾਮਕਲੀ ਮਹਲਾ ੧ ॥" goes on the one before
-const BANI = /ਘਰੁ|ਅਸਟਪਦੀ|ਛੰਤ|ਵਾਰ|ਅਨੰਦੁ|ਸਦੁ|ਓਅੰਕਾਰੁ|ਸਿਧ ਗੋਸਟਿ|ਬਾਣੀ|ਪੜਤਾਲ|ਦੁਪਦੇ|ਤਿਪਦੇ|ਚਉਪਦੇ|ਪੰਚਪਦੇ|ਛਿਪਦੇ|ਇਕਤੁਕ|ਦੁਤੁਕ|ਤਿਤੁਕ|ਚਉਤੁਕ|ਪਟੀ|ਥਿਤੀ|ਬਾਰਹ ਮਾਹਾ|ਰੁਤੀ|ਸੋਲਹੇ|ਕਰਹਲੇ|ਬਾਵਨ ਅਖਰੀ|ਸੁਖਮਨੀ|ਗੁਣਵੰਤੀ|ਅਲਾਹਣੀਆ|ਕੁਚਜੀ|ਸੁਚਜੀ|ਵਣਜਾਰਾ|ਘੋੜੀਆ|ਪਹਰੇ|ਦਖਣੀ|ਬਿਰਹੜੇ|ਡਖਣੇ|ਸਵਈਏ|ਸਵਯੇ|ਗਾਥਾ|ਫੁਨਹੇ|ਚਉਬੋਲੇ|ਸਲੋਕ ਸਹਸਕ੍ਰਿਤੀ|ਸੋ ਦਰੁ|ਸੋ ਪੁਰਖੁ|ਸੋਹਿਲਾ/;
-// a heading names a Mahala, a raag or a Bhagat's bani; a line of the text that only holds the word (the Japji's ਕਰਮ ਖੰਡ ਕੀ
-// ਬਾਣੀ ਜੋਰੁ) is not one
-const HEADW = /ਮਹਲਾ|ਮਃ|ਭਗਤਾ|ਜੀਉ ਕੀ|ਜੀ ਕੀ|ਕੀ ਵਾਰ|ਰਾਗੁ/;
-function baniHead(i){ const v = IT[i].v; for (let n = 0; n < Math.min(2, v.length); n++){ const l = v[n]; if (l.startsWith('ੴ') && !BANI.test(l)) continue; if (BANI.test(l) && HEADW.test(l) && !/^ਸਲੋਕੁ? ਮ/.test(l)) return n; break; } return -1; }
-function baniName(i, n){ const k = PAH() || LANG() !== 'en' ? 'pa' : 'en',   // as the part's and sections' names: Punjabi with ਪੰ chosen
-  m = mean(k, i), x = m && Array.isArray(m.p) ? m.p[n] : null;
-  return x ? x.replace(/[.।]\s*$/, '') : IT[i].v[n].replace(/[॥\s੦-੯0-9]+$/, '').replace(/॥/g, ' ').trim(); }
-// rows grouped into banis (Gurbani only; elsewhere one group of all the rows)
-function baniGroups(rows, name){
-  if (W.lang !== 'pa') return [{name, rows}];
-  const out = []; rows.forEach(r => { const n = baniHead(r.i); if (n >= 0 || !out.length) out.push({name: n >= 0 ? baniName(r.i, n) : name, rows: []}); out[out.length - 1].rows.push(r); });
-  return out;
+function sectionSheet(){
+  const ti = topVisibleItem(), cur = curSection(ti), g = RG(), [A, B] = g ? [PARTS[IT[ti].p].a, PARTS[IT[ti].p].b] : [R.a, R.b];
+  const rows = partRows(A, B, R.org === 'k' || g ? KNAME(g ? IT[ti].p : R.n) : VN(R.n), g), on = r => cur && r.t === cur || r.t && r.t.sec && ti >= r.i && ti <= r.end;
+  const row = (r, ln) => '<button data-to="' + r.i + '"' + (ln ? ' data-ln="' + ln + '"' : '') + ' class="' + (on(r) ? 'on' : '') + '"><span class="sr">' + esc(r.label || spanLabel(r.i, r.end)) + '</span><span class="sn">' + esc(r.name) + '</span></button>';
+  openSheet('<label class="goq"><svg aria-hidden="true"><use href="#i-search"/></svg><input id="goQ" type="search" enterkeyhint="search" autocomplete="off" placeholder="' + esc(W.cite && W.cite.sec || VIEWS.some(v => v.at) ? T('अंग, संख्या या कोई पंक्ति', 'Ang, number or a line') : T('संख्या या कोई पंक्ति', 'A number or a line')) + '" aria-label="' + esc(T('इसमें खोजें', 'Find in this part')) + '"></label><div class="secs" id="goList">' + rows.map(r => row(r)).join('') + '</div>');
+  const wire = () => $$('#goList [data-to]').forEach(b => b.onclick = () => { closeSheet(); const ln = +(b.dataset.ln || 0); if (ln) openReader(R.org, +b.dataset.to, true, ln); else jumpTo(+b.dataset.to); });
+  // what the box finds, in what is open only: the sections whose label or name holds it (an Ang or a number is in the label),
+  // then its lines that hold it, each opening at its line
+  $('#goQ').oninput = () => { const q = $('#goQ').value.trim(), latin = /[a-zA-Z]/.test(q), f = x => latin ? normL(x || '') : normD(x || ''), nq = f(q);
+    if (!q){ $('#goList').innerHTML = rows.map(r => row(r)).join(''); wire(); return; }
+    const hit = rows.filter(r => f(r.label || spanLabel(r.i, r.end)).includes(nq) || f(r.name).includes(nq)), out = hit.map(r => row(r));
+    if (nq.length >= 2) for (let i = A; i <= B && out.length < 60; i++){ if (g && !g.set.has(i)) continue; const t = IT[i].t || [];
+      IT[i].v.forEach((l, n) => { if (out.length < 60 && (f(l).includes(nq) || latin && f(t[n]).includes(nq))) out.push(row({i, name: l, label: itemLabel(i)}, n)); }); }
+    $('#goList').innerHTML = out.join('') || '<div class="empty">' + T('कुछ नहीं मिला।', 'Nothing found.') + '</div>'; wire(); };
+  wire(); const o = $('#goList .on'); if (o) setTimeout(() => o.scrollIntoView({block: 'center'}), 60);
 }
-// the places gone to from Go to on this phone (the last three, newest first) and the work's best-known (work.json "goto")
-const GOREC = () => ((S.settings.goRecent = S.settings.goRecent || {})[W.id] = S.settings.goRecent[W.id] || []);
-function goTo(i, name){ const r = GOREC(), id = IT[i].id; const k = r.findIndex(x => x.id === id); if (k >= 0) r.splice(k, 1); r.unshift({id, name}); r.length = Math.min(r.length, 3); save(); closeSheet(); jumpTo(i); }
-function goPills(){ const out = [], seen = new Set();
-  GOREC().forEach(x => { if (ID[x.id] != null && !seen.has(x.id)){ seen.add(x.id); out.push({i: ID[x.id], name: x.name}); } });
-  (W.goto || []).forEach(x => { if (out.length < 5 && ID[x.id] != null && !seen.has(x.id)){ seen.add(x.id); out.push({i: ID[x.id], name: TP(x)}); } });
-  return out.slice(0, 5); }
-// The Go to sheet (the owner's design "Go to" on the canvas): a box that finds a page, a part, a bani or a line; the quick
-// picks; the part, by its number as on the work's page (a tap lists every part, numbered, to choose another); and what is in
-// it: in Gurbani its banis, folded, the one holding where you are open. Nothing opens until a place is tapped.
-const GO = {n: null, parts: false, open: new Set()};
-function sectionSheet(n){
-  if (R.org !== 'k' && !RG()) return planSheet(n);
-  const ti = topVisibleItem(), cur = curSection(ti), g = RG(), here = g ? IT[ti].p : R.n, fresh = n == null || !$('#sheet').classList.contains('on') || !$('#sheetBody .go');
-  if (fresh){ GO.n = here; GO.parts = false; GO.open = new Set(); } if (n != null && n >= 0) GO.n = n;
-  const P = PARTS[GO.n], rows = partRows(P.a, P.b, KNAME(P.k), g), groups = baniGroups(rows, KNAME(P.k)), num = p => DEV(p.no != null ? p.no : p.k + 1);
-  if (fresh || n >= 0) groups.forEach((G, k) => { if (GO.n === here && G.rows.some(r => ti >= r.i && ti <= r.end)) GO.open.add(k); });
-  if (groups.length === 1) GO.open.add(0);
-  const pills = goPills(), parts = PARTS.filter(p => !g || gFirst(g, p.a, p.b) >= 0);
-  let h = '<div class="go"><h2>' + T('यहाँ जाएँ', 'Go to') + '</h2>' +
-    '<label class="goq"><svg aria-hidden="true"><use href="#i-search"/></svg><input id="goQ" type="search" enterkeyhint="search" autocomplete="off" placeholder="' + esc(W.lang === 'pa' ? T('अंग, राग, बाणी या पंक्ति', 'Ang, raag, bani or a line') : T('भाग, प्रसंग, संख्या या पंक्ति', 'Part, section, number or a line')) + '" aria-label="' + esc(T('खोजें', 'Find')) + '"></label>' +
-    (pills.length ? '<div class="gopills">' + pills.map(x => '<button data-goi="' + x.i + '" data-gon="' + esc(x.name) + '">' + esc(x.name) + '</button>').join('') + '</div>' : '') +
-    '<div id="goBody">';
-  if (parts.length > 1) h += '<button class="gopart" data-parts><span class="no">' + num(P) + '</span><span class="grow"><small>' + esc(TT(W.parts.name)) + '</small><b>' + esc(KNAME(P.k)) + '</b><span class="ds">' + esc(spanLabel(P.a, P.b)) + '</span></span><span class="chg">' + (GO.parts ? '⌄' : T('बदलें ›', 'Change ›')) + '</span></button>';
-  if (GO.parts) h += '<div class="goparts">' + parts.map(p => '<button data-pick="' + p.k + '" class="' + (p.k === GO.n ? 'on' : '') + '"><span class="no">' + num(p) + '</span><span class="grow">' + esc(KNAME(p.k)) + '</span><span class="ds">' + esc(spanLabel(p.a, p.b)) + '</span></button>').join('') + '</div>';
-  const row = r => '<button data-to="' + r.i + '" data-gon="' + esc(r.name) + '" class="' + ((cur && r.t === cur || r.t && r.t.sec && ti >= r.i && ti <= r.end) && GO.n === here ? 'on' : '') + '"><span class="sr">' + spanLabel(r.i, r.end) + '</span><span class="sn">' + esc(r.name) + '</span></button>';
-  if (groups.length === 1) h += '<div class="secs">' + groups[0].rows.map(row).join('') + '</div>';
-  else { h += '<p class="small muted gohead">' + esc(T(W.lang === 'pa' ? 'इस भागकी बाणियाँ' : 'इस भागमें', W.lang === 'pa' ? 'Banis in this part' : 'In this part')) + '</p>';
-    groups.forEach((G, k) => { const a = G.rows[0].i, b = G.rows[G.rows.length - 1].end, o = GO.open.has(k);
-      h += '<div class="gobani' + (o ? ' open' : '') + '"><button data-bani="' + k + '" aria-expanded="' + o + '"><span class="grow"><b>' + esc(G.name) + '</b><span class="ds">' + esc(spanLabel(a, b)) + '</span></span><span class="chg">' + (o ? '⌄' : '›') + '</span></button>' + (o ? '<div class="secs">' + G.rows.map(row).join('') + '</div>' : '') + '</div>'; }); }
-  h += '</div></div>';
-  const keep = $('#goQ') && $('#goQ').value;
-  if (!fresh){ $('#sheetBody').innerHTML = h; } else openSheet(h);
-  if (keep){ $('#goQ').value = keep; goFind(); }
-  $('#goQ').oninput = goFind;
-  goWire();
-  if (fresh){ const on = $('#sheetBody .secs .on'); if (on) setTimeout(() => on.scrollIntoView({block: 'center'}), 60); }
-}
-function goWire(){
-  $$('#sheetBody [data-pick]').forEach(b => b.onclick = () => { GO.parts = false; GO.open = new Set(); sectionSheet(+b.dataset.pick); $('#sheet').scrollTop = 0; });
-  $$('#sheetBody [data-parts]').forEach(b => b.onclick = () => { GO.parts = !GO.parts; sectionSheet(-1); });
-  $$('#sheetBody [data-bani]').forEach(b => b.onclick = () => { const k = +b.dataset.bani; if (GO.open.has(k)) GO.open.delete(k); else GO.open.add(k); sectionSheet(-1); });
-  $$('#sheetBody [data-to]').forEach(b => b.onclick = () => goTo(+b.dataset.to, b.dataset.gon || ''));
-  $$('#sheetBody [data-goi]').forEach(b => b.onclick = () => goTo(+b.dataset.goi, b.dataset.gon));
-  $$('#sheetBody [data-gosearch]').forEach(b => b.onclick = () => { const q = $('#goQ').value; closeSheet(); openSearch('text', false, true); $('#q').value = q; runSearch(); });
-}
-// what Go to's box finds: a number (an Ang, a doha, a verse) as search finds it; else the parts, the banis and the sections
-// whose names hold what was typed (spelling folded as search folds it), and a last row that searches the whole text for it
-function goFind(){
-  const q = $('#goQ').value.trim(), body = $('#goBody'); if (!body) return;
-  if (!q){ sectionSheet(-1); return; }
-  const latin = /[a-zA-Z]/.test(q), f = x => latin ? normL(x || '') : normD(x || ''), nq = f(q), out = [], seen = new Set(), g = RG();
-  const add = (i, kind, name) => { if (i == null || i < 0 || seen.has(i) || out.length >= 30 || (g && !g.set.has(i))) return; seen.add(i); out.push({i, kind, name}); };
-  const num = numQuery(q);
-  if (num){ const hs = []; numHits(num, hs); hs.slice(0, 8).forEach(h => add(h[1], itemLabel(h[1]), IT[h[1]].v.find(l => !/^ੴ/.test(l)) || '')); }
-  else if (nq.length >= 2){
-    // Roman letters also match a heading's transliteration by its consonants (Sidh Gosht, sidh goshti), as search does
-    const qk = latin ? skel(fL(q)) : '', tk = i => (IT[i].t || []).slice(0, 2).map(l => skel(fL(l))).join(' '), byK = i => qk.length >= 4 && tk(i).includes(qk);
-    (W.goto || []).forEach(x => { if ([x.hi, x.en, x.pa].some(y => f(y).includes(nq))) add(ID[x.id], itemLabel(ID[x.id]), TP(x)); });
-    PARTS.forEach(p => { if ([TP(W.parts.list[p.k]), TT(W.parts.list[p.k]), W.parts.list[p.k].pa].some(x => f(x).includes(nq))) add(g ? gFirst(g, p.a, p.b) : p.a, TT(W.parts.name), KNAME(p.k)); });
-    if (W.lang === 'pa') for (let i = 0; i < IT.length && out.length < 30; i++){ const n = baniHead(i); if (n >= 0 && ([baniName(i, n), IT[i].v[n]].some(x => f(x).includes(nq)) || byK(i))) add(i, T('बाणी', 'Bani') + ' · ' + KNAME(IT[i].p), baniName(i, n)); }
-    TOPICS.forEach(t => { if (out.length < 30 && [t.pa, t.hi, t.en].some(x => f(x).includes(nq))) add(t.i, itemLabel(t.i), TNAME(t)); });
-  }
-  body.innerHTML = '<div class="secs gofound">' + out.map(x => '<button data-to="' + x.i + '" data-gon="' + esc(x.name) + '"><span class="sr">' + esc(x.kind) + '</span><span class="sn">' + esc(x.name) + '</span></button>').join('') + '</div>' +
-    (num ? '' : '<button class="gosearch" data-gosearch>' + esc(T('पूरे पाठमें खोजें: “', 'Search the whole text for “') + q + '”') + ' ›</button>');
-  goWire();
-}
-$('#rMid').onclick = () => sectionSheet();   // without the click event, which sectionSheet would take as its part n
+$('#rMid').onclick = () => sectionSheet();
 $('#rBack').onclick = back;
 // the same हिं · En · शब्द switch in every header (library, work, reader): one setting, shown and changed anywhere
 $$('.lyr.layers button').forEach(b => b.onclick = () => { if (b.dataset.l === 'r'){ toggleRecite(); return; }
