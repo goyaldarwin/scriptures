@@ -1300,8 +1300,9 @@ async def main():
             const q = document.querySelector('#goQ'); q.value = '917'; goFind(); const ang = IT[+document.querySelector('#goBody [data-to]').dataset.to].id;
             q.value = 'Sidh Gosht'; goFind(); const sidh = [...document.querySelectorAll('#goBody [data-to]')].map(b => IT[+b.dataset.to].id);
             document.querySelector('#goBody [data-to]').click(); await new Promise(r => setTimeout(r, 400)); const rec = GOREC()[0] && GOREC()[0].id, shut = !document.querySelector('#sheet').classList.contains('on');
-            GOREC().length = 0; save(); return {no, banis, open, pills, ang, sidh, rec, shut, ti: IT[ti].id}; })()""")
-        check('Go to: the part by its number, its banis folded with the one you are in open, quick picks, an Ang and a bani found by name', go['no'] == '22' and go['banis'] > 8 and go['open'] and go['pills'][:2] == ['Japji', 'Anand Sahib'] and go['ang'] == '917.1' and '938.2' in go['sidh'] and go['rec'] == go['sidh'][0] and go['shut'], go)
+            GOREC().length = 0; save(); openReader('k', ID['mool']); await new Promise(r => setTimeout(r, 400)); sectionSheet(); await new Promise(r => setTimeout(r, 200)); const japji = document.querySelectorAll('#sheetBody .gobani').length; closeSheet();
+            return {no, banis, open, pills, ang, sidh, rec, shut, ti: IT[ti].id, japji}; })()""")
+        check('Go to: the part by its number, its banis folded with the one you are in open (a line holding ਬਾਣੀ, as in the Japji, is no heading), quick picks, an Ang and a bani found by name', go['no'] == '22' and go['banis'] > 8 and go['open'] and go['pills'][:2] == ['Japji', 'Anand Sahib'] and go['ang'] == '917.1' and '938.2' in go['sidh'] and go['rec'] == go['sidh'][0] and go['shut'] and go['japji'] == 0, go)
         # an Ang that begins inside a verse begun on the page before (Ang 110 at ਸੇਵਾ ਸੁਰਤਿ, the third line of 109.3): it opens at that
         # line, and the footer names the page of the line at the top of the screen (110 there, 109 above it)
         ap = await ev("""(async () => { await openWork('guru-granth-sahib', true); show('home'); WS().org = 'ang'; S.settings.atOpen = {}; renderHome();
