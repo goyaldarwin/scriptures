@@ -362,6 +362,40 @@ GENRES = ['veda', 'itihasa', 'purana', 'stotra', 'namavali', 'chalisa', 'aarti']
 SAL_EN = re.compile(r'^(Shri |Bhagwan |Baba |Guru )|( Mata| Devi| Dev| Devta| Baba| Ji| Sarkar)( \(.+\))?$|^Rani Sati \(Dadi Ji\)$')
 SAL_HI = re.compile(r'^(श्री |भगवान |बाबा |गुरु )|( माता| देवी|देव| देवता| बाबा|बाबा|जी| सरकार)( \(.+\))?$|^राणी सती \(दादीजी\)$')
 STORY = {'itihasa', 'purana'}
+# The Gurbani shelf (docs/PLAYBOOK.md §6, "The Gurbani shelf"): Sri Guru Granth Sahib and the banis of several Gurus first,
+# each a card of one under its writers, then a shelf per Guru, in the Gurus' order, named "Guru <name> Ji" / "गुरु <नाम> जी";
+# a bani on a Guru's shelf is by that Guru, the banis in the Granth's order; every bani of the Granth names the Angs it spans,
+# as the Granth's Ang view gives them for its first and last lines ("Sri Guru Granth Sahib, Ang 917–922").
+GURUS = ['guru-nanak-dev', 'guru-angad-dev', 'guru-amar-das', 'guru-ram-das', 'guru-arjan-dev', 'guru-har-gobind', 'guru-har-rai',
+         'guru-har-krishan', 'guru-tegh-bahadur', 'guru-gobind-singh']
+def check_gurbani(g):
+    lib = os.path.join(os.path.dirname(os.path.dirname(WORKS)), 'library')
+    kids = g['children']; works = [c for c in kids if c.get('work')]
+    _need(kids[:len(works)] == works and works and works[0]['work'] == 'guru-granth-sahib', f"shelf: gurbani: Sri Guru Granth Sahib first, then the banis of several Gurus, then the Gurus' shelves: {[c['id'] for c in kids]}")
+    shelves = [c['id'] for c in kids[len(works):]]
+    _need(set(shelves) <= set(GURUS) and shelves == [x for x in GURUS if x in shelves], f"shelf: gurbani: one shelf per Guru, in the Gurus' order {GURUS}: {shelves}")
+    G = json.load(open(os.path.join(lib, works[0]['path'], 'work.json'), encoding='utf-8')); ID = {x['id']: i for i, x in enumerate(G['items'])}
+    V = next(v for v in G['views'] if v['id'] == 'ang'); AT = [ID[i] for i in V['at']]
+    dev = lambda n: str(n).translate(str.maketrans('0123456789', '०१२३४५६७८९'))
+    def angs(w):   # the Angs of a bani's first and last lines, from the Granth's Ang view
+        it = json.load(open(os.path.join(lib, w['path'], 'work.json'), encoding='utf-8'))['items']
+        _need(all(x['id'] in ID for x in it), f"tools/works/{w['work']}: a bani of the Gurbani shelf is Sri Guru Granth Sahib's, taken from it by id: {[x['id'] for x in it if x['id'] not in ID][:3]}")
+        a, b = ID[it[0]['id']], ID[it[-1]['id']]
+        return (max(k for k in range(len(AT)) if AT[k] < a or (AT[k] == a and V['line'][k] == 0)) + 1, max(k for k in range(len(AT)) if AT[k] <= b) + 1)
+    def bani(w, by=None):
+        M = json.load(open(os.path.join(WORKS, w['work'], 'work.json'), encoding='utf-8'))
+        if by: _need({k: M['by'].get(k) for k in ('hi', 'en')} == by, f"tools/works/{w['work']}/work.json: a bani on a Guru's shelf is by that Guru ({by['en']!r}), not {M['by'].get('en')!r}")
+        else: _need(', ' in M['by']['en'], f"tools/works/{w['work']}/work.json: a bani beside Sri Guru Granth Sahib is one of several Gurus, its by naming them; one Guru's bani goes on his shelf ({M['by']['en']!r})")
+        a, b = angs(w); r = (a, b) if a != b else (a,)
+        want = {'hi': 'श्री गुरु ग्रन्थ साहिब, अंग ' + '–'.join(map(dev, r)), 'en': 'Sri Guru Granth Sahib, Ang ' + '–'.join(map(str, r))}
+        _need({k: (M.get('from') or {}).get(k) for k in ('hi', 'en')} == want, f"tools/works/{w['work']}/work.json: from names the Angs its verses span, {want['en']!r}, not {(M.get('from') or {}).get('en')!r}")
+        return a
+    for w in works[1:]: bani(w)
+    for c in kids[len(works):]:
+        _need(re.fullmatch(r'Guru \S.* Ji', c['title']['en']) and re.fullmatch(r'गुरु \S.* जी', c['title']['hi']), f"shelf: gurbani/{c['id']}: a Guru is named “Guru <name> Ji” / “गुरु <नाम> जी”, not {c['title']['en']!r} / {c['title']['hi']!r}")
+        first = [bani(w, c['title']) for w in c['children']]
+        _need(first == sorted(first), f"shelf: gurbani/{c['id']}: a Guru's banis go in the Granth's order: {[w['work'] for w in c['children']]}")
+
 def check_classes(shelf):
     def leaves(n):
         if n.get('work'): yield n
@@ -370,6 +404,8 @@ def check_classes(shelf):
         if t['id'] != 'sikhism': continue
         for w in leaves(t):
             _need(w.get('salute') == 'ੴ', f"shelf: {w['work']}: every Gurbani work opens with ੴ (salute; docs/PLAYBOOK.md §6, the greeting), not {w.get('salute')!r}")
+        for g in t['children']:
+            if g['id'] == 'gurbani': check_gurbani(g)
     hindu = next((t for t in shelf if t['id'] == 'hinduism'), None)
     if not hindu: return
     ids = [g['id'] for g in hindu['children']]

@@ -1,0 +1,5 @@
+# Kirtan Sohila, Sri Guru Granth Sahib, Ang 12–13: taken from the Granth unchanged (its text, meanings, commentary and
+# recordings' timings), so a correction there reaches this work at the next export.
+
+@part paath
+[take guru-granth-sahib 12.3 .. 13.3]

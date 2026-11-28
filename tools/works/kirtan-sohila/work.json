@@ -1,0 +1,71 @@
+{
+ "id": "kirtan-sohila",
+ "path": "sikhism/gurbani/kirtan-sohila",
+ "lang": "pa",
+ "title": {
+  "hi": "कीर्तन सोहिला",
+  "en": "Kirtan Sohila"
+ },
+ "by": {
+  "hi": "गुरु नानक देव जी, गुरु राम दास जी, गुरु अर्जन देव जी",
+  "en": "Guru Nanak Dev Ji, Guru Ram Das Ji, Guru Arjan Dev Ji"
+ },
+ "edition": {
+  "hi": "श्री गुरु ग्रन्थ साहिब, अंग १२–१३ · शबद ओएस डेटाबेस",
+  "en": "Sri Guru Granth Sahib, Ang 12–13 · Shabad OS database"
+ },
+ "from": {
+  "hi": "श्री गुरु ग्रन्थ साहिब, अंग १२–१३",
+  "en": "Sri Guru Granth Sahib, Ang 12–13"
+ },
+ "headings": "transliteration",
+ "words": "partial",
+ "cite": {
+  "by": [
+   "sec",
+   "n"
+  ],
+  "mark": "none"
+ },
+ "parts": {
+  "name": {
+   "hi": "पाठ",
+   "en": "Paath",
+   "pa": "ਪਾਠ"
+  },
+  "list": [
+   {
+    "key": "paath",
+    "hi": "कीर्तन सोहिला",
+    "en": "Kirtan Sohila",
+    "pa": "ਕੀਰਤਨ ਸੋਹਿਲਾ"
+   }
+  ]
+ },
+ "sections": {
+  "12": {
+   "hi": "अंग १२",
+   "en": "Ang 12",
+   "pa": "ਅੰਗ ੧੨"
+  },
+  "13": {
+   "hi": "अंग १३",
+   "en": "Ang 13",
+   "pa": "ਅੰਗ ੧੩"
+  }
+ },
+ "types": {
+  "shabad": {
+   "name": {
+    "hi": "शबद",
+    "en": "Shabad",
+    "pa": "ਸ਼ਬਦ"
+   },
+   "short": {
+    "hi": "शबद",
+    "en": "Shabad",
+    "pa": "ਸ਼ਬਦ"
+   }
+  }
+ }
+}

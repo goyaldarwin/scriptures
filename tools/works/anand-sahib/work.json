@@ -1,0 +1,91 @@
+{
+ "id": "anand-sahib",
+ "path": "sikhism/gurbani/guru-amar-das/anand-sahib",
+ "lang": "pa",
+ "title": {
+  "hi": "अनंद साहिब",
+  "en": "Anand Sahib"
+ },
+ "by": {
+  "hi": "गुरु अमर दास जी",
+  "en": "Guru Amar Das Ji"
+ },
+ "edition": {
+  "hi": "श्री गुरु ग्रन्थ साहिब, अंग ९१७–९२२ · शबद ओएस डेटाबेस",
+  "en": "Sri Guru Granth Sahib, Ang 917–922 · Shabad OS database"
+ },
+ "from": {
+  "hi": "श्री गुरु ग्रन्थ साहिब, अंग ९१७–९२२",
+  "en": "Sri Guru Granth Sahib, Ang 917–922"
+ },
+ "headings": "transliteration",
+ "words": "partial",
+ "cite": {
+  "by": [
+   "sec",
+   "n"
+  ],
+  "mark": "none"
+ },
+ "parts": {
+  "name": {
+   "hi": "पाठ",
+   "en": "Paath",
+   "pa": "ਪਾਠ"
+  },
+  "list": [
+   {
+    "key": "paath",
+    "hi": "अनंद साहिब",
+    "en": "Anand Sahib",
+    "pa": "ਅਨੰਦ ਸਾਹਿਬ"
+   }
+  ]
+ },
+ "sections": {
+  "917": {
+   "hi": "अंग ९१७",
+   "en": "Ang 917",
+   "pa": "ਅੰਗ ੯੧੭"
+  },
+  "918": {
+   "hi": "अंग ९१८",
+   "en": "Ang 918",
+   "pa": "ਅੰਗ ੯੧੮"
+  },
+  "919": {
+   "hi": "अंग ९१९",
+   "en": "Ang 919",
+   "pa": "ਅੰਗ ੯੧੯"
+  },
+  "920": {
+   "hi": "अंग ९२०",
+   "en": "Ang 920",
+   "pa": "ਅੰਗ ੯੨੦"
+  },
+  "921": {
+   "hi": "अंग ९२१",
+   "en": "Ang 921",
+   "pa": "ਅੰਗ ੯੨੧"
+  },
+  "922": {
+   "hi": "अंग ९२२",
+   "en": "Ang 922",
+   "pa": "ਅੰਗ ੯੨੨"
+  }
+ },
+ "types": {
+  "pauri": {
+   "name": {
+    "hi": "पउड़ी",
+    "en": "Pauri",
+    "pa": "ਪਉੜੀ"
+   },
+   "short": {
+    "hi": "पउड़ी",
+    "en": "Pauri",
+    "pa": "ਪਉੜੀ"
+   }
+  }
+ }
+}

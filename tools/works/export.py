@@ -208,6 +208,9 @@ def export(wid, lib):
             title = D.get('title') or (OUR_TITLE.get(lg) if src == 'scriptures' and not CM else None)
             if not title:   # a source with no entries of its own: the same source of the work its verses come from
                 title = next((tf[sid]['title'] for tf in taken_from.values() if sid in tf), None)
+            if not m and not mine and taken:   # a source of taken verses whose work has none for them yet (the Granth's Ramkali):
+                print(f'{wid} {sid}: waits for {", ".join(sorted(set(taken.values())))} to have it for these verses')   # it joins once that work has them
+                continue
             need(title, f'{wid}/{KIND}/{lg}/{src}.json: needs a title')
             need(m, f'{wid}/{KIND}/{lg}/{src}.json: no meaning for any verse')
             head = {'id': sid, 'lang': lg, 'order': D['order'], 'title': title}

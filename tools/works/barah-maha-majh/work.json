@@ -1,0 +1,81 @@
+{
+ "id": "barah-maha-majh",
+ "path": "sikhism/gurbani/guru-arjan-dev/barah-maha-majh",
+ "lang": "pa",
+ "title": {
+  "hi": "बारह माहा माझ",
+  "en": "Barah Maha Majh"
+ },
+ "by": {
+  "hi": "गुरु अर्जन देव जी",
+  "en": "Guru Arjan Dev Ji"
+ },
+ "edition": {
+  "hi": "श्री गुरु ग्रन्थ साहिब, अंग १३३–१३६ · शबद ओएस डेटाबेस",
+  "en": "Sri Guru Granth Sahib, Ang 133–136 · Shabad OS database"
+ },
+ "from": {
+  "hi": "श्री गुरु ग्रन्थ साहिब, अंग १३३–१३६",
+  "en": "Sri Guru Granth Sahib, Ang 133–136"
+ },
+ "headings": "transliteration",
+ "words": "partial",
+ "cite": {
+  "by": [
+   "sec",
+   "n"
+  ],
+  "mark": "none"
+ },
+ "parts": {
+  "name": {
+   "hi": "पाठ",
+   "en": "Paath",
+   "pa": "ਪਾਠ"
+  },
+  "list": [
+   {
+    "key": "paath",
+    "hi": "बारह माहा माझ",
+    "en": "Barah Maha Majh",
+    "pa": "ਬਾਰਹ ਮਾਹਾ ਮਾਝ"
+   }
+  ]
+ },
+ "sections": {
+  "133": {
+   "hi": "अंग १३३",
+   "en": "Ang 133",
+   "pa": "ਅੰਗ ੧੩੩"
+  },
+  "134": {
+   "hi": "अंग १३४",
+   "en": "Ang 134",
+   "pa": "ਅੰਗ ੧੩੪"
+  },
+  "135": {
+   "hi": "अंग १३५",
+   "en": "Ang 135",
+   "pa": "ਅੰਗ ੧੩੫"
+  },
+  "136": {
+   "hi": "अंग १३६",
+   "en": "Ang 136",
+   "pa": "ਅੰਗ ੧੩੬"
+  }
+ },
+ "types": {
+  "pad": {
+   "name": {
+    "hi": "पद",
+    "en": "Stanza",
+    "pa": "ਪਦ"
+   },
+   "short": {
+    "hi": "पद",
+    "en": "St.",
+    "pa": "ਪਦ"
+   }
+  }
+ }
+}

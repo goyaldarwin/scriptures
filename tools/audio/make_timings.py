@@ -3,7 +3,7 @@
 Usage:  python3 tools/audio/make_timings.py tools/works/<work>/audio/<source-id>
 
 The source folder holds:
-  source.json      {"id", "work": "<library path>", "take"?: "<work id>" (then nothing else is needed), "type": "youtube", "title": {"hi", "en"}, "order"?, "draft"?: "<why it is not published yet>", "align"?: "anchors", "split"?: true, "fill"?: n, "anchor_min"?: 0.45, "estimate"?: true, "checked"?: true, "check_only"?: "<why>", "unsung"?: [item ids]}
+  source.json      {"id", "work": "<library path>", "take"?: "<work id>" (then nothing else is needed: its order, title and times are that work's), "type": "youtube", "title": {"hi", "en"}, "order"?, "draft"?: "<why it is not published yet>", "align"?: "anchors", "split"?: true, "fill"?: n, "anchor_min"?: 0.45, "estimate"?: true, "checked"?: true, "check_only"?: "<why>", "unsung"?: [item ids]}
                    "unsung": verses the recording does not sing: they get no time, whatever the transcript matched (the
                    highlight never sits on words not sung, docs/PLAYBOOK.md §8)
                    "check_only": the to-check list is check.json alone (a sample the owner hears to score the timings), not
@@ -48,18 +48,23 @@ if meta.get('take'):
     A = json.load(open(os.path.join(REPO, 'library', frm, 'audio', meta['id'] + '.json')))
     at = {i: A['at'][i] for i in ids if i in A['at']}
     assert at, f"{meta['take']}'s recording {meta['id']} has none of this work's verses"
-    used = sorted({t[0] for t in at.values()})
-    tracks = [dict(A['tracks'][k], first=next(i for i in at if at[i][0] == k), last=[i for i in at if at[i][0] == k][-1]) for k in used]
+    # a source timed line by line (kirtan) passes on the lines of the verses taken, on the tracks they are sung on (a chhant's
+    # stanzas on several tracks: a track that holds only a later singing of a verse begun on another is kept for it)
+    lines = {i: A['lines'][i] for i in at if i in A.get('lines', {})}
+    used = sorted({t[0] for t in at.values()} | {s[0] for v in lines.values() for s in v})
+    on = lambda k: [i for i in at if at[i][0] == k] or [i for i in lines if any(s[0] == k for s in lines[i])]
+    tracks = [dict(A['tracks'][k], first=on(k)[0], last=on(k)[-1]) for k in used]
     # the verses taken are a stretch of the other work's recording: the track ends where that work's next verse on it starts
     # (the Hanumān Chālīsā inside the Sundarakāṇḍa's video), so playing on never runs into the rest of the video
     PO = {x['id']: n for n, x in enumerate(json.load(open(os.path.join(REPO, 'library', frm, 'work.json')))['items'])}
     for k, tr in zip(used, tracks):
-        mine = [i for i in at if at[i][0] == k]; lastp = max(PO[i] for i in mine)
+        mine = on(k); lastp = max(PO[i] for i in mine)
         nxt = sorted(v[1] for i, v in A['at'].items() if v[0] == k and PO.get(i, -1) > lastp)
-        tr['start'] = max(tr.get('start', 0), min(at[i][1] for i in mine))
+        tr['start'] = max(tr.get('start', 0), min(min([at[i][1]] if at[i][0] == k else [s[1] for s in lines[i] if s[0] == k]) for i in mine))
         if nxt and nxt[0] < tr.get('end', tr['dur']): tr['end'] = nxt[0]
-    doc = {k: v for k, v in A.items() if k not in ('tracks', 'at', 'check', 'guess', 'moved', 'raw', 'own')}
+    doc = {k: v for k, v in A.items() if k not in ('tracks', 'at', 'lines', 'check', 'guess', 'moved', 'raw', 'own')}
     doc.update(tracks=tracks, at={i: [used.index(t[0])] + t[1:] for i, t in at.items()})
+    if lines: doc['lines'] = {i: [[used.index(s[0])] + s[1:] for s in v] for i, v in lines.items()}
     for k in ('check', 'guess', 'own'):
         if [i for i in A.get(k, []) if i in at]: doc[k] = [i for i in A[k] if i in at]
     out = os.path.join(REPO, 'library', meta['work'], 'audio', meta['id'] + '.json')

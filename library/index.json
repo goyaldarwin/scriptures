@@ -5915,6 +5915,28 @@
       }
      },
      {
+      "id": "kirtan-sohila",
+      "work": "kirtan-sohila",
+      "path": "sikhism/gurbani/kirtan-sohila",
+      "title": {
+       "hi": "कीर्तन सोहिला",
+       "en": "Kirtan Sohila"
+      },
+      "by": {
+       "hi": "गुरु नानक देव जी, गुरु राम दास जी, गुरु अर्जन देव जी",
+       "en": "Guru Nanak Dev Ji, Guru Ram Das Ji, Guru Arjan Dev Ji"
+      },
+      "edition": {
+       "hi": "श्री गुरु ग्रन्थ साहिब, अंग १२–१३ · शबद ओएस डेटाबेस",
+       "en": "Sri Guru Granth Sahib, Ang 12–13 · Shabad OS database"
+      },
+      "desc": {
+       "hi": "ਕੀਰਤਨ ਸੋਹਿਲਾ · ५ शबद",
+       "en": "ਕੀਰਤਨ ਸੋਹਿਲਾ · 5 Shabads"
+      },
+      "salute": "ੴ"
+     },
+     {
       "id": "guru-nanak-dev",
       "title": {
        "hi": "गुरु नानक देव जी",
@@ -5958,6 +5980,120 @@
           "It is the first bani of Nitnem, the Sikhs' daily prayers, recited each morning for one's own meditation. It is also recited in gurdwaras morning and evening, at the Khalsa initiation (Amrit Sanchar) and at cremation."
          ]
         }
+       },
+       {
+        "id": "asa-di-vaar",
+        "work": "asa-di-vaar",
+        "path": "sikhism/gurbani/guru-nanak-dev/asa-di-vaar",
+        "title": {
+         "hi": "आसा दी वार",
+         "en": "Asa Di Vaar"
+        },
+        "by": {
+         "hi": "गुरु नानक देव जी",
+         "en": "Guru Nanak Dev Ji"
+        },
+        "edition": {
+         "hi": "श्री गुरु ग्रन्थ साहिब, अंग ४६२–४७५ · शबद ओएस डेटाबेस",
+         "en": "Sri Guru Granth Sahib, Ang 462–475 · Shabad OS database"
+        },
+        "desc": {
+         "hi": "ਆਸਾ ਦੀ ਵਾਰ · २४ पउड़ियाँ, सलोकोंके साथ",
+         "en": "ਆਸਾ ਦੀ ਵਾਰ · 24 Pauris with Saloks"
+        },
+        "salute": "ੴ"
+       },
+       {
+        "id": "sidh-gosht",
+        "work": "sidh-gosht",
+        "path": "sikhism/gurbani/guru-nanak-dev/sidh-gosht",
+        "title": {
+         "hi": "सिध गोसटि",
+         "en": "Sidh Gosht"
+        },
+        "by": {
+         "hi": "गुरु नानक देव जी",
+         "en": "Guru Nanak Dev Ji"
+        },
+        "edition": {
+         "hi": "श्री गुरु ग्रन्थ साहिब, अंग ९३८–९४६ · शबद ओएस डेटाबेस",
+         "en": "Sri Guru Granth Sahib, Ang 938–946 · Shabad OS database"
+        },
+        "desc": {
+         "hi": "ਸਿਧ ਗੋਸਟਿ · ७३ पउड़ियाँ",
+         "en": "ਸਿਧ ਗੋਸਟਿ · 73 Pauris"
+        },
+        "salute": "ੴ"
+       }
+      ]
+     },
+     {
+      "id": "guru-amar-das",
+      "title": {
+       "hi": "गुरु अमर दास जी",
+       "en": "Guru Amar Das Ji"
+      },
+      "desc": {
+       "hi": "ਗੁਰੂ ਅਮਰ ਦਾਸ ਜੀ · तीसरे गुरु",
+       "en": "ਗੁਰੂ ਅਮਰ ਦਾਸ ਜੀ · the third Guru"
+      },
+      "children": [
+       {
+        "id": "anand-sahib",
+        "work": "anand-sahib",
+        "path": "sikhism/gurbani/guru-amar-das/anand-sahib",
+        "title": {
+         "hi": "अनंद साहिब",
+         "en": "Anand Sahib"
+        },
+        "by": {
+         "hi": "गुरु अमर दास जी",
+         "en": "Guru Amar Das Ji"
+        },
+        "edition": {
+         "hi": "श्री गुरु ग्रन्थ साहिब, अंग ९१७–९२२ · शबद ओएस डेटाबेस",
+         "en": "Sri Guru Granth Sahib, Ang 917–922 · Shabad OS database"
+        },
+        "desc": {
+         "hi": "ਅਨੰਦ ਸਾਹਿਬ · ४० पउड़ियाँ",
+         "en": "ਅਨੰਦ ਸਾਹਿਬ · 40 Pauris"
+        },
+        "salute": "ੴ"
+       }
+      ]
+     },
+     {
+      "id": "guru-ram-das",
+      "title": {
+       "hi": "गुरु राम दास जी",
+       "en": "Guru Ram Das Ji"
+      },
+      "desc": {
+       "hi": "ਗੁਰੂ ਰਾਮ ਦਾਸ ਜੀ · चौथे गुरु",
+       "en": "ਗੁਰੂ ਰਾਮ ਦਾਸ ਜੀ · the fourth Guru"
+      },
+      "children": [
+       {
+        "id": "lavan",
+        "work": "lavan",
+        "path": "sikhism/gurbani/guru-ram-das/lavan",
+        "title": {
+         "hi": "लावां",
+         "en": "Lavan"
+        },
+        "by": {
+         "hi": "गुरु राम दास जी",
+         "en": "Guru Ram Das Ji"
+        },
+        "edition": {
+         "hi": "श्री गुरु ग्रन्थ साहिब, अंग ७७३–७७४ · शबद ओएस डेटाबेस",
+         "en": "Sri Guru Granth Sahib, Ang 773–774 · Shabad OS database"
+        },
+        "desc": {
+         "hi": "ਲਾਵਾਂ · ४ लावां",
+         "en": "ਲਾਵਾਂ · 4 Lavan"
+        },
+        "salute": "ੴ"
        }
       ]
      },
@@ -5972,6 +6108,72 @@
        "en": "ਗੁਰੂ ਅਰਜਨ ਦੇਵ ਜੀ · the fifth Guru"
       },
       "children": [
+       {
+        "id": "shabad-hazare",
+        "work": "shabad-hazare",
+        "path": "sikhism/gurbani/guru-arjan-dev/shabad-hazare",
+        "title": {
+         "hi": "शबद हज़ारे",
+         "en": "Shabad Hazare"
+        },
+        "by": {
+         "hi": "गुरु अर्जन देव जी",
+         "en": "Guru Arjan Dev Ji"
+        },
+        "edition": {
+         "hi": "श्री गुरु ग्रन्थ साहिब, अंग ९६–९७ · शबद ओएस डेटाबेस",
+         "en": "Sri Guru Granth Sahib, Ang 96–97 · Shabad OS database"
+        },
+        "desc": {
+         "hi": "ਸ਼ਬਦ ਹਜ਼ਾਰੇ · राग माझका एक शबद",
+         "en": "ਸ਼ਬਦ ਹਜ਼ਾਰੇ · a shabad in Raag Majh"
+        },
+        "salute": "ੴ"
+       },
+       {
+        "id": "barah-maha-majh",
+        "work": "barah-maha-majh",
+        "path": "sikhism/gurbani/guru-arjan-dev/barah-maha-majh",
+        "title": {
+         "hi": "बारह माहा माझ",
+         "en": "Barah Maha Majh"
+        },
+        "by": {
+         "hi": "गुरु अर्जन देव जी",
+         "en": "Guru Arjan Dev Ji"
+        },
+        "edition": {
+         "hi": "श्री गुरु ग्रन्थ साहिब, अंग १३३–१३६ · शबद ओएस डेटाबेस",
+         "en": "Sri Guru Granth Sahib, Ang 133–136 · Shabad OS database"
+        },
+        "desc": {
+         "hi": "ਬਾਰਹ ਮਾਹਾ ਮਾਝ · १४ पद",
+         "en": "ਬਾਰਹ ਮਾਹਾ ਮਾਝ · 14 Stanzas"
+        },
+        "salute": "ੴ"
+       },
+       {
+        "id": "bavan-akhri",
+        "work": "bavan-akhri",
+        "path": "sikhism/gurbani/guru-arjan-dev/bavan-akhri",
+        "title": {
+         "hi": "बावन अखरी",
+         "en": "Bavan Akhri"
+        },
+        "by": {
+         "hi": "गुरु अर्जन देव जी",
+         "en": "Guru Arjan Dev Ji"
+        },
+        "edition": {
+         "hi": "श्री गुरु ग्रन्थ साहिब, अंग २५०–२६२ · शबद ओएस डेटाबेस",
+         "en": "Sri Guru Granth Sahib, Ang 250–262 · Shabad OS database"
+        },
+        "desc": {
+         "hi": "ਬਾਵਨ ਅਖਰੀ · ५५ पउड़ियाँ, सलोकोंके साथ",
+         "en": "ਬਾਵਨ ਅਖਰੀ · 55 Pauris with Saloks"
+        },
+        "salute": "ੴ"
+       },
        {
         "id": "sukhmani-sahib",
         "work": "sukhmani-sahib",
@@ -6003,6 +6205,41 @@
           "It has 24 ashtapadis, each opened by a salok and made of eight stanzas. Its theme is the peace that comes from Naam Simran, remembering God's Name: the greatness of the Name, the company of the holy (Sadh Sangat), the true devotee, the restless mind, the folly of slander, and the One Lord who is both with and beyond form. Sikhs recite it daily, alone or together, at home and in the gurdwara; a full reading takes about an hour to an hour and a half."
          ]
         }
+       }
+      ]
+     },
+     {
+      "id": "guru-tegh-bahadur",
+      "title": {
+       "hi": "गुरु तेग बहादुर जी",
+       "en": "Guru Tegh Bahadur Ji"
+      },
+      "desc": {
+       "hi": "ਗੁਰੂ ਤੇਗ ਬਹਾਦਰ ਜੀ · नौवें गुरु",
+       "en": "ਗੁਰੂ ਤੇਗ ਬਹਾਦਰ ਜੀ · the ninth Guru"
+      },
+      "children": [
+       {
+        "id": "salok-mahala-9",
+        "work": "salok-mahala-9",
+        "path": "sikhism/gurbani/guru-tegh-bahadur/salok-mahala-9",
+        "title": {
+         "hi": "सलोक महला ९",
+         "en": "Salok Mahala 9"
+        },
+        "by": {
+         "hi": "गुरु तेग बहादुर जी",
+         "en": "Guru Tegh Bahadur Ji"
+        },
+        "edition": {
+         "hi": "श्री गुरु ग्रन्थ साहिब, अंग १४२६–१४२९ · शबद ओएस डेटाबेस",
+         "en": "Sri Guru Granth Sahib, Ang 1426–1429 · Shabad OS database"
+        },
+        "desc": {
+         "hi": "ਸਲੋਕ ਮਹਲਾ ੯ · ५७ सलोक",
+         "en": "ਸਲੋਕ ਮਹਲਾ ੯ · 57 Saloks"
+        },
+        "salute": "ੴ"
        }
       ]
      }

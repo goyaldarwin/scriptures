@@ -1,0 +1,66 @@
+{
+ "id": "lavan",
+ "path": "sikhism/gurbani/guru-ram-das/lavan",
+ "lang": "pa",
+ "title": {
+  "hi": "लावां",
+  "en": "Lavan"
+ },
+ "by": {
+  "hi": "गुरु राम दास जी",
+  "en": "Guru Ram Das Ji"
+ },
+ "edition": {
+  "hi": "श्री गुरु ग्रन्थ साहिब, अंग ७७३–७७४ · शबद ओएस डेटाबेस",
+  "en": "Sri Guru Granth Sahib, Ang 773–774 · Shabad OS database"
+ },
+ "from": {
+  "hi": "श्री गुरु ग्रन्थ साहिब, अंग ७७३–७७४",
+  "en": "Sri Guru Granth Sahib, Ang 773–774"
+ },
+ "headings": "transliteration",
+ "words": "partial",
+ "cite": {
+  "by": [
+   "sec",
+   "n"
+  ],
+  "mark": "none"
+ },
+ "parts": {
+  "name": {
+   "hi": "पाठ",
+   "en": "Paath",
+   "pa": "ਪਾਠ"
+  },
+  "list": [
+   {
+    "key": "paath",
+    "hi": "लावां",
+    "en": "Lavan",
+    "pa": "ਲਾਵਾਂ"
+   }
+  ]
+ },
+ "sections": {
+  "773": {
+   "hi": "अंग ७७३",
+   "en": "Ang 773",
+   "pa": "ਅੰਗ ੭੭੩"
+  }
+ },
+ "types": {
+  "shabad": {
+   "name": {
+    "hi": "शबद",
+    "en": "Shabad",
+    "pa": "ਸ਼ਬਦ"
+   },
+   "short": {
+    "hi": "शबद",
+    "en": "Shabad",
+    "pa": "ਸ਼ਬਦ"
+   }
+  }
+ }
+}
