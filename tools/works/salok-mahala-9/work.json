@@ -1,0 +1,81 @@
+{
+ "id": "salok-mahala-9",
+ "path": "sikhism/gurbani/guru-tegh-bahadur/salok-mahala-9",
+ "lang": "pa",
+ "title": {
+  "hi": "सलोक महला ९",
+  "en": "Salok Mahala 9"
+ },
+ "by": {
+  "hi": "गुरु तेग बहादुर जी",
+  "en": "Guru Tegh Bahadur Ji"
+ },
+ "edition": {
+  "hi": "श्री गुरु ग्रन्थ साहिब, अंग १४२६–१४२९ · शबद ओएस डेटाबेस",
+  "en": "Sri Guru Granth Sahib, Ang 1426–1429 · Shabad OS database"
+ },
+ "from": {
+  "hi": "श्री गुरु ग्रन्थ साहिब, अंग १४२६–१४२९",
+  "en": "Sri Guru Granth Sahib, Ang 1426–1429"
+ },
+ "headings": "transliteration",
+ "words": "partial",
+ "cite": {
+  "by": [
+   "sec",
+   "n"
+  ],
+  "mark": "none"
+ },
+ "parts": {
+  "name": {
+   "hi": "पाठ",
+   "en": "Paath",
+   "pa": "ਪਾਠ"
+  },
+  "list": [
+   {
+    "key": "paath",
+    "hi": "सलोक महला ९",
+    "en": "Salok Mahala 9",
+    "pa": "ਸਲੋਕ ਮਹਲਾ ੯"
+   }
+  ]
+ },
+ "sections": {
+  "1426": {
+   "hi": "अंग १४२६",
+   "en": "Ang 1426",
+   "pa": "ਅੰਗ ੧੪੨੬"
+  },
+  "1427": {
+   "hi": "अंग १४२७",
+   "en": "Ang 1427",
+   "pa": "ਅੰਗ ੧੪੨੭"
+  },
+  "1428": {
+   "hi": "अंग १४२८",
+   "en": "Ang 1428",
+   "pa": "ਅੰਗ ੧੪੨੮"
+  },
+  "1429": {
+   "hi": "अंग १४२९",
+   "en": "Ang 1429",
+   "pa": "ਅੰਗ ੧੪੨੯"
+  }
+ },
+ "types": {
+  "salok": {
+   "name": {
+    "hi": "सलोक",
+    "en": "Salok",
+    "pa": "ਸਲੋਕ"
+   },
+   "short": {
+    "hi": "सलोक",
+    "en": "Salok",
+    "pa": "ਸਲੋਕ"
+   }
+  }
+ }
+}

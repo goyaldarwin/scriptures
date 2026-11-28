@@ -1,0 +1,118 @@
+{
+ "id": "sidh-gosht",
+ "path": "sikhism/gurbani/guru-nanak-dev/sidh-gosht",
+ "lang": "pa",
+ "title": {
+  "hi": "सिध गोसटि",
+  "en": "Sidh Gosht"
+ },
+ "by": {
+  "hi": "गुरु नानक देव जी",
+  "en": "Guru Nanak Dev Ji"
+ },
+ "edition": {
+  "hi": "श्री गुरु ग्रन्थ साहिब, अंग ९३८–९४६ · शबद ओएस डेटाबेस",
+  "en": "Sri Guru Granth Sahib, Ang 938–946 · Shabad OS database"
+ },
+ "from": {
+  "hi": "श्री गुरु ग्रन्थ साहिब, अंग ९३८–९४६",
+  "en": "Sri Guru Granth Sahib, Ang 938–946"
+ },
+ "headings": "transliteration",
+ "words": "partial",
+ "cite": {
+  "by": [
+   "sec",
+   "n"
+  ],
+  "mark": "none"
+ },
+ "parts": {
+  "name": {
+   "hi": "पाठ",
+   "en": "Paath",
+   "pa": "ਪਾਠ"
+  },
+  "list": [
+   {
+    "key": "paath",
+    "hi": "सिध गोसटि",
+    "en": "Sidh Gosht",
+    "pa": "ਸਿਧ ਗੋਸਟਿ"
+   }
+  ]
+ },
+ "sections": {
+  "938": {
+   "hi": "अंग ९३८",
+   "en": "Ang 938",
+   "pa": "ਅੰਗ ੯੩੮"
+  },
+  "939": {
+   "hi": "अंग ९३९",
+   "en": "Ang 939",
+   "pa": "ਅੰਗ ੯੩੯"
+  },
+  "940": {
+   "hi": "अंग ९४०",
+   "en": "Ang 940",
+   "pa": "ਅੰਗ ੯੪੦"
+  },
+  "941": {
+   "hi": "अंग ९४१",
+   "en": "Ang 941",
+   "pa": "ਅੰਗ ੯੪੧"
+  },
+  "942": {
+   "hi": "अंग ९४२",
+   "en": "Ang 942",
+   "pa": "ਅੰਗ ੯੪੨"
+  },
+  "943": {
+   "hi": "अंग ९४३",
+   "en": "Ang 943",
+   "pa": "ਅੰਗ ੯੪੩"
+  },
+  "944": {
+   "hi": "अंग ९४४",
+   "en": "Ang 944",
+   "pa": "ਅੰਗ ੯੪੪"
+  },
+  "945": {
+   "hi": "अंग ९४५",
+   "en": "Ang 945",
+   "pa": "ਅੰਗ ੯੪੫"
+  },
+  "946": {
+   "hi": "अंग ९४६",
+   "en": "Ang 946",
+   "pa": "ਅੰਗ ੯੪੬"
+  }
+ },
+ "types": {
+  "pauri": {
+   "name": {
+    "hi": "पउड़ी",
+    "en": "Pauri",
+    "pa": "ਪਉੜੀ"
+   },
+   "short": {
+    "hi": "पउड़ी",
+    "en": "Pauri",
+    "pa": "ਪਉੜੀ"
+   }
+  },
+  "rahao": {
+   "name": {
+    "hi": "रहाउ",
+    "en": "Rahao",
+    "pa": "ਰਹਾਉ"
+   },
+   "short": {
+    "hi": "रहाउ",
+    "en": "Rahao",
+    "pa": "ਰਹਾਉ"
+   }
+  }
+ }
+}

@@ -872,6 +872,35 @@ async def main():
             r = subprocess.run([sys.executable, os.path.join(ROOT, 'tools/audio/apply_owner_timing.py'), body], env=env, capture_output=True, text=True); out.append((r.returncode, r.stdout.strip().split('\n')[-1]))
         after = json.load(open(os.path.join(tmp, 'library', wp, 'audio', 'pramod-medhi.json')))['at']; shutil.rmtree(tmp)
         check('timing: a second send that lets a moved verse go back to its own start is applied by the workflow', r0.returncode == 0 and out[0][0] == 0 and out[1][0] == 0 and after['aarti.pad3'] == raw['aarti.pad3'] and 60 < raw['aarti.pad3'][1] < 100, (r0.stderr[-200:], out, raw.get('aarti.pad3'), after.get('aarti.pad3')))
+        # the Japji Sahib offers the Granth's recordings of Ang 1–8 (docs/PLAYBOOK.md §8, "A bani taken from the Granth"), the
+        # Granth's default, Sehaj Path Kirtan, its default too; every time is the Granth's (the owner's starts by ear included), and
+        # a start sent from the Japji's page goes to the Granth's recording and comes back to the Japji
+        GP, JP = 'sikhism/gurbani/guru-granth-sahib', 'sikhism/gurbani/guru-nanak-dev/japji-sahib'
+        jw = json.load(open(os.path.join(ROOT, 'library', JP, 'work.json'))); jids = [x['id'] for x in jw['items']]
+        same = {}
+        for s in sorted(os.listdir(os.path.join(ROOT, 'tools/works/guru-granth-sahib/audio'))):
+            ga = os.path.join(ROOT, 'library', GP, 'audio', s + '.json')
+            if not os.path.isdir(os.path.join(ROOT, 'tools/works/guru-granth-sahib/audio', s)) or not os.path.exists(ga): continue
+            G_, J_ = json.load(open(ga)), json.load(open(os.path.join(ROOT, 'library', JP, 'audio', s + '.json'))) if os.path.exists(os.path.join(ROOT, 'library', JP, 'audio', s + '.json')) else None
+            if not any(i in G_['at'] for i in jids): continue
+            at = lambda A, i: (A['tracks'][A['at'][i][0]]['yt'], A['at'][i][1:]) if i in A['at'] else None
+            same[s] = bool(J_) and all(at(G_, i) == at(J_, i) for i in jids) and set(G_.get('own', [])) & set(jids) <= set(J_.get('own', []))
+        dflt = await ev("""(async () => { delete S.src['japji-sahib']; await openWork('japji-sahib', true); await loadSources(); return [(W.sources.au || []).map(s => s.id), SRC.au && SRC.au.meta.id]; })()""")
+        check('Japji Sahib: the Granth\'s recordings of Ang 1–8 with the Granth\'s times, Sehaj Path Kirtan its default', same and all(same.values()) and dflt[0][0] == 'sehaj-path-kirtan' and dflt[1] == 'sehaj-path-kirtan', (same, dflt))
+        tmp = tempfile.mkdtemp(); ga = os.path.join(ROOT, 'library', GP, 'audio', 'sehaj-path-kirtan.json')
+        for p in (GP, JP): os.makedirs(os.path.join(tmp, 'library', p, 'audio')); shutil.copy(os.path.join(ROOT, 'library', p, 'work.json'), os.path.join(tmp, 'library', p))
+        shutil.copy(ga, os.path.join(tmp, 'library', GP, 'audio'))
+        for w in ('guru-granth-sahib', 'japji-sahib'):
+            os.makedirs(os.path.join(tmp, 'tools/works', w, 'audio')); shutil.copy(os.path.join(ROOT, 'tools/works', w, 'work.json'), os.path.join(tmp, 'tools/works', w))
+            shutil.copytree(os.path.join(ROOT, 'tools/works', w, 'audio/sehaj-path-kirtan'), os.path.join(tmp, 'tools/works', w, 'audio/sehaj-path-kirtan'), ignore=shutil.ignore_patterns('mms'))   # the times alone, not MMS's merge (minutes)
+        env = dict(os.environ, SCRIPTURES_REPO=tmp)
+        subprocess.run([sys.executable, os.path.join(ROOT, 'tools/audio/make_timings.py'), os.path.join(tmp, 'tools/works/japji-sahib/audio/sehaj-path-kirtan')], env=env, capture_output=True)
+        J0 = json.load(open(os.path.join(tmp, 'library', JP, 'audio', 'sehaj-path-kirtan.json'))); k, t0 = J0['at']['p5'][0], J0['at']['p5'][1]
+        body = os.path.join(tmp, 'body.txt'); open(body, 'w').write('```json\n' + json.dumps({'path': JP, 'source': 'sehaj-path-kirtan', 'starts': {J0['tracks'][k]['yt']: {'p5': round(t0 + 0.5, 2)}}}) + '\n```\n')
+        r = subprocess.run([sys.executable, os.path.join(ROOT, 'tools/audio/apply_owner_timing.py'), body], env=env, capture_output=True, text=True)
+        got = [json.load(open(os.path.join(tmp, 'library', p, 'audio', 'sehaj-path-kirtan.json')))['at']['p5'][1] for p in (GP, JP)]
+        own = json.load(open(os.path.join(tmp, 'tools/works/guru-granth-sahib/audio/sehaj-path-kirtan/owner.json'))).get(J0['tracks'][k]['yt'], {}).get('p5'); shutil.rmtree(tmp)
+        check('timing: a start sent from the Japji Sahib\'s Sehaj Path Kirtan is set on the Granth\'s recording and comes back to the Japji', r.returncode == 0 and got == [round(t0 + 0.5, 2)] * 2 and own == round(t0 + 0.5, 2), (r.stdout[-300:], got, own))
         # ---- flow and navigation ----
         # a saved place at a verse no longer in the text: the reader is not broken after a refresh; the place is dropped
         await ev("(async () => { await openWork('ramraksha', true); show('home'); openReader('k', 0); })()"); await pg.wait_for_timeout(600)

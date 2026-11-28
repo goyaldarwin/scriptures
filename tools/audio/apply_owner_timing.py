@@ -5,7 +5,7 @@ The body carries one JSON block: {"path": "<library path of the work>", "source"
 "starts": {"<video id>": {"<item id>": seconds or [start, end]}}, "publish"?: true}.
 It merges the starts into tools/works/<work>/audio/<source>/owner.json (later sends win), removes "draft" from that
 source's source.json and marks it "checked" when "publish" is true, and re-makes the source's timings with make_timings.py (first, for a recording timed by MMS, its check.json and the count in its aligned.md)
-(and those of works that take this recording: source.json "take"). It prints one
+(and those of works that take this recording: source.json "take"; times sent from a work that takes it go to it). It prints one
 line per change and exits non-zero with a reason when the body is not valid, so the workflow can say so on the issue.
 """
 import glob, json, os, re, subprocess, sys
@@ -23,7 +23,12 @@ for sj in glob.glob(os.path.join(REPO, 'tools', 'works', '*', 'audio', '*', 'sou
     meta = json.load(open(sj))
     if meta.get('work') == path and meta.get('id') == sid: src = os.path.dirname(sj); break
 if not src: fail('no audio source %r for the work %r' % (sid, path))
-if meta.get('take'): fail('%s takes its timings from %s: set the times there' % (sid, meta['take']))
+if meta.get('take'):   # a recording another work's (the Japji Sahib's Sehaj Path Kirtan is the Granth's): the times go to that work's
+    # recording, the same videos and verse ids, and come back to every work that takes it (below)
+    path = json.load(open(os.path.join(REPO, 'tools', 'works', meta['take'], 'work.json')))['path']; src = os.path.join(REPO, 'tools', 'works', meta['take'], 'audio', sid)
+    if not os.path.exists(os.path.join(src, 'source.json')): fail('%s takes its timings from %s, which has no recording %r' % (sid, meta['take'], sid))
+    meta = json.load(open(os.path.join(src, 'source.json'))); print('applied to the recording of', path)
+    if meta.get('take'): fail('%s takes its timings from a work that takes them too' % sid)
 work = json.load(open(os.path.join(REPO, 'library', path, 'work.json'))); ids = {x['id'] for x in work['items']}
 vids = {r['yt'] for r in json.load(open(os.path.join(src, 'recordings.json')))}
 OP = os.path.join(src, 'owner.json'); own = json.load(open(OP)) if os.path.exists(OP) else {}

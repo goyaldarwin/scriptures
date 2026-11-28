@@ -1,0 +1,5 @@
+# Salok Mahala 9, Sri Guru Granth Sahib, Ang 1426–1429: taken from the Granth unchanged (its text, meanings, commentary and
+# recordings' timings), so a correction there reaches this work at the next export.
+
+@part paath
+[take guru-granth-sahib 1426.8 .. 1429.10]

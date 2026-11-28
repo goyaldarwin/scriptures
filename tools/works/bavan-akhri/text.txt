@@ -1,0 +1,5 @@
+# Bavan Akhri, Sri Guru Granth Sahib, Ang 250–262: taken from the Granth unchanged (its text, meanings, commentary and
+# recordings' timings), so a correction there reaches this work at the next export.
+
+@part paath
+[take guru-granth-sahib 250.1 .. 262.1]

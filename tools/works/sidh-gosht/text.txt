@@ -1,0 +1,5 @@
+# Sidh Gosht, Sri Guru Granth Sahib, Ang 938–946: taken from the Granth unchanged (its text, meanings, commentary and
+# recordings' timings), so a correction there reaches this work at the next export.
+
+@part paath
+[take guru-granth-sahib 938.2 .. 946.6]

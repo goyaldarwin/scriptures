@@ -75,7 +75,7 @@ Every other key is copied into `library/<path>/work.json` as it is.
 ```
 
 - A verse id is permanent: readers' bookmarks, notes and timings are stored by it.
-- A taken verse keeps its id, lines, transliteration and language; its meanings come from the same source of the work it comes from (a meaning file with no `m`), and so can its recording (`audio/<source>/source.json` → `"take": "<work id>"`). A correction made in the source work reaches every work that takes from it at the next export.
+- A taken verse keeps its id, lines, transliteration and language; its meanings come from the same source of the work it comes from (a meaning file with no `m`; while that work has none for the verses taken, the export writes none and says so, and it joins at the export after they are written), and so can its recording (`audio/<source>/source.json` → `"take": "<work id>"`; times sent from the taking work's page go to that recording). A correction made in the source work reaches every work that takes from it at the next export.
 - A run brings the topics inside it (and the topic it starts in); a `@topic` just before a run names the run's start instead.
 - A text made by a script from a book or a page is written with `tools/works/textfile.py` (`write`), so it reads like a typed one, and says at its top which script makes it.
 

@@ -27,7 +27,8 @@ The folder's format: `tools/works/README.md`.
 - `commentary/pa/faridkot.json` — the Faridkot Teeka, line by line, as typed in the Shabad OS database (CC BY-SA 4.0), made by
   `tools/works/guru-granth-sahib/source/faridkot.py` (its choices: `tools/works/guru-granth-sahib/reconciliation.md` §5).
 - The meanings of the Japji's Gurmukhi words are in `library/glossary/pa.json`.
-- `audio/nirvair-khalsa-jatha-uk/` — the recording (YouTube `wbuM4eyIBDM`, 16 minutes), published for review (`source.json` → `review`): sung with a harmonium between lines, so the starts come from the 6-second-window transcript's anchor alignment (step 1 of `tools/audio/METHOD.md`), seven of them hand-checked (`fixes.md`); every start is on the to-check list until the owner sets it by ear. MMS (steps 2–5) is used once the owner has set 20–30 starts to score it on.
+- `audio/sehaj-path-kirtan/`, `audio/pishora-singh/`, `audio/shabad-guru/` — Sri Guru Granth Sahib's recordings of Ang 1–8, their timings taken from the Granth's (`source.json` → `"take"`, `docs/PLAYBOOK.md` §8, "A recording of a bani taken from the Granth"): Sehaj Path Kirtan is the default, as in the Granth; a start set by ear on the Granth's recording, or sent from this work's page, is the Granth's and reaches this work (`tools/audio/apply_owner_timing.py`).
+- `audio/nirvair-khalsa-jatha-uk/` — this work's own recording (YouTube `wbuM4eyIBDM`, 16 minutes), published for review (`source.json` → `review`): sung with a harmonium between lines, so the starts come from the 6-second-window transcript's anchor alignment (step 1 of `tools/audio/METHOD.md`), seven of them hand-checked (`fixes.md`); every start is on the to-check list until the owner sets it by ear. MMS (steps 2–5) is used once the owner has set 20–30 starts to score it on.
 
 Rebuild: `python3 tools/works/japji-sahib/source/make.py && python3 tools/works/export.py japji-sahib && python3 tools/site/build.py`.
 

@@ -1,0 +1,66 @@
+{
+ "id": "shabad-hazare",
+ "path": "sikhism/gurbani/guru-arjan-dev/shabad-hazare",
+ "lang": "pa",
+ "title": {
+  "hi": "शबद हज़ारे",
+  "en": "Shabad Hazare"
+ },
+ "by": {
+  "hi": "गुरु अर्जन देव जी",
+  "en": "Guru Arjan Dev Ji"
+ },
+ "edition": {
+  "hi": "श्री गुरु ग्रन्थ साहिब, अंग ९६–९७ · शबद ओएस डेटाबेस",
+  "en": "Sri Guru Granth Sahib, Ang 96–97 · Shabad OS database"
+ },
+ "from": {
+  "hi": "श्री गुरु ग्रन्थ साहिब, अंग ९६–९७",
+  "en": "Sri Guru Granth Sahib, Ang 96–97"
+ },
+ "headings": "transliteration",
+ "words": "partial",
+ "cite": {
+  "by": [
+   "sec",
+   "n"
+  ],
+  "mark": "none"
+ },
+ "parts": {
+  "name": {
+   "hi": "पाठ",
+   "en": "Paath",
+   "pa": "ਪਾਠ"
+  },
+  "list": [
+   {
+    "key": "paath",
+    "hi": "शबद हज़ारे",
+    "en": "Shabad Hazare",
+    "pa": "ਸ਼ਬਦ ਹਜ਼ਾਰੇ"
+   }
+  ]
+ },
+ "sections": {
+  "96": {
+   "hi": "अंग ९६",
+   "en": "Ang 96",
+   "pa": "ਅੰਗ ੯੬"
+  }
+ },
+ "types": {
+  "shabad": {
+   "name": {
+    "hi": "शबद",
+    "en": "Shabad",
+    "pa": "ਸ਼ਬਦ"
+   },
+   "short": {
+    "hi": "शबद",
+    "en": "Shabad",
+    "pa": "ਸ਼ਬਦ"
+   }
+  }
+ }
+}

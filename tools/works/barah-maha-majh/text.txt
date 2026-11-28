@@ -1,0 +1,5 @@
+# Barah Maha Majh, Sri Guru Granth Sahib, Ang 133–136: taken from the Granth unchanged (its text, meanings, commentary and
+# recordings' timings), so a correction there reaches this work at the next export.
+
+@part paath
+[take guru-granth-sahib 133.1 .. 136.2]
