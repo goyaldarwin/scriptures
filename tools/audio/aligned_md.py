@@ -29,7 +29,8 @@ def by_line(src, S, REC, W, C, show):
            'line"); one run per recording in the public `align` workflow (`mms_align.py`, raw results in `mms/<video id>.json`); '
            f'`mms_merge.py` writes `aligned.json` (each verse\'s first singing), `lines.json` (the singings the search scores 0.35 or '
            'more, and the in-order alignment\'s first singings of lines it left out, where the lines around place them: '
-           '`line_align.merge`) and `check.json`. Each start is MMS\'s less the lean, 0.6 s until the owner has set starts by ear here.', '',
+           '`line_align.merge`; a singing that swallowed the lines before it shared by length among them and its line: '
+           '`line_align.split_swallowed`) and `check.json`. Each start is MMS\'s less the lean, 0.6 s until the owner has set starts by ear here.', '',
            f'**Figures:** {figs}.', '',
            '**How good:** not scored yet: the owner has not set starts by ear on these recordings, and his marks are per verse; '
            'starts heard in 5-s windows (`tools/audio/windows.py`) are the check until then (`fixes.md`, where any are recorded).', '',

@@ -51,8 +51,17 @@ def rom(s):
     while w and w[-1] in ('rahau', 'duja', 'duji'): w.pop()
     return ''.join(w)
 
+NUMBERED = ('ਮਹਲਾ', 'ਮਃ', 'ਘਰੁ')   # a heading only with its number (ਮਹਲਾ ੫, ਘਰੁ ੩): ਸੋ ਘਰੁ ਕੇਹਾ and ਦਰ ਘਰ ਮਹਲਾ ਸੇਜ are sung
+DIGITS = re.compile(r'^[੦-੯0-9]+$')
 def is_head(line):
-    return not END.search(line) and (any(k in line for k in HEAD) and len(line.split()) <= 11 or len([w for w in line.split() if w != '॥']) <= 2)
+    """A heading (ਸਿਰੀਰਾਗੁ ਮਹਲਾ ੧ ਘਰੁ ੩ ॥, ਸਲੋਕੁ ਮਃ ੧ ॥, ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥, ਪਉੜੀ ॥), which the search may pass over at no
+    cost: a short line without a closing number that holds one of HEAD as a whole word (never inside a word: ਸਵਾਰੇ is not ਵਾਰ,
+    the owner's Japji 27, whose ਗਾਵਹਿ ਈਸਰੁ ਬਰਮਾ ਦੇਵੀ ਸੋਹਨਿ ਸਦਾ ਸਵਾਰੇ was passed over so), NUMBERED ones only before their
+    number; or a line of one or two words."""
+    if END.search(line): return False
+    w = [x.rstrip('॥') for x in line.split() if x != '॥']
+    hit = any((x in NUMBERED and j + 1 < len(w) and DIGITS.match(w[j + 1])) or (x not in NUMBERED and x in HEAD) or x.startswith('ੴ') for j, x in enumerate(w))
+    return (hit and len(line.split()) <= 11) or len(w) <= 2
 
 def units(item):
     """The verse's lines as sung units: [{"k", "rom", "head", "rahao", "group"}] and the groups: padas and rahao blocks,
@@ -289,6 +298,34 @@ def merge(every, inorder, lens, thr=0.35):
         if before and after and max(before) < o[1] < min(after) and not any(g[1] < o[2] and o[1] < g[2] for g in good):
             fill.append(o[:4] + ['inorder'])
     return sorted(good + fill, key=lambda o: o[1]), fill
+
+def split_swallowed(kept, lens, heads=()):
+    """A singing that swallowed the lines before it (the owner, Japji 27 in Sehaj Path Kirtan: ਗਾਵਹਿ ਈਸਰੁ ਬਰਮਾ was never
+    found, and the next line, ਗਾਵਹਿ ਇੰਦ, held 16 s, both lines' singing, so the page jumped over it): where lines of the text
+    have no singing yet, the singing of the next line found starts within 1.5 s of the end of the one before them, and it
+    lasts more than 1.6 times its own length at the song's pace, that singing is shared by length among the lines it
+    swallowed and its own line, in the text's order. A heading (ਮਹਲਾ …) is never given a share; a line sung before (a pada
+    before the rahao came back) is not missing. kept: merge's singings [line, start, end, score, how], in time order;
+    lens: letters per line. Returns (kept, the singings added, how "split")."""
+    occ = sorted(kept, key=lambda o: o[1])
+    pace = sorted((o[2] - o[1]) / max(1, lens[o[0]]) for o in occ) or [0.25]
+    m = pace[len(pace) // 2]
+    out, added = [], []
+    for n, b in enumerate(occ):
+        a = out[-1] if out else None
+        if a and b[0] > a[0] + 1:
+            sung = {o[0] for o in out}
+            miss = [k for k in range(a[0] + 1, b[0]) if k not in sung and k not in heads]
+            if miss and b[1] - a[2] < 1.5 and b[2] - b[1] > 1.6 * m * max(1, lens[b[0]]):
+                share = miss + [b[0]]; tot = sum(max(1, lens[k]) for k in share); t, d = b[1], b[2] - b[1]
+                for k in share:
+                    e = round(t + d * max(1, lens[k]) / tot, 2)
+                    o = [k, round(t, 2), e if k != b[0] else b[2], b[3], 'split' if k != b[0] else b[4]]
+                    if k != b[0]: added.append(o)
+                    out.append(o); t = e
+                continue
+        out.append(list(b))
+    return out, added
 
 class Titles:
     """Which verse of a work a recording sounds most like: the letters MMS hears against each verse's text, as letter
