@@ -1048,6 +1048,29 @@ async def main():
             r.push(JSON.stringify([0.1, 0.5, 0.8].map(f => lineAt(v1, s + f * d))) === '[0,1,1]');   // the page follows the line times, forward only
             stopAudio(); ytOK = false; delete SRC.au.lines; buildAudio(); return r; })()""")
         check('playing a verse timed line by line: lit as a whole like any verse, no line marked; the page follows its line times forward only', ln == [True] * 4, ln)
+        # line starts by ear (docs/PLAYBOOK.md §8): in timing mode a verse of more than 5 lines has ⏱ / ⏹ on each line, a shorter
+        # one none; ⏱ tapped while it plays sets that line (the page follows it, the button filled), ⏹ ends it and starts the
+        # next line, ↶ takes the last back, and the send carries the verse's lines
+        await ev("""(async () => { await openWork('sukhmani-sahib', true); await loadSources(); show('home'); S.timing.on = true; delete S.timing.lines[tkey()]; delete S.timing.lundo[tkey()]; delete S.timing.lsent[tkey()]; save(); applyTiming(); buildAudio();
+            const i = IT.findIndex(x => x.v.length > 5 && SRC.au.at[x.id]); window.__lt = i; openReader('k', i); await new Promise(r => setTimeout(r, 800)); scrollToItem(i); await new Promise(r => setTimeout(r, 500));
+            const [t, s] = SRC.au.at[IT[i].id], a = AUT[t], m = a.findIndex(x => x[0] === i), e = a[m + 1][1];
+            stopAudio(); PL.on = true; ytOK = true; PL.t = t; PL.seekT = null; ytInfo.st = 2; ytInfo.at = performance.now(); ytInfo.t = s + 0.6 * (e - s) + 0.3; window.__lts = s + 0.6 * (e - s); })()""")
+        await pg.click('#v' + str(await ev('window.__lt')) + ' [data-a=lstart][data-k="3"]', timeout=3000)
+        lt1 = await ev("""(() => { const i = window.__lt, el = document.getElementById('v' + i), id = IT[i].id;
+            const short = [...document.querySelectorAll('#rBody .verse')].filter(e => IT[+e.dataset.i].v.length <= 5).every(e => !e.querySelector('[data-a=lstart],[data-a=lend]'));
+            return [el.querySelectorAll('[data-a=lstart]').length === IT[i].v.length && el.querySelectorAll('[data-a=lend]').length === IT[i].v.length, short,
+              Math.abs(lineStarts(i, PL.t)[3] - window.__lts) < 0.05, el.querySelector('[data-a=lstart][data-k="3"]').classList.contains('mine'), Object.keys(pendingLines()).includes(id)]; })()""")
+        await ev("ytInfo.t = window.__lts + 1.3")
+        await pg.click('#v' + str(await ev('window.__lt')) + ' [data-a=lend][data-k="3"]', timeout=3000)
+        lt2 = await ev("""(() => { const id = IT[window.__lt].id, L = myLines()[id]; return [JSON.stringify(L.map(o => [o[2], o[3] != null])), L[1] && L[1][1] === L[0][3]]; })()""")
+        await pg.click('#v' + str(await ev('window.__lt')) + ' [data-a=tundo]', timeout=3000)
+        lt3 = await ev("""(() => { const i = window.__lt, id = IT[i].id, r = [JSON.stringify(myLines()[id].map(o => [o[2], o[3]]))];
+            const wo = window.open; let u = ''; window.open = x => { u = x; }; sendStarts(); window.open = wo; const body = decodeURIComponent(u.split('&body=')[1] || '');
+            const doc = JSON.parse(body.slice(body.indexOf('{'), body.lastIndexOf('}') + 1)), yt = SRC.au.tracks[PL.t].yt;
+            r.push(JSON.stringify(doc.lines[yt][id].map(o => [o[0], o[2]])), !Object.keys(pendingLines()).length);
+            delete S.timing.lines[tkey()]; delete S.timing.lundo[tkey()]; delete S.timing.lsent[tkey()]; S.timing.on = false; save(); stopAudio(); ytOK = false; buildAudio(); return r; })()""")
+        check('line starts by ear: ⏱ / ⏹ on each line of a verse of more than 5 lines only; ⏱ sets the line, ⏹ ends it and starts the next, ↶ takes the last back, the send carries them',
+              lt1 == [True] * 5 and lt2 == ['[[3,true],[4,false]]', True] and lt3 == ['[[3,null]]', '[[3,null]]', True], (lt1, lt2, lt3))
         # offline reading: a work opened once is readable with no network at all; a work never opened says so
         srv2 = serve(); url2 = f'http://127.0.0.1:{srv2.server_address[1]}/'
         ctx2 = await b.new_context(viewport={'width': 390, 'height': 844}, is_mobile=True, has_touch=True); pg3 = await ctx2.new_page(); errs3 = []

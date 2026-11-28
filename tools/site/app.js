@@ -66,7 +66,7 @@ if (!S || !S.profiles) S = defaults();
 // "from": marks loaded from a helper's file and not yet checked by you, "<work>:<source>" → {item id: helper's name} (they are
 // heard and shown like yours, but go to the library only after you tap ✓ under the verse); "flags": timing flags a reader set
 // while listening, by "<work>:<audio source>". Filled in for every state: this phone's, a file's (older ones have none) and the cloud's.
-function fillTiming(){ S.timing = S.timing || {on: false}; ['fix', 'sent', 'from', 'flags'].forEach(k => { if (!S.timing[k]) S.timing[k] = {}; }); }
+function fillTiming(){ S.timing = S.timing || {on: false}; ['fix', 'sent', 'from', 'flags', 'lines', 'lsent', 'lundo'].forEach(k => { if (!S.timing[k]) S.timing[k] = {}; }); }
 fillTiming();
 // Audio timing is a tool for the person checking timings, never left on by chance: it turns itself off when the site is
 // opened 12 hours after it was last used, and it never travels in a saved file
@@ -569,6 +569,7 @@ function verseHTML(i){
   const it = IT[i], id = it.id, me = ME(), vv = verseOf(i);
   const bm = SHOWN().some(p => p.bm[KEY(id)]);
   const sh = VSHORT[it.y];
+  const LT = lineButtons(i);   // a long verse in timing mode: ⏱ and ⏹ on each of its lines
   const vcls = '<div class="vtext' + (VEDIC.test(vv.v.join('')) ? ' vedic' : '') + '">';
   const pl = vv.v.map((l, y) => {
     const last = y === vv.v.length - 1;
@@ -579,7 +580,7 @@ function verseHTML(i){
     const top = y === 0 ? (hasAu(i) ? '<button class="vb vplay" data-a="play" aria-label="play"><svg><use href="#i-play"/></svg>' + (SRC.au && flagsNow()[id] && !(S.timing.flagsOn && !S.timing.on) ? REVB : '') + '</button>' : '') + '<button class="vb vbm' + (bm ? ' bm-on' : '') + '" data-a="bm" aria-label="bookmark"><svg><use href="#i-bm"/></svg></button>' : '';
     // the bottom-left corner in timing mode (the owner: Undo and Correct never make sense together, so they share it):
     // ✓ Correct on a verse still to check (a helper's mark, one the library lists, one flagged), ↶ Undo on a start you set
-    const by = S.timing.on && SRC.au ? fromOf(id) : undefined, mine = S.timing.on && SRC.au && myStarts()[id];
+    const by = S.timing.on && SRC.au ? fromOf(id) : undefined, mine = S.timing.on && SRC.au && (myStarts()[id] || lineUndoable(id));
     const okB = '<span class="vundo"><button class="vb" data-a="tok" aria-label="' + T('सही है', 'Correct') + '" title="' + T('सही है', 'Correct') + '"><svg><use href="#i-ok"/></svg></button></span>';
     const undo = !last || !S.timing.on || !SRC.au ? '' : by ? okB : mine ? '<span class="vundo"><button class="vb" data-a="tundo" aria-label="' + T('पहले जैसा', 'Undo') + '" title="' + T('पहले जैसा', 'Undo') + '"><svg><use href="#i-undo"/></svg></button></span>' : toCheck(i) && SRC.au.at[id] ? okB : '';
     // ⚑ (bottom left) for the reader who turned on "Review timing" (☰ › More settings › Audio timing), outside timing
@@ -587,7 +588,8 @@ function verseHTML(i){
     // (the light may already have moved on), and always once marked "Review audio timing" (filled blue; ▶ then needs no dot)
     const flagOn = ADMIN() && S.timing.flagsOn && !S.timing.on, flag = last && flagOn && hasAu(i) ? '<span class="vflag"><button class="vb' + (SRC.au && flagsNow()[id] ? ' on' : '') + '" data-a="tflag" aria-label="' + T('ऑडियोका समय जाँचें', 'Review audio timing') + '"><svg><use href="#i-flag"/></svg></button></span>' : '';
     const tail = last ? '<span class="vend"><button class="vb" data-a="menu" aria-label="more"><svg><use href="#i-more"/></svg></button></span>' + undo + flag : '';
-    return '<p' + (vv.v.length === 1 ? ' class="one"' : '') + '>' + top + w + tail + '</p>'; });
+    const lt = LT[y] || ['', ''];
+    return '<p' + (vv.v.length === 1 ? ' class="one"' : '') + '>' + top + lt[0] + w + lt[1] + tail + '</p>'; });
   let h = '<div class="verse' + (toCheck(i) ? ' tocheck' : '') + '" id="v' + i + '" data-i="' + i + '">';
   const trl = l => '<div>' + l.split(/(?<=,)\s+/).map(x => '<span class="half">' + esc(x).replace(/\s*॥\s*([^॥]*?)\s*॥((?:[^॥\s]+॥)*)/g, ' <span class="dd">॥$1॥$2</span>') + '</span>').join(' ') + '</div>';
   const num = x => esc(x).replace(/\s*(॥[^॥]*॥)\s*$/, '<span style="white-space:nowrap"> $1</span>');
@@ -977,7 +979,11 @@ function readerTap(ev){
       if (!fromOf(id) && !ownAt(id) && x && setTime(i, 1, x[1]) === false) return;
       unfrom(id); flagDone(id); save(); rerenderItem(i); syncCheck(); toast(T('जाँच लिया — अब यह आपका है', 'Checked — it is now yours'));
     }
-    else if (act === 'tundo'){ clearStart(i); toast(T('पहले जैसा', 'Restored')); }
+    else if (act === 'tundo'){ if (!undoLine(i)) clearStart(i); toast(T('पहले जैसा', 'Restored')); }
+    else if (act === 'lstart' || act === 'lend'){
+      if (!PL.on || !ytOK){ toast(T('पहले ऑडियो चलाएँ — फिर जो पंक्ति सुन रहे हैं उसीका बटन दबाएँ', 'Start the audio first, then tap the buttons of the line you are hearing')); return; }
+      markLine(i, +a.dataset.k, act === 'lend');
+    }
     else if (act === 'tnone'){ setTime(i, 2, null); rerenderItem(i); }
     else if (act === 'bm'){ const me = ME(), k = KEY(IT[i].id); const had = !!me.bm[k]; if (had) delete me.bm[k]; else { me.bm[k] = Date.now(); if (TOUR) TOUR.bmAdded = true; } save(); rerenderItem(i); toast(!had ? T('बुकमार्क जोड़ा', 'Bookmarked') : T('बुकमार्क हटाया', 'Bookmark removed')); }
     else if (act === 'enote') noteSheet(i, +a.dataset.k);
@@ -1084,6 +1090,70 @@ function myStarts(){ return (SRC.au && S.timing.fix[tkey()]) || {}; }
 function ownAt(id){ const A = SRC.au; return myStarts()[id] || (A && A.ownSet && A.ownSet.has(id) ? A.at0[id] : undefined); }
 function fromOf(id){ return SRC.au ? (S.timing.from[tkey()] || {})[id] : undefined; }
 function unfrom(id){ const f = S.timing.from[tkey()]; if (f){ delete f[id]; if (!Object.keys(f).length) delete S.timing.from[tkey()]; } }
+/* line starts and ends by ear (the owner: inside a long verse the page turned to a line before or after it was sung, and
+   nothing could correct it). Only in a verse of more than 5 lines, in timing mode: ⏱ at a line's left, "this line starts
+   now"; ⏹ at its right, "it ends now" (music or a refrain follows), which also starts the next line when you have not set
+   its start, as a verse's Ends now does. No times are shown: a button you set is filled saffron, blue once sent. Each mark
+   is a singing of that line ([track, start, line, end]); a tap within 4 s of your mark of the same line is that singing
+   again (the new tap wins), a later one another singing (a rahao sung again). ↶ takes back the last line mark of the verse.
+   They go with Publish changes ("lines" in the Timing: issue; tools/audio/apply_owner_timing.py → owner_lines.json) and
+   win over MMS's (tools/audio/METHOD.md step 6). */
+const LINE_MIN = 6;   // more than 5 lines (the owner)
+function myLines(){ return (SRC.au && S.timing.lines[tkey()]) || {}; }
+// the owner's lines of a verse already in the library ("lines" entries marked 1)
+function pubLines(id){ const A = SRC.au; return ((A && A.lines && A.lines[id]) || []).filter(o => o[4] === 1).map(o => [o[0], o[1], o[2], o[3] == null ? null : o[3]]); }
+function ownLines(id){ const m = myLines()[id]; return m ? m : pubLines(id); }
+function lineUndoable(id){ return ((S.timing.lundo || {})[tkey()] || []).some(u => u[0] === id); }
+function linesOn(i){ return !!(S.timing.on && SRC.au && IT[i].v.length >= LINE_MIN && hasAu(i)); }
+function lineButtons(i){
+  if (!linesOn(i)) return [];
+  const id = IT[i].id, L = ownLines(id), sentL = (S.timing.lsent[tkey()] || {})[id], done = new Set(pubLines(id).map(o => JSON.stringify(o)).concat(sentL ? JSON.parse(sentL).map(o => JSON.stringify(o)) : []));
+  const st = (ms) => !ms.length ? '' : ms.every(o => done.has(JSON.stringify(o))) ? ' sent' : ' mine';
+  const ic = { s: '<svg viewBox="0 0 24 24"><circle class="f" cx="12" cy="13" r="7"/><path class="h" d="M12 9.5v3.5l2.2 1.4M10 3.5h4"/></svg>', e: '<svg viewBox="0 0 24 24"><rect class="f" x="6" y="6" width="12" height="12" rx="2"/></svg>' };
+  return IT[i].v.map((_, k) => {
+    const ms = L.filter(o => o[2] === k), es = ms.filter(o => o[3] != null), n = DEV(k + 1);
+    return ['<button class="vb lt' + st(ms) + '" data-a="lstart" data-k="' + k + '" aria-label="' + T('पंक्ति ' + n + ' अभी शुरू', 'Line ' + n + ' starts now') + '">' + ic.s + '</button>',
+      '<button class="vb lt' + st(es) + '" data-a="lend" data-k="' + k + '" aria-label="' + T('पंक्ति ' + n + ' अभी समाप्त', 'Line ' + n + ' ends now') + '">' + ic.e + '</button>'];
+  });
+}
+function markLine(i, k, isEnd){
+  const A = SRC.au, id = IT[i].id, t = PL.t, a = AUT[t] || [], m = a.findIndex(x => x[0] === i);
+  if (m < 0){ toast(T('यह पद दूसरी रिकॉर्डिंगमें है — उसी रिकॉर्डिंगको चलाकर लगाएँ', 'This verse is in another recording — play that recording to mark it')); return; }
+  const sec = Math.round(nowAt() * 10) / 10, vs = a[m][1], ve = endOf(i) ?? (m + 1 < a.length ? a[m + 1][1] : null);
+  if (sec < vs - 0.05){ toast(T('यह पदकी शुरुआतसे पहले है — पहले पदकी शुरुआत ठीक करें', 'That is before the verse starts — move the verse’s start first')); return; }
+  if (ve != null && sec > ve + 0.05){ toast(T('यह पदके बाद है — पहले पदका अंत या अगले पदकी शुरुआत ठीक करें', 'That is after the verse — move its end or the next verse’s start first')); return; }
+  const prev = ownLines(id).map(o => o.slice()), L = prev.map(o => o.slice());
+  const kirtan = ((A.lines && A.lines[id]) || []).some(o => o[4] !== 1);   // timed line by line by MMS: lines are sung again and again
+  if (!isEnd){
+    for (let j = L.length - 1; j >= 0; j--) if (L[j][0] === t && L[j][2] === k && Math.abs(L[j][1] - sec) < 4) L.splice(j, 1);   // the same singing again: the new tap wins
+    // a recording not timed line by line sings each line once, in order: what you hear now wins over a line of yours out of order with it
+    if (!kirtan) for (let j = L.length - 1; j >= 0; j--) if (L[j][0] === t && ((L[j][2] > k && L[j][1] <= sec) || (L[j][2] < k && L[j][1] >= sec))) L.splice(j, 1);
+    L.push([t, sec, k, null]);
+  } else {
+    let o = L.filter(x => x[0] === t && x[2] === k && x[1] < sec).sort((x, y) => y[1] - x[1])[0];
+    if (!o){ const sl = lineStarts(i, t), s0 = sl ? sl[k] : (k === 0 ? vs : null);   // its start as the page has it becomes yours
+      if (s0 == null || s0 >= sec){ toast(T('पहले ⏱ से इस पंक्तिकी शुरुआत लगाएँ', 'Mark this line’s start first (⏱)')); return; }
+      o = [t, Math.round(s0 * 10) / 10, k, null]; L.push(o); }
+    o[3] = sec;
+    if (k + 1 < IT[i].v.length && !L.some(x => x[0] === t && x[2] === k + 1 && x[1] >= o[1])) L.push([t, sec, k + 1, null]);   // ⏹ also starts the next line
+  }
+  L.sort((x, y) => x[0] - y[0] || x[1] - y[1]);
+  const LS = S.timing.lines[tkey()] = S.timing.lines[tkey()] || {}; LS[id] = L;
+  const U = S.timing.lundo[tkey()] = S.timing.lundo[tkey()] || []; U.push([id, prev]); if (U.length > 200) U.shift();
+  save(); buildAudio(); rerenderItem(i);
+  toast(T('पंक्ति ', 'Line ') + DEV(k + 1) + (isEnd ? T(' अभी समाप्त', ' ends now') : T(' अभी शुरू', ' starts now')));
+}
+// ↶ on a long verse: its last line mark is taken back (then, with none left, its start as before)
+function undoLine(i){
+  const id = IT[i].id, U = (S.timing.lundo || {})[tkey()] || []; let j = U.length - 1; while (j >= 0 && U[j][0] !== id) j--;
+  if (j < 0) return false;
+  const prev = U.splice(j, 1)[0][1], LS = S.timing.lines[tkey()] = S.timing.lines[tkey()] || {};
+  if (JSON.stringify(prev) === JSON.stringify(pubLines(id))) delete LS[id]; else LS[id] = prev;
+  if (!Object.keys(LS).length) delete S.timing.lines[tkey()]; if (!U.length) delete S.timing.lundo[tkey()];
+  save(); buildAudio(); rerenderItem(i); return true;
+}
+// the verses whose lines you changed and have not sent: {id: [[track, start, line, end], …]}
+function pendingLines(){ if (!SRC.au) return {}; const out = {}, sent = S.timing.lsent[tkey()] || {}, L = myLines(); for (const id in L){ if (ID[id] == null) continue; const cur = JSON.stringify(L[id]); if (cur !== (sent[id] != null ? sent[id] : JSON.stringify(pubLines(id)))) out[id] = L[id]; } return out; }
 function buildAudio(){
   AUT = []; syncFlags(); const A = SRC.au; if (!A) return;
   if (!A.at0){   // the published times; A.at = those plus the starts set by ear on this phone, after the order rule below
@@ -1143,10 +1213,16 @@ function buildAudio(){
   });
   // a verse timed line by line ("lines") that is sung on further tracks too (a chhant's stanzas, one video each): each such
   // track lights it from its first singing there, so the recording is played as the verse's
-  A.lineSet = {}; A.fwd = {};
-  if (A.lines) for (const id in A.lines){ const i = ID[id]; if (i == null) continue; A.lineSet[id] = true;
+  // A.lm: the published lines with the lines set on this phone in place of the owner's published ones for that verse, and
+  // MMS's singings of a line he set on that track left out (as make_timings.py does with owner_lines.json)
+  A.lineSet = {}; A.fwd = {}; A.lm = Object.assign({}, A.lines || {});
+  const ML = myLines();
+  for (const id in ML){ const mine = ML[id], keys = new Set(mine.map(o => o[0] + ':' + o[2]));
+    const all = ((A.lines || {})[id] || []).filter(o => o[4] !== 1 && !keys.has(o[0] + ':' + o[2])).concat(mine.map(o => [o[0], o[1], o[2], o[3], 1])).sort((x, y) => x[0] - y[0] || x[1] - y[1]);
+    if (all.length) A.lm[id] = all; else delete A.lm[id]; }
+  for (const id in A.lm){ const i = ID[id]; if (i == null) continue; A.lineSet[id] = true;
     const seen = new Set(AUT.map((a, t) => a.some(x => x[0] === i) ? t : -1));
-    A.lines[id].forEach(o => { if (!seen.has(o[0]) && AUT[o[0]]){ seen.add(o[0]); AUT[o[0]].push([i, o[1], null]); AUT[o[0]].sort((x, y) => x[1] - y[1]); } }); }
+    A.lm[id].forEach(o => { if (!seen.has(o[0]) && AUT[o[0]]){ seen.add(o[0]); AUT[o[0]].push([i, o[1], null]); AUT[o[0]].sort((x, y) => x[1] - y[1]); } }); }
 }
 // Where a recording begins for this work: at 0, so the opening music is heard, when the first verse follows a short
 // opening; at the first verse when the work is a part of a longer video (the Hanumān āratī at the end of a Sundarakāṇḍa video)
@@ -1442,16 +1518,29 @@ function followLines(i, time, sung){   // sung: the line being sung, known from 
 function lineStarts(i, t){
   const A = SRC.au, key = IT[i].id + ':' + t; A.fwd = A.fwd || {};
   if (A.fwd[key]) return A.fwd[key];
-  const L = (A.lines[IT[i].id] || []).filter(o => o[0] === t), n = IT[i].v.length, len = k => Math.max(4, IT[i].v[k].length), st = new Array(n).fill(null);
+  const L = (A.lm[IT[i].id] || []).filter(o => o[0] === t), n = IT[i].v.length, len = k => Math.max(4, IT[i].v[k].length), st = new Array(n).fill(null);
+  // the owner's lines set by ear (marked 1) win: a line he set takes his singing; another line takes MMS's, but never one
+  // after a later line he set (a late singing MMS took for it would drag the lines after it)
+  const own = L.filter(o => o[4] === 1), mms = L.some(o => o[4] !== 1), v = A.at[IT[i].id];
   let last = -Infinity;
-  for (let k = 0; k < n; k++){ const o = L.find(o => o[2] === k && o[1] > last); if (o){ st[k] = o[1]; last = o[1]; } }
+  for (let k = 0; k < n; k++){
+    let o = own.find(o => o[2] === k && o[1] > last);
+    if (!o){ let cap = Infinity; for (const x of own) if (x[2] > k && x[1] > last && x[1] < cap) cap = x[1]; o = L.find(x => x[4] !== 1 && x[2] === k && x[1] > last && x[1] < cap); }
+    if (!o && k === 0 && !mms && v && v[0] === t && (!own.length || own.every(x => x[1] > v[1]))) o = [t, v[1]];   // a recording not timed line by line: the verse's start is its first line's
+    if (o){ st[k] = o[1]; last = o[1]; }
+  }
   const known = st.map((x, k) => x == null ? -1 : k).filter(k => k >= 0);
   if (!known.length) return A.fwd[key] = null;
   const pace = [];   // seconds per letter between neighbouring timed lines
   for (let j = 0; j + 1 < known.length; j++){ const a = known[j], b = known[j + 1]; let c = 0; for (let k = a; k < b; k++) c += len(k); pace.push((st[b] - st[a]) / c); }
   pace.sort((x, y) => x - y); const sp = pace.length ? pace[pace.length >> 1] : 0.3;
   for (let j = 0; j + 1 < known.length; j++){ const a = known[j], b = known[j + 1]; let c = 0, tot = 0; for (let k = a; k < b; k++) tot += len(k); for (let k = a + 1; k < b; k++){ c += len(k - 1); st[k] = st[a] + (st[b] - st[a]) * c / tot; } }
-  for (let k = known[known.length - 1] + 1; k < n; k++) st[k] = st[k - 1] + sp * len(k - 1);
+  // after the last timed line: in a recording not timed line by line, spread by length up to the verse's end (or the next
+  // verse's start); otherwise at the singer's pace
+  const lk = known[known.length - 1], a = AUT[t] || [], m = a.findIndex(x => x[0] === i);
+  const ve = !mms && m >= 0 ? (endOf(i) ?? (m + 1 < a.length ? a[m + 1][1] : null)) : null;
+  if (ve != null && ve > st[lk] && lk < n - 1){ let tot = 0, c = 0; for (let k = lk; k < n; k++) tot += len(k); for (let k = lk + 1; k < n; k++){ c += len(k - 1); st[k] = st[lk] + (ve - st[lk]) * c / tot; } }
+  else for (let k = lk + 1; k < n; k++) st[k] = st[k - 1] + sp * len(k - 1);
   for (let k = known[0] - 1; k >= 0; k--) st[k] = st[k + 1] - sp * len(k);
   return A.fwd[key] = st;
 }
@@ -2251,11 +2340,11 @@ function timingHTML(){
     sw('stf', T('समय जाँचें', 'Review timing'), T('झंडा दबानेसे पद जाँच-सूचीमें जुड़ता है', 'Tapping the flag adds a verse to the checklist'), !!S.timing.flagsOn) +
     '<div class="acts"><button class="btn ghost" id="sAdminOff">' + T('इस डिवाइसपर ये औज़ार बंद करें', 'Turn these tools off on this device') + '</button></div>';
   if (S.timing.on && SRC.au){
-    const n = Object.keys(myStarts()).filter(id => ID[id] != null).length, p = Object.keys(pendingStarts()).length;
+    const n = Object.keys(myStarts()).filter(id => ID[id] != null).length, p = Object.keys(pendingStarts()).length, pl = Object.keys(pendingLines()).length;
     h += (SRC.au.meta.draft ? sw('stp', T('यह रिकॉर्डिंग जाँच ली — सबके लिये चालू करें', 'This recording is checked: publish it for everyone'), (Object.keys(pendingStarts()).length > SEND_MAX ? T('भेजनेके अन्तिम भागके साथ जाएगा', 'Goes with the last part of the send') : T('भेजनेके साथ जाएगा', 'Goes with the next send')), !!(S.timing.publish || {})[tkey()]) : '') +
       checkList() + helperList() +
-      '<p class="small" style="margin:14px 0 8px">' + esc(TT(SRC.au.meta.title)) + ': ' + (n ? DEV(n) + T(' पदोंका समय आपने रखा', ' verses timed by you') : T('अभी आपने कोई समय नहीं रखा', 'none timed by you yet')) + (p ? ' · ' + DEV(p) + T(' प्रकाशित करने बाकी', ' to publish') : '') + '</p>' +
-      '<div class="acts"><button class="btn" id="tSend"' + (p || (S.timing.publish || {})[tkey()] ? '' : ' disabled') + '>' + T('बदलाव प्रकाशित करें', 'Publish changes') + (p > SEND_MAX ? '<br><small>' + T('भाग १, कुल ', 'part 1 of ') + DEV(Math.ceil(p / SEND_MAX)) + T(' — फिर दोबारा दबाएँ', ' — then tap again') + '</small>' : '') + '</button><button class="btn ghost" id="tSave"' + (n ? '' : ' disabled') + '>' + T('सेव करें', 'Save') + '</button><button class="btn ghost" id="tOpen">' + T('खोलें', 'Open') + '</button>' + (n ? '<button class="btn ghost" id="tClear">' + T('रीसेट', 'Reset') + '</button>' : '') + '</div>' +
+      '<p class="small" style="margin:14px 0 8px">' + esc(TT(SRC.au.meta.title)) + ': ' + (n ? DEV(n) + T(' पदोंका समय आपने रखा', ' verses timed by you') : T('अभी आपने कोई समय नहीं रखा', 'none timed by you yet')) + (p ? ' · ' + DEV(p) + T(' प्रकाशित करने बाकी', ' to publish') : '') + (pl ? ' · ' + T('', 'lines of ') + DEV(pl) + T(' पदोंकी पंक्तियाँ प्रकाशित करनी बाकी', ' verses to publish') : '') + '</p>' +
+      '<div class="acts"><button class="btn" id="tSend"' + (p || pl || (S.timing.publish || {})[tkey()] ? '' : ' disabled') + '>' + T('बदलाव प्रकाशित करें', 'Publish changes') + (p > SEND_MAX ? '<br><small>' + T('भाग १, कुल ', 'part 1 of ') + DEV(Math.ceil(p / SEND_MAX)) + T(' — फिर दोबारा दबाएँ', ' — then tap again') + '</small>' : '') + '</button><button class="btn ghost" id="tSave"' + (n ? '' : ' disabled') + '>' + T('सेव करें', 'Save') + '</button><button class="btn ghost" id="tOpen">' + T('खोलें', 'Open') + '</button>' + (n || Object.keys(myLines()).length ? '<button class="btn ghost" id="tClear">' + T('रीसेट', 'Reset') + '</button>' : '') + '</div>' +
       '<p class="small muted">' + T('सहायता कर रहे हैं? “सेव करें” दबाकर फ़ाइल साइटके मालिकको भेजें; वे जाँचकर लाइब्रेरीमें जोड़ेंगे। सीधे प्रकाशित केवल मालिक कर सकते हैं।', 'Helping? Tap “Save” and send the file to the site’s owner, who checks it and adds it to the library. Only the owner can publish directly.') + '</p>';
   }
   return h;
@@ -2270,7 +2359,7 @@ function helperList(){
   const names = [...new Set(ids.map(id => f[id]))].map(esc).join(', ');
   return '<details class="tcheck" open><summary>' + names + T(' के ', ': ') + DEV(ids.length) + T(' पद जाँचने बाकी — हर पदके नीचे ▶ से सुनकर “✓ सही है” दबाएँ; जाँचे हुए ही लाइब्रेरीमें जाएँगे', ' verses still to check — play each with ▶ under it and tap “✓ Correct”; only checked ones go to the library') + '</summary><div class="tlist">' + ids.slice(0, 400).map(id => '<button data-go-i="' + ID[id] + '">' + esc(itemLabel(ID[id])) + ' <span class="muted">' + fmtT(SRC.au.at[id][1]) + '</span></button>').join('') + '</div><div class="acts"><button class="btn ghost small" id="tOkAll">' + T('सब सही हैं', 'All are correct') + '</button><button class="btn ghost small" id="tDropAll">' + T('ये सब हटाएँ', 'Remove these') + '</button></div></details>';
 }
-function clearTimingAsk(){ askYes(T('“' + esc(TT(W.title)) + '” की “' + esc(TT(SRC.au.meta.title)) + '” रिकॉर्डिंगमें इस डिवाइसपर आपके सेट किये सारे समय हट जाएँगे। जो लाइब्रेरीमें भेज चुके हैं, वे वहाँ रहेंगे। दूसरे पाठ, दूसरी रिकॉर्डिंग और आपकी पढ़ाईकी प्रगति वैसी ही रहेगी।', 'All the timings you set on this device for the recording “' + esc(TT(SRC.au.meta.title)) + '” of “' + esc(TT(W.title)) + '” will be removed. Those already sent to the library stay there. Other works, other recordings and your reading progress are not touched.'), T('हाँ, हटाएँ', 'Yes, remove'), () => { delete S.timing.fix[tkey()]; delete S.timing.sent[tkey()]; delete S.timing.from[tkey()]; save(); buildAudio(); renderSettings(); }); }
+function clearTimingAsk(){ askYes(T('“' + esc(TT(W.title)) + '” की “' + esc(TT(SRC.au.meta.title)) + '” रिकॉर्डिंगमें इस डिवाइसपर आपके सेट किये सारे समय हट जाएँगे। जो लाइब्रेरीमें भेज चुके हैं, वे वहाँ रहेंगे। दूसरे पाठ, दूसरी रिकॉर्डिंग और आपकी पढ़ाईकी प्रगति वैसी ही रहेगी।', 'All the timings you set on this device for the recording “' + esc(TT(SRC.au.meta.title)) + '” of “' + esc(TT(W.title)) + '” will be removed. Those already sent to the library stay there. Other works, other recordings and your reading progress are not touched.'), T('हाँ, हटाएँ', 'Yes, remove'), () => { delete S.timing.fix[tkey()]; delete S.timing.sent[tkey()]; delete S.timing.from[tkey()]; delete S.timing.lines[tkey()]; delete S.timing.lsent[tkey()]; delete S.timing.lundo[tkey()]; save(); buildAudio(); renderSettings(); }); }
 function bindTiming(){
   $$('[data-go-i]').forEach(b => b.onclick = () => openReader('k', +b.dataset.goI, true));
   if (!$('#stm')) return;
@@ -2328,17 +2417,25 @@ async function importTiming(X){
   if ($('#tiNew')) $('#tiNew').onclick = () => load(nw);
   $('#tiNo').onclick = () => closeSheet();
 }
-const SEND_MAX = 150;   // verses in one GitHub issue (a longer link is refused); more go in further sends
+const SEND_MAX = 150, LSEND_MAX = 30;   // verses in one GitHub issue (a longer link is refused); more go in further sends
 function sendStarts(){
   const pend = pendingStarts(), ids = Object.keys(pend).sort((a, b) => ID[a] - ID[b]), part = ids.slice(0, SEND_MAX), starts = {};
   part.forEach(id => { const [t, sec, end] = pend[id], yt = SRC.au.tracks[t].yt; (starts[yt] = starts[yt] || {})[id] = end != null ? [sec, end] : sec; });
   const last = ids.length <= SEND_MAX, pub = last && !!(S.timing.publish || {})[tkey()], doc = {path: W.path, source: SRC.au.meta.id, starts}; if (pub) doc.publish = true;   // "publish" goes with the last part only
+  // the lines of long verses go with the last part, at most LSEND_MAX verses a send (a longer link is refused): each verse's
+  // every line mark on each of its tracks, which replaces what the library had for it there ([] where none is left)
+  const pl = pendingLines(), lids = last ? Object.keys(pl).sort((a, b) => ID[a] - ID[b]).slice(0, LSEND_MAX) : [], lines = {}, lsent = S.timing.lsent[tkey()] || {};
+  lids.forEach(id => { const tr = new Set(pl[id].map(o => o[0]).concat(pubLines(id).map(o => o[0]), lsent[id] ? JSON.parse(lsent[id]).map(o => o[0]) : []));
+    tr.forEach(t => { const yt = SRC.au.tracks[t].yt; (lines[yt] = lines[yt] || {})[id] = pl[id].filter(o => o[0] === t).map(o => [o[2], o[1], o[3]]); }); });
+  if (lids.length) doc.lines = lines;
   const title = 'Timing: ' + W.path + ' / ' + SRC.au.meta.id;
   const body = T('ऐपसे भेजे गये ऑडियो-समय (कानसे जाँचे हुए)। इसे वैसे ही सबमिट करें; वर्कफ़्लो इन्हें लाइब्रेरीमें जोड़ देगा।', 'Audio starts set by ear in the app. Submit as it is; a workflow adds them to the library.') + '\n\n```json\n' + JSON.stringify(doc) + '\n```\n';
   const url = 'https://github.com/goyaldarwin/scriptures/issues/new?title=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(body);
   window.open(url, '_blank', 'noopener');
-  const sent = S.timing.sent[tkey()] = S.timing.sent[tkey()] || {}; part.forEach(id => sent[id] = pend[id]); if (pub) delete S.timing.publish[tkey()]; save();
-  toast(last ? T('GitHub पर “Submit” दबाएँ', 'Tap “Submit” on GitHub') : T('GitHub पर “Submit” दबाएँ, फिर बाकी ', 'Tap “Submit” on GitHub, then send again: ') + DEV(ids.length - part.length) + T(' पदोंके लिये दोबारा भेजें', ' verses left'));
+  const sent = S.timing.sent[tkey()] = S.timing.sent[tkey()] || {}; part.forEach(id => sent[id] = pend[id]); if (pub) delete S.timing.publish[tkey()];
+  if (lids.length){ const ls = S.timing.lsent[tkey()] = S.timing.lsent[tkey()] || {}; lids.forEach(id => { ls[id] = JSON.stringify(pl[id]); }); } save();
+  const lleft = Object.keys(pl).length - lids.length;
+  toast(last && !lleft ? T('GitHub पर “Submit” दबाएँ', 'Tap “Submit” on GitHub') : T('GitHub पर “Submit” दबाएँ, फिर बाकी ', 'Tap “Submit” on GitHub, then send again: ') + DEV(ids.length - part.length + lleft) + T(' पदोंके लिये दोबारा भेजें', ' verses left'));
   setTimeout(renderSettings, 400);
 }
 function todayStr(){ const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }

@@ -2,8 +2,10 @@
 
 Usage:  python3 tools/audio/apply_owner_timing.py <file with the GitHub issue body>
 The body carries one JSON block: {"path": "<library path of the work>", "source": "<audio source id>",
-"starts": {"<video id>": {"<item id>": seconds or [start, end]}}, "publish"?: true}.
-It merges the starts into tools/works/<work>/audio/<source>/owner.json (later sends win), removes "draft" from that
+"starts": {"<video id>": {"<item id>": seconds or [start, end]}}, "lines"?: {"<video id>": {"<item id>": [[line, start, end or null], …]}},
+"publish"?: true}.
+It merges the starts into tools/works/<work>/audio/<source>/owner.json (later sends win), the lines into owner_lines.json
+(a verse's list replaces the one before), removes "draft" from that
 source's source.json and marks it "checked" when "publish" is true, and re-makes the source's timings with make_timings.py (first, for a recording timed by MMS, its check.json and the count in its aligned.md)
 (and those of works that take this recording: source.json "take"). It prints one
 line per change and exits non-zero with a reason when the body is not valid, so the workflow can say so on the issue.
@@ -35,13 +37,38 @@ for vid, items in starts.items():
         ok = (isinstance(sec, (int, float)) and sec >= 0) or (isinstance(sec, list) and len(sec) == 2 and all(isinstance(x, (int, float)) for x in sec) and 0 <= sec[0] < sec[1])
         if not ok: fail('bad time for %s: %r (seconds, or [start, end])' % (iid, sec))
         own.setdefault(vid, {})[iid] = [round(float(x), 2) for x in sec] if isinstance(sec, list) else round(float(sec), 2); n += 1; print('time', vid, iid, sec)
-json.dump(own, open(OP, 'w'), ensure_ascii=False, indent=1, sort_keys=True); open(OP, 'a').write('\n')
+if own or os.path.exists(OP): json.dump(own, open(OP, 'w'), ensure_ascii=False, indent=1, sort_keys=True); open(OP, 'a').write('\n')   # a send of lines alone makes no owner.json
+# "lines": {video: {verse: [[line, start, end or null], …]}}: every line the owner set by ear in that verse on that video
+# (a verse of more than 5 lines); a verse's list replaces what owner_lines.json had for it there, [] removes it
+lines = doc.get('lines') or {}
+nv = {x['id']: len(x['v']) for x in work['items']}
+OLP = os.path.join(src, 'owner_lines.json'); ownl = json.load(open(OLP)) if os.path.exists(OLP) else {}
+nl = 0
+for vid, items in lines.items():
+    if vid not in vids: fail('video %r is not a recording of %s' % (vid, sid))
+    for iid, occ in items.items():
+        if iid not in ids: fail('unknown verse id %r' % iid)
+        if not isinstance(occ, list): fail('bad lines for %s: %r' % (iid, occ))
+        out_l = []
+        for o in occ:
+            ok = isinstance(o, list) and len(o) == 3 and isinstance(o[0], int) and 0 <= o[0] < nv[iid] and isinstance(o[1], (int, float)) and o[1] >= 0 and (o[2] is None or (isinstance(o[2], (int, float)) and o[2] > o[1]))
+            if not ok: fail('bad line time for %s: %r ([line, start, end or null])' % (iid, o))
+            out_l.append([o[0], round(float(o[1]), 2), None if o[2] is None else round(float(o[2]), 2)])
+        out_l.sort(key=lambda o: o[1])
+        if out_l: ownl.setdefault(vid, {})[iid] = out_l
+        else: ownl.get(vid, {}).pop(iid, None)
+        if vid in ownl and not ownl[vid]: del ownl[vid]
+        nl += 1; print('lines', vid, iid, len(out_l))
+if lines:
+    if ownl: json.dump(ownl, open(OLP, 'w'), ensure_ascii=False, indent=1, sort_keys=True); open(OLP, 'a').write('\n')
+    elif os.path.exists(OLP): os.remove(OLP)
+if not n and not nl and not doc.get('publish'): fail('nothing to apply: no starts and no lines')
 if doc.get('publish'):
     sp = os.path.join(src, 'source.json'); meta = json.load(open(sp))
     meta['checked'] = True   # the owner has heard it through: what is left unmarked is right as it is (no "check" list)
     meta.pop('draft', None); meta.pop('review', None)
     open(sp, 'w').write(json.dumps(meta, ensure_ascii=False) + '\n'); print('published', sid)
-print('%d starts applied' % n)
+print('%d starts applied' % n + (', lines of %d verses' % nl if nl else ''))
 # re-make the timings, and make sure nothing changed except the verses in this issue: the rest of the published work is
 # never touched by a manual correction
 meta = json.load(open(os.path.join(src, 'source.json'))); out = os.path.join(REPO, 'library', path, 'audio', meta['id'] + '.json')
