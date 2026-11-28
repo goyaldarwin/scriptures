@@ -89,7 +89,14 @@ length, forward only (`docs/PLAYBOOK.md` §7).
    (each line once, in order, a filler between: step 2 above).
 3. **Merge and checks** (`mms_merge.py`): kept are the search's singings it scores 0.35 or more, and the in-order
    alignment's first singing of a line the search left out where the lines around it place it (`line_align.merge`); a
-   singing's end is cut to the next singing's start. Starts move by the lean (0.6 s until the owner has set some by ear).
+   singing's end is cut to the next singing's start. **A singing that swallowed the lines before it is shared out**
+   (`line_align.split_swallowed`; the owner: the page jumped over a line, and every recording timed line by line is fixed
+   so, always): where lines have no singing yet, the next line's singing follows the line before them within 1.5 s and
+   lasts more than 1.6 times its own length at the song's pace, it is shared by length among those lines and its own (in
+   Japji 27 of Sehaj Path Kirtan, ਗਾਵਹਿ ਇੰਦ held 16 s, its singing and ਗਾਵਹਿ ਈਸਰੁ ਬਰਮਾ's). A heading is never given a share.
+   **A heading is a whole word** (`line_align.is_head`: ਮਹਲਾ, ਮਃ and ਘਰੁ only before their number), never part of one: the
+   search passes a heading over at no cost, so a sung line taken for one (ਸਵਾਰੇ read as ਵਾਰ, ਸੋ ਘਰੁ ਕੇਹਾ as ਘਰੁ) was
+   dropped freely. Starts move by the lean (0.6 s until the owner has set some by ear).
    `check.json` lists a verse when fewer than half its lines are found and the letters MMS hears are more like another
    verse of the work (`title`: the recording may not sing the verse its title names, or only part of it), when more than
    a quarter of its lines are not found (`unsung`), or when MMS hears letters well after the track's last singing

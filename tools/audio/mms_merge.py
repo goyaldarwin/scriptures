@@ -29,6 +29,8 @@ lean, in time order; a verse's start in aligned.json is its first singing's. che
                 recordings.json, with the evidence in fixes.md).
 The singings kept are line_align.merge's: the search for every singing (score 0.35 or more), and the in-order alignment's
 first singing of a line the search left out, where the lines around it place it.
+Then line_align.split_swallowed: a singing that swallowed the lines before it (they have none, it follows the line before
+them without a gap and is far too long for its own line at the song's pace) is shared by length among them and its line.
 """
 import collections, json, os, statistics, sys
 
@@ -63,6 +65,8 @@ def by_line(src, lean, W, dry=False):
             want = [u['k'] for u in U if u['rom'] and not u['head']]
             occ, ino = M['lines'].get(i, []), M.get('inorder', {}).get(i, [])
             good, fill = LA.merge(occ, ino, {u['k']: len(u['rom']) for u in U})
+            good, split = LA.split_swallowed(good, {u['k']: len(u['rom']) for u in U}, {u['k'] for u in U if u['head']})
+            n['split'] += len(split)
             n['lines'] += len(want); n['singings'] += len(good); n['dropped'] += len(occ) - len([o for o in good if o[4] == 'every'])
             n['from in-order'] += len(fill)
             got = {o[0] for o in good}
@@ -85,7 +89,7 @@ def by_line(src, lean, W, dry=False):
         json.dump({'why': f"Verses the line-by-line checks flag, for the owner's ear: the recording may not sing the verse its title names (or only part of it), more than a quarter of its lines have no singing, or the recording sings on after the verse (tools/audio/mms_merge.py, lean {lean} s).",
                    'ids': list(dict.fromkeys(i for i in order if i in allf)),
                    'flags': {k: list(dict.fromkeys(i for i in order if i in v - own)) for k, v in sorted(flags.items())}}, f, ensure_ascii=False, indent=1); f.write('\n')
-    print(f"{n['started']} of {n['lines']} lines have a start; {n['singings']} singings ({n['from in-order']} first singings from the in-order alignment; {n['dropped']} more MMS scored below 0.35, dropped); verses flagged: " + ', '.join(f'{k} {len(v - own)}' for k, v in sorted(flags.items())) + f'; to check {len(allf)}')
+    print(f"{n['started']} of {n['lines']} lines have a start; {n['singings']} singings ({n['from in-order']} first singings from the in-order alignment; {n['split']} lines shared out of a singing that swallowed them; {n['dropped']} more MMS scored below 0.35, dropped); verses flagged: " + ', '.join(f'{k} {len(v - own)}' for k, v in sorted(flags.items())) + f'; to check {len(allf)}')
 
 def main(src, lean, dry=False):
     W = json.load(open(os.path.join(src, 'mms', 'windows.json'), encoding='utf-8'))
