@@ -867,9 +867,12 @@ function partRows(A, B, name, g){
 // Chaupade, Ashtapadis, Chhants, a Var, Anand, Sidh Gosht, a Bhagat's bani …) begins a bani, named by our meaning of that
 // heading line where there is one (else the heading in Gurmukhi); a shabad headed only "ਰਾਮਕਲੀ ਮਹਲਾ ੧ ॥" goes on the one before
 const BANI = /ਘਰੁ|ਅਸਟਪਦੀ|ਛੰਤ|ਵਾਰ|ਅਨੰਦੁ|ਸਦੁ|ਓਅੰਕਾਰੁ|ਸਿਧ ਗੋਸਟਿ|ਬਾਣੀ|ਪੜਤਾਲ|ਦੁਪਦੇ|ਤਿਪਦੇ|ਚਉਪਦੇ|ਪੰਚਪਦੇ|ਛਿਪਦੇ|ਇਕਤੁਕ|ਦੁਤੁਕ|ਤਿਤੁਕ|ਚਉਤੁਕ|ਪਟੀ|ਥਿਤੀ|ਬਾਰਹ ਮਾਹਾ|ਰੁਤੀ|ਸੋਲਹੇ|ਕਰਹਲੇ|ਬਾਵਨ ਅਖਰੀ|ਸੁਖਮਨੀ|ਗੁਣਵੰਤੀ|ਅਲਾਹਣੀਆ|ਕੁਚਜੀ|ਸੁਚਜੀ|ਵਣਜਾਰਾ|ਘੋੜੀਆ|ਪਹਰੇ|ਦਖਣੀ|ਬਿਰਹੜੇ|ਡਖਣੇ|ਸਵਈਏ|ਸਵਯੇ|ਗਾਥਾ|ਫੁਨਹੇ|ਚਉਬੋਲੇ|ਸਲੋਕ ਸਹਸਕ੍ਰਿਤੀ|ਸੋ ਦਰੁ|ਸੋ ਪੁਰਖੁ|ਸੋਹਿਲਾ/;
-const HEADW = /ਮਹਲਾ|ਮਃ|ਬਾਣੀ|ਭਗਤ|ਜੀਉ|ਜੀ ਕੀ|ਕੀ ਵਾਰ|ਰਾਗੁ/;
+// a heading names a Mahala, a raag or a Bhagat's bani; a line of the text that only holds the word (the Japji's ਕਰਮ ਖੰਡ ਕੀ
+// ਬਾਣੀ ਜੋਰੁ) is not one
+const HEADW = /ਮਹਲਾ|ਮਃ|ਭਗਤਾ|ਜੀਉ ਕੀ|ਜੀ ਕੀ|ਕੀ ਵਾਰ|ਰਾਗੁ/;
 function baniHead(i){ const v = IT[i].v; for (let n = 0; n < Math.min(2, v.length); n++){ const l = v[n]; if (l.startsWith('ੴ') && !BANI.test(l)) continue; if (BANI.test(l) && HEADW.test(l) && !/^ਸਲੋਕੁ? ਮ/.test(l)) return n; break; } return -1; }
-function baniName(i, n){ const k = LANG() === 'en' ? 'en' : 'pa', m = mean(k, i), x = m && Array.isArray(m.p) ? m.p[n] : null;
+function baniName(i, n){ const k = PAH() || LANG() !== 'en' ? 'pa' : 'en',   // as the part's and sections' names: Punjabi with ਪੰ chosen
+  m = mean(k, i), x = m && Array.isArray(m.p) ? m.p[n] : null;
   return x ? x.replace(/[.।]\s*$/, '') : IT[i].v[n].replace(/[॥\s੦-੯0-9]+$/, '').replace(/॥/g, ' ').trim(); }
 // rows grouped into banis (Gurbani only; elsewhere one group of all the rows)
 function baniGroups(rows, name){
@@ -906,7 +909,7 @@ function sectionSheet(n){
   if (groups.length === 1) h += '<div class="secs">' + groups[0].rows.map(row).join('') + '</div>';
   else { h += '<p class="small muted gohead">' + esc(T(W.lang === 'pa' ? 'इस भागकी बाणियाँ' : 'इस भागमें', W.lang === 'pa' ? 'Banis in this part' : 'In this part')) + '</p>';
     groups.forEach((G, k) => { const a = G.rows[0].i, b = G.rows[G.rows.length - 1].end, o = GO.open.has(k);
-      h += '<div class="gobani' + (o ? ' open' : '') + '"><button data-bani="' + k + '" aria-expanded="' + o + '"><span class="grow"><b>' + esc(G.name) + '</b><span class="ds">' + esc(spanLabel(a, b) + ' · ' + verseCount(a, b)) + '</span></span><span class="chg">' + (o ? '⌄' : '›') + '</span></button>' + (o ? '<div class="secs">' + G.rows.map(row).join('') + '</div>' : '') + '</div>'; }); }
+      h += '<div class="gobani' + (o ? ' open' : '') + '"><button data-bani="' + k + '" aria-expanded="' + o + '"><span class="grow"><b>' + esc(G.name) + '</b><span class="ds">' + esc(spanLabel(a, b)) + '</span></span><span class="chg">' + (o ? '⌄' : '›') + '</span></button>' + (o ? '<div class="secs">' + G.rows.map(row).join('') + '</div>' : '') + '</div>'; }); }
   h += '</div></div>';
   const keep = $('#goQ') && $('#goQ').value;
   if (!fresh){ $('#sheetBody').innerHTML = h; } else openSheet(h);
