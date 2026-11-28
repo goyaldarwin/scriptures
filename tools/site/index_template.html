@@ -134,6 +134,9 @@ body.timing .verse.tocheck{box-shadow:inset 3px 0 0 var(--saffron)}.tcheck{margi
 .vb{width:19px;height:30px;display:inline-grid;place-items:center;color:var(--muted);opacity:.75}
 .vb svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linejoin:round}
 .vb.bm-on{color:var(--saffron);opacity:1}
+/* timing mode, a verse of more than 5 lines: ⏱ before each line, ⏹ after it (app.js lineButtons); filled saffron once you set it, blue once sent */
+.vb.lt{width:30px;height:30px;vertical-align:middle;color:var(--muted);opacity:.9;margin:0 2px}.vb.lt svg{width:20px;height:20px;stroke-width:1.8;stroke-linecap:round}
+.vb.lt.mine{color:var(--saffron);opacity:1}.vb.lt.sent{color:var(--indigo);opacity:1}.vb.lt.mine .f,.vb.lt.sent .f{fill:currentColor}.vb.lt.mine .h,.vb.lt.sent .h{stroke:var(--bg)}
 .vbm{width:26px;color:var(--indigo);opacity:.85}.vbm svg{width:20px;height:20px;stroke-width:2.2}   /* the bookmark sign larger and darker, easy to see */
 .vend .vb{width:26px;color:var(--indigo);opacity:.85}.vend .vb svg{width:20px;height:20px}   /* ⋮ as large and as blue as the bookmark sign; ▶ keeps its saffron: the main action */
 .bmsec{margin-top:18px}.bmsec summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;padding:2px 0}.bmsec summary::-webkit-details-marker{display:none}.bmsec summary::before{content:'›';display:inline-block;color:var(--muted);font-size:22px;line-height:1;transform:rotate(90deg);transition:transform .15s}.bmsec:not([open]) summary::before{transform:none}.bmsec summary h2{font-size:19px;margin:0}

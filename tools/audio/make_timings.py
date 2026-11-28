@@ -20,6 +20,9 @@ The source folder holds:
                    (fixes.json and owner.json still win); an end is used only where the next verse starts more than 1.5 s
                    after it (a refrain, music, a pause), as end + 0.3 s. How they were made and how good they are: aligned.md
   owner.json       optional starts (and ends) the owner set by ear in the app, written by apply_owner_timing.py
+  owner_lines.json optional {video id: {item id: [[line, start, end or null], …]}}: the lines of a long verse the owner set
+                   by ear in the app (each a singing), written by apply_owner_timing.py; they replace MMS's singings of those
+                   lines on that video and are passed on in the audio file's "lines", marked as his
   check.json       optional {"why": "<how the list was found>", "ids": [item ids]}: verses whose start is in doubt, listed
                    for the owner to check by ear (☰ › More settings › Audio timing, Next ▸) until a start is set for them
   lines.json       optional {video id: {item id: [[line, start, end], …]}}: every singing of every line (a source timed
@@ -259,17 +262,27 @@ for k, v in at.items():
     tr = tracks[v[0]]; lo, hi = tr.get('start', 0), tr.get('end', tr['dur'])
     assert lo <= v[1] < hi and (len(v) < 3 or v[2] <= hi + 0.5), f"{k}: timed at {v[1:]}, outside its track's stretch {lo}–{hi} of {tr['yt']}"
 doc.update(tracks=tracks, at=at)
-# lines.json: every singing of every line, [track, start, line, end] in time order per verse (the app lights the line)
-LP = os.path.join(SRC, 'lines.json')
+# lines.json: every singing of every line, [track, start, line, end] in time order per verse (the page follows the lines)
+# owner_lines.json: the lines the owner set by ear in the app, [track, start, line, end, 1]; on a track where he set a line
+# of a verse, MMS's singings of that line there are not used (his win, tools/audio/METHOD.md step 6), and a source not timed
+# line by line gets "lines" for the verses he set
+LP, OLP = os.path.join(SRC, 'lines.json'), os.path.join(SRC, 'owner_lines.json')
+TI = {tr['yt']: k for k, tr in enumerate(tracks)}
+LN = {}
 if os.path.exists(LP):
-    TI = {tr['yt']: k for k, tr in enumerate(tracks)}
-    LN = {}
     for v, per in json.load(open(LP)).items():
         if v not in TI: continue
         for iid, occ in per.items():
             if iid in at: LN.setdefault(iid, []).extend([TI[v], o[1], o[0], o[2]] for o in occ)
-    for iid in LN: LN[iid].sort(key=lambda o: (o[0], o[1]))
-    if LN: doc['lines'] = {x['id']: LN[x['id']] for x in IT if x['id'] in LN}
+if os.path.exists(OLP):
+    for v, per in json.load(open(OLP)).items():
+        assert v in TI, f'owner_lines.json: video {v} is not a track of this source'
+        for iid, occ in per.items():
+            assert iid in ID, f'owner_lines.json: unknown verse id {iid}'
+            mine = {o[0] for o in occ}
+            LN[iid] = [o for o in LN.get(iid, []) if not (o[0] == TI[v] and o[2] in mine)] + [[TI[v], o[1], o[0], o[2], 1] for o in occ]
+for iid in LN: LN[iid].sort(key=lambda o: (o[0], o[1]))
+if LN: doc['lines'] = {x['id']: LN[x['id']] for x in IT if x['id'] in LN}
 if meta.get('check_only'): doc['checkOnly'] = True   # the to-check list is a fixed sample: the app does not add verses it moves
 if check: doc['check'] = check
 guess = [x['id'] for x in IT if x['id'] in at and x['id'] not in heard and x['id'] not in own_ids]

@@ -55,6 +55,12 @@ through the refrain because it has no end.
 6. **The owner's ear** (built: timing mode, the `timing` workflow, `owner.json`). His starts and ends always win. Each
    start he sets becomes an anchor: the stretch up to his next set start is aligned again (to build), so the verses
    around it improve without being touched, and his first starts on a recording measure its lean.
+   **His lines win too** (built: in a verse of more than 5 lines, ⏱ and ⏹ on each line in timing mode; the `timing`
+   workflow writes them to `owner_lines.json`, `make_timings.py` publishes them in the audio file's `lines`). Each mark is a
+   singing of that line, with its end where he set one. On that recording MMS's singings of a line he set are not used, an
+   MMS singing of another line is used only before the next line he set (a late one would drag the lines after it), and
+   the lines between his are spread by length; in a recording not timed line by line the verse's start and end close the
+   spread. His starts are used as given, with no lean.
 
 ## Line by line: kirtan (every singing of every line)
 
@@ -89,7 +95,7 @@ length, forward only (`docs/PLAYBOOK.md` §7).
    a quarter of its lines are not found (`unsung`), or when MMS hears letters well after the track's last singing
    (`beyond`: a video of several shabads; its track's `end` is set by hand, the evidence in `fixes.md`).
 4. **By ear:** a flagged line is heard in 5-s windows (`windows.py`), as in step 5 above. The owner's marks in the app are
-   per verse (its first singing); the lines are MMS's.
+   per verse (its first singing) and, in a verse of more than 5 lines, per line (step 6); the other lines are MMS's.
 
 The search's costs (`line_align.py` `P`) were tuned on the Shabad Guru pilot's emissions (`scriptures-data`,
 `experiments/kirtan/`), against the lines read from MMS's letters and the starts heard in 5-s windows (its `fixes.md`).
