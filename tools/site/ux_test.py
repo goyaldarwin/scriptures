@@ -681,12 +681,11 @@ async def main():
         check('the reader footer names only the part, not the topic', foot == await ev("KNAME(R.n)"), foot)
         subs = await ev("""(async () => { const r = {}; for (const id of ['manas', 'sundarkand', 'ramraksha']){ await openWork(id, true); S.settings.ui = 'en'; applyLang(); show('home'); r[id] = document.querySelector('#hSub').textContent; } return r; })()""")
         check('under the title: the author and parent text, no publisher', subs == {'manas': 'Goswami Tulsidas', 'sundarkand': 'Goswami Tulsidas · Shri Ramcharitmanas', 'ramraksha': 'Budha Kaushik Rishi'}, subs)
-        pk = await ev("""(async () => { await openWork('manas', true); show('home'); openReader('k', 0); await new Promise(r => setTimeout(r, 500)); sectionSheet();
-            const a0 = R.a; document.querySelector('#sheetBody [data-parts]').click(); await new Promise(r => setTimeout(r, 200)); document.querySelector('#sheetBody [data-pick="1"]').click(); await new Promise(r => setTimeout(r, 300));
-            const stillOpen = document.querySelector('#sheet').classList.contains('on'), same = R.a === a0, first = +document.querySelector('#sheetBody .secs [data-to]').dataset.to;
-            document.querySelector('#sheetBody .secs [data-to]').click(); await new Promise(r => setTimeout(r, 600));
-            return [stillOpen, same, first === PARTS[1].a, R.n === 1, document.querySelector('#sheet').classList.contains('on')]; })()""")
-        check('Go to: Change › lists the parts; a kāṇḍa chosen only shows its sections; a section opens it', pk == [True, True, True, True, False], pk)
+        pk = await ev("""(async () => { await openWork('manas', true); show('home'); openReader('k', 0); await new Promise(r => setTimeout(r, 500));
+            const prev = document.querySelector('#rPrev').hidden, next = document.querySelector('#rNext span').textContent;
+            document.querySelector('#rNext').click(); await new Promise(r => setTimeout(r, 500)); const n1 = R.n, back = document.querySelector('#rPrev span').textContent;
+            sectionSheet(); const first = +document.querySelector('#sheetBody .secs [data-to]').dataset.to; closeSheet(); return [prev, next === KNAME(1), n1 === 1, back === KNAME(0), first === PARTS[1].a]; })()""")
+        check('footer: the previous and next part beside where you are (none before the first); a tap opens it; the list shows what is open', pk == [True, True, True, True, True], pk)
         # The timing tests practise on the Śrī Rudram's recording as if nothing had been set by ear yet (every verse estimated,
         # none the owner's), so they do not depend on how far the owner has marked it: each first clears, in memory only, the
         # published marks, ends and checks, and rebuilds the times (inlined: the page reloads between tests).
@@ -1292,17 +1291,14 @@ async def main():
             PL.seekT = null; const c = PL.cur, tr = SRC.au.tracks[PL.t], want2 = nextAu(tr.li + 1, IT.length - 1, G.key); onEnded(); const end = [PL.cur === want2, G.set.has(PL.cur), PL.cur > c];
             stopAudio(); ytOK = false; return {step, end}; })()""")
         check("Sri Guru Granth Sahib: a writer's verses play on as their own reading — past a verse not the writer's, and at a recording's end, the player goes to the writer's next verse", not gp.get('none') and gp['step'] == [True, True, True] and gp['end'] == [True, True, True], gp)
-        # Go to (the owner: the chips and one long list made anything hard to find): the part by its number, its banis folded with
-        # the current one open, quick picks from work.json goto, and a box that finds an Ang or a bani by name
-        go = await ev("""(async () => { await openWork('guru-granth-sahib', true); show('home'); GOREC().length = 0; save(); openReader('k', ID['917.2']); await new Promise(r => setTimeout(r, 500)); sectionSheet(); await new Promise(r => setTimeout(r, 200));
-            const no = document.querySelector('#sheetBody .gopart .no').textContent, banis = document.querySelectorAll('#sheetBody .gobani').length, ti = topVisibleItem(), open = [...document.querySelectorAll('#sheetBody .gobani.open [data-to]')].some(b => +b.dataset.to <= ti) && document.querySelectorAll('#sheetBody .gobani.open').length === 1;
-            const pills = [...document.querySelectorAll('#sheetBody .gopills button')].map(b => b.textContent);
-            const q = document.querySelector('#goQ'); q.value = '917'; goFind(); const ang = IT[+document.querySelector('#goBody [data-to]').dataset.to].id;
-            q.value = 'Sidh Gosht'; goFind(); const sidh = [...document.querySelectorAll('#goBody [data-to]')].map(b => IT[+b.dataset.to].id);
-            document.querySelector('#goBody [data-to]').click(); await new Promise(r => setTimeout(r, 400)); const rec = GOREC()[0] && GOREC()[0].id, shut = !document.querySelector('#sheet').classList.contains('on');
-            GOREC().length = 0; save(); openReader('k', ID['mool']); await new Promise(r => setTimeout(r, 400)); sectionSheet(); await new Promise(r => setTimeout(r, 200)); const japji = document.querySelectorAll('#sheetBody .gobani').length; closeSheet();
-            return {no, banis, open, pills, ang, sidh, rec, shut, ti: IT[ti].id, japji}; })()""")
-        check('Go to: the part by its number, its banis folded with the one you are in open (a line holding ਬਾਣੀ, as in the Japji, is no heading), quick picks, an Ang and a bani found by name', go['no'] == '22' and go['banis'] > 8 and go['open'] and go['pills'][:2] == ['Japji', 'Anand Sahib'] and go['ang'] == '917.1' and '938.2' in go['sidh'] and go['rec'] == go['sidh'][0] and go['shut'] and go['japji'] == 0, go)
+        # the footer's list in the Granth: the raag's shabads, plainly; the box finds an Ang and a line in it, a line opening there
+        go = await ev("""(async () => { await openWork('guru-granth-sahib', true); show('home'); openReader('k', ID['917.2']); await new Promise(r => setTimeout(r, 500));
+            const names = [document.querySelector('#rPrev span').textContent, document.querySelector('#rNext span').textContent];
+            sectionSheet(); await new Promise(r => setTimeout(r, 200)); const rows = document.querySelectorAll('#sheetBody .secs [data-to]').length, grouped = !!document.querySelector('#sheetBody .gobani, #sheetBody .gopart');
+            const q = document.querySelector('#goQ'); q.value = '938'; q.oninput(); const ang = IT[+document.querySelector('#goList [data-to]').dataset.to].id;
+            q.value = 'ਸੁਣਿ ਮਾਛਿੰਦ੍ਰਾ'; q.oninput(); const b = document.querySelector('#goList [data-ln]'), line = b ? [IT[+b.dataset.to].id, +b.dataset.ln] : null; closeSheet();
+            return {names, rows, grouped, ang, line}; })()""")
+        check("footer in the Granth: the raags beside Ramkali; the list is the raag's shabads, ungrouped; the box finds an Ang and a line", go['names'] == [await ev("KNAME(20)"), await ev("KNAME(22)")] and go['rows'] > 100 and not go['grouped'] and 917 <= int(go['ang'].split('.')[0]) <= 938 and go['line'] == ['877.3', 1], go)
         # an Ang that begins inside a verse begun on the page before (Ang 110 at ਸੇਵਾ ਸੁਰਤਿ, the third line of 109.3): it opens at that
         # line, and the footer names the page of the line at the top of the screen (110 there, 109 above it)
         ap = await ev("""(async () => { await openWork('guru-granth-sahib', true); show('home'); WS().org = 'ang'; S.settings.atOpen = {}; renderHome();
@@ -2019,8 +2015,8 @@ async def split_work(b, shots):
     # to the second part the way a finger does: the footer, the second part, its first section
     slow['on'] = True; got.clear()
     await pg.click('#rMid'); await pg.wait_for_timeout(400)
-    await pg.click('#sheetBody [data-parts]'); await pg.wait_for_timeout(300)
-    await pg.click('#sheetBody [data-pick="1"]'); await pg.wait_for_timeout(300)
+    await pg.keyboard.press('Escape'); await ev("closeSheet()"); await pg.click('#rNext'); await pg.wait_for_timeout(300)
+    await pg.click('#rMid'); await pg.wait_for_timeout(300)
     rows = await ev("[...document.querySelectorAll('#sheetBody .secs .sr')].map(x => x.textContent)")
     await shot('picker')
     await pg.click('#sheetBody .secs [data-to]'); await pg.wait_for_timeout(300)
