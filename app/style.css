@@ -371,6 +371,30 @@ input[type=checkbox],input[type=radio],input[type=range]{accent-color:var(--indi
 .secs .sr{font-size:13px;color:var(--saffron);font-weight:600}
 .secs .sn{font-size:16px}
 .secs button.on{background:var(--indigo-soft);border-radius:10px}
+/* Go to (the footer's sheet): a box, quick picks, the part by its number, the banis folded */
+.go h2{margin:2px 0 10px}
+.goq{display:flex;align-items:center;gap:8px;height:46px;padding:0 12px;border:1.5px solid var(--indigo);border-radius:12px;background:var(--surface)}
+.goq svg{width:18px;height:18px;fill:none;stroke:var(--muted);stroke-width:1.8;flex:none}
+.goq input{flex:1;min-width:0;border:0;outline:0;background:none;color:var(--ink);font:inherit;font-size:16px}
+.gopills{display:flex;gap:8px;overflow-x:auto;padding:10px 0 2px}
+.gopills button{flex:none;border:1px solid var(--rule);border-radius:999px;padding:6px 12px;font-size:14px;color:var(--indigo);background:var(--bg)}
+#goBody{display:flex;flex-direction:column;gap:10px;padding-top:12px}
+.gopart{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:12px 14px;border:1.5px solid var(--indigo);border-radius:14px;background:var(--surface)}
+.gopart .no,.goparts .no{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--indigo-soft);color:var(--indigo);font-weight:700;font-size:15px;flex:none}
+.gopart small{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--indigo);font-weight:600}
+.gopart b{display:block;font-size:20px;color:var(--indigo)}
+.gopart .ds,.gobani .ds,.goparts .ds{display:block;font-size:12.5px;color:var(--muted)}
+.chg{color:var(--indigo);font-size:13.5px;font-weight:600;flex:none}
+.goparts{border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+.goparts button{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:8px 12px;border-bottom:1px solid var(--rule)}
+.goparts button.on{background:var(--indigo-soft)}
+.goparts .ds{flex:none}
+.gohead{margin:4px 2px 0}
+.gobani{border:1px solid var(--rule);border-radius:12px;background:var(--surface);overflow:hidden}
+.gobani > button{display:flex;align-items:center;gap:10px;width:100%;min-height:52px;text-align:left;padding:10px 14px}
+.gobani > button b{display:block;font-size:16px}
+.gobani .secs{padding:0 10px 4px;border-top:1px solid var(--rule)}
+.gosearch{width:100%;text-align:left;padding:12px 4px;color:var(--indigo);font-weight:600}
 .endb{text-align:center;margin:30px 0 20px}
 .pwrap{gap:10px;align-items:stretch;padding-top:6px;padding-bottom:6px}
 /* while reciting, the player replaces the section bar; YouTube needs the video at least 200×200 */
