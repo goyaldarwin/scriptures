@@ -1136,7 +1136,7 @@ async def main():
         check('labels: the template uses the app\'s vocabulary', not bad, bad)
         # ⋮ order: Play from here · Write a note · Copy verse and meaning · Correct …
         order = await ev("(async () => { await openWork('manas', true); show('home'); openReader('k', 0); await new Promise(r => setTimeout(r, 300)); itemMenu(0); await new Promise(r => setTimeout(r, 200)); const r = [...document.querySelectorAll('#sheetBody [data-x]')].map(b => b.dataset.x); closeSheet(); return r; })()")
-        check('⋮: Play from here · Write a note · Review audio timing · Copy verse and meaning, and no Improve (no editing in the app)', order[:4] == ['play', 'note', 'flag', 'copy'] and 'edit' not in order, order)
+        check('⋮: Play from here · Write a note · Copy verse and meaning, nothing about timing (the ⚑ does it), and no Improve (no editing in the app)', order[:3] == ['play', 'note', 'copy'] and 'flag' not in order and 'edit' not in order, order)
         # a tapped word's sheet: its language in brackets beside it; parts, Hindi, English, then root and grammar; no Edit or Add meaning
         ws = await ev("""(async () => { await openWork('valmiki-ramayana', true); await loadSources(); show('home'); openReader('k', ID['bala.1.1']); await new Promise(r => setTimeout(r, 1200));
             wordSheet('वाग्विदां', null, 'sa'); await new Promise(r => setTimeout(r, 300)); const b = $('#sheetBody');
@@ -1363,19 +1363,19 @@ async def main():
             const pa = await look(true, false), en = await look(false, true); S.settings.layers = JSON.parse(L0); save(); show('home');
             return {pa, en}; })()""")
         check('Gurbani headings: with ਪੰ the part, section and verse type are in Gurmukhi (ਗਾਥਾ · ਮਹਲਾ 5 ਗਾਥਾ · ॥ ਪਦ ॥); with En in English', ph['pa'] == ['ਗਾਥਾ', 'ਮਹਲਾ 5 ਗਾਥਾ', '॥ ਪਦ ॥'] and ph['en'][0] == 'Gatha' and ph['en'][-1] == '॥ Stanza ॥', ph)
-        # “Review audio timing” in the verse's ⋮ menu: only that verse joins the to-check list (seen in timing mode); one blue dot on ▶
-        # and in the menu shows it is marked; it leaves the list once its start is set
+        # a timing flag (set with ⚑; ⋮ has nothing about timing): only that verse joins the to-check list (seen in timing mode); the
+        # blue dot on ▶ shows it is marked; it leaves the list once its start is set
         fg = await ev("""(async () => { const k0 = JSON.stringify(S.timing.flags); await openWork('manas', true); await loadSources(); show('home');
             const i = IT.findIndex(x => x.id === 'bal.1.cau2'); openReader('k', i); await new Promise(r => setTimeout(r, 500));
             S.timing.on = true; const before = new Set(toCheckIds()); S.timing.on = false;
             itemMenu(i); await new Promise(r => setTimeout(r, 150)); const menu = [...document.querySelectorAll('#sheetBody [data-x]')].map(b => b.dataset.x);
-            document.querySelector('#sheetBody [data-x=flag]').click(); await new Promise(r => setTimeout(r, 200));
+            closeSheet(); toggleFlag(i); await new Promise(r => setTimeout(r, 200));
             S.timing.on = true; const added = toCheckIds().filter(j => !before.has(j)); S.timing.on = false;
-            itemMenu(i); await new Promise(r => setTimeout(r, 150)); const off = !!document.querySelector('#sheetBody [data-x=flag] .revd') && !!document.querySelector('#v' + i + ' .vplay .revd'); closeSheet();
+            const off = !!document.querySelector('#v' + i + ' .vplay .revd');
             flagDone(IT[i].id); S.timing.on = true; const gone = !toCheckIds().includes(i) || before.has(i); S.timing.on = false;
             S.timing.flags = JSON.parse(k0); syncFlags(); save();
-            return [menu.slice(0, 4).join() === 'play,note,flag,copy' && !menu.includes('edit'), added.length === 1 && added[0] === i, off, gone]; })()""")
-        check('timing flag in ⋮: “Review audio timing” (third in ⋮) puts only that verse on the check list; one blue dot on ▶ and in ⋮ shows it; it leaves once set', all(fg), fg)
+            return [menu.slice(0, 3).join() === 'play,note,copy' && !menu.includes('flag') && !menu.includes('edit'), added.length === 1 && added[0] === i, off, gone]; })()""")
+        check('timing flag: not in ⋮; a flag puts only that verse on the check list; the blue dot on ▶ shows it; it leaves once set', all(fg), fg)
         # "Review timing" (Audio timing settings): off, no flag; on, while playing, a blue ⚑ bottom left of the verse recited and
         # its neighbours, outside timing mode; a tap fills it, marks the verse (on the settings' to-check list too, and ▶ needs no dot); timing mode hides it
         vf = await ev("""(async () => { const k0 = JSON.stringify(S.timing.flags), f0 = S.timing.flagsOn; await openWork('manas', true); await loadSources(); show('home');
@@ -1386,12 +1386,12 @@ async def main():
             document.querySelector('#v' + (i + 1) + ' [data-a=tflag]').click(); await new Promise(r => setTimeout(r, 200)); stopAudio(); await new Promise(r => setTimeout(r, 100));
             const kept = d(i + 1) === 'flex' && d(i) === 'none'; document.querySelector('#v' + (i + 1) + ' [data-a=tflag]').click(); await new Promise(r => setTimeout(r, 100));
             document.querySelector('#v' + i + ' [data-a=tflag]').click(); await new Promise(r => setTimeout(r, 200));
-            const filled = !!document.querySelector('#v' + i + ' .vflag .on') && !document.querySelector('#v' + i + ' .vplay .revd') && FLAGGED.has(IT[i].id);
+            const filled = !!document.querySelector('#v' + i + ' .vflag .on') && !!document.querySelector('#v' + i + ' .vplay .revd') && FLAGGED.has(IT[i].id);
             const listed = checkList().includes('data-go-i="' + i + '"');
             S.timing.on = true; refreshReader(); await new Promise(r => setTimeout(r, 300)); const hidden = !document.querySelector('#v' + i + ' .vflag'); S.timing.on = false;
             S.timing.flags = JSON.parse(k0); S.timing.flagsOn = f0; syncFlags(); save(); refreshReader();
             return [none, idle, shown, kept, filled, listed, hidden]; })()""")
-        check('“Review timing”: while playing, a blue ⚑ on the verse recited and its neighbours; a tap fills it (shown after playing too) and lists the verse; hidden in timing mode', all(vf), vf)
+        check('“Review timing”: while playing, a blue ⚑ on the verse recited and its neighbours; a tap fills it (shown after playing too, with the blue dot on ▶) and lists the verse; hidden in timing mode', all(vf), vf)
         # every number is shown as 1 2 3, in Hindi too; a digit inside a word (ओ३म्) and what a textarea holds stay as written
         nm = await ev("""(async () => { const ui = S.settings.ui, ly = JSON.stringify(S.settings.layers); S.settings.ui = 'hi'; applyLang(); await openWork('manas', true); await loadSources(); S.settings.layers = {h: true, e: false, w: false}; syncLayers();
             show('home'); renderHome(); await new Promise(r => setTimeout(r, 300)); const home = document.querySelector('#home').innerText;
@@ -1482,6 +1482,15 @@ async def main():
             S.admin = 1; show('settings'); renderSettings(); const set1 = !!document.querySelector('#stm');
             S.admin = a0; S.timing.flagsOn = f0; save(); libPath = []; show('library'); return [set, flag, menu, set1]; })()""")
         check('timing tools: hidden on a phone that is not an admin’s, shown on one that is', ad == [False, False, False, True], ad)
+        # Audio timing on or off: the recording playing goes on (the owner); a verse's ⋮ is top right beside ▶, its bookmark bottom right
+        tg = await ev("""(async () => { const on0 = S.timing.on; await openWork('sundarkand', true); await loadSources(); S.timing.on = false; save(); show('home');
+            const i = ID['sundar.1.cau1'] || 5; openReader('k', i); await new Promise(r => setTimeout(r, 500));
+            const v = document.getElementById('v' + i), ps = v.querySelectorAll('.vtext p'), corners = !!ps[0].querySelector('.vmore[data-a=menu]') && !ps[0].querySelector('.vbm') && !!ps[ps.length - 1].querySelector('.vend .vbm[data-a=bm]') && !ps[ps.length - 1].querySelector('[data-a=menu]');
+            const so = stopAudio; let stops = 0; stopAudio = () => { stops++; so(); };
+            try { show('settings'); renderSettings(); const sw = document.querySelector('#stm'); sw.checked = true; sw.dispatchEvent(new Event('change')); await new Promise(r => setTimeout(r, 400));
+              sw.checked = false; sw.dispatchEvent(new Event('change')); await new Promise(r => setTimeout(r, 400)); } finally { stopAudio = so; }
+            S.timing.on = on0; save(); show('home'); return [corners, stops === 0, !!SRC.au]; })()""")
+        check('Audio timing on or off does not stop the recording; ⋮ top right of a verse, its bookmark bottom right', tg == [True, True, True], tg)
         pg4 = await ctx.new_page()
         await pg4.goto(url); await pg4.wait_for_timeout(2500); await pg4.evaluate("S.admin = 0; save()")
         await pg4.goto(url + '?admin=not-the-phrase'); await pg4.wait_for_timeout(2500)
