@@ -205,7 +205,8 @@ body.playing #rBody{padding-bottom:150px}
 .vb.vplay .revd{position:absolute;top:calc(50% - 17px);right:-4px}
 .vflag{position:absolute;left:-28px;bottom:0;height:calc(var(--verse-size) * 1.6);display:none;align-items:center}body.playing .verse.now .vflag,body.playing .verse.near .vflag,.vflag:has(.on){display:flex}.vflag .vb{width:26px;color:var(--indigo);opacity:.85}.vflag .vb svg{width:19px;height:19px;stroke-width:1.8}.vflag .vb.on{opacity:1;--flag-fill:var(--indigo)}   /* ⚑ review audio timing: while playing on the verse being recited and its neighbours; blue, filled (and always shown) once marked */
 .menu button .revd{margin-left:auto;box-shadow:none}
-.vbm{position:absolute;right:-25px;top:0;height:calc(var(--verse-size) * 1.6)}
+.vb.vmore{position:absolute;right:-25px;top:0;height:calc(var(--verse-size) * 1.6);width:26px;color:var(--indigo);opacity:.85}.vb.vmore svg{width:20px;height:20px}   /* ⋮ top right, beside ▶ (the owner) */
+.vend .vb.bm-on{color:var(--saffron);opacity:1}   /* the bookmark at the verse's end: saffron once set, as before */
 .vtext p.one{padding:calc(var(--verse-size) * .8) 0}
 .rowp{position:relative}.lmark{position:absolute;left:-3px;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;z-index:2;background:transparent}   /* over a vishram’s number: tap to mark it complete or not */
 .pdone{display:flex;align-items:center;gap:10px;padding:4px 2px 8px;border:0}.pdbar{flex:1;height:6px;border-radius:3px;background:var(--rule);overflow:hidden}.pdbar span{display:block;height:100%;background:var(--ok);border-radius:3px}.pdn{font-size:13.5px;color:var(--muted);font-variant-numeric:tabular-nums}

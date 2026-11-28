@@ -574,9 +574,11 @@ function verseHTML(i){
     const last = y === vv.v.length - 1;
     let ln = last && (it.y === 'cau' || it.y === 'cha') && it.n && /॥\s*$/.test(l) && !/॥[^॥]+॥\s*$/.test(l) ? l.replace(/\s*॥\s*$/, ' ॥' + it.n + '॥') : l;
     const w = wordsHTML(ln).replace(/॥\s*([0-9०-९੦-੯][^\s॥<]*)\s*॥/, '<span style="white-space:nowrap">॥$1॥</span>');
-    // corners, each inside the gutter so they never touch the text: ▶ (top left, on the line of the bookmark),
-    // bookmark (top right), ⋮ (bottom right). A one-line verse is given a second line's height so the corners stay apart.
-    const top = y === 0 ? (hasAu(i) ? '<button class="vb vplay" data-a="play" aria-label="play"><svg><use href="#i-play"/></svg>' + (SRC.au && flagsNow()[id] && !(S.timing.flagsOn && !S.timing.on) ? REVB : '') + '</button>' : '') + '<button class="vb vbm' + (bm ? ' bm-on' : '') + '" data-a="bm" aria-label="bookmark"><svg><use href="#i-bm"/></svg></button>' : '';
+    // corners, each inside the gutter so they never touch the text: ▶ (top left), ⋮ (top right, the owner: beside ▶ at the
+    // verse's start, where Play from here is chosen), bookmark (bottom right, the owner: at the verse's end, where a verse
+    // liked is kept once it has been read or heard). A one-line verse is given a second line's height so the corners stay apart.
+    // A verse flagged for its timing has the blue dot on ▶ (the owner: the flag and the dot, nothing in ⋮)
+    const top = y === 0 ? (hasAu(i) ? '<button class="vb vplay" data-a="play" aria-label="play"><svg><use href="#i-play"/></svg>' + (SRC.au && flagsNow()[id] ? REVB : '') + '</button>' : '') + '<button class="vb vmore" data-a="menu" aria-label="more"><svg><use href="#i-more"/></svg></button>' : '';
     // the bottom-left corner in timing mode (the owner: Undo and Correct never make sense together, so they share it):
     // ✓ Correct on a verse still to check (a helper's mark, one the library lists, one flagged), ↶ Undo on a start you set
     const by = S.timing.on && SRC.au ? fromOf(id) : undefined, mine = S.timing.on && SRC.au && myStarts()[id];
@@ -584,9 +586,9 @@ function verseHTML(i){
     const undo = !last || !S.timing.on || !SRC.au ? '' : by ? okB : mine ? '<span class="vundo"><button class="vb" data-a="tundo" aria-label="' + T('पहले जैसा', 'Undo') + '" title="' + T('पहले जैसा', 'Undo') + '"><svg><use href="#i-undo"/></svg></button></span>' : toCheck(i) && SRC.au.at[id] ? okB : '';
     // ⚑ (bottom left) for the reader who turned on "Review timing" (☰ › More settings › Audio timing), outside timing
     // mode (where ↶ has that corner): shown while playing on the verse being recited and the verses just before and after it
-    // (the light may already have moved on), and always once marked "Review audio timing" (filled blue; ▶ then needs no dot)
+    // (the light may already have moved on), and always once marked (filled blue, the blue dot on ▶ too)
     const flagOn = ADMIN() && S.timing.flagsOn && !S.timing.on, flag = last && flagOn && hasAu(i) ? '<span class="vflag"><button class="vb' + (SRC.au && flagsNow()[id] ? ' on' : '') + '" data-a="tflag" aria-label="' + T('ऑडियोका समय जाँचें', 'Review audio timing') + '"><svg><use href="#i-flag"/></svg></button></span>' : '';
-    const tail = last ? '<span class="vend"><button class="vb" data-a="menu" aria-label="more"><svg><use href="#i-more"/></svg></button></span>' + undo + flag : '';
+    const tail = last ? '<span class="vend"><button class="vb vbm' + (bm ? ' bm-on' : '') + '" data-a="bm" aria-label="bookmark"><svg><use href="#i-bm"/></svg></button></span>' + undo + flag : '';
     return '<p' + (vv.v.length === 1 ? ' class="one"' : '') + '>' + top + w + tail + '</p>'; });
   let h = '<div class="verse' + (toCheck(i) ? ' tocheck' : '') + '" id="v' + i + '" data-i="' + i + '">';
   const trl = l => '<div>' + l.split(/(?<=,)\s+/).map(x => '<span class="half">' + esc(x).replace(/\s*॥\s*([^॥]*?)\s*॥((?:[^॥\s]+॥)*)/g, ' <span class="dd">॥$1॥$2</span>') + '</span>').join(' ') + '</div>';
@@ -922,7 +924,7 @@ function mainMenu(){
     '<button data-m="share"><svg><use href="#i-share"/></svg>' + T('ऐप साझा करें', 'Share the app') + '</button>' +
     '<button data-tour><svg><use href="#i-tour"/></svg>' + LB.tour() + '</button>' +
     '<button data-m="set"><svg><use href="#i-set"/></svg>' + LB.more() + '</button></div>');
-  if ($('#mtm')) $('#mtm').onchange = async () => { S.timing.on = false; save(); applyTiming(); stopAudio(); closeSheet(); await loadSources(); if (CURVIEW === 'reader') refreshReader(); if (CURVIEW === 'settings') renderSettings(); toast(T('ऑडियोका समय: बंद', 'Audio timing: off')); };   // while on, ☰ turns it off
+  if ($('#mtm')) $('#mtm').onchange = async () => { S.timing.on = false; save(); applyTiming(); closeSheet(); await timingSwitched(); if (CURVIEW === 'reader') refreshReader(); if (CURVIEW === 'settings') renderSettings(); toast(T('ऑडियोका समय: बंद', 'Audio timing: off')); };   // while on, ☰ turns it off
   $('#mth').onchange = e => { S.settings.theme = e.target.checked ? 'dark' : 'light'; applyTheme(); save(); };   // light or dark, nothing else
 }
 $('#rMore').onclick = mainMenu;
@@ -996,14 +998,13 @@ function noteSheet(i, k){
 }
 function itemMenu(i){
   const id = IT[i].id, edited = verseOf(i).edited || MK().some(k => { const m = mean(k, i); return m && m.edited; });
-  openSheet('<p class="small muted">' + esc(itemLabel(i)) + '</p><div class="menu">' + (hasAu(i) ? '<button data-x="play"><svg><use href="#i-play"/></svg>' + T('यहाँसे सुनें', 'Play from here') + '</button>' : '') + '<button data-x="note"><svg><use href="#i-note"/></svg>' + T('टिप्पणी लिखें', 'Write a note') + '</button>' + (hasAu(i) && ADMIN() ? '<button data-x="flag"' + (SRC.au && flagsNow()[id] ? ' class="on"' : '') + '><svg><use href="#i-clock"/></svg>' + T('ऑडियोका समय जाँचें', 'Review audio timing') + (SRC.au && flagsNow()[id] ? REVB : '') + '</button>' : '') + '<button data-x="copy"><svg><use href="#i-copy"/></svg>' + T('पद और अर्थ कॉपी करें', 'Copy verse and meaning') + '</button>' + (EDITS ? '<button data-x="edit"><svg><use href="#i-edit"/></svg>' + T('पद या अर्थ सुधारें', 'Improve verse or meaning') + '</button>' : '') + (edited ? '<button data-x="revert"><svg><use href="#i-edit"/></svg>' + T('मेरा सुधार हटाएँ (पद लौटाएँ)', 'Remove my correction (restore the verse)') + '</button>' : '') + '</div>');
+  openSheet('<p class="small muted">' + esc(itemLabel(i)) + '</p><div class="menu">' + (hasAu(i) ? '<button data-x="play"><svg><use href="#i-play"/></svg>' + T('यहाँसे सुनें', 'Play from here') + '</button>' : '') + '<button data-x="note"><svg><use href="#i-note"/></svg>' + T('टिप्पणी लिखें', 'Write a note') + '</button>' + '<button data-x="copy"><svg><use href="#i-copy"/></svg>' + T('पद और अर्थ कॉपी करें', 'Copy verse and meaning') + '</button>' + (EDITS ? '<button data-x="edit"><svg><use href="#i-edit"/></svg>' + T('पद या अर्थ सुधारें', 'Improve verse or meaning') + '</button>' : '') + (edited ? '<button data-x="revert"><svg><use href="#i-edit"/></svg>' + T('मेरा सुधार हटाएँ (पद लौटाएँ)', 'Remove my correction (restore the verse)') + '</button>' : '') + '</div>');
   $$('#sheetBody [data-x]').forEach(b => b.onclick = () => {
     const x = b.dataset.x; closeSheet();
     if (x === 'play'){ playFrom(i, R.b); PL.whole = false; PL.endMsg = RNAME() + T(' पूर्ण', ' finished'); }   // to the end of what is open: the kāṇḍa, or the vishram
     if (x === 'copy'){ const ks = shownKinds().length ? shownKinds() : capKinds(); const txt = verseOf(i).v.join('\n') + ks.map(k => mean(k, i)).filter(Boolean).map(m => '\n\n' + m.x).join(''); (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(() => toast(T('कॉपी हो गया', 'Copied'))).catch(() => toast(T('कॉपी नहीं हो सका', 'Could not copy'))); }
     if (x === 'note') noteSheet(i, null);
     if (x === 'edit') editSheet(i);
-    if (x === 'flag') toggleFlag(i);
     if (x === 'revert'){ S.profiles.forEach(p => { delete p.fix[KEY(id)]; MK().forEach(k => { if (SRC[k]) delete p.fix[KEY(SRC[k].id + ':' + id)]; }); }); save(); rerenderItem(i); toast(T('पद लौटाया', 'Verse restored')); }
   });
 }
@@ -1061,9 +1062,8 @@ function step(){ return S.timing.step || 0.5; }
 // a verse to check: listed by the library, or placed again around set times (moved) — except for a source whose list is a
 // fixed sample ("checkOnly": the owner scores the timings on it, and setting a verse's neighbours must not add to it) — or flagged
 function toCheck(i){ const id = IT[i].id, A = SRC.au; return !!(S.timing.on && A && A.checkSet && (((A.checkSet.has(id) || (A.moved && !A.checkOnly && A.moved.has(id))) && !myStarts()[id]) || FLAGGED.has(id))); }
-// a timing flag (the owner: a listener hears where the recording and the verse part), set with "Review audio timing" in the
-// verse's ⋮ menu; once set, one sign shows it in both places, a blue dot (REVB): on the verse's ▶ (timing belongs to
-// playing) and at the end of the menu item: only a
+// a timing flag (the owner: a listener hears where the recording and the verse part), set with the verse's ⚑ ("Review audio
+// timing"; nothing in ⋮); once set, the blue dot (REVB) on the verse's ▶ shows it (timing belongs to playing): only a
 // verse flagged joins the to-check list (also one whose start was set), and leaves it once its start is set (or ✓ Correct).
 // {flagged id: when}
 let FLAGGED = new Set();
@@ -1557,6 +1557,14 @@ function refreshMarks(was, i){ Object.keys(was).forEach(q => { q = +q; if (q ===
 function marksNow(){ const was = {}; $$('#rBody .verse').forEach(el => { const q = +el.dataset.i; if (!IT[q]) return; was[q] = JSON.stringify(SRC.au.at[IT[q].id]) + toCheck(q) + !!myStarts()[IT[q].id]; }); return was; }
 function clearStart(i){ const fx = S.timing.fix[tkey()] || {}, was = marksNow(); delete fx[IT[i].id]; unfrom(IT[i].id); if (!Object.keys(fx).length) delete S.timing.fix[tkey()]; save(); buildAudio(); refreshMarks(was, i); if (PL.on){ PL.cur = -1; tick(i); } }
 function fmtT(sec){ const m = Math.floor(sec / 60), s = sec - m * 60; return m + ':' + (s < 10 ? '0' : '') + s.toFixed(1); }
+// Audio timing turned on or off: the recording playing goes on playing (the owner: it stopped, and had to be started again).
+// Only when the recording chosen changes is it stopped: a draft plays only while timing is on, so turning timing off leaves
+// it for the recording readers have; otherwise the times are only built again and the light set from where it is.
+async function timingSwitched(){
+  const was = SRC.au && SRC.au.meta.id, c = srcChoice('au');
+  if ((c ? c.id : undefined) !== was){ stopAudio(); await loadSources(); return; }
+  buildAudio(); if (PL.on){ PL.cur = -1; tick(); }
+}
 function applyTiming(){ document.body.classList.toggle('timing', !!S.timing.on); syncStep(); }
 $('#pPrev').onclick = () => stepVerse(-1);
 $('#pNext').onclick = () => stepVerse(1);
@@ -2274,7 +2282,7 @@ function clearTimingAsk(){ askYes(T('“' + esc(TT(W.title)) + '” की “' 
 function bindTiming(){
   $$('[data-go-i]').forEach(b => b.onclick = () => openReader('k', +b.dataset.goI, true));
   if (!$('#stm')) return;
-  $('#stm').onchange = async e => { S.timing.on = e.target.checked; save(); applyTiming(); stopAudio(); await loadSources(); renderSettings(); };
+  $('#stm').onchange = async e => { S.timing.on = e.target.checked; save(); applyTiming(); await timingSwitched(); renderSettings(); };
   if ($('#stf')) $('#stf').onchange = e => { S.timing.flagsOn = e.target.checked; save(); renderSettings(); };
   if ($('#sAdminOff')) $('#sAdminOff').onclick = () => { S.admin = 0; S.timing.on = false; save(); applyTiming(); renderSettings(); if (CURVIEW === 'reader') refreshReader(); };
   if ($('#stp')) $('#stp').onchange = e => { S.timing.publish = S.timing.publish || {}; if (e.target.checked) S.timing.publish[tkey()] = true; else delete S.timing.publish[tkey()]; save(); renderSettings(); };
